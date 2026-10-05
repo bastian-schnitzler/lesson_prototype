@@ -1,8 +1,16 @@
 # Proposed GitHub issues
 
-Status: draft backlog for [SPEC.md](SPEC.md), version 0.9. Target repository: `bastian-schnitzler/lesson_prototype`.
+Status: draft backlog for [SPEC.md](SPEC.md), version 0.14. Target repository: `bastian-schnitzler/lesson_prototype`.
 
 These are issue bodies ready for refinement; they have not yet been published. Publish after the phase 0 specification review, replacing logical dependency IDs with actual GitHub issue links. Check for existing equivalents before creating issues. Each issue should link to the agreed specification version/commit and retain its acceptance criteria. Phase identifiers in titles provide organization without requiring repository labels or milestones to exist.
+
+## Ongoing GitHub synchronization
+
+Once these issues are published, every change to `docs/SPEC.md` or `docs/ISSUES.md` must also refresh GitHub issues in the same change workflow. Update affected titles, scope, acceptance criteria, dependencies, Mermaid diagrams, and mockup assets, and refresh specification version/commit links across the published backlog. Preserve issue numbers/URLs and record mappings for new issues. Verify the remote updates before reporting the change complete; explicitly report pending synchronization if GitHub access is unavailable. See [the specification's synchronization rule](SPEC.md#keep-github-issues-synchronized).
+
+## Branch naming
+
+Use `phase<phase-number>-issue<GitHub-issue-number>-<short-description>`, matching the current `phase0-issue0-create-spec` branch. Descriptions use lowercase words separated by hyphens. After publication, use each issue's actual GitHub number rather than its logical draft ID (`P1-01`, etc.). An illustrative phase 1 branch is `phase1-issue12-build-lesson-index`. Keep the existing phase 0 specification branch's bootstrap number 0.
 
 ## Phase 0 — specification and issue creation
 
@@ -29,7 +37,10 @@ Acceptance:
 
 - Existing issues are checked to avoid duplication.
 - Every implementation issue has scope, acceptance criteria, phase, and dependencies.
+- Document the agreed branch naming pattern and map draft IDs to actual issue numbers; work branches use `phase<no>-issue<GitHub-no>-<short-description>`.
 - The specification and this index link to actual issue URLs.
+- After publication, every subsequent SPEC.md/ISSUES.md change refreshes the GitHub backlog and its specification references; affected scope, acceptance criteria, dependencies, diagrams, and mockups match the latest specification.
+- Remote issue updates and links are verified as part of completing each documentation change; any blocked synchronization is reported explicitly.
 - Relevant issue bodies include fenced Mermaid flows and embedded rendered Salt mockups, with editable source links pinned to the spec commit; verify rendering on GitHub and use repository/attachment URLs, never local paths.
 - Functions/reading implementation remains blocked on requirements instead of speculative exercise definitions.
 
@@ -51,7 +62,7 @@ Acceptance:
 - A typed component registry provides category-specific Draft/Content views as implemented in P1-05/P1-07. Cards, tables, and previews are the primary interface; optional raw JSON is collapsed. Missing/invalid artifacts remain inspectable with readiness explanations.
 - The browser reads static files only; no generation controls, generating states, or generation animations appear.
 - Functions/reading show pending requirements and do not generate content.
-- Responsive layout, labeled actions, visible focus, and the reference's dark slate/indigo visual direction are present.
+- Responsive layout, labeled actions, and visible focus are present. All pages use the same results-inspired dark background, light text, muted labels, subtle slate dividers/surfaces, and indigo controls. Shared design tokens also define green correct answers, red errors, and amber accent/case-only credit across practice, review, and results.
 
 Dependencies: P0-02.
 
@@ -78,6 +89,7 @@ Acceptance:
 - Vocabulary planning includes bilingual targets, word class, gender/number/article applicability, exam forms, contexts, and six-stage coverage; count/difficulty rationale follows the agreed average near 12, around 8 for demanding lessons, and mixed difficulty. Explicit counts support full inventories beyond 15/32, grouping, and longer duration estimates where needed.
 - Grammar planning includes 2–4 teaching blocks, rule references, targeted exercise plans, the fixed production-feedback placeholder stage, and mixed exam blueprint; no individualized feedback-analysis catalogue is required.
 - Every scored answer unit has a required pre-generated short English explanation of why its correct answer is right, including accent/case and noun-gender corrections.
+- Orthography correction explanations name the actual mark: French accent aigu/grave/circonflexe, cédille, or tréma as applicable. Avoid character-only wording such as “written with é”; future German feedback uses “written with umlaut ä/ö/ü.” Apply this consistently to practice, results, and artifact previews during prompt design and content review.
 - Vocabulary noun-gender selectors and reviewed overview are a scored stage-4 interaction with conditional applicability and preserved row results.
 - Content schemas model ordered payloads, six grammar interaction types, vocabulary interactions, and mixed exams; concrete pages have positive estimated durations, and each exam page has its brief-defined positive time limit.
 - Typed answer outcomes distinguish fully correct, accent/case-only (half credit), incorrect, and unanswered while preserving the original response.
@@ -162,6 +174,7 @@ Acceptance:
 - Exam countdowns use each brief-defined page limit, persist absolute deadlines, submit drafts or unanswered units at expiry, and handle timeout/Continue races once.
 - Per-answer exam feedback and score changes are hidden until the entire exam finishes; then show every task, original learner answer, correct answer, points/classification, and timeout marker on the final results page, with the exam selected by default and a menu to inspect every prior exercise result.
 - Final results show each exercise's score, practice aggregate, exam sections/aggregate, applied weights, and weighted total; review-only exercises show completion in the menu.
+- Render final exam and selected practice results using the screenshot-style dark flat answer list: icon/prompt, muted answer labels, red incorrect answers, green accepted answers/corrections, thin dividers, and generated correction explanations. Accent/case-only answers have amber half-credit labels; timeout/unanswered status is visible. Avoid repeating an identical correct-answer line.
 - Reload/resume, restart, content-hash incompatibility, and storage failure are handled; last-try index scores remain in memory only and reset on full reload without resetting persisted active sessions.
 - Results selection preserves immutable responses/scores and never starts exercise timers or changes progress.
 - Unit/integration tests cover Continue lock/confirm, half credit, duration-weighted progress, sealed exam scores, fake-clock timeouts/races/reload, and answer review using fixtures; 80% practice and 60% exam produce 67% total regardless of item counts.
@@ -357,15 +370,15 @@ Use fenced Mermaid directly in the GitHub body. Embed the rendered PNG using a v
 
 | Issues | Mermaid flow | Mockups |
 | --- | --- | --- |
-| P1-01 | Static browser discovery, SPEC section 3 | [Index](../doc/mockups/01-lesson-overview/index/lesson-index.png), [vocabulary artifacts](../doc/mockups/01-lesson-overview/artifact-view/vocabulary/lesson-detail.png), [grammar artifacts](../doc/mockups/01-lesson-overview/artifact-view/grammar/lesson-detail.png) |
+| P1-01 | Static browser discovery, SPEC section 3 | [Index](mockups/01-lesson-overview/index/lesson-index.png), [vocabulary artifacts](mockups/02-artifact-view/vocabulary/lesson-detail.png), [grammar artifacts](mockups/02-artifact-view/grammar/lesson-detail.png) |
 | P1-04, P1-06 | Offline authoring, SPEC section 3 | Category artifact views where generated files are reviewed |
-| P1-05, P1-07 | Artifact validation/generation, SPEC section 3 | [Vocabulary artifacts](../doc/mockups/01-lesson-overview/artifact-view/vocabulary/lesson-detail.png), [grammar artifacts](../doc/mockups/01-lesson-overview/artifact-view/grammar/lesson-detail.png) |
-| P1-08, P1-09 | Session lock/confirm and exam/results, SPEC section 5 | [Practice](../doc/mockups/02-vocabulary-lesson/05-typed-gaps/answer.png), [correction](../doc/mockups/02-vocabulary-lesson/05-typed-gaps/feedback.png), [exam](../doc/mockups/02-vocabulary-lesson/06-exam/exam-page.png), [final results](../doc/mockups/02-vocabulary-lesson/results/exam-results.png) |
-| P2-02 | Vocabulary progression, SPEC section 6 | [Introduction](../doc/mockups/02-vocabulary-lesson/01-introduction/introduction.png), [flashcard](../doc/mockups/02-vocabulary-lesson/02-flashcards/front.png), [revealed card](../doc/mockups/02-vocabulary-lesson/02-flashcards/revealed.png), [matching](../doc/mockups/02-vocabulary-lesson/03-matching/matching.png) |
-| P2-03, P2-04 | Vocabulary progression, SPEC section 6; shared session flow, section 5 | [Gender exercise](../doc/mockups/02-vocabulary-lesson/04-gender-overview/gender-select.png), [reviewed overview](../doc/mockups/02-vocabulary-lesson/04-gender-overview/reviewed-overview.png), [previous results](../doc/mockups/02-vocabulary-lesson/results/gender-results.png); relevant stage 05/06 screens |
-| P3-02 | Grammar blocks, SPEC section 7; practice flow, section 5 | [Pronoun matching](../doc/mockups/03-grammar-lesson/exercise-pronoun-match/pronoun-match.png), [pronoun typing](../doc/mockups/03-grammar-lesson/exercise-pronoun-typing/pronoun-typing.png) |
-| P3-03 | Grammar blocks, SPEC section 7; practice flow, section 5 | [Choice gap](../doc/mockups/03-grammar-lesson/exercise-gap-choice/gap-choice.png), [typed gap](../doc/mockups/03-grammar-lesson/exercise-gap-typing/gap-typing.png), [feedback](../doc/mockups/03-grammar-lesson/exercise-gap-typing/feedback.png) |
-| P3-04 | Grammar blocks, SPEC section 7 | [Word order](../doc/mockups/03-grammar-lesson/exercise-word-order/word-order.png), [error spotter](../doc/mockups/03-grammar-lesson/exercise-error-spotter/error-spotter.png) |
-| P3-05, P3-06 | Grammar blocks, placeholder, exam/results, SPEC section 7 | [Placeholder](../doc/mockups/03-grammar-lesson/feedback-placeholder/feedback-placeholder.png), [mixed exam](../doc/mockups/03-grammar-lesson/exam/mixed-exam.png), [grammar results](../doc/mockups/03-grammar-lesson/results/exam-results.png) |
+| P1-05, P1-07 | Artifact validation/generation, SPEC section 3 | [Vocabulary artifacts](mockups/02-artifact-view/vocabulary/lesson-detail.png), [grammar artifacts](mockups/02-artifact-view/grammar/lesson-detail.png) |
+| P1-08, P1-09 | Session lock/confirm and exam/results, SPEC section 5 | [Practice](mockups/03-vocabulary-lesson/06-typed-gaps/answer.png), [correction](mockups/03-vocabulary-lesson/06-typed-gaps/feedback.png), [exam](mockups/03-vocabulary-lesson/07-exam/exam-page.png), [final results](mockups/03-vocabulary-lesson/08-results/exam-results.png) |
+| P2-02 | Vocabulary progression, SPEC section 6 | [Introduction](mockups/03-vocabulary-lesson/02-introduction/introduction.png), [flashcard](mockups/03-vocabulary-lesson/03-flashcards/front.png), [revealed card](mockups/03-vocabulary-lesson/03-flashcards/revealed.png), [matching](mockups/03-vocabulary-lesson/04-matching/matching.png) |
+| P2-03, P2-04 | Vocabulary progression, SPEC section 6; shared session flow, section 5 | [Gender exercise](mockups/03-vocabulary-lesson/05-gender-overview/gender-select.png), [reviewed overview](mockups/03-vocabulary-lesson/05-gender-overview/reviewed-overview.png), [previous results](mockups/03-vocabulary-lesson/08-results/gender-results.png); relevant stage 05/06 screens |
+| P3-02 | Grammar blocks, SPEC section 7; practice flow, section 5 | [Pronoun matching](mockups/04-grammar-lesson/02-01-exercise-pronoun-match/pronoun-match.png), [pronoun typing](mockups/04-grammar-lesson/02-02-exercise-pronoun-typing/pronoun-typing.png) |
+| P3-03 | Grammar blocks, SPEC section 7; practice flow, section 5 | [Choice gap](mockups/04-grammar-lesson/02-03-exercise-gap-choice/gap-choice.png), [typed gap](mockups/04-grammar-lesson/02-04-exercise-gap-typing/gap-typing.png), [feedback](mockups/04-grammar-lesson/02-04-exercise-gap-typing/feedback.png) |
+| P3-04 | Grammar blocks, SPEC section 7 | [Word order](mockups/04-grammar-lesson/02-05-exercise-word-order/word-order.png), [error spotter](mockups/04-grammar-lesson/02-06-exercise-error-spotter/error-spotter.png) |
+| P3-05, P3-06 | Grammar blocks, placeholder, exam/results, SPEC section 7 | [Placeholder](mockups/04-grammar-lesson/03-feedback-placeholder/feedback-placeholder.png), [mixed exam](mockups/04-grammar-lesson/04-exam/mixed-exam.png), [grammar results](mockups/04-grammar-lesson/05-results/exam-results.png) |
 
-Browse sources and SVGs using the [organized mockup guide](../doc/mockups/README.md). Keep applicable diagrams and rendered mockups in published issue bodies, not only in the linked specification.
+Browse sources and SVGs using the [organized mockup guide](mockups/README.md). Keep applicable diagrams and rendered mockups in published issue bodies, not only in the linked specification.

@@ -1,0 +1,68 @@
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+  .
+  { <color:#020617>xxx</color> | {
+  .
+  { <color:#E2E8F0><b>Les objets de la classe</b></color> | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 18.5 / 100</b></color> }
+  { <color:#E2E8F0>Progress 36%</color> | <color:#020617>xxx</color> | <color:#4338CA>████</color><color:#1E293B>░░░░░░░░</color> }
+  .
+  <color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+  .
+  <color:#E2E8F0><size:24><b>Your vocabulary overview</b></size></color>
+  <color:#E2E8F0>Gender exercise: 9 / 12 correct. Review your choices before continuing.</color>
+  .
+  {
+    <color:#E2E8F0><b>Correct form</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>English</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Your choice</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Correct gender</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Result</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Audio</b></color>
+    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
+    <color:#E2E8F0>un livre</color> | <color:#020617>xxx</color> | <color:#E2E8F0>book</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine</color> | <color:#020617>xxx</color> | <color:#00E676>Right</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Listen</color> ]
+    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
+    <color:#E2E8F0>un cahier</color> | <color:#020617>xxx</color> | <color:#E2E8F0>notebook</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine</color> | <color:#020617>xxx</color> | <color:#00E676>Right</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Listen</color> ]
+    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
+    <color:#E2E8F0>un stylo</color> | <color:#020617>xxx</color> | <color:#E2E8F0>pen</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine</color> | <color:#020617>xxx</color> | <color:#00E676>Right</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Listen</color> ]
+    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
+    <color:#E2E8F0>un crayon</color> | <color:#020617>xxx</color> | <color:#E2E8F0>pencil</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine</color> | <color:#020617>xxx</color> | <color:#00E676>Right</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Listen</color> ]
+    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
+    <color:#E2E8F0>une gomme</color> | <color:#020617>xxx</color> | <color:#E2E8F0>eraser</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Feminine</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Feminine</color> | <color:#020617>xxx</color> | <color:#00E676>Right</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Listen</color> ]
+    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
+    <color:#E2E8F0>une règle</color> | <color:#020617>xxx</color> | <color:#E2E8F0>ruler</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Feminine</color> | <color:#020617>xxx</color> | <color:#FF5252>Wrong</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Listen</color> ]
+    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
+    <color:#E2E8F0>une table</color> | <color:#020617>xxx</color> | <color:#E2E8F0>table</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Feminine</color> | <color:#020617>xxx</color> | <color:#FF5252>Wrong</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Listen</color> ]
+    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
+    <color:#E2E8F0>une chaise</color> | <color:#020617>xxx</color> | <color:#E2E8F0>chair</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Feminine</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Feminine</color> | <color:#020617>xxx</color> | <color:#00E676>Right</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Listen</color> ]
+    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
+    <color:#E2E8F0>un tableau</color> | <color:#020617>xxx</color> | <color:#E2E8F0>board</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Feminine</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine</color> | <color:#020617>xxx</color> | <color:#FF5252>Wrong</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Listen</color> ]
+    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
+    <color:#E2E8F0>un sac</color> | <color:#020617>xxx</color> | <color:#E2E8F0>bag</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine</color> | <color:#020617>xxx</color> | <color:#00E676>Right</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Listen</color> ]
+    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
+    <color:#E2E8F0>une porte</color> | <color:#020617>xxx</color> | <color:#E2E8F0>door</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Feminine</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Feminine</color> | <color:#020617>xxx</color> | <color:#00E676>Right</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Listen</color> ]
+    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
+    <color:#E2E8F0>une fenêtre</color> | <color:#020617>xxx</color> | <color:#E2E8F0>window</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Feminine</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Feminine</color> | <color:#020617>xxx</color> | <color:#00E676>Right</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Listen</color> ]
+    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
+   }
+  .
+  {
+    .
+    { <color:#020617>xxx</color> | {
+    <color:#E2E8F0><b>Why these corrections are right</b></color>
+    .
+    <color:#E2E8F0>Règle is feminine: use une règle.</color>
+    <color:#E2E8F0>Table is feminine: use une table.</color>
+    <color:#E2E8F0>Tableau is masculine: use un tableau.</color>
+    .
+     } | <color:#020617>xxx</color> }
+    .
+   }
+  .
+  <color:#94A3B8>Review the corrections, then continue to typed gaps.</color>
+  .
+  [ <color:#4338CA>Continue</color> ]
+  .
+   } | <color:#020617>xxx</color> }
+  .
+ }
+@endsalt

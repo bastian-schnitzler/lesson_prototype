@@ -1,0 +1,43 @@
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xxx</color> | {
+{ <color:#E2E8F0><b>Le verbe être au présent</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 21.9 / 100</b></color> }
+{ <color:#E2E8F0>Progress 63%</color> | <color:#020617>xxx</color> | <color:#4338CA>████████</color><color:#1E293B>░░░░</color> }
+.
+<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+.
+<color:#E2E8F0><size:24><b>Find the grammar mistake</b></size></color>
+.
+{
+.
+{ <color:#020617>xxx</color> | {
+<color:#E2E8F0><b>GRAMMAR  /  Find the grammar mistake</b></color>
+.
+<color:#E2E8F0>Choose the incorrect word in this sentence.</color>
+.
+{ [ <color:#4338CA>Tu</color> ] | [ <color:#4338CA>est</color> ] | [ <color:#4338CA>étudiant.</color> ] }
+.
+<color:#E2E8F0>Selected word: est</color>
+.
+<color:#E2E8F0><b>Write its correction</b></color>
+"<color:#E2E8F0>es</color>                                                     "
+.
+<color:#94A3B8>Continue locks both your selected token and its correction.</color>
+<color:#E2E8F0>You then see the result and a short explanation.</color>
+.
+[ <color:#4338CA>Continue</color> ]
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+@endsalt

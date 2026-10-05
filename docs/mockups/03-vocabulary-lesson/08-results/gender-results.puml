@@ -1,0 +1,70 @@
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xx</color> | {
+<size:22><color:#E2E8F0><b>Your latest lesson result — A1</b></color></size>
+<color:#94A3B8>Les objets de la classe</color>
+.
+{ <size:20><color:#E2E8F0><b>69.6 / 100 total</b></color></size> | <color:#020617>xx</color> | <color:#94A3B8>Progress 100%</color> }
+.
+<color:#E2E8F0>Practice: 27 / 36 (75.0%)   ·   Final exam: 8 / 12 (66.7%)</color>
+<color:#94A3B8>Practice contributes 35%; the final exam contributes 65%.</color>
+.
+<color:#94A3B8>Choose results to review</color>
+{ [ <color:#4338CA>Final exam 8 / 12</color> ] | <color:#020617>xx</color> | [ <color:#4338CA>Flashcards completed</color> ] }
+.
+{ [ <color:#4338CA>Matching 10 / 12</color> ] | <color:#020617>xx</color> | [ <color:#4338CA><b>Gender 9 / 12</b></color> ] | <color:#020617>xx</color> | [ <color:#4338CA>Typed gaps 8 / 12</color> ] }
+.
+<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+.
+<size:20><color:#E2E8F0><b>Gender exercise answers</b></color></size>
+<color:#94A3B8>9 / 12 correct. Review your original choices below.</color>
+.
+{ <size:24><color:#00E676>✓</color></size> | <color:#020617>xx</color> | {
+<size:18><color:#E2E8F0>Choose the gender of livre.</color></size>
+.
+{ <color:#94A3B8>Your answer</color> | <color:#020617>xx</color> | <color:#00E676>Masculine</color> }
+{ <color:#94A3B8>French form</color> | <color:#020617>xx</color> | <color:#00E676>un livre</color> }
+.
+<color:#00E676>Fully correct  ·  1 / 1</color>
+} }
+.
+<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+.
+{ <size:24><color:#FF5252>✕</color></size> | <color:#020617>xx</color> | {
+<size:18><color:#E2E8F0>Choose the gender of règle.</color></size>
+.
+{ <color:#94A3B8>Your answer</color> | <color:#020617>xx</color> | <color:#FF5252>Masculine</color> }
+{ <color:#94A3B8>Correct answer</color> | <color:#020617>xx</color> | <color:#00E676>Feminine</color> }
+{ <color:#94A3B8>French form</color> | <color:#020617>xx</color> | <color:#00E676>une règle</color> }
+.
+<color:#FF5252>Incorrect  ·  0 / 1</color>
+.
+<color:#94A3B8>Règle is feminine, so its indefinite article is une.</color>
+} }
+.
+<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+.
+{ <size:24><color:#00E676>✓</color></size> | <color:#020617>xx</color> | {
+<size:18><color:#E2E8F0>Choose the gender of chaise.</color></size>
+.
+{ <color:#94A3B8>Your answer</color> | <color:#020617>xx</color> | <color:#00E676>Feminine</color> }
+{ <color:#94A3B8>French form</color> | <color:#020617>xx</color> | <color:#00E676>une chaise</color> }
+.
+<color:#00E676>Fully correct  ·  1 / 1</color>
+} }
+.
+<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+.
+<color:#94A3B8>Remaining answers continue below (excerpt shown).</color>
+.
+{ [ <color:#4338CA>Lesson overview</color> ] | <color:#020617>xx</color> | [ <color:#4338CA>Restart lesson</color> ] }
+} | <color:#020617>xx</color> }
+.
+}
+@endsalt

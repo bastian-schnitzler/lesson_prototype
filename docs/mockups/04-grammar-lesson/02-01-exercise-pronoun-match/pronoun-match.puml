@@ -1,0 +1,49 @@
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xxx</color> | {
+{ <color:#E2E8F0><b>Le verbe être au présent</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 0.0 / 100</b></color> }
+{ <color:#E2E8F0>Progress 16%</color> | <color:#020617>xxx</color> | <color:#4338CA>██</color><color:#1E293B>░░░░░░░░░░</color> }
+.
+<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+.
+<color:#E2E8F0><size:24><b>Match forms to pronouns</b></size></color>
+.
+{
+.
+{ <color:#020617>xxx</color> | {
+<color:#E2E8F0><b>GRAMMAR  /  Match forms to pronouns</b></color>
+.
+<color:#E2E8F0>Drag a form into each row, or choose it using the keyboard selector.</color>
+.
+{
+<color:#E2E8F0><b>Available forms</b></color> | <color:#020617>xxx</color> | [ <color:#4338CA>suis</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>es</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>est</color> ]
+ }
+.
+{
+<color:#E2E8F0><b>Subject</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Drop target / keyboard choice</b></color>
+.
+<color:#E2E8F0>je</color> | <color:#020617>xxx</color> | ^<color:#4338CA>Choose a form                   </color>^
+.
+<color:#E2E8F0>tu</color> | <color:#020617>xxx</color> | ^<color:#4338CA>Choose a form                   </color>^
+.
+<color:#E2E8F0>il / elle</color> | <color:#020617>xxx</color> | ^<color:#4338CA>Choose a form                   </color>^
+ }
+.
+<color:#94A3B8>Continue locks the whole page before showing feedback.</color>
+.
+[ <color:#4338CA>Continue</color> ]
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+@endsalt

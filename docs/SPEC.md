@@ -1,6 +1,6 @@
 # Lesson exercise prototype specification
 
-Status: **Draft 0.9 — structured artifact components and organized category mockups**. Date: 2026-10-05.
+Status: **Draft 0.14 — named accents in correction feedback**. Date: 2026-10-06.
 
 This document specifies the prototype and its phased implementation. It does not authorize starting implementation before the specification review. The issue-ready backlog is in [ISSUES.md](ISSUES.md); publish those issues to `bastian-schnitzler/lesson_prototype` after the specification has been refined with the user.
 
@@ -53,7 +53,12 @@ Confirmed decisions are identified below. Other defaults make the draft concrete
 | D20 | Correction explanations | **Confirmed:** whenever practice shows the right answer after an error, also show a short pre-generated explanation from lesson content. |
 | D21 | Vocabulary noun gender | **Confirmed:** stage 4 integrates a scored gender select-box exercise for nouns and then shows the reviewed overview with right/wrong indicators. All vocabulary is on one page; non-nouns have no gender input. |
 | D22 | Structured artifact viewer | **Confirmed:** render artifact objects as React/HTML cards, tables, and exercise previews. Outline rendering is shared across categories; Draft and Content rendering are category-specific. Raw JSON is optional supplementary inspection. |
-| D23 | Mockup organization | **Confirmed:** keep Salt sources and rendered images under `doc/mockups/`, grouped by overview, vocabulary, and grammar, then by start page, numbered vocabulary stage, grammar exercise type, exam, and results. |
+| D23 | Mockup organization | **Confirmed:** keep Salt sources and rendered images under `docs/mockups/`, grouped by lesson overview, artifact view, vocabulary lesson, and grammar lesson, then by numbered lesson folders, with double-numbered grammar exercises. Keep one README in the root mockup folder. |
+| D24 | Branch names | **Confirmed:** follow the current branch's pattern: `phase<phase-number>-issue<issue-number>-<short-description>`, for example `phase0-issue0-create-spec`. Use lowercase words separated by hyphens. |
+| D25 | Results presentation | **Confirmed:** follow the supplied screenshot with flat separated rows on a dark background, correctness icons, muted labels, red incorrect answers, green correct answers, and amber accent/case-only credit. Keep the score summary and prior-exercise menu. |
+| D26 | GitHub issue synchronization | **Confirmed:** after initial issue creation, every change to `docs/SPEC.md` or `docs/ISSUES.md` must refresh the published GitHub issues accordingly, keeping the backlog aligned with the latest specification. |
+| D27 | Shared page design | **Confirmed:** apply the results page's dark design consistently to the lesson index, artifact views, start pages, explanations, all exercises, exams, feedback, and results. |
+| D28 | Accent correction wording | **Confirmed:** correction explanations name the accent or diacritic. French feedback uses terms such as accent aigu, accent grave, and accent circonflexe; German feedback says “written with umlaut ä/ö/ü” as applicable. |
 
 ## 2. Runtime and delivery architecture
 
@@ -96,11 +101,13 @@ content/
   lessons/<id>.json
 docs/SPEC.md
 docs/ISSUES.md
-doc/mockups/
+docs/mockups/
   README.md
-  01-lesson-overview/   # index and category-specific artifact views
-  02-vocabulary-lesson/ # startpage, numbered stages 01–06, results
-  03-grammar-lesson/    # startpage, explanation, exercise folders, exam, results
+  01-lesson-overview/    # lesson index
+  02-artifact-view/      # vocabulary/ and grammar/ structured artifact views
+  03-vocabulary-lesson/  # 01-startpage, stages in folders 02–07, 08-results
+  04-grammar-lesson/     # 01-startpage, 02-00 explanation, 02-01…06 exercises
+                         # 03-feedback-placeholder, 04-exam, 05-results
 .env.example
 .gitignore
 dist/                  # generated deployment output
@@ -379,6 +386,18 @@ Use an absolute deadline and recompute remaining time from it, so tab throttling
 
 ### Free-text correctness and points
 
+Orthography feedback must **name the mark**, rather than saying only “is written with é” or another accented character. Apply this wording to result pages and their pre-generated explanations, as well as the same corrections shown during practice and artifact inspection. For French, use the appropriate name:
+
+| Mark | Example feedback wording |
+| --- | --- |
+| é | “Use an accent aigu on e.” |
+| è | “Use an accent grave on e.” |
+| ê | “Use an accent circonflexe on e.” |
+| ç | “Use a cédille on c.” |
+| ë | “Use a tréma on e.” |
+
+For German umlauts, use “The word is written with umlaut ä” (or ö/ü as applicable). This is a wording convention for future German content, not an expansion of the French A1 prototype. Keep the full correct answer visible separately. Generated explanations must use the mark appropriate to the actual target spelling; generation prompts and content review enforce this wording. Credit remains unchanged.
+
 All free-text responses have three assessable outcomes, plus unanswered:
 
 | Result | Comparison | Credit per answer unit |
@@ -406,6 +425,8 @@ total score    = 0.35 × practice score + 0.65 × exam score
 Store raw points, including halves, and round only displayed percentages to one decimal place. Exclude unscored screens from score denominators. Mixed exam sections contribute within the 65% exam share according to their possible points, counted once. For example, 80% practice and 60% exam produce 67% total.
 
 The final results page shows the weighted total, practice/exam aggregates and weights, and scores for each scored exercise. **Exam results are selected by default**: show every task, the original locked learner answer, a correct accepted answer, correctness/points, timeout markers, and the pre-generated explanation where an answer needs correction. Include sub-answers on grouped pages. This is answer review, separate from the pre-exam production-feedback placeholder.
+
+Use the supplied results screenshot as the layout reference: a dark page with flat answer rows, a correctness icon aligned to each prompt, muted “Your answer” / “Correct answer” labels, and thin slate dividers. Incorrect answers use red; accepted correct answers use green. Accent/case-only answers use an amber icon/text, explicitly show 0.5 credit, and show the fully correct spelling in green. Always include text classification and points so color is supplementary. A fully correct answer identical to the accepted answer can appear once in green; do not repeat an identical correction line. When an accepted variant differs from the displayed teaching answer, show both. Show short pre-generated explanations for corrections, plus timeout/unanswered markers when applicable. Keep the weighted score summary and exercise-result menu above the answer list; use the same row component for exam and previous practice results. This layout does not change grading or release exam feedback early.
 
 A button menu selects **Final exam** or any earlier exercise result by step/block label. For vocabulary with nouns this includes Matching, Gender, and Typed gaps. Repeated grammar exercise types have unique block labels. Completion-only exercises such as flashcards can show their completion record instead of an invented correctness score. Keep aggregate scores visible while the selected result changes. Non-noun lessons have no Gender menu entry. Each review uses stored locked responses and explanations, with the original accent/case visible; changing menu selection does not rescore, alter progress, restart timers, or edit answers. There is no separate mandatory exam-feedback-to-summary transition. Lesson overview and Restart lesson are the final page's navigation actions.
 
@@ -489,105 +510,106 @@ When phase 3 is complete, all **48 grammar** entries must be generatable and pla
 
 Reference: [ft_transcendence English page](https://transcendence.dpdns.org/en), retrieved on 2026-10-05. Its rendered HTML identifies a dark slate background, light slate text, muted borders, indigo primary actions, and a centered responsive layout. The lesson views extend that direction.
 
-Application tokens: background `#020617`, surface `#0f172a`, border `#1e293b`, text `#f1f5f9`, muted `#cbd5e1`, primary `#4338ca`, focus `#6366f1`. Use a system sans-serif font and a centered maximum width around 72rem. Give the outer page 24–32px padding, cards 24–32px internal padding, section gaps 24px, and controls at least 44px high. Keep text tasks centered in a readable 44–48rem column. Index rows have generous vertical padding and subtle horizontal separators; detail sections are stacked cards with category-specific inventories, teaching blocks, and exercise previews. Keep headers, task content, feedback, and the footer action visually distinct.
+Application tokens: background `#020617`, surface `#0f172a`, border `#1e293b`, text `#e2e8f0`, muted `#94a3b8`, primary `#4338ca`, focus `#818cf8`, correct `#00e676`, incorrect `#ff5252`, and accent/case-only `#fbbf24`. Use the same results-inspired dark palette and typography on **every page**: index, artifact views, lesson starts, explanations, vocabulary/grammar practice, pre-exam feedback, exams, and results. Use thin slate separators, restrained dark surfaces, muted supporting labels, and indigo controls; maintain the same semantic feedback colors throughout. Use a system sans-serif font and a centered maximum width around 72rem. Give the outer page 24–32px padding, cards 24–32px internal padding, section gaps 24px, and controls at least 44px high. Keep text tasks centered in a readable 44–48rem column. Index rows have generous vertical padding and subtle horizontal separators; detail sections are stacked cards with category-specific inventories, teaching blocks, and exercise previews. Keep headers, task content, feedback, and the footer action visually distinct.
 
 Use semantic buttons/links, visible focus, labels, and live announcements for submitted answers and countdown expiry. Provide keyboard/touch alternatives for drag-and-drop. Narrow layouts stack row actions and preserve one entry per row/card. Feedback uses icons/text alongside color. Countdown digits do not animate. The learner interface contains no generation status or generation animation.
 
-These are rendered **PlantUML Salt** wireframes with explicit whitespace, type hierarchy, grouped cards, and a single primary task action. They show layout rather than the application's final dark styling. Each image links to editable `.puml` source. Salt notation follows the [official wireframe documentation](https://plantuml.com/salt). Regenerate SVGs/PNGs from those sources when changing mockups. Browse all 27 screens in the [mockup directory guide](../doc/mockups/README.md). Sources, SVGs, and PNGs live together in each screen folder; no flat duplicate mockup directory is maintained.
+These are rendered **PlantUML Salt** wireframes with explicit whitespace, type hierarchy, grouped cards, and a single primary task action. Every wireframe uses the same dark background, light text, muted labels, indigo controls, and semantic feedback colors as the results design. Section cards and tables retain generous spacing and subtle dividers; result lists remain flat separated rows. Each image links to editable `.puml` source. Salt notation follows the [official wireframe documentation](https://plantuml.com/salt). Regenerate SVGs/PNGs from those sources when changing mockups. Browse all 27 screens in the [mockup directory guide](mockups/README.md). Sources, SVGs, and PNGs live together in each screen folder; no flat duplicate mockup directory is maintained.
 
 ### Index
 
 One Content button shows only the highest available artifact: Outline, Draft, or Content. The last-try score is blank until a lesson completes in the current loaded app; it clears on full reload. Actions has only Start lesson, and only for complete, valid, implemented lessons. Empty cells mean Start is unavailable; no generation controls are shown.
 
-![Ordered lesson index with state-labeled Content buttons](../doc/mockups/01-lesson-overview/index/lesson-index.svg)
+![Ordered lesson index with state-labeled Content buttons](mockups/01-lesson-overview/index/lesson-index.svg)
 
-[Salt source](../doc/mockups/01-lesson-overview/index/lesson-index.puml)
+[Salt source](mockups/01-lesson-overview/index/lesson-index.puml)
 
 ### Combined artifact view: vocabulary
 
 The ready-state header has Lesson overview and Start lesson. A shared Outline card preserves the course entry; category-specific Draft and Content components show target inventory, stage plans, vocabulary cards, exercise previews, answers, and explanations. Raw JSON is collapsed. The mockup shows representative items; the application exposes the complete inventory and every stage. Outline-only and draft-only views omit Start and show short messages for missing sections.
 
-![Structured vocabulary artifact view](../doc/mockups/01-lesson-overview/artifact-view/vocabulary/lesson-detail.svg)
+![Structured vocabulary artifact view](mockups/02-artifact-view/vocabulary/lesson-detail.svg)
 
-[Salt source](../doc/mockups/01-lesson-overview/artifact-view/vocabulary/lesson-detail.puml)
+[Salt source](mockups/02-artifact-view/vocabulary/lesson-detail.puml)
 
 ### Combined artifact view: grammar
 
 The same header and Outline layout precede a grammar Draft with teaching blocks, rules, pitfalls, and an exam plan. Content renders form tables, examples, each exercise type, the fixed feedback placeholder, and mixed-exam previews. The displayed timing metadata does not run a countdown; no preview changes learner scores.
 
-![Structured grammar artifact view](../doc/mockups/01-lesson-overview/artifact-view/grammar/lesson-detail.svg)
+![Structured grammar artifact view](mockups/02-artifact-view/grammar/lesson-detail.svg)
 
-[Salt source](../doc/mockups/01-lesson-overview/artifact-view/grammar/lesson-detail.puml)
+[Salt source](mockups/02-artifact-view/grammar/lesson-detail.puml)
 
 ### Lesson start
 
 The duration shown here is the lesson estimate. Continue starts or resumes the session. There are no preparation or generating states.
 
-![Lesson start page with learning goal and duration](../doc/mockups/02-vocabulary-lesson/startpage/lesson-start.svg)
+![Lesson start page with learning goal and duration](mockups/03-vocabulary-lesson/01-startpage/lesson-start.svg)
 
-[Salt source](../doc/mockups/02-vocabulary-lesson/startpage/lesson-start.puml)
+[Salt source](mockups/03-vocabulary-lesson/01-startpage/lesson-start.puml)
 
 ### Practice: enter an answer
 
 The shared header shows estimated-duration progress and accumulated weighted points against 100. Reference choices are plain text; Continue locks the response and reveals feedback on this page.
 
-![Practice answer page with a single Continue button](../doc/mockups/02-vocabulary-lesson/05-typed-gaps/answer.svg)
+![Practice answer page with a single Continue button](mockups/03-vocabulary-lesson/06-typed-gaps/answer.svg)
 
-[Salt source](../doc/mockups/02-vocabulary-lesson/05-typed-gaps/answer.puml)
+[Salt source](mockups/03-vocabulary-lesson/06-typed-gaps/answer.puml)
 
 ### Practice: confirm feedback
 
 An incorrect response displays the correct answer and a short pre-generated explanation of why it is right. Continue confirms and advances. Fully correct responses use success feedback; accent/case-only responses use distinct partial-correct feedback with 0.5 points and the exact accepted answer. There is no extra Check button.
 
-![Locked practice answer with correction and Continue](../doc/mockups/02-vocabulary-lesson/05-typed-gaps/feedback.svg)
+![Locked practice answer with correction and Continue](mockups/03-vocabulary-lesson/06-typed-gaps/feedback.svg)
 
-[Salt source](../doc/mockups/02-vocabulary-lesson/05-typed-gaps/feedback.puml)
+[Salt source](mockups/03-vocabulary-lesson/06-typed-gaps/feedback.puml)
 
 ### Exam page
 
 The displayed countdown is illustrative; its initial limit comes from the brief. Continue advances without showing correctness. The score remains at the practice contribution until the exam finishes.
 
-![Timed exam page with hidden per-answer feedback](../doc/mockups/02-vocabulary-lesson/06-exam/exam-page.svg)
+![Timed exam page with hidden per-answer feedback](mockups/03-vocabulary-lesson/07-exam/exam-page.svg)
 
-[Salt source](../doc/mockups/02-vocabulary-lesson/06-exam/exam-page.puml)
+[Salt source](mockups/03-vocabulary-lesson/07-exam/exam-page.puml)
 
 ### Final results: exam selected
 
-Exam answers show by default beneath the score aggregates. The button menu selects previous exercise results without leaving this final page. This example includes a noun-gender exercise: Matching 10/12, Gender 9/12, and Typed gaps 8/12 yield 27/36 practice points (75%); exam 8/12 yields a weighted total of 69.6/100 after rounding.
+Exam answers show by default as flat screenshot-style rows beneath the score aggregates. Incorrect answers and corrections appear on separate labeled lines; correct answers do not repeat an identical correction. The button menu selects previous exercise results without leaving this final page. This example includes a noun-gender exercise: Matching 10/12, Gender 9/12, and Typed gaps 8/12 yield 27/36 practice points (75%); exam 8/12 yields a weighted total of 69.6/100 after rounding.
 
-![Final results with exam selected and previous exercise menu](../doc/mockups/02-vocabulary-lesson/results/exam-results.svg)
+![Final results with exam selected and previous exercise menu](mockups/03-vocabulary-lesson/08-results/exam-results.svg)
 
-[Salt source](../doc/mockups/02-vocabulary-lesson/results/exam-results.puml)
+[Salt source](mockups/03-vocabulary-lesson/08-results/exam-results.puml)
 
 ### Final results: previous practice selected
 
 Selecting a previous exercise keeps scores/menu visible and replaces the answer-review area with that exercise's locked responses, correct answers, and generated explanations. The example selects Gender; it does not repeat the exercise or change its score.
 
-![Final results showing previous noun-gender answers](../doc/mockups/02-vocabulary-lesson/results/gender-results.svg)
+![Final results showing previous noun-gender answers](mockups/03-vocabulary-lesson/08-results/gender-results.svg)
 
-[Salt source](../doc/mockups/02-vocabulary-lesson/results/gender-results.puml)
+[Salt source](mockups/03-vocabulary-lesson/08-results/gender-results.puml)
 
 ### Gender exercise inside the overview
 
 All twelve sample targets are on one page. Gender clues are hidden while answering. This initial state shows unanswered select boxes; Continue becomes available when all required choices are supplied. Continue locks the selections and transforms this page into the reviewed overview with correct forms, per-row right/wrong states, and correction explanations.
 
-![Vocabulary overview with noun-gender select boxes](../doc/mockups/02-vocabulary-lesson/04-gender-overview/gender-select.svg)
+![Vocabulary overview with noun-gender select boxes](mockups/03-vocabulary-lesson/05-gender-overview/gender-select.svg)
 
-[Salt source](../doc/mockups/02-vocabulary-lesson/04-gender-overview/gender-select.puml)
+[Salt source](mockups/03-vocabulary-lesson/05-gender-overview/gender-select.puml)
 
-![Reviewed overview with selected and correct genders](../doc/mockups/02-vocabulary-lesson/04-gender-overview/reviewed-overview.svg)
+![Reviewed overview with selected and correct genders](mockups/03-vocabulary-lesson/05-gender-overview/reviewed-overview.svg)
 
-[Salt source](../doc/mockups/02-vocabulary-lesson/04-gender-overview/reviewed-overview.puml)
+[Salt source](mockups/03-vocabulary-lesson/05-gender-overview/reviewed-overview.puml)
 
 ### Browse the lesson stages and grammar exercises
 
-The folder organization follows the lesson flow. Vocabulary has a separate `startpage/` and numbered stage folders, including `06-exam/`. Grammar has `startpage/`, one folder for each exercise type, and `exam/`. Results live alongside each category's lesson folders. The category guides link every SVG, PNG, and editable source.
+The folder organization follows the lesson flow. Vocabulary uses `01-startpage/`, then `02-introduction/` through `07-exam/`, and `08-results/`. These folder numbers include the start page; the educational six-stage numbering remains unchanged. Grammar uses `01-startpage/`, `02-00-explanation/`, double-numbered exercise folders `02-01-exercise-pronoun-match/` through `02-06-exercise-error-spotter/`, then `03-feedback-placeholder/`, `04-exam/`, and `05-results/`. The exercise folders describe the available component types, not a requirement to use all six in one lesson. The single [root README](mockups/README.md) links every SVG, PNG, and editable source; there are no per-folder READMEs.
 
 | Category | Folders and previews |
 | --- | --- |
-| [Lesson overview](../doc/mockups/01-lesson-overview/README.md) | Index; structured artifact views for vocabulary and grammar. |
-| [Vocabulary lesson](../doc/mockups/02-vocabulary-lesson/README.md) | Start; [01 introduction](../doc/mockups/02-vocabulary-lesson/01-introduction/introduction.svg); [02 flashcards](../doc/mockups/02-vocabulary-lesson/02-flashcards/front.svg) and [reveal](../doc/mockups/02-vocabulary-lesson/02-flashcards/revealed.svg); [03 matching](../doc/mockups/02-vocabulary-lesson/03-matching/matching.svg); 04 gender + reviewed overview; 05 typed gaps + feedback; 06 exam; results. |
-| [Grammar lesson](../doc/mockups/03-grammar-lesson/README.md) | [Start](../doc/mockups/03-grammar-lesson/startpage/lesson-start.svg); [explanation](../doc/mockups/03-grammar-lesson/explanation/singular-forms.svg); [pronoun matching](../doc/mockups/03-grammar-lesson/exercise-pronoun-match/pronoun-match.svg); [pronoun typing](../doc/mockups/03-grammar-lesson/exercise-pronoun-typing/pronoun-typing.svg); [choice gap](../doc/mockups/03-grammar-lesson/exercise-gap-choice/gap-choice.svg); [typed gap](../doc/mockups/03-grammar-lesson/exercise-gap-typing/gap-typing.svg) and [feedback](../doc/mockups/03-grammar-lesson/exercise-gap-typing/feedback.svg); [word order](../doc/mockups/03-grammar-lesson/exercise-word-order/word-order.svg); [error spotter](../doc/mockups/03-grammar-lesson/exercise-error-spotter/error-spotter.svg); [placeholder](../doc/mockups/03-grammar-lesson/feedback-placeholder/feedback-placeholder.svg); [exam](../doc/mockups/03-grammar-lesson/exam/mixed-exam.svg); [results](../doc/mockups/03-grammar-lesson/results/exam-results.svg). |
+| [Lesson overview](mockups/README.md#lesson-overview) | Ordered lesson index. |
+| [Artifact view](mockups/README.md#artifact-view) | Shared Outline layout, with category-specific vocabulary/grammar Draft and Content views. |
+| [Vocabulary lesson](mockups/README.md#vocabulary-lesson) | Start; [01 introduction](mockups/03-vocabulary-lesson/02-introduction/introduction.svg); [02 flashcards](mockups/03-vocabulary-lesson/03-flashcards/front.svg) and [reveal](mockups/03-vocabulary-lesson/03-flashcards/revealed.svg); [03 matching](mockups/03-vocabulary-lesson/04-matching/matching.svg); 04 gender + reviewed overview; 05 typed gaps + feedback; 06 exam; results. |
+| [Grammar lesson](mockups/README.md#grammar-lesson) | [Start](mockups/04-grammar-lesson/01-startpage/lesson-start.svg); [explanation](mockups/04-grammar-lesson/02-00-explanation/singular-forms.svg); [pronoun matching](mockups/04-grammar-lesson/02-01-exercise-pronoun-match/pronoun-match.svg); [pronoun typing](mockups/04-grammar-lesson/02-02-exercise-pronoun-typing/pronoun-typing.svg); [choice gap](mockups/04-grammar-lesson/02-03-exercise-gap-choice/gap-choice.svg); [typed gap](mockups/04-grammar-lesson/02-04-exercise-gap-typing/gap-typing.svg) and [feedback](mockups/04-grammar-lesson/02-04-exercise-gap-typing/feedback.svg); [word order](mockups/04-grammar-lesson/02-05-exercise-word-order/word-order.svg); [error spotter](mockups/04-grammar-lesson/02-06-exercise-error-spotter/error-spotter.svg); [placeholder](mockups/04-grammar-lesson/03-feedback-placeholder/feedback-placeholder.svg); [exam](mockups/04-grammar-lesson/04-exam/mixed-exam.svg); [results](mockups/04-grammar-lesson/05-results/exam-results.svg). |
 
 ## 9. Sample generation and review gates
 
@@ -625,6 +647,24 @@ Detailed implementation issue bodies and dependencies are in [ISSUES.md](ISSUES.
 
 Phase 1 viewers can inspect grammar/vocabulary content before exercise renderers are complete. The session host is tested with fixtures and only starts lessons whose renderers are available; it must not pretend unimplemented exercises are playable.
 
+### Keep GitHub issues synchronized
+
+After the initial backlog is published, **every change to `docs/SPEC.md` or `docs/ISSUES.md` must include the corresponding GitHub issue refresh in the same change workflow**. GitHub must reflect the latest specification; synchronization is ongoing work, not a one-time phase 0 export.
+
+Update affected issue titles and bodies, scope, acceptance criteria, dependencies, and applicable Mermaid diagrams and mockup images/source links. Refresh specification version/commit references across the published backlog so they point to the latest specification. Preserve existing issue numbers and URLs; create issues for newly agreed work and record their mappings in `ISSUES.md`. Explicitly mark superseded scope and identify follow-up work when a change affects completed implementation.
+
+Verify the updated issues on GitHub, including dependency links and rendered assets, before reporting the documentation change complete. If GitHub access prevents synchronization, report which updates remain pending and complete them when access is restored; do not describe the backlog as synchronized while remote changes remain unapplied. This requirement starts after initial publication; the current pre-publication drafts remain local during specification review.
+
+### Branch naming
+
+Keep branch names consistent with the existing `phase0-issue0-create-spec` branch:
+
+```text
+phase<phase-number>-issue<issue-number>-<short-description>
+```
+
+Use the roadmap phase number (0–5), the actual GitHub issue number once assigned, and a brief lowercase description separated by hyphens. For example, work on GitHub issue #12 in phase 1 could use `phase1-issue12-build-lesson-index`; the number here is illustrative, not an assigned backlog issue. Logical draft IDs such as `P1-01` remain in the specification until publication maps them to real GitHub issues. The existing phase 0 specification branch keeps its bootstrap issue number 0. Record the intended branch name when work on each published issue begins.
+
 ### Cross-cutting verification
 
 - Contract tests: valid/invalid briefs and lessons, category sequences, immutable IDs, hashes, accepted variants, per-page estimated durations, brief-defined exam time limits, required correction explanations, noun-gender applicability, and missing language imports.
@@ -659,4 +699,9 @@ When publishing the agreed backlog, include relevant Mermaid flows directly in i
 | 0.6 | 2026-10-05 | Confirmed an ordinary vocabulary average near 12, around 8 for demanding lessons, and ideally mixed difficulty within each topic. Added count/difficulty rationale to briefs and review criteria; updated the A1 planning baseline to 576 taught targets before exceptions. |
 | 0.7 | 2026-10-05 | Confirmed offline generation, combined state-linked detail pages, readiness-gated Start, one Continue lock/confirm flow, duration-weighted progress and score header, timed exam pages with brief-defined limits, final results with exam/practice answer review menu, and 50% accent/case-only credit. Replaced dense code mockups with rendered, spaced Salt layouts. |
 | 0.8 | 2026-10-05 | Added final-results exam/practice menu, in-memory last-try index scores, highest-artifact labels, mandatory generated correction explanations, integrated noun-gender exercise/reviewed overview, and relevant Mermaid/Salt assets in future GitHub issue bodies. |
-| 0.9 | 2026-10-05 | Replaced JSON-first artifact views with shared Outline and typed vocabulary/grammar Draft/Content components and read-only previews. Moved mockups to doc/mockups with category/stage/exercise folders; added missing vocabulary stages and all grammar exercise screens, exam, and results. Updated phase 1 scope and GitHub issue asset mapping. |
+| 0.9 | 2026-10-05 | Replaced JSON-first artifact views with shared Outline and typed vocabulary/grammar Draft/Content components and read-only previews. Moved mockups to docs/mockups with category/stage/exercise folders; added missing vocabulary stages and all grammar exercise screens, exam, and results. Updated phase 1 scope and GitHub issue asset mapping. |
+| 0.10 | 2026-10-05 | Confirmed phase/issue/description branch naming. Split artifact views into 02-artifact-view, renumbered vocabulary/grammar folders to 03/04, and aligned all mockup links and regeneration commands with docs/mockups. |
+| 0.11 | 2026-10-06 | Restyled vocabulary and grammar final results to match the supplied screenshot while retaining scores, result menus, explanations, half credit, and timeout markers. Numbered every lesson subfolder, double-numbered grammar exercise types, and consolidated all mockup navigation into one root README. |
+| 0.12 | 2026-10-06 | Required every post-publication SPEC.md/ISSUES.md change to refresh and verify GitHub issues, including specification references, scope, acceptance criteria, dependencies, and relevant diagrams/mockups. |
+| 0.13 | 2026-10-06 | Applied the results-inspired dark design across all 27 page mockups, including explicit text/control colors and consistent success/error/half-credit colors. Aligned the shared application design tokens and phase 1 acceptance criteria. |
+| 0.14 | 2026-10-06 | Required correction explanations to name French accents/diacritics and use “umlaut ä/ö/ü” for future German feedback. Updated result, practice, and artifact examples and content-generation acceptance criteria. |
