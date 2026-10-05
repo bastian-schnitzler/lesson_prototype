@@ -1,0 +1,39 @@
+@startsalt
+skinparam backgroundColor #F8FAFC
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+scale 1.5
+{+
+  .
+  { <color:#F8FAFC>xxx</color> | {
+  .
+  { <b>LESSON PROTOTYPE</b> | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | French / A1 }
+  .
+  ==
+  .
+  <size:24><b>Your French lessons</b></size>
+  120 lessons in course order. Choose a category or explore the available content.
+  .
+  { [ Voc  ON ] | <color:#F8FAFC>xxx</color> | [ Grammar  ON ] | <color:#F8FAFC>xxx</color> | [ Reading  ON ] | <color:#F8FAFC>xxx</color> | [ Function  ON ] }
+  .
+  {
+    <b>No.</b> | <color:#F8FAFC>xxx</color> | <b>Lesson</b> | <color:#F8FAFC>xxx</color> | <b>Category</b> | <color:#F8FAFC>xxx</color> | <b>Content</b> | <color:#F8FAFC>xxx</color> | <b>Score on last try</b> | <color:#F8FAFC>xxx</color> | <b>Actions</b>
+    . | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | .
+    01 | <color:#F8FAFC>xxx</color> | Saluer et prendre congé | <color:#F8FAFC>xxx</color> | Function | <color:#F8FAFC>xxx</color> | [ Outline ] | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | .
+    . | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | .
+    02 | <color:#F8FAFC>xxx</color> | Les pronoms je, tu, il, elle... | <color:#F8FAFC>xxx</color> | Grammar | <color:#F8FAFC>xxx</color> | [ Content ] | <color:#F8FAFC>xxx</color> | <b>76.5%</b> | <color:#F8FAFC>xxx</color> | [ Start lesson ]
+    . | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | .
+    03 | <color:#F8FAFC>xxx</color> | L'alphabet et les accents | <color:#F8FAFC>xxx</color> | Vocabulary | <color:#F8FAFC>xxx</color> | [ Draft ] | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | .
+    . | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | .
+    04 | <color:#F8FAFC>xxx</color> | Le verbe être au présent | <color:#F8FAFC>xxx</color> | Grammar | <color:#F8FAFC>xxx</color> | [ Content ] | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | [ Start lesson ]
+    . | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | .
+    05 | <color:#F8FAFC>xxx</color> | Les pays et les nationalités | <color:#F8FAFC>xxx</color> | Vocabulary | <color:#F8FAFC>xxx</color> | [ Outline ] | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | .
+    . | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | .
+  }
+  .
+  Last-try scores appear after completion and clear on page reload.
+  .
+  } | <color:#F8FAFC>xxx</color> }
+  .
+}
+@endsalt

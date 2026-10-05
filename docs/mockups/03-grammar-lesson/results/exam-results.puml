@@ -1,0 +1,70 @@
+@startsalt
+skinparam backgroundColor #F8FAFC
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+scale 1.5
+{+
+.
+{ <color:#F8FAFC>xxx</color> | {
+{ <b>Le verbe être au présent</b> | <color:#F8FAFC>xxx</color> | <b>Score 78.3 / 100</b> }
+{ Progress 100% | <color:#F8FAFC>xxx</color> | <color:#4338CA>████████████</color> }
+.
+==
+.
+<size:24><b>Lesson results</b></size>
+.
+{^
+.
+{ <color:#F8FAFC>xxx</color> | {
+<b>SCORE SUMMARY</b>
+.
+{
+<b>Total</b> | <color:#F8FAFC>xxx</color> | <b>Practice</b> | <color:#F8FAFC>xxx</color> | <b>Final exam</b>
+.
+78.3 / 100 | <color:#F8FAFC>xxx</color> | 75% x 35% = 26.3 | <color:#F8FAFC>xxx</color> | 80% x 65% = 52.0
+}
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+.
+{^
+.
+{ <color:#F8FAFC>xxx</color> | {
+<b>RESULT MENU</b>
+.
+[ Final exam: 8 / 10 (selected) ]
+{ [ Pronoun matching: 3 / 3 ] | [ Pronoun typing: 2 / 3 ] }
+{ [ Choice gaps: 3 / 4 ] | [ Typed gaps: 1 / 2 ] }
+{ [ Word order: 2 / 2 ] | [ Error spotter: 1 / 2 ] }
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+.
+{^
+.
+{ <color:#F8FAFC>xxx</color> | {
+<b>FINAL EXAM ANSWERS</b>
+.
+Task: Complete Vous ___ prêts.
+Your answer: etes   /   <color:#B45309>Accent correction: 0.5 / 1</color>
+Correct answer: êtes
+Why: Vous takes êtes; its circumflex is part of the spelling.
+.
+Task: Write the form for nous.
+Your answer: sommes   /   <color:#15803D>Correct: 1 / 1</color>
+Correct answer: sommes
+.
+Every task, original answer, correct answer, and explanation appears here.
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+.
+{ [ Lesson overview ] | <color:#F8FAFC>xxx</color> | [ Restart lesson ] }
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+@endsalt

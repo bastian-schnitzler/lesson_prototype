@@ -1,0 +1,189 @@
+@startsalt
+skinparam backgroundColor #F8FAFC
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+scale 1.5
+{+
+.
+{ <color:#F8FAFC>xxx</color> | {
+{ [ Lesson overview ] | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | [ Start lesson ] }
+.
+==
+.
+<size:24><b>Le verbe être au présent</b></size>
+.
+{^
+.
+{ <color:#F8FAFC>xxx</color> | {
+<b>OUTLINE  /  Lesson outline</b>
+.
+{
+Lesson 4 | <color:#F8FAFC>xxx</color> | Grammar | <color:#F8FAFC>xxx</color> | French A1
+.
+Topic | <color:#F8FAFC>xxx</color> | Verb forms | <color:#F8FAFC>xxx</color> | ID: fr-verb-etre-present
+}
+.
+<size:18><b>Outline intent</b></size>
+Conjuguer être au présent avec tous les pronoms pour dire sa nationalité,
+sa profession ou son état : je suis, tu es, il est…
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+.
+{^
+.
+{ <color:#F8FAFC>xxx</color> | {
+<b>DRAFT  /  Grammar plan</b>
+.
+3 explanation + practice blocks   /   About 13 minutes
+.
+<b>Learning objective</b>
+Choose the present-tense form of être for the subject.
+.
+{
+<b>Block</b> | <color:#F8FAFC>xxx</color> | <b>Rule / example</b> | <color:#F8FAFC>xxx</color> | <b>Practice plan</b>
+.
+01 Singular forms | <color:#F8FAFC>xxx</color> | je suis; tu es; il / elle est | <color:#F8FAFC>xxx</color> | Pronoun matching and typing
+.
+02 Plural forms | <color:#F8FAFC>xxx</color> | nous sommes; vous êtes; ils / elles sont | <color:#F8FAFC>xxx</color> | Choice gaps and typed gaps
+.
+03 Forms in context | <color:#F8FAFC>xxx</color> | Tu es étudiant. | <color:#F8FAFC>xxx</color> | Word order and error spotting
+}
+.
+{^
+.
+{ <color:#F8FAFC>xxx</color> | {
+<b>Teaching rule and pitfall</b>
+.
+Tu uses es; il and elle use est.
+Example: Tu es étudiant. Elle est étudiante.
+Pitfall: es and est sound alike but have different subjects.
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+.
+<b>Mixed final exam plan</b>
+Pronoun typing + typed gaps; word order only for sentence structure.
+Each page defines tested forms, possible points, and its countdown.
+Example: one typed form, 30 seconds; a 3-answer form table, 60 seconds.
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+.
+{^
+.
+{ <color:#F8FAFC>xxx</color> | {
+<b>CONTENT  /  Grammar lesson</b>
+.
+Ordered explanation and exercise cards   /   Read-only previews
+.
+{^
+.
+{ <color:#F8FAFC>xxx</color> | {
+<b>01  Explanation preview</b>
+.
+<size:20><b>One person: suis, es, est</b></size>
+.
+{
+je | <color:#F8FAFC>xxx</color> | suis | <color:#F8FAFC>xxx</color> | I am
+.
+tu | <color:#F8FAFC>xxx</color> | es | <color:#F8FAFC>xxx</color> | you are
+.
+il / elle | <color:#F8FAFC>xxx</color> | est | <color:#F8FAFC>xxx</color> | he / she is
+}
+.
+[ Listen to examples ]
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+.
+{^
+.
+{ <color:#F8FAFC>xxx</color> | {
+<b>Pronoun typing preview</b>
+.
+{
+<b>Prompt</b> | <color:#F8FAFC>xxx</color> | <b>Accepted answer</b> | <color:#F8FAFC>xxx</color> | <b>Points</b>
+.
+tu ___ | <color:#F8FAFC>xxx</color> | es | <color:#F8FAFC>xxx</color> | 1
+.
+elle ___ | <color:#F8FAFC>xxx</color> | est | <color:#F8FAFC>xxx</color> | 1
+}
+Correction: Tu takes es. Est is the form for il or elle.
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+.
+{^
+.
+{ <color:#F8FAFC>xxx</color> | {
+<b>Choice-gap and typed-gap previews</b>
+.
+Choice prompt: Tu ___ étudiant.   Options: suis / es / est / sommes
+Answer: es
+.
+Typed prompt: Vous ___ prêts.   Answer: êtes
+Correction: Vous takes êtes; the circumflex is part of its spelling.
+Same letters without the accent earn 0.5 points.
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+.
+{^
+.
+{ <color:#F8FAFC>xxx</color> | {
+<b>Word order and error-spotter previews</b>
+.
+Tokens: étudiant. / suis / Je   Answer: Je suis étudiant.
+.
+Error prompt: Tu est étudiant.   Incorrect token: est   Correction: es
+Explanation: With tu, use es; est belongs to il or elle.
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+.
+{^
+.
+{ <color:#F8FAFC>xxx</color> | {
+<b>Pre-exam feedback</b>
+.
+Individual feedback would be here on production.
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+.
+{^
+.
+{ <color:#F8FAFC>xxx</color> | {
+<b>Mixed exam preview</b>
+.
+Page 1: Tu ___ étudiant.   Answer: es   Limit: 30 seconds
+Page 2: nous / vous / ils forms   Answers: sommes / êtes / sont
+Page 2 limit: 60 seconds   /   3 possible points
+Page 3: Order a sentence   /   Limit defined in the brief
+All answers and explanations are visible here for content review.
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+.
+[ Show all block and exercise items ]
+.
+{ [>] Raw JSON (optional) | . }
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+@endsalt

@@ -1,0 +1,49 @@
+@startsalt
+skinparam backgroundColor #F8FAFC
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+scale 1.5
+{+
+.
+{ <color:#F8FAFC>xxx</color> | {
+{ <b>Les objets de la classe</b> | <color:#F8FAFC>xxx</color> | <b>Score 0.0 / 100</b> }
+{ Progress 25% | <color:#F8FAFC>xxx</color> | <color:#4338CA>███</color>░░░░░░░░░ }
+.
+==
+.
+<size:24><b>03  Match translations</b></size>
+.
+{^
+.
+{ <color:#F8FAFC>xxx</color> | {
+<b>VOCABULARY  /  03  Match translations</b>
+.
+All 12 targets on one exercise page; sample rows shown here.
+Tap or keyboard-select one English word and its French partner.
+.
+{
+<b>English</b> | <color:#F8FAFC>xxx</color> | <b>French</b>
+.
+[ book (selected) ] | <color:#F8FAFC>xxx</color> | [ une table (f) ]
+.
+[ chair ] | <color:#F8FAFC>xxx</color> | [ un livre (m) (selected) ]
+.
+[ table ] | <color:#F8FAFC>xxx</color> | [ une chaise (f) ]
+}
+.
+Current pair: book — un livre (m)
+1 of 12 pairs assigned; assignments remain editable until Continue.
+
+.
+12 possible practice points. Continue locks all pairs and shows feedback.
+.
+[ Continue ]
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+@endsalt

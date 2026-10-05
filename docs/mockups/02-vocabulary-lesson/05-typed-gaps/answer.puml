@@ -1,0 +1,44 @@
+@startsalt
+skinparam backgroundColor #F8FAFC
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+scale 1.5
+{+
+  .
+  { <color:#F8FAFC>xxx</color> | {
+  .
+  { <b>Les objets de la classe</b> | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | <b>Score 21.4 / 100</b> }
+  { Progress 52% | <color:#F8FAFC>xxx</color> | <color:#4338CA>██████</color>░░░░░░ }
+  .
+  ==
+  .
+  .
+  {^
+    .
+    { <color:#F8FAFC>xxx</color> | {
+    PRACTICE   /   Typed gaps   /   Item 5 of 12
+    .
+    <size:23><b>Complete the sentence</b></size>
+    .
+    <size:19>Je lis un ____.</size>
+    .
+    Type the missing word without its article.
+    .
+    <b>Reference words</b>
+    { livre (m) | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | table (f) | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | chaise (f) | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | porte (f) }
+    .
+    <b>Your answer</b>
+    "table                                                 "
+    .
+    .
+    [ Continue ]
+    .
+    } | <color:#F8FAFC>xxx</color> }
+    .
+  }
+  .
+  .
+  } | <color:#F8FAFC>xxx</color> }
+  .
+}
+@endsalt

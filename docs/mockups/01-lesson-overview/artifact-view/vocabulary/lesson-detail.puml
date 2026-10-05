@@ -1,0 +1,182 @@
+@startsalt
+skinparam backgroundColor #F8FAFC
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+scale 1.5
+{+
+.
+{ <color:#F8FAFC>xxx</color> | {
+{ [ Lesson overview ] | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | [ Start lesson ] }
+.
+==
+.
+<size:24><b>Les objets de la classe</b></size>
+.
+{^
+.
+{ <color:#F8FAFC>xxx</color> | {
+<b>OUTLINE  /  Lesson outline</b>
+.
+{
+Lesson 10 | <color:#F8FAFC>xxx</color> | Vocabulary | <color:#F8FAFC>xxx</color> | French A1
+.
+Theme | <color:#F8FAFC>xxx</color> | Education | <color:#F8FAFC>xxx</color> | ID: fr-classroom-objects
+}
+.
+<size:18><b>Outline intent</b></size>
+Nommer une douzaine d'objets de la classe avec leur article :
+un livre, un cahier, un stylo, une table, une chaise, un tableau…
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+.
+{^
+.
+{ <color:#F8FAFC>xxx</color> | {
+<b>DRAFT  /  Vocabulary plan</b>
+.
+12 targets   /   About 14 minutes   /   English support
+.
+<b>Target inventory</b>
+{
+<b>Target</b> | <color:#F8FAFC>xxx</color> | <b>English</b> | <color:#F8FAFC>xxx</color> | <b>Gender / article</b> | <color:#F8FAFC>xxx</color> | <b>Difficulty</b>
+.
+livre | <color:#F8FAFC>xxx</color> | book | <color:#F8FAFC>xxx</color> | Masculine / un | <color:#F8FAFC>xxx</color> | Core
+.
+chaise | <color:#F8FAFC>xxx</color> | chair | <color:#F8FAFC>xxx</color> | Feminine / une | <color:#F8FAFC>xxx</color> | Core
+.
+tableau | <color:#F8FAFC>xxx</color> | board | <color:#F8FAFC>xxx</color> | Masculine / un | <color:#F8FAFC>xxx</color> | More demanding
+}
+.
+[ Show all 12 targets ]
+.
+<b>Difficulty balance</b>
+9 core words and 3 harder spellings keep recall practice manageable.
+.
+<b>Lesson plan</b>
+{
+<b>Stage</b> | <color:#F8FAFC>xxx</color> | <b>What the learner does</b> | <color:#F8FAFC>xxx</color> | <b>Assessment</b>
+.
+01 Introduction | <color:#F8FAFC>xxx</color> | Explore the topic and learning goal | <color:#F8FAFC>xxx</color> | Completion
+.
+02 Flashcards | <color:#F8FAFC>xxx</color> | Recall English / French with audio | <color:#F8FAFC>xxx</color> | Completion
+.
+03 Matching | <color:#F8FAFC>xxx</color> | Pair all 12 translations | <color:#F8FAFC>xxx</color> | 12 points
+.
+04 Gender + overview | <color:#F8FAFC>xxx</color> | Choose noun gender, then review | <color:#F8FAFC>xxx</color> | 12 points
+.
+05 Typed gaps | <color:#F8FAFC>xxx</color> | Complete 12 contextual sentences | <color:#F8FAFC>xxx</color> | 12 points
+.
+06 Final exam | <color:#F8FAFC>xxx</color> | Translate English to French | <color:#F8FAFC>xxx</color> | 12 points; 65% weight
+}
+.
+<b>Exam timing plan</b>
+Each page has its own brief-defined limit: page 1, book, 35 seconds.
+Nouns require the applicable indefinite article; non-nouns do not.
+Gender selectors hide article and audio clues while answering.
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+.
+{^
+.
+{ <color:#F8FAFC>xxx</color> | {
+<b>CONTENT  /  Vocabulary lesson</b>
+.
+6 ordered stage cards   /   Validated content   /   Read-only previews
+.
+{^
+.
+{ <color:#F8FAFC>xxx</color> | {
+<b>02  Flashcard preview</b>
+.
+<size:20><b>un livre</b></size>
+book   /   Masculine
+.
+[ Listen in French ]
+Example: Je lis un livre.
+Recall side: book   /   Reveal side: un livre (m)
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+.
+{^
+.
+{ <color:#F8FAFC>xxx</color> | {
+<b>03  Matching preview</b>
+.
+{
+<b>English</b> | <color:#F8FAFC>xxx</color> | <b>French</b>
+.
+book | <color:#F8FAFC>xxx</color> | un livre
+.
+chair | <color:#F8FAFC>xxx</color> | une chaise
+}
+Correct pairs shown for lesson review.
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+.
+{^
+.
+{ <color:#F8FAFC>xxx</color> | {
+<b>04  Gender + overview preview</b>
+.
+{
+<b>Target</b> | <color:#F8FAFC>xxx</color> | <b>Correct gender</b> | <color:#F8FAFC>xxx</color> | <b>Teaching form</b>
+.
+livre | <color:#F8FAFC>xxx</color> | Masculine | <color:#F8FAFC>xxx</color> | un livre
+.
+chaise | <color:#F8FAFC>xxx</color> | Feminine | <color:#F8FAFC>xxx</color> | une chaise
+}
+Correction: Chaise is feminine, so use une chaise.
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+.
+{^
+.
+{ <color:#F8FAFC>xxx</color> | {
+<b>05  Typed-gap preview</b>
+.
+Prompt: Je lis un ____.
+.
+Answer: livre   /   1 possible point
+Reference words: livre, table, chaise, porte
+Correction: A livre is a book; the sentence says you are reading one.
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+.
+{^
+.
+{ <color:#F8FAFC>xxx</color> | {
+<b>06  Exam preview</b>
+.
+Task: Translate book into French, including its article.
+Answer: un livre   /   Page time limit: 35 seconds
+Correction: Livre is masculine; the singular indefinite article is un.
+All exam pages show prompts, accepted answers, limits, and explanations here.
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+.
+[ Show all stage items ]
+.
+{ [>] Raw JSON (optional) | . }
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+@endsalt

@@ -1,0 +1,53 @@
+@startsalt
+skinparam backgroundColor #F8FAFC
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+scale 1.5
+{+
+  .
+  { <color:#F8FAFC>xxx</color> | {
+  .
+  { <b>Les objets de la classe</b> | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | <b>Score 21.4 / 100</b> }
+  { Progress 52% | <color:#F8FAFC>xxx</color> | <color:#4338CA>██████</color>░░░░░░ }
+  .
+  ==
+  .
+  .
+  {^
+    .
+    { <color:#F8FAFC>xxx</color> | {
+    PRACTICE   /   Typed gaps   /   Item 5 of 12
+    .
+    <size:23><b>Complete the sentence</b></size>
+    .
+    <size:19>Je lis un ____.</size>
+    .
+    Your locked answer: <b>table</b>
+    .
+    {^
+      .
+      { <color:#F8FAFC>xxx</color> | {
+      <color:#B91C1C><b>Incorrect answer</b></color>
+      .
+      Correct answer: <b>livre</b>
+      Je lis un livre.  /  I am reading a book.
+      Livre means book; un livre is what we read.
+      .
+      This answer earned 0 / 1 point.
+      } | <color:#F8FAFC>xxx</color> }
+      .
+    }
+    .
+    Read the correction, then continue to the next item.
+    .
+    [ Continue ]
+    .
+    } | <color:#F8FAFC>xxx</color> }
+    .
+  }
+  .
+  .
+  } | <color:#F8FAFC>xxx</color> }
+  .
+}
+@endsalt

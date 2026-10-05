@@ -1,0 +1,46 @@
+@startsalt
+skinparam backgroundColor #F8FAFC
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+scale 1.5
+{+
+.
+{ <color:#F8FAFC>xxx</color> | {
+{ <b>Le verbe être au présent</b> | <color:#F8FAFC>xxx</color> | <b>Score 0.0 / 100</b> }
+{ Progress 8% | <color:#F8FAFC>xxx</color> | <color:#4338CA>█</color>░░░░░░░░░░░ }
+.
+==
+.
+<size:24><b>Singular forms</b></size>
+.
+{^
+.
+{ <color:#F8FAFC>xxx</color> | {
+<b>GRAMMAR  /  Singular forms</b>
+.
+<size:21><b>Use the form that matches the subject</b></size>
+.
+{
+<b>Subject</b> | <color:#F8FAFC>xxx</color> | <b>Form</b> | <color:#F8FAFC>xxx</color> | <b>Example</b>
+.
+je | <color:#F8FAFC>xxx</color> | suis | <color:#F8FAFC>xxx</color> | Je suis étudiant.
+.
+tu | <color:#F8FAFC>xxx</color> | es | <color:#F8FAFC>xxx</color> | Tu es étudiant.
+.
+il / elle | <color:#F8FAFC>xxx</color> | est | <color:#F8FAFC>xxx</color> | Elle est étudiante.
+}
+.
+[ Listen to examples ]
+.
+Es and est sound alike, but their subjects are different.
+.
+[ Continue ]
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+@endsalt

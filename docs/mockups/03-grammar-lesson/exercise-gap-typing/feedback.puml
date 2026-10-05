@@ -1,0 +1,50 @@
+@startsalt
+skinparam backgroundColor #F8FAFC
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+scale 1.5
+{+
+.
+{ <color:#F8FAFC>xxx</color> | {
+{ <b>Le verbe être au présent</b> | <color:#F8FAFC>xxx</color> | <b>Score 14.2 / 100</b> }
+{ Progress 42% | <color:#F8FAFC>xxx</color> | <color:#4338CA>█████</color>░░░░░░░ }
+.
+==
+.
+<size:24><b>Review your answer</b></size>
+.
+{^
+.
+{ <color:#F8FAFC>xxx</color> | {
+<b>GRAMMAR  /  Review your answer</b>
+.
+<color:#B45309><b>Letters correct; accent needs attention   /   0.5 of 1 point</b></color>
+.
+Task: Vous ___ prêts.
+Your answer: etes
+Correct answer: êtes
+.
+{^
+.
+{ <color:#F8FAFC>xxx</color> | {
+<b>WHY THIS ANSWER IS RIGHT</b>
+.
+Vous takes êtes. Its circumflex is part of the correct spelling.
+Your letters match, so this answer earns half credit.
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+.
+Continue confirms this feedback and advances.
+.
+[ Continue ]
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+@endsalt

@@ -1,0 +1,50 @@
+@startsalt
+skinparam backgroundColor #F8FAFC
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+scale 1.5
+{+
+.
+{ <color:#F8FAFC>xxx</color> | {
+{ <b>Les objets de la classe</b> | <color:#F8FAFC>xxx</color> | <b>Score 0.0 / 100</b> }
+{ Progress 9% | <color:#F8FAFC>xxx</color> | <color:#4338CA>█</color>░░░░░░░░░░░ }
+.
+==
+.
+<size:24><b>02  Flashcards</b></size>
+.
+{^
+.
+{ <color:#F8FAFC>xxx</color> | {
+<b>VOCABULARY  /  02  Flashcards</b>
+.
+Card 1 of 12   /   Revealed
+.
+{^
+.
+{ <color:#F8FAFC>xxx</color> | {
+<b>FRENCH</b>
+.
+<size:28><b>un livre</b></size>
+book   /   Masculine
+.
+[ Listen in French ]
+.
+Je lis un livre.   /   I am reading a book.
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+.
+Remember the noun together with its article.
+.
+[ Continue ]
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+@endsalt

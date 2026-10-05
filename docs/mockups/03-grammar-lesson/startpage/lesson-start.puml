@@ -1,0 +1,37 @@
+@startsalt
+skinparam backgroundColor #F8FAFC
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+scale 1.5
+{+
+.
+{ <color:#F8FAFC>xxx</color> | {
+{ [ Lesson overview ] | <color:#F8FAFC>xxx</color> | French / A1 }
+.
+==
+.
+<size:24><b>Le verbe être au présent</b></size>
+.
+{^
+.
+{ <color:#F8FAFC>xxx</color> | {
+<b>YOUR LESSON</b>
+.
+<size:20><b>Say who someone is and how they are</b></size>
+.
+3 explanation + practice blocks   /   About 13 minutes
+Singular forms  /  Plural forms  /  Forms in sentences
+.
+Practice contributes 35%. The final exam contributes 65%.
+Exam pages have their own brief-defined countdowns.
+.
+[ Continue ]
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+.
+} | <color:#F8FAFC>xxx</color> }
+.
+}
+@endsalt

@@ -1,0 +1,83 @@
+@startsalt
+skinparam backgroundColor #F8FAFC
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+scale 1.5
+{+
+  .
+  { <color:#F8FAFC>xxx</color> | {
+  .
+  { <b>Les objets de la classe</b> | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | <b>Score 69.6 / 100</b> }
+  { Progress 100% | <color:#F8FAFC>xxx</color> | <color:#4338CA>████████████</color> }
+  .
+  ==
+  .
+  <size:24><b>Lesson results</b></size>
+  .
+  {^
+    .
+    { <color:#F8FAFC>xxx</color> | {
+    <size:26><b>69.6 / 100 total</b></size>
+    .
+    { Practice: <b>27 / 36</b> (75.0%) | <color:#F8FAFC>xxx</color> | Exam: <b>8 / 12</b> (66.7%) }
+    Practice contributes 35%; the final exam contributes 65%.
+    .
+    } | <color:#F8FAFC>xxx</color> }
+    .
+  }
+  .
+  <b>Choose results to review</b>
+  { [ <b>Final exam 8/12</b> ] | <color:#F8FAFC>xxx</color> | [ Flashcards completed ] }
+  .
+  { [ Matching 10/12 ] | <color:#F8FAFC>xxx</color> | [ Gender 9/12 ] | <color:#F8FAFC>xxx</color> | [ Typed gaps 8/12 ] }
+  .
+  <size:20><b>Final exam answers</b></size>
+  .
+  {^
+    .
+    { <color:#F8FAFC>xxx</color> | {
+    <color:#166534><b>1. Fully correct</b></color> / 1 point
+    .
+    Task: Translate "a book" into French.
+    { Your answer: <b>un livre</b> | <color:#F8FAFC>xxx</color> | Correct answer: <b>un livre</b> }
+    .
+    } | <color:#F8FAFC>xxx</color> }
+    .
+  }
+  .
+  {^
+    .
+    { <color:#F8FAFC>xxx</color> | {
+    <color:#92400E><b>2. Accent needs attention</b></color> / 0.5 points
+    .
+    Task: Translate "a ruler" into French.
+    { Your answer: <b>une regle</b> | <color:#F8FAFC>xxx</color> | Correct answer: <b>une règle</b> }
+    .
+    Règle is feminine and written with è: une règle.
+    .
+    } | <color:#F8FAFC>xxx</color> }
+    .
+  }
+  .
+  {^
+    .
+    { <color:#F8FAFC>xxx</color> | {
+    <color:#B91C1C><b>3. Incorrect</b></color> / 0 points
+    .
+    Task: Translate "a chair" into French.
+    { Your answer: <b>un table</b> | <color:#F8FAFC>xxx</color> | Correct answer: <b>une chaise</b> }
+    .
+    Chaise means chair and is feminine: use une chaise.
+    .
+    } | <color:#F8FAFC>xxx</color> }
+    .
+  }
+  .
+  All remaining exam tasks appear below, with timeout markers where needed.
+  .
+  { [ Lesson overview ] | <color:#F8FAFC>xxx</color> | [ Restart lesson ] }
+  .
+  } | <color:#F8FAFC>xxx</color> }
+  .
+}
+@endsalt

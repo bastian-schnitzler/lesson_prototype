@@ -1,0 +1,39 @@
+@startsalt
+skinparam backgroundColor #F8FAFC
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+scale 1.5
+{+
+  .
+  { <color:#F8FAFC>xxx</color> | {
+  .
+  { [ Lesson overview ] | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | French / A1 }
+  .
+  ==
+  .
+  .
+  {^
+    .
+    { <color:#F8FAFC>xxx</color> | {
+    <size:24><b>Les objets de la classe</b></size>
+    .
+    Learn to name objects around you and use the right article.
+    .
+    { <b>12 vocabulary items</b> | <color:#F8FAFC>xxx</color> | . | <color:#F8FAFC>xxx</color> | <b>About 14 minutes</b> }
+    .
+    Introduction  /  Cards  /  Matching  /  Gender + overview  /  Typed gaps  /  Exam
+    .
+    Practice contributes 35%. The final exam contributes 65%.
+    Each exam page has its own time limit.
+    .
+    [ Continue ]
+    .
+    } | <color:#F8FAFC>xxx</color> }
+    .
+  }
+  .
+  .
+  } | <color:#F8FAFC>xxx</color> }
+  .
+}
+@endsalt
