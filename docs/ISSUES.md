@@ -316,6 +316,7 @@ Acceptance:
 - Content failure preserves a valid brief; retry resumes the failed stage.
 - CLI failures handle invalid/stale files, model/network errors, and exhausted retries explicitly.
 - No lesson starts with invalid content or unsupported renderers; browser readiness errors do not call Gemini or a generator endpoint.
+- Lesson detail header: right-aligned **Outline**, **Draft** and **Content** buttons on the Raw JSON row scroll to the matching section; from Raw JSON they first restore the structured view. Labels come from the interface catalog.
 
 Dependencies: P1-05, P1-06 brief review gate.
 
