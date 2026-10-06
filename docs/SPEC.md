@@ -179,12 +179,14 @@ Batch generation is serial and reports each lesson's outcome. It preserves succe
 ### Offline generator environment
 
 ```dotenv
-# Local generator only; copy this file to .env and fill both values.
+# Local generator only; copy this file to .env and fill GEMINI_API_KEY and GEMINI_MODEL.
 GEMINI_API_KEY=
+# Optional second key, used when the first one's quota is exhausted.
+GEMINI_API_KEY2=
 GEMINI_MODEL=
 ```
 
-Require a configured model rather than guessing one. `.env` is ignored by Git, excluded from build output, and never exposed with a client-side environment prefix. Generation errors must not log API keys. CI uses fixture content and does not require paid generation calls.
+Require a configured model rather than guessing one. When `GEMINI_API_KEY` returns HTTP 429, the adapter repeats that request once with `GEMINI_API_KEY2` (if set) and keeps the fallback key for the rest of the run. `.env` is ignored by Git, excluded from build output, and never exposed with a client-side environment prefix. Generation errors must not log API keys. CI uses fixture content and does not require paid generation calls.
 
 P1-05 implements `.env.example` and reads local `.env` only when a model call is needed. Valid-file reuse and rejected unknown/unsupported IDs need no credentials. The configured model must support structured JSON output. Model names are public provenance metadata, excluded from the build's secret-value scan; API keys remain subject to leak checks.
 

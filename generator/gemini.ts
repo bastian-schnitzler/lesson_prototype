@@ -2,7 +2,8 @@ import { readFileSync } from 'node:fs';
 import { parseEnv } from 'node:util';
 import { z } from 'zod';
 
-export interface GeminiConfig { apiKey: string; model: string }
+/** fallbackApiKey (GEMINI_API_KEY2) takes over once apiKey hits a quota limit (HTTP 429). */
+export interface GeminiConfig { apiKey: string; fallbackApiKey?: string; model: string }
 export interface GenerationRequest { prompt: string; schema: Record<string, unknown> }
 export interface BriefAdapter { model: string; generate(request: GenerationRequest): Promise<string> }
 
@@ -20,29 +21,39 @@ export function loadConfig(path: string): GeminiConfig {
   try { env = parseEnv(readFileSync(path, 'utf8')); }
   catch { throw new GenerationError('Cannot read .env; copy .env.example and configure Gemini.'); }
   const apiKey = env.GEMINI_API_KEY?.trim();
+  const fallbackApiKey = env.GEMINI_API_KEY2?.trim() || undefined;
   const model = env.GEMINI_MODEL?.trim().replace(/^models\//, '');
   if (!apiKey || !model) throw new GenerationError('Set GEMINI_API_KEY and GEMINI_MODEL in .env.');
   if (!/^[a-zA-Z0-9._-]{1,80}$/.test(model)) throw new GenerationError('GEMINI_MODEL must be a model name, optionally prefixed with models/.');
-  return { apiKey, model };
+  return fallbackApiKey ? { apiKey, fallbackApiKey, model } : { apiKey, model };
 }
 
 /** REST structured output: https://ai.google.dev/api/generate-content */
 export function geminiAdapter(config: GeminiConfig, fetcher: typeof fetch = fetch): BriefAdapter {
+  const keys = [config.apiKey, config.fallbackApiKey].filter((key): key is string => !!key);
+  let active = 0;
+  const send = async (request: GenerationRequest): Promise<Response> => {
+    try {
+      return await fetcher(`https://generativelanguage.googleapis.com/v1beta/models/${config.model}:generateContent`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': keys[active] },
+        signal: AbortSignal.timeout(120_000),
+        body: JSON.stringify({
+          contents: [{ role: 'user', parts: [{ text: request.prompt }] }],
+          generationConfig: { responseMimeType: 'application/json', responseJsonSchema: request.schema },
+        }),
+      });
+    } catch { throw new GenerationError('Gemini network request failed or timed out.', true); }
+  };
   return {
     model: config.model,
     async generate(request) {
-      let response: Response;
-      try {
-        response = await fetcher(`https://generativelanguage.googleapis.com/v1beta/models/${config.model}:generateContent`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'x-goog-api-key': config.apiKey },
-          signal: AbortSignal.timeout(120_000),
-          body: JSON.stringify({
-            contents: [{ role: 'user', parts: [{ text: request.prompt }] }],
-            generationConfig: { responseMimeType: 'application/json', responseJsonSchema: request.schema },
-          }),
-        });
-      } catch { throw new GenerationError('Gemini network request failed or timed out.', true); }
+      let response = await send(request);
+      // Quota exhausted: switch to the fallback key for this and all later calls of the adapter.
+      if (response.status === 429 && active < keys.length - 1) {
+        active++;
+        response = await send(request);
+      }
       if (!response.ok) {
         // Never echo remote bodies, headers, URLs or fetch exceptions: they may contain secrets.
         throw new GenerationError(`Gemini returned HTTP ${response.status}.`, response.status === 429 || response.status >= 500);

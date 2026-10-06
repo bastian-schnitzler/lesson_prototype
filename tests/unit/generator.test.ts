@@ -191,6 +191,8 @@ describe('Gemini boundary and CLI', () => {
     expect(() => loadConfig(env)).toThrow('model name');
     writeFileSync(env, 'GEMINI_API_KEY=fake-secret\n');
     expect(() => loadConfig(env)).toThrow('Set GEMINI_API_KEY');
+    writeFileSync(env, 'GEMINI_API_KEY=fake-secret\nGEMINI_API_KEY2=fake-second\nGEMINI_MODEL=fake-model\n');
+    expect(loadConfig(env)).toEqual({ apiKey: 'fake-secret', fallbackApiKey: 'fake-second', model: 'fake-model' });
   });
 
   it('sends structured output schema and authenticates via header; omits thought text', async () => {
@@ -215,6 +217,17 @@ describe('Gemini boundary and CLI', () => {
     const error = await adapter.generate({ prompt: 'test', schema: {} }).catch((e: unknown) => e) as GenerationError;
     expect(error.message).toBe('Gemini returned HTTP ' + status + '.');
     expect(error.retryable).toBe(status === 429 || status >= 500);
+  });
+
+  it('switches to the fallback key after HTTP 429 and keeps using it', async () => {
+    const ok = () => new Response(JSON.stringify({ candidates: [{ finishReason: 'STOP', content: { parts: [{ text: '{}' }] } }] }));
+    const fetcher = vi.fn<typeof fetch>(async (_url, init) => (init?.headers as Record<string, string>)['x-goog-api-key'] === 'fake-secret' ? new Response('', { status: 429 }) : ok());
+    const adapter = geminiAdapter({ apiKey: 'fake-secret', fallbackApiKey: 'fake-second', model: 'fake-model' }, fetcher);
+    await expect(adapter.generate({ prompt: 'test', schema: {} })).resolves.toBe('{}');
+    await expect(adapter.generate({ prompt: 'test', schema: {} })).resolves.toBe('{}');
+    expect(fetcher.mock.calls.map(([, init]) => (init?.headers as Record<string, string>)['x-goog-api-key'])).toEqual(['fake-secret', 'fake-second', 'fake-second']);
+    const exhausted = geminiAdapter({ apiKey: 'fake-secret', fallbackApiKey: 'fake-second', model: 'fake-model' }, async () => new Response('', { status: 429 }));
+    await expect(exhausted.generate({ prompt: 'test', schema: {} })).rejects.toThrow('HTTP 429');
   });
 
   it('sanitizes network exceptions and rejects truncated, blocked or empty output', async () => {
