@@ -30,17 +30,13 @@ export function OutlineSummary({ entry, ordinal, lang, level }: OutlineSummaryPr
       {entry.topic && (
         <div>
           <dt>{t('detail.topic')}</dt>
-          <dd>
-            {topic(entry.topic)} <code className="secondary">{entry.topic}</code>
-          </dd>
+          <dd>{topic(entry.topic)}</dd>
         </div>
       )}
       {entry.theme && (
         <div>
           <dt>{t('detail.theme')}</dt>
-          <dd>
-            {theme(entry.theme)} <code className="secondary">{entry.theme}</code>
-          </dd>
+          <dd>{theme(entry.theme)}</dd>
         </div>
       )}
       <div>

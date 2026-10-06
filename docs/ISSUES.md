@@ -1,6 +1,6 @@
 # GitHub issue backlog
 
-Status: published backlog for [SPEC.md](SPEC.md), version 0.23. Repository: `bastian-schnitzler/lesson_prototype`.
+Status: published backlog for [SPEC.md](SPEC.md), version 0.24. Repository: `bastian-schnitzler/lesson_prototype`.
 
 These issue bodies were published to GitHub in P0-04 on 2026-10-06. Each GitHub issue carries this file's scope and acceptance criteria, real dependency links, a link to the specification at the published commit, and its applicable Mermaid flows, PlantUML sources with server-rendered previews, and screenshot references. Titles follow `P<phase>-<two-digit-issue>: <short description>`; every issue belongs to its matching `Phase 0` through `Phase 5` milestone. P0-01 to P0-03 are closed as completed by PRs #1–#3.
 
@@ -22,8 +22,8 @@ These issue bodies were published to GitHub in P0-04 on 2026-10-06. Each GitHub 
 | P1-08 | [#16](https://github.com/bastian-schnitzler/lesson_prototype/issues/16) | Generate first-ten category lessons and extend combined content review |
 | P1-09 | [#17](https://github.com/bastian-schnitzler/lesson_prototype/issues/17) | Build session host, progress, single Continue flow, timed exams, and results |
 | P1-10 | [#18](https://github.com/bastian-schnitzler/lesson_prototype/issues/18) | Review shared vocabulary/grammar contracts before category implementation |
-| P1-11 | [#19](https://github.com/bastian-schnitzler/lesson_prototype/issues/19) | Update index and artifact-view mockups from the prototype |
-| P1-12 | [#20](https://github.com/bastian-schnitzler/lesson_prototype/issues/20) | Add the vocabulary listening exercise and no-voice help page |
+| P1-11 | [#20](https://github.com/bastian-schnitzler/lesson_prototype/issues/20) | Add the vocabulary listening exercise and no-voice help page |
+| P1-12 | [#19](https://github.com/bastian-schnitzler/lesson_prototype/issues/19) | Update index and artifact-view mockups from the prototype |
 | P2-01 | [#21](https://github.com/bastian-schnitzler/lesson_prototype/issues/21) | Review vocabulary renderer composition and answer contracts |
 | P2-02 | [#22](https://github.com/bastian-schnitzler/lesson_prototype/issues/22) | Implement vocabulary introduction, flashcards, and matching |
 | P2-03 | [#23](https://github.com/bastian-schnitzler/lesson_prototype/issues/23) | Implement noun-gender overview, typed gaps, and translation exam |
@@ -52,7 +52,7 @@ Use each issue heading below as its GitHub title, including the phase/issue pref
 
 Create or reuse milestones named exactly **Phase 0**, **Phase 1**, **Phase 2**, **Phase 3**, **Phase 4**, and **Phase 5**. Each phase's issues must be assigned to that milestone, with its description based on the corresponding SPEC deliverables and exit criteria. Check for existing milestones before creating them and verify every issue's assignment. Phase 4/5 review and closing tasks remain requirements-dependent; their detailed implementation backlog follows later.
 
-Each implementation phase ends with a dedicated issue to improve its Salt mockups against the actual running prototype. Compare the real pages against the SPEC visual contract and supplied screenshot references R1–R5, update sources and their matching embedded PlantUML code fences, update the single mockup README and documentation links, and synchronize published GitHub issue assets. These closing issues are part of phase completion.
+Each implementation phase ends with a dedicated issue to improve its Salt mockups against the actual running prototype. That mockup-refresh issue is always the **last issue of its milestone**: it has the highest logical ID in its phase and depends, directly or transitively, on every other issue of that phase. When an issue is added to a phase, renumber so the mockup issue stays last; GitHub issue numbers do not change. Compare the real pages against the SPEC visual contract and supplied screenshot references R1–R5, update sources and their matching embedded PlantUML code fences, update the single mockup README and documentation links, and synchronize published GitHub issue assets. These closing issues are part of phase completion.
 
 ## Makefile workflow
 
@@ -190,7 +190,7 @@ Acceptance:
 
 Dependencies: P1-01.
 
-Initial verification uses the outline and available fixtures; later sample deployment coverage is checked in P1-11.
+Initial verification uses the outline and available fixtures; later sample deployment coverage is checked in P1-12.
 
 ### P1-03: Define executable vocabulary/grammar briefs and lesson schemas
 
@@ -364,9 +364,9 @@ Acceptance:
 - Avoid one oversized base class; use composition and pure scorers where appropriate.
 - Update schemas/session fixtures and tests for material gaps before phase 2.
 
-Dependencies: P1-08 sample review gate, P1-09, P1-12.
+Dependencies: P1-08 sample review gate, P1-09, P1-11.
 
-### P1-12: Add the vocabulary listening exercise and no-voice help page
+### P1-11: Add the vocabulary listening exercise and no-voice help page
 
 GitHub: [#20](https://github.com/bastian-schnitzler/lesson_prototype/issues/20).
 
@@ -386,7 +386,7 @@ Acceptance:
 
 Dependencies: P1-03, P1-09.
 
-### P1-11: Update index and artifact-view mockups from the prototype
+### P1-12: Update index and artifact-view mockups from the prototype
 
 GitHub: [#19](https://github.com/bastian-schnitzler/lesson_prototype/issues/19).
 
@@ -404,7 +404,7 @@ Acceptance:
 - Record the prototype revision used for comparison. Resolve implementation/specification differences or record them as follow-up work; mockup updates must not silently change agreed behavior.
 - Refresh applicable published GitHub issues and their diagrams/PlantUML code and server-rendered preview URLs; verify source parity, links, and rendering. This issue is required to close the phase.
 
-Dependencies: P1-02, P1-06, P1-08, P1-10, P1-12.
+Dependencies: P1-02, P1-04, P1-06, P1-08, P1-10, P1-11.
 
 ## Phase 2 — vocabulary
 
@@ -422,7 +422,7 @@ Acceptance:
 - Non-nouns, plural targets, translations with multiple valid answers, and article exceptions have explicit content-driven policies; large inventories use smaller groups within the same six-stage lesson.
 - Six-stage completion and scored/unscored roles match the agreed requirements.
 
-Dependencies: P1-11.
+Dependencies: P1-12.
 
 ### P2-02: Implement vocabulary introduction, flashcards, and matching
 
@@ -448,14 +448,14 @@ GitHub: [#23](https://github.com/bastian-schnitzler/lesson_prototype/issues/23).
 
 Milestone: **Phase 2**.
 
-Scope: all-target noun-gender select exercise integrated into the reviewed overview, typed gaps with four noninteractive reference choices, P1-12 listening choice in stage 5, timed translation and listening-dictation exam, and final-results menu integration.
+Scope: all-target noun-gender select exercise integrated into the reviewed overview, typed gaps with four noninteractive reference choices, P1-11 listening choice in stage 5, timed translation and listening-dictation exam, and final-results menu integration.
 
 Acceptance:
 
 - All vocabulary appears on one stage-4 page; nouns have unanswered gender select boxes, non-nouns have none. Hide noun articles/gender/audio clues while answering.
 - Continue locks/scores noun choices once; the same page reveals the full overview with learner/correct genders, right/wrong states, translations/audio, and generated explanations for errors. A second Continue advances.
 - Noun-gender units contribute to the existing 35% practice share, appear in final-results review, and are excluded when no nouns apply; non-noun lessons retain plain overview.
-- Gap choices cannot be selected; the learner types the article-free answer. Listening-choice pages from P1-12 appear in stage 5 and listening-dictation pages in the exam where the brief plans them, including the no-voice help/skip path.
+- Gap choices cannot be selected; the learner types the article-free answer. Listening-choice pages from P1-11 appear in stage 5 and listening-dictation pages in the exam where the brief plans them, including the no-voice help/skip path.
 - Noun exam prompts require accepted full forms including applicable indefinite articles; other target forms follow their explicit policy.
 - Practice Continue locks the answer, displays correctness, the correct form, and its pre-generated explanation when needed, then confirms/advances without a separate Check action.
 - Each exam page uses its brief-defined countdown and hides gender, French audio, answer corrections, and live exam-score changes until the full exam completes.
@@ -715,7 +715,7 @@ Use fenced Mermaid and applicable fenced PlantUML source directly in GitHub bodi
 | P1-05, P1-07 | Offline authoring, SPEC section 3 | Category artifact views where generated files are reviewed |
 | P1-06, P1-08 | Artifact validation/generation, SPEC section 3 | [Vocabulary artifacts](mockups/02-artifact-view/vocabulary/lesson-detail.puml), [grammar artifacts](mockups/02-artifact-view/grammar/lesson-detail.puml), [initial JSON tree](mockups/02-artifact-view/raw-json/json-tree.puml), [expanded JSON tree](mockups/02-artifact-view/raw-json/json-tree-expanded.puml) |
 | P1-09, P1-10 | Session lock/confirm and exam/results, SPEC section 5 | [Practice](mockups/03-vocabulary-lesson/06-typed-gaps/answer.puml), [correction](mockups/03-vocabulary-lesson/06-typed-gaps/feedback.puml), [exam](mockups/03-vocabulary-lesson/07-exam/exam-page.puml), [final results](mockups/03-vocabulary-lesson/08-results/exam-results.puml) |
-| P1-12 | Vocabulary progression and listening, SPEC section 6 | [Listening choice](mockups/03-vocabulary-lesson/06-listening/listening-choice.puml), [no-voice help](mockups/03-vocabulary-lesson/06-listening/no-voice-help.puml), [listening dictation](mockups/03-vocabulary-lesson/07-exam/listening-dictation.puml) |
+| P1-11 | Vocabulary progression and listening, SPEC section 6 | [Listening choice](mockups/03-vocabulary-lesson/06-listening/listening-choice.puml), [no-voice help](mockups/03-vocabulary-lesson/06-listening/no-voice-help.puml), [listening dictation](mockups/03-vocabulary-lesson/07-exam/listening-dictation.puml) |
 | P2-02 | Vocabulary progression, SPEC section 6 | [Introduction](mockups/03-vocabulary-lesson/02-introduction/introduction.puml), [flashcard](mockups/03-vocabulary-lesson/03-flashcards/front.puml), [revealed card](mockups/03-vocabulary-lesson/03-flashcards/revealed.puml), [matching](mockups/03-vocabulary-lesson/04-matching/matching.puml) |
 | P2-03, P2-04 | Vocabulary progression, SPEC section 6; shared session flow, section 5 | [Gender exercise](mockups/03-vocabulary-lesson/05-gender-overview/gender-select.puml), [reviewed overview](mockups/03-vocabulary-lesson/05-gender-overview/reviewed-overview.puml), [previous results](mockups/03-vocabulary-lesson/08-results/gender-results.puml), [listening choice](mockups/03-vocabulary-lesson/06-listening/listening-choice.puml), [listening dictation](mockups/03-vocabulary-lesson/07-exam/listening-dictation.puml); relevant stage 05/06 screens |
 | P3-02 | Grammar blocks, SPEC section 7; practice flow, section 5 | [Pronoun matching](mockups/04-grammar-lesson/02-01-exercise-pronoun-match/pronoun-match.puml), [pronoun typing](mockups/04-grammar-lesson/02-02-exercise-pronoun-typing/pronoun-typing.puml) |
@@ -723,6 +723,6 @@ Use fenced Mermaid and applicable fenced PlantUML source directly in GitHub bodi
 | P3-04 | Grammar blocks, SPEC section 7 | [Word order](mockups/04-grammar-lesson/02-05-exercise-word-order/word-order.puml), [error spotter](mockups/04-grammar-lesson/02-06-exercise-error-spotter/error-spotter.puml) |
 | P3-05, P3-06 | Grammar blocks, placeholder, exam/results, SPEC section 7 | [Placeholder](mockups/04-grammar-lesson/03-feedback-placeholder/feedback-placeholder.puml), [mixed exam](mockups/04-grammar-lesson/04-exam/mixed-exam.puml), [grammar results](mockups/04-grammar-lesson/05-results/exam-results.puml) |
 
-The phase-closing issues P1-11, P2-05, and P3-07 include before/after source changes and PlantUML-enabled previews for their respective index/artifact, vocabulary, and grammar screens from the [root mockup guide](mockups/README.md). P4-02 and P5-02 receive category-specific assets when those pages exist. The Claude review issue P0-02 uses the specification's applicable flows and mockups as review inputs.
+The phase-closing issues P1-12, P2-05, and P3-07 include before/after source changes and PlantUML-enabled previews for their respective index/artifact, vocabulary, and grammar screens from the [root mockup guide](mockups/README.md). P4-02 and P5-02 receive category-specific assets when those pages exist. The Claude review issue P0-02 uses the specification's applicable flows and mockups as review inputs.
 
 Browse sources and embedded SPEC previews using the [organized mockup guide](mockups/README.md). Keep applicable diagrams and rendered mockups in published issue bodies, not only in the linked specification.
