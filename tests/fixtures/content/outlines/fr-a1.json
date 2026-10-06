@@ -1,0 +1,12 @@
+{
+  "lang": "fr",
+  "level": "A1",
+  "entries": [
+    { "id": "fr-fix-greetings", "kind": "functions", "theme": "relations", "workingTitle": "Saluer", "intent": "Saluer et prendre congé." },
+    { "id": "fr-fix-pronouns", "kind": "grammar", "topic": "pronouns", "workingTitle": "Les pronoms sujets", "intent": "Employer je, tu, il et elle." },
+    { "id": "fr-fix-classroom", "kind": "vocabulary", "theme": "education", "workingTitle": "Les objets de la classe", "intent": "Nommer des objets de la classe avec leur article : un livre, une chaise." },
+    { "id": "fr-fix-etre", "kind": "grammar", "topic": "verbs_morphology", "workingTitle": "Le verbe être", "intent": "Conjuguer être au présent." },
+    { "id": "fr-fix-numbers", "kind": "vocabulary", "theme": "personal_identification", "workingTitle": "Les nombres", "intent": "Compter de zéro à dix." },
+    { "id": "fr-fix-menu", "kind": "reading", "theme": "food_and_drink", "workingTitle": "Lire un menu", "intent": "Comprendre un menu simple." }
+  ]
+}

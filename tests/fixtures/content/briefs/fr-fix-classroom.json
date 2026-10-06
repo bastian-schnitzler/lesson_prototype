@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 0,
+  "id": "fr-fix-classroom",
+  "kind": "vocabulary",
+  "objective": { "en": "Name classroom objects.", "fr": "Nommer les objets de la classe.", "de": "Gegenstände im Klassenzimmer benennen." },
+  "targetCount": 0,
+  "flags": { "nullValue": null, "enabled": false, "zero": 0 },
+  "targets": [
+    { "id": "t1", "term": "livre" },
+    { "id": "t2", "term": "chaise" },
+    { "id": "t3", "term": "table" },
+    { "id": "t4", "term": "stylo" }
+  ],
+  "empty": []
+}

@@ -1,0 +1,8 @@
+{
+  "lang": "fr",
+  "level": "B1",
+  "entries": [
+    { "id": "fr-fix-subjunctive", "kind": "grammar", "topic": "verbs_morphology", "workingTitle": "Le subjonctif", "intent": "Former le subjonctif présent." },
+    { "id": "fr-fix-travel", "kind": "vocabulary", "theme": "travel", "workingTitle": "En voyage", "intent": "Parler de ses voyages." }
+  ]
+}
