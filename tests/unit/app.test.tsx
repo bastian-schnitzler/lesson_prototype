@@ -35,14 +35,14 @@ afterEach(() => {
 });
 
 describe('lesson index', () => {
-  it('lists the fr/A1 course in outline order with one state-labeled Content button and no Start', async () => {
+  it('lists the fr/A1 course in outline order with one state-labeled Content button and Start only for ready lessons', async () => {
     const table = await renderIndex();
     expect(screen.getByRole('heading', { level: 1, name: 'Your lessons' })).toBeInTheDocument();
     expect(ordinals(table)).toEqual(['01', '02', '03', '04', '05', '06', '07', '08']);
-    const labels = within(table).getAllByRole('row').slice(1).map((r) => within(r).getByRole('link').textContent);
+    const labels = within(table).getAllByRole('row').slice(1).map((r) => within(r).getAllByRole('link')[0].textContent);
     expect(labels).toEqual(['Outline', 'Content ⚠', 'Content', 'Content', 'Draft ⚠', 'Outline', 'Content', 'Content']);
     expect(within(table).getAllByRole('link')[0]).toHaveAttribute('href', '#/lesson/fr-fix-greetings');
-    expect(screen.queryByRole('link', { name: 'Start lesson' })).toBeNull();
+    expect(screen.getAllByRole('link', { name: 'Start lesson' }).map((a) => a.getAttribute('href'))).toEqual(['#/lesson/fr-classroom-objects/play', '#/lesson/fr-verb-etre-present/play', '#/lesson/fr-classroom-instructions/play', '#/lesson/fr-negation-ne-pas/play']);
     expect(within(screen.getByRole('radiogroup', { name: 'Learning language' })).getByRole('radio', { name: 'fr', checked: true })).toBeInTheDocument();
     expect(screen.getByRole('radio', { name: 'A1', checked: true })).toBeInTheDocument();
   });
@@ -128,12 +128,11 @@ describe('lesson artifact page', () => {
     expect(screen.getByText('Lesson 3')).toBeInTheDocument();
     expect(screen.getByText(/Nommer une douzaine d'objets de la classe/)).toBeInTheDocument();
     await waitFor(() => expect(screen.getAllByText(/A structured view for this file is not available yet/)).toHaveLength(1));
-    expect(screen.getByText(/Start lesson is unavailable/)).toBeInTheDocument();
-    expect(screen.getByText('Lessons of this category cannot be played yet.')).toBeInTheDocument();
+    expect(screen.queryByText(/Start lesson is unavailable/)).toBeNull();
     expect(screen.queryByText('The draft is missing.')).toBeNull();
     for (const radio of within(screen.getByRole('group', { name: 'Mother tongue' })).getAllByRole('radio')) expect(radio).toBeDisabled();
     expect(screen.getByRole('combobox', { name: 'Interface language' })).toBeEnabled();
-    expect(screen.queryByRole('link', { name: 'Start lesson' })).toBeNull();
+    expect(screen.getByRole('link', { name: 'Start lesson' })).toHaveAttribute('href', '#/lesson/fr-classroom-objects/play');
   });
 
   it('renders the vocabulary Draft with targets, plan and exam limits in the chosen languages', async () => {
