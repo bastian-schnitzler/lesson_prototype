@@ -86,7 +86,7 @@ Severity: High = blocks a correct implementation or a review gate; Medium = like
 
 ## Requirements-summary traceability (input to P0-03)
 
-Every requirement in `old_prompt/requirement_summary.md` is represented in SPEC. Where they differ, the user's later decisions take precedence:
+Every requirement in `old_prompt/requirement_summary.md` (removed in P0-03) is represented in SPEC. Where they differ, the user's later decisions take precedence:
 
 | Requirement summary item | SPEC location | Note |
 | --- | --- | --- |
