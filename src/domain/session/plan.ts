@@ -33,6 +33,8 @@ interface UnitBase {
   form?: string;
   /** Learning-language text spoken by the audio control (listening items). */
   speak?: string;
+  /** Grammar rules the item assesses, for rule-level error records in results (SPEC section 7). */
+  ruleIds?: string[];
 }
 export type PlanUnit =
   | (UnitBase & { kind: 'text'; accepted: AcceptedAnswers })
@@ -153,15 +155,24 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
         const sentence = tokens.map((t) => (t.id === item.faultyTokenId ? item.correction.accepted.answers[0] : t.text)).join(' ');
         return [{ kind: 'spot', id: id(), itemId: item.itemId, itemType: item.type, prompt: { learning: tokens.map((t) => t.text).join(' ') }, tokens, faultyTokenId: item.faultyTokenId, correction: item.correction, explanation: item.answerExplanation, answer: sentence, answerLang: 'learning' }];
       }
-      default:
-        return [];
+      case 'vocabulary_introduction':
+      case 'vocabulary_flashcards':
+      case 'vocabulary_overview':
+      case 'grammar_explanation':
+      case 'production_feedback_placeholder':
+        return []; // presentation only
+      default: {
+        // A new item type must decide here whether it is scored (compile-time exhaustiveness).
+        const unhandled: never = item;
+        throw new Error(`No plan units defined for item type ${(unhandled as Item).type}`);
+      }
     }
   };
 
   const pages: PlanPage[] = [];
   steps.forEach((step, stepIndex) => {
     for (const page of step.pages) {
-      const units = page.items.flatMap((item) => unitsOf(page.pageId, item));
+      const units = page.items.flatMap((item) => unitsOf(page.pageId, item).map((u) => ('ruleIds' in item ? { ...u, ruleIds: item.ruleIds } : u)));
       pages.push({
         index: pages.length, pageId: page.pageId, stepId: step.id, stepIndex, stepLabel: step.label,
         role: step.role === 'exam' ? 'exam' : units.length ? 'practice' : 'presentation',

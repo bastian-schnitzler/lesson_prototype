@@ -159,3 +159,28 @@ describe('progress, header score and exam timing', () => {
     expect({ locked: s.record.locked, completed: s.record.completed }).toEqual(before);
   });
 });
+
+describe('contract additions from the P1-10 review', () => {
+  it('keeps revealed flashcards for resume, only on the active page and without duplicates', () => {
+    const s = setup();
+    while (!s.page().items.some((it) => it.type === 'vocabulary_flashcards')) s.proceed();
+    const item = s.page().items[0];
+    const itemKey = `${s.page().pageId}/${item.itemId}`;
+    if (item.type !== 'vocabulary_flashcards') throw new Error('Expected flashcards');
+    s.act({ type: 'reveal', itemKey, key: item.targetIds[0], now: 5 });
+    const once = s.record;
+    s.act({ type: 'reveal', itemKey, key: item.targetIds[0], now: 6 });
+    expect(s.record).toBe(once);
+    s.act({ type: 'reveal', itemKey: 'other-page/x', key: 'y', now: 7 });
+    expect(s.record).toBe(once);
+    expect(structuredClone(s.record).revealed).toEqual({ [itemKey]: [item.targetIds[0]] });
+  });
+
+  it('carries the assessed grammar rule IDs on every grammar unit', () => {
+    const { plan } = setup(GRAM);
+    const graded = plan.pages.flatMap((p) => p.units);
+    expect(graded.length).toBeGreaterThan(0);
+    expect(graded.every((u) => u.ruleIds && u.ruleIds.length > 0)).toBe(true);
+    expect(setup().plan.pages.flatMap((p) => p.units).every((u) => u.ruleIds === undefined)).toBe(true);
+  });
+});

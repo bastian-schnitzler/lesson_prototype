@@ -1,6 +1,6 @@
 # Lesson exercise prototype specification
 
-Status: **Draft 0.30 — vocabulary listening and personalised voice-installation help (P1-11)**. Date: 2026-10-07.
+Status: **Draft 0.31 — shared contract review (P1-10)**. Date: 2026-10-07.
 
 This document specifies the prototype and its phased implementation. It is the maintained requirements document: no separate requirements file exists. It does not authorize starting implementation before the specification review. The backlog is in [ISSUES.md](ISSUES.md) and published as GitHub issues in `bastian-schnitzler/lesson_prototype`.
 
@@ -461,7 +461,8 @@ Use React composition: a shared `ExerciseShell`, a typed renderer registry, reus
 
 - Session ID, lesson ID, content/schema hash, timestamps, and status (`active`, `completed`, `abandoned`).
 - Current step/page/item and phase (`answering`, `practice_feedback`, `exam`, `results`), plus completed pages and their estimated durations.
-- Draft and locked responses, correctness class, accent/case differences, earned/possible points, confirmation state, and item/rule references.
+- Draft and locked responses, correctness class, accent/case differences, earned/possible points, confirmation state, and item/rule references (plan units carry the assessed grammar `ruleIds`).
+- Presentation progress that must survive resume, such as revealed flashcards, keyed by page and item (`revealed`), and listening pages skipped without a voice (`skipped_no_voice`).
 - Exam page start times, absolute deadlines, time limits, timeout flags, and answers; no public item correctness during the exam.
 - Final-results selection (exam by default or an earlier exercise), linked to immutable response records; reviewing results never runs the exercise again.
 - Scoring policy version, 35% practice / 65% exam weights, and 50% orthography-only credit.
@@ -624,7 +625,7 @@ flowchart TD
 
 Audio is learner-triggered, except that a listening page offers an initial play control. Use the French speech language explicitly and a voice whose language matches it. An unavailable voice does not hide text or block progression: each Listen control is replaced by an **Install language** button that opens a modal dialog stating that no French voice (language pack) is installed, followed by the personalised installation steps below.
 
-The vocabulary brief plans listening items (which targets, how many practice and exam pages, and their durations/limits). Listening coverage is required where the outline intent names oral recognition or pronunciation (for example `fr-numbers-zero-to-twenty`, `fr-alphabet-and-accents`, `fr-classroom-instructions`); other lessons may include a smaller planned subset. Audio speaks the target's teaching display form, so audio and accepted answer stay aligned; content validation requires every dictation's accepted answers to include that form. Artifact previews show the target's pronunciation text (IPA) with the item.
+The vocabulary brief plans listening items (which targets, how many practice and exam pages, and their durations/limits). Listening coverage is required where the outline intent names oral recognition or pronunciation (for example `fr-numbers-zero-to-twenty`, `fr-alphabet-and-accents`, `fr-classroom-instructions`); other lessons may include a smaller planned subset. Audio speaks the target's teaching display form, so audio and accepted answer stay aligned; content validation requires every dictation's accepted answers to include that form, and listening-choice practice pages to contain only listening-choice items, so the voice check and help page apply per page. Artifact previews show the target's pronunciation text (IPA) with the item.
 
 **No suitable voice (D42):** when the browser offers no voice for the learning language, each listening page is replaced by a localized help page; other Listen controls become **Install language** buttons opening the same help in a modal dialog. The help explains that the prototype uses the browser's built-in speech synthesis and shows only the steps for the detected operating system and browser (from the user agent), ending with a browser restart:
 
@@ -3125,3 +3126,4 @@ When publishing the agreed backlog, include relevant Mermaid flows as fenced `me
 | 0.28 | 2026-10-06 | P1-06: `make sample-briefs` and the twenty reviewed first-ten fr/A1 briefs; structured `VocabularyBriefView`/`GrammarBriefView`. Vocabulary target rule (D14): average about 12, at most 20 per lesson unless the lesson needs a larger inventory, mixed difficulty where the topic allows it without forcing it. Generator: comma-separated model chain with fallback, several keys tried three times per model, 500 s request timeout, staggered parallel batch workers (`GEMINI_CONCURRENCY`, `GEMINI_WORKER_STAGGER_S`), prompt version `brief-v2`. |
 | 0.29 | 2026-10-06 | P1-09: session engine (plan, scoring, reducer, storage), start/resume page, session host with duration-weighted progress, live score header and per-page countdown, final results with exam/practice menu. Baseline renderers for every vocabulary and grammar item type make both categories playable in phase 1; phases 2/3 refine individual renderers. |
 | 0.30 | 2026-10-07 | P1-11: listening choice/dictation audio speaks the teaching form (IPA pronunciation text is shown in previews, not spoken); dictation must accept the teaching form. Without a learning-language voice, listening pages show the help page with Skip, and other Listen controls become **Install language** buttons opening the help in a modal dialog. The help is personalised to the detected OS and browser with researched Windows (language feature Text-to-speech; Firefox 106+), macOS (Manage Voices) and Linux (Speech Dispatcher, Snap/Flatpak caveat) steps. |
+| 0.31 | 2026-10-07 | P1-10: reviewed the shared plan/session/scoring/renderer contracts against all twenty samples ([record](reviews/2026-10-07-p1-10-contract-review.md)); every sample plays to 100 and 0 in a permanent contract test. Listening-choice pages must be homogeneous; unknown item types fail plan building; grammar units carry `ruleIds`; the session stores presentation progress (`revealed`). Ownership of shared matching, typing, token, audio and result controls is recorded for phases 2 and 3. |

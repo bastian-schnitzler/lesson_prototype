@@ -37,6 +37,8 @@ export interface SessionRecord {
   completed: string[];
   /** Listening pages skipped because no learning-language voice was available. */
   skippedNoVoice: string[];
+  /** Presentation progress that must survive resume, e.g. revealed flashcards: `${pageId}/${itemId}` → keys. */
+  revealed: Record<string, string[]>;
   drafts: Record<string, UnitResponse>;
   locked: Record<string, LockedUnit>;
   exam: Record<string, { startedAt: number; deadline: number; timedOut: boolean }>;
@@ -91,13 +93,14 @@ export type SessionAction =
   | { type: 'expire'; now: number; interfaceLanguage: Locale }
   | { type: 'voice_ready'; now: number }
   | { type: 'skip_no_voice'; now: number }
+  | { type: 'reveal'; itemKey: string; key: string; now: number }
   | { type: 'select'; selection: string };
 
 export function startSession(plan: LessonPlan, init: { sessionId: string; contentHash: string; level: string; motherTongue: Locale; seed: number; now: number }): SessionRecord {
   const record: SessionRecord = {
     version: 1, sessionId: init.sessionId, lessonId: plan.lessonId, contentHash: init.contentHash, lang: plan.lang, level: init.level,
     motherTongue: init.motherTongue, seed: init.seed, startedAt: init.now, updatedAt: init.now, status: 'active',
-    pageIndex: 0, phase: 'answering', completed: [], skippedNoVoice: [], drafts: {}, locked: {}, exam: {}, selection: 'exam',
+    pageIndex: 0, phase: 'answering', completed: [], skippedNoVoice: [], revealed: {}, drafts: {}, locked: {}, exam: {}, selection: 'exam',
   };
   return activate(plan, record, init.now);
 }
@@ -150,6 +153,13 @@ export function sessionReducer(plan: LessonPlan, r: SessionRecord, action: Sessi
       if (!isListeningPage(page) || page.role !== 'exam' || r.exam[page.pageId]) return r;
       next = { ...r, exam: { ...r.exam, [page.pageId]: { startedAt: now, deadline: now + (page.timeLimitS ?? 0) * 1000, timedOut: false } } };
       break;
+    case 'reveal': {
+      // Only items of the active page; repeated reveals are no-ops.
+      const seen = r.revealed?.[action.itemKey] ?? [];
+      if (!page.items.some((it) => `${page.pageId}/${it.itemId}` === action.itemKey) || seen.includes(action.key)) return r;
+      next = { ...r, revealed: { ...r.revealed, [action.itemKey]: [...seen, action.key] } };
+      break;
+    }
     case 'skip_no_voice':
       if (!isListeningPage(page) || r.phase !== 'answering') return r;
       next = advance(plan, { ...r, skippedNoVoice: [...(r.skippedNoVoice ?? []), page.pageId] }, now);
