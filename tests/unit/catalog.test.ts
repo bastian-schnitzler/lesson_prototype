@@ -1,3 +1,6 @@
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
 import { describe, expect, it } from 'vitest';
 
 import { canonicalJson, scanCatalog, type SourceFile } from '../../src/catalog/scan.ts';
@@ -50,8 +53,8 @@ describe('scanCatalog', () => {
       [{ name: 'fr-a.json', text: '{}' }, { name: 'fr-b.json', text: '{oops' }, { name: 'fr-zzz.json', text: '{}' }],
       [{ name: 'fr-a.json', text: '{}' }],
     );
-    expect(r.manifest.artifacts['fr-a'].draft).toMatchObject({ url: 'content/briefs/fr-a.json', status: 'present' });
-    expect(r.manifest.artifacts['fr-a'].content).toMatchObject({ url: 'content/lessons/fr-a.json', status: 'present' });
+    expect(r.manifest.artifacts['fr-a'].draft).toMatchObject({ url: 'content/briefs/fr-a.json', status: 'invalid' });
+    expect(r.manifest.artifacts['fr-a'].content).toMatchObject({ url: 'content/lessons/fr-a.json', status: 'invalid' });
     expect(r.manifest.artifacts['fr-b'].draft?.status).toBe('malformed');
     expect(r.warnings.join('\n')).toMatch(/fr-zzz.json: no outline entry/);
   });
@@ -61,6 +64,26 @@ describe('scanCatalog', () => {
     const after = scan([outline('fr-a1.json', 'fr', 'A1', [entry('fr-a'), { ...entry('fr-b'), intent: 'Changed.' }])]);
     expect(after.manifest.artifacts['fr-a'].outlineHash).toBe(before.manifest.artifacts['fr-a'].outlineHash);
     expect(after.manifest.artifacts['fr-b'].outlineHash).not.toBe(before.manifest.artifacts['fr-b'].outlineHash);
+  });
+
+  it('validates fixture artifacts and marks them stale when their outline entry changes', () => {
+    const fixtures = scanContentDir(FIXTURE_CONTENT).manifest.artifacts;
+    for (const id of ['fr-classroom-objects', 'fr-classroom-instructions', 'fr-verb-etre-present', 'fr-negation-ne-pas']) {
+      expect(fixtures[id].draft?.status, id).toBe('valid');
+      expect(fixtures[id].content?.status, id).toBe('valid');
+    }
+    expect(fixtures['fr-fix-pronouns'].content?.status).toBe('invalid');
+
+    const read = (p: string) => readFileSync(join(FIXTURE_CONTENT, p), 'utf8');
+    const outlineText = read('outlines/fr-a1.json').replace("Nommer une douzaine d'objets", "Nommer dix objets");
+    const r = scanCatalog({
+      outlines: [{ name: 'fr-a1.json', text: outlineText }],
+      briefs: [{ name: 'fr-classroom-objects.json', text: read('briefs/fr-classroom-objects.json') }],
+      lessons: [{ name: 'fr-classroom-objects.json', text: read('lessons/fr-classroom-objects.json') }],
+      hash: sha256,
+    });
+    expect(r.manifest.artifacts['fr-classroom-objects'].draft?.status).toBe('stale');
+    expect(r.manifest.artifacts['fr-classroom-objects'].content?.status).toBe('stale');
   });
 
   it('canonicalizes JSON with sorted keys', () => {

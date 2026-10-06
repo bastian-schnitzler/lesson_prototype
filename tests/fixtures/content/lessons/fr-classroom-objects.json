@@ -1,0 +1,511 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-classroom-objects",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les objets de la classe",
+  "objective": {
+    "en": "Name classroom objects with their article.",
+    "fr": "Nommer les objets de la classe avec leur article.",
+    "de": "Gegenstände im Klassenzimmer mit Artikel benennen."
+  },
+  "estimatedMinutes": 8,
+  "provenance": {
+    "generator": "fixture",
+    "model": "none",
+    "promptVersion": "fixture-1",
+    "generatedAt": "2026-10-06T00:00:00Z",
+    "inputHashes": {
+      "outline": "07ba863701d3938c7c04d1efc9513eee109bfc497d967f7969eaa65b87019e87",
+      "brief": "a47579180cc7541fdecde516991ab5cb1c25acae2c3bab48bf760528143304dc"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "education",
+  "steps": [
+    {
+      "id": "intro",
+      "stage": "introduction",
+      "role": "introduction",
+      "label": {
+        "en": "Introduction",
+        "fr": "Introduction",
+        "de": "Einführung"
+      },
+      "pages": [
+        {
+          "pageId": "intro-1",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Listen to each word and note its article.",
+            "fr": "Écoutez chaque mot et notez son article.",
+            "de": "Hör dir jedes Wort an und merke dir den Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro",
+              "targetIds": [
+                "livre",
+                "chaise",
+                "stylo",
+                "table"
+              ],
+              "text": {
+                "en": "Learn four objects you see in class.",
+                "fr": "Apprenez quatre objets de la classe.",
+                "de": "Lerne vier Gegenstände aus dem Klassenzimmer."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Lernkarten"
+      },
+      "pages": [
+        {
+          "pageId": "cards-1",
+          "estimatedDurationS": 90,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall the French word, then reveal it.",
+            "fr": "Retrouvez le mot français, puis retournez la carte.",
+            "de": "Erinnere dich an das französische Wort und decke es dann auf."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards",
+              "targetIds": [
+                "livre",
+                "chaise",
+                "stylo",
+                "table"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "match",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Associer",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "match-1",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each word with its French partner.",
+            "fr": "Associez chaque mot à son équivalent français.",
+            "de": "Ordne jedem Wort sein französisches Gegenstück zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match",
+              "pairs": [
+                {
+                  "targetId": "livre",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "Book is un livre in French.",
+                    "fr": "« book » se dit un livre.",
+                    "de": "„Buch“ heißt auf Französisch un livre."
+                  }
+                },
+                {
+                  "targetId": "chaise",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "Chair is une chaise in French.",
+                    "fr": "« chair » se dit une chaise.",
+                    "de": "„Stuhl“ heißt auf Französisch une chaise."
+                  }
+                },
+                {
+                  "targetId": "stylo",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "Pen is un stylo in French.",
+                    "fr": "« pen » se dit un stylo.",
+                    "de": "„Kugelschreiber“ heißt auf Französisch un stylo."
+                  }
+                },
+                {
+                  "targetId": "table",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "Table is une table in French.",
+                    "fr": "« table » se dit une table.",
+                    "de": "„Tisch“ heißt auf Französisch une table."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gender",
+      "stage": "overview",
+      "role": "overview",
+      "label": {
+        "en": "Gender and overview",
+        "fr": "Genre et vue d’ensemble",
+        "de": "Genus und Überblick"
+      },
+      "pages": [
+        {
+          "pageId": "gender-1",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose each noun’s gender.",
+            "fr": "Choisissez le genre de chaque nom.",
+            "de": "Wähle das Genus jedes Nomens."
+          },
+          "items": [
+            {
+              "type": "vocabulary_gender_select",
+              "itemId": "gender",
+              "targetIds": [
+                "livre",
+                "chaise",
+                "stylo",
+                "table"
+              ],
+              "rows": [
+                {
+                  "targetId": "livre",
+                  "answerExplanation": {
+                    "en": "Livre is masculine, so its indefinite article is un.",
+                    "fr": "Livre est masculin : on dit un livre.",
+                    "de": "Livre ist maskulin, daher lautet der unbestimmte Artikel un."
+                  }
+                },
+                {
+                  "targetId": "chaise",
+                  "answerExplanation": {
+                    "en": "Chaise is feminine, so its indefinite article is une.",
+                    "fr": "Chaise est féminin : on dit une chaise.",
+                    "de": "Chaise ist feminin, daher lautet der unbestimmte Artikel une."
+                  }
+                },
+                {
+                  "targetId": "stylo",
+                  "answerExplanation": {
+                    "en": "Stylo is masculine, so its indefinite article is un.",
+                    "fr": "Stylo est masculin : on dit un stylo.",
+                    "de": "Stylo ist maskulin, daher lautet der unbestimmte Artikel un."
+                  }
+                },
+                {
+                  "targetId": "table",
+                  "answerExplanation": {
+                    "en": "Table is feminine, so its indefinite article is une.",
+                    "fr": "Table est féminin : on dit une table.",
+                    "de": "Table ist feminin, daher lautet der unbestimmte Artikel une."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gaps",
+      "stage": "practice",
+      "role": "exercise",
+      "label": {
+        "en": "Typed gaps",
+        "fr": "Phrases à compléter",
+        "de": "Lückensätze"
+      },
+      "pages": [
+        {
+          "pageId": "gap-livre",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word without its article.",
+            "fr": "Tapez le mot manquant sans son article.",
+            "de": "Tippe das fehlende Wort ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-livre",
+              "targetId": "livre",
+              "before": "Je lis un ",
+              "after": ".",
+              "referenceTargetIds": [
+                "livre",
+                "chaise",
+                "stylo",
+                "table"
+              ],
+              "accepted": {
+                "answers": [
+                  "livre"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "Only livre fits this sentence.",
+                "fr": "Seul « livre » convient dans cette phrase.",
+                "de": "Nur „livre“ passt in diesen Satz."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-chaise",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word without its article.",
+            "fr": "Tapez le mot manquant sans son article.",
+            "de": "Tippe das fehlende Wort ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-chaise",
+              "targetId": "chaise",
+              "before": "Je m’assieds sur la ",
+              "after": ".",
+              "referenceTargetIds": [
+                "livre",
+                "chaise",
+                "stylo",
+                "table"
+              ],
+              "accepted": {
+                "answers": [
+                  "chaise"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "Only chaise fits this sentence.",
+                "fr": "Seul « chaise » convient dans cette phrase.",
+                "de": "Nur „chaise“ passt in diesen Satz."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-stylo",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word without its article.",
+            "fr": "Tapez le mot manquant sans son article.",
+            "de": "Tippe das fehlende Wort ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-stylo",
+              "targetId": "stylo",
+              "before": "J’écris avec un ",
+              "after": ".",
+              "referenceTargetIds": [
+                "livre",
+                "chaise",
+                "stylo",
+                "table"
+              ],
+              "accepted": {
+                "answers": [
+                  "stylo"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "Only stylo fits this sentence.",
+                "fr": "Seul « stylo » convient dans cette phrase.",
+                "de": "Nur „stylo“ passt in diesen Satz."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-table",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word without its article.",
+            "fr": "Tapez le mot manquant sans son article.",
+            "de": "Tippe das fehlende Wort ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-table",
+              "targetId": "table",
+              "before": "Le livre est sur la ",
+              "after": ".",
+              "referenceTargetIds": [
+                "livre",
+                "chaise",
+                "stylo",
+                "table"
+              ],
+              "accepted": {
+                "answers": [
+                  "table"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "Only table fits this sentence.",
+                "fr": "Seul « table » convient dans cette phrase.",
+                "de": "Nur „table“ passt in diesen Satz."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Final exam",
+        "fr": "Examen final",
+        "de": "Abschlusstest"
+      },
+      "pages": [
+        {
+          "pageId": "exam-1",
+          "estimatedDurationS": 40,
+          "timeLimitS": 60,
+          "instructions": {
+            "en": "Translate into French, with the indefinite article.",
+            "fr": "Traduisez en français, avec l’article indéfini.",
+            "de": "Übersetze ins Französische, mit unbestimmtem Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "x-livre",
+              "targetId": "livre",
+              "prompt": {
+                "en": "a book",
+                "de": "ein Buch"
+              },
+              "accepted": {
+                "answers": [
+                  "un livre"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "Livre is masculine, so its indefinite article is un.",
+                "fr": "Livre est masculin : on dit un livre.",
+                "de": "Livre ist maskulin, daher lautet der unbestimmte Artikel un."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "x-chaise",
+              "targetId": "chaise",
+              "prompt": {
+                "en": "a chair",
+                "de": "ein Stuhl"
+              },
+              "accepted": {
+                "answers": [
+                  "une chaise"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "Chaise is feminine, so its indefinite article is une.",
+                "fr": "Chaise est féminin : on dit une chaise.",
+                "de": "Chaise ist feminin, daher lautet der unbestimmte Artikel une."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-2",
+          "estimatedDurationS": 40,
+          "timeLimitS": 60,
+          "instructions": {
+            "en": "Translate into French, with the indefinite article.",
+            "fr": "Traduisez en français, avec l’article indéfini.",
+            "de": "Übersetze ins Französische, mit unbestimmtem Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "x-stylo",
+              "targetId": "stylo",
+              "prompt": {
+                "en": "a pen",
+                "de": "ein Stift"
+              },
+              "accepted": {
+                "answers": [
+                  "un stylo"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "Stylo is masculine, so its indefinite article is un.",
+                "fr": "Stylo est masculin : on dit un stylo.",
+                "de": "Stylo ist maskulin, daher lautet der unbestimmte Artikel un."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "x-table",
+              "targetId": "table",
+              "prompt": {
+                "en": "a table",
+                "de": "ein Tisch"
+              },
+              "accepted": {
+                "answers": [
+                  "une table"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "Table is feminine, so its indefinite article is une.",
+                "fr": "Table est féminin : on dit une table.",
+                "de": "Table ist feminin, daher lautet der unbestimmte Artikel une."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

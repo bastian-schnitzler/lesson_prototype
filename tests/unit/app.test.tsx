@@ -38,9 +38,9 @@ describe('lesson index', () => {
   it('lists the fr/A1 course in outline order with one state-labeled Content button and no Start', async () => {
     const table = await renderIndex();
     expect(screen.getByRole('heading', { level: 1, name: 'Your lessons' })).toBeInTheDocument();
-    expect(ordinals(table)).toEqual(['01', '02', '03', '04', '05', '06']);
+    expect(ordinals(table)).toEqual(['01', '02', '03', '04', '05', '06', '07', '08']);
     const labels = within(table).getAllByRole('row').slice(1).map((r) => within(r).getByRole('link').textContent);
-    expect(labels).toEqual(['Outline', 'Content ⚠', 'Draft', 'Content', 'Draft ⚠', 'Outline']);
+    expect(labels).toEqual(['Outline', 'Content ⚠', 'Content', 'Content', 'Draft ⚠', 'Outline', 'Content', 'Content']);
     expect(within(table).getAllByRole('link')[0]).toHaveAttribute('href', '#/lesson/fr-fix-greetings');
     expect(screen.queryByRole('link', { name: 'Start lesson' })).toBeNull();
     expect(within(screen.getByRole('radiogroup', { name: 'Learning language' })).getByRole('radio', { name: 'fr', checked: true })).toBeInTheDocument();
@@ -51,11 +51,11 @@ describe('lesson index', () => {
     const user = userEvent.setup();
     const table = await renderIndex();
     await user.click(screen.getByRole('checkbox', { name: 'Grammar' }));
-    expect(ordinals(table)).toEqual(['01', '03', '05', '06']);
+    expect(ordinals(table)).toEqual(['01', '03', '05', '06', '07']);
     for (const name of ['Voc', 'Func', 'Reading']) await user.click(screen.getByRole('checkbox', { name }));
     expect(screen.getByText('No categories are selected.')).toBeInTheDocument();
     await user.click(screen.getByRole('link', { name: 'Show all categories' }));
-    expect(rowIds(await screen.findByRole('table'))).toHaveLength(6);
+    expect(rowIds(await screen.findByRole('table'))).toHaveLength(8);
   });
 
   it('switches language and level from the catalog and keeps category selection', async () => {
@@ -107,7 +107,7 @@ describe('lesson index', () => {
     await user.click(screen.getByRole('radio', { name: 'B1' }));
     expect(await screen.findByText('Loading…')).toBeInTheDocument();
     await user.click(screen.getByRole('radio', { name: 'A1' }));
-    await waitFor(() => expect(rowIds(screen.getByRole('table'))).toHaveLength(6));
+    await waitFor(() => expect(rowIds(screen.getByRole('table'))).toHaveLength(8));
     await act(async () => release());
     expect(rowIds(screen.getByRole('table'))[0]).toBe('fr-fix-greetings');
   });
@@ -121,15 +121,16 @@ describe('lesson index', () => {
 });
 
 describe('lesson artifact page', () => {
-  it('shows the shared Outline card, missing sections and a read-only mother tongue', async () => {
+  it('shows the shared Outline card, valid artifacts and a read-only mother tongue', async () => {
     await renderIndex();
-    go('#/lesson/fr-fix-classroom');
+    go('#/lesson/fr-classroom-objects');
     expect(await screen.findByRole('heading', { level: 1, name: 'Les objets de la classe' })).toBeInTheDocument();
     expect(screen.getByText('Lesson 3')).toBeInTheDocument();
-    expect(screen.getByText(/Nommer des objets de la classe/)).toBeInTheDocument();
-    expect(await screen.findByText(/A structured view for this file is not available yet/)).toBeInTheDocument();
-    expect(screen.getByText('No lesson content has been generated for this lesson yet.')).toBeInTheDocument();
+    expect(screen.getByText(/Nommer une douzaine d'objets de la classe/)).toBeInTheDocument();
+    await waitFor(() => expect(screen.getAllByText(/A structured view for this file is not available yet/)).toHaveLength(2));
     expect(screen.getByText(/Start lesson is unavailable/)).toBeInTheDocument();
+    expect(screen.getByText('Lessons of this category cannot be played yet.')).toBeInTheDocument();
+    expect(screen.queryByText('The draft is missing.')).toBeNull();
     for (const radio of within(screen.getByRole('group', { name: 'Mother tongue' })).getAllByRole('radio')) expect(radio).toBeDisabled();
     expect(screen.getByRole('combobox', { name: 'Interface language' })).toBeEnabled();
     expect(screen.queryByRole('link', { name: 'Start lesson' })).toBeNull();
@@ -138,23 +139,25 @@ describe('lesson artifact page', () => {
   it('toggles a raw JSON tree with default expansion and keeps user expansion across mode and locale switches', async () => {
     const user = userEvent.setup();
     await renderIndex();
-    go('#/lesson/fr-fix-classroom');
-    await screen.findByText(/A structured view for this file/);
+    go('#/lesson/fr-classroom-objects');
+    await waitFor(() => expect(screen.getAllByText(/A structured view for this file/)).toHaveLength(2));
     await user.click(screen.getByRole('button', { name: 'Raw JSON' }));
     const tree = screen.getByRole('tree');
     const item = (name: RegExp) => within(tree).getByRole('treeitem', { name });
     expect(item(/^Combined artifact object/)).toHaveAttribute('aria-expanded', 'true');
     expect(item(/^outline/)).toHaveAttribute('aria-expanded', 'false');
     expect(item(/^draft/)).toHaveAttribute('aria-expanded', 'false');
+    expect(item(/^content/)).toHaveAttribute('aria-expanded', 'false');
 
     await user.click(item(/^draft/));
     expect(item(/^objective/)).toHaveAttribute('aria-expanded', 'true');
     expect(item(/^targets/)).toHaveAttribute('aria-expanded', 'false');
-    expect(item(/^flags/)).toHaveAttribute('aria-expanded', 'true');
-    expect(item(/^nullValue: null/)).not.toHaveAttribute('aria-expanded');
-    expect(item(/^enabled: false/)).toBeInTheDocument();
-    expect(item(/^zero: 0/)).toBeInTheDocument();
-    expect(item(/^empty: \[\]/)).toBeInTheDocument();
+    expect(item(/^targetCount: 4/)).not.toHaveAttribute('aria-expanded');
+    expect(item(/^prerequisites: \[\]/)).toBeInTheDocument();
+    await user.click(item(/^plan/));
+    expect(item(/^listening/)).toHaveAttribute('aria-expanded', 'true');
+    expect(item(/^required: false/)).toBeInTheDocument();
+    expect(item(/^estimatedDurationS: null/)).toBeInTheDocument();
 
     await user.click(screen.getByRole('button', { name: 'Structured view' }));
     await user.selectOptions(screen.getByRole('combobox', { name: 'Interface language' }), 'fr');
@@ -165,8 +168,8 @@ describe('lesson artifact page', () => {
   it('supports keyboard navigation in the tree', async () => {
     const user = userEvent.setup();
     await renderIndex();
-    go('#/lesson/fr-fix-classroom');
-    await screen.findByText(/A structured view for this file/);
+    go('#/lesson/fr-classroom-objects');
+    await waitFor(() => expect(screen.getAllByText(/A structured view for this file/)).toHaveLength(2));
     await user.click(screen.getByRole('button', { name: 'Raw JSON' }));
     const tree = screen.getByRole('tree');
     within(tree).getByRole('treeitem', { name: /^Combined artifact object/ }).focus();
@@ -189,6 +192,17 @@ describe('lesson artifact page', () => {
     await user.click(screen.getByRole('button', { name: 'Raw JSON' }));
     expect(screen.getByText(/Draft is not valid JSON/)).toBeInTheDocument();
     expect(within(screen.getByRole('tree')).queryByRole('treeitem', { name: /^draft/ })).toBeNull();
+  });
+
+  it('lists contract problems of invalid files', async () => {
+    const user = userEvent.setup();
+    await renderIndex();
+    go('#/lesson/fr-fix-pronouns');
+    expect(await screen.findByText('This file does not match the lesson contract:')).toBeInTheDocument();
+    expect(screen.getByText('No draft has been generated for this lesson yet.')).toBeInTheDocument();
+    await user.click(screen.getByRole('button', { name: 'Raw JSON' }));
+    expect(within(screen.getByRole('tree')).getByRole('treeitem', { name: /^content/ })).toBeInTheDocument();
+    expect(screen.getByText('This file does not match the lesson contract:')).toBeInTheDocument();
   });
 
   it('explains pending categories and returns to the lesson course', async () => {

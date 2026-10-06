@@ -20,8 +20,12 @@ export type Course = z.infer<typeof CourseSchema>;
 export const ArtifactFileSchema = z.strictObject({
   url: z.string().min(1),
   sourceHash: z.string().min(1),
-  /** `malformed` when the file is not parseable JSON. */
-  status: z.enum(['present', 'malformed']),
+  /**
+   * `valid`: matches its schema and cross-reference rules and was generated
+   * from the current inputs; `stale`: valid but generated from an older
+   * outline entry or brief; `invalid`: fails validation; `malformed`: not JSON.
+   */
+  status: z.enum(['valid', 'invalid', 'stale', 'malformed']),
 });
 export type ArtifactFile = z.infer<typeof ArtifactFileSchema>;
 
