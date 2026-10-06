@@ -335,11 +335,21 @@ Acceptance:
 - Vocabulary Content uses ordered stage cards, flashcard sides, matching pairs, noun-gender/overview tables, gap prompts with reference words, and translation-exam previews.
 - Grammar Content uses explanation/form-table cards and previews for all six exercise types, the production-feedback placeholder, and the mixed exam.
 - Both expose every generated prompt, accepted answer, point unit, explanation, page-duration estimate, and countdown limit using semantic HTML; the Raw JSON / Structured view toggle exposes every locale in an unchanged generic tree. The header also has Lesson overview, eligible Start lesson and shared language preferences.
+- Content begins with a numbered step outline and a wrapping page-tab bar, with numbered, color-accented group headings above the matching tabs. Outline links select the step’s first page; tabs show one complete page below, preserving selection across locale changes. Support keyboard navigation and groups and page buttons wrapping onto additional lines at narrow width.
+- The artifact header’s Start lesson button matches the other header actions in height, font size and padding.
 - Previews are read-only: no attempt creation, scoring, running countdown, or active-session mutations. These phase 1 review components work before phase 2/3 interactive renderers; shared presentation can be reused later.
 - User review checks all en/fr/de variants for pedagogy, A1 suitability, full intent coverage, translation/explanation accuracy, equivalent assessed meaning, duration, and grading ambiguity; switch native/interface settings independently in both structured and raw mode.
 - Accepted changes are reflected in schemas/prompts and regenerated affected samples before expansion.
 
 Dependencies: P1-01, P1-07.
+
+Implementation: on 2026-10-07, the user requested direct authorship of the eighteen remaining samples without using the offline generator. Eighteen individual multilingual lesson files were added, preserving the existing classroom-objects and être lessons. In this workflow, `make sample-lessons` validates the twenty curated files and their current hashes without generation. VocabularyContentView and GrammarContentView share a static ContentReview presentation using the session plan’s answer-unit definitions, with no session creation, timer or answer controls. The detail header permits independent mother-tongue/interface changes; Raw JSON still shows the original artifacts. Corrected the German translation of vendredi to Freitag, and permitted the standalone numeral un in article-free vocabulary gaps.
+
+Validation: all twenty sample pairs pass schema, reference, page-plan and current-hash checks without catalog warnings. The 141 unit/component tests pass, including independent locale rendering, read-only previews, all six grammar exercise types and the numeral un regression. All 16 desktop/narrow browser tests pass with `E2E_WORKERS=2` (the initial eight-worker run hit resource-related timeouts). The build passes the Pages-path distribution smoke check.
+
+Review status: all twenty samples are available for user review; acceptance is pending. Bulk expansion remains gated on that review.
+
+Follow-up presentation change (2026-10-07): replaced the full-length Content rendering with a numbered outline and grouped, color-accented page tabs. Only the selected page is rendered; all page answers remain accessible through the tabs. Added tablist/tabpanel semantics and arrow/Home/End keyboard navigation. The artifact Start lesson button uses the standard 44px header-action height. Updated both category mockups and synchronized their SPEC fences. Validation: 142 unit/component tests, all 18 desktop/narrow browser tests, type/catalog checks and 32 mockup parity checks pass; browser coverage verifies equal action heights and tab-bar wrapping without horizontal scrolling.
 
 ### P1-09: Build session host, progress, single Continue flow, timed exams, and results
 

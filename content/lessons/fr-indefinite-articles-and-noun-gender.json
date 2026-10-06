@@ -1,0 +1,986 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-indefinite-articles-and-noun-gender",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les articles indéfinis : un, une, des",
+  "objective": {
+    "en": "Identify French noun gender and correctly choose between the indefinite articles un, une, and des.",
+    "fr": "Identifier le genre des noms français et choisir correctement entre les articles indéfinis un, une et des.",
+    "de": "Das Genus französischer Nomen erkennen und die unbestimmten Artikel un, une und des korrekt auswählen."
+  },
+  "estimatedMinutes": 12,
+  "kind": "grammar",
+  "topic": "nouns_and_determiners",
+  "steps": [
+    {
+      "id": "block-singular-articles-explanation",
+      "role": "explanation",
+      "blockId": "block-singular-articles",
+      "label": {
+        "en": "Singular Indefinite Articles: un and une",
+        "fr": "Les articles indéfinis au singulier : un et une",
+        "de": "Unbestimmte Artikel im Singular: un und une"
+      },
+      "pages": [
+        {
+          "pageId": "block-singular-articles-explanation",
+          "estimatedDurationS": 120,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the rule and examples.",
+            "fr": "Lisez la règle et les exemples.",
+            "de": "Lies die Regel und die Beispiele."
+          },
+          "items": [
+            {
+              "type": "grammar_explanation",
+              "itemId": "block-singular-articles-explanation",
+              "ruleIds": [
+                "rule-singular-gender"
+              ],
+              "heading": {
+                "en": "Singular Indefinite Articles: un and une",
+                "fr": "Les articles indéfinis au singulier : un et une",
+                "de": "Unbestimmte Artikel im Singular: un und une"
+              },
+              "text": {
+                "en": "Use 'un' before singular masculine nouns and 'une' before singular feminine nouns. French noun gender often differs from English or German counterparts; memorise nouns with their article. un livre une table",
+                "fr": "Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier. Le genre des noms ne correspond pas toujours à d'autres langues ; apprenez chaque nom avec son article. un livre une table",
+                "de": "Verwende 'un' vor männlichen Nomen im Singular und 'une' vor weiblichen Nomen im Singular. Das Genus unterscheidet sich oft vom Deutschen; Nomen sollten immer mit ihrem Artikel gelernt werden. un livre une table"
+              },
+              "formTable": [],
+              "examples": [
+                {
+                  "text": "un livre",
+                  "translation": {
+                    "en": "a book",
+                    "de": "ein Buch"
+                  }
+                },
+                {
+                  "text": "une table",
+                  "translation": {
+                    "en": "a table",
+                    "de": "ein Tisch"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-singular-choice",
+      "role": "exercise",
+      "blockId": "block-singular-articles",
+      "label": {
+        "en": "Singular Indefinite Articles: un and une",
+        "fr": "Les articles indéfinis au singulier : un et une",
+        "de": "Unbestimmte Artikel im Singular: un und une"
+      },
+      "pages": [
+        {
+          "pageId": "ex-singular-choice-1",
+          "estimatedDurationS": 20,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-singular-choice-1",
+              "ruleIds": [
+                "rule-singular-gender"
+              ],
+              "before": "Voici",
+              "after": "livre. (masculin singulier)",
+              "answerExplanation": {
+                "en": "Answer: un. Use 'un' before singular masculine nouns and 'une' before singular feminine nouns.",
+                "fr": "Réponse : un. Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier.",
+                "de": "Antwort: un. Verwende 'un' vor männlichen Nomen im Singular und 'une' vor weiblichen Nomen im Singular."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "une"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "des"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "le"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "un"
+                }
+              ],
+              "answerChoiceId": "c-3"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-singular-choice-2",
+          "estimatedDurationS": 20,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-singular-choice-2",
+              "ruleIds": [
+                "rule-singular-gender"
+              ],
+              "before": "Voici",
+              "after": "table. (féminin singulier)",
+              "answerExplanation": {
+                "en": "Answer: une. Use 'un' before singular masculine nouns and 'une' before singular feminine nouns.",
+                "fr": "Réponse : une. Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier.",
+                "de": "Antwort: une. Verwende 'un' vor männlichen Nomen im Singular und 'une' vor weiblichen Nomen im Singular."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "des"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "la"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "une"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "un"
+                }
+              ],
+              "answerChoiceId": "c-2"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-singular-choice-3",
+          "estimatedDurationS": 20,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-singular-choice-3",
+              "ruleIds": [
+                "rule-singular-gender"
+              ],
+              "before": "Voici",
+              "after": "stylo. (masculin singulier)",
+              "answerExplanation": {
+                "en": "Answer: un. Use 'un' before singular masculine nouns and 'une' before singular feminine nouns.",
+                "fr": "Réponse : un. Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier.",
+                "de": "Antwort: un. Verwende 'un' vor männlichen Nomen im Singular und 'une' vor weiblichen Nomen im Singular."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "les"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "un"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "une"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "des"
+                }
+              ],
+              "answerChoiceId": "c-1"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-singular-choice-4",
+          "estimatedDurationS": 20,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-singular-choice-4",
+              "ruleIds": [
+                "rule-singular-gender"
+              ],
+              "before": "Voici",
+              "after": "chaise. (féminin singulier)",
+              "answerExplanation": {
+                "en": "Answer: une. Use 'un' before singular masculine nouns and 'une' before singular feminine nouns.",
+                "fr": "Réponse : une. Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier.",
+                "de": "Antwort: une. Verwende 'un' vor männlichen Nomen im Singular und 'une' vor weiblichen Nomen im Singular."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "un"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "des"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "le"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "une"
+                }
+              ],
+              "answerChoiceId": "c-3"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-singular-choice-5",
+          "estimatedDurationS": 20,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-singular-choice-5",
+              "ruleIds": [
+                "rule-singular-gender"
+              ],
+              "before": "Voici",
+              "after": "cahier. (masculin singulier)",
+              "answerExplanation": {
+                "en": "Answer: un. Use 'un' before singular masculine nouns and 'une' before singular feminine nouns.",
+                "fr": "Réponse : un. Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier.",
+                "de": "Antwort: un. Verwende 'un' vor männlichen Nomen im Singular und 'une' vor weiblichen Nomen im Singular."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "des"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "la"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "un"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "une"
+                }
+              ],
+              "answerChoiceId": "c-2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-singular-typing",
+      "role": "exercise",
+      "blockId": "block-singular-articles",
+      "label": {
+        "en": "Singular Indefinite Articles: un and une",
+        "fr": "Les articles indéfinis au singulier : un et une",
+        "de": "Unbestimmte Artikel im Singular: un und une"
+      },
+      "pages": [
+        {
+          "pageId": "ex-singular-typing-1",
+          "estimatedDurationS": 23,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or expression.",
+            "fr": "Écrivez le mot ou l’expression qui manque.",
+            "de": "Schreib das fehlende Wort oder die Wendung."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "ex-singular-typing-1",
+              "ruleIds": [
+                "rule-singular-gender"
+              ],
+              "before": "Voici",
+              "after": "table. (féminin singulier)",
+              "answerExplanation": {
+                "en": "Answer: une. Use 'un' before singular masculine nouns and 'une' before singular feminine nouns.",
+                "fr": "Réponse : une. Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier.",
+                "de": "Antwort: une. Verwende 'un' vor männlichen Nomen im Singular und 'une' vor weiblichen Nomen im Singular."
+              },
+              "accepted": {
+                "answers": [
+                  "une"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            }
+          ]
+        },
+        {
+          "pageId": "ex-singular-typing-2",
+          "estimatedDurationS": 23,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or expression.",
+            "fr": "Écrivez le mot ou l’expression qui manque.",
+            "de": "Schreib das fehlende Wort oder die Wendung."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "ex-singular-typing-2",
+              "ruleIds": [
+                "rule-singular-gender"
+              ],
+              "before": "Voici",
+              "after": "stylo. (masculin singulier)",
+              "answerExplanation": {
+                "en": "Answer: un. Use 'un' before singular masculine nouns and 'une' before singular feminine nouns.",
+                "fr": "Réponse : un. Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier.",
+                "de": "Antwort: un. Verwende 'un' vor männlichen Nomen im Singular und 'une' vor weiblichen Nomen im Singular."
+              },
+              "accepted": {
+                "answers": [
+                  "un"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            }
+          ]
+        },
+        {
+          "pageId": "ex-singular-typing-3",
+          "estimatedDurationS": 22,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or expression.",
+            "fr": "Écrivez le mot ou l’expression qui manque.",
+            "de": "Schreib das fehlende Wort oder die Wendung."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "ex-singular-typing-3",
+              "ruleIds": [
+                "rule-singular-gender"
+              ],
+              "before": "Voici",
+              "after": "chaise. (féminin singulier)",
+              "answerExplanation": {
+                "en": "Answer: une. Use 'un' before singular masculine nouns and 'une' before singular feminine nouns.",
+                "fr": "Réponse : une. Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier.",
+                "de": "Antwort: une. Verwende 'un' vor männlichen Nomen im Singular und 'une' vor weiblichen Nomen im Singular."
+              },
+              "accepted": {
+                "answers": [
+                  "une"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            }
+          ]
+        },
+        {
+          "pageId": "ex-singular-typing-4",
+          "estimatedDurationS": 22,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or expression.",
+            "fr": "Écrivez le mot ou l’expression qui manque.",
+            "de": "Schreib das fehlende Wort oder die Wendung."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "ex-singular-typing-4",
+              "ruleIds": [
+                "rule-singular-gender"
+              ],
+              "before": "Voici",
+              "after": "cahier. (masculin singulier)",
+              "answerExplanation": {
+                "en": "Answer: un. Use 'un' before singular masculine nouns and 'une' before singular feminine nouns.",
+                "fr": "Réponse : un. Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier.",
+                "de": "Antwort: un. Verwende 'un' vor männlichen Nomen im Singular und 'une' vor weiblichen Nomen im Singular."
+              },
+              "accepted": {
+                "answers": [
+                  "un"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "block-plural-article-explanation",
+      "role": "explanation",
+      "blockId": "block-plural-article",
+      "label": {
+        "en": "Plural Indefinite Article: des",
+        "fr": "L'article indéfini au pluriel : des",
+        "de": "Der unbestimmte Artikel im Plural: des"
+      },
+      "pages": [
+        {
+          "pageId": "block-plural-article-explanation",
+          "estimatedDurationS": 90,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the rule and examples.",
+            "fr": "Lisez la règle et les exemples.",
+            "de": "Lies die Regel und die Beispiele."
+          },
+          "items": [
+            {
+              "type": "grammar_explanation",
+              "itemId": "block-plural-article-explanation",
+              "ruleIds": [
+                "rule-plural-des"
+              ],
+              "heading": {
+                "en": "Plural Indefinite Article: des",
+                "fr": "L'article indéfini au pluriel : des",
+                "de": "Der unbestimmte Artikel im Plural: des"
+              },
+              "text": {
+                "en": "Use 'des' before any plural noun, whether masculine or feminine. Do not omit 'des' when referring to unspecified plural items in French, unlike English where the article is omitted. des livres des tables",
+                "fr": "Utilisez 'des' devant tous les noms au pluriel, qu'ils soient masculins ou féminins. N'omettez pas 'des' pour désigner des éléments pluriels indéfinis, contrairement à l'anglais. des livres des tables",
+                "de": "Verwende 'des' vor allen Nomen im Plural, egal ob männlich oder weiblich. Lassen Sie 'des' im Plural nicht weg, auch wenn im Deutschen oft kein Artikel steht (Nullartikel). des livres des tables"
+              },
+              "formTable": [],
+              "examples": [
+                {
+                  "text": "des livres",
+                  "translation": {
+                    "en": "books / some books",
+                    "de": "Bücher / einige Bücher"
+                  }
+                },
+                {
+                  "text": "des tables",
+                  "translation": {
+                    "en": "tables / some tables",
+                    "de": "Tische / einige Tische"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-plural-choice",
+      "role": "exercise",
+      "blockId": "block-plural-article",
+      "label": {
+        "en": "Plural Indefinite Article: des",
+        "fr": "L'article indéfini au pluriel : des",
+        "de": "Der unbestimmte Artikel im Plural: des"
+      },
+      "pages": [
+        {
+          "pageId": "ex-plural-choice-1",
+          "estimatedDurationS": 18,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-plural-choice-1",
+              "ruleIds": [
+                "rule-plural-des"
+              ],
+              "before": "J’ai",
+              "after": "livres. (pluriel indéfini)",
+              "answerExplanation": {
+                "en": "Answer: des. Use 'des' before any plural noun, whether masculine or feminine.",
+                "fr": "Réponse : des. Utilisez 'des' devant tous les noms au pluriel, qu'ils soient masculins ou féminins.",
+                "de": "Antwort: des. Verwende 'des' vor allen Nomen im Plural, egal ob männlich oder weiblich."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "un"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "une"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "le"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "des"
+                }
+              ],
+              "answerChoiceId": "c-3"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-plural-choice-2",
+          "estimatedDurationS": 18,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-plural-choice-2",
+              "ruleIds": [
+                "rule-plural-des"
+              ],
+              "before": "Voici",
+              "after": "tables. (pluriel indéfini)",
+              "answerExplanation": {
+                "en": "Answer: des. Use 'des' before any plural noun, whether masculine or feminine.",
+                "fr": "Réponse : des. Utilisez 'des' devant tous les noms au pluriel, qu'ils soient masculins ou féminins.",
+                "de": "Antwort: des. Verwende 'des' vor allen Nomen im Plural, egal ob männlich oder weiblich."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "un"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "la"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "des"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "une"
+                }
+              ],
+              "answerChoiceId": "c-2"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-plural-choice-3",
+          "estimatedDurationS": 18,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-plural-choice-3",
+              "ruleIds": [
+                "rule-plural-des"
+              ],
+              "before": "Nous avons",
+              "after": "stylos. (pluriel indéfini)",
+              "answerExplanation": {
+                "en": "Answer: des. Use 'des' before any plural noun, whether masculine or feminine.",
+                "fr": "Réponse : des. Utilisez 'des' devant tous les noms au pluriel, qu'ils soient masculins ou féminins.",
+                "de": "Antwort: des. Verwende 'des' vor allen Nomen im Plural, egal ob männlich oder weiblich."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "le"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "des"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "un"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "une"
+                }
+              ],
+              "answerChoiceId": "c-1"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-plural-choice-4",
+          "estimatedDurationS": 18,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-plural-choice-4",
+              "ruleIds": [
+                "rule-plural-des"
+              ],
+              "before": "Elle a",
+              "after": "chaises. (pluriel indéfini)",
+              "answerExplanation": {
+                "en": "Answer: des. Use 'des' before any plural noun, whether masculine or feminine.",
+                "fr": "Réponse : des. Utilisez 'des' devant tous les noms au pluriel, qu'ils soient masculins ou féminins.",
+                "de": "Antwort: des. Verwende 'des' vor allen Nomen im Plural, egal ob männlich oder weiblich."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "une"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "un"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "la"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "des"
+                }
+              ],
+              "answerChoiceId": "c-3"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-plural-choice-5",
+          "estimatedDurationS": 18,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-plural-choice-5",
+              "ruleIds": [
+                "rule-plural-des"
+              ],
+              "before": "Tu as",
+              "after": "cahiers. (pluriel indéfini)",
+              "answerExplanation": {
+                "en": "Answer: des. Use 'des' before any plural noun, whether masculine or feminine.",
+                "fr": "Réponse : des. Utilisez 'des' devant tous les noms au pluriel, qu'ils soient masculins ou féminins.",
+                "de": "Antwort: des. Verwende 'des' vor allen Nomen im Plural, egal ob männlich oder weiblich."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "une"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "le"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "des"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "un"
+                }
+              ],
+              "answerChoiceId": "c-2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "feedback",
+      "role": "feedback",
+      "blockId": null,
+      "label": {
+        "en": "Your feedback",
+        "fr": "Votre retour",
+        "de": "Dein Feedback"
+      },
+      "pages": [
+        {
+          "pageId": "feedback",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Continue to the final exam.",
+            "fr": "Passez à l’examen final.",
+            "de": "Weiter zur Abschlussprüfung."
+          },
+          "items": [
+            {
+              "type": "production_feedback_placeholder",
+              "itemId": "feedback"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "role": "exam",
+      "blockId": null,
+      "label": {
+        "en": "Final exam",
+        "fr": "Examen final",
+        "de": "Abschlussprüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-page-singular-plural-typing",
+          "estimatedDurationS": 190,
+          "timeLimitS": 240,
+          "instructions": {
+            "en": "Write the missing word or expression.",
+            "fr": "Écrivez le mot ou l’expression qui manque.",
+            "de": "Schreib das fehlende Wort oder die Wendung."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-1-1",
+              "ruleIds": [
+                "rule-singular-gender"
+              ],
+              "before": "Voici",
+              "after": "stylo. (masculin singulier)",
+              "answerExplanation": {
+                "en": "Answer: un. Use 'un' before singular masculine nouns and 'une' before singular feminine nouns.",
+                "fr": "Réponse : un. Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier.",
+                "de": "Antwort: un. Verwende 'un' vor männlichen Nomen im Singular und 'une' vor weiblichen Nomen im Singular."
+              },
+              "accepted": {
+                "answers": [
+                  "un"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            },
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-1-2",
+              "ruleIds": [
+                "rule-plural-des"
+              ],
+              "before": "Elle a",
+              "after": "chaises. (pluriel indéfini)",
+              "answerExplanation": {
+                "en": "Answer: des. Use 'des' before any plural noun, whether masculine or feminine.",
+                "fr": "Réponse : des. Utilisez 'des' devant tous les noms au pluriel, qu'ils soient masculins ou féminins.",
+                "de": "Antwort: des. Verwende 'des' vor allen Nomen im Plural, egal ob männlich oder weiblich."
+              },
+              "accepted": {
+                "answers": [
+                  "des"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            },
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-1-3",
+              "ruleIds": [
+                "rule-singular-gender"
+              ],
+              "before": "Voici",
+              "after": "cahier. (masculin singulier)",
+              "answerExplanation": {
+                "en": "Answer: un. Use 'un' before singular masculine nouns and 'une' before singular feminine nouns.",
+                "fr": "Réponse : un. Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier.",
+                "de": "Antwort: un. Verwende 'un' vor männlichen Nomen im Singular und 'une' vor weiblichen Nomen im Singular."
+              },
+              "accepted": {
+                "answers": [
+                  "un"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            },
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-1-4",
+              "ruleIds": [
+                "rule-plural-des"
+              ],
+              "before": "J’ai",
+              "after": "livres. (pluriel indéfini)",
+              "answerExplanation": {
+                "en": "Answer: des. Use 'des' before any plural noun, whether masculine or feminine.",
+                "fr": "Réponse : des. Utilisez 'des' devant tous les noms au pluriel, qu'ils soient masculins ou féminins.",
+                "de": "Antwort: des. Verwende 'des' vor allen Nomen im Plural, egal ob männlich oder weiblich."
+              },
+              "accepted": {
+                "answers": [
+                  "des"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            },
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-1-5",
+              "ruleIds": [
+                "rule-singular-gender"
+              ],
+              "before": "Voici",
+              "after": "livre. (masculin singulier)",
+              "answerExplanation": {
+                "en": "Answer: un. Use 'un' before singular masculine nouns and 'une' before singular feminine nouns.",
+                "fr": "Réponse : un. Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier.",
+                "de": "Antwort: un. Verwende 'un' vor männlichen Nomen im Singular und 'une' vor weiblichen Nomen im Singular."
+              },
+              "accepted": {
+                "answers": [
+                  "un"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            },
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-1-6",
+              "ruleIds": [
+                "rule-plural-des"
+              ],
+              "before": "Nous avons",
+              "after": "stylos. (pluriel indéfini)",
+              "answerExplanation": {
+                "en": "Answer: des. Use 'des' before any plural noun, whether masculine or feminine.",
+                "fr": "Réponse : des. Utilisez 'des' devant tous les noms au pluriel, qu'ils soient masculins ou féminins.",
+                "de": "Antwort: des. Verwende 'des' vor allen Nomen im Plural, egal ob männlich oder weiblich."
+              },
+              "accepted": {
+                "answers": [
+                  "des"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            },
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-1-7",
+              "ruleIds": [
+                "rule-singular-gender"
+              ],
+              "before": "Voici",
+              "after": "stylo. (masculin singulier)",
+              "answerExplanation": {
+                "en": "Answer: un. Use 'un' before singular masculine nouns and 'une' before singular feminine nouns.",
+                "fr": "Réponse : un. Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier.",
+                "de": "Antwort: un. Verwende 'un' vor männlichen Nomen im Singular und 'une' vor weiblichen Nomen im Singular."
+              },
+              "accepted": {
+                "answers": [
+                  "un"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            },
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-1-8",
+              "ruleIds": [
+                "rule-plural-des"
+              ],
+              "before": "Tu as",
+              "after": "cahiers. (pluriel indéfini)",
+              "answerExplanation": {
+                "en": "Answer: des. Use 'des' before any plural noun, whether masculine or feminine.",
+                "fr": "Réponse : des. Utilisez 'des' devant tous les noms au pluriel, qu'ils soient masculins ou féminins.",
+                "de": "Antwort: des. Verwende 'des' vor allen Nomen im Plural, egal ob männlich oder weiblich."
+              },
+              "accepted": {
+                "answers": [
+                  "des"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "provenance": {
+    "generator": "codex-direct-authoring",
+    "model": "gpt-6",
+    "promptVersion": "manual-content-v1",
+    "generatedAt": "2026-10-06T22:13:22.000Z",
+    "inputHashes": {
+      "outline": "21cea9aeeacae2d7d0c58cde432c039e81a485c45fc20fb3991afbe89e01be25",
+      "brief": "d99e075e09bce48c8305ba6088d61f2dc49bda236903e13a4c01fecd2841f850"
+    }
+  }
+}

@@ -1,0 +1,1008 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-regular-noun-plurals",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Le pluriel des noms",
+  "objective": {
+    "en": "Learn how to form regular French noun plurals using -s and -x, and recognize that final plural markers are silent.",
+    "fr": "Apprendre à former le pluriel des noms réguliers avec -s et -x, et comprendre que le -s ou -x final est muet.",
+    "de": "Lernen Sie, wie man den regelmäßigen Plural im Französischen mit -s und -x bildet und dass diese Endungen stumm sind."
+  },
+  "estimatedMinutes": 11,
+  "kind": "grammar",
+  "topic": "nouns_and_determiners",
+  "steps": [
+    {
+      "id": "block-regular-plural-s-explanation",
+      "role": "explanation",
+      "blockId": "block-regular-plural-s",
+      "label": {
+        "en": "Plurals with -s and Silent Consonants",
+        "fr": "Le pluriel en -s et les consonnes muettes",
+        "de": "Plural mit -s und stumme Konsonanten"
+      },
+      "pages": [
+        {
+          "pageId": "block-regular-plural-s-explanation",
+          "estimatedDurationS": 120,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the rule and examples.",
+            "fr": "Lisez la règle et les exemples.",
+            "de": "Lies die Regel und die Beispiele."
+          },
+          "items": [
+            {
+              "type": "grammar_explanation",
+              "itemId": "block-regular-plural-s-explanation",
+              "ruleIds": [
+                "rule-plural-s",
+                "rule-silent-plural"
+              ],
+              "heading": {
+                "en": "Plurals with -s and Silent Consonants",
+                "fr": "Le pluriel en -s et les consonnes muettes",
+                "de": "Plural mit -s und stumme Konsonanten"
+              },
+              "text": {
+                "en": "Add -s to most nouns: livre → livres, chaise → chaises. Un and une become des; le and la become les. The final -s is silent: livre and livres sound alike. Listen to the article to recognise number. In these gaps the article is already supplied; write only the plural noun.",
+                "fr": "Ajoutez -s à la plupart des noms : livre → livres, chaise → chaises. Un et une deviennent des ; le et la deviennent les. Le -s final est muet : livre et livres se prononcent pareil. Écoutez l'article pour reconnaître le nombre. Dans les trous, l'article est déjà donné ; écrivez seulement le nom au pluriel.",
+                "de": "Die meisten Nomen bekommen -s: livre → livres, chaise → chaises. Un und une werden des, le und la werden les. Das End-s ist stumm: livre und livres klingen gleich. Höre auf den Artikel, um die Zahl zu erkennen. In diesen Lücken steht der Artikel schon; schreibe nur das Nomen im Plural."
+              },
+              "formTable": [],
+              "examples": [
+                {
+                  "text": "un livre -> des livres",
+                  "translation": {
+                    "en": "a book -> books",
+                    "de": "ein Buch -> Bücher"
+                  }
+                },
+                {
+                  "text": "la chaise -> les chaises",
+                  "translation": {
+                    "en": "the chair -> the chairs",
+                    "de": "der Stuhl -> die Stühle"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-plural-s-choice",
+      "role": "exercise",
+      "blockId": "block-regular-plural-s",
+      "label": {
+        "en": "Plurals with -s and Silent Consonants",
+        "fr": "Le pluriel en -s et les consonnes muettes",
+        "de": "Plural mit -s und stumme Konsonanten"
+      },
+      "pages": [
+        {
+          "pageId": "ex-plural-s-choice-1",
+          "estimatedDurationS": 12,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-plural-s-choice-1",
+              "ruleIds": [
+                "rule-plural-s",
+                "rule-silent-plural"
+              ],
+              "before": "un livre → des",
+              "after": "",
+              "answerExplanation": {
+                "en": "Answer: livres. Most French nouns add an -s to form the plural. Final plural -s and -x are silent; the article signals the plural sound.",
+                "fr": "Réponse : livres. La plupart des noms français prennent un -s au pluriel. Le -s et le -x finaux du pluriel ne se prononcent pas ; l'article indique le pluriel.",
+                "de": "Antwort: livres. Die meisten französischen Nomen bilden den Plural mit ein -s. Das Plural-s und -x am Wortende sind stumm; der Artikel zeigt die Mehrzahl an."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "livre"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "livrex"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "livreses"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "livres"
+                }
+              ],
+              "answerChoiceId": "c-3"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-plural-s-choice-2",
+          "estimatedDurationS": 12,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-plural-s-choice-2",
+              "ruleIds": [
+                "rule-plural-s",
+                "rule-silent-plural"
+              ],
+              "before": "une chaise → des",
+              "after": "",
+              "answerExplanation": {
+                "en": "Answer: chaises. Most French nouns add an -s to form the plural. Final plural -s and -x are silent; the article signals the plural sound.",
+                "fr": "Réponse : chaises. La plupart des noms français prennent un -s au pluriel. Le -s et le -x finaux du pluriel ne se prononcent pas ; l'article indique le pluriel.",
+                "de": "Antwort: chaises. Die meisten französischen Nomen bilden den Plural mit ein -s. Das Plural-s und -x am Wortende sind stumm; der Artikel zeigt die Mehrzahl an."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "chaisex"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "chaisent"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "chaises"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "chaise"
+                }
+              ],
+              "answerChoiceId": "c-2"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-plural-s-choice-3",
+          "estimatedDurationS": 12,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-plural-s-choice-3",
+              "ruleIds": [
+                "rule-plural-s",
+                "rule-silent-plural"
+              ],
+              "before": "un stylo → des",
+              "after": "",
+              "answerExplanation": {
+                "en": "Answer: stylos. Most French nouns add an -s to form the plural. Final plural -s and -x are silent; the article signals the plural sound.",
+                "fr": "Réponse : stylos. La plupart des noms français prennent un -s au pluriel. Le -s et le -x finaux du pluriel ne se prononcent pas ; l'article indique le pluriel.",
+                "de": "Antwort: stylos. Die meisten französischen Nomen bilden den Plural mit ein -s. Das Plural-s und -x am Wortende sind stumm; der Artikel zeigt die Mehrzahl an."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "styloes"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "stylos"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "stylo"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "stylox"
+                }
+              ],
+              "answerChoiceId": "c-1"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-plural-s-choice-4",
+          "estimatedDurationS": 12,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-plural-s-choice-4",
+              "ruleIds": [
+                "rule-plural-s",
+                "rule-silent-plural"
+              ],
+              "before": "une table → des",
+              "after": "",
+              "answerExplanation": {
+                "en": "Answer: tables. Most French nouns add an -s to form the plural. Final plural -s and -x are silent; the article signals the plural sound.",
+                "fr": "Réponse : tables. La plupart des noms français prennent un -s au pluriel. Le -s et le -x finaux du pluriel ne se prononcent pas ; l'article indique le pluriel.",
+                "de": "Antwort: tables. Die meisten französischen Nomen bilden den Plural mit ein -s. Das Plural-s und -x am Wortende sind stumm; der Artikel zeigt die Mehrzahl an."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "table"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "tablex"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "tablent"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "tables"
+                }
+              ],
+              "answerChoiceId": "c-3"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-plural-s-choice-5",
+          "estimatedDurationS": 12,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-plural-s-choice-5",
+              "ruleIds": [
+                "rule-plural-s",
+                "rule-silent-plural"
+              ],
+              "before": "un cahier → des",
+              "after": "",
+              "answerExplanation": {
+                "en": "Answer: cahiers. Most French nouns add an -s to form the plural. Final plural -s and -x are silent; the article signals the plural sound.",
+                "fr": "Réponse : cahiers. La plupart des noms français prennent un -s au pluriel. Le -s et le -x finaux du pluriel ne se prononcent pas ; l'article indique le pluriel.",
+                "de": "Antwort: cahiers. Die meisten französischen Nomen bilden den Plural mit ein -s. Das Plural-s und -x am Wortende sind stumm; der Artikel zeigt die Mehrzahl an."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "cahierx"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "cahieres"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "cahiers"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "cahier"
+                }
+              ],
+              "answerChoiceId": "c-2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-plural-s-typing",
+      "role": "exercise",
+      "blockId": "block-regular-plural-s",
+      "label": {
+        "en": "Plurals with -s and Silent Consonants",
+        "fr": "Le pluriel en -s et les consonnes muettes",
+        "de": "Plural mit -s und stumme Konsonanten"
+      },
+      "pages": [
+        {
+          "pageId": "ex-plural-s-typing-1",
+          "estimatedDurationS": 18,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or expression.",
+            "fr": "Écrivez le mot ou l’expression qui manque.",
+            "de": "Schreib das fehlende Wort oder die Wendung."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "ex-plural-s-typing-1",
+              "ruleIds": [
+                "rule-plural-s",
+                "rule-silent-plural"
+              ],
+              "before": "une chaise → des",
+              "after": "",
+              "answerExplanation": {
+                "en": "Answer: chaises. Most French nouns add an -s to form the plural. Final plural -s and -x are silent; the article signals the plural sound.",
+                "fr": "Réponse : chaises. La plupart des noms français prennent un -s au pluriel. Le -s et le -x finaux du pluriel ne se prononcent pas ; l'article indique le pluriel.",
+                "de": "Antwort: chaises. Die meisten französischen Nomen bilden den Plural mit ein -s. Das Plural-s und -x am Wortende sind stumm; der Artikel zeigt die Mehrzahl an."
+              },
+              "accepted": {
+                "answers": [
+                  "chaises"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            }
+          ]
+        },
+        {
+          "pageId": "ex-plural-s-typing-2",
+          "estimatedDurationS": 18,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or expression.",
+            "fr": "Écrivez le mot ou l’expression qui manque.",
+            "de": "Schreib das fehlende Wort oder die Wendung."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "ex-plural-s-typing-2",
+              "ruleIds": [
+                "rule-plural-s",
+                "rule-silent-plural"
+              ],
+              "before": "un stylo → des",
+              "after": "",
+              "answerExplanation": {
+                "en": "Answer: stylos. Most French nouns add an -s to form the plural. Final plural -s and -x are silent; the article signals the plural sound.",
+                "fr": "Réponse : stylos. La plupart des noms français prennent un -s au pluriel. Le -s et le -x finaux du pluriel ne se prononcent pas ; l'article indique le pluriel.",
+                "de": "Antwort: stylos. Die meisten französischen Nomen bilden den Plural mit ein -s. Das Plural-s und -x am Wortende sind stumm; der Artikel zeigt die Mehrzahl an."
+              },
+              "accepted": {
+                "answers": [
+                  "stylos"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            }
+          ]
+        },
+        {
+          "pageId": "ex-plural-s-typing-3",
+          "estimatedDurationS": 18,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or expression.",
+            "fr": "Écrivez le mot ou l’expression qui manque.",
+            "de": "Schreib das fehlende Wort oder die Wendung."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "ex-plural-s-typing-3",
+              "ruleIds": [
+                "rule-plural-s",
+                "rule-silent-plural"
+              ],
+              "before": "une table → des",
+              "after": "",
+              "answerExplanation": {
+                "en": "Answer: tables. Most French nouns add an -s to form the plural. Final plural -s and -x are silent; the article signals the plural sound.",
+                "fr": "Réponse : tables. La plupart des noms français prennent un -s au pluriel. Le -s et le -x finaux du pluriel ne se prononcent pas ; l'article indique le pluriel.",
+                "de": "Antwort: tables. Die meisten französischen Nomen bilden den Plural mit ein -s. Das Plural-s und -x am Wortende sind stumm; der Artikel zeigt die Mehrzahl an."
+              },
+              "accepted": {
+                "answers": [
+                  "tables"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            }
+          ]
+        },
+        {
+          "pageId": "ex-plural-s-typing-4",
+          "estimatedDurationS": 18,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or expression.",
+            "fr": "Écrivez le mot ou l’expression qui manque.",
+            "de": "Schreib das fehlende Wort oder die Wendung."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "ex-plural-s-typing-4",
+              "ruleIds": [
+                "rule-plural-s",
+                "rule-silent-plural"
+              ],
+              "before": "un cahier → des",
+              "after": "",
+              "answerExplanation": {
+                "en": "Answer: cahiers. Most French nouns add an -s to form the plural. Final plural -s and -x are silent; the article signals the plural sound.",
+                "fr": "Réponse : cahiers. La plupart des noms français prennent un -s au pluriel. Le -s et le -x finaux du pluriel ne se prononcent pas ; l'article indique le pluriel.",
+                "de": "Antwort: cahiers. Die meisten französischen Nomen bilden den Plural mit ein -s. Das Plural-s und -x am Wortende sind stumm; der Artikel zeigt die Mehrzahl an."
+              },
+              "accepted": {
+                "answers": [
+                  "cahiers"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            }
+          ]
+        },
+        {
+          "pageId": "ex-plural-s-typing-5",
+          "estimatedDurationS": 18,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or expression.",
+            "fr": "Écrivez le mot ou l’expression qui manque.",
+            "de": "Schreib das fehlende Wort oder die Wendung."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "ex-plural-s-typing-5",
+              "ruleIds": [
+                "rule-plural-s",
+                "rule-silent-plural"
+              ],
+              "before": "un livre → des",
+              "after": "",
+              "answerExplanation": {
+                "en": "Answer: livres. Most French nouns add an -s to form the plural. Final plural -s and -x are silent; the article signals the plural sound.",
+                "fr": "Réponse : livres. La plupart des noms français prennent un -s au pluriel. Le -s et le -x finaux du pluriel ne se prononcent pas ; l'article indique le pluriel.",
+                "de": "Antwort: livres. Die meisten französischen Nomen bilden den Plural mit ein -s. Das Plural-s und -x am Wortende sind stumm; der Artikel zeigt die Mehrzahl an."
+              },
+              "accepted": {
+                "answers": [
+                  "livres"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "block-plural-x-explanation",
+      "role": "explanation",
+      "blockId": "block-plural-x",
+      "label": {
+        "en": "Plurals with -x (-eau, -eu)",
+        "fr": "Le pluriel en -x (-eau, -eu)",
+        "de": "Plural mit -x (-eau, -eu)"
+      },
+      "pages": [
+        {
+          "pageId": "block-plural-x-explanation",
+          "estimatedDurationS": 120,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the rule and examples.",
+            "fr": "Lisez la règle et les exemples.",
+            "de": "Lies die Regel und die Beispiele."
+          },
+          "items": [
+            {
+              "type": "grammar_explanation",
+              "itemId": "block-plural-x-explanation",
+              "ruleIds": [
+                "rule-plural-x"
+              ],
+              "heading": {
+                "en": "Plurals with -x (-eau, -eu)",
+                "fr": "Le pluriel en -x (-eau, -eu)",
+                "de": "Plural mit -x (-eau, -eu)"
+              },
+              "text": {
+                "en": "The nouns in this block ending in -eau and -eu take -x: gâteau → gâteaux, jeu → jeux. This final -x is silent too. Learn these patterns with their articles: un bateau, des bateaux. Some -eu nouns are exceptions, such as pneu → pneus; this lesson practises the common -x pattern.",
+                "fr": "Les noms de ce bloc en -eau et -eu prennent -x : gâteau → gâteaux, jeu → jeux. Ce -x final est aussi muet. Apprenez les formes avec l'article : un bateau, des bateaux. Certains noms en -eu sont des exceptions, comme pneu → pneus ; ici, vous travaillez la règle fréquente en -x.",
+                "de": "Die Nomen dieses Blocks auf -eau und -eu bekommen -x: gâteau → gâteaux, jeu → jeux. Auch das End-x ist stumm. Lerne die Formen mit Artikel: un bateau, des bateaux. Einige Nomen auf -eu sind Ausnahmen, etwa pneu → pneus; hier übst du das häufige Muster mit -x."
+              },
+              "formTable": [],
+              "examples": [
+                {
+                  "text": "un gâteau -> des gâteaux",
+                  "translation": {
+                    "en": "a cake -> cakes",
+                    "de": "ein Kuchen -> Kuchen (Pl.)"
+                  }
+                },
+                {
+                  "text": "un jeu -> des jeux",
+                  "translation": {
+                    "en": "a game -> games",
+                    "de": "ein Spiel -> Spiele"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-plural-x-typing",
+      "role": "exercise",
+      "blockId": "block-plural-x",
+      "label": {
+        "en": "Plurals with -x (-eau, -eu)",
+        "fr": "Le pluriel en -x (-eau, -eu)",
+        "de": "Plural mit -x (-eau, -eu)"
+      },
+      "pages": [
+        {
+          "pageId": "ex-plural-x-typing-1",
+          "estimatedDurationS": 18,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or expression.",
+            "fr": "Écrivez le mot ou l’expression qui manque.",
+            "de": "Schreib das fehlende Wort oder die Wendung."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "ex-plural-x-typing-1",
+              "ruleIds": [
+                "rule-plural-x"
+              ],
+              "before": "un gâteau → des",
+              "after": "",
+              "answerExplanation": {
+                "en": "Answer: gâteaux. Nouns ending in -eau or -eu take an -x in the plural instead of -s.",
+                "fr": "Réponse : gâteaux. Les noms se terminant par -eau ou -eu prennent un -x au pluriel.",
+                "de": "Antwort: gâteaux. Nomen auf -eau oder -eu bilden den Plural mit -x statt -s."
+              },
+              "accepted": {
+                "answers": [
+                  "gâteaux"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            }
+          ]
+        },
+        {
+          "pageId": "ex-plural-x-typing-2",
+          "estimatedDurationS": 18,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or expression.",
+            "fr": "Écrivez le mot ou l’expression qui manque.",
+            "de": "Schreib das fehlende Wort oder die Wendung."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "ex-plural-x-typing-2",
+              "ruleIds": [
+                "rule-plural-x"
+              ],
+              "before": "un jeu → des",
+              "after": "",
+              "answerExplanation": {
+                "en": "Answer: jeux. Nouns ending in -eau or -eu take an -x in the plural instead of -s.",
+                "fr": "Réponse : jeux. Les noms se terminant par -eau ou -eu prennent un -x au pluriel.",
+                "de": "Antwort: jeux. Nomen auf -eau oder -eu bilden den Plural mit -x statt -s."
+              },
+              "accepted": {
+                "answers": [
+                  "jeux"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            }
+          ]
+        },
+        {
+          "pageId": "ex-plural-x-typing-3",
+          "estimatedDurationS": 18,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or expression.",
+            "fr": "Écrivez le mot ou l’expression qui manque.",
+            "de": "Schreib das fehlende Wort oder die Wendung."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "ex-plural-x-typing-3",
+              "ruleIds": [
+                "rule-plural-x"
+              ],
+              "before": "un bateau → des",
+              "after": "",
+              "answerExplanation": {
+                "en": "Answer: bateaux. Nouns ending in -eau or -eu take an -x in the plural instead of -s.",
+                "fr": "Réponse : bateaux. Les noms se terminant par -eau ou -eu prennent un -x au pluriel.",
+                "de": "Antwort: bateaux. Nomen auf -eau oder -eu bilden den Plural mit -x statt -s."
+              },
+              "accepted": {
+                "answers": [
+                  "bateaux"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            }
+          ]
+        },
+        {
+          "pageId": "ex-plural-x-typing-4",
+          "estimatedDurationS": 18,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or expression.",
+            "fr": "Écrivez le mot ou l’expression qui manque.",
+            "de": "Schreib das fehlende Wort oder die Wendung."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "ex-plural-x-typing-4",
+              "ruleIds": [
+                "rule-plural-x"
+              ],
+              "before": "un cadeau → des",
+              "after": "",
+              "answerExplanation": {
+                "en": "Answer: cadeaux. Nouns ending in -eau or -eu take an -x in the plural instead of -s.",
+                "fr": "Réponse : cadeaux. Les noms se terminant par -eau ou -eu prennent un -x au pluriel.",
+                "de": "Antwort: cadeaux. Nomen auf -eau oder -eu bilden den Plural mit -x statt -s."
+              },
+              "accepted": {
+                "answers": [
+                  "cadeaux"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            }
+          ]
+        },
+        {
+          "pageId": "ex-plural-x-typing-5",
+          "estimatedDurationS": 18,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or expression.",
+            "fr": "Écrivez le mot ou l’expression qui manque.",
+            "de": "Schreib das fehlende Wort oder die Wendung."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "ex-plural-x-typing-5",
+              "ruleIds": [
+                "rule-plural-x"
+              ],
+              "before": "un feu → des",
+              "after": "",
+              "answerExplanation": {
+                "en": "Answer: feux. Nouns ending in -eau or -eu take an -x in the plural instead of -s.",
+                "fr": "Réponse : feux. Les noms se terminant par -eau ou -eu prennent un -x au pluriel.",
+                "de": "Antwort: feux. Nomen auf -eau oder -eu bilden den Plural mit -x statt -s."
+              },
+              "accepted": {
+                "answers": [
+                  "feux"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "feedback",
+      "role": "feedback",
+      "blockId": null,
+      "label": {
+        "en": "Your feedback",
+        "fr": "Votre retour",
+        "de": "Dein Feedback"
+      },
+      "pages": [
+        {
+          "pageId": "feedback",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Continue to the final exam.",
+            "fr": "Passez à l’examen final.",
+            "de": "Weiter zur Abschlussprüfung."
+          },
+          "items": [
+            {
+              "type": "production_feedback_placeholder",
+              "itemId": "feedback"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "role": "exam",
+      "blockId": null,
+      "label": {
+        "en": "Final exam",
+        "fr": "Examen final",
+        "de": "Abschlussprüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "estimatedDurationS": 90,
+          "timeLimitS": 120,
+          "instructions": {
+            "en": "Write the missing word or expression.",
+            "fr": "Écrivez le mot ou l’expression qui manque.",
+            "de": "Schreib das fehlende Wort oder die Wendung."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-1-1",
+              "ruleIds": [
+                "rule-plural-s",
+                "rule-silent-plural"
+              ],
+              "before": "un stylo → des",
+              "after": "",
+              "answerExplanation": {
+                "en": "Answer: stylos. Most French nouns add an -s to form the plural. Final plural -s and -x are silent; the article signals the plural sound.",
+                "fr": "Réponse : stylos. La plupart des noms français prennent un -s au pluriel. Le -s et le -x finaux du pluriel ne se prononcent pas ; l'article indique le pluriel.",
+                "de": "Antwort: stylos. Die meisten französischen Nomen bilden den Plural mit ein -s. Das Plural-s und -x am Wortende sind stumm; der Artikel zeigt die Mehrzahl an."
+              },
+              "accepted": {
+                "answers": [
+                  "stylos"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            },
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-1-2",
+              "ruleIds": [
+                "rule-plural-s",
+                "rule-silent-plural"
+              ],
+              "before": "une table → des",
+              "after": "",
+              "answerExplanation": {
+                "en": "Answer: tables. Most French nouns add an -s to form the plural. Final plural -s and -x are silent; the article signals the plural sound.",
+                "fr": "Réponse : tables. La plupart des noms français prennent un -s au pluriel. Le -s et le -x finaux du pluriel ne se prononcent pas ; l'article indique le pluriel.",
+                "de": "Antwort: tables. Die meisten französischen Nomen bilden den Plural mit ein -s. Das Plural-s und -x am Wortende sind stumm; der Artikel zeigt die Mehrzahl an."
+              },
+              "accepted": {
+                "answers": [
+                  "tables"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            },
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-1-3",
+              "ruleIds": [
+                "rule-plural-s",
+                "rule-silent-plural"
+              ],
+              "before": "un cahier → des",
+              "after": "",
+              "answerExplanation": {
+                "en": "Answer: cahiers. Most French nouns add an -s to form the plural. Final plural -s and -x are silent; the article signals the plural sound.",
+                "fr": "Réponse : cahiers. La plupart des noms français prennent un -s au pluriel. Le -s et le -x finaux du pluriel ne se prononcent pas ; l'article indique le pluriel.",
+                "de": "Antwort: cahiers. Die meisten französischen Nomen bilden den Plural mit ein -s. Das Plural-s und -x am Wortende sind stumm; der Artikel zeigt die Mehrzahl an."
+              },
+              "accepted": {
+                "answers": [
+                  "cahiers"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            },
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-1-4",
+              "ruleIds": [
+                "rule-plural-s",
+                "rule-silent-plural"
+              ],
+              "before": "un livre → des",
+              "after": "",
+              "answerExplanation": {
+                "en": "Answer: livres. Most French nouns add an -s to form the plural. Final plural -s and -x are silent; the article signals the plural sound.",
+                "fr": "Réponse : livres. La plupart des noms français prennent un -s au pluriel. Le -s et le -x finaux du pluriel ne se prononcent pas ; l'article indique le pluriel.",
+                "de": "Antwort: livres. Die meisten französischen Nomen bilden den Plural mit ein -s. Das Plural-s und -x am Wortende sind stumm; der Artikel zeigt die Mehrzahl an."
+              },
+              "accepted": {
+                "answers": [
+                  "livres"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            },
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-1-5",
+              "ruleIds": [
+                "rule-plural-s",
+                "rule-silent-plural"
+              ],
+              "before": "une chaise → des",
+              "after": "",
+              "answerExplanation": {
+                "en": "Answer: chaises. Most French nouns add an -s to form the plural. Final plural -s and -x are silent; the article signals the plural sound.",
+                "fr": "Réponse : chaises. La plupart des noms français prennent un -s au pluriel. Le -s et le -x finaux du pluriel ne se prononcent pas ; l'article indique le pluriel.",
+                "de": "Antwort: chaises. Die meisten französischen Nomen bilden den Plural mit ein -s. Das Plural-s und -x am Wortende sind stumm; der Artikel zeigt die Mehrzahl an."
+              },
+              "accepted": {
+                "answers": [
+                  "chaises"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            }
+          ]
+        },
+        {
+          "pageId": "exam-page-2",
+          "estimatedDurationS": 80,
+          "timeLimitS": 120,
+          "instructions": {
+            "en": "Write the missing word or expression.",
+            "fr": "Écrivez le mot ou l’expression qui manque.",
+            "de": "Schreib das fehlende Wort oder die Wendung."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-2-1",
+              "ruleIds": [
+                "rule-plural-x"
+              ],
+              "before": "un bateau → des",
+              "after": "",
+              "answerExplanation": {
+                "en": "Answer: bateaux. Nouns ending in -eau or -eu take an -x in the plural instead of -s.",
+                "fr": "Réponse : bateaux. Les noms se terminant par -eau ou -eu prennent un -x au pluriel.",
+                "de": "Antwort: bateaux. Nomen auf -eau oder -eu bilden den Plural mit -x statt -s."
+              },
+              "accepted": {
+                "answers": [
+                  "bateaux"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            },
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-2-2",
+              "ruleIds": [
+                "rule-plural-x"
+              ],
+              "before": "un cadeau → des",
+              "after": "",
+              "answerExplanation": {
+                "en": "Answer: cadeaux. Nouns ending in -eau or -eu take an -x in the plural instead of -s.",
+                "fr": "Réponse : cadeaux. Les noms se terminant par -eau ou -eu prennent un -x au pluriel.",
+                "de": "Antwort: cadeaux. Nomen auf -eau oder -eu bilden den Plural mit -x statt -s."
+              },
+              "accepted": {
+                "answers": [
+                  "cadeaux"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            },
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-2-3",
+              "ruleIds": [
+                "rule-plural-x"
+              ],
+              "before": "un feu → des",
+              "after": "",
+              "answerExplanation": {
+                "en": "Answer: feux. Nouns ending in -eau or -eu take an -x in the plural instead of -s.",
+                "fr": "Réponse : feux. Les noms se terminant par -eau ou -eu prennent un -x au pluriel.",
+                "de": "Antwort: feux. Nomen auf -eau oder -eu bilden den Plural mit -x statt -s."
+              },
+              "accepted": {
+                "answers": [
+                  "feux"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            },
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-2-4",
+              "ruleIds": [
+                "rule-plural-x"
+              ],
+              "before": "un gâteau → des",
+              "after": "",
+              "answerExplanation": {
+                "en": "Answer: gâteaux. Nouns ending in -eau or -eu take an -x in the plural instead of -s.",
+                "fr": "Réponse : gâteaux. Les noms se terminant par -eau ou -eu prennent un -x au pluriel.",
+                "de": "Antwort: gâteaux. Nomen auf -eau oder -eu bilden den Plural mit -x statt -s."
+              },
+              "accepted": {
+                "answers": [
+                  "gâteaux"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "provenance": {
+    "generator": "codex-direct-authoring",
+    "model": "gpt-6",
+    "promptVersion": "manual-content-v1",
+    "generatedAt": "2026-10-06T22:13:22.000Z",
+    "inputHashes": {
+      "outline": "b7ef42d6b6f8a10c79700ba5eddb9d79afaefa941237e1a5607f83ab01bfe0c8",
+      "brief": "dfcc333eebdaae8392f5e0b4f33fc59473fbcb344ce420f5e35d2cab29601ba2"
+    }
+  }
+}

@@ -1,0 +1,1124 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-classroom-instructions",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les consignes de la classe",
+  "objective": {
+    "en": "Understand and respond to common classroom instructions in spoken and written French.",
+    "fr": "Comprendre et appliquer les consignes usuelles de la classe à l'oral et à l'écrit en français.",
+    "de": "Häufige Unterrichtsanweisungen auf Französisch mündlich und schriftlich verstehen und anwenden."
+  },
+  "estimatedMinutes": 14,
+  "kind": "vocabulary",
+  "theme": "education",
+  "steps": [
+    {
+      "id": "introduction",
+      "stage": "introduction",
+      "role": "introduction",
+      "label": {
+        "en": "Introduction",
+        "fr": "Introduction",
+        "de": "Einführung"
+      },
+      "pages": [
+        {
+          "pageId": "introduction-1",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read and say the new words aloud.",
+            "fr": "Lisez et dites les nouveaux mots à voix haute.",
+            "de": "Lies die neuen Wörter und sprich sie laut."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "introduction-1",
+              "targetIds": [
+                "target-ecoutez",
+                "target-lisez",
+                "target-ecrivez",
+                "target-repetez",
+                "target-regardez",
+                "target-parlez"
+              ],
+              "text": {
+                "en": "These instructions use the vous form: they address a class or one person politely. Listen for the ending /e/ in écoutez, répétez, regardez and parlez. Lisez means read; écrivez means write. Complétez asks you to fill something in; cochez asks you to mark a box. Ouvrez le livre means open the book, and fermez le livre means close it. Levez la main means raise your hand. The whole phrase is the answer when the phrase appears among the reference words. Repeat each instruction aloud, then imagine doing it.\nCore Language Activities: écoutez, lisez, écrivez, répétez, regardez, parlez.",
+                "fr": "Ces consignes utilisent vous : elles s'adressent à la classe ou poliment à une personne. Écoutez la terminaison /e/ dans écoutez, répétez, regardez et parlez. Lisez demande de lire ; écrivez demande d'écrire. Complétez demande de remplir un espace ; cochez demande de marquer une case. Ouvrez le livre demande d'ouvrir le livre, fermez le livre de le fermer. Levez la main demande de lever la main. Si une expression entière figure parmi les mots de référence, écrivez toute l'expression. Répétez chaque consigne à voix haute et imaginez l'action.\nActivités langagières principales: écoutez, lisez, écrivez, répétez, regardez, parlez.",
+                "de": "Diese Anweisungen verwenden die vous-Form: für eine Klasse oder höflich für eine Person. Höre auf die Endung /e/ in écoutez, répétez, regardez und parlez. Lisez heißt lesen, écrivez schreiben. Complétez verlangt das Ergänzen einer Lücke, cochez das Ankreuzen eines Kästchens. Ouvrez le livre heißt das Buch öffnen, fermez le livre das Buch schließen. Levez la main heißt die Hand heben. Wenn eine ganze Wendung unter den Referenzwörtern steht, schreibe die ganze Wendung. Sprich jede Anweisung laut und stelle dir die Handlung vor.\nZentrale Sprachaktivitäten: écoutez, lisez, écrivez, répétez, regardez, parlez."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "introduction-2",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read and say the new words aloud.",
+            "fr": "Lisez et dites les nouveaux mots à voix haute.",
+            "de": "Lies die neuen Wörter und sprich sie laut."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "introduction-2",
+              "targetIds": [
+                "target-completez",
+                "target-cochez",
+                "target-ouvrez-le-livre",
+                "target-fermez-le-livre",
+                "target-levez-la-main"
+              ],
+              "text": {
+                "en": "Classroom Tasks and Gestures: complétez, cochez, ouvrez le livre, fermez le livre, levez la main. Say each word aloud and study its example.\nComplétez les phrases avec le bon mot. — Complete the sentences with the correct word.\nCochez la bonne réponse. — Check the correct answer.\nOuvrez le livre à la page vingt. — Open the book to page twenty.\nFermez le livre pour le test. — Close the book for the test.\nLevez la main pour poser une question. — Raise your hand to ask a question.",
+                "fr": "Tâches et gestes de classe: complétez, cochez, ouvrez le livre, fermez le livre, levez la main. Dites chaque mot à voix haute et étudiez son exemple.\nComplétez les phrases avec le bon mot.\nCochez la bonne réponse.\nOuvrez le livre à la page vingt.\nFermez le livre pour le test.\nLevez la main pour poser une question.",
+                "de": "Aufgaben und Gesten im Unterricht: complétez, cochez, ouvrez le livre, fermez le livre, levez la main. Sprich jedes Wort laut und lies sein Beispiel.\nComplétez les phrases avec le bon mot. — Vervollständigen Sie die Sätze mit dem richtigen Wort.\nCochez la bonne réponse. — Kreuzen Sie die richtige Antwort an.\nOuvrez le livre à la page vingt. — Öffnen Sie das Buch auf Seite zwanzig.\nFermez le livre pour le test. — Schließen Sie das Buch für den Test.\nLevez la main pour poser une question. — Heben Sie die Hand, um eine Frage zu stellen."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "flashcards-1",
+          "estimatedDurationS": 65,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall the word and compare both sides.",
+            "fr": "Rappelez-vous le mot et comparez les deux faces.",
+            "de": "Erinnere dich an das Wort und vergleiche beide Seiten."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "flashcards-1",
+              "targetIds": [
+                "target-ecoutez",
+                "target-lisez",
+                "target-ecrivez",
+                "target-repetez",
+                "target-regardez",
+                "target-parlez"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "flashcards-2",
+          "estimatedDurationS": 65,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall the word and compare both sides.",
+            "fr": "Rappelez-vous le mot et comparez les deux faces.",
+            "de": "Erinnere dich an das Wort und vergleiche beide Seiten."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "flashcards-2",
+              "targetIds": [
+                "target-completez",
+                "target-cochez",
+                "target-ouvrez-le-livre",
+                "target-fermez-le-livre",
+                "target-levez-la-main"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "match-1",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each word with its translation.",
+            "fr": "Associez chaque mot à sa traduction.",
+            "de": "Ordne jedem Wort seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-1",
+              "pairs": [
+                {
+                  "targetId": "target-ecoutez",
+                  "nativeLabel": {
+                    "en": "listen",
+                    "de": "hören Sie zu"
+                  },
+                  "answerExplanation": {
+                    "en": "écoutez means listen. ",
+                    "fr": "La forme à retenir est « écoutez ». ",
+                    "de": "écoutez bedeutet hören Sie zu. "
+                  }
+                },
+                {
+                  "targetId": "target-lisez",
+                  "nativeLabel": {
+                    "en": "read",
+                    "de": "lesen Sie"
+                  },
+                  "answerExplanation": {
+                    "en": "lisez means read. ",
+                    "fr": "La forme à retenir est « lisez ». ",
+                    "de": "lisez bedeutet lesen Sie. "
+                  }
+                },
+                {
+                  "targetId": "target-ecrivez",
+                  "nativeLabel": {
+                    "en": "write",
+                    "de": "schreiben Sie"
+                  },
+                  "answerExplanation": {
+                    "en": "écrivez means write. ",
+                    "fr": "La forme à retenir est « écrivez ». ",
+                    "de": "écrivez bedeutet schreiben Sie. "
+                  }
+                },
+                {
+                  "targetId": "target-repetez",
+                  "nativeLabel": {
+                    "en": "repeat",
+                    "de": "wiederholen Sie"
+                  },
+                  "answerExplanation": {
+                    "en": "répétez means repeat. ",
+                    "fr": "La forme à retenir est « répétez ». ",
+                    "de": "répétez bedeutet wiederholen Sie. "
+                  }
+                },
+                {
+                  "targetId": "target-regardez",
+                  "nativeLabel": {
+                    "en": "look",
+                    "de": "schauen Sie"
+                  },
+                  "answerExplanation": {
+                    "en": "regardez means look. ",
+                    "fr": "La forme à retenir est « regardez ». ",
+                    "de": "regardez bedeutet schauen Sie. "
+                  }
+                },
+                {
+                  "targetId": "target-parlez",
+                  "nativeLabel": {
+                    "en": "speak",
+                    "de": "sprechen Sie"
+                  },
+                  "answerExplanation": {
+                    "en": "parlez means speak. ",
+                    "fr": "La forme à retenir est « parlez ». ",
+                    "de": "parlez bedeutet sprechen Sie. "
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-2",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each word with its translation.",
+            "fr": "Associez chaque mot à sa traduction.",
+            "de": "Ordne jedem Wort seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-2",
+              "pairs": [
+                {
+                  "targetId": "target-completez",
+                  "nativeLabel": {
+                    "en": "complete",
+                    "de": "vervollständigen Sie"
+                  },
+                  "answerExplanation": {
+                    "en": "complétez means complete. ",
+                    "fr": "La forme à retenir est « complétez ». ",
+                    "de": "complétez bedeutet vervollständigen Sie. "
+                  }
+                },
+                {
+                  "targetId": "target-cochez",
+                  "nativeLabel": {
+                    "en": "check",
+                    "de": "kreuzen Sie an"
+                  },
+                  "answerExplanation": {
+                    "en": "cochez means check. ",
+                    "fr": "La forme à retenir est « cochez ». ",
+                    "de": "cochez bedeutet kreuzen Sie an. "
+                  }
+                },
+                {
+                  "targetId": "target-ouvrez-le-livre",
+                  "nativeLabel": {
+                    "en": "open the book",
+                    "de": "öffnen Sie das Buch"
+                  },
+                  "answerExplanation": {
+                    "en": "ouvrez le livre means open the book. ",
+                    "fr": "La forme à retenir est « ouvrez le livre ». ",
+                    "de": "ouvrez le livre bedeutet öffnen Sie das Buch. "
+                  }
+                },
+                {
+                  "targetId": "target-fermez-le-livre",
+                  "nativeLabel": {
+                    "en": "close the book",
+                    "de": "schließen Sie das Buch"
+                  },
+                  "answerExplanation": {
+                    "en": "fermez le livre means close the book. ",
+                    "fr": "La forme à retenir est « fermez le livre ». ",
+                    "de": "fermez le livre bedeutet schließen Sie das Buch. "
+                  }
+                },
+                {
+                  "targetId": "target-levez-la-main",
+                  "nativeLabel": {
+                    "en": "raise your hand",
+                    "de": "heben Sie die Hand"
+                  },
+                  "answerExplanation": {
+                    "en": "levez la main means raise your hand. ",
+                    "fr": "La forme à retenir est « levez la main ». ",
+                    "de": "levez la main bedeutet heben Sie die Hand. "
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overview",
+      "stage": "overview",
+      "role": "overview",
+      "label": {
+        "en": "Gender and overview",
+        "fr": "Genre et vue d’ensemble",
+        "de": "Genus und Übersicht"
+      },
+      "pages": [
+        {
+          "pageId": "overview",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Review every word and the noun genders.",
+            "fr": "Revoyez tous les mots et le genre des noms.",
+            "de": "Sieh dir alle Wörter und das Genus der Nomen an."
+          },
+          "items": [
+            {
+              "type": "vocabulary_overview",
+              "itemId": "overview",
+              "targetIds": [
+                "target-ecoutez",
+                "target-lisez",
+                "target-ecrivez",
+                "target-repetez",
+                "target-regardez",
+                "target-parlez",
+                "target-completez",
+                "target-cochez",
+                "target-ouvrez-le-livre",
+                "target-fermez-le-livre",
+                "target-levez-la-main"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "stage": "practice",
+      "role": "exercise",
+      "label": {
+        "en": "Practice",
+        "fr": "Entraînement",
+        "de": "Übung"
+      },
+      "pages": [
+        {
+          "pageId": "gap-target-ecoutez",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or phrase without its article.",
+            "fr": "Écrivez le mot ou l’expression sans son article.",
+            "de": "Schreib das fehlende Wort oder die Wendung ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-target-ecoutez",
+              "targetId": "target-ecoutez",
+              "before": "Pour entendre le dialogue, ",
+              "after": " attentivement.",
+              "referenceTargetIds": [
+                "target-lisez",
+                "target-ecoutez",
+                "target-repetez",
+                "target-ecrivez"
+              ],
+              "accepted": {
+                "answers": [
+                  "écoutez"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "écoutez means listen. ",
+                "fr": "La forme à retenir est « écoutez ». ",
+                "de": "écoutez bedeutet hören Sie zu. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-target-lisez",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or phrase without its article.",
+            "fr": "Écrivez le mot ou l’expression sans son article.",
+            "de": "Schreib das fehlende Wort oder die Wendung ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-target-lisez",
+              "targetId": "target-lisez",
+              "before": "Pour comprendre le texte écrit, ",
+              "after": " le texte.",
+              "referenceTargetIds": [
+                "target-ecrivez",
+                "target-lisez",
+                "target-regardez",
+                "target-repetez"
+              ],
+              "accepted": {
+                "answers": [
+                  "lisez"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "lisez means read. ",
+                "fr": "La forme à retenir est « lisez ». ",
+                "de": "lisez bedeutet lesen Sie. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-target-ecrivez",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or phrase without its article.",
+            "fr": "Écrivez le mot ou l’expression sans son article.",
+            "de": "Schreib das fehlende Wort oder die Wendung ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-target-ecrivez",
+              "targetId": "target-ecrivez",
+              "before": "Avec votre stylo, ",
+              "after": " la réponse.",
+              "referenceTargetIds": [
+                "target-repetez",
+                "target-ecrivez",
+                "target-parlez",
+                "target-regardez"
+              ],
+              "accepted": {
+                "answers": [
+                  "écrivez"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "écrivez means write. ",
+                "fr": "La forme à retenir est « écrivez ». ",
+                "de": "écrivez bedeutet schreiben Sie. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-target-repetez",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or phrase without its article.",
+            "fr": "Écrivez le mot ou l’expression sans son article.",
+            "de": "Schreib das fehlende Wort oder die Wendung ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-target-repetez",
+              "targetId": "target-repetez",
+              "before": "Dites encore la même phrase : ",
+              "after": " la phrase.",
+              "referenceTargetIds": [
+                "target-regardez",
+                "target-repetez",
+                "target-completez",
+                "target-parlez"
+              ],
+              "accepted": {
+                "answers": [
+                  "répétez"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "répétez means repeat. ",
+                "fr": "La forme à retenir est « répétez ». ",
+                "de": "répétez bedeutet wiederholen Sie. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-target-completez",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or phrase without its article.",
+            "fr": "Écrivez le mot ou l’expression sans son article.",
+            "de": "Schreib das fehlende Wort oder die Wendung ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-target-completez",
+              "targetId": "target-completez",
+              "before": "Ajoutez le mot manquant : ",
+              "after": " les phrases.",
+              "referenceTargetIds": [
+                "target-cochez",
+                "target-completez",
+                "target-fermez-le-livre",
+                "target-ouvrez-le-livre"
+              ],
+              "accepted": {
+                "answers": [
+                  "complétez"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "complétez means complete. ",
+                "fr": "La forme à retenir est « complétez ». ",
+                "de": "complétez bedeutet vervollständigen Sie. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-target-cochez",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or phrase without its article.",
+            "fr": "Écrivez le mot ou l’expression sans son article.",
+            "de": "Schreib das fehlende Wort oder die Wendung ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-target-cochez",
+              "targetId": "target-cochez",
+              "before": "Marquez la case correcte : ",
+              "after": " la bonne case.",
+              "referenceTargetIds": [
+                "target-ouvrez-le-livre",
+                "target-cochez",
+                "target-levez-la-main",
+                "target-fermez-le-livre"
+              ],
+              "accepted": {
+                "answers": [
+                  "cochez"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "cochez means check. ",
+                "fr": "La forme à retenir est « cochez ». ",
+                "de": "cochez bedeutet kreuzen Sie an. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "listen-target-ecoutez",
+          "estimatedDurationS": 20,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Listen and select the word you hear.",
+            "fr": "Écoutez et choisissez le mot entendu.",
+            "de": "Hör zu und wähle das Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_listening_choice",
+              "itemId": "listen-target-ecoutez",
+              "targetId": "target-ecoutez",
+              "optionTargetIds": [
+                "target-lisez",
+                "target-ecoutez",
+                "target-repetez",
+                "target-ecrivez"
+              ],
+              "answerExplanation": {
+                "en": "écoutez means listen. ",
+                "fr": "La forme à retenir est « écoutez ». ",
+                "de": "écoutez bedeutet hören Sie zu. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "listen-target-lisez",
+          "estimatedDurationS": 20,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Listen and select the word you hear.",
+            "fr": "Écoutez et choisissez le mot entendu.",
+            "de": "Hör zu und wähle das Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_listening_choice",
+              "itemId": "listen-target-lisez",
+              "targetId": "target-lisez",
+              "optionTargetIds": [
+                "target-ecrivez",
+                "target-lisez",
+                "target-regardez",
+                "target-repetez"
+              ],
+              "answerExplanation": {
+                "en": "lisez means read. ",
+                "fr": "La forme à retenir est « lisez ». ",
+                "de": "lisez bedeutet lesen Sie. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "listen-target-ecrivez",
+          "estimatedDurationS": 20,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Listen and select the word you hear.",
+            "fr": "Écoutez et choisissez le mot entendu.",
+            "de": "Hör zu und wähle das Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_listening_choice",
+              "itemId": "listen-target-ecrivez",
+              "targetId": "target-ecrivez",
+              "optionTargetIds": [
+                "target-repetez",
+                "target-ecrivez",
+                "target-parlez",
+                "target-regardez"
+              ],
+              "answerExplanation": {
+                "en": "écrivez means write. ",
+                "fr": "La forme à retenir est « écrivez ». ",
+                "de": "écrivez bedeutet schreiben Sie. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "listen-target-repetez",
+          "estimatedDurationS": 20,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Listen and select the word you hear.",
+            "fr": "Écoutez et choisissez le mot entendu.",
+            "de": "Hör zu und wähle das Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_listening_choice",
+              "itemId": "listen-target-repetez",
+              "targetId": "target-repetez",
+              "optionTargetIds": [
+                "target-regardez",
+                "target-repetez",
+                "target-completez",
+                "target-parlez"
+              ],
+              "answerExplanation": {
+                "en": "répétez means repeat. ",
+                "fr": "La forme à retenir est « répétez ». ",
+                "de": "répétez bedeutet wiederholen Sie. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "listen-target-regardez",
+          "estimatedDurationS": 20,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Listen and select the word you hear.",
+            "fr": "Écoutez et choisissez le mot entendu.",
+            "de": "Hör zu und wähle das Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_listening_choice",
+              "itemId": "listen-target-regardez",
+              "targetId": "target-regardez",
+              "optionTargetIds": [
+                "target-parlez",
+                "target-regardez",
+                "target-cochez",
+                "target-completez"
+              ],
+              "answerExplanation": {
+                "en": "regardez means look. ",
+                "fr": "La forme à retenir est « regardez ». ",
+                "de": "regardez bedeutet schauen Sie. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "listen-target-levez-la-main",
+          "estimatedDurationS": 20,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Listen and select the word you hear.",
+            "fr": "Écoutez et choisissez le mot entendu.",
+            "de": "Hör zu und wähle das Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_listening_choice",
+              "itemId": "listen-target-levez-la-main",
+              "targetId": "target-levez-la-main",
+              "optionTargetIds": [
+                "target-ecoutez",
+                "target-levez-la-main",
+                "target-ecrivez",
+                "target-lisez"
+              ],
+              "answerExplanation": {
+                "en": "levez la main means raise your hand. ",
+                "fr": "La forme à retenir est « levez la main ». ",
+                "de": "levez la main bedeutet heben Sie die Hand. "
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Final exam",
+        "fr": "Examen final",
+        "de": "Abschlussprüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-page-translation-1",
+          "estimatedDurationS": 90,
+          "timeLimitS": 120,
+          "instructions": {
+            "en": "Translate into French; include the required article for nouns.",
+            "fr": "Traduisez en français ; ajoutez l’article demandé pour les noms.",
+            "de": "Übersetze ins Französische; schreibe bei Nomen den verlangten Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-1-1",
+              "targetId": "target-ecoutez",
+              "accepted": {
+                "answers": [
+                  "écoutez",
+                  "Écoutez"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "écoutez means listen. ",
+                "fr": "La forme à retenir est « écoutez ». ",
+                "de": "écoutez bedeutet hören Sie zu. "
+              },
+              "prompt": {
+                "en": "listen",
+                "de": "hören Sie zu"
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-1-2",
+              "targetId": "target-lisez",
+              "accepted": {
+                "answers": [
+                  "lisez",
+                  "Lisez"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "lisez means read. ",
+                "fr": "La forme à retenir est « lisez ». ",
+                "de": "lisez bedeutet lesen Sie. "
+              },
+              "prompt": {
+                "en": "read",
+                "de": "lesen Sie"
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-1-3",
+              "targetId": "target-ecrivez",
+              "accepted": {
+                "answers": [
+                  "écrivez",
+                  "Écrivez"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "écrivez means write. ",
+                "fr": "La forme à retenir est « écrivez ». ",
+                "de": "écrivez bedeutet schreiben Sie. "
+              },
+              "prompt": {
+                "en": "write",
+                "de": "schreiben Sie"
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-1-4",
+              "targetId": "target-repetez",
+              "accepted": {
+                "answers": [
+                  "répétez",
+                  "Répétez"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "répétez means repeat. ",
+                "fr": "La forme à retenir est « répétez ». ",
+                "de": "répétez bedeutet wiederholen Sie. "
+              },
+              "prompt": {
+                "en": "repeat",
+                "de": "wiederholen Sie"
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-1-5",
+              "targetId": "target-regardez",
+              "accepted": {
+                "answers": [
+                  "regardez",
+                  "Regardez"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "regardez means look. ",
+                "fr": "La forme à retenir est « regardez ». ",
+                "de": "regardez bedeutet schauen Sie. "
+              },
+              "prompt": {
+                "en": "look",
+                "de": "schauen Sie"
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-1-6",
+              "targetId": "target-parlez",
+              "accepted": {
+                "answers": [
+                  "parlez",
+                  "Parlez"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "parlez means speak. ",
+                "fr": "La forme à retenir est « parlez ». ",
+                "de": "parlez bedeutet sprechen Sie. "
+              },
+              "prompt": {
+                "en": "speak",
+                "de": "sprechen Sie"
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-page-translation-2",
+          "estimatedDurationS": 80,
+          "timeLimitS": 110,
+          "instructions": {
+            "en": "Translate into French; include the required article for nouns.",
+            "fr": "Traduisez en français ; ajoutez l’article demandé pour les noms.",
+            "de": "Übersetze ins Französische; schreibe bei Nomen den verlangten Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-2-1",
+              "targetId": "target-completez",
+              "accepted": {
+                "answers": [
+                  "complétez",
+                  "Complétez"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "complétez means complete. ",
+                "fr": "La forme à retenir est « complétez ». ",
+                "de": "complétez bedeutet vervollständigen Sie. "
+              },
+              "prompt": {
+                "en": "complete",
+                "de": "vervollständigen Sie"
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-2-2",
+              "targetId": "target-cochez",
+              "accepted": {
+                "answers": [
+                  "cochez",
+                  "Cochez"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "cochez means check. ",
+                "fr": "La forme à retenir est « cochez ». ",
+                "de": "cochez bedeutet kreuzen Sie an. "
+              },
+              "prompt": {
+                "en": "check",
+                "de": "kreuzen Sie an"
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-2-3",
+              "targetId": "target-ouvrez-le-livre",
+              "accepted": {
+                "answers": [
+                  "ouvrez le livre",
+                  "Ouvrez le livre"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "ouvrez le livre means open the book. ",
+                "fr": "La forme à retenir est « ouvrez le livre ». ",
+                "de": "ouvrez le livre bedeutet öffnen Sie das Buch. "
+              },
+              "prompt": {
+                "en": "open the book",
+                "de": "öffnen Sie das Buch"
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-2-4",
+              "targetId": "target-fermez-le-livre",
+              "accepted": {
+                "answers": [
+                  "fermez le livre",
+                  "Fermez le livre"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "fermez le livre means close the book. ",
+                "fr": "La forme à retenir est « fermez le livre ». ",
+                "de": "fermez le livre bedeutet schließen Sie das Buch. "
+              },
+              "prompt": {
+                "en": "close the book",
+                "de": "schließen Sie das Buch"
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-2-5",
+              "targetId": "target-levez-la-main",
+              "accepted": {
+                "answers": [
+                  "levez la main",
+                  "Levez la main"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "levez la main means raise your hand. ",
+                "fr": "La forme à retenir est « levez la main ». ",
+                "de": "levez la main bedeutet heben Sie die Hand. "
+              },
+              "prompt": {
+                "en": "raise your hand",
+                "de": "heben Sie die Hand"
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-page-listening-dictation",
+          "estimatedDurationS": 80,
+          "timeLimitS": 120,
+          "instructions": {
+            "en": "Listen and write the complete answer.",
+            "fr": "Écoutez et écrivez la réponse complète.",
+            "de": "Hör zu und schreibe die vollständige Antwort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_listening_dictation",
+              "itemId": "exam-3-1",
+              "targetId": "target-ecoutez",
+              "accepted": {
+                "answers": [
+                  "écoutez",
+                  "Écoutez"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "écoutez means listen. ",
+                "fr": "La forme à retenir est « écoutez ». ",
+                "de": "écoutez bedeutet hören Sie zu. "
+              }
+            },
+            {
+              "type": "vocabulary_listening_dictation",
+              "itemId": "exam-3-2",
+              "targetId": "target-ecrivez",
+              "accepted": {
+                "answers": [
+                  "écrivez",
+                  "Écrivez"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "écrivez means write. ",
+                "fr": "La forme à retenir est « écrivez ». ",
+                "de": "écrivez bedeutet schreiben Sie. "
+              }
+            },
+            {
+              "type": "vocabulary_listening_dictation",
+              "itemId": "exam-3-3",
+              "targetId": "target-repetez",
+              "accepted": {
+                "answers": [
+                  "répétez",
+                  "Répétez"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "répétez means repeat. ",
+                "fr": "La forme à retenir est « répétez ». ",
+                "de": "répétez bedeutet wiederholen Sie. "
+              }
+            },
+            {
+              "type": "vocabulary_listening_dictation",
+              "itemId": "exam-3-4",
+              "targetId": "target-levez-la-main",
+              "accepted": {
+                "answers": [
+                  "levez la main",
+                  "Levez la main"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "levez la main means raise your hand. ",
+                "fr": "La forme à retenir est « levez la main ». ",
+                "de": "levez la main bedeutet heben Sie die Hand. "
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "provenance": {
+    "generator": "codex-direct-authoring",
+    "model": "gpt-6",
+    "promptVersion": "manual-content-v1",
+    "generatedAt": "2026-10-06T22:13:22.000Z",
+    "inputHashes": {
+      "outline": "e59ae0fa961d6955e3408b36a8db08eb4d0a98bbca4e292eca36f60a4b3c75bd",
+      "brief": "73064f4f84f9f929a26ebf7ceb804924745cfe5b5cbf82a06b8b832d89585ed1"
+    }
+  }
+}

@@ -1,0 +1,1261 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-subject-pronouns",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les pronoms je, tu, il, elle…",
+  "objective": {
+    "en": "Learn and correctly use French subject pronouns (je, tu, il, elle, on, nous, vous, ils, elles).",
+    "fr": "Apprendre et utiliser correctement les pronoms sujets français (je, tu, il, elle, on, nous, vous, ils, elles).",
+    "de": "Lernen und korrekte Verwendung der französischen Subjektpronomen (je, tu, il, elle, on, nous, vous, ils, elles)."
+  },
+  "estimatedMinutes": 17,
+  "kind": "grammar",
+  "topic": "pronouns",
+  "steps": [
+    {
+      "id": "block-singular-pronouns-explanation",
+      "role": "explanation",
+      "blockId": "block-singular-pronouns",
+      "label": {
+        "en": "Singular Subject Pronouns",
+        "fr": "Les pronoms sujets du singulier",
+        "de": "Subjektpronomen im Singular"
+      },
+      "pages": [
+        {
+          "pageId": "block-singular-pronouns-explanation",
+          "estimatedDurationS": 120,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the rule and examples.",
+            "fr": "Lisez la règle et les exemples.",
+            "de": "Lies die Regel und die Beispiele."
+          },
+          "items": [
+            {
+              "type": "grammar_explanation",
+              "itemId": "block-singular-pronouns-explanation",
+              "ruleIds": [
+                "rule-singular-pronouns"
+              ],
+              "heading": {
+                "en": "Singular Subject Pronouns",
+                "fr": "Les pronoms sujets du singulier",
+                "de": "Subjektpronomen im Singular"
+              },
+              "text": {
+                "en": "Je means I and becomes j' before a vowel or mute h: j'habite. Tu addresses one familiar person. Il replaces a masculine person or noun; elle replaces a feminine one. The pronoun goes before the verb. Here the matching rows give the meaning in English and German; choose the French pronoun, not a conjugated verb.",
+                "fr": "Je désigne la personne qui parle et devient j' devant une voyelle ou un h muet : j'habite. Tu s'adresse à une personne familière. Il remplace un sujet masculin et elle un sujet féminin. Le pronom précède le verbe. Dans les associations, choisissez le pronom français qui correspond au sens indiqué, pas un verbe conjugué.",
+                "de": "Je bedeutet ich und wird vor Vokal oder stummem h zu j': j'habite. Tu spricht eine vertraute Person an. Il ersetzt eine männliche Person oder ein männliches Nomen, elle eine weibliche Person oder ein weibliches Nomen. Das Pronomen steht vor dem Verb. Wähle in den Zuordnungen das französische Pronomen zur angegebenen Bedeutung, keine Verbform."
+              },
+              "formTable": [],
+              "examples": [
+                {
+                  "text": "Je parle français et j'habite à Paris.",
+                  "translation": {
+                    "en": "I speak French and I live in Paris.",
+                    "de": "Ich spreche Französisch und wohne in Paris."
+                  }
+                },
+                {
+                  "text": "Il est étudiant et elle est professeure.",
+                  "translation": {
+                    "en": "He is a student and she is a teacher.",
+                    "de": "Er ist Student und sie ist Lehrerin."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-singular-pronoun-match",
+      "role": "exercise",
+      "blockId": "block-singular-pronouns",
+      "label": {
+        "en": "Singular Subject Pronouns",
+        "fr": "Les pronoms sujets du singulier",
+        "de": "Subjektpronomen im Singular"
+      },
+      "pages": [
+        {
+          "pageId": "ex-singular-pronoun-match-1",
+          "estimatedDurationS": 23,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the French form for each row; the verb is given when needed.",
+            "fr": "Choisissez la forme française pour chaque ligne ; le verbe est indiqué si nécessaire.",
+            "de": "Wähle die französische Form für jede Zeile; das Verb ist bei Bedarf angegeben."
+          },
+          "items": [
+            {
+              "type": "grammar_pronoun_form_match",
+              "itemId": "ex-singular-pronoun-match-1",
+              "ruleIds": [
+                "rule-singular-pronouns"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-0",
+                  "text": "Elle"
+                },
+                {
+                  "tokenId": "t-1",
+                  "text": "Il"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "Tu"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "je"
+                }
+              ],
+              "rows": [
+                {
+                  "rowId": "row-1",
+                  "pronoun": "I / ich",
+                  "answerExplanation": {
+                    "en": "Answer: je. Use je (j'), tu, il, elle for singular subjects.",
+                    "fr": "Réponse : je. Utiliser je (j'), tu, il, elle pour les sujets au singulier.",
+                    "de": "Antwort: je. Verwende je (j'), tu, il, elle für Subjekte im Singular."
+                  },
+                  "validForms": [
+                    "je"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "ex-singular-pronoun-match-2",
+          "estimatedDurationS": 23,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the French form for each row; the verb is given when needed.",
+            "fr": "Choisissez la forme française pour chaque ligne ; le verbe est indiqué si nécessaire.",
+            "de": "Wähle die französische Form für jede Zeile; das Verb ist bei Bedarf angegeben."
+          },
+          "items": [
+            {
+              "type": "grammar_pronoun_form_match",
+              "itemId": "ex-singular-pronoun-match-2",
+              "ruleIds": [
+                "rule-singular-pronouns"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-0",
+                  "text": "Elle"
+                },
+                {
+                  "tokenId": "t-1",
+                  "text": "Il"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "Je"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "tu"
+                }
+              ],
+              "rows": [
+                {
+                  "rowId": "row-1",
+                  "pronoun": "you: one close friend / du",
+                  "answerExplanation": {
+                    "en": "Answer: tu. Use je (j'), tu, il, elle for singular subjects.",
+                    "fr": "Réponse : tu. Utiliser je (j'), tu, il, elle pour les sujets au singulier.",
+                    "de": "Antwort: tu. Verwende je (j'), tu, il, elle für Subjekte im Singular."
+                  },
+                  "validForms": [
+                    "tu"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "ex-singular-pronoun-match-3",
+          "estimatedDurationS": 22,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the French form for each row; the verb is given when needed.",
+            "fr": "Choisissez la forme française pour chaque ligne ; le verbe est indiqué si nécessaire.",
+            "de": "Wähle die französische Form für jede Zeile; das Verb ist bei Bedarf angegeben."
+          },
+          "items": [
+            {
+              "type": "grammar_pronoun_form_match",
+              "itemId": "ex-singular-pronoun-match-3",
+              "ruleIds": [
+                "rule-singular-pronouns"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-0",
+                  "text": "Elle"
+                },
+                {
+                  "tokenId": "t-1",
+                  "text": "Tu"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "Je"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "il"
+                }
+              ],
+              "rows": [
+                {
+                  "rowId": "row-1",
+                  "pronoun": "he / er",
+                  "answerExplanation": {
+                    "en": "Answer: il. Use je (j'), tu, il, elle for singular subjects.",
+                    "fr": "Réponse : il. Utiliser je (j'), tu, il, elle pour les sujets au singulier.",
+                    "de": "Antwort: il. Verwende je (j'), tu, il, elle für Subjekte im Singular."
+                  },
+                  "validForms": [
+                    "il"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "ex-singular-pronoun-match-4",
+          "estimatedDurationS": 22,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the French form for each row; the verb is given when needed.",
+            "fr": "Choisissez la forme française pour chaque ligne ; le verbe est indiqué si nécessaire.",
+            "de": "Wähle die französische Form für jede Zeile; das Verb ist bei Bedarf angegeben."
+          },
+          "items": [
+            {
+              "type": "grammar_pronoun_form_match",
+              "itemId": "ex-singular-pronoun-match-4",
+              "ruleIds": [
+                "rule-singular-pronouns"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-0",
+                  "text": "Il"
+                },
+                {
+                  "tokenId": "t-1",
+                  "text": "Tu"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "Je"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "elle"
+                }
+              ],
+              "rows": [
+                {
+                  "rowId": "row-1",
+                  "pronoun": "she / sie",
+                  "answerExplanation": {
+                    "en": "Answer: elle. Use je (j'), tu, il, elle for singular subjects.",
+                    "fr": "Réponse : elle. Utiliser je (j'), tu, il, elle pour les sujets au singulier.",
+                    "de": "Antwort: elle. Verwende je (j'), tu, il, elle für Subjekte im Singular."
+                  },
+                  "validForms": [
+                    "elle"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-singular-pronoun-typing",
+      "role": "exercise",
+      "blockId": "block-singular-pronouns",
+      "label": {
+        "en": "Singular Subject Pronouns",
+        "fr": "Les pronoms sujets du singulier",
+        "de": "Subjektpronomen im Singular"
+      },
+      "pages": [
+        {
+          "pageId": "ex-singular-pronoun-typing-1",
+          "estimatedDurationS": 23,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the French form for each row; the verb is given when needed.",
+            "fr": "Écrivez la forme française pour chaque ligne ; le verbe est indiqué si nécessaire.",
+            "de": "Schreib die französische Form für jede Zeile; das Verb ist bei Bedarf angegeben."
+          },
+          "items": [
+            {
+              "type": "grammar_pronoun_form_typing",
+              "itemId": "ex-singular-pronoun-typing-1",
+              "ruleIds": [
+                "rule-singular-pronouns"
+              ],
+              "rows": [
+                {
+                  "rowId": "row-1",
+                  "pronoun": "I / ich",
+                  "answerExplanation": {
+                    "en": "Answer: je. Use je (j'), tu, il, elle for singular subjects.",
+                    "fr": "Réponse : je. Utiliser je (j'), tu, il, elle pour les sujets au singulier.",
+                    "de": "Antwort: je. Verwende je (j'), tu, il, elle für Subjekte im Singular."
+                  },
+                  "accepted": {
+                    "answers": [
+                      "je"
+                    ],
+                    "accentSensitive": []
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "ex-singular-pronoun-typing-2",
+          "estimatedDurationS": 23,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the French form for each row; the verb is given when needed.",
+            "fr": "Écrivez la forme française pour chaque ligne ; le verbe est indiqué si nécessaire.",
+            "de": "Schreib die französische Form für jede Zeile; das Verb ist bei Bedarf angegeben."
+          },
+          "items": [
+            {
+              "type": "grammar_pronoun_form_typing",
+              "itemId": "ex-singular-pronoun-typing-2",
+              "ruleIds": [
+                "rule-singular-pronouns"
+              ],
+              "rows": [
+                {
+                  "rowId": "row-1",
+                  "pronoun": "you: one close friend / du",
+                  "answerExplanation": {
+                    "en": "Answer: tu. Use je (j'), tu, il, elle for singular subjects.",
+                    "fr": "Réponse : tu. Utiliser je (j'), tu, il, elle pour les sujets au singulier.",
+                    "de": "Antwort: tu. Verwende je (j'), tu, il, elle für Subjekte im Singular."
+                  },
+                  "accepted": {
+                    "answers": [
+                      "tu"
+                    ],
+                    "accentSensitive": []
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "ex-singular-pronoun-typing-3",
+          "estimatedDurationS": 22,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the French form for each row; the verb is given when needed.",
+            "fr": "Écrivez la forme française pour chaque ligne ; le verbe est indiqué si nécessaire.",
+            "de": "Schreib die französische Form für jede Zeile; das Verb ist bei Bedarf angegeben."
+          },
+          "items": [
+            {
+              "type": "grammar_pronoun_form_typing",
+              "itemId": "ex-singular-pronoun-typing-3",
+              "ruleIds": [
+                "rule-singular-pronouns"
+              ],
+              "rows": [
+                {
+                  "rowId": "row-1",
+                  "pronoun": "he / er",
+                  "answerExplanation": {
+                    "en": "Answer: il. Use je (j'), tu, il, elle for singular subjects.",
+                    "fr": "Réponse : il. Utiliser je (j'), tu, il, elle pour les sujets au singulier.",
+                    "de": "Antwort: il. Verwende je (j'), tu, il, elle für Subjekte im Singular."
+                  },
+                  "accepted": {
+                    "answers": [
+                      "il"
+                    ],
+                    "accentSensitive": []
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "ex-singular-pronoun-typing-4",
+          "estimatedDurationS": 22,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the French form for each row; the verb is given when needed.",
+            "fr": "Écrivez la forme française pour chaque ligne ; le verbe est indiqué si nécessaire.",
+            "de": "Schreib die französische Form für jede Zeile; das Verb ist bei Bedarf angegeben."
+          },
+          "items": [
+            {
+              "type": "grammar_pronoun_form_typing",
+              "itemId": "ex-singular-pronoun-typing-4",
+              "ruleIds": [
+                "rule-singular-pronouns"
+              ],
+              "rows": [
+                {
+                  "rowId": "row-1",
+                  "pronoun": "she / sie",
+                  "answerExplanation": {
+                    "en": "Answer: elle. Use je (j'), tu, il, elle for singular subjects.",
+                    "fr": "Réponse : elle. Utiliser je (j'), tu, il, elle pour les sujets au singulier.",
+                    "de": "Antwort: elle. Verwende je (j'), tu, il, elle für Subjekte im Singular."
+                  },
+                  "accepted": {
+                    "answers": [
+                      "elle"
+                    ],
+                    "accentSensitive": []
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "block-plural-pronouns-explanation",
+      "role": "explanation",
+      "blockId": "block-plural-pronouns",
+      "label": {
+        "en": "Plural Subject Pronouns and Informal On",
+        "fr": "Les pronoms sujets du pluriel et le pronom on",
+        "de": "Subjektpronomen im Plural und das informelle On"
+      },
+      "pages": [
+        {
+          "pageId": "block-plural-pronouns-explanation",
+          "estimatedDurationS": 150,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the rule and examples.",
+            "fr": "Lisez la règle et les exemples.",
+            "de": "Lies die Regel und die Beispiele."
+          },
+          "items": [
+            {
+              "type": "grammar_explanation",
+              "itemId": "block-plural-pronouns-explanation",
+              "ruleIds": [
+                "rule-plural-pronouns",
+                "rule-on-informal-we"
+              ],
+              "heading": {
+                "en": "Plural Subject Pronouns and Informal On",
+                "fr": "Les pronoms sujets du pluriel et le pronom on",
+                "de": "Subjektpronomen im Plural und das informelle On"
+              },
+              "text": {
+                "en": "Nous means we. Vous means you for a group or one person politely. Ils refers to a male or mixed group; elles to an all-female group. In conversation, on often means we but uses a singular verb: On est ici, compared with Nous sommes ici.",
+                "fr": "Nous désigne le groupe qui parle. Vous s'adresse à un groupe ou poliment à une personne. Ils désigne un groupe masculin ou mixte ; elles un groupe exclusivement féminin. À l'oral, on remplace souvent nous mais garde un verbe au singulier : On est ici, contre Nous sommes ici.",
+                "de": "Nous heißt wir. Vous spricht eine Gruppe oder eine Person höflich an. Ils steht für männliche oder gemischte Gruppen, elles für rein weibliche Gruppen. Im Gespräch bedeutet on oft wir, hat aber eine Singularverbform: On est ici, gegenüber Nous sommes ici."
+              },
+              "formTable": [],
+              "examples": [
+                {
+                  "text": "Nous mangeons ensemble, mais on préfère partir tôt.",
+                  "translation": {
+                    "en": "We eat together, but we prefer to leave early.",
+                    "de": "Wir essen zusammen, aber wir reisen lieber früh ab."
+                  }
+                },
+                {
+                  "text": "Ils sont amis et elles sont sœurs.",
+                  "translation": {
+                    "en": "They are friends and they are sisters.",
+                    "de": "Sie sind Freunde und sie sind Schwestern."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-plural-gap-choice",
+      "role": "exercise",
+      "blockId": "block-plural-pronouns",
+      "label": {
+        "en": "Plural Subject Pronouns and Informal On",
+        "fr": "Les pronoms sujets du pluriel et le pronom on",
+        "de": "Subjektpronomen im Plural und das informelle On"
+      },
+      "pages": [
+        {
+          "pageId": "ex-plural-gap-choice-1",
+          "estimatedDurationS": 23,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-plural-gap-choice-1",
+              "ruleIds": [
+                "rule-plural-pronouns",
+                "rule-on-informal-we"
+              ],
+              "before": "",
+              "after": "sommes amis. (we)",
+              "answerExplanation": {
+                "en": "Answer: Nous. Use nous, vous, ils, elles for plural subjects. Use on as an informal equivalent to nous in spoken French.",
+                "fr": "Réponse : Nous. Utiliser nous, vous, ils, elles pour les sujets au pluriel. Utiliser on comme équivalent informel de nous à l'oral.",
+                "de": "Antwort: Nous. Verwende nous, vous, ils, elles für Subjekte im Plural. Verwende on als informelles Äquivalent zu nous im gesprochenen Französisch."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "Vous"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "Ils"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "Elles"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "Nous"
+                }
+              ],
+              "answerChoiceId": "c-3"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-plural-gap-choice-2",
+          "estimatedDurationS": 23,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-plural-gap-choice-2",
+              "ruleIds": [
+                "rule-plural-pronouns",
+                "rule-on-informal-we"
+              ],
+              "before": "",
+              "after": "sont amis. (Paul et Léa)",
+              "answerExplanation": {
+                "en": "Answer: Ils. Use nous, vous, ils, elles for plural subjects. Use on as an informal equivalent to nous in spoken French.",
+                "fr": "Réponse : Ils. Utiliser nous, vous, ils, elles pour les sujets au pluriel. Utiliser on comme équivalent informel de nous à l'oral.",
+                "de": "Antwort: Ils. Verwende nous, vous, ils, elles für Subjekte im Plural. Verwende on als informelles Äquivalent zu nous im gesprochenen Französisch."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "Nous"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "Vous"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "Ils"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "Elles"
+                }
+              ],
+              "answerChoiceId": "c-2"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-plural-gap-choice-3",
+          "estimatedDurationS": 22,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-plural-gap-choice-3",
+              "ruleIds": [
+                "rule-plural-pronouns",
+                "rule-on-informal-we"
+              ],
+              "before": "",
+              "after": "sont sœurs. (Léa et Marie)",
+              "answerExplanation": {
+                "en": "Answer: Elles. Use nous, vous, ils, elles for plural subjects. Use on as an informal equivalent to nous in spoken French.",
+                "fr": "Réponse : Elles. Utiliser nous, vous, ils, elles pour les sujets au pluriel. Utiliser on comme équivalent informel de nous à l'oral.",
+                "de": "Antwort: Elles. Verwende nous, vous, ils, elles für Subjekte im Plural. Verwende on als informelles Äquivalent zu nous im gesprochenen Französisch."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "Vous"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "Elles"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "Ils"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "Nous"
+                }
+              ],
+              "answerChoiceId": "c-1"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-plural-gap-choice-4",
+          "estimatedDurationS": 22,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-plural-gap-choice-4",
+              "ruleIds": [
+                "rule-plural-pronouns",
+                "rule-on-informal-we"
+              ],
+              "before": "",
+              "after": "est ici. (we, spoken French)",
+              "answerExplanation": {
+                "en": "Answer: On. Use nous, vous, ils, elles for plural subjects. Use on as an informal equivalent to nous in spoken French.",
+                "fr": "Réponse : On. Utiliser nous, vous, ils, elles pour les sujets au pluriel. Utiliser on comme équivalent informel de nous à l'oral.",
+                "de": "Antwort: On. Verwende nous, vous, ils, elles für Subjekte im Plural. Verwende on als informelles Äquivalent zu nous im gesprochenen Französisch."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "Nous"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "Ils"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "Vous"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "On"
+                }
+              ],
+              "answerChoiceId": "c-3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "block-tu-vs-vous-explanation",
+      "role": "explanation",
+      "blockId": "block-tu-vs-vous",
+      "label": {
+        "en": "Choosing Between Tu and Vous",
+        "fr": "Choisir entre tu et vous",
+        "de": "Unterscheidung zwischen Tu und Vous"
+      },
+      "pages": [
+        {
+          "pageId": "block-tu-vs-vous-explanation",
+          "estimatedDurationS": 120,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the rule and examples.",
+            "fr": "Lisez la règle et les exemples.",
+            "de": "Lies die Regel und die Beispiele."
+          },
+          "items": [
+            {
+              "type": "grammar_explanation",
+              "itemId": "block-tu-vs-vous-explanation",
+              "ruleIds": [
+                "rule-tu-vs-vous"
+              ],
+              "heading": {
+                "en": "Choosing Between Tu and Vous",
+                "fr": "Choisir entre tu et vous",
+                "de": "Unterscheidung zwischen Tu und Vous"
+              },
+              "text": {
+                "en": "Use tu with a close friend or a family member. Use vous for several people, even friends, or for one person in a polite or formal setting. With a stranger, begin with vous unless you agree to use tu. The verb must follow the chosen pronoun: tu vas, vous allez.",
+                "fr": "Utilisez tu avec un ami proche ou un membre de la famille. Utilisez vous pour plusieurs personnes, même des amis, ou pour une personne dans une situation polie ou formelle. Avec un inconnu, commencez par vous sauf si vous convenez de vous tutoyer. Le verbe suit le pronom : tu vas, vous allez.",
+                "de": "Verwende tu mit engen Freunden oder Familienmitgliedern. Verwende vous für mehrere Menschen, auch Freunde, oder für eine Person im höflichen oder formellen Rahmen. Beginne bei Fremden mit vous, bis ihr euch auf tu einigt. Das Verb folgt dem Pronomen: tu vas, vous allez."
+              },
+              "formTable": [],
+              "examples": [
+                {
+                  "text": "Tu vas bien, Thomas ?",
+                  "translation": {
+                    "en": "Are you doing well, Thomas?",
+                    "de": "Geht es dir gut, Thomas?"
+                  }
+                },
+                {
+                  "text": "Bonjour Monsieur, comment allez-vous ?",
+                  "translation": {
+                    "en": "Hello sir, how are you?",
+                    "de": "Guten Tag der Herr, wie geht es Ihnen?"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-tu-vous-gap-choice",
+      "role": "exercise",
+      "blockId": "block-tu-vs-vous",
+      "label": {
+        "en": "Choosing Between Tu and Vous",
+        "fr": "Choisir entre tu et vous",
+        "de": "Unterscheidung zwischen Tu und Vous"
+      },
+      "pages": [
+        {
+          "pageId": "ex-tu-vous-gap-choice-1",
+          "estimatedDurationS": 23,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-tu-vous-gap-choice-1",
+              "ruleIds": [
+                "rule-tu-vs-vous"
+              ],
+              "before": "",
+              "after": "vas bien, Thomas ? (one close friend)",
+              "answerExplanation": {
+                "en": "Answer: Tu. Use tu for informal singular and vous for formal singular or any plural.",
+                "fr": "Réponse : Tu. Utiliser tu pour le singulier informel et vous pour le singulier formel ou tout pluriel.",
+                "de": "Antwort: Tu. Verwende tu für informellen Singular und vous für formellen Singular oder jeden Plural."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "Vous"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "Nous"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "Ils"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "Tu"
+                }
+              ],
+              "answerChoiceId": "c-3"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-tu-vous-gap-choice-2",
+          "estimatedDurationS": 23,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-tu-vous-gap-choice-2",
+              "ruleIds": [
+                "rule-tu-vs-vous"
+              ],
+              "before": "Bonjour Madame,",
+              "after": "allez bien ? (polite, one person)",
+              "answerExplanation": {
+                "en": "Answer: vous. Use tu for informal singular and vous for formal singular or any plural.",
+                "fr": "Réponse : vous. Utiliser tu pour le singulier informel et vous pour le singulier formel ou tout pluriel.",
+                "de": "Antwort: vous. Verwende tu für informellen Singular und vous für formellen Singular oder jeden Plural."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "nous"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "ils"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "vous"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "tu"
+                }
+              ],
+              "answerChoiceId": "c-2"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-tu-vous-gap-choice-3",
+          "estimatedDurationS": 22,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-tu-vous-gap-choice-3",
+              "ruleIds": [
+                "rule-tu-vs-vous"
+              ],
+              "before": "",
+              "after": "êtes prêts, Paul et Léa ? (two people)",
+              "answerExplanation": {
+                "en": "Answer: Vous. Use tu for informal singular and vous for formal singular or any plural.",
+                "fr": "Réponse : Vous. Utiliser tu pour le singulier informel et vous pour le singulier formel ou tout pluriel.",
+                "de": "Antwort: Vous. Verwende tu für informellen Singular und vous für formellen Singular oder jeden Plural."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "On"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "Vous"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "Tu"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "Nous"
+                }
+              ],
+              "answerChoiceId": "c-1"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-tu-vous-gap-choice-4",
+          "estimatedDurationS": 22,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-tu-vous-gap-choice-4",
+              "ruleIds": [
+                "rule-tu-vs-vous"
+              ],
+              "before": "",
+              "after": "viens, Léa ? (one close friend)",
+              "answerExplanation": {
+                "en": "Answer: Tu. Use tu for informal singular and vous for formal singular or any plural.",
+                "fr": "Réponse : Tu. Utiliser tu pour le singulier informel et vous pour le singulier formel ou tout pluriel.",
+                "de": "Antwort: Tu. Verwende tu für informellen Singular und vous für formellen Singular oder jeden Plural."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "Vous"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "Nous"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "Ils"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "Tu"
+                }
+              ],
+              "answerChoiceId": "c-3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "feedback",
+      "role": "feedback",
+      "blockId": null,
+      "label": {
+        "en": "Your feedback",
+        "fr": "Votre retour",
+        "de": "Dein Feedback"
+      },
+      "pages": [
+        {
+          "pageId": "feedback",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Continue to the final exam.",
+            "fr": "Passez à l’examen final.",
+            "de": "Weiter zur Abschlussprüfung."
+          },
+          "items": [
+            {
+              "type": "production_feedback_placeholder",
+              "itemId": "feedback"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "role": "exam",
+      "blockId": null,
+      "label": {
+        "en": "Final exam",
+        "fr": "Examen final",
+        "de": "Abschlussprüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Write the French form for each row; the verb is given when needed.",
+            "fr": "Écrivez la forme française pour chaque ligne ; le verbe est indiqué si nécessaire.",
+            "de": "Schreib die französische Form für jede Zeile; das Verb ist bei Bedarf angegeben."
+          },
+          "items": [
+            {
+              "type": "grammar_pronoun_form_typing",
+              "itemId": "exam-1-1",
+              "ruleIds": [
+                "rule-singular-pronouns"
+              ],
+              "rows": [
+                {
+                  "rowId": "row-1",
+                  "pronoun": "I / ich",
+                  "answerExplanation": {
+                    "en": "Answer: je. Use je (j'), tu, il, elle for singular subjects.",
+                    "fr": "Réponse : je. Utiliser je (j'), tu, il, elle pour les sujets au singulier.",
+                    "de": "Antwort: je. Verwende je (j'), tu, il, elle für Subjekte im Singular."
+                  },
+                  "accepted": {
+                    "answers": [
+                      "je"
+                    ],
+                    "accentSensitive": []
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grammar_pronoun_form_typing",
+              "itemId": "exam-1-2",
+              "ruleIds": [
+                "rule-singular-pronouns"
+              ],
+              "rows": [
+                {
+                  "rowId": "row-1",
+                  "pronoun": "you: one close friend / du",
+                  "answerExplanation": {
+                    "en": "Answer: tu. Use je (j'), tu, il, elle for singular subjects.",
+                    "fr": "Réponse : tu. Utiliser je (j'), tu, il, elle pour les sujets au singulier.",
+                    "de": "Antwort: tu. Verwende je (j'), tu, il, elle für Subjekte im Singular."
+                  },
+                  "accepted": {
+                    "answers": [
+                      "tu"
+                    ],
+                    "accentSensitive": []
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grammar_pronoun_form_typing",
+              "itemId": "exam-1-3",
+              "ruleIds": [
+                "rule-singular-pronouns"
+              ],
+              "rows": [
+                {
+                  "rowId": "row-1",
+                  "pronoun": "he / er",
+                  "answerExplanation": {
+                    "en": "Answer: il. Use je (j'), tu, il, elle for singular subjects.",
+                    "fr": "Réponse : il. Utiliser je (j'), tu, il, elle pour les sujets au singulier.",
+                    "de": "Antwort: il. Verwende je (j'), tu, il, elle für Subjekte im Singular."
+                  },
+                  "accepted": {
+                    "answers": [
+                      "il"
+                    ],
+                    "accentSensitive": []
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grammar_pronoun_form_typing",
+              "itemId": "exam-1-4",
+              "ruleIds": [
+                "rule-singular-pronouns"
+              ],
+              "rows": [
+                {
+                  "rowId": "row-1",
+                  "pronoun": "she / sie",
+                  "answerExplanation": {
+                    "en": "Answer: elle. Use je (j'), tu, il, elle for singular subjects.",
+                    "fr": "Réponse : elle. Utiliser je (j'), tu, il, elle pour les sujets au singulier.",
+                    "de": "Antwort: elle. Verwende je (j'), tu, il, elle für Subjekte im Singular."
+                  },
+                  "accepted": {
+                    "answers": [
+                      "elle"
+                    ],
+                    "accentSensitive": []
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grammar_pronoun_form_typing",
+              "itemId": "exam-1-5",
+              "ruleIds": [
+                "rule-tu-vs-vous"
+              ],
+              "rows": [
+                {
+                  "rowId": "row-1",
+                  "pronoun": "you: one person politely / Sie",
+                  "answerExplanation": {
+                    "en": "Use vous to address one person politely; tu is for one familiar person.",
+                    "fr": "Utilisez vous pour parler poliment à une personne ; tu est familier.",
+                    "de": "Mit vous sprichst du eine Person höflich an; tu gilt für eine vertraute Person."
+                  },
+                  "accepted": {
+                    "answers": [
+                      "vous"
+                    ],
+                    "accentSensitive": []
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "exam-page-2",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Write the missing word or expression.",
+            "fr": "Écrivez le mot ou l’expression qui manque.",
+            "de": "Schreib das fehlende Wort oder die Wendung."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-2-1",
+              "ruleIds": [
+                "rule-plural-pronouns",
+                "rule-on-informal-we"
+              ],
+              "before": "",
+              "after": "sont sœurs. (Léa et Marie)",
+              "answerExplanation": {
+                "en": "Answer: Elles. Use nous, vous, ils, elles for plural subjects. Use on as an informal equivalent to nous in spoken French.",
+                "fr": "Réponse : Elles. Utiliser nous, vous, ils, elles pour les sujets au pluriel. Utiliser on comme équivalent informel de nous à l'oral.",
+                "de": "Antwort: Elles. Verwende nous, vous, ils, elles für Subjekte im Plural. Verwende on als informelles Äquivalent zu nous im gesprochenen Französisch."
+              },
+              "accepted": {
+                "answers": [
+                  "Elles"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            },
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-2-2",
+              "ruleIds": [
+                "rule-plural-pronouns",
+                "rule-on-informal-we"
+              ],
+              "before": "",
+              "after": "est ici. (we, spoken French)",
+              "answerExplanation": {
+                "en": "Answer: On. Use nous, vous, ils, elles for plural subjects. Use on as an informal equivalent to nous in spoken French.",
+                "fr": "Réponse : On. Utiliser nous, vous, ils, elles pour les sujets au pluriel. Utiliser on comme équivalent informel de nous à l'oral.",
+                "de": "Antwort: On. Verwende nous, vous, ils, elles für Subjekte im Plural. Verwende on als informelles Äquivalent zu nous im gesprochenen Französisch."
+              },
+              "accepted": {
+                "answers": [
+                  "On"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            },
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-2-3",
+              "ruleIds": [
+                "rule-plural-pronouns",
+                "rule-on-informal-we"
+              ],
+              "before": "",
+              "after": "sommes amis. (we)",
+              "answerExplanation": {
+                "en": "Answer: Nous. Use nous, vous, ils, elles for plural subjects. Use on as an informal equivalent to nous in spoken French.",
+                "fr": "Réponse : Nous. Utiliser nous, vous, ils, elles pour les sujets au pluriel. Utiliser on comme équivalent informel de nous à l'oral.",
+                "de": "Antwort: Nous. Verwende nous, vous, ils, elles für Subjekte im Plural. Verwende on als informelles Äquivalent zu nous im gesprochenen Französisch."
+              },
+              "accepted": {
+                "answers": [
+                  "Nous"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            },
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-2-4",
+              "ruleIds": [
+                "rule-plural-pronouns",
+                "rule-on-informal-we"
+              ],
+              "before": "",
+              "after": "sont amis. (Paul et Léa)",
+              "answerExplanation": {
+                "en": "Answer: Ils. Use nous, vous, ils, elles for plural subjects. Use on as an informal equivalent to nous in spoken French.",
+                "fr": "Réponse : Ils. Utiliser nous, vous, ils, elles pour les sujets au pluriel. Utiliser on comme équivalent informel de nous à l'oral.",
+                "de": "Antwort: Ils. Verwende nous, vous, ils, elles für Subjekte im Plural. Verwende on als informelles Äquivalent zu nous im gesprochenen Französisch."
+              },
+              "accepted": {
+                "answers": [
+                  "Ils"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            },
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-2-5",
+              "ruleIds": [
+                "rule-plural-pronouns",
+                "rule-on-informal-we"
+              ],
+              "before": "",
+              "after": "sont sœurs. (Léa et Marie)",
+              "answerExplanation": {
+                "en": "Answer: Elles. Use nous, vous, ils, elles for plural subjects. Use on as an informal equivalent to nous in spoken French.",
+                "fr": "Réponse : Elles. Utiliser nous, vous, ils, elles pour les sujets au pluriel. Utiliser on comme équivalent informel de nous à l'oral.",
+                "de": "Antwort: Elles. Verwende nous, vous, ils, elles für Subjekte im Plural. Verwende on als informelles Äquivalent zu nous im gesprochenen Französisch."
+              },
+              "accepted": {
+                "answers": [
+                  "Elles"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "provenance": {
+    "generator": "codex-direct-authoring",
+    "model": "gpt-6",
+    "promptVersion": "manual-content-v1",
+    "generatedAt": "2026-10-06T22:13:22.000Z",
+    "inputHashes": {
+      "outline": "b476d53fe06441adecdd0702cbcd6c4296b5d821033fe4fe6cf775b302b0d695",
+      "brief": "2317e612bec8e84dd1232df0fd7ba3fb7a894d5c1ec3d8f09a78f584804edc7b"
+    }
+  }
+}

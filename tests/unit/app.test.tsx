@@ -121,16 +121,16 @@ describe('lesson index', () => {
 });
 
 describe('lesson artifact page', () => {
-  it('shows the shared Outline card, valid artifacts and a read-only mother tongue', async () => {
+  it('shows the shared Outline card, valid artifacts and independent language preferences', async () => {
     await renderIndex();
     go('#/lesson/fr-classroom-objects');
     expect(await screen.findByRole('heading', { level: 1, name: 'Les objets de la classe' })).toBeInTheDocument();
     expect(screen.getByText('Lesson 3')).toBeInTheDocument();
     expect(screen.getByText(/Nommer une douzaine d'objets de la classe/)).toBeInTheDocument();
-    await waitFor(() => expect(screen.getAllByText(/A structured view for this file is not available yet/)).toHaveLength(1));
+    await screen.findByText('vocabulary_introduction');
     expect(screen.queryByText(/Start lesson is unavailable/)).toBeNull();
     expect(screen.queryByText('The draft is missing.')).toBeNull();
-    for (const radio of within(screen.getByRole('group', { name: 'Mother tongue' })).getAllByRole('radio')) expect(radio).toBeDisabled();
+    expect(within(screen.getByRole('group', { name: 'Mother tongue' })).getByRole('radio', { name: 'de' })).toBeEnabled();
     expect(screen.getByRole('combobox', { name: 'Interface language' })).toBeEnabled();
     expect(screen.getByRole('link', { name: 'Start lesson' })).toHaveAttribute('href', '#/lesson/fr-classroom-objects/play');
   });
@@ -147,7 +147,7 @@ describe('lesson artifact page', () => {
     expect(within(rows[0]).getByText('Masculine, singular')).toBeInTheDocument();
     expect(within(rows[3]).getByText('More demanding')).toBeInTheDocument();
     expect(screen.getByText(/3 core \/ 1 more demanding/)).toBeInTheDocument();
-    expect(screen.getByText(/Translations: German/)).toBeInTheDocument();
+    expect(screen.getAllByText(/Translations: German/).length).toBeGreaterThan(0);
     expect(screen.getByRole('rowheader', { name: /06 Final exam/ })).toBeInTheDocument();
     expect(screen.getByRole('rowheader', { name: /04 Gender \+ overview/ })).toBeInTheDocument();
     expect(screen.getAllByRole('cell', { name: '1 min' }).length).toBeGreaterThan(0);
@@ -175,7 +175,7 @@ describe('lesson artifact page', () => {
     const user = userEvent.setup();
     await renderIndex();
     go('#/lesson/fr-classroom-objects');
-    await waitFor(() => expect(screen.getAllByText(/A structured view for this file/)).toHaveLength(1));
+    await screen.findByText('vocabulary_introduction');
     await user.click(screen.getByRole('button', { name: 'Raw JSON' }));
     const tree = screen.getByRole('tree');
     const item = (name: RegExp) => within(tree).getByRole('treeitem', { name });
@@ -204,7 +204,7 @@ describe('lesson artifact page', () => {
     const user = userEvent.setup();
     await renderIndex();
     go('#/lesson/fr-classroom-objects');
-    await waitFor(() => expect(screen.getAllByText(/A structured view for this file/)).toHaveLength(1));
+    await screen.findByText('vocabulary_introduction');
     await user.click(screen.getByRole('button', { name: 'Raw JSON' }));
     const tree = screen.getByRole('tree');
     within(tree).getByRole('treeitem', { name: /^Combined artifact object/ }).focus();
