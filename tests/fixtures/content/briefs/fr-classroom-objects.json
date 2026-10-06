@@ -1,0 +1,264 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-classroom-objects",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les objets de la classe",
+  "objective": {
+    "en": "Name classroom objects with their article.",
+    "fr": "Nommer les objets de la classe avec leur article.",
+    "de": "Gegenstände im Klassenzimmer mit Artikel benennen."
+  },
+  "estimatedMinutes": 8,
+  "provenance": {
+    "generator": "fixture",
+    "model": "none",
+    "promptVersion": "fixture-1",
+    "generatedAt": "2026-10-06T00:00:00Z",
+    "inputHashes": {
+      "outline": "07ba863701d3938c7c04d1efc9513eee109bfc497d967f7969eaa65b87019e87"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "education",
+  "coverageNotes": {
+    "en": "Four everyday objects from the outline list.",
+    "fr": "Quatre objets courants de la liste du plan.",
+    "de": "Vier alltägliche Gegenstände aus der Liste der Gliederung."
+  },
+  "targetCount": 4,
+  "countRationale": {
+    "en": "A short fixture inventory.",
+    "fr": "Un inventaire court pour les tests.",
+    "de": "Ein kurzes Test-Inventar."
+  },
+  "difficultyBalance": {
+    "en": "Three core words and one with a frequent gender error.",
+    "fr": "Trois mots de base et un mot souvent mal genré.",
+    "de": "Drei Grundwörter und eines mit häufigem Genusfehler."
+  },
+  "prerequisites": [],
+  "groups": [
+    {
+      "id": "all",
+      "label": {
+        "en": "Classroom objects",
+        "fr": "Objets de la classe",
+        "de": "Gegenstände im Klassenzimmer"
+      },
+      "targetIds": [
+        "livre",
+        "chaise",
+        "stylo",
+        "table"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "livre",
+      "term": "livre",
+      "translations": {
+        "en": [
+          "book"
+        ],
+        "de": [
+          "Buch"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un livre",
+      "examForms": [
+        "un livre"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "un livre",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Je lis un livre.",
+        "translation": {
+          "en": "I am reading a book.",
+          "de": "Ich lese ein Buch."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "chaise",
+      "term": "chaise",
+      "translations": {
+        "en": [
+          "chair"
+        ],
+        "de": [
+          "Stuhl"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une chaise",
+      "examForms": [
+        "une chaise"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "une chaise",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Je prends une chaise.",
+        "translation": {
+          "en": "I take a chair.",
+          "de": "Ich nehme einen Stuhl."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "stylo",
+      "term": "stylo",
+      "translations": {
+        "en": [
+          "pen"
+        ],
+        "de": [
+          "Kugelschreiber",
+          "Stift"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un stylo",
+      "examForms": [
+        "un stylo"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "un stylo",
+      "difficulty": "core",
+      "context": {
+        "sentence": "J’ai un stylo bleu.",
+        "translation": {
+          "en": "I have a blue pen.",
+          "de": "Ich habe einen blauen Stift."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "table",
+      "term": "table",
+      "translations": {
+        "en": [
+          "table"
+        ],
+        "de": [
+          "Tisch"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une table",
+      "examForms": [
+        "une table"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "une table",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Il y a une table.",
+        "translation": {
+          "en": "There is a table.",
+          "de": "Da ist ein Tisch."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 90
+    },
+    "matching": {
+      "groupSize": 4,
+      "estimatedDurationS": 60
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 60
+    },
+    "typedGaps": {
+      "targetIds": [
+        "livre",
+        "chaise",
+        "stylo",
+        "table"
+      ],
+      "estimatedDurationS": 120
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-1",
+          "kind": "translation",
+          "targetIds": [
+            "livre",
+            "chaise"
+          ],
+          "estimatedDurationS": 40,
+          "timeLimitS": 60
+        },
+        {
+          "pageId": "exam-2",
+          "kind": "translation",
+          "targetIds": [
+            "stylo",
+            "table"
+          ],
+          "estimatedDurationS": 40,
+          "timeLimitS": 60
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

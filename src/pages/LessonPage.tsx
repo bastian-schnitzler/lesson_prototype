@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from 'react';
+import { useEffect, useMemo, useState, type ReactNode } from 'react';
 
 import { useI18n } from '../app/context.tsx';
 import { href } from '../app/route.ts';
@@ -12,6 +12,7 @@ import { courseOfLesson, readiness, type NotReadyReason } from '../domain/course
 import type { JsonPath } from '../domain/jsonTree.ts';
 import { fetchArtifactText, useOutline, type ArtifactText } from '../data/load.ts';
 import type { ArtifactFile, Course, Manifest } from '../schemas/manifest.ts';
+import { validateBrief, validateContent, type Issue } from '../validation/artifacts.ts';
 import type { OutlineEntry } from '../schemas/outline.ts';
 
 type Slot = 'draft' | 'content';
@@ -70,6 +71,21 @@ export function LessonPage({ manifest, lessonId, onReturnToOverview }: LessonPag
   const index = outline.status === 'ready' ? outline.data.entries.findIndex((e) => e.id === lessonId) : -1;
   const entry: OutlineEntry | undefined = outline.status === 'ready' ? outline.data.entries[index] : undefined;
   const reasons: NotReadyReason[] = entry ? readiness(entry.kind, artifacts) : [];
+
+  // Validate in the browser too, so invalid files are inspectable with their problems.
+  const validation = useMemo(() => {
+    if (!entry || !course) return {};
+    const ctx = { entry, lang: course.lang, level: course.level };
+    const briefResult = draft.status === 'parsed' ? validateBrief(draft.data, ctx) : undefined;
+    let contentIssues: Issue[] | undefined;
+    if (content.status === 'parsed') {
+      contentIssues =
+        briefResult?.value && briefResult.status !== 'invalid'
+          ? validateContent(content.data, { ...ctx, brief: briefResult.value }).issues
+          : [{ path: '', message: 'no valid draft to check this content against' }];
+    }
+    return { draft: briefResult?.issues, content: contentIssues };
+  }, [entry, course, draft, content]);
   const ready = entry !== undefined && reasons.length === 0;
 
   const actions = course && (
@@ -113,7 +129,7 @@ export function LessonPage({ manifest, lessonId, onReturnToOverview }: LessonPag
   } else if (!entry) {
     body = <StatusMessage kind="error">{t('detail.notFound', { id: lessonId })}</StatusMessage>;
   } else if (mode === 'raw') {
-    body = <RawView entry={entry} draft={draft} content={content} overrides={treeOverrides} onOverridesChange={setTreeOverrides} />;
+    body = <RawView entry={entry} draft={draft} content={content} issues={validation} overrides={treeOverrides} onOverridesChange={setTreeOverrides} />;
   } else {
     const pending = entry.kind === 'functions' || entry.kind === 'reading';
     body = (
@@ -131,8 +147,8 @@ export function LessonPage({ manifest, lessonId, onReturnToOverview }: LessonPag
           </h2>
           <OutlineSummary entry={entry} ordinal={index + 1} lang={course.lang} level={course.level} />
         </section>
-        <ArtifactSection slot="draft" kind={entry.kind} loaded={draft} />
-        <ArtifactSection slot="content" kind={entry.kind} loaded={content} />
+        <ArtifactSection slot="draft" kind={entry.kind} loaded={draft} issues={validation.draft} file={artifacts?.draft} />
+        <ArtifactSection slot="content" kind={entry.kind} loaded={content} issues={validation.content} file={artifacts?.content} />
       </>
     );
   }
@@ -153,7 +169,31 @@ export function LessonPage({ manifest, lessonId, onReturnToOverview }: LessonPag
   );
 }
 
-function ArtifactSection({ slot, kind, loaded }: { slot: Slot; kind: OutlineEntry['kind']; loaded: LoadedArtifact }) {
+function IssueList({ issues }: { issues: Issue[] }) {
+  const { t } = useI18n();
+  return (
+    <StatusMessage kind="error">
+      {t('detail.invalid')}
+      <ul className="reasons">
+        {issues.map((i, n) => (
+          <li key={n}>
+            {i.path && <code>{i.path}</code>} {i.message}
+          </li>
+        ))}
+      </ul>
+    </StatusMessage>
+  );
+}
+
+interface ArtifactSectionProps {
+  slot: Slot;
+  kind: OutlineEntry['kind'];
+  loaded: LoadedArtifact;
+  issues?: Issue[];
+  file?: ArtifactFile;
+}
+
+function ArtifactSection({ slot, kind, loaded, issues, file }: ArtifactSectionProps) {
   const { t } = useI18n();
   const headingId = `${slot}-heading`;
   const View = (slot === 'draft' ? draftViews : contentViews)[kind];
@@ -177,7 +217,18 @@ function ArtifactSection({ slot, kind, loaded }: { slot: Slot; kind: OutlineEntr
       );
       break;
     case 'parsed':
-      inner = View ? <View data={loaded.data} /> : <p className="muted">{t('detail.noStructuredView')}</p>;
+      inner = (
+        <>
+          {file?.status === 'stale' && <StatusMessage>{t('detail.stale')}</StatusMessage>}
+          {issues && issues.length > 0 ? (
+            <IssueList issues={issues} />
+          ) : View ? (
+            <View data={loaded.data} />
+          ) : (
+            <p className="muted">{t('detail.noStructuredView')}</p>
+          )}
+        </>
+      );
       break;
   }
   return (
@@ -194,12 +245,13 @@ interface RawViewProps {
   entry: OutlineEntry;
   draft: LoadedArtifact;
   content: LoadedArtifact;
+  issues: { draft?: Issue[]; content?: Issue[] };
   overrides: ReadonlyMap<JsonPath, boolean>;
   onOverridesChange: (next: ReadonlyMap<JsonPath, boolean>) => void;
 }
 
 /** View wrapper { outline, draft?, content? } with each parsed file unchanged. */
-function RawView({ entry, draft, content, overrides, onOverridesChange }: RawViewProps) {
+function RawView({ entry, draft, content, issues, overrides, onOverridesChange }: RawViewProps) {
   const { t } = useI18n();
   const root: Record<string, unknown> = { outline: entry };
   if (draft.status === 'parsed') root.draft = draft.data;
@@ -214,6 +266,16 @@ function RawView({ entry, draft, content, overrides, onOverridesChange }: RawVie
     <section aria-label={t('action.rawJson')}>
       <p className="muted">{t('raw.hint')}</p>
       <JsonTree value={root} rootLabel={t('raw.rootLabel')} overrides={overrides} onOverridesChange={onOverridesChange} />
+      {(['draft', 'content'] as const).map(
+        (slot) =>
+          issues[slot] &&
+          issues[slot].length > 0 && (
+            <div key={`issues-${slot}`} className="diagnostic">
+              <p>{t(`artifact.${slot}`)}</p>
+              <IssueList issues={issues[slot]} />
+            </div>
+          ),
+      )}
       {diagnostics.map(([slot, a]) => (
         <div key={slot} className="diagnostic">
           {a.status === 'parseError' ? (

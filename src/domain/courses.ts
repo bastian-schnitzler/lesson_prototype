@@ -66,12 +66,17 @@ export const ALL_CATEGORIES: ReadonlySet<LessonKind> = new Set(LESSON_KINDS);
 
 export type ArtifactLabel = 'outline' | 'draft' | 'content';
 
+export type ArtifactProblem = 'malformed' | 'invalid' | 'stale';
+
 export interface ArtifactState {
   /** Highest artifact present, even when it needs review. */
   label: ArtifactLabel;
   incomplete: boolean;
-  malformed: boolean;
+  /** Worst problem of a present file, if any. */
+  problem: ArtifactProblem | null;
 }
+
+const PROBLEM_ORDER: ArtifactProblem[] = ['malformed', 'invalid', 'stale'];
 
 export function artifactState(artifacts: LessonArtifacts | undefined): ArtifactState {
   const draft = artifacts?.draft;
@@ -79,7 +84,7 @@ export function artifactState(artifacts: LessonArtifacts | undefined): ArtifactS
   return {
     label: content ? 'content' : draft ? 'draft' : 'outline',
     incomplete: Boolean(content && !draft),
-    malformed: draft?.status === 'malformed' || content?.status === 'malformed',
+    problem: PROBLEM_ORDER.find((p) => draft?.status === p || content?.status === p) ?? null,
   };
 }
 
@@ -89,17 +94,14 @@ export function artifactState(artifacts: LessonArtifacts | undefined): ArtifactS
  */
 export const PLAYABLE_KINDS: ReadonlySet<LessonKind> = new Set<LessonKind>();
 
-export type NotReadyReason = 'missingDraft' | 'missingContent' | 'malformed' | 'unsupported';
+export type NotReadyReason = 'missingDraft' | 'missingContent' | ArtifactProblem | 'unsupported';
 
-/**
- * Why Start lesson is unavailable; empty when the lesson may start. Schema
- * validation of drafts and content joins these checks with P1-03.
- */
+/** Why Start lesson is unavailable; empty when all three artifacts are valid, current and playable. */
 export function readiness(kind: LessonKind, artifacts: LessonArtifacts | undefined, playable = PLAYABLE_KINDS): NotReadyReason[] {
   const reasons: NotReadyReason[] = [];
   if (!artifacts?.draft) reasons.push('missingDraft');
   if (!artifacts?.content) reasons.push('missingContent');
-  if (artifacts?.draft?.status === 'malformed' || artifacts?.content?.status === 'malformed') reasons.push('malformed');
+  for (const p of PROBLEM_ORDER) if (artifacts?.draft?.status === p || artifacts?.content?.status === p) reasons.push(p);
   if (!playable.has(kind)) reasons.push('unsupported');
   return reasons;
 }

@@ -13,11 +13,11 @@ export function ArtifactButton({ lessonId, artifacts }: { lessonId: string; arti
   const description = [
     t(`content.describe.${state.label}`),
     state.incomplete ? t('content.describe.incomplete') : '',
-    state.malformed ? t('content.describe.malformed') : '',
+    state.problem ? t(`content.describe.${state.problem}`) : '',
   ]
     .filter(Boolean)
     .join(' ');
-  const warn = state.incomplete || state.malformed;
+  const warn = state.incomplete || state.problem !== null;
   return (
     <>
       <a className={`button button-outline button-small${warn ? ' has-warning' : ''}`} href={href.lesson(lessonId)} aria-describedby={descId}>

@@ -56,6 +56,8 @@ const en = {
   'content.describe.content': 'Outline, draft and content exist.',
   'content.describe.incomplete': 'Lesson content exists without its draft; the lesson is incomplete.',
   'content.describe.malformed': 'An artifact file is not valid JSON.',
+  'content.describe.invalid': 'An artifact file does not match the lesson contract.',
+  'content.describe.stale': 'An artifact file was generated from older inputs.',
 
   'action.startLesson': 'Start lesson',
   'action.lessonOverview': 'Lesson overview',
@@ -83,12 +85,16 @@ const en = {
   'detail.noStructuredView': 'A structured view for this file is not available yet. Use Raw JSON to inspect it.',
   'detail.malformed': 'This file is not valid JSON: {error}',
   'detail.loadFailed': 'This file could not be loaded: {error}',
+  'detail.invalid': 'This file does not match the lesson contract:',
+  'detail.stale': 'This file was generated from an older outline entry or brief and must be regenerated.',
   'detail.pendingCategory': 'Requirements for {kind} lessons are still being defined, so they cannot be generated or started yet.',
   'detail.startUnavailable': 'Start lesson is unavailable:',
 
   'reason.missingDraft': 'The draft is missing.',
   'reason.missingContent': 'The lesson content is missing.',
   'reason.malformed': 'An artifact file is not valid JSON.',
+  'reason.invalid': 'An artifact file does not match the lesson contract.',
+  'reason.stale': 'An artifact file is outdated and must be regenerated.',
   'reason.unsupported': 'Lessons of this category cannot be played yet.',
 
   'raw.rootLabel': 'Combined artifact object',
@@ -156,6 +162,8 @@ const fr: Messages = {
   'content.describe.content': 'Le plan, le brouillon et le contenu existent.',
   'content.describe.incomplete': 'Le contenu existe sans son brouillon ; la leçon est incomplète.',
   'content.describe.malformed': "Un fichier n'est pas du JSON valide.",
+  'content.describe.invalid': 'Un fichier ne respecte pas le contrat de la leçon.',
+  'content.describe.stale': 'Un fichier a été généré à partir de données plus anciennes.',
 
   'action.startLesson': 'Commencer la leçon',
   'action.lessonOverview': 'Aperçu des leçons',
@@ -183,12 +191,16 @@ const fr: Messages = {
   'detail.noStructuredView': "Aucune vue structurée n'est encore disponible pour ce fichier. Utilisez JSON brut pour l'examiner.",
   'detail.malformed': "Ce fichier n'est pas du JSON valide : {error}",
   'detail.loadFailed': "Ce fichier n'a pas pu être chargé : {error}",
+  'detail.invalid': 'Ce fichier ne respecte pas le contrat de la leçon :',
+  'detail.stale': 'Ce fichier a été généré à partir d’un plan ou d’un brouillon plus ancien et doit être régénéré.',
   'detail.pendingCategory': 'Les exigences des leçons de type {kind} sont encore en cours de définition ; elles ne peuvent pas encore être générées ni commencées.',
   'detail.startUnavailable': 'Impossible de commencer la leçon :',
 
   'reason.missingDraft': 'Le brouillon manque.',
   'reason.missingContent': 'Le contenu de la leçon manque.',
   'reason.malformed': "Un fichier n'est pas du JSON valide.",
+  'reason.invalid': 'Un fichier ne respecte pas le contrat de la leçon.',
+  'reason.stale': 'Un fichier est obsolète et doit être régénéré.',
   'reason.unsupported': 'Les leçons de cette catégorie ne sont pas encore jouables.',
 
   'raw.rootLabel': "Objet d'artefacts combiné",
@@ -253,6 +265,8 @@ const de: Messages = {
   'content.describe.content': 'Gliederung, Entwurf und Inhalt existieren.',
   'content.describe.incomplete': 'Der Inhalt existiert ohne seinen Entwurf; die Lektion ist unvollständig.',
   'content.describe.malformed': 'Eine Datei ist kein gültiges JSON.',
+  'content.describe.invalid': 'Eine Datei entspricht nicht dem Lektionsvertrag.',
+  'content.describe.stale': 'Eine Datei wurde aus älteren Eingaben erzeugt.',
 
   'action.startLesson': 'Lektion starten',
   'action.lessonOverview': 'Lektionsübersicht',
@@ -280,12 +294,16 @@ const de: Messages = {
   'detail.noStructuredView': 'Für diese Datei gibt es noch keine strukturierte Ansicht. Nutze Roh-JSON, um sie anzusehen.',
   'detail.malformed': 'Diese Datei ist kein gültiges JSON: {error}',
   'detail.loadFailed': 'Diese Datei konnte nicht geladen werden: {error}',
+  'detail.invalid': 'Diese Datei entspricht nicht dem Lektionsvertrag:',
+  'detail.stale': 'Diese Datei wurde aus einer älteren Gliederung oder einem älteren Entwurf erzeugt und muss neu erzeugt werden.',
   'detail.pendingCategory': 'Die Anforderungen für Lektionen der Kategorie {kind} werden noch festgelegt; sie können noch nicht erzeugt oder gestartet werden.',
   'detail.startUnavailable': 'Lektion kann nicht gestartet werden:',
 
   'reason.missingDraft': 'Der Entwurf fehlt.',
   'reason.missingContent': 'Der Lektionsinhalt fehlt.',
   'reason.malformed': 'Eine Datei ist kein gültiges JSON.',
+  'reason.invalid': 'Eine Datei entspricht nicht dem Lektionsvertrag.',
+  'reason.stale': 'Eine Datei ist veraltet und muss neu erzeugt werden.',
   'reason.unsupported': 'Lektionen dieser Kategorie sind noch nicht spielbar.',
 
   'raw.rootLabel': 'Kombiniertes Artefaktobjekt',

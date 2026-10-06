@@ -1,0 +1,262 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-classroom-instructions",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les consignes de classe",
+  "objective": {
+    "en": "Understand classroom instructions in writing and when spoken.",
+    "fr": "Comprendre les consignes de classe à l’écrit et à l’oral.",
+    "de": "Arbeitsanweisungen im Unterricht schriftlich und mündlich verstehen."
+  },
+  "estimatedMinutes": 7,
+  "provenance": {
+    "generator": "fixture",
+    "model": "none",
+    "promptVersion": "fixture-1",
+    "generatedAt": "2026-10-06T00:00:00Z",
+    "inputHashes": {
+      "outline": "e59ae0fa961d6955e3408b36a8db08eb4d0a98bbca4e292eca36f60a4b3c75bd"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "education",
+  "coverageNotes": {
+    "en": "Four imperative instructions; heard and read.",
+    "fr": "Quatre consignes à l’impératif, entendues et lues.",
+    "de": "Vier Anweisungen im Imperativ, gehört und gelesen."
+  },
+  "targetCount": 4,
+  "countRationale": {
+    "en": "A short fixture inventory.",
+    "fr": "Un inventaire court pour les tests.",
+    "de": "Ein kurzes Test-Inventar."
+  },
+  "difficultyBalance": {
+    "en": "Two easy and two accented forms.",
+    "fr": "Deux formes simples et deux formes accentuées.",
+    "de": "Zwei einfache und zwei Formen mit Akzent."
+  },
+  "prerequisites": [],
+  "groups": [
+    {
+      "id": "all",
+      "label": {
+        "en": "Instructions",
+        "fr": "Consignes",
+        "de": "Anweisungen"
+      },
+      "targetIds": [
+        "ecoutez",
+        "lisez",
+        "ecrivez",
+        "repetez"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "ecoutez",
+      "term": "écoutez",
+      "translations": {
+        "en": [
+          "listen"
+        ],
+        "de": [
+          "hört zu",
+          "hören Sie zu"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "écoutez",
+      "examForms": [
+        "écoutez"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "écoutez",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Écoutez, s’il vous plaît.",
+        "translation": {
+          "en": "Listen, please.",
+          "de": "Hören sie zu bitte."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "lisez",
+      "term": "lisez",
+      "translations": {
+        "en": [
+          "read"
+        ],
+        "de": [
+          "lest",
+          "lesen Sie"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "lisez",
+      "examForms": [
+        "lisez"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "lisez",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Lisez, s’il vous plaît.",
+        "translation": {
+          "en": "Read, please.",
+          "de": "Lesen sie bitte."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "ecrivez",
+      "term": "écrivez",
+      "translations": {
+        "en": [
+          "write"
+        ],
+        "de": [
+          "schreibt",
+          "schreiben Sie"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "écrivez",
+      "examForms": [
+        "écrivez"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "écrivez",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Écrivez, s’il vous plaît.",
+        "translation": {
+          "en": "Write, please.",
+          "de": "Schreiben sie bitte."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "repetez",
+      "term": "répétez",
+      "translations": {
+        "en": [
+          "repeat"
+        ],
+        "de": [
+          "wiederholt",
+          "wiederholen Sie"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "répétez",
+      "examForms": [
+        "répétez"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "répétez",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Répétez, s’il vous plaît.",
+        "translation": {
+          "en": "Repeat, please.",
+          "de": "Wiederholen sie bitte."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 50
+    },
+    "flashcards": {
+      "estimatedDurationS": 60
+    },
+    "matching": {
+      "groupSize": 4,
+      "estimatedDurationS": 50
+    },
+    "genderOverview": {
+      "scored": false,
+      "estimatedDurationS": 40
+    },
+    "typedGaps": {
+      "targetIds": [
+        "ecoutez",
+        "lisez"
+      ],
+      "estimatedDurationS": 60
+    },
+    "listening": {
+      "required": true,
+      "practiceTargetIds": [
+        "ecoutez",
+        "repetez"
+      ],
+      "estimatedDurationS": 40
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-translate",
+          "kind": "translation",
+          "targetIds": [
+            "ecoutez",
+            "lisez",
+            "ecrivez",
+            "repetez"
+          ],
+          "estimatedDurationS": 60,
+          "timeLimitS": 90
+        },
+        {
+          "pageId": "exam-listen",
+          "kind": "listening_dictation",
+          "targetIds": [
+            "ecrivez",
+            "lisez"
+          ],
+          "estimatedDurationS": 40,
+          "timeLimitS": 60
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

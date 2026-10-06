@@ -10,10 +10,10 @@ const learningLanguage = (page: import('@playwright/test').Page) => page.getByRo
 
 test('lists the discovered course in outline order with state-labeled Content buttons', async ({ page }) => {
   const rows = page.locator('tbody tr');
-  await expect(rows).toHaveCount(6);
-  await expect(rows.locator('.ordinal')).toHaveText(['01', '02', '03', '04', '05', '06']);
-  await expect(rows.nth(2).getByRole('link')).toHaveText('Draft');
-  await expect(rows.nth(3).getByRole('link')).toHaveText('Content');
+  await expect(rows).toHaveCount(8);
+  await expect(rows.locator('.ordinal')).toHaveText(['01', '02', '03', '04', '05', '06', '07', '08']);
+  await expect(rows.nth(2).getByRole('link')).toHaveText('Content');
+  await expect(rows.nth(4).getByRole('link')).toContainText('Draft');
   await expect(page.getByRole('link', { name: 'Start lesson' })).toHaveCount(0);
   await expect(learningLanguage(page).getByRole('radio', { name: 'fr' })).toBeChecked();
   await expect(page.getByRole('radiogroup', { name: 'Level' }).getByRole('radio', { name: 'A1' })).toBeChecked();
@@ -40,7 +40,7 @@ test('keeps preferences across a full reload and disables the course-language mo
 });
 
 test('loads a refreshed hash route and toggles the raw JSON tree', async ({ page }) => {
-  await page.goto('./#/lesson/fr-fix-classroom');
+  await page.goto('./#/lesson/fr-classroom-objects');
   await page.reload();
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Les objets de la classe');
   await expect(page.getByRole('group', { name: 'Mother tongue' }).getByRole('radio').first()).toBeDisabled();
@@ -54,7 +54,7 @@ test('loads a refreshed hash route and toggles the raw JSON tree', async ({ page
 });
 
 test('has no horizontal page overflow', async ({ page }) => {
-  for (const url of ['./', './#/lesson/fr-fix-classroom']) {
+  for (const url of ['./', './#/lesson/fr-classroom-objects']) {
     await page.goto(url);
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
@@ -64,7 +64,7 @@ test('has no horizontal page overflow', async ({ page }) => {
 
 test('never shows generation controls', async ({ page }) => {
   await expect(page.getByRole('button', { name: /generat/i })).toHaveCount(0);
-  await page.goto('./#/lesson/fr-fix-etre');
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Le verbe être');
+  await page.goto('./#/lesson/fr-verb-etre-present');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Le verbe être au présent');
   await expect(page.getByRole('button', { name: /generat/i })).toHaveCount(0);
 });

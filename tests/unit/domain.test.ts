@@ -60,21 +60,24 @@ describe('index rows and artifacts', () => {
   });
 
   it('labels the Content button by the highest artifact present', () => {
-    const file = (status: 'present' | 'malformed' = 'present') => ({ url: 'u', sourceHash: 'h', status });
+    const file = (status: 'valid' | 'invalid' | 'stale' | 'malformed' = 'valid') => ({ url: 'u', sourceHash: 'h', status });
     expect(artifactState(undefined).label).toBe('outline');
     expect(artifactState({ outlineHash: 'h', draft: file() }).label).toBe('draft');
-    expect(artifactState({ outlineHash: 'h', draft: file(), content: file() })).toEqual({ label: 'content', incomplete: false, malformed: false });
+    expect(artifactState({ outlineHash: 'h', draft: file(), content: file() })).toEqual({ label: 'content', incomplete: false, problem: null });
     expect(artifactState({ outlineHash: 'h', content: file() })).toMatchObject({ label: 'content', incomplete: true });
-    expect(artifactState({ outlineHash: 'h', draft: file('malformed') }).malformed).toBe(true);
+    expect(artifactState({ outlineHash: 'h', draft: file('malformed') }).problem).toBe('malformed');
+    expect(artifactState({ outlineHash: 'h', draft: file('stale'), content: file('invalid') }).problem).toBe('invalid');
   });
 
   it('allows Start only for complete, valid, playable lessons', () => {
-    const file = { url: 'u', sourceHash: 'h', status: 'present' as const };
+    const file = { url: 'u', sourceHash: 'h', status: 'valid' as const };
     const complete = { outlineHash: 'h', draft: file, content: file };
     expect(readiness('grammar', undefined)).toEqual(['missingDraft', 'missingContent', 'unsupported']);
     expect(readiness('grammar', complete)).toEqual(['unsupported']);
     expect(readiness('grammar', complete, new Set<LessonKind>(['grammar']))).toEqual([]);
     expect(readiness('grammar', { ...complete, content: { ...file, status: 'malformed' } }, new Set<LessonKind>(['grammar']))).toEqual(['malformed']);
+    expect(readiness('grammar', { ...complete, draft: { ...file, status: 'stale' } }, new Set<LessonKind>(['grammar']))).toEqual(['stale']);
+    expect(readiness('grammar', { ...complete, draft: { ...file, status: 'invalid' } }, new Set<LessonKind>(['grammar']))).toEqual(['invalid']);
   });
 });
 
