@@ -1,6 +1,6 @@
 # Lesson exercise prototype specification
 
-Status: **Draft 0.19 — outline catalog, language preferences, and JSON tree viewer**. Date: 2026-10-06.
+Status: **Draft 0.20 — Claude review findings applied (P0-02)**. Date: 2026-10-06.
 
 This document specifies the prototype and its phased implementation. It does not authorize starting implementation before the specification review. The issue-ready backlog is in [ISSUES.md](ISSUES.md); publish those issues to `bastian-schnitzler/lesson_prototype` after the specification has been refined with the user.
 
@@ -35,19 +35,19 @@ Confirmed decisions are identified below. Other defaults make the draft concrete
 | D1 | Authoritative requirements | **Confirmed:** this specification incorporates the original requirements summary and the user's decisions. After P0-03 retires that source, SPEC is the maintained requirements document. |
 | D2 | Where generation runs | **Confirmed:** an offline local Node generator writes repository files; GitHub Pages serves pre-generated content. Lesson clicks never trigger generation. |
 | D3 | Meaning of standalone | **Confirmed:** `index.html` is the entry point served on GitHub Pages. React reads the outline and generated brief/lesson JSON files; bundled module assets are allowed. |
-| D4 | Language preferences | **Confirmed:** mother tongue has single-select en/fr/de options; interface language is an independent fr/en/de combobox. Generate translations and learner support text in all three languages. Defaults remain en/en; learning language comes from the selected outline. This supersedes the English-only requirement. |
-| D5 | Filters | Four independently toggled category buttons; all active initially. No selection shows an empty state with a reset link. Original ordinals do not change. |
+| D4 | Language preferences | **Confirmed:** mother tongue has single-select en/fr/de options; interface language is an independent fr/en/de combobox. Generate learner support text in all three languages and native translations for every mother tongue other than the learning language. Defaults remain en/en; learning language comes from the selected outline. This supersedes the English-only requirement. A mother tongue equal to the learning language is disabled (D38). |
+| D5 | Filters | **Confirmed:** four independently toggled category buttons; all active initially. No selection shows an empty state with a reset link. Original ordinals do not change. |
 | D6 | Scores and confirmation | **Confirmed:** final exam contributes **65%**, practice contributes **35%**. Continue locks practice answers, shows visual feedback and the correct answer when needed, then a second Continue confirms and advances. Flashcards/review screens are completion-only. |
 | D7 | Answer matching | **Confirmed:** distinguish fully correct free text, correct letters with accent/capitalization errors, and incorrect answers. Normalize Unicode, spacing, and typographic apostrophes; full correctness preserves accents and case. Accent/case-only credit is 50% under D17. |
 | D8 | Gender/articles | **Confirmed:** apply gender and noun article rules only where grammatically applicable. Non-nouns are not assigned invented gender or articles. |
 | D9 | Audio | **Confirmed:** browser speech synthesis in the selected learning language (French for the initial course), with a visible unavailable state if no suitable voice exists. |
 | D10 | Personalized grammar feedback | **Confirmed:** show the fixed localized production-feedback placeholder before the final exam; its en text is “Individual feedback would be here on production.” Individual feedback analysis is deferred to production. |
-| D11 | Session persistence | Proposed: browser storage supports session reload/resume. **Confirmed:** the index last-try score is in memory only and clears on a full page reload; never restore it from stored attempts. |
+| D11 | Session persistence | **Confirmed:** browser storage supports session reload/resume. **Confirmed:** the index last-try score is in memory only and clears on a full page reload; never restore it from stored attempts. |
 | D12 | Broad vocabulary outlines | **Confirmed:** allow the number of targets necessary for the outline, with grouped presentation. Such lessons may exceed 10–15 minutes. Do not truncate an inventory at 15 or 32 or change its existing lesson ID. |
 | D13 | Phase 4/5 allocation | Phase 4 functions, phase 5 reading, both blocked on their requirements review. |
 | D14 | Average vocabulary target count | **Confirmed:** aim for approximately 12 targets per ordinary lesson on average; around 8 for more demanding lessons. Ideally mix easier and harder targets within each lesson's topic. Larger-inventory exceptions remain separate. |
 | D15 | Index and detail navigation | **Confirmed:** one Content button labeled only Outline, Draft, or Content (highest available artifact) opens the combined detail page. Actions contains only Start lesson, available for complete, valid, supported lessons. Detail header has Raw JSON / Structured view, Lesson overview, and Start lesson when available, plus shared language preferences. |
-| D16 | Lesson header and exams | **Confirmed:** duration-weighted progress percentage and current earned score against total possible; timed exam pages only, with results after the complete exam. Proposed: keep the practice contribution visible during exams to avoid leaking correctness. |
+| D16 | Lesson header and exams | **Confirmed:** duration-weighted progress percentage and current earned score against total possible; timed exam pages only, with results after the complete exam. **Confirmed (P0-02):** keep the practice contribution visible and unchanged during exams to avoid leaking correctness, with no pending label. |
 | D17 | Orthography-only points | **Confirmed:** 50% credit when letters are correct but accents or case differ. Full correctness earns 100%; other incorrect answers earn zero. |
 | D18 | Exam countdown limits | **Confirmed:** each lesson brief specifies a time limit for every exam page, based on its task. Content generation preserves those limits. |
 | D19 | Final results | **Confirmed:** final results show exam answers by default; a button menu selects any previous exercise result, with score aggregates always visible. |
@@ -55,7 +55,7 @@ Confirmed decisions are identified below. Other defaults make the draft concrete
 | D21 | Vocabulary noun gender | **Confirmed:** stage 4 integrates a scored gender select-box exercise for nouns and then shows the reviewed overview with right/wrong indicators. All vocabulary is on one page; non-nouns have no gender input. |
 | D22 | Structured artifact viewer | **Confirmed:** render artifact objects as React/HTML cards, tables, and exercise previews. Outline rendering is shared across categories; Draft and Content rendering are category-specific. Raw JSON is a header-toggle tree view with the root expanded and small containers expanded by default. |
 | D23 | Mockup organization | **Confirmed:** keep only Salt sources under `docs/mockups/`, grouped by lesson overview, artifact view, vocabulary lesson, and grammar lesson, then by numbered lesson folders, with double-numbered grammar exercises. Keep one README in the root mockup folder. Mirror every source in synchronized plantuml code fences in Markdown; no PNG/SVG files are stored in the mockup folder. |
-| D24 | Branch names | **Confirmed:** follow the current branch's pattern: `phase<phase-number>-issue<issue-number>-<short-description>`, for example `phase0-issue0-create-spec`. Use lowercase words separated by hyphens. |
+| D24 | Branch names | **Confirmed (revised in P0-02):** use the logical issue ID from ISSUES.md followed by a short description: `P<phase>-<two-digit-issue>-<short-description>`, for example `P0-02-claude-spec-review`. Keep the ID uppercase and use lowercase words separated by hyphens for the description. Before starting an issue, switch to its branch or create it from up-to-date main. |
 | D25 | Results presentation | **Confirmed:** follow the supplied screenshot with flat separated rows on a dark background, correctness icons, muted labels, red incorrect answers, green correct answers, and amber accent/case-only credit. Keep the score summary and prior-exercise menu. |
 | D26 | GitHub issue synchronization | **Confirmed:** after initial issue creation, every change to `docs/SPEC.md` or `docs/ISSUES.md` must refresh the published GitHub issues accordingly, keeping the backlog aligned with the latest specification. |
 | D27 | Shared page design | **Confirmed:** apply the results page's dark design consistently to the lesson index, artifact views, start pages, explanations, all exercises, exams, feedback, and results. |
@@ -66,9 +66,17 @@ Confirmed decisions are identified below. Other defaults make the draft concrete
 | D32 | Workflow commands | **Confirmed:** create the Makefile in P1-01. Use Make targets for workflow tasks, extending it in subsequent issues. Generation, local browser run, build, tests, help, and mockup synchronization have documented targets. |
 | D33 | Screenshot references | **Confirmed:** use the supplied landing and corrected setup/start/exam/results screenshots as the design reference; supersede the English website link. Carry visual patterns across all prototype pages without adding the reference app's features. |
 | D34 | Multi-course index | **Confirmed:** discover all content/outlines JSON; single-select learning language (fr initially) and available level, followed by independent Voc/Grammar/Func/Reading options. |
-| D35 | Multilingual artifacts | **Confirmed:** briefs and content carry required en/fr/de translations and interface-language support text, with stable shared target/item IDs and answer keys. Switching preferences does not call Gemini. |
+| D35 | Multilingual artifacts | **Confirmed:** briefs and content carry required native translations for every available mother tongue and en/fr/de interface-language support text, with stable shared target/item IDs and answer keys. Switching preferences does not call Gemini. |
 | D36 | Raw JSON tree | **Confirmed:** header button toggles Raw JSON / Structured view. Expand the root initially; show primitive leaves and expand objects/arrays with at most three immediate children, collapsing larger containers. |
 | D37 | Session language controls | **Confirmed:** mother tongue can be applied only on the starting/index page and is immutable during a session; other pages show its group read-only. Interface language remains switchable during sessions. |
+| D38 | Mother tongue equal to learning language | **Confirmed (P0-02):** the mother-tongue option equal to the selected course's learning language is shown disabled on the starting page, with an accessible explanation; otherwise flashcards, matching and the translation exam become copy tasks. This reverses the earlier “do not hide fr” rule. If a course change makes the current choice equal to the learning language, select the first other option in en, fr, de order and announce the change. Artifacts omit native translations in the learning language. |
+| D39 | Exam article policy | **Confirmed (P0-02):** keep the original rule. Nouns are taught and examined with the indefinite article wherever it is grammatical, even where an outline intent quotes definite forms (`le père`, `la cuisine` become `un père`, `une cuisine`). Elided `l'` would hide gender. Only forms with no grammatical indefinite article use explicit exceptions (proper names such as countries, verbs, numerals, letters, set phrases, `je suis étudiant`). |
+| D40 | Accent homographs, ligatures and umlaut digraphs | **Confirmed (P0-02):** content marks accent-distinguished words (`a/à`, `ou/où`, `la/là`, `du/dû`, `sur/sûr`) as accent-sensitive, so a wrong or missing accent on them is `incorrect`. Ligature and umlaut substitutes are `orthography_only` (0.5): `oe` for `œ`, `ae` for `æ`, and for German `a`/`ae` for `ä`, `o`/`oe` for `ö`, `u`/`ue` for `ü`. |
+| D41 | Listening exercise | **Confirmed (P0-02):** vocabulary gains a listening exercise: in practice the learner hears a target and chooses it from four options; in the exam the learner hears a target and writes it. A dedicated phase 1 issue (P1-12) adds it. |
+| D42 | No speech voice | **Confirmed (P0-02):** when no suitable learning-language voice exists, a listening page is replaced by a help page explaining browser speech synthesis and how to install a voice on Windows, macOS and Linux, with a Skip button to continue to the next exercise. Skipped listening units are recorded in the session only; they are left out of scores, denominators, progress and results review. |
+| D43 | Answer keys during an active exam | **Confirmed (P0-02):** known prototype limitation. Generated content is public static JSON, so the artifact page is not locked during an active exam; no UI change. |
+| D44 | Vocabulary completion | **Confirmed (P0-02):** phase 2 requires all 48 fr/A1 vocabulary lessons to be generated, reviewed by sampling, and playable, matching the grammar requirement for phase 3. |
+| D45 | Preference persistence | **Confirmed (P0-02):** mother tongue and interface language persist in browser storage across full reloads; en/en apply only on first visit or when storage is unavailable. |
 
 ## 2. Runtime and delivery architecture
 
@@ -140,7 +148,7 @@ BROWSER_CMD ?= xdg-open
 PORT ?= 5173
 ```
 
-`make run` refreshes the derived course catalog from current outline files using the shared catalog scanner, starts the local HTTP development server, waits for it to be ready, and opens the app's `index.html` URL using `BROWSER_CMD`. Resolve the configured base path correctly. Serve over HTTP so React modules and JSON fetches work. Show the URL, report browser-launch errors, and stop the server cleanly on interruption. Users can edit the top variable or override it, for example `make run BROWSER_CMD=firefox`.
+P1-01 owns the shared catalog scanner (outline validation, duplicate course/ID rejection, deterministic ordering, and manifest derivation); P1-02's `make build` and the P1-05/P1-07 generators reuse it rather than reimplementing discovery. `make run` refreshes the derived course catalog from current outline files using the shared catalog scanner, starts the local HTTP development server, waits for it to be ready, and opens the app's `index.html` URL using `BROWSER_CMD`. Resolve the configured base path correctly. Serve over HTTP so React modules and JSON fetches work. Show the URL, report browser-launch errors, and stop the server cleanly on interruption. Users can edit the top variable or override it, for example `make run BROWSER_CMD=firefox`.
 
 | Target | Behavior | Introduced / extended |
 | --- | --- | --- |
@@ -187,15 +195,15 @@ Phase 1 must verify the actual Pages settings and published URL for `bastian-sch
 
 ### Lesson index and combined detail page
 
-The index can display every course discovered in `content/outlines/`. At the top, place **Learning language**, **Level**, then **Categories** option groups in that order. Learning language and level are single-select segmented/radio groups; categories are independent checkbox/toggle options in the order **Voc / Grammar / Func / Reading**. Learning-language options come from catalog `lang` values; level options come only from courses for that language. Select `fr` on initial load when available, otherwise the first catalog language. Initially select A1 when available, otherwise the lowest available CEFR level; preserve the current level on a language change only if it exists for the new language. Sort levels A0, A1, A2, B1, B2, C1, C2 as applicable; never invent unavailable options. The current repository therefore shows fr and A1 only. Additional-language/level fixtures verify the controls without adding authored courses to the scope.
+The index can display every course discovered in `content/outlines/`. At the top, place **Learning language**, **Level**, then **Categories** option groups in that order. Learning language and level are single-select segmented/radio groups; categories are independent checkbox/toggle options in the order **Voc / Grammar / Func / Reading**. Learning-language options come from catalog `lang` values; level options come only from courses for that language. Select `fr` on initial load when available, otherwise the first catalog language. Initially select A1 when available, otherwise the lowest available CEFR level; preserve the current level on a language change only if it exists for the new language. Sort levels A1, A2, B1, B2, C1, C2 (the shared CEFR level enum); never invent unavailable options. The current repository therefore shows fr and A1 only. Additional-language/level fixtures verify the controls without adding authored courses to the scope.
 
 A selected language/level displays that outline's rows in `entries` order. Ordinals are local to that file and remain stable under category filtering. Keep category selection when switching courses. Returning from a lesson restores its course context; concurrent fetches must not display a late response from a previous selection. Show clear no-courses, no-levels, loading, invalid-manifest and failed-outline states. Store the last-try map by globally unique lesson ID so switching courses cannot show another lesson's result.
 
 ### Shared language preferences and locale behavior
 
-The shared page header shows **Mother tongue** as a single-select option group with `en`, `fr`, `de`, and **Interface language** as a combobox with values `fr`, `en`, `de`. Keep them independent from the learning-language and level filters. Defaults remain mother tongue en and interface language en. **Mother tongue is editable/applied only on the starting page (the index/lesson overview).** On artifact pages, lesson-start confirmation, active practice/exams and results, its header option group is disabled/read-only and shows the selected value. Return to the starting page to choose the mother tongue for a new attempt. Interface language remains editable on every page, including an active session. Preferences survive in-app navigation; proposed full-reload preference behavior is to restore en/en, alongside the initial course defaults. Session resume restores the recorded mother tongue without changing it; interface language can be changed immediately after resume. Leaving an active exam to return to the starting page does not pause or extend its saved deadline.
+The shared page header shows **Mother tongue** as a single-select option group with `en`, `fr`, `de`, and **Interface language** as a combobox with values `fr`, `en`, `de`. Keep them independent from the learning-language and level filters. Defaults remain mother tongue en and interface language en. **Mother tongue is editable/applied only on the starting page (the index/lesson overview).** On artifact pages, lesson-start confirmation, active practice/exams and results, its header option group is disabled/read-only and shows the selected value. Return to the starting page to choose the mother tongue for a new attempt. Interface language remains editable on every page, including an active session. Preferences survive in-app navigation and full reloads: **confirmed (P0-02, D45)**, the selected mother tongue and interface language are stored in browser storage and restored on reload. The en/en defaults apply only when nothing is stored or storage is unavailable; a restored mother tongue equal to the selected course language falls back under D38. This does not change D11: the last-try score map is still never stored. Session resume restores the recorded mother tongue without changing it; interface language can be changed immediately after resume. Leaving an active exam to return to the starting page does not pause or extend its saved deadline.
 
-Mother tongue chooses stored translations, flashcard recall text, matching native labels, overview translations, and translation-exam source prompts. Interface language chooses application labels, buttons, empty/error states, instructions, objectives, explanations, correction feedback, result labels, and the production placeholder. Learning-language examples, sentence gaps, pronouns, teaching forms, required answers, accents, canonical IDs and JSON property names remain unchanged. Outline `workingTitle` and original `intent` remain in the source language; generated support text may be localized in addition. A mother tongue equal to the learning language is allowed; do not hide fr for French courses.
+Mother tongue chooses stored translations, flashcard recall text, matching native labels, overview translations, and translation-exam source prompts. Interface language chooses application labels, buttons, empty/error states, instructions, objectives, explanations, correction feedback, result labels, and the production placeholder. Learning-language examples, sentence gaps, pronouns, teaching forms, required answers, accents, canonical IDs and JSON property names remain unchanged. Outline `workingTitle` and original `intent` remain in the source language; generated support text may be localized in addition. A mother tongue equal to the learning language is disabled (D38): for French courses the fr option is visible but unavailable, with an accessible reason. If a learning-language change makes the current mother tongue equal to the new course language, select the first other option in en, fr, de order and announce the change.
 
 Changing mother tongue on the starting page or interface language on any page updates the appropriate presentation immediately without generation, refetching artifacts solely for locale changes, or changing readiness. Interface changes during a lesson redraw instructions/explanations and chrome without resetting response drafts, locks, progress, scores, deadlines, or the selected results view. **Confirmed:** capture mother tongue when starting an attempt and keep it immutable for that session. There is no mother-tongue switch inside an active session. A new choice on the starting page applies only to a new attempt; resumed/completed attempts retain their recorded mother tongue. Artifact translations use the starting-page choice, while result source prompts retain the attempt choice. Preserve the displayed source prompt and submission language context in result records. Neither locale switch may expose suppressed exam feedback.
 
@@ -293,9 +301,11 @@ The CLI reuses shared preparation functions for single lessons and ordered batch
 
 Gemini supports structured JSON output and a subset of JSON Schema. Keep local validation, including checks that cannot be represented in the generation schema. See [Gemini structured output documentation](https://ai.google.dev/gemini-api/docs/structured-output).
 
-Use a bounded policy: at most three model calls per stage including transient retries or schema repair, with capped backoff. Supply field-level validation errors on a repair attempt. Content failure preserves a valid saved brief; the next CLI run resumes the missing stage. Existing valid artifacts are reused without Gemini calls. Invalid/stale files require an explicit CLI regeneration option. Write a temporary file and rename only after validation; failed replacement retains any valid prior artifact. Deduplicate preparation for an ID and serialize batches by default. Diagnostic generation status belongs in CLI output, not the learner UI.
+A single structured-output response may not fit a complete multilingual lesson: a 21–31-target vocabulary lesson with en/fr/de explanations for every answer unit can exceed the model's output limit. Content generation may therefore request separately validated sections (for example per stage or per teaching block) and assemble them locally into the one canonical lesson file. Parts fully determined by the validated brief, such as flashcard sides, matching pairs, and noun-gender rows, should be assembled locally rather than regenerated. The saved file remains a single atomic write after the assembled object passes full validation.
 
-Record schema version, generation timestamp/model/prompt version, and canonical input hashes. A brief stores its outline hash; a lesson stores its outline and brief hashes. Changed inputs or incompatible schemas mark dependent content stale. Rebuild and redeploy after generation; the manifest and runtime use the same hash rules.
+Use a bounded policy: at most three model calls per generation unit (a brief, or one content section) including transient retries or schema repair, with capped backoff. Supply field-level validation errors on a repair attempt. Content failure preserves a valid saved brief; the next CLI run resumes the missing stage. Existing valid artifacts are reused without Gemini calls. Invalid/stale files require an explicit CLI regeneration option. Write a temporary file and rename only after validation; failed replacement retains any valid prior artifact. Deduplicate preparation for an ID and serialize batches by default. Diagnostic generation status belongs in CLI output, not the learner UI.
+
+Record schema version, generation timestamp/model/prompt version, and canonical input hashes. Hash canonical JSON (sorted keys, no insignificant whitespace). The outline hash covers only the lesson's own outline entry plus its course `lang`/`level`, so editing one outline entry does not mark every lesson in that course stale. A brief stores its outline hash; a lesson stores its outline and brief hashes. Changed inputs or incompatible schemas mark dependent content stale. Rebuild and redeploy after generation; the manifest and runtime use the same hash rules.
 
 ## 4. Schema design
 
@@ -331,16 +341,20 @@ const LocalizedTextSchema = z.strictObject({
   de: SupportTextSchema,
 });
 const TranslationVariantsSchema = z.array(SupportTextSchema).min(1);
-const NativeTranslationsSchema = z.strictObject({
-  en: TranslationVariantsSchema,
-  fr: TranslationVariantsSchema,
-  de: TranslationVariantsSchema,
-});
+// Built per course: every locale except the course's learning language.
+const nativeTranslationsSchema = (lang: Locale) =>
+  z.strictObject(
+    Object.fromEntries(
+      LocaleSchema.options.filter((l) => l !== lang).map((l) => [l, TranslationVariantsSchema]),
+    ),
+  );
 ```
 
-Use `LocalizedTextSchema` for generated objectives, introduction copy, learner-facing step labels/instructions, rule explanations, teaching notes, pitfalls, and every scored answer unit's `answerExplanation`. Use `NativeTranslationsSchema` for vocabulary meanings and worked-example translations; translation-source prompts use corresponding localized native-language text, selected by mother tongue. If an exercise uses longer native prompts, its prompt map has required en/fr/de entries under the same item ID. Canonical learning-language terms, example sentences, gaps, tokens, answer keys and pronunciation text remain single fields in `lang`; do not translate the assessed answer to the interface or mother tongue.
+`Locale` is `z.infer<typeof LocaleSchema>`. Non-locale learning languages (none at present) keep all three keys.
 
-Vocabulary briefs include all three translation variants for every target and native prompt, plus all three support-language objective/context/explanation plans. Grammar briefs include all three objective/rule-plan/pitfall variants and en/fr/de translations for worked examples. Content generation receives the outline, full multilingual brief, category schema and explicit locale requirements; it fills the same IDs and shared plan with all three support-language realizations. Validate identical assessed meaning and answer-key applicability across translated prompts during pedagogical review; locale-specific examples must not silently change the expected answer or item difficulty.
+Use `LocalizedTextSchema` for generated objectives, introduction copy, learner-facing step labels/instructions, rule explanations, teaching notes, pitfalls, and every scored answer unit's `answerExplanation`. Use the course's native-translations schema for vocabulary meanings and worked-example translations; translation-source prompts use corresponding localized native-language text, selected by mother tongue. If an exercise uses longer native prompts, its prompt map has required entries for every mother tongue other than the learning language under the same item ID. Canonical learning-language terms, example sentences, gaps, tokens, answer keys and pronunciation text remain single fields in `lang`; do not translate the assessed answer to the interface or mother tongue.
+
+Vocabulary briefs include translation variants for every available mother tongue (en/de for French courses) for every target and native prompt, plus all three support-language objective/context/explanation plans. Grammar briefs include all three objective/rule-plan/pitfall variants and worked-example translations for every available mother tongue. Content generation receives the outline, full multilingual brief, category schema and explicit locale requirements; it fills the same IDs and shared plan with all three support-language realizations. Validate identical assessed meaning and answer-key applicability across translated prompts during pedagogical review; locale-specific examples must not silently change the expected answer or item difficulty.
 
 Require all three keys with nonempty values throughout nested payloads; do not accept partial localization as a valid lesson, duplicate per-locale target inventories, or a single nativeLanguage artifact. Record the locale contract in provenance/versioning, bump the schema version for this incompatible change, and treat prior English-only artifacts as stale under the existing explicit regeneration policy. Readiness and generation reuse require the complete current locale contract. Zod catches missing/empty/wrong-shape maps; human review checks actual language/translation quality and translated accent explanations. Numeric durations, points, limits and enum/reference keys are not localized.
 
@@ -351,8 +365,8 @@ The initial reviewed sample set remains the first ten fr/A1 vocabulary and first
 `VocabularyBriefSchema` defines:
 
 - Learning objective, outline coverage notes, explicit target count, count rationale, difficulty-balance notes, duration estimate, and prerequisites if any. The target array must match the planned count; larger inventories require grouping and an appropriate longer duration estimate.
-- Target entries: `id`, learning-language base term, required en/fr/de native translations, word class, gender where applicable, grammatical number, teaching display form, required exam form(s), accepted variants, and pronunciation text for audio.
-- Noun article policy: indefinite article where applicable, plural form where needed, and explicit exceptions for phrases, verbs, letters, numerals, proper names, or other unsuitable forms. A required article belongs in the full accepted exam answer, not in a heuristic added by the UI.
+- Target entries: `id`, learning-language base term, required native translations for every available mother tongue, word class, gender where applicable, grammatical number, teaching display form, required exam form(s), accepted variants, and pronunciation text for audio.
+- Noun article policy: indefinite article where applicable, plural form where needed, and explicit exceptions for phrases, verbs, letters, numerals, proper names, or other unsuitable forms. A required article belongs in the full accepted exam answer, not in a heuristic added by the UI. Use the indefinite article wherever it is grammatical, even when the outline intent quotes definite forms (D39): `le père` and `la cuisine` are taught and examined as `un père` and `une cuisine`, and plural-only nouns use `des`. Only targets with no grammatical indefinite form (countries and other proper names, verbs, numerals, letters, set phrases, or predicative professions such as `je suis étudiant`) use explicit exception forms.
 - One planned context for each target, and contextual ambiguity notes where a translation has several valid answers.
 - Coverage/count/time plans for six stages: introduction, flashcards, matching, gender exercise/reviewed overview where applicable, typed gaps, translation exam. Specify a duration estimate for each planned learner page and a positive countdown limit for every exam page.
 - Gender practice plan for nouns: display lemmas without articles/gender clues while answering, accepted gender(s) per noun, and a short explanation of the correct choice. All targets appear on one page; non-nouns have no selector. Lessons without applicable nouns keep an unscored overview.
@@ -373,7 +387,7 @@ The schema must also accept the necessary larger count for exceptional outlines:
 `GrammarBriefSchema` defines:
 
 - Topic, objective, prerequisites, scope boundaries, and duration budget.
-- **2–4 teaching blocks**, each with stable ID, rule IDs, bite-sized explanation plan, learning-language examples with en/fr/de translations, pitfalls/irregularities, and a targeted exercise plan.
+- **2–4 teaching blocks**, each with stable ID, rule IDs, bite-sized explanation plan, learning-language examples with translations for every available mother tongue, pitfalls/irregularities, and a targeted exercise plan.
 - Exercise plan entries with allowed type, item count, and assessed rule IDs. Choose pronoun-form exercises only for topics where they fit.
 - Common pitfalls and irregularities for teaching explanations and item-level corrections. A personalized diagnosis/error catalogue is not required for the prototype.
 - A fixed feedback-placeholder stage and final exam blueprint covering the taught rules. The exam uses typed sentence gaps, typed pronoun forms, and word order when sentence structure is assessed. Plan learner pages, their duration estimates, and a positive countdown limit for every exam page.
@@ -384,7 +398,7 @@ Keep the pedagogy explicit enough that the lesson generator fills a defined plan
 
 `LessonContentSchema` is a discriminated union by kind. Each supported kind has ordered steps and typed exercise items. Supported step roles include introduction, explanation, exercise, overview, feedback, and exam; the schema validates the category-specific sequence.
 
-Each step has `id`, role, label, relevant brief/rule/target references, and a typed payload. Each concrete learner page has a unique `pageId` and positive `estimatedDurationS`; every exam page additionally has positive `timeLimitS` copied from its brief plan. A page may contain one item or a group of answer units. Validate that the generated page inventory and timer limits match the brief. Each scored exercise has `type`, stable `itemId`s, instructions, prompts, full answer keys, accepted variants, and item-level feedback/rule references. Every scored answer unit also has a required short localized en/fr/de `answerExplanation`, pre-generated with the correct answer and shown whenever a correction is revealed. Variant-specific explanations may be provided when answers differ. Validate that explanations are present and nonempty; they describe the relevant meaning, spelling, gender/article, or grammar rule, rather than merely repeating the answer. For noun gender, explain the lexical gender and appropriate article without inventing a universal spelling-based rule. The grammar feedback step uses the application's fixed production-placeholder text; the model does not generate individualized feedback. Rendering and scoring use the discriminator; the model does not return executable JavaScript, arbitrary components, or arbitrary HTML.
+Each step has `id`, role, label, relevant brief/rule/target references, and a typed payload. Each concrete learner page has a unique `pageId` and positive `estimatedDurationS`; every exam page additionally has positive `timeLimitS` copied from its brief plan. Validate that the envelope's `estimatedMinutes` equals the summed page estimates rounded to the nearest minute, rather than trusting two independently generated figures. A page may contain one item or a group of answer units. Validate that the generated page inventory and timer limits match the brief. Each scored exercise has `type`, stable `itemId`s, instructions, prompts, full answer keys, accepted variants, and item-level feedback/rule references. Every scored answer unit also has a required short localized en/fr/de `answerExplanation`, pre-generated with the correct answer and shown whenever a correction is revealed. Variant-specific explanations may be provided when answers differ. Validate that explanations are present and nonempty; they describe the relevant meaning, spelling, gender/article, or grammar rule, rather than merely repeating the answer. For noun gender, explain the lexical gender and appropriate article without inventing a universal spelling-based rule. The grammar feedback step uses the application's fixed production-placeholder text; the model does not generate individualized feedback. Rendering and scoring use the discriminator; the model does not return executable JavaScript, arbitrary components, or arbitrary HTML.
 
 | Exercise discriminator | Payload essentials | Scored units |
 | --- | --- | --- |
@@ -393,6 +407,8 @@ Each step has `id`, role, label, relevant brief/rule/target references, and a ty
 | `vocabulary_gender_select` | All target IDs, noun lemmas, accepted genders, select options, answer explanations; reviewed overview uses locked row results | One per applicable noun |
 | `vocabulary_typed_gap` | Sentence segments, one gap, four noninteractive reference choices, accepted article-free answers | One per gap |
 | `vocabulary_translation_exam` | Native prompt and accepted full French answers | One per target |
+| `vocabulary_listening_choice` | Target ID, pronunciation text, four distinct written learning-language options with one answer ID | One per item (practice) |
+| `vocabulary_listening_dictation` | Target ID, pronunciation text, accepted written answers including required article, accent-sensitive flags | One per item (exam) |
 | `grammar_pronoun_form_match` | Pronoun rows, form token IDs, valid assignments | One per row |
 | `grammar_pronoun_form_typing` | Pronoun rows and accepted forms | One per row |
 | `grammar_gap_choice` | Sentence gap and four distinct choices with answer ID | One per gap |
@@ -403,6 +419,10 @@ Each step has `id`, role, label, relevant brief/rule/target references, and a ty
 Introduction, grammar explanations, and plain vocabulary review use unscored payloads. Stage 4 is scored when noun-gender selectors are present, followed by an unscored reviewed display on the same page; count its noun answers once, with no extra score for acknowledging review. The exam is a **container of scored items**, potentially mixing supported types; it is not a seventh universal exercise interaction. Phase 1 must model this before phase 2 begins.
 
 Reference validation rejects missing targets/rules, duplicate nested IDs, unknown exercise types, empty exams, incomplete brief coverage, invalid answer keys, and incorrect category sequences. Duplicate displayed form text is allowed when distinct tokens/forms are needed; score assignments by grammatical validity, not arbitrary token identity.
+
+Native-language labels shown together in one matching group or on the stage-4 overview must be unique within that group for **each** locale; where two targets share a translation in some locale, the content adds a short disambiguating note for that locale. Translation-exam prompts must disambiguate gender/number when a mother tongue does not mark it (for example English “French (woman)” or “student (female)”), or the item must accept every valid form. Error-spotter items contain exactly one faulty token replaced by a correction; omissions or insertions (such as a missing `ne`) are not error-spotter items.
+
+Content stores canonical item and choice order. Matching sides, gap choices, and word-order banks are shuffled at runtime with a seed stored in the session, so resume and results review show the same order without changing answer identity.
 
 Store word-order punctuation and repeated tokens explicitly. Do not split sentences with a simplistic space-only parser. Allow multiple correct sequences/answers when linguistically valid, while ensuring prompts make the intended answer assessable.
 
@@ -479,7 +499,7 @@ final exam contribution       = 65 × earned exam units / all possible exam unit
 
 During practice, show earned practice contribution out of 100. Pending units have earned no points; the denominator includes the full lesson's possible points from the start. This is accumulated credit, not accuracy on attempted answers. After the exam, add its contribution and show the final score out of 100.
 
-To preserve delayed exam feedback, keep the header's earned score at the practice contribution throughout the exam, labeled “Exam results pending”. Do not update the header after individual exam answers: changes would reveal correctness. Progress and countdown may update normally. Publish the complete exam contribution on the final results page, which also shows exercise scores and raw points in its menu/review.
+To preserve delayed exam feedback, keep the header's earned score at the practice contribution throughout the exam, with no “pending” label or other exam-score indicator (D16). Do not update the header after individual exam answers: changes would reveal correctness. Progress and countdown may update normally. Publish the complete exam contribution on the final results page, which also shows exercise scores and raw points in its menu/review.
 
 ### Per-page exam countdown
 
@@ -487,7 +507,9 @@ To preserve delayed exam feedback, keep the header's earned score at the practic
 
 Start the countdown when the exam page becomes active. Display remaining minutes/seconds. Continue submits before expiry; expiry automatically locks the page's current draft answers and advances through the same transition. Valid drafted answers are graded normally; unanswered units earn zero. Mark timed-out pages in the feedback review.
 
-Use an absolute deadline and recompute remaining time from it, so tab throttling, a page reload, or resume cannot reset or extend the allotted time. Persist the deadline. An expired current page is finalized on resume. Resolve a simultaneous Continue/timeout once; input after the deadline cannot alter the locked result. Tests use a fake clock. A new exam page gets its own brief-defined limit on activation. Exam answer feedback, audio of the target answer, hints, gender badges, and backward answer editing stay unavailable until the complete exam finishes.
+Use an absolute deadline and recompute remaining time from it, so tab throttling, a page reload, or resume cannot reset or extend the allotted time. Persist the deadline. An expired current page is finalized on resume. Resolve a simultaneous Continue/timeout once; input after the deadline cannot alter the locked result. Tests use a fake clock. A new exam page gets its own brief-defined limit on activation. Exam answer feedback, audio of the target answer, hints, gender badges, and backward answer editing stay unavailable until the complete exam finishes. The only exception is a listening-dictation page, whose prompt **is** the target audio; it may be replayed until the page locks.
+
+Known prototype limitation (D43): during an active exam the learner can return to the overview and open the lesson's artifact page, whose Content previews show answer keys. Generated content is public static JSON on Pages, so the prototype does not lock the artifact page.
 
 ### Free-text correctness and points
 
@@ -500,8 +522,9 @@ Orthography feedback must **name the mark**, rather than saying only “is writt
 | ê | “Use an accent circonflexe on e.” |
 | ç | “Use a cédille on c.” |
 | ë | “Use a tréma on e.” |
+| œ / æ | “Write the ligature œ (o and e joined).” / “Write the ligature æ.” |
 
-For German umlauts, use “The word is written with umlaut ä” (or ö/ü as applicable). This is a wording convention for future German content, not an expansion of the French A1 prototype. Keep the full correct answer visible separately. Generated explanations must use the mark appropriate to the actual target spelling; generation prompts and content review enforce this wording. Credit remains unchanged.
+For German umlauts, use “The word is written with umlaut ä” (or ö/ü as applicable), also when the learner typed the digraph `ae`/`oe`/`ue`. This is a wording convention for future German content, not an expansion of the French A1 prototype. Keep the full correct answer visible separately. Generated explanations must use the mark appropriate to the actual target spelling; generation prompts and content review enforce this wording. Credit remains unchanged.
 
 All free-text responses have three assessable outcomes, plus unanswered:
 
@@ -512,9 +535,9 @@ All free-text responses have three assessable outcomes, plus unanswered:
 | `incorrect` | Wrong letters, words, word order, article, or other unaccepted content | 0 points |
 | `unanswered` | No answer supplied | 0 points |
 
-First normalize Unicode NFC, trim/collapse whitespace, and normalize typographic apostrophes **without removing case or accents**. Compare against full accepted answers. If none matches, compare copies with case folded and combining accent marks removed to detect `orthography_only`. Preserve the original submitted text and the expected answer for feedback. Do not use the draft's `foldText`: it also changes distinct letters/ligatures. Required articles stay part of the comparison.
+First normalize Unicode NFC, trim/collapse whitespace (including no-break and narrow no-break spaces used before French `? ! : ;`), and normalize typographic apostrophes **without removing case or accents**. Compare against full accepted answers. If none matches, compare copies with case folded and combining accent marks removed to detect `orthography_only`. A second orthography comparison also expands `œ`→`oe`, `æ`→`ae`, `ä`→`ae`, `ö`→`oe`, `ü`→`ue` on both sides before removing marks, so `soeur` for `sœur` and `Maedchen` or `Madchen` for `Mädchen` earn 0.5 (D40). **Exception:** an accepted answer may mark accent-distinguished words as accent-sensitive (for example `à`, `où`, `là`, `dû`, `sûr`); a response that differs from it only by those accents is `incorrect`, because the accent changes the word, not just its spelling. Preserve the original submitted text and the expected answer for feedback. Do not use the draft's `foldText`: it also changes distinct letters/ligatures. Required articles stay part of the comparison.
 
-Examples: expected `un café`, answer `un café` earns 1; `un cafe` or `Un café` earns 0.5; `une café` earns 0. Explicit valid variants can earn full credit if the content declares them accepted. Both practice and exams use the same classification; exam classifications remain hidden until final results.
+Examples: expected `un café`, answer `un café` earns 1; `un cafe` or `Un café` earns 0.5; `une café` earns 0; expected `la sœur`, answer `la soeur` earns 0.5; expected `Il va à Paris.` with `à` accent-sensitive, answer `Il va a Paris.` earns 0. Explicit valid variants can earn full credit if the content declares them accepted. Both practice and exams use the same classification; exam classifications remain hidden until final results.
 
 Non-text tasks earn 1 or 0 per atomic unit. Multi-row tasks earn credit per row; word-order/error-spotter sentences are whole units. Where a text correction is involved, an otherwise correct error-spotter answer may receive the text's 0.5 orthography credit. The detection must also be right. Continue locks first-submission points; acknowledging feedback cannot improve them.
 
@@ -527,7 +550,7 @@ exam score     = 100 × earned exam points / possible exam points
 total score    = 0.35 × practice score + 0.65 × exam score
 ```
 
-Store raw points, including halves, and round only displayed percentages to one decimal place. Exclude unscored screens from score denominators. Mixed exam sections contribute within the 65% exam share according to their possible points, counted once. For example, 80% practice and 60% exam produce 67% total.
+Store raw points, including halves, and round only displayed percentages and weighted scores to one decimal place, half up, from the unrounded value (78.25 displays as 78.3). Exclude unscored screens from score denominators. Mixed exam sections contribute within the 65% exam share according to their possible points, counted once. For example, 80% practice and 60% exam produce 67% total.
 
 The final results page shows the weighted total, practice/exam aggregates and weights, and scores for each scored exercise. **Exam results are selected by default**: show every task, the original locked learner answer, a correct accepted answer, correctness/points, timeout markers, and the pre-generated explanation where an answer needs correction. Include sub-answers on grouped pages. This is answer review, separate from the pre-exam production-feedback placeholder.
 
@@ -539,16 +562,16 @@ No pass/fail gate is required. A pass label and threshold remain optional future
 
 ## 6. Vocabulary learning flow
 
-Keep six stages, integrating noun-gender practice into the overview stage:
+Keep six stages, integrating noun-gender practice into the overview stage and listening into the practice and exam stages (D41):
 
 1. **Introduction:** targets with native translation, French teaching form, audio, and applicable gender badge.
 2. **Flashcards:** native-language front; French, applicable gender, and audio on the back. Track completion.
 3. **Matching:** connect native/French targets in manageable groups. Applicable French forms show gender. Continue locks answers and shows corrections with their generated explanations before confirmation.
 4. **Gender exercise and reviewed overview:** show **all vocabulary on one page**. Nouns have a select box with an initially unanswered state and appropriate gender options; other word classes have no gender input. While answering, show noun lemmas without articles, gender tags, or audio that supplies an article. This temporarily overrides the earlier stages' gender-display rule so the answer is not exposed. Preserve explicit gender/context policies for nouns that accept more than one gender. Continue locks all noun choices and scores one unit per noun. The same page then becomes the overview, showing the learner's selected gender, correct gender and teaching form, right/wrong indicators, translations, audio, and pre-generated explanations for mistakes. Continue acknowledges the overview and proceeds to gaps. Retain the locked row results for final-results review. Lessons without applicable nouns use a plain, unscored overview and skip the gender exercise.
-5. **Typed context gaps:** four visible, noninteractive reference choices; type the missing word without article. Show applicable gender alongside reference forms. Continue shows correctness, correction, and the generated explanation, then confirms/advances.
-6. **Timed translation exam:** native prompt, French answer including indefinite article where applicable; no gender/audio/answer hints. Each page uses its brief-defined countdown. Answer feedback is deferred until the full exam is complete.
+5. **Typed context gaps and listening choice:** typed gaps show four visible, noninteractive reference choices; type the missing word without article. Show applicable gender alongside reference forms. Listening-choice pages play a target with browser speech and the learner selects it from four written learning-language options (choices are interactive here). Continue shows correctness, correction, and the generated explanation, then confirms/advances.
+6. **Timed translation and listening exam:** translation pages show a native prompt and require the French answer including the indefinite article where applicable; no gender/audio/answer hints. Listening-dictation pages play a target (replayable until lock) and the learner writes it in the teaching form, article included where applicable, scored by the shared free-text classifier. Each page uses its brief-defined countdown. Answer feedback is deferred until the full exam is complete.
 
-After the exam, the final results page defaults to exam answers and offers a button menu for prior exercise results. Introduction/flashcards/plain review remain completion-only. Matching, applicable noun-gender answers, typed gaps, and the exam are scored. All three scored practice types share the existing 35% practice contribution by possible units; the exam remains 65%. The gender overview answers and confirmation are one learner page for progress, using an estimate that includes both answering and review.
+After the exam, the final results page defaults to exam answers and offers a button menu for prior exercise results. Introduction/flashcards/plain review remain completion-only. Matching, applicable noun-gender answers, typed gaps, listening choice, and the exam are scored. All scored practice types share the existing 35% practice contribution by possible units; the exam remains 65%. The gender overview answers and confirmation are one learner page for progress, using an estimate that includes both answering and review.
 
 ```mermaid
 flowchart TD
@@ -561,13 +584,18 @@ flowchart TD
     D -->|No| H[Stage 4: plain unscored overview]
     G --> I[Continue to typed gaps]
     H --> I
-    I --> J[Timed translation exam]
+    I --> I2[Listening choice when planned]
+    I2 --> J[Timed translation and listening-dictation exam]
     J --> K[Final results: exam selected by default]
     K --> L[Button menu to inspect previous exercise results]
     L --> K
 ```
 
-Audio is learner-triggered. Use the French speech language explicitly. An unavailable voice does not hide text or block progression; show its limitation. During gender answering, any audio must preserve the hidden article/gender clues; the complete audio controls return in reviewed overview.
+Audio is learner-triggered, except that a listening page offers an initial play control. Use the French speech language explicitly. An unavailable voice does not hide text or block progression; show its limitation.
+
+The vocabulary brief plans listening items (which targets, how many practice and exam pages, and their durations/limits). Listening coverage is required where the outline intent names oral recognition or pronunciation (for example `fr-numbers-zero-to-twenty`, `fr-alphabet-and-accents`, `fr-classroom-instructions`); other lessons may include a smaller planned subset. Each item uses the target's pronunciation text, so audio and accepted answer stay aligned.
+
+**No suitable voice (D42):** when the browser offers no voice for the learning language, each listening page is replaced by a localized help page. It explains that the prototype uses the browser's built-in speech synthesis, then gives short installation steps: Windows (Settings → Time & language → Speech → Add voices, French), macOS (System Settings → Accessibility → Spoken Content → System voice → Manage Voices, French), and Linux (install a speech engine and French voice, for example `speech-dispatcher` with `espeak-ng`, or use a browser with built-in online voices), followed by a browser restart. A **Skip** button continues to the next exercise or exam page. The help page has no countdown; an exam page's countdown starts only when its listening item can be played. Skipped listening units are recorded in the session as `skipped_no_voice` only to support resume. They are left out of the attempt's scores, practice/exam denominators, progress and final results review. During gender answering, any audio must preserve the hidden article/gender clues; the complete audio controls return in reviewed overview.
 
 ## 7. Grammar learning flow
 
@@ -705,7 +733,7 @@ The **PlantUML Salt** wireframes below carry the reference layouts, wider contro
 
 Keep only the editable `.puml` sources and the root README in `docs/mockups/`; do not store PNG/SVG exports there. **Every mockup is embedded below in a `plantuml` code fence containing the exact contents of its `.puml` file. Whenever a `.puml` changes, update its corresponding Markdown code in the same change.** This applies to SPEC and any other Markdown copies, including published issue bodies. Each SPEC block is bounded by `mockup:begin` / `mockup:end` comments identifying its source path. The source files are the canonical editable inputs; their Markdown copies must stay identical, never edited independently.
 
-Use PlantUML-enabled Markdown preview for automatic rendering. The [root mockup README](mockups/README.md) documents the **PlantUML by jebbs** extension, user settings for the server renderer, and auto-updating preview. Browse all 29 source files and embedded previews through that guide. After the Makefile is introduced in P1-01, run `make mockups-sync` to refresh embedded source and `make mockups-check` to reject missing, stale, or orphaned blocks. Include this consistency check in `make test-all` and CI. Exported previews, when needed for inspection, are temporary outputs outside `docs/mockups/`.
+Use PlantUML-enabled Markdown preview for automatic rendering. The [root mockup README](mockups/README.md) documents the **PlantUML by jebbs** extension, user settings for the server renderer, and auto-updating preview. Browse all 32 source files and embedded previews through that guide. After the Makefile is introduced in P1-01, run `make mockups-sync` to refresh embedded source and `make mockups-check` to reject missing, stale, or orphaned blocks. Include this consistency check in `make test-all` and CI. Exported previews, when needed for inspection, are temporary outputs outside `docs/mockups/`.
 
 GitHub's native Markdown diagram support does not include PlantUML. Published issues therefore include the applicable `plantuml` source fences and server-rendered image URLs derived from that source, plus committed source links; verify their rendering. No local PNG/SVG copies are required. See [GitHub diagram support](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams) and the [extension documentation](https://github.com/qjebbs/vscode-plantuml).
 
@@ -728,7 +756,7 @@ scale 1.3
 {
   .
   { <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#E2E8F0>○  fr</color> | <color:#E2E8F0>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
+{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr (course language)</color> | <color:#E2E8F0>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
 .
   .
   { <color:#E2E8F0><b>LESSON PROTOTYPE</b></color> | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | <color:#94A3B8>French / A1</color> }
@@ -745,7 +773,7 @@ scale 1.3
   {
     <color:#E2E8F0><b>No.</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Lesson</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Category</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Content</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score on last try</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Actions</b></color>
     . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
-    <color:#E2E8F0>01</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Saluer et prendre congé</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Function</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Outline</color> ] | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
+    <color:#E2E8F0>01</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Saluer et dire au revoir</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Function</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Outline</color> ] | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
     . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
     <color:#E2E8F0>02</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Les pronoms je, tu, il, elle...</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Grammar</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Content</color> ] | <color:#020617>xxx</color> | <color:#E2E8F0><b>76.5%</b></color> | <color:#020617>xxx</color> | [ <color:#020617>   Start lesson   </color> ]
     . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
@@ -1399,7 +1427,6 @@ scale 1.3
   .
   { <color:#E2E8F0><b>Les objets de la classe</b></color> | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 26.3 / 100</b></color> }
   { <color:#E2E8F0>Progress 78%</color> | <color:#020617>xxx</color> | <color:#635BFF>█████████</color><color:#1E293B>░░░</color> | <color:#020617>xxx</color> | <color:#635BFF><size:32>◯</size></color><color:#E2E8F0><size:21> 24s</size></color> }
-  <color:#94A3B8>Exam results pending</color>
   .
   <color:#1E293B>──────────────────────────────────────────────────────────────────</color>
   .
@@ -1786,13 +1813,13 @@ scale 1.3
 
 ### Browse the lesson stages and grammar exercises
 
-The folder organization follows the lesson flow. Vocabulary uses `01-startpage/`, then `02-introduction/` through `07-exam/`, and `08-results/`. These folder numbers include the start page; the educational six-stage numbering remains unchanged. Grammar uses `01-startpage/`, `02-00-explanation/`, double-numbered exercise folders `02-01-exercise-pronoun-match/` through `02-06-exercise-error-spotter/`, then `03-feedback-placeholder/`, `04-exam/`, and `05-results/`. The exercise folders describe the available component types, not a requirement to use all six in one lesson. The single [root README](mockups/README.md) links every editable source and its embedded SPEC preview; there are no per-folder READMEs.
+The folder organization follows the lesson flow. Vocabulary uses `01-startpage/`, then `02-introduction/` through `07-exam/`, and `08-results/`; `06-listening/` sits beside `06-typed-gaps/` because both belong to practice stage 5, and `07-exam/` also holds the listening-dictation page. These folder numbers include the start page; the educational six-stage numbering remains unchanged. Grammar uses `01-startpage/`, `02-00-explanation/`, double-numbered exercise folders `02-01-exercise-pronoun-match/` through `02-06-exercise-error-spotter/`, then `03-feedback-placeholder/`, `04-exam/`, and `05-results/`. The exercise folders describe the available component types, not a requirement to use all six in one lesson. The single [root README](mockups/README.md) links every editable source and its embedded SPEC preview; there are no per-folder READMEs.
 
 | Category | Folders and previews |
 | --- | --- |
 | [Lesson overview](mockups/README.md#lesson-overview) | Ordered lesson index. |
 | [Artifact view](mockups/README.md#artifact-view) | Shared Outline layout, with category-specific vocabulary/grammar Draft and Content views. |
-| [Vocabulary lesson](mockups/README.md#vocabulary-lesson) | Start; [01 introduction](mockups/03-vocabulary-lesson/02-introduction/introduction.puml); [02 flashcards](mockups/03-vocabulary-lesson/03-flashcards/front.puml) and [reveal](mockups/03-vocabulary-lesson/03-flashcards/revealed.puml); [03 matching](mockups/03-vocabulary-lesson/04-matching/matching.puml); 04 gender + reviewed overview; 05 typed gaps + feedback; 06 exam; results. |
+| [Vocabulary lesson](mockups/README.md#vocabulary-lesson) | Start; [01 introduction](mockups/03-vocabulary-lesson/02-introduction/introduction.puml); [02 flashcards](mockups/03-vocabulary-lesson/03-flashcards/front.puml) and [reveal](mockups/03-vocabulary-lesson/03-flashcards/revealed.puml); [03 matching](mockups/03-vocabulary-lesson/04-matching/matching.puml); 04 gender + reviewed overview; 05 typed gaps + feedback, [listening choice](mockups/03-vocabulary-lesson/06-listening/listening-choice.puml) and [no-voice help](mockups/03-vocabulary-lesson/06-listening/no-voice-help.puml); 06 exam and [listening dictation](mockups/03-vocabulary-lesson/07-exam/listening-dictation.puml); results. |
 | [Grammar lesson](mockups/README.md#grammar-lesson) | [Start](mockups/04-grammar-lesson/01-startpage/lesson-start.puml); [explanation](mockups/04-grammar-lesson/02-00-explanation/singular-forms.puml); [pronoun matching](mockups/04-grammar-lesson/02-01-exercise-pronoun-match/pronoun-match.puml); [pronoun typing](mockups/04-grammar-lesson/02-02-exercise-pronoun-typing/pronoun-typing.puml); [choice gap](mockups/04-grammar-lesson/02-03-exercise-gap-choice/gap-choice.puml); [typed gap](mockups/04-grammar-lesson/02-04-exercise-gap-typing/gap-typing.puml) and [feedback](mockups/04-grammar-lesson/02-04-exercise-gap-typing/feedback.puml); [word order](mockups/04-grammar-lesson/02-05-exercise-word-order/word-order.puml); [error spotter](mockups/04-grammar-lesson/02-06-exercise-error-spotter/error-spotter.puml); [placeholder](mockups/04-grammar-lesson/03-feedback-placeholder/feedback-placeholder.puml); [exam](mockups/04-grammar-lesson/04-exam/mixed-exam.puml); [results](mockups/04-grammar-lesson/05-results/exam-results.puml). |
 
 ### Additional lesson screens
@@ -2155,6 +2182,184 @@ scale 1.3
 @endsalt
 ```
 <!-- mockup:end mockups/03-vocabulary-lesson/04-matching/matching.puml -->
+
+#### Vocabulary: Listening choice
+
+<a id="mockup-03-vocabulary-lesson-06-listening-listening-choice"></a>
+
+[Salt source](mockups/03-vocabulary-lesson/06-listening/listening-choice.puml)
+
+<!-- mockup:begin mockups/03-vocabulary-lesson/06-listening/listening-choice.puml -->
+```plantuml
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xxx</color> | {
+{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
+.
+{ <color:#E2E8F0><b>Les nombres de 0 à 20</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 18.0 / 100</b></color> }
+{ <color:#E2E8F0>Progress 58%</color> | <color:#020617>xxx</color> | <color:#635BFF>███████</color><color:#1E293B>░░░░░</color> }
+.
+<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+.
+<color:#E2E8F0><size:30><b>Choose what you hear</b></size></color>
+.
+{
+.
+{ <color:#020617>xxx</color> | {
+<color:#94A3B8>PRACTICE   /   Listening   /   Item 3 of 8</color>
+.
+{ [ <color:#4338CA>Play audio</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>Play again</color> ] }
+.
+<back:#0F172A><color:#E2E8F0><size:21>   six                                          </size></color></back>
+.
+<back:#0F172A><color:#E2E8F0><size:21>   dix                                          </size></color></back>
+.
+<back:#0F172A><color:#E2E8F0><size:21>   seize                                        </size></color></back>
+.
+<back:#0F172A><color:#E2E8F0><size:21>   treize                                       </size></color></back>
+.
+.
+<color:#94A3B8>Select the word you heard, then Continue to lock it.</color>
+<color:#94A3B8>Continue then shows the result and a short explanation.</color>
+.
+[ <color:#020617>                      Continue                      </color> ]
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+@endsalt
+```
+<!-- mockup:end mockups/03-vocabulary-lesson/06-listening/listening-choice.puml -->
+
+When no French voice exists, the listening page is replaced by this help page; Skip continues with the next exercise (D42).
+
+#### Vocabulary: No-voice help
+
+<a id="mockup-03-vocabulary-lesson-06-listening-no-voice-help"></a>
+
+[Salt source](mockups/03-vocabulary-lesson/06-listening/no-voice-help.puml)
+
+<!-- mockup:begin mockups/03-vocabulary-lesson/06-listening/no-voice-help.puml -->
+```plantuml
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xxx</color> | {
+{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
+.
+{ <color:#E2E8F0><b>Les nombres de 0 à 20</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 18.0 / 100</b></color> }
+{ <color:#E2E8F0>Progress 58%</color> | <color:#020617>xxx</color> | <color:#635BFF>███████</color><color:#1E293B>░░░░░</color> }
+.
+<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+.
+<color:#E2E8F0><size:30><b>Audio is not available</b></size></color>
+.
+{
+.
+{ <color:#020617>xxx</color> | {
+<color:#94A3B8>PRACTICE   /   Listening   /   Item 3 of 8</color>
+.
+<color:#E2E8F0>This lesson uses your browser's built-in speech synthesis.</color>
+<color:#E2E8F0>No French voice was found, so this listening exercise cannot play.</color>
+.
+<color:#E2E8F0><b>Windows</b></color>
+<color:#94A3B8>Settings → Time & language → Speech → Add voices → French.</color>
+.
+<color:#E2E8F0><b>macOS</b></color>
+<color:#94A3B8>System Settings → Accessibility → Spoken Content → System voice</color>
+<color:#94A3B8>→ Manage Voices → French.</color>
+.
+<color:#E2E8F0><b>Linux</b></color>
+<color:#94A3B8>Install a speech engine with a French voice, e.g. speech-dispatcher</color>
+<color:#94A3B8>and espeak-ng, or use a browser with built-in online voices.</color>
+.
+<color:#E2E8F0>Restart the browser after installing a voice.</color>
+.
+<color:#94A3B8>Skip continues with the next exercise. Skipped items are marked in your results.</color>
+.
+[ <color:#020617>                        Skip                        </color> ]
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+@endsalt
+```
+<!-- mockup:end mockups/03-vocabulary-lesson/06-listening/no-voice-help.puml -->
+
+#### Vocabulary: Listening dictation exam
+
+<a id="mockup-03-vocabulary-lesson-07-exam-listening-dictation"></a>
+
+[Salt source](mockups/03-vocabulary-lesson/07-exam/listening-dictation.puml)
+
+<!-- mockup:begin mockups/03-vocabulary-lesson/07-exam/listening-dictation.puml -->
+```plantuml
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+  .
+  { <color:#020617>xxx</color> | {
+{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
+.
+  .
+  { <color:#E2E8F0><b>Les nombres de 0 à 20</b></color> | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 27.1 / 100</b></color> }
+  { <color:#E2E8F0>Progress 86%</color> | <color:#020617>xxx</color> | <color:#635BFF>██████████</color><color:#1E293B>░░</color> | <color:#020617>xxx</color> | <color:#635BFF><size:32>◯</size></color><color:#E2E8F0><size:21> 18s</size></color> }
+  .
+  <color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+  .
+  .
+  {
+    .
+    { <color:#020617>xxx</color> | {
+    { <color:#E2E8F0>FINAL EXAM   /   Page 18 of 25</color> | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | <color:#94A3B8>Timed page</color> }
+    .
+    <color:#E2E8F0><size:23><b>Write what you hear</b></size></color>
+    .
+    { [ <color:#4338CA>Play audio</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>Play again</color> ] }
+    .
+    <color:#E2E8F0>Write the French word. Accents count for full credit.</color>
+    .
+    <color:#E2E8F0><b>Your answer</b></color>
+    "<color:#E2E8F0>dix</color>                                                   "
+    .
+    .
+    [ <color:#020617>                      Continue                      </color> ]
+    .
+     } | <color:#020617>xxx</color> }
+    .
+   }
+  .
+  <color:#E2E8F0>Results and corrections appear after the complete exam.</color>
+  .
+   } | <color:#020617>xxx</color> }
+  .
+ }
+@endsalt
+```
+<!-- mockup:end mockups/03-vocabulary-lesson/07-exam/listening-dictation.puml -->
 
 #### Grammar: Lesson start
 
@@ -2748,7 +2953,6 @@ scale 1.3
 .
 { <color:#E2E8F0><b>Le verbe être au présent</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 26.3 / 100</b></color> }
 { <color:#E2E8F0>Progress 83%</color> | <color:#020617>xxx</color> | <color:#635BFF>██████████</color><color:#1E293B>░░</color> | <color:#020617>xxx</color> | <color:#635BFF><size:32>◯</size></color><color:#E2E8F0><size:21> 48s</size></color> }
-<color:#94A3B8>Exam results pending</color>
 .
 <color:#1E293B>──────────────────────────────────────────────────────────────────</color>
 .
@@ -2911,8 +3115,8 @@ Detailed implementation issue bodies and dependencies are in [ISSUES.md](ISSUES.
 | Phase | Deliverable | Exit criteria |
 | --- | --- | --- |
 | 0 | Specification and issues | Refine the spec, review it with Claude, retire the superseded requirements summary, then publish the dependency-linked backlog under Phase 0–Phase 5 milestones. |
-| 1 | Skeleton and shared contracts | Catalog discovery of all outlines, learning-language/level/category selection, independent en/fr/de mother-tongue/interface controls, multilingual brief/content contracts, structured artifact viewers and header-toggle JSON tree, `dist` deployment verified on Pages, category schemas, Makefile workflow with help/run/build/generation/test/mockup targets, offline generation, environment example, approved 20 briefs/20 lessons, start/session/exercise host, shared tests, vocabulary/grammar architecture review, retirement of legacy prompt/schema files after schema migration, and final index/artifact mockup update from the prototype. |
-| 2 | Vocabulary | Introduction/audio, flashcards, matching, integrated noun-gender/reviewed overview, typed reference gaps, timed translation exam, immediate confirmed practice feedback, final results with exam/practice answer review menu, weighted progress/score header, and complete sample journeys/tests. Remaining vocabulary outlines can use the same pipeline; all 48 generated artifacts are optional unless added to scope. Close with vocabulary mockups updated from actual pages. |
+| 1 | Skeleton and shared contracts | Catalog discovery of all outlines, listening exercise contract/renderers with no-voice help page, learning-language/level/category selection, independent en/fr/de mother-tongue/interface controls, multilingual brief/content contracts, structured artifact viewers and header-toggle JSON tree, `dist` deployment verified on Pages, category schemas, Makefile workflow with help/run/build/generation/test/mockup targets, offline generation, environment example, approved 20 briefs/20 lessons, start/session/exercise host, shared tests, vocabulary/grammar architecture review, retirement of legacy prompt/schema files after schema migration, and final index/artifact mockup update from the prototype. |
+| 2 | Vocabulary | Introduction/audio, flashcards, matching, integrated noun-gender/reviewed overview, typed reference gaps, timed translation exam, immediate confirmed practice feedback, final results with exam/practice answer review menu, weighted progress/score header, listening choice/dictation with the no-voice help page, all 48 vocabulary lessons generatable/playable (D44), and complete journeys/tests. Close with vocabulary mockups updated from actual pages. |
 | 3 | Grammar | Six practice interactions, 2–4 block flow, production-feedback placeholder, timed mixed exams, final results with exam/practice answer review menu and scores, all 48 grammar lessons generatable/playable, end-to-end tests, and final grammar mockup updates from actual pages. |
 | 4 | Functions | Requirements and schema review first; then define generation, interaction, scoring, content, and acceptance issues. Finish implementation with mockups refreshed from actual pages. |
 | 5 | Reading | Requirements and schema review first; then define generation, interaction, scoring, content, and acceptance issues. Finish implementation with mockups refreshed from actual pages. |
@@ -2932,7 +3136,8 @@ Use the following review, cleanup, and mockup gates in the issue plan. Full issu
 | P1-01 | Build the React skeleton and create the Makefile workflow | Add local run/browser configuration, help, tests, and mockup synchronization targets. |
 | P1-03 | Define executable brief and content schemas | Migrate needed definitions before retiring draft files. |
 | P1-04 | Remove the legacy prompt/schema directory, its files, and all its SPEC references | After P1-03 and P0-03; executable imports and applicable checks must pass. |
-| P1-11 | Improve index and artifact-view mockups from the running prototype | Final phase 1 issue, after sample reviews and shared-contract review. |
+| P1-12 | Add the vocabulary listening exercise and no-voice help page | After P1-03 and P1-09; before the P1-10 contract review. |
+| P1-11 | Improve index and artifact-view mockups from the running prototype | Final phase 1 issue, after sample reviews, listening support, and shared-contract review. |
 | P2-05 | Improve vocabulary lesson mockups from the running prototype | Final phase 2 issue, after complete-session validation. |
 | P3-07 | Improve grammar lesson mockups from the running prototype | Final phase 3 issue, after complete grammar integration. |
 | P4-02 | Improve function lesson mockups from the running prototype | Final phase 4 task; deferred until requirements and future implementation issues are complete. |
@@ -2956,23 +3161,25 @@ Verify the updated issues on GitHub, including dependency links and rendered ass
 
 ### Branch naming
 
-Keep branch names consistent with the existing `phase0-issue0-create-spec` branch:
+Name branches after the logical issue ID used in ISSUES.md and in the GitHub title prefix:
 
 ```text
-phase<phase-number>-issue<issue-number>-<short-description>
+P<phase-number>-<two-digit-issue-number>-<short-description>
 ```
 
-Use the roadmap phase number (0–5), the actual GitHub issue number once assigned, and a brief lowercase description separated by hyphens. For example, work on GitHub issue #12 in phase 1 could use `phase1-issue12-build-lesson-index`; the number here is illustrative, not an assigned backlog issue. Logical draft IDs such as `P1-01` remain in the specification until publication maps them to real GitHub issues. The existing phase 0 specification branch keeps its bootstrap issue number 0. Record the intended branch name when work on each published issue begins.
+Keep the ID exactly as in ISSUES.md (uppercase `P`, two-digit issue number) and add a brief lowercase description separated by hyphens. For example, P0-02 uses `P0-02-claude-spec-review` and P1-01 could use `P1-01-build-lesson-index`. The ID stays the same before and after publication, so branch names do not depend on GitHub issue numbers; link the GitHub issue from the pull request instead. The already merged P0-01 branch `p0-01-create-spec` predates this rule and is not renamed. Record the branch name when work on each issue begins.
+
+**Before starting work on any issue, check the current branch.** If it is not that issue's branch, switch to it when it exists (`git switch <branch>`), otherwise create it from the up-to-date main branch (`git switch main && git pull && git switch -c <branch>`). Never start an issue's work on `main` or on another issue's branch. Carry over uncommitted work only when it belongs to the new issue.
 
 ### Cross-cutting verification
 
 - Contract tests: valid/invalid briefs and lessons, category sequences, immutable IDs, hashes, accepted variants, per-page estimated durations, brief-defined exam time limits, required correction explanations, noun-gender applicability, and missing language imports.
-- Generator integration tests with a fake Gemini adapter and temporary directory: reuse, missing-stage generation, invalid response repair, bounded failure, network errors, atomic writes, duplicate clicks, and partial success.
-- Shared unit tests: single-Continue lock/confirm transitions, accent/case classifications and half credit, immutable scores, multi-unit grading, mixed exam aggregation, duration-weighted progress, sealed exam score display, timeout/submit races, deadline persistence, content-change resume rejection, in-memory last-try reset/real-zero/latest-completion behavior, result-menu immutability, noun-gender scoring, and zero-denominator handling.
+- Generator integration tests with a fake Gemini adapter and temporary directory: reuse, missing-stage generation, invalid response repair, bounded failure, network errors, atomic writes, concurrent invocations for one ID, sectioned content assembly, and partial success.
+- Shared unit tests: single-Continue lock/confirm transitions, accent/case classifications and half credit, ligature/umlaut digraph half credit, accent-sensitive homographs, immutable scores, multi-unit grading, mixed exam aggregation, duration-weighted progress, sealed exam score display, timeout/submit races, deadline persistence, content-change resume rejection, in-memory last-try reset/real-zero/latest-completion behavior, result-menu immutability, noun-gender scoring, and zero-denominator handling.
 - Component checks: original order/ordinals under filters, one highest-artifact Content label, ephemeral last-try score column, and readiness-gated Start, shared Outline and typed vocabulary/grammar Draft/Content views, full arrays accessible in structured mode, raw JSON header toggle with exact recursive expansion rules, read-only previews without session mutations, combined detail header, no generation controls, typed-only reference choices, feedback confirmation, gender visibility, exam answer suppression, countdowns, keyboard operation, and error states.
-- Vocabulary end-to-end journey: load deployed fixture files, complete all six stages, submit/confirm correct and incorrect practice responses, finish timed exam pages, review exam/practice answers through the results menu, test noun-gender overview and explanations, reload/resume, and verify scores and transient index values.
+- Vocabulary end-to-end journey: load deployed fixture files, complete all six stages, submit/confirm correct and incorrect practice responses, finish timed exam pages, review exam/practice answers through the results menu, test noun-gender overview and explanations, listening choice/dictation and the no-voice help/skip path, reload/resume, and verify scores and transient index values.
 - Grammar end-to-end journeys: conjugation, article/gap, and word-order lessons; timed mixed exam, correction explanations, and final results menu; production-feedback placeholder in the correct sequence; progress, hidden exam scores, and total correctness.
-- Multi-course/localization checks: discover additional outline fixtures, fr/A1 defaults and missing-fr fallback, available-level filtering, duplicate course/ID rejection, fetch race handling, independent native/interface selection, complete en/fr/de maps, unchanged scoring/timers on interface switches, and raw-tree zero/null/empty/3-child/4-child/deep nesting cases.
+- Multi-course/localization checks: discover additional outline fixtures, fr/A1 defaults and missing-fr fallback, available-level filtering, duplicate course/ID rejection, fetch race handling, independent native/interface selection, disabled same-language mother tongue, complete en/fr/de maps, unchanged scoring/timers on interface switches, and raw-tree zero/null/empty/3-child/4-child/deep nesting cases.
 - Build/deployment checks: no secret in generated output, base-path-safe assets/content, missing content behavior, Pages URL availability, and refreshed routes.
 
 CI does not call Gemini. Live generation and pedagogical review are separate authoring checks using the configured `.env` credentials.
@@ -3010,3 +3217,4 @@ When publishing the agreed backlog, include relevant Mermaid flows as fenced `me
 | 0.17 | 2026-10-06 | Replaced the website reference with a register of the supplied landing and corrected setup/start/exam/results screenshots; specified shared dark surfaces, light primary actions, wide choice cards, circular exam countdown, and prominent score summaries. Adjusted mockups and synchronized all 27 embedded sources. Preserved and embedded the four distinct locally supplied originals; the supplementary language-start image remains available only in the conversation. |
 | 0.18 | 2026-10-06 | Preserved and embedded the corrected Deutsch start screenshot as R3, completing the five local design references. Updated issue acceptance criteria and removed the missing-image notice. |
 | 0.19 | 2026-10-06 | Expanded outline discovery to a build-derived multi-course catalog and language/level/category controls. Added independent mother-tongue/interface preferences, required en/fr/de brief/content maps, localized runtime support, and the artifact header JSON tree toggle with recursive expansion rules. Refreshed all headers and added two shared JSON-view mockups; all 29 sources are synchronized. Confirmed starting-page-only mother-tongue selection and an immutable session mother tongue; interface language remains switchable. |
+| 0.20 | 2026-10-06 | Applied the P0-02 Claude review ([record](reviews/2026-10-06-p0-02-claude-spec-review.md)). Confirmed D5/D11/D16 (no pending label in the exam header). Added D38–D45: same-language mother tongue disabled, indefinite exam article kept, accent-sensitive homographs and half-credit ligature/umlaut digraphs, vocabulary listening choice/dictation with a no-voice help page (new P1-12), answer keys during exams documented as a limitation, and all 48 vocabulary lessons required in phase 2. Clarified catalog scanner ownership, per-entry outline hashes, sectioned content generation, rounding, runtime shuffle seeds, label/prompt disambiguation, single-token error spotting, and whitespace normalization. Added three listening mockups; all 32 sources are synchronized. Preferences persist in browser storage across reloads (D45); skipped listening units are left out of scores, progress and results. Added the check-branch-before-work rule and changed branch names to `P<phase>-<two-digit-issue>-<description>` (D24). D13 remains open. |
