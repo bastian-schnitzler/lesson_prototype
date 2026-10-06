@@ -1,0 +1,708 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-countries-and-nationalities",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les pays et les nationalités",
+  "objective": {
+    "en": "Learn seven country names and their corresponding masculine and feminine nationality adjectives in French.",
+    "fr": "Apprendre sept noms de pays et leurs adjectifs de nationalité correspondants au masculin et au féminin.",
+    "de": "Lerne sieben Ländernamen und die dazugehörigen männlichen und weiblichen Nationalitätsadjektive auf Französisch."
+  },
+  "estimatedMinutes": 11,
+  "provenance": {
+    "generator": "lesson-prototype",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "brief-v2",
+    "generatedAt": "2026-10-06T14:34:36.949Z",
+    "inputHashes": {
+      "outline": "4bf17f4e2b096c50de82ca8f715c42f5826e58849c6093eccfc4fc8dd81c4df2"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "personal_identification",
+  "coverageNotes": {
+    "en": "Covers 7 major countries and their masculine/feminine nationality forms at A1 level, fulfilling the outline requirements.",
+    "fr": "Couvre 7 pays majeurs et leurs formes de nationalité masculin/féminin au niveau A1, répondant au programme.",
+    "de": "Deckt 7 wichtige Länder und ihre männlichen/weiblichen Nationalitätsformen auf A1-Niveau ab."
+  },
+  "targetCount": 14,
+  "countRationale": {
+    "en": "14 targets provide a balanced set of 7 country nouns and 7 corresponding nationality adjectives without overwhelming beginner learners.",
+    "fr": "14 cibles offrent un ensemble équilibré de 7 noms de pays et 7 adjectifs de nationalité sans surcharger les débutants.",
+    "de": "14 Ziele bieten eine ausgewogene Auswahl von 7 Ländernamen und 7 Nationalitätsadjektiven, ohne Anfänger zu überfordern."
+  },
+  "difficultyBalance": {
+    "en": "11 core items cover highly common European/global terms; 3 demanding items introduce masculine/feminine suffix shifts (-ien/-ienne, -e endings for masculine country names).",
+    "fr": "11 termes essentiels couvrent des pays très courants; 3 termes plus exigeants introduisent les alternances de suffixes (-ien/-ienne, terminaisons en -e pour les pays masculins).",
+    "de": "11 Kernbegriffe decken sehr geläufige Ländernamen ab; 3 anspruchsvollere Begriffe führen Suffixwechsel (-ien/-ienne) und Ausnahmen ein."
+  },
+  "prerequisites": [
+    {
+      "en": "Basic familiarity with French subject pronouns (il, elle).",
+      "fr": "Connaissance de base des pronoms sujets français (il, elle).",
+      "de": "Grundkenntnisse der französischen Subjektpronomen (il, elle)."
+    }
+  ],
+  "groups": [
+    {
+      "id": "group-countries",
+      "label": {
+        "en": "Countries",
+        "fr": "Les pays",
+        "de": "Länder"
+      },
+      "targetIds": [
+        "target-espagne",
+        "target-japon",
+        "target-france",
+        "target-allemagne",
+        "target-canada",
+        "target-italie",
+        "target-mexique"
+      ]
+    },
+    {
+      "id": "group-nationalities",
+      "label": {
+        "en": "Nationalities",
+        "fr": "Les nationalités",
+        "de": "Nationalitäten"
+      },
+      "targetIds": [
+        "target-espagnol",
+        "target-japonais",
+        "target-francais",
+        "target-allemand",
+        "target-canadien",
+        "target-italien",
+        "target-mexicain"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "target-espagne",
+      "term": "l'Espagne",
+      "translations": {
+        "en": [
+          "Spain"
+        ],
+        "de": [
+          "Spanien"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "l'Espagne",
+      "examForms": [
+        "l'Espagne"
+      ],
+      "acceptedVariants": [
+        "Espagne"
+      ],
+      "accentSensitive": [],
+      "articleException": {
+        "en": "Country names take definite articles in standard usage.",
+        "fr": "Les noms de pays s'utilisent avec l'article défini.",
+        "de": "Ländernamen werden mit dem bestimmten Artikel verwendet."
+      },
+      "genderVariants": [],
+      "pronunciation": "/lɛs.paɲ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "J'habite en Espagne.",
+        "translation": {
+          "en": "I live in Spain.",
+          "de": "Ich wohne in Spanien."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-japon",
+      "term": "le Japon",
+      "translations": {
+        "en": [
+          "Japan"
+        ],
+        "de": [
+          "Japan"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "le Japon",
+      "examForms": [
+        "le Japon"
+      ],
+      "acceptedVariants": [
+        "Japon"
+      ],
+      "accentSensitive": [],
+      "articleException": {
+        "en": "Country names take definite articles in standard usage.",
+        "fr": "Les noms de pays s'utilisent avec l'article défini.",
+        "de": "Ländernamen werden mit dem bestimmten Artikel verwendet."
+      },
+      "genderVariants": [],
+      "pronunciation": "/lə ʒa.pɔ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il voyage au Japon.",
+        "translation": {
+          "en": "He travels to Japan.",
+          "de": "Er reist nach Japan."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-france",
+      "term": "la France",
+      "translations": {
+        "en": [
+          "France"
+        ],
+        "de": [
+          "Frankreich"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "la France",
+      "examForms": [
+        "la France"
+      ],
+      "acceptedVariants": [
+        "France"
+      ],
+      "accentSensitive": [],
+      "articleException": {
+        "en": "Country names take definite articles in standard usage.",
+        "fr": "Les noms de pays s'utilisent avec l'article défini.",
+        "de": "Ländernamen werden mit dem bestimmten Artikel verwendet."
+      },
+      "genderVariants": [],
+      "pronunciation": "/la fʁɑ̃s/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "La France est un beau pays.",
+        "translation": {
+          "en": "France is a beautiful country.",
+          "de": "Frankreich ist ein schönes Land."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-allemagne",
+      "term": "l'Allemagne",
+      "translations": {
+        "en": [
+          "Germany"
+        ],
+        "de": [
+          "Deutschland"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "l'Allemagne",
+      "examForms": [
+        "l'Allemagne"
+      ],
+      "acceptedVariants": [
+        "Allemagne"
+      ],
+      "accentSensitive": [],
+      "articleException": {
+        "en": "Country names take definite articles in standard usage.",
+        "fr": "Les noms de pays s'utilisent avec l'article défini.",
+        "de": "Ländernamen werden mit dem bestimmten Artikel verwendet."
+      },
+      "genderVariants": [],
+      "pronunciation": "/lal.maɲ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Elle vient d'Allemagne.",
+        "translation": {
+          "en": "She comes from Germany.",
+          "de": "Sie kommt aus Deutschland."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-canada",
+      "term": "le Canada",
+      "translations": {
+        "en": [
+          "Canada"
+        ],
+        "de": [
+          "Kanada"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "le Canada",
+      "examForms": [
+        "le Canada"
+      ],
+      "acceptedVariants": [
+        "Canada"
+      ],
+      "accentSensitive": [],
+      "articleException": {
+        "en": "Country names take definite articles in standard usage.",
+        "fr": "Les noms de pays s'utilisent avec l'article défini.",
+        "de": "Ländernamen werden mit dem bestimmten Artikel verwendet."
+      },
+      "genderVariants": [],
+      "pronunciation": "/lə ka.na.da/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le Canada est très grand.",
+        "translation": {
+          "en": "Canada is very large.",
+          "de": "Kanada ist sehr groß."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-italie",
+      "term": "l'Italie",
+      "translations": {
+        "en": [
+          "Italy"
+        ],
+        "de": [
+          "Italien"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "l'Italie",
+      "examForms": [
+        "l'Italie"
+      ],
+      "acceptedVariants": [
+        "Italie"
+      ],
+      "accentSensitive": [],
+      "articleException": {
+        "en": "Country names take definite articles in standard usage.",
+        "fr": "Les noms de pays s'utilisent avec l'article défini.",
+        "de": "Ländernamen werden mit dem bestimmten Artikel verwendet."
+      },
+      "genderVariants": [],
+      "pronunciation": "/li.ta.li/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Nous allons en Italie.",
+        "translation": {
+          "en": "We are going to Italy.",
+          "de": "Wir fahren nach Italien."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-mexique",
+      "term": "le Mexique",
+      "translations": {
+        "en": [
+          "Mexico"
+        ],
+        "de": [
+          "Mexiko"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "le Mexique",
+      "examForms": [
+        "le Mexique"
+      ],
+      "acceptedVariants": [
+        "Mexique"
+      ],
+      "accentSensitive": [],
+      "articleException": {
+        "en": "Country names take definite articles in standard usage.",
+        "fr": "Les noms de pays s'utilisent avec l'article défini.",
+        "de": "Ländernamen werden mit dem bestimmten Artikel verwendet."
+      },
+      "genderVariants": [],
+      "pronunciation": "/lə mɛk.sik/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Le Mexique se trouve en Amérique.",
+        "translation": {
+          "en": "Mexico is located in America.",
+          "de": "Mexiko liegt in Amerika."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-espagnol",
+      "term": "espagnol",
+      "translations": {
+        "en": [
+          "Spanish"
+        ],
+        "de": [
+          "spanisch"
+        ]
+      },
+      "wordClass": "adjective",
+      "genders": [],
+      "number": null,
+      "teachingForm": "espagnol, espagnole",
+      "examForms": [
+        "espagnol",
+        "espagnole"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [
+        "espagnole"
+      ],
+      "pronunciation": "/ɛs.pa.ɲɔl/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il est espagnol et elle est espagnole.",
+        "translation": {
+          "en": "He is Spanish and she is Spanish.",
+          "de": "Er ist spanisch und sie ist spanisch."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-japonais",
+      "term": "japonais",
+      "translations": {
+        "en": [
+          "Japanese"
+        ],
+        "de": [
+          "japanisch"
+        ]
+      },
+      "wordClass": "adjective",
+      "genders": [],
+      "number": null,
+      "teachingForm": "japonais, japonaise",
+      "examForms": [
+        "japonais",
+        "japonaise"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [
+        "japonaise"
+      ],
+      "pronunciation": "/ʒa.pɔ.nɛ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "C'est un restaurant japonais.",
+        "translation": {
+          "en": "It is a Japanese restaurant.",
+          "de": "Es ist ein japanisches Restaurant."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-francais",
+      "term": "français",
+      "translations": {
+        "en": [
+          "French"
+        ],
+        "de": [
+          "französisch"
+        ]
+      },
+      "wordClass": "adjective",
+      "genders": [],
+      "number": null,
+      "teachingForm": "français, française",
+      "examForms": [
+        "français",
+        "française"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [
+        "française"
+      ],
+      "pronunciation": "/fʁɑ̃.sɛ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Elle parle avec un accent français.",
+        "translation": {
+          "en": "She speaks with a French accent.",
+          "de": "Sie spricht mit einem französischen Akzent."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-allemand",
+      "term": "allemand",
+      "translations": {
+        "en": [
+          "German"
+        ],
+        "de": [
+          "deutsch"
+        ]
+      },
+      "wordClass": "adjective",
+      "genders": [],
+      "number": null,
+      "teachingForm": "allemand, allemande",
+      "examForms": [
+        "allemand",
+        "allemande"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [
+        "allemande"
+      ],
+      "pronunciation": "/al.mɑ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Mon ami est allemand.",
+        "translation": {
+          "en": "My friend is German.",
+          "de": "Mein Freund ist deutsch."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-canadien",
+      "term": "canadien",
+      "translations": {
+        "en": [
+          "Canadian"
+        ],
+        "de": [
+          "kanadisch"
+        ]
+      },
+      "wordClass": "adjective",
+      "genders": [],
+      "number": null,
+      "teachingForm": "canadien, canadienne",
+      "examForms": [
+        "canadien",
+        "canadienne"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [
+        "canadienne"
+      ],
+      "pronunciation": "/ka.na.djɛ̃/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Il a un passeport canadien.",
+        "translation": {
+          "en": "He has a Canadian passport.",
+          "de": "Er hat einen kanadischen Pass."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-italien",
+      "term": "italien",
+      "translations": {
+        "en": [
+          "Italian"
+        ],
+        "de": [
+          "italienisch"
+        ]
+      },
+      "wordClass": "adjective",
+      "genders": [],
+      "number": null,
+      "teachingForm": "italien, italienne",
+      "examForms": [
+        "italien",
+        "italienne"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [
+        "italienne"
+      ],
+      "pronunciation": "/i.ta.ljɛ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "La cuisine italienne est délicieuse.",
+        "translation": {
+          "en": "Italian cuisine is delicious.",
+          "de": "Die italienische Küche ist köstlich."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-mexicain",
+      "term": "mexicain",
+      "translations": {
+        "en": [
+          "Mexican"
+        ],
+        "de": [
+          "mexikanisch"
+        ]
+      },
+      "wordClass": "adjective",
+      "genders": [],
+      "number": null,
+      "teachingForm": "mexicain, mexicaine",
+      "examForms": [
+        "mexicain",
+        "mexicaine"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [
+        "mexicaine"
+      ],
+      "pronunciation": "/mɛk.si.kɛ̃/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Ils aiment la musique mexicaine.",
+        "translation": {
+          "en": "They like Mexican music.",
+          "de": "Sie mögen mexikanische Musik."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 4,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 60
+    },
+    "typedGaps": {
+      "targetIds": [
+        "target-espagne",
+        "target-japon",
+        "target-france",
+        "target-allemagne",
+        "target-canada",
+        "target-italie",
+        "target-mexique",
+        "target-espagnol",
+        "target-japonais",
+        "target-francais",
+        "target-allemand",
+        "target-canadien",
+        "target-italien",
+        "target-mexicain"
+      ],
+      "estimatedDurationS": 150
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "page-countries",
+          "kind": "translation",
+          "targetIds": [
+            "target-espagne",
+            "target-japon",
+            "target-france",
+            "target-allemagne",
+            "target-canada",
+            "target-italie",
+            "target-mexique"
+          ],
+          "estimatedDurationS": 90,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "page-nationalities",
+          "kind": "translation",
+          "targetIds": [
+            "target-espagnol",
+            "target-japonais",
+            "target-francais",
+            "target-allemand",
+            "target-canadien",
+            "target-italien",
+            "target-mexicain"
+          ],
+          "estimatedDurationS": 90,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

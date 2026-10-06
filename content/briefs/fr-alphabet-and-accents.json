@@ -1,0 +1,663 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-alphabet-and-accents",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "L'alphabet et les accents",
+  "objective": {
+    "en": "Learn to spell first and last names and name French accent marks and special characters.",
+    "fr": "Apprendre à épeler son nom et son prénom et nommer les accents et signes diacritiques français.",
+    "de": "Lernen Sie, Vor- und Nachnamen zu buchstabieren und französische Akzente und Sonderzeichen zu benennen."
+  },
+  "estimatedMinutes": 16,
+  "provenance": {
+    "generator": "lesson-prototype",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "brief-v2",
+    "generatedAt": "2026-10-06T14:17:49.576Z",
+    "inputHashes": {
+      "outline": "79351202d86e7a5b859425caa83bbb08f039a88188df4db8daf84d8be56ebdc0"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "language",
+  "coverageNotes": {
+    "en": "Covers core terms for spelling names and identifying the five French accent and diacritic marks.",
+    "fr": "Couvre les termes essentiels pour épeler les noms et identifier les cinq accents et signes diacritiques français.",
+    "de": "Deckt die Kernbegriffe zum Buchstabieren von Namen und zur Benennung der fünf französischen Akzente und Sonderzeichen ab."
+  },
+  "targetCount": 12,
+  "countRationale": {
+    "en": "12 targets cleanly cover spelling mechanics (7) and the complete set of standard French accents and diacritics (5).",
+    "fr": "12 cibles couvrent clairement la mécanique de l'épellation (7) et l'ensemble des accents et diacritiques français (5).",
+    "de": "12 Ziele decken die Mechanik des Buchstabierens (7) und alle Standardakzente und Sonderzeichen (5) ab."
+  },
+  "difficultyBalance": {
+    "en": "Combines 6 core terms for basic spelling with 6 demanding terms for specific diacritics and typography.",
+    "fr": "Combine 6 termes de base pour l'épellation et 6 termes plus exigeants pour les diacritiques et la typographie.",
+    "de": "Kombiniert 6 Kernbegriffe für einfaches Buchstabieren mit 6 anspruchsvolleren Begriffen für Akzente und Typografie."
+  },
+  "prerequisites": [
+    {
+      "en": "Basic knowledge of French letter sounds.",
+      "fr": "Connaissance de base de la prononciation des lettres en français.",
+      "de": "Grundkenntnisse der französischen Buchstabenaussprache."
+    }
+  ],
+  "groups": [
+    {
+      "id": "group-spelling-terms",
+      "label": {
+        "en": "Spelling and Names",
+        "fr": "Épellation et noms",
+        "de": "Buchstabieren und Namen"
+      },
+      "targetIds": [
+        "target-epeler",
+        "target-nom",
+        "target-prenom",
+        "target-lettre",
+        "target-majuscule",
+        "target-minuscule",
+        "target-trait-d-union"
+      ]
+    },
+    {
+      "id": "group-diacritics",
+      "label": {
+        "en": "French Accents and Diacritics",
+        "fr": "Accents et signes diacritiques",
+        "de": "Französische Akzente und Sonderzeichen"
+      },
+      "targetIds": [
+        "target-accent-aigu",
+        "target-accent-grave",
+        "target-accent-circonflexe",
+        "target-cedille",
+        "target-trema"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "target-accent-aigu",
+      "term": "accent aigu",
+      "translations": {
+        "en": [
+          "acute accent"
+        ],
+        "de": [
+          "Akut",
+          "Akzent Aigu"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "l'accent aigu",
+      "examForms": [
+        "un accent aigu"
+      ],
+      "acceptedVariants": [
+        "accent aigu",
+        "l'accent aigu"
+      ],
+      "accentSensitive": [],
+      "articleException": {
+        "en": "Elision occurs before a vowel sound.",
+        "fr": "Élision devant un son voyelle.",
+        "de": "Elision vor einem Vokallaut."
+      },
+      "genderVariants": [],
+      "pronunciation": "/ak.sɑ̃ e.ɡy/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Café prend un accent aigu sur le e.",
+        "translation": {
+          "en": "Café takes an acute accent on the e.",
+          "de": "Café hat einen Akut auf dem e."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-accent-grave",
+      "term": "accent grave",
+      "translations": {
+        "en": [
+          "grave accent"
+        ],
+        "de": [
+          "Gravis",
+          "Akzent Grave"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "l'accent grave",
+      "examForms": [
+        "un accent grave"
+      ],
+      "acceptedVariants": [
+        "accent grave",
+        "l'accent grave"
+      ],
+      "accentSensitive": [],
+      "articleException": {
+        "en": "Elision occurs before a vowel sound.",
+        "fr": "Élision devant un son voyelle.",
+        "de": "Elision vor einem Vokallaut."
+      },
+      "genderVariants": [],
+      "pronunciation": "/ak.sɑ̃ ɡʁav/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Très prend un accent grave sur le e.",
+        "translation": {
+          "en": "Très takes a grave accent on the e.",
+          "de": "Très hat einen Gravis auf dem e."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-accent-circonflexe",
+      "term": "accent circonflexe",
+      "translations": {
+        "en": [
+          "circumflex accent",
+          "circumflex"
+        ],
+        "de": [
+          "Zirkumflex",
+          "Dachakzent"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "l'accent circonflexe",
+      "examForms": [
+        "un accent circonflexe"
+      ],
+      "acceptedVariants": [
+        "accent circonflexe",
+        "l'accent circonflexe"
+      ],
+      "accentSensitive": [],
+      "articleException": {
+        "en": "Elision occurs before a vowel sound.",
+        "fr": "Élision devant un son voyelle.",
+        "de": "Elision vor einem Vokallaut."
+      },
+      "genderVariants": [],
+      "pronunciation": "/ak.sɑ̃ siʁ.kɔ̃.flɛks/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Hôtel prend un accent circonflexe sur le o.",
+        "translation": {
+          "en": "Hôtel takes a circumflex accent on the o.",
+          "de": "Hôtel hat einen Zirkumflex auf dem o."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-cedille",
+      "term": "cédille",
+      "translations": {
+        "en": [
+          "cedilla"
+        ],
+        "de": [
+          "Zedille",
+          "Cédille"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "la cédille",
+      "examForms": [
+        "une cédille"
+      ],
+      "acceptedVariants": [
+        "cédille",
+        "la cédille"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/se.dij/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Français prend une cédille sous le c.",
+        "translation": {
+          "en": "Français takes a cedilla under the c.",
+          "de": "Français hat eine Zedille unter dem c."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-trema",
+      "term": "tréma",
+      "translations": {
+        "en": [
+          "diaeresis",
+          "umlaut"
+        ],
+        "de": [
+          "Trema"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "le tréma",
+      "examForms": [
+        "un tréma"
+      ],
+      "acceptedVariants": [
+        "tréma",
+        "le tréma"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/tʁe.ma/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Naïf prend un tréma sur le i.",
+        "translation": {
+          "en": "Naïf takes a diaeresis on the i.",
+          "de": "Naïf hat ein Trema auf dem i."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-epeler",
+      "term": "épeler",
+      "translations": {
+        "en": [
+          "to spell"
+        ],
+        "de": [
+          "buchstabieren"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "épeler",
+      "examForms": [
+        "épeler"
+      ],
+      "acceptedVariants": [
+        "épeler"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/ep.le/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Pouvez-vous épeler votre prénom ?",
+        "translation": {
+          "en": "Can you spell your first name?",
+          "de": "Können Sie Ihren Vornamen buchstabieren?"
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-nom",
+      "term": "nom",
+      "translations": {
+        "en": [
+          "last name",
+          "surname",
+          "name"
+        ],
+        "de": [
+          "Nachname",
+          "Name"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "le nom",
+      "examForms": [
+        "un nom"
+      ],
+      "acceptedVariants": [
+        "nom",
+        "le nom"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/nɔ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Quel est votre nom ?",
+        "translation": {
+          "en": "What is your name?",
+          "de": "Wie ist Ihr Name?"
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-prenom",
+      "term": "prénom",
+      "translations": {
+        "en": [
+          "first name"
+        ],
+        "de": [
+          "Vorname"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "le prénom",
+      "examForms": [
+        "un prénom"
+      ],
+      "acceptedVariants": [
+        "prénom",
+        "le prénom"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/pʁe.nɔ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Mon prénom est Marie.",
+        "translation": {
+          "en": "My first name is Marie.",
+          "de": "Mein Vorname ist Marie."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-lettre",
+      "term": "lettre",
+      "translations": {
+        "en": [
+          "letter"
+        ],
+        "de": [
+          "Buchstabe"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "la lettre",
+      "examForms": [
+        "une lettre"
+      ],
+      "acceptedVariants": [
+        "lettre",
+        "la lettre"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/lɛtʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "A est la première lettre.",
+        "translation": {
+          "en": "A is the first letter.",
+          "de": "A ist der erste Buchstabe."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-majuscule",
+      "term": "majuscule",
+      "translations": {
+        "en": [
+          "capital letter",
+          "uppercase letter"
+        ],
+        "de": [
+          "Großbuchstabe"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "la majuscule",
+      "examForms": [
+        "une majuscule"
+      ],
+      "acceptedVariants": [
+        "majuscule",
+        "la majuscule"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/ma.ʒys.kyl/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Le nom commence par une majuscule.",
+        "translation": {
+          "en": "The name starts with a capital letter.",
+          "de": "Der Name beginnt mit einem Großbuchstaben."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-minuscule",
+      "term": "minuscule",
+      "translations": {
+        "en": [
+          "lowercase letter"
+        ],
+        "de": [
+          "Kleinbuchstabe"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "la minuscule",
+      "examForms": [
+        "une minuscule"
+      ],
+      "acceptedVariants": [
+        "minuscule",
+        "la minuscule"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/mi.nys.kyl/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Écrivez les autres lettres en minuscule.",
+        "translation": {
+          "en": "Write the other letters in lowercase.",
+          "de": "Schreiben Sie die anderen Buchstaben klein."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-trait-d-union",
+      "term": "trait d'union",
+      "translations": {
+        "en": [
+          "hyphen"
+        ],
+        "de": [
+          "Bindestrich"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "le trait d'union",
+      "examForms": [
+        "un trait d'union"
+      ],
+      "acceptedVariants": [
+        "trait d'union",
+        "le trait d'union"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/tʁɛ d‿y.njɔ̃/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Ce prénom a un trait d'union.",
+        "translation": {
+          "en": "This first name has a hyphen.",
+          "de": "Dieser Vorname hat einen Bindestrich."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 4,
+      "estimatedDurationS": 120
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "target-epeler",
+        "target-nom",
+        "target-prenom",
+        "target-lettre",
+        "target-majuscule",
+        "target-minuscule",
+        "target-trait-d-union",
+        "target-accent-aigu",
+        "target-accent-grave",
+        "target-accent-circonflexe",
+        "target-cedille",
+        "target-trema"
+      ],
+      "estimatedDurationS": 150
+    },
+    "listening": {
+      "required": true,
+      "practiceTargetIds": [
+        "target-epeler",
+        "target-nom",
+        "target-prenom",
+        "target-lettre",
+        "target-majuscule",
+        "target-minuscule",
+        "target-trait-d-union",
+        "target-accent-aigu",
+        "target-accent-grave",
+        "target-accent-circonflexe",
+        "target-cedille",
+        "target-trema"
+      ],
+      "estimatedDurationS": 120
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-translation",
+          "kind": "translation",
+          "targetIds": [
+            "target-epeler",
+            "target-nom",
+            "target-prenom",
+            "target-lettre",
+            "target-majuscule",
+            "target-minuscule",
+            "target-trait-d-union",
+            "target-accent-aigu",
+            "target-accent-grave",
+            "target-accent-circonflexe",
+            "target-cedille",
+            "target-trema"
+          ],
+          "estimatedDurationS": 180,
+          "timeLimitS": 240
+        },
+        {
+          "pageId": "exam-page-dictation",
+          "kind": "listening_dictation",
+          "targetIds": [
+            "target-epeler",
+            "target-nom",
+            "target-prenom",
+            "target-lettre",
+            "target-majuscule",
+            "target-minuscule",
+            "target-trait-d-union",
+            "target-accent-aigu",
+            "target-accent-grave",
+            "target-accent-circonflexe",
+            "target-cedille",
+            "target-trema"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

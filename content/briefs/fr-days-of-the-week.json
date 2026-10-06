@@ -1,0 +1,653 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-days-of-the-week",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les jours de la semaine",
+  "objective": {
+    "en": "Learn to name the seven days of the week, main parts of the day, and ask or state what day it is in French.",
+    "fr": "Apprendre à nommer les sept jours de la semaine, les moments de la journée et dire quel jour on est.",
+    "de": "Lernen Sie, die sieben Wochentage und Tageszeiten auf Französisch zu nennen sowie den aktuellen Tag zu erfragen."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "lesson-prototype",
+    "model": "gemini-3.5-flash",
+    "promptVersion": "brief-v2",
+    "generatedAt": "2026-10-06T17:14:21.358Z",
+    "inputHashes": {
+      "outline": "3362d69b287b2161b52c9f6642eceecbb384e87bde959a1c6f3694cbaaf0785a"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "daily_life",
+  "coverageNotes": {
+    "en": "Covers all seven days of the week, the three primary parts of the day, and key expressions for identifying the current day.",
+    "fr": "Couvre les sept jours de la semaine, les trois moments principaux de la journée et les expressions clés pour exprimer la date.",
+    "de": "Deckt alle sieben Wochentage, die drei Haupttageszeiten und wichtige Ausdrücke zur Tagesangabe ab."
+  },
+  "targetCount": 12,
+  "countRationale": {
+    "en": "Twelve items fully cover the closed set of 7 weekdays, 3 essential times of day, and 2 core expressions without overloading A1 learners.",
+    "fr": "Douze éléments permettent de couvrir l'ensemble des 7 jours, 3 moments du jour et 2 expressions essentielles sans surcharger les apprenants A1.",
+    "de": "Zwölf Elemente decken die 7 Wochentage, 3 Tageszeiten und 2 Kernausdrücke ab, ohne A1-Lernende zu überfordern."
+  },
+  "difficultyBalance": {
+    "en": "The weekdays and times of day form core vocabulary, while multi-word phrases and compound spelling like 'aujourd'hui' provide a balanced challenge.",
+    "fr": "Les jours et moments constituent le vocabulaire de base, tandis que 'aujourd'hui' et la question complète ajoutent une légère difficulté.",
+    "de": "Wochentage und Tageszeiten bilden den Kern, während zusammengesetzte Begriffe wie 'aujourd'hui' eine gezielte Herausforderung bieten."
+  },
+  "prerequisites": [
+    {
+      "en": "Basic understanding of simple French present tense structures like 'c'est'.",
+      "fr": "Compréhension de base de structures simples au présent comme 'c'est'.",
+      "de": "Grundlegende Kenntnisse einfacher französischer Präsensstrukturen wie 'c'est'."
+    }
+  ],
+  "groups": [
+    {
+      "id": "group-days",
+      "label": {
+        "en": "Days of the week",
+        "fr": "Les jours de la semaine",
+        "de": "Die Wochentage"
+      },
+      "targetIds": [
+        "lundi",
+        "mardi",
+        "mercredi",
+        "jeudi",
+        "vendredi",
+        "samedi",
+        "dimanche"
+      ]
+    },
+    {
+      "id": "group-moments",
+      "label": {
+        "en": "Moments of the day",
+        "fr": "Les moments de la journée",
+        "de": "Die Tageszeiten"
+      },
+      "targetIds": [
+        "matin",
+        "apres-midi",
+        "soir"
+      ]
+    },
+    {
+      "id": "group-expressions",
+      "label": {
+        "en": "Asking and telling the day",
+        "fr": "Demander et dire le jour",
+        "de": "Den Tag erfragen und nennen"
+      },
+      "targetIds": [
+        "aujourd-hui",
+        "quel-jour"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "lundi",
+      "term": "lundi",
+      "translations": {
+        "en": [
+          "Monday"
+        ],
+        "de": [
+          "Montag"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "lundi",
+      "examForms": [
+        "lundi"
+      ],
+      "acceptedVariants": [
+        "le lundi"
+      ],
+      "accentSensitive": [],
+      "articleException": {
+        "en": "Days of the week are usually referred to directly without an indefinite article.",
+        "fr": "Les jours de la semaine sont généralement désignés directement sans article indéfini.",
+        "de": "Wochentage werden in der Regel direkt ohne unbestimmten Artikel verwendet."
+      },
+      "genderVariants": [],
+      "pronunciation": "lɛ̃di",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Lundi, je vais à l'école.",
+        "translation": {
+          "en": "On Monday, I go to school.",
+          "de": "Am Montag gehe ich zur Schule."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "mardi",
+      "term": "mardi",
+      "translations": {
+        "en": [
+          "Tuesday"
+        ],
+        "de": [
+          "Dienstag"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "mardi",
+      "examForms": [
+        "mardi"
+      ],
+      "acceptedVariants": [
+        "le mardi"
+      ],
+      "accentSensitive": [],
+      "articleException": {
+        "en": "Days of the week are usually referred to directly without an indefinite article.",
+        "fr": "Les jours de la semaine sont généralement désignés directement sans article indéfini.",
+        "de": "Wochentage werden in der Regel direkt ohne unbestimmten Artikel verwendet."
+      },
+      "genderVariants": [],
+      "pronunciation": "maʁdi",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Mardi, il fait du sport.",
+        "translation": {
+          "en": "On Tuesday, he does sports.",
+          "de": "Am Dienstag macht er Sport."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "mercredi",
+      "term": "mercredi",
+      "translations": {
+        "en": [
+          "Wednesday"
+        ],
+        "de": [
+          "Mittwoch"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "mercredi",
+      "examForms": [
+        "mercredi"
+      ],
+      "acceptedVariants": [
+        "le mercredi"
+      ],
+      "accentSensitive": [],
+      "articleException": {
+        "en": "Days of the week are usually referred to directly without an indefinite article.",
+        "fr": "Les jours de la semaine sont généralement désignés directement sans article indéfini.",
+        "de": "Wochentage werden in der Regel direkt ohne unbestimmten Artikel verwendet."
+      },
+      "genderVariants": [],
+      "pronunciation": "mɛʁkʁədi",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Mercredi est mon jour préféré.",
+        "translation": {
+          "en": "Wednesday is my favorite day.",
+          "de": "Mittwoch ist mein Lieblingstag."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "jeudi",
+      "term": "jeudi",
+      "translations": {
+        "en": [
+          "Thursday"
+        ],
+        "de": [
+          "Donnerstag"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "jeudi",
+      "examForms": [
+        "jeudi"
+      ],
+      "acceptedVariants": [
+        "le jeudi"
+      ],
+      "accentSensitive": [],
+      "articleException": {
+        "en": "Days of the week are usually referred to directly without an indefinite article.",
+        "fr": "Les jours de la semaine sont généralement désignés directement sans article indéfini.",
+        "de": "Wochentage werden in der Regel direkt ohne unbestimmten Artikel verwendet."
+      },
+      "genderVariants": [],
+      "pronunciation": "ʒødi",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Nous travaillons jeudi.",
+        "translation": {
+          "en": "We work on Thursday.",
+          "de": "Wir arbeiten am Donnerstag."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "vendredi",
+      "term": "vendredi",
+      "translations": {
+        "en": [
+          "Friday"
+        ],
+        "de": [
+          "Heimattag",
+          "Freitag"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "vendredi",
+      "examForms": [
+        "vendredi"
+      ],
+      "acceptedVariants": [
+        "le vendredi"
+      ],
+      "accentSensitive": [],
+      "articleException": {
+        "en": "Days of the week are usually referred to directly without an indefinite article.",
+        "fr": "Les jours de la semaine sont généralement désignés directement sans article indéfini.",
+        "de": "Wochentage werden in der Regel direkt ohne unbestimmten Artikel verwendet."
+      },
+      "genderVariants": [],
+      "pronunciation": "vɑ̃dʁədi",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Vendredi soir, nous sortons.",
+        "translation": {
+          "en": "Friday evening, we go out.",
+          "de": "Am Freitagabend gehen wir aus."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "samedi",
+      "term": "samedi",
+      "translations": {
+        "en": [
+          "Saturday"
+        ],
+        "de": [
+          "Samstag"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "samedi",
+      "examForms": [
+        "samedi"
+      ],
+      "acceptedVariants": [
+        "le samedi"
+      ],
+      "accentSensitive": [],
+      "articleException": {
+        "en": "Days of the week are usually referred to directly without an indefinite article.",
+        "fr": "Les jours de la semaine sont généralement désignés directement sans article indéfini.",
+        "de": "Wochentage werden in der Regel direkt ohne unbestimmten Artikel verwendet."
+      },
+      "genderVariants": [],
+      "pronunciation": "samdi",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le samedi, je me repose.",
+        "translation": {
+          "en": "On Saturdays, I rest.",
+          "de": "Samstags ruhe ich mich aus."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "dimanche",
+      "term": "dimanche",
+      "translations": {
+        "en": [
+          "Sunday"
+        ],
+        "de": [
+          "Sonntag"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "dimanche",
+      "examForms": [
+        "dimanche"
+      ],
+      "acceptedVariants": [
+        "le dimanche"
+      ],
+      "accentSensitive": [],
+      "articleException": {
+        "en": "Days of the week are usually referred to directly without an indefinite article.",
+        "fr": "Les jours de la semaine sont généralement désignés directement sans article indéfini.",
+        "de": "Wochentage werden in der Regel direkt ohne unbestimmten Artikel verwendet."
+      },
+      "genderVariants": [],
+      "pronunciation": "dimɑ̃ʃ",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Dimanche, le magasin est fermé.",
+        "translation": {
+          "en": "On Sunday, the store is closed.",
+          "de": "Am Sonntag ist das Geschäft geschlossen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "matin",
+      "term": "matin",
+      "translations": {
+        "en": [
+          "morning"
+        ],
+        "de": [
+          "Morgen"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "le matin",
+      "examForms": [
+        "le matin"
+      ],
+      "acceptedVariants": [
+        "matin"
+      ],
+      "accentSensitive": [],
+      "articleException": {
+        "en": "Times of day are typically learned and used with the definite article.",
+        "fr": "Les moments de la journée sont généralement appris et utilisés avec l'article défini.",
+        "de": "Tageszeiten werden in der Regel mit dem bestimmten Artikel gelernt und verwendet."
+      },
+      "genderVariants": [],
+      "pronunciation": "matɛ̃",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Je bois du café le matin.",
+        "translation": {
+          "en": "I drink coffee in the morning.",
+          "de": "Ich trinke morgens Kaffee."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "apres-midi",
+      "term": "après-midi",
+      "translations": {
+        "en": [
+          "afternoon"
+        ],
+        "de": [
+          "Nachmittag"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "l'après-midi",
+      "examForms": [
+        "l'après-midi"
+      ],
+      "acceptedVariants": [
+        "après-midi"
+      ],
+      "accentSensitive": [],
+      "articleException": {
+        "en": "Times of day are typically learned and used with the definite article.",
+        "fr": "Les moments de la journée sont généralement appris et utilisés avec l'article défini.",
+        "de": "Tageszeiten werden in der Regel mit dem bestimmten Artikel gelernt und verwendet."
+      },
+      "genderVariants": [],
+      "pronunciation": "apʁɛmidi",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Cet après-midi, nous faisons une promenade.",
+        "translation": {
+          "en": "This afternoon, we are taking a walk.",
+          "de": "Heute Nachmittag machen wir einen Spaziergang."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "soir",
+      "term": "soir",
+      "translations": {
+        "en": [
+          "evening"
+        ],
+        "de": [
+          "Abend"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "le soir",
+      "examForms": [
+        "le soir"
+      ],
+      "acceptedVariants": [
+        "soir"
+      ],
+      "accentSensitive": [],
+      "articleException": {
+        "en": "Times of day are typically learned and used with the definite article.",
+        "fr": "Les moments de la journée sont généralement appris et utilisés avec l'article défini.",
+        "de": "Tageszeiten werden in der Regel mit dem bestimmten Artikel gelernt und verwendet."
+      },
+      "genderVariants": [],
+      "pronunciation": "swaʁ",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le soir, nous regardons un film.",
+        "translation": {
+          "en": "In the evening, we watch a movie.",
+          "de": "Am Abend schauen wir einen Film."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "aujourd-hui",
+      "term": "aujourd'hui",
+      "translations": {
+        "en": [
+          "today"
+        ],
+        "de": [
+          "heute"
+        ]
+      },
+      "wordClass": "adverb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "aujourd'hui",
+      "examForms": [
+        "aujourd'hui"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "oʒuʁdɥi",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Aujourd'hui, c'est lundi.",
+        "translation": {
+          "en": "Today is Monday.",
+          "de": "Heute ist Montag."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "quel-jour",
+      "term": "Quel jour sommes-nous ?",
+      "translations": {
+        "en": [
+          "What day is it?"
+        ],
+        "de": [
+          "Welchen Tag haben wir heute?"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "Quel jour sommes-nous ?",
+      "examForms": [
+        "Quel jour sommes-nous ?",
+        "C'est quel jour ?"
+      ],
+      "acceptedVariants": [
+        "Quel jour est-on ?"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "kɛl ʒuʁ sɔm nu",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Excusez-moi, quel jour sommes-nous ?",
+        "translation": {
+          "en": "Excuse me, what day is it?",
+          "de": "Entschuldigung, welchen Tag haben wir heute?"
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 4,
+      "estimatedDurationS": 120
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "lundi",
+        "mardi",
+        "mercredi",
+        "jeudi",
+        "vendredi",
+        "samedi",
+        "dimanche",
+        "matin",
+        "apres-midi",
+        "soir",
+        "aujourd-hui",
+        "quel-jour"
+      ],
+      "estimatedDurationS": 150
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "page-translation-1",
+          "kind": "translation",
+          "targetIds": [
+            "lundi",
+            "mardi",
+            "mercredi",
+            "jeudi",
+            "vendredi",
+            "samedi"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "page-translation-2",
+          "kind": "translation",
+          "targetIds": [
+            "dimanche",
+            "matin",
+            "apres-midi",
+            "soir",
+            "aujourd-hui",
+            "quel-jour"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

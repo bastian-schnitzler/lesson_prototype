@@ -1,0 +1,548 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-personal-details-on-a-form",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Remplir un formulaire",
+  "objective": {
+    "en": "Learn key French terms used to fill out administrative and personal identification forms.",
+    "fr": "Apprendre les mots clés français utilisés pour remplir des formulaires administratifs et d'identité.",
+    "de": "Lernen Sie wichtige französische Begriffe zum Ausfüllen von Verwaltungs- und Personalausweisformularen."
+  },
+  "estimatedMinutes": 8,
+  "provenance": {
+    "generator": "lesson-prototype",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "brief-v2",
+    "generatedAt": "2026-10-06T17:09:49.278Z",
+    "inputHashes": {
+      "outline": "4ae829bf24bae08d9a146632298e7f1fcd7676f64f1ef8a2940d950403848108"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "personal_identification",
+  "coverageNotes": {
+    "en": "Covers essential fields on standard forms including personal details, civil status, and signature.",
+    "fr": "Couvre les champs essentiels des formulaires standards, y compris l'état civil et la signature.",
+    "de": "Deckt wesentliche Felder auf Standardformularen ab, einschließlich persönlicher Daten, Familienstand und Unterschrift."
+  },
+  "targetCount": 10,
+  "countRationale": {
+    "en": "10 target items cover the essential fields required to fill out standard French forms at A1 level.",
+    "fr": "10 éléments cibles couvrent les champs essentiels nécessaires pour remplir des formulaires français au niveau A1.",
+    "de": "10 Zielbegriffe decken die wesentlichen Felder ab, die zum Ausfüllen standardmäßiger französischer Formulare auf A1-Niveau erforderlich sind."
+  },
+  "difficultyBalance": {
+    "en": "8 core targets cover common single-word headings, while 2 demanding targets cover key compound phrases.",
+    "fr": "8 cibles de base couvrent les rubriques simples courantes, tandis que 2 cibles exigeantes couvrent les expressions composées clés.",
+    "de": "8 Grundbegriffe decken gängige Einzelwort-Überschriften ab, während 2 anspruchsvolle Begriffe wichtige zusammengesetzte Ausdrücke behandeln."
+  },
+  "prerequisites": [
+    {
+      "en": "Basic familiarity with personal details vocabulary in native language.",
+      "fr": "Familiarité de base avec le vocabulaire d'identité personnelle.",
+      "de": "Grundlegende Vertrautheit mit Begriffen zur Person in der Muttersprache."
+    }
+  ],
+  "groups": [
+    {
+      "id": "group-identity-info",
+      "label": {
+        "en": "Identity Information",
+        "fr": "Informations d'identité",
+        "de": "Angaben zur Person"
+      },
+      "targetIds": [
+        "target-nom",
+        "target-prenom",
+        "target-adresse",
+        "target-date-de-naissance",
+        "target-lieu-de-naissance"
+      ]
+    },
+    {
+      "id": "group-status-and-profession",
+      "label": {
+        "en": "Status and Profession",
+        "fr": "Statut et profession",
+        "de": "Status und Beruf"
+      },
+      "targetIds": [
+        "target-nationalite",
+        "target-profession",
+        "target-celibataire",
+        "target-marie"
+      ]
+    },
+    {
+      "id": "group-validation",
+      "label": {
+        "en": "Form Validation",
+        "fr": "Validation du formulaire",
+        "de": "Formularbestätigung"
+      },
+      "targetIds": [
+        "target-signature"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "target-nom",
+      "term": "nom",
+      "translations": {
+        "en": [
+          "last name",
+          "surname"
+        ],
+        "de": [
+          "Nachname",
+          "Name"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un nom",
+      "examForms": [
+        "un nom"
+      ],
+      "acceptedVariants": [
+        "le nom",
+        "nom"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/nɔ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Écrivez votre nom en majuscules sur le formulaire.",
+        "translation": {
+          "en": "Write your last name in capital letters on the form.",
+          "de": "Schreiben Sie Ihren Nachnamen in Großbuchstaben auf das Formular."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-prenom",
+      "term": "prénom",
+      "translations": {
+        "en": [
+          "first name",
+          "given name"
+        ],
+        "de": [
+          "Vorname"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un prénom",
+      "examForms": [
+        "un prénom"
+      ],
+      "acceptedVariants": [
+        "le prénom",
+        "prénom",
+        "prenom"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/pʁenɔ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Mon prénom est Thomas.",
+        "translation": {
+          "en": "My first name is Thomas.",
+          "de": "Mein Vorname ist Thomas."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-adresse",
+      "term": "adresse",
+      "translations": {
+        "en": [
+          "address"
+        ],
+        "de": [
+          "Adresse",
+          "Anschrift"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une adresse",
+      "examForms": [
+        "une adresse"
+      ],
+      "acceptedVariants": [
+        "l'adresse",
+        "adresse"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/adʁɛs/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Veuillez inscrire votre adresse postale complète.",
+        "translation": {
+          "en": "Please write your complete postal address.",
+          "de": "Bitte tragen Sie Ihre vollständige Postanschrift ein."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-date-de-naissance",
+      "term": "date de naissance",
+      "translations": {
+        "en": [
+          "date of birth"
+        ],
+        "de": [
+          "Geburtsdatum"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une date de naissance",
+      "examForms": [
+        "une date de naissance"
+      ],
+      "acceptedVariants": [
+        "la date de naissance",
+        "date de naissance"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/dat də nɛsɑ̃s/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Indiquez votre date de naissance au format JJ/MM/AAAA.",
+        "translation": {
+          "en": "Indicate your date of birth in DD/MM/YYYY format.",
+          "de": "Geben Sie Ihr Geburtsdatum im Format TT/MM/JJJJ an."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-lieu-de-naissance",
+      "term": "lieu de naissance",
+      "translations": {
+        "en": [
+          "place of birth"
+        ],
+        "de": [
+          "Geburtsort"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un lieu de naissance",
+      "examForms": [
+        "un lieu de naissance"
+      ],
+      "acceptedVariants": [
+        "le lieu de naissance",
+        "lieu de naissance"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/ljø də nɛsɑ̃s/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Quel est votre lieu de naissance ?",
+        "translation": {
+          "en": "What is your place of birth?",
+          "de": "Was ist Ihr Geburtsort?"
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-nationalite",
+      "term": "nationalité",
+      "translations": {
+        "en": [
+          "nationality"
+        ],
+        "de": [
+          "Staatsangehörigkeit",
+          "Nationalität"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une nationalité",
+      "examForms": [
+        "une nationalité"
+      ],
+      "acceptedVariants": [
+        "la nationalité",
+        "nationalité",
+        "nationalite"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/nasjɔnalite/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Précisez votre nationalité sur la fiche.",
+        "translation": {
+          "en": "Specify your nationality on the form.",
+          "de": "Geben Sie Ihre Staatsangehörigkeit auf dem Formular an."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-profession",
+      "term": "profession",
+      "translations": {
+        "en": [
+          "profession",
+          "occupation"
+        ],
+        "de": [
+          "Beruf"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une profession",
+      "examForms": [
+        "une profession"
+      ],
+      "acceptedVariants": [
+        "la profession",
+        "profession"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/pʁɔfesjɔ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Quelle est votre profession actuelle ?",
+        "translation": {
+          "en": "What is your current occupation?",
+          "de": "Was ist Ihr aktueller Beruf?"
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-celibataire",
+      "term": "célibataire",
+      "translations": {
+        "en": [
+          "single",
+          "unmarried"
+        ],
+        "de": [
+          "ledig"
+        ]
+      },
+      "wordClass": "adjective",
+      "genders": [],
+      "number": null,
+      "teachingForm": "célibataire",
+      "examForms": [
+        "célibataire"
+      ],
+      "acceptedVariants": [
+        "celibataire"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [
+        "célibataire"
+      ],
+      "pronunciation": "/selibatɛʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Cochez la case célibataire si vous n'êtes pas marié.",
+        "translation": {
+          "en": "Check the single box if you are not married.",
+          "de": "Kreuzen Sie das Kästchen ledig an, wenn Sie nicht verheiratet sind."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-marie",
+      "term": "marié",
+      "translations": {
+        "en": [
+          "married"
+        ],
+        "de": [
+          "verheiratet"
+        ]
+      },
+      "wordClass": "adjective",
+      "genders": [],
+      "number": null,
+      "teachingForm": "marié",
+      "examForms": [
+        "marié"
+      ],
+      "acceptedVariants": [
+        "marié"
+      ],
+      "accentSensitive": [
+        "marié"
+      ],
+      "articleException": null,
+      "genderVariants": [
+        "mariée"
+      ],
+      "pronunciation": "/maʁje/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il est marié depuis deux ans.",
+        "translation": {
+          "en": "He has been married for two years.",
+          "de": "Er ist seit zwei Jahren verheiratet."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-signature",
+      "term": "signature",
+      "translations": {
+        "en": [
+          "signature"
+        ],
+        "de": [
+          "Unterschrift"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une signature",
+      "examForms": [
+        "une signature"
+      ],
+      "acceptedVariants": [
+        "la signature",
+        "signature"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/siɲatyʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "N'oubliez pas d'apposer votre signature en bas du document.",
+        "translation": {
+          "en": "Do not forget to put your signature at the bottom of the document.",
+          "de": "Vergessen Sie nicht, Ihre Unterschrift unten auf dem Dokument anzubringen."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 30
+    },
+    "flashcards": {
+      "estimatedDurationS": 90
+    },
+    "matching": {
+      "groupSize": 5,
+      "estimatedDurationS": 60
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 45
+    },
+    "typedGaps": {
+      "targetIds": [
+        "target-nom",
+        "target-prenom",
+        "target-adresse",
+        "target-date-de-naissance",
+        "target-lieu-de-naissance",
+        "target-nationalite",
+        "target-profession",
+        "target-celibataire",
+        "target-marie",
+        "target-signature"
+      ],
+      "estimatedDurationS": 120
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "page-1",
+          "kind": "translation",
+          "targetIds": [
+            "target-nom",
+            "target-prenom",
+            "target-adresse",
+            "target-date-de-naissance",
+            "target-lieu-de-naissance",
+            "target-nationalite",
+            "target-profession",
+            "target-celibataire",
+            "target-marie",
+            "target-signature"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}
