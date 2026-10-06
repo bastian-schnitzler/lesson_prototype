@@ -283,7 +283,7 @@ function checkVocabularyContent(c: VocabularyContent, b: VocabularyBrief, ctx: C
             const refs = item.referenceTargetIds;
             issues.check(new Set(refs).size === 4 && refs.includes(item.targetId), ip, 'four distinct reference targets including the answer');
             refs.forEach((id) => known(id, ip));
-            if (ctx.lang === 'fr') for (const a of item.accepted.answers) issues.check(!FR_ARTICLE_START.test(a), ip, `typed-gap answer "${a}" must be article-free`);
+            if (ctx.lang === 'fr') for (const a of item.accepted.answers) issues.check(a === 'un' && targets.get(item.targetId)?.wordClass === 'numeral' || !FR_ARTICLE_START.test(a), ip, `typed-gap answer "${a}" must be article-free`);
             const others = refs.filter((id) => id !== item.targetId).map((id) => targets.get(id)?.term.toLowerCase());
             issues.check(!item.accepted.answers.some((a) => others.includes(a.toLowerCase())), ip, 'exactly one reference choice may fit the gap');
             checkExplanations([item], ip, issues);

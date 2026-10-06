@@ -9,7 +9,7 @@ scale 1.3
 { <color:#020617>xxx</color> | {
 { <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
 .
-{ [ <color:#4338CA>Lesson overview</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>Raw JSON</color> ] | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | [ <color:#020617>   Start lesson   </color> ] }
+{ [ <color:#4338CA>Lesson overview</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>Raw JSON</color> ] | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | [ <color:#020617>Start lesson</color> ] }
 .
 <color:#1E293B>──────────────────────────────────────────────────────────────────</color>
 .
@@ -94,90 +94,27 @@ scale 1.3
 .
 <back:#0F172A><color:#E2E8F0><size:20><b>  CONTENT  /  Vocabulary lesson  </b></size></color></back>
 .
-<color:#94A3B8>6 ordered stage cards   /   Validated content   /   Read-only previews</color>
+<color:#94A3B8>Numbered outline   /   Grouped page tabs   /   Read-only preview</color>
+.
+<color:#E2E8F0><b>Lesson outline</b></color>
+<color:#A5B4FC>1. Introduction — Pages 1–2</color>
+<color:#67E8F9>2. Flashcards — Pages 3–4</color>
+<color:#86EFAC>3. Matching — Page 5</color>
+<color:#FCD34D>4. Gender and overview — Page 6</color>
+<color:#FDA4AF>5. Practice — Pages 7–10</color>
+<color:#D8B4FE>6. Final exam — Pages 11–12</color>
 .
 {
+<color:#A5B4FC><b>1. Introduction</b></color> | <color:#67E8F9><b>2. Flashcards</b></color> | <color:#86EFAC><b>3. Matching</b></color> | <color:#FCD34D><b>4. Overview</b></color> | <color:#FDA4AF><b>5. Practice</b></color> | <color:#D8B4FE><b>6. Final exam</b></color>
+[Page 1] [Page 2] | [<b>Page 3</b>] [Page 4] | [Page 5] | [Page 6] | [Page 7] [Page 8] [Page 9] [Page 10] | [Page 11] [Page 12]
+}
+<color:#94A3B8>Wrap groups and page buttons onto multiple lines when needed; no horizontal scrolling.</color>
 .
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>02  Flashcard preview</b></color>
-.
-<color:#E2E8F0><size:20><b>un livre</b></size></color>
-<color:#E2E8F0>book   /   Masculine</color>
-.
-[ <color:#4338CA>Listen in French</color> ]
-<color:#E2E8F0>Example: Je lis un livre.</color>
-<color:#E2E8F0>Recall side: book   /   Reveal side: un livre (m)</color>
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>03  Matching preview</b></color>
-.
-{
-<color:#E2E8F0><b>English</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>French</b></color>
-.
-<color:#E2E8F0>book</color> | <color:#020617>xxx</color> | <color:#E2E8F0>un livre</color>
-.
-<color:#E2E8F0>chair</color> | <color:#020617>xxx</color> | <color:#E2E8F0>une chaise</color>
- }
-<color:#E2E8F0>Correct pairs shown for lesson review.</color>
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>04  Gender + overview preview</b></color>
-.
-{
-<color:#E2E8F0><b>Target</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Correct gender</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Teaching form</b></color>
-.
-<color:#E2E8F0>livre</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine</color> | <color:#020617>xxx</color> | <color:#E2E8F0>un livre</color>
-.
-<color:#E2E8F0>chaise</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Feminine</color> | <color:#020617>xxx</color> | <color:#E2E8F0>une chaise</color>
- }
-<color:#E2E8F0>Correction: Chaise is feminine, so use une chaise.</color>
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>05  Typed-gap preview</b></color>
-.
-<color:#E2E8F0>Prompt: Je lis un ____.</color>
-.
-<color:#00E676>Answer: livre   /   1 possible point</color>
-<color:#E2E8F0>Reference words: livre, table, chaise, porte</color>
-<color:#E2E8F0>Correction: A livre is a book; the sentence says you are reading one.</color>
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>06  Exam preview</b></color>
-.
-<color:#E2E8F0>Task: Translate book into French, including its article.</color>
-<color:#00E676>Answer: un livre   /   Page time limit: 35 seconds</color>
-<color:#E2E8F0>Correction: Livre is masculine; the singular indefinite article is un.</color>
-<color:#E2E8F0>All exam pages show prompts, accepted answers, limits, and explanations here.</color>
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
-[ <color:#4338CA>Show all stage items</color> ]
+<color:#67E8F9><b>2. Flashcards — Page 3</b></color>
+<color:#94A3B8>60 seconds estimated   /   No countdown   /   0 point units</color>
+<color:#E2E8F0>Front: un livre   /   Back: book   /   Masculine</color>
+<color:#E2E8F0>Front: une chaise   /   Back: chair   /   Feminine</color>
+<color:#94A3B8>Only the selected page appears here. Other prompts and answers remain accessible through the tabs.</color>
 .
 .
  } | <color:#020617>xxx</color> }

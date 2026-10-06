@@ -44,7 +44,7 @@ test('loads a refreshed hash route and toggles the raw JSON tree', async ({ page
   await page.goto('./#/lesson/fr-classroom-objects');
   await page.reload();
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Les objets de la classe');
-  await expect(page.getByRole('group', { name: 'Mother tongue' }).getByRole('radio').first()).toBeDisabled();
+  await expect(page.getByRole('group', { name: 'Mother tongue' }).getByRole('radio').first()).toBeEnabled();
   await page.getByRole('button', { name: 'Raw JSON' }).click();
   const tree = page.getByRole('tree');
   await expect(tree.getByRole('treeitem', { name: /^draft/ })).toHaveAttribute('aria-expanded', 'false');
@@ -68,4 +68,30 @@ test('never shows generation controls', async ({ page }) => {
   await page.goto('./#/lesson/fr-verb-etre-present');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Le verbe être au présent');
   await expect(page.getByRole('button', { name: /generat/i })).toHaveCount(0);
+});
+
+test('groups content pages and keeps artifact header actions the same height', async ({ page }) => {
+  await page.goto('./#/lesson/fr-classroom-objects');
+  const tabs = page.getByRole('tab');
+  const navigation = page.locator('.content-page-navigation');
+  expect(await navigation.evaluate((element) => element.scrollWidth - element.clientWidth)).toBeLessThanOrEqual(0);
+  if (page.viewportSize()!.width < 600) {
+    const tops = await page.locator('.content-tab-group').evaluateAll((groups) => groups.map((group) => group.getBoundingClientRect().top));
+    expect(new Set(tops).size).toBeGreaterThan(1);
+  }
+  await expect(tabs.first()).toHaveAttribute('aria-selected', 'true');
+  const panel = page.getByRole('tabpanel');
+  await expect(panel).toContainText('vocabulary_introduction');
+  await page.getByRole('navigation', { name: 'Lesson outline' }).getByRole('button', { name: /Flashcards/ }).click();
+  await expect(panel).toContainText('vocabulary_flashcards');
+  await expect(panel).not.toContainText('vocabulary_introduction');
+  await tabs.last().click();
+  await expect(panel).toContainText('vocabulary_translation_exam');
+  const heights = await Promise.all([
+    page.getByRole('link', { name: 'Lesson overview' }),
+    page.getByRole('button', { name: 'Raw JSON' }),
+    page.getByRole('link', { name: 'Start lesson' }),
+  ].map(async (button) => (await button.boundingBox())!.height));
+  expect(Math.max(...heights) - Math.min(...heights)).toBeLessThanOrEqual(1);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBeLessThanOrEqual(0);
 });

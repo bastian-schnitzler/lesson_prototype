@@ -14,6 +14,7 @@ import { fetchArtifactText, useOutline, type ArtifactText } from '../data/load.t
 import type { ArtifactFile, Course, Manifest } from '../schemas/manifest.ts';
 import { validateBrief, validateContent, type Issue } from '../validation/artifacts.ts';
 import type { OutlineEntry } from '../schemas/outline.ts';
+import type { Brief } from '../schemas/artifacts.ts';
 
 type Slot = 'draft' | 'content';
 const SECTIONS = ['outline', 'draft', 'content'] as const;
@@ -93,7 +94,7 @@ export function LessonPage({ manifest, lessonId, onReturnToOverview }: LessonPag
           ? validateContent(content.data, { ...ctx, brief: briefResult.value }).issues
           : [{ path: '', message: 'no valid draft to check this content against' }];
     }
-    return { draft: briefResult?.issues, content: contentIssues };
+    return { draft: briefResult?.issues, content: contentIssues, brief: briefResult?.value };
   }, [entry, course, draft, content]);
   const ready = entry !== undefined && reasons.length === 0;
 
@@ -113,7 +114,7 @@ export function LessonPage({ manifest, lessonId, onReturnToOverview }: LessonPag
         {mode === 'raw' ? t('action.structuredView') : t('action.rawJson')}
       </button>
       {ready && (
-        <a className="button button-primary" href={href.play(lessonId)}>
+        <a className="button button-primary artifact-start" href={href.play(lessonId)}>
           {t('action.startLesson')}
         </a>
       )}
@@ -174,7 +175,7 @@ export function LessonPage({ manifest, lessonId, onReturnToOverview }: LessonPag
           <OutlineSummary entry={entry} ordinal={index + 1} lang={course.lang} level={course.level} />
         </section>
         <ArtifactSection slot="draft" kind={entry.kind} loaded={draft} issues={validation.draft} file={artifacts?.draft} />
-        <ArtifactSection slot="content" kind={entry.kind} loaded={content} issues={validation.content} file={artifacts?.content} />
+        <ArtifactSection slot="content" kind={entry.kind} loaded={content} issues={validation.content} file={artifacts?.content} brief={validation.brief} />
       </>
     );
   }
@@ -182,7 +183,7 @@ export function LessonPage({ manifest, lessonId, onReturnToOverview }: LessonPag
   return (
     <>
       <Header
-        motherTongueEditable={false}
+        motherTongueEditable={true}
         courseLang={course?.lang}
         title={<span className="brand">{t('app.brand')}</span>}
         actions={actions}
@@ -217,9 +218,10 @@ interface ArtifactSectionProps {
   loaded: LoadedArtifact;
   issues?: Issue[];
   file?: ArtifactFile;
+  brief?: Brief;
 }
 
-function ArtifactSection({ slot, kind, loaded, issues, file }: ArtifactSectionProps) {
+function ArtifactSection({ slot, kind, loaded, issues, file, brief }: ArtifactSectionProps) {
   const { t } = useI18n();
   const headingId = `${slot}-heading`;
   const View = (slot === 'draft' ? draftViews : contentViews)[kind];
@@ -249,7 +251,7 @@ function ArtifactSection({ slot, kind, loaded, issues, file }: ArtifactSectionPr
           {issues && issues.length > 0 ? (
             <IssueList issues={issues} />
           ) : View ? (
-            <View data={loaded.data} />
+            <View data={loaded.data} brief={brief} />
           ) : (
             <p className="muted">{t('detail.noStructuredView')}</p>
           )}
@@ -317,4 +319,3 @@ function RawView({ entry, draft, content, issues, overrides, onOverridesChange }
     </section>
   );
 }
-

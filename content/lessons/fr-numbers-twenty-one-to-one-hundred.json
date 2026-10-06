@@ -1,0 +1,1753 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-numbers-twenty-one-to-one-hundred",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les nombres de 21 à 100",
+  "objective": {
+    "en": "Learn to count from 21 to 100 in French, understand prices in euros, and master compound numbers such as 70, 80, and 90.",
+    "fr": "Apprendre à compter de 21 à 100 en français, comprendre un prix en euros et maîtriser les nombres composés comme 70, 80 et 90.",
+    "de": "Lernen Sie auf Französisch von 21 bis 100 zu zählen, Preise in Euro zu verstehen und zusammengesetzte Zahlen wie 70, 80 und 90 zu meistern."
+  },
+  "estimatedMinutes": 15,
+  "kind": "vocabulary",
+  "theme": "shopping",
+  "steps": [
+    {
+      "id": "introduction",
+      "stage": "introduction",
+      "role": "introduction",
+      "label": {
+        "en": "Introduction",
+        "fr": "Introduction",
+        "de": "Einführung"
+      },
+      "pages": [
+        {
+          "pageId": "introduction-1",
+          "estimatedDurationS": 20,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read and say the new words aloud.",
+            "fr": "Lisez et dites les nouveaux mots à voix haute.",
+            "de": "Lies die neuen Wörter und sprich sie laut."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "introduction-1",
+              "targetIds": [
+                "num-21",
+                "num-30",
+                "num-40",
+                "num-50",
+                "num-60"
+              ],
+              "text": {
+                "en": "Learn the tens first: trente, quarante, cinquante, soixante. In France, 70 is 60 + 10 (soixante-dix), 71 is 60 + 11 (soixante-et-onze), 80 is four twenties (quatre-vingts), and 90 is 80 + 10 (quatre-vingt-dix). There is et in vingt-et-un and soixante-et-onze, but no et in quatre-vingt-un or quatre-vingt-onze. Quatre-vingts has s only when no further number follows: quatre-vingts euros, quatre-vingt-un euros. Both traditional spacing (vingt et un) and the newer hyphenated spelling (vingt-et-un) are accepted. Read prices aloud: Ce livre coûte vingt-et-un euros. Write words, not digits.\nNumbers 21 to 60: vingt-et-un, trente, quarante, cinquante, soixante.",
+                "fr": "Apprenez les dizaines : trente, quarante, cinquante, soixante. En France, 70 = 60 + 10 (soixante-dix), 71 = 60 + 11 (soixante-et-onze), 80 = quatre fois vingt (quatre-vingts), 90 = 80 + 10 (quatre-vingt-dix). Il y a et dans vingt-et-un et soixante-et-onze, mais pas dans quatre-vingt-un ni quatre-vingt-onze. Quatre-vingts prend s seulement si aucun autre nombre ne suit : quatre-vingts euros, quatre-vingt-un euros. L'orthographe traditionnelle (vingt et un) et les traits d'union modernes (vingt-et-un) sont acceptés. Lisez les prix : Ce livre coûte vingt-et-un euros. Écrivez en lettres, pas en chiffres.\nLes nombres de 21 à 60: vingt-et-un, trente, quarante, cinquante, soixante.",
+                "de": "Lerne zuerst die Zehner: trente, quarante, cinquante, soixante. In Frankreich ist 70 = 60 + 10 (soixante-dix), 71 = 60 + 11 (soixante-et-onze), 80 = viermal zwanzig (quatre-vingts), 90 = 80 + 10 (quatre-vingt-dix). Vingt-et-un und soixante-et-onze enthalten et, quatre-vingt-un und quatre-vingt-onze nicht. Quatre-vingts bekommt nur dann s, wenn keine weitere Zahl folgt: quatre-vingts euros, quatre-vingt-un euros. Traditionelle Leerzeichen (vingt et un) und moderne Bindestriche (vingt-et-un) werden akzeptiert. Lies Preise laut: Ce livre coûte vingt-et-un euros. Schreibe Zahlwörter statt Ziffern.\nZahlen von 21 bis 60: vingt-et-un, trente, quarante, cinquante, soixante."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "introduction-2",
+          "estimatedDurationS": 20,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read and say the new words aloud.",
+            "fr": "Lisez et dites les nouveaux mots à voix haute.",
+            "de": "Lies die neuen Wörter und sprich sie laut."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "introduction-2",
+              "targetIds": [
+                "num-70",
+                "num-71",
+                "num-80",
+                "num-81"
+              ],
+              "text": {
+                "en": "Numbers 70 to 89: soixante-dix, soixante-et-onze, quatre-vingts, quatre-vingt-un. Say each word aloud and study its example.\nCes chaussures coûtent soixante-dix euros. — These shoes cost seventy euros.\nL'addition est de soixante-et-onze euros. — The bill comes to seventy-one euros.\nLe billet coûte quatre-vingts euros. — The ticket costs eighty euros.\nLe prix est de quatre-vingt-un euros. — The price is eighty-one euros.",
+                "fr": "Les nombres de 70 à 89: soixante-dix, soixante-et-onze, quatre-vingts, quatre-vingt-un. Dites chaque mot à voix haute et étudiez son exemple.\nCes chaussures coûtent soixante-dix euros.\nL'addition est de soixante-et-onze euros.\nLe billet coûte quatre-vingts euros.\nLe prix est de quatre-vingt-un euros.",
+                "de": "Zahlen von 70 bis 89: soixante-dix, soixante-et-onze, quatre-vingts, quatre-vingt-un. Sprich jedes Wort laut und lies sein Beispiel.\nCes chaussures coûtent soixante-dix euros. — Diese Schuhe kosten siebzig Euro.\nL'addition est de soixante-et-onze euros. — Die Rechnung beträgt einundsiebzig Euro.\nLe billet coûte quatre-vingts euros. — Das Ticket kostet achtzig Euro.\nLe prix est de quatre-vingt-un euros. — Der Preis beträgt einundachtzig Euro."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "introduction-3",
+          "estimatedDurationS": 20,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read and say the new words aloud.",
+            "fr": "Lisez et dites les nouveaux mots à voix haute.",
+            "de": "Lies die neuen Wörter und sprich sie laut."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "introduction-3",
+              "targetIds": [
+                "num-90",
+                "num-91",
+                "num-100"
+              ],
+              "text": {
+                "en": "Numbers 90 to 100: quatre-vingt-dix, quatre-vingt-onze, cent. Say each word aloud and study its example.\nLe sac coûte quatre-vingt-dix euros. — The bag costs ninety euros.\nC'est quatre-vingt-onze euros s'il vous plaît. — That is ninety-one euros please.\nCe manteau coûte cent euros. — This coat costs one hundred euros.",
+                "fr": "Les nombres de 90 à 100: quatre-vingt-dix, quatre-vingt-onze, cent. Dites chaque mot à voix haute et étudiez son exemple.\nLe sac coûte quatre-vingt-dix euros.\nC'est quatre-vingt-onze euros s'il vous plaît.\nCe manteau coûte cent euros.",
+                "de": "Zahlen von 90 bis 100: quatre-vingt-dix, quatre-vingt-onze, cent. Sprich jedes Wort laut und lies sein Beispiel.\nLe sac coûte quatre-vingt-dix euros. — Die Tasche kostet neunzig Euro.\nC'est quatre-vingt-onze euros s'il vous plaît. — Das macht einundneunzig Euro bitte.\nCe manteau coûte cent euros. — Dieser Mantel kostet hundert Euro."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "flashcards-1",
+          "estimatedDurationS": 40,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall the word and compare both sides.",
+            "fr": "Rappelez-vous le mot et comparez les deux faces.",
+            "de": "Erinnere dich an das Wort und vergleiche beide Seiten."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "flashcards-1",
+              "targetIds": [
+                "num-21",
+                "num-30",
+                "num-40",
+                "num-50",
+                "num-60"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "flashcards-2",
+          "estimatedDurationS": 40,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall the word and compare both sides.",
+            "fr": "Rappelez-vous le mot et comparez les deux faces.",
+            "de": "Erinnere dich an das Wort und vergleiche beide Seiten."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "flashcards-2",
+              "targetIds": [
+                "num-70",
+                "num-71",
+                "num-80",
+                "num-81"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "flashcards-3",
+          "estimatedDurationS": 40,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall the word and compare both sides.",
+            "fr": "Rappelez-vous le mot et comparez les deux faces.",
+            "de": "Erinnere dich an das Wort und vergleiche beide Seiten."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "flashcards-3",
+              "targetIds": [
+                "num-90",
+                "num-91",
+                "num-100"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "match-1",
+          "estimatedDurationS": 23,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each word with its translation.",
+            "fr": "Associez chaque mot à sa traduction.",
+            "de": "Ordne jedem Wort seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-1",
+              "pairs": [
+                {
+                  "targetId": "num-21",
+                  "nativeLabel": {
+                    "en": "twenty-one",
+                    "de": "einundzwanzig"
+                  },
+                  "answerExplanation": {
+                    "en": "vingt-et-un means twenty-one. ",
+                    "fr": "La forme à retenir est « vingt-et-un ». ",
+                    "de": "vingt-et-un bedeutet einundzwanzig. "
+                  }
+                },
+                {
+                  "targetId": "num-30",
+                  "nativeLabel": {
+                    "en": "thirty",
+                    "de": "dreißig"
+                  },
+                  "answerExplanation": {
+                    "en": "trente means thirty. ",
+                    "fr": "La forme à retenir est « trente ». ",
+                    "de": "trente bedeutet dreißig. "
+                  }
+                },
+                {
+                  "targetId": "num-40",
+                  "nativeLabel": {
+                    "en": "forty",
+                    "de": "vierzig"
+                  },
+                  "answerExplanation": {
+                    "en": "quarante means forty. ",
+                    "fr": "La forme à retenir est « quarante ». ",
+                    "de": "quarante bedeutet vierzig. "
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-2",
+          "estimatedDurationS": 23,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each word with its translation.",
+            "fr": "Associez chaque mot à sa traduction.",
+            "de": "Ordne jedem Wort seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-2",
+              "pairs": [
+                {
+                  "targetId": "num-50",
+                  "nativeLabel": {
+                    "en": "fifty",
+                    "de": "fünfzig"
+                  },
+                  "answerExplanation": {
+                    "en": "cinquante means fifty. ",
+                    "fr": "La forme à retenir est « cinquante ». ",
+                    "de": "cinquante bedeutet fünfzig. "
+                  }
+                },
+                {
+                  "targetId": "num-60",
+                  "nativeLabel": {
+                    "en": "sixty",
+                    "de": "sechzig"
+                  },
+                  "answerExplanation": {
+                    "en": "soixante means sixty. ",
+                    "fr": "La forme à retenir est « soixante ». ",
+                    "de": "soixante bedeutet sechzig. "
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-3",
+          "estimatedDurationS": 22,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each word with its translation.",
+            "fr": "Associez chaque mot à sa traduction.",
+            "de": "Ordne jedem Wort seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-3",
+              "pairs": [
+                {
+                  "targetId": "num-70",
+                  "nativeLabel": {
+                    "en": "seventy",
+                    "de": "siebzig"
+                  },
+                  "answerExplanation": {
+                    "en": "soixante-dix means seventy. ",
+                    "fr": "La forme à retenir est « soixante-dix ». ",
+                    "de": "soixante-dix bedeutet siebzig. "
+                  }
+                },
+                {
+                  "targetId": "num-71",
+                  "nativeLabel": {
+                    "en": "seventy-one",
+                    "de": "einundsiebzig"
+                  },
+                  "answerExplanation": {
+                    "en": "soixante-et-onze means seventy-one.  This is sixty plus eleven; retain et.",
+                    "fr": "La forme à retenir est « soixante-et-onze ».  C’est soixante plus onze ; gardez et.",
+                    "de": "soixante-et-onze bedeutet einundsiebzig.  Das ist sechzig plus elf; behalte et."
+                  }
+                },
+                {
+                  "targetId": "num-80",
+                  "nativeLabel": {
+                    "en": "eighty",
+                    "de": "achtzig"
+                  },
+                  "answerExplanation": {
+                    "en": "quatre-vingts means eighty.  Keep the final s for exactly eighty; it disappears in quatre-vingt-un.",
+                    "fr": "La forme à retenir est « quatre-vingts ».  Gardez le s pour quatre-vingts seul ; il disparaît dans quatre-vingt-un.",
+                    "de": "quatre-vingts bedeutet achtzig.  Bei genau achtzig bleibt das End-s; in quatre-vingt-un entfällt es."
+                  }
+                },
+                {
+                  "targetId": "num-81",
+                  "nativeLabel": {
+                    "en": "eighty-one",
+                    "de": "einundachtzig"
+                  },
+                  "answerExplanation": {
+                    "en": "quatre-vingt-un means eighty-one.  Use no et and no s after vingt.",
+                    "fr": "La forme à retenir est « quatre-vingt-un ».  N’ajoutez ni et ni s après vingt.",
+                    "de": "quatre-vingt-un bedeutet einundachtzig.  Setze kein et und kein s nach vingt."
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-4",
+          "estimatedDurationS": 22,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each word with its translation.",
+            "fr": "Associez chaque mot à sa traduction.",
+            "de": "Ordne jedem Wort seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-4",
+              "pairs": [
+                {
+                  "targetId": "num-90",
+                  "nativeLabel": {
+                    "en": "ninety",
+                    "de": "neunzig"
+                  },
+                  "answerExplanation": {
+                    "en": "quatre-vingt-dix means ninety. ",
+                    "fr": "La forme à retenir est « quatre-vingt-dix ». ",
+                    "de": "quatre-vingt-dix bedeutet neunzig. "
+                  }
+                },
+                {
+                  "targetId": "num-91",
+                  "nativeLabel": {
+                    "en": "ninety-one",
+                    "de": "einundneunzig"
+                  },
+                  "answerExplanation": {
+                    "en": "quatre-vingt-onze means ninety-one.  Use no et and no s after vingt.",
+                    "fr": "La forme à retenir est « quatre-vingt-onze ».  N’ajoutez ni et ni s après vingt.",
+                    "de": "quatre-vingt-onze bedeutet einundneunzig.  Setze kein et und kein s nach vingt."
+                  }
+                },
+                {
+                  "targetId": "num-100",
+                  "nativeLabel": {
+                    "en": "one hundred",
+                    "de": "hundert"
+                  },
+                  "answerExplanation": {
+                    "en": "cent means one hundred. ",
+                    "fr": "La forme à retenir est « cent ». ",
+                    "de": "cent bedeutet hundert. "
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overview",
+      "stage": "overview",
+      "role": "overview",
+      "label": {
+        "en": "Gender and overview",
+        "fr": "Genre et vue d’ensemble",
+        "de": "Genus und Übersicht"
+      },
+      "pages": [
+        {
+          "pageId": "overview",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Review every word and the noun genders.",
+            "fr": "Revoyez tous les mots et le genre des noms.",
+            "de": "Sieh dir alle Wörter und das Genus der Nomen an."
+          },
+          "items": [
+            {
+              "type": "vocabulary_overview",
+              "itemId": "overview",
+              "targetIds": [
+                "num-21",
+                "num-30",
+                "num-40",
+                "num-50",
+                "num-60",
+                "num-70",
+                "num-71",
+                "num-80",
+                "num-81",
+                "num-90",
+                "num-91",
+                "num-100"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "stage": "practice",
+      "role": "exercise",
+      "label": {
+        "en": "Practice",
+        "fr": "Entraînement",
+        "de": "Übung"
+      },
+      "pages": [
+        {
+          "pageId": "gap-num-21",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or phrase without its article.",
+            "fr": "Écrivez le mot ou l’expression sans son article.",
+            "de": "Schreib das fehlende Wort oder die Wendung ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-num-21",
+              "targetId": "num-21",
+              "before": "21 s’écrit en lettres : ",
+              "after": ".",
+              "referenceTargetIds": [
+                "num-30",
+                "num-21",
+                "num-50",
+                "num-40"
+              ],
+              "accepted": {
+                "answers": [
+                  "vingt-et-un"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "vingt-et-un means twenty-one. ",
+                "fr": "La forme à retenir est « vingt-et-un ». ",
+                "de": "vingt-et-un bedeutet einundzwanzig. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-num-30",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or phrase without its article.",
+            "fr": "Écrivez le mot ou l’expression sans son article.",
+            "de": "Schreib das fehlende Wort oder die Wendung ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-num-30",
+              "targetId": "num-30",
+              "before": "30 s’écrit en lettres : ",
+              "after": ".",
+              "referenceTargetIds": [
+                "num-40",
+                "num-30",
+                "num-60",
+                "num-50"
+              ],
+              "accepted": {
+                "answers": [
+                  "trente"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "trente means thirty. ",
+                "fr": "La forme à retenir est « trente ». ",
+                "de": "trente bedeutet dreißig. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-num-40",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or phrase without its article.",
+            "fr": "Écrivez le mot ou l’expression sans son article.",
+            "de": "Schreib das fehlende Wort oder die Wendung ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-num-40",
+              "targetId": "num-40",
+              "before": "40 s’écrit en lettres : ",
+              "after": ".",
+              "referenceTargetIds": [
+                "num-50",
+                "num-40",
+                "num-70",
+                "num-60"
+              ],
+              "accepted": {
+                "answers": [
+                  "quarante"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "quarante means forty. ",
+                "fr": "La forme à retenir est « quarante ». ",
+                "de": "quarante bedeutet vierzig. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-num-50",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or phrase without its article.",
+            "fr": "Écrivez le mot ou l’expression sans son article.",
+            "de": "Schreib das fehlende Wort oder die Wendung ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-num-50",
+              "targetId": "num-50",
+              "before": "50 s’écrit en lettres : ",
+              "after": ".",
+              "referenceTargetIds": [
+                "num-60",
+                "num-50",
+                "num-71",
+                "num-70"
+              ],
+              "accepted": {
+                "answers": [
+                  "cinquante"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "cinquante means fifty. ",
+                "fr": "La forme à retenir est « cinquante ». ",
+                "de": "cinquante bedeutet fünfzig. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-num-60",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or phrase without its article.",
+            "fr": "Écrivez le mot ou l’expression sans son article.",
+            "de": "Schreib das fehlende Wort oder die Wendung ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-num-60",
+              "targetId": "num-60",
+              "before": "60 s’écrit en lettres : ",
+              "after": ".",
+              "referenceTargetIds": [
+                "num-70",
+                "num-60",
+                "num-80",
+                "num-71"
+              ],
+              "accepted": {
+                "answers": [
+                  "soixante"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "soixante means sixty. ",
+                "fr": "La forme à retenir est « soixante ». ",
+                "de": "soixante bedeutet sechzig. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-num-70",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or phrase without its article.",
+            "fr": "Écrivez le mot ou l’expression sans son article.",
+            "de": "Schreib das fehlende Wort oder die Wendung ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-num-70",
+              "targetId": "num-70",
+              "before": "70 s’écrit en lettres : ",
+              "after": ".",
+              "referenceTargetIds": [
+                "num-71",
+                "num-70",
+                "num-81",
+                "num-80"
+              ],
+              "accepted": {
+                "answers": [
+                  "soixante-dix"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "soixante-dix means seventy. ",
+                "fr": "La forme à retenir est « soixante-dix ». ",
+                "de": "soixante-dix bedeutet siebzig. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-num-71",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or phrase without its article.",
+            "fr": "Écrivez le mot ou l’expression sans son article.",
+            "de": "Schreib das fehlende Wort oder die Wendung ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-num-71",
+              "targetId": "num-71",
+              "before": "71 s’écrit en lettres : ",
+              "after": ".",
+              "referenceTargetIds": [
+                "num-80",
+                "num-71",
+                "num-90",
+                "num-81"
+              ],
+              "accepted": {
+                "answers": [
+                  "soixante-et-onze"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "soixante-et-onze means seventy-one.  This is sixty plus eleven; retain et.",
+                "fr": "La forme à retenir est « soixante-et-onze ».  C’est soixante plus onze ; gardez et.",
+                "de": "soixante-et-onze bedeutet einundsiebzig.  Das ist sechzig plus elf; behalte et."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-num-80",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or phrase without its article.",
+            "fr": "Écrivez le mot ou l’expression sans son article.",
+            "de": "Schreib das fehlende Wort oder die Wendung ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-num-80",
+              "targetId": "num-80",
+              "before": "80 s’écrit en lettres : ",
+              "after": ".",
+              "referenceTargetIds": [
+                "num-81",
+                "num-80",
+                "num-91",
+                "num-90"
+              ],
+              "accepted": {
+                "answers": [
+                  "quatre-vingts"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "quatre-vingts means eighty.  Keep the final s for exactly eighty; it disappears in quatre-vingt-un.",
+                "fr": "La forme à retenir est « quatre-vingts ».  Gardez le s pour quatre-vingts seul ; il disparaît dans quatre-vingt-un.",
+                "de": "quatre-vingts bedeutet achtzig.  Bei genau achtzig bleibt das End-s; in quatre-vingt-un entfällt es."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-num-81",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or phrase without its article.",
+            "fr": "Écrivez le mot ou l’expression sans son article.",
+            "de": "Schreib das fehlende Wort oder die Wendung ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-num-81",
+              "targetId": "num-81",
+              "before": "81 s’écrit en lettres : ",
+              "after": ".",
+              "referenceTargetIds": [
+                "num-90",
+                "num-81",
+                "num-100",
+                "num-91"
+              ],
+              "accepted": {
+                "answers": [
+                  "quatre-vingt-un"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "quatre-vingt-un means eighty-one.  Use no et and no s after vingt.",
+                "fr": "La forme à retenir est « quatre-vingt-un ».  N’ajoutez ni et ni s après vingt.",
+                "de": "quatre-vingt-un bedeutet einundachtzig.  Setze kein et und kein s nach vingt."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-num-90",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or phrase without its article.",
+            "fr": "Écrivez le mot ou l’expression sans son article.",
+            "de": "Schreib das fehlende Wort oder die Wendung ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-num-90",
+              "targetId": "num-90",
+              "before": "90 s’écrit en lettres : ",
+              "after": ".",
+              "referenceTargetIds": [
+                "num-91",
+                "num-90",
+                "num-21",
+                "num-100"
+              ],
+              "accepted": {
+                "answers": [
+                  "quatre-vingt-dix"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "quatre-vingt-dix means ninety. ",
+                "fr": "La forme à retenir est « quatre-vingt-dix ». ",
+                "de": "quatre-vingt-dix bedeutet neunzig. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-num-91",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or phrase without its article.",
+            "fr": "Écrivez le mot ou l’expression sans son article.",
+            "de": "Schreib das fehlende Wort oder die Wendung ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-num-91",
+              "targetId": "num-91",
+              "before": "91 s’écrit en lettres : ",
+              "after": ".",
+              "referenceTargetIds": [
+                "num-100",
+                "num-91",
+                "num-30",
+                "num-21"
+              ],
+              "accepted": {
+                "answers": [
+                  "quatre-vingt-onze"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "quatre-vingt-onze means ninety-one.  Use no et and no s after vingt.",
+                "fr": "La forme à retenir est « quatre-vingt-onze ».  N’ajoutez ni et ni s après vingt.",
+                "de": "quatre-vingt-onze bedeutet einundneunzig.  Setze kein et und kein s nach vingt."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-num-100",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or phrase without its article.",
+            "fr": "Écrivez le mot ou l’expression sans son article.",
+            "de": "Schreib das fehlende Wort oder die Wendung ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-num-100",
+              "targetId": "num-100",
+              "before": "100 s’écrit en lettres : ",
+              "after": ".",
+              "referenceTargetIds": [
+                "num-21",
+                "num-100",
+                "num-40",
+                "num-30"
+              ],
+              "accepted": {
+                "answers": [
+                  "cent"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "cent means one hundred. ",
+                "fr": "La forme à retenir est « cent ». ",
+                "de": "cent bedeutet hundert. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "listen-num-21",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Listen and select the word you hear.",
+            "fr": "Écoutez et choisissez le mot entendu.",
+            "de": "Hör zu und wähle das Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_listening_choice",
+              "itemId": "listen-num-21",
+              "targetId": "num-21",
+              "optionTargetIds": [
+                "num-30",
+                "num-21",
+                "num-50",
+                "num-40"
+              ],
+              "answerExplanation": {
+                "en": "vingt-et-un means twenty-one. ",
+                "fr": "La forme à retenir est « vingt-et-un ». ",
+                "de": "vingt-et-un bedeutet einundzwanzig. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "listen-num-30",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Listen and select the word you hear.",
+            "fr": "Écoutez et choisissez le mot entendu.",
+            "de": "Hör zu und wähle das Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_listening_choice",
+              "itemId": "listen-num-30",
+              "targetId": "num-30",
+              "optionTargetIds": [
+                "num-40",
+                "num-30",
+                "num-60",
+                "num-50"
+              ],
+              "answerExplanation": {
+                "en": "trente means thirty. ",
+                "fr": "La forme à retenir est « trente ». ",
+                "de": "trente bedeutet dreißig. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "listen-num-40",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Listen and select the word you hear.",
+            "fr": "Écoutez et choisissez le mot entendu.",
+            "de": "Hör zu und wähle das Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_listening_choice",
+              "itemId": "listen-num-40",
+              "targetId": "num-40",
+              "optionTargetIds": [
+                "num-50",
+                "num-40",
+                "num-70",
+                "num-60"
+              ],
+              "answerExplanation": {
+                "en": "quarante means forty. ",
+                "fr": "La forme à retenir est « quarante ». ",
+                "de": "quarante bedeutet vierzig. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "listen-num-50",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Listen and select the word you hear.",
+            "fr": "Écoutez et choisissez le mot entendu.",
+            "de": "Hör zu und wähle das Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_listening_choice",
+              "itemId": "listen-num-50",
+              "targetId": "num-50",
+              "optionTargetIds": [
+                "num-60",
+                "num-50",
+                "num-71",
+                "num-70"
+              ],
+              "answerExplanation": {
+                "en": "cinquante means fifty. ",
+                "fr": "La forme à retenir est « cinquante ». ",
+                "de": "cinquante bedeutet fünfzig. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "listen-num-60",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Listen and select the word you hear.",
+            "fr": "Écoutez et choisissez le mot entendu.",
+            "de": "Hör zu und wähle das Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_listening_choice",
+              "itemId": "listen-num-60",
+              "targetId": "num-60",
+              "optionTargetIds": [
+                "num-70",
+                "num-60",
+                "num-80",
+                "num-71"
+              ],
+              "answerExplanation": {
+                "en": "soixante means sixty. ",
+                "fr": "La forme à retenir est « soixante ». ",
+                "de": "soixante bedeutet sechzig. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "listen-num-70",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Listen and select the word you hear.",
+            "fr": "Écoutez et choisissez le mot entendu.",
+            "de": "Hör zu und wähle das Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_listening_choice",
+              "itemId": "listen-num-70",
+              "targetId": "num-70",
+              "optionTargetIds": [
+                "num-71",
+                "num-70",
+                "num-81",
+                "num-80"
+              ],
+              "answerExplanation": {
+                "en": "soixante-dix means seventy. ",
+                "fr": "La forme à retenir est « soixante-dix ». ",
+                "de": "soixante-dix bedeutet siebzig. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "listen-num-71",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Listen and select the word you hear.",
+            "fr": "Écoutez et choisissez le mot entendu.",
+            "de": "Hör zu und wähle das Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_listening_choice",
+              "itemId": "listen-num-71",
+              "targetId": "num-71",
+              "optionTargetIds": [
+                "num-80",
+                "num-71",
+                "num-90",
+                "num-81"
+              ],
+              "answerExplanation": {
+                "en": "soixante-et-onze means seventy-one.  This is sixty plus eleven; retain et.",
+                "fr": "La forme à retenir est « soixante-et-onze ».  C’est soixante plus onze ; gardez et.",
+                "de": "soixante-et-onze bedeutet einundsiebzig.  Das ist sechzig plus elf; behalte et."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "listen-num-80",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Listen and select the word you hear.",
+            "fr": "Écoutez et choisissez le mot entendu.",
+            "de": "Hör zu und wähle das Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_listening_choice",
+              "itemId": "listen-num-80",
+              "targetId": "num-80",
+              "optionTargetIds": [
+                "num-81",
+                "num-80",
+                "num-91",
+                "num-90"
+              ],
+              "answerExplanation": {
+                "en": "quatre-vingts means eighty.  Keep the final s for exactly eighty; it disappears in quatre-vingt-un.",
+                "fr": "La forme à retenir est « quatre-vingts ».  Gardez le s pour quatre-vingts seul ; il disparaît dans quatre-vingt-un.",
+                "de": "quatre-vingts bedeutet achtzig.  Bei genau achtzig bleibt das End-s; in quatre-vingt-un entfällt es."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "listen-num-81",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Listen and select the word you hear.",
+            "fr": "Écoutez et choisissez le mot entendu.",
+            "de": "Hör zu und wähle das Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_listening_choice",
+              "itemId": "listen-num-81",
+              "targetId": "num-81",
+              "optionTargetIds": [
+                "num-90",
+                "num-81",
+                "num-100",
+                "num-91"
+              ],
+              "answerExplanation": {
+                "en": "quatre-vingt-un means eighty-one.  Use no et and no s after vingt.",
+                "fr": "La forme à retenir est « quatre-vingt-un ».  N’ajoutez ni et ni s après vingt.",
+                "de": "quatre-vingt-un bedeutet einundachtzig.  Setze kein et und kein s nach vingt."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "listen-num-90",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Listen and select the word you hear.",
+            "fr": "Écoutez et choisissez le mot entendu.",
+            "de": "Hör zu und wähle das Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_listening_choice",
+              "itemId": "listen-num-90",
+              "targetId": "num-90",
+              "optionTargetIds": [
+                "num-91",
+                "num-90",
+                "num-21",
+                "num-100"
+              ],
+              "answerExplanation": {
+                "en": "quatre-vingt-dix means ninety. ",
+                "fr": "La forme à retenir est « quatre-vingt-dix ». ",
+                "de": "quatre-vingt-dix bedeutet neunzig. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "listen-num-91",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Listen and select the word you hear.",
+            "fr": "Écoutez et choisissez le mot entendu.",
+            "de": "Hör zu und wähle das Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_listening_choice",
+              "itemId": "listen-num-91",
+              "targetId": "num-91",
+              "optionTargetIds": [
+                "num-100",
+                "num-91",
+                "num-30",
+                "num-21"
+              ],
+              "answerExplanation": {
+                "en": "quatre-vingt-onze means ninety-one.  Use no et and no s after vingt.",
+                "fr": "La forme à retenir est « quatre-vingt-onze ».  N’ajoutez ni et ni s après vingt.",
+                "de": "quatre-vingt-onze bedeutet einundneunzig.  Setze kein et und kein s nach vingt."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "listen-num-100",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Listen and select the word you hear.",
+            "fr": "Écoutez et choisissez le mot entendu.",
+            "de": "Hör zu und wähle das Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_listening_choice",
+              "itemId": "listen-num-100",
+              "targetId": "num-100",
+              "optionTargetIds": [
+                "num-21",
+                "num-100",
+                "num-40",
+                "num-30"
+              ],
+              "answerExplanation": {
+                "en": "cent means one hundred. ",
+                "fr": "La forme à retenir est « cent ». ",
+                "de": "cent bedeutet hundert. "
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Final exam",
+        "fr": "Examen final",
+        "de": "Abschlussprüfung"
+      },
+      "pages": [
+        {
+          "pageId": "page-translation",
+          "estimatedDurationS": 180,
+          "timeLimitS": 300,
+          "instructions": {
+            "en": "Translate into French; include the required article for nouns.",
+            "fr": "Traduisez en français ; ajoutez l’article demandé pour les noms.",
+            "de": "Übersetze ins Französische; schreibe bei Nomen den verlangten Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-1-1",
+              "targetId": "num-21",
+              "accepted": {
+                "answers": [
+                  "vingt-et-un",
+                  "21",
+                  "vingt et un"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "vingt-et-un means twenty-one. ",
+                "fr": "La forme à retenir est « vingt-et-un ». ",
+                "de": "vingt-et-un bedeutet einundzwanzig. "
+              },
+              "prompt": {
+                "en": "twenty-one",
+                "de": "einundzwanzig"
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-1-2",
+              "targetId": "num-30",
+              "accepted": {
+                "answers": [
+                  "trente",
+                  "30"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "trente means thirty. ",
+                "fr": "La forme à retenir est « trente ». ",
+                "de": "trente bedeutet dreißig. "
+              },
+              "prompt": {
+                "en": "thirty",
+                "de": "dreißig"
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-1-3",
+              "targetId": "num-40",
+              "accepted": {
+                "answers": [
+                  "quarante",
+                  "40"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "quarante means forty. ",
+                "fr": "La forme à retenir est « quarante ». ",
+                "de": "quarante bedeutet vierzig. "
+              },
+              "prompt": {
+                "en": "forty",
+                "de": "vierzig"
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-1-4",
+              "targetId": "num-50",
+              "accepted": {
+                "answers": [
+                  "cinquante",
+                  "50"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "cinquante means fifty. ",
+                "fr": "La forme à retenir est « cinquante ». ",
+                "de": "cinquante bedeutet fünfzig. "
+              },
+              "prompt": {
+                "en": "fifty",
+                "de": "fünfzig"
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-1-5",
+              "targetId": "num-60",
+              "accepted": {
+                "answers": [
+                  "soixante",
+                  "60"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "soixante means sixty. ",
+                "fr": "La forme à retenir est « soixante ». ",
+                "de": "soixante bedeutet sechzig. "
+              },
+              "prompt": {
+                "en": "sixty",
+                "de": "sechzig"
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-1-6",
+              "targetId": "num-70",
+              "accepted": {
+                "answers": [
+                  "soixante-dix",
+                  "70"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "soixante-dix means seventy. ",
+                "fr": "La forme à retenir est « soixante-dix ». ",
+                "de": "soixante-dix bedeutet siebzig. "
+              },
+              "prompt": {
+                "en": "seventy",
+                "de": "siebzig"
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-1-7",
+              "targetId": "num-71",
+              "accepted": {
+                "answers": [
+                  "soixante-et-onze",
+                  "71",
+                  "soixante et onze"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "soixante-et-onze means seventy-one.  This is sixty plus eleven; retain et.",
+                "fr": "La forme à retenir est « soixante-et-onze ».  C’est soixante plus onze ; gardez et.",
+                "de": "soixante-et-onze bedeutet einundsiebzig.  Das ist sechzig plus elf; behalte et."
+              },
+              "prompt": {
+                "en": "seventy-one",
+                "de": "einundsiebzig"
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-1-8",
+              "targetId": "num-80",
+              "accepted": {
+                "answers": [
+                  "quatre-vingts",
+                  "80",
+                  "quatre-vingt"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "quatre-vingts means eighty.  Keep the final s for exactly eighty; it disappears in quatre-vingt-un.",
+                "fr": "La forme à retenir est « quatre-vingts ».  Gardez le s pour quatre-vingts seul ; il disparaît dans quatre-vingt-un.",
+                "de": "quatre-vingts bedeutet achtzig.  Bei genau achtzig bleibt das End-s; in quatre-vingt-un entfällt es."
+              },
+              "prompt": {
+                "en": "eighty",
+                "de": "achtzig"
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-1-9",
+              "targetId": "num-81",
+              "accepted": {
+                "answers": [
+                  "quatre-vingt-un",
+                  "81",
+                  "quatre-vingt-et-un"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "quatre-vingt-un means eighty-one.  Use no et and no s after vingt.",
+                "fr": "La forme à retenir est « quatre-vingt-un ».  N’ajoutez ni et ni s après vingt.",
+                "de": "quatre-vingt-un bedeutet einundachtzig.  Setze kein et und kein s nach vingt."
+              },
+              "prompt": {
+                "en": "eighty-one",
+                "de": "einundachtzig"
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-1-10",
+              "targetId": "num-90",
+              "accepted": {
+                "answers": [
+                  "quatre-vingt-dix",
+                  "90"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "quatre-vingt-dix means ninety. ",
+                "fr": "La forme à retenir est « quatre-vingt-dix ». ",
+                "de": "quatre-vingt-dix bedeutet neunzig. "
+              },
+              "prompt": {
+                "en": "ninety",
+                "de": "neunzig"
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-1-11",
+              "targetId": "num-91",
+              "accepted": {
+                "answers": [
+                  "quatre-vingt-onze",
+                  "91"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "quatre-vingt-onze means ninety-one.  Use no et and no s after vingt.",
+                "fr": "La forme à retenir est « quatre-vingt-onze ».  N’ajoutez ni et ni s après vingt.",
+                "de": "quatre-vingt-onze bedeutet einundneunzig.  Setze kein et und kein s nach vingt."
+              },
+              "prompt": {
+                "en": "ninety-one",
+                "de": "einundneunzig"
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-1-12",
+              "targetId": "num-100",
+              "accepted": {
+                "answers": [
+                  "cent",
+                  "100"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "cent means one hundred. ",
+                "fr": "La forme à retenir est « cent ». ",
+                "de": "cent bedeutet hundert. "
+              },
+              "prompt": {
+                "en": "one hundred",
+                "de": "hundert"
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "page-listening",
+          "estimatedDurationS": 120,
+          "timeLimitS": 240,
+          "instructions": {
+            "en": "Listen and write the complete answer.",
+            "fr": "Écoutez et écrivez la réponse complète.",
+            "de": "Hör zu und schreibe die vollständige Antwort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_listening_dictation",
+              "itemId": "exam-2-1",
+              "targetId": "num-21",
+              "accepted": {
+                "answers": [
+                  "vingt-et-un",
+                  "21",
+                  "vingt et un"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "vingt-et-un means twenty-one. ",
+                "fr": "La forme à retenir est « vingt-et-un ». ",
+                "de": "vingt-et-un bedeutet einundzwanzig. "
+              }
+            },
+            {
+              "type": "vocabulary_listening_dictation",
+              "itemId": "exam-2-2",
+              "targetId": "num-30",
+              "accepted": {
+                "answers": [
+                  "trente",
+                  "30"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "trente means thirty. ",
+                "fr": "La forme à retenir est « trente ». ",
+                "de": "trente bedeutet dreißig. "
+              }
+            },
+            {
+              "type": "vocabulary_listening_dictation",
+              "itemId": "exam-2-3",
+              "targetId": "num-40",
+              "accepted": {
+                "answers": [
+                  "quarante",
+                  "40"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "quarante means forty. ",
+                "fr": "La forme à retenir est « quarante ». ",
+                "de": "quarante bedeutet vierzig. "
+              }
+            },
+            {
+              "type": "vocabulary_listening_dictation",
+              "itemId": "exam-2-4",
+              "targetId": "num-50",
+              "accepted": {
+                "answers": [
+                  "cinquante",
+                  "50"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "cinquante means fifty. ",
+                "fr": "La forme à retenir est « cinquante ». ",
+                "de": "cinquante bedeutet fünfzig. "
+              }
+            },
+            {
+              "type": "vocabulary_listening_dictation",
+              "itemId": "exam-2-5",
+              "targetId": "num-60",
+              "accepted": {
+                "answers": [
+                  "soixante",
+                  "60"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "soixante means sixty. ",
+                "fr": "La forme à retenir est « soixante ». ",
+                "de": "soixante bedeutet sechzig. "
+              }
+            },
+            {
+              "type": "vocabulary_listening_dictation",
+              "itemId": "exam-2-6",
+              "targetId": "num-70",
+              "accepted": {
+                "answers": [
+                  "soixante-dix",
+                  "70"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "soixante-dix means seventy. ",
+                "fr": "La forme à retenir est « soixante-dix ». ",
+                "de": "soixante-dix bedeutet siebzig. "
+              }
+            },
+            {
+              "type": "vocabulary_listening_dictation",
+              "itemId": "exam-2-7",
+              "targetId": "num-71",
+              "accepted": {
+                "answers": [
+                  "soixante-et-onze",
+                  "71",
+                  "soixante et onze"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "soixante-et-onze means seventy-one.  This is sixty plus eleven; retain et.",
+                "fr": "La forme à retenir est « soixante-et-onze ».  C’est soixante plus onze ; gardez et.",
+                "de": "soixante-et-onze bedeutet einundsiebzig.  Das ist sechzig plus elf; behalte et."
+              }
+            },
+            {
+              "type": "vocabulary_listening_dictation",
+              "itemId": "exam-2-8",
+              "targetId": "num-80",
+              "accepted": {
+                "answers": [
+                  "quatre-vingts",
+                  "80",
+                  "quatre-vingt"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "quatre-vingts means eighty.  Keep the final s for exactly eighty; it disappears in quatre-vingt-un.",
+                "fr": "La forme à retenir est « quatre-vingts ».  Gardez le s pour quatre-vingts seul ; il disparaît dans quatre-vingt-un.",
+                "de": "quatre-vingts bedeutet achtzig.  Bei genau achtzig bleibt das End-s; in quatre-vingt-un entfällt es."
+              }
+            },
+            {
+              "type": "vocabulary_listening_dictation",
+              "itemId": "exam-2-9",
+              "targetId": "num-81",
+              "accepted": {
+                "answers": [
+                  "quatre-vingt-un",
+                  "81",
+                  "quatre-vingt-et-un"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "quatre-vingt-un means eighty-one.  Use no et and no s after vingt.",
+                "fr": "La forme à retenir est « quatre-vingt-un ».  N’ajoutez ni et ni s après vingt.",
+                "de": "quatre-vingt-un bedeutet einundachtzig.  Setze kein et und kein s nach vingt."
+              }
+            },
+            {
+              "type": "vocabulary_listening_dictation",
+              "itemId": "exam-2-10",
+              "targetId": "num-90",
+              "accepted": {
+                "answers": [
+                  "quatre-vingt-dix",
+                  "90"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "quatre-vingt-dix means ninety. ",
+                "fr": "La forme à retenir est « quatre-vingt-dix ». ",
+                "de": "quatre-vingt-dix bedeutet neunzig. "
+              }
+            },
+            {
+              "type": "vocabulary_listening_dictation",
+              "itemId": "exam-2-11",
+              "targetId": "num-91",
+              "accepted": {
+                "answers": [
+                  "quatre-vingt-onze",
+                  "91"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "quatre-vingt-onze means ninety-one.  Use no et and no s after vingt.",
+                "fr": "La forme à retenir est « quatre-vingt-onze ».  N’ajoutez ni et ni s après vingt.",
+                "de": "quatre-vingt-onze bedeutet einundneunzig.  Setze kein et und kein s nach vingt."
+              }
+            },
+            {
+              "type": "vocabulary_listening_dictation",
+              "itemId": "exam-2-12",
+              "targetId": "num-100",
+              "accepted": {
+                "answers": [
+                  "cent",
+                  "100"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "cent means one hundred. ",
+                "fr": "La forme à retenir est « cent ». ",
+                "de": "cent bedeutet hundert. "
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "provenance": {
+    "generator": "codex-direct-authoring",
+    "model": "gpt-6",
+    "promptVersion": "manual-content-v1",
+    "generatedAt": "2026-10-06T22:13:22.000Z",
+    "inputHashes": {
+      "outline": "5d5ff64270578ef66cbd7c21ff3c2f6c33fa608915bc92128178a1877b69de42",
+      "brief": "371b914cc4f24b605b644b4e8d2127da8a412300aba0f498fe19823030c65062"
+    }
+  }
+}

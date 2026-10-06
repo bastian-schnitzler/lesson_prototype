@@ -3,6 +3,9 @@ import type { ComponentType } from 'react';
 import type { LessonKind } from '../schemas/common.ts';
 import { GrammarBriefView } from './GrammarBriefView.tsx';
 import { VocabularyBriefView } from './VocabularyBriefView.tsx';
+import { GrammarContentView } from './GrammarContentView.tsx';
+import { VocabularyContentView } from './VocabularyContentView.tsx';
+import type { Brief } from '../schemas/artifacts.ts';
 
 /**
  * Category-specific Draft and Content views, keyed by the artifact's lesson
@@ -12,10 +15,14 @@ import { VocabularyBriefView } from './VocabularyBriefView.tsx';
  */
 export interface ArtifactViewProps {
   data: unknown;
+  brief?: Brief;
 }
 
 export const draftViews: Partial<Record<LessonKind, ComponentType<ArtifactViewProps>>> = {
   vocabulary: VocabularyBriefView,
   grammar: GrammarBriefView,
 };
-export const contentViews: Partial<Record<LessonKind, ComponentType<ArtifactViewProps>>> = {};
+export const contentViews: Partial<Record<LessonKind, ComponentType<ArtifactViewProps>>> = {
+  vocabulary: VocabularyContentView,
+  grammar: GrammarContentView,
+};

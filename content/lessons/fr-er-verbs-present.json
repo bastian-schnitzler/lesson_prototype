@@ -1,0 +1,999 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-er-verbs-present",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les verbes en -er au présent",
+  "objective": {
+    "en": "Conjugate regular -er verbs (parler, habiter, aimer) in the present tense with all pronouns and pronounce silent endings correctly.",
+    "fr": "Conjuguer les verbes en -er (parler, habiter, aimer) au présent avec tous les pronoms et prononcer les terminaisons muettes.",
+    "de": "Konjugieren Sie regelmäßige Verben auf -er (parler, habiter, aimer) im Präsens mit allen Pronomen und sprechen Sie stumme Endungen korrekt aus."
+  },
+  "estimatedMinutes": 11,
+  "kind": "grammar",
+  "topic": "verbs_morphology",
+  "steps": [
+    {
+      "id": "block-singular-forms-explanation",
+      "role": "explanation",
+      "blockId": "block-singular-forms",
+      "label": {
+        "en": "Singular Forms and Silent Endings",
+        "fr": "Formes du singulier et terminaisons muettes",
+        "de": "Singularformen und stumme Endungen"
+      },
+      "pages": [
+        {
+          "pageId": "block-singular-forms-explanation",
+          "estimatedDurationS": 120,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the rule and examples.",
+            "fr": "Lisez la règle et les exemples.",
+            "de": "Lies die Regel und die Beispiele."
+          },
+          "items": [
+            {
+              "type": "grammar_explanation",
+              "itemId": "block-singular-forms-explanation",
+              "ruleIds": [
+                "rule-er-singular",
+                "rule-silent-endings"
+              ],
+              "heading": {
+                "en": "Singular Forms and Silent Endings",
+                "fr": "Formes du singulier et terminaisons muettes",
+                "de": "Singularformen und stumme Endungen"
+              },
+              "text": {
+                "en": "Remove -er from the infinitive and add -e (je), -es (tu), and -e (il/elle/on). The endings -e, -es, and -ent are silent in pronunciation. Do not pronounce the final -s in tu habites or the -e in je parle. Je parle français. Tu habites à Paris. Elle aime la musique.",
+                "fr": "Retirez -er de l'infinitif et ajoutez -e (je), -es (tu) et -e (il/elle/on). Les terminaisons -e, -es et -ent sont muettes à la prononciation. Ne prononcez pas le -s final dans tu habites ni le -e dans je parle. Je parle français. Tu habites à Paris. Elle aime la musique.",
+                "de": "Entfernen Sie -er vom Infinitiv und fügen Sie -e (je), -es (tu) und -e (il/elle/on) hinzu. Die Endungen -e, -es und -ent werden bei der Aussprache nicht gesprochen. Sprechen Sie weder das finale -s bei tu habites noch das -e bei je parle aus. Je parle français. Tu habites à Paris. Elle aime la musique."
+              },
+              "formTable": [
+                {
+                  "subject": "je",
+                  "form": "parle",
+                  "example": null
+                },
+                {
+                  "subject": "tu",
+                  "form": "parles",
+                  "example": null
+                },
+                {
+                  "subject": "il / elle / on",
+                  "form": "parle",
+                  "example": null
+                }
+              ],
+              "examples": [
+                {
+                  "text": "Je parle français.",
+                  "translation": {
+                    "en": "I speak French.",
+                    "de": "Ich spreche Französisch."
+                  }
+                },
+                {
+                  "text": "Tu habites à Paris.",
+                  "translation": {
+                    "en": "You live in Paris.",
+                    "de": "Du wohnst in Paris."
+                  }
+                },
+                {
+                  "text": "Elle aime la musique.",
+                  "translation": {
+                    "en": "She likes music.",
+                    "de": "Sie mag Musik."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-singular-match",
+      "role": "exercise",
+      "blockId": "block-singular-forms",
+      "label": {
+        "en": "Singular Forms and Silent Endings",
+        "fr": "Formes du singulier et terminaisons muettes",
+        "de": "Singularformen und stumme Endungen"
+      },
+      "pages": [
+        {
+          "pageId": "ex-singular-match-1",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the French form for each row; the verb is given when needed.",
+            "fr": "Choisissez la forme française pour chaque ligne ; le verbe est indiqué si nécessaire.",
+            "de": "Wähle die französische Form für jede Zeile; das Verb ist bei Bedarf angegeben."
+          },
+          "items": [
+            {
+              "type": "grammar_pronoun_form_match",
+              "itemId": "ex-singular-match-1",
+              "ruleIds": [
+                "rule-er-singular"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-0",
+                  "text": "parlez"
+                },
+                {
+                  "tokenId": "t-1",
+                  "text": "parlons"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "parles"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "parle"
+                }
+              ],
+              "rows": [
+                {
+                  "rowId": "row-1",
+                  "pronoun": "Je (parler)",
+                  "answerExplanation": {
+                    "en": "Answer: parle. Remove -er from the infinitive and add -e (je), -es (tu), and -e (il/elle/on).",
+                    "fr": "Réponse : parle. Retirez -er de l'infinitif et ajoutez -e (je), -es (tu) et -e (il/elle/on).",
+                    "de": "Antwort: parle. Entfernen Sie -er vom Infinitiv und fügen Sie -e (je), -es (tu) und -e (il/elle/on) hinzu."
+                  },
+                  "validForms": [
+                    "parle"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "ex-singular-match-2",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the French form for each row; the verb is given when needed.",
+            "fr": "Choisissez la forme française pour chaque ligne ; le verbe est indiqué si nécessaire.",
+            "de": "Wähle die französische Form für jede Zeile; das Verb ist bei Bedarf angegeben."
+          },
+          "items": [
+            {
+              "type": "grammar_pronoun_form_match",
+              "itemId": "ex-singular-match-2",
+              "ruleIds": [
+                "rule-er-singular"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-0",
+                  "text": "habitez"
+                },
+                {
+                  "tokenId": "t-1",
+                  "text": "habitons"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "habite"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "habites"
+                }
+              ],
+              "rows": [
+                {
+                  "rowId": "row-1",
+                  "pronoun": "Tu (habiter)",
+                  "answerExplanation": {
+                    "en": "Answer: habites. Remove -er from the infinitive and add -e (je), -es (tu), and -e (il/elle/on).",
+                    "fr": "Réponse : habites. Retirez -er de l'infinitif et ajoutez -e (je), -es (tu) et -e (il/elle/on).",
+                    "de": "Antwort: habites. Entfernen Sie -er vom Infinitiv und fügen Sie -e (je), -es (tu) und -e (il/elle/on) hinzu."
+                  },
+                  "validForms": [
+                    "habites"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "ex-singular-match-3",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the French form for each row; the verb is given when needed.",
+            "fr": "Choisissez la forme française pour chaque ligne ; le verbe est indiqué si nécessaire.",
+            "de": "Wähle die französische Form für jede Zeile; das Verb ist bei Bedarf angegeben."
+          },
+          "items": [
+            {
+              "type": "grammar_pronoun_form_match",
+              "itemId": "ex-singular-match-3",
+              "ruleIds": [
+                "rule-er-singular"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-0",
+                  "text": "aimez"
+                },
+                {
+                  "tokenId": "t-1",
+                  "text": "aimons"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "aimes"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "aime"
+                }
+              ],
+              "rows": [
+                {
+                  "rowId": "row-1",
+                  "pronoun": "Elle (aimer)",
+                  "answerExplanation": {
+                    "en": "Answer: aime. Remove -er from the infinitive and add -e (je), -es (tu), and -e (il/elle/on).",
+                    "fr": "Réponse : aime. Retirez -er de l'infinitif et ajoutez -e (je), -es (tu) et -e (il/elle/on).",
+                    "de": "Antwort: aime. Entfernen Sie -er vom Infinitiv und fügen Sie -e (je), -es (tu) und -e (il/elle/on) hinzu."
+                  },
+                  "validForms": [
+                    "aime"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "ex-singular-match-4",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the French form for each row; the verb is given when needed.",
+            "fr": "Choisissez la forme française pour chaque ligne ; le verbe est indiqué si nécessaire.",
+            "de": "Wähle die französische Form für jede Zeile; das Verb ist bei Bedarf angegeben."
+          },
+          "items": [
+            {
+              "type": "grammar_pronoun_form_match",
+              "itemId": "ex-singular-match-4",
+              "ruleIds": [
+                "rule-er-singular"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-0",
+                  "text": "travaillez"
+                },
+                {
+                  "tokenId": "t-1",
+                  "text": "travaillons"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "travailles"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "travaille"
+                }
+              ],
+              "rows": [
+                {
+                  "rowId": "row-1",
+                  "pronoun": "On (travailler)",
+                  "answerExplanation": {
+                    "en": "Answer: travaille. Remove -er from the infinitive and add -e (je), -es (tu), and -e (il/elle/on).",
+                    "fr": "Réponse : travaille. Retirez -er de l'infinitif et ajoutez -e (je), -es (tu) et -e (il/elle/on).",
+                    "de": "Antwort: travaille. Entfernen Sie -er vom Infinitiv und fügen Sie -e (je), -es (tu) und -e (il/elle/on) hinzu."
+                  },
+                  "validForms": [
+                    "travaille"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-singular-choice",
+      "role": "exercise",
+      "blockId": "block-singular-forms",
+      "label": {
+        "en": "Singular Forms and Silent Endings",
+        "fr": "Formes du singulier et terminaisons muettes",
+        "de": "Singularformen und stumme Endungen"
+      },
+      "pages": [
+        {
+          "pageId": "ex-singular-choice-1",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-singular-choice-1",
+              "ruleIds": [
+                "rule-er-singular",
+                "rule-silent-endings"
+              ],
+              "before": "Tu",
+              "after": "à Paris. (habiter)",
+              "answerExplanation": {
+                "en": "Answer: habites. Remove -er from the infinitive and add -e (je), -es (tu), and -e (il/elle/on). The endings -e, -es, and -ent are silent in pronunciation.",
+                "fr": "Réponse : habites. Retirez -er de l'infinitif et ajoutez -e (je), -es (tu) et -e (il/elle/on). Les terminaisons -e, -es et -ent sont muettes à la prononciation.",
+                "de": "Antwort: habites. Entfernen Sie -er vom Infinitiv und fügen Sie -e (je), -es (tu) und -e (il/elle/on) hinzu. Die Endungen -e, -es und -ent werden bei der Aussprache nicht gesprochen."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "habite"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "habitons"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "habitez"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "habites"
+                }
+              ],
+              "answerChoiceId": "c-3"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-singular-choice-2",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-singular-choice-2",
+              "ruleIds": [
+                "rule-er-singular",
+                "rule-silent-endings"
+              ],
+              "before": "Elle",
+              "after": "la musique. (aimer)",
+              "answerExplanation": {
+                "en": "Answer: aime. Remove -er from the infinitive and add -e (je), -es (tu), and -e (il/elle/on). The endings -e, -es, and -ent are silent in pronunciation.",
+                "fr": "Réponse : aime. Retirez -er de l'infinitif et ajoutez -e (je), -es (tu) et -e (il/elle/on). Les terminaisons -e, -es et -ent sont muettes à la prononciation.",
+                "de": "Antwort: aime. Entfernen Sie -er vom Infinitiv und fügen Sie -e (je), -es (tu) und -e (il/elle/on) hinzu. Die Endungen -e, -es und -ent werden bei der Aussprache nicht gesprochen."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "aimons"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "aimez"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "aime"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "aimes"
+                }
+              ],
+              "answerChoiceId": "c-2"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-singular-choice-3",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-singular-choice-3",
+              "ruleIds": [
+                "rule-er-singular",
+                "rule-silent-endings"
+              ],
+              "before": "On",
+              "after": "à Lyon. (travailler)",
+              "answerExplanation": {
+                "en": "Answer: travaille. Remove -er from the infinitive and add -e (je), -es (tu), and -e (il/elle/on). The endings -e, -es, and -ent are silent in pronunciation.",
+                "fr": "Réponse : travaille. Retirez -er de l'infinitif et ajoutez -e (je), -es (tu) et -e (il/elle/on). Les terminaisons -e, -es et -ent sont muettes à la prononciation.",
+                "de": "Antwort: travaille. Entfernen Sie -er vom Infinitiv und fügen Sie -e (je), -es (tu) und -e (il/elle/on) hinzu. Die Endungen -e, -es und -ent werden bei der Aussprache nicht gesprochen."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "travaillez"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "travaille"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "travailles"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "travaillons"
+                }
+              ],
+              "answerChoiceId": "c-1"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-singular-choice-4",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-singular-choice-4",
+              "ruleIds": [
+                "rule-er-singular",
+                "rule-silent-endings"
+              ],
+              "before": "Je",
+              "after": "français. (parler)",
+              "answerExplanation": {
+                "en": "Answer: parle. Remove -er from the infinitive and add -e (je), -es (tu), and -e (il/elle/on). The endings -e, -es, and -ent are silent in pronunciation.",
+                "fr": "Réponse : parle. Retirez -er de l'infinitif et ajoutez -e (je), -es (tu) et -e (il/elle/on). Les terminaisons -e, -es et -ent sont muettes à la prononciation.",
+                "de": "Antwort: parle. Entfernen Sie -er vom Infinitiv und fügen Sie -e (je), -es (tu) und -e (il/elle/on) hinzu. Die Endungen -e, -es und -ent werden bei der Aussprache nicht gesprochen."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "parles"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "parlons"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "parlez"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "parle"
+                }
+              ],
+              "answerChoiceId": "c-3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "block-plural-forms-explanation",
+      "role": "explanation",
+      "blockId": "block-plural-forms",
+      "label": {
+        "en": "Plural Forms (-ons, -ez, -ent)",
+        "fr": "Formes du pluriel (-ons, -ez, -ent)",
+        "de": "Pluralformen (-ons, -ez, -ent)"
+      },
+      "pages": [
+        {
+          "pageId": "block-plural-forms-explanation",
+          "estimatedDurationS": 120,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the rule and examples.",
+            "fr": "Lisez la règle et les exemples.",
+            "de": "Lies die Regel und die Beispiele."
+          },
+          "items": [
+            {
+              "type": "grammar_explanation",
+              "itemId": "block-plural-forms-explanation",
+              "ruleIds": [
+                "rule-er-plural"
+              ],
+              "heading": {
+                "en": "Plural Forms (-ons, -ez, -ent)",
+                "fr": "Formes du pluriel (-ons, -ez, -ent)",
+                "de": "Pluralformen (-ons, -ez, -ent)"
+              },
+              "text": {
+                "en": "Add endings -ons (nous), -ez (vous), and -ent (ils/elles) to the verb stem. Do not pronounce the ending -ent in ils/elles aiment; it sounds the same as il aime. Nous parlons italien. Vous habitez ici. Ils aiment le chocolat.",
+                "fr": "Ajoutez les terminaisons -ons (nous), -ez (vous) et -ent (ils/elles) au radical du verbe. Ne prononcez pas la terminaison -ent dans ils/elles aiment ; elle se prononce comme il aime. Nous parlons italien. Vous habitez ici. Ils aiment le chocolat.",
+                "de": "Fügen Sie die Endungen -ons (nous), -ez (vous) und -ent (ils/elles) an den Verbstamm an. Sprechen Sie die Endung -ent bei ils/elles aiment nicht aus; sie klingt wie il aime. Nous parlons italien. Vous habitez ici. Ils aiment le chocolat."
+              },
+              "formTable": [
+                {
+                  "subject": "nous",
+                  "form": "parlons",
+                  "example": null
+                },
+                {
+                  "subject": "vous",
+                  "form": "parlez",
+                  "example": null
+                },
+                {
+                  "subject": "ils / elles",
+                  "form": "parlent",
+                  "example": null
+                }
+              ],
+              "examples": [
+                {
+                  "text": "Nous parlons italien.",
+                  "translation": {
+                    "en": "We speak Italian.",
+                    "de": "Wir sprechen Italienisch."
+                  }
+                },
+                {
+                  "text": "Vous habitez ici.",
+                  "translation": {
+                    "en": "You live here.",
+                    "de": "Sie wohnen hier."
+                  }
+                },
+                {
+                  "text": "Ils aiment le chocolat.",
+                  "translation": {
+                    "en": "They like chocolate.",
+                    "de": "Sie mögen Schokolade."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-plural-typing",
+      "role": "exercise",
+      "blockId": "block-plural-forms",
+      "label": {
+        "en": "Plural Forms (-ons, -ez, -ent)",
+        "fr": "Formes du pluriel (-ons, -ez, -ent)",
+        "de": "Pluralformen (-ons, -ez, -ent)"
+      },
+      "pages": [
+        {
+          "pageId": "ex-plural-typing-1",
+          "estimatedDurationS": 23,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or expression.",
+            "fr": "Écrivez le mot ou l’expression qui manque.",
+            "de": "Schreib das fehlende Wort oder die Wendung."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "ex-plural-typing-1",
+              "ruleIds": [
+                "rule-er-plural"
+              ],
+              "before": "Nous",
+              "after": "italien. (parler)",
+              "answerExplanation": {
+                "en": "Answer: parlons. Add endings -ons (nous), -ez (vous), and -ent (ils/elles) to the verb stem.",
+                "fr": "Réponse : parlons. Ajoutez les terminaisons -ons (nous), -ez (vous) et -ent (ils/elles) au radical du verbe.",
+                "de": "Antwort: parlons. Fügen Sie die Endungen -ons (nous), -ez (vous) und -ent (ils/elles) an den Verbstamm an."
+              },
+              "accepted": {
+                "answers": [
+                  "parlons"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            }
+          ]
+        },
+        {
+          "pageId": "ex-plural-typing-2",
+          "estimatedDurationS": 23,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or expression.",
+            "fr": "Écrivez le mot ou l’expression qui manque.",
+            "de": "Schreib das fehlende Wort oder die Wendung."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "ex-plural-typing-2",
+              "ruleIds": [
+                "rule-er-plural"
+              ],
+              "before": "Vous",
+              "after": "ici. (habiter)",
+              "answerExplanation": {
+                "en": "Answer: habitez. Add endings -ons (nous), -ez (vous), and -ent (ils/elles) to the verb stem.",
+                "fr": "Réponse : habitez. Ajoutez les terminaisons -ons (nous), -ez (vous) et -ent (ils/elles) au radical du verbe.",
+                "de": "Antwort: habitez. Fügen Sie die Endungen -ons (nous), -ez (vous) und -ent (ils/elles) an den Verbstamm an."
+              },
+              "accepted": {
+                "answers": [
+                  "habitez"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            }
+          ]
+        },
+        {
+          "pageId": "ex-plural-typing-3",
+          "estimatedDurationS": 22,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or expression.",
+            "fr": "Écrivez le mot ou l’expression qui manque.",
+            "de": "Schreib das fehlende Wort oder die Wendung."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "ex-plural-typing-3",
+              "ruleIds": [
+                "rule-er-plural"
+              ],
+              "before": "Ils",
+              "after": "le chocolat. (aimer)",
+              "answerExplanation": {
+                "en": "Answer: aiment. Add endings -ons (nous), -ez (vous), and -ent (ils/elles) to the verb stem.",
+                "fr": "Réponse : aiment. Ajoutez les terminaisons -ons (nous), -ez (vous) et -ent (ils/elles) au radical du verbe.",
+                "de": "Antwort: aiment. Fügen Sie die Endungen -ons (nous), -ez (vous) und -ent (ils/elles) an den Verbstamm an."
+              },
+              "accepted": {
+                "answers": [
+                  "aiment"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            }
+          ]
+        },
+        {
+          "pageId": "ex-plural-typing-4",
+          "estimatedDurationS": 22,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or expression.",
+            "fr": "Écrivez le mot ou l’expression qui manque.",
+            "de": "Schreib das fehlende Wort oder die Wendung."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "ex-plural-typing-4",
+              "ruleIds": [
+                "rule-er-plural"
+              ],
+              "before": "Elles",
+              "after": "à Paris. (travailler)",
+              "answerExplanation": {
+                "en": "Answer: travaillent. Add endings -ons (nous), -ez (vous), and -ent (ils/elles) to the verb stem.",
+                "fr": "Réponse : travaillent. Ajoutez les terminaisons -ons (nous), -ez (vous) et -ent (ils/elles) au radical du verbe.",
+                "de": "Antwort: travaillent. Fügen Sie die Endungen -ons (nous), -ez (vous) und -ent (ils/elles) an den Verbstamm an."
+              },
+              "accepted": {
+                "answers": [
+                  "travaillent"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "feedback",
+      "role": "feedback",
+      "blockId": null,
+      "label": {
+        "en": "Your feedback",
+        "fr": "Votre retour",
+        "de": "Dein Feedback"
+      },
+      "pages": [
+        {
+          "pageId": "feedback",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Continue to the final exam.",
+            "fr": "Passez à l’examen final.",
+            "de": "Weiter zur Abschlussprüfung."
+          },
+          "items": [
+            {
+              "type": "production_feedback_placeholder",
+              "itemId": "feedback"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "role": "exam",
+      "blockId": null,
+      "label": {
+        "en": "Final exam",
+        "fr": "Examen final",
+        "de": "Abschlussprüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "estimatedDurationS": 90,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Write the missing word or expression.",
+            "fr": "Écrivez le mot ou l’expression qui manque.",
+            "de": "Schreib das fehlende Wort oder die Wendung."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-1-1",
+              "ruleIds": [
+                "rule-er-singular",
+                "rule-silent-endings"
+              ],
+              "before": "Elle",
+              "after": "la musique. (aimer)",
+              "answerExplanation": {
+                "en": "Answer: aime. Remove -er from the infinitive and add -e (je), -es (tu), and -e (il/elle/on). The endings -e, -es, and -ent are silent in pronunciation.",
+                "fr": "Réponse : aime. Retirez -er de l'infinitif et ajoutez -e (je), -es (tu) et -e (il/elle/on). Les terminaisons -e, -es et -ent sont muettes à la prononciation.",
+                "de": "Antwort: aime. Entfernen Sie -er vom Infinitiv und fügen Sie -e (je), -es (tu) und -e (il/elle/on) hinzu. Die Endungen -e, -es und -ent werden bei der Aussprache nicht gesprochen."
+              },
+              "accepted": {
+                "answers": [
+                  "aime"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            },
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-1-2",
+              "ruleIds": [
+                "rule-er-singular",
+                "rule-silent-endings"
+              ],
+              "before": "On",
+              "after": "à Lyon. (travailler)",
+              "answerExplanation": {
+                "en": "Answer: travaille. Remove -er from the infinitive and add -e (je), -es (tu), and -e (il/elle/on). The endings -e, -es, and -ent are silent in pronunciation.",
+                "fr": "Réponse : travaille. Retirez -er de l'infinitif et ajoutez -e (je), -es (tu) et -e (il/elle/on). Les terminaisons -e, -es et -ent sont muettes à la prononciation.",
+                "de": "Antwort: travaille. Entfernen Sie -er vom Infinitiv und fügen Sie -e (je), -es (tu) und -e (il/elle/on) hinzu. Die Endungen -e, -es und -ent werden bei der Aussprache nicht gesprochen."
+              },
+              "accepted": {
+                "answers": [
+                  "travaille"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            },
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-1-3",
+              "ruleIds": [
+                "rule-er-singular",
+                "rule-silent-endings"
+              ],
+              "before": "Je",
+              "after": "français. (parler)",
+              "answerExplanation": {
+                "en": "Answer: parle. Remove -er from the infinitive and add -e (je), -es (tu), and -e (il/elle/on). The endings -e, -es, and -ent are silent in pronunciation.",
+                "fr": "Réponse : parle. Retirez -er de l'infinitif et ajoutez -e (je), -es (tu) et -e (il/elle/on). Les terminaisons -e, -es et -ent sont muettes à la prononciation.",
+                "de": "Antwort: parle. Entfernen Sie -er vom Infinitiv und fügen Sie -e (je), -es (tu) und -e (il/elle/on) hinzu. Die Endungen -e, -es und -ent werden bei der Aussprache nicht gesprochen."
+              },
+              "accepted": {
+                "answers": [
+                  "parle"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            },
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-1-4",
+              "ruleIds": [
+                "rule-er-singular",
+                "rule-silent-endings"
+              ],
+              "before": "Tu",
+              "after": "à Paris. (habiter)",
+              "answerExplanation": {
+                "en": "Answer: habites. Remove -er from the infinitive and add -e (je), -es (tu), and -e (il/elle/on). The endings -e, -es, and -ent are silent in pronunciation.",
+                "fr": "Réponse : habites. Retirez -er de l'infinitif et ajoutez -e (je), -es (tu) et -e (il/elle/on). Les terminaisons -e, -es et -ent sont muettes à la prononciation.",
+                "de": "Antwort: habites. Entfernen Sie -er vom Infinitiv und fügen Sie -e (je), -es (tu) und -e (il/elle/on) hinzu. Die Endungen -e, -es und -ent werden bei der Aussprache nicht gesprochen."
+              },
+              "accepted": {
+                "answers": [
+                  "habites"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            }
+          ]
+        },
+        {
+          "pageId": "exam-page-2",
+          "estimatedDurationS": 90,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Write the French form for each row; the verb is given when needed.",
+            "fr": "Écrivez la forme française pour chaque ligne ; le verbe est indiqué si nécessaire.",
+            "de": "Schreib die französische Form für jede Zeile; das Verb ist bei Bedarf angegeben."
+          },
+          "items": [
+            {
+              "type": "grammar_pronoun_form_typing",
+              "itemId": "exam-2-1",
+              "ruleIds": [
+                "rule-er-plural"
+              ],
+              "rows": [
+                {
+                  "rowId": "row-1",
+                  "pronoun": "Ils (aimer)",
+                  "answerExplanation": {
+                    "en": "Answer: aiment. Add endings -ons (nous), -ez (vous), and -ent (ils/elles) to the verb stem.",
+                    "fr": "Réponse : aiment. Ajoutez les terminaisons -ons (nous), -ez (vous) et -ent (ils/elles) au radical du verbe.",
+                    "de": "Antwort: aiment. Fügen Sie die Endungen -ons (nous), -ez (vous) und -ent (ils/elles) an den Verbstamm an."
+                  },
+                  "accepted": {
+                    "answers": [
+                      "aiment"
+                    ],
+                    "accentSensitive": []
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grammar_pronoun_form_typing",
+              "itemId": "exam-2-2",
+              "ruleIds": [
+                "rule-er-plural"
+              ],
+              "rows": [
+                {
+                  "rowId": "row-1",
+                  "pronoun": "Elles (travailler)",
+                  "answerExplanation": {
+                    "en": "Answer: travaillent. Add endings -ons (nous), -ez (vous), and -ent (ils/elles) to the verb stem.",
+                    "fr": "Réponse : travaillent. Ajoutez les terminaisons -ons (nous), -ez (vous) et -ent (ils/elles) au radical du verbe.",
+                    "de": "Antwort: travaillent. Fügen Sie die Endungen -ons (nous), -ez (vous) und -ent (ils/elles) an den Verbstamm an."
+                  },
+                  "accepted": {
+                    "answers": [
+                      "travaillent"
+                    ],
+                    "accentSensitive": []
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grammar_pronoun_form_typing",
+              "itemId": "exam-2-3",
+              "ruleIds": [
+                "rule-er-plural"
+              ],
+              "rows": [
+                {
+                  "rowId": "row-1",
+                  "pronoun": "Nous (parler)",
+                  "answerExplanation": {
+                    "en": "Answer: parlons. Add endings -ons (nous), -ez (vous), and -ent (ils/elles) to the verb stem.",
+                    "fr": "Réponse : parlons. Ajoutez les terminaisons -ons (nous), -ez (vous) et -ent (ils/elles) au radical du verbe.",
+                    "de": "Antwort: parlons. Fügen Sie die Endungen -ons (nous), -ez (vous) und -ent (ils/elles) an den Verbstamm an."
+                  },
+                  "accepted": {
+                    "answers": [
+                      "parlons"
+                    ],
+                    "accentSensitive": []
+                  }
+                }
+              ]
+            },
+            {
+              "type": "grammar_pronoun_form_typing",
+              "itemId": "exam-2-4",
+              "ruleIds": [
+                "rule-er-plural"
+              ],
+              "rows": [
+                {
+                  "rowId": "row-1",
+                  "pronoun": "Vous (habiter)",
+                  "answerExplanation": {
+                    "en": "Answer: habitez. Add endings -ons (nous), -ez (vous), and -ent (ils/elles) to the verb stem.",
+                    "fr": "Réponse : habitez. Ajoutez les terminaisons -ons (nous), -ez (vous) et -ent (ils/elles) au radical du verbe.",
+                    "de": "Antwort: habitez. Fügen Sie die Endungen -ons (nous), -ez (vous) und -ent (ils/elles) an den Verbstamm an."
+                  },
+                  "accepted": {
+                    "answers": [
+                      "habitez"
+                    ],
+                    "accentSensitive": []
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "provenance": {
+    "generator": "codex-direct-authoring",
+    "model": "gpt-6",
+    "promptVersion": "manual-content-v1",
+    "generatedAt": "2026-10-06T22:13:22.000Z",
+    "inputHashes": {
+      "outline": "c4214004217e367d531a6b73223f98c810ad2a2543cfbe66d837e94e4d50c4bb",
+      "brief": "590534449d0fae560984d4b4952922dc0071963106c5286b71bf0b2d0de11b69"
+    }
+  }
+}

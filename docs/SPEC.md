@@ -256,10 +256,14 @@ Resolve Draft and Content components through a registry keyed by the artifact's 
 | --- | --- |
 | `VocabularyBriefView` | Objective and duration cards; target inventory with learning-language form and selected-mother-tongue translation, word class, applicable gender/articles, and difficulty; target-count/difficulty rationale; six-stage plan and scoring policy; per-exam-page coverage and time limits. |
 | `GrammarBriefView` | Objective/duration and coverage; 2–4 block cards with rules, worked examples, common pitfalls, and proposed exercise types; mixed-exam coverage, answer-unit plan, and each page's time limit. |
-| `VocabularyContentView` | Ordered stage cards with introduction text, front/reveal flashcard previews, matching pairs, noun-gender/overview table, contextual typed gaps and reference words, and translation-exam pages. Show the actual prompts, teaching forms, accepted answers, point units, generated explanations, durations, and timers where applicable. |
-| `GrammarContentView` | Ordered explanation/block cards with form tables and examples; read-only previews for each defined exercise type, including pronoun rows, choice/typed gaps, word tokens, and error spotting. Include the production-feedback placeholder and mixed exam pages, accepted answers, point units, explanations, durations, and countdown limits. |
+| `VocabularyContentView` | Numbered stage outline and grouped page tabs; selected-page cards with introduction text, front/reveal flashcard previews, matching pairs, noun-gender/overview table, contextual typed gaps and reference words, and translation-exam pages. Show the actual prompts, teaching forms, accepted answers, point units, generated explanations, durations, and timers where applicable. |
+| `GrammarContentView` | Numbered step outline and grouped page tabs; selected explanation/block cards with form tables and examples; read-only previews for each defined exercise type, including pronoun rows, choice/typed gaps, word tokens, and error spotting. Include the production-feedback placeholder and mixed exam pages, accepted answers, point units, explanations, durations, and countdown limits. |
 
 Shared presentation helpers can render section cards, metadata, target rows, form tables, answer keys, and timing badges. Categories compose those helpers around their own schemas. Render generated strings as text within React components; layout comes from the application. Speech controls play supported learning-language examples (French in these samples). Native disclosure/expansion controls can shorten long arrays, but **every** target, block, exercise item, answer variant, and explanation must remain accessible. Raw JSON is available through the header mode toggle described below; structured presentation remains the default.
+
+Structured Content begins with a numbered outline of the lesson steps, including each step’s page range. Below it, provide a wrapping bar of page tabs (`Page 1`, `Page 2`, …), with numbered step headings grouped directly above their corresponding tabs. Use consistent color accents across outline entries, group headings and the selected page; numbers and labels must identify groups without relying on color. When the available width is exceeded, wrap step groups onto additional lines; page buttons within an oversized group also wrap. The bar must not scroll horizontally or make the document overflow. Clicking an outline entry opens that step’s first page; clicking a page tab shows only that page’s content below the tabs, with its numbered step heading. All pages and their complete content remain accessible. Support tablist/tabpanel semantics, visible selection, and arrow-key/Home/End navigation. Language changes preserve the selected page. These controls navigate inspection pages without creating or changing a learner attempt.
+
+The artifact header’s Start lesson action uses the same height, font size and padding as Lesson overview and Raw JSON / Structured view. It may retain its primary color treatment, but must not use the taller primary-button sizing.
 
 Artifact exercise previews are **read-only content inspection**: they show answer keys for review, create no attempt, award no score, start no countdown, and do not reuse an active learner session. A displayed exam time limit is metadata. Provide these previews in phase 1 for sample review without waiting for phase 2/3 playable interactions; reuse presentational components where appropriate once the interactive renderers exist. Function/reading Draft/Content renderers are deferred until their schemas are agreed in phases 4/5, while their common Outline view remains available.
 
@@ -841,7 +845,7 @@ scale 1.3
 { <color:#020617>xxx</color> | {
 { <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
 .
-{ [ <color:#4338CA>Lesson overview</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>Raw JSON</color> ] | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | [ <color:#020617>   Start lesson   </color> ] }
+{ [ <color:#4338CA>Lesson overview</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>Raw JSON</color> ] | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | [ <color:#020617>Start lesson</color> ] }
 .
 <color:#1E293B>──────────────────────────────────────────────────────────────────</color>
 .
@@ -926,90 +930,27 @@ scale 1.3
 .
 <back:#0F172A><color:#E2E8F0><size:20><b>  CONTENT  /  Vocabulary lesson  </b></size></color></back>
 .
-<color:#94A3B8>6 ordered stage cards   /   Validated content   /   Read-only previews</color>
+<color:#94A3B8>Numbered outline   /   Grouped page tabs   /   Read-only preview</color>
+.
+<color:#E2E8F0><b>Lesson outline</b></color>
+<color:#A5B4FC>1. Introduction — Pages 1–2</color>
+<color:#67E8F9>2. Flashcards — Pages 3–4</color>
+<color:#86EFAC>3. Matching — Page 5</color>
+<color:#FCD34D>4. Gender and overview — Page 6</color>
+<color:#FDA4AF>5. Practice — Pages 7–10</color>
+<color:#D8B4FE>6. Final exam — Pages 11–12</color>
 .
 {
+<color:#A5B4FC><b>1. Introduction</b></color> | <color:#67E8F9><b>2. Flashcards</b></color> | <color:#86EFAC><b>3. Matching</b></color> | <color:#FCD34D><b>4. Overview</b></color> | <color:#FDA4AF><b>5. Practice</b></color> | <color:#D8B4FE><b>6. Final exam</b></color>
+[Page 1] [Page 2] | [<b>Page 3</b>] [Page 4] | [Page 5] | [Page 6] | [Page 7] [Page 8] [Page 9] [Page 10] | [Page 11] [Page 12]
+}
+<color:#94A3B8>Wrap groups and page buttons onto multiple lines when needed; no horizontal scrolling.</color>
 .
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>02  Flashcard preview</b></color>
-.
-<color:#E2E8F0><size:20><b>un livre</b></size></color>
-<color:#E2E8F0>book   /   Masculine</color>
-.
-[ <color:#4338CA>Listen in French</color> ]
-<color:#E2E8F0>Example: Je lis un livre.</color>
-<color:#E2E8F0>Recall side: book   /   Reveal side: un livre (m)</color>
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>03  Matching preview</b></color>
-.
-{
-<color:#E2E8F0><b>English</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>French</b></color>
-.
-<color:#E2E8F0>book</color> | <color:#020617>xxx</color> | <color:#E2E8F0>un livre</color>
-.
-<color:#E2E8F0>chair</color> | <color:#020617>xxx</color> | <color:#E2E8F0>une chaise</color>
- }
-<color:#E2E8F0>Correct pairs shown for lesson review.</color>
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>04  Gender + overview preview</b></color>
-.
-{
-<color:#E2E8F0><b>Target</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Correct gender</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Teaching form</b></color>
-.
-<color:#E2E8F0>livre</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine</color> | <color:#020617>xxx</color> | <color:#E2E8F0>un livre</color>
-.
-<color:#E2E8F0>chaise</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Feminine</color> | <color:#020617>xxx</color> | <color:#E2E8F0>une chaise</color>
- }
-<color:#E2E8F0>Correction: Chaise is feminine, so use une chaise.</color>
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>05  Typed-gap preview</b></color>
-.
-<color:#E2E8F0>Prompt: Je lis un ____.</color>
-.
-<color:#00E676>Answer: livre   /   1 possible point</color>
-<color:#E2E8F0>Reference words: livre, table, chaise, porte</color>
-<color:#E2E8F0>Correction: A livre is a book; the sentence says you are reading one.</color>
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>06  Exam preview</b></color>
-.
-<color:#E2E8F0>Task: Translate book into French, including its article.</color>
-<color:#00E676>Answer: un livre   /   Page time limit: 35 seconds</color>
-<color:#E2E8F0>Correction: Livre is masculine; the singular indefinite article is un.</color>
-<color:#E2E8F0>All exam pages show prompts, accepted answers, limits, and explanations here.</color>
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
-[ <color:#4338CA>Show all stage items</color> ]
+<color:#67E8F9><b>2. Flashcards — Page 3</b></color>
+<color:#94A3B8>60 seconds estimated   /   No countdown   /   0 point units</color>
+<color:#E2E8F0>Front: un livre   /   Back: book   /   Masculine</color>
+<color:#E2E8F0>Front: une chaise   /   Back: chair   /   Feminine</color>
+<color:#94A3B8>Only the selected page appears here. Other prompts and answers remain accessible through the tabs.</color>
 .
 .
  } | <color:#020617>xxx</color> }
@@ -1045,7 +986,7 @@ scale 1.3
 { <color:#020617>xxx</color> | {
 { <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
 .
-{ [ <color:#4338CA>Lesson overview</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>Raw JSON</color> ] | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | [ <color:#020617>   Start lesson   </color> ] }
+{ [ <color:#4338CA>Lesson overview</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>Raw JSON</color> ] | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | [ <color:#020617>Start lesson</color> ] }
 .
 <color:#1E293B>──────────────────────────────────────────────────────────────────</color>
 .
@@ -1123,104 +1064,30 @@ scale 1.3
 .
 <back:#0F172A><color:#E2E8F0><size:20><b>  CONTENT  /  Grammar lesson  </b></size></color></back>
 .
-<color:#94A3B8>Ordered explanation and exercise cards   /   Read-only previews</color>
+<color:#94A3B8>Numbered outline   /   Grouped page tabs   /   Read-only preview</color>
+.
+<color:#E2E8F0><b>Lesson outline</b></color>
+<color:#A5B4FC>1. Singular explanation — Page 1</color>
+<color:#67E8F9>2. Singular matching — Pages 2–4</color>
+<color:#86EFAC>3. Singular typing — Pages 5–7</color>
+<color:#FCD34D>4. Plural explanation — Page 8</color>
+<color:#FDA4AF>5. Plural practice — Pages 9–11</color>
+<color:#D8B4FE>6. Feedback — Page 12</color>
+<color:#A5B4FC>7. Final exam — Pages 13–14</color>
 .
 {
+<color:#A5B4FC><b>1. Explanation</b></color> | <color:#67E8F9><b>2. Matching</b></color> | <color:#86EFAC><b>3. Typing</b></color> | <color:#FCD34D><b>4. Explanation</b></color> | <color:#FDA4AF><b>5. Practice</b></color> | <color:#D8B4FE><b>6. Feedback</b></color> | <color:#A5B4FC><b>7. Exam</b></color>
+[Page 1] | [<b>Page 2</b>] [Page 3] [Page 4] | [Page 5] [Page 6] [Page 7] | [Page 8] | [Page 9] [Page 10] [Page 11] | [Page 12] | [Page 13] [Page 14]
+}
+<color:#94A3B8>Wrap groups and page buttons onto multiple lines when needed; no horizontal scrolling.</color>
 .
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>01  Explanation preview</b></color>
-.
-<color:#E2E8F0><size:20><b>One person: suis, es, est</b></size></color>
-.
-{
-<color:#E2E8F0>je</color> | <color:#020617>xxx</color> | <color:#E2E8F0>suis</color> | <color:#020617>xxx</color> | <color:#E2E8F0>I am</color>
-.
-<color:#E2E8F0>tu</color> | <color:#020617>xxx</color> | <color:#E2E8F0>es</color> | <color:#020617>xxx</color> | <color:#E2E8F0>you are</color>
-.
-<color:#E2E8F0>il / elle</color> | <color:#020617>xxx</color> | <color:#E2E8F0>est</color> | <color:#020617>xxx</color> | <color:#E2E8F0>he / she is</color>
- }
-.
-[ <color:#4338CA>Listen to examples</color> ]
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>Pronoun typing preview</b></color>
-.
-{
-<color:#E2E8F0><b>Prompt</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Accepted answer</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Points</b></color>
-.
-<color:#E2E8F0>tu ___</color> | <color:#020617>xxx</color> | <color:#E2E8F0>es</color> | <color:#020617>xxx</color> | <color:#E2E8F0>1</color>
-.
-<color:#E2E8F0>elle ___</color> | <color:#020617>xxx</color> | <color:#E2E8F0>est</color> | <color:#020617>xxx</color> | <color:#E2E8F0>1</color>
- }
-<color:#E2E8F0>Correction: Tu takes es. Est is the form for il or elle.</color>
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>Choice-gap and typed-gap previews</b></color>
-.
-<color:#E2E8F0>Choice prompt: Tu ___ étudiant.   Options: suis / es / est / sommes</color>
-<color:#00E676>Answer: es</color>
-.
-<color:#E2E8F0>Typed prompt: Vous ___ prêts.   Answer: êtes</color>
-<color:#E2E8F0>Correction: Vous takes êtes, with an accent circonflexe on e.</color>
-<color:#E2E8F0>Same letters without the accent earn 0.5 points.</color>
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>Word order and error-spotter previews</b></color>
-.
-<color:#E2E8F0>Tokens: étudiant. / suis / Je   Answer: Je suis étudiant.</color>
-.
-<color:#E2E8F0>Error prompt: Tu est étudiant.   Incorrect token: est   Correction: es</color>
-<color:#E2E8F0>Explanation: With tu, use es; est belongs to il or elle.</color>
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>Pre-exam feedback</b></color>
-.
-<color:#E2E8F0>Individual feedback would be here on production.</color>
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>Mixed exam preview</b></color>
-.
-<color:#E2E8F0>Page 1: Tu ___ étudiant.   Answer: es   Limit: 30 seconds</color>
-<color:#E2E8F0>Page 2: nous / vous / ils forms   Answers: sommes / êtes / sont</color>
-<color:#E2E8F0>Page 2 limit: 60 seconds   /   3 possible points</color>
-<color:#E2E8F0>Page 3: Order a sentence   /   Limit defined in the brief</color>
-<color:#E2E8F0>All answers and explanations are visible here for content review.</color>
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
-[ <color:#4338CA>Show all block and exercise items</color> ]
+<color:#67E8F9><b>2. Singular matching — Page 2</b></color>
+<color:#94A3B8>30 seconds estimated   /   No countdown   /   3 point units</color>
+<color:#E2E8F0>Prompt: Choose the form for each pronoun.</color>
+<color:#E2E8F0>Options: suis, es, est</color>
+<color:#00E676>Accepted answers: je → suis; tu → es; il → est</color>
+<color:#E2E8F0>Explanation: With je use suis, with tu use es, with il use est.</color>
+<color:#94A3B8>Only the selected page appears here. Other rules, prompts and answers remain accessible through the tabs.</color>
 .
 .
  } | <color:#020617>xxx</color> }

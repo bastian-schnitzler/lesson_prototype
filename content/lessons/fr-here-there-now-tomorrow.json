@@ -1,0 +1,1266 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-here-there-now-tomorrow",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Ici, là, maintenant, demain",
+  "objective": {
+    "en": "Learn to locate people, objects, and actions in time and space using essential adverbs of place and time.",
+    "fr": "Apprendre à situer des personnes, des objets et des actions dans le temps et l'espace avec des adverbes de lieu et de temps.",
+    "de": "Lernen Sie, Personen, Objekte und Handlungen mit grundlegenden Orts- und Zeitadverbien zeitlich und räumlich einzuordnen."
+  },
+  "estimatedMinutes": 16,
+  "kind": "grammar",
+  "topic": "adverbs",
+  "steps": [
+    {
+      "id": "block-spatial-adverbs-explanation",
+      "role": "explanation",
+      "blockId": "block-spatial-adverbs",
+      "label": {
+        "en": "Locating in Space: Ici and Là",
+        "fr": "Situer dans l'espace : Ici et Là",
+        "de": "Ortsangaben: Ici und Là"
+      },
+      "pages": [
+        {
+          "pageId": "block-spatial-adverbs-explanation",
+          "estimatedDurationS": 120,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the rule and examples.",
+            "fr": "Lisez la règle et les exemples.",
+            "de": "Lies die Regel und die Beispiele."
+          },
+          "items": [
+            {
+              "type": "grammar_explanation",
+              "itemId": "block-spatial-adverbs-explanation",
+              "ruleIds": [
+                "rule-place-adverbs"
+              ],
+              "heading": {
+                "en": "Locating in Space: Ici and Là",
+                "fr": "Situer dans l'espace : Ici et Là",
+                "de": "Ortsangaben: Ici und Là"
+              },
+              "text": {
+                "en": "Use 'ici' for 'here' and 'là' for 'there' (or 'here' in informal spoken French) to indicate location. In everyday spoken French, 'là' often replaces 'ici' to mean 'here'. Je suis ici dans le bureau. Tu es là ?",
+                "fr": "Utiliser 'ici' pour 'ici' et 'là' pour 'là/ici' afin d'indiquer un emplacement. À l'oral, 'là' remplace souvent 'ici' pour dire 'ici'. Je suis ici dans le bureau. Tu es là ?",
+                "de": "Verwende 'ici' für 'hier' und 'là' für 'da/dort' (oder umgangssprachlich 'hier'), um Orte anzugeben. In der Umgangssprache ersetzt 'là' oft 'ici' im Sinne von 'hier'. Je suis ici dans le bureau. Tu es là ?"
+              },
+              "formTable": [],
+              "examples": [
+                {
+                  "text": "Je suis ici dans le bureau.",
+                  "translation": {
+                    "en": "I am here in the office.",
+                    "de": "Ich bin hier im Büro."
+                  }
+                },
+                {
+                  "text": "Tu es là ?",
+                  "translation": {
+                    "en": "Are you there?",
+                    "de": "Bist du da?"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-space-choice",
+      "role": "exercise",
+      "blockId": "block-spatial-adverbs",
+      "label": {
+        "en": "Locating in Space: Ici and Là",
+        "fr": "Situer dans l'espace : Ici et Là",
+        "de": "Ortsangaben: Ici und Là"
+      },
+      "pages": [
+        {
+          "pageId": "ex-space-choice-1",
+          "estimatedDurationS": 23,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-space-choice-1",
+              "ruleIds": [
+                "rule-place-adverbs"
+              ],
+              "before": "Le livre est",
+              "after": "sur cette table, tout près de moi. (here / hier)",
+              "answerExplanation": {
+                "en": "Answer: ici. Use 'ici' for 'here' and 'là' for 'there' (or 'here' in informal spoken French) to indicate location.",
+                "fr": "Réponse : ici. Utiliser 'ici' pour 'ici' et 'là' pour 'là/ici' afin d'indiquer un emplacement.",
+                "de": "Antwort: ici. Verwende 'ici' für 'hier' und 'là' für 'da/dort' (oder umgangssprachlich 'hier'), um Orte anzugeben."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "demain"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "maintenant"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "aujourd’hui"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "ici"
+                }
+              ],
+              "answerChoiceId": "c-3"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-space-choice-2",
+          "estimatedDurationS": 23,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-space-choice-2",
+              "ruleIds": [
+                "rule-place-adverbs"
+              ],
+              "before": "Le livre est",
+              "after": "sur cette table, loin de moi. (there / da/dort)",
+              "answerExplanation": {
+                "en": "Answer: là. Use 'ici' for 'here' and 'là' for 'there' (or 'here' in informal spoken French) to indicate location.",
+                "fr": "Réponse : là. Utiliser 'ici' pour 'ici' et 'là' pour 'là/ici' afin d'indiquer un emplacement.",
+                "de": "Antwort: là. Verwende 'ici' für 'hier' und 'là' für 'da/dort' (oder umgangssprachlich 'hier'), um Orte anzugeben."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "bientôt"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "maintenant"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "là"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "demain"
+                }
+              ],
+              "answerChoiceId": "c-2"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-space-choice-3",
+          "estimatedDurationS": 22,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-space-choice-3",
+              "ruleIds": [
+                "rule-place-adverbs"
+              ],
+              "before": "Je suis",
+              "after": "dans cette pièce, près de vous. (here / hier)",
+              "answerExplanation": {
+                "en": "Answer: ici. Use 'ici' for 'here' and 'là' for 'there' (or 'here' in informal spoken French) to indicate location.",
+                "fr": "Réponse : ici. Utiliser 'ici' pour 'ici' et 'là' pour 'là/ici' afin d'indiquer un emplacement.",
+                "de": "Antwort: ici. Verwende 'ici' für 'hier' und 'là' für 'da/dort' (oder umgangssprachlich 'hier'), um Orte anzugeben."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "aujourd’hui"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "ici"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "demain"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "bientôt"
+                }
+              ],
+              "answerChoiceId": "c-1"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-space-choice-4",
+          "estimatedDurationS": 22,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-space-choice-4",
+              "ruleIds": [
+                "rule-place-adverbs"
+              ],
+              "before": "Tu es",
+              "after": "dans l’autre pièce ? (there / da/dort)",
+              "answerExplanation": {
+                "en": "Answer: là. Use 'ici' for 'here' and 'là' for 'there' (or 'here' in informal spoken French) to indicate location.",
+                "fr": "Réponse : là. Utiliser 'ici' pour 'ici' et 'là' pour 'là/ici' afin d'indiquer un emplacement.",
+                "de": "Antwort: là. Verwende 'ici' für 'hier' und 'là' für 'da/dort' (oder umgangssprachlich 'hier'), um Orte anzugeben."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "demain"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "bientôt"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "maintenant"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "là"
+                }
+              ],
+              "answerChoiceId": "c-3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-space-typing",
+      "role": "exercise",
+      "blockId": "block-spatial-adverbs",
+      "label": {
+        "en": "Locating in Space: Ici and Là",
+        "fr": "Situer dans l'espace : Ici et Là",
+        "de": "Ortsangaben: Ici und Là"
+      },
+      "pages": [
+        {
+          "pageId": "ex-space-typing-1",
+          "estimatedDurationS": 23,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or expression.",
+            "fr": "Écrivez le mot ou l’expression qui manque.",
+            "de": "Schreib das fehlende Wort oder die Wendung."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "ex-space-typing-1",
+              "ruleIds": [
+                "rule-place-adverbs"
+              ],
+              "before": "Le livre est",
+              "after": "sur cette table, loin de moi. (there / da/dort)",
+              "answerExplanation": {
+                "en": "Answer: là. Use 'ici' for 'here' and 'là' for 'there' (or 'here' in informal spoken French) to indicate location.",
+                "fr": "Réponse : là. Utiliser 'ici' pour 'ici' et 'là' pour 'là/ici' afin d'indiquer un emplacement.",
+                "de": "Antwort: là. Verwende 'ici' für 'hier' und 'là' für 'da/dort' (oder umgangssprachlich 'hier'), um Orte anzugeben."
+              },
+              "accepted": {
+                "answers": [
+                  "là"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            }
+          ]
+        },
+        {
+          "pageId": "ex-space-typing-2",
+          "estimatedDurationS": 23,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or expression.",
+            "fr": "Écrivez le mot ou l’expression qui manque.",
+            "de": "Schreib das fehlende Wort oder die Wendung."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "ex-space-typing-2",
+              "ruleIds": [
+                "rule-place-adverbs"
+              ],
+              "before": "Je suis",
+              "after": "dans cette pièce, près de vous. (here / hier)",
+              "answerExplanation": {
+                "en": "Answer: ici. Use 'ici' for 'here' and 'là' for 'there' (or 'here' in informal spoken French) to indicate location.",
+                "fr": "Réponse : ici. Utiliser 'ici' pour 'ici' et 'là' pour 'là/ici' afin d'indiquer un emplacement.",
+                "de": "Antwort: ici. Verwende 'ici' für 'hier' und 'là' für 'da/dort' (oder umgangssprachlich 'hier'), um Orte anzugeben."
+              },
+              "accepted": {
+                "answers": [
+                  "ici"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            }
+          ]
+        },
+        {
+          "pageId": "ex-space-typing-3",
+          "estimatedDurationS": 22,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or expression.",
+            "fr": "Écrivez le mot ou l’expression qui manque.",
+            "de": "Schreib das fehlende Wort oder die Wendung."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "ex-space-typing-3",
+              "ruleIds": [
+                "rule-place-adverbs"
+              ],
+              "before": "Tu es",
+              "after": "dans l’autre pièce ? (there / da/dort)",
+              "answerExplanation": {
+                "en": "Answer: là. Use 'ici' for 'here' and 'là' for 'there' (or 'here' in informal spoken French) to indicate location.",
+                "fr": "Réponse : là. Utiliser 'ici' pour 'ici' et 'là' pour 'là/ici' afin d'indiquer un emplacement.",
+                "de": "Antwort: là. Verwende 'ici' für 'hier' und 'là' für 'da/dort' (oder umgangssprachlich 'hier'), um Orte anzugeben."
+              },
+              "accepted": {
+                "answers": [
+                  "là"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            }
+          ]
+        },
+        {
+          "pageId": "ex-space-typing-4",
+          "estimatedDurationS": 22,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or expression.",
+            "fr": "Écrivez le mot ou l’expression qui manque.",
+            "de": "Schreib das fehlende Wort oder die Wendung."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "ex-space-typing-4",
+              "ruleIds": [
+                "rule-place-adverbs"
+              ],
+              "before": "Le livre est",
+              "after": "sur cette table, tout près de moi. (here / hier)",
+              "answerExplanation": {
+                "en": "Answer: ici. Use 'ici' for 'here' and 'là' for 'there' (or 'here' in informal spoken French) to indicate location.",
+                "fr": "Réponse : ici. Utiliser 'ici' pour 'ici' et 'là' pour 'là/ici' afin d'indiquer un emplacement.",
+                "de": "Antwort: ici. Verwende 'ici' für 'hier' und 'là' für 'da/dort' (oder umgangssprachlich 'hier'), um Orte anzugeben."
+              },
+              "accepted": {
+                "answers": [
+                  "ici"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "block-temporal-adverbs-explanation",
+      "role": "explanation",
+      "blockId": "block-temporal-adverbs",
+      "label": {
+        "en": "Locating in Time: Present and Future",
+        "fr": "Situer dans le temps : Présent et Futur",
+        "de": "Zeitangaben: Gegenwart und Zukunft"
+      },
+      "pages": [
+        {
+          "pageId": "block-temporal-adverbs-explanation",
+          "estimatedDurationS": 150,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the rule and examples.",
+            "fr": "Lisez la règle et les exemples.",
+            "de": "Lies die Regel und die Beispiele."
+          },
+          "items": [
+            {
+              "type": "grammar_explanation",
+              "itemId": "block-temporal-adverbs-explanation",
+              "ruleIds": [
+                "rule-time-adverbs-present",
+                "rule-time-adverbs-future"
+              ],
+              "heading": {
+                "en": "Locating in Time: Present and Future",
+                "fr": "Situer dans le temps : Présent et Futur",
+                "de": "Zeitangaben: Gegenwart und Zukunft"
+              },
+              "text": {
+                "en": "Use 'maintenant' (now) and 'aujourd'hui' (today) to locate an event in the present time. Use 'demain' (tomorrow), 'bientôt' (soon), and 'tout de suite' (right away) for future or immediate events. Do not confuse 'tout de suite' (immediately) with 'bientôt' (in a short time). Aujourd'hui, nous travaillons. Je viens tout de suite. Demain, il va téléphoner.",
+                "fr": "Utiliser 'maintenant' et 'aujourd'hui' pour situer un événement au présent. Utiliser 'demain', 'bientôt' et 'tout de suite' pour des événements futurs ou immédiats. Ne pas confondre 'tout de suite' (immédiatement) et 'bientôt' (dans un moment). Aujourd'hui, nous travaillons. Je viens tout de suite. Demain, il va téléphoner.",
+                "de": "Verwende 'maintenant' (jetzt) und 'aujourd'hui' (heute), um ein Ereignis in der Gegenwart einzuordnen. Verwende 'demain' (morgen), 'bientôt' (bald) und 'tout de suite' (sofort) für zukünftige oder unmittelbare Ereignisse. Verwechseln Sie 'tout de suite' (sofort) nicht mit 'bientôt' (bald). Aujourd'hui, nous travaillons. Je viens tout de suite. Demain, il va téléphoner."
+              },
+              "formTable": [],
+              "examples": [
+                {
+                  "text": "Aujourd'hui, nous travaillons.",
+                  "translation": {
+                    "en": "Today, we are working.",
+                    "de": "Heute arbeiten wir."
+                  }
+                },
+                {
+                  "text": "Je viens tout de suite.",
+                  "translation": {
+                    "en": "I am coming right away.",
+                    "de": "Ich komme sofort."
+                  }
+                },
+                {
+                  "text": "Demain, il va téléphoner.",
+                  "translation": {
+                    "en": "Tomorrow, he is going to call.",
+                    "de": "Morgen wird er anrufen."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-time-choice",
+      "role": "exercise",
+      "blockId": "block-temporal-adverbs",
+      "label": {
+        "en": "Locating in Time: Present and Future",
+        "fr": "Situer dans le temps : Présent et Futur",
+        "de": "Zeitangaben: Gegenwart und Zukunft"
+      },
+      "pages": [
+        {
+          "pageId": "ex-time-choice-1",
+          "estimatedDurationS": 22,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-time-choice-1",
+              "ruleIds": [
+                "rule-time-adverbs-present",
+                "rule-time-adverbs-future"
+              ],
+              "before": "Hier, c’était lundi.",
+              "after": "c’est mardi. (today / heute)",
+              "answerExplanation": {
+                "en": "Answer: aujourd'hui. Use 'maintenant' (now) and 'aujourd'hui' (today) to locate an event in the present time. Use 'demain' (tomorrow), 'bientôt' (soon), and 'tout de suite' (right away) for future or immediate events.",
+                "fr": "Réponse : aujourd'hui. Utiliser 'maintenant' et 'aujourd'hui' pour situer un événement au présent. Utiliser 'demain', 'bientôt' et 'tout de suite' pour des événements futurs ou immédiats.",
+                "de": "Antwort: aujourd'hui. Verwende 'maintenant' (jetzt) und 'aujourd'hui' (heute), um ein Ereignis in der Gegenwart einzuordnen. Verwende 'demain' (morgen), 'bientôt' (bald) und 'tout de suite' (sofort) für zukünftige oder unmittelbare Ereignisse."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "demain"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "bientôt"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "ici"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "aujourd'hui"
+                }
+              ],
+              "answerChoiceId": "c-3"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-time-choice-2",
+          "estimatedDurationS": 22,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-time-choice-2",
+              "ruleIds": [
+                "rule-time-adverbs-present",
+                "rule-time-adverbs-future"
+              ],
+              "before": "Je travaille",
+              "after": "à cet instant. (now / jetzt)",
+              "answerExplanation": {
+                "en": "Answer: maintenant. Use 'maintenant' (now) and 'aujourd'hui' (today) to locate an event in the present time. Use 'demain' (tomorrow), 'bientôt' (soon), and 'tout de suite' (right away) for future or immediate events.",
+                "fr": "Réponse : maintenant. Utiliser 'maintenant' et 'aujourd'hui' pour situer un événement au présent. Utiliser 'demain', 'bientôt' et 'tout de suite' pour des événements futurs ou immédiats.",
+                "de": "Antwort: maintenant. Verwende 'maintenant' (jetzt) und 'aujourd'hui' (heute), um ein Ereignis in der Gegenwart einzuordnen. Verwende 'demain' (morgen), 'bientôt' (bald) und 'tout de suite' (sofort) für zukünftige oder unmittelbare Ereignisse."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "bientôt"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "là"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "maintenant"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "demain"
+                }
+              ],
+              "answerChoiceId": "c-2"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-time-choice-3",
+          "estimatedDurationS": 22,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-time-choice-3",
+              "ruleIds": [
+                "rule-time-adverbs-present",
+                "rule-time-adverbs-future"
+              ],
+              "before": "Aujourd’hui, c’est mardi.",
+              "after": "ce sera mercredi. (tomorrow / morgen)",
+              "answerExplanation": {
+                "en": "Answer: demain. Use 'maintenant' (now) and 'aujourd'hui' (today) to locate an event in the present time. Use 'demain' (tomorrow), 'bientôt' (soon), and 'tout de suite' (right away) for future or immediate events.",
+                "fr": "Réponse : demain. Utiliser 'maintenant' et 'aujourd'hui' pour situer un événement au présent. Utiliser 'demain', 'bientôt' et 'tout de suite' pour des événements futurs ou immédiats.",
+                "de": "Antwort: demain. Verwende 'maintenant' (jetzt) und 'aujourd'hui' (heute), um ein Ereignis in der Gegenwart einzuordnen. Verwende 'demain' (morgen), 'bientôt' (bald) und 'tout de suite' (sofort) für zukünftige oder unmittelbare Ereignisse."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "aujourd'hui"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "demain"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "maintenant"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "ici"
+                }
+              ],
+              "answerChoiceId": "c-1"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-time-choice-4",
+          "estimatedDurationS": 22,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-time-choice-4",
+              "ruleIds": [
+                "rule-time-adverbs-present",
+                "rule-time-adverbs-future"
+              ],
+              "before": "Dans un petit moment, je viens",
+              "after": "(soon / bald).",
+              "answerExplanation": {
+                "en": "Answer: bientôt. Use 'maintenant' (now) and 'aujourd'hui' (today) to locate an event in the present time. Use 'demain' (tomorrow), 'bientôt' (soon), and 'tout de suite' (right away) for future or immediate events.",
+                "fr": "Réponse : bientôt. Utiliser 'maintenant' et 'aujourd'hui' pour situer un événement au présent. Utiliser 'demain', 'bientôt' et 'tout de suite' pour des événements futurs ou immédiats.",
+                "de": "Antwort: bientôt. Verwende 'maintenant' (jetzt) und 'aujourd'hui' (heute), um ein Ereignis in der Gegenwart einzuordnen. Verwende 'demain' (morgen), 'bientôt' (bald) und 'tout de suite' (sofort) für zukünftige oder unmittelbare Ereignisse."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "demain"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "ici"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "aujourd'hui"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "bientôt"
+                }
+              ],
+              "answerChoiceId": "c-3"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-time-choice-5",
+          "estimatedDurationS": 22,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "itemId": "ex-time-choice-5",
+              "ruleIds": [
+                "rule-time-adverbs-present",
+                "rule-time-adverbs-future"
+              ],
+              "before": "Je viens",
+              "after": "sans attendre. (right away / sofort)",
+              "answerExplanation": {
+                "en": "Answer: tout de suite. Use 'maintenant' (now) and 'aujourd'hui' (today) to locate an event in the present time. Use 'demain' (tomorrow), 'bientôt' (soon), and 'tout de suite' (right away) for future or immediate events.",
+                "fr": "Réponse : tout de suite. Utiliser 'maintenant' et 'aujourd'hui' pour situer un événement au présent. Utiliser 'demain', 'bientôt' et 'tout de suite' pour des événements futurs ou immédiats.",
+                "de": "Antwort: tout de suite. Verwende 'maintenant' (jetzt) und 'aujourd'hui' (heute), um ein Ereignis in der Gegenwart einzuordnen. Verwende 'demain' (morgen), 'bientôt' (bald) und 'tout de suite' (sofort) für zukünftige oder unmittelbare Ereignisse."
+              },
+              "choices": [
+                {
+                  "choiceId": "c-0",
+                  "text": "bientôt"
+                },
+                {
+                  "choiceId": "c-1",
+                  "text": "là"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "tout de suite"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "demain"
+                }
+              ],
+              "answerChoiceId": "c-2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-time-order",
+      "role": "exercise",
+      "blockId": "block-temporal-adverbs",
+      "label": {
+        "en": "Locating in Time: Present and Future",
+        "fr": "Situer dans le temps : Présent et Futur",
+        "de": "Zeitangaben: Gegenwart und Zukunft"
+      },
+      "pages": [
+        {
+          "pageId": "ex-time-order-1",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Put all tokens in sentence order.",
+            "fr": "Remettez tous les mots dans l’ordre.",
+            "de": "Bring alle Wörter in die richtige Reihenfolge."
+          },
+          "items": [
+            {
+              "type": "grammar_word_order",
+              "itemId": "ex-time-order-1",
+              "ruleIds": [
+                "rule-time-adverbs-present",
+                "rule-time-adverbs-future"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-2",
+                  "text": "travaillons"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "."
+                },
+                {
+                  "tokenId": "t-0",
+                  "text": "Aujourd’hui"
+                },
+                {
+                  "tokenId": "t-1",
+                  "text": "nous"
+                }
+              ],
+              "acceptedOrders": [
+                [
+                  "t-0",
+                  "t-1",
+                  "t-2",
+                  "t-3"
+                ],
+                [
+                  "t-1",
+                  "t-2",
+                  "t-0",
+                  "t-3"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "Answer: Aujourd’hui nous travaillons .. Use 'maintenant' (now) and 'aujourd'hui' (today) to locate an event in the present time. Use 'demain' (tomorrow), 'bientôt' (soon), and 'tout de suite' (right away) for future or immediate events.",
+                "fr": "Réponse : Aujourd’hui nous travaillons .. Utiliser 'maintenant' et 'aujourd'hui' pour situer un événement au présent. Utiliser 'demain', 'bientôt' et 'tout de suite' pour des événements futurs ou immédiats.",
+                "de": "Antwort: Aujourd’hui nous travaillons .. Verwende 'maintenant' (jetzt) und 'aujourd'hui' (heute), um ein Ereignis in der Gegenwart einzuordnen. Verwende 'demain' (morgen), 'bientôt' (bald) und 'tout de suite' (sofort) für zukünftige oder unmittelbare Ereignisse."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "ex-time-order-2",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Put all tokens in sentence order.",
+            "fr": "Remettez tous les mots dans l’ordre.",
+            "de": "Bring alle Wörter in die richtige Reihenfolge."
+          },
+          "items": [
+            {
+              "type": "grammar_word_order",
+              "itemId": "ex-time-order-2",
+              "ruleIds": [
+                "rule-time-adverbs-present",
+                "rule-time-adverbs-future"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-2",
+                  "text": "tout"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "de"
+                },
+                {
+                  "tokenId": "t-4",
+                  "text": "suite"
+                },
+                {
+                  "tokenId": "t-5",
+                  "text": "."
+                },
+                {
+                  "tokenId": "t-0",
+                  "text": "Je"
+                },
+                {
+                  "tokenId": "t-1",
+                  "text": "viens"
+                }
+              ],
+              "acceptedOrders": [
+                [
+                  "t-0",
+                  "t-1",
+                  "t-2",
+                  "t-3",
+                  "t-4",
+                  "t-5"
+                ],
+                [
+                  "t-2",
+                  "t-3",
+                  "t-4",
+                  "t-0",
+                  "t-1",
+                  "t-5"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "Answer: Je viens tout de suite .. Use 'maintenant' (now) and 'aujourd'hui' (today) to locate an event in the present time. Use 'demain' (tomorrow), 'bientôt' (soon), and 'tout de suite' (right away) for future or immediate events.",
+                "fr": "Réponse : Je viens tout de suite .. Utiliser 'maintenant' et 'aujourd'hui' pour situer un événement au présent. Utiliser 'demain', 'bientôt' et 'tout de suite' pour des événements futurs ou immédiats.",
+                "de": "Antwort: Je viens tout de suite .. Verwende 'maintenant' (jetzt) und 'aujourd'hui' (heute), um ein Ereignis in der Gegenwart einzuordnen. Verwende 'demain' (morgen), 'bientôt' (bald) und 'tout de suite' (sofort) für zukünftige oder unmittelbare Ereignisse."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "ex-time-order-3",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Put all tokens in sentence order.",
+            "fr": "Remettez tous les mots dans l’ordre.",
+            "de": "Bring alle Wörter in die richtige Reihenfolge."
+          },
+          "items": [
+            {
+              "type": "grammar_word_order",
+              "itemId": "ex-time-order-3",
+              "ruleIds": [
+                "rule-time-adverbs-present",
+                "rule-time-adverbs-future"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-2",
+                  "text": "va"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "téléphoner"
+                },
+                {
+                  "tokenId": "t-4",
+                  "text": "."
+                },
+                {
+                  "tokenId": "t-0",
+                  "text": "Demain"
+                },
+                {
+                  "tokenId": "t-1",
+                  "text": "il"
+                }
+              ],
+              "acceptedOrders": [
+                [
+                  "t-0",
+                  "t-1",
+                  "t-2",
+                  "t-3",
+                  "t-4"
+                ],
+                [
+                  "t-1",
+                  "t-2",
+                  "t-3",
+                  "t-0",
+                  "t-4"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "Answer: Demain il va téléphoner .. Use 'maintenant' (now) and 'aujourd'hui' (today) to locate an event in the present time. Use 'demain' (tomorrow), 'bientôt' (soon), and 'tout de suite' (right away) for future or immediate events.",
+                "fr": "Réponse : Demain il va téléphoner .. Utiliser 'maintenant' et 'aujourd'hui' pour situer un événement au présent. Utiliser 'demain', 'bientôt' et 'tout de suite' pour des événements futurs ou immédiats.",
+                "de": "Antwort: Demain il va téléphoner .. Verwende 'maintenant' (jetzt) und 'aujourd'hui' (heute), um ein Ereignis in der Gegenwart einzuordnen. Verwende 'demain' (morgen), 'bientôt' (bald) und 'tout de suite' (sofort) für zukünftige oder unmittelbare Ereignisse."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "ex-time-order-4",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Put all tokens in sentence order.",
+            "fr": "Remettez tous les mots dans l’ordre.",
+            "de": "Bring alle Wörter in die richtige Reihenfolge."
+          },
+          "items": [
+            {
+              "type": "grammar_word_order",
+              "itemId": "ex-time-order-4",
+              "ruleIds": [
+                "rule-time-adverbs-present",
+                "rule-time-adverbs-future"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-2",
+                  "text": "bientôt"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "."
+                },
+                {
+                  "tokenId": "t-0",
+                  "text": "Il"
+                },
+                {
+                  "tokenId": "t-1",
+                  "text": "vient"
+                }
+              ],
+              "acceptedOrders": [
+                [
+                  "t-0",
+                  "t-1",
+                  "t-2",
+                  "t-3"
+                ],
+                [
+                  "t-2",
+                  "t-0",
+                  "t-1",
+                  "t-3"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "Answer: Il vient bientôt .. Use 'maintenant' (now) and 'aujourd'hui' (today) to locate an event in the present time. Use 'demain' (tomorrow), 'bientôt' (soon), and 'tout de suite' (right away) for future or immediate events.",
+                "fr": "Réponse : Il vient bientôt .. Utiliser 'maintenant' et 'aujourd'hui' pour situer un événement au présent. Utiliser 'demain', 'bientôt' et 'tout de suite' pour des événements futurs ou immédiats.",
+                "de": "Antwort: Il vient bientôt .. Verwende 'maintenant' (jetzt) und 'aujourd'hui' (heute), um ein Ereignis in der Gegenwart einzuordnen. Verwende 'demain' (morgen), 'bientôt' (bald) und 'tout de suite' (sofort) für zukünftige oder unmittelbare Ereignisse."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "feedback",
+      "role": "feedback",
+      "blockId": null,
+      "label": {
+        "en": "Your feedback",
+        "fr": "Votre retour",
+        "de": "Dein Feedback"
+      },
+      "pages": [
+        {
+          "pageId": "feedback",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Continue to the final exam.",
+            "fr": "Passez à l’examen final.",
+            "de": "Weiter zur Abschlussprüfung."
+          },
+          "items": [
+            {
+              "type": "production_feedback_placeholder",
+              "itemId": "feedback"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "role": "exam",
+      "blockId": null,
+      "label": {
+        "en": "Final exam",
+        "fr": "Examen final",
+        "de": "Abschlussprüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Write the missing word or expression.",
+            "fr": "Écrivez le mot ou l’expression qui manque.",
+            "de": "Schreib das fehlende Wort oder die Wendung."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-1-1",
+              "ruleIds": [
+                "rule-place-adverbs"
+              ],
+              "before": "Je suis",
+              "after": "dans cette pièce, près de vous. (here / hier)",
+              "answerExplanation": {
+                "en": "Answer: ici. Use 'ici' for 'here' and 'là' for 'there' (or 'here' in informal spoken French) to indicate location.",
+                "fr": "Réponse : ici. Utiliser 'ici' pour 'ici' et 'là' pour 'là/ici' afin d'indiquer un emplacement.",
+                "de": "Antwort: ici. Verwende 'ici' für 'hier' und 'là' für 'da/dort' (oder umgangssprachlich 'hier'), um Orte anzugeben."
+              },
+              "accepted": {
+                "answers": [
+                  "ici"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            },
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-1-2",
+              "ruleIds": [
+                "rule-place-adverbs"
+              ],
+              "before": "Tu es",
+              "after": "dans l’autre pièce ? (there / da/dort)",
+              "answerExplanation": {
+                "en": "Answer: là. Use 'ici' for 'here' and 'là' for 'there' (or 'here' in informal spoken French) to indicate location.",
+                "fr": "Réponse : là. Utiliser 'ici' pour 'ici' et 'là' pour 'là/ici' afin d'indiquer un emplacement.",
+                "de": "Antwort: là. Verwende 'ici' für 'hier' und 'là' für 'da/dort' (oder umgangssprachlich 'hier'), um Orte anzugeben."
+              },
+              "accepted": {
+                "answers": [
+                  "là"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            },
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-1-3",
+              "ruleIds": [
+                "rule-time-adverbs-present"
+              ],
+              "before": "Hier, c’était lundi.",
+              "after": "c’est mardi. (today / heute)",
+              "answerExplanation": {
+                "en": "aujourd'hui locates the action in the present: maintenant is now, aujourd’hui is today.",
+                "fr": "aujourd'hui situe l’action dans le présent : maintenant désigne cet instant et aujourd’hui ce jour.",
+                "de": "aujourd'hui ordnet die Handlung zeitlich ein: maintenant ist jetzt, aujourd’hui heute."
+              },
+              "accepted": {
+                "answers": [
+                  "aujourd'hui"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            },
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-1-4",
+              "ruleIds": [
+                "rule-time-adverbs-present"
+              ],
+              "before": "Je travaille",
+              "after": "à cet instant. (now / jetzt)",
+              "answerExplanation": {
+                "en": "maintenant locates the action in the present: maintenant is now, aujourd’hui is today.",
+                "fr": "maintenant situe l’action dans le présent : maintenant désigne cet instant et aujourd’hui ce jour.",
+                "de": "maintenant ordnet die Handlung zeitlich ein: maintenant ist jetzt, aujourd’hui heute."
+              },
+              "accepted": {
+                "answers": [
+                  "maintenant"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            },
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-1-5",
+              "ruleIds": [
+                "rule-time-adverbs-present"
+              ],
+              "before": "Hier, c’était mardi.",
+              "after": "c’est mercredi. (today / heute)",
+              "answerExplanation": {
+                "en": "aujourd'hui locates the action in the present: maintenant is now, aujourd’hui is today.",
+                "fr": "aujourd'hui situe l’action dans le présent : maintenant désigne cet instant et aujourd’hui ce jour.",
+                "de": "aujourd'hui ordnet die Handlung zeitlich ein: maintenant ist jetzt, aujourd’hui heute."
+              },
+              "accepted": {
+                "answers": [
+                  "aujourd'hui"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            }
+          ]
+        },
+        {
+          "pageId": "exam-page-2",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Write the missing word or expression.",
+            "fr": "Écrivez le mot ou l’expression qui manque.",
+            "de": "Schreib das fehlende Wort oder die Wendung."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-2-1",
+              "ruleIds": [
+                "rule-time-adverbs-future"
+              ],
+              "before": "Aujourd’hui, c’est mardi.",
+              "after": "ce sera mercredi. (tomorrow / morgen)",
+              "answerExplanation": {
+                "en": "Answer: demain. Use 'demain' (tomorrow), 'bientôt' (soon), and 'tout de suite' (right away) for future or immediate events.",
+                "fr": "Réponse : demain. Utiliser 'demain', 'bientôt' et 'tout de suite' pour des événements futurs ou immédiats.",
+                "de": "Antwort: demain. Verwende 'demain' (morgen), 'bientôt' (bald) und 'tout de suite' (sofort) für zukünftige oder unmittelbare Ereignisse."
+              },
+              "accepted": {
+                "answers": [
+                  "demain"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            },
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-2-2",
+              "ruleIds": [
+                "rule-time-adverbs-future"
+              ],
+              "before": "Dans un petit moment, je viens",
+              "after": "(soon / bald).",
+              "answerExplanation": {
+                "en": "Answer: bientôt. Use 'demain' (tomorrow), 'bientôt' (soon), and 'tout de suite' (right away) for future or immediate events.",
+                "fr": "Réponse : bientôt. Utiliser 'demain', 'bientôt' et 'tout de suite' pour des événements futurs ou immédiats.",
+                "de": "Antwort: bientôt. Verwende 'demain' (morgen), 'bientôt' (bald) und 'tout de suite' (sofort) für zukünftige oder unmittelbare Ereignisse."
+              },
+              "accepted": {
+                "answers": [
+                  "bientôt"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            },
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-2-3",
+              "ruleIds": [
+                "rule-time-adverbs-future"
+              ],
+              "before": "Je viens",
+              "after": "sans attendre. (right away / sofort)",
+              "answerExplanation": {
+                "en": "Answer: tout de suite. Use 'demain' (tomorrow), 'bientôt' (soon), and 'tout de suite' (right away) for future or immediate events.",
+                "fr": "Réponse : tout de suite. Utiliser 'demain', 'bientôt' et 'tout de suite' pour des événements futurs ou immédiats.",
+                "de": "Antwort: tout de suite. Verwende 'demain' (morgen), 'bientôt' (bald) und 'tout de suite' (sofort) für zukünftige oder unmittelbare Ereignisse."
+              },
+              "accepted": {
+                "answers": [
+                  "tout de suite"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            },
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-2-4",
+              "ruleIds": [
+                "rule-time-adverbs-future"
+              ],
+              "before": "Hier, c’était lundi.",
+              "after": "c’est mardi. (today / heute)",
+              "answerExplanation": {
+                "en": "Answer: aujourd'hui. Use 'demain' (tomorrow), 'bientôt' (soon), and 'tout de suite' (right away) for future or immediate events.",
+                "fr": "Réponse : aujourd'hui. Utiliser 'demain', 'bientôt' et 'tout de suite' pour des événements futurs ou immédiats.",
+                "de": "Antwort: aujourd'hui. Verwende 'demain' (morgen), 'bientôt' (bald) und 'tout de suite' (sofort) für zukünftige oder unmittelbare Ereignisse."
+              },
+              "accepted": {
+                "answers": [
+                  "aujourd'hui"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            },
+            {
+              "type": "grammar_gap_typing",
+              "itemId": "exam-2-5",
+              "ruleIds": [
+                "rule-time-adverbs-future"
+              ],
+              "before": "Je travaille",
+              "after": "à cet instant. (now / jetzt)",
+              "answerExplanation": {
+                "en": "Answer: maintenant. Use 'demain' (tomorrow), 'bientôt' (soon), and 'tout de suite' (right away) for future or immediate events.",
+                "fr": "Réponse : maintenant. Utiliser 'demain', 'bientôt' et 'tout de suite' pour des événements futurs ou immédiats.",
+                "de": "Antwort: maintenant. Verwende 'demain' (morgen), 'bientôt' (bald) und 'tout de suite' (sofort) für zukünftige oder unmittelbare Ereignisse."
+              },
+              "accepted": {
+                "answers": [
+                  "maintenant"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "provenance": {
+    "generator": "codex-direct-authoring",
+    "model": "gpt-6",
+    "promptVersion": "manual-content-v1",
+    "generatedAt": "2026-10-06T22:13:22.000Z",
+    "inputHashes": {
+      "outline": "92cbd313533ae674aea190fbe4d278bb77e4e70d103206ca3a35e8811142c679",
+      "brief": "b2862b18d7f1a6d8c1c6ff22191b9a03f01a84fd057e00545eb432124c87487e"
+    }
+  }
+}

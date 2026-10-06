@@ -9,7 +9,7 @@ scale 1.3
 { <color:#020617>xxx</color> | {
 { <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
 .
-{ [ <color:#4338CA>Lesson overview</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>Raw JSON</color> ] | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | [ <color:#020617>   Start lesson   </color> ] }
+{ [ <color:#4338CA>Lesson overview</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>Raw JSON</color> ] | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | [ <color:#020617>Start lesson</color> ] }
 .
 <color:#1E293B>──────────────────────────────────────────────────────────────────</color>
 .
@@ -87,104 +87,30 @@ scale 1.3
 .
 <back:#0F172A><color:#E2E8F0><size:20><b>  CONTENT  /  Grammar lesson  </b></size></color></back>
 .
-<color:#94A3B8>Ordered explanation and exercise cards   /   Read-only previews</color>
+<color:#94A3B8>Numbered outline   /   Grouped page tabs   /   Read-only preview</color>
+.
+<color:#E2E8F0><b>Lesson outline</b></color>
+<color:#A5B4FC>1. Singular explanation — Page 1</color>
+<color:#67E8F9>2. Singular matching — Pages 2–4</color>
+<color:#86EFAC>3. Singular typing — Pages 5–7</color>
+<color:#FCD34D>4. Plural explanation — Page 8</color>
+<color:#FDA4AF>5. Plural practice — Pages 9–11</color>
+<color:#D8B4FE>6. Feedback — Page 12</color>
+<color:#A5B4FC>7. Final exam — Pages 13–14</color>
 .
 {
+<color:#A5B4FC><b>1. Explanation</b></color> | <color:#67E8F9><b>2. Matching</b></color> | <color:#86EFAC><b>3. Typing</b></color> | <color:#FCD34D><b>4. Explanation</b></color> | <color:#FDA4AF><b>5. Practice</b></color> | <color:#D8B4FE><b>6. Feedback</b></color> | <color:#A5B4FC><b>7. Exam</b></color>
+[Page 1] | [<b>Page 2</b>] [Page 3] [Page 4] | [Page 5] [Page 6] [Page 7] | [Page 8] | [Page 9] [Page 10] [Page 11] | [Page 12] | [Page 13] [Page 14]
+}
+<color:#94A3B8>Wrap groups and page buttons onto multiple lines when needed; no horizontal scrolling.</color>
 .
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>01  Explanation preview</b></color>
-.
-<color:#E2E8F0><size:20><b>One person: suis, es, est</b></size></color>
-.
-{
-<color:#E2E8F0>je</color> | <color:#020617>xxx</color> | <color:#E2E8F0>suis</color> | <color:#020617>xxx</color> | <color:#E2E8F0>I am</color>
-.
-<color:#E2E8F0>tu</color> | <color:#020617>xxx</color> | <color:#E2E8F0>es</color> | <color:#020617>xxx</color> | <color:#E2E8F0>you are</color>
-.
-<color:#E2E8F0>il / elle</color> | <color:#020617>xxx</color> | <color:#E2E8F0>est</color> | <color:#020617>xxx</color> | <color:#E2E8F0>he / she is</color>
- }
-.
-[ <color:#4338CA>Listen to examples</color> ]
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>Pronoun typing preview</b></color>
-.
-{
-<color:#E2E8F0><b>Prompt</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Accepted answer</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Points</b></color>
-.
-<color:#E2E8F0>tu ___</color> | <color:#020617>xxx</color> | <color:#E2E8F0>es</color> | <color:#020617>xxx</color> | <color:#E2E8F0>1</color>
-.
-<color:#E2E8F0>elle ___</color> | <color:#020617>xxx</color> | <color:#E2E8F0>est</color> | <color:#020617>xxx</color> | <color:#E2E8F0>1</color>
- }
-<color:#E2E8F0>Correction: Tu takes es. Est is the form for il or elle.</color>
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>Choice-gap and typed-gap previews</b></color>
-.
-<color:#E2E8F0>Choice prompt: Tu ___ étudiant.   Options: suis / es / est / sommes</color>
-<color:#00E676>Answer: es</color>
-.
-<color:#E2E8F0>Typed prompt: Vous ___ prêts.   Answer: êtes</color>
-<color:#E2E8F0>Correction: Vous takes êtes, with an accent circonflexe on e.</color>
-<color:#E2E8F0>Same letters without the accent earn 0.5 points.</color>
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>Word order and error-spotter previews</b></color>
-.
-<color:#E2E8F0>Tokens: étudiant. / suis / Je   Answer: Je suis étudiant.</color>
-.
-<color:#E2E8F0>Error prompt: Tu est étudiant.   Incorrect token: est   Correction: es</color>
-<color:#E2E8F0>Explanation: With tu, use es; est belongs to il or elle.</color>
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>Pre-exam feedback</b></color>
-.
-<color:#E2E8F0>Individual feedback would be here on production.</color>
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>Mixed exam preview</b></color>
-.
-<color:#E2E8F0>Page 1: Tu ___ étudiant.   Answer: es   Limit: 30 seconds</color>
-<color:#E2E8F0>Page 2: nous / vous / ils forms   Answers: sommes / êtes / sont</color>
-<color:#E2E8F0>Page 2 limit: 60 seconds   /   3 possible points</color>
-<color:#E2E8F0>Page 3: Order a sentence   /   Limit defined in the brief</color>
-<color:#E2E8F0>All answers and explanations are visible here for content review.</color>
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
-[ <color:#4338CA>Show all block and exercise items</color> ]
+<color:#67E8F9><b>2. Singular matching — Page 2</b></color>
+<color:#94A3B8>30 seconds estimated   /   No countdown   /   3 point units</color>
+<color:#E2E8F0>Prompt: Choose the form for each pronoun.</color>
+<color:#E2E8F0>Options: suis, es, est</color>
+<color:#00E676>Accepted answers: je → suis; tu → es; il → est</color>
+<color:#E2E8F0>Explanation: With je use suis, with tu use es, with il use est.</color>
+<color:#94A3B8>Only the selected page appears here. Other rules, prompts and answers remain accessible through the tabs.</color>
 .
 .
  } | <color:#020617>xxx</color> }
