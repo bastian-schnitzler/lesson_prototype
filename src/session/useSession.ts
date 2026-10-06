@@ -2,11 +2,12 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 import type { Locale } from '../schemas/common.ts';
 import type { LessonPlan } from '../domain/session/plan.ts';
-import { sessionReducer, type SessionAction, type SessionRecord, type UnitResponse } from '../domain/session/session.ts';
+import { isListeningPage, sessionReducer, type SessionAction, type SessionRecord, type UnitResponse } from '../domain/session/session.ts';
+import type { VoiceStatus } from './speech.ts';
 import { saveSession } from '../domain/session/storage.ts';
 
 /** Reducer actions without the time and interface language, which the hook adds. */
-export type SessionInput = { type: 'draft'; unitId: string; response: UnitResponse } | { type: 'continue' } | { type: 'expire' } | { type: 'select'; selection: string };
+export type SessionInput = { type: 'draft'; unitId: string; response: UnitResponse } | { type: 'continue' } | { type: 'expire' } | { type: 'voice_ready' } | { type: 'skip_no_voice' } | { type: 'select'; selection: string };
 
 /** Injectable clock, so tests can drive countdowns. */
 export const clock = { now: () => Date.now() };
@@ -15,7 +16,7 @@ export const clock = { now: () => Date.now() };
  * Runs one attempt: applies reducer actions, saves after every transition and finalizes an
  * exam page whose absolute deadline passed, also right after a resume.
  */
-export function useSession(plan: LessonPlan, initial: SessionRecord, interfaceLanguage: Locale) {
+export function useSession(plan: LessonPlan, initial: SessionRecord, interfaceLanguage: Locale, voiceStatus: VoiceStatus = 'available') {
   const [record, setRecord] = useState(initial);
   const [saveFailed, setSaveFailed] = useState(false);
   const [now, setNow] = useState(() => clock.now());
@@ -35,7 +36,7 @@ export function useSession(plan: LessonPlan, initial: SessionRecord, interfaceLa
   );
 
   const page = plan.pages[record.pageIndex];
-  const deadline = record.phase === 'answering' && page?.role === 'exam' ? record.exam[page.pageId]?.deadline : undefined;
+  const deadline = record.phase === 'answering' && page?.role === 'exam' && (!isListeningPage(page) || voiceStatus === 'available') ? record.exam[page.pageId]?.deadline : undefined;
   useEffect(() => {
     if (deadline === undefined) return;
     const tick = () => {

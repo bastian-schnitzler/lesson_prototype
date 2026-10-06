@@ -71,3 +71,113 @@ test('locks an exam page when its brief-defined countdown expires', async ({ pag
   // The first page timed out; the second page starts its own 45-second limit.
   await expect(page.getByRole('timer')).toHaveText(/^0:4[45]$/);
 });
+
+async function mockFrenchVoice(page: Page, available: boolean) {
+  await page.addInitScript((hasVoice) => {
+    const spoken: string[] = [];
+    Object.defineProperty(window, '__spoken', { value: spoken, configurable: true });
+    const french = { lang: 'fr-FR', name: 'Test French', voiceURI: 'test-fr', localService: true, default: true };
+    Object.defineProperty(window, 'speechSynthesis', { configurable: true, value: {
+      getVoices: () => hasVoice ? [french] : [], cancel: () => undefined,
+      speak: (utterance: { text: string }) => { spoken.push(utterance.text); },
+      addEventListener: () => undefined, removeEventListener: () => undefined,
+    } });
+    Object.defineProperty(window, 'SpeechSynthesisUtterance', { configurable: true, value: class {
+      text: string; lang = ''; voice: unknown;
+      constructor(text: string) { this.text = text; }
+    } });
+  }, available);
+  await page.reload();
+}
+
+async function reachListeningPractice(page: Page) {
+  await page.goto('./#/lesson/fr-classroom-instructions/play');
+  await proceed(page); // start
+  await proceed(page); // introduction
+  await proceed(page); // flashcards
+  await chooseAll(page); // matching
+  await proceed(page);
+  await proceed(page); // matching feedback
+  await proceed(page); // overview
+  for (const word of ['écoutez', 'lisez']) {
+    await page.getByRole('textbox').fill(word);
+    await proceed(page);
+    await proceed(page);
+  }
+}
+
+test('plays French listening choice and dictation with a suitable voice', async ({ page }) => {
+  await mockFrenchVoice(page, true);
+  await reachListeningPractice(page);
+  await expect(page.getByRole('button', { name: 'Listen' })).toBeVisible();
+  await page.getByRole('button', { name: 'Listen' }).click();
+  expect(await page.evaluate(() => (window as unknown as { __spoken: string[] }).__spoken)).toContain('écoutez');
+  await page.locator('fieldset.choices input').first().check();
+  await proceed(page);
+  await expect(page.getByText(/Fully correct|Incorrect/).first()).toBeVisible();
+  await proceed(page);
+  await page.locator('fieldset.choices input').first().check();
+  await proceed(page);
+  await proceed(page);
+  await expect(page.getByRole('timer')).toBeVisible();
+  for (const input of await page.getByRole('textbox').all()) await input.fill('écoutez');
+  await proceed(page);
+  await expect(page.getByRole('button', { name: 'Listen' }).first()).toBeVisible();
+  await expect(page.getByRole('timer')).toHaveText('1:00');
+  // Type back what the voice said: the first answer in capitals (half credit), the second exactly.
+  const listen = page.getByRole('button', { name: 'Listen' });
+  const heard = async (index: number) => {
+    await listen.nth(index).click();
+    return page.evaluate(() => (window as unknown as { __spoken: string[] }).__spoken.at(-1)!);
+  };
+  const first = await heard(0);
+  expect(await heard(0)).toBe(first); // replay is allowed until the page locks
+  await page.getByRole('textbox').first().fill(first.toUpperCase());
+  await page.getByRole('textbox').last().fill(await heard(1));
+  await proceed(page);
+  await expect(page.getByRole('heading', { name: 'Your exam answers' })).toBeVisible();
+  await expect(page.getByText('Accent / case correction · 0.5 / 1')).toBeVisible();
+  await expect(page.locator('.result-row').last()).toContainText('Fully correct');
+});
+
+test('replaces voice-less listening pages with help and excludes skips from scores', async ({ page }) => {
+  await mockFrenchVoice(page, false);
+  await reachListeningPractice(page);
+  await expect(page.getByRole('heading', { name: 'French voice unavailable' })).toBeVisible();
+  await expect(page.getByText('Steps for Windows with Chrome:')).toBeVisible(); // Playwright's Desktop Chrome user agent
+  await expect(page.getByText('Open Settings → Time & language → Language & region.')).toBeVisible();
+  await expect(page.getByRole('timer')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Skip listening task' }).click();
+  await expect(page.getByRole('heading', { name: 'French voice unavailable' })).toBeVisible();
+  await page.reload();
+  await page.getByRole('button', { name: 'Resume lesson' }).click();
+  await expect(page.getByRole('heading', { name: 'French voice unavailable' })).toBeVisible();
+  await page.getByRole('button', { name: 'Skip listening task' }).click();
+  await expect(page.getByRole('timer')).toBeVisible();
+  for (const input of await page.getByRole('textbox').all()) await input.fill('écoutez');
+  await proceed(page);
+  await expect(page.getByRole('heading', { name: 'French voice unavailable' })).toBeVisible();
+  await expect(page.getByRole('timer')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Skip listening task' }).click();
+  await expect(page.getByRole('heading', { name: 'Your exam answers' })).toBeVisible();
+  await expect(page.locator('.summary-card')).toContainText(/Final exam: [0-4] \/ 4/);
+  expect(await page.locator('.result-row').count()).toBe(4);
+});
+
+test('replaces a flashcard Listen button with Install language, which opens the help dialog', async ({ page }) => {
+  await mockFrenchVoice(page, false);
+  await page.goto('./#/lesson/fr-classroom-instructions/play');
+  await proceed(page); // start
+  await proceed(page); // introduction
+  await page.locator('.task-card summary').first().click();
+  await expect(page.getByRole('button', { name: 'Listen' })).toHaveCount(0);
+  await page.getByRole('button', { name: 'Install language' }).first().click();
+  const dialog = page.getByRole('dialog', { name: 'French voice not installed' });
+  await expect(dialog).toBeVisible();
+  await expect(dialog).toContainText('Steps for Windows with Chrome:');
+  await page.keyboard.press('Escape');
+  await expect(dialog).toBeHidden();
+  await page.getByRole('button', { name: 'Install language' }).first().click();
+  await dialog.getByRole('button', { name: 'Close' }).click();
+  await expect(dialog).toBeHidden();
+});

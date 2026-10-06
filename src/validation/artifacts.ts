@@ -300,6 +300,7 @@ function checkVocabularyContent(c: VocabularyContent, b: VocabularyBrief, ctx: C
             const t = targets.get(item.targetId);
             if (!known(item.targetId, ip) || !t) break;
             for (const f of t.examForms) issues.check(item.accepted.answers.includes(f), ip, `accepted answers must include the exam form "${f}"`);
+            if (item.type === 'vocabulary_listening_dictation') issues.check(item.accepted.answers.includes(t.teachingForm), ip, `dictation must accept the spoken teaching form "${t.teachingForm}"`);
             if (item.type === 'vocabulary_translation_exam' && t.genderVariants.length) {
               const acceptsAll = t.genderVariants.every((v) => item.accepted.answers.includes(v));
               const hinted = nativeLocales(ctx.lang).every((l) => item.prompt[l] !== t.translations[l]?.[0]);

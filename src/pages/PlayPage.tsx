@@ -15,6 +15,7 @@ import { LOCALES, type Locale } from '../schemas/common.ts';
 import type { Manifest } from '../schemas/manifest.ts';
 import { clock, useSession } from '../session/useSession.ts';
 import { ResultsView, SessionView, StartView } from '../session/views.tsx';
+import { useVoiceStatus } from '../session/speech.ts';
 import type { Brief, LessonContent } from '../schemas/artifacts.ts';
 import { validateBrief, validateContent } from '../validation/artifacts.ts';
 
@@ -110,7 +111,8 @@ export function PlayPage({ manifest, lessonId }: { manifest: Manifest; lessonId:
 
 function ActiveSession({ plan, initial, onRestart }: { plan: LessonPlan; initial: SessionRecord; onRestart: () => void }) {
   const { t, locale } = useI18n();
-  const { record, dispatch, saveFailed, remainingMs } = useSession(plan, initial, locale);
+  const voiceStatus = useVoiceStatus(plan.lang);
+  const { record, dispatch, saveFailed, remainingMs } = useSession(plan, initial, locale, voiceStatus);
   return (
     <>
       {saveFailed && <StatusMessage>{t('session.saveFailed')}</StatusMessage>}
@@ -122,7 +124,7 @@ function ActiveSession({ plan, initial, onRestart }: { plan: LessonPlan; initial
           </div>
         </>
       ) : (
-        <SessionView plan={plan} record={record} dispatch={dispatch} remainingMs={remainingMs} />
+        <SessionView plan={plan} record={record} dispatch={dispatch} remainingMs={remainingMs} voiceStatus={voiceStatus} />
       )}
     </>
   );

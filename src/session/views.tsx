@@ -3,10 +3,12 @@ import { useEffect, useRef } from 'react';
 import { useI18n, useLastTry } from '../app/context.tsx';
 import { formatScore, roundHalfUp1 } from '../domain/format.ts';
 import type { LessonPlan, PlanUnit } from '../domain/session/plan.ts';
-import { headerScore, isAnswered, lessonResults, POLICY, progress, type LockedUnit, type SessionRecord, type UnitResponse } from '../domain/session/session.ts';
+import { headerScore, isAnswered, isListeningPage, lessonResults, POLICY, progress, type LockedUnit, type SessionRecord, type UnitResponse } from '../domain/session/session.ts';
 import type { MessageKey } from '../i18n/messages.ts';
 import { rendererRegistry, UnitFeedback } from './renderers.tsx';
 import type { SessionInput } from './useSession.ts';
+import type { VoiceStatus } from './speech.ts';
+import { VoiceHelp } from './VoiceHelp.tsx';
 
 /* ------------------------------------------------------------ start page */
 
@@ -85,11 +87,17 @@ interface SessionViewProps {
   record: SessionRecord;
   dispatch: (action: SessionInput) => void;
   remainingMs?: number;
+  voiceStatus?: VoiceStatus;
 }
 
-export function SessionView({ plan, record, dispatch, remainingMs }: SessionViewProps) {
+export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus = 'available' }: SessionViewProps) {
   const { t, locale } = useI18n();
   const page = plan.pages[record.pageIndex];
+  const listening = isListeningPage(page);
+  const needsVoice = listening && record.phase === 'answering';
+  useEffect(() => {
+    if (needsVoice && page.role === 'exam' && voiceStatus === 'available') dispatch({ type: 'voice_ready' });
+  }, [needsVoice, page.pageId, page.role, voiceStatus, dispatch]);
   const mode = page.role === 'exam' ? 'exam' : record.phase === 'feedback' ? 'feedback' : 'answering';
   const ready = page.role !== 'practice' || record.phase === 'feedback' || page.units.every((u) => isAnswered(u, record.drafts[u.id]));
   const heading = useRef<HTMLHeadingElement>(null);
@@ -98,6 +106,17 @@ export function SessionView({ plan, record, dispatch, remainingMs }: SessionView
   return (
     <>
       <SessionHeader plan={plan} record={record} />
+      {needsVoice && voiceStatus === 'checking' ? (
+        <section className="task-card" role="status"><p>{t('session.voiceChecking')}</p></section>
+      ) : needsVoice && voiceStatus === 'unavailable' ? (
+        <section className="task-card voice-help" aria-labelledby="voice-help-title">
+          <h1 id="voice-help-title">{t('session.voiceHelpTitle')}</h1>
+          <p>{t('session.voiceHelpIntro')}</p>
+          <VoiceHelp />
+          <p>{t('session.voiceSkipHint')}</p>
+          <button type="button" className="button button-primary" onClick={() => dispatch({ type: 'skip_no_voice' })}>{t('session.voiceSkip')}</button>
+        </section>
+      ) : (
       <section className="task-card" aria-labelledby="task-heading">
         <p className="label-muted">{page.stepLabel[locale]}{page.role === 'exam' ? ` · ${t('session.examPage')}` : ''}</p>
         <h1 id="task-heading" ref={heading} tabIndex={-1} className="task-heading">{page.instructions[locale]}</h1>
@@ -126,6 +145,7 @@ export function SessionView({ plan, record, dispatch, remainingMs }: SessionView
           </button>
         </div>
       </section>
+      )}
     </>
   );
 }
@@ -194,7 +214,7 @@ export function ResultsView({ plan, record, dispatch }: { plan: LessonPlan; reco
   const fmt = (n: number) => formatScore(n, locale);
   const pts = (n: number) => n.toLocaleString(locale);
   const selectedStep = record.selection === 'exam' ? undefined : plan.steps.find((s) => s.stepId === record.selection);
-  const pages = plan.pages.filter((p) => (selectedStep ? p.stepId === selectedStep.stepId : p.role === 'exam'));
+  const pages = plan.pages.filter((p) => !(record.skippedNoVoice ?? []).includes(p.pageId) && (selectedStep ? p.stepId === selectedStep.stepId : p.role === 'exam'));
   const units = pages.flatMap((p) => p.units);
   const examTally = results.exam;
 
@@ -215,7 +235,7 @@ export function ResultsView({ plan, record, dispatch }: { plan: LessonPlan; reco
         <button type="button" className="button button-outline" aria-pressed={record.selection === 'exam'} onClick={() => dispatch({ type: 'select', selection: 'exam' })}>
           {t('result.examButton', { earned: pts(examTally.earned), possible: examTally.possible })}
         </button>
-        {results.steps.filter((s) => s.role !== 'exam' && plan.steps.find((p) => p.stepId === s.stepId)).map((s) => {
+        {results.steps.filter((s) => s.role !== 'exam' && (s.role === 'presentation' || s.tally.possible > 0) && plan.steps.find((p) => p.stepId === s.stepId)).map((s) => {
           const label = plan.steps.find((p) => p.stepId === s.stepId)!.label[locale];
           return (
             <button key={s.stepId} type="button" className="button button-outline" aria-pressed={record.selection === s.stepId} onClick={() => dispatch({ type: 'select', selection: s.stepId })}>

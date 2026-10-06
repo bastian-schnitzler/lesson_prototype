@@ -105,7 +105,7 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
         }];
       case 'vocabulary_listening_choice':
         return [{
-          kind: 'choice', id: id(), itemId: item.itemId, itemType: item.type, prompt: {}, speak: targets.get(item.targetId)?.pronunciation ?? form(item.targetId),
+          kind: 'choice', id: id(), itemId: item.itemId, itemType: item.type, prompt: {}, speak: form(item.targetId),
           options: item.optionTargetIds.map((t) => ({ id: t, text: form(t), lang: 'learning' })), correct: [item.targetId],
           explanation: item.answerExplanation, answer: form(item.targetId), answerLang: 'learning',
         }];
@@ -116,7 +116,7 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
         }];
       case 'vocabulary_listening_dictation':
         return [{
-          kind: 'text', id: id(), itemId: item.itemId, itemType: item.type, prompt: {}, speak: targets.get(item.targetId)?.pronunciation ?? form(item.targetId),
+          kind: 'text', id: id(), itemId: item.itemId, itemType: item.type, prompt: {}, speak: form(item.targetId),
           accepted: item.accepted, explanation: item.answerExplanation, answer: item.accepted.answers[0], answerLang: 'learning',
         }];
       case 'grammar_pronoun_form_match': {
