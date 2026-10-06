@@ -251,6 +251,9 @@ function checkVocabularyContent(c: VocabularyContent, b: VocabularyBrief, ctx: C
         }
       } else {
         issues.check(page.timeLimitS === null, `${pp}.timeLimitS`, 'practice pages have no countdown');
+        // The session gates voice checks and the no-voice help page per page (D42).
+        const listening = page.items.filter((it) => it.type === 'vocabulary_listening_choice').length;
+        issues.check(listening === 0 || listening === page.items.length, `${pp}.items`, 'listening-choice pages contain only listening-choice items');
       }
       page.items.forEach((item, ii) => {
         const ip = `${pp}.items.${ii}`;

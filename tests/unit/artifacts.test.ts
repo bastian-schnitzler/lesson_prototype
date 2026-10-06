@@ -96,6 +96,11 @@ describe('brief validation', () => {
     expect(messages(checkBrief('fr-classroom-objects', (b) => (b.plan.genderOverview.scored = false)))).toMatch(/must be true when the lesson has nouns/);
   });
 
+  it('keeps listening-choice items on pages of their own, so the no-voice help can replace the page', () => {
+    const practice = (c: Json) => c.steps.find((st: Json) => st.stage === 'practice').pages;
+    expect(messages(checkContent('fr-classroom-instructions', (c) => practice(c)[2].items.push(practice(c)[0].items[0])))).toMatch(/listening-choice pages contain only listening-choice items/);
+  });
+
   it('requires listening when the intent asks for oral recognition', () => {
     expect(messages(checkBrief('fr-classroom-instructions', (b) => (b.plan.listening.required = false)))).toMatch(/oral recognition/);
   });
