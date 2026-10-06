@@ -1,8 +1,46 @@
-# Proposed GitHub issues
+# GitHub issue backlog
 
-Status: draft backlog for [SPEC.md](SPEC.md), version 0.22. Target repository: `bastian-schnitzler/lesson_prototype`.
+Status: published backlog for [SPEC.md](SPEC.md), version 0.22. Repository: `bastian-schnitzler/lesson_prototype`.
 
-These are issue bodies ready for refinement; they have not yet been published. Publish after the phase 0 specification review, replacing logical dependency IDs with actual GitHub issue links. Check for existing equivalents before creating issues. Each issue should link to the agreed specification version/commit and retain its acceptance criteria. Published issue titles follow `P<phase>-<two-digit-issue>: <short description>`, for example `P0-01: Create spec`. Every issue belongs to its matching `Phase 0` through `Phase 5` milestone.
+These issue bodies were published to GitHub in P0-04 on 2026-10-06. Each GitHub issue carries this file's scope and acceptance criteria, real dependency links, a link to the specification at the published commit, and its applicable Mermaid flows, PlantUML sources with server-rendered previews, and screenshot references. Titles follow `P<phase>-<two-digit-issue>: <short description>`; every issue belongs to its matching `Phase 0` through `Phase 5` milestone. P0-01 to P0-03 are closed as completed by PRs #1–#3.
+
+## Published issue mapping
+
+| ID | GitHub issue | Title |
+| --- | --- | --- |
+| P0-01 | [#5](https://github.com/bastian-schnitzler/lesson_prototype/issues/5) | Create and refine the lesson prototype specification |
+| P0-02 | [#6](https://github.com/bastian-schnitzler/lesson_prototype/issues/6) | Review the specification with Claude |
+| P0-03 | [#7](https://github.com/bastian-schnitzler/lesson_prototype/issues/7) | Remove the superseded requirements summary and its specification references |
+| P0-04 | [#8](https://github.com/bastian-schnitzler/lesson_prototype/issues/8) | Publish the agreed specification as a GitHub issue backlog |
+| P1-01 | [#9](https://github.com/bastian-schnitzler/lesson_prototype/issues/9) | Build React skeleton, Makefile workflow, and ordered lesson index |
+| P1-02 | [#10](https://github.com/bastian-schnitzler/lesson_prototype/issues/10) | Build dist output and verify GitHub Pages deployment |
+| P1-03 | [#11](https://github.com/bastian-schnitzler/lesson_prototype/issues/11) | Define executable vocabulary/grammar briefs and lesson schemas |
+| P1-04 | [#12](https://github.com/bastian-schnitzler/lesson_prototype/issues/12) | Remove old prompt/schema drafts after executable schema migration |
+| P1-05 | [#13](https://github.com/bastian-schnitzler/lesson_prototype/issues/13) | Implement offline Gemini brief generation and environment setup |
+| P1-06 | [#14](https://github.com/bastian-schnitzler/lesson_prototype/issues/14) | Generate first-ten category briefs and extend the combined detail page |
+| P1-07 | [#15](https://github.com/bastian-schnitzler/lesson_prototype/issues/15) | Implement offline lesson content generation and validation |
+| P1-08 | [#16](https://github.com/bastian-schnitzler/lesson_prototype/issues/16) | Generate first-ten category lessons and extend combined content review |
+| P1-09 | [#17](https://github.com/bastian-schnitzler/lesson_prototype/issues/17) | Build session host, progress, single Continue flow, timed exams, and results |
+| P1-10 | [#18](https://github.com/bastian-schnitzler/lesson_prototype/issues/18) | Review shared vocabulary/grammar contracts before category implementation |
+| P1-11 | [#19](https://github.com/bastian-schnitzler/lesson_prototype/issues/19) | Update index and artifact-view mockups from the prototype |
+| P1-12 | [#20](https://github.com/bastian-schnitzler/lesson_prototype/issues/20) | Add the vocabulary listening exercise and no-voice help page |
+| P2-01 | [#21](https://github.com/bastian-schnitzler/lesson_prototype/issues/21) | Review vocabulary renderer composition and answer contracts |
+| P2-02 | [#22](https://github.com/bastian-schnitzler/lesson_prototype/issues/22) | Implement vocabulary introduction, flashcards, and matching |
+| P2-03 | [#23](https://github.com/bastian-schnitzler/lesson_prototype/issues/23) | Implement noun-gender overview, typed gaps, and translation exam |
+| P2-04 | [#24](https://github.com/bastian-schnitzler/lesson_prototype/issues/24) | Integrate complete vocabulary sessions and end-to-end validation |
+| P2-05 | [#25](https://github.com/bastian-schnitzler/lesson_prototype/issues/25) | Update vocabulary lesson mockups from the prototype |
+| P3-01 | [#26](https://github.com/bastian-schnitzler/lesson_prototype/issues/26) | Review grammar renderer composition and mixed exam support |
+| P3-02 | [#27](https://github.com/bastian-schnitzler/lesson_prototype/issues/27) | Implement pronoun/form matching and typing with tests |
+| P3-03 | [#28](https://github.com/bastian-schnitzler/lesson_prototype/issues/28) | Implement multiple-choice gaps and exact-typing phrase gaps |
+| P3-04 | [#29](https://github.com/bastian-schnitzler/lesson_prototype/issues/29) | Implement word order and grammar error spotter |
+| P3-05 | [#30](https://github.com/bastian-schnitzler/lesson_prototype/issues/30) | Implement production-feedback placeholder, timed mixed exams, and answer review |
+| P3-06 | [#31](https://github.com/bastian-schnitzler/lesson_prototype/issues/31) | Complete all grammar lessons and end-to-end course validation |
+| P3-07 | [#32](https://github.com/bastian-schnitzler/lesson_prototype/issues/32) | Update grammar lesson mockups from the prototype |
+| P4-01 | [#33](https://github.com/bastian-schnitzler/lesson_prototype/issues/33) | Define functions requirements and implementation backlog |
+| P4-02 | [#34](https://github.com/bastian-schnitzler/lesson_prototype/issues/34) | Update function lesson mockups from the prototype |
+| P5-01 | [#35](https://github.com/bastian-schnitzler/lesson_prototype/issues/35) | Define reading requirements and implementation backlog |
+| P5-02 | [#36](https://github.com/bastian-schnitzler/lesson_prototype/issues/36) | Update reading lesson mockups from the prototype |
+
 
 ## Ongoing GitHub synchronization
 
@@ -28,6 +66,8 @@ Use the issue's logical ID from this file plus a short description: `P<phase>-<t
 
 ### P0-01: Create and refine the lesson prototype specification
 
+GitHub: [#5](https://github.com/bastian-schnitzler/lesson_prototype/issues/5).
+
 Milestone: **Phase 0**.
 
 Problem: the draft schemas and runtime/hosting requirements do not yet form an agreed implementation contract.
@@ -46,6 +86,8 @@ Dependencies: none.
 
 ### P0-02: Review the specification with Claude
 
+GitHub: [#6](https://github.com/bastian-schnitzler/lesson_prototype/issues/6).
+
 Milestone: **Phase 0**.
 
 Scope: review SPEC, the issue backlog, current outline/schema references, and Salt mockups with Claude after the initial specification refinement.
@@ -60,6 +102,8 @@ Acceptance:
 Dependencies: P0-01. Requires access to Claude; do not claim the review complete without an actual Claude review.
 
 ### P0-03: Remove the superseded requirements summary and its specification references
+
+GitHub: [#7](https://github.com/bastian-schnitzler/lesson_prototype/issues/7).
 
 Milestone: **Phase 0**.
 
@@ -76,6 +120,8 @@ Acceptance:
 Dependencies: P0-02.
 
 ### P0-04: Publish the agreed specification as a GitHub issue backlog
+
+GitHub: [#8](https://github.com/bastian-schnitzler/lesson_prototype/issues/8).
 
 Milestone: **Phase 0**.
 
@@ -98,6 +144,8 @@ Dependencies: P0-03.
 ## Phase 1 — skeleton and general application
 
 ### P1-01: Build React skeleton, Makefile workflow, and ordered lesson index
+
+GitHub: [#9](https://github.com/bastian-schnitzler/lesson_prototype/issues/9).
 
 Milestone: **Phase 1**.
 
@@ -124,6 +172,8 @@ Dependencies: P0-04.
 
 ### P1-02: Build dist output and verify GitHub Pages deployment
 
+GitHub: [#10](https://github.com/bastian-schnitzler/lesson_prototype/issues/10).
+
 Milestone: **Phase 1**.
 
 Scope: reproducible build, content copying/manifest, project base path, CI validation, and Pages deployment workflow.
@@ -143,6 +193,8 @@ Dependencies: P1-01.
 Initial verification uses the outline and available fixtures; later sample deployment coverage is checked in P1-11.
 
 ### P1-03: Define executable vocabulary/grammar briefs and lesson schemas
+
+GitHub: [#11](https://github.com/bastian-schnitzler/lesson_prototype/issues/11).
 
 Milestone: **Phase 1**.
 
@@ -169,6 +221,8 @@ Dependencies: P1-01.
 
 ### P1-04: Remove old prompt/schema drafts after executable schema migration
 
+GitHub: [#12](https://github.com/bastian-schnitzler/lesson_prototype/issues/12).
+
 Milestone: **Phase 1**.
 
 Scope: remove `old_prompt/` and its legacy `data_model_draft/item.ts` and `data_model_draft/lesson.ts` once P1-03 supplies executable replacements.
@@ -185,6 +239,8 @@ Acceptance:
 Dependencies: P1-03, P1-02, P0-03.
 
 ### P1-05: Implement offline Gemini brief generation and environment setup
+
+GitHub: [#13](https://github.com/bastian-schnitzler/lesson_prototype/issues/13).
 
 Milestone: **Phase 1**.
 
@@ -205,6 +261,8 @@ Dependencies: P1-03. P1-04 cleanup can proceed in parallel; it must confirm the 
 
 ### P1-06: Generate first-ten category briefs and extend the combined detail page
 
+GitHub: [#14](https://github.com/bastian-schnitzler/lesson_prototype/issues/14).
+
 Milestone: **Phase 1**.
 
 Scope: generate the first ten grammar and first ten vocabulary briefs in outline order; add `VocabularyBriefView` and `GrammarBriefView` to the existing combined detail page, using typed React cards, tables, and lesson-plan components.
@@ -222,6 +280,8 @@ Acceptance:
 Dependencies: P1-01, P1-05.
 
 ### P1-07: Implement offline lesson content generation and validation
+
+GitHub: [#15](https://github.com/bastian-schnitzler/lesson_prototype/issues/15).
 
 Milestone: **Phase 1**.
 
@@ -241,6 +301,8 @@ Dependencies: P1-05, P1-06 brief review gate.
 
 ### P1-08: Generate first-ten category lessons and extend combined content review
 
+GitHub: [#16](https://github.com/bastian-schnitzler/lesson_prototype/issues/16).
+
 Milestone: **Phase 1**.
 
 Scope: generate twenty sample lesson files from approved briefs and add `VocabularyContentView` and `GrammarContentView` to the combined detail page, alongside the shared Outline and category-specific Draft views.
@@ -259,6 +321,8 @@ Acceptance:
 Dependencies: P1-01, P1-07.
 
 ### P1-09: Build session host, progress, single Continue flow, timed exams, and results
+
+GitHub: [#17](https://github.com/bastian-schnitzler/lesson_prototype/issues/17).
 
 Milestone: **Phase 1**.
 
@@ -287,6 +351,8 @@ Dependencies: P1-01, P1-03. Full preparation integration: P1-07.
 
 ### P1-10: Review shared vocabulary/grammar contracts before category implementation
 
+GitHub: [#18](https://github.com/bastian-schnitzler/lesson_prototype/issues/18).
+
 Milestone: **Phase 1**.
 
 Scope: assess shared structures against the twenty sample plans and adjust domain/UI contracts before vocabulary work.
@@ -301,6 +367,8 @@ Acceptance:
 Dependencies: P1-08 sample review gate, P1-09, P1-12.
 
 ### P1-12: Add the vocabulary listening exercise and no-voice help page
+
+GitHub: [#20](https://github.com/bastian-schnitzler/lesson_prototype/issues/20).
 
 Milestone: **Phase 1**.
 
@@ -319,6 +387,8 @@ Acceptance:
 Dependencies: P1-03, P1-09.
 
 ### P1-11: Update index and artifact-view mockups from the prototype
+
+GitHub: [#19](https://github.com/bastian-schnitzler/lesson_prototype/issues/19).
 
 Milestone: **Phase 1**.
 
@@ -340,6 +410,8 @@ Dependencies: P1-02, P1-06, P1-08, P1-10, P1-12.
 
 ### P2-01: Review vocabulary renderer composition and answer contracts
 
+GitHub: [#21](https://github.com/bastian-schnitzler/lesson_prototype/issues/21).
+
 Milestone: **Phase 2**.
 
 Scope: derive common vocabulary item presentation, target references, audio/gender handling, typing comparison, and grading from the shared host.
@@ -353,6 +425,8 @@ Acceptance:
 Dependencies: P1-11.
 
 ### P2-02: Implement vocabulary introduction, flashcards, and matching
+
+GitHub: [#22](https://github.com/bastian-schnitzler/lesson_prototype/issues/22).
 
 Milestone: **Phase 2**.
 
@@ -369,6 +443,8 @@ Acceptance:
 Dependencies: P2-01.
 
 ### P2-03: Implement noun-gender overview, typed gaps, and translation exam
+
+GitHub: [#23](https://github.com/bastian-schnitzler/lesson_prototype/issues/23).
 
 Milestone: **Phase 2**.
 
@@ -389,6 +465,8 @@ Dependencies: P2-02.
 
 ### P2-04: Integrate complete vocabulary sessions and end-to-end validation
 
+GitHub: [#24](https://github.com/bastian-schnitzler/lesson_prototype/issues/24).
+
 Milestone: **Phase 2**.
 
 Scope: wire all six stages for the ten sample vocabulary lessons, verify realistic complete sessions, then generate, validate and make playable the remaining 38 fr/A1 vocabulary lessons (D44).
@@ -404,6 +482,8 @@ Acceptance:
 Dependencies: P2-03, P1-02.
 
 ### P2-05: Update vocabulary lesson mockups from the prototype
+
+GitHub: [#25](https://github.com/bastian-schnitzler/lesson_prototype/issues/25).
 
 Milestone: **Phase 2**.
 
@@ -424,6 +504,8 @@ Dependencies: P2-04.
 
 ### P3-01: Review grammar renderer composition and mixed exam support
 
+GitHub: [#26](https://github.com/bastian-schnitzler/lesson_prototype/issues/26).
+
 Milestone: **Phase 3**.
 
 Scope: validate grammar exercise contracts and shared controls using conjugation, article, adverb, and syntax samples.
@@ -438,6 +520,8 @@ Acceptance:
 Dependencies: P1-10, P2-05.
 
 ### P3-02: Implement pronoun/form matching and typing with tests
+
+GitHub: [#27](https://github.com/bastian-schnitzler/lesson_prototype/issues/27).
 
 Milestone: **Phase 3**.
 
@@ -454,6 +538,8 @@ Dependencies: P3-01.
 
 ### P3-03: Implement multiple-choice gaps and exact-typing phrase gaps
 
+GitHub: [#28](https://github.com/bastian-schnitzler/lesson_prototype/issues/28).
+
 Milestone: **Phase 3**.
 
 Scope: four-choice grammar sentence gaps and typed missing-text exercises with optional practice hints.
@@ -469,6 +555,8 @@ Dependencies: P3-01.
 
 ### P3-04: Implement word order and grammar error spotter
 
+GitHub: [#29](https://github.com/bastian-schnitzler/lesson_prototype/issues/29).
+
 Milestone: **Phase 3**.
 
 Scope: token-based sentence ordering and error selection followed by correction.
@@ -483,6 +571,8 @@ Acceptance:
 Dependencies: P3-01.
 
 ### P3-05: Implement production-feedback placeholder, timed mixed exams, and answer review
+
+GitHub: [#30](https://github.com/bastian-schnitzler/lesson_prototype/issues/30).
 
 Milestone: **Phase 3**.
 
@@ -502,6 +592,8 @@ Dependencies: P3-02, P3-03, P3-04.
 
 ### P3-06: Complete all grammar lessons and end-to-end course validation
 
+GitHub: [#31](https://github.com/bastian-schnitzler/lesson_prototype/issues/31).
+
 Milestone: **Phase 3**.
 
 Scope: integrate explanation/practice blocks, correction explanations, production placeholder, timed exam, and final-results menu; generate/validate the remaining grammar content for the 48-entry outline.
@@ -517,6 +609,8 @@ Acceptance:
 Dependencies: P3-05, P1-02.
 
 ### P3-07: Update grammar lesson mockups from the prototype
+
+GitHub: [#32](https://github.com/bastian-schnitzler/lesson_prototype/issues/32).
 
 Milestone: **Phase 3**.
 
@@ -537,6 +631,8 @@ Dependencies: P3-06.
 
 ### P4-01: Define functions requirements and implementation backlog
 
+GitHub: [#33](https://github.com/bastian-schnitzler/lesson_prototype/issues/33).
+
 Milestone: **Phase 4**.
 
 Scope: agree lesson sequence, communicative goals, dialogue/exercise types, audio, grading, feedback, exam, and content review criteria for the 14 function outlines.
@@ -551,6 +647,8 @@ Acceptance:
 Dependencies: function requirements from the user; P1 shared architecture. Category implementation begins after phase 3 under the requested roadmap.
 
 ### P4-02: Update function lesson mockups from the prototype
+
+GitHub: [#34](https://github.com/bastian-schnitzler/lesson_prototype/issues/34).
 
 Milestone: **Phase 4**.
 
@@ -572,6 +670,8 @@ Dependencies: P4-01 and the future function implementation/content/end-to-end is
 
 ### P5-01: Define reading requirements and implementation backlog
 
+GitHub: [#35](https://github.com/bastian-schnitzler/lesson_prototype/issues/35).
+
 Milestone: **Phase 5**.
 
 Scope: agree passage presentation, question sequence, comprehension interactions, passage visibility during assessment, audio, grading, feedback, and exam for the 10 reading outlines.
@@ -586,6 +686,8 @@ Acceptance:
 Dependencies: reading requirements from the user; P1 shared architecture. Phase 5 follows phase 4 under the proposed allocation.
 
 ### P5-02: Update reading lesson mockups from the prototype
+
+GitHub: [#36](https://github.com/bastian-schnitzler/lesson_prototype/issues/36).
 
 Milestone: **Phase 5**.
 
