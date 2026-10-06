@@ -1,6 +1,6 @@
 # Proposed GitHub issues
 
-Status: draft backlog for [SPEC.md](SPEC.md), version 0.21. Target repository: `bastian-schnitzler/lesson_prototype`.
+Status: draft backlog for [SPEC.md](SPEC.md), version 0.22. Target repository: `bastian-schnitzler/lesson_prototype`.
 
 These are issue bodies ready for refinement; they have not yet been published. Publish after the phase 0 specification review, replacing logical dependency IDs with actual GitHub issue links. Check for existing equivalents before creating issues. Each issue should link to the agreed specification version/commit and retain its acceptance criteria. Published issue titles follow `P<phase>-<two-digit-issue>: <short description>`, for example `P0-01: Create spec`. Every issue belongs to its matching `Phase 0` through `Phase 5` milestone.
 

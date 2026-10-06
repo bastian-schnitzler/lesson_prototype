@@ -1,6 +1,6 @@
 # Lesson exercise prototype specification
 
-Status: **Draft 0.21 — SPEC is the maintained requirements document (P0-03)**. Date: 2026-10-06.
+Status: **Draft 0.22 — updated fr/A1 outline; GitHub backlog publication (P0-04)**. Date: 2026-10-06.
 
 This document specifies the prototype and its phased implementation. It is the maintained requirements document: no separate requirements file exists. It does not authorize starting implementation before the specification review. The issue-ready backlog is in [ISSUES.md](ISSUES.md); publish those issues to `bastian-schnitzler/lesson_prototype` after the specification has been refined with the user.
 
@@ -828,7 +828,7 @@ scale 1.3
 <back:#0F172A><color:#E2E8F0><size:20><b>  OUTLINE  /  Lesson outline  </b></size></color></back>
 .
 {
-<color:#94A3B8>Lesson 10</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Vocabulary</color> | <color:#020617>xxx</color> | <color:#E2E8F0>French A1</color>
+<color:#94A3B8>Lesson 11</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Vocabulary</color> | <color:#020617>xxx</color> | <color:#E2E8F0>French A1</color>
 .
 <color:#E2E8F0>Theme</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Education</color> | <color:#020617>xxx</color> | <color:#E2E8F0>ID: fr-classroom-objects</color>
  }
@@ -3093,14 +3093,14 @@ scale 1.3
 | --- | --- | --- | --- |
 | 2 | `fr-subject-pronouns` | 3 | `fr-alphabet-and-accents` |
 | 4 | `fr-verb-etre-present` | 5 | `fr-countries-and-nationalities` |
-| 7 | `fr-indefinite-articles-and-noun-gender` | 8 | `fr-numbers-zero-to-twenty` |
-| 9 | `fr-here-there-now-tomorrow` | 10 | `fr-classroom-objects` |
-| 11 | `fr-er-verbs-present` | 14 | `fr-jobs-and-professions` |
-| 12 | `fr-pronoun-on` | 16 | `fr-family-members` |
-| 15 | `fr-definite-articles-and-elision` | 19 | `fr-classroom-instructions` |
-| 17 | `fr-yes-no-questions` | 20 | `fr-personal-details-on-a-form` |
-| 18 | `fr-verb-avoir-present` | 22 | `fr-days-of-the-week` |
-| 21 | `fr-negation-ne-pas` | 26 | `fr-rooms-of-the-home` |
+| 8 | `fr-indefinite-articles-and-noun-gender` | 9 | `fr-numbers-zero-to-twenty` |
+| 10 | `fr-here-there-now-tomorrow` | 11 | `fr-classroom-objects` |
+| 12 | `fr-er-verbs-present` | 14 | `fr-jobs-and-professions` |
+| 15 | `fr-definite-articles-and-elision` | 16 | `fr-family-members` |
+| 17 | `fr-yes-no-questions` | 18 | `fr-numbers-twenty-one-to-one-hundred` |
+| 19 | `fr-verb-avoir-present` | 20 | `fr-classroom-instructions` |
+| 22 | `fr-negation-ne-pas` | 21 | `fr-personal-details-on-a-form` |
+| 25 | `fr-regular-noun-plurals` | 23 | `fr-days-of-the-week` |
 
 Phase 1 creates **20 brief files and 20 lesson files**. Briefs must be reviewed with the user before sample lesson generation; lesson files must be reviewed before bulk expansion. Make concrete viewer pages and sample artifacts available at each gate.
 
@@ -3217,3 +3217,4 @@ When publishing the agreed backlog, include relevant Mermaid flows as fenced `me
 | 0.19 | 2026-10-06 | Expanded outline discovery to a build-derived multi-course catalog and language/level/category controls. Added independent mother-tongue/interface preferences, required en/fr/de brief/content maps, localized runtime support, and the artifact header JSON tree toggle with recursive expansion rules. Refreshed all headers and added two shared JSON-view mockups; all 29 sources are synchronized. Confirmed starting-page-only mother-tongue selection and an immutable session mother tongue; interface language remains switchable. |
 | 0.20 | 2026-10-06 | Applied the P0-02 Claude review ([record](reviews/2026-10-06-p0-02-claude-spec-review.md)). Confirmed D5/D11/D16 (no pending label in the exam header). Added D38–D45: same-language mother tongue disabled, indefinite exam article kept, accent-sensitive homographs and half-credit ligature/umlaut digraphs, vocabulary listening choice/dictation with a no-voice help page (new P1-12), answer keys during exams documented as a limitation, and all 48 vocabulary lessons required in phase 2. Clarified catalog scanner ownership, per-entry outline hashes, sectioned content generation, rounding, runtime shuffle seeds, label/prompt disambiguation, single-token error spotting, and whitespace normalization. Added three listening mockups; all 32 sources are synchronized. Preferences persist in browser storage across reloads (D45); skipped listening units are left out of scores, progress and results. Added the check-branch-before-work rule and changed branch names to `P<phase>-<two-digit-issue>-<description>` (D24). D13 remains open. |
 | 0.21 | 2026-10-06 | P0-03: retired the superseded requirements file after the P0-02 traceability check confirmed every requirement is represented; removed its input-table rows and references. SPEC is now the maintained requirements document. |
+| 0.22 | 2026-10-06 | P0-04: updated `content/outlines/fr-a1.json` (same structure and 48/48/14/10 mix; 12 entries replaced, 13 intents reworded, order changed). Refreshed the first-ten sample IDs and ordinals in section 9 (`fr-regular-noun-plurals` replaces `fr-pronoun-on`; `fr-numbers-twenty-one-to-one-hundred` replaces `fr-rooms-of-the-home`) and the vocabulary artifact mockup ordinal (lesson 11). |
