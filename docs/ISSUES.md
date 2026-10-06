@@ -1,6 +1,6 @@
 # GitHub issue backlog
 
-Status: published backlog for [SPEC.md](SPEC.md), version 0.28. Repository: `bastian-schnitzler/lesson_prototype`.
+Status: published backlog for [SPEC.md](SPEC.md), version 0.29. Repository: `bastian-schnitzler/lesson_prototype`.
 
 These issue bodies were published to GitHub in P0-04 on 2026-10-06. Each GitHub issue carries this file's scope and acceptance criteria, real dependency links, a link to the specification at the published commit, and its applicable Mermaid flows, PlantUML sources with server-rendered previews, and screenshot references. Titles follow `P<phase>-<two-digit-issue>: <short description>`; every issue belongs to its matching `Phase 0` through `Phase 5` milestone. P0-01 to P0-03 are closed as completed by PRs #1–#3.
 
@@ -364,6 +364,12 @@ Acceptance:
 - Unit/integration tests cover Continue lock/confirm, half credit, duration-weighted progress, sealed exam scores, fake-clock timeouts/races/reload, and answer review using fixtures; 80% practice and 60% exam produce 67% total regardless of item counts.
 - Runtime shuffles of matching sides, gap choices, and word-order banks use a session-stored seed so resume and results review keep the same order.
 - Record learning language/level, attempt mother tongue and original native prompts with responses. Interface switching preserves drafts, locks, scores, progress and active exam deadlines and never reveals exam feedback. Mother tongue is immutable per attempt, selectable/applied only on the starting/index page, and read-only on artifact/start-confirmation/session/results pages. Returning to that page does not pause a running exam; a new selection affects only new attempts, never resumed/completed ones. Test result-language switching without re-scoring.
+
+Implementation branch: `P1-09-session-host`.
+
+Implementation: pure session engine in `src/domain/session/` (flattened page plan with scorable units, first-submission scoring through the shared free-text classifier, reducer for drafts, Continue lock/confirm, exam expiry and results selection, duration-weighted progress, header score with the exam hidden until completion, 35/65 weighted results) and browser storage per lesson with content-hash resume. `src/session/` adds the start/resume page, session host, countdown, results summary card, results menu and answer rows. As agreed with the user, a baseline renderer registry covers every vocabulary and grammar item type, so both categories are playable now; phases 2/3 replace individual renderers with the full interactions.
+
+Validation: unit tests cover the plan, seeded shuffles, Continue lock/confirm with immutable points, half credit, duration-weighted progress, the hidden exam score, fake-clock deadlines, timeout/Continue races, late input, 80%/60% → 67% weighting and results selection. E2E tests play a vocabulary lesson with reload/resume, the hidden exam score, the results menu and the in-memory last-try score, time out a grammar exam page with Playwright's clock, and check the session page for horizontal overflow.
 
 Dependencies: P1-01, P1-03. Full preparation integration: P1-07.
 

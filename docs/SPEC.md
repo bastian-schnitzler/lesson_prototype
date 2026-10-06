@@ -1,6 +1,6 @@
 # Lesson exercise prototype specification
 
-Status: **Draft 0.28 — first-ten sample briefs and Draft views (P1-06)**. Date: 2026-10-06.
+Status: **Draft 0.29 — session host, scoring, timed exams and results (P1-09)**. Date: 2026-10-06.
 
 This document specifies the prototype and its phased implementation. It is the maintained requirements document: no separate requirements file exists. It does not authorize starting implementation before the specification review. The backlog is in [ISSUES.md](ISSUES.md) and published as GitHub issues in `bastian-schnitzler/lesson_prototype`.
 
@@ -576,6 +576,12 @@ Use the supplied results screenshot as the layout reference: a dark page with fl
 A button menu selects **Final exam** or any earlier exercise result by step/block label. For vocabulary with nouns this includes Matching, Gender, and Typed gaps. Repeated grammar exercise types have unique block labels. Completion-only exercises such as flashcards can show their completion record instead of an invented correctness score. Keep aggregate scores visible while the selected result changes. Non-noun lessons have no Gender menu entry. Each review uses stored locked responses and explanations, with the original accent/case visible; changing menu selection does not rescore, alter progress, restart timers, or edit answers. There is no separate mandatory exam-feedback-to-summary transition. Lesson overview and Restart lesson are the final page's navigation actions.
 
 No pass/fail gate is required. A pass label and threshold remain optional future decisions.
+
+### Phase 1 implementation (P1-09)
+
+`src/domain/session/` holds the pure session engine: `plan.ts` flattens content and brief into concrete pages (presentation, practice, exam) with scorable answer units (text, choice, token order, error spot); `session.ts` contains the record, scoring, the reducer for draft/Continue/expiry/results selection, duration-weighted progress, the header score and final results; `storage.ts` saves one attempt per lesson in browser storage. `src/session/` provides the start/resume page, the session host with header and countdown, the results page, and a renderer registry keyed by item type.
+
+The registry starts with **baseline renderers** for every vocabulary and grammar item type, so both categories are playable from phase 1: text fields for typed units, radio choices for gaps and listening, selects for matching, gender and pronoun/form assignment, token buttons for word order and error spotting, tables for introduction/overview, and disclosure cards for flashcards. Phases 2/3 replace individual registry entries with the full interactions (drag and drop, card flipping, audio-first listening and the no-voice help page) without changing the session host or scoring. Speech uses the browser's speech synthesis with the course language.
 
 ## 6. Vocabulary learning flow
 
@@ -3243,3 +3249,4 @@ When publishing the agreed backlog, include relevant Mermaid flows as fenced `me
 | 0.26 | 2026-10-06 | P1-04: retired superseded prompt/schema definitions after confirming shared enums and contracts were preserved. Replaced obsolete input/migration references with maintained src/schemas and artifact-validation modules. |
 | 0.27 | 2026-10-06 | P1-05: implemented offline multilingual brief generation, local Gemini configuration, structured-output prompts, validation and atomic writes. Documented explicit regeneration, bounded retries/repair, locks, batch failure reporting and public model provenance. |
 | 0.28 | 2026-10-06 | P1-06: `make sample-briefs` and the twenty reviewed first-ten fr/A1 briefs; structured `VocabularyBriefView`/`GrammarBriefView`. Vocabulary target rule (D14): average about 12, at most 20 per lesson unless the lesson needs a larger inventory, mixed difficulty where the topic allows it without forcing it. Generator: comma-separated model chain with fallback, several keys tried three times per model, 500 s request timeout, staggered parallel batch workers (`GEMINI_CONCURRENCY`, `GEMINI_WORKER_STAGGER_S`), prompt version `brief-v2`. |
+| 0.29 | 2026-10-06 | P1-09: session engine (plan, scoring, reducer, storage), start/resume page, session host with duration-weighted progress, live score header and per-page countdown, final results with exam/practice menu. Baseline renderers for every vocabulary and grammar item type make both categories playable in phase 1; phases 2/3 refine individual renderers. |

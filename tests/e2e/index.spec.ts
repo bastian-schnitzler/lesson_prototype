@@ -8,13 +8,14 @@ test.beforeEach(async ({ page }) => {
 
 const learningLanguage = (page: import('@playwright/test').Page) => page.getByRole('radiogroup', { name: 'Learning language' });
 
-test('lists the discovered course in outline order with state-labeled Content buttons', async ({ page }) => {
+test('lists the discovered course in outline order with state-labeled Content buttons and Start for ready lessons', async ({ page }) => {
   const rows = page.locator('tbody tr');
   await expect(rows).toHaveCount(8);
   await expect(rows.locator('.ordinal')).toHaveText(['01', '02', '03', '04', '05', '06', '07', '08']);
-  await expect(rows.nth(2).getByRole('link')).toHaveText('Content');
-  await expect(rows.nth(4).getByRole('link')).toContainText('Draft');
-  await expect(page.getByRole('link', { name: 'Start lesson' })).toHaveCount(0);
+  await expect(rows.nth(2).getByRole('link').first()).toHaveText('Content');
+  await expect(rows.nth(4).getByRole('link').first()).toContainText('Draft');
+  await expect(rows.nth(2).getByRole('link', { name: 'Start lesson' })).toHaveAttribute('href', '#/lesson/fr-classroom-objects/play');
+  await expect(rows.nth(4).getByRole('link', { name: 'Start lesson' })).toHaveCount(0);
   await expect(learningLanguage(page).getByRole('radio', { name: 'fr' })).toBeChecked();
   await expect(page.getByRole('radiogroup', { name: 'Level' }).getByRole('radio', { name: 'A1' })).toBeChecked();
 });
@@ -54,7 +55,7 @@ test('loads a refreshed hash route and toggles the raw JSON tree', async ({ page
 });
 
 test('has no horizontal page overflow', async ({ page }) => {
-  for (const [url, ready] of [['./', 'Your lessons'], ['./#/lesson/fr-classroom-objects', 'Target inventory'], ['./#/lesson/fr-verb-etre-present', 'Mixed final exam']]) {
+  for (const [url, ready] of [['./', 'Your lessons'], ['./#/lesson/fr-classroom-objects', 'Target inventory'], ['./#/lesson/fr-verb-etre-present', 'Mixed final exam'], ['./#/lesson/fr-classroom-objects/play', 'Les objets de la classe']]) {
     await page.goto(url);
     await expect(page.getByRole('heading', { name: ready })).toBeVisible();
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);

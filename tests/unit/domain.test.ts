@@ -72,8 +72,10 @@ describe('index rows and artifacts', () => {
   it('allows Start only for complete, valid, playable lessons', () => {
     const file = { url: 'u', sourceHash: 'h', status: 'valid' as const };
     const complete = { outlineHash: 'h', draft: file, content: file };
-    expect(readiness('grammar', undefined)).toEqual(['missingDraft', 'missingContent', 'unsupported']);
-    expect(readiness('grammar', complete)).toEqual(['unsupported']);
+    expect(readiness('grammar', undefined)).toEqual(['missingDraft', 'missingContent']);
+    expect(readiness('grammar', complete)).toEqual([]);
+    expect(readiness('functions', complete)).toEqual(['unsupported']);
+    expect(readiness('grammar', complete, new Set<LessonKind>())).toEqual(['unsupported']);
     expect(readiness('grammar', complete, new Set<LessonKind>(['grammar']))).toEqual([]);
     expect(readiness('grammar', { ...complete, content: { ...file, status: 'malformed' } }, new Set<LessonKind>(['grammar']))).toEqual(['malformed']);
     expect(readiness('grammar', { ...complete, draft: { ...file, status: 'stale' } }, new Set<LessonKind>(['grammar']))).toEqual(['stale']);
