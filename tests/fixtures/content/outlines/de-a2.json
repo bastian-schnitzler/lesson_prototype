@@ -1,0 +1,8 @@
+{
+  "lang": "de",
+  "level": "A2",
+  "entries": [
+    { "id": "de-fix-perfekt", "kind": "grammar", "topic": "verbs_morphology", "workingTitle": "Das Perfekt", "intent": "Über Vergangenes im Perfekt sprechen." },
+    { "id": "de-fix-wohnung", "kind": "vocabulary", "theme": "house_and_home", "workingTitle": "Die Wohnung", "intent": "Räume der Wohnung benennen." }
+  ]
+}

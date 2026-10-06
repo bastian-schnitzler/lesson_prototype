@@ -9,7 +9,7 @@ scale 1.3
 { <color:#020617>xxx</color> | {
 { <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
 .
-{ [ <color:#4338CA>Structured view</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>Lesson overview</color> ] | <color:#020617>xxx</color> | [ <color:#020617>   Start lesson   </color> ] }
+{ [ <color:#4338CA>Lesson overview</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>Structured view</color> ] | <color:#020617>xxx</color> | [ <color:#020617>   Start lesson   </color> ] }
 .
 <color:#1E293B>──────────────────────────────────────────────────────────────────</color>
 .
