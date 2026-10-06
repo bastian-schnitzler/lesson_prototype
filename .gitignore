@@ -1,6 +1,8 @@
 node_modules/
 dist/
 .env
+content/briefs/*.json.lock/
+content/briefs/*.json.*.tmp
 test-results/
 playwright-report/
 *.tsbuildinfo
