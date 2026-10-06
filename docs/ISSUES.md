@@ -1,6 +1,6 @@
 # GitHub issue backlog
 
-Status: published backlog for [SPEC.md](SPEC.md), version 0.25. Repository: `bastian-schnitzler/lesson_prototype`.
+Status: published backlog for [SPEC.md](SPEC.md), version 0.26. Repository: `bastian-schnitzler/lesson_prototype`.
 
 These issue bodies were published to GitHub in P0-04 on 2026-10-06. Each GitHub issue carries this file's scope and acceptance criteria, real dependency links, a link to the specification at the published commit, and its applicable Mermaid flows, PlantUML sources with server-rendered previews, and screenshot references. Titles follow `P<phase>-<two-digit-issue>: <short description>`; every issue belongs to its matching `Phase 0` through `Phase 5` milestone. P0-01 to P0-03 are closed as completed by PRs #1–#3.
 
@@ -224,6 +224,10 @@ Dependencies: P1-01.
 GitHub: [#12](https://github.com/bastian-schnitzler/lesson_prototype/issues/12).
 
 Milestone: **Phase 1**.
+
+Implementation branch: `P1-04-retire-legacy-prompts`.
+
+Validation: `make test` passes all 89 tests and type/catalog checks; `make build` produces dist successfully; `make mockups-check` verifies all 32 source/Markdown pairs. Shared enum sets are preserved, no runtime imports use the retired files, and SPEC contains no retired path/filename references.
 
 Scope: remove `old_prompt/` and its legacy `data_model_draft/item.ts` and `data_model_draft/lesson.ts` once P1-03 supplies executable replacements.
 
