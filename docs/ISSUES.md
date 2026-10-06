@@ -305,15 +305,18 @@ Milestone: **Phase 1**.
 
 Scope: category-specific content prompts/schemas, validated lesson saves, and offline CLI brief-to-lesson preparation for single IDs and ordered batches.
 
+Implementation branch: `P1-07-content-generation`.
+
 Acceptance:
 
-- Add `make generate ID=<id>` and `make generate-missing`: prepare a missing brief first, then missing content, reusing valid existing artifacts. Single unsupported function/reading IDs fail; batch processing skips them until implemented, runs serially, reports failures, preserves successes, and exits nonzero if any supported lesson fails. Update help and make test coverage.
+- Add `make generate ID=<id>` and `make generate-missing`: prepare a missing brief first, then missing content, reusing valid existing artifacts. Single unsupported function/reading IDs fail; batch processing skips them until implemented, runs serially by default (`GEMINI_CONCURRENCY` allows staggered parallel workers), reports failures, preserves successes, and exits nonzero if any supported lesson fails. Update help and make test coverage.
 - Content generation uses the selected catalog outline, complete multilingual brief and category schema. Require native translations for every available mother tongue and en/fr/de instructions, teaching explanations and item-level corrections in the same file; reject missing/empty locale keys and preserve aligned IDs, shared answer keys, scoring, durations and limits. Batch generation covers discovered supported-category courses in deterministic course/outline order.
 - Content may be generated in separately validated sections and assembled locally; brief-determined parts (flashcards, matching pairs, noun-gender rows) are assembled without model calls. Save one atomic `content/lessons/<id>.json`; validate step order, references, coverage, answer keys, provenance hashes, page-duration estimates, and preservation of the brief's exam time limits.
 - Both existing stages avoid model calls; missing brief is prepared before content.
 - Content failure preserves a valid brief; retry resumes the failed stage.
 - CLI failures handle invalid/stale files, model/network errors, and exhausted retries explicitly.
 - No lesson starts with invalid content or unsupported renderers; browser readiness errors do not call Gemini or a generator endpoint.
+- Lesson detail header: right-aligned **Outline**, **Draft** and **Content** buttons on the Raw JSON row scroll to the matching section; from Raw JSON they first restore the structured view. Labels come from the interface catalog.
 
 Dependencies: P1-05, P1-06 brief review gate.
 

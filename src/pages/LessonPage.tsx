@@ -16,6 +16,7 @@ import { validateBrief, validateContent, type Issue } from '../validation/artifa
 import type { OutlineEntry } from '../schemas/outline.ts';
 
 type Slot = 'draft' | 'content';
+const SECTIONS = ['outline', 'draft', 'content'] as const;
 
 type LoadedArtifact =
   | { status: 'absent' }
@@ -67,6 +68,14 @@ export function LessonPage({ manifest, lessonId, onReturnToOverview }: LessonPag
   const content = useArtifact(artifacts?.content);
   const [mode, setMode] = useState<'structured' | 'raw'>('structured');
   const [treeOverrides, setTreeOverrides] = useState<ReadonlyMap<JsonPath, boolean>>(() => new Map());
+  const [jump, setJump] = useState<(typeof SECTIONS)[number]>();
+
+  // Jumping from Raw JSON first restores the structured view, then scrolls once its sections exist.
+  useEffect(() => {
+    if (!jump || mode !== 'structured') return;
+    document.getElementById(`${jump}-heading`)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setJump(undefined);
+  }, [jump, mode]);
 
   const index = outline.status === 'ready' ? outline.data.entries.findIndex((e) => e.id === lessonId) : -1;
   const entry: OutlineEntry | undefined = outline.status === 'ready' ? outline.data.entries[index] : undefined;
@@ -107,6 +116,23 @@ export function LessonPage({ manifest, lessonId, onReturnToOverview }: LessonPag
         <a className="button button-primary" href={href.play(lessonId)}>
           {t('action.startLesson')}
         </a>
+      )}
+      {entry && (
+        <div className="header-jump" role="group" aria-label={t('detail.jumpTo')}>
+          {SECTIONS.map((section) => (
+            <button
+              key={section}
+              type="button"
+              className="button button-outline"
+              onClick={() => {
+                setMode('structured');
+                setJump(section);
+              }}
+            >
+              {t(`artifact.${section}`)}
+            </button>
+          ))}
+        </div>
       )}
     </>
   );

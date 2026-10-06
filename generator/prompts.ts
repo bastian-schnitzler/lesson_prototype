@@ -17,6 +17,11 @@ export function payloadSchema(kind: SupportedKind, lang: string) {
  * Nested array bounds make some models (e.g. gemini-3.5-flash) reject the request with HTTP 400, so they become descriptions.
  */
 export function structuredSchema(kind: SupportedKind, lang: string): Record<string, unknown> {
+  return toStructuredSchema(payloadSchema(kind, lang));
+}
+
+/** Gemini response schema for any structural Zod schema (see structuredSchema). */
+export function toStructuredSchema(schema: z.ZodType): Record<string, unknown> {
   const allowed = new Set(['type', 'format', 'title', 'description', 'enum', 'items', 'prefixItems', 'minimum', 'maximum', 'anyOf', 'oneOf', 'properties', 'additionalProperties', 'required']);
   function convert(value: unknown): unknown {
     if (Array.isArray(value)) return value.map(convert);
@@ -34,7 +39,7 @@ export function structuredSchema(kind: SupportedKind, lang: string): Record<stri
     }
     return result;
   }
-  return convert(z.toJSONSchema(payloadSchema(kind, lang))) as Record<string, unknown>;
+  return convert(z.toJSONSchema(schema)) as Record<string, unknown>;
 }
 
 export function briefPrompt(ctx: OutlineContext, repair = ''): string {

@@ -63,6 +63,7 @@ const en = {
   'action.lessonOverview': 'Lesson overview',
   'action.rawJson': 'Raw JSON',
   'action.structuredView': 'Structured view',
+  'detail.jumpTo': 'Jump to section',
   'action.retry': 'Retry',
 
   'state.loading': 'Loading…',
@@ -318,6 +319,7 @@ const fr: Messages = {
   'action.lessonOverview': 'Aperçu des leçons',
   'action.rawJson': 'JSON brut',
   'action.structuredView': 'Vue structurée',
+  'detail.jumpTo': 'Aller à la section',
   'action.retry': 'Réessayer',
 
   'state.loading': 'Chargement…',
@@ -570,6 +572,7 @@ const de: Messages = {
   'action.lessonOverview': 'Lektionsübersicht',
   'action.rawJson': 'Roh-JSON',
   'action.structuredView': 'Strukturierte Ansicht',
+  'detail.jumpTo': 'Zum Abschnitt springen',
   'action.retry': 'Erneut versuchen',
 
   'state.loading': 'Wird geladen…',

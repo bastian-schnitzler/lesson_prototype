@@ -88,17 +88,18 @@ brief: node_modules/.package-lock.json ## Generate/reuse a brief: ID=<lesson-id>
 	$(NODE) generator/cli.ts brief --id "$$ID" $(if $(filter 1,$(REGENERATE)),--regenerate,)
 brief: export ID := $(ID)
 
-briefs-missing: node_modules/.package-lock.json ## Generate missing supported briefs serially; report skips and failures
+briefs-missing: node_modules/.package-lock.json ## Generate missing supported briefs (GEMINI_CONCURRENCY workers); report skips and failures
 	$(NODE) generator/cli.ts briefs-missing
 
 sample-briefs: node_modules/.package-lock.json ## Generate/reuse the first-ten fr/A1 grammar and vocabulary briefs for review
 	$(NODE) generator/cli.ts sample-briefs
 
-generate: ## (P1-07) Generate missing brief and content: make generate ID=<lesson-id>
-	$(call not_yet,P1-07)
+generate: node_modules/.package-lock.json ## Generate/reuse brief, then lesson content: ID=<lesson-id> [REGENERATE=1 replaces the content]
+	$(NODE) generator/cli.ts generate --id "$$ID" $(if $(filter 1,$(REGENERATE)),--regenerate,)
+generate: export ID := $(ID)
 
-generate-missing: ## (P1-07) Generate all missing supported briefs and content
-	$(call not_yet,P1-07)
+generate-missing: node_modules/.package-lock.json ## Generate missing supported briefs and lesson content in catalog order
+	$(NODE) generator/cli.ts generate-missing
 
 sample-lessons: ## (P1-08) Generate the twenty approved sample lessons
 	$(call not_yet,P1-08)

@@ -3,7 +3,7 @@ import { parseEnv } from 'node:util';
 import { z } from 'zod';
 
 /**
- * fallbackApiKeys (GEMINI_API_KEY2, GEMINI_API_KEY3, …) take over in order once a key hits a quota limit (HTTP 429).
+ * GEMINI_API_KEY may list several keys separated by commas; the rest are fallbackApiKeys, tried in order.
  * GEMINI_MODEL may list several models, best first; the rest are fallbackModels.
  */
 export interface GeminiConfig { apiKey: string; fallbackApiKeys?: string[]; model: string; fallbackModels?: string[] }
@@ -26,13 +26,7 @@ export function loadConfig(path: string): GeminiConfig {
   let env: Record<string, string | undefined>;
   try { env = parseEnv(readFileSync(path, 'utf8')); }
   catch { throw new GenerationError('Cannot read .env; copy .env.example and configure Gemini.'); }
-  const apiKey = env.GEMINI_API_KEY?.trim();
-  const fallbackApiKeys = Object.keys(env)
-    .map((name) => /^GEMINI_API_KEY([2-9]|[1-9]\d+)$/.exec(name))
-    .filter((m) => m !== null)
-    .sort((a, b) => Number(a[1]) - Number(b[1]))
-    .map((m) => env[m[0]]?.trim())
-    .filter((key): key is string => !!key);
+  const [apiKey, ...fallbackApiKeys] = (env.GEMINI_API_KEY ?? '').split(',').map((key) => key.trim()).filter(Boolean);
   const models = (env.GEMINI_MODEL ?? '').split(',').map((m) => m.trim().replace(/^models\//, '')).filter(Boolean);
   if (!apiKey || !models.length) throw new GenerationError('Set GEMINI_API_KEY and GEMINI_MODEL in .env.');
   if (!models.every((m) => /^[a-zA-Z0-9._-]{1,80}$/.test(m))) throw new GenerationError('GEMINI_MODEL must be model names separated by commas, each optionally prefixed with models/.');
@@ -68,7 +62,9 @@ export function loadBatchConfig(path: string): BatchConfig {
  * model has failed does the request move on to the next model. Transient failures (HTTP 429,
  * server errors, network errors) are retried; other failures stop immediately. A model/key
  * pair that answers every attempt with HTTP 429 has exhausted its quota and is skipped for
- * the rest of the run.
+ * the rest of the run. When `config` is a function (the CLI rereads .env), keys and models are
+ * reloaded before every request, so a key added while a batch runs is used right away; an
+ * unreadable configuration keeps the last valid one.
  */
 export const ATTEMPTS_PER_KEY = 3;
 /** Large briefs can take several minutes on a loaded model. */
@@ -76,9 +72,15 @@ export const REQUEST_TIMEOUT_MS = 500_000;
 export const RETRY_PAUSES_MS = [5_000, 15_000];
 const pause = (ms: number) => new Promise<void>((done) => setTimeout(done, ms));
 
-export function geminiAdapter(config: GeminiConfig, fetcher: typeof fetch = fetch, sleep = pause, report?: (message: string) => void): BriefAdapter {
-  const keys = [config.apiKey, ...(config.fallbackApiKeys ?? [])];
-  const models = [config.model, ...(config.fallbackModels ?? [])];
+export function geminiAdapter(config: GeminiConfig | (() => GeminiConfig), fetcher: typeof fetch = fetch, sleep = pause, report?: (message: string) => void): BriefAdapter {
+  let current = typeof config === 'function' ? config() : config;
+  const reload = () => {
+    if (typeof config !== 'function') return current;
+    try { current = config(); }
+    catch { report?.('  .env could not be read; keeping the previous Gemini configuration.'); }
+    return current;
+  };
+  // Keyed by the key itself, not its position, so keys added or reordered later keep their state.
   const exhausted = new Set<string>();
   const send = async (request: GenerationRequest, model: string, key: string): Promise<Response> => {
     try {
@@ -95,9 +97,11 @@ export function geminiAdapter(config: GeminiConfig, fetcher: typeof fetch = fetc
   };
   const respond = async (request: GenerationRequest): Promise<{ response: Response; model: string }> => {
     let failure: GenerationError | undefined;
-    for (const model of models) {
+    const { apiKey, fallbackApiKeys, model: first, fallbackModels } = reload();
+    const keys = [apiKey, ...(fallbackApiKeys ?? [])];
+    for (const model of [first, ...(fallbackModels ?? [])]) {
       for (const [index, key] of keys.entries()) {
-        const pair = `${model}/${index}`;
+        const pair = `${model}/${key}`;
         if (exhausted.has(pair)) continue;
         let quotaOnly = true;
         for (let attempt = 1; attempt <= ATTEMPTS_PER_KEY; attempt++) {

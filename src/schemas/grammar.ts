@@ -32,7 +32,7 @@ export const GRAMMAR_EXAM_TYPES = ['grammar_gap_typing', 'grammar_pronoun_form_t
 
 /* =================================================================== brief */
 
-const exampleSchema = (lang: string) => z.strictObject({ text: LearningTextSchema, translation: nativeTextSchema(lang) });
+export const exampleSchema = (lang: string) => z.strictObject({ text: LearningTextSchema, translation: nativeTextSchema(lang) });
 
 export const grammarBriefSchema = (lang: string) =>
   z.strictObject({
@@ -93,7 +93,7 @@ export type GrammarBrief = z.infer<ReturnType<typeof grammarBriefSchema>>;
 const TokenSchema = z.strictObject({ tokenId: NestedIdSchema, text: LearningTextSchema });
 const scored = { ruleIds: z.array(NestedIdSchema).min(1), answerExplanation: LocalizedTextSchema };
 
-const grammarItemSchema = (lang: string) =>
+export const grammarItemSchema = (lang: string) =>
   z.discriminatedUnion('type', [
     z.strictObject({
       type: z.literal('grammar_explanation'),

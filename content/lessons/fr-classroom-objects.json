@@ -1,0 +1,1178 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-classroom-objects",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les objets de la classe",
+  "objective": {
+    "en": "Learn to identify and name twelve common classroom objects in French with their indefinite articles.",
+    "fr": "Apprendre à identifier et nommer douze objets courants de la classe en français avec leur article indéfini.",
+    "de": "Lerne, zwölf häufige Klassenzimmergegenstände auf Französisch mit ihrem unbestimmten Artikel zu benennen."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "lesson-prototype",
+    "model": "claude-opus-5-5",
+    "promptVersion": "content-v1",
+    "generatedAt": "2026-10-06T19:04:57.240Z",
+    "inputHashes": {
+      "outline": "07ba863701d3938c7c04d1efc9513eee109bfc497d967f7969eaa65b87019e87",
+      "brief": "2734058b44424da35f586eeb8c1397e72688e091417334e000133c54590de960"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "education",
+  "steps": [
+    {
+      "id": "introduction",
+      "stage": "introduction",
+      "role": "introduction",
+      "label": {
+        "en": "Introduction",
+        "fr": "Introduction",
+        "de": "Einführung"
+      },
+      "pages": [
+        {
+          "pageId": "intro-group-masculine",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction and listen to the new words.",
+            "fr": "Lisez l’introduction et écoutez les nouveaux mots.",
+            "de": "Lies die Einführung und hör dir die neuen Wörter an."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-group-masculine",
+              "targetIds": [
+                "un-livre",
+                "un-cahier",
+                "un-stylo",
+                "un-tableau",
+                "un-crayon",
+                "un-sac"
+              ],
+              "text": {
+                "en": "These six classroom objects are masculine: they take the indefinite article un. You see them every day in class: un livre, un cahier, un stylo, un tableau, un crayon and un sac. Learn each word together with its article, because the article tells you the gender.",
+                "fr": "Ces six objets de la classe sont masculins : ils prennent l’article indéfini un. Vous les voyez tous les jours en classe : un livre, un cahier, un stylo, un tableau, un crayon et un sac. Apprenez chaque mot avec son article, car l’article indique le genre.",
+                "de": "Diese sechs Gegenstände aus dem Klassenzimmer sind maskulin: Sie haben den unbestimmten Artikel un. Du siehst sie jeden Tag im Unterricht: un livre, un cahier, un stylo, un tableau, un crayon und un sac. Lerne jedes Wort mit seinem Artikel, denn der Artikel zeigt das Genus."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "intro-group-feminine",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction and listen to the new words.",
+            "fr": "Lisez l’introduction et écoutez les nouveaux mots.",
+            "de": "Lies die Einführung und hör dir die neuen Wörter an."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-group-feminine",
+              "targetIds": [
+                "une-table",
+                "une-chaise",
+                "une-trousse",
+                "une-regle",
+                "une-gomme",
+                "une-carte"
+              ],
+              "text": {
+                "en": "These six objects are feminine: they take une. Une table and une chaise furnish the room; une trousse, une règle and une gomme are in your school bag, and une carte hangs on the wall. Note the accent grave in règle. The gender often differs from German: une table but der Tisch.",
+                "fr": "Ces six objets sont féminins : ils prennent une. Une table et une chaise meublent la salle ; une trousse, une règle et une gomme sont dans votre sac, et une carte est au mur. Remarquez l’accent grave de règle. Le genre est souvent différent de l’allemand : une table mais « der Tisch ».",
+                "de": "Diese sechs Gegenstände sind feminin: Sie haben une. Une table und une chaise stehen im Raum; une trousse, une règle und une gomme sind in deiner Schultasche, und une carte hängt an der Wand. Achte auf den accent grave in règle. Das Genus weicht oft vom Deutschen ab: une table, aber der Tisch."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "cards-group-masculine",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word, then turn the card to check it.",
+            "fr": "Rappelez-vous chaque mot, puis retournez la carte pour vérifier.",
+            "de": "Erinnere dich an jedes Wort und dreh dann die Karte um."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-group-masculine",
+              "targetIds": [
+                "un-livre",
+                "un-cahier",
+                "un-stylo",
+                "un-tableau",
+                "un-crayon",
+                "un-sac"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "cards-group-feminine",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word, then turn the card to check it.",
+            "fr": "Rappelez-vous chaque mot, puis retournez la carte pour vérifier.",
+            "de": "Erinnere dich an jedes Wort und dreh dann die Karte um."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-group-feminine",
+              "targetIds": [
+                "une-table",
+                "une-chaise",
+                "une-trousse",
+                "une-regle",
+                "une-gomme",
+                "une-carte"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "match-1",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each word with its translation.",
+            "fr": "Associez chaque mot à sa traduction.",
+            "de": "Ordne jedem Wort seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-1",
+              "pairs": [
+                {
+                  "targetId": "un-livre",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "Un livre means a book.",
+                    "fr": "Un livre veut dire « a book » en anglais et « ein Buch » en allemand.",
+                    "de": "Un livre bedeutet ein Buch."
+                  }
+                },
+                {
+                  "targetId": "un-cahier",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "Un cahier means a notebook.",
+                    "fr": "Un cahier veut dire « a notebook » en anglais et « ein Heft » en allemand.",
+                    "de": "Un cahier bedeutet ein Heft."
+                  }
+                },
+                {
+                  "targetId": "un-stylo",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "Un stylo means a pen.",
+                    "fr": "Un stylo veut dire « a pen » en anglais et « ein Stift » en allemand.",
+                    "de": "Un stylo bedeutet ein Stift."
+                  }
+                },
+                {
+                  "targetId": "un-tableau",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "Un tableau means a board.",
+                    "fr": "Un tableau veut dire « a board » en anglais et « eine Tafel » en allemand.",
+                    "de": "Un tableau bedeutet eine Tafel."
+                  }
+                },
+                {
+                  "targetId": "un-crayon",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "Un crayon means a pencil.",
+                    "fr": "Un crayon veut dire « a pencil » en anglais et « ein Bleistift » en allemand.",
+                    "de": "Un crayon bedeutet ein Bleistift."
+                  }
+                },
+                {
+                  "targetId": "un-sac",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "Un sac means a bag.",
+                    "fr": "Un sac veut dire « a bag » en anglais et « eine Tasche » en allemand.",
+                    "de": "Un sac bedeutet eine Tasche."
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-2",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each word with its translation.",
+            "fr": "Associez chaque mot à sa traduction.",
+            "de": "Ordne jedem Wort seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-2",
+              "pairs": [
+                {
+                  "targetId": "une-table",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "Une table means a table.",
+                    "fr": "Une table veut dire « a table » en anglais et « ein Tisch » en allemand.",
+                    "de": "Une table bedeutet ein Tisch."
+                  }
+                },
+                {
+                  "targetId": "une-chaise",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "Une chaise means a chair.",
+                    "fr": "Une chaise veut dire « a chair » en anglais et « ein Stuhl » en allemand.",
+                    "de": "Une chaise bedeutet ein Stuhl."
+                  }
+                },
+                {
+                  "targetId": "une-trousse",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "Une trousse means a pencil case.",
+                    "fr": "Une trousse veut dire « a pencil case » en anglais et « ein Mäppchen » en allemand.",
+                    "de": "Une trousse bedeutet ein Mäppchen."
+                  }
+                },
+                {
+                  "targetId": "une-regle",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "Une règle means a ruler.",
+                    "fr": "Une règle veut dire « a ruler » en anglais et « ein Lineal » en allemand.",
+                    "de": "Une règle bedeutet ein Lineal."
+                  }
+                },
+                {
+                  "targetId": "une-gomme",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "Une gomme means an eraser.",
+                    "fr": "Une gomme veut dire « an eraser » en anglais et « ein Radiergummi » en allemand.",
+                    "de": "Une gomme bedeutet ein Radiergummi."
+                  }
+                },
+                {
+                  "targetId": "une-carte",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "Une carte means a map.",
+                    "fr": "Une carte veut dire « a map » en anglais et « eine Karte » en allemand.",
+                    "de": "Une carte bedeutet eine Karte."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overview",
+      "stage": "overview",
+      "role": "overview",
+      "label": {
+        "en": "Gender and overview",
+        "fr": "Genre et vue d’ensemble",
+        "de": "Genus und Übersicht"
+      },
+      "pages": [
+        {
+          "pageId": "overview",
+          "estimatedDurationS": 90,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the gender of each noun, then review all words.",
+            "fr": "Choisissez le genre de chaque nom, puis revoyez tous les mots.",
+            "de": "Wähle das Genus jedes Nomens und sieh dir dann alle Wörter an."
+          },
+          "items": [
+            {
+              "type": "vocabulary_gender_select",
+              "itemId": "gender",
+              "targetIds": [
+                "un-livre",
+                "un-cahier",
+                "un-stylo",
+                "un-tableau",
+                "un-crayon",
+                "un-sac",
+                "une-table",
+                "une-chaise",
+                "une-trousse",
+                "une-regle",
+                "une-gomme",
+                "une-carte"
+              ],
+              "rows": [
+                {
+                  "targetId": "un-livre",
+                  "answerExplanation": {
+                    "en": "Livre is masculine, so its indefinite article is un: un livre.",
+                    "fr": "Livre est masculin, donc l’article indéfini est un : un livre.",
+                    "de": "Livre ist maskulin, der unbestimmte Artikel ist un: un livre."
+                  }
+                },
+                {
+                  "targetId": "un-cahier",
+                  "answerExplanation": {
+                    "en": "Cahier is masculine, so its indefinite article is un: un cahier.",
+                    "fr": "Cahier est masculin, donc l’article indéfini est un : un cahier.",
+                    "de": "Cahier ist maskulin, der unbestimmte Artikel ist un: un cahier."
+                  }
+                },
+                {
+                  "targetId": "un-stylo",
+                  "answerExplanation": {
+                    "en": "Stylo is masculine, so its indefinite article is un: un stylo.",
+                    "fr": "Stylo est masculin, donc l’article indéfini est un : un stylo.",
+                    "de": "Stylo ist maskulin, der unbestimmte Artikel ist un: un stylo."
+                  }
+                },
+                {
+                  "targetId": "un-tableau",
+                  "answerExplanation": {
+                    "en": "Tableau is masculine, so its indefinite article is un: un tableau.",
+                    "fr": "Tableau est masculin, donc l’article indéfini est un : un tableau.",
+                    "de": "Tableau ist maskulin, der unbestimmte Artikel ist un: un tableau."
+                  }
+                },
+                {
+                  "targetId": "un-crayon",
+                  "answerExplanation": {
+                    "en": "Crayon is masculine, so its indefinite article is un: un crayon.",
+                    "fr": "Crayon est masculin, donc l’article indéfini est un : un crayon.",
+                    "de": "Crayon ist maskulin, der unbestimmte Artikel ist un: un crayon."
+                  }
+                },
+                {
+                  "targetId": "un-sac",
+                  "answerExplanation": {
+                    "en": "Sac is masculine, so its indefinite article is un: un sac.",
+                    "fr": "Sac est masculin, donc l’article indéfini est un : un sac.",
+                    "de": "Sac ist maskulin, der unbestimmte Artikel ist un: un sac."
+                  }
+                },
+                {
+                  "targetId": "une-table",
+                  "answerExplanation": {
+                    "en": "Table is feminine, so its indefinite article is une: une table.",
+                    "fr": "Table est féminin, donc l’article indéfini est une : une table.",
+                    "de": "Table ist feminin, der unbestimmte Artikel ist une: une table."
+                  }
+                },
+                {
+                  "targetId": "une-chaise",
+                  "answerExplanation": {
+                    "en": "Chaise is feminine, so its indefinite article is une: une chaise.",
+                    "fr": "Chaise est féminin, donc l’article indéfini est une : une chaise.",
+                    "de": "Chaise ist feminin, der unbestimmte Artikel ist une: une chaise."
+                  }
+                },
+                {
+                  "targetId": "une-trousse",
+                  "answerExplanation": {
+                    "en": "Trousse is feminine, so its indefinite article is une: une trousse.",
+                    "fr": "Trousse est féminin, donc l’article indéfini est une : une trousse.",
+                    "de": "Trousse ist feminin, der unbestimmte Artikel ist une: une trousse."
+                  }
+                },
+                {
+                  "targetId": "une-regle",
+                  "answerExplanation": {
+                    "en": "Règle is feminine, so its indefinite article is une: une règle.",
+                    "fr": "Règle est féminin, donc l’article indéfini est une : une règle.",
+                    "de": "Règle ist feminin, der unbestimmte Artikel ist une: une règle."
+                  }
+                },
+                {
+                  "targetId": "une-gomme",
+                  "answerExplanation": {
+                    "en": "Gomme is feminine, so its indefinite article is une: une gomme.",
+                    "fr": "Gomme est féminin, donc l’article indéfini est une : une gomme.",
+                    "de": "Gomme ist feminin, der unbestimmte Artikel ist une: une gomme."
+                  }
+                },
+                {
+                  "targetId": "une-carte",
+                  "answerExplanation": {
+                    "en": "Carte is feminine, so its indefinite article is une: une carte.",
+                    "fr": "Carte est féminin, donc l’article indéfini est une : une carte.",
+                    "de": "Carte ist feminin, der unbestimmte Artikel ist une: une carte."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "stage": "practice",
+      "role": "exercise",
+      "label": {
+        "en": "Practice",
+        "fr": "Entraînement",
+        "de": "Übung"
+      },
+      "pages": [
+        {
+          "pageId": "gap-un-livre",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word without its article.",
+            "fr": "Écrivez le mot manquant sans son article.",
+            "de": "Schreib das fehlende Wort ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-livre",
+              "targetId": "un-livre",
+              "before": "J’ouvre un",
+              "after": "de français.",
+              "referenceTargetIds": [
+                "un-livre",
+                "un-sac",
+                "une-carte",
+                "un-tableau"
+              ],
+              "accepted": {
+                "answers": [
+                  "livre"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The sentence describes a book: un livre. Type the word without its article.",
+                "fr": "La phrase décrit un livre. Écrivez le mot sans l’article.",
+                "de": "Der Satz beschreibt ein Buch: un livre. Schreib das Wort ohne Artikel."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-cahier",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word without its article.",
+            "fr": "Écrivez le mot manquant sans son article.",
+            "de": "Schreib das fehlende Wort ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-cahier",
+              "targetId": "un-cahier",
+              "before": "J’écris mes devoirs dans un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-cahier",
+                "un-stylo",
+                "une-chaise",
+                "une-gomme"
+              ],
+              "accepted": {
+                "answers": [
+                  "cahier"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The sentence describes a notebook: un cahier. Type the word without its article.",
+                "fr": "La phrase décrit un cahier. Écrivez le mot sans l’article.",
+                "de": "Der Satz beschreibt ein Heft: un cahier. Schreib das Wort ohne Artikel."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-stylo",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word without its article.",
+            "fr": "Écrivez le mot manquant sans son article.",
+            "de": "Schreib das fehlende Wort ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-stylo",
+              "targetId": "un-stylo",
+              "before": "J’écris à l’encre avec un",
+              "after": "bleu.",
+              "referenceTargetIds": [
+                "un-stylo",
+                "un-sac",
+                "une-table",
+                "une-carte"
+              ],
+              "accepted": {
+                "answers": [
+                  "stylo"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The sentence describes a pen: un stylo. Type the word without its article.",
+                "fr": "La phrase décrit un stylo. Écrivez le mot sans l’article.",
+                "de": "Der Satz beschreibt ein Stift: un stylo. Schreib das Wort ohne Artikel."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-tableau",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word without its article.",
+            "fr": "Écrivez le mot manquant sans son article.",
+            "de": "Schreib das fehlende Wort ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-tableau",
+              "targetId": "un-tableau",
+              "before": "Le professeur écrit au",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-tableau",
+                "un-cahier",
+                "une-trousse",
+                "une-chaise"
+              ],
+              "accepted": {
+                "answers": [
+                  "tableau"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The sentence describes a board: un tableau. Type the word without its article.",
+                "fr": "La phrase décrit un tableau. Écrivez le mot sans l’article.",
+                "de": "Der Satz beschreibt eine Tafel: un tableau. Schreib das Wort ohne Artikel."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-crayon",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word without its article.",
+            "fr": "Écrivez le mot manquant sans son article.",
+            "de": "Schreib das fehlende Wort ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-crayon",
+              "targetId": "un-crayon",
+              "before": "Je dessine avec un",
+              "after": "noir.",
+              "referenceTargetIds": [
+                "un-crayon",
+                "un-livre",
+                "une-table",
+                "une-carte"
+              ],
+              "accepted": {
+                "answers": [
+                  "crayon"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The sentence describes a pencil: un crayon. Type the word without its article.",
+                "fr": "La phrase décrit un crayon. Écrivez le mot sans l’article.",
+                "de": "Der Satz beschreibt ein Bleistift: un crayon. Schreib das Wort ohne Artikel."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-sac",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word without its article.",
+            "fr": "Écrivez le mot manquant sans son article.",
+            "de": "Schreib das fehlende Wort ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-sac",
+              "targetId": "un-sac",
+              "before": "Je mets mes livres dans mon",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-sac",
+                "un-stylo",
+                "une-gomme",
+                "une-regle"
+              ],
+              "accepted": {
+                "answers": [
+                  "sac"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The sentence describes a bag: un sac. Type the word without its article.",
+                "fr": "La phrase décrit un sac. Écrivez le mot sans l’article.",
+                "de": "Der Satz beschreibt eine Tasche: un sac. Schreib das Wort ohne Artikel."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-table",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word without its article.",
+            "fr": "Écrivez le mot manquant sans son article.",
+            "de": "Schreib das fehlende Wort ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-table",
+              "targetId": "une-table",
+              "before": "Les cahiers sont sur la",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-table",
+                "une-gomme",
+                "un-crayon",
+                "un-stylo"
+              ],
+              "accepted": {
+                "answers": [
+                  "table"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The sentence describes a table: une table. Type the word without its article.",
+                "fr": "La phrase décrit une table. Écrivez le mot sans l’article.",
+                "de": "Der Satz beschreibt ein Tisch: une table. Schreib das Wort ohne Artikel."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-chaise",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word without its article.",
+            "fr": "Écrivez le mot manquant sans son article.",
+            "de": "Schreib das fehlende Wort ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-chaise",
+              "targetId": "une-chaise",
+              "before": "Je m’assois sur une",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-chaise",
+                "une-carte",
+                "un-livre",
+                "un-cahier"
+              ],
+              "accepted": {
+                "answers": [
+                  "chaise"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The sentence describes a chair: une chaise. Type the word without its article.",
+                "fr": "La phrase décrit une chaise. Écrivez le mot sans l’article.",
+                "de": "Der Satz beschreibt ein Stuhl: une chaise. Schreib das Wort ohne Artikel."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-trousse",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word without its article.",
+            "fr": "Écrivez le mot manquant sans son article.",
+            "de": "Schreib das fehlende Wort ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-trousse",
+              "targetId": "une-trousse",
+              "before": "Mes crayons sont dans ma",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-trousse",
+                "une-table",
+                "un-tableau",
+                "un-livre"
+              ],
+              "accepted": {
+                "answers": [
+                  "trousse"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The sentence describes a pencil case: une trousse. Type the word without its article.",
+                "fr": "La phrase décrit une trousse. Écrivez le mot sans l’article.",
+                "de": "Der Satz beschreibt ein Mäppchen: une trousse. Schreib das Wort ohne Artikel."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-regle",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word without its article.",
+            "fr": "Écrivez le mot manquant sans son article.",
+            "de": "Schreib das fehlende Wort ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-regle",
+              "targetId": "une-regle",
+              "before": "Pour tracer un trait droit, j’utilise une",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-regle",
+                "une-chaise",
+                "un-sac",
+                "un-cahier"
+              ],
+              "accepted": {
+                "answers": [
+                  "règle"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The sentence describes a ruler: une règle, with an accent grave on the first e.",
+                "fr": "La phrase décrit une règle, avec un accent grave sur le premier e.",
+                "de": "Der Satz beschreibt ein Lineal: une règle, mit accent grave auf dem ersten e."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-gomme",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word without its article.",
+            "fr": "Écrivez le mot manquant sans son article.",
+            "de": "Schreib das fehlende Wort ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-gomme",
+              "targetId": "une-gomme",
+              "before": "Pour effacer le crayon, j’utilise une",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-gomme",
+                "une-carte",
+                "un-tableau",
+                "un-stylo"
+              ],
+              "accepted": {
+                "answers": [
+                  "gomme"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The sentence describes an eraser: une gomme. Type the word without its article.",
+                "fr": "La phrase décrit une gomme. Écrivez le mot sans l’article.",
+                "de": "Der Satz beschreibt ein Radiergummi: une gomme. Schreib das Wort ohne Artikel."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-carte",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word without its article.",
+            "fr": "Écrivez le mot manquant sans son article.",
+            "de": "Schreib das fehlende Wort ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-carte",
+              "targetId": "une-carte",
+              "before": "Regarde la",
+              "after": "de France au mur.",
+              "referenceTargetIds": [
+                "une-carte",
+                "une-trousse",
+                "un-crayon",
+                "un-sac"
+              ],
+              "accepted": {
+                "answers": [
+                  "carte"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The sentence describes a map: une carte. Type the word without its article.",
+                "fr": "La phrase décrit une carte. Écrivez le mot sans l’article.",
+                "de": "Der Satz beschreibt eine Karte: une carte. Schreib das Wort ohne Artikel."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Final exam",
+        "fr": "Examen final",
+        "de": "Abschlussprüfung"
+      },
+      "pages": [
+        {
+          "pageId": "page-exam-1",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each word into French, with its article for nouns.",
+            "fr": "Traduisez chaque mot en français, avec l’article pour les noms.",
+            "de": "Übersetze jedes Wort ins Französische, bei Nomen mit Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-livre",
+              "targetId": "un-livre",
+              "prompt": {
+                "en": "a book",
+                "de": "ein Buch"
+              },
+              "accepted": {
+                "answers": [
+                  "un livre"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "A book is un livre; livre is masculine, so use un.",
+                "fr": "« a book » se dit un livre ; livre est masculin, donc un.",
+                "de": "Ein buch heißt un livre; livre ist maskulin, also un."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-cahier",
+              "targetId": "un-cahier",
+              "prompt": {
+                "en": "a notebook",
+                "de": "ein Heft"
+              },
+              "accepted": {
+                "answers": [
+                  "un cahier"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "A notebook is un cahier; cahier is masculine, so use un.",
+                "fr": "« a notebook » se dit un cahier ; cahier est masculin, donc un.",
+                "de": "Ein heft heißt un cahier; cahier ist maskulin, also un."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-stylo",
+              "targetId": "un-stylo",
+              "prompt": {
+                "en": "a pen",
+                "de": "ein Stift"
+              },
+              "accepted": {
+                "answers": [
+                  "un stylo"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "A pen is un stylo; stylo is masculine, so use un.",
+                "fr": "« a pen » se dit un stylo ; stylo est masculin, donc un.",
+                "de": "Ein stift heißt un stylo; stylo ist maskulin, also un."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-tableau",
+              "targetId": "un-tableau",
+              "prompt": {
+                "en": "a board",
+                "de": "eine Tafel"
+              },
+              "accepted": {
+                "answers": [
+                  "un tableau"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "Un tableau means a board. It is masculine, although the German Tafel is feminine.",
+                "fr": "Un tableau est masculin, même si « Tafel » est féminin en allemand.",
+                "de": "Un tableau bedeutet eine Tafel. Es ist maskulin, obwohl Tafel feminin ist."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-crayon",
+              "targetId": "un-crayon",
+              "prompt": {
+                "en": "a pencil",
+                "de": "ein Bleistift"
+              },
+              "accepted": {
+                "answers": [
+                  "un crayon"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "A pencil is un crayon; crayon is masculine, so use un.",
+                "fr": "« a pencil » se dit un crayon ; crayon est masculin, donc un.",
+                "de": "Ein bleistift heißt un crayon; crayon ist maskulin, also un."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-sac",
+              "targetId": "un-sac",
+              "prompt": {
+                "en": "a bag",
+                "de": "eine Tasche"
+              },
+              "accepted": {
+                "answers": [
+                  "un sac"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "Un sac means a bag. It is masculine, although the German Tasche is feminine.",
+                "fr": "Un sac est masculin, même si « Tasche » est féminin en allemand.",
+                "de": "Un sac bedeutet eine Tasche. Es ist maskulin, obwohl Tasche feminin ist."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "page-exam-2",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each word into French, with its article for nouns.",
+            "fr": "Traduisez chaque mot en français, avec l’article pour les noms.",
+            "de": "Übersetze jedes Wort ins Französische, bei Nomen mit Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-table",
+              "targetId": "une-table",
+              "prompt": {
+                "en": "a table",
+                "de": "ein Tisch"
+              },
+              "accepted": {
+                "answers": [
+                  "une table"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "Une table means a table. It is feminine, although the German Tisch is masculine.",
+                "fr": "Une table est féminin, même si « Tisch » est masculin en allemand.",
+                "de": "Une table bedeutet ein Tisch. Es ist feminin, obwohl Tisch maskulin ist."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-chaise",
+              "targetId": "une-chaise",
+              "prompt": {
+                "en": "a chair",
+                "de": "ein Stuhl"
+              },
+              "accepted": {
+                "answers": [
+                  "une chaise"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "A chair is une chaise; chaise is feminine, so use une.",
+                "fr": "« a chair » se dit une chaise ; chaise est féminin, donc une.",
+                "de": "Ein stuhl heißt une chaise; chaise ist feminin, also une."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-trousse",
+              "targetId": "une-trousse",
+              "prompt": {
+                "en": "a pencil case",
+                "de": "ein Mäppchen"
+              },
+              "accepted": {
+                "answers": [
+                  "une trousse"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "A pencil case is une trousse; trousse is feminine, so use une.",
+                "fr": "« a pencil case » se dit une trousse ; trousse est féminin, donc une.",
+                "de": "Ein mäppchen heißt une trousse; trousse ist feminin, also une."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-regle",
+              "targetId": "une-regle",
+              "prompt": {
+                "en": "a ruler",
+                "de": "ein Lineal"
+              },
+              "accepted": {
+                "answers": [
+                  "une règle"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "Une règle means a ruler. It is feminine, and règle has an accent grave on the first e.",
+                "fr": "Une règle est féminin ; règle prend un accent grave sur le premier e.",
+                "de": "Une règle bedeutet ein Lineal. Es ist feminin, und règle hat einen accent grave auf dem ersten e."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-gomme",
+              "targetId": "une-gomme",
+              "prompt": {
+                "en": "an eraser",
+                "de": "ein Radiergummi"
+              },
+              "accepted": {
+                "answers": [
+                  "une gomme"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "An eraser is une gomme; gomme is feminine, so use une.",
+                "fr": "« an eraser » se dit une gomme ; gomme est féminin, donc une.",
+                "de": "Ein radiergummi heißt une gomme; gomme ist feminin, also une."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-carte",
+              "targetId": "une-carte",
+              "prompt": {
+                "en": "a map",
+                "de": "eine Karte"
+              },
+              "accepted": {
+                "answers": [
+                  "une carte"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "A map is une carte; carte is feminine, so use une.",
+                "fr": "« a map » se dit une carte ; carte est féminin, donc une.",
+                "de": "Eine karte heißt une carte; carte ist feminin, also une."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
