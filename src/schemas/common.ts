@@ -1,9 +1,6 @@
 import { z } from 'zod';
 
-/**
- * Shared enums. Migrated from the legacy draft modules in old_prompt/;
- * P1-03 extends this module and P1-04 removes the drafts.
- */
+/** Shared language, level and classification definitions for the maintained schemas. */
 
 /** Supported mother tongues and interface languages. */
 export const LOCALES = ['en', 'fr', 'de'] as const;

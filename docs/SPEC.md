@@ -1,6 +1,6 @@
 # Lesson exercise prototype specification
 
-Status: **Draft 0.25 — executable brief and content schemas (P1-03)**. Date: 2026-10-06.
+Status: **Draft 0.26 — maintained schemas after legacy retirement (P1-04)**. Date: 2026-10-06.
 
 This document specifies the prototype and its phased implementation. It is the maintained requirements document: no separate requirements file exists. It does not authorize starting implementation before the specification review. The backlog is in [ISSUES.md](ISSUES.md) and published as GitHub issues in `bastian-schnitzler/lesson_prototype`.
 
@@ -16,9 +16,9 @@ The requested roadmap names phases 0–5. This specification follows those six p
 | --- | --- | --- |
 | `content/outlines/*.json` | Discover all files; currently only fr/A1 is present | Build-derived course catalog, selected-course ordering, globally unique lesson IDs. |
 | `content/outlines/fr-a1.json` | `lang: fr`, `level: A1`, 120 ordered entries | Authoritative IDs, classification, intent, titles, and order. |
-| `old_prompt/data_model_draft/lesson.ts` | Generic brief and older aggregate draft/API schemas | Temporary migration reference; executable contracts replace it in P1-03, then P1-04 removes it. |
-| `old_prompt/data_model_draft/item.ts` | Placement-style multiple-choice question schemas | Migrate applicable enums/validation in P1-03; P1-04 removes the legacy file. |
-| `old_prompt/data_model_draft/language.ts` | Imported by both draft modules, but absent | Supply a minimal shared language schema when implementing executable schemas. |
+| [src/schemas/common.ts](../src/schemas/common.ts) and [outline.ts](../src/schemas/outline.ts) | Maintained language, level, kind, topic/theme and outline contracts | Shared definitions used by the catalog, app and artifact schemas. |
+| [src/schemas/artifacts.ts](../src/schemas/artifacts.ts), [vocabulary.ts](../src/schemas/vocabulary.ts), [grammar.ts](../src/schemas/grammar.ts), [artifactCommon.ts](../src/schemas/artifactCommon.ts) | Executable multilingual brief/content schemas from P1-03 | Category factories and shared payload validation; these are the active schema contracts. |
+| [src/validation/artifacts.ts](../src/validation/artifacts.ts) | Current artifact and cross-reference validation | Checks metadata, locale coverage, IDs, hashes, coverage and brief/content consistency. |
 
 The existing French A1 outline has **48 grammar, 48 vocabulary, 14 functions, and 10 reading** entries. Display all 120 entries when fr/A1 is selected; discover additional courses from all outline files without hard-coded filenames. Functions and reading remain visible but cannot start until their requirements and renderers exist.
 
@@ -58,7 +58,7 @@ Confirmed decisions are identified below. Other defaults make the draft concrete
 | D26 | GitHub issue synchronization | **Confirmed:** after initial issue creation, every change to `docs/SPEC.md` or `docs/ISSUES.md` must refresh the published GitHub issues accordingly, keeping the backlog aligned with the latest specification. |
 | D27 | Shared page design | **Confirmed:** apply the results page's dark design consistently to the lesson index, artifact views, start pages, explanations, all exercises, exams, feedback, and results. |
 | D28 | Accent correction wording | **Confirmed:** correction explanations name the accent or diacritic. French feedback uses terms such as accent aigu, accent grave, and accent circonflexe; German feedback says “written with umlaut ä/ö/ü” as applicable. |
-| D29 | Review and retirement gates | **Confirmed:** after initial spec refinement, review with Claude, then retire the superseded requirements source (done in P0-03). After executable brief/content schemas, retire the legacy prompt/schema files and their SPEC references. |
+| D29 | Review and retirement gates | **Confirmed:** after initial spec refinement, review with Claude, then retire the superseded requirements source (done in P0-03). Executable brief/content schemas are maintained in src/schemas; P1-04 retires superseded definitions after schema/import/build checks. |
 | D30 | Mockups from implementation | **Confirmed:** each implementation phase ends with a dedicated issue to improve its mockups from the actual prototype pages; phases 4/5 remain requirements-dependent. **Confirmed:** that issue is always the last issue of its milestone, with the highest logical ID in the phase and dependencies covering every other issue of the phase; adding an issue to a phase renumbers it so the mockup issue stays last. |
 | D31 | GitHub issue titles/milestones | **Confirmed:** titles follow `P<phase>-<two-digit-issue>: <description>`, matching `P0-01: Create spec`. Group every issue under milestones named Phase 0–Phase 5. |
 | D32 | Workflow commands | **Confirmed:** create the Makefile in P1-01. Use Make targets for workflow tasks, extending it in subsequent issues. Generation, local browser run, build, tests, help, and mockup synchronization have documented targets. |
@@ -133,7 +133,7 @@ dist/                  # generated deployment output
 
 Use **`content/lessons/`**, plural, throughout. The singular `content/lesson/` in the request is treated as a typo. Do not keep a second competing storage location. Generated briefs and lessons are individual files keyed by the existing outline IDs, replacing the older aggregate lesson-file convention for this prototype.
 
-P1-03 migrates necessary definitions into executable schema modules, keeps shared enums in one place, and resolves imports. P1-04 then removes the legacy prompt/schema directory and its SPEC references. Do not leave two competing active `LessonBriefSchema` definitions.
+P1-03 established executable schema modules and shared definitions. After P1-04 retirement, `src/schemas/common.ts` owns the shared enums and language/level validators; the category-specific factories in `src/schemas/artifacts.ts` resolve the maintained brief/content contracts. Application, catalog, build and future generator code must import these maintained modules.
 
 ### Makefile workflow
 
@@ -323,15 +323,15 @@ Briefs and lesson files use an envelope with:
 | `title`, `objective`, `estimatedMinutes` | Learning-language title, localized en/fr/de objective, shared numeric duration. |
 | `provenance` | Generator/model/prompt details and applicable input hashes. |
 
-Use strict objects, bounded nonempty strings and arrays, unique stable nested IDs, and category discriminators. The current generic `objective/points/examples/pitfalls/optional vocabulary` brief cannot express the needed plan. `VocabularyEntrySchema.term/gloss` currently forbids translations; replace that assumption for the prototype.
+Use strict objects, bounded nonempty strings and arrays, unique stable nested IDs, and category discriminators. The maintained vocabulary/grammar briefs express the category-specific plan, translated targets and localized support text; content schemas express renderable payloads rather than a competing generic brief.
 
 Separate **brief planning** from **renderable lesson content**. Content generation must use `VocabularyLessonContentSchema` or `GrammarLessonContentSchema`, not a brief schema again. An exercise prompt/answer set belongs in the lesson content; the brief specifies what those exercises must teach and cover.
 
 ### Multilingual brief/draft and content contract
 
-Modify **both** category-specific brief schemas and lesson-content schemas in P1-03; the brief is called Draft in the UI. The current single-language draft is not sufficient. Require complete locale maps on every localized field rather than three parallel lesson files. Keep canonical artifact paths `content/briefs/<id>.json` and `content/lessons/<id>.json`, stable item/target/rule IDs, one ordered page plan, one set of learning-language accepted answers, and shared scoring/timing values.
+P1-03 implemented **both** category-specific brief schemas and lesson-content schemas; the brief is called Draft in the UI. The maintained contracts require multilingual support. Require complete locale maps on every localized field rather than three parallel lesson files. Keep canonical artifact paths `content/briefs/<id>.json` and `content/lessons/<id>.json`, stable item/target/rule IDs, one ordered page plan, one set of learning-language accepted answers, and shared scoring/timing values.
 
-The structural Zod building blocks to implement are:
+The structural Zod building blocks are illustrated below; the maintained executable definitions and bounds are in `src/schemas/artifactCommon.ts`:
 
 ```ts
 const LocaleSchema = z.enum(['en', 'fr', 'de']);
@@ -3226,3 +3226,4 @@ When publishing the agreed backlog, include relevant Mermaid flows as fenced `me
 | 0.23 | 2026-10-06 | P1-01/P1-02: filter bar above the index heading, header action order, only-child JSON tree expansion; recorded the verified GitHub Pages settings and URL, the Pages workflow, and the `build`, `preview`, `check-dist` and `smoke` targets. |
 | 0.24 | 2026-10-06 | Mockup-refresh issues are always the last issue of their milestone (D30). Swapped logical IDs so the listening issue is P1-11 (#20) and the phase 1 mockup refresh is P1-12 (#19), which now also depends on P1-04. The Outline card shows topic/theme only as its localized name. |
 | 0.25 | 2026-10-06 | P1-03: executable multilingual brief/content schemas, cross-reference validation, free-text answer classifier and contract fixtures; the manifest records `valid`/`stale`/`invalid`/`malformed` per artifact and readiness requires valid, current files. |
+| 0.26 | 2026-10-06 | P1-04: retired superseded prompt/schema definitions after confirming shared enums and contracts were preserved. Replaced obsolete input/migration references with maintained src/schemas and artifact-validation modules. |
