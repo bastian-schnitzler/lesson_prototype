@@ -7,13 +7,22 @@ scale 1.3
 {
 .
 { <color:#020617>xx</color> | {
-<size:22><color:#E2E8F0><b>Your latest lesson result — A1</b></color></size>
+{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
+.
+{ <size:30><color:#E2E8F0><b>Your result</b></color></size> | <color:#020617>xxxxxx</color> | [ <color:#020617>   Lesson overview   </color> ] }
 <color:#94A3B8>Les objets de la classe</color>
 .
-{ <size:20><color:#E2E8F0><b>69.6 / 100 total</b></color></size> | <color:#020617>xx</color> | <color:#94A3B8>Progress 100%</color> }
+<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+.
+<color:#94A3B8>LESSON SCORE   /   FRENCH A1</color>
+.
+{ <back:#0F172A><size:42><color:#E2E8F0><b>  69.6 / 100  </b></color></size></back> | <color:#020617>xxx</color> | <color:#94A3B8>Progress 100%</color> }
+.
 .
 <color:#E2E8F0>Practice: 27 / 36 (75.0%)   ·   Final exam: 8 / 12 (66.7%)</color>
 <color:#94A3B8>Practice contributes 35%; the final exam contributes 65%.</color>
+.
+<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
 .
 <color:#94A3B8>Choose results to review</color>
 { [ <color:#4338CA>Final exam 8 / 12</color> ] | <color:#020617>xx</color> | [ <color:#4338CA>Flashcards completed</color> ] }
@@ -26,7 +35,7 @@ scale 1.3
 <color:#94A3B8>9 / 12 correct. Review your original choices below.</color>
 .
 { <size:24><color:#00E676>✓</color></size> | <color:#020617>xx</color> | {
-<size:18><color:#E2E8F0>Choose the gender of livre.</color></size>
+<size:20><color:#E2E8F0>Choose the gender of livre.</color></size>
 .
 { <color:#94A3B8>Your answer</color> | <color:#020617>xx</color> | <color:#00E676>Masculine</color> }
 { <color:#94A3B8>French form</color> | <color:#020617>xx</color> | <color:#00E676>un livre</color> }
@@ -37,7 +46,7 @@ scale 1.3
 <color:#1E293B>──────────────────────────────────────────────────────────────────</color>
 .
 { <size:24><color:#FF5252>✕</color></size> | <color:#020617>xx</color> | {
-<size:18><color:#E2E8F0>Choose the gender of règle.</color></size>
+<size:20><color:#E2E8F0>Choose the gender of règle.</color></size>
 .
 { <color:#94A3B8>Your answer</color> | <color:#020617>xx</color> | <color:#FF5252>Masculine</color> }
 { <color:#94A3B8>Correct answer</color> | <color:#020617>xx</color> | <color:#00E676>Feminine</color> }
@@ -51,7 +60,7 @@ scale 1.3
 <color:#1E293B>──────────────────────────────────────────────────────────────────</color>
 .
 { <size:24><color:#00E676>✓</color></size> | <color:#020617>xx</color> | {
-<size:18><color:#E2E8F0>Choose the gender of chaise.</color></size>
+<size:20><color:#E2E8F0>Choose the gender of chaise.</color></size>
 .
 { <color:#94A3B8>Your answer</color> | <color:#020617>xx</color> | <color:#00E676>Feminine</color> }
 { <color:#94A3B8>French form</color> | <color:#020617>xx</color> | <color:#00E676>une chaise</color> }
@@ -63,7 +72,7 @@ scale 1.3
 .
 <color:#94A3B8>Remaining answers continue below (excerpt shown).</color>
 .
-{ [ <color:#4338CA>Lesson overview</color> ] | <color:#020617>xx</color> | [ <color:#4338CA>Restart lesson</color> ] }
+[ <color:#4338CA>                  Restart lesson                  </color> ]
 } | <color:#020617>xx</color> }
 .
 }

@@ -7,12 +7,14 @@ scale 1.3
 {
 .
 { <color:#020617>xxx</color> | {
+{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
+.
 { <color:#E2E8F0><b>Le verbe être au présent</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 21.9 / 100</b></color> }
-{ <color:#E2E8F0>Progress 63%</color> | <color:#020617>xxx</color> | <color:#4338CA>████████</color><color:#1E293B>░░░░</color> }
+{ <color:#E2E8F0>Progress 63%</color> | <color:#020617>xxx</color> | <color:#635BFF>████████</color><color:#1E293B>░░░░</color> }
 .
 <color:#1E293B>──────────────────────────────────────────────────────────────────</color>
 .
-<color:#E2E8F0><size:24><b>Find the grammar mistake</b></size></color>
+<color:#E2E8F0><size:30><b>Find the grammar mistake</b></size></color>
 .
 {
 .
@@ -31,7 +33,7 @@ scale 1.3
 <color:#94A3B8>Continue locks both your selected token and its correction.</color>
 <color:#E2E8F0>You then see the result and a short explanation.</color>
 .
-[ <color:#4338CA>Continue</color> ]
+[ <color:#020617>                      Continue                      </color> ]
 .
  } | <color:#020617>xxx</color> }
 .

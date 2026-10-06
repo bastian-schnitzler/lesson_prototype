@@ -1,0 +1,47 @@
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xxx</color> | {
+{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
+.
+{ [ <color:#4338CA>Structured view</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>Lesson overview</color> ] | <color:#020617>xxx</color> | [ <color:#020617>   Start lesson   </color> ] }
+.
+<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+.
+<color:#E2E8F0><size:30><b>Les objets de la classe</b></size></color>
+<color:#94A3B8>French A1   /   Raw JSON</color>
+.
+{T
++ <color:#E2E8F0>▾ artifacts  (object · 3 keys)</color>
+++ <color:#E2E8F0>▸ outline  (object)</color>
+++ <color:#E2E8F0>▸ draft  (object)</color>
+++ <color:#E2E8F0>▾ content  (object · 10 keys)</color>
++++ <color:#94A3B8>schemaVersion: </color><color:#E2E8F0>2</color>
++++ <color:#94A3B8>id: </color><color:#E2E8F0>"fr-classroom-objects"</color>
++++ <color:#94A3B8>kind: </color><color:#E2E8F0>"vocabulary"</color>
++++ <color:#94A3B8>lang: </color><color:#E2E8F0>"fr"</color>
++++ <color:#94A3B8>level: </color><color:#E2E8F0>"A1"</color>
++++ <color:#94A3B8>title: </color><color:#E2E8F0>"Les objets de la classe"</color>
++++ <color:#E2E8F0>▾ objective  (object · 3 keys)</color>
+++++ <color:#94A3B8>en: </color><color:#E2E8F0>"Name classroom objects."</color>
+++++ <color:#94A3B8>fr: </color><color:#E2E8F0>"Nommer les objets de la classe."</color>
+++++ <color:#94A3B8>de: </color><color:#E2E8F0>"Gegenstände im Klassenzimmer benennen."</color>
++++ <color:#E2E8F0>▾ locales  [3]</color>
+++++ <color:#94A3B8>0: </color><color:#E2E8F0>"en"</color>
+++++ <color:#94A3B8>1: </color><color:#E2E8F0>"fr"</color>
+++++ <color:#94A3B8>2: </color><color:#E2E8F0>"de"</color>
++++ <color:#E2E8F0>▸ steps  [6]</color>
++++ <color:#E2E8F0>▸ provenance  (object)</color>
+}
+.
+<color:#94A3B8>Select an object or array to expand or collapse it.</color>
+.
+} | <color:#020617>xxx</color> }
+.
+}
+@endsalt

@@ -7,6 +7,8 @@ scale 1.3
 {
   .
   { <color:#020617>xxx</color> | {
+{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
+.
   .
   { [ <color:#4338CA>Lesson overview</color> ] | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | <color:#94A3B8>French / A1</color> }
   .
@@ -16,18 +18,24 @@ scale 1.3
   {
     .
     { <color:#020617>xxx</color> | {
-    <color:#E2E8F0><size:24><b>Les objets de la classe</b></size></color>
+    <color:#E2E8F0><size:30><b>Les objets de la classe</b></size></color>
     .
     <color:#E2E8F0>Learn to name objects around you and use the right article.</color>
     .
     { <color:#E2E8F0><b>12 vocabulary items</b></color> | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | <color:#E2E8F0><b>About 14 minutes</b></color> }
     .
-    <color:#E2E8F0>Introduction  /  Cards  /  Matching  /  Gender + overview  /  Typed gaps  /  Exam</color>
+    <color:#94A3B8>Lesson stages</color>
+.
+<color:#E2E8F0>01  Introduction       ·       02  Flashcards</color>
+.
+<color:#E2E8F0>03  Matching           ·       04  Gender + overview</color>
+.
+<color:#E2E8F0>05  Typed gaps         ·       06  Final exam</color>
     .
     <color:#94A3B8>Practice contributes 35%. The final exam contributes 65%.</color>
     <color:#94A3B8>Each exam page has its own time limit.</color>
     .
-    [ <color:#4338CA>Continue</color> ]
+    [ <color:#020617>                      Continue                      </color> ]
     .
      } | <color:#020617>xxx</color> }
     .
