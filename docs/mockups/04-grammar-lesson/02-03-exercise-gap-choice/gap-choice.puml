@@ -1,0 +1,46 @@
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xxx</color> | {
+{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
+.
+{ <color:#E2E8F0><b>Le verbe être au présent</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 10.9 / 100</b></color> }
+{ <color:#E2E8F0>Progress 34%</color> | <color:#020617>xxx</color> | <color:#635BFF>████</color><color:#1E293B>░░░░░░░░</color> }
+.
+<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+.
+<color:#E2E8F0><size:30><b>Choose the missing form</b></size></color>
+.
+{
+.
+{ <color:#020617>xxx</color> | {
+<color:#E2E8F0><b>GRAMMAR  /  Choose the missing form</b></color>
+.
+<color:#E2E8F0><size:21>Tu ___ étudiant.</size></color>
+.
+<back:#0F172A><color:#E2E8F0><size:21>   suis                                         </size></color></back>
+.
+<back:#0F172A><color:#E2E8F0><size:21>   es                                           </size></color></back>
+.
+<back:#0F172A><color:#E2E8F0><size:21>   est                                          </size></color></back>
+.
+<back:#0F172A><color:#E2E8F0><size:21>   sommes                                       </size></color></back>
+.
+.
+<color:#94A3B8>Select one answer, then Continue to lock it.</color>
+.
+[ <color:#020617>                      Continue                      </color> ]
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+@endsalt

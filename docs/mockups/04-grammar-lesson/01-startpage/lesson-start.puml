@@ -1,0 +1,46 @@
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xxx</color> | {
+{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
+.
+{ [ <color:#4338CA>Lesson overview</color> ] | <color:#020617>xxx</color> | <color:#94A3B8>French / A1</color> }
+.
+<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+.
+<color:#E2E8F0><size:30><b>Le verbe être au présent</b></size></color>
+.
+{
+.
+{ <color:#020617>xxx</color> | {
+<color:#E2E8F0><b>YOUR LESSON</b></color>
+.
+<color:#E2E8F0><size:20><b>Say who someone is and how they are</b></size></color>
+.
+<color:#94A3B8>3 explanation + practice blocks   /   About 13 minutes</color>
+<color:#94A3B8>Teaching blocks</color>
+.
+<color:#E2E8F0>01  Singular forms</color>
+.
+<color:#E2E8F0>02  Plural forms</color>
+.
+<color:#E2E8F0>03  Forms in sentences</color>
+.
+<color:#94A3B8>Practice contributes 35%. The final exam contributes 65%.</color>
+<color:#E2E8F0>Exam pages have their own brief-defined countdowns.</color>
+.
+[ <color:#020617>                      Continue                      </color> ]
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+@endsalt
