@@ -34,7 +34,7 @@ const COPY = {
 } as const;
 
 const EXERCISE_INSTRUCTIONS = {
-  grammar_pronoun_form_match: L('Drag each form to its pronoun.', 'Faites glisser chaque forme vers son pronom.', 'Zieh jede Form zu ihrem Pronomen.'),
+  grammar_pronoun_form_match: L('Choose the form for each pronoun.', 'Choisissez la forme pour chaque pronom.', 'Wähle die Form für jedes Pronomen.'),
   grammar_pronoun_form_typing: L('Type the form for each pronoun.', 'Écrivez la forme pour chaque pronom.', 'Schreib die Form zu jedem Pronomen.'),
   grammar_gap_choice: L('Choose the word that completes the sentence.', 'Choisissez le mot qui complète la phrase.', 'Wähle das Wort, das den Satz ergänzt.'),
   grammar_gap_typing: L('Type the missing words.', 'Écrivez les mots manquants.', 'Schreib die fehlenden Wörter.'),
