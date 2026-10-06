@@ -43,7 +43,7 @@ Confirmed decisions are identified below. Other defaults make the draft concrete
 | D11 | Session persistence | **Confirmed:** browser storage supports session reload/resume. **Confirmed:** the index last-try score is in memory only and clears on a full page reload; never restore it from stored attempts. |
 | D12 | Broad vocabulary outlines | **Confirmed:** allow the number of targets necessary for the outline, with grouped presentation. Such lessons may exceed 10–15 minutes. Do not truncate an inventory at 15 or 32 or change its existing lesson ID. |
 | D13 | Phase 4/5 allocation | Phase 4 functions, phase 5 reading, both blocked on their requirements review. |
-| D14 | Average vocabulary target count | **Confirmed:** aim for approximately 12 targets per ordinary lesson on average; around 8 for more demanding lessons. Ideally mix easier and harder targets within each lesson's topic. Larger-inventory exceptions remain separate. |
+| D14 | Average vocabulary target count | **Confirmed:** aim for approximately 12 targets per ordinary lesson on average; around 8 for more demanding lessons. Up to 20 targets are acceptable; more only when the specific lesson needs them (larger-inventory exceptions such as numbers). Mix easier and harder targets where the topic allows it, without forcing a mix. |
 | D15 | Index and detail navigation | **Confirmed:** one Content button labeled only Outline, Draft, or Content (highest available artifact) opens the combined detail page. Actions contains only Start lesson, available for complete, valid, supported lessons. Detail header has Lesson overview, Raw JSON / Structured view, and Start lesson when available, in that order directly under the page title, plus shared language preferences. |
 | D16 | Lesson header and exams | **Confirmed:** duration-weighted progress percentage and current earned score against total possible; timed exam pages only, with results after the complete exam. **Confirmed (P0-02):** keep the practice contribution visible and unchanged during exams to avoid leaking correctness, with no pending label. |
 | D17 | Orthography-only points | **Confirmed:** 50% credit when letters are correct but accents or case differ. Full correctness earns 100%; other incorrect answers earn zero. |
@@ -174,19 +174,23 @@ P1-01 owns the shared catalog scanner (outline validation, duplicate course/ID r
 
 The generator scans the same outline catalog as the build; language and level come from the matching entry. Catalog ordering is deterministic by language code then CEFR level, retaining each file's entries order. Single-ID generation requires `ID`; missing or unknown IDs produce clear nonzero errors. Until function/reading generation is implemented, a request for either category fails explicitly. Batch generation skips those categories and reports the skipped entries. Enable them only after their reviewed schemas and generators are implemented in phases 4/5; then the same targets include them without new command conventions.
 
-Batch generation is serial and reports each lesson's outcome. It preserves successful artifacts, continues to other supported lessons after a per-lesson failure, and exits nonzero if any supported lesson failed. Validate/reuse existing files; handle stale/invalid artifacts through the existing explicit regeneration policy. Read Gemini credentials/model only in the offline generator. These commands do not bypass sample review gates: phase 1 prepares the named sample batches for approval before course expansion.
+Batch generation is serial by default and reports each lesson's outcome. `GEMINI_CONCURRENCY` (1–8) lets that many workers take lessons in outline order at once; worker n starts n × `GEMINI_WORKER_STAGGER_S` seconds after the first, and outcomes are still listed in outline order. It preserves successful artifacts, continues to other supported lessons after a per-lesson failure, and exits nonzero if any supported lesson failed. Validate/reuse existing files; handle stale/invalid artifacts through the existing explicit regeneration policy. Read Gemini credentials/model only in the offline generator. These commands do not bypass sample review gates: phase 1 prepares the named sample batches for approval before course expansion.
 
 ### Offline generator environment
 
 ```dotenv
 # Local generator only; copy this file to .env and fill GEMINI_API_KEY and GEMINI_MODEL.
 GEMINI_API_KEY=
-# Optional second key, used when the first one's quota is exhausted.
+# Optional further keys (GEMINI_API_KEY2, GEMINI_API_KEY3, …), used in order when a key's quota is exhausted.
 GEMINI_API_KEY2=
+# Gemini models with structured JSON output, best first, separated by commas.
 GEMINI_MODEL=
+# Batch targets: briefs generated at once (1–8, default 1) and seconds between worker starts (default 30).
+GEMINI_CONCURRENCY=1
+GEMINI_WORKER_STAGGER_S=30
 ```
 
-Require a configured model rather than guessing one. When `GEMINI_API_KEY` returns HTTP 429, the adapter repeats that request once with `GEMINI_API_KEY2` (if set) and keeps the fallback key for the rest of the run. `.env` is ignored by Git, excluded from build output, and never exposed with a client-side environment prefix. Generation errors must not log API keys. CI uses fixture content and does not require paid generation calls.
+Require a configured model rather than guessing one. Each request starts with the first configured model and tries every key (`GEMINI_API_KEY`, `GEMINI_API_KEY2`, `GEMINI_API_KEY3`, …) up to three times, pausing 5 s and then 15 s between attempts; only after every key of a model has failed does it move on to the next model. Transient failures (HTTP 429, server errors, network errors) are retried; other errors stop the request. A model/key pair that answers all three attempts with HTTP 429 has exhausted its quota and is skipped for the rest of the run. Requests time out after 500 s. Each attempt is reported with its lesson ID, and provenance records the model that produced the saved response. `.env` is ignored by Git, excluded from build output, and never exposed with a client-side environment prefix. Generation errors must not log API keys. CI uses fixture content and does not require paid generation calls.
 
 P1-05 implements `.env.example` and reads local `.env` only when a model call is needed. Valid-file reuse and rejected unknown/unsupported IDs need no credentials. The configured model must support structured JSON output. Model names are public provenance metadata, excluded from the build's secret-value scan; API keys remain subject to leak checks.
 
@@ -383,7 +387,7 @@ The initial reviewed sample set remains the first ten fr/A1 vocabulary and first
 - Gender practice plan for nouns: display lemmas without articles/gender clues while answering, accepted gender(s) per noun, and a short explanation of the correct choice. All targets appear on one page; non-nouns have no selector. Lessons without applicable nouns keep an unscored overview.
 - Matching group sizes and gap-answer expectations. Typed gaps require four distinct reference choices with exactly one accepted target for the context.
 
-Aim for **approximately 12 new targets per ordinary vocabulary lesson on average**, with **around 8** for lessons with a more demanding overall learning load. Ideally mix straightforward and harder targets within each lesson's outline topic, rather than concentrating difficult items in dedicated difficult-only lessons. Consider spelling, pronunciation, phrase length, gender/article exceptions, and required written forms when assessing the load. The brief explains its target count and difficulty balance so the content generator can follow that plan.
+Aim for **approximately 12 new targets per ordinary vocabulary lesson on average**, with **around 8** for lessons with a more demanding overall learning load. A single lesson may have **up to 20** targets; more are acceptable only when that lesson needs them, such as a complete finite inventory (numbers, the alphabet). Mix straightforward and harder targets within each lesson's outline topic where the topic allows it, rather than concentrating difficult items in dedicated difficult-only lessons; do not force a mix or mark targets as harder only to create one. Consider spelling, pronunciation, phrase length, gender/article exceptions, and required written forms when assessing the load. The brief explains its target count and difficulty balance so the content generator can follow that plan.
 
 Straightforward lessons may include somewhat more relevant targets to keep the ordinary-course average near 12. Treat this average as a planning guide and validate it against the generated briefs and sample completion times. Larger-inventory exceptions are excluded from the ordinary average. Repeated retrieval improves retention, with a time-on-task tradeoff, so leave enough time to practice the targets. See [Nakata's within-session retrieval study](https://doi.org/10.1017/S0272263116000280).
 
@@ -3117,7 +3121,7 @@ scale 1.3
 
 Phase 1 creates **20 brief files and 20 lesson files**. Briefs must be reviewed with the user before sample lesson generation; lesson files must be reviewed before bulk expansion. Make concrete viewer pages and sample artifacts available at each gate.
 
-Review checks: correct language pair, appropriate A1 vocabulary, full outline-intent coverage, article/gender applicability, mixed target difficulty where the topic allows, ordinary target average near 12 with around 8 for demanding lessons, manageable duration (allowing longer large-inventory lessons), correct examples/answer keys, sensible exercise selection, pitfalls, and exam coverage. Schema validity is necessary but does not replace this teaching-content review.
+Review checks: correct language pair, appropriate A1 vocabulary, full outline-intent coverage, article/gender applicability, mixed target difficulty where the topic allows (not forced), ordinary target average near 12 with around 8 for demanding lessons and at most 20 per lesson unless the lesson needs a larger inventory, manageable duration (allowing longer large-inventory lessons), correct examples/answer keys, sensible exercise selection, pitfalls, and exam coverage. Schema validity is necessary but does not replace this teaching-content review.
 
 ## 10. Phases and acceptance criteria
 

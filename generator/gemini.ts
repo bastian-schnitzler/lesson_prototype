@@ -2,10 +2,16 @@ import { readFileSync } from 'node:fs';
 import { parseEnv } from 'node:util';
 import { z } from 'zod';
 
-/** fallbackApiKey (GEMINI_API_KEY2) takes over once apiKey hits a quota limit (HTTP 429). */
-export interface GeminiConfig { apiKey: string; fallbackApiKey?: string; model: string }
-export interface GenerationRequest { prompt: string; schema: Record<string, unknown> }
-export interface BriefAdapter { model: string; generate(request: GenerationRequest): Promise<string> }
+/**
+ * fallbackApiKeys (GEMINI_API_KEY2, GEMINI_API_KEY3, …) take over in order once a key hits a quota limit (HTTP 429).
+ * GEMINI_MODEL may list several models, best first; the rest are fallbackModels.
+ */
+export interface GeminiConfig { apiKey: string; fallbackApiKeys?: string[]; model: string; fallbackModels?: string[] }
+/** `label` (the lesson ID) prefixes attempt reports, which interleave when workers run in parallel. */
+export interface GenerationRequest { prompt: string; schema: Record<string, unknown>; label?: string }
+/** Generated JSON text and the model that produced it, for provenance. */
+export interface GenerationResult { text: string; model: string }
+export interface BriefAdapter { generate(request: GenerationRequest): Promise<GenerationResult> }
 
 /** Only these sanitized errors may cross the adapter/CLI boundary. */
 export class GenerationError extends Error {
@@ -21,23 +27,65 @@ export function loadConfig(path: string): GeminiConfig {
   try { env = parseEnv(readFileSync(path, 'utf8')); }
   catch { throw new GenerationError('Cannot read .env; copy .env.example and configure Gemini.'); }
   const apiKey = env.GEMINI_API_KEY?.trim();
-  const fallbackApiKey = env.GEMINI_API_KEY2?.trim() || undefined;
-  const model = env.GEMINI_MODEL?.trim().replace(/^models\//, '');
-  if (!apiKey || !model) throw new GenerationError('Set GEMINI_API_KEY and GEMINI_MODEL in .env.');
-  if (!/^[a-zA-Z0-9._-]{1,80}$/.test(model)) throw new GenerationError('GEMINI_MODEL must be a model name, optionally prefixed with models/.');
-  return fallbackApiKey ? { apiKey, fallbackApiKey, model } : { apiKey, model };
+  const fallbackApiKeys = Object.keys(env)
+    .map((name) => /^GEMINI_API_KEY([2-9]|[1-9]\d+)$/.exec(name))
+    .filter((m) => m !== null)
+    .sort((a, b) => Number(a[1]) - Number(b[1]))
+    .map((m) => env[m[0]]?.trim())
+    .filter((key): key is string => !!key);
+  const models = (env.GEMINI_MODEL ?? '').split(',').map((m) => m.trim().replace(/^models\//, '')).filter(Boolean);
+  if (!apiKey || !models.length) throw new GenerationError('Set GEMINI_API_KEY and GEMINI_MODEL in .env.');
+  if (!models.every((m) => /^[a-zA-Z0-9._-]{1,80}$/.test(m))) throw new GenerationError('GEMINI_MODEL must be model names separated by commas, each optionally prefixed with models/.');
+  const [model, ...fallbackModels] = models;
+  return { apiKey, ...(fallbackApiKeys.length && { fallbackApiKeys }), model, ...(fallbackModels.length && { fallbackModels }) };
 }
 
-/** REST structured output: https://ai.google.dev/api/generate-content */
-export function geminiAdapter(config: GeminiConfig, fetcher: typeof fetch = fetch): BriefAdapter {
-  const keys = [config.apiKey, config.fallbackApiKey].filter((key): key is string => !!key);
-  let active = 0;
-  const send = async (request: GenerationRequest): Promise<Response> => {
+/**
+ * Batch settings: GEMINI_CONCURRENCY briefs at once (default 1, serial); worker n starts
+ * n × GEMINI_WORKER_STAGGER_S seconds after the first (default 30).
+ */
+export interface BatchConfig { concurrency: number; staggerMs: number }
+export const MAX_CONCURRENCY = 8;
+export function loadBatchConfig(path: string): BatchConfig {
+  let env: Record<string, string | undefined>;
+  try { env = parseEnv(readFileSync(path, 'utf8')); }
+  catch { return { concurrency: 1, staggerMs: 30_000 }; }
+  const number = (name: string, fallback: number, min: number, max: number) => {
+    const raw = env[name]?.trim();
+    if (!raw) return fallback;
+    const value = Number(raw);
+    if (!Number.isInteger(value) || value < min || value > max) throw new GenerationError(`${name} must be a whole number from ${min} to ${max}.`);
+    return value;
+  };
+  return { concurrency: number('GEMINI_CONCURRENCY', 1, 1, MAX_CONCURRENCY), staggerMs: number('GEMINI_WORKER_STAGGER_S', 30, 0, 600) * 1000 };
+}
+
+/**
+ * REST structured output: https://ai.google.dev/api/generate-content
+ *
+ * Each request starts with the first configured model and tries every key up to
+ * ATTEMPTS_PER_KEY times, pausing RETRY_PAUSES_MS between attempts. Only when every key of a
+ * model has failed does the request move on to the next model. Transient failures (HTTP 429,
+ * server errors, network errors) are retried; other failures stop immediately. A model/key
+ * pair that answers every attempt with HTTP 429 has exhausted its quota and is skipped for
+ * the rest of the run.
+ */
+export const ATTEMPTS_PER_KEY = 3;
+/** Large briefs can take several minutes on a loaded model. */
+export const REQUEST_TIMEOUT_MS = 500_000;
+export const RETRY_PAUSES_MS = [5_000, 15_000];
+const pause = (ms: number) => new Promise<void>((done) => setTimeout(done, ms));
+
+export function geminiAdapter(config: GeminiConfig, fetcher: typeof fetch = fetch, sleep = pause, report?: (message: string) => void): BriefAdapter {
+  const keys = [config.apiKey, ...(config.fallbackApiKeys ?? [])];
+  const models = [config.model, ...(config.fallbackModels ?? [])];
+  const exhausted = new Set<string>();
+  const send = async (request: GenerationRequest, model: string, key: string): Promise<Response> => {
     try {
-      return await fetcher(`https://generativelanguage.googleapis.com/v1beta/models/${config.model}:generateContent`, {
+      return await fetcher(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': keys[active] },
-        signal: AbortSignal.timeout(120_000),
+        headers: { 'Content-Type': 'application/json', 'x-goog-api-key': key },
+        signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
         body: JSON.stringify({
           contents: [{ role: 'user', parts: [{ text: request.prompt }] }],
           generationConfig: { responseMimeType: 'application/json', responseJsonSchema: request.schema },
@@ -45,19 +93,38 @@ export function geminiAdapter(config: GeminiConfig, fetcher: typeof fetch = fetc
       });
     } catch { throw new GenerationError('Gemini network request failed or timed out.', true); }
   };
+  const respond = async (request: GenerationRequest): Promise<{ response: Response; model: string }> => {
+    let failure: GenerationError | undefined;
+    for (const model of models) {
+      for (const [index, key] of keys.entries()) {
+        const pair = `${model}/${index}`;
+        if (exhausted.has(pair)) continue;
+        let quotaOnly = true;
+        for (let attempt = 1; attempt <= ATTEMPTS_PER_KEY; attempt++) {
+          if (attempt > 1) await sleep(RETRY_PAUSES_MS[Math.min(attempt - 2, RETRY_PAUSES_MS.length - 1)]);
+          let response: Response;
+          try { response = await send(request, model, key); }
+          catch (error) {
+            failure = error as GenerationError;
+            quotaOnly = false;
+            report?.(`  ${request.label ? `${request.label}: ` : ''}${model}, key ${index + 1}, attempt ${attempt}/${ATTEMPTS_PER_KEY}: network error`);
+            continue;
+          }
+          if (response.ok) return { response, model };
+          // Never echo remote bodies, headers, URLs or fetch exceptions: they may contain secrets.
+          failure = new GenerationError(`Gemini returned HTTP ${response.status}.`, response.status === 429 || response.status >= 500);
+          report?.(`  ${request.label ? `${request.label}: ` : ''}${model}, key ${index + 1}, attempt ${attempt}/${ATTEMPTS_PER_KEY}: HTTP ${response.status}`);
+          if (!failure.retryable) throw failure;
+          if (response.status !== 429) quotaOnly = false;
+        }
+        if (quotaOnly) exhausted.add(pair);
+      }
+    }
+    throw failure ?? new GenerationError('Gemini quota is exhausted for every configured model and key.', true);
+  };
   return {
-    model: config.model,
     async generate(request) {
-      let response = await send(request);
-      // Quota exhausted: switch to the fallback key for this and all later calls of the adapter.
-      if (response.status === 429 && active < keys.length - 1) {
-        active++;
-        response = await send(request);
-      }
-      if (!response.ok) {
-        // Never echo remote bodies, headers, URLs or fetch exceptions: they may contain secrets.
-        throw new GenerationError(`Gemini returned HTTP ${response.status}.`, response.status === 429 || response.status >= 500);
-      }
+      const { response, model } = await respond(request);
       let data: unknown;
       try { data = await response.json(); }
       catch { throw new GenerationError('Gemini returned an unreadable response.', true); }
@@ -69,7 +136,7 @@ export function geminiAdapter(config: GeminiConfig, fetcher: typeof fetch = fetc
       }
       const text = candidate.content?.parts?.filter((p) => !p.thought).map((p) => p.text ?? '').join('');
       if (!text) throw new GenerationError('Gemini returned no JSON text.', true);
-      return text;
+      return { text, model };
     },
   };
 }

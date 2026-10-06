@@ -77,7 +77,7 @@ Scope: refine `docs/SPEC.md` with the user in several iterations, retain Mermaid
 Acceptance:
 
 - Record the confirmed requirements source, Pages entry point, offline generation, independent en/fr/de mother tongue and interface language, 65% exam / 35% practice weights, 50% accent/case-only credit, browser speech, and production-feedback placeholder; review filters and persistence.
-- Record the confirmed larger-inventory/longer-duration exceptions, ordinary vocabulary average near 12, around 8 for demanding lessons, and mixed difficulty within each topic where possible.
+- Record the confirmed larger-inventory/longer-duration exceptions, ordinary vocabulary average near 12, around 8 for demanding lessons, at most 20 per lesson unless the lesson needs a larger inventory, and mixed difficulty within each topic where possible, without forcing it.
 - Agree phases 0–5 and the content review gates.
 - Use the supplied screenshot register R1–R5 as the design reference; remove the superseded website link. Preserve all five distinct local originals under docs/design-references/ and embed them in SPEC, including the corrected Deutsch start screenshot R3. Include applicable committed screenshot links in published issue bodies. Keep docs/mockups/ source-only.
 - Remove provisional assumptions or identify expressly deferred scope.

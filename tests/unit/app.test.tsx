@@ -127,7 +127,7 @@ describe('lesson artifact page', () => {
     expect(await screen.findByRole('heading', { level: 1, name: 'Les objets de la classe' })).toBeInTheDocument();
     expect(screen.getByText('Lesson 3')).toBeInTheDocument();
     expect(screen.getByText(/Nommer une douzaine d'objets de la classe/)).toBeInTheDocument();
-    await waitFor(() => expect(screen.getAllByText(/A structured view for this file is not available yet/)).toHaveLength(2));
+    await waitFor(() => expect(screen.getAllByText(/A structured view for this file is not available yet/)).toHaveLength(1));
     expect(screen.getByText(/Start lesson is unavailable/)).toBeInTheDocument();
     expect(screen.getByText('Lessons of this category cannot be played yet.')).toBeInTheDocument();
     expect(screen.queryByText('The draft is missing.')).toBeNull();
@@ -136,11 +136,47 @@ describe('lesson artifact page', () => {
     expect(screen.queryByRole('link', { name: 'Start lesson' })).toBeNull();
   });
 
+  it('renders the vocabulary Draft with targets, plan and exam limits in the chosen languages', async () => {
+    const user = userEvent.setup();
+    await renderIndex();
+    await user.click(within(screen.getByRole('group', { name: 'Mother tongue' })).getByRole('radio', { name: /de/ }));
+    go('#/lesson/fr-classroom-objects');
+    const targets = within((await screen.findByRole('heading', { name: 'Target inventory' })).closest('section')!).getByRole('table');
+    const rows = within(targets).getAllByRole('row').slice(1);
+    expect(rows.map((r) => within(r).getAllByRole('rowheader')[0].textContent)).toEqual(['un livre', 'une chaise', 'un stylo', 'une table']);
+    expect(within(rows[0]).getByText('Buch')).toBeInTheDocument();
+    expect(within(rows[0]).getByText('Masculine, singular')).toBeInTheDocument();
+    expect(within(rows[3]).getByText('More demanding')).toBeInTheDocument();
+    expect(screen.getByText(/3 core \/ 1 more demanding/)).toBeInTheDocument();
+    expect(screen.getByText(/Translations: German/)).toBeInTheDocument();
+    expect(screen.getByRole('rowheader', { name: /06 Final exam/ })).toBeInTheDocument();
+    expect(screen.getByRole('rowheader', { name: /04 Gender \+ overview/ })).toBeInTheDocument();
+    expect(screen.getAllByRole('cell', { name: '1 min' }).length).toBeGreaterThan(0);
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Interface language' }), 'fr');
+    expect(await screen.findByRole('heading', { name: 'Inventaire des mots cibles' })).toBeInTheDocument();
+    expect(screen.getByRole('rowheader', { name: /06 Examen final/ })).toBeInTheDocument();
+  });
+
+  it('renders the grammar Draft with rules, block cards, exercises and the mixed exam', async () => {
+    await renderIndex();
+    go('#/lesson/fr-verb-etre-present');
+    expect(await screen.findByRole('heading', { name: 'Teaching blocks' })).toBeInTheDocument();
+    expect(screen.getByText('je suis, tu es, il/elle est')).toBeInTheDocument();
+    const block = screen.getByRole('article', { name: /01 Singular forms/ });
+    expect(within(block).getByRole('rowheader', { name: 'Pronoun–form matching' })).toBeInTheDocument();
+    expect(within(block).getByRole('heading', { name: 'Pitfalls' })).toBeInTheDocument();
+    expect(screen.getByRole('article', { name: /02 Plural forms/ })).toBeInTheDocument();
+    const exam = screen.getByRole('heading', { name: 'Mixed final exam' }).closest('section')!;
+    const pages = within(exam).getAllByRole('row').slice(1);
+    expect(pages.map((r) => within(r).getAllByRole('cell')[0].textContent)).toEqual(['Typed gaps', 'Pronoun–form typing']);
+    expect(within(pages[0]).getByText('1 min 30 s')).toBeInTheDocument();
+  });
+
   it('toggles a raw JSON tree with default expansion and keeps user expansion across mode and locale switches', async () => {
     const user = userEvent.setup();
     await renderIndex();
     go('#/lesson/fr-classroom-objects');
-    await waitFor(() => expect(screen.getAllByText(/A structured view for this file/)).toHaveLength(2));
+    await waitFor(() => expect(screen.getAllByText(/A structured view for this file/)).toHaveLength(1));
     await user.click(screen.getByRole('button', { name: 'Raw JSON' }));
     const tree = screen.getByRole('tree');
     const item = (name: RegExp) => within(tree).getByRole('treeitem', { name });
@@ -169,7 +205,7 @@ describe('lesson artifact page', () => {
     const user = userEvent.setup();
     await renderIndex();
     go('#/lesson/fr-classroom-objects');
-    await waitFor(() => expect(screen.getAllByText(/A structured view for this file/)).toHaveLength(2));
+    await waitFor(() => expect(screen.getAllByText(/A structured view for this file/)).toHaveLength(1));
     await user.click(screen.getByRole('button', { name: 'Raw JSON' }));
     const tree = screen.getByRole('tree');
     within(tree).getByRole('treeitem', { name: /^Combined artifact object/ }).focus();

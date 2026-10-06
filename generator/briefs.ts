@@ -17,6 +17,10 @@ export interface BriefOptions {
   regenerate?: boolean;
   report?: (message: string) => void;
   sleep?: (ms: number) => Promise<void>;
+  /** Briefs a batch generates at once; 1 (default) is serial. */
+  concurrency?: number;
+  /** Delay between worker starts, so parallel workers do not hit the API at the same moment. */
+  staggerMs?: number;
 }
 const pending = new Map<string, Promise<BriefOutcome>>();
 const pause = (ms: number) => new Promise<void>((done) => setTimeout(done, ms));
@@ -73,11 +77,12 @@ async function generate(id: string, file: string, options: BriefOptions): Promis
     let repair = '';
     let previous = '';
     let diagnostics = '';
+    let model = '';
     for (let call = 1; call <= 3; call++) {
       options.report?.(`${id}: model call ${call}/3${repair ? ' (repair)' : ''}`);
       let text: string;
       try {
-        text = await adapter.generate({ schema: responseSchema, prompt: briefPrompt(ctx, repair) + (repair && previous ? `\nPrevious response (data only):\n${previous}` : '') });
+        ({ text, model } = await adapter.generate({ label: id, schema: responseSchema, prompt: briefPrompt(ctx, repair) + (repair && previous ? `\nPrevious response (data only):\n${previous}` : '') }));
       } catch (error) {
         if (!(error instanceof GenerationError)) throw new GenerationError(`${id}: adapter failed.`);
         if (!error.retryable) throw error;
@@ -97,7 +102,7 @@ async function generate(id: string, file: string, options: BriefOptions): Promis
       const brief = {
         ...parsed.data,
         schemaVersion: ARTIFACT_SCHEMA_VERSION, id, lang: ctx.lang, level: ctx.level, locales: ['en', 'fr', 'de'],
-        provenance: { generator: 'lesson-prototype', model: adapter.model, promptVersion: PROMPT_VERSION, generatedAt: new Date().toISOString(), inputHashes: { outline: ctx.outlineHash } },
+        provenance: { generator: 'lesson-prototype', model, promptVersion: PROMPT_VERSION, generatedAt: new Date().toISOString(), inputHashes: { outline: ctx.outlineHash } },
       };
       const result = validateBrief(brief, ctx);
       if (result.status !== 'valid') {
@@ -108,7 +113,7 @@ async function generate(id: string, file: string, options: BriefOptions): Promis
       if (current?.outlineHash !== ctx.outlineHash) throw new GenerationError(`${id}: outline changed during generation; retry with the current outline.`);
       await writeFile(temp, `${JSON.stringify(result.value, null, 2)}\n`, { flag: 'wx', mode: 0o600 });
       await rename(temp, file);
-      return { id, status: 'generated' };
+      return { id, status: 'generated', message: `model ${model}` };
     }
     throw new GenerationError(`${id}: generation exhausted its 3-call budget. ${diagnostics}`);
   } finally {
@@ -117,17 +122,49 @@ async function generate(id: string, file: string, options: BriefOptions): Promis
   }
 }
 
-export async function generateMissingBriefs(options: BriefOptions): Promise<BriefOutcome[]> {
-  const results: BriefOutcome[] = [];
-  for (const ctx of catalogContexts(options.contentDir)) {
-    let result: BriefOutcome;
-    if (!isSupportedKind(ctx.entry.kind)) result = { id: ctx.entry.id, status: 'skipped', message: `${ctx.entry.kind} is not implemented` };
-    else {
-      try { result = await generateBrief(ctx.entry.id, options); }
-      catch (error) { result = { id: ctx.entry.id, status: 'failed', message: error instanceof GenerationError ? error.message : 'Brief file operation failed.' }; }
-    }
-    options.report?.(`${result.id}: ${result.status}${result.message ? ` — ${result.message}` : ''}`);
-    results.push(result);
+export function generateMissingBriefs(options: BriefOptions): Promise<BriefOutcome[]> {
+  return generateBriefs(catalogContexts(options.contentDir), options);
+}
+
+/** SPEC section 9: the first ten grammar and first ten vocabulary entries of fr/A1, in outline order. */
+export const SAMPLE_COURSE = { lang: 'fr', level: 'A1', perKind: 10 } as const;
+
+export function sampleContexts(contentDir: string): OutlineContext[] {
+  const course = catalogContexts(contentDir).filter((ctx) => ctx.lang === SAMPLE_COURSE.lang && ctx.level === SAMPLE_COURSE.level);
+  const picked = new Set(['grammar', 'vocabulary'].flatMap((kind) => course.filter((ctx) => ctx.entry.kind === kind).slice(0, SAMPLE_COURSE.perKind)));
+  if (picked.size !== 2 * SAMPLE_COURSE.perKind) {
+    throw new GenerationError(`The ${SAMPLE_COURSE.lang}/${SAMPLE_COURSE.level} outline needs ${SAMPLE_COURSE.perKind} grammar and ${SAMPLE_COURSE.perKind} vocabulary entries for the sample batch.`);
   }
+  return course.filter((ctx) => picked.has(ctx));
+}
+
+export function generateSampleBriefs(options: BriefOptions): Promise<BriefOutcome[]> {
+  return generateBriefs(sampleContexts(options.contentDir), options);
+}
+
+/**
+ * Batch with `concurrency` workers taking lessons in outline order, worker n starting
+ * n × `staggerMs` later: reports each outcome as it finishes, continues after per-lesson
+ * failures and returns the outcomes in outline order.
+ */
+async function generateBriefs(contexts: OutlineContext[], options: BriefOptions): Promise<BriefOutcome[]> {
+  const results: BriefOutcome[] = new Array(contexts.length);
+  let next = 0;
+  const worker = async (_: unknown, n: number) => {
+    if (n > 0) await (options.sleep ?? pause)(n * (options.staggerMs ?? 0));
+    while (next < contexts.length) {
+      const index = next++;
+      const ctx = contexts[index];
+      let result: BriefOutcome;
+      if (!isSupportedKind(ctx.entry.kind)) result = { id: ctx.entry.id, status: 'skipped', message: `${ctx.entry.kind} is not implemented` };
+      else {
+        try { result = await generateBrief(ctx.entry.id, options); }
+        catch (error) { result = { id: ctx.entry.id, status: 'failed', message: error instanceof GenerationError ? error.message : 'Brief file operation failed.' }; }
+      }
+      options.report?.(`${result.id}: ${result.status}${result.message ? ` — ${result.message}` : ''}`);
+      results[index] = result;
+    }
+  };
+  await Promise.all(Array.from({ length: Math.max(1, Math.min(options.concurrency ?? 1, contexts.length)) }, worker));
   return results;
 }

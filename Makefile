@@ -91,8 +91,8 @@ brief: export ID := $(ID)
 briefs-missing: node_modules/.package-lock.json ## Generate missing supported briefs serially; report skips and failures
 	$(NODE) generator/cli.ts briefs-missing
 
-sample-briefs: ## (P1-06) Prepare the first-ten fr/A1 grammar and vocabulary briefs
-	$(call not_yet,P1-06)
+sample-briefs: node_modules/.package-lock.json ## Generate/reuse the first-ten fr/A1 grammar and vocabulary briefs for review
+	$(NODE) generator/cli.ts sample-briefs
 
 generate: ## (P1-07) Generate missing brief and content: make generate ID=<lesson-id>
 	$(call not_yet,P1-07)
