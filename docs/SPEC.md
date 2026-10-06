@@ -1,6 +1,6 @@
 # Lesson exercise prototype specification
 
-Status: **Draft 0.26 — maintained schemas after legacy retirement (P1-04)**. Date: 2026-10-06.
+Status: **Draft 0.27 — offline brief generation (P1-05)**. Date: 2026-10-06.
 
 This document specifies the prototype and its phased implementation. It is the maintained requirements document: no separate requirements file exists. It does not authorize starting implementation before the specification review. The backlog is in [ISSUES.md](ISSUES.md) and published as GitHub issues in `bastian-schnitzler/lesson_prototype`.
 
@@ -110,7 +110,9 @@ src/
   domain/              # preparation client, transitions, scoring
 generator/
   cli.ts               # single-lesson and ordered batch generation
-  prompts/             # brief/content prompts, versioned separately
+  briefs.ts            # validated preparation, reuse, retries, atomic writes and batches
+  gemini.ts            # local configuration and structured-output REST adapter
+  prompts.ts           # category prompts and model-compatible structural schemas
 content/
   outlines/<lang>-<level>.json  # all outline files; fr-a1.json is the initial course
   briefs/<id>.json
@@ -154,7 +156,7 @@ P1-01 owns the shared catalog scanner (outline validation, duplicate course/ID r
 | `make install` | Install the project's locked dependencies and required development tools. | P1-01. |
 | `make run` | Serve the local index over HTTP and open it in the configured browser. | P1-01. |
 | `make build` | Build `dist/index.html`, module assets, static JSON, and the derived content manifest. | P1-02 and subsequent build/content changes. |
-| `make brief ID=<lesson-id>` | Validate the outline ID/category and generate a missing brief; reuse valid existing briefs. | P1-05. |
+| `make brief ID=<lesson-id>` | Validate the outline ID/category and generate a missing brief; reuse valid existing briefs. Add `REGENERATE=1` to explicitly replace one file. | P1-05. |
 | `make briefs-missing` | Generate missing supported-category briefs across catalog courses serially, preserving each outline order. | P1-05. |
 | `make sample-briefs` | Prepare the first ten fr/A1 grammar and first ten fr/A1 vocabulary briefs for user review. | P1-06. |
 | `make generate ID=<lesson-id>` | Generate the missing brief first, then missing lesson content; validate before save and reuse valid existing files. | P1-07; new category support in phases 4/5. |
@@ -174,15 +176,19 @@ The generator scans the same outline catalog as the build; language and level co
 
 Batch generation is serial and reports each lesson's outcome. It preserves successful artifacts, continues to other supported lessons after a per-lesson failure, and exits nonzero if any supported lesson failed. Validate/reuse existing files; handle stale/invalid artifacts through the existing explicit regeneration policy. Read Gemini credentials/model only in the offline generator. These commands do not bypass sample review gates: phase 1 prepares the named sample batches for approval before course expansion.
 
-### Environment example to implement in phase 1
+### Offline generator environment
 
 ```dotenv
-# Local generator only; copy this file to .env and fill both values.
+# Local generator only; copy this file to .env and fill GEMINI_API_KEY and GEMINI_MODEL.
 GEMINI_API_KEY=
+# Optional second key, used when the first one's quota is exhausted.
+GEMINI_API_KEY2=
 GEMINI_MODEL=
 ```
 
-Require a configured model rather than guessing one. `.env` is ignored by Git, excluded from build output, and never exposed with a client-side environment prefix. Generation errors must not log API keys. CI uses fixture content and does not require paid generation calls.
+Require a configured model rather than guessing one. When `GEMINI_API_KEY` returns HTTP 429, the adapter repeats that request once with `GEMINI_API_KEY2` (if set) and keeps the fallback key for the rest of the run. `.env` is ignored by Git, excluded from build output, and never exposed with a client-side environment prefix. Generation errors must not log API keys. CI uses fixture content and does not require paid generation calls.
+
+P1-05 implements `.env.example` and reads local `.env` only when a model call is needed. Valid-file reuse and rejected unknown/unsupported IDs need no credentials. The configured model must support structured JSON output. Model names are public provenance metadata, excluded from the build's secret-value scan; API keys remain subject to leak checks.
 
 ### Build and hosting
 
@@ -305,6 +311,10 @@ Gemini supports structured JSON output and a subset of JSON Schema. Keep local v
 A single structured-output response may not fit a complete multilingual lesson: a 21–31-target vocabulary lesson with en/fr/de explanations for every answer unit can exceed the model's output limit. Content generation may therefore request separately validated sections (for example per stage or per teaching block) and assemble them locally into the one canonical lesson file. Parts fully determined by the validated brief, such as flashcard sides, matching pairs, and noun-gender rows, should be assembled locally rather than regenerated. The saved file remains a single atomic write after the assembled object passes full validation.
 
 Use a bounded policy: at most three model calls per generation unit (a brief, or one content section) including transient retries or schema repair, with capped backoff. Supply field-level validation errors on a repair attempt. Content failure preserves a valid saved brief; the next CLI run resumes the missing stage. Existing valid artifacts are reused without Gemini calls. Invalid/stale files require an explicit CLI regeneration option. Write a temporary file and rename only after validation; failed replacement retains any valid prior artifact. Deduplicate preparation for an ID and serialize batches by default. Diagnostic generation status belongs in CLI output, not the learner UI.
+
+The P1-05 brief implementation uses `make brief ID=<id> REGENERATE=1` for explicit replacement, including a valid file when the author requests it. `make briefs-missing` never forces replacement: it reports stale/invalid/malformed files as failures requiring individual review and continues with other IDs. Retries for HTTP 429, server errors and network/timeouts share the three-call budget with JSON/Zod/semantic repairs; backoff is capped at four seconds and each HTTP call has a two-minute timeout. Permanent API errors stop immediately. Raw API errors and credentials are never printed. Repair requests include the previous payload and field-level errors.
+
+In-process calls for the same canonical path share one pending operation. An exclusive `<id>.json.lock/` rejects a concurrent second process rather than paying for duplicate generation. Normal completion/failure removes the lock and temporary file. After a crash, the author may remove the lock only after confirming no generator is running. Temporary files and lock directories are ignored by Git and excluded from manifest/build copying. Recheck the per-entry outline hash before saving so an edit during generation cannot silently save an out-of-date response. Envelopes and provenance are assembled locally; the model supplies a strict category payload and cannot override trusted IDs or metadata. Full local validation retains constraints omitted from Gemini's supported JSON Schema subset.
 
 Record schema version, generation timestamp/model/prompt version, and canonical input hashes. Hash canonical JSON (sorted keys, no insignificant whitespace). The outline hash covers only the lesson's own outline entry plus its course `lang`/`level`, so editing one outline entry does not mark every lesson in that course stale. A brief stores its outline hash; a lesson stores its outline and brief hashes. Changed inputs or incompatible schemas mark dependent content stale. Rebuild and redeploy after generation; the manifest and runtime use the same hash rules.
 
@@ -3227,3 +3237,4 @@ When publishing the agreed backlog, include relevant Mermaid flows as fenced `me
 | 0.24 | 2026-10-06 | Mockup-refresh issues are always the last issue of their milestone (D30). Swapped logical IDs so the listening issue is P1-11 (#20) and the phase 1 mockup refresh is P1-12 (#19), which now also depends on P1-04. The Outline card shows topic/theme only as its localized name. |
 | 0.25 | 2026-10-06 | P1-03: executable multilingual brief/content schemas, cross-reference validation, free-text answer classifier and contract fixtures; the manifest records `valid`/`stale`/`invalid`/`malformed` per artifact and readiness requires valid, current files. |
 | 0.26 | 2026-10-06 | P1-04: retired superseded prompt/schema definitions after confirming shared enums and contracts were preserved. Replaced obsolete input/migration references with maintained src/schemas and artifact-validation modules. |
+| 0.27 | 2026-10-06 | P1-05: implemented offline multilingual brief generation, local Gemini configuration, structured-output prompts, validation and atomic writes. Documented explicit regeneration, bounded retries/repair, locks, batch failure reporting and public model provenance. |

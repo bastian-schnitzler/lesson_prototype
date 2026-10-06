@@ -27,12 +27,12 @@ function files(dir: string): string[] {
   });
 }
 
-/** Values of non-empty KEY=value lines in .env, so the build can prove they did not leak. */
+/** Non-public .env values; GEMINI_MODEL is intentionally recorded in artifact provenance. */
 export function secretValues(envText: string): string[] {
   return envText
     .split('\n')
     .map((line) => /^\s*([A-Z0-9_]+)\s*=\s*(.*?)\s*$/.exec(line))
-    .filter((m): m is RegExpExecArray => m !== null)
+    .filter((m): m is RegExpExecArray => m !== null && m[1] !== 'GEMINI_MODEL')
     .map((m) => m[2].replace(/^(['"])(.*)\1$/, '$2'))
     .filter((v) => v.length >= 8);
 }

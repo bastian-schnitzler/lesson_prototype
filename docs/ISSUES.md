@@ -1,6 +1,6 @@
 # GitHub issue backlog
 
-Status: published backlog for [SPEC.md](SPEC.md), version 0.26. Repository: `bastian-schnitzler/lesson_prototype`.
+Status: published backlog for [SPEC.md](SPEC.md), version 0.27. Repository: `bastian-schnitzler/lesson_prototype`.
 
 These issue bodies were published to GitHub in P0-04 on 2026-10-06. Each GitHub issue carries this file's scope and acceptance criteria, real dependency links, a link to the specification at the published commit, and its applicable Mermaid flows, PlantUML sources with server-rendered previews, and screenshot references. Titles follow `P<phase>-<two-digit-issue>: <short description>`; every issue belongs to its matching `Phase 0` through `Phase 5` milestone. P0-01 to P0-03 are closed as completed by PRs #1–#3.
 
@@ -250,6 +250,8 @@ Milestone: **Phase 1**.
 
 Scope: offline CLI generator, `.env.example`, Gemini structured-output adapter, category brief prompts, validation, and file writes. No browser generation endpoint.
 
+Implementation branch: `P1-05-offline-brief-generation`.
+
 Acceptance:
 
 - Add `make brief ID=<id>` and `make briefs-missing`. Require/validate single IDs, reject unsupported function/reading requests, and batch supported briefs serially in outline order while reporting skipped categories. Extend make test with fake-adapter checks and update help.
@@ -257,9 +259,13 @@ Acceptance:
 - Resolve IDs across the validated course catalog; prompts require all three locales in one brief file, with complete locale validation before reuse/save.
 - Outline-selected IDs determine canonical `content/briefs/<id>.json` paths.
 - Generated responses pass structural, Zod, and semantic validation before atomic save.
-- Valid existing briefs are reused; stale/invalid artifacts have explicit errors/regeneration actions.
+- Valid existing briefs are reused without configuration/model calls; `make brief ID=<id> REGENERATE=1` explicitly replaces a file. Batch mode reports stale/invalid/malformed files as failures rather than overwriting them.
 - Bounded retries per generation unit, CLI diagnostics, per-ID deduplication, provenance, and per-entry canonical outline hashes work.
 - Fake-adapter tests verify success, reuse, malformed output, repair exhaustion, and safe failure.
+
+Implementation: maintained category payload schemas and multilingual prompts; locally assembled envelopes/provenance; shared catalog and canonical per-entry hashes; three-call budget across transient retries and repairs; atomic saving with outline recheck; in-process deduplication and exclusive filesystem locks. API diagnostics are sanitized. Model names are public provenance, while keys and `.env` stay outside deployment output. First-ten live generation and language-quality review remain P1-06.
+
+Validation: `make test-all` passes 114 unit/component tests (25 generator cases), all 12 desktop/narrow browser tests, type/catalog checks and 32 mockup pairs. `make check-dist` builds and verifies the Pages-path site, refreshed routes and `.env` exclusion. Fake adapters cover both categories, repairs, exhaustion, reuse, explicit replacement, locks, input changes, ordered batches and sanitized API failures; no paid requests were made.
 
 Dependencies: P1-03. P1-04 cleanup can proceed in parallel; it must confirm the generator imports no legacy draft file.
 

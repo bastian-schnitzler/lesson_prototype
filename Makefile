@@ -84,11 +84,12 @@ define not_yet
 endef
 
 
-brief: ## (P1-05) Generate a missing brief: make brief ID=<lesson-id>
-	$(call not_yet,P1-05)
+brief: node_modules/.package-lock.json ## Generate/reuse a brief: ID=<lesson-id> [REGENERATE=1 to replace]
+	$(NODE) generator/cli.ts brief --id "$$ID" $(if $(filter 1,$(REGENERATE)),--regenerate,)
+brief: export ID := $(ID)
 
-briefs-missing: ## (P1-05) Generate all missing supported briefs
-	$(call not_yet,P1-05)
+briefs-missing: node_modules/.package-lock.json ## Generate missing supported briefs serially; report skips and failures
+	$(NODE) generator/cli.ts briefs-missing
 
 sample-briefs: ## (P1-06) Prepare the first-ten fr/A1 grammar and vocabulary briefs
 	$(call not_yet,P1-06)
