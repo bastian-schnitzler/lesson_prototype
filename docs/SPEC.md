@@ -1,6 +1,6 @@
 # Lesson exercise prototype specification
 
-Status: **Draft 0.29 — session host, scoring, timed exams and results (P1-09)**. Date: 2026-10-06.
+Status: **Draft 0.30 — vocabulary listening and personalised voice-installation help (P1-11)**. Date: 2026-10-07.
 
 This document specifies the prototype and its phased implementation. It is the maintained requirements document: no separate requirements file exists. It does not authorize starting implementation before the specification review. The backlog is in [ISSUES.md](ISSUES.md) and published as GitHub issues in `bastian-schnitzler/lesson_prototype`.
 
@@ -38,7 +38,7 @@ Confirmed decisions are identified below. Other defaults make the draft concrete
 | D6 | Scores and confirmation | **Confirmed:** final exam contributes **65%**, practice contributes **35%**. Continue locks practice answers, shows visual feedback and the correct answer when needed, then a second Continue confirms and advances. Flashcards/review screens are completion-only. |
 | D7 | Answer matching | **Confirmed:** distinguish fully correct free text, correct letters with accent/capitalization errors, and incorrect answers. Normalize Unicode, spacing, and typographic apostrophes; full correctness preserves accents and case. Accent/case-only credit is 50% under D17. |
 | D8 | Gender/articles | **Confirmed:** apply gender and noun article rules only where grammatically applicable. Non-nouns are not assigned invented gender or articles. |
-| D9 | Audio | **Confirmed:** browser speech synthesis in the selected learning language (French for the initial course), with a visible unavailable state if no suitable voice exists. |
+| D9 | Audio | **Confirmed:** browser speech synthesis in the selected learning language (French for the initial course). Audio speaks the target's written teaching form; the IPA pronunciation text is shown, not spoken. Without a suitable voice, every Listen control becomes an **Install language** button that opens the voice-installation help (D42). |
 | D10 | Personalized grammar feedback | **Confirmed:** show the fixed localized production-feedback placeholder before the final exam; its en text is “Individual feedback would be here on production.” Individual feedback analysis is deferred to production. |
 | D11 | Session persistence | **Confirmed:** browser storage supports session reload/resume. **Confirmed:** the index last-try score is in memory only and clears on a full page reload; never restore it from stored attempts. |
 | D12 | Broad vocabulary outlines | **Confirmed:** allow the number of targets necessary for the outline, with grouped presentation. Such lessons may exceed 10–15 minutes. Do not truncate an inventory at 15 or 32 or change its existing lesson ID. |
@@ -71,7 +71,7 @@ Confirmed decisions are identified below. Other defaults make the draft concrete
 | D39 | Exam article policy | **Confirmed (P0-02):** keep the original rule. Nouns are taught and examined with the indefinite article wherever it is grammatical, even where an outline intent quotes definite forms (`le père`, `la cuisine` become `un père`, `une cuisine`). Elided `l'` would hide gender. Only forms with no grammatical indefinite article use explicit exceptions (proper names such as countries, verbs, numerals, letters, set phrases, `je suis étudiant`). |
 | D40 | Accent homographs, ligatures and umlaut digraphs | **Confirmed (P0-02):** content marks accent-distinguished words (`a/à`, `ou/où`, `la/là`, `du/dû`, `sur/sûr`) as accent-sensitive, so a wrong or missing accent on them is `incorrect`. Ligature and umlaut substitutes are `orthography_only` (0.5): `oe` for `œ`, `ae` for `æ`, and for German `a`/`ae` for `ä`, `o`/`oe` for `ö`, `u`/`ue` for `ü`. |
 | D41 | Listening exercise | **Confirmed (P0-02):** vocabulary gains a listening exercise: in practice the learner hears a target and chooses it from four options; in the exam the learner hears a target and writes it. A dedicated phase 1 issue (P1-11) adds it. |
-| D42 | No speech voice | **Confirmed (P0-02):** when no suitable learning-language voice exists, a listening page is replaced by a help page explaining browser speech synthesis and how to install a voice on Windows, macOS and Linux, with a Skip button to continue to the next exercise. Skipped listening units are recorded in the session only; they are left out of scores, denominators, progress and results review. |
+| D42 | No speech voice | **Confirmed (P0-02):** when no suitable learning-language voice exists, a listening page is replaced by a help page explaining browser speech synthesis and how to install a voice, personalised to the detected operating system and browser, with a Skip button to continue to the next exercise. Skipped listening units are recorded in the session only; they are left out of scores, denominators, progress and results review. |
 | D43 | Answer keys during an active exam | **Confirmed (P0-02):** known prototype limitation. Generated content is public static JSON, so the artifact page is not locked during an active exam; no UI change. |
 | D44 | Vocabulary completion | **Confirmed (P0-02):** phase 2 requires all 48 fr/A1 vocabulary lessons to be generated, reviewed by sampling, and playable, matching the grammar requirement for phase 3. |
 | D45 | Preference persistence | **Confirmed (P0-02):** mother tongue and interface language persist in browser storage across full reloads; en/en apply only on first visit or when storage is unavailable. |
@@ -220,7 +220,7 @@ Mother tongue chooses stored translations, flashcard recall text, matching nativ
 
 Changing mother tongue on the starting page or interface language on any page updates the appropriate presentation immediately without generation, refetching artifacts solely for locale changes, or changing readiness. Interface changes during a lesson redraw instructions/explanations and chrome without resetting response drafts, locks, progress, scores, deadlines, or the selected results view. **Confirmed:** capture mother tongue when starting an attempt and keep it immutable for that session. There is no mother-tongue switch inside an active session. A new choice on the starting page applies only to a new attempt; resumed/completed attempts retain their recorded mother tongue. Artifact translations use the starting-page choice, while result source prompts retain the attempt choice. Preserve the displayed source prompt and submission language context in result records. Neither locale switch may expose suppressed exam feedback.
 
-Keep application UI strings in a local en/fr/de message catalog, including accessible names, validation messages and the fixed production-feedback placeholder. Generated support copy comes from the selected interface-language entry in the artifacts. No runtime translation API or silent fallback to another language: missing required locale keys make generated artifacts invalid/stale until regenerated and validated. Locale presence can be checked automatically; translation accuracy and equivalent meaning across all three languages require the sample review gate. Browser pronunciation follows the outline's learning language; French remains the initial course and uses French speech. Unsupported browser voices show the existing unavailable state.
+Keep application UI strings in a local en/fr/de message catalog, including accessible names, validation messages and the fixed production-feedback placeholder. Generated support copy comes from the selected interface-language entry in the artifacts. No runtime translation API or silent fallback to another language: missing required locale keys make generated artifacts invalid/stale until regenerated and validated. Locale presence can be checked automatically; translation accuracy and equivalent meaning across all three languages require the sample review gate. Browser pronunciation follows the outline's learning language; French remains the initial course and uses French speech. Without a learning-language voice, Listen controls become **Install language** buttons that open the voice-installation help (D42).
 
 ### Selected-course rows and artifact navigation
 
@@ -388,7 +388,7 @@ The initial reviewed sample set remains the first ten fr/A1 vocabulary and first
 `VocabularyBriefSchema` defines:
 
 - Learning objective, outline coverage notes, explicit target count, count rationale, difficulty-balance notes, duration estimate, and prerequisites if any. The target array must match the planned count; larger inventories require grouping and an appropriate longer duration estimate.
-- Target entries: `id`, learning-language base term, required native translations for every available mother tongue, word class, gender where applicable, grammatical number, teaching display form, required exam form(s), accepted variants, and pronunciation text for audio.
+- Target entries: `id`, learning-language base term, required native translations for every available mother tongue, word class, gender where applicable, grammatical number, teaching display form, required exam form(s), accepted variants, and pronunciation text (IPA, shown to learners and reviewers; audio speaks the teaching display form, because speech synthesis would read IPA symbols literally).
 - Noun article policy: indefinite article where applicable, plural form where needed, and explicit exceptions for phrases, verbs, letters, numerals, proper names, or other unsuitable forms. A required article belongs in the full accepted exam answer, not in a heuristic added by the UI. Use the indefinite article wherever it is grammatical, even when the outline intent quotes definite forms (D39): `le père` and `la cuisine` are taught and examined as `un père` and `une cuisine`, and plural-only nouns use `des`. Only targets with no grammatical indefinite form (countries and other proper names, verbs, numerals, letters, set phrases, or predicative professions such as `je suis étudiant`) use explicit exception forms.
 - One planned context for each target, and contextual ambiguity notes where a translation has several valid answers.
 - Coverage/count/time plans for six stages: introduction, flashcards, matching, gender exercise/reviewed overview where applicable, typed gaps, translation exam. Specify a duration estimate for each planned learner page and a positive countdown limit for every exam page.
@@ -430,8 +430,8 @@ Each step has `id`, role, label, relevant brief/rule/target references, and a ty
 | `vocabulary_gender_select` | All target IDs, noun lemmas, accepted genders, select options, answer explanations; reviewed overview uses locked row results | One per applicable noun |
 | `vocabulary_typed_gap` | Sentence segments, one gap, four noninteractive reference choices, accepted article-free answers | One per gap |
 | `vocabulary_translation_exam` | Native prompt and accepted full French answers | One per target |
-| `vocabulary_listening_choice` | Target ID, pronunciation text, four distinct written learning-language options with one answer ID | One per item (practice) |
-| `vocabulary_listening_dictation` | Target ID, pronunciation text, accepted written answers including required article, accent-sensitive flags | One per item (exam) |
+| `vocabulary_listening_choice` | Target ID (audio speaks its teaching form), four distinct written learning-language options with one answer ID | One per item (practice) |
+| `vocabulary_listening_dictation` | Target ID (audio speaks its teaching form), accepted written answers including the spoken teaching form with its required article, accent-sensitive flags | One per item (exam) |
 | `grammar_pronoun_form_match` | Pronoun rows, form token IDs, valid assignments | One per row |
 | `grammar_pronoun_form_typing` | Pronoun rows and accepted forms | One per row |
 | `grammar_gap_choice` | Sentence gap and four distinct choices with answer ID | One per gap |
@@ -622,11 +622,18 @@ flowchart TD
     L --> K
 ```
 
-Audio is learner-triggered, except that a listening page offers an initial play control. Use the French speech language explicitly. An unavailable voice does not hide text or block progression; show its limitation.
+Audio is learner-triggered, except that a listening page offers an initial play control. Use the French speech language explicitly and a voice whose language matches it. An unavailable voice does not hide text or block progression: each Listen control is replaced by an **Install language** button that opens a modal dialog stating that no French voice (language pack) is installed, followed by the personalised installation steps below.
 
-The vocabulary brief plans listening items (which targets, how many practice and exam pages, and their durations/limits). Listening coverage is required where the outline intent names oral recognition or pronunciation (for example `fr-numbers-zero-to-twenty`, `fr-alphabet-and-accents`, `fr-classroom-instructions`); other lessons may include a smaller planned subset. Each item uses the target's pronunciation text, so audio and accepted answer stay aligned.
+The vocabulary brief plans listening items (which targets, how many practice and exam pages, and their durations/limits). Listening coverage is required where the outline intent names oral recognition or pronunciation (for example `fr-numbers-zero-to-twenty`, `fr-alphabet-and-accents`, `fr-classroom-instructions`); other lessons may include a smaller planned subset. Audio speaks the target's teaching display form, so audio and accepted answer stay aligned; content validation requires every dictation's accepted answers to include that form. Artifact previews show the target's pronunciation text (IPA) with the item.
 
-**No suitable voice (D42):** when the browser offers no voice for the learning language, each listening page is replaced by a localized help page. It explains that the prototype uses the browser's built-in speech synthesis, then gives short installation steps: Windows (Settings → Time & language → Speech → Add voices, French), macOS (System Settings → Accessibility → Spoken Content → System voice → Manage Voices, French), and Linux (install a speech engine and French voice, for example `speech-dispatcher` with `espeak-ng`, or use a browser with built-in online voices), followed by a browser restart. A **Skip** button continues to the next exercise or exam page. The help page has no countdown; an exam page's countdown starts only when its listening item can be played. Skipped listening units are recorded in the session as `skipped_no_voice` only to support resume. They are left out of the attempt's scores, practice/exam denominators, progress and final results review. During gender answering, any audio must preserve the hidden article/gender clues; the complete audio controls return in reviewed overview.
+**No suitable voice (D42):** when the browser offers no voice for the learning language, each listening page is replaced by a localized help page; other Listen controls become **Install language** buttons opening the same help in a modal dialog. The help explains that the prototype uses the browser's built-in speech synthesis and shows only the steps for the detected operating system and browser (from the user agent), ending with a browser restart:
+
+- **Windows** (all browsers): Settings → Time & language → Language & region → Add a language → French (France) → tick Text-to-speech → Install; if French is already listed, … → Language options → Download next to Text-to-speech. Firefox reads these OneCore voices from version 106; Chrome and Edge additionally offer online French voices.
+- **macOS** (all browsers use system voices): System Settings → Accessibility → Spoken Content → System voice → Manage Voices… → French → download a voice such as Thomas; the system voice stays unchanged.
+- **Linux** (Firefox and Chromium speak through Speech Dispatcher): install `speech-dispatcher` with `espeak-ng` (per-distribution `apt`/`dnf`/`pacman` commands), test with `spd-say -l fr bonjour`; Snap/Flatpak browsers reach Speech Dispatcher only from version 0.11.4, otherwise install the browser from distribution packages.
+- **Android, iOS, other**: short system-settings steps or a generic instruction.
+
+A **Skip** button continues to the next exercise or exam page. The help page has no countdown; an exam page's countdown starts only when its listening item can be played. Skipped listening units are recorded in the session as `skipped_no_voice` only to support resume. They are left out of the attempt's scores, practice/exam denominators, progress and final results review. During gender answering, any audio must preserve the hidden article/gender clues; the complete audio controls return in reviewed overview.
 
 ## 7. Grammar learning flow
 
@@ -2159,30 +2166,26 @@ scale 1.3
 .
 <color:#1E293B>──────────────────────────────────────────────────────────────────</color>
 .
-<color:#E2E8F0><size:30><b>Audio is not available</b></size></color>
+<color:#E2E8F0><size:30><b>French voice unavailable</b></size></color>
 .
 {
 .
 { <color:#020617>xxx</color> | {
 <color:#94A3B8>PRACTICE   /   Listening   /   Item 3 of 8</color>
 .
-<color:#E2E8F0>This lesson uses your browser's built-in speech synthesis.</color>
-<color:#E2E8F0>No French voice was found, so this listening exercise cannot play.</color>
+<color:#E2E8F0>This exercise uses your browser's speech synthesis.</color>
+<color:#E2E8F0>No French voice was found, so the audio task cannot play.</color>
 .
-<color:#E2E8F0><b>Windows</b></color>
-<color:#94A3B8>Settings → Time & language → Speech → Add voices → French.</color>
+<color:#E2E8F0><b>Steps for Windows with Firefox:</b></color>
+<color:#94A3B8>1. Open Settings → Time & language → Language & region.</color>
+<color:#94A3B8>2. Add a language → French (France) → Next; tick Text-to-speech → Install.</color>
+<color:#94A3B8>3. Close every Firefox window and start Firefox again.</color>
 .
-<color:#E2E8F0><b>macOS</b></color>
-<color:#94A3B8>System Settings → Accessibility → Spoken Content → System voice</color>
-<color:#94A3B8>→ Manage Voices → French.</color>
+<color:#94A3B8>French already listed? … → Language options → Download next to Text-to-speech.</color>
+<color:#94A3B8>Firefox uses these Windows voices from version 106 on.</color>
 .
-<color:#E2E8F0><b>Linux</b></color>
-<color:#94A3B8>Install a speech engine with a French voice, e.g. speech-dispatcher</color>
-<color:#94A3B8>and espeak-ng, or use a browser with built-in online voices.</color>
-.
-<color:#E2E8F0>Restart the browser after installing a voice.</color>
-.
-<color:#94A3B8>Skip continues with the next exercise. Skipped items are marked in your results.</color>
+<color:#94A3B8>Only the steps for the detected system and browser are shown.</color>
+<color:#94A3B8>You can skip this listening task now; it is left out of your score.</color>
 .
 [ <color:#020617>                        Skip                        </color> ]
 .
@@ -3121,3 +3124,4 @@ When publishing the agreed backlog, include relevant Mermaid flows as fenced `me
 | 0.27 | 2026-10-06 | P1-05: implemented offline multilingual brief generation, local Gemini configuration, structured-output prompts, validation and atomic writes. Documented explicit regeneration, bounded retries/repair, locks, batch failure reporting and public model provenance. |
 | 0.28 | 2026-10-06 | P1-06: `make sample-briefs` and the twenty reviewed first-ten fr/A1 briefs; structured `VocabularyBriefView`/`GrammarBriefView`. Vocabulary target rule (D14): average about 12, at most 20 per lesson unless the lesson needs a larger inventory, mixed difficulty where the topic allows it without forcing it. Generator: comma-separated model chain with fallback, several keys tried three times per model, 500 s request timeout, staggered parallel batch workers (`GEMINI_CONCURRENCY`, `GEMINI_WORKER_STAGGER_S`), prompt version `brief-v2`. |
 | 0.29 | 2026-10-06 | P1-09: session engine (plan, scoring, reducer, storage), start/resume page, session host with duration-weighted progress, live score header and per-page countdown, final results with exam/practice menu. Baseline renderers for every vocabulary and grammar item type make both categories playable in phase 1; phases 2/3 refine individual renderers. |
+| 0.30 | 2026-10-07 | P1-11: listening choice/dictation audio speaks the teaching form (IPA pronunciation text is shown in previews, not spoken); dictation must accept the teaching form. Without a learning-language voice, listening pages show the help page with Skip, and other Listen controls become **Install language** buttons opening the help in a modal dialog. The help is personalised to the detected OS and browser with researched Windows (language feature Text-to-speech; Firefox 106+), macOS (Manage Voices) and Linux (Speech Dispatcher, Snap/Flatpak caveat) steps. |

@@ -413,13 +413,15 @@ Scope: listening choice for practice and listening dictation for exams, the shar
 
 Acceptance:
 
-- `vocabulary_listening_choice` plays a target's pronunciation text with browser speech in the learning language; the learner selects one of four distinct written options. One point per item; Continue lock/confirm and correction explanations follow the shared practice flow.
+- `vocabulary_listening_choice` plays a target's teaching form with a browser speech voice of the learning language (the IPA pronunciation text is shown, not spoken); the learner selects one of four distinct written options. One point per item; Continue lock/confirm and correction explanations follow the shared practice flow.
 - `vocabulary_listening_dictation` plays a target in a timed exam page; the learner writes the teaching form, including a required article. The shared free-text classifier scores it, and feedback stays hidden until the complete exam ends. Replay is allowed until the page locks; this is the only exam audio exception.
-- Briefs plan listening coverage, counts, page durations and exam limits; coverage is required where the outline intent names oral recognition or pronunciation (numbers, alphabet, classroom instructions) and optional otherwise. Content validation checks that options, pronunciation text and accepted answers refer to the same target.
-- When no learning-language voice is available, each listening page is replaced by a localized en/fr/de help page explaining browser speech synthesis and voice installation on Windows, macOS and Linux, with a **Skip** button to the next exercise. The help page has no countdown, and an exam countdown starts only when audio can play.
+- Briefs plan listening coverage, counts, page durations and exam limits; coverage is required where the outline intent names oral recognition or pronunciation (numbers, alphabet, classroom instructions) and optional otherwise. Content validation checks that options and accepted answers refer to the same target and that every dictation accepts the spoken teaching form.
+- When no learning-language voice is available, each listening page is replaced by a localized en/fr/de help page explaining browser speech synthesis and voice installation, with a **Skip** button to the next exercise. The help page has no countdown, and an exam countdown starts only when audio can play.
+- The installation help shows only the steps for the detected operating system and browser (SPEC D42): Windows language feature Text-to-speech (Firefox 106+), macOS Manage Voices, Linux Speech Dispatcher with `espeak-ng` and the Snap/Flatpak caveat, short Android/iOS steps.
+- Outside listening pages, every Listen control without a voice becomes an **Install language** button that opens the help in a modal dialog stating that no French voice (language pack) is installed.
 - Skipped listening units are recorded in the session as `skipped_no_voice` only for resume. They are left out of scores, denominators, progress and results review.
-- Artifact previews show listening items read-only with their pronunciation text and answers.
-- Extend `make test` and `make test-e2e`: voice available/unavailable (mocked `speechSynthesis`), replay, choice scoring, dictation half credit, skip, timer start, resume, and accessible operation.
+- Artifact previews show listening items read-only with the target's pronunciation text (IPA) and answers.
+- Extend `make test` and `make test-e2e`: voice available/unavailable (mocked `speechSynthesis`), replay, choice scoring, dictation half credit, skip, timer start, resume, OS/browser detection and personalised help, the Install language dialog, and accessible operation.
 
 Dependencies: P1-03, P1-09.
 

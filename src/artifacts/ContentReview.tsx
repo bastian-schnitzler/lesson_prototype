@@ -91,7 +91,7 @@ export function ContentReview({ content, brief }: { content: LessonContent; brie
           {pg.units.filter((u) => u.itemId === item.itemId).map((u) => <div className="content-answer" key={u.id}>
             <p><code>{u.id}</code> · {copy.units}: 1</p>
             <p>{u.prompt.native && <span lang={text.nativeLocale}>{u.prompt.native} </span>}{u.prompt.learning && learning(u.prompt.learning)}{u.prompt.before !== undefined && learning(`${u.prompt.before} ___ ${u.prompt.after ?? ''}`)}</p>
-            {u.speak && <p>{text.t('brief.pronunciation', { value: u.speak })}</p>}
+            {u.speak && <p>{text.t('brief.pronunciation', { value: ('targetId' in item && plan.targets.get(item.targetId)?.pronunciation) || u.speak })}</p>}
             {(u.kind === 'choice' || u.kind === 'order' || u.kind === 'spot') && <p>{copy.options}: {(u.kind === 'choice' ? u.options : u.tokens).map((o, i) => <Fragment key={o.id}>{i > 0 && ' · '}<span lang={o.lang === 'native' ? text.nativeLocale : o.lang === 'learning' ? content.lang : text.locale}>{optionText(o.text, o.lang)}</span></Fragment>)}</p>}
             <p><strong>{copy.answers}: </strong><span lang={u.answerLang === 'native' ? text.nativeLocale : u.answerLang === 'learning' ? content.lang : text.locale}>{unitAnswer(u)}</span>{u.form && <> · {learning(u.form)}</>}</p>
             {u.kind === 'text' && u.accepted.accentSensitive.length > 0 && <p>{copy.accents}: {u.accepted.accentSensitive.join(', ')}</p>}

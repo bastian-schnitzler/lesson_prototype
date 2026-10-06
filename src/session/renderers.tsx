@@ -1,10 +1,12 @@
-import { useState, type ComponentType, type ReactNode } from 'react';
+import { useId, useRef, type ComponentType, type ReactNode } from 'react';
 
 import { useI18n } from '../app/context.tsx';
 import type { LockedUnit, UnitResponse } from '../domain/session/session.ts';
 import { seededOrder, type Item, type LessonPlan, type Option, type PlanUnit } from '../domain/session/plan.ts';
 import type { MessageKey } from '../i18n/messages.ts';
 import type { Locale } from '../schemas/common.ts';
+import { speak, useVoiceStatus } from './speech.ts';
+import { VoiceHelp } from './VoiceHelp.tsx';
 
 /**
  * Baseline renderers for every item type (P1-09). Phases 2/3 replace individual entries of
@@ -26,26 +28,31 @@ export interface RendererProps {
 
 /* ---------------------------------------------------------------- helpers */
 
-export function speak(text: string, lang: string) {
-  const synth = typeof window !== 'undefined' ? window.speechSynthesis : undefined;
-  if (!synth || typeof SpeechSynthesisUtterance === 'undefined') return false;
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = lang;
-  synth.cancel();
-  synth.speak(utterance);
-  return true;
-}
-
+/** Plays a word; without an installed learning-language voice it becomes an install-help button. */
 function ListenButton({ text, lang }: { text: string; lang: string }) {
   const { t } = useI18n();
-  const [unavailable, setUnavailable] = useState(false);
+  const status = useVoiceStatus(lang);
+  const dialog = useRef<HTMLDialogElement>(null);
+  const titleId = useId();
+  const openHelp = () => dialog.current?.showModal();
   return (
-    <span>
-      <button type="button" className="button button-outline button-small" onClick={() => setUnavailable(!speak(text, lang))}>
-        {t('session.listen')}
-      </button>
-      {unavailable && <span className="muted"> {t('session.noVoice')}</span>}
-    </span>
+    <div className="listen">
+      {status === 'unavailable' ? (
+        <button type="button" className="button button-outline button-small" aria-haspopup="dialog" onClick={openHelp}>
+          {t('voice.install')}
+        </button>
+      ) : (
+        <button type="button" className="button button-outline button-small" onClick={() => speak(text, lang) || openHelp()}>
+          {t('session.listen')}
+        </button>
+      )}
+      <dialog ref={dialog} className="voice-help-dialog" aria-labelledby={titleId} onClick={(e) => e.target === e.currentTarget && e.currentTarget.close()}>
+        <h2 id={titleId}>{t('voice.missingTitle')}</h2>
+        <p>{t('voice.missingIntro')}</p>
+        <VoiceHelp />
+        <button type="button" className="button button-primary button-small" onClick={() => dialog.current?.close()}>{t('voice.close')}</button>
+      </dialog>
+    </div>
   );
 }
 
@@ -296,7 +303,7 @@ function TargetTable({ ids, plan, motherTongue, showGender = true }: { ids: stri
                 <th scope="row" lang={plan.lang}>{target?.teachingForm ?? id}</th>
                 <td>{target?.translations[motherTongue]?.join(' / ')}</td>
                 {showGender && <td>{target?.genders.map((g) => t(`gender.${g}`)).join(' / ') || '–'}</td>}
-                <td>{target && <ListenButton text={target.pronunciation} lang={plan.lang} />}</td>
+                <td>{target && <ListenButton text={target.teachingForm} lang={plan.lang} />}</td>
               </tr>
             );
           })}
@@ -328,10 +335,10 @@ function FlashcardsRenderer({ item, plan, motherTongue }: RendererProps) {
           <li key={id}>
             <details>
               <summary>{target?.translations[motherTongue]?.[0] ?? id}</summary>
-              <p>
+              <div>
                 <strong lang={plan.lang}>{target?.teachingForm}</strong> {target?.genders.length ? `(${target.genders.map((g) => t(`gender.${g}`)).join(' / ')})` : ''}{' '}
-                {target && <ListenButton text={target.pronunciation} lang={plan.lang} />}
-              </p>
+                {target && <ListenButton text={target.teachingForm} lang={plan.lang} />}
+              </div>
             </details>
           </li>
         );

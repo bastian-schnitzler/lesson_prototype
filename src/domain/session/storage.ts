@@ -12,7 +12,7 @@ export function loadSession(lessonId: string): SessionRecord | undefined {
     const raw = localStorage.getItem(SESSION_KEY_PREFIX + lessonId);
     if (!raw) return undefined;
     const value = JSON.parse(raw) as SessionRecord;
-    return value?.version === 1 && value.lessonId === lessonId && typeof value.contentHash === 'string' ? value : undefined;
+    return value?.version === 1 && value.lessonId === lessonId && typeof value.contentHash === 'string' ? { ...value, skippedNoVoice: value.skippedNoVoice ?? [] } : undefined;
   } catch {
     return undefined;
   }

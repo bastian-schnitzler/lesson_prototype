@@ -89,3 +89,13 @@ it('shows one page at a time and supports grouped outline jumps and keyboard tab
   expect(screen.getByRole('tabpanel')).toHaveTextContent('vocabulary_flashcards');
   expect(screen.getByRole('tabpanel')).not.toHaveTextContent('vocabulary_translation_exam');
 });
+
+it('previews listening items read-only with pronunciation text, options and answers', () => {
+  const data = artifacts('fr-classroom-instructions', 'vocabulary');
+  render(<PreferencesProvider initial={{ interfaceLanguage: 'en', motherTongue: 'en' }}><ContentReview {...data} /></PreferencesProvider>);
+  const listening = screen.getAllByRole('tab').map((tab) => { fireEvent.click(tab); return screen.getByRole('tabpanel').textContent ?? ''; })
+    .filter((t) => t.includes('vocabulary_listening_'));
+  expect(listening.some((t) => t.includes('vocabulary_listening_choice') && /Pronunciation: \/.+\//.test(t) && t.includes('Options:'))).toBe(true);
+  expect(listening.some((t) => t.includes('vocabulary_listening_dictation') && /Pronunciation: \/.+\//.test(t) && t.includes('Accepted answers'))).toBe(true);
+  expect(screen.getByRole('tabpanel').querySelectorAll('input, button, select, textarea')).toHaveLength(0);
+});

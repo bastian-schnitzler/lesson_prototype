@@ -35,6 +35,8 @@ export interface SessionRecord {
   pageIndex: number;
   phase: 'answering' | 'feedback' | 'results';
   completed: string[];
+  /** Listening pages skipped because no learning-language voice was available. */
+  skippedNoVoice: string[];
   drafts: Record<string, UnitResponse>;
   locked: Record<string, LockedUnit>;
   exam: Record<string, { startedAt: number; deadline: number; timedOut: boolean }>;
@@ -87,13 +89,15 @@ export type SessionAction =
   | { type: 'draft'; unitId: string; response: UnitResponse; now: number }
   | { type: 'continue'; now: number; interfaceLanguage: Locale }
   | { type: 'expire'; now: number; interfaceLanguage: Locale }
+  | { type: 'voice_ready'; now: number }
+  | { type: 'skip_no_voice'; now: number }
   | { type: 'select'; selection: string };
 
 export function startSession(plan: LessonPlan, init: { sessionId: string; contentHash: string; level: string; motherTongue: Locale; seed: number; now: number }): SessionRecord {
   const record: SessionRecord = {
     version: 1, sessionId: init.sessionId, lessonId: plan.lessonId, contentHash: init.contentHash, lang: plan.lang, level: init.level,
     motherTongue: init.motherTongue, seed: init.seed, startedAt: init.now, updatedAt: init.now, status: 'active',
-    pageIndex: 0, phase: 'answering', completed: [], drafts: {}, locked: {}, exam: {}, selection: 'exam',
+    pageIndex: 0, phase: 'answering', completed: [], skippedNoVoice: [], drafts: {}, locked: {}, exam: {}, selection: 'exam',
   };
   return activate(plan, record, init.now);
 }
@@ -101,8 +105,12 @@ export function startSession(plan: LessonPlan, init: { sessionId: string; conten
 /** Starts the countdown of an exam page when it becomes active; an existing deadline is kept. */
 function activate(plan: LessonPlan, r: SessionRecord, now: number): SessionRecord {
   const page = plan.pages[r.pageIndex];
-  if (!page || page.role !== 'exam' || r.exam[page.pageId]) return r;
+  if (!page || page.role !== 'exam' || isListeningPage(page) || r.exam[page.pageId]) return r;
   return { ...r, exam: { ...r.exam, [page.pageId]: { startedAt: now, deadline: now + (page.timeLimitS ?? 0) * 1000, timedOut: false } } };
+}
+
+export function isListeningPage(page: PlanPage): boolean {
+  return page.units.length > 0 && page.units.every((u) => u.itemType === 'vocabulary_listening_choice' || u.itemType === 'vocabulary_listening_dictation');
 }
 
 function lockPage(page: PlanPage, r: SessionRecord, interfaceLanguage: Locale, timedOut: boolean): SessionRecord {
@@ -138,6 +146,14 @@ export function sessionReducer(plan: LessonPlan, r: SessionRecord, action: Sessi
       next = { ...r, drafts: { ...r.drafts, [unit.id]: action.response } };
       break;
     }
+    case 'voice_ready':
+      if (!isListeningPage(page) || page.role !== 'exam' || r.exam[page.pageId]) return r;
+      next = { ...r, exam: { ...r.exam, [page.pageId]: { startedAt: now, deadline: now + (page.timeLimitS ?? 0) * 1000, timedOut: false } } };
+      break;
+    case 'skip_no_voice':
+      if (!isListeningPage(page) || r.phase !== 'answering') return r;
+      next = advance(plan, { ...r, skippedNoVoice: [...(r.skippedNoVoice ?? []), page.pageId] }, now);
+      break;
     case 'expire':
       if (!expired || r.phase !== 'answering') return r;
       next = advance(plan, { ...lockPage(page, r, action.interfaceLanguage, true), exam: { ...r.exam, [page.pageId]: { ...r.exam[page.pageId], timedOut: true } } }, now);
@@ -145,6 +161,7 @@ export function sessionReducer(plan: LessonPlan, r: SessionRecord, action: Sessi
     case 'continue':
       if (page.role === 'presentation') next = advance(plan, r, now);
       else if (page.role === 'exam') {
+        if (isListeningPage(page) && deadline === undefined) return r;
         if (expired) return sessionReducer(plan, r, { type: 'expire', now, interfaceLanguage: action.interfaceLanguage });
         next = advance(plan, lockPage(page, r, action.interfaceLanguage, false), now);
       } else if (r.phase === 'answering') {
@@ -161,8 +178,9 @@ export function sessionReducer(plan: LessonPlan, r: SessionRecord, action: Sessi
 /** Duration-weighted progress over concrete learner pages; 100 once results are shown. */
 export function progress(plan: LessonPlan, r: SessionRecord): number {
   if (r.status === 'completed') return 100;
-  const total = plan.pages.reduce((s, p) => s + p.estimatedDurationS, 0);
-  const done = plan.pages.filter((p) => r.completed.includes(p.pageId)).reduce((s, p) => s + p.estimatedDurationS, 0);
+  const included = plan.pages.filter((p) => !(r.skippedNoVoice ?? []).includes(p.pageId));
+  const total = included.reduce((s, p) => s + p.estimatedDurationS, 0);
+  const done = included.filter((p) => r.completed.includes(p.pageId)).reduce((s, p) => s + p.estimatedDurationS, 0);
   return total ? (100 * done) / total : 0;
 }
 
@@ -171,7 +189,7 @@ const tally = (units: PlanUnit[], r: SessionRecord): Tally => ({
   earned: units.reduce((s, u) => s + (r.locked[u.id]?.points ?? 0), 0),
   possible: units.length,
 });
-const unitsWhere = (plan: LessonPlan, role: 'practice' | 'exam') => plan.pages.filter((p) => p.role === role).flatMap((p) => p.units);
+const unitsWhere = (plan: LessonPlan, role: 'practice' | 'exam', r: SessionRecord) => plan.pages.filter((p) => p.role === role && !(r.skippedNoVoice ?? []).includes(p.pageId)).flatMap((p) => p.units);
 export const percent = (t: Tally) => (t.possible ? (100 * t.earned) / t.possible : 0);
 
 /**
@@ -179,11 +197,10 @@ export const percent = (t: Tally) => (t.possible ? (100 * t.earned) / t.possible
  * the exam contribution stays hidden until the exam is complete (D16).
  */
 export function headerScore(plan: LessonPlan, r: SessionRecord): number {
-  const practice = tally(unitsWhere(plan, 'practice'), r);
-  const exam = tally(unitsWhere(plan, 'exam'), r);
+  if (r.status === 'completed') return lessonResults(plan, r).total;
+  const practice = tally(unitsWhere(plan, 'practice', r), r);
   const p = practice.possible ? (POLICY.practiceWeight * practice.earned) / practice.possible : 0;
-  const e = r.status === 'completed' && exam.possible ? (POLICY.examWeight * exam.earned) / exam.possible : 0;
-  return p + e;
+  return p; // Exam credit is sealed until completion, handled above.
 }
 
 export interface LessonResults {
@@ -197,8 +214,8 @@ export interface LessonResults {
 }
 
 export function lessonResults(plan: LessonPlan, r: SessionRecord): LessonResults {
-  const practice = tally(unitsWhere(plan, 'practice'), r);
-  const exam = tally(unitsWhere(plan, 'exam'), r);
+  const practice = tally(unitsWhere(plan, 'practice', r), r);
+  const exam = tally(unitsWhere(plan, 'exam', r), r);
   const practiceScore = percent(practice);
   const examScore = percent(exam);
   const total = practice.possible && exam.possible
@@ -207,7 +224,7 @@ export function lessonResults(plan: LessonPlan, r: SessionRecord): LessonResults
   return {
     practice, exam, practiceScore, examScore, total,
     steps: plan.steps.map((s) => {
-      const pages = plan.pages.filter((p) => p.stepId === s.stepId);
+      const pages = plan.pages.filter((p) => p.stepId === s.stepId && !(r.skippedNoVoice ?? []).includes(p.pageId));
       return { stepId: s.stepId, role: s.role, tally: tally(pages.flatMap((p) => p.units), r), completed: pages.every((p) => r.completed.includes(p.pageId)) };
     }),
   };

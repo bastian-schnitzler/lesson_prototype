@@ -14,30 +14,26 @@ scale 1.3
 .
 <color:#1E293B>──────────────────────────────────────────────────────────────────</color>
 .
-<color:#E2E8F0><size:30><b>Audio is not available</b></size></color>
+<color:#E2E8F0><size:30><b>French voice unavailable</b></size></color>
 .
 {
 .
 { <color:#020617>xxx</color> | {
 <color:#94A3B8>PRACTICE   /   Listening   /   Item 3 of 8</color>
 .
-<color:#E2E8F0>This lesson uses your browser's built-in speech synthesis.</color>
-<color:#E2E8F0>No French voice was found, so this listening exercise cannot play.</color>
+<color:#E2E8F0>This exercise uses your browser's speech synthesis.</color>
+<color:#E2E8F0>No French voice was found, so the audio task cannot play.</color>
 .
-<color:#E2E8F0><b>Windows</b></color>
-<color:#94A3B8>Settings → Time & language → Speech → Add voices → French.</color>
+<color:#E2E8F0><b>Steps for Windows with Firefox:</b></color>
+<color:#94A3B8>1. Open Settings → Time & language → Language & region.</color>
+<color:#94A3B8>2. Add a language → French (France) → Next; tick Text-to-speech → Install.</color>
+<color:#94A3B8>3. Close every Firefox window and start Firefox again.</color>
 .
-<color:#E2E8F0><b>macOS</b></color>
-<color:#94A3B8>System Settings → Accessibility → Spoken Content → System voice</color>
-<color:#94A3B8>→ Manage Voices → French.</color>
+<color:#94A3B8>French already listed? … → Language options → Download next to Text-to-speech.</color>
+<color:#94A3B8>Firefox uses these Windows voices from version 106 on.</color>
 .
-<color:#E2E8F0><b>Linux</b></color>
-<color:#94A3B8>Install a speech engine with a French voice, e.g. speech-dispatcher</color>
-<color:#94A3B8>and espeak-ng, or use a browser with built-in online voices.</color>
-.
-<color:#E2E8F0>Restart the browser after installing a voice.</color>
-.
-<color:#94A3B8>Skip continues with the next exercise. Skipped items are marked in your results.</color>
+<color:#94A3B8>Only the steps for the detected system and browser are shown.</color>
+<color:#94A3B8>You can skip this listening task now; it is left out of your score.</color>
 .
 [ <color:#020617>                        Skip                        </color> ]
 .
