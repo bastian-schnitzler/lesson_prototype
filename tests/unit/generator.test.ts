@@ -296,6 +296,9 @@ describe('Gemini boundary and CLI', () => {
     expect(missing.error).toBeUndefined();
     expect(missing.status).not.toBe(0);
     expect(missing.stdout + missing.stderr).toContain('ID is required');
+    const missingLesson = spawnSync('make', ['generate'], { cwd: ROOT, encoding: 'utf8', env: { PATH: process.env.PATH } });
+    expect(missingLesson.status).not.toBe(0);
+    expect(missingLesson.stdout + missingLesson.stderr).toContain('ID is required: make generate');
     const dir = setup(['fr-fix-greetings', VOC]);
     const result = spawnSync(process.execPath, ['generator/cli.ts', 'briefs-missing', '--content-dir', dir, '--env', join(dir, 'absent')], { cwd: ROOT, encoding: 'utf8', env: { PATH: process.env.PATH } });
     expect(result.error).toBeUndefined();
