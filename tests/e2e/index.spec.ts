@@ -54,9 +54,9 @@ test('loads a refreshed hash route and toggles the raw JSON tree', async ({ page
 });
 
 test('has no horizontal page overflow', async ({ page }) => {
-  for (const url of ['./', './#/lesson/fr-classroom-objects']) {
+  for (const [url, ready] of [['./', 'Your lessons'], ['./#/lesson/fr-classroom-objects', 'Target inventory'], ['./#/lesson/fr-verb-etre-present', 'Mixed final exam']]) {
     await page.goto(url);
-    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    await expect(page.getByRole('heading', { name: ready })).toBeVisible();
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     expect(overflow).toBeLessThanOrEqual(0);
   }

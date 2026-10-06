@@ -1,0 +1,957 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-numbers-zero-to-twenty",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les nombres de 0 à 20",
+  "objective": {
+    "en": "Learn to count from 0 to 20 in French and recognize these numbers orally in context such as page or room numbers.",
+    "fr": "Apprendre à compter de 0 à 20 en français et reconnaître ces nombres à l'oral dans des contextes comme des numéros de page ou de salle.",
+    "de": "Lernen Sie auf Französisch von 0 bis 20 zu zählen und diese Zahlen mündlich in Kontexten wie Seitenzahlen oder Raumnummern zu verstehen."
+  },
+  "estimatedMinutes": 18,
+  "provenance": {
+    "generator": "lesson-prototype",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "brief-v2",
+    "generatedAt": "2026-10-06T14:33:11.013Z",
+    "inputHashes": {
+      "outline": "f5c2e26f0d49c85474c605075c68524cc8c43d498b7bbc757ed8b9fe4c45b346"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "personal_identification",
+  "coverageNotes": {
+    "en": "Covers the full finite set of cardinal numbers from 0 to 20, with special focus on pronunciation of final consonants in six, dix, and vingt.",
+    "fr": "Couvre l'ensemble fini des nombres cardinaux de 0 à 20, avec une attention particulière à la prononciation des consonnes finales de six, dix et vingt.",
+    "de": "Deckt die vollständige endliche Menge der Grundzahlen von 0 bis 20 ab, mit besonderem Augenmerk auf die Aussprache der Endkonsonanten von six, dix und vingt."
+  },
+  "targetCount": 21,
+  "countRationale": {
+    "en": "Numbers from 0 to 20 form a fundamental complete group required for everyday basic counting and room or phone identification.",
+    "fr": "Les nombres de 0 à 20 constituent un ensemble fondamental complet indispensable pour compter au quotidien et identifier des numéros.",
+    "de": "Die Zahlen von 0 bis 20 bilden eine grundlegende vollständige Gruppe, die für alltägliches Zählen und Zimmer- oder Telefonnummern notwendig ist."
+  },
+  "difficultyBalance": {
+    "en": "Numbers 0-10 are core foundational words; numbers 11-16 and 17-20 are demanding due to irregular endings and compound hyphenated spelling.",
+    "fr": "Les nombres de 0 à 10 sont essentiels; les nombres de 11 à 16 et de 17 à 20 sont plus exigeants en raison des terminaisons irrégulières et des formes composées.",
+    "de": "Die Zahlen 0-10 sind grundlegend; die Zahlen 11-16 und 17-20 sind aufgrund unregelmäßiger Endungen und Bindestrich-Schreibweisen anspruchsvoller."
+  },
+  "prerequisites": [
+    {
+      "en": "Basic French vowel pronunciation",
+      "fr": "Prononciation de base des voyelles françaises",
+      "de": "Grundlegende französische Vokalaussprache"
+    }
+  ],
+  "groups": [
+    {
+      "id": "group-0-to-10",
+      "label": {
+        "en": "Numbers 0 to 10",
+        "fr": "Les nombres de 0 à 10",
+        "de": "Zahlen 0 bis 10"
+      },
+      "targetIds": [
+        "num-0",
+        "num-1",
+        "num-2",
+        "num-3",
+        "num-4",
+        "num-5",
+        "num-6",
+        "num-7",
+        "num-8",
+        "num-9",
+        "num-10"
+      ]
+    },
+    {
+      "id": "group-11-to-16",
+      "label": {
+        "en": "Numbers 11 to 16",
+        "fr": "Les nombres de 11 à 16",
+        "de": "Zahlen 11 bis 16"
+      },
+      "targetIds": [
+        "num-11",
+        "num-12",
+        "num-13",
+        "num-14",
+        "num-15",
+        "num-16"
+      ]
+    },
+    {
+      "id": "group-17-to-20",
+      "label": {
+        "en": "Numbers 17 to 20",
+        "fr": "Les nombres de 17 à 20",
+        "de": "Zahlen 17 bis 20"
+      },
+      "targetIds": [
+        "num-17",
+        "num-18",
+        "num-19",
+        "num-20"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "num-0",
+      "term": "zéro",
+      "translations": {
+        "en": [
+          "zero"
+        ],
+        "de": [
+          "Null"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "zéro",
+      "examForms": [
+        "zéro"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "ze.ro",
+      "difficulty": "core",
+      "context": {
+        "sentence": "C'est la chambre zéro.",
+        "translation": {
+          "en": "It is room zero.",
+          "de": "Das ist Zimmer Null."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "num-1",
+      "term": "un",
+      "translations": {
+        "en": [
+          "one"
+        ],
+        "de": [
+          "eins",
+          "ein"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "un",
+      "examForms": [
+        "un"
+      ],
+      "acceptedVariants": [
+        "une"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [
+        "une"
+      ],
+      "pronunciation": "œ̃",
+      "difficulty": "core",
+      "context": {
+        "sentence": "J'ai un livre.",
+        "translation": {
+          "en": "I have one book.",
+          "de": "Ich habe ein Buch."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "num-2",
+      "term": "deux",
+      "translations": {
+        "en": [
+          "two"
+        ],
+        "de": [
+          "zwei"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "deux",
+      "examForms": [
+        "deux"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "dø",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il y a deux stylos.",
+        "translation": {
+          "en": "There are two pens.",
+          "de": "Es gibt zwei Stifte."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "num-3",
+      "term": "trois",
+      "translations": {
+        "en": [
+          "three"
+        ],
+        "de": [
+          "drei"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "trois",
+      "examForms": [
+        "trois"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "tʁwa",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Elle a trois chats.",
+        "translation": {
+          "en": "She has three cats.",
+          "de": "Sie hat drei Katzen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "num-4",
+      "term": "quatre",
+      "translations": {
+        "en": [
+          "four"
+        ],
+        "de": [
+          "vier"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "quatre",
+      "examForms": [
+        "quatre"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "katʁ",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Ouvrez à la page quatre.",
+        "translation": {
+          "en": "Open to page four.",
+          "de": "Öffnen Sie auf Seite vier."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "num-5",
+      "term": "cinq",
+      "translations": {
+        "en": [
+          "five"
+        ],
+        "de": [
+          "fünf"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "cinq",
+      "examForms": [
+        "cinq"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "sɛ̃k",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il est cinq heures.",
+        "translation": {
+          "en": "It is five o'clock.",
+          "de": "Es ist fünf Uhr."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "num-6",
+      "term": "six",
+      "translations": {
+        "en": [
+          "six"
+        ],
+        "de": [
+          "sechs"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "six",
+      "examForms": [
+        "six"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "sis",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Voici la salle six.",
+        "translation": {
+          "en": "Here is room six.",
+          "de": "Hier ist Raum sechs."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "num-7",
+      "term": "sept",
+      "translations": {
+        "en": [
+          "seven"
+        ],
+        "de": [
+          "sieben"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "sept",
+      "examForms": [
+        "sept"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "sɛt",
+      "difficulty": "core",
+      "context": {
+        "sentence": "J'ai sept euros.",
+        "translation": {
+          "en": "I have seven euros.",
+          "de": "Ich habe sieben Euro."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "num-8",
+      "term": "huit",
+      "translations": {
+        "en": [
+          "eight"
+        ],
+        "de": [
+          "acht"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "huit",
+      "examForms": [
+        "huit"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "ɥit",
+      "difficulty": "core",
+      "context": {
+        "sentence": "C'est la porte huit.",
+        "translation": {
+          "en": "It is door eight.",
+          "de": "Das ist Tür acht."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "num-9",
+      "term": "neuf",
+      "translations": {
+        "en": [
+          "nine"
+        ],
+        "de": [
+          "neun"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "neuf",
+      "examForms": [
+        "neuf"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "nœf",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le bus neuf arrive.",
+        "translation": {
+          "en": "Bus nine is coming.",
+          "de": "Bus neun kommt."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "num-10",
+      "term": "dix",
+      "translations": {
+        "en": [
+          "ten"
+        ],
+        "de": [
+          "zehn"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "dix",
+      "examForms": [
+        "dix"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "dis",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Regardez la page dix.",
+        "translation": {
+          "en": "Look at page ten.",
+          "de": "Schauen Sie auf Seite zehn."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "num-11",
+      "term": "onze",
+      "translations": {
+        "en": [
+          "eleven"
+        ],
+        "de": [
+          "elf"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "onze",
+      "examForms": [
+        "onze"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "ɔ̃z",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "C'est la ligne onze.",
+        "translation": {
+          "en": "It is line eleven.",
+          "de": "Das ist Linie elf."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "num-12",
+      "term": "douze",
+      "translations": {
+        "en": [
+          "twelve"
+        ],
+        "de": [
+          "zwölf"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "douze",
+      "examForms": [
+        "douze"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "duz",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Il y a douze élèves.",
+        "translation": {
+          "en": "There are twelve students.",
+          "de": "Es gibt zwölf Schüler."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "num-13",
+      "term": "treize",
+      "translations": {
+        "en": [
+          "thirteen"
+        ],
+        "de": [
+          "dreizehn"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "treize",
+      "examForms": [
+        "treize"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "tʁɛz",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "C'est la table treize.",
+        "translation": {
+          "en": "It is table thirteen.",
+          "de": "Das ist Tisch dreizehn."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "num-14",
+      "term": "quatorze",
+      "translations": {
+        "en": [
+          "fourteen"
+        ],
+        "de": [
+          "vierzehn"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "quatorze",
+      "examForms": [
+        "quatorze"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "katɔʁz",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "J'habite au numéro quatorze.",
+        "translation": {
+          "en": "I live at number fourteen.",
+          "de": "Ich wohne bei Nummer vierzehn."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "num-15",
+      "term": "quinze",
+      "translations": {
+        "en": [
+          "fifteen"
+        ],
+        "de": [
+          "fünfzehn"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "quinze",
+      "examForms": [
+        "quinze"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "kɛ̃z",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Le train part dans quinze minutes.",
+        "translation": {
+          "en": "The train leaves in fifteen minutes.",
+          "de": "Der Zug fährt in fünfzehn Minuten ab."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "num-16",
+      "term": "seize",
+      "translations": {
+        "en": [
+          "sixteen"
+        ],
+        "de": [
+          "sechzehn"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "seize",
+      "examForms": [
+        "seize"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "sɛz",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Elle a seize ans.",
+        "translation": {
+          "en": "She is sixteen years old.",
+          "de": "Sie ist sechzehn Jahre alt."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "num-17",
+      "term": "dix-sept",
+      "translations": {
+        "en": [
+          "seventeen"
+        ],
+        "de": [
+          "siebzehn"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "dix-sept",
+      "examForms": [
+        "dix-sept"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "dis.sɛt",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Prenez le dossier dix-sept.",
+        "translation": {
+          "en": "Take file seventeen.",
+          "de": "Nehmen Sie die Akte siebzehn."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "num-18",
+      "term": "dix-huit",
+      "translations": {
+        "en": [
+          "eighteen"
+        ],
+        "de": [
+          "achtzehn"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "dix-huit",
+      "examForms": [
+        "dix-huit"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "diz.ɥit",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Il est dix-huit heures.",
+        "translation": {
+          "en": "It is 18:00 (six p.m.).",
+          "de": "Es ist achtzehn Uhr."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "num-19",
+      "term": "dix-neuf",
+      "translations": {
+        "en": [
+          "nineteen"
+        ],
+        "de": [
+          "neunzehn"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "dix-neuf",
+      "examForms": [
+        "dix-neuf"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "diz.nœf",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "C'est le bureau dix-neuf.",
+        "translation": {
+          "en": "It is office nineteen.",
+          "de": "Das ist Büro neunzehn."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "num-20",
+      "term": "vingt",
+      "translations": {
+        "en": [
+          "twenty"
+        ],
+        "de": [
+          "zwanzig"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "vingt",
+      "examForms": [
+        "vingt"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "vɛ̃",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Il y a vingt personnes.",
+        "translation": {
+          "en": "There are twenty people.",
+          "de": "Es gibt zwanzig Personen."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 180
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 120
+    },
+    "genderOverview": {
+      "scored": false,
+      "estimatedDurationS": 30
+    },
+    "typedGaps": {
+      "targetIds": [
+        "num-0",
+        "num-1",
+        "num-2",
+        "num-3",
+        "num-4",
+        "num-5",
+        "num-6",
+        "num-7",
+        "num-8",
+        "num-9",
+        "num-10",
+        "num-11",
+        "num-12",
+        "num-13",
+        "num-14",
+        "num-15",
+        "num-16",
+        "num-17",
+        "num-18",
+        "num-19",
+        "num-20"
+      ],
+      "estimatedDurationS": 180
+    },
+    "listening": {
+      "required": true,
+      "practiceTargetIds": [
+        "num-0",
+        "num-1",
+        "num-2",
+        "num-3",
+        "num-4",
+        "num-5",
+        "num-6",
+        "num-7",
+        "num-8",
+        "num-9",
+        "num-10",
+        "num-11",
+        "num-12",
+        "num-13",
+        "num-14",
+        "num-15",
+        "num-16",
+        "num-17",
+        "num-18",
+        "num-19",
+        "num-20"
+      ],
+      "estimatedDurationS": 120
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-translation-1",
+          "kind": "translation",
+          "targetIds": [
+            "num-0",
+            "num-1",
+            "num-2",
+            "num-3",
+            "num-4",
+            "num-5",
+            "num-6",
+            "num-7",
+            "num-8",
+            "num-9"
+          ],
+          "estimatedDurationS": 90,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-translation-2",
+          "kind": "translation",
+          "targetIds": [
+            "num-10",
+            "num-11",
+            "num-12",
+            "num-13",
+            "num-14",
+            "num-15",
+            "num-16",
+            "num-17",
+            "num-18",
+            "num-19",
+            "num-20"
+          ],
+          "estimatedDurationS": 90,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-listening-1",
+          "kind": "listening_dictation",
+          "targetIds": [
+            "num-0",
+            "num-1",
+            "num-2",
+            "num-3",
+            "num-4",
+            "num-5",
+            "num-6",
+            "num-7",
+            "num-8",
+            "num-9",
+            "num-10"
+          ],
+          "estimatedDurationS": 90,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-listening-2",
+          "kind": "listening_dictation",
+          "targetIds": [
+            "num-11",
+            "num-12",
+            "num-13",
+            "num-14",
+            "num-15",
+            "num-16",
+            "num-17",
+            "num-18",
+            "num-19",
+            "num-20"
+          ],
+          "estimatedDurationS": 90,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

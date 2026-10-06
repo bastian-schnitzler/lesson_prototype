@@ -1,0 +1,623 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-numbers-twenty-one-to-one-hundred",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les nombres de 21 à 100",
+  "objective": {
+    "en": "Learn to count from 21 to 100 in French, understand prices in euros, and master compound numbers such as 70, 80, and 90.",
+    "fr": "Apprendre à compter de 21 à 100 en français, comprendre un prix en euros et maîtriser les nombres composés comme 70, 80 et 90.",
+    "de": "Lernen Sie auf Französisch von 21 bis 100 zu zählen, Preise in Euro zu verstehen und zusammengesetzte Zahlen wie 70, 80 und 90 zu meistern."
+  },
+  "estimatedMinutes": 15,
+  "provenance": {
+    "generator": "lesson-prototype",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "brief-v2",
+    "generatedAt": "2026-10-06T17:06:29.707Z",
+    "inputHashes": {
+      "outline": "5d5ff64270578ef66cbd7c21ff3c2f6c33fa608915bc92128178a1877b69de42"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "shopping",
+  "coverageNotes": {
+    "en": "Covers milestone tens from 30 to 100, standard compound forms with et (21, 71), vigesimal structures (70, 80, 90, 91), and shopping context for euro prices.",
+    "fr": "Couvre les dizaines repères de 30 à 100, les formes composées avec et (21, 71), la structure vigésimale (70, 80, 90, 91) et le contexte d'achat pour les prix en euros.",
+    "de": "Deckt Zehlerschritte von 30 bis 100, zusammengesetzte Formen mit et (21, 71), die vigesimale Struktur (70, 80, 90, 91) und den Einkaufskontext für Euro-Preise ab."
+  },
+  "targetCount": 12,
+  "countRationale": {
+    "en": "12 target numbers represent the system from 21 to 100, focusing on standard patterns and key exceptions like 70, 80, and 90.",
+    "fr": "12 nombres cibles représentent le système de 21 à 100, en ciblant les schémas réguliers et les particularités comme 70, 80 et 90.",
+    "de": "12 Zielzahlen repräsentieren das System von 21 bis 100 mit Fokus auf reguläre Muster und Besonderheiten wie 70, 80 und 90."
+  },
+  "difficultyBalance": {
+    "en": "6 core targets represent basic tens and 100; 6 demanding targets cover complex additive/vigesimal structures (70, 71, 80, 81, 90, 91).",
+    "fr": "6 cibles de base représentent les dizaines simples et 100 ; 6 cibles exigeantes couvrent les structures vigésimales complexes (70, 71, 80, 81, 90, 91).",
+    "de": "6 Kernziele repräsentieren einfache Zehner und 100; 6 anspruchsvolle Ziele decken komplexe vigesimale Strukturen ab (70, 71, 80, 81, 90, 91)."
+  },
+  "prerequisites": [
+    {
+      "en": "Numbers 1 to 20 in French",
+      "fr": "Les nombres de 1 à 20 en français",
+      "de": "Die Zahlen 1 bis 20 auf Französisch"
+    }
+  ],
+  "groups": [
+    {
+      "id": "group-21-to-60",
+      "label": {
+        "en": "Numbers 21 to 60",
+        "fr": "Les nombres de 21 à 60",
+        "de": "Zahlen von 21 bis 60"
+      },
+      "targetIds": [
+        "num-21",
+        "num-30",
+        "num-40",
+        "num-50",
+        "num-60"
+      ]
+    },
+    {
+      "id": "group-70-to-89",
+      "label": {
+        "en": "Numbers 70 to 89",
+        "fr": "Les nombres de 70 à 89",
+        "de": "Zahlen von 70 bis 89"
+      },
+      "targetIds": [
+        "num-70",
+        "num-71",
+        "num-80",
+        "num-81"
+      ]
+    },
+    {
+      "id": "group-90-to-100",
+      "label": {
+        "en": "Numbers 90 to 100",
+        "fr": "Les nombres de 90 à 100",
+        "de": "Zahlen von 90 bis 100"
+      },
+      "targetIds": [
+        "num-90",
+        "num-91",
+        "num-100"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "num-21",
+      "term": "vingt-et-un",
+      "translations": {
+        "en": [
+          "twenty-one"
+        ],
+        "de": [
+          "einundzwanzig"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "vingt-et-un",
+      "examForms": [
+        "vingt-et-un"
+      ],
+      "acceptedVariants": [
+        "21",
+        "vingt et un"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/vɛ̃.t e œ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Ce livre coûte vingt-et-un euros.",
+        "translation": {
+          "en": "This book costs twenty-one euros.",
+          "de": "Dieses Buch kostet einundzwanzig Euro."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "num-30",
+      "term": "trente",
+      "translations": {
+        "en": [
+          "thirty"
+        ],
+        "de": [
+          "dreißig"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "trente",
+      "examForms": [
+        "trente"
+      ],
+      "acceptedVariants": [
+        "30"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/tʁɑ̃t/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le pantalon fait trente euros.",
+        "translation": {
+          "en": "The trousers are thirty euros.",
+          "de": "Die Hose kostet dreißig Euro."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "num-40",
+      "term": "quarante",
+      "translations": {
+        "en": [
+          "forty"
+        ],
+        "de": [
+          "vierzig"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "quarante",
+      "examForms": [
+        "quarante"
+      ],
+      "acceptedVariants": [
+        "40"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/ka.ʁɑ̃t/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Elle a quarante euros pour les courses.",
+        "translation": {
+          "en": "She has forty euros for groceries.",
+          "de": "Sie hat vierzig Euro für Lebensmittel."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "num-50",
+      "term": "cinquante",
+      "translations": {
+        "en": [
+          "fifty"
+        ],
+        "de": [
+          "fünfzig"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "cinquante",
+      "examForms": [
+        "cinquante"
+      ],
+      "acceptedVariants": [
+        "50"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/sɛ̃.kɑ̃t/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "La veste coûte cinquante euros.",
+        "translation": {
+          "en": "The jacket costs fifty euros.",
+          "de": "Die Jacke kostet fünfzig Euro."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "num-60",
+      "term": "soixante",
+      "translations": {
+        "en": [
+          "sixty"
+        ],
+        "de": [
+          "sechzig"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "soixante",
+      "examForms": [
+        "soixante"
+      ],
+      "acceptedVariants": [
+        "60"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/swa.sɑ̃t/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le total est de soixante euros.",
+        "translation": {
+          "en": "The total is sixty euros.",
+          "de": "Der Gesamtbetrag ist sechzig Euro."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "num-70",
+      "term": "soixante-dix",
+      "translations": {
+        "en": [
+          "seventy"
+        ],
+        "de": [
+          "siebzig"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "soixante-dix",
+      "examForms": [
+        "soixante-dix"
+      ],
+      "acceptedVariants": [
+        "70"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/swa.sɑ̃t.dis/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Ces chaussures coûtent soixante-dix euros.",
+        "translation": {
+          "en": "These shoes cost seventy euros.",
+          "de": "Diese Schuhe kosten siebzig Euro."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "num-71",
+      "term": "soixante-et-onze",
+      "translations": {
+        "en": [
+          "seventy-one"
+        ],
+        "de": [
+          "einundsiebzig"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "soixante-et-onze",
+      "examForms": [
+        "soixante-et-onze"
+      ],
+      "acceptedVariants": [
+        "71",
+        "soixante et onze"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/swa.sɑ̃t.e.ɔ̃z/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "L'addition est de soixante-et-onze euros.",
+        "translation": {
+          "en": "The bill comes to seventy-one euros.",
+          "de": "Die Rechnung beträgt einundsiebzig Euro."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "num-80",
+      "term": "quatre-vingts",
+      "translations": {
+        "en": [
+          "eighty"
+        ],
+        "de": [
+          "achtzig"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "quatre-vingts",
+      "examForms": [
+        "quatre-vingts"
+      ],
+      "acceptedVariants": [
+        "80",
+        "quatre-vingt"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/kat.ʁə.vɛ̃/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Le billet coûte quatre-vingts euros.",
+        "translation": {
+          "en": "The ticket costs eighty euros.",
+          "de": "Das Ticket kostet achtzig Euro."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "num-81",
+      "term": "quatre-vingt-un",
+      "translations": {
+        "en": [
+          "eighty-one"
+        ],
+        "de": [
+          "einundachtzig"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "quatre-vingt-un",
+      "examForms": [
+        "quatre-vingt-un"
+      ],
+      "acceptedVariants": [
+        "81",
+        "quatre-vingt-et-un"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/kat.ʁə.vɛ̃.œ̃/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Le prix est de quatre-vingt-un euros.",
+        "translation": {
+          "en": "The price is eighty-one euros.",
+          "de": "Der Preis beträgt einundachtzig Euro."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "num-90",
+      "term": "quatre-vingt-dix",
+      "translations": {
+        "en": [
+          "ninety"
+        ],
+        "de": [
+          "neunzig"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "quatre-vingt-dix",
+      "examForms": [
+        "quatre-vingt-dix"
+      ],
+      "acceptedVariants": [
+        "90"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/kat.ʁə.vɛ̃.dis/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Le sac coûte quatre-vingt-dix euros.",
+        "translation": {
+          "en": "The bag costs ninety euros.",
+          "de": "Die Tasche kostet neunzig Euro."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "num-91",
+      "term": "quatre-vingt-onze",
+      "translations": {
+        "en": [
+          "ninety-one"
+        ],
+        "de": [
+          "einundneunzig"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "quatre-vingt-onze",
+      "examForms": [
+        "quatre-vingt-onze"
+      ],
+      "acceptedVariants": [
+        "91"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/kat.ʁə.vɛ̃.ɔ̃z/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "C'est quatre-vingt-onze euros s'il vous plaît.",
+        "translation": {
+          "en": "That is ninety-one euros please.",
+          "de": "Das macht einundneunzig Euro bitte."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "num-100",
+      "term": "cent",
+      "translations": {
+        "en": [
+          "one hundred",
+          "a hundred"
+        ],
+        "de": [
+          "hundert"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "cent",
+      "examForms": [
+        "cent"
+      ],
+      "acceptedVariants": [
+        "100"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/sɑ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Ce manteau coûte cent euros.",
+        "translation": {
+          "en": "This coat costs one hundred euros.",
+          "de": "Dieser Mantel kostet hundert Euro."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 4,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": false,
+      "estimatedDurationS": 30
+    },
+    "typedGaps": {
+      "targetIds": [
+        "num-21",
+        "num-30",
+        "num-40",
+        "num-50",
+        "num-60",
+        "num-70",
+        "num-71",
+        "num-80",
+        "num-81",
+        "num-90",
+        "num-91",
+        "num-100"
+      ],
+      "estimatedDurationS": 180
+    },
+    "listening": {
+      "required": true,
+      "practiceTargetIds": [
+        "num-21",
+        "num-30",
+        "num-40",
+        "num-50",
+        "num-60",
+        "num-70",
+        "num-71",
+        "num-80",
+        "num-81",
+        "num-90",
+        "num-91",
+        "num-100"
+      ],
+      "estimatedDurationS": 120
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "page-translation",
+          "kind": "translation",
+          "targetIds": [
+            "num-21",
+            "num-30",
+            "num-40",
+            "num-50",
+            "num-60",
+            "num-70",
+            "num-71",
+            "num-80",
+            "num-81",
+            "num-90",
+            "num-91",
+            "num-100"
+          ],
+          "estimatedDurationS": 180,
+          "timeLimitS": 300
+        },
+        {
+          "pageId": "page-listening",
+          "kind": "listening_dictation",
+          "targetIds": [
+            "num-21",
+            "num-30",
+            "num-40",
+            "num-50",
+            "num-60",
+            "num-70",
+            "num-71",
+            "num-80",
+            "num-81",
+            "num-90",
+            "num-91",
+            "num-100"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 240
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

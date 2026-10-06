@@ -1,6 +1,6 @@
 # GitHub issue backlog
 
-Status: published backlog for [SPEC.md](SPEC.md), version 0.27. Repository: `bastian-schnitzler/lesson_prototype`.
+Status: published backlog for [SPEC.md](SPEC.md), version 0.28. Repository: `bastian-schnitzler/lesson_prototype`.
 
 These issue bodies were published to GitHub in P0-04 on 2026-10-06. Each GitHub issue carries this file's scope and acceptance criteria, real dependency links, a link to the specification at the published commit, and its applicable Mermaid flows, PlantUML sources with server-rendered previews, and screenshot references. Titles follow `P<phase>-<two-digit-issue>: <short description>`; every issue belongs to its matching `Phase 0` through `Phase 5` milestone. P0-01 to P0-03 are closed as completed by PRs #1–#3.
 
@@ -77,7 +77,7 @@ Scope: refine `docs/SPEC.md` with the user in several iterations, retain Mermaid
 Acceptance:
 
 - Record the confirmed requirements source, Pages entry point, offline generation, independent en/fr/de mother tongue and interface language, 65% exam / 35% practice weights, 50% accent/case-only credit, browser speech, and production-feedback placeholder; review filters and persistence.
-- Record the confirmed larger-inventory/longer-duration exceptions, ordinary vocabulary average near 12, around 8 for demanding lessons, and mixed difficulty within each topic where possible.
+- Record the confirmed larger-inventory/longer-duration exceptions, ordinary vocabulary average near 12, around 8 for demanding lessons, at most 20 per lesson unless the lesson needs a larger inventory, and mixed difficulty within each topic where possible, without forcing it.
 - Agree phases 0–5 and the content review gates.
 - Use the supplied screenshot register R1–R5 as the design reference; remove the superseded website link. Preserve all five distinct local originals under docs/design-references/ and embed them in SPEC, including the corrected Deutsch start screenshot R3. Include applicable committed screenshot links in published issue bodies. Keep docs/mockups/ source-only.
 - Remove provisional assumptions or identify expressly deferred scope.
@@ -286,6 +286,14 @@ Acceptance:
 - Both use the same Outline component and header; complete arrays remain browsable. Review is usable in structured mode with the header raw JSON toggle, with category-specific mockups matching SPEC section 8.
 - Invalid/missing files have distinct states; rebuilding the manifest after offline generation updates Content labels and Start availability.
 - Present concrete samples to the user and record review changes and acceptance before content generation; check target counts, the ordinary average excluding exceptions, and the balance of easier/harder targets within each topic.
+
+Implementation branch: `P1-06-first-ten-briefs`.
+
+Implementation: `make sample-briefs` selects the first ten grammar and vocabulary entries of fr/A1 in outline order and generates or reuses their briefs. `VocabularyBriefView` shows the target inventory per group (teaching form, mother-tongue translation, word class, gender/number, difficulty, exam answers, context sentence and notes), count rationale, difficulty balance, the stage plan with durations and assessment, and each exam page with its covered targets and time limit. `GrammarBriefView` shows objective, scope, prerequisites, numbered rules, a block overview, one card per block (explanation plan, examples, pitfalls, exercises) and the mixed exam pages. Interface language selects support text; the starting-page mother tongue selects translations. Generator resilience: comma-separated model chain, several keys tried three times per model before falling back, 500 s request timeout, per-attempt reports and staggered parallel batch workers.
+
+Review: the user reviewed all twenty briefs in the structured Draft view on 2026-10-06 and accepted them without changes. Vocabulary inventories have 10–14 targets (21 for `fr-numbers-zero-to-twenty`, a complete finite inventory), lessons take 8–18 minutes. Models: 15 × gemini-3.6-flash, 2 × gemini-3.7-flash, 2 × gemini-3.5-flash, 1 × gemini-3.8-flash (prompt `brief-v2`).
+
+Validation: unit/component tests cover both Draft views, locale switching, the sample selection, model/key fallback, overload retries, batch concurrency and configuration; e2e tests check both Draft pages for horizontal overflow at narrow width. All twenty briefs validate in the catalog without warnings.
 
 Dependencies: P1-01, P1-05.
 

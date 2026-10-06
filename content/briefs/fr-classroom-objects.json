@@ -1,0 +1,587 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-classroom-objects",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les objets de la classe",
+  "objective": {
+    "en": "Learn to identify and name twelve common classroom objects in French with their indefinite articles.",
+    "fr": "Apprendre à identifier et nommer douze objets courants de la classe en français avec leur article indéfini.",
+    "de": "Lerne, zwölf häufige Klassenzimmergegenstände auf Französisch mit ihrem unbestimmten Artikel zu benennen."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "lesson-prototype",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "brief-v2",
+    "generatedAt": "2026-10-06T14:34:50.334Z",
+    "inputHashes": {
+      "outline": "07ba863701d3938c7c04d1efc9513eee109bfc497d967f7969eaa65b87019e87"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "education",
+  "coverageNotes": {
+    "en": "Covers twelve essential classroom nouns with singular indefinite articles (un, une).",
+    "fr": "Couvre douze noms essentiels de la classe avec les articles indéfinis singuliers (un, une).",
+    "de": "Deckt zwölf wesentliche Nomen des Klassenzimmers mit den singulären unbestimmten Artikeln (un, une) ab."
+  },
+  "targetCount": 12,
+  "countRationale": {
+    "en": "Twelve items provide a comprehensive initial classroom vocabulary without overwhelming A1 beginners.",
+    "fr": "Douze éléments offrent un vocabulaire de classe initial complet sans surcharger les débutants A1.",
+    "de": "Zwölf Begriffe bieten einen umfassenden ersten Klassenzimmer-Wortschatz, ohne A1-Anfänger zu überfordern."
+  },
+  "difficultyBalance": {
+    "en": "8 core everyday items balanced with 4 slightly more demanding terms involving complex spelling or accents.",
+    "fr": "8 objets du quotidien essentiels équilibrés avec 4 termes plus exigeants en raison de leur orthographe ou accentuation.",
+    "de": "8 alltägliche Kernbegriffe ausgewogen mit 4 etwas anspruchsvolleren Begriffen aufgrund von Rechtschreibung oder Akzenten."
+  },
+  "prerequisites": [
+    {
+      "en": "Basic understanding of French singular indefinite articles (un, une).",
+      "fr": "Compréhension de base des articles indéfinis singuliers en français (un, une).",
+      "de": "Grundlegendes Verständnis der französischen unbestimmten Artikel im Singular (un, une)."
+    }
+  ],
+  "groups": [
+    {
+      "id": "group-masculine",
+      "label": {
+        "en": "Masculine objects",
+        "fr": "Objets masculins",
+        "de": "Männliche Gegenstände"
+      },
+      "targetIds": [
+        "un-livre",
+        "un-cahier",
+        "un-stylo",
+        "un-tableau",
+        "un-crayon",
+        "un-sac"
+      ]
+    },
+    {
+      "id": "group-feminine",
+      "label": {
+        "en": "Feminine objects",
+        "fr": "Objets féminins",
+        "de": "Weibliche Gegenstände"
+      },
+      "targetIds": [
+        "une-table",
+        "une-chaise",
+        "une-trousse",
+        "une-regle",
+        "une-gomme",
+        "une-carte"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "un-livre",
+      "term": "livre",
+      "translations": {
+        "en": [
+          "a book"
+        ],
+        "de": [
+          "ein Buch"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un livre",
+      "examForms": [
+        "un livre"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ livʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "J'ai un livre de français.",
+        "translation": {
+          "en": "I have a French book.",
+          "de": "Ich habe ein Französischbuch."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-cahier",
+      "term": "cahier",
+      "translations": {
+        "en": [
+          "a notebook"
+        ],
+        "de": [
+          "ein Heft"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un cahier",
+      "examForms": [
+        "un cahier"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ kaje/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il écrit dans un cahier.",
+        "translation": {
+          "en": "He writes in a notebook.",
+          "de": "Er schreibt in ein Heft."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-stylo",
+      "term": "stylo",
+      "translations": {
+        "en": [
+          "a pen"
+        ],
+        "de": [
+          "ein Stift"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un stylo",
+      "examForms": [
+        "un stylo"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ stilo/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Tu as un stylo bleu?",
+        "translation": {
+          "en": "Do you have a blue pen?",
+          "de": "Hast du einen blauen Stift?"
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-tableau",
+      "term": "tableau",
+      "translations": {
+        "en": [
+          "a board",
+          "a blackboard"
+        ],
+        "de": [
+          "eine Tafel"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un tableau",
+      "examForms": [
+        "un tableau"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ tablo/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Le professeur regarde le tableau.",
+        "translation": {
+          "en": "The teacher looks at the board.",
+          "de": "Der Lehrer schaut auf die Tafel."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-crayon",
+      "term": "crayon",
+      "translations": {
+        "en": [
+          "a pencil"
+        ],
+        "de": [
+          "ein Bleistift"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un crayon",
+      "examForms": [
+        "un crayon"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ kʁɛjɔ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Voici un crayon noir.",
+        "translation": {
+          "en": "Here is a black pencil.",
+          "de": "Hier ist ein schwarzer Bleistift."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-sac",
+      "term": "sac",
+      "translations": {
+        "en": [
+          "a bag",
+          "a backpack"
+        ],
+        "de": [
+          "eine Tasche",
+          "ein Rucksack"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un sac",
+      "examForms": [
+        "un sac"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ sak/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Mon sac est sous la table.",
+        "translation": {
+          "en": "My bag is under the table.",
+          "de": "Meine Tasche ist unter dem Tisch."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-table",
+      "term": "table",
+      "translations": {
+        "en": [
+          "a table"
+        ],
+        "de": [
+          "ein Tisch"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une table",
+      "examForms": [
+        "une table"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn tabl/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "C'est une grande table.",
+        "translation": {
+          "en": "It is a big table.",
+          "de": "Das ist ein großer Tisch."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-chaise",
+      "term": "chaise",
+      "translations": {
+        "en": [
+          "a chair"
+        ],
+        "de": [
+          "ein Stuhl"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une chaise",
+      "examForms": [
+        "une chaise"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn ʃɛz/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Elle s'assoit sur une chaise.",
+        "translation": {
+          "en": "She sits on a chair.",
+          "de": "Sie setzt sich auf einen Stuhl."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-trousse",
+      "term": "trousse",
+      "translations": {
+        "en": [
+          "a pencil case"
+        ],
+        "de": [
+          "ein Mäppchen",
+          "ein Etui"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une trousse",
+      "examForms": [
+        "une trousse"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn tʁus/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Ma trousse est rouge.",
+        "translation": {
+          "en": "My pencil case is red.",
+          "de": "Mein Mäppchen ist rot."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-regle",
+      "term": "règle",
+      "translations": {
+        "en": [
+          "a ruler"
+        ],
+        "de": [
+          "ein Lineal"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une règle",
+      "examForms": [
+        "une règle"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn ʁɛɡl/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "J'utilise une règle en plastique.",
+        "translation": {
+          "en": "I use a plastic ruler.",
+          "de": "Ich benutze ein Plastiklineal."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-gomme",
+      "term": "gomme",
+      "translations": {
+        "en": [
+          "an eraser"
+        ],
+        "de": [
+          "ein Radiergummi"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une gomme",
+      "examForms": [
+        "une gomme"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn ɡɔm/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il a une gomme blanche.",
+        "translation": {
+          "en": "He has a white eraser.",
+          "de": "Er hat einen weißen Radiergummi."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-carte",
+      "term": "carte",
+      "translations": {
+        "en": [
+          "a map"
+        ],
+        "de": [
+          "eine Karte"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une carte",
+      "examForms": [
+        "une carte"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn kaʁt/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Regarde la carte de France.",
+        "translation": {
+          "en": "Look at the map of France.",
+          "de": "Schau auf die Karte von Frankreich."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "un-livre",
+        "un-cahier",
+        "un-stylo",
+        "un-tableau",
+        "un-crayon",
+        "un-sac",
+        "une-table",
+        "une-chaise",
+        "une-trousse",
+        "une-regle",
+        "une-gomme",
+        "une-carte"
+      ],
+      "estimatedDurationS": 180
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "page-exam-1",
+          "kind": "translation",
+          "targetIds": [
+            "un-livre",
+            "un-cahier",
+            "un-stylo",
+            "un-tableau",
+            "un-crayon",
+            "un-sac"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "page-exam-2",
+          "kind": "translation",
+          "targetIds": [
+            "une-table",
+            "une-chaise",
+            "une-trousse",
+            "une-regle",
+            "une-gomme",
+            "une-carte"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

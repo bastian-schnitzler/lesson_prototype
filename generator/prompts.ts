@@ -5,7 +5,7 @@ import { vocabularyBriefSchema } from '../src/schemas/vocabulary.ts';
 import type { SupportedKind } from '../src/schemas/artifacts.ts';
 import type { OutlineContext } from '../src/validation/artifacts.ts';
 
-export const PROMPT_VERSION = 'brief-v1';
+export const PROMPT_VERSION = 'brief-v2';
 const trusted = { schemaVersion: true, id: true, lang: true, level: true, locales: true, provenance: true } as const;
 
 export function payloadSchema(kind: SupportedKind, lang: string) {
@@ -51,7 +51,7 @@ Do not emit schemaVersion, id, lang, level, locales or provenance: those are sup
 Use concise strings within the original Zod limits: labels 120, ordinary support text 300, long text 1200, learning text 300 characters.
 `;
   const category = ctx.entry.kind === 'vocabulary' ? `
-Aim for 12 targets normally, around 8 for demanding load, mixing difficulty where possible; explain count and difficulty balance. Complete finite inventories may require more.
+Aim for about 12 targets normally and around 8 for a demanding load; never more than 20 unless this lesson needs a complete finite inventory (e.g. numbers, the alphabet). Mix core and demanding targets where the topic naturally allows it, but do not force a mix or mark targets demanding only to create one. Explain count and difficulty balance.
 targetCount equals targets.length. Every target belongs to exactly one group. Include context, pronunciation, native translations, teaching form, accepted exam forms and variants.
 Only nouns have nonempty genders and a number; non-nouns use genders [], number null, articleException null. French noun examForms include un/une/des unless a localized articleException explains otherwise.
 accentSensitive entries are whole words present in examForms and only mark accents that change meaning.

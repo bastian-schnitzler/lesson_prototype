@@ -1,0 +1,575 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-classroom-instructions",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les consignes de la classe",
+  "objective": {
+    "en": "Understand and respond to common classroom instructions in spoken and written French.",
+    "fr": "Comprendre et appliquer les consignes usuelles de la classe à l'oral et à l'écrit en français.",
+    "de": "Häufige Unterrichtsanweisungen auf Französisch mündlich und schriftlich verstehen und anwenden."
+  },
+  "estimatedMinutes": 14,
+  "provenance": {
+    "generator": "lesson-prototype",
+    "model": "gemini-3.7-flash",
+    "promptVersion": "brief-v2",
+    "generatedAt": "2026-10-06T17:07:01.324Z",
+    "inputHashes": {
+      "outline": "e59ae0fa961d6955e3408b36a8db08eb4d0a98bbca4e292eca36f60a4b3c75bd"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "education",
+  "coverageNotes": {
+    "en": "Focuses on high-frequency imperative classroom instructions addressing learners (vous-form) and standard instructional phrases.",
+    "fr": "Se concentre sur les consignes fréquentes à l'impératif pluriel (forme vous) et les expressions pédagogiques de base.",
+    "de": "Konzentriert sich auf häufige Unterrichtsanweisungen im Imperativ der Höflichkeits-/Pluralform (vous) und grundlegende Handlungsanweisungen."
+  },
+  "targetCount": 11,
+  "countRationale": {
+    "en": "Eleven essential instructional verbs and phrases provide complete coverage for typical classroom communication without overloading beginners.",
+    "fr": "Onze verbes et expressions clés couvrent la communication essentielle de classe sans surcharger l'apprenant débutant.",
+    "de": "Elf zentrale Verben und Wendungen decken die wesentliche Unterrichtskommunikation ab, ohne Anfänger zu überfordern."
+  },
+  "difficultyBalance": {
+    "en": "Eight single-verb core instructions and three demanding multi-word classroom phrases.",
+    "fr": "Huit consignes de base à verbe unique et trois expressions composées plus exigeantes.",
+    "de": "Acht grundlegende Einzelverb-Anweisungen und drei anspruchsvollere mehrteilige Ausdrücke."
+  },
+  "prerequisites": [
+    {
+      "en": "Basic familiarity with basic French pronunciation and polite interaction.",
+      "fr": "Familiarité de base avec la prononciation française et les interactions de politesse.",
+      "de": "Grundlegende Vertrautheit mit der französischen Aussprache und Höflichkeitsformen."
+    }
+  ],
+  "groups": [
+    {
+      "id": "group-core-actions",
+      "label": {
+        "en": "Core Language Activities",
+        "fr": "Activités langagières principales",
+        "de": "Zentrale Sprachaktivitäten"
+      },
+      "targetIds": [
+        "target-ecoutez",
+        "target-lisez",
+        "target-ecrivez",
+        "target-repetez",
+        "target-regardez",
+        "target-parlez"
+      ]
+    },
+    {
+      "id": "group-classroom-tasks",
+      "label": {
+        "en": "Classroom Tasks and Gestures",
+        "fr": "Tâches et gestes de classe",
+        "de": "Aufgaben und Gesten im Unterricht"
+      },
+      "targetIds": [
+        "target-completez",
+        "target-cochez",
+        "target-ouvrez-le-livre",
+        "target-fermez-le-livre",
+        "target-levez-la-main"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "target-ecoutez",
+      "term": "écoutez",
+      "translations": {
+        "en": [
+          "listen",
+          "listen up"
+        ],
+        "de": [
+          "hören Sie zu",
+          "hört zu"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "écoutez",
+      "examForms": [
+        "écoutez"
+      ],
+      "acceptedVariants": [
+        "Écoutez"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/e.ku.te/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Écoutez le dialogue attentivement.",
+        "translation": {
+          "en": "Listen to the dialogue carefully.",
+          "de": "Hören Sie sich den Dialog aufmerksam an."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-lisez",
+      "term": "lisez",
+      "translations": {
+        "en": [
+          "read"
+        ],
+        "de": [
+          "lesen Sie",
+          "lest"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "lisez",
+      "examForms": [
+        "lisez"
+      ],
+      "acceptedVariants": [
+        "Lisez"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/li.ze/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Lisez le texte à la page dix.",
+        "translation": {
+          "en": "Read the text on page ten.",
+          "de": "Lesen Sie den Text auf Seite zehn."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-ecrivez",
+      "term": "écrivez",
+      "translations": {
+        "en": [
+          "write"
+        ],
+        "de": [
+          "schreiben Sie",
+          "schreibt"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "écrivez",
+      "examForms": [
+        "écrivez"
+      ],
+      "acceptedVariants": [
+        "Écrivez"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/e.kʁi.ve/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Écrivez la réponse dans votre cahier.",
+        "translation": {
+          "en": "Write the answer in your notebook.",
+          "de": "Schreiben Sie die Antwort in Ihr Heft."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-repetez",
+      "term": "répétez",
+      "translations": {
+        "en": [
+          "repeat"
+        ],
+        "de": [
+          "wiederholen Sie",
+          "wiederholt"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "répétez",
+      "examForms": [
+        "répétez"
+      ],
+      "acceptedVariants": [
+        "Répétez"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/ʁe.pe.te/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Répétez la phrase après moi.",
+        "translation": {
+          "en": "Repeat the sentence after me.",
+          "de": "Wiederholen Sie den Satz nach mir."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-regardez",
+      "term": "regardez",
+      "translations": {
+        "en": [
+          "look",
+          "watch"
+        ],
+        "de": [
+          "schauen Sie",
+          "schaut"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "regardez",
+      "examForms": [
+        "regardez"
+      ],
+      "acceptedVariants": [
+        "Regardez"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/ʁə.ɡaʁ.de/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Regardez le tableau, s'il vous plaît.",
+        "translation": {
+          "en": "Look at the board, please.",
+          "de": "Schauen Sie bitte an die Tafel."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-parlez",
+      "term": "parlez",
+      "translations": {
+        "en": [
+          "speak",
+          "talk"
+        ],
+        "de": [
+          "sprechen Sie",
+          "sprecht"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "parlez",
+      "examForms": [
+        "parlez"
+      ],
+      "acceptedVariants": [
+        "Parlez"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/paʁ.le/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Parlez avec votre voisin.",
+        "translation": {
+          "en": "Speak with your neighbor.",
+          "de": "Sprechen Sie mit Ihrem Nachbarn."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-completez",
+      "term": "complétez",
+      "translations": {
+        "en": [
+          "complete",
+          "fill in"
+        ],
+        "de": [
+          "vervollständigen Sie",
+          "ergänzt"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "complétez",
+      "examForms": [
+        "complétez"
+      ],
+      "acceptedVariants": [
+        "Complétez"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/kɔ̃.ple.te/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Complétez les phrases avec le bon mot.",
+        "translation": {
+          "en": "Complete the sentences with the correct word.",
+          "de": "Vervollständigen Sie die Sätze mit dem richtigen Wort."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-cochez",
+      "term": "cochez",
+      "translations": {
+        "en": [
+          "check",
+          "tick"
+        ],
+        "de": [
+          "kreuzen Sie an",
+          "hakt ab"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "cochez",
+      "examForms": [
+        "cochez"
+      ],
+      "acceptedVariants": [
+        "Cochez"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/kɔ.ʃe/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Cochez la bonne réponse.",
+        "translation": {
+          "en": "Check the correct answer.",
+          "de": "Kreuzen Sie die richtige Antwort an."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-ouvrez-le-livre",
+      "term": "ouvrez le livre",
+      "translations": {
+        "en": [
+          "open the book"
+        ],
+        "de": [
+          "öffnen Sie das Buch",
+          "öffnet das Buch"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "ouvrez le livre",
+      "examForms": [
+        "ouvrez le livre"
+      ],
+      "acceptedVariants": [
+        "Ouvrez le livre"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/u.vʁe lə livʁ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Ouvrez le livre à la page vingt.",
+        "translation": {
+          "en": "Open the book to page twenty.",
+          "de": "Öffnen Sie das Buch auf Seite zwanzig."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-fermez-le-livre",
+      "term": "fermez le livre",
+      "translations": {
+        "en": [
+          "close the book"
+        ],
+        "de": [
+          "schließen Sie das Buch",
+          "schließt das Buch"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "fermez le livre",
+      "examForms": [
+        "fermez le livre"
+      ],
+      "acceptedVariants": [
+        "Fermez le livre"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/fɛʁ.me lə livʁ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Fermez le livre pour le test.",
+        "translation": {
+          "en": "Close the book for the test.",
+          "de": "Schließen Sie das Buch für den Test."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-levez-la-main",
+      "term": "levez la main",
+      "translations": {
+        "en": [
+          "raise your hand"
+        ],
+        "de": [
+          "heben Sie die Hand",
+          "hebt die Hand"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "levez la main",
+      "examForms": [
+        "levez la main"
+      ],
+      "acceptedVariants": [
+        "Levez la main"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/lə.ve la mɛ̃/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Levez la main pour poser une question.",
+        "translation": {
+          "en": "Raise your hand to ask a question.",
+          "de": "Heben Sie die Hand, um eine Frage zu stellen."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 130
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 120
+    },
+    "genderOverview": {
+      "scored": false,
+      "estimatedDurationS": 30
+    },
+    "typedGaps": {
+      "targetIds": [
+        "target-ecoutez",
+        "target-lisez",
+        "target-ecrivez",
+        "target-repetez",
+        "target-completez",
+        "target-cochez"
+      ],
+      "estimatedDurationS": 150
+    },
+    "listening": {
+      "required": true,
+      "practiceTargetIds": [
+        "target-ecoutez",
+        "target-lisez",
+        "target-ecrivez",
+        "target-repetez",
+        "target-regardez",
+        "target-levez-la-main"
+      ],
+      "estimatedDurationS": 120
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-translation-1",
+          "kind": "translation",
+          "targetIds": [
+            "target-ecoutez",
+            "target-lisez",
+            "target-ecrivez",
+            "target-repetez",
+            "target-regardez",
+            "target-parlez"
+          ],
+          "estimatedDurationS": 90,
+          "timeLimitS": 120
+        },
+        {
+          "pageId": "exam-page-translation-2",
+          "kind": "translation",
+          "targetIds": [
+            "target-completez",
+            "target-cochez",
+            "target-ouvrez-le-livre",
+            "target-fermez-le-livre",
+            "target-levez-la-main"
+          ],
+          "estimatedDurationS": 80,
+          "timeLimitS": 110
+        },
+        {
+          "pageId": "exam-page-listening-dictation",
+          "kind": "listening_dictation",
+          "targetIds": [
+            "target-ecoutez",
+            "target-ecrivez",
+            "target-repetez",
+            "target-levez-la-main"
+          ],
+          "estimatedDurationS": 80,
+          "timeLimitS": 120
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

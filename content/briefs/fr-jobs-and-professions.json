@@ -1,0 +1,655 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-jobs-and-professions",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les métiers",
+  "objective": {
+    "en": "Learn to name common professions in French and state one's job without an article using 'je suis'.",
+    "fr": "Apprendre à nommer des métiers courants en français et dire sa profession sans article avec « je suis ».",
+    "de": "Lerne, häufige Berufe auf Französisch zu benennen und den eigenen Beruf ohne Artikel mit 'je suis' anzugeben."
+  },
+  "estimatedMinutes": 14,
+  "provenance": {
+    "generator": "lesson-prototype",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "brief-v2",
+    "generatedAt": "2026-10-06T14:35:32.034Z",
+    "inputHashes": {
+      "outline": "81d4271653a9d257711d12eabf9a098017262a3b52bbd88bbeaeddd824a3dd58"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "personal_identification",
+  "coverageNotes": {
+    "en": "Covers 12 essential jobs with masculine and feminine forms, emphasizing usage without articles after 'être'.",
+    "fr": "Couvre 12 métiers essentiels avec les formes masculines et féminines, en mettant l'accent sur l'usage sans article après « être ».",
+    "de": "Deckt 12 wichtige Berufe in männlicher und weiblicher Form ab, mit Schwerpunkt auf der Verwendung ohne Artikel nach 'être'."
+  },
+  "targetCount": 12,
+  "countRationale": {
+    "en": "Twelve targets provide a balanced set of essential jobs at level A1 without overwhelming the learner.",
+    "fr": "Douze cibles offrent un ensemble équilibré de métiers essentiels au niveau A1 sans surcharger l'apprenant.",
+    "de": "Zwölf Zielbegriffe bieten eine ausgewogene Auswahl wichtiger Berufe auf A1-Niveau, ohne zu überfordern."
+  },
+  "difficultyBalance": {
+    "en": "Mainly core A1 job titles, with a few demanding items featuring spelling shifts like -ier/-ière or silent consonants.",
+    "fr": "Majoritairement des métiers de base A1, avec quelques éléments exigeants présentant des variations comme -ier/-ière ou consonnes muettes.",
+    "de": "Überwiegend A1-Grundwortschatz, mit einigen anspruchsvolleren Wörtern durch Endungswechsel wie -ier/-ière oder stumme Konsonanten."
+  },
+  "prerequisites": [
+    {
+      "en": "Basic present tense of the verb 'être'",
+      "fr": "Présent simple du verbe « être »",
+      "de": "Grundlegendes Präsens des Verbs 'être'"
+    },
+    {
+      "en": "Indefinite articles (un, une)",
+      "fr": "Articles indéfinis (un, une)",
+      "de": "Unbestimmte Artikel (un, une)"
+    }
+  ],
+  "groups": [
+    {
+      "id": "group-health-education",
+      "label": {
+        "en": "Health and Education",
+        "fr": "Santé et Enseignement",
+        "de": "Gesundheit und Bildung"
+      },
+      "targetIds": [
+        "target-medecin",
+        "target-professeur",
+        "target-infirmier",
+        "target-infirmiere",
+        "target-etudiant",
+        "target-etudiante"
+      ]
+    },
+    {
+      "id": "group-commerce-services",
+      "label": {
+        "en": "Commerce and Services",
+        "fr": "Commerce et Services",
+        "de": "Handel und Dienstleistungen"
+      },
+      "targetIds": [
+        "target-serveur",
+        "target-serveuse",
+        "target-vendeur",
+        "target-vendeuse",
+        "target-avocat",
+        "target-cuisinier"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "target-medecin",
+      "term": "médecin",
+      "translations": {
+        "en": [
+          "doctor"
+        ],
+        "de": [
+          "Arzt",
+          "Ärztin"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un médecin",
+      "examForms": [
+        "un médecin",
+        "des médecins"
+      ],
+      "acceptedVariants": [
+        "médecin"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "med.sɛ̃",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Je suis médecin à l'hôpital.",
+        "translation": {
+          "en": "I am a doctor at the hospital.",
+          "de": "Ich bin Arzt im Krankenhaus."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-professeur",
+      "term": "professeur",
+      "translations": {
+        "en": [
+          "teacher",
+          "professor"
+        ],
+        "de": [
+          "Lehrer",
+          "Professor"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un professeur",
+      "examForms": [
+        "un professeur",
+        "des professeurs"
+      ],
+      "acceptedVariants": [
+        "professeur"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "pʁɔ.fɛ.sœʁ",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il est professeur de français.",
+        "translation": {
+          "en": "He is a French teacher.",
+          "de": "Er ist Französischlehrer."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-serveur",
+      "term": "serveur",
+      "translations": {
+        "en": [
+          "waiter"
+        ],
+        "de": [
+          "Kellner"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un serveur",
+      "examForms": [
+        "un serveur",
+        "des serveurs"
+      ],
+      "acceptedVariants": [
+        "serveur"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [
+        "serveuse"
+      ],
+      "pronunciation": "sɛʁ.vœʁ",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le serveur apporte le café.",
+        "translation": {
+          "en": "The waiter brings the coffee.",
+          "de": "Der Kellner bringt den Kaffee."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-serveuse",
+      "term": "serveuse",
+      "translations": {
+        "en": [
+          "waitress"
+        ],
+        "de": [
+          "Kellnerin"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une serveuse",
+      "examForms": [
+        "une serveuse",
+        "des serveuses"
+      ],
+      "acceptedVariants": [
+        "serveuse"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [
+        "serveur"
+      ],
+      "pronunciation": "sɛʁ.vøz",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Elle est serveuse dans un restaurant.",
+        "translation": {
+          "en": "She is a waitress in a restaurant.",
+          "de": "Sie ist Kellnerin in einem Restaurant."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-vendeur",
+      "term": "vendeur",
+      "translations": {
+        "en": [
+          "salesman",
+          "shop assistant"
+        ],
+        "de": [
+          "Verkäufer"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un vendeur",
+      "examForms": [
+        "un vendeur",
+        "des vendeurs"
+      ],
+      "acceptedVariants": [
+        "vendeur"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [
+        "vendeuse"
+      ],
+      "pronunciation": "vɑ̃.dœʁ",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le vendeur travaille dans un magasin.",
+        "translation": {
+          "en": "The shop assistant works in a store.",
+          "de": "Der Verkäufer arbeitet in einem Geschäft."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-vendeuse",
+      "term": "vendeuse",
+      "translations": {
+        "en": [
+          "saleswoman",
+          "shop assistant"
+        ],
+        "de": [
+          "Verkäuferin"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une vendeuse",
+      "examForms": [
+        "une vendeuse",
+        "des vendeuses"
+      ],
+      "acceptedVariants": [
+        "vendeuse"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [
+        "vendeur"
+      ],
+      "pronunciation": "vɑ̃.døz",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Je suis vendeuse de vêtements.",
+        "translation": {
+          "en": "I am a clothing saleswoman.",
+          "de": "Ich bin Bekleidungsverkäuferin."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-infirmier",
+      "term": "infirmier",
+      "translations": {
+        "en": [
+          "nurse",
+          "male nurse"
+        ],
+        "de": [
+          "Krankenpfleger"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un infirmier",
+      "examForms": [
+        "un infirmier",
+        "des infirmiers"
+      ],
+      "acceptedVariants": [
+        "infirmier"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [
+        "infirmière"
+      ],
+      "pronunciation": "ɛ̃.fiʁ.mje",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Il est infirmier à la clinique.",
+        "translation": {
+          "en": "He is a nurse at the clinic.",
+          "de": "Er ist Krankenpfleger in der Klinik."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-infirmiere",
+      "term": "infirmière",
+      "translations": {
+        "en": [
+          "nurse",
+          "female nurse"
+        ],
+        "de": [
+          "Krankenschwester"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une infirmière",
+      "examForms": [
+        "une infirmière",
+        "des infirmières"
+      ],
+      "acceptedVariants": [
+        "infirmière"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [
+        "infirmier"
+      ],
+      "pronunciation": "ɛ̃.fiʁ.mjɛʁ",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "L'infirmière aide les patients.",
+        "translation": {
+          "en": "The nurse helps the patients.",
+          "de": "Die Krankenschwester hilft den Patienten."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-etudiant",
+      "term": "étudiant",
+      "translations": {
+        "en": [
+          "student",
+          "male student"
+        ],
+        "de": [
+          "Student"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un étudiant",
+      "examForms": [
+        "un étudiant",
+        "des étudiants"
+      ],
+      "acceptedVariants": [
+        "étudiant"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [
+        "étudiante"
+      ],
+      "pronunciation": "e.ty.djɑ̃",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Je suis étudiant à l'université.",
+        "translation": {
+          "en": "I am a student at university.",
+          "de": "Ich bin Student an der Universität."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-etudiante",
+      "term": "étudiante",
+      "translations": {
+        "en": [
+          "student",
+          "female student"
+        ],
+        "de": [
+          "Studentin"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une étudiante",
+      "examForms": [
+        "une étudiante",
+        "des étudiantes"
+      ],
+      "acceptedVariants": [
+        "étudiante"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [
+        "étudiant"
+      ],
+      "pronunciation": "e.ty.djɑ̃t",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Elle est étudiante en médecine.",
+        "translation": {
+          "en": "She is a medical student.",
+          "de": "Sie ist Medizinstudentin."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-avocat",
+      "term": "avocat",
+      "translations": {
+        "en": [
+          "lawyer"
+        ],
+        "de": [
+          "Anwalt",
+          "Rechtsanwalt"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un avocat",
+      "examForms": [
+        "un avocat",
+        "des avocats"
+      ],
+      "acceptedVariants": [
+        "avocat"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [
+        "avocate"
+      ],
+      "pronunciation": "a.vɔ.ka",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Il travaille comme avocat.",
+        "translation": {
+          "en": "He works as a lawyer.",
+          "de": "Er arbeitet als Anwalt."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-cuisinier",
+      "term": "cuisinier",
+      "translations": {
+        "en": [
+          "cook",
+          "chef"
+        ],
+        "de": [
+          "Koch"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un cuisinier",
+      "examForms": [
+        "un cuisinier",
+        "des cuisiniers"
+      ],
+      "acceptedVariants": [
+        "cuisinier"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [
+        "cuisinière"
+      ],
+      "pronunciation": "kɥi.zi.nje",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le cuisinier prépare un repas.",
+        "translation": {
+          "en": "The cook prepares a meal.",
+          "de": "Der Koch bereitet eine Mahlzeit zu."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 4,
+      "estimatedDurationS": 120
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "target-medecin",
+        "target-professeur",
+        "target-serveur",
+        "target-serveuse",
+        "target-vendeur",
+        "target-vendeuse",
+        "target-infirmier",
+        "target-infirmiere",
+        "target-etudiant",
+        "target-etudiante",
+        "target-avocat",
+        "target-cuisinier"
+      ],
+      "estimatedDurationS": 180
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "page-exam-1",
+          "kind": "translation",
+          "targetIds": [
+            "target-medecin",
+            "target-professeur",
+            "target-serveur",
+            "target-serveuse",
+            "target-vendeur",
+            "target-vendeuse"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "page-exam-2",
+          "kind": "translation",
+          "targetIds": [
+            "target-infirmier",
+            "target-infirmiere",
+            "target-etudiant",
+            "target-etudiante",
+            "target-avocat",
+            "target-cuisinier"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

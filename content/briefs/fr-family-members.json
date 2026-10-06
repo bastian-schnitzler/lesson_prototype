@@ -1,0 +1,595 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-family-members",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "La famille",
+  "objective": {
+    "en": "Learn and practice 12 core vocabulary terms for family members in French with their correct gender and indefinite articles.",
+    "fr": "Apprendre et pratiquer 12 termes de vocabulaire essentiels pour les membres de la famille en français avec leur genre et articles indéfinis.",
+    "de": "Lerne und übe 12 Kernvokabeln für Familienmitglieder auf Französisch mit dem richtigen Genus und unbestimmten Artikeln."
+  },
+  "estimatedMinutes": 14,
+  "provenance": {
+    "generator": "lesson-prototype",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "brief-v2",
+    "generatedAt": "2026-10-06T14:35:43.196Z",
+    "inputHashes": {
+      "outline": "f8cc866f40b14d622bb256822a1e1952ddbe2530b844f4bb87364bbcd1cd1822"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "relations",
+  "coverageNotes": {
+    "en": "Covers core nuclear and extended family members appropriate for CEFR A1 learners.",
+    "fr": "Couvre les membres de la famille nucléaire et élargie adaptés aux apprenants du niveau CECRL A1.",
+    "de": "Deckt wichtige Mitglieder der Kern- und erweiterten Familie für GER A1-Lernende ab."
+  },
+  "targetCount": 12,
+  "countRationale": {
+    "en": "12 targets offer a complete foundational set of family terms without overwhelming an A1 beginner.",
+    "fr": "12 cibles offrent un ensemble fondamental complet de termes de famille sans surcharger un débutant A1.",
+    "de": "12 Zielbegriffe bieten einen vollständigen Grundwortschatz für Familienmitglieder, ohne A1-Anfänger zu überfordern."
+  },
+  "difficultyBalance": {
+    "en": "10 core targets cover standard family roles while 2 demanding compound targets introduce hyphenated terms.",
+    "fr": "10 cibles de base couvrent les rôles familiaux standards tandis que 2 cibles exigeantes introduisent des termes composés.",
+    "de": "10 Kernziele decken Standard-Familienrollen ab, während 2 anspruchsvollere zusammengesetzte Begriffe Bindestriche einführen."
+  },
+  "prerequisites": [
+    {
+      "en": "Basic knowledge of French singular indefinite articles (un, une).",
+      "fr": "Connaissance de base des articles indéfinis singuliers en français (un, une).",
+      "de": "Grundkenntnisse der französischen unbestimmten Artikel im Singular (un, une)."
+    }
+  ],
+  "groups": [
+    {
+      "id": "group-immediate-family",
+      "label": {
+        "en": "Immediate Family",
+        "fr": "Famille proche",
+        "de": "Enge Familie"
+      },
+      "targetIds": [
+        "target-pere",
+        "target-mere",
+        "target-frere",
+        "target-soeur",
+        "target-fils",
+        "target-fille"
+      ]
+    },
+    {
+      "id": "group-extended-family",
+      "label": {
+        "en": "Extended Family",
+        "fr": "Famille élargie",
+        "de": "Erweiterte Familie"
+      },
+      "targetIds": [
+        "target-grand-pere",
+        "target-grand-mere",
+        "target-cousin",
+        "target-cousine",
+        "target-oncle",
+        "target-tante"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "target-pere",
+      "term": "père",
+      "translations": {
+        "en": [
+          "father"
+        ],
+        "de": [
+          "Vater"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un père",
+      "examForms": [
+        "un père"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "pɛʁ",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Mon père s'appelle Thomas.",
+        "translation": {
+          "en": "My father is named Thomas.",
+          "de": "Mein Vater heißt Thomas."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-mere",
+      "term": "mère",
+      "translations": {
+        "en": [
+          "mother"
+        ],
+        "de": [
+          "Mutter"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une mère",
+      "examForms": [
+        "une mère"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "mɛʁ",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Ma mère habite à Paris.",
+        "translation": {
+          "en": "My mother lives in Paris.",
+          "de": "Meine Mutter wohnt in Paris."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-frere",
+      "term": "frère",
+      "translations": {
+        "en": [
+          "brother"
+        ],
+        "de": [
+          "Bruder"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un frère",
+      "examForms": [
+        "un frère"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "fʁɛʁ",
+      "difficulty": "core",
+      "context": {
+        "sentence": "J'ai un frère plus âgé.",
+        "translation": {
+          "en": "I have an older brother.",
+          "de": "Ich habe einen älteren Bruder."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-soeur",
+      "term": "sœur",
+      "translations": {
+        "en": [
+          "sister"
+        ],
+        "de": [
+          "Schwester"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une sœur",
+      "examForms": [
+        "une sœur"
+      ],
+      "acceptedVariants": [
+        "une soeur"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "sœʁ",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Ma sœur aime la musique.",
+        "translation": {
+          "en": "My sister likes music.",
+          "de": "Meine Schwester mag Musik."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-fils",
+      "term": "fils",
+      "translations": {
+        "en": [
+          "son"
+        ],
+        "de": [
+          "Sohn"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un fils",
+      "examForms": [
+        "un fils"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "fis",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Ils ont un fils unique.",
+        "translation": {
+          "en": "They have an only son.",
+          "de": "Sie haben einen einzigen Sohn."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-fille",
+      "term": "fille",
+      "translations": {
+        "en": [
+          "daughter"
+        ],
+        "de": [
+          "Tochter"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une fille",
+      "examForms": [
+        "une fille"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "fij",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Leur fille va à l'école.",
+        "translation": {
+          "en": "Their daughter goes to school.",
+          "de": "Ihre Tochter geht zur Schule."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-grand-pere",
+      "term": "grand-père",
+      "translations": {
+        "en": [
+          "grandfather"
+        ],
+        "de": [
+          "Großvater"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un grand-père",
+      "examForms": [
+        "un grand-père"
+      ],
+      "acceptedVariants": [
+        "un grand pere"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "ɡʁɑ̃pɛʁ",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Mon grand-père a 70 ans.",
+        "translation": {
+          "en": "My grandfather is 70 years old.",
+          "de": "Mein Großvater ist 70 Jahre alt."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-grand-mere",
+      "term": "grand-mère",
+      "translations": {
+        "en": [
+          "grandmother"
+        ],
+        "de": [
+          "Großmutter"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une grand-mère",
+      "examForms": [
+        "une grand-mère"
+      ],
+      "acceptedVariants": [
+        "une grand mere"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "ɡʁɑ̃mɛʁ",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Ma grand-mère fait un gâteau.",
+        "translation": {
+          "en": "My grandmother is making a cake.",
+          "de": "Meine Großmutter macht einen Kuchen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-cousin",
+      "term": "cousin",
+      "translations": {
+        "en": [
+          "cousin (male)"
+        ],
+        "de": [
+          "Cousin",
+          "Vetter"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un cousin",
+      "examForms": [
+        "un cousin"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [
+        "cousine"
+      ],
+      "pronunciation": "kuzɛ̃",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Mon cousin joue au football.",
+        "translation": {
+          "en": "My cousin plays football.",
+          "de": "Mein Cousin spielt Fußball."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-cousine",
+      "term": "cousine",
+      "translations": {
+        "en": [
+          "cousin (female)"
+        ],
+        "de": [
+          "Cousine",
+          "Cousine"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une cousine",
+      "examForms": [
+        "une cousine"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [
+        "cousin"
+      ],
+      "pronunciation": "kuzin",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Ma cousine habite à Lyon.",
+        "translation": {
+          "en": "My cousin lives in Lyon.",
+          "de": "Meine Cousine wohnt in Lyon."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-oncle",
+      "term": "oncle",
+      "translations": {
+        "en": [
+          "uncle"
+        ],
+        "de": [
+          "Onkel"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un oncle",
+      "examForms": [
+        "un oncle"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "ɔ̃kl",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Mon oncle travaille à la banque.",
+        "translation": {
+          "en": "My uncle works at the bank.",
+          "de": "Mein Onkel arbeitet bei der Bank."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "target-tante",
+      "term": "tante",
+      "translations": {
+        "en": [
+          "aunt"
+        ],
+        "de": [
+          "Tante"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une tante",
+      "examForms": [
+        "une tante"
+      ],
+      "acceptedVariants": [],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "tɑ̃t",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Ma tante voyage beaucoup.",
+        "translation": {
+          "en": "My aunt travels a lot.",
+          "de": "Meine Tante reist viel."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 120
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "target-pere",
+        "target-mere",
+        "target-frere",
+        "target-soeur",
+        "target-fils",
+        "target-fille",
+        "target-grand-pere",
+        "target-grand-mere",
+        "target-cousin",
+        "target-cousine",
+        "target-oncle",
+        "target-tante"
+      ],
+      "estimatedDurationS": 180
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "page-exam-1",
+          "kind": "translation",
+          "targetIds": [
+            "target-pere",
+            "target-mere",
+            "target-frere",
+            "target-soeur",
+            "target-fils",
+            "target-fille"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "page-exam-2",
+          "kind": "translation",
+          "targetIds": [
+            "target-grand-pere",
+            "target-grand-mere",
+            "target-cousin",
+            "target-cousine",
+            "target-oncle",
+            "target-tante"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}
