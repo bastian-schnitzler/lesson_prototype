@@ -21,7 +21,7 @@ if (import.meta.main) {
     const report = (message: string) => process.stdout.write(`${message}\n`);
     const options = {
       contentDir: resolve(values['content-dir'] ?? DEFAULT_CONTENT_DIR), regenerate: values.regenerate,
-      adapter: () => adapter ??= geminiAdapter(loadConfig(resolve(values.env ?? '.env')), fetch, undefined, report),
+      adapter: () => adapter ??= geminiAdapter(() => loadConfig(resolve(values.env ?? '.env')), fetch, undefined, report),
       ...(single ? {} : loadBatchConfig(resolve(values.env ?? '.env'))),
       report,
     };

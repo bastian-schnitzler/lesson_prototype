@@ -208,7 +208,7 @@ describe('Gemini boundary and CLI', () => {
     expect(() => loadConfig(env)).toThrow('model name');
     writeFileSync(env, 'GEMINI_API_KEY=fake-secret\n');
     expect(() => loadConfig(env)).toThrow('Set GEMINI_API_KEY');
-    writeFileSync(env, 'GEMINI_API_KEY=fake-secret\nGEMINI_API_KEY10=fake-tenth\nGEMINI_API_KEY2=fake-second\nGEMINI_API_KEY3=\nGEMINI_MODEL=fake-model, models/fake-fallback\n');
+    writeFileSync(env, 'GEMINI_API_KEY=fake-secret, fake-second,,fake-tenth\nGEMINI_MODEL=fake-model, models/fake-fallback\n');
     expect(loadConfig(env)).toEqual({ apiKey: 'fake-secret', fallbackApiKeys: ['fake-second', 'fake-tenth'], model: 'fake-model', fallbackModels: ['fake-fallback'] });
   });
 
@@ -273,6 +273,19 @@ describe('Gemini boundary and CLI', () => {
     const invalid = vi.fn<typeof fetch>(async () => new Response('', { status: 400 }));
     await expect(geminiAdapter({ apiKey: 'k1', fallbackApiKeys: ['k2'], model: 'best', fallbackModels: ['next'] }, invalid).generate({ prompt: 'test', schema: {} })).rejects.toThrow('HTTP 400');
     expect(invalid).toHaveBeenCalledTimes(1);
+  });
+
+  it('rereads keys before every request, so a key added during a run is used', async () => {
+    const ok = () => new Response(JSON.stringify({ candidates: [{ finishReason: 'STOP', content: { parts: [{ text: '{}' }] } }] }));
+    const fetcher = vi.fn<typeof fetch>(async (_url, init) => ((init?.headers as Record<string, string>)['x-goog-api-key'] === 'k-new' ? ok() : new Response('', { status: 429 })));
+    let keys = ['k1'];
+    const adapter = geminiAdapter(() => ({ apiKey: keys[0], fallbackApiKeys: keys.slice(1), model: 'best' }), fetcher, async () => {});
+    await expect(adapter.generate({ prompt: 'test', schema: {} })).rejects.toThrow('HTTP 429');
+    keys = ['k1', 'k-new'];
+    fetcher.mockClear();
+    await expect(adapter.generate({ prompt: 'test', schema: {} })).resolves.toEqual({ text: '{}', model: 'best' });
+    // k1 stays exhausted; only the new key is called.
+    expect(fetcher).toHaveBeenCalledTimes(1);
   });
 
   it('prepares exactly the first ten grammar and vocabulary entries of fr/A1 in outline order', () => {

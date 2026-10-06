@@ -17,7 +17,7 @@ make help                         # every target with its arguments
 
 Requires Node.js 24 or newer. Pushes to `main` deploy to https://bastian-schnitzler.github.io/lesson_prototype/ through `.github/workflows/pages.yml`.
 
-Offline brief and lesson generation is available for grammar and vocabulary. Copy `.env.example` to `.env`, set `GEMINI_API_KEY` and `GEMINI_MODEL` (models with structured JSON output support, best first, comma-separated), optionally further keys `GEMINI_API_KEY2`, `GEMINI_API_KEY3`, … that take over when a key hits its quota (HTTP 429), then use:
+Offline brief and lesson generation is available for grammar and vocabulary. Copy `.env.example` to `.env`, set `GEMINI_API_KEY` and `GEMINI_MODEL` (models with structured JSON output support, best first, comma-separated), optionally several comma-separated keys in `GEMINI_API_KEY` that take over in order when a key hits its quota (HTTP 429), then use:
 
 ```sh
 make brief ID=fr-classroom-objects  # generate missing or reuse valid brief

@@ -9,6 +9,7 @@ import { findLeaks, secretValues } from '../../scripts/build.ts';
 describe('build output secret check', () => {
   it('reads non-trivial .env values, ignoring blanks and comments', () => {
     expect(secretValues('# local only\nGEMINI_API_KEY="abcdefgh12345"\nGEMINI_MODEL=gemini-test-model\nSHORT=abc\n')).toEqual(['abcdefgh12345']);
+    expect(secretValues('GEMINI_API_KEY=abcdefgh12345, ijklmnop67890\n')).toEqual(['abcdefgh12345', 'ijklmnop67890']);
   });
 
   it('flags .env files and leaked values in dist', () => {

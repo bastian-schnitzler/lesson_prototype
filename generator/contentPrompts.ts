@@ -127,6 +127,27 @@ export const grammarSections = (lang: string, brief: GrammarBrief): Section[] =>
   },
 ];
 
+/* ------------------------------------------------------------- normalize */
+
+/** Item-internal IDs the model invents; brief IDs (targets, rules, exercises, pages) are never rewritten. */
+const LOCAL_ID_KEYS = new Set(['choiceId', 'answerChoiceId', 'tokenId', 'faultyTokenId', 'rowId']);
+
+/** Lowercase kebab-case, the same for every occurrence, so references between local IDs survive. */
+export function toLocalId(value: string): string {
+  const id = value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 48);
+  return id || 'x';
+}
+
+export function normalizeLocalIds(value: unknown): unknown {
+  if (Array.isArray(value)) return value.map(normalizeLocalIds);
+  if (!value || typeof value !== 'object') return value;
+  return Object.fromEntries(Object.entries(value).map(([key, child]) => {
+    if (LOCAL_ID_KEYS.has(key) && typeof child === 'string') return [key, toLocalId(child)];
+    if (key === 'acceptedOrders' && Array.isArray(child)) return [key, child.map((order) => (Array.isArray(order) ? order.map((id) => (typeof id === 'string' ? toLocalId(id) : id)) : order))];
+    return [key, normalizeLocalIds(child)];
+  }));
+}
+
 /* ------------------------------------------------------------------ prompt */
 
 export function contentPrompt(ctx: OutlineContext, brief: Brief, section: Section, repair = ''): string {

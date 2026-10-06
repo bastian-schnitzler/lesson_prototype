@@ -5,6 +5,7 @@ import { join, resolve } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { BriefOptions } from '../../generator/briefs.ts';
 import { generateLesson, splitDuration } from '../../generator/content.ts';
+import { normalizeLocalIds } from '../../generator/contentPrompts.ts';
 import { GenerationError, type GenerationRequest } from '../../generator/gemini.ts';
 import { scanContentDir } from '../../scripts/catalog.ts';
 
@@ -140,6 +141,11 @@ describe('offline lesson content generation', () => {
     await expect(generateLesson(VOC, opts)).rejects.toThrow('HTTP 403');
     expect(scanContentDir(dir).manifest.artifacts[VOC].draft?.status).toBe('valid');
     expect(scanContentDir(dir).manifest.artifacts[VOC].content).toBeUndefined();
+  });
+
+  it('normalizes model-invented item IDs consistently and leaves brief IDs alone', () => {
+    expect(normalizeLocalIds({ exerciseId: 'Ex_1', items: [{ choices: [{ choiceId: 'A' }, { choiceId: 'Choix Été' }], answerChoiceId: 'A', tokens: [{ tokenId: 'T_1' }], acceptedOrders: [['T_1']], ruleIds: ['r1'] }] }))
+      .toEqual({ exerciseId: 'Ex_1', items: [{ choices: [{ choiceId: 'a' }, { choiceId: 'choix-ete' }], answerChoiceId: 'a', tokens: [{ tokenId: 't-1' }], acceptedOrders: [['t-1']], ruleIds: ['r1'] }] });
   });
 
   it('splits planned durations into whole pages of at least five seconds', () => {

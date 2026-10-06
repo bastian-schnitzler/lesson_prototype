@@ -9,6 +9,8 @@ export const isCode = (error: unknown, code: string) => (error as NodeJS.ErrnoEx
 
 export interface UnitOptions {
   adapter: BriefAdapter;
+  /** Deterministic cleanup of the parsed JSON before schema validation. */
+  normalize?: (payload: unknown) => unknown;
   report?: (message: string) => void;
   sleep?: (ms: number) => Promise<void>;
 }
@@ -59,7 +61,7 @@ export class ModelUnit<T> {
       let payload: unknown;
       try { payload = JSON.parse(text); }
       catch { this.repair = this.diagnostics = 'Response must be one valid JSON object, without Markdown fences.'; continue; }
-      const parsed = this.schema.safeParse(payload);
+      const parsed = this.schema.safeParse(this.options.normalize ? this.options.normalize(payload) : payload);
       if (!parsed.success) {
         this.reject(parsed.error.issues.map((issue) => `${issue.path.join('.') || '(root)'}: ${issue.message}`));
         continue;

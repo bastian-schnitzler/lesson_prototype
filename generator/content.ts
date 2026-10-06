@@ -8,7 +8,7 @@ import type { GrammarBrief } from '../src/schemas/grammar.ts';
 import type { VocabularyBrief } from '../src/schemas/vocabulary.ts';
 import { validateBrief, validateContent, type Issue, type OutlineContext } from '../src/validation/artifacts.ts';
 import { catalogContexts, generateBrief, runBatch, type BriefOptions, type BriefOutcome } from './briefs.ts';
-import { CONTENT_PROMPT_VERSION, contentPrompt, grammarSections, vocabularySections, type Section } from './contentPrompts.ts';
+import { CONTENT_PROMPT_VERSION, contentPrompt, grammarSections, normalizeLocalIds, vocabularySections, type Section } from './contentPrompts.ts';
 import { GenerationError } from './gemini.ts';
 import { toStructuredSchema } from './prompts.ts';
 import { isCode, ModelUnit, withFileLock } from './units.ts';
@@ -243,7 +243,7 @@ async function generateContent(id: string, file: string, options: BriefOptions):
     const sectionList: Section[] = brief.kind === 'vocabulary' ? Object.values(vocabularySections(ctx.lang, brief)) : grammarSections(ctx.lang, brief);
     const adapter = options.adapter();
     const units = new Map(sectionList.map((section) => [section.key, new ModelUnit<unknown>(`${id}/${section.key}`, section.schema, toStructuredSchema(section.schema), (repair) => contentPrompt(ctx, brief, section, repair), {
-      adapter, report: options.report, sleep: options.sleep,
+      adapter, report: options.report, sleep: options.sleep, normalize: normalizeLocalIds,
     })]));
     const payloads: Payloads = {};
     let todo = [...units.keys()];

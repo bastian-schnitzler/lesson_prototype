@@ -33,7 +33,8 @@ export function secretValues(envText: string): string[] {
     .split('\n')
     .map((line) => /^\s*([A-Z0-9_]+)\s*=\s*(.*?)\s*$/.exec(line))
     .filter((m): m is RegExpExecArray => m !== null && m[1] !== 'GEMINI_MODEL')
-    .map((m) => m[2].replace(/^(['"])(.*)\1$/, '$2'))
+    // GEMINI_API_KEY may be a comma-separated list: check each key on its own.
+    .flatMap((m) => m[2].replace(/^(['"])(.*)\1$/, '$2').split(',').map((v) => v.trim()))
     .filter((v) => v.length >= 8);
 }
 
