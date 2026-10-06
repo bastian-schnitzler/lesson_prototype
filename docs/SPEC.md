@@ -1,6 +1,6 @@
 # Lesson exercise prototype specification
 
-Status: **Draft 0.22 — updated fr/A1 outline; GitHub backlog publication (P0-04)**. Date: 2026-10-06.
+Status: **Draft 0.23 — GitHub Pages deployment (P1-02)**. Date: 2026-10-06.
 
 This document specifies the prototype and its phased implementation. It is the maintained requirements document: no separate requirements file exists. It does not authorize starting implementation before the specification review. The backlog is in [ISSUES.md](ISSUES.md) and published as GitHub issues in `bastian-schnitzler/lesson_prototype`.
 
@@ -163,6 +163,9 @@ P1-01 owns the shared catalog scanner (outline validation, duplicate course/ID r
 | `make test` | Run unit, component, schema, and fake-adapter integration checks appropriate to implemented features. | P1-01 test setup; extend across later issues. |
 | `make test-e2e` | Run browser end-to-end checks against fixture-backed local pages. | Test setup in P1-01; session coverage in P1-09; category journeys in phases 2/3. |
 | `make test-all` | Run mockup consistency checks, `make test`, and `make test-e2e`; fail if any required suite fails. | P1-01 test setup; extend across later issues. |
+| `make preview` | Build, then serve `dist/` under `/lesson_prototype/` exactly like Pages. | P1-02. |
+| `make check-dist` | Build, then check `dist/` under the Pages path with HTTP requests and a headless browser. | P1-02; CI. |
+| `make smoke` | HTTP smoke check of the published site (`SITE_URL`). | P1-02; CI deploy job. |
 | `make issues-sync` | Refresh the published backlog from SPEC/ISSUES, including milestone assignments, copied diagrams, and source-derived preview URLs; requires GitHub access and existing issue mappings. | P1-01 workflow interface after publication. |
 | `make mockups-sync` | Update embedded Markdown PlantUML source from the canonical `.puml` files. | P1-01. |
 | `make mockups-check` | Reject stale, missing, or orphaned source/Markdown copies; check the source-only folder policy. | P1-01; CI and phase-closing mockup issues. |
@@ -187,7 +190,7 @@ The build scans every `content/outlines/*.json`, validates each outline, copies 
 
 Use hash routes for Pages, for example `#/lesson/<id>` for details and `#/lesson/<id>/play` for the session, so a refreshed route still loads `index.html`. All asset and content URLs respect the repository base path. Prefer deployment of the generated `dist` artifact via GitHub Actions over committing build output.
 
-Phase 1 must verify the actual Pages settings and published URL for `bastian-schnitzler/lesson_prototype`; Pages availability is not currently verified. Hosting acceptance requires an HTTP smoke check of the deployed index, outline, content, assets, and a refreshed hash route.
+Pages settings verified in P1-02 (2026-10-06): source **GitHub Actions** (`build_type: workflow`), HTTPS enforced, deployments limited to `main` through the `github-pages` environment, published URL **https://bastian-schnitzler.github.io/lesson_prototype/**. The repository is private; GitHub Pro provides Pages and Actions minutes for it, and the published site itself is public. `.github/workflows/pages.yml` runs `make test-all` and `make check-dist` on every push and pull request, then deploys `dist/` from `main` and runs `make smoke` against the published URL. `make check-dist` serves the build under `/lesson_prototype/` locally and checks it with HTTP requests and a headless browser; `make smoke SITE_URL=…` checks the deployed index, outlines, content, assets, a refreshed hash route, and that `.env` is not served.
 
 ## 3. Lesson discovery and offline preparation
 
@@ -3216,3 +3219,4 @@ When publishing the agreed backlog, include relevant Mermaid flows as fenced `me
 | 0.20 | 2026-10-06 | Applied the P0-02 Claude review ([record](reviews/2026-10-06-p0-02-claude-spec-review.md)). Confirmed D5/D11/D16 (no pending label in the exam header). Added D38–D45: same-language mother tongue disabled, indefinite exam article kept, accent-sensitive homographs and half-credit ligature/umlaut digraphs, vocabulary listening choice/dictation with a no-voice help page (new P1-12), answer keys during exams documented as a limitation, and all 48 vocabulary lessons required in phase 2. Clarified catalog scanner ownership, per-entry outline hashes, sectioned content generation, rounding, runtime shuffle seeds, label/prompt disambiguation, single-token error spotting, and whitespace normalization. Added three listening mockups; all 32 sources are synchronized. Preferences persist in browser storage across reloads (D45); skipped listening units are left out of scores, progress and results. Added the check-branch-before-work rule and changed branch names to `P<phase>-<two-digit-issue>-<description>` (D24). D13 remains open. |
 | 0.21 | 2026-10-06 | P0-03: retired the superseded requirements file after the P0-02 traceability check confirmed every requirement is represented; removed its input-table rows and references. SPEC is now the maintained requirements document. |
 | 0.22 | 2026-10-06 | P0-04: published the backlog as GitHub issues #5–#36 under milestones Phase 0–Phase 5 and linked the issue-order table to them. Updated `content/outlines/fr-a1.json` (same structure and 48/48/14/10 mix; 12 entries replaced, 13 intents reworded, order changed). Refreshed the first-ten sample IDs and ordinals in section 9 (`fr-regular-noun-plurals` replaces `fr-pronoun-on`; `fr-numbers-twenty-one-to-one-hundred` replaces `fr-rooms-of-the-home`) and the vocabulary artifact mockup ordinal (lesson 11). |
+| 0.23 | 2026-10-06 | P1-01/P1-02: filter bar above the index heading, header action order, only-child JSON tree expansion; recorded the verified GitHub Pages settings and URL, the Pages workflow, and the `build`, `preview`, `check-dist` and `smoke` targets. |

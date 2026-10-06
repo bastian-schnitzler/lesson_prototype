@@ -6,6 +6,8 @@
 # unless their folder is, so use the full /mnt/c/... path for Windows Firefox.
 BROWSER_CMD ?= /mnt/c/Program Files/Mozilla Firefox/firefox.exe
 PORT ?= 5173
+# Published GitHub Pages site, checked by 'make smoke'.
+SITE_URL ?= https://bastian-schnitzler.github.io/lesson_prototype/
 # ------------------------------------------------------------------------------
 
 NODE ?= node
@@ -13,7 +15,7 @@ NPM ?= npm
 
 .DEFAULT_GOAL := help
 .PHONY: help install run catalog typecheck test test-e2e test-all mockups-sync mockups-check issues-sync \
-	build brief briefs-missing sample-briefs generate generate-missing sample-lessons
+	build preview check-dist smoke brief briefs-missing sample-briefs generate generate-missing sample-lessons
 
 help: ## Show available targets, arguments and configuration
 	@echo "Lesson prototype — make targets"
@@ -22,7 +24,9 @@ help: ## Show available targets, arguments and configuration
 	@echo
 	@echo "Configuration (edit the top of the Makefile or override on the command line):"
 	@echo "  BROWSER_CMD=$(BROWSER_CMD)   command used by 'make run' to open the app"
-	@echo "  PORT=$(PORT)                 local HTTP port for 'make run'"
+	@echo "  PORT=$(PORT)                 local HTTP port for 'make run' and 'make preview'"
+	@echo "  SITE_URL=$(SITE_URL)"
+	@echo "                               published site checked by 'make smoke'"
 	@echo
 	@echo "Prerequisites: Node.js 24+ and npm. Run 'make install' once after cloning."
 
@@ -57,6 +61,18 @@ mockups-sync: node_modules/.package-lock.json ## Copy every docs/mockups .puml s
 mockups-check: node_modules/.package-lock.json ## Fail on stale, missing or orphaned SPEC mockup fences or non-source files
 	$(NODE) scripts/mockups.ts check
 
+build: node_modules/.package-lock.json ## Validate outlines and build dist/ (index.html, assets, content, manifest) for Pages
+	$(NODE) scripts/build.ts
+
+preview: build ## Build, then serve dist/ under /lesson_prototype/ like GitHub Pages (PORT)
+	$(NODE) scripts/serve-dist.ts --port $(PORT)
+
+check-dist: build ## Build, then smoke-check dist/ under the Pages path with HTTP and a headless browser
+	$(NODE) scripts/serve-dist.ts --port 4173 --check
+
+smoke: node_modules/.package-lock.json ## HTTP smoke check of the published site (SITE_URL)
+	$(NODE) scripts/smoke.ts $(SITE_URL)
+
 issues-sync: node_modules/.package-lock.json ## Refresh GitHub milestones/issues from SPEC/ISSUES (DRY_RUN=1 to preview; needs gh)
 	$(NODE) scripts/issues-sync.ts $(if $(DRY_RUN),--dry-run,)
 
@@ -67,8 +83,6 @@ define not_yet
 	@exit 1
 endef
 
-build: ## (P1-02) Build dist/ for GitHub Pages
-	$(call not_yet,P1-02)
 
 brief: ## (P1-05) Generate a missing brief: make brief ID=<lesson-id>
 	$(call not_yet,P1-05)
