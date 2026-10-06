@@ -1,6 +1,6 @@
 # Lesson exercise prototype specification
 
-Status: **Draft 0.14 — named accents in correction feedback**. Date: 2026-10-06.
+Status: **Draft 0.15 — review, cleanup, phase closing, and milestone workflow**. Date: 2026-10-06.
 
 This document specifies the prototype and its phased implementation. It does not authorize starting implementation before the specification review. The issue-ready backlog is in [ISSUES.md](ISSUES.md); publish those issues to `bastian-schnitzler/lesson_prototype` after the specification has been refined with the user.
 
@@ -15,15 +15,15 @@ The requested roadmap names phases 0–5. This specification follows those six p
 | Input | Observed state | Treatment |
 | --- | --- | --- |
 | `lesson_requirements.md` | Filename typo in the request | Refers to the existing summary below; no separate requirements file is needed. |
-| `doc/lesson_requirement_summary.md` | Present; vocabulary and grammar flows defined | Confirmed authoritative requirements source together with the user's request and subsequent decisions. |
+| `old_prompt/requirement_summary.md` | Present; vocabulary and grammar flows defined | Temporary source already incorporated into this specification; retire after Claude review in P0-03. |
 | `content/outlines/fr-a1.json` | `lang: fr`, `level: A1`, 120 ordered entries | Authoritative IDs, classification, intent, titles, and order. |
-| `doc/data_model_draft/lesson.ts` | Generic brief and older aggregate draft/API schemas | Reference for shared definitions; brief and content contracts need redesign. |
-| `doc/data_model_draft/item.ts` | Placement-style multiple-choice question schemas | Reuse level/topic enums and applicable validation principles, not the placement item shape for every exercise. |
-| `doc/data_model_draft/language.ts` | Imported by both draft modules, but absent | Supply a minimal shared language schema when implementing executable schemas. |
+| `old_prompt/data_model_draft/lesson.ts` | Generic brief and older aggregate draft/API schemas | Temporary migration reference; executable contracts replace it in P1-03, then P1-04 removes it. |
+| `old_prompt/data_model_draft/item.ts` | Placement-style multiple-choice question schemas | Migrate applicable enums/validation in P1-03; P1-04 removes the legacy file. |
+| `old_prompt/data_model_draft/language.ts` | Imported by both draft modules, but absent | Supply a minimal shared language schema when implementing executable schemas. |
 
 The outline has **48 grammar, 48 vocabulary, 14 functions, and 10 reading** entries. Display all 120 entries from the start. Functions and reading remain visible but cannot start until their requirements and renderers exist.
 
-Prototype scope excludes accounts, placement tests, daily goals, streaks, inferred CEFR progression, live tutoring, and learner synchronization. Those features appear in the draft schemas but are not required here.
+Prototype scope excludes accounts, placement tests, daily goals, streaks, inferred CEFR progression, live tutoring, and learner synchronization. Those features are outside the prototype requirements.
 
 ### Decisions and open points for review
 
@@ -31,7 +31,7 @@ Confirmed decisions are identified below. Other defaults make the draft concrete
 
 | ID | Decision | Proposed default / clarification |
 | --- | --- | --- |
-| D1 | Authoritative requirements | **Confirmed:** use `doc/lesson_requirement_summary.md` and the user's instructions. The other requested filename was a typo. |
+| D1 | Authoritative requirements | **Confirmed:** this specification incorporates the original requirements summary and the user's decisions. After P0-03 retires that source, SPEC is the maintained requirements document. |
 | D2 | Where generation runs | **Confirmed:** an offline local Node generator writes repository files; GitHub Pages serves pre-generated content. Lesson clicks never trigger generation. |
 | D3 | Meaning of standalone | **Confirmed:** `index.html` is the entry point served on GitHub Pages. React reads the outline and generated brief/lesson JSON files; bundled module assets are allowed. |
 | D4 | Mother tongue | **Confirmed: English.** English UI, explanations, and translations; French learning content. Store the language pair explicitly in generated artifacts. |
@@ -59,6 +59,9 @@ Confirmed decisions are identified below. Other defaults make the draft concrete
 | D26 | GitHub issue synchronization | **Confirmed:** after initial issue creation, every change to `docs/SPEC.md` or `docs/ISSUES.md` must refresh the published GitHub issues accordingly, keeping the backlog aligned with the latest specification. |
 | D27 | Shared page design | **Confirmed:** apply the results page's dark design consistently to the lesson index, artifact views, start pages, explanations, all exercises, exams, feedback, and results. |
 | D28 | Accent correction wording | **Confirmed:** correction explanations name the accent or diacritic. French feedback uses terms such as accent aigu, accent grave, and accent circonflexe; German feedback says “written with umlaut ä/ö/ü” as applicable. |
+| D29 | Review and retirement gates | **Confirmed:** after initial spec refinement, review with Claude, then retire the superseded requirements summary. After executable brief/content schemas, retire the legacy prompt/schema files and their SPEC references. |
+| D30 | Mockups from implementation | **Confirmed:** each implementation phase ends with a dedicated issue to improve its mockups from the actual prototype pages; phases 4/5 remain requirements-dependent. |
+| D31 | GitHub issue titles/milestones | **Confirmed:** titles follow `P<phase>-<two-digit-issue>: <description>`, matching `P0-01: Create spec`. Group every issue under milestones named Phase 0–Phase 5. |
 
 ## 2. Runtime and delivery architecture
 
@@ -116,7 +119,7 @@ dist/                  # generated deployment output
 
 Use **`content/lessons/`**, plural, throughout. The singular `content/lesson/` in the request is treated as a typo. Do not keep a second competing storage location. Generated briefs and lessons are individual files keyed by the existing outline IDs, replacing the older aggregate lesson-file convention for this prototype.
 
-The implementation issue must decide how draft definitions become executable modules. Keep shared enums in one place, update imports, and mark the old draft contracts as superseded. Do not leave two competing active `LessonBriefSchema` definitions.
+P1-03 migrates necessary definitions into executable schema modules, keeps shared enums in one place, and resolves imports. P1-04 then removes the legacy prompt/schema directory and its SPEC references. Do not leave two competing active `LessonBriefSchema` definitions.
 
 ### Environment example to implement in phase 1
 
@@ -638,20 +641,46 @@ Detailed implementation issue bodies and dependencies are in [ISSUES.md](ISSUES.
 
 | Phase | Deliverable | Exit criteria |
 | --- | --- | --- |
-| 0 | Specification and issues | Review this draft in several iterations, resolve architecture/language/scoring decisions, then publish the dependency-linked issue backlog to GitHub. |
-| 1 | Skeleton and shared contracts | Ordered/filterable index, artifact viewers, `dist` deployment verified on Pages, category schemas, offline generation, environment example, approved 20 briefs/20 lessons, start/session/exercise host, shared tests, vocabulary/grammar architecture review. |
-| 2 | Vocabulary | Introduction/audio, flashcards, matching, integrated noun-gender/reviewed overview, typed reference gaps, timed translation exam, immediate confirmed practice feedback, final results with exam/practice answer review menu, weighted progress/score header, and complete sample journeys/tests. Remaining vocabulary outlines can use the same pipeline; all 48 generated artifacts are optional unless added to scope. |
-| 3 | Grammar | Six practice interactions, 2–4 block flow, production-feedback placeholder, timed mixed exams, final results with exam/practice answer review menu and scores, all 48 grammar lessons generatable/playable, and end-to-end tests. |
-| 4 | Functions | Requirements and schema review first; then define generation, interaction, scoring, content, and acceptance issues. |
-| 5 | Reading | Requirements and schema review first; then define generation, interaction, scoring, content, and acceptance issues. |
+| 0 | Specification and issues | Refine the spec, review it with Claude, retire the superseded requirements summary, then publish the dependency-linked backlog under Phase 0–Phase 5 milestones. |
+| 1 | Skeleton and shared contracts | Ordered/filterable index, artifact viewers, `dist` deployment verified on Pages, category schemas, offline generation, environment example, approved 20 briefs/20 lessons, start/session/exercise host, shared tests, vocabulary/grammar architecture review, retirement of legacy prompt/schema files after schema migration, and final index/artifact mockup update from the prototype. |
+| 2 | Vocabulary | Introduction/audio, flashcards, matching, integrated noun-gender/reviewed overview, typed reference gaps, timed translation exam, immediate confirmed practice feedback, final results with exam/practice answer review menu, weighted progress/score header, and complete sample journeys/tests. Remaining vocabulary outlines can use the same pipeline; all 48 generated artifacts are optional unless added to scope. Close with vocabulary mockups updated from actual pages. |
+| 3 | Grammar | Six practice interactions, 2–4 block flow, production-feedback placeholder, timed mixed exams, final results with exam/practice answer review menu and scores, all 48 grammar lessons generatable/playable, end-to-end tests, and final grammar mockup updates from actual pages. |
+| 4 | Functions | Requirements and schema review first; then define generation, interaction, scoring, content, and acceptance issues. Finish implementation with mockups refreshed from actual pages. |
+| 5 | Reading | Requirements and schema review first; then define generation, interaction, scoring, content, and acceptance issues. Finish implementation with mockups refreshed from actual pages. |
 
 Phase 1 viewers can inspect grammar/vocabulary content before exercise renderers are complete. The session host is tested with fixtures and only starts lessons whose renderers are available; it must not pretend unimplemented exercises are playable.
+
+### Required issue order and phase-closing tasks
+
+Use the following review, cleanup, and mockup gates in the issue plan. Full issue bodies and all implementation dependencies remain in [ISSUES.md](ISSUES.md). Cleanup is carried out when its issue's prerequisites are met; source requirements and schema definitions must be preserved in their maintained replacements first.
+
+| Issue | Task | Ordering |
+| --- | --- | --- |
+| P0-01 | Create and refine the specification | First phase 0 task. |
+| P0-02 | Review the specification with Claude | After P0-01; record review findings and resolve agreed changes. |
+| P0-03 | Remove the superseded requirements summary and all its SPEC references | After the Claude review; preserve its requirements in SPEC. |
+| P0-04 | Publish the agreed GitHub backlog | After review/cleanup; apply title prefixes, milestones, dependencies, and diagrams/mockups. |
+| P1-03 | Define executable brief and content schemas | Migrate needed definitions before retiring draft files. |
+| P1-04 | Remove the legacy prompt/schema directory, its files, and all its SPEC references | After P1-03 and P0-03; executable imports and applicable checks must pass. |
+| P1-11 | Improve index and artifact-view mockups from the running prototype | Final phase 1 issue, after sample reviews and shared-contract review. |
+| P2-05 | Improve vocabulary lesson mockups from the running prototype | Final phase 2 issue, after complete-session validation. |
+| P3-07 | Improve grammar lesson mockups from the running prototype | Final phase 3 issue, after complete grammar integration. |
+| P4-02 | Improve function lesson mockups from the running prototype | Final phase 4 task; deferred until requirements and future implementation issues are complete. |
+| P5-02 | Improve reading lesson mockups from the running prototype | Final phase 5 task; deferred until requirements and future implementation issues are complete. |
+
+Phase-closing mockup work compares actual pages and representative states with their editable Salt sources, refreshes SVG/PNG previews, and updates the single root mockup README, SPEC links, and applicable published issue assets. Record the prototype revision used for comparison and resolve/document discrepancies with the agreed specification. Phase completion includes this mockup refresh. Phase 0 produces the specification rather than application pages, so its closing task is backlog publication.
+
+### GitHub issue titles and milestones
+
+Published issue titles must start with `P<phase-number>-<two-digit-issue-number>:` followed by a concise description, for example **P0-01: Create spec**. This follows the user's concrete example; the prefix is a roadmap ID, distinct from the actual GitHub issue number used in branch names and URLs.
+
+Create or reuse milestones named exactly **Phase 0**, **Phase 1**, **Phase 2**, **Phase 3**, **Phase 4**, and **Phase 5**, with descriptions reflecting each phase's deliverables and exit criteria. Assign every published issue, including reviews, cleanup tasks, future requirements tasks, and closing mockup tasks, to the corresponding milestone. Verify assignment during publication and keep milestones aligned when subsequent spec/issue changes are synchronized.
 
 ### Keep GitHub issues synchronized
 
 After the initial backlog is published, **every change to `docs/SPEC.md` or `docs/ISSUES.md` must include the corresponding GitHub issue refresh in the same change workflow**. GitHub must reflect the latest specification; synchronization is ongoing work, not a one-time phase 0 export.
 
-Update affected issue titles and bodies, scope, acceptance criteria, dependencies, and applicable Mermaid diagrams and mockup images/source links. Refresh specification version/commit references across the published backlog so they point to the latest specification. Preserve existing issue numbers and URLs; create issues for newly agreed work and record their mappings in `ISSUES.md`. Explicitly mark superseded scope and identify follow-up work when a change affects completed implementation.
+Update affected issue titles and bodies, scope, acceptance criteria, dependencies, and applicable Mermaid diagrams and mockup images/source links. Keep issue title prefixes and phase milestone assignments current. Refresh specification version/commit references across the published backlog so they point to the latest specification. Preserve existing issue numbers and URLs; create issues for newly agreed work and record their mappings in `ISSUES.md`. Explicitly mark superseded scope and identify follow-up work when a change affects completed implementation.
 
 Verify the updated issues on GitHub, including dependency links and rendered assets, before reporting the documentation change complete. If GitHub access prevents synchronization, report which updates remain pending and complete them when access is restored; do not describe the backlog as synchronized while remote changes remain unapplied. This requirement starts after initial publication; the current pre-publication drafts remain local during specification review.
 
@@ -705,3 +734,4 @@ When publishing the agreed backlog, include relevant Mermaid flows directly in i
 | 0.12 | 2026-10-06 | Required every post-publication SPEC.md/ISSUES.md change to refresh and verify GitHub issues, including specification references, scope, acceptance criteria, dependencies, and relevant diagrams/mockups. |
 | 0.13 | 2026-10-06 | Applied the results-inspired dark design across all 27 page mockups, including explicit text/control colors and consistent success/error/half-credit colors. Aligned the shared application design tokens and phase 1 acceptance criteria. |
 | 0.14 | 2026-10-06 | Required correction explanations to name French accents/diacritics and use “umlaut ä/ö/ü” for future German feedback. Updated result, practice, and artifact examples and content-generation acceptance criteria. |
+| 0.15 | 2026-10-06 | Added Claude review and gated retirement of superseded requirements/schema sources, phase-ending mockup refresh issues, colon-prefixed GitHub titles, and mandatory phase milestones. Renumbered drafts and dependencies and corrected temporary legacy source paths to their current locations. |
