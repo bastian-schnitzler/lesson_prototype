@@ -39,7 +39,10 @@ jobs:
     needs: validate
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    # Job permissions replace the workflow default, so checkout of this private
+    # repository needs contents: read restated here.
     permissions:
+      contents: read
       pages: write
       id-token: write
     environment:
