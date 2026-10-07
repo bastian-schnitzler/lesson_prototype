@@ -251,19 +251,21 @@ function MatchingCurves({ pairs, selected, boxes, arranged = false, celebrating 
   const frame = useRef<HTMLDivElement>(null);
   // When the French column is re-sorted after Check, each box glides from its old row to the new one
   // frame by frame, and the curves are redrawn every frame so they move with the boxes (P2-04 review).
+  // The slide shows where each word belongs, so it also plays under reduced motion (P2-04 review:
+  // Windows reports reduced motion whenever its animation effects are off).
   const tops = useRef(new Map<string, number>());
   const wasArranged = useRef(arranged);
   const animating = useRef(false);
   const [, setFrame] = useState(0);
   useLayoutEffect(() => {
     const cells = [...(frame.current?.querySelectorAll<HTMLElement>('[data-flip]') ?? [])];
-    if (arranged && !wasArranged.current && !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
+    if (arranged && !wasArranged.current) {
       const deltas = cells.map((cell) => [cell, (tops.current.get(cell.dataset.flip!) ?? cell.getBoundingClientRect().top) - cell.getBoundingClientRect().top] as const);
       const start = performance.now();
       animating.current = true;
       const step = (now: number) => {
         const t = Math.min(1, (now - start) / MATCH_SLIDE_MS);
-        const eased = 1 - (1 - t) ** 3;
+        const eased = t < 0.5 ? 4 * t ** 3 : 1 - (2 - 2 * t) ** 3 / 2; // starts slowly, speeds up, settles
         for (const [cell, delta] of deltas) cell.style.transform = t < 1 && delta ? `translateY(${delta * (1 - eased)}px)` : '';
         setFrame((n) => n + 1); // redraw the curves at the boxes' current positions
         if (t < 1) requestAnimationFrame(step);
