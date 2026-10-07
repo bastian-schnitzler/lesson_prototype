@@ -114,9 +114,6 @@
       "examForms": [
         "lundi"
       ],
-      "acceptedVariants": [
-        "le lundi"
-      ],
       "accentSensitive": [],
       "articleException": {
         "en": "Days of the week are usually referred to directly without an indefinite article.",
@@ -154,9 +151,6 @@
       "teachingForm": "mardi",
       "examForms": [
         "mardi"
-      ],
-      "acceptedVariants": [
-        "le mardi"
       ],
       "accentSensitive": [],
       "articleException": {
@@ -196,9 +190,6 @@
       "examForms": [
         "mercredi"
       ],
-      "acceptedVariants": [
-        "le mercredi"
-      ],
       "accentSensitive": [],
       "articleException": {
         "en": "Days of the week are usually referred to directly without an indefinite article.",
@@ -236,9 +227,6 @@
       "teachingForm": "jeudi",
       "examForms": [
         "jeudi"
-      ],
-      "acceptedVariants": [
-        "le jeudi"
       ],
       "accentSensitive": [],
       "articleException": {
@@ -278,9 +266,6 @@
       "examForms": [
         "vendredi"
       ],
-      "acceptedVariants": [
-        "le vendredi"
-      ],
       "accentSensitive": [],
       "articleException": {
         "en": "Days of the week are usually referred to directly without an indefinite article.",
@@ -318,9 +303,6 @@
       "teachingForm": "samedi",
       "examForms": [
         "samedi"
-      ],
-      "acceptedVariants": [
-        "le samedi"
       ],
       "accentSensitive": [],
       "articleException": {
@@ -360,9 +342,6 @@
       "examForms": [
         "dimanche"
       ],
-      "acceptedVariants": [
-        "le dimanche"
-      ],
       "accentSensitive": [],
       "articleException": {
         "en": "Days of the week are usually referred to directly without an indefinite article.",
@@ -400,9 +379,6 @@
       "teachingForm": "le matin",
       "examForms": [
         "le matin"
-      ],
-      "acceptedVariants": [
-        "matin"
       ],
       "accentSensitive": [],
       "articleException": {
@@ -442,9 +418,6 @@
       "examForms": [
         "l'après-midi"
       ],
-      "acceptedVariants": [
-        "après-midi"
-      ],
       "accentSensitive": [],
       "articleException": {
         "en": "Times of day are typically learned and used with the definite article.",
@@ -483,9 +456,6 @@
       "examForms": [
         "le soir"
       ],
-      "acceptedVariants": [
-        "soir"
-      ],
       "accentSensitive": [],
       "articleException": {
         "en": "Times of day are typically learned and used with the definite article.",
@@ -522,7 +492,6 @@
       "examForms": [
         "aujourd'hui"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -555,9 +524,6 @@
       "examForms": [
         "Quel jour sommes-nous ?",
         "C'est quel jour ?"
-      ],
-      "acceptedVariants": [
-        "Quel jour est-on ?"
       ],
       "accentSensitive": [],
       "articleException": null,

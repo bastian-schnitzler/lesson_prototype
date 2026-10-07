@@ -1,7 +1,6 @@
 import { z } from 'zod';
 import {
   AcceptedAnswersSchema,
-  LearningTextSchema,
   LocalizedLongTextSchema,
   LocalizedTextSchema,
   NestedIdSchema,
@@ -79,11 +78,11 @@ export const vocabularySections = (lang: string, brief: VocabularyBrief) => {
       key: 'exam',
       schema: z.strictObject({
         translation: z
-          .array(z.strictObject({ targetId: NestedIdSchema, prompt: nativeTextSchema(lang), extraAnswers: z.array(LearningTextSchema).max(4), answerExplanation: LocalizedTextSchema }))
+          .array(z.strictObject({ targetId: NestedIdSchema, prompt: nativeTextSchema(lang), answerExplanation: LocalizedTextSchema }))
           .min(1),
         dictation: z.array(z.strictObject({ targetId: NestedIdSchema, answerExplanation: LocalizedTextSchema })),
       }),
-      task: `translation: one item per target in this order: ${translationTargets.join(', ')}. prompt is the native-language cue for every mother tongue; when a mother tongue does not mark gender or number that the ${lang} answer requires, the prompt says so (e.g. "student (female)"). The learner answers with the exam form (article included for nouns); extraAnswers lists further fully correct answers only (usually empty). dictation: ${dictationTargets.length ? `one item per target in this order: ${dictationTargets.join(', ')}` : 'must be an empty array'}. Each answerExplanation explains meaning, gender/article or spelling, naming accents rather than only showing characters.`,
+      task: `translation: one item per target in this order: ${translationTargets.join(', ')}. prompt is the native-language cue for every mother tongue; when a mother tongue does not mark gender or number that the ${lang} answer requires, the prompt says so (e.g. "student (female)"). The learner answers with the exam form (article included for nouns); accepted answers are derived locally from the brief's exam forms. dictation: ${dictationTargets.length ? `one item per target in this order: ${dictationTargets.join(', ')}` : 'must be an empty array'}. Each answerExplanation explains meaning, gender/article or spelling, naming accents rather than only showing characters.`,
     },
   } satisfies Record<string, Section>;
 };

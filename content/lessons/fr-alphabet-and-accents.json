@@ -1334,9 +1334,7 @@
               "targetId": "target-nom",
               "accepted": {
                 "answers": [
-                  "un nom",
-                  "nom",
-                  "le nom"
+                  "un nom"
                 ],
                 "accentSensitive": []
               },
@@ -1356,9 +1354,7 @@
               "targetId": "target-prenom",
               "accepted": {
                 "answers": [
-                  "un prénom",
-                  "prénom",
-                  "le prénom"
+                  "un prénom"
                 ],
                 "accentSensitive": []
               },
@@ -1378,9 +1374,7 @@
               "targetId": "target-lettre",
               "accepted": {
                 "answers": [
-                  "une lettre",
-                  "lettre",
-                  "la lettre"
+                  "une lettre"
                 ],
                 "accentSensitive": []
               },
@@ -1400,9 +1394,7 @@
               "targetId": "target-majuscule",
               "accepted": {
                 "answers": [
-                  "une majuscule",
-                  "majuscule",
-                  "la majuscule"
+                  "une majuscule"
                 ],
                 "accentSensitive": []
               },
@@ -1422,9 +1414,7 @@
               "targetId": "target-minuscule",
               "accepted": {
                 "answers": [
-                  "une minuscule",
-                  "minuscule",
-                  "la minuscule"
+                  "une minuscule"
                 ],
                 "accentSensitive": []
               },
@@ -1444,9 +1434,7 @@
               "targetId": "target-trait-d-union",
               "accepted": {
                 "answers": [
-                  "un trait d'union",
-                  "trait d'union",
-                  "le trait d'union"
+                  "un trait d'union"
                 ],
                 "accentSensitive": []
               },
@@ -1466,9 +1454,7 @@
               "targetId": "target-accent-aigu",
               "accepted": {
                 "answers": [
-                  "un accent aigu",
-                  "accent aigu",
-                  "l'accent aigu"
+                  "un accent aigu"
                 ],
                 "accentSensitive": []
               },
@@ -1488,9 +1474,7 @@
               "targetId": "target-accent-grave",
               "accepted": {
                 "answers": [
-                  "un accent grave",
-                  "accent grave",
-                  "l'accent grave"
+                  "un accent grave"
                 ],
                 "accentSensitive": []
               },
@@ -1510,9 +1494,7 @@
               "targetId": "target-accent-circonflexe",
               "accepted": {
                 "answers": [
-                  "un accent circonflexe",
-                  "accent circonflexe",
-                  "l'accent circonflexe"
+                  "un accent circonflexe"
                 ],
                 "accentSensitive": []
               },
@@ -1532,9 +1514,7 @@
               "targetId": "target-cedille",
               "accepted": {
                 "answers": [
-                  "une cédille",
-                  "cédille",
-                  "la cédille"
+                  "une cédille"
                 ],
                 "accentSensitive": []
               },
@@ -1554,9 +1534,7 @@
               "targetId": "target-trema",
               "accepted": {
                 "answers": [
-                  "un tréma",
-                  "tréma",
-                  "le tréma"
+                  "un tréma"
                 ],
                 "accentSensitive": []
               },
@@ -1604,9 +1582,7 @@
               "targetId": "target-nom",
               "accepted": {
                 "answers": [
-                  "un nom",
-                  "nom",
-                  "le nom"
+                  "un nom"
                 ],
                 "accentSensitive": []
               },
@@ -1622,9 +1598,7 @@
               "targetId": "target-prenom",
               "accepted": {
                 "answers": [
-                  "un prénom",
-                  "prénom",
-                  "le prénom"
+                  "un prénom"
                 ],
                 "accentSensitive": []
               },
@@ -1640,9 +1614,7 @@
               "targetId": "target-lettre",
               "accepted": {
                 "answers": [
-                  "une lettre",
-                  "lettre",
-                  "la lettre"
+                  "une lettre"
                 ],
                 "accentSensitive": []
               },
@@ -1658,9 +1630,7 @@
               "targetId": "target-majuscule",
               "accepted": {
                 "answers": [
-                  "une majuscule",
-                  "majuscule",
-                  "la majuscule"
+                  "une majuscule"
                 ],
                 "accentSensitive": []
               },
@@ -1676,9 +1646,7 @@
               "targetId": "target-minuscule",
               "accepted": {
                 "answers": [
-                  "une minuscule",
-                  "minuscule",
-                  "la minuscule"
+                  "une minuscule"
                 ],
                 "accentSensitive": []
               },
@@ -1694,9 +1662,7 @@
               "targetId": "target-trait-d-union",
               "accepted": {
                 "answers": [
-                  "un trait d'union",
-                  "trait d'union",
-                  "le trait d'union"
+                  "un trait d'union"
                 ],
                 "accentSensitive": []
               },
@@ -1712,9 +1678,7 @@
               "targetId": "target-accent-aigu",
               "accepted": {
                 "answers": [
-                  "un accent aigu",
-                  "accent aigu",
-                  "l'accent aigu"
+                  "un accent aigu"
                 ],
                 "accentSensitive": []
               },
@@ -1730,9 +1694,7 @@
               "targetId": "target-accent-grave",
               "accepted": {
                 "answers": [
-                  "un accent grave",
-                  "accent grave",
-                  "l'accent grave"
+                  "un accent grave"
                 ],
                 "accentSensitive": []
               },
@@ -1748,9 +1710,7 @@
               "targetId": "target-accent-circonflexe",
               "accepted": {
                 "answers": [
-                  "un accent circonflexe",
-                  "accent circonflexe",
-                  "l'accent circonflexe"
+                  "un accent circonflexe"
                 ],
                 "accentSensitive": []
               },
@@ -1766,9 +1726,7 @@
               "targetId": "target-cedille",
               "accepted": {
                 "answers": [
-                  "une cédille",
-                  "cédille",
-                  "la cédille"
+                  "une cédille"
                 ],
                 "accentSensitive": []
               },
@@ -1784,9 +1742,7 @@
               "targetId": "target-trema",
               "accepted": {
                 "answers": [
-                  "un tréma",
-                  "tréma",
-                  "le tréma"
+                  "un tréma"
                 ],
                 "accentSensitive": []
               },
@@ -1808,7 +1764,7 @@
     "generatedAt": "2026-10-06T22:13:22.000Z",
     "inputHashes": {
       "outline": "79351202d86e7a5b859425caa83bbb08f039a88188df4db8daf84d8be56ebdc0",
-      "brief": "6cbf5415b14b95a2bb4e6d4c5753918e561eae7394ad23226840fbed341c3924"
+      "brief": "8829eaf779089bcf4924de38a8b6579e3d44c253ca87c7d74f377dcba78edcec"
     }
   }
 }

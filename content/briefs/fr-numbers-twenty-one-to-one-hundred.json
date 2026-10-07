@@ -112,10 +112,6 @@
       "examForms": [
         "vingt-et-un"
       ],
-      "acceptedVariants": [
-        "21",
-        "vingt et un"
-      ],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -147,9 +143,6 @@
       "teachingForm": "trente",
       "examForms": [
         "trente"
-      ],
-      "acceptedVariants": [
-        "30"
       ],
       "accentSensitive": [],
       "articleException": null,
@@ -183,9 +176,6 @@
       "examForms": [
         "quarante"
       ],
-      "acceptedVariants": [
-        "40"
-      ],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -217,9 +207,6 @@
       "teachingForm": "cinquante",
       "examForms": [
         "cinquante"
-      ],
-      "acceptedVariants": [
-        "50"
       ],
       "accentSensitive": [],
       "articleException": null,
@@ -253,9 +240,6 @@
       "examForms": [
         "soixante"
       ],
-      "acceptedVariants": [
-        "60"
-      ],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -287,9 +271,6 @@
       "teachingForm": "soixante-dix",
       "examForms": [
         "soixante-dix"
-      ],
-      "acceptedVariants": [
-        "70"
       ],
       "accentSensitive": [],
       "articleException": null,
@@ -323,10 +304,6 @@
       "examForms": [
         "soixante-et-onze"
       ],
-      "acceptedVariants": [
-        "71",
-        "soixante et onze"
-      ],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -358,10 +335,6 @@
       "teachingForm": "quatre-vingts",
       "examForms": [
         "quatre-vingts"
-      ],
-      "acceptedVariants": [
-        "80",
-        "quatre-vingt"
       ],
       "accentSensitive": [],
       "articleException": null,
@@ -395,10 +368,6 @@
       "examForms": [
         "quatre-vingt-un"
       ],
-      "acceptedVariants": [
-        "81",
-        "quatre-vingt-et-un"
-      ],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -430,9 +399,6 @@
       "teachingForm": "quatre-vingt-dix",
       "examForms": [
         "quatre-vingt-dix"
-      ],
-      "acceptedVariants": [
-        "90"
       ],
       "accentSensitive": [],
       "articleException": null,
@@ -466,9 +432,6 @@
       "examForms": [
         "quatre-vingt-onze"
       ],
-      "acceptedVariants": [
-        "91"
-      ],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -501,9 +464,6 @@
       "teachingForm": "cent",
       "examForms": [
         "cent"
-      ],
-      "acceptedVariants": [
-        "100"
       ],
       "accentSensitive": [],
       "articleException": null,

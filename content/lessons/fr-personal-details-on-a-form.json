@@ -857,9 +857,7 @@
               "targetId": "target-nom",
               "accepted": {
                 "answers": [
-                  "un nom",
-                  "le nom",
-                  "nom"
+                  "un nom"
                 ],
                 "accentSensitive": []
               },
@@ -879,10 +877,7 @@
               "targetId": "target-prenom",
               "accepted": {
                 "answers": [
-                  "un prénom",
-                  "le prénom",
-                  "prénom",
-                  "prenom"
+                  "un prénom"
                 ],
                 "accentSensitive": []
               },
@@ -902,9 +897,7 @@
               "targetId": "target-adresse",
               "accepted": {
                 "answers": [
-                  "une adresse",
-                  "l'adresse",
-                  "adresse"
+                  "une adresse"
                 ],
                 "accentSensitive": []
               },
@@ -924,9 +917,7 @@
               "targetId": "target-date-de-naissance",
               "accepted": {
                 "answers": [
-                  "une date de naissance",
-                  "la date de naissance",
-                  "date de naissance"
+                  "une date de naissance"
                 ],
                 "accentSensitive": []
               },
@@ -946,9 +937,7 @@
               "targetId": "target-lieu-de-naissance",
               "accepted": {
                 "answers": [
-                  "un lieu de naissance",
-                  "le lieu de naissance",
-                  "lieu de naissance"
+                  "un lieu de naissance"
                 ],
                 "accentSensitive": []
               },
@@ -968,10 +957,7 @@
               "targetId": "target-nationalite",
               "accepted": {
                 "answers": [
-                  "une nationalité",
-                  "la nationalité",
-                  "nationalité",
-                  "nationalite"
+                  "une nationalité"
                 ],
                 "accentSensitive": []
               },
@@ -991,9 +977,7 @@
               "targetId": "target-profession",
               "accepted": {
                 "answers": [
-                  "une profession",
-                  "la profession",
-                  "profession"
+                  "une profession"
                 ],
                 "accentSensitive": []
               },
@@ -1013,8 +997,7 @@
               "targetId": "target-celibataire",
               "accepted": {
                 "answers": [
-                  "célibataire",
-                  "celibataire"
+                  "célibataire"
                 ],
                 "accentSensitive": []
               },
@@ -1056,9 +1039,7 @@
               "targetId": "target-signature",
               "accepted": {
                 "answers": [
-                  "une signature",
-                  "la signature",
-                  "signature"
+                  "une signature"
                 ],
                 "accentSensitive": []
               },
@@ -1084,7 +1065,7 @@
     "generatedAt": "2026-10-06T22:13:22.000Z",
     "inputHashes": {
       "outline": "4ae829bf24bae08d9a146632298e7f1fcd7676f64f1ef8a2940d950403848108",
-      "brief": "5f7eb90cc86e1cc409bf6f80ac05f1d67a24d0d9e8909cfb849fccde3eeb8b40"
+      "brief": "56fac44653376d02e331b0a79d7a532db167efcace08738665a454d6c6fcf6f1"
     }
   }
 }

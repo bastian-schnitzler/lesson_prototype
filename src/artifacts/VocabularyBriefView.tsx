@@ -161,7 +161,6 @@ function TargetTable({ caption, targets, lang, text }: TargetTableProps) {
           {targets.map((target) => {
             const notes = [
               target.pronunciation && t('brief.pronunciation', { value: target.pronunciation }),
-              target.acceptedVariants.length > 0 && t('brief.variants', { list: target.acceptedVariants.join(', ') }),
               target.genderVariants.length > 0 && t('brief.genderVariants', { list: target.genderVariants.join(', ') }),
               target.accentSensitive.length > 0 && t('brief.accentSensitive', { list: target.accentSensitive.join(', ') }),
               target.articleException && t('brief.articleException', { reason: ui(target.articleException) }),

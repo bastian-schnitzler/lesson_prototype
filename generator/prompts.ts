@@ -5,7 +5,7 @@ import { vocabularyBriefSchema } from '../src/schemas/vocabulary.ts';
 import type { SupportedKind } from '../src/schemas/artifacts.ts';
 import type { OutlineContext } from '../src/validation/artifacts.ts';
 
-export const PROMPT_VERSION = 'brief-v2';
+export const PROMPT_VERSION = 'brief-v3';
 const trusted = { schemaVersion: true, id: true, lang: true, level: true, locales: true, provenance: true } as const;
 
 export function payloadSchema(kind: SupportedKind, lang: string) {
@@ -57,8 +57,9 @@ Use concise strings within the original Zod limits: labels 120, ordinary support
 `;
   const category = ctx.entry.kind === 'vocabulary' ? `
 Aim for about 12 targets normally and around 8 for a demanding load; never more than 20 unless this lesson needs a complete finite inventory (e.g. numbers, the alphabet). Mix core and demanding targets where the topic naturally allows it, but do not force a mix or mark targets demanding only to create one. Explain count and difficulty balance.
-targetCount equals targets.length. Every target belongs to exactly one group. Include context, pronunciation, native translations, teaching form, accepted exam forms and variants.
+targetCount equals targets.length. Every target belongs to exactly one group. Include context, pronunciation, native translations, teaching form and exam forms. examForms are the only fully correct exam answers (the exam always asks for the indefinite article of nouns); list genuine alternative spellings there, never accent-less, capitalised or definite forms: the shared scorer grades those.
 Only nouns have nonempty genders and a number; non-nouns use genders [], number null, articleException null. French noun examForms include un/une/des unless a localized articleException explains otherwise.
+French noun articles agree with gender and number: un (masculine singular), une (feminine singular), des (plural); never add a plural form to a singular target. teachingForm is one of examForms (adjectives may list both genders as "espagnol, espagnole"). Use articleException only when no indefinite form is grammatical (proper names, set phrases, days used without article).
 accentSensitive entries are whole words present in examForms and only mark accents that change meaning.
 genderOverview.scored is true exactly when nouns occur. typedGaps and listening reference known target IDs without duplicates.
 Every target appears exactly once in a translation exam page. If outline intent requests oral recognition/pronunciation/listening, listening.required is true, practice IDs and duration are present, and an additional listening_dictation exam page is included.

@@ -6,7 +6,7 @@ import { join, resolve } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { catalogContexts, generateBrief, generateMissingBriefs, sampleContexts, type BriefOptions } from '../../generator/briefs.ts';
 import { geminiAdapter, GenerationError, loadBatchConfig, loadConfig, type GenerationRequest } from '../../generator/gemini.ts';
-import { payloadSchema, structuredSchema } from '../../generator/prompts.ts';
+import { payloadSchema, PROMPT_VERSION, structuredSchema } from '../../generator/prompts.ts';
 import { scanContentDir } from '../../scripts/catalog.ts';
 
 const ROOT = resolve(import.meta.dirname, '../..');
@@ -44,7 +44,7 @@ describe('offline brief authoring', () => {
     expect(await generateBrief(id, opts)).toEqual({ id, status: 'generated', message: 'model fake-model' });
     const artifact = JSON.parse(readFileSync(saved(dir, id), 'utf8'));
     expect(artifact.provenance.inputHashes.outline).toBe(catalogContexts(dir).find((c) => c.entry.id === id)?.outlineHash);
-    expect(artifact.provenance).toMatchObject({ model: 'fake-model', generator: 'lesson-prototype', promptVersion: 'brief-v2' });
+    expect(artifact.provenance).toMatchObject({ model: 'fake-model', generator: 'lesson-prototype', promptVersion: PROMPT_VERSION });
     expect(scanContentDir(dir).manifest.artifacts[id].draft?.status).toBe('valid');
     expect(await generateBrief(id, { ...opts, adapter: () => { throw new Error('must not load credentials'); } })).toEqual({ id, status: 'reused' });
     expect(generate).toHaveBeenCalledTimes(1);
