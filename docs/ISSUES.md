@@ -694,6 +694,8 @@ Acceptance:
 - Partial credit is per row; first submissions remain immutable.
 - Tests cover reassignment, missing rows, repeated forms, valid alternatives, and typed normalization.
 
+Outcome (2026-10-08): `PronounMatchRenderer` (token bank, pointer drag and drop, click and keyboard placement, tokens used once, per-row marks in place) and `PronounTypingRenderer` (labelled rows marked in place) replace the baseline selects and fields. Unit tests in `tests/unit/grammar-renderers.test.tsx`; e2e journey with real drag and drop in `tests/e2e/session.spec.ts`.
+
 Dependencies: P3-01.
 
 ### P3-03: Implement multiple-choice gaps and exact-typing phrase gaps

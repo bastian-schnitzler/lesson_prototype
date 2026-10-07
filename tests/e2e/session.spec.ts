@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Locator, type Page } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
   // Every vocabulary lesson has listening tasks (P2-04) and needs a French voice to start.
@@ -457,4 +457,44 @@ test('matching pairs by keyboard, lets a pair be reassigned and locks it with fe
   await expect(french.and(page.locator('.is-right'))).toHaveCount(0);
   if (page.viewportSize()!.width >= 720) await expect(page.locator('.match-curve.is-thin')).toHaveCount(4); // thin purple curves
   await expect(page.getByText('Gender and overview')).toBeVisible();
+});
+
+test('pronoun/form matching by drag and drop and by clicks, with per-row checks (P3-02)', async ({ page }) => {
+  await page.goto('./#/lesson/fr-verb-etre-present/play');
+  await proceed(page); // start
+  await proceed(page); // explanation
+  const bank = page.getByRole('group', { name: 'Available forms' });
+  const slot = (pronoun: string) => page.locator('.form-row').filter({ has: page.locator('.form-pronoun', { hasText: new RegExp(`^${pronoun}$`) }) }).locator('.form-slot');
+  const drag = async (from: Locator, to: Locator) => {
+    const a = (await from.boundingBox())!, b = (await to.boundingBox())!;
+    await page.mouse.move(a.x + a.width / 2, a.y + a.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(a.x + a.width / 2 + 20, a.y + a.height / 2 + 10, { steps: 3 });
+    await expect(page.locator('.drag-ghost')).toBeVisible();
+    await page.mouse.move(b.x + b.width / 2, b.y + b.height / 2, { steps: 8 });
+    await page.mouse.up();
+  };
+  // Drag suis onto je, then move it on to tu, then drag it back into the bank.
+  await drag(bank.getByRole('button', { name: 'suis' }), slot('je'));
+  await expect(slot('je')).toHaveText('suis');
+  await expect(bank.getByRole('button', { name: 'suis' })).toHaveCount(0);
+  await drag(slot('je').locator('.token'), slot('tu'));
+  await expect(slot('tu')).toHaveText('suis');
+  await expect(slot('je')).toHaveText('Choose a form');
+  await drag(slot('tu').locator('.token'), bank);
+  await expect(bank.getByRole('button', { name: 'suis' })).toBeVisible();
+  await expect(page.getByText('0 of 3 rows filled.')).toBeVisible();
+  // Click alternative: a form, then its row; a row, then its form.
+  await drag(bank.getByRole('button', { name: 'suis' }), slot('je'));
+  await bank.getByRole('button', { name: 'est' }).click();
+  await slot('tu').click();
+  await slot('il / elle').click();
+  await bank.getByRole('button', { name: 'es' }).click();
+  await expect(page.getByText('All forms are placed.')).toBeVisible();
+  await proceed(page); // Check
+  await expect(page.getByText('1 of 3 rows correct.')).toBeVisible();
+  await expect(page.locator('.form-row.is-right')).toHaveCount(1);
+  await expect(page.locator('.form-row.is-wrong')).toHaveCount(2);
+  await expect(page.locator('.form-row.is-wrong').first()).toContainText('Tu takes es');
+  await expect(page.getByRole('button', { name: 'Continue' })).toBeEnabled();
 });
