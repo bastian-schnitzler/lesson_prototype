@@ -8,6 +8,7 @@ import type { MessageKey } from '../i18n/messages.ts';
 import type { Locale } from '../schemas/common.ts';
 import { rendererRegistry, UnitFeedback } from './renderers.tsx';
 import { answerText } from './controls.tsx';
+import { MATCH_SLIDE_MS } from './vocabularyRenderers.tsx';
 import { missingArticle } from '../domain/articleHint.ts';
 import type { SessionInput } from './useSession.ts';
 import { reviewColor } from '../artifacts/briefParts.tsx';
@@ -150,8 +151,8 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
       && page.units.every((u) => scoreUnit(u, record.drafts[u.id]).outcome === 'fully_correct');
     if (!perfect) return dispatch({ type: 'continue' });
     setCelebrating(true);
-    // Matching first slides every word level with its meaning (0.6 s), so its flash lasts longer.
-    const pause = page.items.some((it) => it.type === 'vocabulary_matching') ? 1500 : 900;
+    // Matching first slides every word level with its meaning, then flashes (0.9 s) like other pages.
+    const pause = page.items.some((it) => it.type === 'vocabulary_matching') ? MATCH_SLIDE_MS + 1000 : 900;
     window.setTimeout(() => { setCelebrating(false); dispatch({ type: 'continue' }); }, pause);
   };
 

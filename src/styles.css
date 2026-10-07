@@ -1426,22 +1426,24 @@ select {
   animation: success-flash 0.9s ease-out both;
 }
 
-/* Matching all correct: only the background flashes green; boxes and curves keep their colours. */
+/* Matching all correct: once the boxes have arrived (1.2 s slide), only the content area flashes
+   green as before P2-04 (background and border); boxes and curves keep their colours. */
 .task-card.is-celebrating:has(.matching) {
-  animation: background-flash 1.5s ease-out both;
+  animation: card-flash 0.9s ease-out 1.2s both;
+}
+
+@keyframes card-flash {
+  0% { background-color: var(--surface); border-color: var(--border); }
+  30% { background-color: rgb(0 230 118 / 0.22); border-color: var(--correct); }
+  100% { background-color: rgb(0 230 118 / 0.12); border-color: var(--correct); }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .task-card.is-celebrating:has(.matching) {
     animation: none;
-    background-color: rgb(0 230 118 / 0.12);
+    background-color: rgb(0 230 118 / 0.15);
+    border-color: var(--correct);
   }
-}
-
-@keyframes background-flash {
-  0%, 35% { background-color: var(--surface); }
-  55% { background-color: rgb(0 230 118 / 0.2); }
-  100% { background-color: rgb(0 230 118 / 0.1); }
 }
 
 @keyframes success-flash {
@@ -1910,11 +1912,11 @@ select {
   color: var(--incorrect);
 }
 
+/* The correct gender the learner did not choose is green too (P2-04 review). */
 .gender-option.is-answer input + span {
-  border-color: var(--progress);
-  background: #2e1065;
-  box-shadow: inset 0 0 0 1px var(--progress);
-  color: #ddd6fe;
+  border-color: var(--correct);
+  box-shadow: inset 0 0 0 1px var(--correct);
+  color: var(--correct);
 }
 
 .gender-options:disabled .gender-option span {

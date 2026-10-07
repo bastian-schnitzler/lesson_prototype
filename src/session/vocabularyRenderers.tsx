@@ -226,7 +226,7 @@ export function MatchingRenderer(props: RendererProps) {
 
 const WIDE_MATCHING = '(min-width: 720px)';
 /** Duration of the slide after Check (the success pause in SessionView allows for it). */
-export const MATCH_SLIDE_MS = 700;
+export const MATCH_SLIDE_MS = 1200;
 function useMediaQuery(query: string): boolean {
   return useSyncExternalStore(
     (notify) => {
@@ -351,7 +351,7 @@ export function OverviewRenderer({ item, plan, motherTongue }: RendererProps) {
  * "Check". While answering, nouns show their bare term with masculine/feminine choices and a speaker
  * that reads only the bare term (no article or gender clue); other words show no input. After Check
  * the choices are marked in place: a correct choice has a green border, a wrong choice a red border
- * and the correct gender is highlighted in purple; the word shows its teaching form and translation,
+ * and the correct gender is highlighted in green; the word shows its teaching form and translation,
  * without explanations. The button then reads Continue.
  */
 export function GenderRenderer(props: RendererProps) {

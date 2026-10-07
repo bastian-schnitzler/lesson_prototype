@@ -110,7 +110,7 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   await expect(french.and(page.locator('.is-wrong'))).toHaveCount(2);
   await expect(french.and(page.locator('.is-right'))).toHaveCount(2);
   if (page.viewportSize()!.width >= 720) await expect(page.locator('.match-curve.is-checked')).toHaveCount(2);
-  await page.waitForTimeout(700); // the slide animation
+  await page.waitForTimeout(1300); // the slide animation (1.2 s)
   for (const meaning of await page.locator('.matching-columns > ul').first().locator('.match-item').all()) {
     const word = PAIRS[(await meaning.textContent())!.replace(/\d+$/, '').trim()];
     const partner = french.filter({ hasText: word });

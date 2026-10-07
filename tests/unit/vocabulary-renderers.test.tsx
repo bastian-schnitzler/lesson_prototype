@@ -75,7 +75,7 @@ it('shows every word on the gender page: nouns as bare lemmas with gender choice
   expect(speakers.join(' ')).not.toMatch(/\b(un|une|le|la) |l'/);
 });
 
-it('marks the choices in place after Check: green for right, red for wrong, purple for the correct gender', () => {
+it('marks the choices in place after Check: green for right, red for wrong, green for the correct gender', () => {
   const units = genderPage.units.filter((u) => u.kind === 'choice');
   const first = units[0] as (typeof units)[number] & { correct: string[] };
   const wrongChoice = first.correct[0] === 'feminine' ? 'masculine' : 'feminine';
