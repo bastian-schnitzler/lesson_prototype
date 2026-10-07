@@ -29,7 +29,7 @@ These issue bodies were published to GitHub in P0-04 on 2026-10-06. Each GitHub 
 | P2-03 | [#23](https://github.com/bastian-schnitzler/lesson_prototype/issues/23) | Implement noun-gender overview, typed gaps, and translation exam |
 | P2-04 | [#24](https://github.com/bastian-schnitzler/lesson_prototype/issues/24) | Integrate complete vocabulary sessions and end-to-end validation |
 | P2-05 | [#52](https://github.com/bastian-schnitzler/lesson_prototype/issues/52) | Deliver formatted introduction and explanation text from generation |
-| P2-06 | [#25](https://github.com/bastian-schnitzler/lesson_prototype/issues/25) | Update vocabulary lesson mockups from the prototype |
+| P2-08 | [#25](https://github.com/bastian-schnitzler/lesson_prototype/issues/25) | Update vocabulary lesson mockups from the prototype |
 | P3-01 | [#26](https://github.com/bastian-schnitzler/lesson_prototype/issues/26) | Review grammar renderer composition and mixed exam support |
 | P3-02 | [#27](https://github.com/bastian-schnitzler/lesson_prototype/issues/27) | Implement pronoun/form matching and typing with tests |
 | P3-03 | [#28](https://github.com/bastian-schnitzler/lesson_prototype/issues/28) | Implement multiple-choice gaps and exact-typing phrase gaps |
@@ -509,14 +509,13 @@ GitHub: [#24](https://github.com/bastian-schnitzler/lesson_prototype/issues/24).
 
 Milestone: **Phase 2**.
 
-Scope: wire all six stages for the ten sample vocabulary lessons, verify realistic complete sessions, then generate, validate and make playable the remaining 38 fr/A1 vocabulary lessons (D44).
+Scope: wire all six stages for the ten sample vocabulary lessons and verify realistic complete sessions. The remaining 38 fr/A1 vocabulary lessons are authored in P2-06 (D44).
 
 Acceptance:
 
 - Every approved sample vocabulary lesson can complete all six stages and show accurate scores.
 - End-to-end tests cover noun/non-noun lessons, large-inventory groups, noun-gender selectors/review, correction explanations, results menu, transient last-try score reset, practice confirmation, half credit, weighted progress, timed exam/timeout, deferred results, reload/resume, and restart.
 - No reference-choice clicking, exam answer leaks, or false gender tags occur.
-- All 48 vocabulary lessons have valid playable content with current hashes. Pedagogical review samples different themes, large inventories, and listening-heavy intents; resolve flagged generation issues.
 - Rebuild/deploy the updated static content and verify representative Pages journeys.
 
 Dependencies: P2-03, P1-02.
@@ -567,7 +566,68 @@ Acceptance:
 
 Dependencies: P2-02, P2-04.
 
-### P2-06: Update vocabulary lesson mockups from the prototype
+### P2-06: Author briefs and lessons for the remaining vocabulary lessons
+
+Milestone: **Phase 2**.
+
+Scope: the 38 fr/A1 vocabulary outline entries that still have no artifacts. For each, Claude in Claude Code writes the brief first and then the lesson content directly, as the P1-08 samples were written, instead of running the offline generator (`make generate`).
+
+Acceptance:
+
+- Every remaining vocabulary entry has `content/briefs/<id>.json` and `content/lessons/<id>.json`, written in outline order and in batches of about five lessons per commit, with review checkpoints.
+- Briefs follow SPEC section 4:
+  - target count policy: about 12 on average, around 8 for a demanding load, at most 20 unless a finite inventory needs more
+  - groups, with mixed difficulty where the topic allows
+  - the article policy: D39, agreement, `term` without article, teaching form among the exam forms, and genuine exceptions only
+  - exam forms as the only accepted answers (no variants)
+  - listening coverage wherever the intent names oral recognition or pronunciation
+  - page durations and exam limits
+  - complete en/fr/de and native maps
+- Lessons follow the contracts and the reviewed sample style:
+  - formatted introductions (D46)
+  - matching labels unique in every locale
+  - typed gaps with four reference words of which exactly one fits
+  - translation prompts that disambiguate gender
+  - explanations that name the accent mark (D28)
+  - exact exam answers
+- Provenance records hand authoring (for example `generator: "claude-direct-authoring"`, `promptVersion: "manual-brief-v1"` / `"manual-content-v1"`) and the current input hashes computed with the repository's hash functions. No Gemini calls.
+- `make catalog` reports no warnings. All 48 vocabulary lessons are valid and current. The sample check and the contract test cover every authored lesson, not only the first twenty.
+- A pedagogical review samples different themes, large inventories and listening-heavy intents. Flagged issues are fixed before the next batch.
+- Rebuild and deploy the static content and verify representative Pages journeys.
+
+Dependencies: P2-01, P2-05.
+
+### P2-07: Author briefs and lessons for the remaining grammar lessons
+
+Milestone: **Phase 2**.
+
+Scope: the 38 fr/A1 grammar outline entries that still have no artifacts. For each, Claude in Claude Code writes the brief first and then the lesson content directly, in the same way as P2-06, without the generator.
+
+Acceptance:
+
+- Every remaining grammar entry has a brief and a lesson file, written in outline order and in batches of about five lessons per commit, with review checkpoints.
+- Briefs follow SPEC section 4:
+  - rules with IDs
+  - 2–4 teaching blocks, each with an explanation plan, examples with translations for every mother tongue, pitfalls and 1–3 suitable exercise types; pronoun–form exercises only where they fit the topic
+  - a feedback placeholder
+  - mixed exam pages that cover every rule, using only typed gaps, pronoun-form typing or word order
+  - durations and limits
+  - complete en/fr/de
+- Lessons follow the contracts:
+  - formatted explanations (D46) with form tables
+  - correct and natural A1 French
+  - accepted answers and accent-sensitive words
+  - error spotters with one faulty token and a valid correction mode
+  - explanations that name the accent mark (D28)
+  - unique labels for repeated exercise steps (the P1-12 follow-up)
+- Provenance records hand authoring and the current input hashes. No Gemini calls.
+- `make catalog` reports no warnings. All 48 grammar lessons are valid, current, and playable with the current renderers. P3-06 validates them again with the full phase 3 interactions.
+- A pedagogical review samples different topics (conjugation, articles, syntax, irregular forms). Flagged issues are fixed before the next batch.
+- Rebuild and deploy the static content and verify representative Pages journeys.
+
+Dependencies: P1-10, P2-05.
+
+### P2-08: Update vocabulary lesson mockups from the prototype
 
 GitHub: [#25](https://github.com/bastian-schnitzler/lesson_prototype/issues/25).
 
@@ -584,7 +644,7 @@ Acceptance:
 - Record the prototype revision used for comparison. Resolve implementation/specification differences or record them as follow-up work; mockup updates must not silently change agreed behavior.
 - Refresh applicable published GitHub issues and their diagrams/PlantUML code and server-rendered preview URLs; verify source parity, links, and rendering. This issue is required to close the phase.
 
-Dependencies: P2-04, P2-05.
+Dependencies: P2-04, P2-05, P2-06, P2-07.
 
 ## Phase 3 — grammar
 
@@ -603,7 +663,7 @@ Acceptance:
 - Duplicate form text, alternative valid forms/orders, rule coverage, and item-level correction feedback are supported.
 - Pronoun matching/typing is selected only for appropriate objectives.
 
-Dependencies: P1-10, P2-06.
+Dependencies: P1-10, P2-08.
 
 ### P3-02: Implement pronoun/form matching and typing with tests
 
@@ -682,17 +742,17 @@ GitHub: [#31](https://github.com/bastian-schnitzler/lesson_prototype/issues/31).
 
 Milestone: **Phase 3**.
 
-Scope: integrate explanation/practice blocks, correction explanations, production placeholder, timed exam, and final-results menu; generate/validate the remaining grammar content for the 48-entry outline.
+Scope: integrate explanation/practice blocks, correction explanations, production placeholder, timed exam, and final-results menu; validate all 48 grammar lessons (the remaining 38 are authored in P2-07) with the full phase 3 interactions.
 
 Acceptance:
 
 - All 48 grammar lessons have valid playable content, appropriate 2–4 blocks, and complete exam coverage.
 - Audit all artifacts for supported renderer types, valid IDs/references/answers, and current hashes.
-- Pedagogical review samples different topics and irregular forms; resolve flagged generation issues.
+- Pedagogical review samples different topics and irregular forms; resolve flagged content issues.
 - End-to-end tests cover conjugation, article/gap, syntax/word-order, the production placeholder, practice confirmation, weighted progress, timed mixed exam, post-exam review, deadline persistence, and accurate final scores.
 - Rebuild/deploy the updated static content and verify representative Pages journeys.
 
-Dependencies: P3-05, P1-02.
+Dependencies: P3-05, P1-02, P2-07.
 
 ### P3-07: Update grammar lesson mockups from the prototype
 
@@ -810,6 +870,6 @@ Use fenced Mermaid and applicable fenced PlantUML source directly in GitHub bodi
 | P3-04 | Grammar blocks, SPEC section 7 | [Word order](mockups/04-grammar-lesson/02-05-exercise-word-order/word-order.puml), [error spotter](mockups/04-grammar-lesson/02-06-exercise-error-spotter/error-spotter.puml) |
 | P3-05, P3-06 | Grammar blocks, placeholder, exam/results, SPEC section 7 | [Placeholder](mockups/04-grammar-lesson/03-feedback-placeholder/feedback-placeholder.puml), [mixed exam](mockups/04-grammar-lesson/04-exam/mixed-exam.puml), [grammar results](mockups/04-grammar-lesson/05-results/exam-results.puml) |
 
-The phase-closing issues P1-12, P2-06, and P3-07 include before/after source changes and PlantUML-enabled previews for their respective index/artifact, vocabulary, and grammar screens from the [root mockup guide](mockups/README.md). P4-02 and P5-02 receive category-specific assets when those pages exist. The Claude review issue P0-02 uses the specification's applicable flows and mockups as review inputs.
+The phase-closing issues P1-12, P2-08, and P3-07 include before/after source changes and PlantUML-enabled previews for their respective index/artifact, vocabulary, and grammar screens from the [root mockup guide](mockups/README.md). P4-02 and P5-02 receive category-specific assets when those pages exist. The Claude review issue P0-02 uses the specification's applicable flows and mockups as review inputs.
 
 Browse sources and embedded SPEC previews using the [organized mockup guide](mockups/README.md). Keep applicable diagrams and rendered mockups in published issue bodies, not only in the linked specification.
