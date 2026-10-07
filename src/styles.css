@@ -1801,3 +1801,25 @@ select {
 .units:has(.reference-list) .unit {
   border-bottom: 0;
 }
+
+.article-badge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.05rem 0.55rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+/* Neutral exam hint (no correctness): shown under the field while the article is missing. */
+.info-box {
+  margin: 0.4rem 0 0;
+  padding: 0.5rem 0.8rem;
+  border-left: 3px solid var(--indigo);
+  border-radius: var(--radius);
+  background: #1e1b4b;
+  color: var(--text);
+  font-size: 15px;
+}

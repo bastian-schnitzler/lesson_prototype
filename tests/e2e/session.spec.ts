@@ -101,6 +101,12 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
     await answerGap(page, word);
   }
   await expect(page.getByRole('timer')).toBeVisible();
+  // Each word to translate says whether the answer needs an article; a missing one triggers a hint.
+  await expect(page.locator('.article-badge').first()).toHaveText('with article');
+  await page.getByRole('textbox').first().fill('livre');
+  await expect(page.getByRole('status').filter({ hasText: 'Type the article before the word' })).toBeVisible();
+  await page.getByRole('textbox').first().fill('un livre');
+  await expect(page.locator('.info-box')).toHaveCount(0);
   const score = await page.locator('.session-score').textContent();
   await page.getByRole('textbox').first().fill('un livre');
   await proceed(page);

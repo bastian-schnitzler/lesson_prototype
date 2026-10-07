@@ -5,6 +5,7 @@ import type { LockedUnit, UnitResponse } from '../domain/session/session.ts';
 import { seededOrder, type Item, type LessonPlan, type Option, type PlanUnit } from '../domain/session/plan.ts';
 import type { MessageKey } from '../i18n/messages.ts';
 import type { Locale } from '../schemas/common.ts';
+import { missingArticle, startsWithArticle } from '../domain/articleHint.ts';
 import { speak, useVoiceStatus } from './speech.ts';
 import { VoiceHelp } from './VoiceHelp.tsx';
 
@@ -293,10 +294,22 @@ export function UnitsRenderer(props: RendererProps) {
                 <TextControl unit={unit} props={props} label={t('session.gapAnswer')} />
               </Gap>
             ) : unit.kind === 'text' ? (
-              <label className="field">
-                <span lang={unit.prompt.native ? undefined : lang}>{prompt || t('session.typeWhatYouHear')}</span>
-                <TextControl unit={unit} props={props} label={prompt || t('session.typeWhatYouHear')} />
-              </label>
+              <>
+                <label className="field">
+                  <span lang={unit.prompt.native ? undefined : lang}>
+                    {prompt || t('session.typeWhatYouHear')}
+                    {/* Vocabulary translation tasks say whether the French answer needs an article. */}
+                    {unit.itemType === 'vocabulary_translation_exam' && (
+                      <small className="article-badge">{t(startsWithArticle(unit.answer, lang) ? 'session.withArticle' : 'session.withoutArticle')}</small>
+                    )}
+                  </span>
+                  <TextControl unit={unit} props={props} label={prompt || t('session.typeWhatYouHear')} />
+                </label>
+                {(unit.itemType === 'vocabulary_translation_exam' || unit.itemType === 'vocabulary_listening_dictation') && !readOnly(props, unit)
+                  && missingArticle((value(props, unit) as string | undefined) ?? '', unit.answer, lang) && (
+                  <p className="info-box" role="status">{t('session.typeArticle')}</p>
+                )}
+              </>
             ) : unit.kind === 'choice' ? (
               unit.prompt.before !== undefined ? (
                 <>
