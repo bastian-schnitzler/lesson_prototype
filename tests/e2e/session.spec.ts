@@ -101,6 +101,8 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   await expect(page.getByRole('button', { name: 'Check' })).toBeDisabled(); // practice pages are checked first
   await matchAll(page);
   await proceed(page);
+  // The French boxes glide to their new rows (frame by frame, with the curves following).
+  await expect.poll(() => page.locator('.matching-columns [data-flip]').evaluateAll((cells) => cells.some((c) => (c as HTMLElement).style.transform !== '')), { intervals: [20] }).toBe(true);
   // Checked in place (no correction view): every French word moves level with its correct meaning,
   // right ones green and wrong ones red; only the two wrong pairs keep a (red) curve on wide screens.
   await expect(page.locator('.match-summary')).toContainText('2 of 4 pairs correct.');
@@ -448,6 +450,8 @@ test('matching pairs by keyboard, lets a pair be reassigned and locks it with fe
   // All pairs correct: a short success animation, then the correction view is skipped.
   await proceed(page);
   await expect(page.getByRole('status').filter({ hasText: 'All correct!' })).toBeAttached();
-  await expect(french.and(page.locator('.is-right'))).toHaveCount(4); // every French word green, level with its meaning
+  // Only the background turns green; boxes keep their colour and every curve stays.
+  await expect(page.locator('.task-card.is-celebrating .matching')).toBeAttached();
+  await expect(french.and(page.locator('.is-right'))).toHaveCount(0);
   await expect(page.getByText('Gender and overview')).toBeVisible();
 });

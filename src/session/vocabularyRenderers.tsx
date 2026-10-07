@@ -180,7 +180,7 @@ export function MatchingRenderer(props: RendererProps) {
       {checked && !props.celebrating
         ? <p className="match-summary" role="status"><strong>{t('session.matchSummary', { correct: right, total: choiceUnits.length })}</strong></p>
         : <p className="muted">{t('session.matchHint')}</p>}
-      <MatchingCurves pairs={pairs} selected={selectedKey} boxes={boxes} arranged={checked}>
+      <MatchingCurves pairs={pairs} selected={selectedKey} boxes={boxes} arranged={checked} celebrating={!!props.celebrating}>
         <div className="matching-columns" style={{ '--rows': choiceUnits.length } as CSSProperties}>
           <ul aria-label={t(`locale.${props.motherTongue}`)}>
             {nativeOrder.map((o) => {
@@ -203,7 +203,7 @@ export function MatchingRenderer(props: RendererProps) {
               return (
                 <li key={u.id} className="match-cell" data-flip={u.id}>
                   <button type="button" ref={register(`learning:${u.id}`)} disabled={checked}
-                    className={`match-item${n ? ' is-paired' : ''}${checked ? (isWrong(u.id) ? ' is-wrong' : ' is-right') : ''}`} lang={plan.lang} aria-pressed={selected?.side === 'learning' && selected.id === u.id}
+                    className={`match-item${n ? ' is-paired' : ''}${checked && !props.celebrating ? (isWrong(u.id) ? ' is-wrong' : ' is-right') : ''}`} lang={plan.lang} aria-pressed={selected?.side === 'learning' && selected.id === u.id}
                     aria-label={n ? t('session.pairedWith', { item: formLabel(u.id), partner: nativeText(pairOf(u.id)!) }) : formLabel(u.id)} onClick={() => pick('learning', u.id)}>
                     <span>{target?.teachingForm}{target?.genders.length ? <small>{genderLabel(target, t)}</small> : null}</span>{n && <span className="pair-badge" aria-hidden="true">{n}</span>}
                   </button>
@@ -225,6 +225,8 @@ export function MatchingRenderer(props: RendererProps) {
 }
 
 const WIDE_MATCHING = '(min-width: 720px)';
+/** Duration of the slide after Check (the success pause in SessionView allows for it). */
+export const MATCH_SLIDE_MS = 700;
 function useMediaQuery(query: string): boolean {
   return useSyncExternalStore(
     (notify) => {
@@ -242,31 +244,40 @@ function useMediaQuery(query: string): boolean {
  * to the inner middle of the right box; while a box is selected, a live curve follows the pointer.
  * Phones keep the numbered badges instead (the overlay is not rendered).
  */
-function MatchingCurves({ pairs, selected, boxes, arranged = false, children }: {
-  pairs: readonly (readonly [string, string])[]; selected: string | null; boxes: RefObject<Map<string, HTMLButtonElement>>; arranged?: boolean; children: ReactNode;
+function MatchingCurves({ pairs, selected, boxes, arranged = false, celebrating = false, children }: {
+  pairs: readonly (readonly [string, string])[]; selected: string | null; boxes: RefObject<Map<string, HTMLButtonElement>>; arranged?: boolean; celebrating?: boolean; children: ReactNode;
 }) {
   const wide = useMediaQuery(WIDE_MATCHING);
   const frame = useRef<HTMLDivElement>(null);
-  // FLIP: when the French column is re-sorted after Check, each box slides from its old row to the new one.
+  // When the French column is re-sorted after Check, each box glides from its old row to the new one
+  // frame by frame, and the curves are redrawn every frame so they move with the boxes (P2-04 review).
   const tops = useRef(new Map<string, number>());
   const wasArranged = useRef(arranged);
+  const animating = useRef(false);
+  const [, setFrame] = useState(0);
   useLayoutEffect(() => {
     const cells = [...(frame.current?.querySelectorAll<HTMLElement>('[data-flip]') ?? [])];
-    const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-    if (arranged && !wasArranged.current && !reduce) {
-      for (const cell of cells) {
-        const before = tops.current.get(cell.dataset.flip!);
-        if (before === undefined) continue;
-        const delta = before - cell.getBoundingClientRect().top;
-        if (!delta) continue;
-        cell.style.transition = 'none';
-        cell.style.transform = `translateY(${delta}px)`;
-        void cell.offsetHeight; // apply the start position before transitioning back
-        cell.style.transition = 'transform 0.6s ease';
-        cell.style.transform = '';
-      }
+    if (arranged && !wasArranged.current && !window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) {
+      const deltas = cells.map((cell) => [cell, (tops.current.get(cell.dataset.flip!) ?? cell.getBoundingClientRect().top) - cell.getBoundingClientRect().top] as const);
+      const start = performance.now();
+      animating.current = true;
+      const step = (now: number) => {
+        const t = Math.min(1, (now - start) / MATCH_SLIDE_MS);
+        const eased = 1 - (1 - t) ** 3;
+        for (const [cell, delta] of deltas) cell.style.transform = t < 1 && delta ? `translateY(${delta * (1 - eased)}px)` : '';
+        setFrame((n) => n + 1); // redraw the curves at the boxes' current positions
+        if (t < 1) requestAnimationFrame(step);
+        else animating.current = false;
+      };
+      for (const [cell, delta] of deltas) if (delta) cell.style.transform = `translateY(${delta}px)`;
+      requestAnimationFrame(step);
     }
     wasArranged.current = arranged;
+  }, [arranged]);
+  // The rows before Check, measured after every unchecked render, are where the slide starts.
+  useLayoutEffect(() => {
+    if (arranged || animating.current) return;
+    const cells = [...(frame.current?.querySelectorAll<HTMLElement>('[data-flip]') ?? [])];
     tops.current = new Map(cells.map((cell) => [cell.dataset.flip!, cell.getBoundingClientRect().top]));
   });
   const [pointer, setPointer] = useState<{ x: number; y: number } | null>(null);
@@ -322,7 +333,7 @@ function MatchingCurves({ pairs, selected, boxes, arranged = false, children }: 
       {children}
       {wide && (
         <svg className="match-curves" aria-hidden="true">
-          {paths.pairs.map((d, n) => <path key={n} d={d} className={`match-curve${arranged ? ' is-checked' : ''}`} />)}
+          {paths.pairs.map((d, n) => <path key={n} d={d} className={`match-curve${arranged && !celebrating ? ' is-checked' : ''}`} />)}
           {selected && paths.live && <path d={paths.live} className="match-curve match-curve-live" />}
         </svg>
       )}
