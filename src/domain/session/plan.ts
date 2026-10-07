@@ -54,6 +54,8 @@ export interface PlanPage {
   instructions: LocalizedText;
   items: Item[];
   units: PlanUnit[];
+  /** Application page without content items: the info page before the final exam (P2-03). */
+  special?: 'examIntro';
 }
 
 export interface LessonPlan {
@@ -78,9 +80,10 @@ const GENDER_OPTIONS = ['masculine', 'feminine', 'neuter'] as const;
 /**
  * Builds the plan for one attempt; `motherTongue` fixes native prompts and labels. With
  * `interleaveGroups` (the learner session) each vocabulary group's introduction page is followed
- * directly by that group's flashcards (P2-02); artifact previews keep the step order.
+ * directly by that group's flashcards (P2-02); with `examIntro` an info page precedes the final
+ * exam (P2-03). Artifact previews use neither.
  */
-export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Locale, { interleaveGroups = false } = {}): LessonPlan {
+export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Locale, { interleaveGroups = false, examIntro = false } = {}): LessonPlan {
   const targets = new Map(brief.kind === 'vocabulary' ? brief.targets.map((t) => [t.id, t]) : []);
   const native = (map: Partial<Record<Locale, string>> | null | undefined) => map?.[motherTongue] ?? Object.values(map ?? {})[0] ?? '';
   const translation = (id: string) => targets.get(id)?.translations[motherTongue]?.[0] ?? id;
@@ -189,11 +192,27 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
     }
   });
   if (interleaveGroups) interleaveIntroductions(pages);
+  if (examIntro) insertExamIntro(pages);
   return {
     lessonId: content.id, lang: content.lang, title: content.title, objective: content.objective, estimatedMinutes: content.estimatedMinutes, pages, targets,
     kind: content.kind, groups: brief.kind === 'vocabulary' ? brief.groups.map((g) => ({ id: g.id, label: g.label, targetIds: g.targetIds })) : [],
     steps: steps.map((s) => ({ stepId: s.id, label: s.label, role: s.role === 'exam' ? 'exam' : pages.some((p) => p.stepId === s.id && p.role === 'practice') ? 'practice' : 'presentation' })),
   };
+}
+
+/**
+ * Inserts the exam info page (P2-03) before the first exam page: it lists the exam pages with their
+ * tasks and countdowns; the renderer builds its text from the following exam pages.
+ */
+function insertExamIntro(pages: PlanPage[]) {
+  const first = pages.findIndex((p) => p.role === 'exam');
+  if (first < 0) return;
+  const exam = pages[first];
+  pages.splice(first, 0, {
+    index: first, pageId: 'exam-intro', stepId: exam.stepId, stepIndex: exam.stepIndex, stepLabel: exam.stepLabel, role: 'presentation',
+    estimatedDurationS: 20, timeLimitS: null, instructions: exam.stepLabel, items: [], units: [], special: 'examIntro',
+  });
+  pages.forEach((p, n) => (p.index = n));
 }
 
 /** Reorders in place: intro 1, cards 1, intro 2, cards 2, … (pages paired by group order). */

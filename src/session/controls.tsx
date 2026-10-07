@@ -5,6 +5,7 @@ import type { LockedUnit, UnitResponse } from '../domain/session/session.ts';
 import { seededOrder, type Item, type LessonPlan, type Option, type PlanUnit } from '../domain/session/plan.ts';
 import type { MessageKey } from '../i18n/messages.ts';
 import type { Locale } from '../schemas/common.ts';
+import { missingArticle, startsWithArticle } from '../domain/articleHint.ts';
 import { speak, useVoiceStatus } from './speech.ts';
 import { VoiceHelp } from './VoiceHelp.tsx';
 
@@ -29,6 +30,8 @@ export interface RendererProps {
   /** Revealed presentation keys (flashcards) per item key; stored in the session for resume. */
   revealed: Record<string, string[]>;
   onReveal: (itemKey: string, key: string) => void;
+  /** True during the green success flash of a fully correct page (the correct choice lights up). */
+  celebrating?: boolean;
 }
 
 /* ---------------------------------------------------------------- helpers */
@@ -89,23 +92,48 @@ const OUTCOME_KEY = { fully_correct: 'outcome.fully_correct', orthography_only: 
 const OUTCOME_ICON = { fully_correct: '✓', orthography_only: '!', incorrect: '✕', unanswered: '✕' } as const;
 
 /** Practice feedback under a locked unit: classification, correct answer and explanation. */
+/** The learner's response as display text (results and practice feedback). */
+export function answerText(unit: PlanUnit, response: UnitResponse | null, t: (k: MessageKey) => string): string {
+  if (response === null || response === undefined) return '';
+  switch (unit.kind) {
+    case 'text': return response as string;
+    case 'choice': {
+      const option = unit.options.find((o) => o.id === response);
+      return option ? (option.lang === 'ui' ? t(option.text as MessageKey) : option.text) : '';
+    }
+    case 'order': return (response as string[]).map((id) => unit.tokens.find((tk) => tk.id === id)?.text).join(' ');
+    case 'spot': {
+      const r = response as { tokenId: string; text: string };
+      return unit.tokens.map((tk) => (tk.id === r.tokenId ? `[${r.text}]` : tk.text)).join(' ');
+    }
+  }
+}
+
+/**
+ * Practice feedback under a locked unit, without point counts: a short "Correct", or the correct
+ * answer in green with the learner's answer struck through in red directly below, and the explanation.
+ */
 export function UnitFeedback({ unit, locked, lang }: { unit: PlanUnit; locked: LockedUnit; lang: string }) {
   const { t, locale } = useI18n();
-  const ok = locked.outcome === 'fully_correct';
+  if (locked.outcome === 'fully_correct') {
+    return <div className="feedback outcome-fully_correct" role="status"><p><span aria-hidden="true">✓</span> {t('feedback.correct')}</p></div>;
+  }
   const answer = unit.answerLang === 'ui' ? t(unit.answer as MessageKey) : unit.answer;
+  const given = answerText(unit, locked.response, t);
+  const learning = (l: string) => (l === 'learning' ? lang : undefined);
   return (
     <div className={`feedback outcome-${locked.outcome}`} role="status">
-      <p>
-        <span aria-hidden="true">{OUTCOME_ICON[locked.outcome]}</span> {t(OUTCOME_KEY[locked.outcome])} · {t('result.points', { earned: locked.points, possible: 1 })}
+      <p className="feedback-title">
+        <span aria-hidden="true">{OUTCOME_ICON[locked.outcome]}</span> {t(locked.outcome === 'orthography_only' ? 'feedback.almost' : OUTCOME_KEY[locked.outcome])}
       </p>
-      {!ok && (
-        <p>
-          <span className="label-muted">{t('result.correctAnswer')}</span>{' '}
-          <strong className="answer" lang={unit.answerLang === 'learning' ? lang : undefined}>{answer}</strong>
+      <div className="fix-lines">
+        <strong className="match-right">
+          <span className="visually-hidden">{t('result.correctAnswer')}: </span><span lang={learning(unit.answerLang)}>{answer}</span>
           {unit.form && <span lang={lang}> · {unit.form}</span>}
-        </p>
-      )}
-      {!ok && <p className="explanation">{unit.explanation[locale]}</p>}
+        </strong>
+        <span className="match-wrong"><span className="visually-hidden">{t('result.yourAnswer')}: </span><s lang={unit.kind !== 'choice' || unit.options[0]?.lang === 'learning' ? lang : undefined}>{given || t('session.noAnswer')}</s></span>
+      </div>
+      <p className="explanation">{unit.explanation[locale]}</p>
     </div>
   );
 }
@@ -253,12 +281,7 @@ export function UnitsRenderer(props: RendererProps) {
   const item = props.item;
   return (
     <div className="units">
-      {item.type === 'vocabulary_typed_gap' && (
-        <p className="references">
-          <span className="label-muted">{t('session.references')}</span>{' '}
-          <span lang={lang}>{seededOrder(item.referenceTargetIds, props.seed, item.itemId).map((id) => props.plan.targets.get(id)?.term ?? id).join(' · ')}</span>
-        </p>
-      )}
+      <ReferenceWords {...props} />
       {item.type === 'grammar_gap_typing' && item.hint && props.mode !== 'exam' && (
         <p className="muted">
           {t('session.hint')} {item.hint[locale]}
@@ -274,10 +297,22 @@ export function UnitsRenderer(props: RendererProps) {
                 <TextControl unit={unit} props={props} label={t('session.gapAnswer')} />
               </Gap>
             ) : unit.kind === 'text' ? (
-              <label className="field">
-                <span lang={unit.prompt.native ? undefined : lang}>{prompt || t('session.typeWhatYouHear')}</span>
-                <TextControl unit={unit} props={props} label={prompt || t('session.typeWhatYouHear')} />
-              </label>
+              <>
+                <label className="field">
+                  <span lang={unit.prompt.native ? undefined : lang}>
+                    {prompt || t('session.typeWhatYouHear')}
+                    {/* Vocabulary translation tasks say whether the French answer needs an article. */}
+                    {unit.itemType === 'vocabulary_translation_exam' && (
+                      <small className="article-badge">{t(startsWithArticle(unit.answer, lang) ? 'session.withArticle' : 'session.withoutArticle')}</small>
+                    )}
+                  </span>
+                  <TextControl unit={unit} props={props} label={prompt || t('session.typeWhatYouHear')} />
+                </label>
+                {(unit.itemType === 'vocabulary_translation_exam' || unit.itemType === 'vocabulary_listening_dictation') && !readOnly(props, unit)
+                  && missingArticle((value(props, unit) as string | undefined) ?? '', unit.answer, lang) && (
+                  <p className="info-box" role="status">{t('session.typeArticle')}</p>
+                )}
+              </>
             ) : unit.kind === 'choice' ? (
               unit.prompt.before !== undefined ? (
                 <>
@@ -300,6 +335,33 @@ export function UnitsRenderer(props: RendererProps) {
           </UnitRow>
         );
       })}
+    </div>
+  );
+}
+
+/**
+ * Typed-gap reference words (P2-03): four noninteractive cards, centred one under another above the
+ * sentence. Once checked (or during the success flash) the correct word lights up green.
+ */
+function ReferenceWords(props: RendererProps) {
+  const { t } = useI18n();
+  const { item, plan } = props;
+  if (item.type !== 'vocabulary_typed_gap') return null;
+  const checked = props.celebrating || props.units.some((u) => props.locked[u.id]);
+  return (
+    <div className="references">
+      <p className="visually-hidden">{t('session.references')}</p>
+      <ul className="reference-list">
+        {seededOrder(item.referenceTargetIds, props.seed, item.itemId).map((id) => {
+          const target = plan.targets.get(id);
+          return (
+            <li key={id} className={checked && id === item.targetId ? 'is-correct' : undefined}>
+              <span lang={plan.lang}>{target?.term ?? id}</span>
+              {target?.genders.length ? <small>{target.genders.map((g) => t(`gender.${g}`)).join(' / ')}</small> : null}
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }

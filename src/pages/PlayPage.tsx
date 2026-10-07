@@ -65,7 +65,7 @@ export function PlayPage({ manifest, lessonId }: { manifest: Manifest; lessonId:
   // The attempt's mother tongue is the starting-page choice, never the course language (D38).
   const motherTongue: Locale = course && isMotherTongueAllowed(prefs.motherTongue, course.lang) ? prefs.motherTongue : LOCALES.find((l) => l !== course?.lang) ?? 'en';
   const plan: LessonPlan | undefined = useMemo(
-    () => (loaded.status === 'ready' ? buildPlan(loaded.content, loaded.brief, active?.motherTongue ?? motherTongue, { interleaveGroups: true }) : undefined),
+    () => (loaded.status === 'ready' ? buildPlan(loaded.content, loaded.brief, active?.motherTongue ?? motherTongue, { interleaveGroups: true, examIntro: true }) : undefined),
     [loaded, active?.motherTongue, motherTongue],
   );
 
@@ -122,8 +122,10 @@ function ActiveSession({ plan, initial, onRestart, onPhase }: { plan: LessonPlan
       {record.phase === 'results' ? (
         <>
           <ResultsView plan={plan} record={record} dispatch={dispatch} />
-          <div className="task-footer">
+          {/* "Repeat lesson" (outline) left of the primary "Lesson overview" at the bottom right. */}
+          <div className="task-footer results-footer">
             <button type="button" className="button button-outline" onClick={onRestart}>{t('session.restart')}</button>
+            <a className="button button-primary" href={href.index()}>{t('action.lessonOverview')}</a>
           </div>
         </>
       ) : (

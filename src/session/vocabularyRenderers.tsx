@@ -1,11 +1,12 @@
 import { useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore, type CSSProperties, type ReactNode, type RefObject } from 'react';
 
 import { useI18n } from '../app/context.tsx';
+import type { MessageKey } from '../i18n/messages.ts';
 import { RichText } from '../components/RichText.tsx';
 import { seededOrder, type LessonPlan, type PlanUnit } from '../domain/session/plan.ts';
 import type { Locale } from '../schemas/common.ts';
 import type { VocabularyTarget } from '../schemas/vocabulary.ts';
-import { ListenButton, UnitsRenderer, type RendererProps } from './controls.tsx';
+import { ListenButton, type RendererProps } from './controls.tsx';
 
 /** Vocabulary presentation renderers; scored vocabulary items use the shared `UnitsRenderer`. */
 
@@ -335,13 +336,65 @@ export function OverviewRenderer({ item, plan, motherTongue }: RendererProps) {
   return <TargetTable ids={item.targetIds} plan={plan} motherTongue={motherTongue} showGender={false} />;
 }
 
+/**
+ * Stage 4 gender page (P2-03): every word of the lesson on one page, which stays the same after
+ * "Check". While answering, nouns show their bare term with masculine/feminine choices and a speaker
+ * that reads only the bare term (no article or gender clue); other words show no input. After Check
+ * the choices are marked in place: a correct choice has a green border, a wrong choice a red border
+ * and the correct gender is highlighted in purple; the word shows its teaching form and translation,
+ * and wrong rows add the explanation. The button then reads Continue.
+ */
 export function GenderRenderer(props: RendererProps) {
-  // While answering, only lemmas are shown; the reviewed overview follows once the choices are locked.
+  const { t, locale } = useI18n();
+  const { item, units, plan, mode, motherTongue } = props;
+  if (item.type !== 'vocabulary_gender_select') return null;
+  const unitOf = (id: string) => units.find((u): u is PlanUnit & { kind: 'choice' } => u.kind === 'choice' && u.correct.length > 0 && u.id.endsWith(`/${id}`));
+  const value = (unitId: string) => (props.locked[unitId]?.response ?? props.drafts[unitId]) as string | undefined;
+  const checked = mode === 'feedback';
+  const scored = item.targetIds.map(unitOf).filter((u): u is PlanUnit & { kind: 'choice' } => !!u);
+  const right = scored.filter((u) => props.locked[u.id]?.outcome === 'fully_correct').length;
+  const optionState = (unit: PlanUnit & { kind: 'choice' }, id: string) => {
+    if (!checked) return '';
+    const chosen = value(unit.id) === id, correct = unit.correct.includes(id);
+    return chosen && correct ? ' is-right' : chosen ? ' is-wrong' : correct ? ' is-answer' : '';
+  };
+
   return (
-    <>
-      <UnitsRenderer {...props} />
-      {props.mode === 'feedback' && props.item.type === 'vocabulary_gender_select' && <TargetTable ids={props.item.targetIds} plan={props.plan} motherTongue={props.motherTongue} />}
-    </>
+    <div className="gender-page">
+      {checked && <p className="match-summary"><strong>{t('session.genderSummary', { correct: right, total: scored.length })}</strong></p>}
+      <ul className="gender-grid">
+        {item.targetIds.map((id) => {
+          const target = plan.targets.get(id);
+          const unit = unitOf(id);
+          const wrong = checked && !!unit && props.locked[unit.id]?.outcome !== 'fully_correct';
+          const shown = checked ? target?.teachingForm ?? id : target?.term ?? id;
+          return (
+            <li key={id} className={`gender-row${checked && unit ? (wrong ? ' is-wrong' : ' is-right') : ''}`}>
+              <div className="gender-word">
+                {target && <ListenButton text={shown} lang={plan.lang} variant="icon" label={t('session.listenWord', { word: shown })} />}
+                <span className="gender-lemma" lang={plan.lang}>{shown}</span>
+                {checked && <small className="muted">{target?.translations[motherTongue]?.join(' / ')}</small>}
+              </div>
+              {unit ? (
+                <fieldset className="gender-options" disabled={checked || !!props.locked[unit.id]}>
+                  <legend className="visually-hidden">{t('session.genderOf', { word: target?.term ?? id })}</legend>
+                  {unit.options.map((o) => (
+                    <label key={o.id} className={`gender-option${optionState(unit, o.id)}`}>
+                      <input type="radio" name={unit.id} value={o.id} checked={value(unit.id) === o.id} onChange={() => props.onChange(unit.id, o.id)} />
+                      <span>{t(o.text as MessageKey)}</span>
+                    </label>
+                  ))}
+                </fieldset>
+              ) : (
+                <span className="muted">{t('session.noGender')}</span>
+              )}
+              {wrong && unit && <p className="gender-explanation muted">{unit.explanation[locale]}</p>}
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 }
+
 

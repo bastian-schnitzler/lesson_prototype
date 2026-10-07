@@ -88,7 +88,7 @@
   "targets": [
     {
       "id": "target-espagne",
-      "term": "l'Espagne",
+      "term": "Espagne",
       "translations": {
         "en": [
           "Spain"
@@ -126,7 +126,7 @@
     },
     {
       "id": "target-japon",
-      "term": "le Japon",
+      "term": "Japon",
       "translations": {
         "en": [
           "Japan"
@@ -164,7 +164,7 @@
     },
     {
       "id": "target-france",
-      "term": "la France",
+      "term": "France",
       "translations": {
         "en": [
           "France"
@@ -202,7 +202,7 @@
     },
     {
       "id": "target-allemagne",
-      "term": "l'Allemagne",
+      "term": "Allemagne",
       "translations": {
         "en": [
           "Germany"
@@ -240,7 +240,7 @@
     },
     {
       "id": "target-canada",
-      "term": "le Canada",
+      "term": "Canada",
       "translations": {
         "en": [
           "Canada"
@@ -278,7 +278,7 @@
     },
     {
       "id": "target-italie",
-      "term": "l'Italie",
+      "term": "Italie",
       "translations": {
         "en": [
           "Italy"
@@ -316,7 +316,7 @@
     },
     {
       "id": "target-mexique",
-      "term": "le Mexique",
+      "term": "Mexique",
       "translations": {
         "en": [
           "Mexico"

@@ -122,6 +122,8 @@ function checkVocabularyBrief(b: VocabularyBrief, ctx: OutlineContext, issues: I
       issues.check(t.number === null, `${p}.number`, 'only nouns have a grammatical number here');
       issues.check(t.articleException === null, `${p}.articleException`, 'only nouns can have an article exception');
     }
+    // The gender exercise shows the bare term, so it must not reveal the gender through an article.
+    if (ctx.lang === 'fr' && t.wordClass === 'noun') issues.check(!/^(le|la|les|un|une|des) |^l'/iu.test(t.term), `${p}.term`, `"${t.term}" must be the base term without article`);
     // The displayed teaching form is examined as shown: one exam form, or an adjective's gender pair (espagnol, espagnole).
     issues.check(t.examForms.includes(t.teachingForm) || t.teachingForm === t.examForms.join(', '), `${p}.teachingForm`, `"${t.teachingForm}" must be one of the exam forms (D39)`);
     const words = new Set(t.examForms.flatMap((f) => f.toLowerCase().split(/\s+/)));
