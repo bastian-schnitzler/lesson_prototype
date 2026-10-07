@@ -63,7 +63,7 @@ async function answerListening(page: Page, right = true) {
   await page.getByRole('button', { name: 'Listen' }).click();
   const word = await page.evaluate(() => (window as unknown as { __spoken: string[] }).__spoken.at(-1)!);
   for (const option of await page.locator('fieldset.choices label').all()) {
-    if (((await option.textContent())!.trim() === word) === right) { await option.click(); break; }
+    if (((await option.locator('span[lang]').textContent())!.trim() === word) === right) { await option.click(); break; }
   }
   await proceed(page);
   if (!right) {
@@ -101,6 +101,8 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   await expect(page.getByRole('button', { name: 'Check' })).toBeDisabled(); // practice pages are checked first
   await matchAll(page);
   await proceed(page);
+  // The French boxes glide to their new rows (frame by frame, with the curves following).
+  await expect.poll(() => page.locator('.matching-columns [data-flip]').evaluateAll((cells) => cells.some((c) => (c as HTMLElement).style.transform !== '')), { intervals: [20] }).toBe(true);
   // Checked in place (no correction view): every French word moves level with its correct meaning,
   // right ones green and wrong ones red; only the two wrong pairs keep a (red) curve on wide screens.
   await expect(page.locator('.match-summary')).toContainText('2 of 4 pairs correct.');
@@ -108,7 +110,7 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   await expect(french.and(page.locator('.is-wrong'))).toHaveCount(2);
   await expect(french.and(page.locator('.is-right'))).toHaveCount(2);
   if (page.viewportSize()!.width >= 720) await expect(page.locator('.match-curve.is-checked')).toHaveCount(2);
-  await page.waitForTimeout(700); // the slide animation
+  await page.waitForTimeout(1300); // the slide animation (1.2 s)
   for (const meaning of await page.locator('.matching-columns > ul').first().locator('.match-item').all()) {
     const word = PAIRS[(await meaning.textContent())!.replace(/\d+$/, '').trim()];
     const partner = french.filter({ hasText: word });
@@ -122,14 +124,15 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   await expect(page.getByText('Gender and overview')).toBeVisible();
   await expect(page.locator('.task-card select')).toHaveCount(0);
   await chooseGenders(page);
-  // Check reveals the teaching form and translation without resizing the cards.
-  const sizes = () => page.locator('.gender-row').evaluateAll((rows) => rows.map((r) => Math.round(r.getBoundingClientRect().height)));
-  const before = await sizes();
+  // Check reveals the teaching form, translation and summary without moving or resizing anything.
+  const boxes = () => page.locator('.gender-row, .gender-option span').evaluateAll((els) => els.map((e) => {
+    const r = e.getBoundingClientRect();
+    return [Math.round(r.left), Math.round(r.top + window.scrollY), Math.round(r.width), Math.round(r.height)];
+  }));
+  const before = await boxes();
   await proceed(page);
   await expect(page.locator('.gender-page .match-summary')).toBeVisible();
-  const after = await sizes();
-  const rights = await page.locator('.gender-row').evaluateAll((rows) => rows.map((r) => !r.classList.contains('is-wrong')));
-  expect(after.filter((_, n) => rights[n])).toEqual(before.filter((_, n) => rights[n])); // wrong rows add their explanation
+  expect(await boxes()).toEqual(before);
   await proceed(page);
   // Typed gaps: the cursor is already in the field; the four reference words stand above it.
   await expect(page.getByRole('textbox')).toBeFocused();
@@ -292,9 +295,10 @@ test('plays French listening choice and dictation with a suitable voice', async 
     await page.getByRole('button', { name: 'Listen' }).click();
     const word = await page.evaluate(() => (window as unknown as { __spoken: string[] }).__spoken.at(-1)!);
     const options = page.locator('fieldset.choices label');
-    for (const option of await options.all()) if (((await option.textContent())!.trim() === word) === right) return option.click();
+    for (const option of await options.all()) if (((await option.locator('span[lang]').textContent())!.trim() === word) === right) return option.click();
   };
   await choose(false);
+  await expect(page.locator('fieldset.choices .choice-gender')).toHaveCount(0); // fr-classroom-instructions has no nouns
   await proceed(page);
   // A wrong choice: the chosen option red, the correct one green, no feedback card.
   await expect(page.locator('.choice.is-wrong')).toHaveCount(1);
@@ -448,6 +452,9 @@ test('matching pairs by keyboard, lets a pair be reassigned and locks it with fe
   // All pairs correct: a short success animation, then the correction view is skipped.
   await proceed(page);
   await expect(page.getByRole('status').filter({ hasText: 'All correct!' })).toBeAttached();
-  await expect(french.and(page.locator('.is-right'))).toHaveCount(4); // every French word green, level with its meaning
+  // Only the background turns green; boxes keep their colour and every curve stays.
+  await expect(page.locator('.task-card.is-celebrating .matching')).toBeAttached();
+  await expect(french.and(page.locator('.is-right'))).toHaveCount(0);
+  if (page.viewportSize()!.width >= 720) await expect(page.locator('.match-curve.is-thin')).toHaveCount(4); // thin purple curves
   await expect(page.getByText('Gender and overview')).toBeVisible();
 });

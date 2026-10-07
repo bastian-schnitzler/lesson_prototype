@@ -1419,7 +1419,6 @@ select {
  * next page; the content area itself stays unchanged.
  */
 .task-card.is-celebrating .choice:has(input:checked),
-.task-card.is-celebrating .match-item.is-paired,
 .task-card.is-celebrating .token-placed,
 .task-card.is-celebrating .token[aria-pressed='true'],
 .task-card.is-celebrating select,
@@ -1427,8 +1426,24 @@ select {
   animation: success-flash 0.9s ease-out both;
 }
 
-.task-card.is-celebrating .match-curve {
-  stroke: var(--correct);
+/* Matching all correct: once the boxes have arrived (1.2 s slide), only the content area flashes
+   green as before P2-04 (background and border); boxes and curves keep their colours. */
+.task-card.is-celebrating:has(.matching) {
+  animation: card-flash 0.9s ease-out 1.2s both;
+}
+
+@keyframes card-flash {
+  0% { background-color: var(--surface); border-color: var(--border); }
+  30% { background-color: rgb(0 230 118 / 0.22); border-color: var(--correct); }
+  100% { background-color: rgb(0 230 118 / 0.12); border-color: var(--correct); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .task-card.is-celebrating:has(.matching) {
+    animation: none;
+    background-color: rgb(0 230 118 / 0.15);
+    border-color: var(--correct);
+  }
 }
 
 @keyframes success-flash {
@@ -1439,7 +1454,6 @@ select {
 
 @media (prefers-reduced-motion: reduce) {
   .task-card.is-celebrating .choice:has(input:checked),
-  .task-card.is-celebrating .match-item.is-paired,
   .task-card.is-celebrating .token-placed,
   .task-card.is-celebrating .token[aria-pressed='true'],
   .task-card.is-celebrating select,
@@ -1898,11 +1912,11 @@ select {
   color: var(--incorrect);
 }
 
+/* The correct gender the learner did not choose is green too (P2-04 review). */
 .gender-option.is-answer input + span {
-  border-color: var(--progress);
-  background: #2e1065;
-  box-shadow: inset 0 0 0 1px var(--progress);
-  color: #ddd6fe;
+  border-color: var(--correct);
+  box-shadow: inset 0 0 0 1px var(--correct);
+  color: var(--correct);
 }
 
 .gender-options:disabled .gender-option span {
@@ -2093,16 +2107,24 @@ select {
 
 .match-curve.is-checked {
   stroke: var(--incorrect);
-  animation: curve-in 0.3s ease 0.6s both;
+  stroke-dasharray: 7 6;
 }
 
-@keyframes curve-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+/* All pairs correct: the purple curves stay but are drawn thin (P2-04 review). */
+.match-curve.is-thin {
+  stroke-width: 1.5;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .match-curve.is-checked {
-    animation: none;
-  }
+/* Gender page: the summary line keeps its space before Check; the scrollbar never shifts the page. */
+.match-summary.is-reserved {
+  visibility: hidden;
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+.choice-gender {
+  color: var(--muted);
+  font-size: 13px;
 }
