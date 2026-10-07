@@ -1,11 +1,11 @@
-import { useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore, type ReactNode, type RefObject } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore, type CSSProperties, type ReactNode, type RefObject } from 'react';
 
 import { useI18n } from '../app/context.tsx';
 import { RichText } from '../components/RichText.tsx';
 import { seededOrder, type LessonPlan, type PlanUnit } from '../domain/session/plan.ts';
 import type { Locale } from '../schemas/common.ts';
 import type { VocabularyTarget } from '../schemas/vocabulary.ts';
-import { ListenButton, UnitRow, UnitsRenderer, type RendererProps } from './controls.tsx';
+import { ListenButton, UnitsRenderer, type RendererProps } from './controls.tsx';
 
 /** Vocabulary presentation renderers; scored vocabulary items use the shared `UnitsRenderer`. */
 
@@ -82,7 +82,7 @@ export function FlashcardsRenderer({ item, plan, motherTongue, pageId, revealed,
 function Flashcard({ id, index, total, plan, motherTongue, initiallyFlipped, onFlip }: {
   id: string; index: number; total: number; plan: LessonPlan; motherTongue: Locale; initiallyFlipped: boolean; onFlip: () => void;
 }) {
-  const { t, languageName } = useI18n();
+  const { t } = useI18n();
   const [flipped, setFlipped] = useState(initiallyFlipped);
   const target = plan.targets.get(id);
   const label = t('session.cardOf', { n: index + 1, total });
@@ -97,21 +97,19 @@ function Flashcard({ id, index, total, plan, motherTongue, initiallyFlipped, onF
       </button>
       <div className="flashcard-inner">
         <div className="flashcard-face flashcard-front" inert={flipped}>
-          <p className="flashcard-side">{t(`locale.${motherTongue}`)}</p>
           <p className="flashcard-meaning">{target?.translations[motherTongue]?.join(' / ') ?? id}</p>
         </div>
         <div className="flashcard-face flashcard-back" inert={!flipped}>
-          <p className="flashcard-side">{languageName(plan.lang)}</p>
-          <p className="flashcard-form">
+          <div className="flashcard-form">
             <span lang={plan.lang}>{target?.teachingForm}</span>
             {target && <ListenButton text={target.teachingForm} lang={plan.lang} variant="icon" size="large" label={t('session.listenWord', { word: target.teachingForm })} />}
-          </p>
+          </div>
           {target && target.genders.length > 0 && <p className="muted">{genderLabel(target, t)}</p>}
           {target && (
-            <p className="flashcard-example">
+            <div className="flashcard-example">
               <ListenButton text={target.context.sentence} lang={plan.lang} variant="icon" label={t('session.listenSentence')} />
               <span><span lang={plan.lang}>{target.context.sentence}</span> <span className="muted">– {target.context.translation[motherTongue]}</span></span>
-            </p>
+            </div>
           )}
         </div>
       </div>
@@ -125,10 +123,16 @@ function Flashcard({ id, index, total, plan, motherTongue, initiallyFlipped, onF
  * which locks one point unit per French form and shows corrections with their explanations.
  */
 export function MatchingRenderer(props: RendererProps) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const { item, units, plan, seed, mode } = props;
   const [selected, setSelected] = useState<{ side: 'native' | 'learning'; id: string } | null>(null);
   const boxes = useRef(new Map<string, HTMLButtonElement>());
+  useEffect(() => {
+    if (!selected) return;
+    const cancel = (event: KeyboardEvent) => { if (event.key === 'Escape') setSelected(null); };
+    window.addEventListener('keydown', cancel);
+    return () => window.removeEventListener('keydown', cancel);
+  }, [selected]);
   if (item.type !== 'vocabulary_matching') return null;
   const choiceUnits = units.filter((u): u is PlanUnit & { kind: 'choice' } => u.kind === 'choice');
   const options = choiceUnits[0]?.options ?? [];
@@ -141,15 +145,39 @@ export function MatchingRenderer(props: RendererProps) {
   };
 
   if (mode !== 'answering') {
-    // Only mistakes and their corrections are listed; correct pairs need no review.
+    // Results: a short summary, then only the mistakes – the word, the learner's choice struck through,
+    // the correct meaning and the explanation. Correct pairs are not repeated.
     const mistakes = choiceUnits.filter((unit) => props.locked[unit.id]?.outcome !== 'fully_correct');
+    const correct = choiceUnits.length - mistakes.length;
     return (
-      <div className="units">
-        {mistakes.map((unit) => (
-          <UnitRow key={unit.id} unit={unit} props={props}>
-            <p className="match-result"><span lang={plan.lang}>{formLabel(unit.id)}</span> — {nativeText(pairOf(unit.id) ?? '') || t('session.noAnswer')}</p>
-          </UnitRow>
-        ))}
+      <div className="match-results">
+        <p className="match-summary">
+          <strong>{t('session.matchSummary', { correct, total: choiceUnits.length })}</strong>
+          {mistakes.length > 0 && <> {t('session.matchReview')}</>}
+        </p>
+        <ul className="match-corrections">
+          {mistakes.map((unit) => {
+            const target = targetOf(unit.id);
+            const chosen = nativeText(pairOf(unit.id) ?? '');
+            return (
+              <li key={unit.id}>
+                <div className="match-word">
+                  <span lang={plan.lang}>{target?.teachingForm}</span>
+                  {target && <ListenButton text={target.teachingForm} lang={plan.lang} variant="icon" label={t('session.listenWord', { word: target.teachingForm })} />}
+                  {target?.genders.length ? <small>{genderLabel(target, t)}</small> : null}
+                </div>
+                <p className="match-answers">
+                  <span className="visually-hidden">{t('session.yourChoice')}: </span>
+                  <s className="match-wrong">{chosen || t('session.noAnswer')}</s>
+                  <span aria-hidden="true"> → </span>
+                  <span className="visually-hidden">{t('session.correctMeaning')}: </span>
+                  <strong className="match-right">{nativeText(unit.correct[0])}</strong>
+                </p>
+                <p className="muted">{unit.explanation[locale]}</p>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     );
   }
@@ -172,12 +200,15 @@ export function MatchingRenderer(props: RendererProps) {
   const assigned = choiceUnits.filter((u) => pairOf(u.id)).length;
   const current = selected ? (selected.side === 'native' ? nativeText(selected.id) : formLabel(selected.id)) : '';
   const register = (key: string) => (element: HTMLButtonElement | null) => { if (element) boxes.current.set(key, element); else boxes.current.delete(key); };
-  const pairs = choiceUnits.flatMap((u) => (pairOf(u.id) ? [[`native:${pairOf(u.id)}`, `learning:${u.id}`] as const] : []));
+  // While a paired word is being reassigned, its current curve is hidden; Esc restores it.
+  const selectedKey = selected && `${selected.side}:${selected.id}`;
+  const pairs = choiceUnits.flatMap((u) => (pairOf(u.id) ? [[`native:${pairOf(u.id)}`, `learning:${u.id}`] as const] : []))
+    .filter(([from, to]) => from !== selectedKey && to !== selectedKey);
   return (
     <div className="matching">
       <p className="muted">{t('session.matchHint')}</p>
-      <MatchingCurves pairs={pairs} selected={selected && `${selected.side}:${selected.id}`} boxes={boxes}>
-        <div className="matching-columns">
+      <MatchingCurves pairs={pairs} selected={selectedKey} boxes={boxes}>
+        <div className="matching-columns" style={{ '--rows': choiceUnits.length } as CSSProperties}>
           <ul aria-label={t(`locale.${props.motherTongue}`)}>
             {nativeOrder.map((o) => {
               const unit = unitForOption(o.id);

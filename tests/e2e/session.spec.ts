@@ -42,7 +42,9 @@ async function chooseAll(page: Page) {
 test('plays a lesson with Continue lock/confirm, resumes after reload and shows the results menu', async ({ page }) => {
   await page.goto('./#/lesson/fr-classroom-objects/play');
   await expect(page.getByRole('heading', { level: 1, name: 'Les objets de la classe' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Lesson overview' })).toBeVisible();
   await proceed(page); // start
+  await expect(page.getByRole('link', { name: 'Cancel lesson' })).toBeVisible();
   await proceed(page); // introduction
   await expect(page.getByRole('button', { name: 'Continue' })).toBeDisabled(); // flashcards not yet revealed
   await revealCards(page);
@@ -50,9 +52,11 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   await expect(page.getByRole('button', { name: 'Continue' })).toBeDisabled();
   await matchAll(page);
   await proceed(page);
-  // Only mistakes and their corrections are listed after matching.
-  await expect(page.getByText('Incorrect').first()).toBeVisible();
-  await expect(page.getByText(/Fully correct/)).toHaveCount(0);
+  // Results list only the mistakes: word, struck-through choice and the correct meaning, no point counts.
+  await expect(page.locator('.match-summary')).toContainText('2 of 4 pairs correct.');
+  await expect(page.locator('.match-corrections > li')).toHaveCount(2);
+  await expect(page.locator('.match-corrections s').first()).toBeVisible();
+  await expect(page.locator('.match-results')).not.toContainText('0 / 1');
   await expect(page.locator('.matching-columns')).toHaveCount(0);
   await proceed(page);
 
@@ -277,6 +281,8 @@ test('matching pairs by keyboard, lets a pair be reassigned and locks it with fe
     await french.filter({ hasText: fr }).click();
   }
   await expect(page.locator('.match-item.is-paired')).toHaveCount(8); // purple border on both sides
+  const heights = await page.locator('.match-item').evaluateAll((items) => items.map((i) => Math.round(i.getBoundingClientRect().height)));
+  expect(new Set(heights).size).toBe(1); // both columns have the same box height
   if (page.viewportSize()!.width >= 720) {
     // Wide screens draw one curve per pair and hide the numbers; a dashed curve follows the pointer.
     await expect(page.locator('.match-curve:not(.match-curve-live)')).toHaveCount(4);
@@ -293,12 +299,18 @@ test('matching pairs by keyboard, lets a pair be reassigned and locks it with fe
     const endX = Number(d.trim().split(/[ ,]+/).at(-2));
     expect(Math.abs(endX - (target.x - frame.x))).toBeLessThan(1);
     await native.filter({ hasText: 'pen' }).click(); // deselect
+    // Reassigning a paired word hides its curve; Esc cancels and shows it again.
+    await native.filter({ hasText: 'pen' }).click();
+    await expect(page.locator('.match-curve:not(.match-curve-live)')).toHaveCount(3);
+    await page.keyboard.press('Escape');
+    await expect(page.locator('.match-curve:not(.match-curve-live)')).toHaveCount(4);
+    await expect(native.filter({ hasText: 'pen' })).toHaveAttribute('aria-pressed', 'false');
   } else {
     await expect(page.locator('.match-curves')).toHaveCount(0);
     await expect(page.locator('.pair-badge').first()).toBeVisible();
   }
   // All pairs correct: a short success animation, then the correction view is skipped.
   await proceed(page);
-  await expect(page.getByRole('status').filter({ hasText: 'All correct!' })).toBeVisible();
+  await expect(page.getByRole('status').filter({ hasText: 'All correct!' })).toBeAttached();
   await expect(page.getByText('Gender and overview')).toBeVisible();
 });

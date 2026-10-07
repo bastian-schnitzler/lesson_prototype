@@ -7,6 +7,7 @@ import { headerScore, isAnswered, isListeningPage, presentationComplete, scoreUn
 import type { MessageKey } from '../i18n/messages.ts';
 import { rendererRegistry, UnitFeedback } from './renderers.tsx';
 import type { SessionInput } from './useSession.ts';
+import { reviewColor } from '../artifacts/briefParts.tsx';
 import type { VoiceStatus } from './speech.ts';
 import { VoiceHelp } from './VoiceHelp.tsx';
 
@@ -27,12 +28,26 @@ export function StartView({ plan, level, resumable, notice, onStart, onResume }:
   return (
     <section className="task-card start-card" aria-labelledby="start-title">
       <p className="label-muted">{t('index.courseLabel', { language: languageName(plan.lang), level })}</p>
+      <span className="kind-badge">{t(`kind.${plan.kind}`)}</span>
       <h1 id="start-title" lang={plan.lang}>{plan.title}</h1>
       <p className="lead">{plan.objective[locale]}</p>
       <p className="muted">
         {t('session.minutes', { minutes: plan.estimatedMinutes })}
         {plan.targets.size > 0 && <> · {t('session.vocabularyCount', { count: plan.targets.size })}</>}
       </p>
+      {plan.groups.length > 0 && (
+        <>
+          <h2 className="small-heading">{t('session.groups')}</h2>
+          <ol className="group-list">
+            {plan.groups.map((g, n) => (
+              <li key={g.id} style={reviewColor(n)}>
+                <span>{g.label[locale]}</span>
+                <small>{t('session.vocabularyCount', { count: g.targetIds.length })}</small>
+              </li>
+            ))}
+          </ol>
+        </>
+      )}
       {notice && <p className="note" role="note">{notice}</p>}
       {resumable ? (
         <div className="start-actions">
@@ -121,8 +136,7 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
           <button type="button" className="button button-primary" onClick={() => dispatch({ type: 'skip_no_voice' })}>{t('session.voiceSkip')}</button>
         </section>
       ) : (
-      <section className={`task-card${celebrating ? ' is-celebrating' : ''}`} aria-labelledby="task-heading">
-        {celebrating && <div className="success-burst" role="status"><span aria-hidden="true">✓</span> {t('session.allCorrect')}</div>}
+      <section className="task-card" aria-labelledby="task-heading">
         <p className="label-muted">{page.stepLabel[locale]}{page.role === 'exam' ? ` · ${t('session.examPage')}` : ''}</p>
         <h1 id="task-heading" ref={heading} tabIndex={-1} className="task-heading">{page.instructions[locale]}</h1>
         {page.role === 'exam' && remainingMs !== undefined && <Countdown remainingMs={remainingMs} />}
@@ -149,13 +163,31 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
         <div className="task-footer">
           {page.role === 'practice' && !ready && <p className="muted">{t('session.answerAll')}</p>}
           {page.role === 'presentation' && !ready && <p className="muted">{t('session.revealAll')}</p>}
-          <button type="button" className="button button-primary" disabled={!ready || celebrating} onClick={onContinue}>
-            {t('session.continue')}
-          </button>
+          <span className="continue-wrap">
+            <button type="button" className="button button-primary" disabled={!ready || celebrating} onClick={onContinue}>
+              {t('session.continue')}
+            </button>
+            {celebrating && <CheckCloud label={t('session.allCorrect')} />}
+          </span>
         </div>
       </section>
       )}
     </>
+  );
+}
+
+/** Success cue for a fully correct matching page: three green checks rise from the Continue button. */
+function CheckCloud({ label }: { label: string }) {
+  const check = (n: number) => (
+    <svg key={n} className={`cloud-check cloud-check-${n}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M5 12.5l4.5 4.5L19 7.5" />
+    </svg>
+  );
+  return (
+    <span className="check-cloud" role="status">
+      <span className="visually-hidden">{label}</span>
+      <span aria-hidden="true">{[1, 2, 3].map(check)}</span>
+    </span>
   );
 }
 

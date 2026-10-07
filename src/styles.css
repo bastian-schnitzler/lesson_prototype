@@ -757,6 +757,58 @@ select {
   margin: 1.5rem 0 0.5rem;
 }
 
+.start-card {
+  position: relative;
+}
+
+.kind-badge {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  padding: 0.2rem 0.7rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.group-list {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: group;
+}
+
+.group-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--review-color);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.group-list li::before {
+  counter-increment: group;
+  content: counter(group) ".";
+  min-width: 1.5rem;
+  color: var(--review-color);
+  font-weight: 600;
+}
+
+.group-list li span {
+  flex: 1;
+}
+
+.group-list small {
+  color: var(--muted);
+  white-space: nowrap;
+}
+
 .start-actions {
   display: flex;
   flex-wrap: wrap;
@@ -1021,7 +1073,8 @@ select {
   border-color: var(--progress);
 }
 
-.flashcard-face p {
+.flashcard-face p,
+.flashcard-face div {
   margin: 0;
 }
 
@@ -1051,10 +1104,22 @@ select {
   }
 }
 
+/* Both columns share one grid (subgrid rows), so every box takes the height of the tallest one. */
 .matching-columns {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(var(--rows, 1), 1fr);
   gap: 0.75rem 1.5rem;
+}
+
+.matching-columns > ul {
+  grid-row: 1 / -1;
+  grid-template-rows: subgrid;
+}
+
+.matching-columns li,
+.matching-columns .match-item {
+  height: 100%;
 }
 
 .match-item small {
@@ -1065,7 +1130,7 @@ select {
 
 .matching-columns ul {
   display: grid;
-  gap: 0.5rem;
+  gap: inherit;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -1073,7 +1138,7 @@ select {
 
 .match-item {
   width: 100%;
-  min-height: 48px;
+  min-height: 4.5rem; /* same height in both columns (French boxes carry a gender line) */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1085,8 +1150,8 @@ select {
   color: var(--text);
   font: inherit;
   text-align: left;
+  position: relative;
   overflow-wrap: break-word;
-  hyphens: auto;
   cursor: pointer;
 }
 
@@ -1223,6 +1288,28 @@ select {
     gap: 0.5rem;
   }
 
+  .match-item {
+    padding: 0.5rem 0.6rem;
+  }
+
+  .match-cell .match-item {
+    padding-right: 2.6rem;
+  }
+
+  .match-audio {
+    right: 0.4rem;
+  }
+
+  /* Phones: the pair number sits on the box's top-left corner and leaves the width to the word. */
+  .pair-badge {
+    position: absolute;
+    top: -0.55rem;
+    left: -0.55rem;
+    min-width: 1.35rem;
+    height: 1.35rem;
+    font-size: 12px;
+  }
+
   .field-row {
     grid-template-columns: 1fr;
   }
@@ -1336,59 +1423,102 @@ select {
   display: inline-flex;
 }
 
-.flashcard-example {
+.flashcard-face .flashcard-example {
   display: flex;
   align-items: flex-start;
   gap: 0.5rem;
+  margin-top: 1rem;
 }
 
 .task-card {
   position: relative;
 }
 
-.success-burst {
+.continue-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.check-cloud {
   position: absolute;
-  inset: 0;
-  z-index: 3;
-  display: grid;
-  place-content: center;
-  gap: 0.5rem;
-  justify-items: center;
-  border-radius: inherit;
-  background: rgb(0 230 118 / 0.12);
+  left: 50%;
+  bottom: 100%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.cloud-check {
+  position: absolute;
   color: var(--correct);
-  font-size: 22px;
-  font-weight: 700;
-  animation: success-burst 0.9s ease-out both;
+  opacity: 0;
+  animation: cloud-rise 0.9s ease-out forwards;
 }
 
-.success-burst span {
-  width: 72px;
-  height: 72px;
-  display: grid;
-  place-items: center;
-  border: 3px solid var(--correct);
-  border-radius: 999px;
-  font-size: 36px;
-  animation: success-pop 0.5s ease-out both;
-}
+.cloud-check-1 { width: 30px; height: 30px; --dx: -38px; --dy: -46px; }
+.cloud-check-2 { width: 20px; height: 20px; --dx: 10px; --dy: -64px; animation-delay: 0.08s; }
+.cloud-check-3 { width: 24px; height: 24px; --dx: 40px; --dy: -38px; animation-delay: 0.16s; }
 
-@keyframes success-burst {
-  0% { opacity: 0; }
-  20% { opacity: 1; }
-  80% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-@keyframes success-pop {
-  0% { transform: scale(0.4); }
-  70% { transform: scale(1.15); }
-  100% { transform: scale(1); }
+@keyframes cloud-rise {
+  0% { opacity: 0; transform: translate(-50%, 10px) scale(0.4); }
+  25% { opacity: 1; }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--dx)), var(--dy)) scale(1); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .success-burst,
-  .success-burst span {
+  .cloud-check {
     animation: none;
+    opacity: 1;
+    transform: translate(calc(-50% + var(--dx)), var(--dy));
   }
 }
+
+.match-summary {
+  margin: 0 0 1rem;
+}
+
+.match-corrections {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.match-corrections li {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--incorrect);
+  border-radius: var(--radius);
+  background: var(--bg);
+}
+
+.match-corrections p {
+  margin: 0;
+}
+
+.match-word {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.match-word small {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.match-wrong {
+  color: var(--incorrect);
+}
+
+.match-right {
+  color: var(--correct);
+}
+
