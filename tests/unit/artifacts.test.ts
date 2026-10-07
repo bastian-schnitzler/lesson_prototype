@@ -115,6 +115,15 @@ describe('brief validation', () => {
     expect(messages(checkContent('fr-classroom-objects'))).toBe('');
   });
 
+  it('validates formatted introductions and explanations: syntax and locale parity (D46)', () => {
+    const intro = (c: Json) => c.steps[0].pages[0].items[0];
+    expect(messages(checkContent('fr-classroom-objects', (c) => (intro(c).text.de = '# Titel\n\n' + intro(c).text.de)))).toMatch(/text\.de: block 1: headings are not allowed/);
+    expect(messages(checkContent('fr-classroom-objects', (c) => (intro(c).text.fr = 'Un paragraphe.\n\n- liste')))).toMatch(/text\.fr: block structure p\|ul:1 differs from en/);
+    expect(messages(checkContent('fr-classroom-objects', (c) => (intro(c).text.en = intro(c).text.en + ' Also `une table`.')))).toMatch(/learning-language forms differ/);
+    const explanation = (c: Json) => c.steps[0].pages[0].items[0];
+    expect(messages(checkContent('fr-verb-etre-present', (c) => (explanation(c).text.en = '<b>HTML</b>')))).toMatch(/HTML not allowed/);
+  });
+
   it('requires listening when the intent asks for oral recognition', () => {
     expect(messages(checkBrief('fr-classroom-instructions', (b) => (b.plan.listening.required = false)))).toMatch(/oral recognition/);
   });

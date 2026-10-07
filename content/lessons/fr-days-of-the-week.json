@@ -51,9 +51,9 @@
                 "dimanche"
               ],
               "text": {
-                "en": "The week runs lundi, mardi, mercredi, jeudi, vendredi, samedi, dimanche. French day names have a lowercase initial. Lundi, je travaille means I work this Monday; Le lundi, je travaille means I work on Mondays. Matin, après-midi and soir name parts of the day. Say lundi matin or vendredi soir. Ask Quel jour sommes-nous ? and answer Aujourd'hui, c'est lundi. Après-midi takes a hyphen and an accent grave on è; today is aujourd'hui, with an apostrophe. Learn matin and soir as masculine nouns. Après-midi can be masculine or feminine; follow the accepted forms shown in the overview.\nDays of the week: lundi, mardi, mercredi, jeudi, vendredi, samedi, dimanche.",
-                "fr": "La semaine est lundi, mardi, mercredi, jeudi, vendredi, samedi, dimanche. Les jours s'écrivent avec une minuscule. Lundi, je travaille désigne un lundi précis ; Le lundi, je travaille exprime une habitude. Matin, après-midi et soir sont des moments de la journée. Dites lundi matin ou vendredi soir. Demandez Quel jour sommes-nous ? Répondez Aujourd'hui, c'est lundi. Après-midi prend un trait d'union et un accent grave sur le è ; aujourd'hui prend une apostrophe. Matin et soir sont masculins. Après-midi peut être masculin ou féminin ; voyez les formes acceptées dans le tableau.\nLes jours de la semaine: lundi, mardi, mercredi, jeudi, vendredi, samedi, dimanche.",
-                "de": "Die Woche lautet lundi, mardi, mercredi, jeudi, vendredi, samedi, dimanche. Französische Wochentage beginnen klein. Lundi, je travaille heißt, dass ich an diesem Montag arbeite; Le lundi, je travaille heißt, dass ich montags arbeite. Matin, après-midi und soir sind Tageszeiten. Sage lundi matin oder vendredi soir. Frage Quel jour sommes-nous ? und antworte Aujourd'hui, c'est lundi. Après-midi hat einen Bindestrich und einen accent grave auf è; aujourd'hui eine Apostrophe. Matin und soir sind männlich. Après-midi kann männlich oder weiblich sein; beachte die akzeptierten Formen in der Übersicht.\nDie Wochentage: lundi, mardi, mercredi, jeudi, vendredi, samedi, dimanche."
+                "en": "The week runs `lundi`, `mardi`, `mercredi`, `jeudi`, `vendredi`, `samedi`, `dimanche`. Day names start with a **lowercase** letter.\n\n- Lundi, je travaille – I work this Monday.\n- Le lundi, je travaille – I work on Mondays.\n\nCombine a day with a time of day: lundi matin, vendredi soir.",
+                "fr": "La semaine : `lundi`, `mardi`, `mercredi`, `jeudi`, `vendredi`, `samedi`, `dimanche`. Les jours s'écrivent avec une **minuscule**.\n\n- Lundi, je travaille – un lundi précis.\n- Le lundi, je travaille – tous les lundis.\n\nAssociez un jour et un moment : lundi matin, vendredi soir.",
+                "de": "Die Woche: `lundi`, `mardi`, `mercredi`, `jeudi`, `vendredi`, `samedi`, `dimanche`. Wochentage beginnen **klein**.\n\n- Lundi, je travaille – ich arbeite an diesem Montag.\n- Le lundi, je travaille – ich arbeite montags.\n\nVerbinde Tag und Tageszeit: lundi matin, vendredi soir."
               }
             }
           ]
@@ -77,9 +77,9 @@
                 "soir"
               ],
               "text": {
-                "en": "Moments of the day: le matin, l'après-midi, le soir. Say each word aloud and study its example.\nJe bois du café le matin. — I drink coffee in the morning.\nCet après-midi, nous faisons une promenade. — This afternoon, we are taking a walk.\nLe soir, nous regardons un film. — In the evening, we watch a movie.",
-                "fr": "Les moments de la journée: le matin, l'après-midi, le soir. Dites chaque mot à voix haute et étudiez son exemple.\nJe bois du café le matin.\nCet après-midi, nous faisons une promenade.\nLe soir, nous regardons un film.",
-                "de": "Die Tageszeiten: le matin, l'après-midi, le soir. Sprich jedes Wort laut und lies sein Beispiel.\nJe bois du café le matin. — Ich trinke morgens Kaffee.\nCet après-midi, nous faisons une promenade. — Heute Nachmittag machen wir einen Spaziergang.\nLe soir, nous regardons un film. — Am Abend schauen wir einen Film."
+                "en": "**Times of day**. Say each one aloud and study its example:\n\n- `le matin` – the morning: Je bois du café le matin.\n- `l'après-midi` – the afternoon: Cet après-midi, nous faisons une promenade.\n- `le soir` – the evening: Le soir, nous regardons un film.\n\n`le matin` and `le soir` are masculine. `l'après-midi` has a hyphen and an accent grave, and can be masculine or feminine.",
+                "fr": "**Les moments de la journée**. Dites chacun à voix haute et étudiez son exemple :\n\n- `le matin` : Je bois du café le matin.\n- `l'après-midi` : Cet après-midi, nous faisons une promenade.\n- `le soir` : Le soir, nous regardons un film.\n\n`le matin` et `le soir` sont masculins. `l'après-midi` prend un trait d'union et un accent grave ; il peut être masculin ou féminin.",
+                "de": "**Die Tageszeiten**. Sprich jede laut und lies das Beispiel:\n\n- `le matin` – der Morgen: Je bois du café le matin.\n- `l'après-midi` – der Nachmittag: Cet après-midi, nous faisons une promenade.\n- `le soir` – der Abend: Le soir, nous regardons un film.\n\n`le matin` und `le soir` sind männlich. `l'après-midi` hat einen Bindestrich und einen accent grave und kann männlich oder weiblich sein."
               }
             }
           ]
@@ -102,9 +102,9 @@
                 "quel-jour"
               ],
               "text": {
-                "en": "Asking and telling the day: aujourd'hui, Quel jour sommes-nous ?. Say each word aloud and study its example.\nAujourd'hui, c'est lundi. — Today is Monday.\nExcusez-moi, quel jour sommes-nous ? — Excuse me, what day is it?",
-                "fr": "Demander et dire le jour: aujourd'hui, Quel jour sommes-nous ?. Dites chaque mot à voix haute et étudiez son exemple.\nAujourd'hui, c'est lundi.\nExcusez-moi, quel jour sommes-nous ?",
-                "de": "Den Tag erfragen und nennen: aujourd'hui, Quel jour sommes-nous ?. Sprich jedes Wort laut und lies sein Beispiel.\nAujourd'hui, c'est lundi. — Heute ist Montag.\nExcusez-moi, quel jour sommes-nous ? — Entschuldigung, welchen Tag haben wir heute?"
+                "en": "**Asking and telling the day**:\n\n- `Quel jour sommes-nous ?` – What day is it? Excusez-moi, quel jour sommes-nous ?\n- `aujourd'hui` – today, written with an apostrophe: Aujourd'hui, c'est lundi.",
+                "fr": "**Demander et dire le jour** :\n\n- `Quel jour sommes-nous ?` : Excusez-moi, quel jour sommes-nous ?\n- `aujourd'hui`, avec une apostrophe : Aujourd'hui, c'est lundi.",
+                "de": "**Den Tag erfragen und nennen**:\n\n- `Quel jour sommes-nous ?` – Welcher Tag ist heute? Excusez-moi, quel jour sommes-nous ?\n- `aujourd'hui` – heute, mit Apostroph: Aujourd'hui, c'est lundi."
               }
             }
           ]

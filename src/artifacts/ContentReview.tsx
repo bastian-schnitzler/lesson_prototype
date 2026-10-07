@@ -1,5 +1,6 @@
 import { Fragment, useId, useRef, useState, type CSSProperties } from 'react';
 import { buildPlan, type PlanUnit } from '../domain/session/plan.ts';
+import { RichText } from '../components/RichText.tsx';
 import type { Brief, LessonContent } from '../schemas/artifacts.ts';
 import { useBriefText, Learn, SummaryLine, ScoringNote } from './briefParts.tsx';
 
@@ -76,13 +77,13 @@ export function ContentReview({ content, brief }: { content: LessonContent; brie
           <p className="muted">{copy.type}: <code>{item.type}</code> · <code>{item.itemId}</code></p>
           {'ruleIds' in item && <p>{copy.rules}: {item.ruleIds.join(', ')}</p>}
           {item.type === 'grammar_explanation' && <>
-            <h5>{text.ui(item.heading)}</h5><p className="content-prose">{text.ui(item.text)}</p>
+            <h5>{text.ui(item.heading)}</h5><RichText text={text.ui(item.text)} lang={content.lang} />
             {item.formTable.length > 0 && <div className="table-wrap"><table className="data-table"><thead><tr><th>{copy.subject}</th><th>{copy.form}</th><th>{text.t('brief.col.example')}</th></tr></thead><tbody>{item.formTable.map((r, i) => <tr key={i}><td>{learning(r.subject)}</td><td>{learning(r.form)}</td><td>{r.example && learning(r.example)}</td></tr>)}</tbody></table></div>}
             <ul>{item.examples.map((e, i) => <li key={i}>{learning(e.text)} — <span lang={text.nativeLocale}>{text.native(e.translation)}</span></li>)}</ul>
           </>}
           {item.type === 'production_feedback_placeholder' && <p>{copy.placeholder}</p>}
           {item.type === 'grammar_gap_typing' && item.hint && <p>{text.ui(item.hint)}</p>}
-          {item.type === 'vocabulary_introduction' && <p className="content-prose">{text.ui(item.text)}</p>}
+          {item.type === 'vocabulary_introduction' && <RichText text={text.ui(item.text)} lang={content.lang} />}
           {'targetIds' in item && <div className="table-wrap"><table className="data-table"><thead><tr><th>{item.type === 'vocabulary_flashcards' ? copy.front : text.t('brief.col.target')}</th><th>{item.type === 'vocabulary_flashcards' ? copy.back : text.t('brief.col.translation', { locale: text.languageName(text.nativeLocale) })}</th><th>{text.t('brief.col.gender')}</th></tr></thead><tbody>{item.targetIds.map((id) => {
             const t = plan.targets.get(id)!;
             return <tr key={id}><td>{learning(t.teachingForm)}<br /><small>{t.pronunciation}</small></td><td lang={text.nativeLocale}>{text.native(t.translations)?.join(' / ')}</td><td>{t.genders.map((g) => text.t(`gender.${g}`)).join(' / ')}</td></tr>;

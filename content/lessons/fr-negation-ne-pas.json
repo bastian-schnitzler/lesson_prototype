@@ -50,9 +50,9 @@
                 "de": "Grundlegende Verneinung mit ne...pas"
               },
               "text": {
-                "en": "Place 'ne' before the verb and 'pas' after the verb when it starts with a consonant. Forgetting to include 'pas' after the verb. Je ne parle pas anglais. Il ne mange pas de viande.",
-                "fr": "Placer 'ne' devant le verbe et 'pas' après le verbe quand il commence par une consonne. Oublier de mettre 'pas' après le verbe. Je ne parle pas anglais. Il ne mange pas de viande.",
-                "de": "'ne' vor das Verb und 'pas' nach das Verb setzen, wenn es mit einem Konsonanten beginnt. Vergessen, 'pas' nach dem Verb einzufügen. Je ne parle pas anglais. Il ne mange pas de viande."
+                "en": "To make a verb negative, put `ne` **before** the verb and `pas` **after** it:\n\n- `Je ne parle pas anglais.`\n- `Il ne mange pas de viande.`\n\nA common mistake is to forget `pas`.",
+                "fr": "Pour mettre un verbe à la forme négative, placez `ne` **avant** le verbe et `pas` **après** :\n\n- `Je ne parle pas anglais.`\n- `Il ne mange pas de viande.`\n\nUne erreur fréquente : oublier `pas`.",
+                "de": "Für die Verneinung steht `ne` **vor** dem Verb und `pas` **danach**:\n\n- `Je ne parle pas anglais.`\n- `Il ne mange pas de viande.`\n\nEin häufiger Fehler: `pas` zu vergessen."
               },
               "formTable": [],
               "examples": [
@@ -552,9 +552,9 @@
                 "de": "Elision mit n'...pas"
               },
               "text": {
-                "en": "Use 'n'' instead of 'ne' before a verb starting with a vowel or mute 'h'. Writing 'ne' instead of 'n'' before a vowel sound. Je n'habite pas à Paris. Elle n'aime pas le café.",
-                "fr": "Utiliser 'n'' au lieu de 'ne' devant un verbe commençant par une voyelle ou un 'h' muet. Écrire 'ne' au lieu de 'n'' devant un son voyelle. Je n'habite pas à Paris. Elle n'aime pas le café.",
-                "de": "Verwenden Sie 'n'' anstelle von 'ne' vor einem Verb, das mit einem Vokal oder stummen 'h' beginnt. 'ne' statt 'n'' vor einem Vokallaut schreiben. Je n'habite pas à Paris. Elle n'aime pas le café."
+                "en": "Before a verb that starts with a **vowel or mute h**, `ne` becomes `n'`:\n\n- `Je n'habite pas à Paris.`\n- `Elle n'aime pas le café.`\n\nDo not write `ne` before a vowel sound.",
+                "fr": "Devant un verbe qui commence par une **voyelle ou un h muet**, `ne` devient `n'` :\n\n- `Je n'habite pas à Paris.`\n- `Elle n'aime pas le café.`\n\nN'écrivez pas `ne` devant un son voyelle.",
+                "de": "Vor einem Verb mit **Vokal oder stummem h** am Anfang wird `ne` zu `n'`:\n\n- `Je n'habite pas à Paris.`\n- `Elle n'aime pas le café.`\n\nSchreibe vor einem Vokallaut nicht `ne`."
               },
               "formTable": [],
               "examples": [

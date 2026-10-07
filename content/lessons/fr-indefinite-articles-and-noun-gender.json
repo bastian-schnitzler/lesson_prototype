@@ -50,9 +50,9 @@
                 "de": "Unbestimmte Artikel im Singular: un und une"
               },
               "text": {
-                "en": "Use 'un' before singular masculine nouns and 'une' before singular feminine nouns. French noun gender often differs from English or German counterparts; memorise nouns with their article. un livre une table",
-                "fr": "Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier. Le genre des noms ne correspond pas toujours à d'autres langues ; apprenez chaque nom avec son article. un livre une table",
-                "de": "Verwende 'un' vor männlichen Nomen im Singular und 'une' vor weiblichen Nomen im Singular. Das Genus unterscheidet sich oft vom Deutschen; Nomen sollten immer mit ihrem Artikel gelernt werden. un livre une table"
+                "en": "In the singular, the indefinite article shows the **gender**:\n\n- `un` before a masculine noun: `un livre`\n- `une` before a feminine noun: `une table`\n\nFrench gender often differs from English or German, so learn every noun with its article.",
+                "fr": "Au singulier, l'article indéfini montre le **genre** :\n\n- `un` devant un nom masculin : `un livre`\n- `une` devant un nom féminin : `une table`\n\nLe genre ne correspond pas toujours aux autres langues : apprenez chaque nom avec son article.",
+                "de": "Im Singular zeigt der unbestimmte Artikel das **Genus**:\n\n- `un` vor einem männlichen Nomen: `un livre`\n- `une` vor einem weiblichen Nomen: `une table`\n\nDas Genus weicht oft vom Deutschen ab – lerne jedes Nomen mit seinem Artikel."
               },
               "formTable": [],
               "examples": [
@@ -489,9 +489,9 @@
                 "de": "Der unbestimmte Artikel im Plural: des"
               },
               "text": {
-                "en": "Use 'des' before any plural noun, whether masculine or feminine. Do not omit 'des' when referring to unspecified plural items in French, unlike English where the article is omitted. des livres des tables",
-                "fr": "Utilisez 'des' devant tous les noms au pluriel, qu'ils soient masculins ou féminins. N'omettez pas 'des' pour désigner des éléments pluriels indéfinis, contrairement à l'anglais. des livres des tables",
-                "de": "Verwende 'des' vor allen Nomen im Plural, egal ob männlich oder weiblich. Lassen Sie 'des' im Plural nicht weg, auch wenn im Deutschen oft kein Artikel steht (Nullartikel). des livres des tables"
+                "en": "Use `des` before **every plural noun**, masculine or feminine: `des livres`, `des tables`.\n\nDo not drop `des` for unspecified plural things, even though English leaves out the article (\"books\").",
+                "fr": "Utilisez `des` devant **tous les noms au pluriel**, masculins ou féminins : `des livres`, `des tables`.\n\nN'omettez pas `des` pour des choses indéfinies au pluriel, même si l'anglais n'a pas d'article.",
+                "de": "Verwende `des` vor **jedem Nomen im Plural**, männlich oder weiblich: `des livres`, `des tables`.\n\nLass `des` nicht weg, auch wenn im Deutschen kein Artikel steht („Bücher“)."
               },
               "formTable": [],
               "examples": [

@@ -50,9 +50,9 @@
                 "de": "Subjektpronomen im Singular"
               },
               "text": {
-                "en": "Je means I and becomes j' before a vowel or mute h: j'habite. Tu addresses one familiar person. Il replaces a masculine person or noun; elle replaces a feminine one. The pronoun goes before the verb. Here the matching rows give the meaning in English and German; choose the French pronoun, not a conjugated verb.",
-                "fr": "Je désigne la personne qui parle et devient j' devant une voyelle ou un h muet : j'habite. Tu s'adresse à une personne familière. Il remplace un sujet masculin et elle un sujet féminin. Le pronom précède le verbe. Dans les associations, choisissez le pronom français qui correspond au sens indiqué, pas un verbe conjugué.",
-                "de": "Je bedeutet ich und wird vor Vokal oder stummem h zu j': j'habite. Tu spricht eine vertraute Person an. Il ersetzt eine männliche Person oder ein männliches Nomen, elle eine weibliche Person oder ein weibliches Nomen. Das Pronomen steht vor dem Verb. Wähle in den Zuordnungen das französische Pronomen zur angegebenen Bedeutung, keine Verbform."
+                "en": "The **singular** subject pronouns go before the verb:\n\n- `je` – I; before a vowel or mute h it becomes `j'`: `j'habite`\n- `tu` – you, for one person you know well\n- `il` – he, or a masculine noun\n- `elle` – she, or a feminine noun\n\nIn the matching rows, choose the French pronoun for the meaning shown, not a verb form.",
+                "fr": "Les pronoms sujets du **singulier** se placent devant le verbe :\n\n- `je` – la personne qui parle ; devant une voyelle ou un h muet, il devient `j'` : `j'habite`\n- `tu` – une personne familière\n- `il` – un sujet masculin\n- `elle` – un sujet féminin\n\nDans les associations, choisissez le pronom français qui correspond au sens, pas une forme verbale.",
+                "de": "Die Subjektpronomen im **Singular** stehen vor dem Verb:\n\n- `je` – ich; vor Vokal oder stummem h wird es zu `j'`: `j'habite`\n- `tu` – du, für eine vertraute Person\n- `il` – er, oder ein männliches Nomen\n- `elle` – sie, oder ein weibliches Nomen\n\nWähle in den Zuordnungen das französische Pronomen zur angegebenen Bedeutung, keine Verbform."
               },
               "formTable": [],
               "examples": [
@@ -481,9 +481,9 @@
                 "de": "Subjektpronomen im Plural und das informelle On"
               },
               "text": {
-                "en": "Nous means we. Vous means you for a group or one person politely. Ils refers to a male or mixed group; elles to an all-female group. In conversation, on often means we but uses a singular verb: On est ici, compared with Nous sommes ici.",
-                "fr": "Nous désigne le groupe qui parle. Vous s'adresse à un groupe ou poliment à une personne. Ils désigne un groupe masculin ou mixte ; elles un groupe exclusivement féminin. À l'oral, on remplace souvent nous mais garde un verbe au singulier : On est ici, contre Nous sommes ici.",
-                "de": "Nous heißt wir. Vous spricht eine Gruppe oder eine Person höflich an. Ils steht für männliche oder gemischte Gruppen, elles für rein weibliche Gruppen. Im Gespräch bedeutet on oft wir, hat aber eine Singularverbform: On est ici, gegenüber Nous sommes ici."
+                "en": "The **plural** subject pronouns:\n\n- `nous` – we\n- `vous` – you, for a group or one person politely\n- `ils` – they, for a male or mixed group\n- `elles` – they, for an all-female group\n\nIn conversation, `on` often means \"we\" but takes a singular verb: `On est ici` = `Nous sommes ici`.",
+                "fr": "Les pronoms sujets du **pluriel** :\n\n- `nous` – le groupe qui parle\n- `vous` – un groupe, ou une personne poliment\n- `ils` – un groupe masculin ou mixte\n- `elles` – un groupe uniquement féminin\n\nÀ l'oral, `on` remplace souvent « nous » avec un verbe au singulier : `On est ici` = `Nous sommes ici`.",
+                "de": "Die Subjektpronomen im **Plural**:\n\n- `nous` – wir\n- `vous` – ihr, oder höflich Sie\n- `ils` – sie, für männliche oder gemischte Gruppen\n- `elles` – sie, für rein weibliche Gruppen\n\nIm Gespräch bedeutet `on` oft „wir“, hat aber ein Verb im Singular: `On est ici` = `Nous sommes ici`."
               },
               "formTable": [],
               "examples": [
@@ -735,9 +735,9 @@
                 "de": "Unterscheidung zwischen Tu und Vous"
               },
               "text": {
-                "en": "Use tu with a close friend or a family member. Use vous for several people, even friends, or for one person in a polite or formal setting. With a stranger, begin with vous unless you agree to use tu. The verb must follow the chosen pronoun: tu vas, vous allez.",
-                "fr": "Utilisez tu avec un ami proche ou un membre de la famille. Utilisez vous pour plusieurs personnes, même des amis, ou pour une personne dans une situation polie ou formelle. Avec un inconnu, commencez par vous sauf si vous convenez de vous tutoyer. Le verbe suit le pronom : tu vas, vous allez.",
-                "de": "Verwende tu mit engen Freunden oder Familienmitgliedern. Verwende vous für mehrere Menschen, auch Freunde, oder für eine Person im höflichen oder formellen Rahmen. Beginne bei Fremden mit vous, bis ihr euch auf tu einigt. Das Verb folgt dem Pronomen: tu vas, vous allez."
+                "en": "When to use `tu` and when `vous`:\n\n- `tu` – a close friend or a family member\n- `vous` – several people, even friends, or one person in a polite or formal setting\n\nWith a stranger, start with `vous` until you agree to use `tu`. The verb follows the pronoun: `tu vas`, `vous allez`.",
+                "fr": "Quand utiliser `tu` et quand `vous` :\n\n- `tu` – un ami proche ou un membre de la famille\n- `vous` – plusieurs personnes, même des amis, ou une personne dans un cadre poli ou formel\n\nAvec un inconnu, commencez par `vous` jusqu'à ce que vous passiez à `tu`. Le verbe suit le pronom : `tu vas`, `vous allez`.",
+                "de": "Wann `tu` und wann `vous`:\n\n- `tu` – enge Freunde und Familie\n- `vous` – mehrere Personen, auch Freunde, oder eine Person im höflichen oder formellen Rahmen\n\nBeginne bei Fremden mit `vous`, bis ihr euch auf `tu` einigt. Das Verb folgt dem Pronomen: `tu vas`, `vous allez`."
               },
               "formTable": [],
               "examples": [

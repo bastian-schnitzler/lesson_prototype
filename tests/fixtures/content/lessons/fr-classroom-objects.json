@@ -58,9 +58,9 @@
                 "table"
               ],
               "text": {
-                "en": "Learn four objects you see in class.",
-                "fr": "Apprenez quatre objets de la classe.",
-                "de": "Lerne vier Gegenstände aus dem Klassenzimmer."
+                "en": "Learn **four objects** you see in class:\n\n- `un livre`\n- `une chaise`\n- `un stylo`\n- `une table`",
+                "fr": "Apprenez **quatre objets** de la classe :\n\n- `un livre`\n- `une chaise`\n- `un stylo`\n- `une table`",
+                "de": "Lerne **vier Gegenstände** aus dem Klassenzimmer:\n\n- `un livre`\n- `une chaise`\n- `un stylo`\n- `une table`"
               }
             }
           ]

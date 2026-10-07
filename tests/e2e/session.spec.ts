@@ -51,6 +51,16 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   await expect(page.locator('tr[data-lesson-id="fr-classroom-objects"] .score')).not.toBeEmpty();
 });
 
+test('renders the formatted introduction text with a list and French forms (D46)', async ({ page }) => {
+  await page.goto('./#/lesson/fr-classroom-objects/play');
+  await proceed(page); // start
+  const intro = page.locator('.task-card .rich-text');
+  await expect(intro.locator('strong')).toHaveText('four objects');
+  await expect(intro.locator('ul > li')).toHaveCount(4);
+  await expect(intro.locator('.learning-form[lang="fr"]').first()).toHaveText('un livre');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBeLessThanOrEqual(0);
+});
+
 test('locks an exam page when its brief-defined countdown expires', async ({ page }) => {
   await page.clock.install();
   await page.goto('./#/lesson/fr-negation-ne-pas/play');

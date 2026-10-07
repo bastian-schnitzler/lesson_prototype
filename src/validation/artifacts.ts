@@ -4,6 +4,7 @@ import { nativeLocales } from '../schemas/artifactCommon.ts';
 import { briefSchema, contentSchema, isSupportedKind, type Brief, type LessonContent } from '../schemas/artifacts.ts';
 import type { GrammarBrief, GrammarContent, GrammarItem } from '../schemas/grammar.ts';
 import type { OutlineEntry } from '../schemas/outline.ts';
+import { learningForms, parseRichText, richTextShape } from '../domain/richText.ts';
 import { vocabularyExamAnswers } from '../domain/vocabularyAnswers.ts';
 import { VOCABULARY_STAGES, type VocabularyBrief, type VocabularyContent, type VocabularyItem, type VocabularyTarget } from '../schemas/vocabulary.ts';
 
@@ -232,6 +233,18 @@ function checkExplanations(items: { answerExplanation?: { en: string } }[], path
   }
 }
 
+/** Restricted Markdown teaching text (D46): allowed syntax, same structure and learning-language forms in every locale. */
+function checkRichText(text: Record<string, string>, path: string, issues: Issues) {
+  const parsed = Object.entries(text).map(([locale, value]) => ({ locale, ...parseRichText(value) }));
+  for (const p of parsed) for (const e of p.errors) issues.add(`${path}.${p.locale}`, `${e} (restricted Markdown, D46)`);
+  const [first, ...rest] = parsed;
+  for (const p of rest) {
+    issues.check(richTextShape(p.blocks) === richTextShape(first.blocks), `${path}.${p.locale}`, `block structure ${richTextShape(p.blocks)} differs from ${first.locale} (${richTextShape(first.blocks)})`);
+    const forms = learningForms(p.blocks), firstForms = learningForms(first.blocks);
+    issues.check(sameSet(forms, firstForms), `${path}.${p.locale}`, `learning-language forms differ from ${first.locale}: ${forms.map((f) => `\`${f}\``).join(', ') || 'none'} vs ${firstForms.map((f) => `\`${f}\``).join(', ') || 'none'}`);
+  }
+}
+
 const FR_ARTICLE_START = /^(un|une|des|le|la|les|l')(\s|$)|^l'/iu;
 
 function checkVocabularyContent(c: VocabularyContent, b: VocabularyBrief, ctx: ContentContext, issues: Issues) {
@@ -279,6 +292,9 @@ function checkVocabularyContent(c: VocabularyContent, b: VocabularyBrief, ctx: C
         (covered[item.type] ??= []).push(...('targetIds' in item ? item.targetIds : 'targetId' in item ? [item.targetId] : []));
         switch (item.type) {
           case 'vocabulary_introduction':
+            checkRichText(item.text, `${ip}.text`, issues);
+            item.targetIds.forEach((id) => known(id, ip));
+            break;
           case 'vocabulary_flashcards':
           case 'vocabulary_overview':
             item.targetIds.forEach((id) => known(id, ip));
@@ -353,6 +369,9 @@ function checkGrammarItem(item: GrammarItem, path: string, rules: Set<string>, e
   const tokens = 'tokens' in item ? item.tokens : [];
   issues.unique(tokens.map((t) => t.tokenId), path, 'token ID');
   switch (item.type) {
+    case 'grammar_explanation':
+      checkRichText(item.text, `${path}.text`, issues);
+      break;
     case 'grammar_gap_choice':
       issues.unique(item.choices.map((ch) => ch.choiceId), path, 'choice ID');
       issues.unique(item.choices.map((ch) => ch.text), path, 'choice text');

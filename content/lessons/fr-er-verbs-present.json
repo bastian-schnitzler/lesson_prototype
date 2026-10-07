@@ -51,9 +51,9 @@
                 "de": "Singularformen und stumme Endungen"
               },
               "text": {
-                "en": "Remove -er from the infinitive and add -e (je), -es (tu), and -e (il/elle/on). The endings -e, -es, and -ent are silent in pronunciation. Do not pronounce the final -s in tu habites or the -e in je parle. Je parle français. Tu habites à Paris. Elle aime la musique.",
-                "fr": "Retirez -er de l'infinitif et ajoutez -e (je), -es (tu) et -e (il/elle/on). Les terminaisons -e, -es et -ent sont muettes à la prononciation. Ne prononcez pas le -s final dans tu habites ni le -e dans je parle. Je parle français. Tu habites à Paris. Elle aime la musique.",
-                "de": "Entfernen Sie -er vom Infinitiv und fügen Sie -e (je), -es (tu) und -e (il/elle/on) hinzu. Die Endungen -e, -es und -ent werden bei der Aussprache nicht gesprochen. Sprechen Sie weder das finale -s bei tu habites noch das -e bei je parle aus. Je parle français. Tu habites à Paris. Elle aime la musique."
+                "en": "Remove **-er** from the infinitive and add the singular endings:\n\n- `je` + -e: `je parle`\n- `tu` + -es: `tu habites`\n- `il/elle/on` + -e: `elle aime`\n\nAll three endings are **silent**: `je parle`, `tu parles` and `il parle` sound the same.",
+                "fr": "Retirez **-er** de l'infinitif et ajoutez les terminaisons du singulier :\n\n- `je` + -e : `je parle`\n- `tu` + -es : `tu habites`\n- `il/elle/on` + -e : `elle aime`\n\nLes trois terminaisons sont **muettes** : `je parle`, `tu parles` et `il parle` se prononcent pareil.",
+                "de": "Entferne **-er** vom Infinitiv und hänge die Singularendungen an:\n\n- `je` + -e: `je parle`\n- `tu` + -es: `tu habites`\n- `il/elle/on` + -e: `elle aime`\n\nAlle drei Endungen sind **stumm**: `je parle`, `tu parles` und `il parle` klingen gleich."
               },
               "formTable": [
                 {
@@ -544,9 +544,9 @@
                 "de": "Pluralformen (-ons, -ez, -ent)"
               },
               "text": {
-                "en": "Add endings -ons (nous), -ez (vous), and -ent (ils/elles) to the verb stem. Do not pronounce the ending -ent in ils/elles aiment; it sounds the same as il aime. Nous parlons italien. Vous habitez ici. Ils aiment le chocolat.",
-                "fr": "Ajoutez les terminaisons -ons (nous), -ez (vous) et -ent (ils/elles) au radical du verbe. Ne prononcez pas la terminaison -ent dans ils/elles aiment ; elle se prononce comme il aime. Nous parlons italien. Vous habitez ici. Ils aiment le chocolat.",
-                "de": "Fügen Sie die Endungen -ons (nous), -ez (vous) und -ent (ils/elles) an den Verbstamm an. Sprechen Sie die Endung -ent bei ils/elles aiment nicht aus; sie klingt wie il aime. Nous parlons italien. Vous habitez ici. Ils aiment le chocolat."
+                "en": "Add the plural endings to the stem:\n\n- `nous` + -ons: `nous parlons`\n- `vous` + -ez: `vous habitez`\n- `ils/elles` + -ent: `ils aiment`\n\nThe ending -ent is **silent**: `ils aiment` sounds like `il aime`.",
+                "fr": "Ajoutez les terminaisons du pluriel au radical :\n\n- `nous` + -ons : `nous parlons`\n- `vous` + -ez : `vous habitez`\n- `ils/elles` + -ent : `ils aiment`\n\nLa terminaison -ent est **muette** : `ils aiment` se prononce comme `il aime`.",
+                "de": "Hänge die Pluralendungen an den Stamm:\n\n- `nous` + -ons: `nous parlons`\n- `vous` + -ez: `vous habitez`\n- `ils/elles` + -ent: `ils aiment`\n\nDie Endung -ent ist **stumm**: `ils aiment` klingt wie `il aime`."
               },
               "formTable": [
                 {

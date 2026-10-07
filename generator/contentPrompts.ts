@@ -12,7 +12,10 @@ import { grammarItemSchema, type GrammarBrief, type GrammarExerciseType } from '
 import type { VocabularyBrief } from '../src/schemas/vocabulary.ts';
 import type { OutlineContext } from '../src/validation/artifacts.ts';
 
-export const CONTENT_PROMPT_VERSION = 'content-v1';
+export const CONTENT_PROMPT_VERSION = 'content-v2';
+
+/** D46: shared format rule for introduction and explanation texts. */
+const RICH_TEXT = 'Format the text as restricted Markdown: short paragraphs separated by a blank line, "- " bulleted or "1. " numbered lists (a blank line before and after), **bold** for a key idea, and backticks around every learning-language form (`un livre`, `je suis`). No headings, links, tables, HTML, italics or nesting. Use the same paragraphs, lists and backticked forms in en, fr and de; the backticked forms are identical in every locale.';
 
 /**
  * One separately generated and validated part of a lesson (SPEC "Generator behavior"):
@@ -36,7 +39,7 @@ export const vocabularySections = (lang: string, brief: VocabularyBrief) => {
     introduction: {
       key: 'introduction',
       schema: z.strictObject({ groups: z.array(z.strictObject({ groupId: NestedIdSchema, text: LocalizedLongTextSchema })).min(1) }),
-      task: `Write the introduction page text for each target group (${brief.groups.map((g) => g.id).join(', ')}): present the topic, what the learner will be able to do, and the group's words with a useful observation (pattern, pronunciation, spelling). Do not quiz the learner.`,
+      task: `Write the introduction page text for each target group (${brief.groups.map((g) => g.id).join(', ')}): present the topic, what the learner will be able to do, and the group's words with a useful observation (pattern, pronunciation, spelling). Do not quiz the learner. ${RICH_TEXT}`,
     },
     words: {
       key: 'words',
@@ -114,7 +117,7 @@ export const grammarSections = (lang: string, brief: GrammarBrief): Section[] =>
         explanation: (grammarItemSchema(lang).options.find((o) => o.shape.type.value === 'grammar_explanation') as z.ZodObject).omit({ itemId: true, type: true, ruleIds: true }),
         exercises: z.array(z.strictObject({ exerciseId: NestedIdSchema, items: z.array(itemSchema(lang, types)).min(1).max(12) })),
       }),
-      task: `Teaching block ${block.id} ("${block.title.en}"), rules ${block.ruleIds.join(', ')}. explanation follows the block's explanationPlan with a form table where forms are taught and examples from the brief or similar. exercises: one entry per planned exercise in this order, each with exactly the planned number of items of its type and ruleIds from this block: ${block.exercises.map((e) => `${e.id} = ${e.itemCount} × ${e.type} (${ITEM_GUIDANCE[e.type]})`).join('; ')}.`,
+      task: `Teaching block ${block.id} ("${block.title.en}"), rules ${block.ruleIds.join(', ')}. explanation follows the block's explanationPlan with a form table where forms are taught and examples from the brief or similar; its text: ${RICH_TEXT} exercises: one entry per planned exercise in this order, each with exactly the planned number of items of its type and ruleIds from this block: ${block.exercises.map((e) => `${e.id} = ${e.itemCount} × ${e.type} (${ITEM_GUIDANCE[e.type]})`).join('; ')}.`,
     };
   }),
   {

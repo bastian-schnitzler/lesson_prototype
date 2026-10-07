@@ -1,4 +1,5 @@
 import { useI18n } from '../app/context.tsx';
+import { RichText } from '../components/RichText.tsx';
 import type { LessonPlan } from '../domain/session/plan.ts';
 import type { Locale } from '../schemas/common.ts';
 import type { VocabularyTarget } from '../schemas/vocabulary.ts';
@@ -47,7 +48,7 @@ export function IntroductionRenderer({ item, plan, motherTongue }: RendererProps
   if (item.type !== 'vocabulary_introduction') return null;
   return (
     <>
-      <p className="explanation-text">{item.text[locale]}</p>
+      <RichText text={item.text[locale]} lang={plan.lang} className="rich-text explanation-text" />
       <TargetTable ids={item.targetIds} plan={plan} motherTongue={motherTongue} />
     </>
   );
