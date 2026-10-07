@@ -112,7 +112,7 @@
                 "rule-answering-oui-non"
               ],
               "before": "Tu parles français",
-              "after": "(question à intonation)",
+              "after": "",
               "answerExplanation": {
                 "en": "Answer: ?. In informal French, raise the pitch at the end of a statement to form a yes/no question. Answer affirmative questions with 'oui' for yes and 'non' for no.",
                 "fr": "Réponse : ?. En français familier, montez l'intonation à la fin d'une phrase pour poser une question. Répondez aux questions affirmatives par 'oui' ou par 'non'.",
@@ -136,7 +136,12 @@
                   "text": "?"
                 }
               ],
-              "answerChoiceId": "c-3"
+              "answerChoiceId": "c-3",
+              "hint": {
+                "en": "intonation question",
+                "fr": "question à intonation",
+                "de": "Intonationsfrage"
+              }
             }
           ]
         },
@@ -158,7 +163,7 @@
                 "rule-answering-oui-non"
               ],
               "before": "Tu habites ici",
-              "after": "(question à intonation)",
+              "after": "",
               "answerExplanation": {
                 "en": "Answer: ?. In informal French, raise the pitch at the end of a statement to form a yes/no question. Answer affirmative questions with 'oui' for yes and 'non' for no.",
                 "fr": "Réponse : ?. En français familier, montez l'intonation à la fin d'une phrase pour poser une question. Répondez aux questions affirmatives par 'oui' ou par 'non'.",
@@ -182,7 +187,12 @@
                   "text": "."
                 }
               ],
-              "answerChoiceId": "c-2"
+              "answerChoiceId": "c-2",
+              "hint": {
+                "en": "intonation question",
+                "fr": "question à intonation",
+                "de": "Intonationsfrage"
+              }
             }
           ]
         },
@@ -228,7 +238,8 @@
                   "text": "Est-ce que"
                 }
               ],
-              "answerChoiceId": "c-1"
+              "answerChoiceId": "c-1",
+              "hint": null
             }
           ]
         },
@@ -274,7 +285,8 @@
                   "text": "Non,"
                 }
               ],
-              "answerChoiceId": "c-3"
+              "answerChoiceId": "c-3",
+              "hint": null
             }
           ]
         }

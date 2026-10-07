@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState, type CSSProperties } from 'react';
 
 import { useI18n, useLastTry } from '../app/context.tsx';
 import { formatScore, roundHalfUp1 } from '../domain/format.ts';
@@ -16,6 +16,27 @@ import { useVoiceStatus, type VoiceStatus } from './speech.ts';
 import { VoiceHelp } from './VoiceHelp.tsx';
 
 /* ------------------------------------------------------------ start page */
+
+/**
+ * The grammar lesson flow for the start page (P3-02 review): one part per teaching block (named by its
+ * first step and listing its exercises; every block starts with an explanation, so it is not listed),
+ * then the exam. The feedback screen is not listed.
+ */
+export function grammarFlow(plan: LessonPlan) {
+  const parts: { key: string; label: PlanPage['stepLabel']; role: PlanPage['role']; types: string[]; seconds: number; pages: number; units: number }[] = [];
+  for (const page of plan.pages) {
+    if (page.special || page.items.some((item) => item.type === 'production_feedback_placeholder')) continue;
+    const last = parts.at(-1);
+    const key = page.blockId ?? page.stepId;
+    const target = last?.key === key ? last : (parts.push({ key, label: page.stepLabel, role: page.role, types: [], seconds: 0, pages: 0, units: 0 }), parts.at(-1)!);
+    if (page.role === 'exam') target.role = 'exam';
+    for (const item of page.items) if (!target.types.includes(item.type)) target.types.push(item.type);
+    target.seconds += page.estimatedDurationS;
+    target.pages += 1;
+    target.units += page.units.length;
+  }
+  return parts;
+}
 
 interface StartViewProps {
   plan: LessonPlan;
@@ -50,6 +71,26 @@ export function StartView({ plan, level, resumable, notice, onStart, onResume }:
               <li key={g.id} style={reviewColor(n)}>
                 <span>{g.label[locale]}</span>
                 <small>{t('session.vocabularyCount', { count: g.targetIds.length })}</small>
+              </li>
+            ))}
+          </ol>
+        </>
+      )}
+      {plan.kind === 'grammar' && (
+        <>
+          <h2 className="small-heading">{t('session.lessonFlow')}</h2>
+          <ol className="group-list flow-list">
+            {grammarFlow(plan).map((part, n) => (
+              <li key={n} style={reviewColor(n)}>
+                <span>
+                  {part.label[locale]}
+                  <small className="flow-detail">
+                    {part.role === 'exam'
+                      ? t('activity.exam', { count: part.units, pages: part.pages })
+                      : part.types.filter((type) => type !== 'grammar_explanation').map((type) => t(`exercise.${type}` as MessageKey)).join(' · ')}
+                  </small>
+                </span>
+                <small>{t('session.flowMinutes', { minutes: Math.max(1, Math.round(part.seconds / 60)) })}</small>
               </li>
             ))}
           </ol>
@@ -152,7 +193,7 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
     if (!perfect) return dispatch({ type: 'continue' });
     setCelebrating(true);
     // Matching first slides every word level with its meaning, then flashes (0.9 s) like other pages.
-    const pause = page.items.some((it) => it.type === 'vocabulary_matching') ? MATCH_SLIDE_MS + 1000 : 900;
+    const pause = page.items.some((it) => it.type === 'vocabulary_matching' || it.type === 'grammar_person_matching') ? MATCH_SLIDE_MS + 1000 : 900;
     window.setTimeout(() => { setCelebrating(false); dispatch({ type: 'continue' }); }, pause);
   };
 
@@ -265,9 +306,32 @@ function ExamIntro({ plan, page }: { plan: LessonPlan; page: PlanPage }) {
  * mistake the learner's answer struck through directly below the correct answer, an "almost" or
  * timeout note and the explanation.
  */
-function ResultItem({ unit, locked, lang }: { unit: PlanUnit; locked: LockedUnit; lang: string }) {
+/** The task line of a result row, split at its arrows (un stylo → des ____) into aligned columns. */
+export function promptParts(unit: PlanUnit, t: (key: MessageKey) => string): string[] {
+  // Only listening units fall back to "Write what you hear"; word order has no task text, only the sentence.
+  const prompt = [unit.prompt.native, unit.prompt.learning, unit.prompt.before !== undefined ? `${unit.prompt.before ?? ''} ____ ${unit.prompt.after ?? ''}` : undefined].find(Boolean) ?? (unit.speak ? t('session.typeWhatYouHear') : undefined);
+  if (!prompt) return [];
+  if (unit.itemType === 'vocabulary_gender_select') return [`${prompt}:`];
+  return prompt.split(/\s*→\s*/).map((part) => part.trim());
+}
+
+/**
+ * The prompt columns of one result row (P3-02 review): every part is followed by an arrow, and a row
+ * with fewer parts than the longest row lets its first part span the missing columns, so all arrows
+ * and answers line up in columns across the list.
+ */
+function PromptCells({ parts, columns, lang, arrows = true }: { parts: string[]; columns: number; lang?: string; arrows?: boolean }) {
+  return parts.map((part, n) => (
+    <Fragment key={n}>
+      <span className="result-prompt" lang={lang} style={n === 0 ? ({ '--span': 2 * (columns - parts.length) + 1 } as CSSProperties) : undefined}>{part}</span>
+      <span className="match-arrow" aria-hidden="true">{arrows ? '→' : ''}</span>
+    </Fragment>
+  ));
+}
+
+function ResultItem({ unit, locked, lang, columns }: { unit: PlanUnit; locked: LockedUnit; lang: string; columns: number }) {
   const { t, locale } = useI18n();
-  const prompt = [unit.prompt.native, unit.prompt.learning, unit.prompt.before !== undefined ? `${unit.prompt.before ?? ''} ____ ${unit.prompt.after ?? ''}` : undefined].find(Boolean) ?? t('session.typeWhatYouHear');
+  const parts = promptParts(unit, t);
   const given = answerText(unit, locked.response, t);
   const correct = unit.answerLang === 'ui' ? t(unit.answer as MessageKey) : unit.answer;
   const ok = locked.outcome === 'fully_correct';
@@ -278,16 +342,18 @@ function ResultItem({ unit, locked, lang }: { unit: PlanUnit; locked: LockedUnit
         <span className="result-icon" aria-label={t(OUTCOME_LABEL[locked.outcome])}>{ok ? '✓' : '✕'}</span>
         <div className="result-body">
           <div className="result-fix result-gender">
-            <span className="result-prompt" lang={lang}>{prompt}:</span>
-            {ok ? (
-              <strong className="match-right"><span className="visually-hidden">{t('result.yourAnswer')}: </span>{given}</strong>
-            ) : (
-              <>
-                <s className="match-wrong"><span className="visually-hidden">{t('result.yourAnswer')}: </span>{given || t('result.noAnswer')}</s>
-                <span className="match-arrow" aria-hidden="true">→</span>
-                <strong className="match-right"><span className="visually-hidden">{t('result.correctAnswer')}: </span>{correct}</strong>
-              </>
-            )}
+            <PromptCells parts={parts} columns={columns} lang={lang} arrows={false} />
+            <span className="result-answer">
+              {ok ? (
+                <strong className="match-right"><span className="visually-hidden">{t('result.yourAnswer')}: </span>{given}</strong>
+              ) : (
+                <span>
+                  <s className="match-wrong"><span className="visually-hidden">{t('result.yourAnswer')}: </span>{given || t('result.noAnswer')}</s>
+                  <span className="match-arrow" aria-hidden="true"> → </span>
+                  <strong className="match-right"><span className="visually-hidden">{t('result.correctAnswer')}: </span>{correct}</strong>
+                </span>
+              )}
+            </span>
           </div>
           {!ok && <p className="muted">{unit.explanation[locale]}</p>}
         </div>
@@ -299,13 +365,14 @@ function ResultItem({ unit, locked, lang }: { unit: PlanUnit; locked: LockedUnit
       <span className="result-icon" aria-label={t(OUTCOME_LABEL[locked.outcome])}>{ok ? '✓' : locked.outcome === 'orthography_only' ? '!' : '✕'}</span>
       <div className="result-body">
         <div className="result-fix">
-          <span className="result-prompt" lang={unit.prompt.native ? undefined : lang}>{prompt}</span>
-          <span className="match-arrow" aria-hidden="true">→</span>
-          <strong className="match-right">
-            <span className="visually-hidden">{t('result.correctAnswer')}: </span><span lang={unit.answerLang === 'learning' ? lang : undefined}>{correct}</span>
-            {unit.form && <span lang={lang}> · {unit.form}</span>}
-          </strong>
-          {!ok && <span className="match-wrong"><span className="visually-hidden">{t('result.yourAnswer')}: </span><s lang={lang}>{given || t('result.noAnswer')}</s></span>}
+          <PromptCells parts={parts} columns={columns} lang={unit.prompt.native ? undefined : lang} />
+          <span className="result-answer">
+            <strong className="match-right">
+              <span className="visually-hidden">{t('result.correctAnswer')}: </span><span lang={unit.answerLang === 'learning' ? lang : undefined}>{correct}</span>
+              {unit.form && <span lang={lang}> · {unit.form}</span>}
+            </strong>
+            {!ok && <span className="match-wrong"><span className="visually-hidden">{t('result.yourAnswer')}: </span><s lang={lang}>{given || t('result.noAnswer')}</s></span>}
+          </span>
         </div>
         {(locked.outcome === 'orthography_only' || locked.timedOut) && (
           <p className="result-notes">
@@ -409,9 +476,14 @@ export function ResultsView({ plan, record, dispatch }: { plan: LessonPlan; reco
           return sections.map((sec) => (
             <section key={sec.key} className={`result-section${sections.length > 1 ? ' is-framed' : ''}`} style={sec.groupId ? reviewColor(plan.groups.findIndex((g) => g.id === sec.groupId)) : undefined}>
               {sections.length > 1 && (sec.groupId || sec.key !== 'single') && <h3 className="result-section-title">{title(sec)}</h3>}
-              <ul className="result-list">
-                {sec.units.map((u) => <ResultItem key={u.id} unit={u} locked={record.locked[u.id]} lang={plan.lang} />)}
-              </ul>
+              {(() => {
+                const columns = Math.max(...sec.units.map((u) => promptParts(u, t).length));
+                return (
+                  <ul className={`result-list${columns ? '' : ' no-prompt'}`} style={{ '--parts': Math.max(1, columns) } as CSSProperties}>
+                    {sec.units.map((u) => <ResultItem key={u.id} unit={u} locked={record.locked[u.id]} lang={plan.lang} columns={columns} />)}
+                  </ul>
+                );
+              })()}
             </section>
           ));
         };

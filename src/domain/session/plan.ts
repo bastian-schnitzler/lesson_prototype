@@ -54,6 +54,8 @@ export interface PlanPage {
   instructions: LocalizedText;
   items: Item[];
   units: PlanUnit[];
+  /** Grammar teaching block of the page's step; null for feedback, exam and vocabulary pages. */
+  blockId: string | null;
   /** Application page without content items: the info page before the final exam (P2-03). */
   special?: 'examIntro';
 }
@@ -88,7 +90,7 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
   const native = (map: Partial<Record<Locale, string>> | null | undefined) => map?.[motherTongue] ?? Object.values(map ?? {})[0] ?? '';
   const translation = (id: string) => targets.get(id)?.translations[motherTongue]?.[0] ?? id;
   const form = (id: string) => targets.get(id)?.teachingForm ?? id;
-  const steps = content.steps as { id: string; role: string; label: LocalizedText; pages: { pageId: string; estimatedDurationS: number; timeLimitS: number | null; instructions: LocalizedText; items: Item[] }[] }[];
+  const steps = content.steps as { id: string; role: string; blockId?: string | null; label: LocalizedText; pages: { pageId: string; estimatedDurationS: number; timeLimitS: number | null; instructions: LocalizedText; items: Item[] }[] }[];
 
   const unitsOf = (pageId: string, item: Item): PlanUnit[] => {
     const id = (suffix = '') => `${pageId}/${item.itemId}${suffix}`;
@@ -132,6 +134,16 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
           kind: 'text', id: id(), itemId: item.itemId, itemType: item.type, prompt: {}, speak: form(item.targetId),
           accepted: item.accepted, explanation: item.answerExplanation, answer: item.accepted.answers[0], answerLang: 'learning',
         }];
+      case 'grammar_person_matching': {
+        // One unit per French box on the right; its options are the persons on the left (P3-02 review).
+        // A form shared by several persons (je parle, il parle) is right for each of them.
+        const options = item.rows.map((r) => ({ id: r.person, text: item.mode === 'translation' ? native(r.native) : r.pronoun ?? '', lang: item.mode === 'translation' ? 'native' as const : 'learning' as const }));
+        return item.rows.map((r) => ({
+          kind: 'choice', id: id(`/${r.person}`), itemId: item.itemId, itemType: item.type, prompt: { learning: r.answer },
+          options, correct: item.rows.filter((x) => x.answer === r.answer).map((x) => x.person),
+          explanation: r.answerExplanation, answer: options.find((o) => o.id === r.person)!.text, answerLang: options[0].lang,
+        }));
+      }
       case 'grammar_pronoun_form_match': {
         const options = item.tokens.map((t) => ({ id: t.tokenId, text: t.text, lang: 'learning' as const }));
         return item.rows.map((r) => ({
@@ -157,9 +169,14 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
           accepted: item.accepted, explanation: item.answerExplanation, answer: item.accepted.answers[0], answerLang: 'learning',
         }];
       case 'grammar_word_order': {
-        const tokens = item.tokens.map((t) => ({ id: t.tokenId, text: t.text, lang: 'learning' as const }));
+        // The full stop that ends every accepted sentence is not a token to place: it is left out and not
+        // shown (P3-02 review). Punctuation inside the sentence and a final ? or ! stay tokens.
+        const last = item.acceptedOrders[0].at(-1);
+        const stop = item.tokens.find((t) => t.tokenId === last && t.text === '.') && item.acceptedOrders.every((o) => o.at(-1) === last) ? last : undefined;
+        const tokens = item.tokens.filter((t) => t.tokenId !== stop).map((t) => ({ id: t.tokenId, text: t.text, lang: 'learning' as const }));
+        const acceptedOrders = item.acceptedOrders.map((o) => o.filter((tid) => tid !== stop));
         const text = (order: string[]) => order.map((tid) => tokens.find((t) => t.id === tid)?.text ?? '').join(' ');
-        return [{ kind: 'order', id: id(), itemId: item.itemId, itemType: item.type, prompt: {}, tokens, acceptedOrders: item.acceptedOrders, explanation: item.answerExplanation, answer: text(item.acceptedOrders[0]), answerLang: 'learning' }];
+        return [{ kind: 'order', id: id(), itemId: item.itemId, itemType: item.type, prompt: {}, tokens, acceptedOrders, explanation: item.answerExplanation, answer: text(acceptedOrders[0]), answerLang: 'learning' }];
       }
       case 'grammar_error_spotter': {
         const tokens = item.tokens.map((t) => ({ id: t.tokenId, text: t.text, lang: 'learning' as const }));
@@ -185,7 +202,7 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
     for (const page of step.pages) {
       const units = page.items.flatMap((item) => unitsOf(page.pageId, item).map((u) => ('ruleIds' in item ? { ...u, ruleIds: item.ruleIds } : u)));
       pages.push({
-        index: pages.length, pageId: page.pageId, stepId: step.id, stepIndex, stepLabel: step.label,
+        index: pages.length, pageId: page.pageId, stepId: step.id, stepIndex, stepLabel: step.label, blockId: step.blockId ?? null,
         role: step.role === 'exam' ? 'exam' : units.length ? 'practice' : 'presentation',
         estimatedDurationS: page.estimatedDurationS, timeLimitS: page.timeLimitS, instructions: page.instructions, items: page.items, units,
       });
@@ -209,7 +226,7 @@ function insertExamIntro(pages: PlanPage[]) {
   if (first < 0) return;
   const exam = pages[first];
   pages.splice(first, 0, {
-    index: first, pageId: 'exam-intro', stepId: exam.stepId, stepIndex: exam.stepIndex, stepLabel: exam.stepLabel, role: 'presentation',
+    index: first, pageId: 'exam-intro', stepId: exam.stepId, stepIndex: exam.stepIndex, stepLabel: exam.stepLabel, blockId: null, role: 'presentation',
     estimatedDurationS: 20, timeLimitS: null, instructions: exam.stepLabel, items: [], units: [], special: 'examIntro',
   });
   pages.forEach((p, n) => (p.index = n));

@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore, type CSSProperties, type ReactNode, type RefObject } from 'react';
+import { Fragment, useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore, type CSSProperties, type ReactNode, type RefObject } from 'react';
 
 import { useI18n } from '../app/context.tsx';
 import type { MessageKey } from '../i18n/messages.ts';
@@ -120,6 +120,8 @@ function Flashcard({ id, index, total, plan, motherTongue, initiallyFlipped, onF
 
 /**
  * Matching (P2-02): mother-tongue meanings and French forms in two independently shuffled columns.
+ * Person matching (grammar, P3-02 review) uses the same board: the persons stay in order on the left
+ * (singular block, a gap, plural block) and the French boxes are shuffled on the right.
  * Select one item on either side, then its partner on the other; pairs stay editable until Continue,
  * which locks one point unit per French form; the page is then checked in place (P2-04 review).
  */
@@ -134,25 +136,29 @@ export function MatchingRenderer(props: RendererProps) {
     window.addEventListener('keydown', cancel);
     return () => window.removeEventListener('keydown', cancel);
   }, [selected]);
-  if (item.type !== 'vocabulary_matching') return null;
+  if (item.type !== 'vocabulary_matching' && item.type !== 'grammar_person_matching') return null;
+  const persons = item.type === 'grammar_person_matching';
   const choiceUnits = units.filter((u): u is PlanUnit & { kind: 'choice' } => u.kind === 'choice');
   const options = choiceUnits[0]?.options ?? [];
   const pairOf = (unitId: string) => (props.locked[unitId]?.response ?? props.drafts[unitId]) as string | undefined;
   const nativeText = (optionId: string) => options.find((o) => o.id === optionId)?.text ?? '';
   const targetOf = (unitId: string) => plan.targets.get(choiceUnits.find((u) => u.id === unitId)?.correct[0] ?? '');
   const formLabel = (unitId: string) => {
+    if (persons) return choiceUnits.find((u) => u.id === unitId)?.prompt.learning ?? '';
     const target = targetOf(unitId);
     return target?.genders.length ? `${target.teachingForm} (${genderLabel(target, t)})` : target?.teachingForm ?? '';
   };
 
-  const nativeOrder = seededOrder(options, seed, `${item.itemId}/native`);
+  const nativeOrder = persons ? options : seededOrder(options, seed, `${item.itemId}/native`);
+  // Six persons: a gap separates the singular rows from the plural rows, before and after Check.
+  const gap = persons && options.length === 6;
   // After Check (or during the success flash) every French word moves level with its correct meaning
   // (P2-04 review): correct words turn green, wrong ones red, and only wrong pairs keep their (red) curve.
   const checked = mode !== 'answering' || !!props.celebrating;
   const outcomeOf = (unitId: string) => (props.locked[unitId]?.outcome ?? (props.celebrating ? 'fully_correct' : undefined));
   const isWrong = (unitId: string) => checked && outcomeOf(unitId) !== 'fully_correct';
   const shuffled = seededOrder(choiceUnits, seed, `${item.itemId}/learning`);
-  const learningOrder = checked ? [...choiceUnits].sort((a, b) => nativeOrder.findIndex((o) => o.id === a.correct[0]) - nativeOrder.findIndex((o) => o.id === b.correct[0])) : shuffled;
+  const learningOrder = checked ? checkedOrder(choiceUnits, nativeOrder.map((o) => o.id), pairOf) : shuffled;
   const pairNumber = new Map(learningOrder.filter((u) => pairOf(u.id) && (!checked || isWrong(u.id))).map((u, n) => [u.id, n + 1]));
   const unitForOption = (optionId: string) => choiceUnits.find((u) => pairOf(u.id) === optionId);
   const assign = (unitId: string, optionId: string) => {
@@ -176,40 +182,49 @@ export function MatchingRenderer(props: RendererProps) {
     .filter(([from, to]) => from !== selectedKey && to !== selectedKey);
   const right = choiceUnits.filter((u) => outcomeOf(u.id) === 'fully_correct').length;
   return (
-    <div className={`matching${checked ? ' is-checked' : ''}`}>
+    <div className={`matching${checked ? ' is-checked' : ''}${gap ? ' has-gap' : ''}`}>
       {checked && !props.celebrating
         ? <p className="match-summary" role="status"><strong>{t('session.matchSummary', { correct: right, total: choiceUnits.length })}</strong></p>
         : <p className="muted">{t('session.matchHint')}</p>}
       <MatchingCurves pairs={pairs} selected={selectedKey} boxes={boxes} arranged={checked} celebrating={!!props.celebrating}>
-        <div className="matching-columns" style={{ '--rows': choiceUnits.length } as CSSProperties}>
-          <ul aria-label={t(`locale.${props.motherTongue}`)}>
-            {nativeOrder.map((o) => {
+        <div className="matching-columns" style={(gap ? { gridTemplateRows: 'repeat(3, 1fr) var(--person-gap) repeat(3, 1fr)' } : { '--rows': choiceUnits.length }) as CSSProperties}>
+          <ul aria-label={options[0]?.lang === 'learning' ? t('session.subject') : t(`locale.${props.motherTongue}`)}>
+            {nativeOrder.map((o, row) => {
               const unit = unitForOption(o.id);
               const n = unit ? pairNumber.get(unit.id) : undefined;
               return (
-                <li key={o.id}>
+                <Fragment key={o.id}>
+                {gap && row === 3 && <li className="match-gap" aria-hidden="true" />}
+                <li>
                   <button type="button" ref={register(`native:${o.id}`)} className={`match-item${n ? ' is-paired' : ''}`} disabled={checked} aria-pressed={selected?.side === 'native' && selected.id === o.id}
                     aria-label={n ? t('session.pairedWith', { item: o.text, partner: formLabel(unit!.id) }) : o.text} onClick={() => pick('native', o.id)}>
-                    <span>{o.text}</span>{n && <span className="pair-badge" aria-hidden="true">{n}</span>}
+                    <span lang={o.lang === 'learning' ? plan.lang : undefined}>{o.text}</span>{n && <span className="pair-badge" aria-hidden="true">{n}</span>}
                   </button>
                 </li>
+                </Fragment>
               );
             })}
           </ul>
           <ul aria-label={t('session.frenchForms')}>
-            {learningOrder.map((u) => {
+            {learningOrder.map((u, row) => {
               const n = pairNumber.get(u.id);
               const target = targetOf(u.id);
               return (
-                <li key={u.id} className="match-cell" data-flip={u.id}>
+                <Fragment key={u.id}>
+                {gap && row === 3 && <li className="match-gap" aria-hidden="true" />}
+                <li className="match-cell" data-flip={u.id}>
                   <button type="button" ref={register(`learning:${u.id}`)} disabled={checked}
                     className={`match-item${n ? ' is-paired' : ''}${checked && !props.celebrating ? (isWrong(u.id) ? ' is-wrong' : ' is-right') : ''}`} lang={plan.lang} aria-pressed={selected?.side === 'learning' && selected.id === u.id}
                     aria-label={n ? t('session.pairedWith', { item: formLabel(u.id), partner: nativeText(pairOf(u.id)!) }) : formLabel(u.id)} onClick={() => pick('learning', u.id)}>
-                    <span>{target?.teachingForm}{target?.genders.length ? <small>{genderLabel(target, t)}</small> : null}</span>{n && <span className="pair-badge" aria-hidden="true">{n}</span>}
+                    {persons
+                      ? <span>{u.prompt.learning}</span>
+                      : <span>{target?.teachingForm}{target?.genders.length ? <small>{genderLabel(target, t)}</small> : null}</span>}
+                    {n && <span className="pair-badge" aria-hidden="true">{n}</span>}
                   </button>
                   {/* A separate control (buttons cannot nest), drawn inside the box after the word. */}
-                  {target && <span className="match-audio"><ListenButton text={target.teachingForm} lang={plan.lang} variant="icon" label={t('session.listenWord', { word: target.teachingForm })} /></span>}
+                  {formLabel(u.id) && <span className="match-audio"><ListenButton text={persons ? formLabel(u.id) : target!.teachingForm} lang={plan.lang} variant="icon" label={t('session.listenWord', { word: formLabel(u.id) })} /></span>}
                 </li>
+                </Fragment>
               );
             })}
           </ul>
@@ -222,6 +237,28 @@ export function MatchingRenderer(props: RendererProps) {
       )}
     </div>
   );
+}
+
+/**
+ * Rows of the French boxes after Check: each box moves level with its partner. A right pair keeps its
+ * row; a wrong or open box takes the first free row among its correct partners (a form shared by
+ * several persons may sit at any of them), else the first free row.
+ */
+export function checkedOrder<U extends { id: string; correct: string[] }>(units: U[], rows: string[], pairOf: (unitId: string) => string | undefined): U[] {
+  const rowOf = new Map<string, string>();
+  const taken = new Set<string>();
+  for (const u of units) {
+    const p = pairOf(u.id);
+    if (p && u.correct.includes(p) && !taken.has(p)) { rowOf.set(u.id, p); taken.add(p); }
+  }
+  for (const pass of [(u: U, r: string) => u.correct.includes(r), () => true]) {
+    for (const u of units) {
+      if (rowOf.has(u.id)) continue;
+      const free = rows.find((r) => !taken.has(r) && pass(u, r));
+      if (free) { rowOf.set(u.id, free); taken.add(free); }
+    }
+  }
+  return [...units].sort((a, b) => rows.indexOf(rowOf.get(a.id)!) - rows.indexOf(rowOf.get(b.id)!));
 }
 
 const WIDE_MATCHING = '(min-width: 720px)';

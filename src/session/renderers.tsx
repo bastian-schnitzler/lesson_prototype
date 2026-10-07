@@ -2,7 +2,7 @@ import type { ComponentType } from 'react';
 
 import type { Item } from '../domain/session/plan.ts';
 import { UnitsRenderer, type RendererProps } from './controls.tsx';
-import { ExplanationRenderer, PlaceholderRenderer } from './grammarRenderers.tsx';
+import { ExplanationRenderer, PlaceholderRenderer, PronounMatchRenderer, PronounTypingRenderer } from './grammarRenderers.tsx';
 import { FlashcardsRenderer, GenderRenderer, IntroductionRenderer, MatchingRenderer, OverviewRenderer } from './vocabularyRenderers.tsx';
 
 export { UnitFeedback, type RendererProps } from './controls.tsx';
@@ -24,8 +24,9 @@ export const rendererRegistry: Record<Item['type'], ComponentType<RendererProps>
   vocabulary_listening_dictation: UnitsRenderer,
   grammar_explanation: ExplanationRenderer,
   production_feedback_placeholder: PlaceholderRenderer,
-  grammar_pronoun_form_match: UnitsRenderer,
-  grammar_pronoun_form_typing: UnitsRenderer,
+  grammar_person_matching: MatchingRenderer,
+  grammar_pronoun_form_match: PronounMatchRenderer,
+  grammar_pronoun_form_typing: PronounTypingRenderer,
   grammar_gap_choice: UnitsRenderer,
   grammar_gap_typing: UnitsRenderer,
   grammar_word_order: UnitsRenderer,

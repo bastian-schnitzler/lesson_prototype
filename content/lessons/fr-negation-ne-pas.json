@@ -127,7 +127,8 @@
                   "text": "ne"
                 }
               ],
-              "answerChoiceId": "c-3"
+              "answerChoiceId": "c-3",
+              "hint": null
             }
           ]
         },
@@ -172,7 +173,8 @@
                   "text": "ne"
                 }
               ],
-              "answerChoiceId": "c-2"
+              "answerChoiceId": "c-2",
+              "hint": null
             }
           ]
         },
@@ -217,7 +219,8 @@
                   "text": "pas"
                 }
               ],
-              "answerChoiceId": "c-1"
+              "answerChoiceId": "c-1",
+              "hint": null
             }
           ]
         },
@@ -262,7 +265,8 @@
                   "text": "pas"
                 }
               ],
-              "answerChoiceId": "c-3"
+              "answerChoiceId": "c-3",
+              "hint": null
             }
           ]
         }

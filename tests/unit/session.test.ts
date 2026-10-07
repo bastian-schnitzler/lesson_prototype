@@ -254,7 +254,7 @@ describe('green-and-continue for single-answer pages (P2-04 review)', () => {
 });
 
 describe('grammar renderer composition (P3-01)', () => {
-  const GRAMMAR_TYPES = ['grammar_pronoun_form_match', 'grammar_pronoun_form_typing', 'grammar_gap_choice', 'grammar_gap_typing', 'grammar_word_order', 'grammar_error_spotter'];
+  const GRAMMAR_TYPES = ['grammar_person_matching', 'grammar_pronoun_form_match', 'grammar_pronoun_form_typing', 'grammar_gap_choice', 'grammar_gap_typing', 'grammar_word_order', 'grammar_error_spotter'];
 
   /** The être fixture plus a timed word-order page, so the exam mixes all three exam types. */
   function mixedExam() {

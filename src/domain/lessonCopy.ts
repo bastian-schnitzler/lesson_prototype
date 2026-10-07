@@ -19,6 +19,7 @@ export const COPY = {
 } as const;
 
 export const EXERCISE_INSTRUCTIONS = {
+  grammar_person_matching: L('Connect each pronoun with its partner.', 'Reliez chaque pronom à son partenaire.', 'Verbinde jedes Pronomen mit seinem Partner.'),
   grammar_pronoun_form_match: L('Choose the form for each pronoun.', 'Choisissez la forme pour chaque pronom.', 'Wähle die Form für jedes Pronomen.'),
   grammar_pronoun_form_typing: L('Type the form for each pronoun.', 'Écrivez la forme pour chaque pronom.', 'Schreib die Form zu jedem Pronomen.'),
   grammar_gap_choice: L('Choose the word that completes the sentence.', 'Choisissez le mot qui complète la phrase.', 'Wähle das Wort, das den Satz ergänzt.'),

@@ -82,7 +82,7 @@ export function ContentReview({ content, brief }: { content: LessonContent; brie
             <ul>{item.examples.map((e, i) => <li key={i}>{learning(e.text)} — <span lang={text.nativeLocale}>{text.native(e.translation)}</span></li>)}</ul>
           </>}
           {item.type === 'production_feedback_placeholder' && <p>{copy.placeholder}</p>}
-          {item.type === 'grammar_gap_typing' && item.hint && <p>{text.ui(item.hint)}</p>}
+          {(item.type === 'grammar_gap_typing' || item.type === 'grammar_gap_choice') && item.hint && <p>{text.ui(item.hint)}</p>}
           {item.type === 'vocabulary_introduction' && <RichText text={text.ui(item.text)} lang={content.lang} />}
           {'targetIds' in item && <div className="table-wrap"><table className="data-table"><thead><tr><th>{item.type === 'vocabulary_flashcards' ? copy.front : text.t('brief.col.target')}</th><th>{item.type === 'vocabulary_flashcards' ? copy.back : text.t('brief.col.translation', { locale: text.languageName(text.nativeLocale) })}</th><th>{text.t('brief.col.gender')}</th></tr></thead><tbody>{item.targetIds.map((id) => {
             const t = plan.targets.get(id)!;

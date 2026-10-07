@@ -694,6 +694,8 @@ Acceptance:
 - Partial credit is per row; first submissions remain immutable.
 - Tests cover reassignment, missing rows, repeated forms, valid alternatives, and typed normalization.
 
+Outcome (2026-10-08): `PronounMatchRenderer` (token bank, pointer drag and drop, click and keyboard placement, tokens used once, per-row marks in place) and `PronounTypingRenderer` (labelled rows marked in place) replace the baseline selects and fields. Unit tests in `tests/unit/grammar-renderers.test.tsx`; e2e journey with real drag and drop in `tests/e2e/session.spec.ts`. Review addition (D48): the seventh practice type `grammar_person_matching` (vocabulary matching board with singular rows, a gap and plural rows; translation or forms mode), required in every `pronouns` and `verbs_morphology` lesson and added to the four such samples. The grammar start page shows the lesson outline as colour-coded rows (teaching blocks with their exercises, then the exam). Word order leaves out the final full stop; a one-row pronoun match is shown as a multiple-choice gap; the imperative lesson is exempt from person matching. Results lists align task parts, arrows and answers in columns (vocabulary and grammar). Multiple-choice gaps have an optional hint above the sentence.
+
 Dependencies: P3-01.
 
 ### P3-03: Implement multiple-choice gaps and exact-typing phrase gaps

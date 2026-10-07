@@ -144,6 +144,14 @@ test('plays a multi-group noun lesson perfectly: group-wise stages, exam info, 1
   await page.getByRole('button', { name: 'Practice' }).click();
   await expect(page.locator('.result-section.is-framed')).toHaveCount(data.brief.groups.length);
   await expect(page.locator('.result-section-title')).toHaveText(data.brief.groups.map((g: Json) => g.label.en));
+  // Prompts, arrows and answers line up in columns across each list on wide screens (P3-02 review).
+  if (page.viewportSize()!.width > 600) {
+    for (const list of await page.locator('.result-list').all()) {
+      const lefts = async (selector: string) => list.locator(selector).evaluateAll((els) => [...new Set(els.map((e) => Math.round(e.getBoundingClientRect().left)))]);
+      expect(await lefts('.result-fix > .match-arrow')).toHaveLength(1);
+      expect(await lefts('.result-answer')).toHaveLength(1);
+    }
+  }
   // The last-try score appears on the index and disappears after a full reload.
   await page.locator('.results-footer').getByRole('link', { name: 'Lesson overview' }).click();
   const score = page.locator('tr[data-lesson-id="fr-family-members"] .score');

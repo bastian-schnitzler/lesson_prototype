@@ -14,7 +14,7 @@
     "fr": "Conjuguer le verbe avoir au présent, dire son âge et exprimer la possession.",
     "de": "Das Verb avoir im Präsens konjugieren, das Alter angeben und Besitz ausdrücken."
   },
-  "estimatedMinutes": 14,
+  "estimatedMinutes": 15,
   "provenance": {
     "generator": "lesson-prototype",
     "model": "gemini-3.6-flash",
@@ -110,6 +110,15 @@
         }
       ],
       "exercises": [
+        {
+          "id": "ex-forms-persons",
+          "type": "grammar_person_matching",
+          "itemCount": 1,
+          "ruleIds": [
+            "rule-avoir-forms"
+          ],
+          "estimatedDurationS": 60
+        },
         {
           "id": "ex-forms-match",
           "type": "grammar_pronoun_form_match",

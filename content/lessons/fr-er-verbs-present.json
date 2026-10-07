@@ -14,7 +14,7 @@
     "fr": "Conjuguer les verbes en -er (parler, habiter, aimer) au présent avec tous les pronoms et prononcer les terminaisons muettes.",
     "de": "Konjugieren Sie regelmäßige Verben auf -er (parler, habiter, aimer) im Präsens mit allen Pronomen und sprechen Sie stumme Endungen korrekt aus."
   },
-  "estimatedMinutes": 11,
+  "estimatedMinutes": 12,
   "kind": "grammar",
   "topic": "verbs_morphology",
   "steps": [
@@ -344,7 +344,7 @@
                 "rule-silent-endings"
               ],
               "before": "Tu",
-              "after": "à Paris. (habiter)",
+              "after": "à Paris.",
               "answerExplanation": {
                 "en": "Answer: habites. Remove -er from the infinitive and add -e (je), -es (tu), and -e (il/elle/on). The endings -e, -es, and -ent are silent in pronunciation.",
                 "fr": "Réponse : habites. Retirez -er de l'infinitif et ajoutez -e (je), -es (tu) et -e (il/elle/on). Les terminaisons -e, -es et -ent sont muettes à la prononciation.",
@@ -368,7 +368,12 @@
                   "text": "habites"
                 }
               ],
-              "answerChoiceId": "c-3"
+              "answerChoiceId": "c-3",
+              "hint": {
+                "en": "Verb: habiter",
+                "fr": "Verbe : habiter",
+                "de": "Verb: habiter"
+              }
             }
           ]
         },
@@ -390,7 +395,7 @@
                 "rule-silent-endings"
               ],
               "before": "Elle",
-              "after": "la musique. (aimer)",
+              "after": "la musique.",
               "answerExplanation": {
                 "en": "Answer: aime. Remove -er from the infinitive and add -e (je), -es (tu), and -e (il/elle/on). The endings -e, -es, and -ent are silent in pronunciation.",
                 "fr": "Réponse : aime. Retirez -er de l'infinitif et ajoutez -e (je), -es (tu) et -e (il/elle/on). Les terminaisons -e, -es et -ent sont muettes à la prononciation.",
@@ -414,7 +419,12 @@
                   "text": "aimes"
                 }
               ],
-              "answerChoiceId": "c-2"
+              "answerChoiceId": "c-2",
+              "hint": {
+                "en": "Verb: aimer",
+                "fr": "Verbe : aimer",
+                "de": "Verb: aimer"
+              }
             }
           ]
         },
@@ -436,7 +446,7 @@
                 "rule-silent-endings"
               ],
               "before": "On",
-              "after": "à Lyon. (travailler)",
+              "after": "à Lyon.",
               "answerExplanation": {
                 "en": "Answer: travaille. Remove -er from the infinitive and add -e (je), -es (tu), and -e (il/elle/on). The endings -e, -es, and -ent are silent in pronunciation.",
                 "fr": "Réponse : travaille. Retirez -er de l'infinitif et ajoutez -e (je), -es (tu) et -e (il/elle/on). Les terminaisons -e, -es et -ent sont muettes à la prononciation.",
@@ -460,7 +470,12 @@
                   "text": "travaillons"
                 }
               ],
-              "answerChoiceId": "c-1"
+              "answerChoiceId": "c-1",
+              "hint": {
+                "en": "Verb: travailler",
+                "fr": "Verbe : travailler",
+                "de": "Verb: travailler"
+              }
             }
           ]
         },
@@ -482,7 +497,7 @@
                 "rule-silent-endings"
               ],
               "before": "Je",
-              "after": "français. (parler)",
+              "after": "français.",
               "answerExplanation": {
                 "en": "Answer: parle. Remove -er from the infinitive and add -e (je), -es (tu), and -e (il/elle/on). The endings -e, -es, and -ent are silent in pronunciation.",
                 "fr": "Réponse : parle. Retirez -er de l'infinitif et ajoutez -e (je), -es (tu) et -e (il/elle/on). Les terminaisons -e, -es et -ent sont muettes à la prononciation.",
@@ -506,7 +521,12 @@
                   "text": "parle"
                 }
               ],
-              "answerChoiceId": "c-3"
+              "answerChoiceId": "c-3",
+              "hint": {
+                "en": "Verb: parler",
+                "fr": "Verbe : parler",
+                "de": "Verb: parler"
+              }
             }
           ]
         }
@@ -732,6 +752,107 @@
                 "accentSensitive": []
               },
               "hint": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-persons",
+      "role": "exercise",
+      "blockId": "block-plural-forms",
+      "label": {
+        "en": "Plural Forms (-ons, -ez, -ent)",
+        "fr": "Formes du pluriel (-ons, -ez, -ent)",
+        "de": "Pluralformen (-ons, -ez, -ent)"
+      },
+      "pages": [
+        {
+          "pageId": "ex-persons-1",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Connect each pronoun with its partner.",
+            "fr": "Reliez chaque pronom à son partenaire.",
+            "de": "Verbinde jedes Pronomen mit seinem Partner."
+          },
+          "items": [
+            {
+              "type": "grammar_person_matching",
+              "itemId": "ex-persons-1",
+              "ruleIds": [
+                "rule-er-singular",
+                "rule-er-plural"
+              ],
+              "mode": "forms",
+              "rows": [
+                {
+                  "person": "1sg",
+                  "pronoun": "je",
+                  "native": null,
+                  "answer": "parle",
+                  "answerExplanation": {
+                    "en": "Je takes the ending -e: je parle.",
+                    "fr": "Avec je, on ajoute -e : je parle.",
+                    "de": "Zu je gehört die Endung -e: je parle."
+                  }
+                },
+                {
+                  "person": "2sg",
+                  "pronoun": "tu",
+                  "native": null,
+                  "answer": "parles",
+                  "answerExplanation": {
+                    "en": "Tu takes the ending -es: tu parles.",
+                    "fr": "Avec tu, on ajoute -es : tu parles.",
+                    "de": "Zu tu gehört die Endung -es: tu parles."
+                  }
+                },
+                {
+                  "person": "3sg",
+                  "pronoun": "il / elle / on",
+                  "native": null,
+                  "answer": "parle",
+                  "answerExplanation": {
+                    "en": "Il, elle and on take the ending -e, like je: il parle.",
+                    "fr": "Avec il, elle et on, on ajoute -e, comme avec je : il parle.",
+                    "de": "Zu il, elle und on gehört die Endung -e, wie bei je: il parle."
+                  }
+                },
+                {
+                  "person": "1pl",
+                  "pronoun": "nous",
+                  "native": null,
+                  "answer": "parlons",
+                  "answerExplanation": {
+                    "en": "Nous takes the ending -ons: nous parlons.",
+                    "fr": "Avec nous, on ajoute -ons : nous parlons.",
+                    "de": "Zu nous gehört die Endung -ons: nous parlons."
+                  }
+                },
+                {
+                  "person": "2pl",
+                  "pronoun": "vous",
+                  "native": null,
+                  "answer": "parlez",
+                  "answerExplanation": {
+                    "en": "Vous takes the ending -ez: vous parlez.",
+                    "fr": "Avec vous, on ajoute -ez : vous parlez.",
+                    "de": "Zu vous gehört die Endung -ez: vous parlez."
+                  }
+                },
+                {
+                  "person": "3pl",
+                  "pronoun": "ils / elles",
+                  "native": null,
+                  "answer": "parlent",
+                  "answerExplanation": {
+                    "en": "Ils and elles take the silent ending -ent: ils parlent.",
+                    "fr": "Avec ils et elles, on ajoute -ent, muet : ils parlent.",
+                    "de": "Zu ils und elles gehört die stumme Endung -ent: ils parlent."
+                  }
+                }
+              ]
             }
           ]
         }
@@ -993,7 +1114,7 @@
     "generatedAt": "2026-10-06T22:13:22.000Z",
     "inputHashes": {
       "outline": "c4214004217e367d531a6b73223f98c810ad2a2543cfbe66d837e94e4d50c4bb",
-      "brief": "590534449d0fae560984d4b4952922dc0071963106c5286b71bf0b2d0de11b69"
+      "brief": "4689d44a287a1fedb66c18378e6ac842cca67c87b31ca5abbcac7e215063759d"
     }
   }
 }

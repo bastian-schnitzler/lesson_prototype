@@ -1,4 +1,4 @@
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Locator, type Page } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
   // Every vocabulary lesson has listening tasks (P2-04) and needs a French voice to start.
@@ -457,4 +457,82 @@ test('matching pairs by keyboard, lets a pair be reassigned and locks it with fe
   await expect(french.and(page.locator('.is-right'))).toHaveCount(0);
   if (page.viewportSize()!.width >= 720) await expect(page.locator('.match-curve.is-thin')).toHaveCount(4); // thin purple curves
   await expect(page.getByText('Gender and overview')).toBeVisible();
+});
+
+test('pronoun/form matching by drag and drop and by clicks, with per-row checks (P3-02)', async ({ page }) => {
+  await page.goto('./#/lesson/fr-verb-etre-present/play');
+  await proceed(page); // start
+  await proceed(page); // explanation
+  const bank = page.getByRole('group', { name: 'Available forms' });
+  const slot = (pronoun: string) => page.locator('.form-row').filter({ has: page.locator('.form-pronoun', { hasText: new RegExp(`^${pronoun}$`) }) }).locator('.form-slot');
+  const drag = async (from: Locator, to: Locator) => {
+    const a = (await from.boundingBox())!, b = (await to.boundingBox())!;
+    await page.mouse.move(a.x + a.width / 2, a.y + a.height / 2);
+    await page.mouse.down();
+    await page.mouse.move(a.x + a.width / 2 + 20, a.y + a.height / 2 + 10, { steps: 3 });
+    await expect(page.locator('.drag-ghost')).toBeVisible();
+    await page.mouse.move(b.x + b.width / 2, b.y + b.height / 2, { steps: 8 });
+    await page.mouse.up();
+  };
+  // Drag suis onto je, then move it on to tu, then drag it back into the bank.
+  await drag(bank.getByRole('button', { name: 'suis' }), slot('je'));
+  await expect(slot('je')).toHaveText('suis');
+  await expect(bank.getByRole('button', { name: 'suis' })).toHaveCount(0);
+  await drag(slot('je').locator('.form-placed'), slot('tu'));
+  await expect(slot('tu')).toHaveText('suis');
+  await expect(slot('je')).toHaveText('Choose a form');
+  await drag(slot('tu').locator('.form-placed'), bank);
+  await expect(bank.getByRole('button', { name: 'suis' })).toBeVisible();
+  await expect(slot('tu')).toHaveText('Choose a form');
+  await expect(page.locator('.form-slot .token')).toHaveCount(0); // a placed form has no token frame
+  // Click alternative: a form, then its row; a row, then its form.
+  await drag(bank.getByRole('button', { name: 'suis' }), slot('je'));
+  await bank.getByRole('button', { name: 'est' }).click();
+  await slot('tu').click();
+  await slot('il / elle').click();
+  await bank.getByRole('button', { name: 'es' }).click();
+  await expect(page.getByText('All forms are placed.')).toBeVisible();
+  await proceed(page); // Check
+  await expect(page.getByText('1 of 3 rows correct.')).toBeVisible();
+  await expect(page.locator('.form-row.is-right')).toHaveCount(1);
+  await expect(page.locator('.form-row.is-wrong')).toHaveCount(2);
+  await expect(page.locator('.form-row.is-wrong').first()).toContainText('Tu takes es');
+  await expect(page.getByRole('button', { name: 'Continue' })).toBeEnabled();
+});
+
+test('person matching: persons in order, checked in place like vocabulary matching (P3-02 review)', async ({ page }) => {
+  await page.goto('./#/lesson/fr-verb-etre-present/play');
+  await proceed(page); // start
+  await proceed(page); // explanation
+  const bank = page.getByRole('group', { name: 'Available forms' });
+  for (const [form, n] of [['suis', 0], ['es', 1], ['est', 2]] as const) {
+    await bank.getByRole('button', { name: form, exact: true }).click();
+    await page.locator('.form-slot').nth(n).click();
+  }
+  await proceed(page); // Check
+  await proceed(page); // feedback
+  for (const answer of ['es', 'suis']) {
+    await page.locator('fieldset.choices label').filter({ hasText: new RegExp(`^${answer}$`) }).click();
+    await proceed(page);
+    await expect(page.locator('.task-card.is-celebrating')).toHaveCount(0);
+  }
+  // The board: je, tu, il / elle on the left in person order, the forms shuffled on the right.
+  const left = page.locator('.matching-columns > ul').first().getByRole('button');
+  const right = page.locator('.matching-columns > ul').last().locator('.match-item');
+  await expect(left).toHaveText(['je', 'tu', 'il / elle']);
+  await expect(page.locator('.match-gap')).toHaveCount(0); // one number: three rows, no gap
+  // je → es and tu → suis are swapped; il / elle → est is right.
+  for (const [pronoun, form] of [['je', 'es'], ['tu', 'suis'], ['il / elle', 'est']]) {
+    await left.filter({ hasText: new RegExp(`^${pronoun}$`) }).click();
+    await right.filter({ hasText: new RegExp(`^${form}$`) }).click();
+  }
+  await proceed(page); // Check
+  await expect(page.locator('.match-summary')).toContainText('1 of 3 pairs correct.');
+  await expect(right.and(page.locator('.is-wrong'))).toHaveCount(2);
+  if (page.viewportSize()!.width >= 720) await expect(page.locator('.match-curve.is-checked')).toHaveCount(2);
+  await page.waitForTimeout(1300); // the slide
+  for (const [pronoun, form] of [['je', 'suis'], ['tu', 'es'], ['il / elle', 'est']]) {
+    const a = (await left.filter({ hasText: new RegExp(`^${pronoun}\\d*$`) }).boundingBox())!, b = (await right.filter({ hasText: new RegExp(`^${form}\\d*$`) }).boundingBox())!; // wrong pairs keep their number badge
+    expect(Math.abs(a.y - b.y)).toBeLessThan(2);
+  }
 });

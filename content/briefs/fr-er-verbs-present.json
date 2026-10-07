@@ -14,7 +14,7 @@
     "fr": "Conjuguer les verbes en -er (parler, habiter, aimer) au présent avec tous les pronoms et prononcer les terminaisons muettes.",
     "de": "Konjugieren Sie regelmäßige Verben auf -er (parler, habiter, aimer) im Präsens mit allen Pronomen und sprechen Sie stumme Endungen korrekt aus."
   },
-  "estimatedMinutes": 11,
+  "estimatedMinutes": 12,
   "provenance": {
     "generator": "lesson-prototype",
     "model": "gemini-3.6-flash",
@@ -189,6 +189,16 @@
             "rule-er-plural"
           ],
           "estimatedDurationS": 90
+        },
+        {
+          "id": "ex-persons",
+          "type": "grammar_person_matching",
+          "itemCount": 1,
+          "ruleIds": [
+            "rule-er-singular",
+            "rule-er-plural"
+          ],
+          "estimatedDurationS": 60
         }
       ]
     }

@@ -1717,7 +1717,11 @@ select {
   }
 }
 
-/* Task → correct answer on one line; the learner's answer struck through directly under the correct answer. */
+/*
+ * Task → correct answer on one line; the learner's answer struck through directly under the correct
+ * answer. Wide screens align every prompt part, arrow and answer in columns across the list (P3-02
+ * review): the list is the grid, rows and their bodies are subgrids.
+ */
 .result-fix {
   display: grid;
   grid-template-columns: auto auto 1fr;
@@ -1726,8 +1730,45 @@ select {
   row-gap: 0.15rem;
 }
 
-.result-fix .match-wrong {
-  grid-column: 3;
+.result-answer {
+  display: grid;
+  row-gap: 0.15rem;
+}
+
+@media (min-width: 601px) {
+  .result-list {
+    display: grid;
+    grid-template-columns: 1.5rem repeat(var(--parts, 1), auto auto) minmax(0, 1fr);
+    column-gap: 0.6rem;
+  }
+
+  /* Lists without task text (word order): the answer follows the icon directly. */
+  .result-list.no-prompt {
+    grid-template-columns: 1.5rem minmax(0, 1fr);
+  }
+
+  .result-list .result-item,
+  .result-list .result-body,
+  .result-list .result-fix {
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+  }
+
+  .result-list .result-body {
+    grid-column: 2 / -1;
+  }
+
+  .result-list .result-body > :not(.result-fix) {
+    grid-column: 1 / -1;
+  }
+
+  .result-list .result-prompt {
+    grid-column: span var(--span, 1);
+  }
+
+  .result-list .result-answer {
+    grid-column: -2 / -1;
+  }
 }
 
 .result-prompt {
@@ -1746,6 +1787,10 @@ select {
 
   .result-fix .match-wrong {
     grid-column: 1;
+  }
+
+  .result-fix > .match-arrow:empty {
+    display: none;
   }
 }
 
@@ -2127,4 +2172,127 @@ html {
 .choice-gender {
   color: var(--muted);
   font-size: 13px;
+}
+
+/* Pronoun/form rows (P3-02): a token bank above one row per pronoun. */
+.form-bank {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  min-height: 3rem;
+  margin: 0.75rem 0;
+  padding: 0.5rem;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius);
+}
+
+.form-token {
+  margin: 0;
+  touch-action: none; /* a touch on a token drags it instead of scrolling the page */
+  cursor: grab;
+}
+
+.form-rows {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0.75rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: minmax(5rem, 9rem) minmax(0, 16rem) auto;
+  align-items: center;
+  gap: 0.5rem 1rem;
+}
+
+.form-pronoun {
+  font-weight: 700;
+}
+
+.form-slot {
+  min-height: 2.75rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.form-slot.is-filled {
+  border-style: solid;
+  border-color: var(--progress);
+}
+
+.form-slot[aria-pressed='true'],
+.pronoun-match.is-dragging .form-slot:hover {
+  border-color: var(--indigo);
+  background: #1e1b4b;
+}
+
+.form-slot:disabled {
+  cursor: default;
+}
+
+.form-slot.is-right {
+  border-color: var(--correct);
+  box-shadow: 0 0 0 1px var(--correct);
+}
+
+.form-slot.is-wrong {
+  border-color: var(--incorrect);
+  box-shadow: 0 0 0 1px var(--incorrect);
+}
+
+.form-slot .form-placed {
+  /* One form per row: the placed form is plain text in the slot, without a token frame. */
+  touch-action: none;
+  cursor: grab;
+}
+
+.form-slot.is-wrong .form-placed {
+  color: var(--incorrect);
+  text-decoration: line-through;
+}
+
+.row-explanation {
+  grid-column: 2 / -1;
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.drag-ghost {
+  position: fixed;
+  z-index: 50;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  border-color: var(--indigo);
+  box-shadow: 0 6px 18px rgb(0 0 0 / 0.4);
+}
+
+@media (max-width: 520px) {
+  .form-row {
+    grid-template-columns: minmax(4rem, 6rem) minmax(0, 1fr);
+  }
+
+  .form-row .inline-answer {
+    grid-column: 2;
+  }
+}
+
+/* Person matching (P3-02 review): an empty grid row separates the singular and the plural rows. */
+.matching.has-gap {
+  --person-gap: 0.75rem;
+}
+
+/* Grammar start page (P3-02 review): the lesson flow, one colour per part. */
+.flow-list .flow-detail {
+  display: block;
+  margin-top: 0.15rem;
+  white-space: normal;
 }

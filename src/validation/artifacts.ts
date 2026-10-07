@@ -2,7 +2,7 @@ import type { z } from 'zod';
 
 import { nativeLocales } from '../schemas/artifactCommon.ts';
 import { briefSchema, contentSchema, hasContentFile, isSupportedKind, type Brief, type LessonContent } from '../schemas/artifacts.ts';
-import { PRONOUN_FORM_TOPICS, PRONOUN_FORM_TYPES, type GrammarBrief, type GrammarContent, type GrammarItem } from '../schemas/grammar.ts';
+import { PERSON_MATCHING_EXEMPT, PERSON_MATCHING_TOPICS, PERSONS, PRONOUN_FORM_TOPICS, PRONOUN_FORM_TYPES, type GrammarBrief, type GrammarContent, type GrammarItem } from '../schemas/grammar.ts';
 import type { OutlineEntry } from '../schemas/outline.ts';
 import { learningForms, parseRichText, richTextShape } from '../domain/richText.ts';
 import type { VocabularyBrief, VocabularyTarget } from '../schemas/vocabulary.ts';
@@ -185,11 +185,16 @@ function checkGrammarBrief(b: GrammarBrief, issues: Issues) {
       taught.add(r);
     }
     block.exercises.forEach((ex, j) => {
-      for (const r of ex.ruleIds) issues.check(block.ruleIds.includes(r), `blocks.${i}.exercises.${j}.ruleIds`, `rule ${r} is not taught in this block`);
+      // A person matching board may also review the persons of earlier blocks (singular, then plural).
+      const allowed = (r: string) => block.ruleIds.includes(r) || (ex.type === 'grammar_person_matching' && taught.has(r));
+      for (const r of ex.ruleIds) issues.check(allowed(r), `blocks.${i}.exercises.${j}.ruleIds`, `rule ${r} is not taught in this block${ex.type === 'grammar_person_matching' ? ' or an earlier one' : ''}`);
       checkPronounFormTopic(b, ex.type, `blocks.${i}.exercises.${j}.type`, issues);
     });
   });
   for (const r of rules) issues.check(taught.has(r), 'blocks', `rule ${r} is never taught`);
+  if ((PERSON_MATCHING_TOPICS as readonly string[]).includes(b.topic) && !(PERSON_MATCHING_EXEMPT as readonly string[]).includes(b.id)) {
+    issues.check(b.blocks.some((x) => x.exercises.some((e) => e.type === 'grammar_person_matching')), 'blocks', `${b.topic} lessons include a grammar_person_matching exercise`);
+  }
   const examined = new Set(b.exam.pages.flatMap((pg) => pg.ruleIds));
   b.exam.pages.forEach((pg, i) => {
     for (const r of pg.ruleIds) issues.check(rules.has(r), `exam.pages.${i}.ruleIds`, `unknown rule ${r}`);
@@ -267,6 +272,7 @@ function checkGrammarItem(item: GrammarItem, path: string, rules: Set<string>, e
       issues.unique(item.choices.map((ch) => ch.choiceId), path, 'choice ID');
       issues.unique(item.choices.map((ch) => ch.text), path, 'choice text');
       issues.check(item.choices.some((ch) => ch.choiceId === item.answerChoiceId), path, 'answerChoiceId must be one of the choices');
+      issues.check(!/\(.*\)/.test(`${item.before} ${item.after}`), path, 'put cues into hint (shown above the sentence), not in parentheses inside the sentence');
       break;
     case 'grammar_gap_typing':
       if (exam) issues.check(item.hint === null, path, 'exam gaps have no hint');
@@ -276,6 +282,21 @@ function checkGrammarItem(item: GrammarItem, path: string, rules: Set<string>, e
       for (const r of item.rows) issues.check(tokens.some((t) => r.validForms.includes(t.text)), path, `row ${r.rowId} has no token with a valid form`);
       checkExplanations(item.rows, path, issues);
       break;
+    case 'grammar_person_matching': {
+      // Rows follow the persons: the singular block, the plural block, or both (P3-02 review).
+      const persons = item.rows.map((r) => r.person).join(',');
+      const blocks = [PERSONS.slice(0, 3), PERSONS.slice(3), PERSONS].map((b) => b.join(','));
+      issues.check(blocks.includes(persons), `${path}.rows`, `persons must be ${blocks.map((b) => `[${b}]`).join(' or ')} in this order, not [${persons}]`);
+      const translation = item.mode === 'translation';
+      item.rows.forEach((r, n) => issues.check(translation ? r.native !== null && r.pronoun === null : r.pronoun !== null && r.native === null, `${path}.rows.${n}`,
+        translation ? 'translation rows have a native prompt and no pronoun' : 'forms rows have a pronoun and no native prompt'));
+      if (translation) {
+        const locales = [...new Set(item.rows.flatMap((r) => Object.keys(r.native ?? {})))];
+        for (const locale of locales) issues.unique(item.rows.map((r) => (r.native as Record<string, string> | null)?.[locale] ?? ''), path, `${locale} prompt`);
+      } else issues.unique(item.rows.map((r) => r.pronoun ?? ''), path, 'pronoun');
+      checkExplanations(item.rows, path, issues);
+      break;
+    }
     case 'grammar_pronoun_form_typing':
       issues.unique(item.rows.map((r) => r.rowId), path, 'row ID');
       checkExplanations(item.rows, path, issues);
@@ -329,6 +350,7 @@ function checkGrammarContent(c: GrammarContent, b: GrammarBrief, issues: Issues)
     if (want.role === 'feedback') issues.check(items.length === 1 && items[0].type === 'production_feedback_placeholder', sp, 'the feedback step is the fixed production placeholder');
     if (want.exercise) {
       issues.check(items.every((it) => it.type === want.exercise!.type), sp, `planned exercise ${want.exercise.id} is ${want.exercise.type}`);
+      if (want.exercise.type === 'grammar_person_matching') issues.check(step.pages.every((pg) => pg.items.length === 1), sp, 'each person matching board has a page of its own');
       issues.check(items.length === want.exercise.itemCount, sp, `planned exercise ${want.exercise.id} has ${want.exercise.itemCount} items`);
       checkRuleCoverage(items, want.exercise.ruleIds, sp, `planned exercise ${want.exercise.id}`, issues);
     }
