@@ -14,12 +14,12 @@
     "fr": "Apprendre à utiliser correctement les articles définis français (le, la, l', les), y compris l'élision devant les voyelles et le h muet, et après les verbes de préférence.",
     "de": "Lernen Sie die korrekte Verwendung der bestimmten französischen Artikel (le, la, l', les), einschließlich der Elision vor Vokalen und stummem h, sowie nach Vorlieben-Verben."
   },
-  "estimatedMinutes": 11,
+  "estimatedMinutes": 24,
   "provenance": {
-    "generator": "lesson-prototype",
-    "model": "gemini-3.5-flash",
-    "promptVersion": "brief-v2",
-    "generatedAt": "2026-10-06T14:38:41.903Z",
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "brief-v7",
+    "generatedAt": "2026-10-07T23:51:09.970Z",
     "inputHashes": {
       "outline": "54d6c8d3101f255f7b601ed8abe3d28ddde9f81411327c0f77e77dc1368e62c9"
     }
@@ -140,12 +140,32 @@
         {
           "id": "ex-basic-gap-choice",
           "type": "grammar_gap_choice",
-          "itemCount": 6,
+          "itemCount": 10,
           "ruleIds": [
             "rule-def-basic",
             "rule-def-elision"
           ],
-          "estimatedDurationS": 90
+          "estimatedDurationS": 100
+        },
+        {
+          "id": "ex-basic-gap-typing",
+          "type": "grammar_gap_typing",
+          "itemCount": 10,
+          "ruleIds": [
+            "rule-def-basic",
+            "rule-def-elision"
+          ],
+          "estimatedDurationS": 150
+        },
+        {
+          "id": "ex-basic-spot",
+          "type": "grammar_error_spotter",
+          "itemCount": 8,
+          "ruleIds": [
+            "rule-def-basic",
+            "rule-def-elision"
+          ],
+          "estimatedDurationS": 200
         }
       ]
     },
@@ -197,13 +217,31 @@
       ],
       "exercises": [
         {
-          "id": "ex-pref-gap-typing",
-          "type": "grammar_gap_typing",
-          "itemCount": 5,
+          "id": "ex-pref-choice",
+          "type": "grammar_gap_choice",
+          "itemCount": 8,
           "ruleIds": [
             "rule-def-preference"
           ],
-          "estimatedDurationS": 90
+          "estimatedDurationS": 80
+        },
+        {
+          "id": "ex-pref-gap-typing",
+          "type": "grammar_gap_typing",
+          "itemCount": 10,
+          "ruleIds": [
+            "rule-def-preference"
+          ],
+          "estimatedDurationS": 150
+        },
+        {
+          "id": "ex-pref-order",
+          "type": "grammar_word_order",
+          "itemCount": 6,
+          "ruleIds": [
+            "rule-def-preference"
+          ],
+          "estimatedDurationS": 150
         }
       ]
     }
@@ -216,22 +254,32 @@
       {
         "pageId": "exam-page-1",
         "type": "grammar_gap_typing",
-        "itemCount": 6,
+        "itemCount": 8,
         "ruleIds": [
-          "rule-def-basic",
-          "rule-def-elision"
+          "rule-def-basic"
         ],
         "estimatedDurationS": 120,
-        "timeLimitS": 240
+        "timeLimitS": 180
+      },
+      {
+        "pageId": "exam-elision",
+        "type": "grammar_gap_typing",
+        "itemCount": 8,
+        "ruleIds": [
+          "rule-def-elision",
+          "rule-def-basic"
+        ],
+        "estimatedDurationS": 120,
+        "timeLimitS": 180
       },
       {
         "pageId": "exam-page-2",
         "type": "grammar_gap_typing",
-        "itemCount": 4,
+        "itemCount": 8,
         "ruleIds": [
           "rule-def-preference"
         ],
-        "estimatedDurationS": 90,
+        "estimatedDurationS": 120,
         "timeLimitS": 180
       }
     ]
@@ -240,5 +288,35 @@
     "practiceWeight": 35,
     "examWeight": 65,
     "orthographyCredit": 0.5
-  }
+  },
+  "newVerbs": [
+    {
+      "infinitive": "aimer",
+      "translations": {
+        "en": "to like, to love",
+        "de": "mögen, lieben"
+      }
+    },
+    {
+      "infinitive": "adorer",
+      "translations": {
+        "en": "to love, to adore",
+        "de": "sehr gern mögen, lieben"
+      }
+    },
+    {
+      "infinitive": "détester",
+      "translations": {
+        "en": "to hate",
+        "de": "hassen, gar nicht mögen"
+      }
+    },
+    {
+      "infinitive": "préférer",
+      "translations": {
+        "en": "to prefer",
+        "de": "lieber mögen, bevorzugen"
+      }
+    }
+  ]
 }
