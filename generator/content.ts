@@ -25,7 +25,7 @@ const COPY = {
   matching: [L('Matching', 'Association', 'Zuordnen'), L('Match each word with its translation.', 'Associez chaque mot à sa traduction.', 'Ordne jedem Wort seine Übersetzung zu.')],
   gender: [L('Gender and overview', 'Genre et vue d’ensemble', 'Genus und Übersicht'), L('Choose the gender of each noun, then review all words.', 'Choisissez le genre de chaque nom, puis revoyez tous les mots.', 'Wähle das Genus jedes Nomens und sieh dir dann alle Wörter an.')],
   overview: [L('Overview', 'Vue d’ensemble', 'Übersicht'), L('Review all words of this lesson.', 'Revoyez tous les mots de cette leçon.', 'Sieh dir alle Wörter dieser Lektion an.')],
-  practice: [L('Practice', 'Entraînement', 'Übung'), L('Type the missing word without its article.', 'Écrivez le mot manquant sans son article.', 'Schreib das fehlende Wort ohne Artikel.')],
+  practice: [L('Practice', 'Entraînement', 'Übung'), L('Choose the right word and type it.', 'Choisissez le bon mot et écrivez-le.', 'Wähle das richtige Wort und schreibe es.')],
   listening: [L('Listening', 'Écoute', 'Hören'), L('Listen and choose the word you hear.', 'Écoutez et choisissez le mot entendu.', 'Hör zu und wähle das Wort, das du hörst.')],
   exam: [L('Final exam', 'Examen final', 'Abschlussprüfung'), L('Translate each word into French, with its article for nouns.', 'Traduisez chaque mot en français, avec l’article pour les noms.', 'Übersetze jedes Wort ins Französische, bei Nomen mit Artikel.')],
   dictation: [L('Dictation', 'Dictée', 'Diktat'), L('Listen and write the word, with its article for nouns.', 'Écoutez et écrivez le mot, avec l’article pour les noms.', 'Hör zu und schreib das Wort, bei Nomen mit Artikel.')],

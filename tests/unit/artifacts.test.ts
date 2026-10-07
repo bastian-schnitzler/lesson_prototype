@@ -106,6 +106,7 @@ describe('brief validation', () => {
     expect(messages(checkBrief('fr-classroom-objects', (b) => (noun(b).examForms = ['un livre', 'des livres'])))).toMatch(/"des livres" uses "des" but a singular masculine noun takes un/);
     expect(messages(checkBrief('fr-classroom-objects', (b) => (noun(b).examForms = ['une livre'])))).toMatch(/"une livre" uses "une"/);
     expect(messages(checkBrief('fr-classroom-objects', (b) => (noun(b).teachingForm = 'le livre')))).toMatch(/"le livre" must be one of the exam forms/);
+    expect(messages(checkBrief('fr-classroom-objects', (b) => (noun(b).term = 'le livre')))).toMatch(/"le livre" must be the base term without article/);
     expect(messages(checkBrief('fr-classroom-objects', (b) => (noun(b).articleException = { en: 'x', fr: 'x', de: 'x' })))).toMatch(/remove the articleException/);
   });
 

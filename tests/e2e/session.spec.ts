@@ -5,7 +5,8 @@ test.beforeEach(async ({ page }) => {
   await page.evaluate(() => localStorage.clear());
 });
 
-const proceed = (page: Page) => page.getByRole('button', { name: 'Continue' }).click();
+/** Clicks the page's primary action: "Check" on unanswered practice pages, "Continue" otherwise. */
+const proceed = (page: Page) => page.getByRole('button', { name: /^(Continue|Check)$/ }).click();
 
 /** Turns every flashcard of the current page to its French side. */
 async function revealCards(page: Page) {
@@ -34,6 +35,32 @@ async function matchAll(page: Page, { wrong = true } = {}) {
   }
 }
 
+/**
+ * Answers a typed gap: a correct answer flashes green and moves on by itself; otherwise the
+ * correction is shown and a second Continue confirms it.
+ */
+async function answerGap(page: Page, word: string) {
+  await page.getByRole('textbox').fill(word);
+  await proceed(page);
+  // Either the correction appears, or (after the green flash) the next page shows an empty field.
+  await page.waitForFunction(() => {
+    const field = document.querySelector<HTMLInputElement>('.task-card input.text-input');
+    return !!document.querySelector('.feedback') || !field || field.value === '';
+  });
+  if (await page.locator('.feedback').count()) await proceed(page);
+}
+
+/** Confirms the info page that precedes the final exam. */
+async function passExamIntro(page: Page) {
+  await expect(page.getByRole('heading', { name: 'Your final exam' })).toBeVisible();
+  await proceed(page);
+}
+
+/** Picks the first gender for every noun on the gender page. */
+async function chooseGenders(page: Page) {
+  for (const group of await page.locator('fieldset.gender-options:not([disabled])').all()) await group.locator('label').first().click();
+}
+
 /** Selects the first offered option in every select of the current page. */
 async function chooseAll(page: Page) {
   for (const select of await page.locator('.task-card select:not([disabled])').all()) await select.selectOption({ index: 1 });
@@ -49,7 +76,7 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   await expect(page.getByRole('button', { name: 'Continue' })).toBeDisabled(); // flashcards not yet revealed
   await revealCards(page);
   await proceed(page); // flashcards
-  await expect(page.getByRole('button', { name: 'Continue' })).toBeDisabled();
+  await expect(page.getByRole('button', { name: 'Check' })).toBeDisabled(); // practice pages are checked first
   await matchAll(page);
   await proceed(page);
   // Results list only the mistakes: word, struck-through choice and the correct meaning, no point counts.
@@ -67,15 +94,32 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   await page.reload();
   await page.getByRole('button', { name: 'Resume lesson' }).click();
   await expect(page.getByText('Gender and overview')).toBeVisible();
-  await chooseAll(page);
+  await expect(page.locator('.task-card select')).toHaveCount(0);
+  await chooseGenders(page);
   await proceed(page);
   await proceed(page);
+  // Typed gaps: the cursor is already in the field; the four reference words stand above it.
+  await expect(page.getByRole('textbox')).toBeFocused();
+  const field = (await page.getByRole('textbox').boundingBox())!;
+  const refs = page.locator('.reference-list > li');
+  await expect(refs).toHaveCount(4);
+  expect((await refs.last().boundingBox())!.y).toBeLessThan(field.y); // the reference words stand above the field
   for (const word of ['livre', 'Chaise', 'stylo', 'table']) {
-    await page.getByRole('textbox').fill(word);
-    await proceed(page);
-    await proceed(page);
+    await answerGap(page, word);
   }
+  // An info page lists the exam pages, their countdowns and the number of words before the exam starts.
+  await expect(page.getByRole('heading', { name: 'Your final exam' })).toBeVisible();
+  await expect(page.locator('.exam-intro')).toContainText('4 words are tested');
+  await expect(page.locator('.exam-intro li').first()).toContainText(/Translation into French · \d+ tasks/);
+  await expect(page.getByRole('timer')).toHaveCount(0);
+  await proceed(page);
   await expect(page.getByRole('timer')).toBeVisible();
+  // Each word to translate says whether the answer needs an article; a missing one triggers a hint.
+  await expect(page.locator('.article-badge').first()).toHaveText('with article');
+  await page.getByRole('textbox').first().fill('livre');
+  await expect(page.getByRole('status').filter({ hasText: 'Type the article before the word' })).toBeVisible();
+  await page.getByRole('textbox').first().fill('un livre');
+  await expect(page.locator('.info-box')).toHaveCount(0);
   const score = await page.locator('.session-score').textContent();
   await page.getByRole('textbox').first().fill('un livre');
   await proceed(page);
@@ -83,10 +127,26 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   await proceed(page);
 
   await expect(page.getByRole('heading', { name: 'Your exam answers' })).toBeVisible();
-  await expect(page.getByText('Accent / case correction', { exact: false })).toHaveCount(0);
+  await expect(page.locator('.result-note-almost')).toHaveCount(0);
+  for (const list of await page.locator('.result-list').all()) await expect(list).not.toContainText(/\d \/ 1/); // no point fractions in the review
   await page.getByRole('button', { name: /^Typed gaps/ }).click();
-  await expect(page.getByText('Accent / case correction · 0.5 / 1')).toBeVisible();
-  await page.getByRole('link', { name: 'Lesson overview' }).click();
+  // Only mistakes are listed; the capitalised "Chaise" is an "almost" with half a point.
+  await expect(page.locator('.result-note-almost')).toBeVisible();
+  await expect(page.locator('.match-summary')).toContainText(/of 4 correct\./);
+  await expect(page.locator('.result-item')).toHaveCount(4); // every answer is listed, correct ones too
+  const menu = await page.locator('.result-menu button').allTextContents();
+  // The highlighted final exam comes first, then the exercises in the order they were presented.
+  expect(menu[0]).toBe('Final exam');
+  await expect(page.locator('.result-menu .button-exam')).toHaveText('Final exam');
+  expect(menu[1]).toMatch(/^Introduction/);
+  // The card shows the selected part (heading and score), the lesson title and the lesson total only.
+  await expect(page.locator('.summary-card h1')).toHaveText('Typed gaps');
+  await expect(page.locator('.summary-card')).toContainText('Les objets de la classe');
+  await expect(page.locator('.summary-card')).toContainText(/Lesson total: [\d.]+ \/ 100/);
+  await expect(page.locator('.summary-card')).not.toContainText(/contributes|Practice:/);
+  await expect(page.locator('.results-footer .button-primary')).toHaveText('Lesson overview');
+  await expect(page.locator('.results-footer .button-outline')).toHaveText('Repeat lesson');
+  await page.locator('.results-footer').getByRole('link', { name: 'Lesson overview' }).click();
   await expect(page.locator('tr[data-lesson-id="fr-classroom-objects"] .score')).not.toBeEmpty();
 });
 
@@ -150,9 +210,7 @@ async function reachListeningPractice(page: Page) {
   await proceed(page); // matching feedback
   await proceed(page); // overview
   for (const word of ['écoutez', 'lisez']) {
-    await page.getByRole('textbox').fill(word);
-    await proceed(page);
-    await proceed(page);
+    await answerGap(page, word);
   }
 }
 
@@ -164,11 +222,12 @@ test('plays French listening choice and dictation with a suitable voice', async 
   expect(await page.evaluate(() => (window as unknown as { __spoken: string[] }).__spoken)).toContain('écoutez');
   await page.locator('fieldset.choices input').first().check();
   await proceed(page);
-  await expect(page.getByText(/Fully correct|Incorrect/).first()).toBeVisible();
+  await expect(page.locator('.feedback').first()).toBeVisible();
   await proceed(page);
   await page.locator('fieldset.choices input').first().check();
   await proceed(page);
   await proceed(page);
+  await passExamIntro(page);
   await expect(page.getByRole('timer')).toBeVisible();
   for (const input of await page.getByRole('textbox').all()) await input.fill('écoutez');
   await proceed(page);
@@ -186,8 +245,9 @@ test('plays French listening choice and dictation with a suitable voice', async 
   await page.getByRole('textbox').last().fill(await heard(1));
   await proceed(page);
   await expect(page.getByRole('heading', { name: 'Your exam answers' })).toBeVisible();
-  await expect(page.getByText('Accent / case correction · 0.5 / 1')).toBeVisible();
-  await expect(page.locator('.result-row').last()).toContainText('Fully correct');
+  // The capitalised dictation answer is listed as "almost" (half a point); the exact one is not listed.
+  await expect(page.locator('.result-list > li.outcome-orthography_only')).toHaveCount(1);
+  await expect(page.locator('.result-note-almost')).toBeVisible();
 });
 
 test('replaces voice-less listening pages with help and excludes skips from scores', async ({ page }) => {
@@ -203,6 +263,7 @@ test('replaces voice-less listening pages with help and excludes skips from scor
   await page.getByRole('button', { name: 'Resume lesson' }).click();
   await expect(page.getByRole('heading', { name: 'French voice unavailable' })).toBeVisible();
   await page.getByRole('button', { name: 'Skip listening task' }).click();
+  await passExamIntro(page);
   await expect(page.getByRole('timer')).toBeVisible();
   for (const input of await page.getByRole('textbox').all()) await input.fill('écoutez');
   await proceed(page);
@@ -210,8 +271,9 @@ test('replaces voice-less listening pages with help and excludes skips from scor
   await expect(page.getByRole('timer')).toHaveCount(0);
   await page.getByRole('button', { name: 'Skip listening task' }).click();
   await expect(page.getByRole('heading', { name: 'Your exam answers' })).toBeVisible();
-  await expect(page.locator('.summary-card')).toContainText(/Final exam: [0-4] \/ 4/);
-  expect(await page.locator('.result-row').count()).toBe(4);
+  await expect(page.locator('.summary-card h1')).toHaveText('Final exam');
+  await expect(page.locator('.summary-card .total-score')).toHaveText(/^[0-4](\.5)? \/ 4$/); // skipped listening items are not counted
+  await expect(page.locator('.match-summary')).toContainText(/of 4 correct\./); // skipped listening items are not counted
 });
 
 test('replaces a revealed flashcard Listen button with Install language, which opens the help dialog', async ({ page }) => {
@@ -279,7 +341,7 @@ test('matching pairs by keyboard, lets a pair be reassigned and locks it with fe
   await french.filter({ hasText: 'un livre' }).click();
   await expect(french.filter({ hasText: 'une chaise' }).locator('.pair-badge')).toHaveCount(0);
   await expect(page.getByText('1 of 4 pairs assigned.')).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Continue' })).toBeDisabled();
+  await expect(page.getByRole('button', { name: 'Check' })).toBeDisabled();
   for (const [en, fr] of [['chair', 'une chaise'], ['pen', 'un stylo'], ['table', 'une table']]) {
     await native.filter({ hasText: en }).click();
     await french.filter({ hasText: fr }).click();

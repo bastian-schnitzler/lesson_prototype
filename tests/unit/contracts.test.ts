@@ -93,3 +93,13 @@ it('orders a learner session as introduction, flashcards, introduction, flashcar
   expect(plan.pages.map((p) => p.index)).toEqual(plan.pages.map((_, n) => n));
   expect(lessonResults(plan, play(plan, key)).total).toBe(100);
 });
+
+it('puts the exam info page right before the first exam page without changing scores', () => {
+  const content = read('lessons', 'fr-classroom-objects'), brief = read('briefs', 'fr-classroom-objects');
+  const plan = buildPlan(contentSchema('vocabulary', 'fr').parse(content), briefSchema('vocabulary', 'fr').parse(brief), 'en', { interleaveGroups: true, examIntro: true });
+  const intro = plan.pages.findIndex((p) => p.special === 'examIntro');
+  expect(plan.pages[intro]).toMatchObject({ role: 'presentation', units: [], timeLimitS: null });
+  expect(plan.pages[intro + 1].role).toBe('exam');
+  expect(plan.pages.slice(0, intro).every((p) => p.role !== 'exam')).toBe(true);
+  expect(lessonResults(plan, play(plan, key)).total).toBe(100);
+});

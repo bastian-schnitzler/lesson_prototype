@@ -913,7 +913,7 @@ select {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.4rem;
-  font-size: 20px;
+  font-size: 22px;
 }
 
 .gap-sentence .text-input {
@@ -1258,43 +1258,6 @@ select {
   gap: 0.5rem;
 }
 
-.result-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.result-row {
-  display: grid;
-  grid-template-columns: 2rem 1fr;
-  gap: 0.75rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.result-row p {
-  margin: 0.2rem 0;
-}
-
-.result-icon {
-  font-weight: 700;
-}
-
-.outcome-fully_correct .result-icon {
-  color: var(--correct);
-}
-
-.outcome-orthography_only .result-icon,
-.outcome-orthography_only .result-class {
-  color: var(--partial);
-}
-
-.outcome-incorrect .result-icon,
-.outcome-unanswered .result-icon,
-.outcome-incorrect .given {
-  color: var(--incorrect);
-}
-
 @media (max-width: 600px) {
   .matching-columns {
     gap: 0.5rem;
@@ -1536,3 +1499,436 @@ select {
   color: var(--correct);
 }
 
+
+/* ------------------------------------------------------------ P2-03 gender, gaps, exam */
+
+.fix-lines {
+  display: grid;
+  justify-items: start;
+  gap: 0.15rem;
+  margin: 0.35rem 0;
+}
+
+.feedback-title {
+  font-weight: 600;
+}
+
+.gender-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr));
+  gap: 0.5rem 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gender-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+}
+
+.gender-lemma {
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.gender-options {
+  display: flex;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.gender-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.gender-option span {
+  display: inline-block;
+  min-width: 6.5rem;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.gender-option input:checked + span {
+  border-color: var(--progress);
+  background: #1e1b4b;
+  box-shadow: inset 0 0 0 1px var(--progress);
+}
+
+.gender-option input:focus-visible + span {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.overview-list {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.overview-list li {
+  padding: 0.55rem 0.85rem;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--bg);
+}
+
+.overview-list li.is-right {
+  border-left-color: var(--correct);
+}
+
+.overview-list li.is-wrong {
+  border-left-color: var(--incorrect);
+}
+
+.overview-main {
+  display: grid;
+  grid-template-columns: 1.25rem minmax(10rem, 1.2fr) minmax(8rem, 1fr) auto;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.overview-status {
+  font-weight: 700;
+}
+
+.is-right .overview-status {
+  color: var(--correct);
+}
+
+.is-wrong .overview-status {
+  color: var(--incorrect);
+}
+
+.overview-gender {
+  display: grid;
+  justify-items: end;
+}
+
+.overview-fix {
+  margin: 0;
+  padding: 0.35rem 0 0 2rem;
+}
+
+@media (max-width: 600px) {
+  .overview-main {
+    grid-template-columns: 1.25rem 1fr auto;
+  }
+
+  .overview-translation {
+    grid-column: 2 / -1;
+  }
+
+  .gender-option span {
+    min-width: 0;
+  }
+}
+
+.references {
+  margin-top: 1.25rem;
+}
+
+.references > p {
+  margin: 0 0 0.4rem;
+}
+
+/* Typed gaps follow reference R4: the words as full-width filled cards below the sentence (not selectable). */
+.reference-list {
+  display: grid;
+  gap: 0.9rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reference-list li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #131c30;
+  color: var(--text);
+  font-size: 18px;
+  cursor: default;
+}
+
+.reference-list small {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Exam and other prompt + field rows: prompt and input side by side on wide screens. */
+@media (min-width: 720px) {
+  .units .field:not(.field-row) {
+    display: grid;
+    grid-template-columns: minmax(12rem, 1fr) minmax(0, 1.6fr);
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+/* Task → correct answer on one line; the learner's answer struck through directly under the correct answer. */
+.result-fix {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: baseline;
+  column-gap: 0.6rem;
+  row-gap: 0.15rem;
+}
+
+.result-fix .match-wrong {
+  grid-column: 3;
+}
+
+.result-prompt {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .result-fix {
+    grid-template-columns: 1fr;
+  }
+
+  .result-fix .match-arrow {
+    display: none;
+  }
+
+  .result-fix .match-wrong {
+    grid-column: 1;
+  }
+}
+
+.result-notes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.result-note {
+  padding: 0.1rem 0.6rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.result-note-almost {
+  border-color: var(--partial);
+  color: var(--partial);
+}
+
+.match-corrections li.outcome-orthography_only {
+  border-left-color: var(--partial);
+}
+
+/* Flashcard back: the gender reads as part of the French word. */
+.flashcard-face .flashcard-form + .muted {
+  margin-top: -0.45rem;
+}
+
+/* Results review (R5): every answer in order, grouped by vocabulary group or page. */
+.result-section + .result-section {
+  margin-top: 1.25rem;
+}
+
+.result-section-title {
+  margin: 0 0 0.25rem;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.result-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.result-item {
+  display: grid;
+  grid-template-columns: 1.5rem 1fr;
+  gap: 0.5rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.result-item .result-icon {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.result-item.outcome-fully_correct .result-icon { color: var(--correct); }
+.result-item.outcome-orthography_only .result-icon { color: var(--partial); }
+.result-item.outcome-incorrect .result-icon,
+.result-item.outcome-unanswered .result-icon { color: var(--incorrect); }
+
+.result-body {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.result-body p {
+  margin: 0;
+}
+
+.result-item .result-prompt {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.units:has(.reference-list) .unit {
+  border-bottom: 0;
+}
+
+.article-badge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.05rem 0.55rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  color: var(--muted);
+  font-size: 12px;
+  vertical-align: middle;
+}
+
+/* Neutral exam hint (no correctness): shown under the field while the article is missing. */
+.info-box {
+  margin: 0.4rem 0 0;
+  padding: 0.5rem 0.8rem;
+  border-left: 3px solid var(--indigo);
+  border-radius: var(--radius);
+  background: #1e1b4b;
+  color: var(--text);
+  font-size: 15px;
+}
+
+/* ------------------------------------------------------------ P2-03 review round 2 */
+
+/* Gender page: speaker left of the word; after Check the pills are marked in place. */
+.gender-row {
+  flex-wrap: wrap;
+}
+
+.gender-page .gender-grid {
+  align-items: start;
+}
+
+.gender-word {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.gender-row.is-right {
+  border-color: rgb(0 230 118 / 0.45);
+}
+
+.gender-row.is-wrong {
+  border-color: rgb(255 82 82 / 0.5);
+}
+
+.gender-option.is-right input + span {
+  border-color: var(--correct);
+  box-shadow: inset 0 0 0 1px var(--correct);
+  color: var(--correct);
+}
+
+.gender-option.is-wrong input + span {
+  border-color: var(--incorrect);
+  box-shadow: inset 0 0 0 1px var(--incorrect);
+  color: var(--incorrect);
+}
+
+.gender-option.is-answer input + span {
+  border-color: var(--progress);
+  background: #2e1065;
+  box-shadow: inset 0 0 0 1px var(--progress);
+  color: #ddd6fe;
+}
+
+.gender-options:disabled .gender-option span {
+  cursor: default;
+}
+
+.gender-explanation {
+  flex-basis: 100%;
+  margin: 0;
+}
+
+/* Typed gaps: the reference words sit above the sentence, centred and narrower, with more padding. */
+.units:has(.reference-list) .references {
+  margin: 0 0 1.5rem;
+}
+
+.reference-list {
+  justify-items: center;
+}
+
+.reference-list li {
+  width: min(100%, 24rem);
+  padding: 1rem 1.75rem;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.reference-list li.is-correct {
+  border-color: var(--correct);
+  box-shadow: 0 0 0 1px var(--correct), 0 0 18px rgb(0 230 118 / 0.35);
+  color: var(--correct);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.exam-intro .lead {
+  margin-bottom: 1rem;
+}
+
+/* Results: the final exam button stands out; Repeat lesson sits left of the primary overview link. */
+.button-exam {
+  border-color: var(--progress);
+  color: #ddd6fe;
+  font-weight: 600;
+}
+
+.button-exam[aria-pressed='true'] {
+  background: #1e1b4b;
+}
+
+.results-lesson {
+  margin: 0.25rem 0 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.results-total {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+}
+
+.results-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
