@@ -109,13 +109,15 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
 
   await expect(page.getByRole('heading', { name: 'Your exam answers' })).toBeVisible();
   await expect(page.locator('.result-note-almost')).toHaveCount(0);
-  await expect(page.locator('.result-list')).not.toContainText(/\d \/ 1/); // no point fractions in the review
+  for (const list of await page.locator('.result-list').all()) await expect(list).not.toContainText(/\d \/ 1/); // no point fractions in the review
   await page.getByRole('button', { name: /^Typed gaps/ }).click();
   // Only mistakes are listed; the capitalised "Chaise" is an "almost" with half a point.
   await expect(page.locator('.result-note-almost')).toBeVisible();
   await expect(page.locator('.match-summary')).toContainText(/of 4 correct\./);
-  const listed = await page.locator('.result-list > li').count();
-  expect(listed).toBeLessThan(4 + 1);
+  await expect(page.locator('.result-item')).toHaveCount(4); // every answer is listed, correct ones too
+  const menu = await page.locator('.result-menu button').allTextContents();
+  expect(menu.at(-1)).toBe('Final exam'); // buttons follow the presentation order
+  expect(menu[0]).toMatch(/^Introduction/);
   await page.getByRole('link', { name: 'Lesson overview' }).click();
   await expect(page.locator('tr[data-lesson-id="fr-classroom-objects"] .score')).not.toBeEmpty();
 });

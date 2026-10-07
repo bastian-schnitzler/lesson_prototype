@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import { useI18n, useLastTry } from '../app/context.tsx';
 import { formatScore, roundHalfUp1 } from '../domain/format.ts';
-import type { LessonPlan, PlanUnit } from '../domain/session/plan.ts';
+import type { LessonPlan, PlanPage, PlanUnit } from '../domain/session/plan.ts';
 import { headerScore, isAnswered, isListeningPage, presentationComplete, scoreUnit, skipsFeedbackWhenCorrect, lessonResults, POLICY, progress, type LockedUnit, type SessionRecord } from '../domain/session/session.ts';
 import type { MessageKey } from '../i18n/messages.ts';
 import { rendererRegistry, UnitFeedback } from './renderers.tsx';
@@ -183,35 +183,66 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
 /* ------------------------------------------------------------- results */
 
 /**
- * One reviewed mistake (results page, same style as matching corrections): the task, the correct
- * answer in green with the learner's answer struck through in red directly below, an "almost" or
- * timeout note, and the explanation. Fully correct answers are not listed.
+ * One reviewed answer (results page, R5 style): ✓/!/✕, the task → correct answer in green; for a
+ * mistake the learner's answer struck through directly below the correct answer, an "almost" or
+ * timeout note and the explanation.
  */
-function ResultMistake({ unit, locked, lang }: { unit: PlanUnit; locked: LockedUnit; lang: string }) {
+function ResultItem({ unit, locked, lang }: { unit: PlanUnit; locked: LockedUnit; lang: string }) {
   const { t, locale } = useI18n();
   const prompt = [unit.prompt.native, unit.prompt.learning, unit.prompt.before !== undefined ? `${unit.prompt.before ?? ''} ____ ${unit.prompt.after ?? ''}` : undefined].find(Boolean) ?? t('session.typeWhatYouHear');
   const given = answerText(unit, locked.response, t);
   const correct = unit.answerLang === 'ui' ? t(unit.answer as MessageKey) : unit.answer;
+  const ok = locked.outcome === 'fully_correct';
   return (
-    <li className={`outcome-${locked.outcome}`}>
-      <div className="result-fix">
-        <span className="result-prompt" lang={unit.prompt.native ? undefined : lang}>{prompt}</span>
-        <span className="match-arrow" aria-hidden="true">→</span>
-        <strong className="match-right">
-          <span className="visually-hidden">{t('result.correctAnswer')}: </span><span lang={unit.answerLang === 'learning' ? lang : undefined}>{correct}</span>
-          {unit.form && <span lang={lang}> · {unit.form}</span>}
-        </strong>
-        <span className="match-wrong"><span className="visually-hidden">{t('result.yourAnswer')}: </span><s lang={lang}>{given || t('result.noAnswer')}</s></span>
+    <li className={`result-item outcome-${locked.outcome}`}>
+      <span className="result-icon" aria-label={t(OUTCOME_LABEL[locked.outcome])}>{ok ? '✓' : locked.outcome === 'orthography_only' ? '!' : '✕'}</span>
+      <div className="result-body">
+        <div className="result-fix">
+          <span className="result-prompt" lang={unit.prompt.native ? undefined : lang}>{prompt}</span>
+          <span className="match-arrow" aria-hidden="true">→</span>
+          <strong className="match-right">
+            <span className="visually-hidden">{t('result.correctAnswer')}: </span><span lang={unit.answerLang === 'learning' ? lang : undefined}>{correct}</span>
+            {unit.form && <span lang={lang}> · {unit.form}</span>}
+          </strong>
+          {!ok && <span className="match-wrong"><span className="visually-hidden">{t('result.yourAnswer')}: </span><s lang={lang}>{given || t('result.noAnswer')}</s></span>}
+        </div>
+        {(locked.outcome === 'orthography_only' || locked.timedOut) && (
+          <p className="result-notes">
+            {locked.outcome === 'orthography_only' && <span className="result-note result-note-almost">{t('feedback.almost')}</span>}
+            {locked.timedOut && <span className="result-note">{t('result.timedOut')}</span>}
+          </p>
+        )}
+        {!ok && <p className="muted">{unit.explanation[locale]}</p>}
       </div>
-      {(locked.outcome === 'orthography_only' || locked.timedOut) && (
-        <p className="result-notes">
-          {locked.outcome === 'orthography_only' && <span className="result-note result-note-almost">{t('feedback.almost')}</span>}
-          {locked.timedOut && <span className="result-note">{t('result.timedOut')}</span>}
-        </p>
-      )}
-      <p className="muted">{unit.explanation[locale]}</p>
     </li>
   );
+}
+
+const OUTCOME_LABEL = { fully_correct: 'feedback.correct', orthography_only: 'outcome.orthography_only', incorrect: 'outcome.incorrect', unanswered: 'outcome.unanswered' } as const;
+
+/** Vocabulary target of a unit (row units carry it as the last ID segment), for grouping results. */
+function unitTarget(page: PlanPage, unit: PlanUnit): string | undefined {
+  const item = page.items.find((it) => it.itemId === unit.itemId);
+  if (item && 'targetId' in item) return item.targetId;
+  const rest = unit.id.slice(`${page.pageId}/${unit.itemId}/`.length);
+  return unit.id.startsWith(`${page.pageId}/${unit.itemId}/`) ? rest : undefined;
+}
+
+/** Splits units into consecutive sections: by vocabulary group, otherwise by page ("Part n"). */
+function resultSections(plan: LessonPlan, pages: PlanPage[]) {
+  const groupOf = new Map(plan.groups.flatMap((g) => g.targetIds.map((id) => [id, g] as const)));
+  const sections: { key: string; groupId?: string; part: number; units: PlanUnit[] }[] = [];
+  pages.forEach((page, n) => {
+    for (const unit of page.units) {
+      const target = unitTarget(page, unit);
+      const group = target ? groupOf.get(target) : undefined;
+      const key = `${page.pageId}|${group?.id ?? ''}`;
+      const last = sections.at(-1);
+      if (last?.key === key) last.units.push(unit);
+      else sections.push({ key, groupId: group?.id, part: n + 1, units: [unit] });
+    }
+  });
+  return sections;
 }
 
 export function ResultsView({ plan, record, dispatch }: { plan: LessonPlan; record: SessionRecord; dispatch: (action: SessionInput) => void }) {
@@ -247,31 +278,34 @@ export function ResultsView({ plan, record, dispatch }: { plan: LessonPlan; reco
       </div>
       <h2 className="small-heading">{t('result.chooseReview')}</h2>
       <div className="result-menu" role="group" aria-label={t('result.chooseReview')}>
-        <button type="button" className="button button-outline" aria-pressed={record.selection === 'exam'} onClick={() => dispatch({ type: 'select', selection: 'exam' })}>
-          {t('session.examPage')}
-        </button>
-        {results.steps.filter((s) => s.role !== 'exam' && (s.role === 'presentation' || s.tally.possible > 0) && plan.steps.find((p) => p.stepId === s.stepId)).map((s) => {
-          const label = plan.steps.find((p) => p.stepId === s.stepId)!.label[locale];
+        {/* Buttons follow the order in which the exercises were presented; the exam comes last. */}
+        {results.steps.filter((s) => s.role === 'exam' || ((s.role === 'presentation' || s.tally.possible > 0) && plan.steps.some((p) => p.stepId === s.stepId))).map((s) => {
+          const label = plan.steps.find((p) => p.stepId === s.stepId)?.label[locale] ?? t('session.examPage');
+          const selection = s.role === 'exam' ? 'exam' : s.stepId;
           return (
-            <button key={s.stepId} type="button" className="button button-outline" aria-pressed={record.selection === s.stepId} onClick={() => dispatch({ type: 'select', selection: s.stepId })}>
-              {s.role === 'practice' ? label : t('result.completed', { label })}
+            <button key={s.stepId} type="button" className="button button-outline" aria-pressed={record.selection === selection} onClick={() => dispatch({ type: 'select', selection })}>
+              {s.role === 'presentation' ? t('result.completed', { label }) : label}
             </button>
           );
         })}
       </div>
       <h2 className="small-heading">{selectedStep ? selectedStep.label[locale] : t('result.examAnswers')}</h2>
-      {units.length ? (() => {
+      {units.some((u) => record.locked[u.id]) ? (() => {
         const reviewed = units.filter((u) => record.locked[u.id]);
-        const mistakes = reviewed.filter((u) => record.locked[u.id].outcome !== 'fully_correct');
+        const correct = reviewed.filter((u) => record.locked[u.id].outcome === 'fully_correct').length;
+        const sections = resultSections(plan, pages).map((sec) => ({ ...sec, units: sec.units.filter((u) => record.locked[u.id]) })).filter((sec) => sec.units.length);
+        const title = (sec: (typeof sections)[number]) => plan.groups.find((g) => g.id === sec.groupId)?.label[locale] ?? t('result.part', { n: sec.part });
         return (
           <>
-            <p className="match-summary">
-              <strong>{t('result.summary', { correct: reviewed.length - mistakes.length, total: reviewed.length })}</strong>
-              {mistakes.length > 0 ? <> {t('session.matchReview')}</> : <> {t('result.noMistakes')}</>}
-            </p>
-            <ul className="match-corrections result-list">
-              {mistakes.map((u) => <ResultMistake key={u.id} unit={u} locked={record.locked[u.id]} lang={plan.lang} />)}
-            </ul>
+            <p className="match-summary"><strong>{t('result.summary', { correct, total: reviewed.length })}</strong></p>
+            {sections.map((sec) => (
+              <section key={sec.key} className="result-section">
+                {sections.length > 1 && <h3 className="result-section-title">{title(sec)}</h3>}
+                <ul className="result-list">
+                  {sec.units.map((u) => <ResultItem key={u.id} unit={u} locked={record.locked[u.id]} lang={plan.lang} />)}
+                </ul>
+              </section>
+            ))}
           </>
         );
       })() : (

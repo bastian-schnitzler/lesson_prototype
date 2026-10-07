@@ -321,7 +321,7 @@ export function UnitsRenderer(props: RendererProps) {
       })}
       {item.type === 'vocabulary_typed_gap' && (
         <div className="references">
-          <p className="label-muted">{t('session.references')}</p>
+          <p className="visually-hidden">{t('session.references')}</p>
           {/* Noninteractive reference words (not selectable), listed like gap-choice options, with their gender. */}
           <ul className="reference-list">
             {seededOrder(item.referenceTargetIds, props.seed, item.itemId).map((id) => {

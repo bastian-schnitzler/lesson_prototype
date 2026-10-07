@@ -913,7 +913,7 @@ select {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.4rem;
-  font-size: 20px;
+  font-size: 22px;
 }
 
 .gap-sentence .text-input {
@@ -1256,43 +1256,6 @@ select {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-}
-
-.result-list {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.result-row {
-  display: grid;
-  grid-template-columns: 2rem 1fr;
-  gap: 0.75rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.result-row p {
-  margin: 0.2rem 0;
-}
-
-.result-icon {
-  font-weight: 700;
-}
-
-.outcome-fully_correct .result-icon {
-  color: var(--correct);
-}
-
-.outcome-orthography_only .result-icon,
-.outcome-orthography_only .result-class {
-  color: var(--partial);
-}
-
-.outcome-incorrect .result-icon,
-.outcome-unanswered .result-icon,
-.outcome-incorrect .given {
-  color: var(--incorrect);
 }
 
 @media (max-width: 600px) {
@@ -1678,17 +1641,17 @@ select {
 }
 
 .references {
-  margin-top: 1rem;
+  margin-top: 1.25rem;
 }
 
 .references > p {
   margin: 0 0 0.4rem;
 }
 
+/* Typed gaps follow reference R4: the words as full-width filled cards below the sentence (not selectable). */
 .reference-list {
   display: grid;
-  gap: 0.4rem;
-  max-width: 28rem;
+  gap: 0.9rem;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -1699,10 +1662,12 @@ select {
   align-items: baseline;
   justify-content: space-between;
   gap: 0.75rem;
-  padding: 0.6rem 0.9rem;
-  border: 1px dashed var(--border-strong);
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
   border-radius: var(--radius);
+  background: #131c30;
   color: var(--text);
+  font-size: 18px;
   cursor: default;
 }
 
@@ -1779,4 +1744,60 @@ select {
 /* Flashcard back: the gender reads as part of the French word. */
 .flashcard-face .flashcard-form + .muted {
   margin-top: -0.45rem;
+}
+
+/* Results review (R5): every answer in order, grouped by vocabulary group or page. */
+.result-section + .result-section {
+  margin-top: 1.25rem;
+}
+
+.result-section-title {
+  margin: 0 0 0.25rem;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.result-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.result-item {
+  display: grid;
+  grid-template-columns: 1.5rem 1fr;
+  gap: 0.5rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.result-item .result-icon {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.result-item.outcome-fully_correct .result-icon { color: var(--correct); }
+.result-item.outcome-orthography_only .result-icon { color: var(--partial); }
+.result-item.outcome-incorrect .result-icon,
+.result-item.outcome-unanswered .result-icon { color: var(--incorrect); }
+
+.result-body {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.result-body p {
+  margin: 0;
+}
+
+.result-item .result-prompt {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.units:has(.reference-list) .unit {
+  border-bottom: 0;
 }
