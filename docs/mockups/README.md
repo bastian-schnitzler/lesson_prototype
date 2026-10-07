@@ -52,6 +52,24 @@ Vocabulary folders include the start page, so folders 02–07 represent learning
 | `02-artifact-view/raw-json` | expanded JSON tree | [Salt source](02-artifact-view/raw-json/json-tree-expanded.puml) · [SPEC preview](../SPEC.md#mockup-02-artifact-view-raw-json-json-tree-expanded) |
 | `02-artifact-view/vocabulary` | lesson detail | [Salt source](02-artifact-view/vocabulary/lesson-detail.puml) · [SPEC preview](../SPEC.md#mockup-02-artifact-view-vocabulary-lesson-detail) |
 
+<a id="phase-1-comparison"></a>
+
+### Phase 1 comparison (P1-12)
+
+Compared on 2026-10-07 against the prototype at `ac00dea` (main after P1-10), with the authored `content/` artifacts, desktop 1280 px and narrow 375 px:
+
+- **Index:** filter bar with toggle chips for learning language, level and categories; the Content column shows the highest available artifact. With the twenty sample lessons, lessons 02–05 show Content and Start lesson, and 01/06 show Outline.
+- **Artifact header:** Lesson overview, Raw JSON / Structured view and Start lesson on the left; the Outline, Draft and Content jump buttons on the right.
+- **Draft:** target groups (vocabulary) and teaching blocks (grammar) are numbered tabs in the style of the Content outline, with one panel shown at a time. This was changed during this comparison.
+- **Content:** a numbered outline of step cards, colour-coded page groups that wrap onto more lines, and one selected page with its prompts, answers, explanations and limits.
+- **Raw JSON:** the root is labelled "Combined artifact object"; the outline, draft and content nodes start collapsed and show their key counts.
+
+Differences found:
+
+- **Fixed:** grammar form tables in Content were labelled "Exam answer:"; they are now labelled Subject / Form / Example.
+- **Follow-up, P2-01/P3-01:** grammar content repeats the block title as the label of the explanation step and of each exercise step, so the outline, page groups and the results menu show identical labels. SPEC section 5 asks for unique block labels for repeated exercises.
+- **Follow-up:** Draft shows rules as "Rule 1", while Content shows rule IDs (`rule-singular-forms`).
+
 <a id="vocabulary-lesson"></a>
 
 ## 03 — Vocabulary lesson

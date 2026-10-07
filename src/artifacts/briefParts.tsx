@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { useId, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 
 import { useI18n, usePreferences, type I18n } from '../app/context.tsx';
 import type { LocalizedText } from '../schemas/artifactCommon.ts';
@@ -69,5 +69,48 @@ export function ScoringNote({ scoring }: { scoring: { practiceWeight: number; ex
     <p className="muted">
       {t('brief.scoring', { practice: scoring.practiceWeight, exam: scoring.examWeight, credit: Math.round(scoring.orthographyCredit * 100) })}
     </p>
+  );
+}
+
+export const REVIEW_COLORS = ['#a5b4fc', '#67e8f9', '#86efac', '#fcd34d', '#fda4af', '#d8b4fe'];
+export const reviewColor = (index: number) => ({ '--review-color': REVIEW_COLORS[index % REVIEW_COLORS.length] }) as CSSProperties;
+
+/**
+ * Compact Draft navigation (same look as the Content outline): one numbered, color-coded tab per
+ * group or teaching block; only the selected panel is shown. Arrow/Home/End keys move between tabs.
+ */
+export function DraftTabs({ label, tabs, children }: { label: string; tabs: { id: string; title: ReactNode; meta: string }[]; children: (index: number) => ReactNode }) {
+  const [selected, setSelected] = useState(0);
+  const id = useId();
+  const buttons = useRef<(HTMLButtonElement | null)[]>([]);
+  const index = Math.min(selected, tabs.length - 1);
+  const move = (next: number) => { setSelected(next); buttons.current[next]?.focus(); };
+  return (
+    <>
+      <ol className="content-outline draft-tabs" role="tablist" aria-label={label}>
+        {tabs.map((tab, n) => (
+          <li key={tab.id} role="presentation" style={reviewColor(n)}>
+            <button
+              type="button" role="tab" id={`${id}-tab-${n}`} aria-controls={`${id}-panel`} aria-selected={n === index} tabIndex={n === index ? 0 : -1}
+              ref={(element) => { buttons.current[n] = element; }}
+              onClick={() => setSelected(n)}
+              onKeyDown={(event) => {
+                const next = event.key === 'ArrowRight' || event.key === 'ArrowDown' ? (n + 1) % tabs.length
+                  : event.key === 'ArrowLeft' || event.key === 'ArrowUp' ? (n + tabs.length - 1) % tabs.length
+                  : event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 : undefined;
+                if (next === undefined) return;
+                event.preventDefault();
+                move(next);
+              }}
+            >
+              <span>{tab.title}</span><small>{tab.meta}</small>
+            </button>
+          </li>
+        ))}
+      </ol>
+      <div role="tabpanel" id={`${id}-panel`} aria-labelledby={`${id}-tab-${index}`} tabIndex={0} className="draft-tab-panel" style={reviewColor(index)}>
+        {children(index)}
+      </div>
+    </>
   );
 }

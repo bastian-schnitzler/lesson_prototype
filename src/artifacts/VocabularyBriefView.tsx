@@ -1,5 +1,5 @@
 import type { VocabularyBrief, VocabularyTarget } from '../schemas/vocabulary.ts';
-import { BriefBlock, Learn, ScoringNote, SummaryLine, TextList, useBriefText, type BriefText } from './briefParts.tsx';
+import { BriefBlock, DraftTabs, Learn, ScoringNote, SummaryLine, TextList, useBriefText, type BriefText } from './briefParts.tsx';
 import type { ArtifactViewProps } from './registry.ts';
 
 /** Draft view of a validated vocabulary brief (SPEC section 3, "Structured artifact components"). */
@@ -48,9 +48,12 @@ export function VocabularyBriefView({ data }: ArtifactViewProps) {
       </BriefBlock>
 
       <BriefBlock title={t('brief.targets')}>
-        {brief.groups.map((group) => (
-          <TargetTable key={group.id} caption={t('brief.group', { label: ui(group.label), count: group.targetIds.length })} targets={group.targetIds.flatMap((id) => byId.get(id) ?? [])} lang={brief.lang} text={text} />
-        ))}
+        <DraftTabs label={t('brief.targets')} tabs={brief.groups.map((group) => ({ id: group.id, title: ui(group.label), meta: t('brief.summary.targets', { count: group.targetIds.length }) }))}>
+          {(n) => {
+            const group = brief.groups[n];
+            return <TargetTable caption={t('brief.group', { label: ui(group.label), count: group.targetIds.length })} targets={group.targetIds.flatMap((id) => byId.get(id) ?? [])} lang={brief.lang} text={text} />;
+          }}
+        </DraftTabs>
       </BriefBlock>
       <div className="brief-columns">
         <BriefBlock title={t('brief.countRationale')}>

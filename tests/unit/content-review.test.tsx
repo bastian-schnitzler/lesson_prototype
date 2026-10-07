@@ -1,9 +1,10 @@
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, expect, it } from 'vitest';
 import { PreferencesProvider } from '../../src/app/context.tsx';
 import { ContentReview } from '../../src/artifacts/ContentReview.tsx';
+import { VocabularyBriefView } from '../../src/artifacts/VocabularyBriefView.tsx';
 import { briefSchema, contentSchema } from '../../src/schemas/artifacts.ts';
 import { scanContentDir } from '../../scripts/catalog.ts';
 import { checkSampleLessons } from '../../scripts/sample-lessons.ts';
@@ -98,4 +99,24 @@ it('previews listening items read-only with pronunciation text, options and answ
   expect(listening.some((t) => t.includes('vocabulary_listening_choice') && /Pronunciation: \/.+\//.test(t) && t.includes('Options:'))).toBe(true);
   expect(listening.some((t) => t.includes('vocabulary_listening_dictation') && /Pronunciation: \/.+\//.test(t) && t.includes('Accepted answers'))).toBe(true);
   expect(screen.getByRole('tabpanel').querySelectorAll('input, button, select, textarea')).toHaveLength(0);
+});
+
+it('shows one vocabulary target group at a time in the Draft tabs', () => {
+  const { brief } = artifacts('fr-classroom-objects', 'vocabulary');
+  render(<PreferencesProvider initial={{ interfaceLanguage: 'en', motherTongue: 'en' }}><VocabularyBriefView data={brief} /></PreferencesProvider>);
+  const tabs = within(screen.getByRole('tablist', { name: 'Target inventory' })).getAllByRole('tab');
+  expect(tabs.map((tab) => tab.textContent)).toEqual(['Masculine objects6 targets', 'Feminine objects6 targets']);
+  const panel = () => screen.getByRole('tabpanel');
+  expect(panel()).toHaveTextContent('un livre');
+  expect(panel()).not.toHaveTextContent('une chaise');
+  fireEvent.click(tabs[1]);
+  expect(tabs[1]).toHaveAttribute('aria-selected', 'true');
+  expect(panel()).toHaveTextContent('une chaise');
+  expect(panel()).not.toHaveTextContent('un livre');
+});
+
+it('labels grammar form tables by subject and form, not as exam answers', () => {
+  render(<PreferencesProvider initial={{ interfaceLanguage: 'en', motherTongue: 'en' }}><ContentReview {...artifacts('fr-verb-etre-present', 'grammar')} /></PreferencesProvider>);
+  const headers = screen.getByRole('tabpanel').querySelectorAll('th');
+  expect([...headers].map((h) => h.textContent)).toEqual(['Subject', 'Form', 'Example']);
 });
