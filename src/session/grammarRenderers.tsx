@@ -3,7 +3,7 @@ import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } f
 import { useI18n } from '../app/context.tsx';
 import { RichText } from '../components/RichText.tsx';
 import { seededOrder, type PlanUnit } from '../domain/session/plan.ts';
-import { TextControl, type RendererProps } from './controls.tsx';
+import { ChoiceControl, Gap, TextControl, UnitRow, type RendererProps } from './controls.tsx';
 
 /** Grammar renderers: presentation items, pronoun/form rows (P3-02); other scored items use the shared `UnitsRenderer`. */
 
@@ -78,6 +78,18 @@ export function PronounMatchRenderer(props: RendererProps) {
   }, [selected]);
   if (item.type !== 'grammar_pronoun_form_match') return null;
   const rows = units.filter((u): u is PlanUnit & { kind: 'choice' } => u.kind === 'choice');
+  // One row is no assignment: it is shown as a multiple-choice gap after the pronoun (P3-02 review).
+  if (rows.length === 1) {
+    const unit = rows[0];
+    return (
+      <div className="units">
+        <UnitRow unit={unit} props={props}>
+          <Gap before={unit.prompt.learning} lang={plan.lang}>____</Gap>
+          <ChoiceControl unit={unit} props={props} label={t('session.gapAnswer')} layout="radio" />
+        </UnitRow>
+      </div>
+    );
+  }
   const tokens = rows[0]?.options ?? [];
   const checked = mode === 'feedback';
   const editable = mode !== 'feedback' && !rows.some((u) => props.locked[u.id]);

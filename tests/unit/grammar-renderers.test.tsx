@@ -188,15 +188,43 @@ describe('person matching (P3-02 review)', () => {
 });
 
 describe('grammar start page (P3-02 review)', () => {
-  it('outlines the lesson flow: one coloured part per teaching block, then feedback and exam', () => {
+  it('outlines the lesson flow: one coloured part per teaching block with its exercises, then the exam', () => {
     const plan = planOf();
     render(<PreferencesProvider initial={{ interfaceLanguage: 'en', motherTongue: 'en' }}><StartView plan={plan} level="A1" onStart={() => undefined} onResume={() => undefined} /></PreferencesProvider>);
     const parts = within(screen.getByRole('list')).getAllByRole('listitem');
     expect(screen.getByRole('heading', { name: 'Lesson outline' })).toBeInTheDocument();
-    expect(parts).toHaveLength(4); // two blocks, feedback, exam
-    expect(parts[0]).toHaveTextContent('Explanation · Pronoun–form matching · Multiple-choice gaps · Person matching');
-    expect(parts[1]).toHaveTextContent('Explanation · Pronoun–form typing · Typed gaps · Error spotting');
-    expect(parts[3]).toHaveTextContent(/Answer 5 items on 2 timed pages/);
+    expect(parts).toHaveLength(3); // two blocks and the exam; no feedback row
+    expect(parts[0]).toHaveTextContent('Pronoun–form matching · Multiple-choice gaps · Person matching'); // no "Explanation"
+    expect(parts[0]).not.toHaveTextContent('Explanation');
+    expect(parts[1]).toHaveTextContent('Pronoun–form typing · Typed gaps · Error spotting');
+    expect(parts[2]).toHaveTextContent(/Final exam.*Answer 5 items on 2 timed pages/);
     for (const part of parts) expect(part.getAttribute('style')).toMatch(/--review-color/);
+  });
+});
+
+describe('P3-02 review: final full stops and one-row matching', () => {
+  const CONTENT = resolve(import.meta.dirname, '../../content');
+  const sample = (id: string) => buildPlan(lessonOf(CONTENT, id), JSON.parse(readFileSync(join(CONTENT, 'briefs', `${id}.json`), 'utf8')), 'en');
+
+  it('leaves out the full stop that ends a word-order sentence, but keeps a final question mark', () => {
+    const order = (id: string) => sample(id).pages.flatMap((p) => p.units).filter((u) => u.kind === 'order') as (PlanUnit & { kind: 'order' })[];
+    for (const u of order('fr-negation-ne-pas')) {
+      expect(u.tokens.at(-1)?.text).not.toBe('.');
+      expect(u.tokens.map((t) => t.text)).not.toContain('.');
+      expect(u.answer).not.toMatch(/\.$/);
+      expect(u.acceptedOrders.every((o) => o.length === u.tokens.length)).toBe(true);
+      expect(scoreUnit(u, u.acceptedOrders[0]).points).toBe(1);
+    }
+    expect(order('fr-yes-no-questions').every((u) => u.answer.endsWith('?'))).toBe(true);
+  });
+
+  it('shows a one-row pronoun match as a multiple-choice gap after the pronoun', () => {
+    const plan = sample('fr-er-verbs-present');
+    const page = plan.pages.find((p) => p.items[0]?.type === 'grammar_pronoun_form_match' && p.units.length === 1)!;
+    expect(skipsFeedbackWhenCorrect(page)).toBe(true); // a right choice flashes green and moves on
+    const { container } = renderPage(PronounMatchRenderer, plan, page);
+    expect(screen.queryByRole('group', { name: 'Available forms' })).toBeNull();
+    expect(container.querySelector('.gap-sentence')).toHaveTextContent(`${page.units[0].prompt.learning} ____`);
+    expect(screen.getAllByRole('radio')).toHaveLength(4);
   });
 });

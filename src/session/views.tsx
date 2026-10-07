@@ -19,12 +19,13 @@ import { VoiceHelp } from './VoiceHelp.tsx';
 
 /**
  * The grammar lesson flow for the start page (P3-02 review): one part per teaching block (named by its
- * first step, the explanation, and listing its exercises), then the feedback screen and the exam.
+ * first step and listing its exercises; every block starts with an explanation, so it is not listed),
+ * then the exam. The feedback screen is not listed.
  */
 export function grammarFlow(plan: LessonPlan) {
   const parts: { key: string; label: PlanPage['stepLabel']; role: PlanPage['role']; types: string[]; seconds: number; pages: number; units: number }[] = [];
   for (const page of plan.pages) {
-    if (page.special) continue;
+    if (page.special || page.items.some((item) => item.type === 'production_feedback_placeholder')) continue;
     const last = parts.at(-1);
     const key = page.blockId ?? page.stepId;
     const target = last?.key === key ? last : (parts.push({ key, label: page.stepLabel, role: page.role, types: [], seconds: 0, pages: 0, units: 0 }), parts.at(-1)!);
@@ -86,8 +87,7 @@ export function StartView({ plan, level, resumable, notice, onStart, onResume }:
                   <small className="flow-detail">
                     {part.role === 'exam'
                       ? t('activity.exam', { count: part.units, pages: part.pages })
-                      : part.types.filter((type) => type !== 'production_feedback_placeholder')
-                        .map((type) => (type === 'grammar_explanation' ? t('session.flowExplanation') : t(`exercise.${type}` as MessageKey))).join(' · ')}
+                      : part.types.filter((type) => type !== 'grammar_explanation').map((type) => t(`exercise.${type}` as MessageKey)).join(' · ')}
                   </small>
                 </span>
                 <small>{t('session.flowMinutes', { minutes: Math.max(1, Math.round(part.seconds / 60)) })}</small>

@@ -169,9 +169,14 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
           accepted: item.accepted, explanation: item.answerExplanation, answer: item.accepted.answers[0], answerLang: 'learning',
         }];
       case 'grammar_word_order': {
-        const tokens = item.tokens.map((t) => ({ id: t.tokenId, text: t.text, lang: 'learning' as const }));
+        // The full stop that ends every accepted sentence is not a token to place: it is left out and not
+        // shown (P3-02 review). Punctuation inside the sentence and a final ? or ! stay tokens.
+        const last = item.acceptedOrders[0].at(-1);
+        const stop = item.tokens.find((t) => t.tokenId === last && t.text === '.') && item.acceptedOrders.every((o) => o.at(-1) === last) ? last : undefined;
+        const tokens = item.tokens.filter((t) => t.tokenId !== stop).map((t) => ({ id: t.tokenId, text: t.text, lang: 'learning' as const }));
+        const acceptedOrders = item.acceptedOrders.map((o) => o.filter((tid) => tid !== stop));
         const text = (order: string[]) => order.map((tid) => tokens.find((t) => t.id === tid)?.text ?? '').join(' ');
-        return [{ kind: 'order', id: id(), itemId: item.itemId, itemType: item.type, prompt: {}, tokens, acceptedOrders: item.acceptedOrders, explanation: item.answerExplanation, answer: text(item.acceptedOrders[0]), answerLang: 'learning' }];
+        return [{ kind: 'order', id: id(), itemId: item.itemId, itemType: item.type, prompt: {}, tokens, acceptedOrders, explanation: item.answerExplanation, answer: text(acceptedOrders[0]), answerLang: 'learning' }];
       }
       case 'grammar_error_spotter': {
         const tokens = item.tokens.map((t) => ({ id: t.tokenId, text: t.text, lang: 'learning' as const }));

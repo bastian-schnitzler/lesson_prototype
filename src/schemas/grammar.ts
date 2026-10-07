@@ -37,6 +37,8 @@ export const PRONOUN_FORM_TYPES: readonly GrammarExerciseType[] = ['grammar_pers
 export const PRONOUN_FORM_TOPICS = ['pronouns', 'verbs_morphology', 'verb_usage'] as const;
 /** Lessons that teach pronouns or verb forms always include person matching (P3-02 review). */
 export const PERSON_MATCHING_TOPICS = ['pronouns', 'verbs_morphology'] as const;
+/** The imperative has only tu, nous and vous, so its lesson has no person matching board. */
+export const PERSON_MATCHING_EXEMPT = ['fr-imperative-mood'] as const;
 
 /** Grammatical persons in display order: the singular block, then the plural block. */
 export const PERSONS = ['1sg', '2sg', '3sg', '1pl', '2pl', '3pl'] as const;

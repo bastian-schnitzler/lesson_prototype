@@ -172,6 +172,11 @@ describe('brief validation', () => {
     expect(checkBrief('fr-verb-etre-present', (b) => { const board = b.blocks[0].exercises.splice(2, 1)[0]; b.blocks[1].exercises[0] = { ...board, ruleIds: ['r-singular', 'r-plural'] }; b.blocks[1].exercises[0].estimatedDurationS = 60; b.estimatedMinutes = 9; }).status).toBe('valid');
     expect(messages(checkBrief('fr-verb-etre-present', (b) => (b.blocks[1].exercises[1].ruleIds = ['r-singular'])))).toMatch(/rule r-singular is not taught in this block$/m);
     expect(messages(checkBrief('fr-verb-etre-present', (b) => (b.blocks[0].exercises[2].ruleIds = ['r-plural'])))).toMatch(/rule r-plural is not taught in this block or an earlier one/);
+    // The imperative (tu, nous, vous only) is exempt.
+    const imperative = load('fr-verb-etre-present', 'brief');
+    imperative.id = 'fr-imperative-mood';
+    imperative.blocks[0].exercises.splice(2, 1);
+    expect(messages(validateBrief(imperative, ctx('fr-imperative-mood')))).not.toMatch(/grammar_person_matching/);
   });
 
   it('marks valid briefs from older outline entries as stale', () => {

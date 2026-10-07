@@ -2,7 +2,7 @@ import type { z } from 'zod';
 
 import { nativeLocales } from '../schemas/artifactCommon.ts';
 import { briefSchema, contentSchema, hasContentFile, isSupportedKind, type Brief, type LessonContent } from '../schemas/artifacts.ts';
-import { PERSON_MATCHING_TOPICS, PERSONS, PRONOUN_FORM_TOPICS, PRONOUN_FORM_TYPES, type GrammarBrief, type GrammarContent, type GrammarItem } from '../schemas/grammar.ts';
+import { PERSON_MATCHING_EXEMPT, PERSON_MATCHING_TOPICS, PERSONS, PRONOUN_FORM_TOPICS, PRONOUN_FORM_TYPES, type GrammarBrief, type GrammarContent, type GrammarItem } from '../schemas/grammar.ts';
 import type { OutlineEntry } from '../schemas/outline.ts';
 import { learningForms, parseRichText, richTextShape } from '../domain/richText.ts';
 import type { VocabularyBrief, VocabularyTarget } from '../schemas/vocabulary.ts';
@@ -192,7 +192,7 @@ function checkGrammarBrief(b: GrammarBrief, issues: Issues) {
     });
   });
   for (const r of rules) issues.check(taught.has(r), 'blocks', `rule ${r} is never taught`);
-  if ((PERSON_MATCHING_TOPICS as readonly string[]).includes(b.topic)) {
+  if ((PERSON_MATCHING_TOPICS as readonly string[]).includes(b.topic) && !(PERSON_MATCHING_EXEMPT as readonly string[]).includes(b.id)) {
     issues.check(b.blocks.some((x) => x.exercises.some((e) => e.type === 'grammar_person_matching')), 'blocks', `${b.topic} lessons include a grammar_person_matching exercise`);
   }
   const examined = new Set(b.exam.pages.flatMap((pg) => pg.ruleIds));
