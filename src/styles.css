@@ -1823,3 +1823,112 @@ select {
   color: var(--text);
   font-size: 15px;
 }
+
+/* ------------------------------------------------------------ P2-03 review round 2 */
+
+/* Gender page: speaker left of the word; after Check the pills are marked in place. */
+.gender-row {
+  flex-wrap: wrap;
+}
+
+.gender-page .gender-grid {
+  align-items: start;
+}
+
+.gender-word {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.gender-row.is-right {
+  border-color: rgb(0 230 118 / 0.45);
+}
+
+.gender-row.is-wrong {
+  border-color: rgb(255 82 82 / 0.5);
+}
+
+.gender-option.is-right input + span {
+  border-color: var(--correct);
+  box-shadow: inset 0 0 0 1px var(--correct);
+  color: var(--correct);
+}
+
+.gender-option.is-wrong input + span {
+  border-color: var(--incorrect);
+  box-shadow: inset 0 0 0 1px var(--incorrect);
+  color: var(--incorrect);
+}
+
+.gender-option.is-answer input + span {
+  border-color: var(--progress);
+  background: #2e1065;
+  box-shadow: inset 0 0 0 1px var(--progress);
+  color: #ddd6fe;
+}
+
+.gender-options:disabled .gender-option span {
+  cursor: default;
+}
+
+.gender-explanation {
+  flex-basis: 100%;
+  margin: 0;
+}
+
+/* Typed gaps: the reference words sit above the sentence, centred and narrower, with more padding. */
+.units:has(.reference-list) .references {
+  margin: 0 0 1.5rem;
+}
+
+.reference-list {
+  justify-items: center;
+}
+
+.reference-list li {
+  width: min(100%, 24rem);
+  padding: 1rem 1.75rem;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.reference-list li.is-correct {
+  border-color: var(--correct);
+  box-shadow: 0 0 0 1px var(--correct), 0 0 18px rgb(0 230 118 / 0.35);
+  color: var(--correct);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.exam-intro .lead {
+  margin-bottom: 1rem;
+}
+
+/* Results: the final exam button stands out; Repeat lesson sits left of the primary overview link. */
+.button-exam {
+  border-color: var(--progress);
+  color: #ddd6fe;
+  font-weight: 600;
+}
+
+.button-exam[aria-pressed='true'] {
+  background: #1e1b4b;
+}
+
+.results-lesson {
+  margin: 0.25rem 0 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.results-total {
+  margin: 0.25rem 0 0;
+  color: var(--muted);
+}
+
+.results-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}

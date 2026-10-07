@@ -68,19 +68,25 @@ it('shows every word on the gender page: nouns as bare lemmas with gender choice
   expect(container.querySelectorAll('fieldset.gender-options')).toHaveLength(nouns.length);
   expect(screen.getAllByText('no gender')).toHaveLength(countries.targets.size - nouns.length);
   expect(container.textContent).not.toMatch(/\b(un|une|le|la) /); // no articles while answering
-  expect(container.querySelector('.icon-button, .listen')).toBeNull(); // no audio clues
+  // The speaker reads only the bare term, so it gives no article or gender clue.
+  const speakers = [...container.querySelectorAll('.icon-button')].map((b) => b.getAttribute('aria-label') ?? '');
+  expect(speakers).toHaveLength(countries.targets.size);
+  expect(speakers.join(' ')).not.toMatch(/\b(un|une|le|la) |l'/);
 });
 
-it('turns into the reviewed overview: summary, all words, the wrong choice under the correct gender', () => {
+it('marks the choices in place after Check: green for right, red for wrong, purple for the correct gender', () => {
   const units = genderPage.units.filter((u) => u.kind === 'choice');
+  const first = units[0] as (typeof units)[number] & { correct: string[] };
+  const wrongChoice = first.correct[0] === 'feminine' ? 'masculine' : 'feminine';
   const locked = Object.fromEntries(units.map((u, n) => [u.id, n === 0
-    ? { response: u.kind === 'choice' && u.correct[0] === 'feminine' ? 'masculine' : 'feminine', outcome: 'incorrect', points: 0, timedOut: false, interfaceLanguage: 'en' as const }
+    ? { response: wrongChoice, outcome: 'incorrect', points: 0, timedOut: false, interfaceLanguage: 'en' as const }
     : { response: u.kind === 'choice' ? u.correct[0] : '', outcome: 'fully_correct', points: 1, timedOut: false, interfaceLanguage: 'en' as const }]));
   const { container } = renderGender('feedback', locked);
   expect(screen.getByText(`${units.length - 1} of ${units.length} genders correct.`)).toBeInTheDocument();
-  expect(container.querySelectorAll('.overview-list > li')).toHaveLength(countries.targets.size);
-  const wrong = container.querySelector('.overview-list > li.is-wrong')!;
-  expect(wrong.querySelector('.overview-gender .match-right')).not.toBeNull();
-  expect(wrong.querySelector('.overview-gender .match-wrong s')).not.toBeNull();
-  expect(wrong.querySelector('.overview-fix')).not.toBeNull();
+  expect(container.querySelectorAll('.gender-row')).toHaveLength(countries.targets.size); // still one page with every word
+  const wrongRow = container.querySelector('.gender-row.is-wrong')!;
+  expect(wrongRow.querySelector('.gender-option.is-wrong input')).toHaveProperty('value', wrongChoice);
+  expect(wrongRow.querySelector('.gender-option.is-answer input')).toHaveProperty('value', first.correct[0]);
+  expect(wrongRow.querySelector('.gender-explanation')).not.toBeNull();
+  expect(container.querySelectorAll('.gender-row.is-right .gender-option.is-right')).toHaveLength(units.length - 1);
 });

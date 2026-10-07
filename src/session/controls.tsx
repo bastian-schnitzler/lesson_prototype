@@ -30,6 +30,8 @@ export interface RendererProps {
   /** Revealed presentation keys (flashcards) per item key; stored in the session for resume. */
   revealed: Record<string, string[]>;
   onReveal: (itemKey: string, key: string) => void;
+  /** True during the green success flash of a fully correct page (the correct choice lights up). */
+  celebrating?: boolean;
 }
 
 /* ---------------------------------------------------------------- helpers */
@@ -279,6 +281,7 @@ export function UnitsRenderer(props: RendererProps) {
   const item = props.item;
   return (
     <div className="units">
+      <ReferenceWords {...props} />
       {item.type === 'grammar_gap_typing' && item.hint && props.mode !== 'exam' && (
         <p className="muted">
           {t('session.hint')} {item.hint[locale]}
@@ -332,23 +335,33 @@ export function UnitsRenderer(props: RendererProps) {
           </UnitRow>
         );
       })}
-      {item.type === 'vocabulary_typed_gap' && (
-        <div className="references">
-          <p className="visually-hidden">{t('session.references')}</p>
-          {/* Noninteractive reference words (not selectable), listed like gap-choice options, with their gender. */}
-          <ul className="reference-list">
-            {seededOrder(item.referenceTargetIds, props.seed, item.itemId).map((id) => {
-              const target = props.plan.targets.get(id);
-              return (
-                <li key={id}>
-                  <span lang={lang}>{target?.term ?? id}</span>
-                  {target?.genders.length ? <small>{target.genders.map((g) => t(`gender.${g}`)).join(' / ')}</small> : null}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      )}
+    </div>
+  );
+}
+
+/**
+ * Typed-gap reference words (P2-03): four noninteractive cards, centred one under another above the
+ * sentence. Once checked (or during the success flash) the correct word lights up green.
+ */
+function ReferenceWords(props: RendererProps) {
+  const { t } = useI18n();
+  const { item, plan } = props;
+  if (item.type !== 'vocabulary_typed_gap') return null;
+  const checked = props.celebrating || props.units.some((u) => props.locked[u.id]);
+  return (
+    <div className="references">
+      <p className="visually-hidden">{t('session.references')}</p>
+      <ul className="reference-list">
+        {seededOrder(item.referenceTargetIds, props.seed, item.itemId).map((id) => {
+          const target = plan.targets.get(id);
+          return (
+            <li key={id} className={checked && id === item.targetId ? 'is-correct' : undefined}>
+              <span lang={plan.lang}>{target?.term ?? id}</span>
+              {target?.genders.length ? <small>{target.genders.map((g) => t(`gender.${g}`)).join(' / ')}</small> : null}
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }
