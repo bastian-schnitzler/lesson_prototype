@@ -17,6 +17,26 @@ import { VoiceHelp } from './VoiceHelp.tsx';
 
 /* ------------------------------------------------------------ start page */
 
+/**
+ * The grammar lesson flow for the start page (P3-02 review): one part per teaching block (named by its
+ * first step, the explanation, and listing its exercises), then the feedback screen and the exam.
+ */
+export function grammarFlow(plan: LessonPlan) {
+  const parts: { key: string; label: PlanPage['stepLabel']; role: PlanPage['role']; types: string[]; seconds: number; pages: number; units: number }[] = [];
+  for (const page of plan.pages) {
+    if (page.special) continue;
+    const last = parts.at(-1);
+    const key = page.blockId ?? page.stepId;
+    const target = last?.key === key ? last : (parts.push({ key, label: page.stepLabel, role: page.role, types: [], seconds: 0, pages: 0, units: 0 }), parts.at(-1)!);
+    if (page.role === 'exam') target.role = 'exam';
+    for (const item of page.items) if (!target.types.includes(item.type)) target.types.push(item.type);
+    target.seconds += page.estimatedDurationS;
+    target.pages += 1;
+    target.units += page.units.length;
+  }
+  return parts;
+}
+
 interface StartViewProps {
   plan: LessonPlan;
   level: string;
@@ -50,6 +70,27 @@ export function StartView({ plan, level, resumable, notice, onStart, onResume }:
               <li key={g.id} style={reviewColor(n)}>
                 <span>{g.label[locale]}</span>
                 <small>{t('session.vocabularyCount', { count: g.targetIds.length })}</small>
+              </li>
+            ))}
+          </ol>
+        </>
+      )}
+      {plan.kind === 'grammar' && (
+        <>
+          <h2 className="small-heading">{t('session.lessonFlow')}</h2>
+          <ol className="group-list flow-list">
+            {grammarFlow(plan).map((part, n) => (
+              <li key={n} style={reviewColor(n)}>
+                <span>
+                  {part.label[locale]}
+                  <small className="flow-detail">
+                    {part.role === 'exam'
+                      ? t('activity.exam', { count: part.units, pages: part.pages })
+                      : part.types.filter((type) => type !== 'production_feedback_placeholder')
+                        .map((type) => (type === 'grammar_explanation' ? t('session.flowExplanation') : t(`exercise.${type}` as MessageKey))).join(' · ')}
+                  </small>
+                </span>
+                <small>{t('session.flowMinutes', { minutes: Math.max(1, Math.round(part.seconds / 60)) })}</small>
               </li>
             ))}
           </ol>

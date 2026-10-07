@@ -54,6 +54,8 @@ export interface PlanPage {
   instructions: LocalizedText;
   items: Item[];
   units: PlanUnit[];
+  /** Grammar teaching block of the page's step; null for feedback, exam and vocabulary pages. */
+  blockId: string | null;
   /** Application page without content items: the info page before the final exam (P2-03). */
   special?: 'examIntro';
 }
@@ -88,7 +90,7 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
   const native = (map: Partial<Record<Locale, string>> | null | undefined) => map?.[motherTongue] ?? Object.values(map ?? {})[0] ?? '';
   const translation = (id: string) => targets.get(id)?.translations[motherTongue]?.[0] ?? id;
   const form = (id: string) => targets.get(id)?.teachingForm ?? id;
-  const steps = content.steps as { id: string; role: string; label: LocalizedText; pages: { pageId: string; estimatedDurationS: number; timeLimitS: number | null; instructions: LocalizedText; items: Item[] }[] }[];
+  const steps = content.steps as { id: string; role: string; blockId?: string | null; label: LocalizedText; pages: { pageId: string; estimatedDurationS: number; timeLimitS: number | null; instructions: LocalizedText; items: Item[] }[] }[];
 
   const unitsOf = (pageId: string, item: Item): PlanUnit[] => {
     const id = (suffix = '') => `${pageId}/${item.itemId}${suffix}`;
@@ -195,7 +197,7 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
     for (const page of step.pages) {
       const units = page.items.flatMap((item) => unitsOf(page.pageId, item).map((u) => ('ruleIds' in item ? { ...u, ruleIds: item.ruleIds } : u)));
       pages.push({
-        index: pages.length, pageId: page.pageId, stepId: step.id, stepIndex, stepLabel: step.label,
+        index: pages.length, pageId: page.pageId, stepId: step.id, stepIndex, stepLabel: step.label, blockId: step.blockId ?? null,
         role: step.role === 'exam' ? 'exam' : units.length ? 'practice' : 'presentation',
         estimatedDurationS: page.estimatedDurationS, timeLimitS: page.timeLimitS, instructions: page.instructions, items: page.items, units,
       });
@@ -219,7 +221,7 @@ function insertExamIntro(pages: PlanPage[]) {
   if (first < 0) return;
   const exam = pages[first];
   pages.splice(first, 0, {
-    index: first, pageId: 'exam-intro', stepId: exam.stepId, stepIndex: exam.stepIndex, stepLabel: exam.stepLabel, role: 'presentation',
+    index: first, pageId: 'exam-intro', stepId: exam.stepId, stepIndex: exam.stepIndex, stepLabel: exam.stepLabel, blockId: null, role: 'presentation',
     estimatedDurationS: 20, timeLimitS: null, instructions: exam.stepLabel, items: [], units: [], special: 'examIntro',
   });
   pages.forEach((p, n) => (p.index = n));

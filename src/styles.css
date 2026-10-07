@@ -2244,3 +2244,10 @@ html {
 .matching.has-gap {
   --person-gap: 0.75rem;
 }
+
+/* Grammar start page (P3-02 review): the lesson flow, one colour per part. */
+.flow-list .flow-detail {
+  display: block;
+  margin-top: 0.15rem;
+  white-space: normal;
+}

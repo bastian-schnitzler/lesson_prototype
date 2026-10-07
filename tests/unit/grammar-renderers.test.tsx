@@ -8,6 +8,7 @@ import { buildPlan, type PlanPage, type PlanUnit } from '../../src/domain/sessio
 import { scoreUnit, type LockedUnit } from '../../src/domain/session/session.ts';
 import { PronounMatchRenderer, PronounTypingRenderer } from '../../src/session/grammarRenderers.tsx';
 import { checkedOrder, MatchingRenderer } from '../../src/session/vocabularyRenderers.tsx';
+import { StartView } from '../../src/session/views.tsx';
 import { skipsFeedbackWhenCorrect } from '../../src/domain/session/session.ts';
 import type { RendererProps } from '../../src/session/controls.tsx';
 
@@ -183,5 +184,19 @@ describe('person matching (P3-02 review)', () => {
     const pairs: Record<string, string> = { [units[2].id]: '1sg', [units[0].id]: '3sg', [units[1].id]: '1pl', [units[3].id]: '2sg' };
     const order = checkedOrder(units, rows, (id) => pairs[id]);
     expect(order.map((u) => u.id)).toEqual([units[2].id, units[1].id, units[0].id, units[3].id, units[4].id, units[5].id]);
+  });
+});
+
+describe('grammar start page (P3-02 review)', () => {
+  it('outlines the lesson flow: one coloured part per teaching block, then feedback and exam', () => {
+    const plan = planOf();
+    render(<PreferencesProvider initial={{ interfaceLanguage: 'en', motherTongue: 'en' }}><StartView plan={plan} level="A1" onStart={() => undefined} onResume={() => undefined} /></PreferencesProvider>);
+    const parts = within(screen.getByRole('list')).getAllByRole('listitem');
+    expect(screen.getByRole('heading', { name: 'Lesson outline' })).toBeInTheDocument();
+    expect(parts).toHaveLength(4); // two blocks, feedback, exam
+    expect(parts[0]).toHaveTextContent('Explanation · Pronoun–form matching · Multiple-choice gaps · Person matching');
+    expect(parts[1]).toHaveTextContent('Explanation · Pronoun–form typing · Typed gaps · Error spotting');
+    expect(parts[3]).toHaveTextContent(/Answer 5 items on 2 timed pages/);
+    for (const part of parts) expect(part.getAttribute('style')).toMatch(/--review-color/);
   });
 });
