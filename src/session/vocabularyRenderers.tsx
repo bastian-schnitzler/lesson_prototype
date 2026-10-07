@@ -371,7 +371,10 @@ export function GenderRenderer(props: RendererProps) {
 
   return (
     <div className="gender-page">
-      {checked && <p className="match-summary"><strong>{t('session.genderSummary', { correct: right, total: scored.length })}</strong></p>}
+      {/* The summary line is reserved before Check (invisible), so nothing moves when it appears. */}
+      <p className={`match-summary${checked ? '' : ' is-reserved'}`} aria-hidden={!checked || undefined}>
+        <strong>{t('session.genderSummary', { correct: right, total: scored.length })}</strong>
+      </p>
       <ul className="gender-grid">
         {item.targetIds.map((id) => {
           const target = plan.targets.get(id);

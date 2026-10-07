@@ -2107,3 +2107,12 @@ select {
   stroke: var(--incorrect);
   stroke-dasharray: 7 6;
 }
+
+/* Gender page: the summary line keeps its space before Check; the scrollbar never shifts the page. */
+.match-summary.is-reserved {
+  visibility: hidden;
+}
+
+html {
+  scrollbar-gutter: stable;
+}

@@ -124,14 +124,15 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   await expect(page.getByText('Gender and overview')).toBeVisible();
   await expect(page.locator('.task-card select')).toHaveCount(0);
   await chooseGenders(page);
-  // Check reveals the teaching form and translation without resizing the cards.
-  const sizes = () => page.locator('.gender-row').evaluateAll((rows) => rows.map((r) => Math.round(r.getBoundingClientRect().height)));
-  const before = await sizes();
+  // Check reveals the teaching form, translation and summary without moving or resizing anything.
+  const boxes = () => page.locator('.gender-row, .gender-option span').evaluateAll((els) => els.map((e) => {
+    const r = e.getBoundingClientRect();
+    return [Math.round(r.left), Math.round(r.top + window.scrollY), Math.round(r.width), Math.round(r.height)];
+  }));
+  const before = await boxes();
   await proceed(page);
   await expect(page.locator('.gender-page .match-summary')).toBeVisible();
-  const after = await sizes();
-  const rights = await page.locator('.gender-row').evaluateAll((rows) => rows.map((r) => !r.classList.contains('is-wrong')));
-  expect(after.filter((_, n) => rights[n])).toEqual(before.filter((_, n) => rights[n])); // wrong rows add their explanation
+  expect(await boxes()).toEqual(before);
   await proceed(page);
   // Typed gaps: the cursor is already in the field; the four reference words stand above it.
   await expect(page.getByRole('textbox')).toBeFocused();
