@@ -13,13 +13,24 @@ async function revealCards(page: Page) {
   while (await unturned.count()) await unturned.first().click();
 }
 
-/** Pairs the n-th mother-tongue item with the n-th French item (shuffled, so some pairs are wrong). */
-async function matchAll(page: Page) {
+/** Fixture translations, so tests can build deliberately right or wrong pairs. */
+const PAIRS: Record<string, string> = {
+  book: 'un livre', chair: 'une chaise', pen: 'un stylo', table: 'une table',
+  listen: 'écoutez', read: 'lisez', write: 'écrivez', repeat: 'répétez',
+};
+
+/**
+ * Pairs every mother-tongue item. With `wrong`, the first two meanings swap partners, so the page
+ * always shows corrections (a fully correct page skips them).
+ */
+async function matchAll(page: Page, { wrong = true } = {}) {
   const native = page.locator('.matching-columns ul').first().getByRole('button');
   const french = page.locator('.matching-columns ul').last().getByRole('button');
-  for (let i = 0; i < (await french.count()); i++) {
-    await native.nth(i).click();
-    await french.nth(i).click();
+  const words = await native.allTextContents();
+  for (const [n, word] of words.entries()) {
+    const partner = wrong && n < 2 ? PAIRS[words[1 - n]] : PAIRS[word];
+    await native.filter({ hasText: new RegExp(`^${word}$`) }).click();
+    await french.filter({ hasText: partner }).click();
   }
 }
 
@@ -39,8 +50,10 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   await expect(page.getByRole('button', { name: 'Continue' })).toBeDisabled();
   await matchAll(page);
   await proceed(page);
-  await expect(page.getByText(/Fully correct|Incorrect/).first()).toBeVisible();
-  await expect(page.locator('.matching-columns')).toHaveCount(0); // locked pairs show results only
+  // Only mistakes and their corrections are listed after matching.
+  await expect(page.getByText('Incorrect').first()).toBeVisible();
+  await expect(page.getByText(/Fully correct/)).toHaveCount(0);
+  await expect(page.locator('.matching-columns')).toHaveCount(0);
   await proceed(page);
 
   await page.reload();
@@ -277,6 +290,8 @@ test('matching pairs by keyboard, lets a pair be reassigned and locks it with fe
     await expect(page.locator('.match-curves')).toHaveCount(0);
     await expect(page.locator('.pair-badge').first()).toBeVisible();
   }
+  // All pairs correct: a short success animation, then the correction view is skipped.
   await proceed(page);
-  await expect(page.getByText(/Fully correct/)).toHaveCount(4);
+  await expect(page.getByRole('status').filter({ hasText: 'All correct!' })).toBeVisible();
+  await expect(page.getByText('Gender and overview')).toBeVisible();
 });

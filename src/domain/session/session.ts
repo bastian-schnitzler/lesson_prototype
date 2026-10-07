@@ -112,6 +112,11 @@ function activate(plan: LessonPlan, r: SessionRecord, now: number): SessionRecor
   return { ...r, exam: { ...r.exam, [page.pageId]: { startedAt: now, deadline: now + (page.timeLimitS ?? 0) * 1000, timedOut: false } } };
 }
 
+/** Matching pages answered fully correctly go straight on; their feedback would only repeat the answers. */
+export function skipsFeedback(page: PlanPage, r: Pick<SessionRecord, 'locked'>): boolean {
+  return page.items.every((item) => item.type === 'vocabulary_matching') && page.units.every((u) => r.locked[u.id]?.outcome === 'fully_correct');
+}
+
 /** Flashcard pages complete once every card was revealed (P2-02); other presentation pages at once. */
 export function presentationComplete(page: PlanPage, r: Pick<SessionRecord, 'revealed'>): boolean {
   return page.items.every((item) => item.type !== 'vocabulary_flashcards' || item.targetIds.every((id) => (r.revealed?.[`${page.pageId}/${item.itemId}`] ?? []).includes(id)));
@@ -184,7 +189,9 @@ export function sessionReducer(plan: LessonPlan, r: SessionRecord, action: Sessi
         next = advance(plan, lockPage(page, r, action.interfaceLanguage, false), now);
       } else if (r.phase === 'answering') {
         if (!page.units.every((u) => isAnswered(u, r.drafts[u.id]))) return r;
-        next = { ...lockPage(page, r, action.interfaceLanguage, false), phase: 'feedback' };
+        const locked = lockPage(page, r, action.interfaceLanguage, false);
+        // A fully correct matching page skips its correction view (P2-02); other pages show feedback.
+        next = skipsFeedback(page, locked) ? advance(plan, locked, now) : { ...locked, phase: 'feedback' };
       } else next = advance(plan, r, now);
       break;
   }

@@ -45,15 +45,11 @@ function TargetTable({ ids, plan, motherTongue, showGender = true }: { ids: stri
   );
 }
 
-export function IntroductionRenderer({ item, plan, motherTongue }: RendererProps) {
+/** Introduction: the formatted group text only; the words themselves follow on the flashcards. */
+export function IntroductionRenderer({ item, plan }: RendererProps) {
   const { locale } = useI18n();
   if (item.type !== 'vocabulary_introduction') return null;
-  return (
-    <>
-      <RichText text={item.text[locale]} lang={plan.lang} className="rich-text explanation-text" />
-      <TargetTable ids={item.targetIds} plan={plan} motherTongue={motherTongue} />
-    </>
-  );
+  return <RichText text={item.text[locale]} lang={plan.lang} className="rich-text explanation-text" />;
 }
 
 /**
@@ -71,7 +67,6 @@ export function FlashcardsRenderer({ item, plan, motherTongue, pageId, revealed,
   const total = item.targetIds.length;
   return (
     <div className="flashcard-deck">
-      <p className="muted">{t('session.recallHint')}</p>
       <p className="label-muted" aria-live="polite">{t('session.cardsRevealed', { n: seen.filter((s) => item.targetIds.includes(s)).length, total })}</p>
       <ul className="flashcard-grid">
         {item.targetIds.map((id, n) => (
@@ -110,7 +105,12 @@ function Flashcard({ id, index, total, plan, motherTongue, initiallyFlipped, onF
           <p className="flashcard-form" lang={plan.lang}>{target?.teachingForm}</p>
           {target && target.genders.length > 0 && <p className="muted">{genderLabel(target, t)}</p>}
           {target && <ListenButton text={target.teachingForm} lang={plan.lang} />}
-          {target && <p><span lang={plan.lang}>{target.context.sentence}</span> <span className="muted">– {target.context.translation[motherTongue]}</span></p>}
+          {target && (
+            <p className="flashcard-example">
+              <ListenButton text={target.context.sentence} lang={plan.lang} variant="icon" label={t('session.listenSentence')} />
+              <span><span lang={plan.lang}>{target.context.sentence}</span> <span className="muted">– {target.context.translation[motherTongue]}</span></span>
+            </p>
+          )}
         </div>
       </div>
     </article>
@@ -139,9 +139,11 @@ export function MatchingRenderer(props: RendererProps) {
   };
 
   if (mode !== 'answering') {
+    // Only mistakes and their corrections are listed; correct pairs need no review.
+    const mistakes = choiceUnits.filter((unit) => props.locked[unit.id]?.outcome !== 'fully_correct');
     return (
       <div className="units">
-        {choiceUnits.map((unit) => (
+        {mistakes.map((unit) => (
           <UnitRow key={unit.id} unit={unit} props={props}>
             <p className="match-result"><span lang={plan.lang}>{formLabel(unit.id)}</span> — {nativeText(pairOf(unit.id) ?? '') || t('session.noAnswer')}</p>
           </UnitRow>

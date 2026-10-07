@@ -187,3 +187,27 @@ describe('contract additions from the P1-10 review', () => {
     expect(setup().plan.pages.flatMap((p) => p.units).every((u) => u.ruleIds === undefined)).toBe(true);
   });
 });
+
+describe('matching feedback (P2-02)', () => {
+  const toMatching = () => {
+    const s = setup();
+    while (!s.page().items.some((it) => it.type === 'vocabulary_matching')) s.proceed();
+    return s;
+  };
+  it('skips the correction view when every pair is correct', () => {
+    const s = toMatching();
+    const matching = s.page().pageId;
+    s.answerAll();
+    s.proceed();
+    expect(s.record.phase).toBe('answering');
+    expect(s.page().pageId).not.toBe(matching);
+    expect(s.record.completed).toContain(matching);
+  });
+  it('shows the correction view when a pair is wrong', () => {
+    const s = toMatching();
+    const units = s.page().units;
+    s.answerAll((id) => (id === units[0].id ? (units[1] as { correct: string[] }).correct[0] : undefined));
+    s.proceed();
+    expect(s.record.phase).toBe('feedback');
+  });
+});

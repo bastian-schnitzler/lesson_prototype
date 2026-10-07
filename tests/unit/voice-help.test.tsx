@@ -66,8 +66,11 @@ it('replaces Listen with an Install language button that opens the help dialog w
     <Renderer item={item} units={[]} plan={plan} mode="answering" drafts={{}} locked={{}} onChange={() => undefined} seed={1} motherTongue="en" pageId="p" revealed={{ 'p/f': ['t'] }} onReveal={() => undefined} />
   </PreferencesProvider>);
   expect(screen.queryByRole('button', { name: 'Listen' })).toBeNull();
-  fireEvent.click(screen.getByRole('button', { name: 'Install language' }));
-  const dialog = screen.getByRole('dialog', { name: 'French voice not installed' });
+  // The word and the example sentence both offer installation help.
+  const install = screen.getAllByRole('button', { name: 'Install language' });
+  expect(install).toHaveLength(2);
+  fireEvent.click(install[0]);
+  const dialog = screen.getAllByRole('dialog', { name: 'French voice not installed' }).find((d) => d.hasAttribute('open'))!;
   expect(dialog).toHaveAttribute('open');
   expect(dialog).toHaveTextContent(/no French text-to-speech voice .*Steps for .+ with .+:/);
   fireEvent.click(screen.getByRole('button', { name: 'Close' }));
