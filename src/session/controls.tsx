@@ -89,23 +89,48 @@ const OUTCOME_KEY = { fully_correct: 'outcome.fully_correct', orthography_only: 
 const OUTCOME_ICON = { fully_correct: '✓', orthography_only: '!', incorrect: '✕', unanswered: '✕' } as const;
 
 /** Practice feedback under a locked unit: classification, correct answer and explanation. */
+/** The learner's response as display text (results and practice feedback). */
+export function answerText(unit: PlanUnit, response: UnitResponse | null, t: (k: MessageKey) => string): string {
+  if (response === null || response === undefined) return '';
+  switch (unit.kind) {
+    case 'text': return response as string;
+    case 'choice': {
+      const option = unit.options.find((o) => o.id === response);
+      return option ? (option.lang === 'ui' ? t(option.text as MessageKey) : option.text) : '';
+    }
+    case 'order': return (response as string[]).map((id) => unit.tokens.find((tk) => tk.id === id)?.text).join(' ');
+    case 'spot': {
+      const r = response as { tokenId: string; text: string };
+      return unit.tokens.map((tk) => (tk.id === r.tokenId ? `[${r.text}]` : tk.text)).join(' ');
+    }
+  }
+}
+
+/**
+ * Practice feedback under a locked unit, without point counts: a short "Correct", or the correct
+ * answer in green with the learner's answer struck through in red directly below, and the explanation.
+ */
 export function UnitFeedback({ unit, locked, lang }: { unit: PlanUnit; locked: LockedUnit; lang: string }) {
   const { t, locale } = useI18n();
-  const ok = locked.outcome === 'fully_correct';
+  if (locked.outcome === 'fully_correct') {
+    return <div className="feedback outcome-fully_correct" role="status"><p><span aria-hidden="true">✓</span> {t('feedback.correct')}</p></div>;
+  }
   const answer = unit.answerLang === 'ui' ? t(unit.answer as MessageKey) : unit.answer;
+  const given = answerText(unit, locked.response, t);
+  const learning = (l: string) => (l === 'learning' ? lang : undefined);
   return (
     <div className={`feedback outcome-${locked.outcome}`} role="status">
-      <p>
-        <span aria-hidden="true">{OUTCOME_ICON[locked.outcome]}</span> {t(OUTCOME_KEY[locked.outcome])} · {t('result.points', { earned: locked.points, possible: 1 })}
+      <p className="feedback-title">
+        <span aria-hidden="true">{OUTCOME_ICON[locked.outcome]}</span> {t(locked.outcome === 'orthography_only' ? 'feedback.almost' : OUTCOME_KEY[locked.outcome])}
       </p>
-      {!ok && (
-        <p>
-          <span className="label-muted">{t('result.correctAnswer')}</span>{' '}
-          <strong className="answer" lang={unit.answerLang === 'learning' ? lang : undefined}>{answer}</strong>
+      <div className="fix-lines">
+        <strong className="match-right">
+          <span className="visually-hidden">{t('result.correctAnswer')}: </span><span lang={learning(unit.answerLang)}>{answer}</span>
           {unit.form && <span lang={lang}> · {unit.form}</span>}
-        </p>
-      )}
-      {!ok && <p className="explanation">{unit.explanation[locale]}</p>}
+        </strong>
+        <span className="match-wrong"><span className="visually-hidden">{t('result.yourAnswer')}: </span><s lang={unit.kind !== 'choice' || unit.options[0]?.lang === 'learning' ? lang : undefined}>{given || t('session.noAnswer')}</s></span>
+      </div>
+      <p className="explanation">{unit.explanation[locale]}</p>
     </div>
   );
 }
@@ -254,10 +279,21 @@ export function UnitsRenderer(props: RendererProps) {
   return (
     <div className="units">
       {item.type === 'vocabulary_typed_gap' && (
-        <p className="references">
-          <span className="label-muted">{t('session.references')}</span>{' '}
-          <span lang={lang}>{seededOrder(item.referenceTargetIds, props.seed, item.itemId).map((id) => props.plan.targets.get(id)?.term ?? id).join(' · ')}</span>
-        </p>
+        <div className="references">
+          <span className="label-muted">{t('session.references')}</span>
+          {/* Noninteractive reference words with their applicable gender (they are not selectable). */}
+          <ul className="reference-chips">
+            {seededOrder(item.referenceTargetIds, props.seed, item.itemId).map((id) => {
+              const target = props.plan.targets.get(id);
+              return (
+                <li key={id}>
+                  <span lang={lang}>{target?.term ?? id}</span>
+                  {target?.genders.length ? <small>{target.genders.map((g) => t(`gender.${g}`)).join(' / ')}</small> : null}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       )}
       {item.type === 'grammar_gap_typing' && item.hint && props.mode !== 'exam' && (
         <p className="muted">

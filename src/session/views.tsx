@@ -3,9 +3,10 @@ import { useEffect, useRef, useState } from 'react';
 import { useI18n, useLastTry } from '../app/context.tsx';
 import { formatScore, roundHalfUp1 } from '../domain/format.ts';
 import type { LessonPlan, PlanUnit } from '../domain/session/plan.ts';
-import { headerScore, isAnswered, isListeningPage, presentationComplete, scoreUnit, lessonResults, POLICY, progress, type LockedUnit, type SessionRecord, type UnitResponse } from '../domain/session/session.ts';
+import { headerScore, isAnswered, isListeningPage, presentationComplete, scoreUnit, lessonResults, POLICY, progress, type LockedUnit, type SessionRecord } from '../domain/session/session.ts';
 import type { MessageKey } from '../i18n/messages.ts';
 import { rendererRegistry, UnitFeedback } from './renderers.tsx';
+import { answerText } from './controls.tsx';
 import type { SessionInput } from './useSession.ts';
 import { reviewColor } from '../artifacts/briefParts.tsx';
 import type { VoiceStatus } from './speech.ts';
@@ -138,7 +139,7 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
       ) : (
       <section className={`task-card${celebrating ? ' is-celebrating' : ''}`} aria-labelledby="task-heading">
         {celebrating && <span className="visually-hidden" role="status">{t('session.allCorrect')}</span>}
-        <p className="label-muted">{page.stepLabel[locale]}{page.role === 'exam' ? ` · ${t('session.examPage')}` : ''}</p>
+        <p className="label-muted">{page.stepLabel[locale]}{page.role === 'exam' && page.stepLabel[locale] !== t('session.examPage') ? ` · ${t('session.examPage')}` : ''}</p>
         <h1 id="task-heading" ref={heading} tabIndex={-1} className="task-heading">{page.instructions[locale]}</h1>
         {page.role === 'exam' && remainingMs !== undefined && <Countdown remainingMs={remainingMs} />}
         {page.items.map((item) => {
@@ -176,22 +177,6 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
 }
 
 /* ------------------------------------------------------------- results */
-
-function answerText(unit: PlanUnit, response: UnitResponse | null, t: (k: MessageKey) => string): string {
-  if (response === null || response === undefined) return '';
-  switch (unit.kind) {
-    case 'text': return response as string;
-    case 'choice': {
-      const option = unit.options.find((o) => o.id === response);
-      return option ? (option.lang === 'ui' ? t(option.text as MessageKey) : option.text) : '';
-    }
-    case 'order': return (response as string[]).map((id) => unit.tokens.find((tk) => tk.id === id)?.text).join(' ');
-    case 'spot': {
-      const r = response as { tokenId: string; text: string };
-      return unit.tokens.map((tk) => (tk.id === r.tokenId ? `[${r.text}]` : tk.text)).join(' ');
-    }
-  }
-}
 
 function ResultRow({ unit, locked, lang }: { unit: PlanUnit; locked: LockedUnit; lang: string }) {
   const { t, locale } = useI18n();

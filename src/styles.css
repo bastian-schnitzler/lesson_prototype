@@ -1536,3 +1536,186 @@ select {
   color: var(--correct);
 }
 
+
+/* ------------------------------------------------------------ P2-03 gender, gaps, exam */
+
+.fix-lines {
+  display: grid;
+  justify-items: start;
+  gap: 0.15rem;
+  margin: 0.35rem 0;
+}
+
+.feedback-title {
+  font-weight: 600;
+}
+
+.gender-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr));
+  gap: 0.5rem 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gender-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+}
+
+.gender-lemma {
+  font-size: 19px;
+  font-weight: 600;
+}
+
+.gender-options {
+  display: flex;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.gender-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.gender-option span {
+  display: inline-block;
+  min-width: 6.5rem;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.gender-option input:checked + span {
+  border-color: var(--progress);
+  background: #1e1b4b;
+  box-shadow: inset 0 0 0 1px var(--progress);
+}
+
+.gender-option input:focus-visible + span {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.overview-list {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.overview-list li {
+  padding: 0.55rem 0.85rem;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--bg);
+}
+
+.overview-list li.is-right {
+  border-left-color: var(--correct);
+}
+
+.overview-list li.is-wrong {
+  border-left-color: var(--incorrect);
+}
+
+.overview-main {
+  display: grid;
+  grid-template-columns: 1.25rem minmax(10rem, 1.2fr) minmax(8rem, 1fr) auto;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.overview-status {
+  font-weight: 700;
+}
+
+.is-right .overview-status {
+  color: var(--correct);
+}
+
+.is-wrong .overview-status {
+  color: var(--incorrect);
+}
+
+.overview-gender {
+  display: grid;
+  justify-items: end;
+}
+
+.overview-fix {
+  margin: 0;
+  padding: 0.35rem 0 0 2rem;
+}
+
+@media (max-width: 600px) {
+  .overview-main {
+    grid-template-columns: 1.25rem 1fr auto;
+  }
+
+  .overview-translation {
+    grid-column: 2 / -1;
+  }
+
+  .gender-option span {
+    min-width: 0;
+  }
+}
+
+.references {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.reference-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reference-chips li {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  padding: 0.3rem 0.7rem;
+  border: 1px dashed var(--border-strong);
+  border-radius: 999px;
+  color: var(--text);
+  cursor: default;
+}
+
+.reference-chips small {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* Exam and other prompt + field rows: prompt and input side by side on wide screens. */
+@media (min-width: 720px) {
+  .units .field:not(.field-row) {
+    display: grid;
+    grid-template-columns: minmax(12rem, 1fr) minmax(0, 1.6fr);
+    align-items: center;
+    gap: 1rem;
+  }
+}

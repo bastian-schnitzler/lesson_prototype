@@ -34,6 +34,11 @@ async function matchAll(page: Page, { wrong = true } = {}) {
   }
 }
 
+/** Picks the first gender for every noun on the gender page. */
+async function chooseGenders(page: Page) {
+  for (const group of await page.locator('fieldset.gender-options:not([disabled])').all()) await group.locator('label').first().click();
+}
+
 /** Selects the first offered option in every select of the current page. */
 async function chooseAll(page: Page) {
   for (const select of await page.locator('.task-card select:not([disabled])').all()) await select.selectOption({ index: 1 });
@@ -67,7 +72,8 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   await page.reload();
   await page.getByRole('button', { name: 'Resume lesson' }).click();
   await expect(page.getByText('Gender and overview')).toBeVisible();
-  await chooseAll(page);
+  await expect(page.locator('.task-card select')).toHaveCount(0);
+  await chooseGenders(page);
   await proceed(page);
   await proceed(page);
   for (const word of ['livre', 'Chaise', 'stylo', 'table']) {
@@ -164,7 +170,7 @@ test('plays French listening choice and dictation with a suitable voice', async 
   expect(await page.evaluate(() => (window as unknown as { __spoken: string[] }).__spoken)).toContain('écoutez');
   await page.locator('fieldset.choices input').first().check();
   await proceed(page);
-  await expect(page.getByText(/Fully correct|Incorrect/).first()).toBeVisible();
+  await expect(page.locator('.feedback').first()).toBeVisible();
   await proceed(page);
   await page.locator('fieldset.choices input').first().check();
   await proceed(page);

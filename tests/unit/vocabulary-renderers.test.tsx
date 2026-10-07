@@ -4,7 +4,7 @@ import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, expect, it, vi } from 'vitest';
 import { PreferencesProvider } from '../../src/app/context.tsx';
 import { buildPlan } from '../../src/domain/session/plan.ts';
-import { MatchingRenderer } from '../../src/session/vocabularyRenderers.tsx';
+import { GenderRenderer, MatchingRenderer } from '../../src/session/vocabularyRenderers.tsx';
 
 afterEach(cleanup);
 const FIXTURES = resolve(import.meta.dirname, '../fixtures/content');
@@ -47,4 +47,40 @@ it('records a pair by target identity and moves an option away from its previous
   fireEvent.click(screen.getByRole('button', { name: /^book/ }));
   fireEvent.click(screen.getByRole('button', { name: /^un livre/ }));
   expect(onChange.mock.calls).toEqual([[chaise.id, ''], [livre.id, 'livre']]);
+});
+
+const content = (dir: string) => JSON.parse(readFileSync(join(resolve(import.meta.dirname, '../../content'), dir, 'fr-countries-and-nationalities.json'), 'utf8'));
+const countries = buildPlan(content('lessons'), content('briefs'), 'en');
+const genderPage = countries.pages.find((p) => p.items[0].type === 'vocabulary_gender_select')!;
+const renderGender = (mode: 'answering' | 'feedback', locked: Record<string, { response: string; outcome: string; points: number; timedOut: boolean; interfaceLanguage: 'en' }> = {}) =>
+  render(
+    <PreferencesProvider initial={{ interfaceLanguage: 'en', motherTongue: 'en' }}>
+      <GenderRenderer item={genderPage.items[0]} units={genderPage.units} plan={countries} mode={mode} drafts={{}} locked={locked as never} onChange={() => undefined}
+        seed={1} motherTongue="en" pageId={genderPage.pageId} revealed={{}} onReveal={() => undefined} />
+    </PreferencesProvider>,
+  );
+
+it('shows every word on the gender page: nouns as bare lemmas with gender choices, other words without input', () => {
+  const { container } = renderGender('answering');
+  const rows = container.querySelectorAll('.gender-row');
+  expect(rows).toHaveLength(countries.targets.size);
+  const nouns = [...countries.targets.values()].filter((t) => t.wordClass === 'noun');
+  expect(container.querySelectorAll('fieldset.gender-options')).toHaveLength(nouns.length);
+  expect(screen.getAllByText('no gender')).toHaveLength(countries.targets.size - nouns.length);
+  expect(container.textContent).not.toMatch(/\b(un|une|le|la) /); // no articles while answering
+  expect(container.querySelector('.icon-button, .listen')).toBeNull(); // no audio clues
+});
+
+it('turns into the reviewed overview: summary, all words, the wrong choice under the correct gender', () => {
+  const units = genderPage.units.filter((u) => u.kind === 'choice');
+  const locked = Object.fromEntries(units.map((u, n) => [u.id, n === 0
+    ? { response: u.kind === 'choice' && u.correct[0] === 'feminine' ? 'masculine' : 'feminine', outcome: 'incorrect', points: 0, timedOut: false, interfaceLanguage: 'en' as const }
+    : { response: u.kind === 'choice' ? u.correct[0] : '', outcome: 'fully_correct', points: 1, timedOut: false, interfaceLanguage: 'en' as const }]));
+  const { container } = renderGender('feedback', locked);
+  expect(screen.getByText(`${units.length - 1} of ${units.length} genders correct.`)).toBeInTheDocument();
+  expect(container.querySelectorAll('.overview-list > li')).toHaveLength(countries.targets.size);
+  const wrong = container.querySelector('.overview-list > li.is-wrong')!;
+  expect(wrong.querySelector('.overview-gender .match-right')).not.toBeNull();
+  expect(wrong.querySelector('.overview-gender .match-wrong s')).not.toBeNull();
+  expect(wrong.querySelector('.overview-fix')).not.toBeNull();
 });
