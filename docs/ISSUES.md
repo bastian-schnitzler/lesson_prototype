@@ -38,7 +38,7 @@ These issue bodies were published to GitHub in P0-04 on 2026-10-06. Each GitHub 
 | P3-04 | [#29](https://github.com/bastian-schnitzler/lesson_prototype/issues/29) | Implement word order and grammar error spotter |
 | P3-05 | [#30](https://github.com/bastian-schnitzler/lesson_prototype/issues/30) | Implement production-feedback placeholder, timed mixed exams, and answer review |
 | P3-06 | [#31](https://github.com/bastian-schnitzler/lesson_prototype/issues/31) | Complete all grammar lessons and end-to-end course validation |
-| P3-07 | [#32](https://github.com/bastian-schnitzler/lesson_prototype/issues/32) | Update grammar lesson mockups from the prototype |
+| P3-08 | [#32](https://github.com/bastian-schnitzler/lesson_prototype/issues/32) | Update grammar lesson mockups from the prototype |
 | P4-01 | [#33](https://github.com/bastian-schnitzler/lesson_prototype/issues/33) | Define functions requirements and implementation backlog |
 | P4-02 | [#34](https://github.com/bastian-schnitzler/lesson_prototype/issues/34) | Update function lesson mockups from the prototype |
 | P5-01 | [#35](https://github.com/bastian-schnitzler/lesson_prototype/issues/35) | Define reading requirements and implementation backlog |
@@ -620,7 +620,8 @@ Acceptance:
 - Every remaining grammar entry has a brief and a lesson file, written in outline order and in batches of about five lessons per commit, with review checkpoints.
 - Briefs follow SPEC section 4:
   - rules with IDs
-  - 2–4 teaching blocks, each with an explanation plan, examples with translations for every mother tongue, pitfalls and 1–3 suitable exercise types; pronoun–form exercises only where they fit the topic
+  - 2–4 teaching blocks, each with an explanation plan, examples with translations for every mother tongue, pitfalls and 2–4 suitable exercises; pronoun–form exercises only where they fit the topic, person matching in every pronoun and verb-form lesson
+  - the length rules of SPEC section 7 (P3-07) and `newVerbs` for verbs no earlier vocabulary lesson taught
   - a feedback placeholder
   - mixed exam pages that cover every rule, using only typed gaps, pronoun-form typing or word order
   - durations and limits
@@ -770,24 +771,40 @@ Acceptance:
 
 Dependencies: P3-05, P1-02, P2-07.
 
-### P3-07: Update grammar lesson mockups from the prototype
+### P3-07: Lengthen grammar lessons: length rules, new verbs and the ten samples rewritten
+
+Milestone: **Phase 3**.
+
+Scope: grammar lessons are far too short compared with vocabulary lessons (the ten samples have 11–35 scored practice units and 6–12 exam units; a vocabulary lesson has about 70 and 36, and the estimates overstate the real time). Make them three to four times longer, write the length and timing rules into SPEC section 7 so that generation and hand authoring produce longer lessons, show translations of newly introduced verbs, and rewrite the ten grammar samples by hand. Requested by the product owner on 2026-10-08.
+
+Acceptance:
+
+- SPEC section 7 states the length rules: at least 50 scored practice units and 24 scored exam units on 3–4 exam pages; 2–4 exercises per teaching block with 6–10 items each (person matching boards and pronoun rows count per row); realistic per-unit estimates. Validation, schemas and generator prompts enforce what can be checked.
+- Verb and pronoun lessons have several person matching boards where both modes fit (translation and forms).
+- Grammar briefs list the verbs a lesson introduces that no earlier vocabulary lesson taught (`newVerbs`: infinitive with a translation for every mother tongue); the start page and the first explanation page show them as a "New verbs" table.
+- Claude rewrites the ten grammar sample briefs and lessons by hand (no Gemini calls) to the new rules, with correct and natural A1 French, complete en/fr/de and current input hashes; `make sample-lessons` and `make catalog` pass without warnings.
+- Unit and end-to-end tests cover the new rules and displays; representative journeys pass.
+
+Dependencies: P3-02.
+
+### P3-08: Update grammar lesson mockups from the prototype
 
 GitHub: [#32](https://github.com/bastian-schnitzler/lesson_prototype/issues/32).
 
 Milestone: **Phase 3**.
 
-Scope: improve the grammar start page, teaching blocks, six exercise types, feedback placeholder, timed mixed exam, and results Salt mockups using the pages actually created in the prototype at the end of this phase.
+Scope: improve the grammar start page, teaching blocks, seven exercise types, feedback placeholder, timed mixed exam, and results Salt mockups using the pages actually created in the prototype at the end of this phase.
 
 Acceptance:
 
-- Inspect the running prototype's grammar start page, teaching blocks, six exercise types, feedback placeholder, timed mixed exam, and results, including relevant responsive layouts and representative ready, answer, feedback, or error states.
+- Inspect the running prototype's grammar start page, teaching blocks, seven exercise types, feedback placeholder, timed mixed exam, and results, including relevant responsive layouts and representative ready, answer, feedback, or error states.
 - Update the applicable editable `.puml` sources to reflect the implemented layout, controls, content, and behavior while preserving the agreed shared dark design.
 - Run `make mockups-sync` and `make mockups-check` to refresh and verify matching Markdown PlantUML code. Inspect the automatic previews against the actual prototype; keep only .puml sources in the mockup folder.
 - Update the root mockup README, SPEC references, issue asset mappings, and all affected links; keep a single README for the mockup collection.
 - Record the prototype revision used for comparison. Resolve implementation/specification differences or record them as follow-up work; mockup updates must not silently change agreed behavior.
 - Refresh applicable published GitHub issues and their diagrams/PlantUML code and server-rendered preview URLs; verify source parity, links, and rendering. This issue is required to close the phase.
 
-Dependencies: P3-06.
+Dependencies: P3-06, P3-07.
 
 ## Phase 4 — functions (requirements pending)
 
@@ -886,6 +903,6 @@ Use fenced Mermaid and applicable fenced PlantUML source directly in GitHub bodi
 | P3-04 | Grammar blocks, SPEC section 7 | [Word order](mockups/04-grammar-lesson/02-05-exercise-word-order/word-order.puml), [error spotter](mockups/04-grammar-lesson/02-06-exercise-error-spotter/error-spotter.puml) |
 | P3-05, P3-06 | Grammar blocks, placeholder, exam/results, SPEC section 7 | [Placeholder](mockups/04-grammar-lesson/03-feedback-placeholder/feedback-placeholder.puml), [mixed exam](mockups/04-grammar-lesson/04-exam/mixed-exam.puml), [grammar results](mockups/04-grammar-lesson/05-results/exam-results.puml) |
 
-The phase-closing issues P1-12, P2-08, and P3-07 include before/after source changes and PlantUML-enabled previews for their respective index/artifact, vocabulary, and grammar screens from the [root mockup guide](mockups/README.md). P4-02 and P5-02 receive category-specific assets when those pages exist. The Claude review issue P0-02 uses the specification's applicable flows and mockups as review inputs.
+The phase-closing issues P1-12, P2-08, and P3-08 include before/after source changes and PlantUML-enabled previews for their respective index/artifact, vocabulary, and grammar screens from the [root mockup guide](mockups/README.md). P4-02 and P5-02 receive category-specific assets when those pages exist. The Claude review issue P0-02 uses the specification's applicable flows and mockups as review inputs.
 
 Browse sources and embedded SPEC previews using the [organized mockup guide](mockups/README.md). Keep applicable diagrams and rendered mockups in published issue bodies, not only in the linked specification.

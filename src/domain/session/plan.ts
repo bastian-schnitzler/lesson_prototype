@@ -75,6 +75,8 @@ export interface LessonPlan {
   kind: LessonContent['kind'];
   /** Vocabulary target groups from the brief (start page); empty for grammar. */
   groups: { id: string; label: LocalizedText; targetIds: string[] }[];
+  /** Grammar: verbs the lesson introduces, with the mother-tongue translation (P3-07); empty otherwise. */
+  newVerbs: { infinitive: string; translation: string }[];
 }
 
 const GENDER_OPTIONS = ['masculine', 'feminine', 'neuter'] as const;
@@ -213,6 +215,7 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
   return {
     lessonId: content.id, lang: content.lang, title: content.title, objective: content.objective, estimatedMinutes: content.estimatedMinutes, pages, targets,
     kind: content.kind, groups: brief.kind === 'vocabulary' ? brief.groups.map((g) => ({ id: g.id, label: g.label, targetIds: g.targetIds })) : [],
+    newVerbs: brief.kind === 'grammar' ? brief.newVerbs.map((v) => ({ infinitive: v.infinitive, translation: native(v.translations) })) : [],
     steps: steps.map((s) => ({ stepId: s.id, label: s.label, role: s.role === 'exam' ? 'exam' : pages.some((p) => p.stepId === s.id && p.role === 'practice') ? 'practice' : 'presentation' })),
   };
 }

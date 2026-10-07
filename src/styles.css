@@ -2296,3 +2296,13 @@ html {
   margin-top: 0.15rem;
   white-space: normal;
 }
+
+/* New verbs of a grammar lesson (P3-07): start page and first explanation page. */
+.new-verbs {
+  margin: 1rem 0;
+}
+
+.new-verbs .data-table {
+  width: auto;
+  min-width: 18rem;
+}

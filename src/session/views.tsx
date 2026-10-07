@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useRef, useState, type CSSProperties } from 'react';
 
-import { useI18n, useLastTry } from '../app/context.tsx';
+import { useI18n, useLastTry, usePreferences } from '../app/context.tsx';
 import { formatScore, roundHalfUp1 } from '../domain/format.ts';
 import type { LessonPlan, PlanPage, PlanUnit } from '../domain/session/plan.ts';
 import { headerScore, isAnswered, isListeningPage, presentationComplete, scoreUnit, skipsFeedbackWhenCorrect, lessonResults, progress, type LockedUnit, type SessionRecord } from '../domain/session/session.ts';
@@ -14,6 +14,7 @@ import type { SessionInput } from './useSession.ts';
 import { reviewColor } from '../artifacts/briefParts.tsx';
 import { useVoiceStatus, type VoiceStatus } from './speech.ts';
 import { VoiceHelp } from './VoiceHelp.tsx';
+import { NewVerbs } from './grammarRenderers.tsx';
 
 /* ------------------------------------------------------------ start page */
 
@@ -50,6 +51,7 @@ interface StartViewProps {
 
 export function StartView({ plan, level, resumable, notice, onStart, onResume }: StartViewProps) {
   const { t, locale, languageName } = useI18n();
+  const { motherTongue } = usePreferences();
   // Lessons with listening tasks cannot start (or resume) without a learning-language voice (P2-04 review).
   const voiceStatus = useVoiceStatus(plan.lang);
   const needsVoice = plan.pages.some(isListeningPage);
@@ -76,6 +78,7 @@ export function StartView({ plan, level, resumable, notice, onStart, onResume }:
           </ol>
         </>
       )}
+      {plan.kind === 'grammar' && <NewVerbs plan={plan} motherTongue={motherTongue} />}
       {plan.kind === 'grammar' && (
         <>
           <h2 className="small-heading">{t('session.lessonFlow')}</h2>

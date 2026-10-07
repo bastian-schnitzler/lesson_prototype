@@ -14,12 +14,12 @@
     "fr": "Conjuguer les verbes en -er (parler, habiter, aimer) au présent avec tous les pronoms et prononcer les terminaisons muettes.",
     "de": "Konjugieren Sie regelmäßige Verben auf -er (parler, habiter, aimer) im Präsens mit allen Pronomen und sprechen Sie stumme Endungen korrekt aus."
   },
-  "estimatedMinutes": 12,
+  "estimatedMinutes": 24,
   "provenance": {
-    "generator": "lesson-prototype",
-    "model": "gemini-3.6-flash",
-    "promptVersion": "brief-v2",
-    "generatedAt": "2026-10-06T14:34:56.152Z",
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "brief-v7",
+    "generatedAt": "2026-10-07T23:47:20.042Z",
     "inputHashes": {
       "outline": "c4214004217e367d531a6b73223f98c810ad2a2543cfbe66d837e94e4d50c4bb"
     }
@@ -114,23 +114,43 @@
       ],
       "exercises": [
         {
-          "id": "ex-singular-match",
-          "type": "grammar_pronoun_form_match",
-          "itemCount": 4,
+          "id": "ex-singular-persons",
+          "type": "grammar_person_matching",
+          "itemCount": 2,
           "ruleIds": [
             "rule-er-singular"
           ],
-          "estimatedDurationS": 60
+          "estimatedDurationS": 48
         },
         {
           "id": "ex-singular-choice",
           "type": "grammar_gap_choice",
-          "itemCount": 4,
+          "itemCount": 8,
           "ruleIds": [
             "rule-er-singular",
             "rule-silent-endings"
           ],
-          "estimatedDurationS": 60
+          "estimatedDurationS": 80
+        },
+        {
+          "id": "ex-singular-typing",
+          "type": "grammar_gap_typing",
+          "itemCount": 8,
+          "ruleIds": [
+            "rule-er-singular",
+            "rule-silent-endings"
+          ],
+          "estimatedDurationS": 120
+        },
+        {
+          "id": "ex-singular-spot",
+          "type": "grammar_error_spotter",
+          "itemCount": 6,
+          "ruleIds": [
+            "rule-silent-endings",
+            "rule-er-singular"
+          ],
+          "estimatedDurationS": 150
         }
       ]
     },
@@ -182,23 +202,41 @@
       ],
       "exercises": [
         {
-          "id": "ex-plural-typing",
-          "type": "grammar_gap_typing",
-          "itemCount": 4,
-          "ruleIds": [
-            "rule-er-plural"
-          ],
-          "estimatedDurationS": 90
-        },
-        {
           "id": "ex-persons",
           "type": "grammar_person_matching",
-          "itemCount": 1,
+          "itemCount": 2,
           "ruleIds": [
             "rule-er-singular",
             "rule-er-plural"
           ],
-          "estimatedDurationS": 60
+          "estimatedDurationS": 96
+        },
+        {
+          "id": "ex-plural-forms",
+          "type": "grammar_pronoun_form_typing",
+          "itemCount": 3,
+          "ruleIds": [
+            "rule-er-plural"
+          ],
+          "estimatedDurationS": 135
+        },
+        {
+          "id": "ex-plural-choice",
+          "type": "grammar_gap_choice",
+          "itemCount": 8,
+          "ruleIds": [
+            "rule-er-plural"
+          ],
+          "estimatedDurationS": 80
+        },
+        {
+          "id": "ex-plural-typing",
+          "type": "grammar_gap_typing",
+          "itemCount": 6,
+          "ruleIds": [
+            "rule-er-plural"
+          ],
+          "estimatedDurationS": 90
         }
       ]
     }
@@ -209,25 +247,37 @@
   "exam": {
     "pages": [
       {
-        "pageId": "exam-page-1",
+        "pageId": "exam-forms",
+        "type": "grammar_pronoun_form_typing",
+        "itemCount": 2,
+        "ruleIds": [
+          "rule-er-singular",
+          "rule-silent-endings",
+          "rule-er-plural"
+        ],
+        "estimatedDurationS": 90,
+        "timeLimitS": 140
+      },
+      {
+        "pageId": "exam-singular",
         "type": "grammar_gap_typing",
-        "itemCount": 4,
+        "itemCount": 9,
         "ruleIds": [
           "rule-er-singular",
           "rule-silent-endings"
         ],
-        "estimatedDurationS": 90,
-        "timeLimitS": 180
+        "estimatedDurationS": 135,
+        "timeLimitS": 210
       },
       {
-        "pageId": "exam-page-2",
-        "type": "grammar_pronoun_form_typing",
-        "itemCount": 4,
+        "pageId": "exam-plural",
+        "type": "grammar_gap_typing",
+        "itemCount": 9,
         "ruleIds": [
           "rule-er-plural"
         ],
-        "estimatedDurationS": 90,
-        "timeLimitS": 180
+        "estimatedDurationS": 135,
+        "timeLimitS": 210
       }
     ]
   },
@@ -235,5 +285,77 @@
     "practiceWeight": 35,
     "examWeight": 65,
     "orthographyCredit": 0.5
-  }
+  },
+  "newVerbs": [
+    {
+      "infinitive": "parler",
+      "translations": {
+        "en": "to speak",
+        "de": "sprechen"
+      }
+    },
+    {
+      "infinitive": "habiter",
+      "translations": {
+        "en": "to live (somewhere)",
+        "de": "wohnen"
+      }
+    },
+    {
+      "infinitive": "aimer",
+      "translations": {
+        "en": "to like, to love",
+        "de": "mögen, lieben"
+      }
+    },
+    {
+      "infinitive": "travailler",
+      "translations": {
+        "en": "to work",
+        "de": "arbeiten"
+      }
+    },
+    {
+      "infinitive": "regarder",
+      "translations": {
+        "en": "to watch, to look at",
+        "de": "ansehen, anschauen"
+      }
+    },
+    {
+      "infinitive": "écouter",
+      "translations": {
+        "en": "to listen (to)",
+        "de": "hören, zuhören"
+      }
+    },
+    {
+      "infinitive": "chanter",
+      "translations": {
+        "en": "to sing",
+        "de": "singen"
+      }
+    },
+    {
+      "infinitive": "danser",
+      "translations": {
+        "en": "to dance",
+        "de": "tanzen"
+      }
+    },
+    {
+      "infinitive": "jouer",
+      "translations": {
+        "en": "to play",
+        "de": "spielen"
+      }
+    },
+    {
+      "infinitive": "étudier",
+      "translations": {
+        "en": "to study",
+        "de": "studieren, lernen"
+      }
+    }
+  ]
 }

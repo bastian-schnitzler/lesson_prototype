@@ -14,15 +14,15 @@
     "fr": "Conjuguer le verbe irrégulier être au présent avec tous les pronoms sujets pour exprimer la nationalité, la profession et l'état.",
     "de": "Das unregelmäßige Verb être im Präsens mit allen Subjektpronomen konjugieren, um Nationalität, Beruf und Zustand auszudrücken."
   },
-  "estimatedMinutes": 13,
+  "estimatedMinutes": 24,
   "provenance": {
-    "generator": "lesson-prototype",
+    "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
-    "promptVersion": "content-v1",
-    "generatedAt": "2026-10-06T19:05:32.874Z",
+    "promptVersion": "content-v4",
+    "generatedAt": "2026-10-07T23:45:03.745Z",
     "inputHashes": {
       "outline": "5c2392d3863624855b6f75ffe68c23d6dd290c31c1f2f6004022fb2b42d34e34",
-      "brief": "5ce6919caebc6b80d945958c6e894da48c876ab232f3fba9ac0f32a0b735544b"
+      "brief": "085db1d65cf2673a4f6a0fb32b3d9b21a16bac823c433373e3baf1f87b942c4b"
     }
   },
   "kind": "grammar",
@@ -117,298 +117,149 @@
       ]
     },
     {
-      "id": "ex-singular-match",
+      "id": "ex-sg-persons",
       "role": "exercise",
       "blockId": "block-singular",
       "label": {
-        "en": "Singular forms: je, tu, il, elle, on",
-        "fr": "Les formes du singulier : je, tu, il, elle, on",
-        "de": "Die Singularformen: je, tu, il, elle, on"
+        "en": "Person matching 1",
+        "fr": "Relier les personnes 1",
+        "de": "Personen verbinden 1"
       },
       "pages": [
         {
-          "pageId": "ex-singular-match-1",
-          "estimatedDurationS": 15,
+          "pageId": "ex-sg-persons-1",
+          "estimatedDurationS": 24,
           "timeLimitS": null,
           "instructions": {
-            "en": "Choose the form for each pronoun.",
-            "fr": "Choisissez la forme pour chaque pronom.",
-            "de": "Wähle die Form für jedes Pronomen."
+            "en": "Connect each pronoun with its partner.",
+            "fr": "Reliez chaque pronom à son partenaire.",
+            "de": "Verbinde jedes Pronomen mit seinem Partner."
           },
           "items": [
             {
-              "type": "grammar_pronoun_form_match",
-              "itemId": "ex-singular-match-1",
+              "type": "grammar_person_matching",
               "ruleIds": [
                 "rule-singular-forms"
               ],
-              "tokens": [
-                {
-                  "tokenId": "suis",
-                  "text": "suis"
-                },
-                {
-                  "tokenId": "es",
-                  "text": "es"
-                },
-                {
-                  "tokenId": "est",
-                  "text": "est"
-                }
-              ],
+              "mode": "translation",
               "rows": [
                 {
-                  "rowId": "je",
-                  "pronoun": "je",
-                  "validForms": [
-                    "suis"
-                  ],
+                  "person": "1sg",
+                  "pronoun": null,
+                  "native": {
+                    "en": "I am",
+                    "de": "ich bin"
+                  },
+                  "answer": "je suis",
                   "answerExplanation": {
-                    "en": "With je, être becomes suis: je suis.",
-                    "fr": "Avec je, être devient suis : je suis.",
-                    "de": "Mit je wird être zu suis: je suis."
+                    "en": "With je, être is suis.",
+                    "fr": "Avec je, être devient suis.",
+                    "de": "Zu je gehört die Form suis."
                   }
                 },
                 {
-                  "rowId": "tu",
-                  "pronoun": "tu",
-                  "validForms": [
-                    "es"
-                  ],
+                  "person": "2sg",
+                  "pronoun": null,
+                  "native": {
+                    "en": "you are (one friend)",
+                    "de": "du bist"
+                  },
+                  "answer": "tu es",
                   "answerExplanation": {
-                    "en": "With tu, être becomes es: tu es. It sounds like est but ends in -s.",
-                    "fr": "Avec tu, être devient es : tu es. Cela se prononce comme est mais s’écrit avec -s.",
-                    "de": "Mit tu wird être zu es: tu es. Es klingt wie est, endet aber auf -s."
+                    "en": "With tu, être is es.",
+                    "fr": "Avec tu, être devient es.",
+                    "de": "Zu tu gehört die Form es."
                   }
                 },
                 {
-                  "rowId": "il",
-                  "pronoun": "il",
-                  "validForms": [
-                    "est"
-                  ],
+                  "person": "3sg",
+                  "pronoun": null,
+                  "native": {
+                    "en": "he is",
+                    "de": "er ist"
+                  },
+                  "answer": "il est",
                   "answerExplanation": {
-                    "en": "With il, elle and on, être becomes est, written with a final -t.",
-                    "fr": "Avec il, elle et on, être devient est, avec un -t final.",
-                    "de": "Mit il, elle und on wird être zu est, mit -t am Ende."
+                    "en": "With il, elle, on, être is est.",
+                    "fr": "Avec il, elle, on, être devient est.",
+                    "de": "Zu il, elle, on gehört die Form est."
                   }
                 }
-              ]
+              ],
+              "itemId": "ex-sg-persons-1"
             }
           ]
         },
         {
-          "pageId": "ex-singular-match-2",
-          "estimatedDurationS": 15,
+          "pageId": "ex-sg-persons-2",
+          "estimatedDurationS": 24,
           "timeLimitS": null,
           "instructions": {
-            "en": "Choose the form for each pronoun.",
-            "fr": "Choisissez la forme pour chaque pronom.",
-            "de": "Wähle die Form für jedes Pronomen."
+            "en": "Connect each pronoun with its partner.",
+            "fr": "Reliez chaque pronom à son partenaire.",
+            "de": "Verbinde jedes Pronomen mit seinem Partner."
           },
           "items": [
             {
-              "type": "grammar_pronoun_form_match",
-              "itemId": "ex-singular-match-2",
+              "type": "grammar_person_matching",
               "ruleIds": [
                 "rule-singular-forms"
               ],
-              "tokens": [
-                {
-                  "tokenId": "est",
-                  "text": "est"
-                },
-                {
-                  "tokenId": "suis",
-                  "text": "suis"
-                },
-                {
-                  "tokenId": "es",
-                  "text": "es"
-                }
-              ],
+              "mode": "forms",
               "rows": [
                 {
-                  "rowId": "elle",
+                  "person": "1sg",
+                  "pronoun": "je",
+                  "native": null,
+                  "answer": "suis",
+                  "answerExplanation": {
+                    "en": "With je, être is suis.",
+                    "fr": "Avec je, être devient suis.",
+                    "de": "Zu je gehört die Form suis."
+                  }
+                },
+                {
+                  "person": "2sg",
+                  "pronoun": "tu",
+                  "native": null,
+                  "answer": "es",
+                  "answerExplanation": {
+                    "en": "With tu, être is es – without a t.",
+                    "fr": "Avec tu, être devient es, sans t.",
+                    "de": "Zu tu gehört es, ohne t."
+                  }
+                },
+                {
+                  "person": "3sg",
                   "pronoun": "elle",
-                  "validForms": [
-                    "est"
-                  ],
+                  "native": null,
+                  "answer": "est",
                   "answerExplanation": {
-                    "en": "With il, elle and on, être becomes est, written with a final -t.",
-                    "fr": "Avec il, elle et on, être devient est, avec un -t final.",
-                    "de": "Mit il, elle und on wird être zu est, mit -t am Ende."
+                    "en": "Elle is 3rd person singular (like il), so être is est.",
+                    "fr": "Elle est à la 3e personne du singulier (comme il) : être devient est.",
+                    "de": "Elle ist 3. Person Singular (wie il), also heißt être est."
                   }
-                },
-                {
-                  "rowId": "je",
-                  "pronoun": "je",
-                  "validForms": [
-                    "suis"
-                  ],
-                  "answerExplanation": {
-                    "en": "With je, être becomes suis: je suis.",
-                    "fr": "Avec je, être devient suis : je suis.",
-                    "de": "Mit je wird être zu suis: je suis."
-                  }
-                },
-                {
-                  "rowId": "tu",
-                  "pronoun": "tu",
-                  "validForms": [
-                    "es"
-                  ],
-                  "answerExplanation": {
-                    "en": "With tu, être becomes es: tu es. It sounds like est but ends in -s.",
-                    "fr": "Avec tu, être devient es : tu es. Cela se prononce comme est mais s’écrit avec -s.",
-                    "de": "Mit tu wird être zu es: tu es. Es klingt wie est, endet aber auf -s."
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "pageId": "ex-singular-match-3",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the form for each pronoun.",
-            "fr": "Choisissez la forme pour chaque pronom.",
-            "de": "Wähle die Form für jedes Pronomen."
-          },
-          "items": [
-            {
-              "type": "grammar_pronoun_form_match",
-              "itemId": "ex-singular-match-3",
-              "ruleIds": [
-                "rule-singular-forms"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "est",
-                  "text": "est"
-                },
-                {
-                  "tokenId": "es",
-                  "text": "es"
                 }
               ],
-              "rows": [
-                {
-                  "rowId": "on",
-                  "pronoun": "on",
-                  "validForms": [
-                    "est"
-                  ],
-                  "answerExplanation": {
-                    "en": "With il, elle and on, être becomes est, written with a final -t.",
-                    "fr": "Avec il, elle et on, être devient est, avec un -t final.",
-                    "de": "Mit il, elle und on wird être zu est, mit -t am Ende."
-                  }
-                },
-                {
-                  "rowId": "tu",
-                  "pronoun": "tu",
-                  "validForms": [
-                    "es"
-                  ],
-                  "answerExplanation": {
-                    "en": "With tu, être becomes es: tu es. It sounds like est but ends in -s.",
-                    "fr": "Avec tu, être devient es : tu es. Cela se prononce comme est mais s’écrit avec -s.",
-                    "de": "Mit tu wird être zu es: tu es. Es klingt wie est, endet aber auf -s."
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "pageId": "ex-singular-match-4",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the form for each pronoun.",
-            "fr": "Choisissez la forme pour chaque pronom.",
-            "de": "Wähle die Form für jedes Pronomen."
-          },
-          "items": [
-            {
-              "type": "grammar_pronoun_form_match",
-              "itemId": "ex-singular-match-4",
-              "ruleIds": [
-                "rule-singular-forms"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "suis",
-                  "text": "suis"
-                },
-                {
-                  "tokenId": "est-1",
-                  "text": "est"
-                },
-                {
-                  "tokenId": "est-2",
-                  "text": "est"
-                }
-              ],
-              "rows": [
-                {
-                  "rowId": "je",
-                  "pronoun": "je",
-                  "validForms": [
-                    "suis"
-                  ],
-                  "answerExplanation": {
-                    "en": "With je, être becomes suis: je suis.",
-                    "fr": "Avec je, être devient suis : je suis.",
-                    "de": "Mit je wird être zu suis: je suis."
-                  }
-                },
-                {
-                  "rowId": "il",
-                  "pronoun": "il",
-                  "validForms": [
-                    "est"
-                  ],
-                  "answerExplanation": {
-                    "en": "With il, elle and on, être becomes est, written with a final -t.",
-                    "fr": "Avec il, elle et on, être devient est, avec un -t final.",
-                    "de": "Mit il, elle und on wird être zu est, mit -t am Ende."
-                  }
-                },
-                {
-                  "rowId": "elle",
-                  "pronoun": "elle",
-                  "validForms": [
-                    "est"
-                  ],
-                  "answerExplanation": {
-                    "en": "With il, elle and on, être becomes est, written with a final -t.",
-                    "fr": "Avec il, elle et on, être devient est, avec un -t final.",
-                    "de": "Mit il, elle und on wird être zu est, mit -t am Ende."
-                  }
-                }
-              ]
+              "itemId": "ex-sg-persons-2"
             }
           ]
         }
       ]
     },
     {
-      "id": "ex-singular-gap",
+      "id": "ex-sg-choice",
       "role": "exercise",
       "blockId": "block-singular",
       "label": {
-        "en": "Singular forms: je, tu, il, elle, on",
-        "fr": "Les formes du singulier : je, tu, il, elle, on",
-        "de": "Die Singularformen: je, tu, il, elle, on"
+        "en": "Multiple-choice gaps 1",
+        "fr": "Phrases à trous à choix multiple 1",
+        "de": "Lücken mit Auswahl 1"
       },
       "pages": [
         {
-          "pageId": "ex-singular-gap-1",
-          "estimatedDurationS": 15,
+          "pageId": "ex-sg-choice-1",
+          "estimatedDurationS": 10,
           "timeLimitS": null,
           "instructions": {
             "en": "Choose the word that completes the sentence.",
@@ -418,43 +269,43 @@
           "items": [
             {
               "type": "grammar_gap_choice",
-              "itemId": "ex-singular-gap-1",
+              "ruleIds": [
+                "rule-singular-forms"
+              ],
               "before": "Je",
-              "after": "canadienne.",
+              "after": "étudiant.",
               "choices": [
                 {
-                  "choiceId": "suis",
+                  "choiceId": "c-1",
+                  "text": "sommes"
+                },
+                {
+                  "choiceId": "c-2",
                   "text": "suis"
                 },
                 {
-                  "choiceId": "es",
-                  "text": "es"
-                },
-                {
-                  "choiceId": "est",
+                  "choiceId": "c-3",
                   "text": "est"
                 },
                 {
-                  "choiceId": "sont",
-                  "text": "sont"
+                  "choiceId": "c-4",
+                  "text": "es"
                 }
               ],
-              "answerChoiceId": "suis",
+              "answerChoiceId": "c-2",
               "hint": null,
-              "ruleIds": [
-                "rule-singular-forms"
-              ],
               "answerExplanation": {
-                "en": "With je, être becomes suis: je suis.",
-                "fr": "Avec je, être devient suis : je suis.",
-                "de": "Mit je wird être zu suis: je suis."
-              }
+                "en": "With je, être is suis.",
+                "fr": "Avec je, être devient suis.",
+                "de": "Zu je gehört die Form suis."
+              },
+              "itemId": "ex-sg-choice-1"
             }
           ]
         },
         {
-          "pageId": "ex-singular-gap-2",
-          "estimatedDurationS": 15,
+          "pageId": "ex-sg-choice-2",
+          "estimatedDurationS": 10,
           "timeLimitS": null,
           "instructions": {
             "en": "Choose the word that completes the sentence.",
@@ -464,43 +315,43 @@
           "items": [
             {
               "type": "grammar_gap_choice",
-              "itemId": "ex-singular-gap-2",
+              "ruleIds": [
+                "rule-singular-forms"
+              ],
               "before": "Tu",
-              "after": "en retard ?",
+              "after": "fatigué ?",
               "choices": [
                 {
-                  "choiceId": "es",
-                  "text": "es"
-                },
-                {
-                  "choiceId": "est",
-                  "text": "est"
-                },
-                {
-                  "choiceId": "suis",
+                  "choiceId": "c-1",
                   "text": "suis"
                 },
                 {
-                  "choiceId": "etes",
+                  "choiceId": "c-2",
                   "text": "êtes"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "es"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "est"
                 }
               ],
-              "answerChoiceId": "es",
+              "answerChoiceId": "c-3",
               "hint": null,
-              "ruleIds": [
-                "rule-singular-forms"
-              ],
               "answerExplanation": {
-                "en": "With tu, être becomes es: tu es. It sounds like est but ends in -s.",
-                "fr": "Avec tu, être devient es : tu es. Cela se prononce comme est mais s’écrit avec -s.",
-                "de": "Mit tu wird être zu es: tu es. Es klingt wie est, endet aber auf -s."
-              }
+                "en": "With tu, être is es; est goes with il, elle, on.",
+                "fr": "Avec tu, être devient es ; est va avec il, elle, on.",
+                "de": "Zu tu gehört es; est gehört zu il, elle, on."
+              },
+              "itemId": "ex-sg-choice-2"
             }
           ]
         },
         {
-          "pageId": "ex-singular-gap-3",
-          "estimatedDurationS": 15,
+          "pageId": "ex-sg-choice-3",
+          "estimatedDurationS": 10,
           "timeLimitS": null,
           "instructions": {
             "en": "Choose the word that completes the sentence.",
@@ -510,43 +361,135 @@
           "items": [
             {
               "type": "grammar_gap_choice",
-              "itemId": "ex-singular-gap-3",
-              "before": "Marc",
-              "after": "professeur.",
+              "ruleIds": [
+                "rule-singular-forms"
+              ],
+              "before": "Elle",
+              "after": "française.",
               "choices": [
                 {
-                  "choiceId": "est",
+                  "choiceId": "c-1",
+                  "text": "sont"
+                },
+                {
+                  "choiceId": "c-2",
                   "text": "est"
                 },
                 {
-                  "choiceId": "es",
-                  "text": "es"
-                },
-                {
-                  "choiceId": "suis",
+                  "choiceId": "c-3",
                   "text": "suis"
                 },
                 {
-                  "choiceId": "sommes",
+                  "choiceId": "c-4",
+                  "text": "es"
+                }
+              ],
+              "answerChoiceId": "c-2",
+              "hint": null,
+              "answerExplanation": {
+                "en": "Elle is 3rd person singular (like il), so être is est.",
+                "fr": "Elle est à la 3e personne du singulier (comme il) : être devient est.",
+                "de": "Elle ist 3. Person Singular (wie il), also heißt être est."
+              },
+              "itemId": "ex-sg-choice-3"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-sg-choice-4",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "ruleIds": [
+                "rule-singular-forms"
+              ],
+              "before": "Marc",
+              "after": "médecin.",
+              "choices": [
+                {
+                  "choiceId": "c-1",
+                  "text": "suis"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "êtes"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "est"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "es"
+                }
+              ],
+              "answerChoiceId": "c-3",
+              "hint": null,
+              "answerExplanation": {
+                "en": "Marc is 3rd person singular (like il), so être is est.",
+                "fr": "Marc est à la 3e personne du singulier (comme il) : être devient est.",
+                "de": "Marc ist 3. Person Singular (wie il), also heißt être est."
+              },
+              "itemId": "ex-sg-choice-4"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-sg-choice-5",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "ruleIds": [
+                "rule-singular-forms"
+              ],
+              "before": "On",
+              "after": "en retard.",
+              "choices": [
+                {
+                  "choiceId": "c-1",
+                  "text": "suis"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "es"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "est"
+                },
+                {
+                  "choiceId": "c-4",
                   "text": "sommes"
                 }
               ],
-              "answerChoiceId": "est",
+              "answerChoiceId": "c-3",
               "hint": null,
-              "ruleIds": [
-                "rule-singular-forms"
-              ],
               "answerExplanation": {
-                "en": "Marc is one person (il), so être becomes est. No article before the job.",
-                "fr": "Marc est une personne (il), donc être devient est. Pas d’article devant la profession.",
-                "de": "Marc ist eine Person (il), also wird être zu est. Kein Artikel vor dem Beruf."
-              }
+                "en": "On is grammatically 3rd person singular, so être is est, even when it means \"we\".",
+                "fr": "On est à la 3e personne du singulier : être devient est, même quand on veut dire « nous ».",
+                "de": "On ist grammatisch 3. Person Singular, also est – auch wenn es „wir“ bedeutet."
+              },
+              "itemId": "ex-sg-choice-5"
             }
           ]
         },
         {
-          "pageId": "ex-singular-gap-4",
-          "estimatedDurationS": 15,
+          "pageId": "ex-sg-choice-6",
+          "estimatedDurationS": 10,
           "timeLimitS": null,
           "instructions": {
             "en": "Choose the word that completes the sentence.",
@@ -556,37 +499,767 @@
           "items": [
             {
               "type": "grammar_gap_choice",
-              "itemId": "ex-singular-gap-4",
-              "before": "On",
-              "after": "contents aujourd’hui.",
-              "choices": [
-                {
-                  "choiceId": "est",
-                  "text": "est"
-                },
-                {
-                  "choiceId": "sont",
-                  "text": "sont"
-                },
-                {
-                  "choiceId": "es",
-                  "text": "es"
-                },
-                {
-                  "choiceId": "suis",
-                  "text": "suis"
-                }
-              ],
-              "answerChoiceId": "est",
-              "hint": null,
               "ruleIds": [
                 "rule-singular-forms"
               ],
+              "before": "Ma sœur",
+              "after": "professeure.",
+              "choices": [
+                {
+                  "choiceId": "c-1",
+                  "text": "es"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "sont"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "suis"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "est"
+                }
+              ],
+              "answerChoiceId": "c-4",
+              "hint": null,
               "answerExplanation": {
-                "en": "On takes the same verb form as il: on est, even when it means “we”.",
-                "fr": "On se conjugue comme il : on est, même quand il veut dire « nous ».",
-                "de": "On hat dieselbe Verbform wie il: on est, auch wenn es „wir“ bedeutet."
-              }
+                "en": "Ma sœur is 3rd person singular (like il), so être is est.",
+                "fr": "Ma sœur est à la 3e personne du singulier (comme il) : être devient est.",
+                "de": "Ma sœur ist 3. Person Singular (wie il), also heißt être est."
+              },
+              "itemId": "ex-sg-choice-6"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-sg-choice-7",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "ruleIds": [
+                "rule-singular-forms"
+              ],
+              "before": "Je",
+              "after": "content aujourd’hui.",
+              "choices": [
+                {
+                  "choiceId": "c-1",
+                  "text": "êtes"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "est"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "suis"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "es"
+                }
+              ],
+              "answerChoiceId": "c-3",
+              "hint": null,
+              "answerExplanation": {
+                "en": "With je, être is suis.",
+                "fr": "Avec je, être devient suis.",
+                "de": "Zu je gehört die Form suis."
+              },
+              "itemId": "ex-sg-choice-7"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-sg-choice-8",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "ruleIds": [
+                "rule-singular-forms"
+              ],
+              "before": "Tu",
+              "after": "de Paris ?",
+              "choices": [
+                {
+                  "choiceId": "c-1",
+                  "text": "sont"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "es"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "suis"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "est"
+                }
+              ],
+              "answerChoiceId": "c-2",
+              "hint": null,
+              "answerExplanation": {
+                "en": "With tu, être is es.",
+                "fr": "Avec tu, être devient es.",
+                "de": "Zu tu gehört es."
+              },
+              "itemId": "ex-sg-choice-8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-sg-typing",
+      "role": "exercise",
+      "blockId": "block-singular",
+      "label": {
+        "en": "Typed gaps 1",
+        "fr": "Phrases à trous à écrire 1",
+        "de": "Lücken zum Schreiben 1"
+      },
+      "pages": [
+        {
+          "pageId": "ex-sg-typing-1",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-singular-forms"
+              ],
+              "before": "Je",
+              "after": "canadienne.",
+              "accepted": {
+                "answers": [
+                  "suis"
+                ],
+                "accentSensitive": []
+              },
+              "hint": {
+                "en": "être, 1st person singular",
+                "fr": "être, 1re personne du singulier",
+                "de": "être, 1. Person Singular"
+              },
+              "answerExplanation": {
+                "en": "With je, être is suis.",
+                "fr": "Avec je, être devient suis.",
+                "de": "Zu je gehört die Form suis."
+              },
+              "itemId": "ex-sg-typing-1"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-sg-typing-2",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-singular-forms"
+              ],
+              "before": "Il",
+              "after": "cuisinier.",
+              "accepted": {
+                "answers": [
+                  "est"
+                ],
+                "accentSensitive": []
+              },
+              "hint": {
+                "en": "être, 3rd person singular",
+                "fr": "être, 3e personne du singulier",
+                "de": "être, 3. Person Singular"
+              },
+              "answerExplanation": {
+                "en": "Il is 3rd person singular (like il), so être is est.",
+                "fr": "Il est à la 3e personne du singulier (comme il) : être devient est.",
+                "de": "Il ist 3. Person Singular (wie il), also heißt être est."
+              },
+              "itemId": "ex-sg-typing-2"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-sg-typing-3",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-singular-forms"
+              ],
+              "before": "Tu",
+              "after": "malade ?",
+              "accepted": {
+                "answers": [
+                  "es"
+                ],
+                "accentSensitive": []
+              },
+              "hint": {
+                "en": "être, 2nd person singular",
+                "fr": "être, 2e personne du singulier",
+                "de": "être, 2. Person Singular"
+              },
+              "answerExplanation": {
+                "en": "With tu, être is es.",
+                "fr": "Avec tu, être devient es.",
+                "de": "Zu tu gehört die Form es."
+              },
+              "itemId": "ex-sg-typing-3"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-sg-typing-4",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-singular-forms"
+              ],
+              "before": "Le professeur",
+              "after": "sympathique.",
+              "accepted": {
+                "answers": [
+                  "est"
+                ],
+                "accentSensitive": []
+              },
+              "hint": {
+                "en": "être",
+                "fr": "être",
+                "de": "être"
+              },
+              "answerExplanation": {
+                "en": "Le professeur is 3rd person singular (like il), so être is est.",
+                "fr": "Le professeur est à la 3e personne du singulier (comme il) : être devient est.",
+                "de": "Le professeur ist 3. Person Singular (wie il), also heißt être est."
+              },
+              "itemId": "ex-sg-typing-4"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-sg-typing-5",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-singular-forms"
+              ],
+              "before": "Aujourd’hui, je",
+              "after": "à la maison.",
+              "accepted": {
+                "answers": [
+                  "suis"
+                ],
+                "accentSensitive": []
+              },
+              "hint": {
+                "en": "être",
+                "fr": "être",
+                "de": "être"
+              },
+              "answerExplanation": {
+                "en": "With je, être is suis.",
+                "fr": "Avec je, être devient suis.",
+                "de": "Zu je gehört die Form suis."
+              },
+              "itemId": "ex-sg-typing-5"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-sg-typing-6",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-singular-forms"
+              ],
+              "before": "Anna",
+              "after": "italienne.",
+              "accepted": {
+                "answers": [
+                  "est"
+                ],
+                "accentSensitive": []
+              },
+              "hint": {
+                "en": "être",
+                "fr": "être",
+                "de": "être"
+              },
+              "answerExplanation": {
+                "en": "Anna is 3rd person singular (like il), so être is est.",
+                "fr": "Anna est à la 3e personne du singulier (comme il) : être devient est.",
+                "de": "Anna ist 3. Person Singular (wie il), also heißt être est."
+              },
+              "itemId": "ex-sg-typing-6"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-sg-typing-7",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-singular-forms"
+              ],
+              "before": "Tu",
+              "after": "étudiant ou professeur ?",
+              "accepted": {
+                "answers": [
+                  "es"
+                ],
+                "accentSensitive": []
+              },
+              "hint": {
+                "en": "être",
+                "fr": "être",
+                "de": "être"
+              },
+              "answerExplanation": {
+                "en": "With tu, être is es.",
+                "fr": "Avec tu, être devient es.",
+                "de": "Zu tu gehört die Form es."
+              },
+              "itemId": "ex-sg-typing-7"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-sg-typing-8",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-singular-forms"
+              ],
+              "before": "On",
+              "after": "prêts !",
+              "accepted": {
+                "answers": [
+                  "est"
+                ],
+                "accentSensitive": []
+              },
+              "hint": {
+                "en": "être",
+                "fr": "être",
+                "de": "être"
+              },
+              "answerExplanation": {
+                "en": "On takes the 3rd person singular form: on est.",
+                "fr": "On prend la forme de la 3e personne du singulier : on est.",
+                "de": "On steht mit der Form der 3. Person Singular: on est."
+              },
+              "itemId": "ex-sg-typing-8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-sg-spot",
+      "role": "exercise",
+      "blockId": "block-singular",
+      "label": {
+        "en": "Error spotting",
+        "fr": "Repérer l’erreur",
+        "de": "Fehler finden"
+      },
+      "pages": [
+        {
+          "pageId": "ex-sg-spot-1",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Find the wrong word and correct it.",
+            "fr": "Trouvez le mot faux et corrigez-le.",
+            "de": "Finde das falsche Wort und korrigiere es."
+          },
+          "items": [
+            {
+              "type": "grammar_error_spotter",
+              "ruleIds": [
+                "rule-singular-forms"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-1",
+                  "text": "Je"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "es"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "fatigué"
+                }
+              ],
+              "faultyTokenId": "t-2",
+              "correction": {
+                "mode": "type",
+                "accepted": {
+                  "answers": [
+                    "suis"
+                  ],
+                  "accentSensitive": []
+                },
+                "choices": []
+              },
+              "answerExplanation": {
+                "en": "Je takes suis, not es: je suis.",
+                "fr": "Avec je, on dit suis et non es : je suis.",
+                "de": "Zu je gehört suis, nicht es: je suis."
+              },
+              "itemId": "ex-sg-spot-1"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-sg-spot-2",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Find the wrong word and correct it.",
+            "fr": "Trouvez le mot faux et corrigez-le.",
+            "de": "Finde das falsche Wort und korrigiere es."
+          },
+          "items": [
+            {
+              "type": "grammar_error_spotter",
+              "ruleIds": [
+                "rule-singular-forms"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-1",
+                  "text": "Tu"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "est"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "belge"
+                }
+              ],
+              "faultyTokenId": "t-2",
+              "correction": {
+                "mode": "type",
+                "accepted": {
+                  "answers": [
+                    "es"
+                  ],
+                  "accentSensitive": []
+                },
+                "choices": []
+              },
+              "answerExplanation": {
+                "en": "Tu takes es; est is the form for il, elle, on.",
+                "fr": "Avec tu, on écrit es ; est est la forme de il, elle, on.",
+                "de": "Zu tu gehört es; est ist die Form für il, elle, on."
+              },
+              "itemId": "ex-sg-spot-2"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-sg-spot-3",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Find the wrong word and correct it.",
+            "fr": "Trouvez le mot faux et corrigez-le.",
+            "de": "Finde das falsche Wort und korrigiere es."
+          },
+          "items": [
+            {
+              "type": "grammar_error_spotter",
+              "ruleIds": [
+                "rule-singular-forms"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-1",
+                  "text": "Elle"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "es"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "infirmière"
+                }
+              ],
+              "faultyTokenId": "t-2",
+              "correction": {
+                "mode": "select",
+                "accepted": {
+                  "answers": [
+                    "est"
+                  ],
+                  "accentSensitive": []
+                },
+                "choices": [
+                  "est",
+                  "es",
+                  "suis"
+                ]
+              },
+              "answerExplanation": {
+                "en": "Elle is 3rd person singular (like il), so être is est.",
+                "fr": "Elle est à la 3e personne du singulier (comme il) : être devient est.",
+                "de": "Elle ist 3. Person Singular (wie il), also heißt être est."
+              },
+              "itemId": "ex-sg-spot-3"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-sg-spot-4",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Find the wrong word and correct it.",
+            "fr": "Trouvez le mot faux et corrigez-le.",
+            "de": "Finde das falsche Wort und korrigiere es."
+          },
+          "items": [
+            {
+              "type": "grammar_error_spotter",
+              "ruleIds": [
+                "rule-singular-forms"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-1",
+                  "text": "Paul"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "suis"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "mon"
+                },
+                {
+                  "tokenId": "t-4",
+                  "text": "ami"
+                }
+              ],
+              "faultyTokenId": "t-2",
+              "correction": {
+                "mode": "type",
+                "accepted": {
+                  "answers": [
+                    "est"
+                  ],
+                  "accentSensitive": []
+                },
+                "choices": []
+              },
+              "answerExplanation": {
+                "en": "Paul is 3rd person singular (like il), so être is est.",
+                "fr": "Paul est à la 3e personne du singulier (comme il) : être devient est.",
+                "de": "Paul ist 3. Person Singular (wie il), also heißt être est."
+              },
+              "itemId": "ex-sg-spot-4"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-sg-spot-5",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Find the wrong word and correct it.",
+            "fr": "Trouvez le mot faux et corrigez-le.",
+            "de": "Finde das falsche Wort und korrigiere es."
+          },
+          "items": [
+            {
+              "type": "grammar_error_spotter",
+              "ruleIds": [
+                "rule-singular-forms"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-1",
+                  "text": "On"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "sommes"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "en"
+                },
+                {
+                  "tokenId": "t-4",
+                  "text": "classe"
+                }
+              ],
+              "faultyTokenId": "t-2",
+              "correction": {
+                "mode": "select",
+                "accepted": {
+                  "answers": [
+                    "est"
+                  ],
+                  "accentSensitive": []
+                },
+                "choices": [
+                  "est",
+                  "sommes",
+                  "es"
+                ]
+              },
+              "answerExplanation": {
+                "en": "On always takes the 3rd person singular form est, even when it means \"we\".",
+                "fr": "On prend toujours la forme est (3e personne du singulier), même au sens de « nous ».",
+                "de": "On steht immer mit est (3. Person Singular), auch wenn es „wir“ bedeutet."
+              },
+              "itemId": "ex-sg-spot-5"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-sg-spot-6",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Find the wrong word and correct it.",
+            "fr": "Trouvez le mot faux et corrigez-le.",
+            "de": "Finde das falsche Wort und korrigiere es."
+          },
+          "items": [
+            {
+              "type": "grammar_error_spotter",
+              "ruleIds": [
+                "rule-singular-forms"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-1",
+                  "text": "Je"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "est"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "à"
+                },
+                {
+                  "tokenId": "t-4",
+                  "text": "Lyon"
+                }
+              ],
+              "faultyTokenId": "t-2",
+              "correction": {
+                "mode": "select",
+                "accepted": {
+                  "answers": [
+                    "suis"
+                  ],
+                  "accentSensitive": []
+                },
+                "choices": [
+                  "suis",
+                  "est",
+                  "es"
+                ]
+              },
+              "answerExplanation": {
+                "en": "With je, être is suis.",
+                "fr": "Avec je, être devient suis.",
+                "de": "Zu je gehört die Form suis."
+              },
+              "itemId": "ex-sg-spot-6"
             }
           ]
         }
@@ -682,448 +1355,18 @@
       ]
     },
     {
-      "id": "ex-plural-match",
+      "id": "ex-pl-persons",
       "role": "exercise",
       "blockId": "block-plural",
       "label": {
-        "en": "Plural forms and liaisons: nous, vous, ils, elles",
-        "fr": "Les formes du pluriel et liaisons : nous, vous, ils, elles",
-        "de": "Die Pluralformen und Liaison: nous, vous, ils, elles"
+        "en": "Person matching 2",
+        "fr": "Relier les personnes 2",
+        "de": "Personen verbinden 2"
       },
       "pages": [
         {
-          "pageId": "ex-plural-match-1",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the form for each pronoun.",
-            "fr": "Choisissez la forme pour chaque pronom.",
-            "de": "Wähle die Form für jedes Pronomen."
-          },
-          "items": [
-            {
-              "type": "grammar_pronoun_form_match",
-              "itemId": "ex-plural-match-1",
-              "ruleIds": [
-                "rule-plural-forms"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "sommes",
-                  "text": "sommes"
-                },
-                {
-                  "tokenId": "etes",
-                  "text": "êtes"
-                },
-                {
-                  "tokenId": "sont",
-                  "text": "sont"
-                }
-              ],
-              "rows": [
-                {
-                  "rowId": "nous",
-                  "pronoun": "nous",
-                  "validForms": [
-                    "sommes"
-                  ],
-                  "answerExplanation": {
-                    "en": "With nous, être becomes sommes: nous sommes.",
-                    "fr": "Avec nous, être devient sommes : nous sommes.",
-                    "de": "Mit nous wird être zu sommes: nous sommes."
-                  }
-                },
-                {
-                  "rowId": "vous",
-                  "pronoun": "vous",
-                  "validForms": [
-                    "êtes"
-                  ],
-                  "answerExplanation": {
-                    "en": "With vous, être becomes êtes, with an accent circonflexe on the first e: vous êtes.",
-                    "fr": "Avec vous, être devient êtes, avec un accent circonflexe sur le premier e : vous êtes.",
-                    "de": "Mit vous wird être zu êtes, mit accent circonflexe auf dem ersten e: vous êtes."
-                  }
-                },
-                {
-                  "rowId": "ils",
-                  "pronoun": "ils",
-                  "validForms": [
-                    "sont"
-                  ],
-                  "answerExplanation": {
-                    "en": "With ils and elles, être becomes sont, with an s sound: ils sont.",
-                    "fr": "Avec ils et elles, être devient sont, avec le son s : ils sont.",
-                    "de": "Mit ils und elles wird être zu sont, mit s-Laut: ils sont."
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "pageId": "ex-plural-match-2",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the form for each pronoun.",
-            "fr": "Choisissez la forme pour chaque pronom.",
-            "de": "Wähle die Form für jedes Pronomen."
-          },
-          "items": [
-            {
-              "type": "grammar_pronoun_form_match",
-              "itemId": "ex-plural-match-2",
-              "ruleIds": [
-                "rule-plural-forms"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "sont",
-                  "text": "sont"
-                },
-                {
-                  "tokenId": "sommes",
-                  "text": "sommes"
-                },
-                {
-                  "tokenId": "etes",
-                  "text": "êtes"
-                }
-              ],
-              "rows": [
-                {
-                  "rowId": "elles",
-                  "pronoun": "elles",
-                  "validForms": [
-                    "sont"
-                  ],
-                  "answerExplanation": {
-                    "en": "With ils and elles, être becomes sont, with an s sound: ils sont.",
-                    "fr": "Avec ils et elles, être devient sont, avec le son s : ils sont.",
-                    "de": "Mit ils und elles wird être zu sont, mit s-Laut: ils sont."
-                  }
-                },
-                {
-                  "rowId": "nous",
-                  "pronoun": "nous",
-                  "validForms": [
-                    "sommes"
-                  ],
-                  "answerExplanation": {
-                    "en": "With nous, être becomes sommes: nous sommes.",
-                    "fr": "Avec nous, être devient sommes : nous sommes.",
-                    "de": "Mit nous wird être zu sommes: nous sommes."
-                  }
-                },
-                {
-                  "rowId": "vous",
-                  "pronoun": "vous",
-                  "validForms": [
-                    "êtes"
-                  ],
-                  "answerExplanation": {
-                    "en": "With vous, être becomes êtes, with an accent circonflexe on the first e: vous êtes.",
-                    "fr": "Avec vous, être devient êtes, avec un accent circonflexe sur le premier e : vous êtes.",
-                    "de": "Mit vous wird être zu êtes, mit accent circonflexe auf dem ersten e: vous êtes."
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "pageId": "ex-plural-match-3",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the form for each pronoun.",
-            "fr": "Choisissez la forme pour chaque pronom.",
-            "de": "Wähle die Form für jedes Pronomen."
-          },
-          "items": [
-            {
-              "type": "grammar_pronoun_form_match",
-              "itemId": "ex-plural-match-3",
-              "ruleIds": [
-                "rule-plural-forms",
-                "rule-liaison-pronunciation"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "sont",
-                  "text": "sont"
-                },
-                {
-                  "tokenId": "ont",
-                  "text": "ont"
-                }
-              ],
-              "rows": [
-                {
-                  "rowId": "ils",
-                  "pronoun": "ils (être)",
-                  "validForms": [
-                    "sont"
-                  ],
-                  "answerExplanation": {
-                    "en": "They are = ils sont, with an s sound. Ils ont (z sound) is avoir.",
-                    "fr": "Ils sont (son s) vient de être. Ils ont (son z) vient de avoir.",
-                    "de": "Sie sind = ils sont, mit s-Laut. Ils ont (z-Laut) kommt von avoir."
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "pageId": "ex-plural-match-4",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the form for each pronoun.",
-            "fr": "Choisissez la forme pour chaque pronom.",
-            "de": "Wähle die Form für jedes Pronomen."
-          },
-          "items": [
-            {
-              "type": "grammar_pronoun_form_match",
-              "itemId": "ex-plural-match-4",
-              "ruleIds": [
-                "rule-plural-forms"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "etes",
-                  "text": "êtes"
-                },
-                {
-                  "tokenId": "sont-1",
-                  "text": "sont"
-                },
-                {
-                  "tokenId": "sont-2",
-                  "text": "sont"
-                }
-              ],
-              "rows": [
-                {
-                  "rowId": "vous",
-                  "pronoun": "vous",
-                  "validForms": [
-                    "êtes"
-                  ],
-                  "answerExplanation": {
-                    "en": "With vous, être becomes êtes, with an accent circonflexe on the first e: vous êtes.",
-                    "fr": "Avec vous, être devient êtes, avec un accent circonflexe sur le premier e : vous êtes.",
-                    "de": "Mit vous wird être zu êtes, mit accent circonflexe auf dem ersten e: vous êtes."
-                  }
-                },
-                {
-                  "rowId": "ils",
-                  "pronoun": "ils",
-                  "validForms": [
-                    "sont"
-                  ],
-                  "answerExplanation": {
-                    "en": "With ils and elles, être becomes sont, with an s sound: ils sont.",
-                    "fr": "Avec ils et elles, être devient sont, avec le son s : ils sont.",
-                    "de": "Mit ils und elles wird être zu sont, mit s-Laut: ils sont."
-                  }
-                },
-                {
-                  "rowId": "elles",
-                  "pronoun": "elles",
-                  "validForms": [
-                    "sont"
-                  ],
-                  "answerExplanation": {
-                    "en": "With ils and elles, être becomes sont, with an s sound: ils sont.",
-                    "fr": "Avec ils et elles, être devient sont, avec le son s : ils sont.",
-                    "de": "Mit ils und elles wird être zu sont, mit s-Laut: ils sont."
-                  }
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "ex-plural-typing",
-      "role": "exercise",
-      "blockId": "block-plural",
-      "label": {
-        "en": "Plural forms and liaisons: nous, vous, ils, elles",
-        "fr": "Les formes du pluriel et liaisons : nous, vous, ils, elles",
-        "de": "Die Pluralformen und Liaison: nous, vous, ils, elles"
-      },
-      "pages": [
-        {
-          "pageId": "ex-plural-typing-1",
-          "estimatedDurationS": 18,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "itemId": "ex-plural-typing-1",
-              "before": "Nous",
-              "after": "à Lyon.",
-              "accepted": {
-                "answers": [
-                  "sommes"
-                ],
-                "accentSensitive": []
-              },
-              "hint": {
-                "en": "être with nous",
-                "fr": "être avec nous",
-                "de": "être mit nous"
-              },
-              "ruleIds": [
-                "rule-plural-forms"
-              ],
-              "answerExplanation": {
-                "en": "With nous, être becomes sommes: nous sommes.",
-                "fr": "Avec nous, être devient sommes : nous sommes.",
-                "de": "Mit nous wird être zu sommes: nous sommes."
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "ex-plural-typing-2",
-          "estimatedDurationS": 18,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "itemId": "ex-plural-typing-2",
-              "before": "Vous",
-              "after": "suisses ?",
-              "accepted": {
-                "answers": [
-                  "êtes"
-                ],
-                "accentSensitive": []
-              },
-              "hint": {
-                "en": "Remember the accent circonflexe.",
-                "fr": "Pensez à l’accent circonflexe.",
-                "de": "Denk an den accent circonflexe."
-              },
-              "ruleIds": [
-                "rule-plural-forms",
-                "rule-liaison-pronunciation"
-              ],
-              "answerExplanation": {
-                "en": "With vous, être becomes êtes, with an accent circonflexe on the first e: vous êtes.",
-                "fr": "Avec vous, être devient êtes, avec un accent circonflexe sur le premier e : vous êtes.",
-                "de": "Mit vous wird être zu êtes, mit accent circonflexe auf dem ersten e: vous êtes."
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "ex-plural-typing-3",
-          "estimatedDurationS": 17,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "itemId": "ex-plural-typing-3",
-              "before": "Ils",
-              "after": "au bureau.",
-              "accepted": {
-                "answers": [
-                  "sont"
-                ],
-                "accentSensitive": []
-              },
-              "hint": {
-                "en": "They are …",
-                "fr": "Ils (être) …",
-                "de": "Sie sind …"
-              },
-              "ruleIds": [
-                "rule-plural-forms"
-              ],
-              "answerExplanation": {
-                "en": "With ils and elles, être becomes sont, with an s sound: ils sont.",
-                "fr": "Avec ils et elles, être devient sont, avec le son s : ils sont.",
-                "de": "Mit ils und elles wird être zu sont, mit s-Laut: ils sont."
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "ex-plural-typing-4",
-          "estimatedDurationS": 17,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "itemId": "ex-plural-typing-4",
-              "before": "Paul et Léa",
-              "after": "mariés.",
-              "accepted": {
-                "answers": [
-                  "sont"
-                ],
-                "accentSensitive": []
-              },
-              "hint": {
-                "en": "Two people: ils",
-                "fr": "Deux personnes : ils",
-                "de": "Zwei Personen: ils"
-              },
-              "ruleIds": [
-                "rule-plural-forms"
-              ],
-              "answerExplanation": {
-                "en": "Paul and Léa are two people (ils), so être becomes sont.",
-                "fr": "Paul et Léa sont deux personnes (ils), donc être devient sont.",
-                "de": "Paul und Léa sind zwei Personen (ils), also wird être zu sont."
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "ex-persons",
-      "role": "exercise",
-      "blockId": "block-plural",
-      "label": {
-        "en": "Plural forms and liaisons: nous, vous, ils, elles",
-        "fr": "Les formes du pluriel et liaisons : nous, vous, ils, elles",
-        "de": "Die Pluralformen und Liaison: nous, vous, ils, elles"
-      },
-      "pages": [
-        {
-          "pageId": "ex-persons-1",
-          "estimatedDurationS": 60,
+          "pageId": "ex-pl-persons-1",
+          "estimatedDurationS": 48,
           "timeLimitS": null,
           "instructions": {
             "en": "Connect each pronoun with its partner.",
@@ -1133,7 +1376,6 @@
           "items": [
             {
               "type": "grammar_person_matching",
-              "itemId": "ex-persons-1",
               "ruleIds": [
                 "rule-singular-forms",
                 "rule-plural-forms"
@@ -1146,9 +1388,9 @@
                   "native": null,
                   "answer": "suis",
                   "answerExplanation": {
-                    "en": "Je takes suis.",
-                    "fr": "Avec je, on dit suis.",
-                    "de": "Zu je gehört suis."
+                    "en": "With je, être is suis.",
+                    "fr": "Avec je, être devient suis.",
+                    "de": "Zu je gehört die Form suis."
                   }
                 },
                 {
@@ -1157,9 +1399,9 @@
                   "native": null,
                   "answer": "es",
                   "answerExplanation": {
-                    "en": "Tu takes es, without a t.",
-                    "fr": "Avec tu, on écrit es, sans t.",
-                    "de": "Zu tu gehört es, ohne t."
+                    "en": "With tu, être is es.",
+                    "fr": "Avec tu, être devient es.",
+                    "de": "Zu tu gehört die Form es."
                   }
                 },
                 {
@@ -1168,9 +1410,9 @@
                   "native": null,
                   "answer": "est",
                   "answerExplanation": {
-                    "en": "Il, elle and on take est.",
-                    "fr": "Avec il, elle et on, on dit est.",
-                    "de": "Zu il, elle und on gehört est."
+                    "en": "With il, elle, on, être is est.",
+                    "fr": "Avec il, elle, on, être devient est.",
+                    "de": "Zu il, elle, on gehört die Form est."
                   }
                 },
                 {
@@ -1179,9 +1421,9 @@
                   "native": null,
                   "answer": "sommes",
                   "answerExplanation": {
-                    "en": "Nous takes sommes.",
-                    "fr": "Avec nous, on dit sommes.",
-                    "de": "Zu nous gehört sommes."
+                    "en": "With nous, être is sommes.",
+                    "fr": "Avec nous, être devient sommes.",
+                    "de": "Zu nous gehört die Form sommes."
                   }
                 },
                 {
@@ -1190,8 +1432,8 @@
                   "native": null,
                   "answer": "êtes",
                   "answerExplanation": {
-                    "en": "Vous takes êtes, with an accent circonflexe on the first e.",
-                    "fr": "Avec vous, on écrit êtes, avec un accent circonflexe sur le premier e.",
+                    "en": "With vous, être is êtes, with an accent circonflexe on the first e.",
+                    "fr": "Avec vous, être devient êtes, avec un accent circonflexe sur le premier e.",
                     "de": "Zu vous gehört êtes, mit Accent circonflexe auf dem ersten e."
                   }
                 },
@@ -1201,12 +1443,944 @@
                   "native": null,
                   "answer": "sont",
                   "answerExplanation": {
-                    "en": "Ils and elles take sont.",
-                    "fr": "Avec ils et elles, on dit sont.",
-                    "de": "Zu ils und elles gehört sont."
+                    "en": "With ils, elles, être is sont.",
+                    "fr": "Avec ils, elles, être devient sont.",
+                    "de": "Zu ils, elles gehört die Form sont."
                   }
                 }
-              ]
+              ],
+              "itemId": "ex-pl-persons-1"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-pl-persons-2",
+          "estimatedDurationS": 48,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Connect each pronoun with its partner.",
+            "fr": "Reliez chaque pronom à son partenaire.",
+            "de": "Verbinde jedes Pronomen mit seinem Partner."
+          },
+          "items": [
+            {
+              "type": "grammar_person_matching",
+              "ruleIds": [
+                "rule-singular-forms",
+                "rule-plural-forms"
+              ],
+              "mode": "translation",
+              "rows": [
+                {
+                  "person": "1sg",
+                  "pronoun": null,
+                  "native": {
+                    "en": "I am",
+                    "de": "ich bin"
+                  },
+                  "answer": "je suis",
+                  "answerExplanation": {
+                    "en": "With je, être is suis.",
+                    "fr": "Avec je, être devient suis.",
+                    "de": "Zu je gehört die Form suis."
+                  }
+                },
+                {
+                  "person": "2sg",
+                  "pronoun": null,
+                  "native": {
+                    "en": "you are (one friend)",
+                    "de": "du bist"
+                  },
+                  "answer": "tu es",
+                  "answerExplanation": {
+                    "en": "With tu, être is es.",
+                    "fr": "Avec tu, être devient es.",
+                    "de": "Zu tu gehört die Form es."
+                  }
+                },
+                {
+                  "person": "3sg",
+                  "pronoun": null,
+                  "native": {
+                    "en": "she is",
+                    "de": "sie ist (eine Frau)"
+                  },
+                  "answer": "elle est",
+                  "answerExplanation": {
+                    "en": "Elle is 3rd person singular (like il), so être is est.",
+                    "fr": "Elle est à la 3e personne du singulier (comme il) : être devient est.",
+                    "de": "Elle ist 3. Person Singular (wie il), also heißt être est."
+                  }
+                },
+                {
+                  "person": "1pl",
+                  "pronoun": null,
+                  "native": {
+                    "en": "we are",
+                    "de": "wir sind"
+                  },
+                  "answer": "nous sommes",
+                  "answerExplanation": {
+                    "en": "With nous, être is sommes.",
+                    "fr": "Avec nous, être devient sommes.",
+                    "de": "Zu nous gehört die Form sommes."
+                  }
+                },
+                {
+                  "person": "2pl",
+                  "pronoun": null,
+                  "native": {
+                    "en": "you are (several people)",
+                    "de": "ihr seid"
+                  },
+                  "answer": "vous êtes",
+                  "answerExplanation": {
+                    "en": "With vous, être is êtes, with an accent circonflexe on the first e.",
+                    "fr": "Avec vous, être devient êtes, avec un accent circonflexe sur le premier e.",
+                    "de": "Zu vous gehört êtes, mit Accent circonflexe auf dem ersten e."
+                  }
+                },
+                {
+                  "person": "3pl",
+                  "pronoun": null,
+                  "native": {
+                    "en": "they are (men or a mixed group)",
+                    "de": "sie sind (Männer oder gemischt)"
+                  },
+                  "answer": "ils sont",
+                  "answerExplanation": {
+                    "en": "With ils, elles, être is sont.",
+                    "fr": "Avec ils, elles, être devient sont.",
+                    "de": "Zu ils, elles gehört die Form sont."
+                  }
+                }
+              ],
+              "itemId": "ex-pl-persons-2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-pl-typing",
+      "role": "exercise",
+      "blockId": "block-plural",
+      "label": {
+        "en": "Pronoun–form typing",
+        "fr": "Écrire la forme pour chaque pronom",
+        "de": "Form zum Pronomen schreiben"
+      },
+      "pages": [
+        {
+          "pageId": "ex-pl-typing-1",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the form for each pronoun.",
+            "fr": "Écrivez la forme pour chaque pronom.",
+            "de": "Schreib die Form zu jedem Pronomen."
+          },
+          "items": [
+            {
+              "type": "grammar_pronoun_form_typing",
+              "ruleIds": [
+                "rule-plural-forms"
+              ],
+              "rows": [
+                {
+                  "rowId": "r-1",
+                  "pronoun": "nous",
+                  "accepted": {
+                    "answers": [
+                      "sommes"
+                    ],
+                    "accentSensitive": []
+                  },
+                  "answerExplanation": {
+                    "en": "With nous, être is sommes.",
+                    "fr": "Avec nous, être devient sommes.",
+                    "de": "Zu nous gehört die Form sommes."
+                  }
+                },
+                {
+                  "rowId": "r-2",
+                  "pronoun": "vous",
+                  "accepted": {
+                    "answers": [
+                      "êtes"
+                    ],
+                    "accentSensitive": []
+                  },
+                  "answerExplanation": {
+                    "en": "With vous, être is êtes, with an accent circonflexe on the first e.",
+                    "fr": "Avec vous, être devient êtes, avec un accent circonflexe sur le premier e.",
+                    "de": "Zu vous gehört êtes, mit Accent circonflexe auf dem ersten e."
+                  }
+                },
+                {
+                  "rowId": "r-3",
+                  "pronoun": "ils",
+                  "accepted": {
+                    "answers": [
+                      "sont"
+                    ],
+                    "accentSensitive": []
+                  },
+                  "answerExplanation": {
+                    "en": "With ils, elles, être is sont.",
+                    "fr": "Avec ils, elles, être devient sont.",
+                    "de": "Zu ils, elles gehört die Form sont."
+                  }
+                }
+              ],
+              "itemId": "ex-pl-typing-1"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-pl-typing-2",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the form for each pronoun.",
+            "fr": "Écrivez la forme pour chaque pronom.",
+            "de": "Schreib die Form zu jedem Pronomen."
+          },
+          "items": [
+            {
+              "type": "grammar_pronoun_form_typing",
+              "ruleIds": [
+                "rule-plural-forms"
+              ],
+              "rows": [
+                {
+                  "rowId": "r-1",
+                  "pronoun": "elles",
+                  "accepted": {
+                    "answers": [
+                      "sont"
+                    ],
+                    "accentSensitive": []
+                  },
+                  "answerExplanation": {
+                    "en": "Elles is 3rd person plural (like ils), so être is sont.",
+                    "fr": "Elles est à la 3e personne du pluriel (comme ils) : être devient sont.",
+                    "de": "Elles ist 3. Person Plural (wie ils), also heißt être sont."
+                  }
+                },
+                {
+                  "rowId": "r-2",
+                  "pronoun": "nous",
+                  "accepted": {
+                    "answers": [
+                      "sommes"
+                    ],
+                    "accentSensitive": []
+                  },
+                  "answerExplanation": {
+                    "en": "With nous, être is sommes.",
+                    "fr": "Avec nous, être devient sommes.",
+                    "de": "Zu nous gehört die Form sommes."
+                  }
+                },
+                {
+                  "rowId": "r-3",
+                  "pronoun": "vous",
+                  "accepted": {
+                    "answers": [
+                      "êtes"
+                    ],
+                    "accentSensitive": []
+                  },
+                  "answerExplanation": {
+                    "en": "With vous, être is êtes, with an accent circonflexe on the first e.",
+                    "fr": "Avec vous, être devient êtes, avec un accent circonflexe sur le premier e.",
+                    "de": "Zu vous gehört êtes, mit Accent circonflexe auf dem ersten e."
+                  }
+                }
+              ],
+              "itemId": "ex-pl-typing-2"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-pl-typing-3",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the form for each pronoun.",
+            "fr": "Écrivez la forme pour chaque pronom.",
+            "de": "Schreib die Form zu jedem Pronomen."
+          },
+          "items": [
+            {
+              "type": "grammar_pronoun_form_typing",
+              "ruleIds": [
+                "rule-plural-forms"
+              ],
+              "rows": [
+                {
+                  "rowId": "r-1",
+                  "pronoun": "vous",
+                  "accepted": {
+                    "answers": [
+                      "êtes"
+                    ],
+                    "accentSensitive": []
+                  },
+                  "answerExplanation": {
+                    "en": "With vous, être is êtes, with an accent circonflexe on the first e.",
+                    "fr": "Avec vous, être devient êtes, avec un accent circonflexe sur le premier e.",
+                    "de": "Zu vous gehört êtes, mit Accent circonflexe auf dem ersten e."
+                  }
+                },
+                {
+                  "rowId": "r-2",
+                  "pronoun": "elles",
+                  "accepted": {
+                    "answers": [
+                      "sont"
+                    ],
+                    "accentSensitive": []
+                  },
+                  "answerExplanation": {
+                    "en": "Elles is 3rd person plural (like ils), so être is sont.",
+                    "fr": "Elles est à la 3e personne du pluriel (comme ils) : être devient sont.",
+                    "de": "Elles ist 3. Person Plural (wie ils), also heißt être sont."
+                  }
+                },
+                {
+                  "rowId": "r-3",
+                  "pronoun": "nous",
+                  "accepted": {
+                    "answers": [
+                      "sommes"
+                    ],
+                    "accentSensitive": []
+                  },
+                  "answerExplanation": {
+                    "en": "With nous, être is sommes.",
+                    "fr": "Avec nous, être devient sommes.",
+                    "de": "Zu nous gehört die Form sommes."
+                  }
+                }
+              ],
+              "itemId": "ex-pl-typing-3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-pl-choice",
+      "role": "exercise",
+      "blockId": "block-plural",
+      "label": {
+        "en": "Multiple-choice gaps 2",
+        "fr": "Phrases à trous à choix multiple 2",
+        "de": "Lücken mit Auswahl 2"
+      },
+      "pages": [
+        {
+          "pageId": "ex-pl-choice-1",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "ruleIds": [
+                "rule-plural-forms"
+              ],
+              "before": "Nous",
+              "after": "étudiants.",
+              "choices": [
+                {
+                  "choiceId": "c-1",
+                  "text": "sommes"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "sont"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "êtes"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "est"
+                }
+              ],
+              "answerChoiceId": "c-1",
+              "hint": null,
+              "answerExplanation": {
+                "en": "With nous, être is sommes.",
+                "fr": "Avec nous, être devient sommes.",
+                "de": "Zu nous gehört die Form sommes."
+              },
+              "itemId": "ex-pl-choice-1"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-pl-choice-2",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "ruleIds": [
+                "rule-plural-forms"
+              ],
+              "before": "Vous",
+              "after": "professeur, madame ?",
+              "choices": [
+                {
+                  "choiceId": "c-1",
+                  "text": "es"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "sommes"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "sont"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "êtes"
+                }
+              ],
+              "answerChoiceId": "c-4",
+              "hint": null,
+              "answerExplanation": {
+                "en": "Vous is used for one person politely, too; être is still êtes.",
+                "fr": "Vous s’emploie aussi pour une personne (politesse) ; être reste êtes.",
+                "de": "Vous gilt auch höflich für eine Person; être bleibt êtes."
+              },
+              "itemId": "ex-pl-choice-2"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-pl-choice-3",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "ruleIds": [
+                "rule-liaison-pronunciation"
+              ],
+              "before": "Ils",
+              "after": "allemands.",
+              "choices": [
+                {
+                  "choiceId": "c-1",
+                  "text": "ont"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "sont"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "sommes"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "est"
+                }
+              ],
+              "answerChoiceId": "c-2",
+              "hint": null,
+              "answerExplanation": {
+                "en": "Ils sont allemands: ils sont (être, [s]) – ils ont belongs to avoir.",
+                "fr": "Ils sont allemands : ils sont (être, [s]) – ils ont appartient à avoir.",
+                "de": "Ils sont allemands: ils sont (être, [s]) – ils ont gehört zu avoir."
+              },
+              "itemId": "ex-pl-choice-3"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-pl-choice-4",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "ruleIds": [
+                "rule-plural-forms"
+              ],
+              "before": "Paul et Léa",
+              "after": "mariés.",
+              "choices": [
+                {
+                  "choiceId": "c-1",
+                  "text": "êtes"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "sont"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "sommes"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "est"
+                }
+              ],
+              "answerChoiceId": "c-2",
+              "hint": null,
+              "answerExplanation": {
+                "en": "Paul et Léa is 3rd person plural (like ils), so être is sont.",
+                "fr": "Paul et Léa est à la 3e personne du pluriel (comme ils) : être devient sont.",
+                "de": "Paul et Léa ist 3. Person Plural (wie ils), also heißt être sont."
+              },
+              "itemId": "ex-pl-choice-4"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-pl-choice-5",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "ruleIds": [
+                "rule-plural-forms"
+              ],
+              "before": "Toi et moi, nous",
+              "after": "amis.",
+              "choices": [
+                {
+                  "choiceId": "c-1",
+                  "text": "suis"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "sont"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "sommes"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "êtes"
+                }
+              ],
+              "answerChoiceId": "c-3",
+              "hint": null,
+              "answerExplanation": {
+                "en": "Toi et moi is 1st person plural (like nous), so être is sommes.",
+                "fr": "Toi et moi est à la 1re personne du pluriel (comme nous) : être devient sommes.",
+                "de": "Toi et moi ist 1. Person Plural (wie nous), also heißt être sommes."
+              },
+              "itemId": "ex-pl-choice-5"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-pl-choice-6",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "ruleIds": [
+                "rule-liaison-pronunciation"
+              ],
+              "before": "Elles",
+              "after": "en vacances.",
+              "choices": [
+                {
+                  "choiceId": "c-1",
+                  "text": "ont"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "est"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "êtes"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "sont"
+                }
+              ],
+              "answerChoiceId": "c-4",
+              "hint": null,
+              "answerExplanation": {
+                "en": "Elles sont en vacances: ils sont (être, [s]) – ils ont belongs to avoir.",
+                "fr": "Elles sont en vacances : ils sont (être, [s]) – ils ont appartient à avoir.",
+                "de": "Elles sont en vacances: ils sont (être, [s]) – ils ont gehört zu avoir."
+              },
+              "itemId": "ex-pl-choice-6"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-pl-choice-7",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "ruleIds": [
+                "rule-plural-forms"
+              ],
+              "before": "Vous",
+              "after": "prêts, les enfants ?",
+              "choices": [
+                {
+                  "choiceId": "c-1",
+                  "text": "sont"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "sommes"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "êtes"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "est"
+                }
+              ],
+              "answerChoiceId": "c-3",
+              "hint": null,
+              "answerExplanation": {
+                "en": "With vous, être is êtes, with an accent circonflexe on the first e.",
+                "fr": "Avec vous, être devient êtes, avec un accent circonflexe sur le premier e.",
+                "de": "Zu vous gehört êtes, mit Accent circonflexe auf dem ersten e."
+              },
+              "itemId": "ex-pl-choice-7"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-pl-choice-8",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "ruleIds": [
+                "rule-plural-forms"
+              ],
+              "before": "Mes parents",
+              "after": "à Marseille.",
+              "choices": [
+                {
+                  "choiceId": "c-1",
+                  "text": "sont"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "sommes"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "est"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "êtes"
+                }
+              ],
+              "answerChoiceId": "c-1",
+              "hint": null,
+              "answerExplanation": {
+                "en": "Mes parents is 3rd person plural (like ils), so être is sont.",
+                "fr": "Mes parents est à la 3e personne du pluriel (comme ils) : être devient sont.",
+                "de": "Mes parents ist 3. Person Plural (wie ils), also heißt être sont."
+              },
+              "itemId": "ex-pl-choice-8"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-pl-gap",
+      "role": "exercise",
+      "blockId": "block-plural",
+      "label": {
+        "en": "Typed gaps 2",
+        "fr": "Phrases à trous à écrire 2",
+        "de": "Lücken zum Schreiben 2"
+      },
+      "pages": [
+        {
+          "pageId": "ex-pl-gap-1",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-plural-forms"
+              ],
+              "before": "Nous",
+              "after": "en classe.",
+              "accepted": {
+                "answers": [
+                  "sommes"
+                ],
+                "accentSensitive": []
+              },
+              "hint": {
+                "en": "être, 1st person plural",
+                "fr": "être, 1re personne du pluriel",
+                "de": "être, 1. Person Plural"
+              },
+              "answerExplanation": {
+                "en": "With nous, être is sommes.",
+                "fr": "Avec nous, être devient sommes.",
+                "de": "Zu nous gehört die Form sommes."
+              },
+              "itemId": "ex-pl-gap-1"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-pl-gap-2",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-plural-forms"
+              ],
+              "before": "Vous",
+              "after": "suisses ?",
+              "accepted": {
+                "answers": [
+                  "êtes"
+                ],
+                "accentSensitive": []
+              },
+              "hint": {
+                "en": "être, 2nd person plural",
+                "fr": "être, 2e personne du pluriel",
+                "de": "être, 2. Person Plural"
+              },
+              "answerExplanation": {
+                "en": "With vous, être is êtes, with an accent circonflexe on the first e.",
+                "fr": "Avec vous, être devient êtes, avec un accent circonflexe sur le premier e.",
+                "de": "Zu vous gehört êtes, mit Accent circonflexe auf dem ersten e."
+              },
+              "itemId": "ex-pl-gap-2"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-pl-gap-3",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-liaison-pronunciation"
+              ],
+              "before": "Ils",
+              "after": "très gentils.",
+              "accepted": {
+                "answers": [
+                  "sont"
+                ],
+                "accentSensitive": []
+              },
+              "hint": {
+                "en": "être, 3rd person plural",
+                "fr": "être, 3e personne du pluriel",
+                "de": "être, 3. Person Plural"
+              },
+              "answerExplanation": {
+                "en": "Ils sont très gentils: ils sont (être, [s]) – ils ont belongs to avoir.",
+                "fr": "Ils sont très gentils : ils sont (être, [s]) – ils ont appartient à avoir.",
+                "de": "Ils sont très gentils: ils sont (être, [s]) – ils ont gehört zu avoir."
+              },
+              "itemId": "ex-pl-gap-3"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-pl-gap-4",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-plural-forms"
+              ],
+              "before": "Les étudiants",
+              "after": "dans la salle.",
+              "accepted": {
+                "answers": [
+                  "sont"
+                ],
+                "accentSensitive": []
+              },
+              "hint": {
+                "en": "être",
+                "fr": "être",
+                "de": "être"
+              },
+              "answerExplanation": {
+                "en": "Les étudiants is 3rd person plural (like ils), so être is sont.",
+                "fr": "Les étudiants est à la 3e personne du pluriel (comme ils) : être devient sont.",
+                "de": "Les étudiants ist 3. Person Plural (wie ils), also heißt être sont."
+              },
+              "itemId": "ex-pl-gap-4"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-pl-gap-5",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-plural-forms"
+              ],
+              "before": "Marie et moi, nous",
+              "after": "sœurs.",
+              "accepted": {
+                "answers": [
+                  "sommes"
+                ],
+                "accentSensitive": []
+              },
+              "hint": {
+                "en": "être",
+                "fr": "être",
+                "de": "être"
+              },
+              "answerExplanation": {
+                "en": "Marie et moi is 1st person plural (like nous), so être is sommes.",
+                "fr": "Marie et moi est à la 1re personne du pluriel (comme nous) : être devient sommes.",
+                "de": "Marie et moi ist 1. Person Plural (wie nous), also heißt être sommes."
+              },
+              "itemId": "ex-pl-gap-5"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-pl-gap-6",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-plural-forms"
+              ],
+              "before": "Vous",
+              "after": "de Bruxelles ?",
+              "accepted": {
+                "answers": [
+                  "êtes"
+                ],
+                "accentSensitive": []
+              },
+              "hint": {
+                "en": "être",
+                "fr": "être",
+                "de": "être"
+              },
+              "answerExplanation": {
+                "en": "With vous, être is êtes, with an accent circonflexe on the first e.",
+                "fr": "Avec vous, être devient êtes, avec un accent circonflexe sur le premier e.",
+                "de": "Zu vous gehört êtes, mit Accent circonflexe auf dem ersten e."
+              },
+              "itemId": "ex-pl-gap-6"
             }
           ]
         }
@@ -1251,9 +2425,9 @@
       },
       "pages": [
         {
-          "pageId": "exam-page-1",
+          "pageId": "exam-forms",
           "estimatedDurationS": 90,
-          "timeLimitS": 120,
+          "timeLimitS": 140,
           "instructions": {
             "en": "Type the form for each pronoun.",
             "fr": "Écrivez la forme pour chaque pronom.",
@@ -1262,13 +2436,13 @@
           "items": [
             {
               "type": "grammar_pronoun_form_typing",
-              "itemId": "exam-page-1-1",
               "ruleIds": [
-                "rule-singular-forms"
+                "rule-singular-forms",
+                "rule-plural-forms"
               ],
               "rows": [
                 {
-                  "rowId": "je",
+                  "rowId": "r-1",
                   "pronoun": "je",
                   "accepted": {
                     "answers": [
@@ -1277,22 +2451,13 @@
                     "accentSensitive": []
                   },
                   "answerExplanation": {
-                    "en": "With je, être becomes suis: je suis.",
-                    "fr": "Avec je, être devient suis : je suis.",
-                    "de": "Mit je wird être zu suis: je suis."
+                    "en": "With je, être is suis.",
+                    "fr": "Avec je, être devient suis.",
+                    "de": "Zu je gehört die Form suis."
                   }
-                }
-              ]
-            },
-            {
-              "type": "grammar_pronoun_form_typing",
-              "itemId": "exam-page-1-2",
-              "ruleIds": [
-                "rule-singular-forms"
-              ],
-              "rows": [
+                },
                 {
-                  "rowId": "tu",
+                  "rowId": "r-2",
                   "pronoun": "tu",
                   "accepted": {
                     "answers": [
@@ -1301,23 +2466,14 @@
                     "accentSensitive": []
                   },
                   "answerExplanation": {
-                    "en": "With tu, être becomes es: tu es. It sounds like est but ends in -s.",
-                    "fr": "Avec tu, être devient es : tu es. Cela se prononce comme est mais s’écrit avec -s.",
-                    "de": "Mit tu wird être zu es: tu es. Es klingt wie est, endet aber auf -s."
+                    "en": "With tu, être is es.",
+                    "fr": "Avec tu, être devient es.",
+                    "de": "Zu tu gehört die Form es."
                   }
-                }
-              ]
-            },
-            {
-              "type": "grammar_pronoun_form_typing",
-              "itemId": "exam-page-1-3",
-              "ruleIds": [
-                "rule-singular-forms"
-              ],
-              "rows": [
+                },
                 {
-                  "rowId": "elle",
-                  "pronoun": "elle",
+                  "rowId": "r-3",
+                  "pronoun": "il",
                   "accepted": {
                     "answers": [
                       "est"
@@ -1325,22 +2481,22 @@
                     "accentSensitive": []
                   },
                   "answerExplanation": {
-                    "en": "With il, elle and on, être becomes est, written with a final -t.",
-                    "fr": "Avec il, elle et on, être devient est, avec un -t final.",
-                    "de": "Mit il, elle und on wird être zu est, mit -t am Ende."
+                    "en": "Il is 3rd person singular (like il), so être is est.",
+                    "fr": "Il est à la 3e personne du singulier (comme il) : être devient est.",
+                    "de": "Il ist 3. Person Singular (wie il), also heißt être est."
                   }
                 }
-              ]
+              ],
+              "itemId": "exam-forms-1"
             },
             {
               "type": "grammar_pronoun_form_typing",
-              "itemId": "exam-page-1-4",
               "ruleIds": [
                 "rule-plural-forms"
               ],
               "rows": [
                 {
-                  "rowId": "nous",
+                  "rowId": "r-1",
                   "pronoun": "nous",
                   "accepted": {
                     "answers": [
@@ -1349,22 +2505,13 @@
                     "accentSensitive": []
                   },
                   "answerExplanation": {
-                    "en": "With nous, être becomes sommes: nous sommes.",
-                    "fr": "Avec nous, être devient sommes : nous sommes.",
-                    "de": "Mit nous wird être zu sommes: nous sommes."
+                    "en": "With nous, être is sommes.",
+                    "fr": "Avec nous, être devient sommes.",
+                    "de": "Zu nous gehört die Form sommes."
                   }
-                }
-              ]
-            },
-            {
-              "type": "grammar_pronoun_form_typing",
-              "itemId": "exam-page-1-5",
-              "ruleIds": [
-                "rule-plural-forms"
-              ],
-              "rows": [
+                },
                 {
-                  "rowId": "vous",
+                  "rowId": "r-2",
                   "pronoun": "vous",
                   "accepted": {
                     "answers": [
@@ -1373,22 +2520,13 @@
                     "accentSensitive": []
                   },
                   "answerExplanation": {
-                    "en": "With vous, être becomes êtes, with an accent circonflexe on the first e: vous êtes.",
-                    "fr": "Avec vous, être devient êtes, avec un accent circonflexe sur le premier e : vous êtes.",
-                    "de": "Mit vous wird être zu êtes, mit accent circonflexe auf dem ersten e: vous êtes."
+                    "en": "With vous, être is êtes, with an accent circonflexe on the first e.",
+                    "fr": "Avec vous, être devient êtes, avec un accent circonflexe sur le premier e.",
+                    "de": "Zu vous gehört êtes, mit Accent circonflexe auf dem ersten e."
                   }
-                }
-              ]
-            },
-            {
-              "type": "grammar_pronoun_form_typing",
-              "itemId": "exam-page-1-6",
-              "ruleIds": [
-                "rule-plural-forms"
-              ],
-              "rows": [
+                },
                 {
-                  "rowId": "elles",
+                  "rowId": "r-3",
                   "pronoun": "elles",
                   "accepted": {
                     "answers": [
@@ -1397,19 +2535,20 @@
                     "accentSensitive": []
                   },
                   "answerExplanation": {
-                    "en": "With ils and elles, être becomes sont, with an s sound: ils sont.",
-                    "fr": "Avec ils et elles, être devient sont, avec le son s : ils sont.",
-                    "de": "Mit ils und elles wird être zu sont, mit s-Laut: ils sont."
+                    "en": "Elles is 3rd person plural (like ils), so être is sont.",
+                    "fr": "Elles est à la 3e personne du pluriel (comme ils) : être devient sont.",
+                    "de": "Elles ist 3. Person Plural (wie ils), also heißt être sont."
                   }
                 }
-              ]
+              ],
+              "itemId": "exam-forms-2"
             }
           ]
         },
         {
-          "pageId": "exam-page-2",
-          "estimatedDurationS": 90,
-          "timeLimitS": 120,
+          "pageId": "exam-singular",
+          "estimatedDurationS": 135,
+          "timeLimitS": 210,
           "instructions": {
             "en": "Type the missing words.",
             "fr": "Écrivez les mots manquants.",
@@ -1418,9 +2557,11 @@
           "items": [
             {
               "type": "grammar_gap_typing",
-              "itemId": "exam-page-2-1",
+              "ruleIds": [
+                "rule-singular-forms"
+              ],
               "before": "Je",
-              "after": "ingénieur.",
+              "after": "architecte.",
               "accepted": {
                 "answers": [
                   "suis"
@@ -1428,20 +2569,20 @@
                 "accentSensitive": []
               },
               "hint": null,
-              "ruleIds": [
-                "rule-singular-forms"
-              ],
               "answerExplanation": {
-                "en": "With je, être becomes suis: je suis.",
-                "fr": "Avec je, être devient suis : je suis.",
-                "de": "Mit je wird être zu suis: je suis."
-              }
+                "en": "With je, être is suis.",
+                "fr": "Avec je, être devient suis.",
+                "de": "Zu je gehört die Form suis."
+              },
+              "itemId": "exam-singular-1"
             },
             {
               "type": "grammar_gap_typing",
-              "itemId": "exam-page-2-2",
+              "ruleIds": [
+                "rule-singular-forms"
+              ],
               "before": "Tu",
-              "after": "belge ?",
+              "after": "espagnol ?",
               "accepted": {
                 "answers": [
                   "es"
@@ -1449,20 +2590,20 @@
                 "accentSensitive": []
               },
               "hint": null,
-              "ruleIds": [
-                "rule-singular-forms"
-              ],
               "answerExplanation": {
-                "en": "With tu, être becomes es: tu es. It sounds like est but ends in -s.",
-                "fr": "Avec tu, être devient es : tu es. Cela se prononce comme est mais s’écrit avec -s.",
-                "de": "Mit tu wird être zu es: tu es. Es klingt wie est, endet aber auf -s."
-              }
+                "en": "With tu, être is es.",
+                "fr": "Avec tu, être devient es.",
+                "de": "Zu tu gehört die Form es."
+              },
+              "itemId": "exam-singular-2"
             },
             {
               "type": "grammar_gap_typing",
-              "itemId": "exam-page-2-3",
+              "ruleIds": [
+                "rule-singular-forms"
+              ],
               "before": "Mon frère",
-              "after": "malade.",
+              "after": "pilote.",
               "accepted": {
                 "answers": [
                   "est"
@@ -1470,20 +2611,158 @@
                 "accentSensitive": []
               },
               "hint": null,
-              "ruleIds": [
-                "rule-singular-forms"
-              ],
               "answerExplanation": {
-                "en": "Mon frère is one person (il), so être becomes est.",
-                "fr": "Mon frère est une personne (il), donc être devient est.",
-                "de": "Mon frère ist eine Person (il), also wird être zu est."
-              }
+                "en": "Mon frère is 3rd person singular (like il), so être is est.",
+                "fr": "Mon frère est à la 3e personne du singulier (comme il) : être devient est.",
+                "de": "Mon frère ist 3. Person Singular (wie il), also heißt être est."
+              },
+              "itemId": "exam-singular-3"
             },
             {
               "type": "grammar_gap_typing",
-              "itemId": "exam-page-2-4",
+              "ruleIds": [
+                "rule-singular-forms"
+              ],
+              "before": "Elle",
+              "after": "contente.",
+              "accepted": {
+                "answers": [
+                  "est"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null,
+              "answerExplanation": {
+                "en": "Elle is 3rd person singular (like il), so être is est.",
+                "fr": "Elle est à la 3e personne du singulier (comme il) : être devient est.",
+                "de": "Elle ist 3. Person Singular (wie il), also heißt être est."
+              },
+              "itemId": "exam-singular-4"
+            },
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-singular-forms"
+              ],
+              "before": "On",
+              "after": "au café.",
+              "accepted": {
+                "answers": [
+                  "est"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null,
+              "answerExplanation": {
+                "en": "On is 3rd person singular (like il), so être is est.",
+                "fr": "On est à la 3e personne du singulier (comme il) : être devient est.",
+                "de": "On ist 3. Person Singular (wie il), also heißt être est."
+              },
+              "itemId": "exam-singular-5"
+            },
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-singular-forms"
+              ],
+              "before": "Je",
+              "after": "chez moi.",
+              "accepted": {
+                "answers": [
+                  "suis"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null,
+              "answerExplanation": {
+                "en": "With je, être is suis.",
+                "fr": "Avec je, être devient suis.",
+                "de": "Zu je gehört die Form suis."
+              },
+              "itemId": "exam-singular-6"
+            },
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-singular-forms"
+              ],
+              "before": "Le chat",
+              "after": "noir.",
+              "accepted": {
+                "answers": [
+                  "est"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null,
+              "answerExplanation": {
+                "en": "Le chat is 3rd person singular (like il), so être is est.",
+                "fr": "Le chat est à la 3e personne du singulier (comme il) : être devient est.",
+                "de": "Le chat ist 3. Person Singular (wie il), also heißt être est."
+              },
+              "itemId": "exam-singular-7"
+            },
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-singular-forms"
+              ],
+              "before": "Tu",
+              "after": "en forme.",
+              "accepted": {
+                "answers": [
+                  "es"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null,
+              "answerExplanation": {
+                "en": "With tu, être is es.",
+                "fr": "Avec tu, être devient es.",
+                "de": "Zu tu gehört die Form es."
+              },
+              "itemId": "exam-singular-8"
+            },
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-singular-forms"
+              ],
+              "before": "Madame Dupont",
+              "after": "directrice.",
+              "accepted": {
+                "answers": [
+                  "est"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null,
+              "answerExplanation": {
+                "en": "Madame Dupont is 3rd person singular (like il), so être is est.",
+                "fr": "Madame Dupont est à la 3e personne du singulier (comme il) : être devient est.",
+                "de": "Madame Dupont ist 3. Person Singular (wie il), also heißt être est."
+              },
+              "itemId": "exam-singular-9"
+            }
+          ]
+        },
+        {
+          "pageId": "exam-plural",
+          "estimatedDurationS": 135,
+          "timeLimitS": 210,
+          "instructions": {
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-plural-forms"
+              ],
               "before": "Nous",
-              "after": "amis.",
+              "after": "japonais.",
               "accepted": {
                 "answers": [
                   "sommes"
@@ -1491,20 +2770,20 @@
                 "accentSensitive": []
               },
               "hint": null,
-              "ruleIds": [
-                "rule-plural-forms"
-              ],
               "answerExplanation": {
-                "en": "With nous, être becomes sommes: nous sommes.",
-                "fr": "Avec nous, être devient sommes : nous sommes.",
-                "de": "Mit nous wird être zu sommes: nous sommes."
-              }
+                "en": "With nous, être is sommes.",
+                "fr": "Avec nous, être devient sommes.",
+                "de": "Zu nous gehört die Form sommes."
+              },
+              "itemId": "exam-plural-1"
             },
             {
               "type": "grammar_gap_typing",
-              "itemId": "exam-page-2-5",
+              "ruleIds": [
+                "rule-plural-forms"
+              ],
               "before": "Vous",
-              "after": "professeurs ?",
+              "after": "fatigués ?",
               "accepted": {
                 "answers": [
                   "êtes"
@@ -1512,19 +2791,124 @@
                 "accentSensitive": []
               },
               "hint": null,
+              "answerExplanation": {
+                "en": "With vous, être is êtes, with an accent circonflexe on the first e.",
+                "fr": "Avec vous, être devient êtes, avec un accent circonflexe sur le premier e.",
+                "de": "Zu vous gehört êtes, mit Accent circonflexe auf dem ersten e."
+              },
+              "itemId": "exam-plural-2"
+            },
+            {
+              "type": "grammar_gap_typing",
               "ruleIds": [
                 "rule-plural-forms",
                 "rule-liaison-pronunciation"
               ],
+              "before": "Ils",
+              "after": "au travail.",
+              "accepted": {
+                "answers": [
+                  "sont"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null,
               "answerExplanation": {
-                "en": "With vous, être becomes êtes, with an accent circonflexe on the first e: vous êtes.",
-                "fr": "Avec vous, être devient êtes, avec un accent circonflexe sur le premier e : vous êtes.",
-                "de": "Mit vous wird être zu êtes, mit accent circonflexe auf dem ersten e: vous êtes."
-              }
+                "en": "Ils sont au travail: ils sont (être, [s]) – ils ont belongs to avoir.",
+                "fr": "Ils sont au travail : ils sont (être, [s]) – ils ont appartient à avoir.",
+                "de": "Ils sont au travail: ils sont (être, [s]) – ils ont gehört zu avoir."
+              },
+              "itemId": "exam-plural-3"
             },
             {
               "type": "grammar_gap_typing",
-              "itemId": "exam-page-2-6",
+              "ruleIds": [
+                "rule-plural-forms"
+              ],
+              "before": "Léa et Tom",
+              "after": "cousins.",
+              "accepted": {
+                "answers": [
+                  "sont"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null,
+              "answerExplanation": {
+                "en": "Léa et Tom is 3rd person plural (like ils), so être is sont.",
+                "fr": "Léa et Tom est à la 3e personne du pluriel (comme ils) : être devient sont.",
+                "de": "Léa et Tom ist 3. Person Plural (wie ils), also heißt être sont."
+              },
+              "itemId": "exam-plural-4"
+            },
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-plural-forms"
+              ],
+              "before": "Vous",
+              "after": "monsieur Martin ?",
+              "accepted": {
+                "answers": [
+                  "êtes"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null,
+              "answerExplanation": {
+                "en": "With vous, être is êtes, with an accent circonflexe on the first e.",
+                "fr": "Avec vous, être devient êtes, avec un accent circonflexe sur le premier e.",
+                "de": "Zu vous gehört êtes, mit Accent circonflexe auf dem ersten e."
+              },
+              "itemId": "exam-plural-5"
+            },
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-plural-forms"
+              ],
+              "before": "Nous",
+              "after": "en avance.",
+              "accepted": {
+                "answers": [
+                  "sommes"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null,
+              "answerExplanation": {
+                "en": "With nous, être is sommes.",
+                "fr": "Avec nous, être devient sommes.",
+                "de": "Zu nous gehört die Form sommes."
+              },
+              "itemId": "exam-plural-6"
+            },
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-liaison-pronunciation"
+              ],
+              "before": "Elles",
+              "after": "amies.",
+              "accepted": {
+                "answers": [
+                  "sont"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null,
+              "answerExplanation": {
+                "en": "Elles sont amies: ils sont (être, [s]) – ils ont belongs to avoir.",
+                "fr": "Elles sont amies : ils sont (être, [s]) – ils ont appartient à avoir.",
+                "de": "Elles sont amies: ils sont (être, [s]) – ils ont gehört zu avoir."
+              },
+              "itemId": "exam-plural-7"
+            },
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-plural-forms"
+              ],
               "before": "Les enfants",
               "after": "à l’école.",
               "accepted": {
@@ -1534,15 +2918,33 @@
                 "accentSensitive": []
               },
               "hint": null,
-              "ruleIds": [
-                "rule-plural-forms",
-                "rule-liaison-pronunciation"
-              ],
               "answerExplanation": {
-                "en": "Les enfants = ils, so être becomes sont (s sound). Ils ont would mean “they have”.",
-                "fr": "Les enfants = ils, donc être devient sont (son s). Ils ont voudrait dire « ils possèdent ».",
-                "de": "Les enfants = ils, also wird être zu sont (s-Laut). Ils ont hieße „sie haben“."
-              }
+                "en": "Les enfants is 3rd person plural (like ils), so être is sont.",
+                "fr": "Les enfants est à la 3e personne du pluriel (comme ils) : être devient sont.",
+                "de": "Les enfants ist 3. Person Plural (wie ils), also heißt être sont."
+              },
+              "itemId": "exam-plural-8"
+            },
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-plural-forms"
+              ],
+              "before": "Paul et moi, nous",
+              "after": "voisins.",
+              "accepted": {
+                "answers": [
+                  "sommes"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null,
+              "answerExplanation": {
+                "en": "Paul et moi is 1st person plural (like nous), so être is sommes.",
+                "fr": "Paul et moi est à la 1re personne du pluriel (comme nous) : être devient sommes.",
+                "de": "Paul et moi ist 1. Person Plural (wie nous), also heißt être sommes."
+              },
+              "itemId": "exam-plural-9"
             }
           ]
         }

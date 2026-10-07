@@ -2,7 +2,7 @@ import type { z } from 'zod';
 
 import { nativeLocales } from '../schemas/artifactCommon.ts';
 import { briefSchema, contentSchema, hasContentFile, isSupportedKind, type Brief, type LessonContent } from '../schemas/artifacts.ts';
-import { PERSON_MATCHING_EXEMPT, PERSON_MATCHING_TOPICS, PERSONS, PRONOUN_FORM_TOPICS, PRONOUN_FORM_TYPES, type GrammarBrief, type GrammarContent, type GrammarItem } from '../schemas/grammar.ts';
+import { GRAMMAR_LENGTH, PERSON_MATCHING_EXEMPT, PERSON_MATCHING_TOPICS, PERSONS, PRONOUN_FORM_TOPICS, PRONOUN_FORM_TYPES, type GrammarBrief, type GrammarContent, type GrammarItem } from '../schemas/grammar.ts';
 import type { OutlineEntry } from '../schemas/outline.ts';
 import { learningForms, parseRichText, richTextShape } from '../domain/richText.ts';
 import type { VocabularyBrief, VocabularyTarget } from '../schemas/vocabulary.ts';
@@ -195,6 +195,9 @@ function checkGrammarBrief(b: GrammarBrief, issues: Issues) {
   if ((PERSON_MATCHING_TOPICS as readonly string[]).includes(b.topic) && !(PERSON_MATCHING_EXEMPT as readonly string[]).includes(b.id)) {
     issues.check(b.blocks.some((x) => x.exercises.some((e) => e.type === 'grammar_person_matching')), 'blocks', `${b.topic} lessons include a grammar_person_matching exercise`);
   }
+  issues.unique(b.newVerbs.map((v) => v.infinitive), 'newVerbs', 'infinitive');
+  const [minPages, maxPages] = GRAMMAR_LENGTH.examPages;
+  issues.check(b.exam.pages.length >= minPages && b.exam.pages.length <= maxPages, 'exam.pages', `the exam has ${minPages}–${maxPages} pages (P3-07)`);
   const examined = new Set(b.exam.pages.flatMap((pg) => pg.ruleIds));
   b.exam.pages.forEach((pg, i) => {
     for (const r of pg.ruleIds) issues.check(rules.has(r), `exam.pages.${i}.ruleIds`, `unknown rule ${r}`);
@@ -322,6 +325,27 @@ function checkGrammarItem(item: GrammarItem, path: string, rules: Set<string>, e
   if ('answerExplanation' in item) checkExplanations([item], path, issues);
 }
 
+/** Scored units of a grammar item: one per row for row items, else one. */
+const unitCount = (item: GrammarItem) => ('rows' in item ? item.rows.length : item.type === 'grammar_explanation' || item.type === 'production_feedback_placeholder' ? 0 : 1);
+
+/** Lesson length (P3-07): enough scored units, and page estimates that fit the work on the page. */
+function checkGrammarLength(c: GrammarContent, issues: Issues) {
+  const L = GRAMMAR_LENGTH;
+  const units = (role: 'exam' | 'practice') => c.steps.filter((s) => (role === 'exam' ? s.role === 'exam' : s.role === 'exercise')).flatMap((s) => s.pages.flatMap((pg) => pg.items)).reduce((n, it) => n + unitCount(it), 0);
+  issues.check(units('practice') >= L.minPracticeUnits, 'steps', `practice has ${units('practice')} scored units; at least ${L.minPracticeUnits} (P3-07)`);
+  issues.check(units('exam') >= L.minExamUnits, 'steps', `the exam has ${units('exam')} scored units; at least ${L.minExamUnits} (P3-07)`);
+  c.steps.forEach((step, si) => step.pages.forEach((pg, pi) => {
+    const n = pg.items.reduce((sum, it) => sum + unitCount(it), 0);
+    const path = `steps.${si}.pages.${pi}.estimatedDurationS`;
+    if (step.role === 'explanation') {
+      issues.check(pg.estimatedDurationS >= L.explanationSeconds[0] && pg.estimatedDurationS <= L.explanationSeconds[1], path, `an explanation page takes ${L.explanationSeconds[0]}–${L.explanationSeconds[1]} s`);
+    } else if (n > 0) {
+      const per = pg.estimatedDurationS / n;
+      issues.check(per >= L.secondsPerUnit[0] && per <= L.secondsPerUnit[1], path, `${Math.round(per)} s per scored unit; keep ${L.secondsPerUnit[0]}–${L.secondsPerUnit[1]} s (P3-07)`);
+    }
+  }));
+}
+
 /** Items assess only the planned rules, and together they assess every planned rule (P3-01). */
 function checkRuleCoverage(items: GrammarItem[], planned: string[], path: string, label: string, issues: Issues) {
   const assessed = new Set(items.flatMap((it) => ('ruleIds' in it ? it.ruleIds : [])));
@@ -373,6 +397,7 @@ function checkGrammarContent(c: GrammarContent, b: GrammarBrief, issues: Issues)
       page.items.forEach((item, ii) => checkGrammarItem(item, `${pp}.items.${ii}`, rules, want.role === 'exam', issues));
     });
   });
+  checkGrammarLength(c, issues);
   const examPages = c.steps[c.steps.length - 1].pages.map((pg) => pg.pageId);
   issues.check(sameSet(examPages, [...examPlan.keys()]), 'steps', 'exam pages must match the brief exam plan');
 }
