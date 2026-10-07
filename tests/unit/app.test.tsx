@@ -40,7 +40,8 @@ describe('lesson index', () => {
     expect(screen.getByRole('heading', { level: 1, name: 'Your lessons' })).toBeInTheDocument();
     expect(ordinals(table)).toEqual(['01', '02', '03', '04', '05', '06', '07', '08', '09']);
     const labels = within(table).getAllByRole('row').slice(1).map((r) => within(r).getAllByRole('link')[0].textContent);
-    expect(labels).toEqual(['Outline', 'Content ⚠', 'Content', 'Content', 'Draft ⚠', 'Outline', 'Content', 'Content', 'Content']);
+    // Vocabulary lessons consist of the brief only, so their highest artifact is the Draft (P2-04).
+    expect(labels).toEqual(['Outline', 'Content ⚠', 'Draft', 'Content', 'Draft ⚠', 'Outline', 'Draft', 'Content', 'Draft']);
     expect(within(table).getAllByRole('link')[0]).toHaveAttribute('href', '#/lesson/fr-fix-greetings');
     expect(screen.getAllByRole('link', { name: 'Start lesson' }).map((a) => a.getAttribute('href'))).toEqual(['#/lesson/fr-classroom-objects/play', '#/lesson/fr-verb-etre-present/play', '#/lesson/fr-classroom-instructions/play', '#/lesson/fr-negation-ne-pas/play', '#/lesson/fr-family-members/play']);
     expect(within(screen.getByRole('radiogroup', { name: 'Learning language' })).getByRole('radio', { name: 'fr', checked: true })).toBeInTheDocument();
@@ -148,12 +149,14 @@ describe('lesson artifact page', () => {
     expect(within(rows[3]).getByText('More demanding')).toBeInTheDocument();
     expect(screen.getByText(/3 core \/ 1 more demanding/)).toBeInTheDocument();
     expect(screen.getAllByText(/Translations: German/).length).toBeGreaterThan(0);
-    expect(screen.getByRole('rowheader', { name: /06 Final exam/ })).toBeInTheDocument();
+    // Every vocabulary lesson has the same derived stages, listening included (P2-04).
+    expect(screen.getByRole('rowheader', { name: /07 Final exam/ })).toBeInTheDocument();
+    expect(screen.getByRole('rowheader', { name: /06 Listening/ })).toBeInTheDocument();
     expect(screen.getByRole('rowheader', { name: /04 Gender \+ overview/ })).toBeInTheDocument();
-    expect(screen.getAllByRole('cell', { name: '1 min' }).length).toBeGreaterThan(0);
+    expect(screen.getByRole('heading', { name: 'Lesson preview' })).toBeInTheDocument();
     await user.selectOptions(screen.getByRole('combobox', { name: 'Interface language' }), 'fr');
     expect(await screen.findByRole('heading', { name: 'Inventaire des mots cibles' })).toBeInTheDocument();
-    expect(screen.getByRole('rowheader', { name: /06 Examen final/ })).toBeInTheDocument();
+    expect(screen.getByRole('rowheader', { name: /07 Examen final/ })).toBeInTheDocument();
   });
 
   it('renders the grammar Draft with rules, tabbed block cards, exercises and the mixed exam', async () => {
@@ -194,17 +197,14 @@ describe('lesson artifact page', () => {
     expect(item(/^Combined artifact object/)).toHaveAttribute('aria-expanded', 'true');
     expect(item(/^outline/)).toHaveAttribute('aria-expanded', 'false');
     expect(item(/^draft/)).toHaveAttribute('aria-expanded', 'false');
-    expect(item(/^content/)).toHaveAttribute('aria-expanded', 'false');
+    expect(within(tree).queryByRole('treeitem', { name: /^content/ })).toBeNull(); // vocabulary: no content file (P2-04)
 
     await user.click(item(/^draft/));
     expect(item(/^objective/)).toHaveAttribute('aria-expanded', 'true');
     expect(item(/^targets/)).toHaveAttribute('aria-expanded', 'false');
     expect(item(/^targetCount: 4/)).not.toHaveAttribute('aria-expanded');
     expect(item(/^prerequisites: \[\]/)).toBeInTheDocument();
-    await user.click(item(/^plan/));
-    expect(item(/^listening/)).toHaveAttribute('aria-expanded', 'true');
-    expect(item(/^required: false/)).toBeInTheDocument();
-    expect(item(/^estimatedDurationS: null/)).toBeInTheDocument();
+    expect(within(tree).queryByRole('treeitem', { name: /^plan/ })).toBeNull();
 
     await user.click(screen.getByRole('button', { name: 'Structured view' }));
     await user.selectOptions(screen.getByRole('combobox', { name: 'Interface language' }), 'fr');

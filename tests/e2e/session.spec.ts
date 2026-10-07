@@ -1,6 +1,8 @@
 import { expect, test, type Page } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
+  // Every vocabulary lesson has listening tasks (P2-04) and needs a French voice to start.
+  await page.addInitScript(installFrenchVoice, true);
   await page.goto('./');
   await page.evaluate(() => localStorage.clear());
 });
@@ -48,6 +50,23 @@ async function answerGap(page: Page, word: string) {
     return !!document.querySelector('.feedback') || !field || field.value === '';
   });
   if (await page.locator('.feedback').count()) await proceed(page);
+}
+
+/**
+ * Answers a listening-choice page: plays the word and picks the option that says it (or another
+ * one). A right choice lights up green and moves on; a wrong one is confirmed after its correction.
+ */
+async function answerListening(page: Page, right = true) {
+  await page.getByRole('button', { name: 'Listen' }).click();
+  const word = await page.evaluate(() => (window as unknown as { __spoken: string[] }).__spoken.at(-1)!);
+  for (const option of await page.locator('fieldset.choices label').all()) {
+    if (((await option.textContent())!.trim() === word) === right) { await option.click(); break; }
+  }
+  await proceed(page);
+  if (!right) {
+    await expect(page.locator('.feedback').first()).toBeVisible();
+    await proceed(page);
+  } else await expect(page.locator('.task-card.is-celebrating')).toHaveCount(0);
 }
 
 /** Confirms the info page that precedes the final exam. */
@@ -107,6 +126,8 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   for (const word of ['livre', 'Chaise', 'stylo', 'table']) {
     await answerGap(page, word);
   }
+  // Every vocabulary lesson continues with a listening choice per word (P2-04).
+  for (let n = 0; n < 4; n++) await answerListening(page);
   // An info page lists the exam pages, their countdowns and the number of words before the exam starts.
   await expect(page.getByRole('heading', { name: 'Your final exam' })).toBeVisible();
   await expect(page.locator('.exam-intro')).toContainText('4 words are tested');
@@ -134,11 +155,11 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   await expect(page.getByRole('heading', { name: 'Your exam answers' })).toBeVisible();
   await expect(page.locator('.result-note-almost')).toHaveCount(0);
   for (const list of await page.locator('.result-list').all()) await expect(list).not.toContainText(/\d \/ 1/); // no point fractions in the review
-  await page.getByRole('button', { name: /^Typed gaps/ }).click();
-  // Only mistakes are listed; the capitalised "Chaise" is an "almost" with half a point.
+  await page.getByRole('button', { name: /^Practice/ }).click();
+  // The capitalised "Chaise" is an "almost" with half a point.
   await expect(page.locator('.result-note-almost')).toBeVisible();
-  await expect(page.locator('.match-summary')).toContainText(/of 4 correct\./);
-  await expect(page.locator('.result-item')).toHaveCount(4); // every answer is listed, correct ones too
+  await expect(page.locator('.match-summary')).toContainText(/of 8 correct\./);
+  await expect(page.locator('.result-item')).toHaveCount(8); // every answer (typed gaps and listening) is listed, correct ones too
   const menu = await page.locator('.result-menu button').allTextContents();
   // The highlighted final exam comes first, then the exercises in the order they were presented.
   expect(menu[0]).toBe('Final exam');
@@ -146,7 +167,7 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   expect(menu[1]).toBe('Matching'); // unscored parts (introduction, flashcards) are not offered
   expect(menu.join()).not.toMatch(/Introduction|Flashcards/);
   // The card shows the selected part (heading and score), the lesson title and the lesson total only.
-  await expect(page.locator('.summary-card h1')).toHaveText('Typed gaps');
+  await expect(page.locator('.summary-card h1')).toHaveText('Practice');
   await expect(page.locator('.summary-card')).toContainText('Les objets de la classe');
   await expect(page.locator('.summary-card')).toContainText(/Lesson total: [\d.]+ \/ 100/);
   await expect(page.locator('.summary-card')).not.toContainText(/contributes|Practice:/);
@@ -190,21 +211,29 @@ test('locks an exam page when its brief-defined countdown expires', async ({ pag
   await expect(page.getByRole('timer')).toHaveText(/^0:4[45]$/);
 });
 
+/** Browser speech synthesis with (or without) one French voice; spoken texts are recorded in window.__spoken. */
+function installFrenchVoice(hasVoice: boolean) {
+  const spoken: string[] = [];
+  // Tests switch the voice off later with window.__setVoice(false), which fires voiceschanged.
+  const listeners: (() => void)[] = [];
+  const state = window as unknown as { __hasVoice: boolean; __setVoice: (on: boolean) => void };
+  state.__hasVoice = hasVoice;
+  state.__setVoice = (on) => { state.__hasVoice = on; listeners.forEach((listener) => listener()); };
+  Object.defineProperty(window, '__spoken', { value: spoken, configurable: true });
+  const french = { lang: 'fr-FR', name: 'Test French', voiceURI: 'test-fr', localService: true, default: true };
+  Object.defineProperty(window, 'speechSynthesis', { configurable: true, value: {
+    getVoices: () => ((window as unknown as { __hasVoice: boolean }).__hasVoice ? [french] : []), cancel: () => undefined,
+    speak: (utterance: { text: string }) => { spoken.push(utterance.text); },
+    addEventListener: (_: string, listener: () => void) => { listeners.push(listener); }, removeEventListener: () => undefined,
+  } });
+  Object.defineProperty(window, 'SpeechSynthesisUtterance', { configurable: true, value: class {
+    text: string; lang = ''; voice: unknown;
+    constructor(text: string) { this.text = text; }
+  } });
+}
+
 async function mockFrenchVoice(page: Page, available: boolean) {
-  await page.addInitScript((hasVoice) => {
-    const spoken: string[] = [];
-    Object.defineProperty(window, '__spoken', { value: spoken, configurable: true });
-    const french = { lang: 'fr-FR', name: 'Test French', voiceURI: 'test-fr', localService: true, default: true };
-    Object.defineProperty(window, 'speechSynthesis', { configurable: true, value: {
-      getVoices: () => hasVoice ? [french] : [], cancel: () => undefined,
-      speak: (utterance: { text: string }) => { spoken.push(utterance.text); },
-      addEventListener: () => undefined, removeEventListener: () => undefined,
-    } });
-    Object.defineProperty(window, 'SpeechSynthesisUtterance', { configurable: true, value: class {
-      text: string; lang = ''; voice: unknown;
-      constructor(text: string) { this.text = text; }
-    } });
-  }, available);
+  await page.addInitScript(installFrenchVoice, available);
   await page.reload();
 }
 
@@ -218,7 +247,7 @@ async function reachListeningPractice(page: Page) {
   await proceed(page);
   await proceed(page); // matching feedback
   await proceed(page); // overview
-  for (const word of ['écoutez', 'lisez']) {
+  for (const word of ['écoutez', 'lisez', 'écrivez', 'répétez']) {
     await answerGap(page, word);
   }
 }
@@ -244,13 +273,15 @@ test('plays French listening choice and dictation with a suitable voice', async 
   await proceed(page);
   await expect(page.locator('.task-card.is-celebrating .choice:has(input:checked)')).toHaveCount(1);
   await expect(page.locator('.feedback')).toHaveCount(0);
+  await expect(page.locator('.task-card.is-celebrating')).toHaveCount(0);
+  for (let n = 0; n < 2; n++) await answerListening(page); // every word has a listening choice (P2-04)
   await passExamIntro(page);
   await expect(page.getByRole('timer')).toBeVisible();
   for (const input of await page.getByRole('textbox').all()) await input.fill('écoutez');
   await proceed(page);
   await expect(page.getByRole('button', { name: 'Listen' }).first()).toBeVisible();
-  await expect(page.getByRole('timer')).toHaveText('1:00');
-  // Type back what the voice said: the first answer in capitals (half credit), the second exactly.
+  await expect(page.getByRole('timer')).toHaveText('2:00'); // derived: 30 s per word
+  // Type back what the voice said: the first answer in capitals (half credit), the others exactly.
   const listen = page.getByRole('button', { name: 'Listen' });
   const heard = async (index: number) => {
     await listen.nth(index).click();
@@ -259,7 +290,7 @@ test('plays French listening choice and dictation with a suitable voice', async 
   const first = await heard(0);
   expect(await heard(0)).toBe(first); // replay is allowed until the page locks
   await page.getByRole('textbox').first().fill(first.toUpperCase());
-  await page.getByRole('textbox').last().fill(await heard(1));
+  for (let n = 1; n < 4; n++) await page.getByRole('textbox').nth(n).fill(await heard(n));
   await proceed(page);
   await expect(page.getByRole('heading', { name: 'Your exam answers' })).toBeVisible();
   // The capitalised dictation answer is listed as "almost" (half a point); the exact one is not listed.
@@ -273,17 +304,18 @@ test('blocks a lesson with listening tasks on the start page while no French voi
   await expect(page.getByRole('alert').getByRole('heading', { name: 'French voice unavailable' })).toBeVisible();
   await expect(page.getByText('Steps for Windows with Chrome:')).toBeVisible(); // Playwright's Desktop Chrome user agent
   await expect(page.getByRole('button', { name: /^(Continue|Resume lesson)$/ })).toHaveCount(0);
-  // A lesson without listening tasks starts as usual.
-  await page.goto('./#/lesson/fr-classroom-objects/play');
+  // A lesson without listening tasks (grammar) starts as usual.
+  await page.goto('./#/lesson/fr-verb-etre-present/play');
   await expect(page.getByRole('button', { name: 'Continue' })).toBeVisible();
   await expect(page.getByRole('alert')).toHaveCount(0);
 });
 
 test('replaces a revealed flashcard Listen button with Install language, which opens the help dialog', async ({ page }) => {
-  await mockFrenchVoice(page, false);
   await page.goto('./#/lesson/fr-classroom-objects/play');
-  await proceed(page); // start
+  await proceed(page); // start (a voice is needed to start)
   await proceed(page); // introduction
+  // The voice disappears during the lesson, e.g. after a browser update.
+  await page.evaluate(() => (window as unknown as { __setVoice: (on: boolean) => void }).__setVoice(false));
   await page.getByRole('button', { name: 'Flip card to French' }).first().click();
   await expect(page.getByRole('button', { name: 'Listen' })).toHaveCount(0);
   await page.getByRole('button', { name: 'Install language' }).first().click();

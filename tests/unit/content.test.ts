@@ -31,25 +31,11 @@ function setup(ids = [VOC, GRAM]) {
 
 const fixture = (dir: string, id: string) => JSON.parse(readFileSync(join(FIXTURES, dir, `${id}.json`), 'utf8'));
 type Item = Record<string, unknown> & { type: string; targetId?: string; itemId: string };
-const items = (lesson: { steps: { pages: { items: Item[] }[] }[] }) => lesson.steps.flatMap((s) => s.pages.flatMap((p) => p.items));
 const withoutId = ({ itemId: _, ...rest }: Item) => rest;
 
-/** Section responses reconstructed from the reviewed fixture lessons. */
+/** Grammar section responses reconstructed from the reviewed fixture lessons. */
 function sectionResponses(id: string): Record<string, unknown> {
   const brief = fixture('briefs', id);
-  const all = items(fixture('lessons', id));
-  const of = (type: string) => all.filter((it) => it.type === type);
-  if (id === VOC) {
-    const intro = of('vocabulary_introduction')[0];
-    const pairs = new Map((of('vocabulary_matching') as unknown as { pairs: { targetId: string; nativeLabel: unknown; answerExplanation: unknown }[] }[]).flatMap((m) => m.pairs).map((p) => [p.targetId, p]));
-    const rows = new Map((of('vocabulary_gender_select')[0] as unknown as { rows: { targetId: string; answerExplanation: unknown }[] }).rows.map((r) => [r.targetId, r]));
-    return {
-      introduction: { groups: brief.groups.map((g: { id: string }) => ({ groupId: g.id, text: intro.text })) },
-      words: { targets: brief.targets.map((t: { id: string }) => ({ targetId: t.id, matchingLabel: pairs.get(t.id)!.nativeLabel, matchingExplanation: pairs.get(t.id)!.answerExplanation, genderExplanation: rows.get(t.id)?.answerExplanation ?? null })) },
-      practice: { typedGaps: of('vocabulary_typed_gap').map(({ itemId: _, type: __, ...gap }) => gap), listening: [] },
-      exam: { translation: of('vocabulary_translation_exam').map((it) => ({ targetId: it.targetId, prompt: it.prompt, answerExplanation: it.answerExplanation })), dictation: [] },
-    };
-  }
   const steps = fixture('lessons', id).steps as { role: string; blockId: string | null; pages: { pageId: string; items: Item[] }[] }[];
   const exercises = (blockId: string) => steps.filter((s) => s.role === 'exercise' && s.blockId === blockId);
   const responses: Record<string, unknown> = {};
@@ -77,7 +63,7 @@ function options(dir: string, respond: (section: string, request: GenerationRequ
 }
 
 describe('offline lesson content generation', () => {
-  it.each([VOC, GRAM])('assembles validated %s content from sections and reuses it without model calls', async (id) => {
+  it.each([GRAM])('assembles validated %s content from sections and reuses it without model calls', async (id) => {
     const dir = setup();
     const responses = sectionResponses(id);
     const { opts, generate } = options(dir, (section) => responses[section]);
@@ -92,17 +78,12 @@ describe('offline lesson content generation', () => {
     expect(generate).not.toHaveBeenCalled();
   });
 
-  it('assembles brief-determined parts locally and copies exam limits from the brief', async () => {
+  it('writes no lesson file for vocabulary: the brief is the whole lesson (P2-04)', async () => {
     const dir = setup();
-    const responses = sectionResponses(VOC);
-    const { opts } = options(dir, (section) => responses[section]);
-    await generateLesson(VOC, opts);
-    const lesson = JSON.parse(readFileSync(join(dir, 'lessons', `${VOC}.json`), 'utf8'));
-    const brief = fixture('briefs', VOC);
-    expect(lesson.steps.map((s: { stage: string }) => s.stage)).toEqual(['introduction', 'flashcards', 'matching', 'overview', 'practice', 'exam']);
-    expect(lesson.steps[1].pages[0].items[0]).toEqual({ type: 'vocabulary_flashcards', itemId: `cards-${brief.groups[0].id}`, targetIds: brief.groups[0].targetIds });
-    expect(lesson.steps[5].pages.map((p: { timeLimitS: number }) => p.timeLimitS)).toEqual(brief.plan.exam.pages.map((p: { timeLimitS: number }) => p.timeLimitS));
-    expect(lesson.steps[5].pages[0].items[0].accepted.answers).toContain(brief.targets.find((t: { id: string }) => t.id === lesson.steps[5].pages[0].items[0].targetId).examForms[0]);
+    const { opts, generate } = options(dir, () => { throw new Error('no model call expected'); });
+    await expect(generateLesson(VOC, opts)).resolves.toMatchObject({ id: VOC, status: 'reused' });
+    expect(generate).not.toHaveBeenCalled();
+    expect(scanContentDir(dir).manifest.artifacts[VOC].content).toBeUndefined();
   });
 
   it('repairs only the section that failed validation, within its three-call budget', async () => {
@@ -138,9 +119,9 @@ describe('offline lesson content generation', () => {
   it('keeps the valid brief and leaves no lesson when content generation fails', async () => {
     const dir = setup();
     const { opts } = options(dir, () => { throw new GenerationError('Gemini returned HTTP 403.'); });
-    await expect(generateLesson(VOC, opts)).rejects.toThrow('HTTP 403');
-    expect(scanContentDir(dir).manifest.artifacts[VOC].draft?.status).toBe('valid');
-    expect(scanContentDir(dir).manifest.artifacts[VOC].content).toBeUndefined();
+    await expect(generateLesson(GRAM, opts)).rejects.toThrow('HTTP 403');
+    expect(scanContentDir(dir).manifest.artifacts[GRAM].draft?.status).toBe('valid');
+    expect(scanContentDir(dir).manifest.artifacts[GRAM].content).toBeUndefined();
   });
 
   it('normalizes model-invented item IDs consistently and leaves brief IDs alone', () => {

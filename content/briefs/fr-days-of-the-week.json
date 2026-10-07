@@ -14,7 +14,7 @@
     "fr": "Apprendre à nommer les sept jours de la semaine, les moments de la journée et dire quel jour on est.",
     "de": "Lernen Sie, die sieben Wochentage und Tageszeiten auf Französisch zu nennen sowie den aktuellen Tag zu erfragen."
   },
-  "estimatedMinutes": 13,
+  "estimatedMinutes": 21,
   "provenance": {
     "generator": "lesson-prototype",
     "model": "gemini-3.5-flash",
@@ -65,7 +65,12 @@
         "vendredi",
         "samedi",
         "dimanche"
-      ]
+      ],
+      "introduction": {
+        "en": "The week runs `lundi`, `mardi`, `mercredi`, `jeudi`, `vendredi`, `samedi`, `dimanche`. Day names start with a **lowercase** letter.\n\n- Lundi, je travaille – I work this Monday.\n- Le lundi, je travaille – I work on Mondays.\n\nCombine a day with a time of day: lundi matin, vendredi soir.",
+        "fr": "La semaine : `lundi`, `mardi`, `mercredi`, `jeudi`, `vendredi`, `samedi`, `dimanche`. Les jours s'écrivent avec une **minuscule**.\n\n- Lundi, je travaille – un lundi précis.\n- Le lundi, je travaille – tous les lundis.\n\nAssociez un jour et un moment : lundi matin, vendredi soir.",
+        "de": "Die Woche: `lundi`, `mardi`, `mercredi`, `jeudi`, `vendredi`, `samedi`, `dimanche`. Wochentage beginnen **klein**.\n\n- Lundi, je travaille – ich arbeite an diesem Montag.\n- Le lundi, je travaille – ich arbeite montags.\n\nVerbinde Tag und Tageszeit: lundi matin, vendredi soir."
+      }
     },
     {
       "id": "group-moments",
@@ -78,7 +83,12 @@
         "matin",
         "apres-midi",
         "soir"
-      ]
+      ],
+      "introduction": {
+        "en": "**Times of day**. Say each one aloud and study its example:\n\n- `le matin` – the morning: Je bois du café le matin.\n- `l'après-midi` – the afternoon: Cet après-midi, nous faisons une promenade.\n- `le soir` – the evening: Le soir, nous regardons un film.\n\n`le matin` and `le soir` are masculine. `l'après-midi` has a hyphen and an accent grave, and can be masculine or feminine.",
+        "fr": "**Les moments de la journée**. Dites chacun à voix haute et étudiez son exemple :\n\n- `le matin` : Je bois du café le matin.\n- `l'après-midi` : Cet après-midi, nous faisons une promenade.\n- `le soir` : Le soir, nous regardons un film.\n\n`le matin` et `le soir` sont masculins. `l'après-midi` prend un trait d'union et un accent grave ; il peut être masculin ou féminin.",
+        "de": "**Die Tageszeiten**. Sprich jede laut und lies das Beispiel:\n\n- `le matin` – der Morgen: Je bois du café le matin.\n- `l'après-midi` – der Nachmittag: Cet après-midi, nous faisons une promenade.\n- `le soir` – der Abend: Le soir, nous regardons un film.\n\n`le matin` und `le soir` sind männlich. `l'après-midi` hat einen Bindestrich und einen accent grave und kann männlich oder weiblich sein."
+      }
     },
     {
       "id": "group-expressions",
@@ -90,7 +100,12 @@
       "targetIds": [
         "aujourd-hui",
         "quel-jour"
-      ]
+      ],
+      "introduction": {
+        "en": "**Asking and telling the day**:\n\n- `Quel jour sommes-nous ?` – What day is it? Excusez-moi, quel jour sommes-nous ?\n- `aujourd'hui` – today, written with an apostrophe: Aujourd'hui, c'est lundi.",
+        "fr": "**Demander et dire le jour** :\n\n- `Quel jour sommes-nous ?` : Excusez-moi, quel jour sommes-nous ?\n- `aujourd'hui`, avec une apostrophe : Aujourd'hui, c'est lundi.",
+        "de": "**Den Tag erfragen und nennen**:\n\n- `Quel jour sommes-nous ?` – Welcher Tag ist heute? Excusez-moi, quel jour sommes-nous ?\n- `aujourd'hui` – heute, mit Apostroph: Aujourd'hui, c'est lundi."
+      }
     }
   ],
   "targets": [
@@ -130,7 +145,49 @@
           "de": "Am Montag gehe ich zur Schule."
         }
       },
-      "ambiguityNote": null
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "lundi means Monday. Days of the week are usually referred to directly without an indefinite article.",
+        "fr": "La forme à retenir est « lundi ». Les jours de la semaine sont généralement désignés directement sans article indéfini.",
+        "de": "lundi bedeutet Montag. Wochentage werden in der Regel direkt ohne unbestimmten Artikel verwendet."
+      },
+      "genderExplanation": {
+        "en": "lundi: masculine. Learn the noun together with its article.",
+        "fr": "« lundi » : masculin. Apprenez le nom avec son article.",
+        "de": "lundi: männlich. Lerne das Nomen mit seinem Artikel."
+      },
+      "matchingLabel": {
+        "en": "Monday",
+        "de": "Montag"
+      },
+      "examPrompt": null,
+      "gap": {
+        "before": "Après dimanche, c’est ",
+        "after": ".",
+        "accepted": {
+          "answers": [
+            "lundi"
+          ],
+          "accentSensitive": []
+        },
+        "referenceTargetIds": [
+          "mardi",
+          "lundi",
+          "jeudi",
+          "mercredi"
+        ],
+        "explanation": {
+          "en": "lundi means Monday. Days of the week are usually referred to directly without an indefinite article.",
+          "fr": "La forme à retenir est « lundi ». Les jours de la semaine sont généralement désignés directement sans article indéfini.",
+          "de": "lundi bedeutet Montag. Wochentage werden in der Regel direkt ohne unbestimmten Artikel verwendet."
+        }
+      },
+      "listeningOptionTargetIds": [
+        "mardi",
+        "lundi",
+        "jeudi",
+        "mercredi"
+      ]
     },
     {
       "id": "mardi",
@@ -168,7 +225,49 @@
           "de": "Am Dienstag macht er Sport."
         }
       },
-      "ambiguityNote": null
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "mardi means Tuesday. Days of the week are usually referred to directly without an indefinite article.",
+        "fr": "La forme à retenir est « mardi ». Les jours de la semaine sont généralement désignés directement sans article indéfini.",
+        "de": "mardi bedeutet Dienstag. Wochentage werden in der Regel direkt ohne unbestimmten Artikel verwendet."
+      },
+      "genderExplanation": {
+        "en": "mardi: masculine. Learn the noun together with its article.",
+        "fr": "« mardi » : masculin. Apprenez le nom avec son article.",
+        "de": "mardi: männlich. Lerne das Nomen mit seinem Artikel."
+      },
+      "matchingLabel": {
+        "en": "Tuesday",
+        "de": "Dienstag"
+      },
+      "examPrompt": null,
+      "gap": {
+        "before": "Après lundi, c’est ",
+        "after": ".",
+        "accepted": {
+          "answers": [
+            "mardi"
+          ],
+          "accentSensitive": []
+        },
+        "referenceTargetIds": [
+          "mercredi",
+          "mardi",
+          "vendredi",
+          "jeudi"
+        ],
+        "explanation": {
+          "en": "mardi means Tuesday. Days of the week are usually referred to directly without an indefinite article.",
+          "fr": "La forme à retenir est « mardi ». Les jours de la semaine sont généralement désignés directement sans article indéfini.",
+          "de": "mardi bedeutet Dienstag. Wochentage werden in der Regel direkt ohne unbestimmten Artikel verwendet."
+        }
+      },
+      "listeningOptionTargetIds": [
+        "mercredi",
+        "mardi",
+        "vendredi",
+        "jeudi"
+      ]
     },
     {
       "id": "mercredi",
@@ -206,7 +305,49 @@
           "de": "Mittwoch ist mein Lieblingstag."
         }
       },
-      "ambiguityNote": null
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "mercredi means Wednesday. Days of the week are usually referred to directly without an indefinite article.",
+        "fr": "La forme à retenir est « mercredi ». Les jours de la semaine sont généralement désignés directement sans article indéfini.",
+        "de": "mercredi bedeutet Mittwoch. Wochentage werden in der Regel direkt ohne unbestimmten Artikel verwendet."
+      },
+      "genderExplanation": {
+        "en": "mercredi: masculine. Learn the noun together with its article.",
+        "fr": "« mercredi » : masculin. Apprenez le nom avec son article.",
+        "de": "mercredi: männlich. Lerne das Nomen mit seinem Artikel."
+      },
+      "matchingLabel": {
+        "en": "Wednesday",
+        "de": "Mittwoch"
+      },
+      "examPrompt": null,
+      "gap": {
+        "before": "Après mardi, c’est ",
+        "after": ".",
+        "accepted": {
+          "answers": [
+            "mercredi"
+          ],
+          "accentSensitive": []
+        },
+        "referenceTargetIds": [
+          "jeudi",
+          "mercredi",
+          "samedi",
+          "vendredi"
+        ],
+        "explanation": {
+          "en": "mercredi means Wednesday. Days of the week are usually referred to directly without an indefinite article.",
+          "fr": "La forme à retenir est « mercredi ». Les jours de la semaine sont généralement désignés directement sans article indéfini.",
+          "de": "mercredi bedeutet Mittwoch. Wochentage werden in der Regel direkt ohne unbestimmten Artikel verwendet."
+        }
+      },
+      "listeningOptionTargetIds": [
+        "jeudi",
+        "mercredi",
+        "samedi",
+        "vendredi"
+      ]
     },
     {
       "id": "jeudi",
@@ -244,7 +385,49 @@
           "de": "Wir arbeiten am Donnerstag."
         }
       },
-      "ambiguityNote": null
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "jeudi means Thursday. Days of the week are usually referred to directly without an indefinite article.",
+        "fr": "La forme à retenir est « jeudi ». Les jours de la semaine sont généralement désignés directement sans article indéfini.",
+        "de": "jeudi bedeutet Donnerstag. Wochentage werden in der Regel direkt ohne unbestimmten Artikel verwendet."
+      },
+      "genderExplanation": {
+        "en": "jeudi: masculine. Learn the noun together with its article.",
+        "fr": "« jeudi » : masculin. Apprenez le nom avec son article.",
+        "de": "jeudi: männlich. Lerne das Nomen mit seinem Artikel."
+      },
+      "matchingLabel": {
+        "en": "Thursday",
+        "de": "Donnerstag"
+      },
+      "examPrompt": null,
+      "gap": {
+        "before": "Après mercredi, c’est ",
+        "after": ".",
+        "accepted": {
+          "answers": [
+            "jeudi"
+          ],
+          "accentSensitive": []
+        },
+        "referenceTargetIds": [
+          "vendredi",
+          "jeudi",
+          "dimanche",
+          "samedi"
+        ],
+        "explanation": {
+          "en": "jeudi means Thursday. Days of the week are usually referred to directly without an indefinite article.",
+          "fr": "La forme à retenir est « jeudi ». Les jours de la semaine sont généralement désignés directement sans article indéfini.",
+          "de": "jeudi bedeutet Donnerstag. Wochentage werden in der Regel direkt ohne unbestimmten Artikel verwendet."
+        }
+      },
+      "listeningOptionTargetIds": [
+        "vendredi",
+        "jeudi",
+        "dimanche",
+        "samedi"
+      ]
     },
     {
       "id": "vendredi",
@@ -282,7 +465,49 @@
           "de": "Am Freitagabend gehen wir aus."
         }
       },
-      "ambiguityNote": null
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "vendredi means Friday. Days of the week are usually referred to directly without an indefinite article.",
+        "fr": "La forme à retenir est « vendredi ». Les jours de la semaine sont généralement désignés directement sans article indéfini.",
+        "de": "vendredi bedeutet Freitag. Wochentage werden in der Regel direkt ohne unbestimmten Artikel verwendet."
+      },
+      "genderExplanation": {
+        "en": "vendredi: masculine. Learn the noun together with its article.",
+        "fr": "« vendredi » : masculin. Apprenez le nom avec son article.",
+        "de": "vendredi: männlich. Lerne das Nomen mit seinem Artikel."
+      },
+      "matchingLabel": {
+        "en": "Friday",
+        "de": "Freitag"
+      },
+      "examPrompt": null,
+      "gap": {
+        "before": "Après jeudi, c’est ",
+        "after": ".",
+        "accepted": {
+          "answers": [
+            "vendredi"
+          ],
+          "accentSensitive": []
+        },
+        "referenceTargetIds": [
+          "samedi",
+          "vendredi",
+          "matin",
+          "dimanche"
+        ],
+        "explanation": {
+          "en": "vendredi means Friday. Days of the week are usually referred to directly without an indefinite article.",
+          "fr": "La forme à retenir est « vendredi ». Les jours de la semaine sont généralement désignés directement sans article indéfini.",
+          "de": "vendredi bedeutet Freitag. Wochentage werden in der Regel direkt ohne unbestimmten Artikel verwendet."
+        }
+      },
+      "listeningOptionTargetIds": [
+        "samedi",
+        "vendredi",
+        "matin",
+        "dimanche"
+      ]
     },
     {
       "id": "samedi",
@@ -320,7 +545,49 @@
           "de": "Samstags ruhe ich mich aus."
         }
       },
-      "ambiguityNote": null
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "samedi means Saturday. Days of the week are usually referred to directly without an indefinite article.",
+        "fr": "La forme à retenir est « samedi ». Les jours de la semaine sont généralement désignés directement sans article indéfini.",
+        "de": "samedi bedeutet Samstag. Wochentage werden in der Regel direkt ohne unbestimmten Artikel verwendet."
+      },
+      "genderExplanation": {
+        "en": "samedi: masculine. Learn the noun together with its article.",
+        "fr": "« samedi » : masculin. Apprenez le nom avec son article.",
+        "de": "samedi: männlich. Lerne das Nomen mit seinem Artikel."
+      },
+      "matchingLabel": {
+        "en": "Saturday",
+        "de": "Samstag"
+      },
+      "examPrompt": null,
+      "gap": {
+        "before": "Après vendredi, c’est ",
+        "after": ".",
+        "accepted": {
+          "answers": [
+            "samedi"
+          ],
+          "accentSensitive": []
+        },
+        "referenceTargetIds": [
+          "dimanche",
+          "samedi",
+          "apres-midi",
+          "matin"
+        ],
+        "explanation": {
+          "en": "samedi means Saturday. Days of the week are usually referred to directly without an indefinite article.",
+          "fr": "La forme à retenir est « samedi ». Les jours de la semaine sont généralement désignés directement sans article indéfini.",
+          "de": "samedi bedeutet Samstag. Wochentage werden in der Regel direkt ohne unbestimmten Artikel verwendet."
+        }
+      },
+      "listeningOptionTargetIds": [
+        "dimanche",
+        "samedi",
+        "apres-midi",
+        "matin"
+      ]
     },
     {
       "id": "dimanche",
@@ -358,7 +625,49 @@
           "de": "Am Sonntag ist das Geschäft geschlossen."
         }
       },
-      "ambiguityNote": null
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "dimanche means Sunday. Days of the week are usually referred to directly without an indefinite article.",
+        "fr": "La forme à retenir est « dimanche ». Les jours de la semaine sont généralement désignés directement sans article indéfini.",
+        "de": "dimanche bedeutet Sonntag. Wochentage werden in der Regel direkt ohne unbestimmten Artikel verwendet."
+      },
+      "genderExplanation": {
+        "en": "dimanche: masculine. Learn the noun together with its article.",
+        "fr": "« dimanche » : masculin. Apprenez le nom avec son article.",
+        "de": "dimanche: männlich. Lerne das Nomen mit seinem Artikel."
+      },
+      "matchingLabel": {
+        "en": "Sunday",
+        "de": "Sonntag"
+      },
+      "examPrompt": null,
+      "gap": {
+        "before": "Après samedi, c’est ",
+        "after": ".",
+        "accepted": {
+          "answers": [
+            "dimanche"
+          ],
+          "accentSensitive": []
+        },
+        "referenceTargetIds": [
+          "matin",
+          "dimanche",
+          "soir",
+          "apres-midi"
+        ],
+        "explanation": {
+          "en": "dimanche means Sunday. Days of the week are usually referred to directly without an indefinite article.",
+          "fr": "La forme à retenir est « dimanche ». Les jours de la semaine sont généralement désignés directement sans article indéfini.",
+          "de": "dimanche bedeutet Sonntag. Wochentage werden in der Regel direkt ohne unbestimmten Artikel verwendet."
+        }
+      },
+      "listeningOptionTargetIds": [
+        "matin",
+        "dimanche",
+        "soir",
+        "apres-midi"
+      ]
     },
     {
       "id": "matin",
@@ -396,7 +705,49 @@
           "de": "Ich trinke morgens Kaffee."
         }
       },
-      "ambiguityNote": null
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "le matin means morning. Times of day are typically learned and used with the definite article.",
+        "fr": "La forme à retenir est « le matin ». Les moments de la journée sont généralement appris et utilisés avec l'article défini.",
+        "de": "le matin bedeutet Morgen. Tageszeiten werden in der Regel mit dem bestimmten Artikel gelernt und verwendet."
+      },
+      "genderExplanation": {
+        "en": "le matin: masculine. Learn the noun together with its article.",
+        "fr": "« le matin » : masculin. Apprenez le nom avec son article.",
+        "de": "le matin: männlich. Lerne das Nomen mit seinem Artikel."
+      },
+      "matchingLabel": {
+        "en": "morning",
+        "de": "Morgen"
+      },
+      "examPrompt": null,
+      "gap": {
+        "before": "À huit heures, c’est le ",
+        "after": ".",
+        "accepted": {
+          "answers": [
+            "matin"
+          ],
+          "accentSensitive": []
+        },
+        "referenceTargetIds": [
+          "apres-midi",
+          "matin",
+          "aujourd-hui",
+          "soir"
+        ],
+        "explanation": {
+          "en": "le matin means morning. Times of day are typically learned and used with the definite article.",
+          "fr": "La forme à retenir est « le matin ». Les moments de la journée sont généralement appris et utilisés avec l'article défini.",
+          "de": "le matin bedeutet Morgen. Tageszeiten werden in der Regel mit dem bestimmten Artikel gelernt und verwendet."
+        }
+      },
+      "listeningOptionTargetIds": [
+        "apres-midi",
+        "matin",
+        "aujourd-hui",
+        "soir"
+      ]
     },
     {
       "id": "apres-midi",
@@ -434,7 +785,49 @@
           "de": "Heute Nachmittag machen wir einen Spaziergang."
         }
       },
-      "ambiguityNote": null
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "l'après-midi means afternoon. Times of day are typically learned and used with the definite article. Après-midi has a hyphen and an accent grave on è.",
+        "fr": "La forme à retenir est « l'après-midi ». Les moments de la journée sont généralement appris et utilisés avec l'article défini. Après-midi prend un trait d’union et un accent grave sur le è.",
+        "de": "l'après-midi bedeutet Nachmittag. Tageszeiten werden in der Regel mit dem bestimmten Artikel gelernt und verwendet. Après-midi hat einen Bindestrich und einen accent grave auf è."
+      },
+      "genderExplanation": {
+        "en": "l'après-midi: masculine. Learn the noun together with its article. Après-midi has a hyphen and an accent grave on è.",
+        "fr": "« l'après-midi » : masculin. Apprenez le nom avec son article. Après-midi prend un trait d’union et un accent grave sur le è.",
+        "de": "l'après-midi: männlich. Lerne das Nomen mit seinem Artikel. Après-midi hat einen Bindestrich und einen accent grave auf è."
+      },
+      "matchingLabel": {
+        "en": "afternoon",
+        "de": "Nachmittag"
+      },
+      "examPrompt": null,
+      "gap": {
+        "before": "À quinze heures, c’est l’",
+        "after": ".",
+        "accepted": {
+          "answers": [
+            "après-midi"
+          ],
+          "accentSensitive": []
+        },
+        "referenceTargetIds": [
+          "soir",
+          "apres-midi",
+          "quel-jour",
+          "aujourd-hui"
+        ],
+        "explanation": {
+          "en": "l'après-midi means afternoon. Times of day are typically learned and used with the definite article. Après-midi has a hyphen and an accent grave on è.",
+          "fr": "La forme à retenir est « l'après-midi ». Les moments de la journée sont généralement appris et utilisés avec l'article défini. Après-midi prend un trait d’union et un accent grave sur le è.",
+          "de": "l'après-midi bedeutet Nachmittag. Tageszeiten werden in der Regel mit dem bestimmten Artikel gelernt und verwendet. Après-midi hat einen Bindestrich und einen accent grave auf è."
+        }
+      },
+      "listeningOptionTargetIds": [
+        "soir",
+        "apres-midi",
+        "quel-jour",
+        "aujourd-hui"
+      ]
     },
     {
       "id": "soir",
@@ -472,7 +865,49 @@
           "de": "Am Abend schauen wir einen Film."
         }
       },
-      "ambiguityNote": null
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "le soir means evening. Times of day are typically learned and used with the definite article.",
+        "fr": "La forme à retenir est « le soir ». Les moments de la journée sont généralement appris et utilisés avec l'article défini.",
+        "de": "le soir bedeutet Abend. Tageszeiten werden in der Regel mit dem bestimmten Artikel gelernt und verwendet."
+      },
+      "genderExplanation": {
+        "en": "le soir: masculine. Learn the noun together with its article.",
+        "fr": "« le soir » : masculin. Apprenez le nom avec son article.",
+        "de": "le soir: männlich. Lerne das Nomen mit seinem Artikel."
+      },
+      "matchingLabel": {
+        "en": "evening",
+        "de": "Abend"
+      },
+      "examPrompt": null,
+      "gap": {
+        "before": "À vingt heures, c’est le ",
+        "after": ".",
+        "accepted": {
+          "answers": [
+            "soir"
+          ],
+          "accentSensitive": []
+        },
+        "referenceTargetIds": [
+          "aujourd-hui",
+          "soir",
+          "lundi",
+          "quel-jour"
+        ],
+        "explanation": {
+          "en": "le soir means evening. Times of day are typically learned and used with the definite article.",
+          "fr": "La forme à retenir est « le soir ». Les moments de la journée sont généralement appris et utilisés avec l'article défini.",
+          "de": "le soir bedeutet Abend. Tageszeiten werden in der Regel mit dem bestimmten Artikel gelernt und verwendet."
+        }
+      },
+      "listeningOptionTargetIds": [
+        "aujourd-hui",
+        "soir",
+        "lundi",
+        "quel-jour"
+      ]
     },
     {
       "id": "aujourd-hui",
@@ -504,7 +939,45 @@
           "de": "Heute ist Montag."
         }
       },
-      "ambiguityNote": null
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "aujourd'hui means today.  Keep the apostrophe in aujourd’hui.",
+        "fr": "La forme à retenir est « aujourd'hui ».  Gardez l’apostrophe dans aujourd’hui.",
+        "de": "aujourd'hui bedeutet heute.  Behalte die Apostrophe in aujourd’hui."
+      },
+      "genderExplanation": null,
+      "matchingLabel": {
+        "en": "today",
+        "de": "heute"
+      },
+      "examPrompt": null,
+      "gap": {
+        "before": "Hier, c’était mardi ; ",
+        "after": ", c’est mercredi.",
+        "accepted": {
+          "answers": [
+            "aujourd'hui"
+          ],
+          "accentSensitive": []
+        },
+        "referenceTargetIds": [
+          "quel-jour",
+          "aujourd-hui",
+          "mardi",
+          "lundi"
+        ],
+        "explanation": {
+          "en": "aujourd'hui means today.  Keep the apostrophe in aujourd’hui.",
+          "fr": "La forme à retenir est « aujourd'hui ».  Gardez l’apostrophe dans aujourd’hui.",
+          "de": "aujourd'hui bedeutet heute.  Behalte die Apostrophe in aujourd’hui."
+        }
+      },
+      "listeningOptionTargetIds": [
+        "quel-jour",
+        "aujourd-hui",
+        "mardi",
+        "lundi"
+      ]
     },
     {
       "id": "quel-jour",
@@ -537,79 +1010,47 @@
           "de": "Entschuldigung, welchen Tag haben wir heute?"
         }
       },
-      "ambiguityNote": null
-    }
-  ],
-  "plan": {
-    "introduction": {
-      "estimatedDurationS": 60
-    },
-    "flashcards": {
-      "estimatedDurationS": 120
-    },
-    "matching": {
-      "groupSize": 4,
-      "estimatedDurationS": 120
-    },
-    "genderOverview": {
-      "scored": true,
-      "estimatedDurationS": 90
-    },
-    "typedGaps": {
-      "targetIds": [
-        "lundi",
-        "mardi",
-        "mercredi",
-        "jeudi",
-        "vendredi",
-        "samedi",
-        "dimanche",
-        "matin",
-        "apres-midi",
-        "soir",
-        "aujourd-hui",
-        "quel-jour"
-      ],
-      "estimatedDurationS": 150
-    },
-    "listening": {
-      "required": false,
-      "practiceTargetIds": [],
-      "estimatedDurationS": null
-    },
-    "exam": {
-      "pages": [
-        {
-          "pageId": "page-translation-1",
-          "kind": "translation",
-          "targetIds": [
-            "lundi",
-            "mardi",
-            "mercredi",
-            "jeudi",
-            "vendredi",
-            "samedi"
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "Quel jour sommes-nous ? means What day is it?. ",
+        "fr": "La forme à retenir est « Quel jour sommes-nous ? ». ",
+        "de": "Quel jour sommes-nous ? bedeutet Welchen Tag haben wir heute?. "
+      },
+      "genderExplanation": null,
+      "matchingLabel": {
+        "en": "What day is it?",
+        "de": "Welchen Tag haben wir heute?"
+      },
+      "examPrompt": null,
+      "gap": {
+        "before": "Pour connaître le jour, je demande : « ",
+        "after": " »",
+        "accepted": {
+          "answers": [
+            "Quel jour sommes-nous ?"
           ],
-          "estimatedDurationS": 120,
-          "timeLimitS": 180
+          "accentSensitive": []
         },
-        {
-          "pageId": "page-translation-2",
-          "kind": "translation",
-          "targetIds": [
-            "dimanche",
-            "matin",
-            "apres-midi",
-            "soir",
-            "aujourd-hui",
-            "quel-jour"
-          ],
-          "estimatedDurationS": 120,
-          "timeLimitS": 180
+        "referenceTargetIds": [
+          "lundi",
+          "quel-jour",
+          "mercredi",
+          "mardi"
+        ],
+        "explanation": {
+          "en": "Quel jour sommes-nous ? means What day is it?. ",
+          "fr": "La forme à retenir est « Quel jour sommes-nous ? ». ",
+          "de": "Quel jour sommes-nous ? bedeutet Welchen Tag haben wir heute?. "
         }
+      },
+      "listeningOptionTargetIds": [
+        "lundi",
+        "quel-jour",
+        "mercredi",
+        "mardi"
       ]
     }
-  },
+  ],
   "scoring": {
     "practiceWeight": 35,
     "examWeight": 65,

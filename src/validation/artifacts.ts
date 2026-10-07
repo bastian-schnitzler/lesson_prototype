@@ -1,12 +1,12 @@
 import type { z } from 'zod';
 
 import { nativeLocales } from '../schemas/artifactCommon.ts';
-import { briefSchema, contentSchema, isSupportedKind, type Brief, type LessonContent } from '../schemas/artifacts.ts';
+import { briefSchema, contentSchema, hasContentFile, isSupportedKind, type Brief, type LessonContent } from '../schemas/artifacts.ts';
 import type { GrammarBrief, GrammarContent, GrammarItem } from '../schemas/grammar.ts';
 import type { OutlineEntry } from '../schemas/outline.ts';
 import { learningForms, parseRichText, richTextShape } from '../domain/richText.ts';
-import { vocabularyExamAnswers } from '../domain/vocabularyAnswers.ts';
-import { VOCABULARY_STAGES, type VocabularyBrief, type VocabularyContent, type VocabularyItem, type VocabularyTarget } from '../schemas/vocabulary.ts';
+import type { VocabularyBrief, VocabularyTarget } from '../schemas/vocabulary.ts';
+import { matchingPages, vocabularyLesson } from '../domain/vocabularyLesson.ts';
 
 /**
  * Cross-reference and pedagogical checks that JSON Schema cannot express
@@ -82,7 +82,6 @@ function checkMinutes(estimatedMinutes: number, seconds: number, issues: Issues)
 
 /* ================================================================= briefs */
 
-const ORAL_INTENT = /\b(oral|à l'oral|prononc|mündlich|aussprech|aussprache|aloud|pronounc|listen)/iu;
 const FR_INDEFINITE = /^(un|une|des) \S/u;
 
 /**
@@ -111,8 +110,12 @@ function checkVocabularyBrief(b: VocabularyBrief, ctx: OutlineContext, issues: I
     if (t.wordClass === 'noun') {
       issues.check(t.genders.length > 0, `${p}.genders`, 'a noun needs at least one accepted gender');
       issues.check(t.number !== null, `${p}.number`, 'a noun needs a grammatical number');
+      // Nouns are examined only as indefinite article + noun (translation and dictation, D39).
       if (ctx.lang === 'fr' && t.articleException === null) {
         for (const f of t.examForms) { const m = frArticleIssue(t, f); issues.check(!m, `${p}.examForms`, m ?? ''); }
+        const m = frArticleIssue(t, t.teachingForm);
+        issues.check(!m, `${p}.teachingForm`, m ?? '');
+        for (const v of t.genderVariants) issues.check(FR_INDEFINITE.test(v), `${p}.genderVariants`, `"${v}" must include the indefinite article un/une/des (D39)`);
       }
       if (ctx.lang === 'fr' && t.articleException !== null) {
         issues.check(!t.examForms.some((f) => FR_INDEFINITE.test(f)), `${p}.articleException`, 'remove the articleException: the exam forms use an indefinite article');
@@ -130,42 +133,37 @@ function checkVocabularyBrief(b: VocabularyBrief, ctx: OutlineContext, issues: I
     for (const w of t.accentSensitive) issues.check(words.has(w.toLowerCase()), `${p}.accentSensitive`, `"${w}" is not a word of the exam forms`);
   });
 
-  const hasNouns = b.targets.some((t) => t.wordClass === 'noun');
-  issues.check(b.plan.genderOverview.scored === hasNouns, 'plan.genderOverview.scored', hasNouns ? 'must be true when the lesson has nouns' : 'must be false without nouns');
-
-  const refs = (list: string[], path: string) => {
-    issues.unique(list, path, 'target reference');
-    for (const id of list) issues.check(known.has(id), path, `unknown target ${id}`);
-  };
-  refs(b.plan.typedGaps.targetIds, 'plan.typedGaps.targetIds');
-  const listening = b.plan.listening;
-  refs(listening.practiceTargetIds, 'plan.listening.practiceTargetIds');
-  issues.check((listening.practiceTargetIds.length > 0) === (listening.estimatedDurationS !== null), 'plan.listening.estimatedDurationS', 'is set exactly when listening practice is planned');
-  if (ORAL_INTENT.test(ctx.entry.intent)) issues.check(listening.required, 'plan.listening.required', 'must be true: the outline intent asks for oral recognition or pronunciation');
-
-  const pages = b.plan.exam.pages;
-  issues.unique(pages.map((pg) => pg.pageId), 'plan.exam.pages', 'page ID');
-  const translated = pages.filter((pg) => pg.kind === 'translation').flatMap((pg) => pg.targetIds);
-  issues.check(sameSet(translated, ids) && translated.length === ids.length, 'plan.exam.pages', 'every target needs exactly one translation exam item');
-  pages.forEach((pg, i) => refs(pg.targetIds, `plan.exam.pages.${i}.targetIds`));
-  const dictation = pages.some((pg) => pg.kind === 'listening_dictation');
-  if (listening.required) {
-    issues.check(listening.practiceTargetIds.length > 0, 'plan.listening.practiceTargetIds', 'required listening needs practice items');
-    issues.check(dictation, 'plan.exam.pages', 'required listening needs a listening-dictation exam page');
-  }
-
-  const p = b.plan;
-  checkMinutes(
-    b.estimatedMinutes,
-    p.introduction.estimatedDurationS +
-      p.flashcards.estimatedDurationS +
-      p.matching.estimatedDurationS +
-      p.genderOverview.estimatedDurationS +
-      p.typedGaps.estimatedDurationS +
-      (p.listening.estimatedDurationS ?? 0) +
-      sum(pages.map((pg) => pg.estimatedDurationS)),
-    issues,
-  );
+  // Exercise texts (P2-04): every word takes part in every exercise; the lesson is derived from the brief.
+  const ref = (id: string, path: string) => issues.check(known.has(id), path, `unknown target ${id}`);
+  b.targets.forEach((t, i) => {
+    const p = `targets.${i}`;
+    issues.check((t.genderExplanation !== null) === (t.wordClass === 'noun'), `${p}.genderExplanation`, t.wordClass === 'noun' ? 'required for a noun' : 'only nouns have a gender explanation');
+    const refs = t.gap.referenceTargetIds;
+    issues.check(new Set(refs).size === 4 && refs.includes(t.id), `${p}.gap.referenceTargetIds`, 'four distinct reference targets including the word');
+    refs.forEach((id) => ref(id, `${p}.gap.referenceTargetIds`));
+    if (ctx.lang === 'fr') for (const a of t.gap.accepted.answers) issues.check((a === 'un' && t.wordClass === 'numeral') || !FR_ARTICLE_START.test(a), `${p}.gap.accepted`, `typed-gap answer "${a}" must be article-free`);
+    const others = refs.filter((id) => id !== t.id).map((id) => b.targets.find((x) => x.id === id)?.term.toLowerCase());
+    issues.check(!t.gap.accepted.answers.some((a) => others.includes(a.toLowerCase())), `${p}.gap`, 'exactly one reference choice may fit the gap');
+    const options = t.listeningOptionTargetIds;
+    issues.check(new Set(options).size === 4 && options.includes(t.id), `${p}.listeningOptionTargetIds`, 'four distinct options including the word');
+    options.forEach((id) => ref(id, `${p}.listeningOptionTargetIds`));
+    for (const [what, text] of [['explanation', t.explanation], ['gap.explanation', t.gap.explanation], ['genderExplanation', t.genderExplanation]] as const) {
+      if (text && CHARACTER_ONLY.test(text.en)) issues.add(`${p}.${what}`, `explanation "${text.en}" must name the mark (accent aigu, cédille, umlaut…), not only the character`);
+    }
+    // Translation prompts must say which gender/number is meant, or every variant is accepted.
+    if (t.genderVariants.length && t.examPrompt) {
+      issues.check(nativeLocales(ctx.lang).every((l) => t.examPrompt![l] !== t.translations[l]?.[0]), `${p}.examPrompt`, 'must disambiguate gender/number in every mother tongue, or be null so every gender variant is accepted');
+    }
+  });
+  b.groups.forEach((g, i) => checkRichText(g.introduction, `groups.${i}.introduction`, issues));
+  // Matching labels must be distinct within each derived matching page.
+  matchingPages(b).forEach((ids, n) => {
+    const page = ids.map((id) => b.targets.find((t) => t.id === id)).filter((t) => t !== undefined);
+    for (const locale of nativeLocales(ctx.lang)) {
+      issues.unique(page.map((t) => t.matchingLabel?.[locale] ?? t.translations[locale]?.[0] ?? ''), `matching.${n + 1}`, `${locale} matching label (set matchingLabel)`);
+    }
+  });
+  if (!issues.list.length) checkMinutes(b.estimatedMinutes, vocabularyLesson(b).steps.flatMap((s) => s.pages).reduce((n, pg) => n + pg.estimatedDurationS, 0), issues);
 }
 
 function checkGrammarBrief(b: GrammarBrief, issues: Issues) {
@@ -248,123 +246,6 @@ function checkRichText(text: Record<string, string>, path: string, issues: Issue
 }
 
 const FR_ARTICLE_START = /^(un|une|des|le|la|les|l')(\s|$)|^l'/iu;
-
-function checkVocabularyContent(c: VocabularyContent, b: VocabularyBrief, ctx: ContentContext, issues: Issues) {
-  const targets = new Map(b.targets.map((t) => [t.id, t]));
-  const allIds = b.targets.map((t) => t.id);
-  const nouns = b.targets.filter((t) => t.wordClass === 'noun').map((t) => t.id);
-  const roles = { introduction: 'introduction', flashcards: 'exercise', matching: 'exercise', overview: 'overview', practice: 'exercise', exam: 'exam' } as const;
-  const allowed: Record<(typeof VOCABULARY_STAGES)[number], VocabularyItem['type'][]> = {
-    introduction: ['vocabulary_introduction'],
-    flashcards: ['vocabulary_flashcards'],
-    matching: ['vocabulary_matching'],
-    overview: [b.plan.genderOverview.scored ? 'vocabulary_gender_select' : 'vocabulary_overview'],
-    practice: ['vocabulary_typed_gap', 'vocabulary_listening_choice'],
-    exam: ['vocabulary_translation_exam', 'vocabulary_listening_dictation'],
-  };
-  const known = (id: string, path: string) => issues.check(targets.has(id), path, `unknown target ${id}`);
-  const covered: Record<string, string[]> = {};
-  const examPlan = new Map(b.plan.exam.pages.map((pg) => [pg.pageId, pg]));
-
-  c.steps.forEach((step, si) => {
-    const sp = `steps.${si}`;
-    const stage = VOCABULARY_STAGES[si];
-    issues.check(step.stage === stage, `${sp}.stage`, `expected stage ${stage} (six-stage order)`);
-    issues.check(step.role === roles[step.stage], `${sp}.role`, `stage ${step.stage} uses role ${roles[step.stage]}`);
-    step.pages.forEach((page, pi) => {
-      const pp = `${sp}.pages.${pi}`;
-      if (step.stage === 'exam') {
-        const plan = examPlan.get(page.pageId);
-        if (issues.check(plan !== undefined, `${pp}.pageId`, `exam page ${page.pageId} is not in the brief's exam plan`) && plan) {
-          issues.check(page.timeLimitS === plan.timeLimitS, `${pp}.timeLimitS`, `must equal the brief's limit ${plan.timeLimitS}s`);
-          const kind = plan.kind === 'translation' ? 'vocabulary_translation_exam' : 'vocabulary_listening_dictation';
-          issues.check(page.items.every((it) => it.type === kind), `${pp}.items`, `page plan expects ${kind} items`);
-          const pageTargets = page.items.map((it) => ('targetId' in it ? it.targetId : ''));
-          issues.check(sameSet(pageTargets, plan.targetIds) && pageTargets.length === plan.targetIds.length, `${pp}.items`, 'items must match the planned targets');
-        }
-      } else {
-        issues.check(page.timeLimitS === null, `${pp}.timeLimitS`, 'practice pages have no countdown');
-        // The session gates voice checks and the no-voice help page per page (D42).
-        const listening = page.items.filter((it) => it.type === 'vocabulary_listening_choice').length;
-        issues.check(listening === 0 || listening === page.items.length, `${pp}.items`, 'listening-choice pages contain only listening-choice items');
-      }
-      page.items.forEach((item, ii) => {
-        const ip = `${pp}.items.${ii}`;
-        if (!issues.check(allowed[step.stage].includes(item.type), `${ip}.type`, `${item.type} is not allowed in stage ${step.stage}`)) return;
-        (covered[item.type] ??= []).push(...('targetIds' in item ? item.targetIds : 'targetId' in item ? [item.targetId] : []));
-        switch (item.type) {
-          case 'vocabulary_introduction':
-            checkRichText(item.text, `${ip}.text`, issues);
-            item.targetIds.forEach((id) => known(id, ip));
-            break;
-          case 'vocabulary_flashcards':
-          case 'vocabulary_overview':
-            item.targetIds.forEach((id) => known(id, ip));
-            break;
-          case 'vocabulary_matching': {
-            issues.check(item.pairs.length <= b.plan.matching.groupSize, ip, `group has ${item.pairs.length} pairs; the plan allows ${b.plan.matching.groupSize}`);
-            (covered.matching ??= []).push(...item.pairs.map((pr) => pr.targetId));
-            for (const locale of nativeLocales(ctx.lang)) {
-              const labels = item.pairs.map((pr) => pr.nativeLabel?.[locale] ?? targets.get(pr.targetId)?.translations[locale]?.[0] ?? '');
-              issues.unique(labels, `${ip}.pairs`, `${locale} label`);
-            }
-            item.pairs.forEach((pr) => known(pr.targetId, ip));
-            checkExplanations(item.pairs, ip, issues);
-            break;
-          }
-          case 'vocabulary_gender_select':
-            issues.check(sameSet(item.targetIds, allIds), ip, 'the gender page lists every target');
-            issues.check(sameSet(item.rows.map((r) => r.targetId), nouns) && item.rows.length === nouns.length, ip, 'gender rows must be exactly the nouns');
-            checkExplanations(item.rows, ip, issues);
-            break;
-          case 'vocabulary_typed_gap': {
-            known(item.targetId, ip);
-            const refs = item.referenceTargetIds;
-            issues.check(new Set(refs).size === 4 && refs.includes(item.targetId), ip, 'four distinct reference targets including the answer');
-            refs.forEach((id) => known(id, ip));
-            if (ctx.lang === 'fr') for (const a of item.accepted.answers) issues.check(a === 'un' && targets.get(item.targetId)?.wordClass === 'numeral' || !FR_ARTICLE_START.test(a), ip, `typed-gap answer "${a}" must be article-free`);
-            const others = refs.filter((id) => id !== item.targetId).map((id) => targets.get(id)?.term.toLowerCase());
-            issues.check(!item.accepted.answers.some((a) => others.includes(a.toLowerCase())), ip, 'exactly one reference choice may fit the gap');
-            checkExplanations([item], ip, issues);
-            break;
-          }
-          case 'vocabulary_listening_choice':
-            known(item.targetId, ip);
-            issues.check(new Set(item.optionTargetIds).size === 4 && item.optionTargetIds.includes(item.targetId), ip, 'four distinct options including the answer');
-            item.optionTargetIds.forEach((id) => known(id, ip));
-            checkExplanations([item], ip, issues);
-            break;
-          case 'vocabulary_translation_exam':
-          case 'vocabulary_listening_dictation': {
-            const t = targets.get(item.targetId);
-            if (!known(item.targetId, ip) || !t) break;
-            // Accepted answers follow the shared rule only; no per-item extras (single point of truth).
-            const expected = vocabularyExamAnswers(t, ctx.lang, item.type === 'vocabulary_translation_exam' ? item.prompt : undefined);
-            issues.check(sameSet(item.accepted.answers, expected), `${ip}.accepted.answers`, `must be exactly ${expected.map((a) => `"${a}"`).join(', ')} (exam forms${t.genderVariants.length ? ', plus gender variants when the prompt does not disambiguate' : ''})`);
-            if (item.type === 'vocabulary_listening_dictation') issues.check(item.accepted.answers.includes(t.teachingForm), ip, `dictation must accept the spoken teaching form "${t.teachingForm}"`);
-            if (item.type === 'vocabulary_translation_exam' && t.genderVariants.length) {
-              const acceptsAll = t.genderVariants.every((v) => item.accepted.answers.includes(v));
-              const hinted = nativeLocales(ctx.lang).every((l) => item.prompt[l] !== t.translations[l]?.[0]);
-              issues.check(acceptsAll || hinted, ip, 'prompt must disambiguate gender/number in every mother tongue, or accept every gender variant');
-            }
-            checkExplanations([item], ip, issues);
-            break;
-          }
-        }
-      });
-    });
-  });
-
-  const exact = (list: string[] | undefined, expected: string[], what: string) =>
-    issues.check(sameSet(list ?? [], expected) && (list ?? []).length === expected.length, 'steps', `${what} must cover each planned target exactly once`);
-  exact(covered.vocabulary_introduction, allIds, 'the introduction');
-  exact(covered.vocabulary_flashcards, allIds, 'flashcards');
-  exact(covered.matching, allIds, 'matching');
-  exact(covered.vocabulary_typed_gap, b.plan.typedGaps.targetIds, 'typed gaps');
-  exact(covered.vocabulary_listening_choice, b.plan.listening.practiceTargetIds, 'listening practice');
-  const examPages = c.steps[5]?.pages.map((pg) => pg.pageId) ?? [];
-  issues.check(sameSet(examPages, [...examPlan.keys()]), 'steps.5.pages', 'exam pages must match the brief exam plan');
-}
 
 function checkGrammarItem(item: GrammarItem, path: string, rules: Set<string>, exam: boolean, issues: Issues) {
   if ('ruleIds' in item) for (const r of item.ruleIds) issues.check(rules.has(r), `${path}.ruleIds`, `unknown rule ${r}`);
@@ -457,6 +338,9 @@ export function validateContent(data: unknown, ctx: ContentContext): ValidationR
   if (!isSupportedKind(ctx.entry.kind)) {
     return { status: 'invalid', issues: [{ path: 'kind', message: `${ctx.entry.kind} lessons have no agreed content schema yet` }], staleReasons: [] };
   }
+  if (!hasContentFile(ctx.entry.kind)) {
+    return { status: 'invalid', issues: [{ path: '', message: 'vocabulary lessons have no content file: the brief is the whole lesson (P2-04)' }], staleReasons: [] };
+  }
   const parsed = contentSchema(ctx.entry.kind, ctx.lang).safeParse(data);
   if (!parsed.success) return { status: 'invalid', issues: schemaIssues(parsed.error), staleReasons: [] };
   const content = parsed.data;
@@ -471,8 +355,7 @@ export function validateContent(data: unknown, ctx: ContentContext): ValidationR
   issues.unique(pages.flatMap((p) => p.items.map((i) => i.itemId)), 'steps', 'item ID');
   checkMinutes(content.estimatedMinutes, sum(pages.map((p) => p.estimatedDurationS)), issues);
 
-  if (content.kind === 'vocabulary' && ctx.brief.kind === 'vocabulary') checkVocabularyContent(content, ctx.brief, ctx, issues);
-  else if (content.kind === 'grammar' && ctx.brief.kind === 'grammar') checkGrammarContent(content, ctx.brief, issues);
+  if (content.kind === 'grammar' && ctx.brief.kind === 'grammar') checkGrammarContent(content, ctx.brief, issues);
 
   const stale: string[] = [];
   if (ctx.outlineHash && content.provenance.inputHashes.outline !== ctx.outlineHash) stale.push('the outline entry changed after this content was generated');

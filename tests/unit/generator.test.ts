@@ -29,8 +29,28 @@ function payload(id: string): Record<string, unknown> {
   for (const key of ['schemaVersion', 'id', 'lang', 'level', 'locales', 'provenance']) delete brief[key];
   return brief;
 }
-const output = (id: string) => JSON.stringify(payload(id));
-function options(dir: string, impl: (request: GenerationRequest) => Promise<string> = async () => output(VOC)) {
+type Json = any;
+/**
+ * The fake model's answer to one request. Vocabulary briefs take four calls (P2-04): the word
+ * inventory (label = ID), then the introduction, words and practice sections (label = ID/section).
+ */
+function output(id: string, label = id): string {
+  const brief = payload(id) as Json;
+  if (brief.kind !== 'vocabulary') return JSON.stringify(brief);
+  const section = label.split('/')[1];
+  if (section === 'introduction') return JSON.stringify({ groups: brief.groups.map((g: Json) => ({ groupId: g.id, text: g.introduction })) });
+  if (section === 'words') return JSON.stringify({ targets: brief.targets.map((t: Json) => ({ targetId: t.id, explanation: t.explanation, genderExplanation: t.genderExplanation, matchingLabel: t.matchingLabel, examPrompt: t.examPrompt })) });
+  if (section === 'practice') return JSON.stringify({ targets: brief.targets.map((t: Json) => ({ targetId: t.id, gap: t.gap, listeningOptionTargetIds: t.listeningOptionTargetIds })) });
+  const { estimatedMinutes: _m, ...inventory } = brief;
+  return JSON.stringify({
+    ...inventory,
+    groups: brief.groups.map(({ introduction: _i, ...g }: Json) => g),
+    targets: brief.targets.map(({ explanation: _e, genderExplanation: _g, matchingLabel: _l, examPrompt: _p, gap: _gap, listeningOptionTargetIds: _o, ...t }: Json) => t),
+  });
+}
+/** Model calls per generated brief. */
+const CALLS = { [VOC]: 4, [GRAM]: 1 } as Record<string, number>;
+function options(dir: string, impl: (request: GenerationRequest) => Promise<string> = async (request) => output(VOC, request.label)) {
   const generate = vi.fn(async (request: GenerationRequest) => ({ text: await impl(request), model: 'fake-model' }));
   const adapter = vi.fn(() => ({ generate }));
   return { opts: { contentDir: dir, adapter, sleep: async () => {} } satisfies BriefOptions, generate, adapter };
@@ -40,25 +60,25 @@ const saved = (dir: string, id = VOC) => join(dir, 'briefs', id + '.json');
 describe('offline brief authoring', () => {
   it.each([VOC, GRAM])('saves validated multilingual %s with trusted provenance and reuses it without configuration', async (id) => {
     const dir = setup();
-    const { opts, generate } = options(dir, async () => output(id));
+    const { opts, generate } = options(dir, async (request) => output(id, request.label));
     expect(await generateBrief(id, opts)).toEqual({ id, status: 'generated', message: 'model fake-model' });
     const artifact = JSON.parse(readFileSync(saved(dir, id), 'utf8'));
     expect(artifact.provenance.inputHashes.outline).toBe(catalogContexts(dir).find((c) => c.entry.id === id)?.outlineHash);
     expect(artifact.provenance).toMatchObject({ model: 'fake-model', generator: 'lesson-prototype', promptVersion: PROMPT_VERSION });
     expect(scanContentDir(dir).manifest.artifacts[id].draft?.status).toBe('valid');
     expect(await generateBrief(id, { ...opts, adapter: () => { throw new Error('must not load credentials'); } })).toEqual({ id, status: 'reused' });
-    expect(generate).toHaveBeenCalledTimes(1);
+    expect(generate).toHaveBeenCalledTimes(CALLS[id]);
     expect(readdirSync(join(dir, 'briefs'))).toEqual([id + '.json']);
   });
 
   it('repairs malformed JSON and field errors within a shared three-call budget', async () => {
     const dir = setup();
-    const broken = payload(VOC);
+    const broken = JSON.parse(output(VOC));
     broken.objective = { en: 'Incomplete' };
     const responses = ['{', JSON.stringify(broken), output(VOC)];
-    const { opts, generate } = options(dir, async () => responses.shift()!);
+    const { opts, generate } = options(dir, async (request) => (request.label === VOC ? responses.shift()! : output(VOC, request.label)));
     await generateBrief(VOC, opts);
-    expect(generate).toHaveBeenCalledTimes(3);
+    expect(generate.mock.calls.filter(([request]) => request.label === VOC)).toHaveLength(3); // the inventory unit; then three sections
     expect(generate.mock.calls[2][0].prompt).toContain('objective.fr');
     expect(generate.mock.calls[2][0].prompt).toContain('Previous response');
   });
@@ -73,6 +93,21 @@ describe('offline brief authoring', () => {
     expect(scanContentDir(dir).manifest.artifacts[GRAM].draft?.status).toBe('valid');
   });
 
+  it('repairs a vocabulary section on its own and leaves the inventory and other sections untouched (P2-04)', async () => {
+    const dir = setup();
+    let practice = 0;
+    const { opts, generate } = options(dir, async (request) => {
+      if (request.label !== `${VOC}/practice` || practice++) return output(VOC, request.label);
+      const bad = JSON.parse(output(VOC, request.label));
+      bad.targets[0].gap.accepted.answers = ['un livre'];
+      return JSON.stringify(bad);
+    });
+    await generateBrief(VOC, opts);
+    expect(generate.mock.calls.map(([request]) => request.label)).toEqual([VOC, `${VOC}/introduction`, `${VOC}/words`, `${VOC}/practice`, `${VOC}/practice`]);
+    expect(generate.mock.calls[4][0].prompt).toContain('targets.0.gap.accepted: typed-gap answer "un livre" must be article-free');
+    expect(scanContentDir(dir).manifest.artifacts[VOC].draft?.status).toBe('valid');
+  });
+
   it('exhausts repairs without saving a partial file and allows a later retry', async () => {
     const dir = setup();
     const { opts, generate } = options(dir, async () => '{}');
@@ -84,7 +119,7 @@ describe('offline brief authoring', () => {
 
   it.each(['id', 'kind'])('rejects model attempts to contradict trusted %s', async (key) => {
     const dir = setup();
-    const body = { ...payload(VOC), [key]: key === 'id' ? GRAM : 'grammar' };
+    const body = { ...JSON.parse(output(VOC)), [key]: key === 'id' ? GRAM : 'grammar' };
     await expect(generateBrief(VOC, options(dir, async () => JSON.stringify(body)).opts)).rejects.toThrow('3-call budget');
     expect(readdirSync(join(dir, 'briefs'))).toEqual([]);
   });
@@ -130,20 +165,20 @@ describe('offline brief authoring', () => {
     const first = generateBrief(VOC, opts);
     expect(generateBrief(VOC, opts)).toBe(first);
     await first;
-    expect(generate).toHaveBeenCalledTimes(1);
+    expect(generate).toHaveBeenCalledTimes(CALLS[VOC]);
     mkdirSync(saved(dir) + '.lock');
     await expect(generateBrief(VOC, { ...opts, regenerate: true })).rejects.toThrow('another generator');
-    expect(generate).toHaveBeenCalledTimes(1);
+    expect(generate).toHaveBeenCalledTimes(CALLS[VOC]);
   });
 
   it('does not save when the outline changes during generation', async () => {
     const dir = setup();
-    const { opts } = options(dir, async () => {
+    const { opts } = options(dir, async (request) => {
       const path = join(dir, 'outlines/fr-a1.json');
       const outline = JSON.parse(readFileSync(path, 'utf8'));
       outline.entries[0].intent = 'Changed during request.';
       writeFileSync(path, JSON.stringify(outline));
-      return output(VOC);
+      return output(VOC, request.label);
     });
     await expect(generateBrief(VOC, opts)).rejects.toThrow('outline changed');
     expect(readdirSync(join(dir, 'briefs'))).toEqual([]);
@@ -174,7 +209,7 @@ describe('offline brief authoring', () => {
       peak = Math.max(peak, ++active);
       await new Promise((done) => setTimeout(done, 10));
       active--;
-      return output(request.prompt.includes(VOC) ? VOC : GRAM);
+      return output(request.label?.startsWith(VOC) ? VOC : GRAM, request.label);
     });
     const sleep = vi.fn(async () => {});
     const outcomes = await generateMissingBriefs({ ...opts, sleep, concurrency: 4, staggerMs: 30_000 });

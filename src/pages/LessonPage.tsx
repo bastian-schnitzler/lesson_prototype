@@ -14,7 +14,7 @@ import { fetchArtifactText, useOutline, type ArtifactText } from '../data/load.t
 import type { ArtifactFile, Course, Manifest } from '../schemas/manifest.ts';
 import { validateBrief, validateContent, type Issue } from '../validation/artifacts.ts';
 import type { OutlineEntry } from '../schemas/outline.ts';
-import type { Brief } from '../schemas/artifacts.ts';
+import { hasContentFile, type Brief } from '../schemas/artifacts.ts';
 
 type Slot = 'draft' | 'content';
 const SECTIONS = ['outline', 'draft', 'content'] as const;
@@ -120,7 +120,7 @@ export function LessonPage({ manifest, lessonId, onReturnToOverview }: LessonPag
       )}
       {entry && (
         <div className="header-jump" role="group" aria-label={t('detail.jumpTo')}>
-          {SECTIONS.map((section) => (
+          {SECTIONS.filter((section) => section !== 'content' || hasContentFile(entry.kind)).map((section) => (
             <button
               key={section}
               type="button"
@@ -175,7 +175,8 @@ export function LessonPage({ manifest, lessonId, onReturnToOverview }: LessonPag
           <OutlineSummary entry={entry} ordinal={index + 1} lang={course.lang} level={course.level} />
         </section>
         <ArtifactSection slot="draft" kind={entry.kind} loaded={draft} issues={validation.draft} file={artifacts?.draft} />
-        <ArtifactSection slot="content" kind={entry.kind} loaded={content} issues={validation.content} file={artifacts?.content} brief={validation.brief} />
+        {/* Vocabulary lessons consist of the brief only (P2-04): no content section. */}
+        {hasContentFile(entry.kind) && <ArtifactSection slot="content" kind={entry.kind} loaded={content} issues={validation.content} file={artifacts?.content} brief={validation.brief} />}
       </>
     );
   }

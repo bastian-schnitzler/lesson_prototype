@@ -16,7 +16,8 @@ import type { Manifest } from '../schemas/manifest.ts';
 import { clock, useSession } from '../session/useSession.ts';
 import { ResultsView, SessionView, StartView } from '../session/views.tsx';
 import { useVoiceStatus } from '../session/speech.ts';
-import type { Brief, LessonContent } from '../schemas/artifacts.ts';
+import { hasContentFile, type Brief, type LessonContent } from '../schemas/artifacts.ts';
+import { vocabularyLesson } from '../domain/vocabularyLesson.ts';
 import { validateBrief, validateContent } from '../validation/artifacts.ts';
 
 type Loaded = { status: 'loading' } | { status: 'error'; error: string } | { status: 'ready'; content: LessonContent; brief: Brief };
@@ -34,18 +35,23 @@ export function PlayPage({ manifest, lessonId }: { manifest: Manifest; lessonId:
   const artifacts = manifest.artifacts[lessonId];
   const reasons = entry ? readiness(entry.kind, artifacts) : [];
   const ready = entry !== undefined && reasons.length === 0;
-  const contentHash = artifacts?.content?.sourceHash ?? '';
+  // A saved attempt resumes only on unchanged lesson files (vocabulary: the brief).
+  const contentHash = (entry && !hasContentFile(entry.kind) ? artifacts?.draft?.sourceHash : artifacts?.content?.sourceHash) ?? '';
 
   const [loaded, setLoaded] = useState<Loaded>({ status: 'loading' });
   useEffect(() => {
-    if (!ready || !course || !entry || !artifacts?.draft || !artifacts.content) return;
+    if (!ready || !course || !entry || !artifacts?.draft) return;
     const ctrl = new AbortController();
-    Promise.all([fetchArtifactText(artifacts.draft.url, ctrl.signal), fetchArtifactText(artifacts.content.url, ctrl.signal)]).then(([b, c]) => {
-      if (b.status === 'error' || c.status === 'error') return setLoaded({ status: 'error', error: b.status === 'error' ? b.error : (c as { error: string }).error });
+    // Vocabulary lessons are derived from the brief alone (P2-04); other kinds load their content file.
+    const contentUrl = hasContentFile(entry.kind) ? artifacts.content?.url : undefined;
+    Promise.all([fetchArtifactText(artifacts.draft.url, ctrl.signal), contentUrl ? fetchArtifactText(contentUrl, ctrl.signal) : Promise.resolve(undefined)]).then(([b, c]) => {
+      if (b.status === 'error' || c?.status === 'error') return setLoaded({ status: 'error', error: b.status === 'error' ? b.error : (c as { error: string }).error });
       try {
         const ctx = { entry, lang: course.lang, level: course.level };
         const brief = validateBrief(JSON.parse(b.text), ctx);
-        const content = brief.value ? validateContent(JSON.parse(c.text), { ...ctx, brief: brief.value }) : undefined;
+        const content = !brief.value ? undefined
+          : brief.value.kind === 'vocabulary' ? { status: brief.status, value: vocabularyLesson(brief.value) }
+          : c?.status === 'ok' ? validateContent(JSON.parse(c.text), { ...ctx, brief: brief.value }) : undefined;
         if (brief.status !== 'valid' || !content || content.status !== 'valid') return setLoaded({ status: 'error', error: t('reason.invalid') });
         setLoaded({ status: 'ready', brief: brief.value!, content: content.value! });
       } catch (e) {

@@ -20,6 +20,11 @@ export function briefSchema(kind: SupportedKind, lang: string): z.ZodType<Brief>
   return kind === 'vocabulary' ? vocabularyBriefSchema(lang) : grammarBriefSchema(lang);
 }
 
+/** Vocabulary lessons consist of the brief only (P2-04); other kinds also have a lesson content file. */
+export function hasContentFile(kind: LessonKind): boolean {
+  return kind !== 'vocabulary';
+}
+
 /** The renderable lesson content schema; never a brief schema (SPEC section 4). */
 export function contentSchema(kind: SupportedKind, lang: string): z.ZodType<LessonContent> {
   return kind === 'vocabulary' ? vocabularyContentSchema(lang) : grammarContentSchema(lang);

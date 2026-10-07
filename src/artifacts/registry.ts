@@ -4,7 +4,6 @@ import type { LessonKind } from '../schemas/common.ts';
 import { GrammarBriefView } from './GrammarBriefView.tsx';
 import { VocabularyBriefView } from './VocabularyBriefView.tsx';
 import { GrammarContentView } from './GrammarContentView.tsx';
-import { VocabularyContentView } from './VocabularyContentView.tsx';
 import type { Brief } from '../schemas/artifacts.ts';
 
 /**
@@ -22,7 +21,7 @@ export const draftViews: Partial<Record<LessonKind, ComponentType<ArtifactViewPr
   vocabulary: VocabularyBriefView,
   grammar: GrammarBriefView,
 };
+/** Vocabulary has no content file (P2-04); its Draft view includes the derived lesson preview. */
 export const contentViews: Partial<Record<LessonKind, ComponentType<ArtifactViewProps>>> = {
-  vocabulary: VocabularyContentView,
   grammar: GrammarContentView,
 };

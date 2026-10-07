@@ -14,7 +14,7 @@
     "fr": "Nommer les objets de la classe avec leur article.",
     "de": "Gegenstände im Klassenzimmer mit Artikel benennen."
   },
-  "estimatedMinutes": 8,
+  "estimatedMinutes": 7,
   "provenance": {
     "generator": "fixture",
     "model": "none",
@@ -56,7 +56,12 @@
         "chaise",
         "stylo",
         "table"
-      ]
+      ],
+      "introduction": {
+        "en": "Learn **four objects** you see in class:\n\n- `un livre`\n- `une chaise`\n- `un stylo`\n- `une table`",
+        "fr": "Apprenez **quatre objets** de la classe :\n\n- `un livre`\n- `une chaise`\n- `un stylo`\n- `une table`",
+        "de": "Lerne **vier Gegenstände** aus dem Klassenzimmer:\n\n- `un livre`\n- `une chaise`\n- `un stylo`\n- `une table`"
+      }
     }
   ],
   "targets": [
@@ -92,7 +97,49 @@
           "de": "Ich lese ein Buch."
         }
       },
-      "ambiguityNote": null
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "Livre is masculine, so its indefinite article is un.",
+        "fr": "Livre est masculin : on dit un livre.",
+        "de": "Livre ist maskulin, daher lautet der unbestimmte Artikel un."
+      },
+      "genderExplanation": {
+        "en": "Livre is masculine, so its indefinite article is un.",
+        "fr": "Livre est masculin : on dit un livre.",
+        "de": "Livre ist maskulin, daher lautet der unbestimmte Artikel un."
+      },
+      "matchingLabel": null,
+      "examPrompt": {
+        "en": "a book",
+        "de": "ein Buch"
+      },
+      "gap": {
+        "before": "Je lis un ",
+        "after": ".",
+        "accepted": {
+          "answers": [
+            "livre"
+          ],
+          "accentSensitive": []
+        },
+        "referenceTargetIds": [
+          "livre",
+          "chaise",
+          "stylo",
+          "table"
+        ],
+        "explanation": {
+          "en": "Only livre fits this sentence.",
+          "fr": "Seul « livre » convient dans cette phrase.",
+          "de": "Nur „livre“ passt in diesen Satz."
+        }
+      },
+      "listeningOptionTargetIds": [
+        "livre",
+        "chaise",
+        "stylo",
+        "table"
+      ]
     },
     {
       "id": "chaise",
@@ -126,7 +173,49 @@
           "de": "Ich nehme einen Stuhl."
         }
       },
-      "ambiguityNote": null
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "Chaise is feminine, so its indefinite article is une.",
+        "fr": "Chaise est féminin : on dit une chaise.",
+        "de": "Chaise ist feminin, daher lautet der unbestimmte Artikel une."
+      },
+      "genderExplanation": {
+        "en": "Chaise is feminine, so its indefinite article is une.",
+        "fr": "Chaise est féminin : on dit une chaise.",
+        "de": "Chaise ist feminin, daher lautet der unbestimmte Artikel une."
+      },
+      "matchingLabel": null,
+      "examPrompt": {
+        "en": "a chair",
+        "de": "ein Stuhl"
+      },
+      "gap": {
+        "before": "Je m’assieds sur la ",
+        "after": ".",
+        "accepted": {
+          "answers": [
+            "chaise"
+          ],
+          "accentSensitive": []
+        },
+        "referenceTargetIds": [
+          "livre",
+          "chaise",
+          "stylo",
+          "table"
+        ],
+        "explanation": {
+          "en": "Only chaise fits this sentence.",
+          "fr": "Seul « chaise » convient dans cette phrase.",
+          "de": "Nur „chaise“ passt in diesen Satz."
+        }
+      },
+      "listeningOptionTargetIds": [
+        "livre",
+        "chaise",
+        "stylo",
+        "table"
+      ]
     },
     {
       "id": "stylo",
@@ -161,7 +250,49 @@
           "de": "Ich habe einen blauen Stift."
         }
       },
-      "ambiguityNote": null
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "Stylo is masculine, so its indefinite article is un.",
+        "fr": "Stylo est masculin : on dit un stylo.",
+        "de": "Stylo ist maskulin, daher lautet der unbestimmte Artikel un."
+      },
+      "genderExplanation": {
+        "en": "Stylo is masculine, so its indefinite article is un.",
+        "fr": "Stylo est masculin : on dit un stylo.",
+        "de": "Stylo ist maskulin, daher lautet der unbestimmte Artikel un."
+      },
+      "matchingLabel": null,
+      "examPrompt": {
+        "en": "a pen",
+        "de": "ein Stift"
+      },
+      "gap": {
+        "before": "J’écris avec un ",
+        "after": ".",
+        "accepted": {
+          "answers": [
+            "stylo"
+          ],
+          "accentSensitive": []
+        },
+        "referenceTargetIds": [
+          "livre",
+          "chaise",
+          "stylo",
+          "table"
+        ],
+        "explanation": {
+          "en": "Only stylo fits this sentence.",
+          "fr": "Seul « stylo » convient dans cette phrase.",
+          "de": "Nur „stylo“ passt in diesen Satz."
+        }
+      },
+      "listeningOptionTargetIds": [
+        "livre",
+        "chaise",
+        "stylo",
+        "table"
+      ]
     },
     {
       "id": "table",
@@ -195,63 +326,51 @@
           "de": "Da ist ein Tisch."
         }
       },
-      "ambiguityNote": null
-    }
-  ],
-  "plan": {
-    "introduction": {
-      "estimatedDurationS": 60
-    },
-    "flashcards": {
-      "estimatedDurationS": 90
-    },
-    "matching": {
-      "groupSize": 4,
-      "estimatedDurationS": 60
-    },
-    "genderOverview": {
-      "scored": true,
-      "estimatedDurationS": 60
-    },
-    "typedGaps": {
-      "targetIds": [
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "Table is feminine, so its indefinite article is une.",
+        "fr": "Table est féminin : on dit une table.",
+        "de": "Table ist feminin, daher lautet der unbestimmte Artikel une."
+      },
+      "genderExplanation": {
+        "en": "Table is feminine, so its indefinite article is une.",
+        "fr": "Table est féminin : on dit une table.",
+        "de": "Table ist feminin, daher lautet der unbestimmte Artikel une."
+      },
+      "matchingLabel": null,
+      "examPrompt": {
+        "en": "a table",
+        "de": "ein Tisch"
+      },
+      "gap": {
+        "before": "Le livre est sur la ",
+        "after": ".",
+        "accepted": {
+          "answers": [
+            "table"
+          ],
+          "accentSensitive": []
+        },
+        "referenceTargetIds": [
+          "livre",
+          "chaise",
+          "stylo",
+          "table"
+        ],
+        "explanation": {
+          "en": "Only table fits this sentence.",
+          "fr": "Seul « table » convient dans cette phrase.",
+          "de": "Nur „table“ passt in diesen Satz."
+        }
+      },
+      "listeningOptionTargetIds": [
         "livre",
         "chaise",
         "stylo",
         "table"
-      ],
-      "estimatedDurationS": 120
-    },
-    "listening": {
-      "required": false,
-      "practiceTargetIds": [],
-      "estimatedDurationS": null
-    },
-    "exam": {
-      "pages": [
-        {
-          "pageId": "exam-1",
-          "kind": "translation",
-          "targetIds": [
-            "livre",
-            "chaise"
-          ],
-          "estimatedDurationS": 40,
-          "timeLimitS": 60
-        },
-        {
-          "pageId": "exam-2",
-          "kind": "translation",
-          "targetIds": [
-            "stylo",
-            "table"
-          ],
-          "estimatedDurationS": 40,
-          "timeLimitS": 60
-        }
       ]
     }
-  },
+  ],
   "scoring": {
     "practiceWeight": 35,
     "examWeight": 65,

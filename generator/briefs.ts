@@ -9,6 +9,7 @@ import { validateBrief, type OutlineContext } from '../src/validation/artifacts.
 import { GenerationError, type BriefAdapter } from './gemini.ts';
 import { briefPrompt, payloadSchema, PROMPT_VERSION, structuredSchema } from './prompts.ts';
 import { isCode, ModelUnit, withFileLock } from './units.ts';
+import { generateVocabularyBrief } from './vocabulary.ts';
 
 export interface BriefOutcome { id: string; status: 'generated' | 'reused' | 'skipped' | 'failed'; message?: string }
 export interface BriefOptions {
@@ -63,6 +64,15 @@ async function generate(id: string, file: string, options: BriefOptions): Promis
       if (status === 'valid') return { id, status: 'reused' };
       throw new GenerationError(`${id}: existing brief is ${status}; review it, then run make brief ID=${id} REGENERATE=1.`);
     }
+    const isCurrent = () => catalogContexts(options.contentDir).find((c) => c.entry.id === id)?.outlineHash === ctx.outlineHash;
+    if (kind === 'vocabulary') {
+      // The vocabulary brief is the whole lesson: inventory first, then its exercise texts (P2-04).
+      let generated;
+      try { generated = await generateVocabularyBrief(ctx, { adapter: options.adapter(), report: options.report, sleep: options.sleep }, isCurrent); }
+      catch (error) { if (error instanceof GenerationError) throw error; throw new GenerationError(`${id}: outline changed during generation; retry with the current outline.`); }
+      await save(generated.brief);
+      return { id, status: 'generated', message: `model ${generated.model}` };
+    }
     const unit = new ModelUnit<unknown>(id, payloadSchema(kind, ctx.lang), structuredSchema(kind, ctx.lang), (repair) => briefPrompt(ctx, repair), {
       adapter: options.adapter(), report: options.report, sleep: options.sleep,
     });
@@ -78,8 +88,7 @@ async function generate(id: string, file: string, options: BriefOptions): Promis
         unit.reject([...result.issues.map((issue) => `${issue.path}: ${issue.message}`), ...result.staleReasons]);
         continue;
       }
-      const current = catalogContexts(options.contentDir).find((c) => c.entry.id === id);
-      if (current?.outlineHash !== ctx.outlineHash) throw new GenerationError(`${id}: outline changed during generation; retry with the current outline.`);
+      if (!isCurrent()) throw new GenerationError(`${id}: outline changed during generation; retry with the current outline.`);
       await save(result.value);
       return { id, status: 'generated', message: `model ${unit.model}` };
     }

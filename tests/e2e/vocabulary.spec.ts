@@ -8,19 +8,23 @@ import { expect, test, type Page } from '@playwright/test';
  */
 type Json = any;
 const fixture = (dir: string, id: string): Json => JSON.parse(readFileSync(new URL(`../fixtures/content/${dir}/${id}.json`, import.meta.url), 'utf8'));
-const items = (lesson: Json): Json[] => lesson.steps.flatMap((s: Json) => s.pages.flatMap((p: Json) => p.items));
 const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
+/** The answers of a vocabulary lesson, read from its brief (the brief is the whole lesson, P2-04). */
 function lessonData(id: string) {
-  const brief = fixture('briefs', id), lesson = fixture('lessons', id);
+  const brief = fixture('briefs', id);
   const target = new Map<string, Json>(brief.targets.map((t: Json) => [t.id, t]));
-  const nativeOf = (pair: Json) => pair.nativeLabel?.en ?? target.get(pair.targetId).translations.en[0];
   return {
-    brief, lesson, target,
+    brief, target,
     /** Mother-tongue label → French teaching form, for matching pages. */
-    matching: new Map<string, string>(items(lesson).filter((i) => i.type === 'vocabulary_matching').flatMap((i) => i.pairs.map((p: Json) => [nativeOf(p), target.get(p.targetId).teachingForm]))),
-    gaps: items(lesson).filter((i) => i.type === 'vocabulary_typed_gap'),
-    exam: new Map<string, string>(items(lesson).filter((i) => i.type === 'vocabulary_translation_exam').map((i) => [i.prompt.en, i.accepted.answers[0]])),
+    matching: new Map<string, string>(brief.targets.map((t: Json) => [t.matchingLabel?.en ?? t.translations.en[0], t.teachingForm])),
+    gaps: brief.targets.map((t: Json) => t.gap),
+    /** Translation prompt → exam answer. */
+    exam: new Map<string, string>(brief.targets.map((t: Json) => [t.examPrompt?.en ?? t.translations.en[0], t.examForms[0]])),
+    /** Scored exam units: one translation and one dictation per word. */
+    examUnits: 2 * brief.targets.length,
+    /** Words on the first exam page: the first group, at most six (derived pages). */
+    firstExamPage: Math.min(6, brief.groups[0].targetIds.length),
   };
 }
 
@@ -83,7 +87,7 @@ async function step(page: Page, data: ReturnType<typeof lessonData>, opts: Optio
     const sentence = page.locator('.gap-sentence');
     if (await sentence.count()) {
       const text = (await sentence.textContent())!;
-      const gap = data.gaps.find((g) => text.includes(g.before.trim()));
+      const gap = data.gaps.find((g: Json) => text.includes(g.before.trim()) && text.includes(g.after.trim()));
       await page.getByRole('textbox').fill(gap.accepted.answers[0]);
     }
     // Listening choice: play the word, then pick the option that says it.
@@ -109,6 +113,7 @@ async function step(page: Page, data: ReturnType<typeof lessonData>, opts: Optio
 test.describe.configure({ timeout: 150_000 });
 
 test.beforeEach(async ({ page }) => {
+  await mockFrenchVoice(page); // every vocabulary lesson has listening tasks (P2-04)
   await page.goto('./');
   await page.evaluate(() => localStorage.clear());
 });
@@ -133,7 +138,7 @@ test('plays a multi-group noun lesson perfectly: group-wise stages, exam info, 1
   for (const t of data.target.values()) expect(body).not.toContain(t.teachingForm);
   await solve(page, data);
   await expect(page.locator('.summary-card .results-total')).toHaveText('Lesson total: 100 / 100');
-  await expect(page.locator('.summary-card .total-score')).toHaveText(`${data.exam.size} / ${data.exam.size}`);
+  await expect(page.locator('.summary-card .total-score')).toHaveText(`${data.examUnits} / ${data.examUnits}`);
   // Only scored parts are offered; each word group is one frame with its name shown once.
   await expect(page.locator('.result-menu button')).toHaveText(['Final exam', 'Matching', 'Gender and overview', 'Practice']);
   await page.getByRole('button', { name: 'Practice' }).click();
@@ -153,14 +158,14 @@ test('a timed vocabulary exam page locks at its countdown and the results mark t
   await page.goto('./#/lesson/fr-family-members/play');
   await primary(page).click();
   await solve(page, data, { stopAtExam: true });
-  const limit = data.brief.plan.exam.pages[0].timeLimitS;
+  const limit = 20 * data.firstExamPage; // derived: 20 s per word
   await page.clock.fastForward(limit * 1000 + 2000);
   await expect(page.getByRole('timer')).toBeVisible(); // the second exam page starts its own countdown
   await solve(page, data);
   // The first exam page timed out empty; the second was answered in time.
-  const timedOut = data.lesson.steps.at(-1).pages[0].items.length;
+  const timedOut = data.firstExamPage;
   await expect(page.locator('.result-note').filter({ hasText: 'Time expired' })).toHaveCount(timedOut);
-  await expect(page.locator('.summary-card .total-score')).toHaveText(`${data.exam.size - timedOut} / ${data.exam.size}`);
+  await expect(page.locator('.summary-card .total-score')).toHaveText(`${data.examUnits - timedOut} / ${data.examUnits}`);
 });
 
 test('half credit for a capitalised exam answer, then Repeat lesson starts a fresh attempt', async ({ page }) => {
@@ -170,17 +175,15 @@ test('half credit for a capitalised exam answer, then Repeat lesson starts a fre
   let first = true;
   await solve(page, data, { exam: (correct) => (first ? ((first = false), correct.toUpperCase()) : correct) });
   await expect(page.locator('.result-note-almost')).toHaveCount(1);
-  await expect(page.locator('.summary-card .total-score')).toHaveText(`${data.exam.size - 0.5} / ${data.exam.size}`);
+  await expect(page.locator('.summary-card .total-score')).toHaveText(`${data.examUnits - 0.5} / ${data.examUnits}`);
   await page.getByRole('button', { name: 'Repeat lesson' }).click();
   await expect(page.locator('.task-card .label-muted').first()).toHaveText('Introduction');
   await expect(page.locator('.session-score')).toHaveText('0 / 100');
 });
 
 test('a lesson without nouns has no gender page, no gender tags and non-clickable reference words', async ({ page }) => {
-  await mockFrenchVoice(page);
   const data = lessonData('fr-classroom-instructions');
   await page.goto('./#/lesson/fr-classroom-instructions/play');
-  await page.reload(); // the hash change alone does not run the voice mock
   await primary(page).click();
   const stages = new Set<string>();
   for (let guard = 0; guard < 40 && !(await page.getByRole('timer').count()) && !(await page.locator('.summary-card').count()); guard++) {

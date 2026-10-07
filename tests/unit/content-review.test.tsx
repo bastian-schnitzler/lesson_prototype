@@ -6,13 +6,16 @@ import { PreferencesProvider } from '../../src/app/context.tsx';
 import { ContentReview } from '../../src/artifacts/ContentReview.tsx';
 import { VocabularyBriefView } from '../../src/artifacts/VocabularyBriefView.tsx';
 import { briefSchema, contentSchema } from '../../src/schemas/artifacts.ts';
+import { vocabularyLesson } from '../../src/domain/vocabularyLesson.ts';
 import { scanContentDir } from '../../scripts/catalog.ts';
 import { checkSampleLessons } from '../../scripts/sample-lessons.ts';
 
 const root = resolve(import.meta.dirname, '../..');
 function artifacts(id: string, kind: 'grammar' | 'vocabulary', dir = 'content') {
   const read = (folder: string) => JSON.parse(readFileSync(resolve(root, dir, folder, `${id}.json`), 'utf8'));
-  return { brief: briefSchema(kind, 'fr').parse(read('briefs')), content: contentSchema(kind, 'fr').parse(read('lessons')) };
+  // Vocabulary lessons are derived from the brief (P2-04).
+  const brief = briefSchema(kind, 'fr').parse(read('briefs'));
+  return { brief, content: brief.kind === 'vocabulary' ? vocabularyLesson(brief) : contentSchema(kind, 'fr').parse(read('lessons')) };
 }
 afterEach(cleanup);
 
@@ -25,7 +28,7 @@ it('keeps all twenty authored samples current and valid, including the numeral u
   if (content.kind !== 'vocabulary') throw new Error('Expected vocabulary');
   expect(content.steps.flatMap((s) => s.pages.flatMap((p) => p.items)).find((i) => i.type === 'vocabulary_typed_gap' && i.targetId === 'num-1')).toMatchObject({ accepted: { answers: ['un'] } });
   const artifact = result.manifest.artifacts[id];
-  expect(checkSampleLessons({ ...result, manifest: { ...result.manifest, artifacts: { ...result.manifest.artifacts, [id]: { ...artifact, content: { ...artifact.content!, status: 'stale' } } } } })).toContain(`${id}: content is stale.`);
+  expect(checkSampleLessons({ ...result, manifest: { ...result.manifest, artifacts: { ...result.manifest.artifacts, [id]: { ...artifact, draft: { ...artifact.draft!, status: 'stale' } } } } })).toContain(`${id}: draft is stale.`);
 });
 
 it('reviews vocabulary in independent interface/native languages without session controls', () => {
@@ -85,7 +88,7 @@ it('shows one page at a time and supports grouped outline jumps and keyboard tab
   expect(tabs[0]).toHaveAttribute('tabindex', '-1');
   fireEvent.keyDown(tabs[1], { key: 'End' });
   expect(tabs.at(-1)).toHaveFocus();
-  expect(screen.getByRole('tabpanel')).toHaveTextContent('vocabulary_translation_exam');
+  expect(screen.getByRole('tabpanel')).toHaveTextContent('vocabulary_listening_dictation'); // dictation pages close every exam (P2-04)
   fireEvent.click(screen.getByRole('button', { name: /Flashcards/ }));
   expect(screen.getByRole('tabpanel')).toHaveTextContent('vocabulary_flashcards');
   expect(screen.getByRole('tabpanel')).not.toHaveTextContent('vocabulary_translation_exam');
@@ -106,7 +109,9 @@ it('shows one vocabulary target group at a time in the Draft tabs', () => {
   render(<PreferencesProvider initial={{ interfaceLanguage: 'en', motherTongue: 'en' }}><VocabularyBriefView data={brief} /></PreferencesProvider>);
   const tabs = within(screen.getByRole('tablist', { name: 'Target inventory' })).getAllByRole('tab');
   expect(tabs.map((tab) => tab.textContent)).toEqual(['Masculine objects6 targets', 'Feminine objects6 targets']);
-  const panel = () => screen.getByRole('tabpanel');
+  // The first panel is the target inventory; the derived lesson preview follows below (P2-04).
+  const panel = () => screen.getAllByRole('tabpanel')[0];
+  expect(screen.getByRole('heading', { name: 'Lesson preview' })).toBeInTheDocument();
   expect(panel()).toHaveTextContent('un livre');
   expect(panel()).not.toHaveTextContent('une chaise');
   fireEvent.click(tabs[1]);

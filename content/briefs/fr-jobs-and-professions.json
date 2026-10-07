@@ -14,7 +14,7 @@
     "fr": "Apprendre à nommer des métiers courants en français et dire sa profession sans article avec « je suis ».",
     "de": "Lerne, häufige Berufe auf Französisch zu benennen und den eigenen Beruf ohne Artikel mit 'je suis' anzugeben."
   },
-  "estimatedMinutes": 14,
+  "estimatedMinutes": 21,
   "provenance": {
     "generator": "lesson-prototype",
     "model": "gemini-3.6-flash",
@@ -69,7 +69,12 @@
         "target-infirmiere",
         "target-etudiant",
         "target-etudiante"
-      ]
+      ],
+      "introduction": {
+        "en": "Learn each job with its article: `un médecin`, `un professeur`, `un infirmier`, `une infirmière`, `un étudiant`, `une étudiante`.\n\nWhen you simply **state a profession** after être, French uses no article: Je suis médecin. Il est professeur.\n\nMany jobs have a masculine and a feminine form. The exam tells you which one it wants and asks for the indefinite article.",
+        "fr": "Apprenez chaque métier avec son article : `un médecin`, `un professeur`, `un infirmier`, `une infirmière`, `un étudiant`, `une étudiante`.\n\nPour **donner simplement une profession** après être, il n'y a pas d'article : Je suis médecin. Il est professeur.\n\nBeaucoup de métiers ont une forme masculine et une forme féminine. L'examen précise laquelle et demande l'article indéfini.",
+        "de": "Lerne jeden Beruf mit Artikel: `un médecin`, `un professeur`, `un infirmier`, `une infirmière`, `un étudiant`, `une étudiante`.\n\nBei einer **einfachen Berufsangabe** nach être steht kein Artikel: Je suis médecin. Il est professeur.\n\nViele Berufe haben eine männliche und eine weibliche Form. Die Prüfung sagt, welche gemeint ist, und verlangt den unbestimmten Artikel."
+      }
     },
     {
       "id": "group-commerce-services",
@@ -85,7 +90,12 @@
         "target-vendeuse",
         "target-avocat",
         "target-cuisinier"
-      ]
+      ],
+      "introduction": {
+        "en": "**Commerce and services**. Say each word aloud and study its example:\n\n- `un serveur` – waiter: Le serveur apporte le café.\n- `une serveuse` – waitress: Elle est serveuse dans un restaurant.\n- `un vendeur` – salesman: Le vendeur travaille dans un magasin.\n- `une vendeuse` – saleswoman: Je suis vendeuse de vêtements.\n- `un avocat` – lawyer (not the fruit here): Il travaille comme avocat.\n- `un cuisinier` – cook: Le cuisinier prépare un repas.",
+        "fr": "**Commerce et services**. Dites chaque mot à voix haute et étudiez son exemple :\n\n- `un serveur` : Le serveur apporte le café.\n- `une serveuse` : Elle est serveuse dans un restaurant.\n- `un vendeur` : Le vendeur travaille dans un magasin.\n- `une vendeuse` : Je suis vendeuse de vêtements.\n- `un avocat` (le métier, pas le fruit) : Il travaille comme avocat.\n- `un cuisinier` : Le cuisinier prépare un repas.",
+        "de": "**Handel und Dienstleistungen**. Sprich jedes Wort laut und lies das Beispiel:\n\n- `un serveur` – Kellner: Le serveur apporte le café.\n- `une serveuse` – Kellnerin: Elle est serveuse dans un restaurant.\n- `un vendeur` – Verkäufer: Le vendeur travaille dans un magasin.\n- `une vendeuse` – Verkäuferin: Je suis vendeuse de vêtements.\n- `un avocat` – Anwalt (hier nicht die Avocado): Il travaille comme avocat.\n- `un cuisinier` – Koch: Le cuisinier prépare un repas."
+      }
     }
   ],
   "targets": [
@@ -122,7 +132,49 @@
           "de": "Ich bin Arzt im Krankenhaus."
         }
       },
-      "ambiguityNote": null
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "un médecin means doctor.  Médecin has an accent aigu on the first é.",
+        "fr": "La forme à retenir est « un médecin ».  Médecin prend un accent aigu sur le premier é.",
+        "de": "un médecin bedeutet Arzt.  Médecin hat einen accent aigu auf dem ersten é."
+      },
+      "genderExplanation": {
+        "en": "un médecin: masculine. Learn the noun together with its article. Médecin has an accent aigu on the first é.",
+        "fr": "« un médecin » : masculin. Apprenez le nom avec son article. Médecin prend un accent aigu sur le premier é.",
+        "de": "un médecin: männlich. Lerne das Nomen mit seinem Artikel. Médecin hat einen accent aigu auf dem ersten é."
+      },
+      "matchingLabel": {
+        "en": "doctor",
+        "de": "Arzt"
+      },
+      "examPrompt": null,
+      "gap": {
+        "before": "Il soigne les malades à l’hôpital : il est ",
+        "after": ".",
+        "accepted": {
+          "answers": [
+            "médecin"
+          ],
+          "accentSensitive": []
+        },
+        "referenceTargetIds": [
+          "target-professeur",
+          "target-medecin",
+          "target-serveuse",
+          "target-serveur"
+        ],
+        "explanation": {
+          "en": "un médecin means doctor.  Médecin has an accent aigu on the first é.",
+          "fr": "La forme à retenir est « un médecin ».  Médecin prend un accent aigu sur le premier é.",
+          "de": "un médecin bedeutet Arzt.  Médecin hat einen accent aigu auf dem ersten é."
+        }
+      },
+      "listeningOptionTargetIds": [
+        "target-professeur",
+        "target-medecin",
+        "target-serveuse",
+        "target-serveur"
+      ]
     },
     {
       "id": "target-professeur",
@@ -158,7 +210,49 @@
           "de": "Er ist Französischlehrer."
         }
       },
-      "ambiguityNote": null
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "un professeur means teacher. ",
+        "fr": "La forme à retenir est « un professeur ». ",
+        "de": "un professeur bedeutet Lehrer. "
+      },
+      "genderExplanation": {
+        "en": "un professeur: masculine. Learn the noun together with its article.",
+        "fr": "« un professeur » : masculin. Apprenez le nom avec son article.",
+        "de": "un professeur: männlich. Lerne das Nomen mit seinem Artikel."
+      },
+      "matchingLabel": {
+        "en": "teacher",
+        "de": "Lehrer"
+      },
+      "examPrompt": null,
+      "gap": {
+        "before": "Il enseigne le français : il est ",
+        "after": ".",
+        "accepted": {
+          "answers": [
+            "professeur"
+          ],
+          "accentSensitive": []
+        },
+        "referenceTargetIds": [
+          "target-serveur",
+          "target-professeur",
+          "target-vendeur",
+          "target-serveuse"
+        ],
+        "explanation": {
+          "en": "un professeur means teacher. ",
+          "fr": "La forme à retenir est « un professeur ». ",
+          "de": "un professeur bedeutet Lehrer. "
+        }
+      },
+      "listeningOptionTargetIds": [
+        "target-serveur",
+        "target-professeur",
+        "target-vendeur",
+        "target-serveuse"
+      ]
     },
     {
       "id": "target-serveur",
@@ -183,7 +277,7 @@
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
-        "serveuse"
+        "une serveuse"
       ],
       "pronunciation": "sɛʁ.vœʁ",
       "difficulty": "core",
@@ -194,7 +288,52 @@
           "de": "Der Kellner bringt den Kaffee."
         }
       },
-      "ambiguityNote": null
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "un serveur means waiter. ",
+        "fr": "La forme à retenir est « un serveur ». ",
+        "de": "un serveur bedeutet Kellner. "
+      },
+      "genderExplanation": {
+        "en": "un serveur: masculine. Learn the noun together with its article.",
+        "fr": "« un serveur » : masculin. Apprenez le nom avec son article.",
+        "de": "un serveur: männlich. Lerne das Nomen mit seinem Artikel."
+      },
+      "matchingLabel": {
+        "en": "waiter (masculine)",
+        "de": "Kellner (männlich)"
+      },
+      "examPrompt": {
+        "en": "waiter (masculine singular form)",
+        "de": "Kellner (männliche Singularform)"
+      },
+      "gap": {
+        "before": "Paul apporte les plats au restaurant : il est ",
+        "after": ".",
+        "accepted": {
+          "answers": [
+            "serveur"
+          ],
+          "accentSensitive": []
+        },
+        "referenceTargetIds": [
+          "target-serveuse",
+          "target-serveur",
+          "target-vendeuse",
+          "target-vendeur"
+        ],
+        "explanation": {
+          "en": "un serveur means waiter. ",
+          "fr": "La forme à retenir est « un serveur ». ",
+          "de": "un serveur bedeutet Kellner. "
+        }
+      },
+      "listeningOptionTargetIds": [
+        "target-serveuse",
+        "target-serveur",
+        "target-vendeuse",
+        "target-vendeur"
+      ]
     },
     {
       "id": "target-serveuse",
@@ -219,7 +358,7 @@
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
-        "serveur"
+        "un serveur"
       ],
       "pronunciation": "sɛʁ.vøz",
       "difficulty": "core",
@@ -230,7 +369,52 @@
           "de": "Sie ist Kellnerin in einem Restaurant."
         }
       },
-      "ambiguityNote": null
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "une serveuse means waitress. ",
+        "fr": "La forme à retenir est « une serveuse ». ",
+        "de": "une serveuse bedeutet Kellnerin. "
+      },
+      "genderExplanation": {
+        "en": "une serveuse: feminine. Learn the noun together with its article.",
+        "fr": "« une serveuse » : féminin. Apprenez le nom avec son article.",
+        "de": "une serveuse: weiblich. Lerne das Nomen mit seinem Artikel."
+      },
+      "matchingLabel": {
+        "en": "waitress (feminine)",
+        "de": "Kellnerin (weiblich)"
+      },
+      "examPrompt": {
+        "en": "waitress (feminine singular form)",
+        "de": "Kellnerin (weibliche Singularform)"
+      },
+      "gap": {
+        "before": "Léa apporte les plats au restaurant : elle est ",
+        "after": ".",
+        "accepted": {
+          "answers": [
+            "serveuse"
+          ],
+          "accentSensitive": []
+        },
+        "referenceTargetIds": [
+          "target-vendeur",
+          "target-serveuse",
+          "target-infirmier",
+          "target-vendeuse"
+        ],
+        "explanation": {
+          "en": "une serveuse means waitress. ",
+          "fr": "La forme à retenir est « une serveuse ». ",
+          "de": "une serveuse bedeutet Kellnerin. "
+        }
+      },
+      "listeningOptionTargetIds": [
+        "target-vendeur",
+        "target-serveuse",
+        "target-infirmier",
+        "target-vendeuse"
+      ]
     },
     {
       "id": "target-vendeur",
@@ -256,7 +440,7 @@
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
-        "vendeuse"
+        "une vendeuse"
       ],
       "pronunciation": "vɑ̃.dœʁ",
       "difficulty": "core",
@@ -267,7 +451,52 @@
           "de": "Der Verkäufer arbeitet in einem Geschäft."
         }
       },
-      "ambiguityNote": null
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "un vendeur means salesman. ",
+        "fr": "La forme à retenir est « un vendeur ». ",
+        "de": "un vendeur bedeutet Verkäufer. "
+      },
+      "genderExplanation": {
+        "en": "un vendeur: masculine. Learn the noun together with its article.",
+        "fr": "« un vendeur » : masculin. Apprenez le nom avec son article.",
+        "de": "un vendeur: männlich. Lerne das Nomen mit seinem Artikel."
+      },
+      "matchingLabel": {
+        "en": "salesman (masculine)",
+        "de": "Verkäufer (männlich)"
+      },
+      "examPrompt": {
+        "en": "salesman (masculine singular form)",
+        "de": "Verkäufer (männliche Singularform)"
+      },
+      "gap": {
+        "before": "Paul vend des vêtements : il est ",
+        "after": ".",
+        "accepted": {
+          "answers": [
+            "vendeur"
+          ],
+          "accentSensitive": []
+        },
+        "referenceTargetIds": [
+          "target-vendeuse",
+          "target-vendeur",
+          "target-infirmiere",
+          "target-infirmier"
+        ],
+        "explanation": {
+          "en": "un vendeur means salesman. ",
+          "fr": "La forme à retenir est « un vendeur ». ",
+          "de": "un vendeur bedeutet Verkäufer. "
+        }
+      },
+      "listeningOptionTargetIds": [
+        "target-vendeuse",
+        "target-vendeur",
+        "target-infirmiere",
+        "target-infirmier"
+      ]
     },
     {
       "id": "target-vendeuse",
@@ -293,7 +522,7 @@
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
-        "vendeur"
+        "un vendeur"
       ],
       "pronunciation": "vɑ̃.døz",
       "difficulty": "core",
@@ -304,7 +533,52 @@
           "de": "Ich bin Bekleidungsverkäuferin."
         }
       },
-      "ambiguityNote": null
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "une vendeuse means saleswoman. ",
+        "fr": "La forme à retenir est « une vendeuse ». ",
+        "de": "une vendeuse bedeutet Verkäuferin. "
+      },
+      "genderExplanation": {
+        "en": "une vendeuse: feminine. Learn the noun together with its article.",
+        "fr": "« une vendeuse » : féminin. Apprenez le nom avec son article.",
+        "de": "une vendeuse: weiblich. Lerne das Nomen mit seinem Artikel."
+      },
+      "matchingLabel": {
+        "en": "saleswoman (feminine)",
+        "de": "Verkäuferin (weiblich)"
+      },
+      "examPrompt": {
+        "en": "saleswoman (feminine singular form)",
+        "de": "Verkäuferin (weibliche Singularform)"
+      },
+      "gap": {
+        "before": "Léa vend des vêtements : elle est ",
+        "after": ".",
+        "accepted": {
+          "answers": [
+            "vendeuse"
+          ],
+          "accentSensitive": []
+        },
+        "referenceTargetIds": [
+          "target-infirmier",
+          "target-vendeuse",
+          "target-etudiant",
+          "target-infirmiere"
+        ],
+        "explanation": {
+          "en": "une vendeuse means saleswoman. ",
+          "fr": "La forme à retenir est « une vendeuse ». ",
+          "de": "une vendeuse bedeutet Verkäuferin. "
+        }
+      },
+      "listeningOptionTargetIds": [
+        "target-infirmier",
+        "target-vendeuse",
+        "target-etudiant",
+        "target-infirmiere"
+      ]
     },
     {
       "id": "target-infirmier",
@@ -330,7 +604,7 @@
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
-        "infirmière"
+        "une infirmière"
       ],
       "pronunciation": "ɛ̃.fiʁ.mje",
       "difficulty": "demanding",
@@ -341,7 +615,52 @@
           "de": "Er ist Krankenpfleger in der Klinik."
         }
       },
-      "ambiguityNote": null
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "un infirmier means nurse. ",
+        "fr": "La forme à retenir est « un infirmier ». ",
+        "de": "un infirmier bedeutet Krankenpfleger. "
+      },
+      "genderExplanation": {
+        "en": "un infirmier: masculine. Learn the noun together with its article.",
+        "fr": "« un infirmier » : masculin. Apprenez le nom avec son article.",
+        "de": "un infirmier: männlich. Lerne das Nomen mit seinem Artikel."
+      },
+      "matchingLabel": {
+        "en": "nurse (masculine)",
+        "de": "Krankenpfleger (männlich)"
+      },
+      "examPrompt": {
+        "en": "nurse (masculine singular form)",
+        "de": "Krankenpfleger (männliche Singularform)"
+      },
+      "gap": {
+        "before": "Paul fait les soins prescrits à la clinique : il est ",
+        "after": ".",
+        "accepted": {
+          "answers": [
+            "infirmier"
+          ],
+          "accentSensitive": []
+        },
+        "referenceTargetIds": [
+          "target-infirmiere",
+          "target-infirmier",
+          "target-etudiante",
+          "target-etudiant"
+        ],
+        "explanation": {
+          "en": "un infirmier means nurse. ",
+          "fr": "La forme à retenir est « un infirmier ». ",
+          "de": "un infirmier bedeutet Krankenpfleger. "
+        }
+      },
+      "listeningOptionTargetIds": [
+        "target-infirmiere",
+        "target-infirmier",
+        "target-etudiante",
+        "target-etudiant"
+      ]
     },
     {
       "id": "target-infirmiere",
@@ -367,7 +686,7 @@
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
-        "infirmier"
+        "un infirmier"
       ],
       "pronunciation": "ɛ̃.fiʁ.mjɛʁ",
       "difficulty": "demanding",
@@ -378,7 +697,52 @@
           "de": "Die Krankenschwester hilft den Patienten."
         }
       },
-      "ambiguityNote": null
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "une infirmière means nurse.  Infirmière is feminine and has an accent grave on è.",
+        "fr": "La forme à retenir est « une infirmière ».  Infirmière est féminin et prend un accent grave sur le è.",
+        "de": "une infirmière bedeutet Krankenschwester.  Infirmière ist weiblich und hat einen accent grave auf è."
+      },
+      "genderExplanation": {
+        "en": "une infirmière: feminine. Learn the noun together with its article. Infirmière is feminine and has an accent grave on è.",
+        "fr": "« une infirmière » : féminin. Apprenez le nom avec son article. Infirmière est féminin et prend un accent grave sur le è.",
+        "de": "une infirmière: weiblich. Lerne das Nomen mit seinem Artikel. Infirmière ist weiblich und hat einen accent grave auf è."
+      },
+      "matchingLabel": {
+        "en": "nurse (feminine)",
+        "de": "Krankenschwester (weiblich)"
+      },
+      "examPrompt": {
+        "en": "nurse (feminine singular form)",
+        "de": "Krankenschwester (weibliche Singularform)"
+      },
+      "gap": {
+        "before": "Léa fait les soins prescrits à la clinique : elle est ",
+        "after": ".",
+        "accepted": {
+          "answers": [
+            "infirmière"
+          ],
+          "accentSensitive": []
+        },
+        "referenceTargetIds": [
+          "target-etudiant",
+          "target-infirmiere",
+          "target-avocat",
+          "target-etudiante"
+        ],
+        "explanation": {
+          "en": "une infirmière means nurse.  Infirmière is feminine and has an accent grave on è.",
+          "fr": "La forme à retenir est « une infirmière ».  Infirmière est féminin et prend un accent grave sur le è.",
+          "de": "une infirmière bedeutet Krankenschwester.  Infirmière ist weiblich und hat einen accent grave auf è."
+        }
+      },
+      "listeningOptionTargetIds": [
+        "target-etudiant",
+        "target-infirmiere",
+        "target-avocat",
+        "target-etudiante"
+      ]
     },
     {
       "id": "target-etudiant",
@@ -404,7 +768,7 @@
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
-        "étudiante"
+        "une étudiante"
       ],
       "pronunciation": "e.ty.djɑ̃",
       "difficulty": "core",
@@ -415,7 +779,52 @@
           "de": "Ich bin Student an der Universität."
         }
       },
-      "ambiguityNote": null
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "un étudiant means student.  Étudiant has an accent aigu on the initial é.",
+        "fr": "La forme à retenir est « un étudiant ».  Étudiant prend un accent aigu sur le é initial.",
+        "de": "un étudiant bedeutet Student.  Étudiant hat einen accent aigu auf dem Anfangs-é."
+      },
+      "genderExplanation": {
+        "en": "un étudiant: masculine. Learn the noun together with its article. Étudiant has an accent aigu on the initial é.",
+        "fr": "« un étudiant » : masculin. Apprenez le nom avec son article. Étudiant prend un accent aigu sur le é initial.",
+        "de": "un étudiant: männlich. Lerne das Nomen mit seinem Artikel. Étudiant hat einen accent aigu auf dem Anfangs-é."
+      },
+      "matchingLabel": {
+        "en": "student (masculine)",
+        "de": "Student (männlich)"
+      },
+      "examPrompt": {
+        "en": "student (masculine singular form)",
+        "de": "Student (männliche Singularform)"
+      },
+      "gap": {
+        "before": "Paul étudie à l’université : il est ",
+        "after": ".",
+        "accepted": {
+          "answers": [
+            "étudiant"
+          ],
+          "accentSensitive": []
+        },
+        "referenceTargetIds": [
+          "target-etudiante",
+          "target-etudiant",
+          "target-cuisinier",
+          "target-avocat"
+        ],
+        "explanation": {
+          "en": "un étudiant means student.  Étudiant has an accent aigu on the initial é.",
+          "fr": "La forme à retenir est « un étudiant ».  Étudiant prend un accent aigu sur le é initial.",
+          "de": "un étudiant bedeutet Student.  Étudiant hat einen accent aigu auf dem Anfangs-é."
+        }
+      },
+      "listeningOptionTargetIds": [
+        "target-etudiante",
+        "target-etudiant",
+        "target-cuisinier",
+        "target-avocat"
+      ]
     },
     {
       "id": "target-etudiante",
@@ -441,7 +850,7 @@
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
-        "étudiant"
+        "un étudiant"
       ],
       "pronunciation": "e.ty.djɑ̃t",
       "difficulty": "core",
@@ -452,7 +861,52 @@
           "de": "Sie ist Medizinstudentin."
         }
       },
-      "ambiguityNote": null
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "une étudiante means student.  The feminine form adds e; the initial é has an accent aigu.",
+        "fr": "La forme à retenir est « une étudiante ».  Le féminin ajoute e ; le é initial prend un accent aigu.",
+        "de": "une étudiante bedeutet Studentin.  Die weibliche Form bekommt e; das Anfangs-é hat einen accent aigu."
+      },
+      "genderExplanation": {
+        "en": "une étudiante: feminine. Learn the noun together with its article. The feminine form adds e; the initial é has an accent aigu.",
+        "fr": "« une étudiante » : féminin. Apprenez le nom avec son article. Le féminin ajoute e ; le é initial prend un accent aigu.",
+        "de": "une étudiante: weiblich. Lerne das Nomen mit seinem Artikel. Die weibliche Form bekommt e; das Anfangs-é hat einen accent aigu."
+      },
+      "matchingLabel": {
+        "en": "student (feminine)",
+        "de": "Studentin (weiblich)"
+      },
+      "examPrompt": {
+        "en": "student (feminine singular form)",
+        "de": "Studentin (weibliche Singularform)"
+      },
+      "gap": {
+        "before": "Léa étudie à l’université : elle est ",
+        "after": ".",
+        "accepted": {
+          "answers": [
+            "étudiante"
+          ],
+          "accentSensitive": []
+        },
+        "referenceTargetIds": [
+          "target-avocat",
+          "target-etudiante",
+          "target-medecin",
+          "target-cuisinier"
+        ],
+        "explanation": {
+          "en": "une étudiante means student.  The feminine form adds e; the initial é has an accent aigu.",
+          "fr": "La forme à retenir est « une étudiante ».  Le féminin ajoute e ; le é initial prend un accent aigu.",
+          "de": "une étudiante bedeutet Studentin.  Die weibliche Form bekommt e; das Anfangs-é hat einen accent aigu."
+        }
+      },
+      "listeningOptionTargetIds": [
+        "target-avocat",
+        "target-etudiante",
+        "target-medecin",
+        "target-cuisinier"
+      ]
     },
     {
       "id": "target-avocat",
@@ -478,7 +932,7 @@
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
-        "avocate"
+        "une avocate"
       ],
       "pronunciation": "a.vɔ.ka",
       "difficulty": "demanding",
@@ -489,7 +943,52 @@
           "de": "Er arbeitet als Anwalt."
         }
       },
-      "ambiguityNote": null
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "un avocat means lawyer. ",
+        "fr": "La forme à retenir est « un avocat ». ",
+        "de": "un avocat bedeutet Anwalt. "
+      },
+      "genderExplanation": {
+        "en": "un avocat: masculine. Learn the noun together with its article.",
+        "fr": "« un avocat » : masculin. Apprenez le nom avec son article.",
+        "de": "un avocat: männlich. Lerne das Nomen mit seinem Artikel."
+      },
+      "matchingLabel": {
+        "en": "lawyer (masculine)",
+        "de": "Anwalt (männlich)"
+      },
+      "examPrompt": {
+        "en": "lawyer (masculine singular form)",
+        "de": "Anwalt (männliche Singularform)"
+      },
+      "gap": {
+        "before": "Il défend ses clients au tribunal : il est ",
+        "after": ".",
+        "accepted": {
+          "answers": [
+            "avocat"
+          ],
+          "accentSensitive": []
+        },
+        "referenceTargetIds": [
+          "target-cuisinier",
+          "target-avocat",
+          "target-professeur",
+          "target-medecin"
+        ],
+        "explanation": {
+          "en": "un avocat means lawyer. ",
+          "fr": "La forme à retenir est « un avocat ». ",
+          "de": "un avocat bedeutet Anwalt. "
+        }
+      },
+      "listeningOptionTargetIds": [
+        "target-cuisinier",
+        "target-avocat",
+        "target-professeur",
+        "target-medecin"
+      ]
     },
     {
       "id": "target-cuisinier",
@@ -515,7 +1014,7 @@
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
-        "cuisinière"
+        "une cuisinière"
       ],
       "pronunciation": "kɥi.zi.nje",
       "difficulty": "core",
@@ -526,79 +1025,54 @@
           "de": "Der Koch bereitet eine Mahlzeit zu."
         }
       },
-      "ambiguityNote": null
-    }
-  ],
-  "plan": {
-    "introduction": {
-      "estimatedDurationS": 60
-    },
-    "flashcards": {
-      "estimatedDurationS": 120
-    },
-    "matching": {
-      "groupSize": 4,
-      "estimatedDurationS": 120
-    },
-    "genderOverview": {
-      "scored": true,
-      "estimatedDurationS": 90
-    },
-    "typedGaps": {
-      "targetIds": [
-        "target-medecin",
-        "target-professeur",
-        "target-serveur",
-        "target-serveuse",
-        "target-vendeur",
-        "target-vendeuse",
-        "target-infirmier",
-        "target-infirmiere",
-        "target-etudiant",
-        "target-etudiante",
-        "target-avocat",
-        "target-cuisinier"
-      ],
-      "estimatedDurationS": 180
-    },
-    "listening": {
-      "required": false,
-      "practiceTargetIds": [],
-      "estimatedDurationS": null
-    },
-    "exam": {
-      "pages": [
-        {
-          "pageId": "page-exam-1",
-          "kind": "translation",
-          "targetIds": [
-            "target-medecin",
-            "target-professeur",
-            "target-serveur",
-            "target-serveuse",
-            "target-vendeur",
-            "target-vendeuse"
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "un cuisinier means cook. ",
+        "fr": "La forme à retenir est « un cuisinier ». ",
+        "de": "un cuisinier bedeutet Koch. "
+      },
+      "genderExplanation": {
+        "en": "un cuisinier: masculine. Learn the noun together with its article.",
+        "fr": "« un cuisinier » : masculin. Apprenez le nom avec son article.",
+        "de": "un cuisinier: männlich. Lerne das Nomen mit seinem Artikel."
+      },
+      "matchingLabel": {
+        "en": "cook (masculine)",
+        "de": "Koch (männlich)"
+      },
+      "examPrompt": {
+        "en": "cook (masculine singular form)",
+        "de": "Koch (männliche Singularform)"
+      },
+      "gap": {
+        "before": "Il prépare les repas au restaurant : il est ",
+        "after": ".",
+        "accepted": {
+          "answers": [
+            "cuisinier"
           ],
-          "estimatedDurationS": 120,
-          "timeLimitS": 180
+          "accentSensitive": []
         },
-        {
-          "pageId": "page-exam-2",
-          "kind": "translation",
-          "targetIds": [
-            "target-infirmier",
-            "target-infirmiere",
-            "target-etudiant",
-            "target-etudiante",
-            "target-avocat",
-            "target-cuisinier"
-          ],
-          "estimatedDurationS": 120,
-          "timeLimitS": 180
+        "referenceTargetIds": [
+          "target-medecin",
+          "target-cuisinier",
+          "target-serveur",
+          "target-professeur"
+        ],
+        "explanation": {
+          "en": "un cuisinier means cook. ",
+          "fr": "La forme à retenir est « un cuisinier ». ",
+          "de": "un cuisinier bedeutet Koch. "
         }
+      },
+      "listeningOptionTargetIds": [
+        "target-medecin",
+        "target-cuisinier",
+        "target-serveur",
+        "target-professeur"
       ]
     }
-  },
+  ],
   "scoring": {
     "practiceWeight": 35,
     "examWeight": 65,

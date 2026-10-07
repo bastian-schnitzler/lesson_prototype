@@ -292,8 +292,8 @@ function unitTarget(page: PlanPage, unit: PlanUnit): string | undefined {
 }
 
 /**
- * Splits units into consecutive sections, each shown once in its own frame: by vocabulary group
- * (across pages, so single-item practice pages do not repeat the group name), otherwise by page
+ * Splits units into sections, each shown once in its own frame: by vocabulary group (across all
+ * pages of the part, so a group's name is never repeated), otherwise by consecutive page
  * ("Part n") when a page holds several answers; consecutive single-answer pages share one section.
  */
 function resultSections(plan: LessonPlan, pages: PlanPage[]) {
@@ -304,8 +304,9 @@ function resultSections(plan: LessonPlan, pages: PlanPage[]) {
       const target = unitTarget(page, unit);
       const group = target ? groupOf.get(target) : undefined;
       const key = group ? `group|${group.id}` : page.units.length > 1 ? `page|${page.pageId}` : 'single';
-      const last = sections.at(-1);
-      if (last?.key === key) last.units.push(unit);
+      // One section per group across the whole part (typed gaps and listening of a group share a frame).
+      const existing = group ? sections.find((sec) => sec.key === key) : sections.at(-1)?.key === key ? sections.at(-1) : undefined;
+      if (existing) existing.units.push(unit);
       else sections.push({ key, groupId: group?.id, part: n + 1, units: [unit] });
     }
   });

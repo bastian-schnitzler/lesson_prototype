@@ -56,7 +56,12 @@
         "lisez",
         "ecrivez",
         "repetez"
-      ]
+      ],
+      "introduction": {
+        "en": "Teachers use these instructions every day.",
+        "fr": "Les professeurs utilisent ces consignes chaque jour.",
+        "de": "Lehrkräfte benutzen diese Anweisungen jeden Tag."
+      }
     }
   ],
   "targets": [
@@ -91,7 +96,45 @@
           "de": "Hören sie zu bitte."
         }
       },
-      "ambiguityNote": null
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "Écoutez is written with an acute accent on e.",
+        "fr": "Écoutez prend un accent aigu sur le e.",
+        "de": "Écoutez schreibt sich mit Akut auf dem e."
+      },
+      "genderExplanation": null,
+      "matchingLabel": null,
+      "examPrompt": {
+        "en": "Listen! (to the class)",
+        "de": "Hört zu!"
+      },
+      "gap": {
+        "before": "S’il vous plaît, ",
+        "after": " le dialogue.",
+        "accepted": {
+          "answers": [
+            "écoutez"
+          ],
+          "accentSensitive": []
+        },
+        "referenceTargetIds": [
+          "ecoutez",
+          "lisez",
+          "ecrivez",
+          "repetez"
+        ],
+        "explanation": {
+          "en": "Écoutez is written with an acute accent on e.",
+          "fr": "Écoutez prend un accent aigu sur le e.",
+          "de": "Écoutez schreibt sich mit Akut auf dem e."
+        }
+      },
+      "listeningOptionTargetIds": [
+        "ecoutez",
+        "lisez",
+        "ecrivez",
+        "repetez"
+      ]
     },
     {
       "id": "lisez",
@@ -124,7 +167,45 @@
           "de": "Lesen sie bitte."
         }
       },
-      "ambiguityNote": null
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "Lisez is the instruction “read”.",
+        "fr": "« lisez » est la consigne « lire ».",
+        "de": "„lisez“ ist die Anweisung „lesen“."
+      },
+      "genderExplanation": null,
+      "matchingLabel": null,
+      "examPrompt": {
+        "en": "Read! (to the class)",
+        "de": "Lest!"
+      },
+      "gap": {
+        "before": "Ouvrez le livre et ",
+        "after": " le texte.",
+        "accepted": {
+          "answers": [
+            "lisez"
+          ],
+          "accentSensitive": []
+        },
+        "referenceTargetIds": [
+          "ecoutez",
+          "lisez",
+          "ecrivez",
+          "repetez"
+        ],
+        "explanation": {
+          "en": "Lisez is the instruction “read”.",
+          "fr": "« lisez » est la consigne « lire ».",
+          "de": "„lisez“ ist die Anweisung „lesen“."
+        }
+      },
+      "listeningOptionTargetIds": [
+        "ecoutez",
+        "lisez",
+        "ecrivez",
+        "repetez"
+      ]
     },
     {
       "id": "ecrivez",
@@ -157,7 +238,45 @@
           "de": "Schreiben sie bitte."
         }
       },
-      "ambiguityNote": null
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "Écrivez is written with an acute accent on e.",
+        "fr": "Écrivez prend un accent aigu sur le e.",
+        "de": "Écrivez schreibt sich mit Akut auf dem e."
+      },
+      "genderExplanation": null,
+      "matchingLabel": null,
+      "examPrompt": {
+        "en": "Write! (to the class)",
+        "de": "Schreibt!"
+      },
+      "gap": {
+        "before": "Prenez un stylo et ",
+        "after": " votre nom.",
+        "accepted": {
+          "answers": [
+            "écrivez"
+          ],
+          "accentSensitive": []
+        },
+        "referenceTargetIds": [
+          "ecoutez",
+          "lisez",
+          "ecrivez",
+          "repetez"
+        ],
+        "explanation": {
+          "en": "Écrivez is written with an accent aigu on e.",
+          "fr": "Écrivez prend un accent aigu sur le e.",
+          "de": "Écrivez schreibt sich mit Akut auf dem e."
+        }
+      },
+      "listeningOptionTargetIds": [
+        "ecoutez",
+        "lisez",
+        "ecrivez",
+        "repetez"
+      ]
     },
     {
       "id": "repetez",
@@ -190,66 +309,47 @@
           "de": "Wiederholen sie bitte."
         }
       },
-      "ambiguityNote": null
-    }
-  ],
-  "plan": {
-    "introduction": {
-      "estimatedDurationS": 50
-    },
-    "flashcards": {
-      "estimatedDurationS": 60
-    },
-    "matching": {
-      "groupSize": 4,
-      "estimatedDurationS": 50
-    },
-    "genderOverview": {
-      "scored": false,
-      "estimatedDurationS": 40
-    },
-    "typedGaps": {
-      "targetIds": [
-        "ecoutez",
-        "lisez"
-      ],
-      "estimatedDurationS": 60
-    },
-    "listening": {
-      "required": true,
-      "practiceTargetIds": [
-        "ecoutez",
-        "repetez"
-      ],
-      "estimatedDurationS": 40
-    },
-    "exam": {
-      "pages": [
-        {
-          "pageId": "exam-translate",
-          "kind": "translation",
-          "targetIds": [
-            "ecoutez",
-            "lisez",
-            "ecrivez",
-            "repetez"
+      "ambiguityNote": null,
+      "explanation": {
+        "en": "Répétez has an acute accent on both first e’s.",
+        "fr": "Répétez prend un accent aigu sur les deux premiers e.",
+        "de": "Répétez hat auf den ersten beiden e einen Akut."
+      },
+      "genderExplanation": null,
+      "matchingLabel": null,
+      "examPrompt": {
+        "en": "Repeat! (to the class)",
+        "de": "Wiederholt!"
+      },
+      "gap": {
+        "before": "Écoutez et ",
+        "after": " après moi.",
+        "accepted": {
+          "answers": [
+            "répétez"
           ],
-          "estimatedDurationS": 60,
-          "timeLimitS": 90
+          "accentSensitive": []
         },
-        {
-          "pageId": "exam-listen",
-          "kind": "listening_dictation",
-          "targetIds": [
-            "ecrivez",
-            "lisez"
-          ],
-          "estimatedDurationS": 40,
-          "timeLimitS": 60
+        "referenceTargetIds": [
+          "ecoutez",
+          "lisez",
+          "ecrivez",
+          "repetez"
+        ],
+        "explanation": {
+          "en": "Répétez is written with two accents aigus.",
+          "fr": "Répétez prend deux accents aigus.",
+          "de": "Répétez schreibt sich mit zwei Akuten."
         }
+      },
+      "listeningOptionTargetIds": [
+        "ecoutez",
+        "lisez",
+        "ecrivez",
+        "repetez"
       ]
     }
-  },
+  ],
   "scoring": {
     "practiceWeight": 35,
     "examWeight": 65,
