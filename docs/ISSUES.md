@@ -29,6 +29,8 @@ These issue bodies were published to GitHub in P0-04 on 2026-10-06. Each GitHub 
 | P2-03 | [#23](https://github.com/bastian-schnitzler/lesson_prototype/issues/23) | Implement noun-gender overview, typed gaps, and translation exam |
 | P2-04 | [#24](https://github.com/bastian-schnitzler/lesson_prototype/issues/24) | Integrate complete vocabulary sessions and end-to-end validation |
 | P2-05 | [#52](https://github.com/bastian-schnitzler/lesson_prototype/issues/52) | Deliver formatted introduction and explanation text from generation |
+| P2-06 | [#57](https://github.com/bastian-schnitzler/lesson_prototype/issues/57) | Author briefs and lessons for the remaining vocabulary lessons |
+| P2-07 | [#58](https://github.com/bastian-schnitzler/lesson_prototype/issues/58) | Author briefs and lessons for the remaining grammar lessons |
 | P2-08 | [#25](https://github.com/bastian-schnitzler/lesson_prototype/issues/25) | Update vocabulary lesson mockups from the prototype |
 | P3-01 | [#26](https://github.com/bastian-schnitzler/lesson_prototype/issues/26) | Review grammar renderer composition and mixed exam support |
 | P3-02 | [#27](https://github.com/bastian-schnitzler/lesson_prototype/issues/27) | Implement pronoun/form matching and typing with tests |
@@ -568,6 +570,8 @@ Dependencies: P2-02, P2-04.
 
 ### P2-06: Author briefs and lessons for the remaining vocabulary lessons
 
+GitHub: [#57](https://github.com/bastian-schnitzler/lesson_prototype/issues/57).
+
 Milestone: **Phase 2**.
 
 Scope: the 38 fr/A1 vocabulary outline entries that still have no artifacts. For each, Claude in Claude Code writes the brief first and then the lesson content directly, as the P1-08 samples were written, instead of running the offline generator (`make generate`).
@@ -598,6 +602,8 @@ Acceptance:
 Dependencies: P2-01, P2-05.
 
 ### P2-07: Author briefs and lessons for the remaining grammar lessons
+
+GitHub: [#58](https://github.com/bastian-schnitzler/lesson_prototype/issues/58).
 
 Milestone: **Phase 2**.
 
