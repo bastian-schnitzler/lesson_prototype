@@ -34,6 +34,21 @@ async function matchAll(page: Page, { wrong = true } = {}) {
   }
 }
 
+/**
+ * Answers a typed gap: a correct answer flashes green and moves on by itself; otherwise the
+ * correction is shown and a second Continue confirms it.
+ */
+async function answerGap(page: Page, word: string) {
+  await page.getByRole('textbox').fill(word);
+  await proceed(page);
+  // Either the correction appears, or (after the green flash) the next page shows an empty field.
+  await page.waitForFunction(() => {
+    const field = document.querySelector<HTMLInputElement>('.task-card input.text-input');
+    return !!document.querySelector('.feedback') || !field || field.value === '';
+  });
+  if (await page.locator('.feedback').count()) await proceed(page);
+}
+
 /** Picks the first gender for every noun on the gender page. */
 async function chooseGenders(page: Page) {
   for (const group of await page.locator('fieldset.gender-options:not([disabled])').all()) await group.locator('label').first().click();
@@ -76,10 +91,14 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   await chooseGenders(page);
   await proceed(page);
   await proceed(page);
+  // Typed gaps: the cursor is already in the field; the four reference words are listed below the sentence.
+  await expect(page.getByRole('textbox')).toBeFocused();
+  const field = (await page.getByRole('textbox').boundingBox())!;
+  const refs = page.locator('.reference-list > li');
+  await expect(refs).toHaveCount(4);
+  expect((await refs.first().boundingBox())!.y).toBeGreaterThan(field.y + field.height);
   for (const word of ['livre', 'Chaise', 'stylo', 'table']) {
-    await page.getByRole('textbox').fill(word);
-    await proceed(page);
-    await proceed(page);
+    await answerGap(page, word);
   }
   await expect(page.getByRole('timer')).toBeVisible();
   const score = await page.locator('.session-score').textContent();
@@ -161,9 +180,7 @@ async function reachListeningPractice(page: Page) {
   await proceed(page); // matching feedback
   await proceed(page); // overview
   for (const word of ['écoutez', 'lisez']) {
-    await page.getByRole('textbox').fill(word);
-    await proceed(page);
-    await proceed(page);
+    await answerGap(page, word);
   }
 }
 

@@ -89,11 +89,14 @@ describe('progress, header score and exam timing', () => {
     s.proceed(); // intro 60 s
     expect(progress(s.plan, s.record)).toBeCloseTo((100 * 60) / 470);
     s.proceed(); // cards 90 s
-    for (let i = 0; i < 6; i++) {
+    while (s.page().role === 'practice') {
       s.answerAll();
       s.proceed();
-      expect(progress(s.plan, s.record)).toBeLessThan(100); // awaiting confirmation is not complete
-      s.proceed();
+      // Fully correct matching and typed gaps go straight on; other practice pages await confirmation.
+      if (s.record.phase === 'feedback') {
+        expect(progress(s.plan, s.record)).toBeLessThan(100);
+        s.proceed();
+      }
     }
     expect(s.page().pageId).toBe('exam-1');
     expect(headerScore(s.plan, s.record)).toBeCloseTo(35);

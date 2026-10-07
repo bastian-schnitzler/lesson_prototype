@@ -278,23 +278,6 @@ export function UnitsRenderer(props: RendererProps) {
   const item = props.item;
   return (
     <div className="units">
-      {item.type === 'vocabulary_typed_gap' && (
-        <div className="references">
-          <span className="label-muted">{t('session.references')}</span>
-          {/* Noninteractive reference words with their applicable gender (they are not selectable). */}
-          <ul className="reference-chips">
-            {seededOrder(item.referenceTargetIds, props.seed, item.itemId).map((id) => {
-              const target = props.plan.targets.get(id);
-              return (
-                <li key={id}>
-                  <span lang={lang}>{target?.term ?? id}</span>
-                  {target?.genders.length ? <small>{target.genders.map((g) => t(`gender.${g}`)).join(' / ')}</small> : null}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      )}
       {item.type === 'grammar_gap_typing' && item.hint && props.mode !== 'exam' && (
         <p className="muted">
           {t('session.hint')} {item.hint[locale]}
@@ -336,6 +319,23 @@ export function UnitsRenderer(props: RendererProps) {
           </UnitRow>
         );
       })}
+      {item.type === 'vocabulary_typed_gap' && (
+        <div className="references">
+          <p className="label-muted">{t('session.references')}</p>
+          {/* Noninteractive reference words (not selectable), listed like gap-choice options, with their gender. */}
+          <ul className="reference-list">
+            {seededOrder(item.referenceTargetIds, props.seed, item.itemId).map((id) => {
+              const target = props.plan.targets.get(id);
+              return (
+                <li key={id}>
+                  <span lang={lang}>{target?.term ?? id}</span>
+                  {target?.genders.length ? <small>{target.genders.map((g) => t(`gender.${g}`)).join(' / ')}</small> : null}
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

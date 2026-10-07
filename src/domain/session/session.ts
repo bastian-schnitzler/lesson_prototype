@@ -112,9 +112,14 @@ function activate(plan: LessonPlan, r: SessionRecord, now: number): SessionRecor
   return { ...r, exam: { ...r.exam, [page.pageId]: { startedAt: now, deadline: now + (page.timeLimitS ?? 0) * 1000, timedOut: false } } };
 }
 
-/** Matching pages answered fully correctly go straight on; their feedback would only repeat the answers. */
+/** Practice pages whose correct answers need no confirmation view (matching, typed gaps). */
+export function skipsFeedbackWhenCorrect(page: PlanPage): boolean {
+  return page.items.length > 0 && page.items.every((item) => item.type === 'vocabulary_matching' || item.type === 'vocabulary_typed_gap');
+}
+
+/** Such pages answered fully correctly go straight on (after a green flash); feedback would only repeat the answers. */
 export function skipsFeedback(page: PlanPage, r: Pick<SessionRecord, 'locked'>): boolean {
-  return page.items.every((item) => item.type === 'vocabulary_matching') && page.units.every((u) => r.locked[u.id]?.outcome === 'fully_correct');
+  return skipsFeedbackWhenCorrect(page) && page.units.every((u) => r.locked[u.id]?.outcome === 'fully_correct');
 }
 
 /** Flashcard pages complete once every card was revealed (P2-02); other presentation pages at once. */

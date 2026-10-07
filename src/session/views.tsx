@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useI18n, useLastTry } from '../app/context.tsx';
 import { formatScore, roundHalfUp1 } from '../domain/format.ts';
 import type { LessonPlan, PlanUnit } from '../domain/session/plan.ts';
-import { headerScore, isAnswered, isListeningPage, presentationComplete, scoreUnit, lessonResults, POLICY, progress, type LockedUnit, type SessionRecord } from '../domain/session/session.ts';
+import { headerScore, isAnswered, isListeningPage, presentationComplete, scoreUnit, skipsFeedbackWhenCorrect, lessonResults, POLICY, progress, type LockedUnit, type SessionRecord } from '../domain/session/session.ts';
 import type { MessageKey } from '../i18n/messages.ts';
 import { rendererRegistry, UnitFeedback } from './renderers.tsx';
 import { answerText } from './controls.tsx';
@@ -112,11 +112,15 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
   const mode = page.role === 'exam' ? 'exam' : record.phase === 'feedback' ? 'feedback' : 'answering';
   const ready = page.role === 'presentation' ? presentationComplete(page, record) : page.role !== 'practice' || record.phase === 'feedback' || page.units.every((u) => isAnswered(u, record.drafts[u.id]));
   const heading = useRef<HTMLHeadingElement>(null);
-  useEffect(() => heading.current?.focus(), [record.pageIndex]);
+  // Typing pages put the cursor straight into the first answer field; other pages focus the heading.
+  useEffect(() => {
+    const field = document.querySelector<HTMLInputElement>('.task-card input.text-input:not([readonly]):not([disabled])');
+    (field ?? heading.current)?.focus();
+  }, [record.pageIndex]);
   // A fully correct matching page plays a short success animation, then skips its feedback (P2-02).
   const [celebrating, setCelebrating] = useState(false);
   const onContinue = () => {
-    const perfect = record.phase === 'answering' && page.items.every((it) => it.type === 'vocabulary_matching')
+    const perfect = record.phase === 'answering' && skipsFeedbackWhenCorrect(page)
       && page.units.every((u) => scoreUnit(u, record.drafts[u.id]).outcome === 'fully_correct');
     if (!perfect) return dispatch({ type: 'continue' });
     setCelebrating(true);
