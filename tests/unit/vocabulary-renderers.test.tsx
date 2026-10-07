@@ -6,6 +6,7 @@ import { PreferencesProvider } from '../../src/app/context.tsx';
 import { lessonOf } from './lessonFixture.ts';
 import { buildPlan } from '../../src/domain/session/plan.ts';
 import { GenderRenderer, MatchingRenderer } from '../../src/session/vocabularyRenderers.tsx';
+import { UnitsRenderer } from '../../src/session/controls.tsx';
 
 afterEach(cleanup);
 const FIXTURES = resolve(import.meta.dirname, '../fixtures/content');
@@ -90,4 +91,17 @@ it('marks the choices in place after Check: green for right, red for wrong, gree
   expect(wrongRow.querySelector('.gender-option.is-answer input')).toHaveProperty('value', first.correct[0]);
   expect(wrongRow.querySelector('.gender-explanation')).toBeNull(); // no explanation on the gender page (P2-04 review)
   expect(container.querySelectorAll('.gender-row.is-right .gender-option.is-right')).toHaveLength(units.length - 1);
+});
+
+it('shows the gender of every written option on a listening-choice page', () => {
+  const listening = plan.pages.find((p) => p.items[0].type === 'vocabulary_listening_choice')!;
+  render(
+    <PreferencesProvider initial={{ interfaceLanguage: 'en', motherTongue: 'en' }}>
+      <UnitsRenderer item={listening.items[0]} units={listening.units} plan={plan} mode="answering" drafts={{}} locked={{}} onChange={vi.fn()}
+        seed={1} motherTongue="en" pageId={listening.pageId} revealed={{}} onReveal={() => undefined} />
+    </PreferencesProvider>,
+  );
+  const labels = [...document.querySelectorAll('fieldset.choices label')];
+  expect(labels).toHaveLength(4);
+  for (const label of labels) expect(label.querySelector('.choice-gender')?.textContent).toMatch(/^(Masculine|Feminine)$/);
 });

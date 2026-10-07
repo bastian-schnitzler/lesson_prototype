@@ -214,6 +214,10 @@ export function ChoiceControl({ unit, props, label, layout }: { unit: PlanUnit &
         <label key={o.id} className={`choice${choiceState(o.id)}`}>
           <input type="radio" name={unit.id} value={o.id} checked={current === o.id} onChange={() => props.onChange(unit.id, o.id)} />
           <OptionText option={o} lang={props.plan.lang} />
+          {/* Vocabulary options (listening choice) show the gender as extra information, like the reference cards. */}
+          {o.lang === 'learning' && props.plan.targets.get(o.id)?.genders.length ? (
+            <small className="choice-gender">{props.plan.targets.get(o.id)!.genders.map((g) => t(`gender.${g}`)).join(' / ')}</small>
+          ) : null}
         </label>
       ))}
     </fieldset>

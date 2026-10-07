@@ -298,6 +298,7 @@ test('plays French listening choice and dictation with a suitable voice', async 
     for (const option of await options.all()) if (((await option.textContent())!.trim() === word) === right) return option.click();
   };
   await choose(false);
+  await expect(page.locator('fieldset.choices .choice-gender')).toHaveCount(0); // fr-classroom-instructions has no nouns
   await proceed(page);
   // A wrong choice: the chosen option red, the correct one green, no feedback card.
   await expect(page.locator('.choice.is-wrong')).toHaveCount(1);

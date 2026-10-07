@@ -2118,3 +2118,8 @@ select {
 html {
   scrollbar-gutter: stable;
 }
+
+.choice-gender {
+  color: var(--muted);
+  font-size: 13px;
+}
