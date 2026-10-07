@@ -1,0 +1,1185 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-personal-belongings",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les objets personnels",
+  "objective": {
+    "en": "Name twelve personal belongings in French with articles.",
+    "fr": "Nommer une douzaine d’objets personnels en français avec leurs articles.",
+    "de": "Nenne zwölf persönliche Gegenstände auf Französisch mit Artikeln."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-content-v1",
+    "generatedAt": "2026-10-07T15:03:50.939Z",
+    "inputHashes": {
+      "outline": "9d50f2574b0c21c41c5ddb8122b2eaeef903799d22d193ffe7ce06c8d0379511",
+      "brief": "aa93fde14db0e9d050e6855337deda2fbd7e1fa0839749869897af45f125f157"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "daily_life",
+  "steps": [
+    {
+      "id": "introduction",
+      "stage": "introduction",
+      "role": "introduction",
+      "label": {
+        "en": "Introduction",
+        "fr": "Introduction",
+        "de": "Einführung"
+      },
+      "pages": [
+        {
+          "pageId": "intro-pocket-carry",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-pocket-carry",
+              "targetIds": [
+                "des-cles",
+                "un-portefeuille",
+                "un-sac",
+                "un-telephone-portable",
+                "des-lunettes",
+                "une-montre"
+              ],
+              "text": {
+                "en": "Pocket and handbag items:\n\n- `des clés`\n- `un portefeuille`\n- `un sac`\n- `un téléphone portable`\n- `des lunettes`\n- `une montre`",
+                "fr": "Objets des poches et du sac :\n\n- `des clés`\n- `un portefeuille`\n- `un sac`\n- `un téléphone portable`\n- `des lunettes`\n- `une montre`",
+                "de": "Taschen- und Handtascheninhalt:\n\n- `des clés`\n- `un portefeuille`\n- `un sac`\n- `un téléphone portable`\n- `des lunettes`\n- `une montre` "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "intro-accessories-docs",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-accessories-docs",
+              "targetIds": [
+                "un-parapluie",
+                "un-mouchoir",
+                "une-carte-d-identite",
+                "un-passeport",
+                "un-agenda",
+                "un-stylo"
+              ],
+              "text": {
+                "en": "Personal accessories and weather gear:\n\n- `un parapluie`\n- `un mouchoir`\n- `une carte d’identité`\n- `un passeport`\n- `un agenda`\n- `un stylo`",
+                "fr": "Accessoires personnels :\n\n- `un parapluie`\n- `un mouchoir`\n- `une carte d’identité`\n- `un passeport`\n- `un agenda`\n- `un stylo`",
+                "de": "Persönliche Accessoires:\n\n- `un parapluie`\n- `un mouchoir`\n- `une carte d’identité`\n- `un passeport`\n- `un agenda`\n- `un stylo` "
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "cards-pocket-carry",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-pocket-carry",
+              "targetIds": [
+                "des-cles",
+                "un-portefeuille",
+                "un-sac",
+                "un-telephone-portable",
+                "des-lunettes",
+                "une-montre"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "cards-accessories-docs",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-accessories-docs",
+              "targetIds": [
+                "un-parapluie",
+                "un-mouchoir",
+                "une-carte-d-identite",
+                "un-passeport",
+                "un-agenda",
+                "un-stylo"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "match-1",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-2",
+              "pairs": [
+                {
+                  "targetId": "des-cles",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "des clés means some keys.",
+                    "fr": "des clés signifie « some keys » en anglais.",
+                    "de": "des clés bedeutet Schlüssel."
+                  }
+                },
+                {
+                  "targetId": "un-portefeuille",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un portefeuille means a wallet.",
+                    "fr": "un portefeuille signifie « a wallet » en anglais.",
+                    "de": "un portefeuille bedeutet eine Geldbörse."
+                  }
+                },
+                {
+                  "targetId": "un-sac",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un sac means a bag.",
+                    "fr": "un sac signifie « a bag » en anglais.",
+                    "de": "un sac bedeutet eine Tasche."
+                  }
+                },
+                {
+                  "targetId": "un-telephone-portable",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un téléphone portable means a mobile phone.",
+                    "fr": "un téléphone portable signifie « a mobile phone » en anglais.",
+                    "de": "un téléphone portable bedeutet ein Handy."
+                  }
+                },
+                {
+                  "targetId": "des-lunettes",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "des lunettes means some glasses.",
+                    "fr": "des lunettes signifie « some glasses » en anglais.",
+                    "de": "des lunettes bedeutet eine Brille."
+                  }
+                },
+                {
+                  "targetId": "une-montre",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une montre means a watch.",
+                    "fr": "une montre signifie « a watch » en anglais.",
+                    "de": "une montre bedeutet eine Armbanduhr."
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-2",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-3",
+              "pairs": [
+                {
+                  "targetId": "un-parapluie",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un parapluie means an umbrella.",
+                    "fr": "un parapluie signifie « an umbrella » en anglais.",
+                    "de": "un parapluie bedeutet ein Regenschirm."
+                  }
+                },
+                {
+                  "targetId": "un-mouchoir",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un mouchoir means a tissue.",
+                    "fr": "un mouchoir signifie « a tissue » en anglais.",
+                    "de": "un mouchoir bedeutet ein Taschentuch."
+                  }
+                },
+                {
+                  "targetId": "une-carte-d-identite",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une carte d’identité means an ID card.",
+                    "fr": "une carte d’identité signifie « an ID card » en anglais.",
+                    "de": "une carte d’identité bedeutet ein Personalausweis."
+                  }
+                },
+                {
+                  "targetId": "un-passeport",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un passeport means a passport.",
+                    "fr": "un passeport signifie « a passport » en anglais.",
+                    "de": "un passeport bedeutet ein Reisepass."
+                  }
+                },
+                {
+                  "targetId": "un-agenda",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un agenda means a planner.",
+                    "fr": "un agenda signifie « a planner » en anglais.",
+                    "de": "un agenda bedeutet ein Terminkalender."
+                  }
+                },
+                {
+                  "targetId": "un-stylo",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un stylo means a pen.",
+                    "fr": "un stylo signifie « a pen » en anglais.",
+                    "de": "un stylo bedeutet ein Stift."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overview",
+      "stage": "overview",
+      "role": "overview",
+      "label": {
+        "en": "Overview",
+        "fr": "Vue d’ensemble",
+        "de": "Übersicht"
+      },
+      "pages": [
+        {
+          "pageId": "overview-page",
+          "estimatedDurationS": 90,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Review all words and their details.",
+            "fr": "Révisez tous les mots et leurs détails.",
+            "de": "Überprüfe alle Wörter und ihre Details."
+          },
+          "items": [
+            {
+              "type": "vocabulary_gender_select",
+              "itemId": "gender-overview",
+              "targetIds": [
+                "des-cles",
+                "un-portefeuille",
+                "un-sac",
+                "un-telephone-portable",
+                "des-lunettes",
+                "une-montre",
+                "un-parapluie",
+                "un-mouchoir",
+                "une-carte-d-identite",
+                "un-passeport",
+                "un-agenda",
+                "un-stylo"
+              ],
+              "rows": [
+                {
+                  "targetId": "des-cles",
+                  "answerExplanation": {
+                    "en": "clés is feminine.",
+                    "fr": "clés est féminin.",
+                    "de": "clés ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-portefeuille",
+                  "answerExplanation": {
+                    "en": "portefeuille is masculine.",
+                    "fr": "portefeuille est masculin.",
+                    "de": "portefeuille ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-sac",
+                  "answerExplanation": {
+                    "en": "sac is masculine.",
+                    "fr": "sac est masculin.",
+                    "de": "sac ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-telephone-portable",
+                  "answerExplanation": {
+                    "en": "téléphone portable is masculine.",
+                    "fr": "téléphone portable est masculin.",
+                    "de": "téléphone portable ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "des-lunettes",
+                  "answerExplanation": {
+                    "en": "lunettes is feminine.",
+                    "fr": "lunettes est féminin.",
+                    "de": "lunettes ist feminin."
+                  }
+                },
+                {
+                  "targetId": "une-montre",
+                  "answerExplanation": {
+                    "en": "montre is feminine.",
+                    "fr": "montre est féminin.",
+                    "de": "montre ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-parapluie",
+                  "answerExplanation": {
+                    "en": "parapluie is masculine.",
+                    "fr": "parapluie est masculin.",
+                    "de": "parapluie ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-mouchoir",
+                  "answerExplanation": {
+                    "en": "mouchoir is masculine.",
+                    "fr": "mouchoir est masculin.",
+                    "de": "mouchoir ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "une-carte-d-identite",
+                  "answerExplanation": {
+                    "en": "carte d’identité is feminine.",
+                    "fr": "carte d’identité est féminin.",
+                    "de": "carte d’identité ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-passeport",
+                  "answerExplanation": {
+                    "en": "passeport is masculine.",
+                    "fr": "passeport est masculin.",
+                    "de": "passeport ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-agenda",
+                  "answerExplanation": {
+                    "en": "agenda is masculine.",
+                    "fr": "agenda est masculin.",
+                    "de": "agenda ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-stylo",
+                  "answerExplanation": {
+                    "en": "stylo is masculine.",
+                    "fr": "stylo est masculin.",
+                    "de": "stylo ist maskulin."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "stage": "practice",
+      "role": "exercise",
+      "label": {
+        "en": "Practice",
+        "fr": "Entraînement",
+        "de": "Übung"
+      },
+      "pages": [
+        {
+          "pageId": "gap-des-cles",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-des-cles",
+              "targetId": "des-cles",
+              "before": "Ouvrir la porte avec",
+              "after": ".",
+              "referenceTargetIds": [
+                "des-cles",
+                "un-portefeuille",
+                "un-sac",
+                "un-telephone-portable"
+              ],
+              "accepted": {
+                "answers": [
+                  "clés"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is clés.",
+                "fr": "Le mot manquant est clés.",
+                "de": "Das fehlende Wort ist clés."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-portefeuille",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-portefeuille",
+              "targetId": "un-portefeuille",
+              "before": "Mettre sa carte dans un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-portefeuille",
+                "des-cles",
+                "un-sac",
+                "un-telephone-portable"
+              ],
+              "accepted": {
+                "answers": [
+                  "portefeuille"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is portefeuille.",
+                "fr": "Le mot manquant est portefeuille.",
+                "de": "Das fehlende Wort ist portefeuille."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-sac",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-sac",
+              "targetId": "un-sac",
+              "before": "Mettre ses affaires dans un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-sac",
+                "des-cles",
+                "un-portefeuille",
+                "un-telephone-portable"
+              ],
+              "accepted": {
+                "answers": [
+                  "sac"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is sac.",
+                "fr": "Le mot manquant est sac.",
+                "de": "Das fehlende Wort ist sac."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-telephone-portable",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-telephone-portable",
+              "targetId": "un-telephone-portable",
+              "before": "Charger un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-telephone-portable",
+                "des-cles",
+                "un-portefeuille",
+                "un-sac"
+              ],
+              "accepted": {
+                "answers": [
+                  "téléphone portable"
+                ],
+                "accentSensitive": [
+                  "téléphone"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is téléphone portable.",
+                "fr": "Le mot manquant est téléphone portable.",
+                "de": "Das fehlende Wort ist téléphone portable."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-des-lunettes",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-des-lunettes",
+              "targetId": "des-lunettes",
+              "before": "Mettre des",
+              "after": " pour lire.",
+              "referenceTargetIds": [
+                "des-lunettes",
+                "des-cles",
+                "un-portefeuille",
+                "un-sac"
+              ],
+              "accepted": {
+                "answers": [
+                  "lunettes"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is lunettes.",
+                "fr": "Le mot manquant est lunettes.",
+                "de": "Das fehlende Wort ist lunettes."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-montre",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-montre",
+              "targetId": "une-montre",
+              "before": "Porter une",
+              "after": " au poignet.",
+              "referenceTargetIds": [
+                "une-montre",
+                "des-cles",
+                "un-portefeuille",
+                "un-sac"
+              ],
+              "accepted": {
+                "answers": [
+                  "montre"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is montre.",
+                "fr": "Le mot manquant est montre.",
+                "de": "Das fehlende Wort ist montre."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-parapluie",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-parapluie",
+              "targetId": "un-parapluie",
+              "before": "Prendre un",
+              "after": " sous la pluie.",
+              "referenceTargetIds": [
+                "un-parapluie",
+                "des-cles",
+                "un-portefeuille",
+                "un-sac"
+              ],
+              "accepted": {
+                "answers": [
+                  "parapluie"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is parapluie.",
+                "fr": "Le mot manquant est parapluie.",
+                "de": "Das fehlende Wort ist parapluie."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-mouchoir",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-mouchoir",
+              "targetId": "un-mouchoir",
+              "before": "Utiliser un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-mouchoir",
+                "des-cles",
+                "un-portefeuille",
+                "un-sac"
+              ],
+              "accepted": {
+                "answers": [
+                  "mouchoir"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is mouchoir.",
+                "fr": "Le mot manquant est mouchoir.",
+                "de": "Das fehlende Wort ist mouchoir."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-carte-d-identite",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-carte-d-identite",
+              "targetId": "une-carte-d-identite",
+              "before": "Montrer une",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-carte-d-identite",
+                "des-cles",
+                "un-portefeuille",
+                "un-sac"
+              ],
+              "accepted": {
+                "answers": [
+                  "carte d’identité"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is carte d’identité.",
+                "fr": "Le mot manquant est carte d’identité.",
+                "de": "Das fehlende Wort ist carte d’identité."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-passeport",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-passeport",
+              "targetId": "un-passeport",
+              "before": "Prendre son",
+              "after": " pour le voyage.",
+              "referenceTargetIds": [
+                "un-passeport",
+                "des-cles",
+                "un-portefeuille",
+                "un-sac"
+              ],
+              "accepted": {
+                "answers": [
+                  "passeport"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is passeport.",
+                "fr": "Le mot manquant est passeport.",
+                "de": "Das fehlende Wort ist passeport."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-agenda",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-agenda",
+              "targetId": "un-agenda",
+              "before": "Écrire dans un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-agenda",
+                "des-cles",
+                "un-portefeuille",
+                "un-sac"
+              ],
+              "accepted": {
+                "answers": [
+                  "agenda"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is agenda.",
+                "fr": "Le mot manquant est agenda.",
+                "de": "Das fehlende Wort ist agenda."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-stylo",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-stylo",
+              "targetId": "un-stylo",
+              "before": "Écrire avec un",
+              "after": " bleu.",
+              "referenceTargetIds": [
+                "un-stylo",
+                "des-cles",
+                "un-portefeuille",
+                "un-sac"
+              ],
+              "accepted": {
+                "answers": [
+                  "stylo"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is stylo.",
+                "fr": "Le mot manquant est stylo.",
+                "de": "Das fehlende Wort ist stylo."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Exam",
+        "fr": "Examen",
+        "de": "Prüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-des-cles",
+              "targetId": "des-cles",
+              "prompt": {
+                "en": "some keys",
+                "de": "Schlüssel"
+              },
+              "accepted": {
+                "answers": [
+                  "des clés",
+                  "des clefs"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "some keys in French is des clés.",
+                "fr": "some keys en français est des clés.",
+                "de": "Schlüssel auf Französisch ist des clés."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-portefeuille",
+              "targetId": "un-portefeuille",
+              "prompt": {
+                "en": "a wallet",
+                "de": "eine Geldbörse"
+              },
+              "accepted": {
+                "answers": [
+                  "un portefeuille"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a wallet in French is un portefeuille.",
+                "fr": "a wallet en français est un portefeuille.",
+                "de": "eine Geldbörse auf Französisch ist un portefeuille."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-sac",
+              "targetId": "un-sac",
+              "prompt": {
+                "en": "a bag",
+                "de": "eine Tasche"
+              },
+              "accepted": {
+                "answers": [
+                  "un sac"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a bag in French is un sac.",
+                "fr": "a bag en français est un sac.",
+                "de": "eine Tasche auf Französisch ist un sac."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-telephone-portable",
+              "targetId": "un-telephone-portable",
+              "prompt": {
+                "en": "a mobile phone",
+                "de": "ein Handy"
+              },
+              "accepted": {
+                "answers": [
+                  "un téléphone portable",
+                  "un telephone portable"
+                ],
+                "accentSensitive": [
+                  "téléphone"
+                ]
+              },
+              "answerExplanation": {
+                "en": "a mobile phone in French is un téléphone portable.",
+                "fr": "a mobile phone en français est un téléphone portable.",
+                "de": "ein Handy auf Französisch ist un téléphone portable."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-des-lunettes",
+              "targetId": "des-lunettes",
+              "prompt": {
+                "en": "some glasses",
+                "de": "eine Brille"
+              },
+              "accepted": {
+                "answers": [
+                  "des lunettes"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "some glasses in French is des lunettes.",
+                "fr": "some glasses en français est des lunettes.",
+                "de": "eine Brille auf Französisch ist des lunettes."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-montre",
+              "targetId": "une-montre",
+              "prompt": {
+                "en": "a watch",
+                "de": "eine Armbanduhr"
+              },
+              "accepted": {
+                "answers": [
+                  "une montre"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a watch in French is une montre.",
+                "fr": "a watch en français est une montre.",
+                "de": "eine Armbanduhr auf Französisch ist une montre."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-page-2",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-parapluie",
+              "targetId": "un-parapluie",
+              "prompt": {
+                "en": "an umbrella",
+                "de": "ein Regenschirm"
+              },
+              "accepted": {
+                "answers": [
+                  "un parapluie"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "an umbrella in French is un parapluie.",
+                "fr": "an umbrella en français est un parapluie.",
+                "de": "ein Regenschirm auf Französisch ist un parapluie."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-mouchoir",
+              "targetId": "un-mouchoir",
+              "prompt": {
+                "en": "a tissue",
+                "de": "ein Taschentuch"
+              },
+              "accepted": {
+                "answers": [
+                  "un mouchoir"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a tissue in French is un mouchoir.",
+                "fr": "a tissue en français est un mouchoir.",
+                "de": "ein Taschentuch auf Französisch ist un mouchoir."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-carte-d-identite",
+              "targetId": "une-carte-d-identite",
+              "prompt": {
+                "en": "an ID card",
+                "de": "ein Personalausweis"
+              },
+              "accepted": {
+                "answers": [
+                  "une carte d’identité",
+                  "une carte d'identité"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "an ID card in French is une carte d’identité.",
+                "fr": "an ID card en français est une carte d’identité.",
+                "de": "ein Personalausweis auf Französisch ist une carte d’identité."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-passeport",
+              "targetId": "un-passeport",
+              "prompt": {
+                "en": "a passport",
+                "de": "ein Reisepass"
+              },
+              "accepted": {
+                "answers": [
+                  "un passeport"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a passport in French is un passeport.",
+                "fr": "a passport en français est un passeport.",
+                "de": "ein Reisepass auf Französisch ist un passeport."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-agenda",
+              "targetId": "un-agenda",
+              "prompt": {
+                "en": "a planner",
+                "de": "ein Terminkalender"
+              },
+              "accepted": {
+                "answers": [
+                  "un agenda"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a planner in French is un agenda.",
+                "fr": "a planner en français est un agenda.",
+                "de": "ein Terminkalender auf Französisch ist un agenda."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-stylo",
+              "targetId": "un-stylo",
+              "prompt": {
+                "en": "a pen",
+                "de": "ein Stift"
+              },
+              "accepted": {
+                "answers": [
+                  "un stylo"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a pen in French is un stylo.",
+                "fr": "a pen en français est un stylo.",
+                "de": "ein Stift auf Französisch ist un stylo."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

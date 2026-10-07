@@ -1,0 +1,1030 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-at-work",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Au travail",
+  "objective": {
+    "en": "Name ten workplace locations and professional environment words in French.",
+    "fr": "Dire où on travaille avec une dizaine de mots du monde professionnel en français.",
+    "de": "Nenne zehn Wörter zum Arbeitsplatz und zur Arbeitswelt auf Französisch."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-content-v1",
+    "generatedAt": "2026-10-07T14:59:31.039Z",
+    "inputHashes": {
+      "outline": "19dc69590da8cf5b1483e1707d30c4a26f91df1dadc07785ad4c1ff6dbacba2b",
+      "brief": "17eb2e1551e595f93c5614d3fca0b13df2a517c21b3761db8a7bea0668ffb49c"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "daily_life",
+  "steps": [
+    {
+      "id": "introduction",
+      "stage": "introduction",
+      "role": "introduction",
+      "label": {
+        "en": "Introduction",
+        "fr": "Introduction",
+        "de": "Einführung"
+      },
+      "pages": [
+        {
+          "pageId": "intro-workplaces",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-workplaces",
+              "targetIds": [
+                "le-bureau",
+                "l-usine",
+                "le-magasin",
+                "l-entreprise",
+                "la-banque"
+              ],
+              "text": {
+                "en": "Workplaces:\n\n- `le bureau`\n- `l’usine`\n- `le magasin`\n- `l’entreprise`\n- `la banque`",
+                "fr": "Lieux de travail :\n\n- `le bureau`\n- `l’usine`\n- `le magasin`\n- `l’entreprise`\n- `la banque`",
+                "de": "Arbeitsorte:\n\n- `le bureau`\n- `l’usine`\n- `le magasin`\n- `l’entreprise`\n- `la banque` "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "intro-people-tools",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-people-tools",
+              "targetIds": [
+                "le-patron",
+                "un-client",
+                "l-ordinateur",
+                "le-college",
+                "le-travail"
+              ],
+              "text": {
+                "en": "People and office tools:\n\n- `le patron`\n- `un client`\n- `l’ordinateur`\n- `le collègue`\n- `le travail`",
+                "fr": "Personnes et outils de bureau :\n\n- `le patron`\n- `un client`\n- `l’ordinateur`\n- `le collègue`\n- `le travail`",
+                "de": "Personen und Bürowerkzeuge:\n\n- `le patron`\n- `un client`\n- `l’ordinateur`\n- `le collègue`\n- `le travail` "
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "cards-workplaces",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-workplaces",
+              "targetIds": [
+                "le-bureau",
+                "l-usine",
+                "le-magasin",
+                "l-entreprise",
+                "la-banque"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "cards-people-tools",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-people-tools",
+              "targetIds": [
+                "le-patron",
+                "un-client",
+                "l-ordinateur",
+                "le-college",
+                "le-travail"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "match-1",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-2",
+              "pairs": [
+                {
+                  "targetId": "le-bureau",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un bureau means the office.",
+                    "fr": "un bureau signifie « the office » en anglais.",
+                    "de": "un bureau bedeutet das Büro."
+                  }
+                },
+                {
+                  "targetId": "l-usine",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une usine means the factory.",
+                    "fr": "une usine signifie « the factory » en anglais.",
+                    "de": "une usine bedeutet die Fabrik."
+                  }
+                },
+                {
+                  "targetId": "le-magasin",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un magasin means the store.",
+                    "fr": "un magasin signifie « the store » en anglais.",
+                    "de": "un magasin bedeutet das Geschäft."
+                  }
+                },
+                {
+                  "targetId": "l-entreprise",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une entreprise means the company.",
+                    "fr": "une entreprise signifie « the company » en anglais.",
+                    "de": "une entreprise bedeutet das Unternehmen."
+                  }
+                },
+                {
+                  "targetId": "la-banque",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une banque means the bank.",
+                    "fr": "une banque signifie « the bank » en anglais.",
+                    "de": "une banque bedeutet die Bank."
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-2",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-3",
+              "pairs": [
+                {
+                  "targetId": "le-patron",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un patron means the boss.",
+                    "fr": "un patron signifie « the boss » en anglais.",
+                    "de": "un patron bedeutet der Chef."
+                  }
+                },
+                {
+                  "targetId": "un-client",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un client means a customer.",
+                    "fr": "un client signifie « a customer » en anglais.",
+                    "de": "un client bedeutet ein Kunde."
+                  }
+                },
+                {
+                  "targetId": "l-ordinateur",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un ordinateur means the computer.",
+                    "fr": "un ordinateur signifie « the computer » en anglais.",
+                    "de": "un ordinateur bedeutet der Computer."
+                  }
+                },
+                {
+                  "targetId": "le-college",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un collègue means the colleague.",
+                    "fr": "un collègue signifie « the colleague » en anglais.",
+                    "de": "un collègue bedeutet der Kollege."
+                  }
+                },
+                {
+                  "targetId": "le-travail",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un travail means the work.",
+                    "fr": "un travail signifie « the work » en anglais.",
+                    "de": "un travail bedeutet die Arbeit."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overview",
+      "stage": "overview",
+      "role": "overview",
+      "label": {
+        "en": "Overview",
+        "fr": "Vue d’ensemble",
+        "de": "Übersicht"
+      },
+      "pages": [
+        {
+          "pageId": "overview-page",
+          "estimatedDurationS": 90,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Review all words and their details.",
+            "fr": "Révisez tous les mots et leurs détails.",
+            "de": "Überprüfe alle Wörter und ihre Details."
+          },
+          "items": [
+            {
+              "type": "vocabulary_gender_select",
+              "itemId": "gender-overview",
+              "targetIds": [
+                "le-bureau",
+                "l-usine",
+                "le-magasin",
+                "l-entreprise",
+                "la-banque",
+                "le-patron",
+                "un-client",
+                "l-ordinateur",
+                "le-college",
+                "le-travail"
+              ],
+              "rows": [
+                {
+                  "targetId": "le-bureau",
+                  "answerExplanation": {
+                    "en": "bureau is masculine.",
+                    "fr": "bureau est masculin.",
+                    "de": "bureau ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "l-usine",
+                  "answerExplanation": {
+                    "en": "usine is feminine.",
+                    "fr": "usine est féminin.",
+                    "de": "usine ist feminin."
+                  }
+                },
+                {
+                  "targetId": "le-magasin",
+                  "answerExplanation": {
+                    "en": "magasin is masculine.",
+                    "fr": "magasin est masculin.",
+                    "de": "magasin ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "l-entreprise",
+                  "answerExplanation": {
+                    "en": "entreprise is feminine.",
+                    "fr": "entreprise est féminin.",
+                    "de": "entreprise ist feminin."
+                  }
+                },
+                {
+                  "targetId": "la-banque",
+                  "answerExplanation": {
+                    "en": "banque is feminine.",
+                    "fr": "banque est féminin.",
+                    "de": "banque ist feminin."
+                  }
+                },
+                {
+                  "targetId": "le-patron",
+                  "answerExplanation": {
+                    "en": "patron is masculine.",
+                    "fr": "patron est masculin.",
+                    "de": "patron ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-client",
+                  "answerExplanation": {
+                    "en": "client is masculine.",
+                    "fr": "client est masculin.",
+                    "de": "client ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "l-ordinateur",
+                  "answerExplanation": {
+                    "en": "ordinateur is masculine.",
+                    "fr": "ordinateur est masculin.",
+                    "de": "ordinateur ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "le-college",
+                  "answerExplanation": {
+                    "en": "collègue is masculine.",
+                    "fr": "collègue est masculin.",
+                    "de": "collègue ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "le-travail",
+                  "answerExplanation": {
+                    "en": "travail is masculine.",
+                    "fr": "travail est masculin.",
+                    "de": "travail ist maskulin."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "stage": "practice",
+      "role": "exercise",
+      "label": {
+        "en": "Practice",
+        "fr": "Entraînement",
+        "de": "Übung"
+      },
+      "pages": [
+        {
+          "pageId": "gap-le-bureau",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-le-bureau",
+              "targetId": "le-bureau",
+              "before": "Travailler dans un",
+              "after": ".",
+              "referenceTargetIds": [
+                "le-bureau",
+                "l-usine",
+                "le-magasin",
+                "l-entreprise"
+              ],
+              "accepted": {
+                "answers": [
+                  "bureau"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is bureau.",
+                "fr": "Le mot manquant est bureau.",
+                "de": "Das fehlende Wort ist bureau."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-l-usine",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-l-usine",
+              "targetId": "l-usine",
+              "before": "Produire dans une",
+              "after": ".",
+              "referenceTargetIds": [
+                "l-usine",
+                "le-bureau",
+                "le-magasin",
+                "l-entreprise"
+              ],
+              "accepted": {
+                "answers": [
+                  "usine"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is usine.",
+                "fr": "Le mot manquant est usine.",
+                "de": "Das fehlende Wort ist usine."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-le-magasin",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-le-magasin",
+              "targetId": "le-magasin",
+              "before": "Vendre dans un",
+              "after": ".",
+              "referenceTargetIds": [
+                "le-magasin",
+                "le-bureau",
+                "l-usine",
+                "l-entreprise"
+              ],
+              "accepted": {
+                "answers": [
+                  "magasin"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is magasin.",
+                "fr": "Le mot manquant est magasin.",
+                "de": "Das fehlende Wort ist magasin."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-l-entreprise",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-l-entreprise",
+              "targetId": "l-entreprise",
+              "before": "Diriger une",
+              "after": ".",
+              "referenceTargetIds": [
+                "l-entreprise",
+                "le-bureau",
+                "l-usine",
+                "le-magasin"
+              ],
+              "accepted": {
+                "answers": [
+                  "entreprise"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is entreprise.",
+                "fr": "Le mot manquant est entreprise.",
+                "de": "Das fehlende Wort ist entreprise."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-la-banque",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-la-banque",
+              "targetId": "la-banque",
+              "before": "Gérer des comptes dans une",
+              "after": ".",
+              "referenceTargetIds": [
+                "la-banque",
+                "le-bureau",
+                "l-usine",
+                "le-magasin"
+              ],
+              "accepted": {
+                "answers": [
+                  "banque"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is banque.",
+                "fr": "Le mot manquant est banque.",
+                "de": "Das fehlende Wort ist banque."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-le-patron",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-le-patron",
+              "targetId": "le-patron",
+              "before": "Parler avec son",
+              "after": ".",
+              "referenceTargetIds": [
+                "le-patron",
+                "le-bureau",
+                "l-usine",
+                "le-magasin"
+              ],
+              "accepted": {
+                "answers": [
+                  "patron"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is patron.",
+                "fr": "Le mot manquant est patron.",
+                "de": "Das fehlende Wort ist patron."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-client",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-client",
+              "targetId": "un-client",
+              "before": "Accueillir un",
+              "after": " important.",
+              "referenceTargetIds": [
+                "un-client",
+                "le-bureau",
+                "l-usine",
+                "le-magasin"
+              ],
+              "accepted": {
+                "answers": [
+                  "client"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is client.",
+                "fr": "Le mot manquant est client.",
+                "de": "Das fehlende Wort ist client."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-l-ordinateur",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-l-ordinateur",
+              "targetId": "l-ordinateur",
+              "before": "Taper sur un",
+              "after": ".",
+              "referenceTargetIds": [
+                "l-ordinateur",
+                "le-bureau",
+                "l-usine",
+                "le-magasin"
+              ],
+              "accepted": {
+                "answers": [
+                  "ordinateur"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is ordinateur.",
+                "fr": "Le mot manquant est ordinateur.",
+                "de": "Das fehlende Wort ist ordinateur."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-le-college",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-le-college",
+              "targetId": "le-college",
+              "before": "Travailler avec un",
+              "after": ".",
+              "referenceTargetIds": [
+                "le-college",
+                "le-bureau",
+                "l-usine",
+                "le-magasin"
+              ],
+              "accepted": {
+                "answers": [
+                  "collègue"
+                ],
+                "accentSensitive": [
+                  "collègue"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is collègue.",
+                "fr": "Le mot manquant est collègue.",
+                "de": "Das fehlende Wort ist collègue."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-le-travail",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-le-travail",
+              "targetId": "le-travail",
+              "before": "Trouver un",
+              "after": ".",
+              "referenceTargetIds": [
+                "le-travail",
+                "le-bureau",
+                "l-usine",
+                "le-magasin"
+              ],
+              "accepted": {
+                "answers": [
+                  "travail"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is travail.",
+                "fr": "Le mot manquant est travail.",
+                "de": "Das fehlende Wort ist travail."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Exam",
+        "fr": "Examen",
+        "de": "Prüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-le-bureau",
+              "targetId": "le-bureau",
+              "prompt": {
+                "en": "the office",
+                "de": "das Büro"
+              },
+              "accepted": {
+                "answers": [
+                  "un bureau"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "the office in French is un bureau.",
+                "fr": "the office en français est un bureau.",
+                "de": "das Büro auf Französisch ist un bureau."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-l-usine",
+              "targetId": "l-usine",
+              "prompt": {
+                "en": "the factory",
+                "de": "die Fabrik"
+              },
+              "accepted": {
+                "answers": [
+                  "une usine"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "the factory in French is une usine.",
+                "fr": "the factory en français est une usine.",
+                "de": "die Fabrik auf Französisch ist une usine."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-le-magasin",
+              "targetId": "le-magasin",
+              "prompt": {
+                "en": "the store",
+                "de": "das Geschäft"
+              },
+              "accepted": {
+                "answers": [
+                  "un magasin"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "the store in French is un magasin.",
+                "fr": "the store en français est un magasin.",
+                "de": "das Geschäft auf Französisch ist un magasin."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-l-entreprise",
+              "targetId": "l-entreprise",
+              "prompt": {
+                "en": "the company",
+                "de": "das Unternehmen"
+              },
+              "accepted": {
+                "answers": [
+                  "une entreprise"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "the company in French is une entreprise.",
+                "fr": "the company en français est une entreprise.",
+                "de": "das Unternehmen auf Französisch ist une entreprise."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-la-banque",
+              "targetId": "la-banque",
+              "prompt": {
+                "en": "the bank",
+                "de": "die Bank"
+              },
+              "accepted": {
+                "answers": [
+                  "une banque"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "the bank in French is une banque.",
+                "fr": "the bank en français est une banque.",
+                "de": "die Bank auf Französisch ist une banque."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-page-2",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-le-patron",
+              "targetId": "le-patron",
+              "prompt": {
+                "en": "the boss",
+                "de": "der Chef"
+              },
+              "accepted": {
+                "answers": [
+                  "un patron"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "the boss in French is un patron.",
+                "fr": "the boss en français est un patron.",
+                "de": "der Chef auf Französisch ist un patron."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-client",
+              "targetId": "un-client",
+              "prompt": {
+                "en": "a customer",
+                "de": "ein Kunde"
+              },
+              "accepted": {
+                "answers": [
+                  "un client"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a customer in French is un client.",
+                "fr": "a customer en français est un client.",
+                "de": "ein Kunde auf Französisch ist un client."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-l-ordinateur",
+              "targetId": "l-ordinateur",
+              "prompt": {
+                "en": "the computer",
+                "de": "der Computer"
+              },
+              "accepted": {
+                "answers": [
+                  "un ordinateur"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "the computer in French is un ordinateur.",
+                "fr": "the computer en français est un ordinateur.",
+                "de": "der Computer auf Französisch ist un ordinateur."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-le-college",
+              "targetId": "le-college",
+              "prompt": {
+                "en": "the colleague",
+                "de": "der Kollege"
+              },
+              "accepted": {
+                "answers": [
+                  "un collègue"
+                ],
+                "accentSensitive": [
+                  "collègue"
+                ]
+              },
+              "answerExplanation": {
+                "en": "the colleague in French is un collègue.",
+                "fr": "the colleague en français est un collègue.",
+                "de": "der Kollege auf Französisch ist un collègue."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-le-travail",
+              "targetId": "le-travail",
+              "prompt": {
+                "en": "the work",
+                "de": "die Arbeit"
+              },
+              "accepted": {
+                "answers": [
+                  "un travail"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "the work in French is un travail.",
+                "fr": "the work en français est un travail.",
+                "de": "die Arbeit auf Französisch ist un travail."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

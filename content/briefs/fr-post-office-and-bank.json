@@ -1,0 +1,586 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-post-office-and-bank",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "La poste et la banque",
+  "objective": {
+    "en": "Name twelve postal and banking terms in French with indefinite articles.",
+    "fr": "Nommer une douzaine de mots de la poste et de la banque en français avec leurs articles indéfinis.",
+    "de": "Nenne zwölf Post- und Bankbegriffe auf Französisch mit unbestimmten Artikeln."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T15:07:10.782Z",
+    "inputHashes": {
+      "outline": "6e53b050330f6455fde640d1caaa371d31e2deebc79d30296b6b69ac5ba7f23c"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "services",
+  "coverageNotes": {
+    "en": "Covers letters, parcels, stamps, envelopes, ATMs, bank cards, and cash.",
+    "fr": "Couvre lettres, colis, timbres, enveloppes, distributeurs, cartes bancaires et argent.",
+    "de": "Deckt Briefe, Pakete, Briefmarken, Umschläge, Geldautomaten, Bankkarten und Geld ab."
+  },
+  "targetCount": 12,
+  "countRationale": {
+    "en": "Twelve words cover everyday postal and banking errands.",
+    "fr": "Douze mots couvrent les démarches à la poste et à la banque.",
+    "de": "Zwölf Begriffe decken Post- und Bankgeschäfte ab."
+  },
+  "difficultyBalance": {
+    "en": "Core terms (une lettre, de l’argent) balanced with service items (un distributeur, une enveloppe).",
+    "fr": "Mots simples équilibrés avec distributeur et carte bancaire.",
+    "de": "Einfache Wörter ausgewogen mit Geldautomat und Bankkarte."
+  },
+  "prerequisites": [
+    {
+      "en": "Indefinite articles un, une, des.",
+      "fr": "Articles indéfinis un, une, des.",
+      "de": "Unbestimmte Artikel un, une, des."
+    }
+  ],
+  "groups": [
+    {
+      "id": "post-office",
+      "label": {
+        "en": "Post office items",
+        "fr": "Services postaux",
+        "de": "Postdienste"
+      },
+      "targetIds": [
+        "une-lettre",
+        "un-colis",
+        "un-timbre",
+        "une-enveloppe",
+        "un-facteur",
+        "une-boite-aux-lettres"
+      ]
+    },
+    {
+      "id": "bank-money",
+      "label": {
+        "en": "Bank & Money items",
+        "fr": "Banque et argent",
+        "de": "Bank & Geld"
+      },
+      "targetIds": [
+        "un-distributeur",
+        "une-carte-bancaire",
+        "un-compte",
+        "un-guichet",
+        "un-cheque",
+        "des-pieces"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "une-lettre",
+      "term": "lettre",
+      "translations": {
+        "en": [
+          "a letter"
+        ],
+        "de": [
+          "ein Brief"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une lettre",
+      "examForms": [
+        "une lettre"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn lɛtʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Écrire une lettre manuscrite.",
+        "translation": {
+          "en": "Write a handwritten letter.",
+          "de": "Einen handgeschriebenen Brief schreiben."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-colis",
+      "term": "colis",
+      "translations": {
+        "en": [
+          "a package",
+          "a parcel"
+        ],
+        "de": [
+          "ein Paket"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un colis",
+      "examForms": [
+        "un colis"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ kɔli/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Recevoir un colis postal.",
+        "translation": {
+          "en": "Receive a postal package.",
+          "de": "Ein Postpaket erhalten."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-timbre",
+      "term": "timbre",
+      "translations": {
+        "en": [
+          "a stamp"
+        ],
+        "de": [
+          "eine Briefmarke"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un timbre",
+      "examForms": [
+        "un timbre"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ tɛ̃bʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Coller un timbre rouge.",
+        "translation": {
+          "en": "Stick a red stamp.",
+          "de": "Eine rote Briefmarke aufkleben."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-enveloppe",
+      "term": "enveloppe",
+      "translations": {
+        "en": [
+          "an envelope"
+        ],
+        "de": [
+          "ein Umschlag"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une enveloppe",
+      "examForms": [
+        "une enveloppe"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn ɑ̃vlɔp/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Mettre la lettre dans une enveloppe.",
+        "translation": {
+          "en": "Put the letter in an envelope.",
+          "de": "Den Brief in einen Umschlag stecken."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-facteur",
+      "term": "facteur",
+      "translations": {
+        "en": [
+          "a mail carrier",
+          "a postman"
+        ],
+        "de": [
+          "ein Briefträger"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un facteur",
+      "examForms": [
+        "un facteur"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ faktœʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un facteur distribue le courrier.",
+        "translation": {
+          "en": "A mail carrier distributes mail.",
+          "de": "Ein Briefträger stellt die Post zu."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-boite-aux-lettres",
+      "term": "boîte aux lettres",
+      "translations": {
+        "en": [
+          "a mailbox"
+        ],
+        "de": [
+          "ein Briefkasten"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une boîte aux lettres",
+      "examForms": [
+        "une boîte aux lettres",
+        "une boite aux lettres"
+      ],
+      "accentSensitive": [
+        "boîte"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn bwat o lɛtʁ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Déposer le courrier dans une boîte aux lettres.",
+        "translation": {
+          "en": "Drop mail in a mailbox.",
+          "de": "Die Post in einen Briefkasten werfen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-distributeur",
+      "term": "distributeur",
+      "translations": {
+        "en": [
+          "an ATM",
+          "cash machine"
+        ],
+        "de": [
+          "ein Geldautomat"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un distributeur",
+      "examForms": [
+        "un distributeur"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ distʁibytœʁ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Retirer des billets à un distributeur.",
+        "translation": {
+          "en": "Withdraw bills at an ATM.",
+          "de": "Geldscheine an einem Geldautomaten abheben."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-carte-bancaire",
+      "term": "carte bancaire",
+      "translations": {
+        "en": [
+          "a bank card",
+          "credit card"
+        ],
+        "de": [
+          "eine Bankkarte"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une carte bancaire",
+      "examForms": [
+        "une carte bancaire"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn kaʁt bɑ̃kɛʁ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Payer avec une carte bancaire.",
+        "translation": {
+          "en": "Pay with a bank card.",
+          "de": "Mit einer Bankkarte bezahlen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-compte",
+      "term": "compte",
+      "translations": {
+        "en": [
+          "a bank account"
+        ],
+        "de": [
+          "ein Konto"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un compte",
+      "examForms": [
+        "un compte"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ kɔ̃t/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Ouvrir un compte en banque.",
+        "translation": {
+          "en": "Open a bank account.",
+          "de": "Ein Bankkonto eröffnen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-guichet",
+      "term": "guichet",
+      "translations": {
+        "en": [
+          "a counter",
+          "bank window"
+        ],
+        "de": [
+          "ein Schalter"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un guichet",
+      "examForms": [
+        "un guichet"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ ɡiʃɛ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Retirer de l’argent à un guichet.",
+        "translation": {
+          "en": "Withdraw money at a counter.",
+          "de": "Geld an einem Schalter abheben."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-cheque",
+      "term": "chèque",
+      "translations": {
+        "en": [
+          "a check",
+          "a cheque"
+        ],
+        "de": [
+          "ein Scheck"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un chèque",
+      "examForms": [
+        "un chèque",
+        "un cheque"
+      ],
+      "accentSensitive": [
+        "chèque"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ ʃɛk/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Remplir un chèque bancaire.",
+        "translation": {
+          "en": "Fill out a bank check.",
+          "de": "Einen Bankscheck ausfüllen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "des-pieces",
+      "term": "pièces",
+      "translations": {
+        "en": [
+          "some coins"
+        ],
+        "de": [
+          "Münzen"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "plural",
+      "teachingForm": "des pièces",
+      "examForms": [
+        "des pièces",
+        "des pieces"
+      ],
+      "accentSensitive": [
+        "pièces"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/de pjɛs/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Avoir des pièces de monnaie.",
+        "translation": {
+          "en": "Have coins.",
+          "de": "Münzen haben."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "une-lettre",
+        "un-colis",
+        "un-timbre",
+        "une-enveloppe",
+        "un-facteur",
+        "une-boite-aux-lettres",
+        "un-distributeur",
+        "une-carte-bancaire",
+        "un-compte",
+        "un-guichet",
+        "un-cheque",
+        "des-pieces"
+      ],
+      "estimatedDurationS": 180
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "une-lettre",
+            "un-colis",
+            "un-timbre",
+            "une-enveloppe",
+            "un-facteur",
+            "une-boite-aux-lettres"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "un-distributeur",
+            "une-carte-bancaire",
+            "un-compte",
+            "un-guichet",
+            "un-cheque",
+            "des-pieces"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

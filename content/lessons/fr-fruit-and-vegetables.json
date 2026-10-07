@@ -1,0 +1,1442 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-fruit-and-vegetables",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les fruits et légumes",
+  "objective": {
+    "en": "Name fifteen common fruits and vegetables in French with indefinite articles.",
+    "fr": "Nommer une quinzaine de fruits et légumes courants en français avec leurs articles indéfinis.",
+    "de": "Nenne fünfzehn häufige Obst- und Gemüsesorten auf Französisch mit unbestimmten Artikeln."
+  },
+  "estimatedMinutes": 15,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-content-v1",
+    "generatedAt": "2026-10-07T14:59:27.719Z",
+    "inputHashes": {
+      "outline": "81dd205aeb93f72fdf136fdbe61eb95c9e1145bb635ac4162539e81fa95634f8",
+      "brief": "ceb5facbac595931eba89ef82d61a1632519558c3efa1c51fc830818eda56529"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "food_and_drink",
+  "steps": [
+    {
+      "id": "introduction",
+      "stage": "introduction",
+      "role": "introduction",
+      "label": {
+        "en": "Introduction",
+        "fr": "Introduction",
+        "de": "Einführung"
+      },
+      "pages": [
+        {
+          "pageId": "intro-fruits",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-fruits",
+              "targetIds": [
+                "une-pomme",
+                "une-banane",
+                "une-orange",
+                "une-fraise",
+                "un-citron",
+                "un-raisin",
+                "une-poire"
+              ],
+              "text": {
+                "en": "Common **fruits**:\n\n- `une pomme`\n- `une banane`\n- `une orange`\n- `une fraise`\n- `un citron`\n- `un raisin`\n- `une poire`",
+                "fr": "Fruits **courants** :\n\n- `une pomme`\n- `une banane`\n- `une orange`\n- `une fraise`\n- `un citron`\n- `un raisin`\n- `une poire`",
+                "de": "Gängiges **Obst**:\n\n- `une pomme`\n- `une banane`\n- `une orange`\n- `une fraise`\n- `un citron`\n- `un raisin`\n- `une poire` "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "intro-vegetables",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-vegetables",
+              "targetIds": [
+                "une-tomate",
+                "une-carotte",
+                "une-pomme-de-terre",
+                "une-salade",
+                "un-oignon",
+                "un-concombre",
+                "une-courgette",
+                "un-haricot-vert"
+              ],
+              "text": {
+                "en": "Everyday **vegetables**:\n\n- `une tomate`\n- `une carotte`\n- `une pomme de terre`\n- `une salade`\n- `un oignon`\n- `un concombre`\n- `une courgette`\n- `un haricot vert`",
+                "fr": "Légumes **du quotidien** :\n\n- `une tomate`\n- `une carotte`\n- `une pomme de terre`\n- `une salade`\n- `un oignon`\n- `un concombre`\n- `une courgette`\n- `un haricot vert`",
+                "de": "Alltägliches **Gemüse**:\n\n- `une tomate`\n- `une carotte`\n- `une pomme de terre`\n- `une salade`\n- `un oignon`\n- `un concombre`\n- `une courgette`\n- `un haricot vert` "
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "cards-fruits",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-fruits",
+              "targetIds": [
+                "une-pomme",
+                "une-banane",
+                "une-orange",
+                "une-fraise",
+                "un-citron",
+                "un-raisin",
+                "une-poire"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "cards-vegetables",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-vegetables",
+              "targetIds": [
+                "une-tomate",
+                "une-carotte",
+                "une-pomme-de-terre",
+                "une-salade",
+                "un-oignon",
+                "un-concombre",
+                "une-courgette",
+                "un-haricot-vert"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "match-1",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-2",
+              "pairs": [
+                {
+                  "targetId": "une-pomme",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une pomme means an apple.",
+                    "fr": "une pomme signifie « an apple » en anglais.",
+                    "de": "une pomme bedeutet ein Apfel."
+                  }
+                },
+                {
+                  "targetId": "une-banane",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une banane means a banana.",
+                    "fr": "une banane signifie « a banana » en anglais.",
+                    "de": "une banane bedeutet eine Banane."
+                  }
+                },
+                {
+                  "targetId": "une-orange",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une orange means an orange.",
+                    "fr": "une orange signifie « an orange » en anglais.",
+                    "de": "une orange bedeutet eine Orange."
+                  }
+                },
+                {
+                  "targetId": "une-fraise",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une fraise means a strawberry.",
+                    "fr": "une fraise signifie « a strawberry » en anglais.",
+                    "de": "une fraise bedeutet eine Erdbeere."
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-2",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-3",
+              "pairs": [
+                {
+                  "targetId": "un-citron",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un citron means a lemon.",
+                    "fr": "un citron signifie « a lemon » en anglais.",
+                    "de": "un citron bedeutet eine Zitrone."
+                  }
+                },
+                {
+                  "targetId": "un-raisin",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un raisin means a grape.",
+                    "fr": "un raisin signifie « a grape » en anglais.",
+                    "de": "un raisin bedeutet eine Traube."
+                  }
+                },
+                {
+                  "targetId": "une-poire",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une poire means a pear.",
+                    "fr": "une poire signifie « a pear » en anglais.",
+                    "de": "une poire bedeutet eine Birne."
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-3",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-4",
+              "pairs": [
+                {
+                  "targetId": "une-tomate",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une tomate means a tomato.",
+                    "fr": "une tomate signifie « a tomato » en anglais.",
+                    "de": "une tomate bedeutet eine Tomate."
+                  }
+                },
+                {
+                  "targetId": "une-carotte",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une carotte means a carrot.",
+                    "fr": "une carotte signifie « a carrot » en anglais.",
+                    "de": "une carotte bedeutet eine Karotte."
+                  }
+                },
+                {
+                  "targetId": "une-pomme-de-terre",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une pomme de terre means a potato.",
+                    "fr": "une pomme de terre signifie « a potato » en anglais.",
+                    "de": "une pomme de terre bedeutet eine Kartoffel."
+                  }
+                },
+                {
+                  "targetId": "une-salade",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une salade means a lettuce.",
+                    "fr": "une salade signifie « a lettuce » en anglais.",
+                    "de": "une salade bedeutet ein Salat."
+                  }
+                },
+                {
+                  "targetId": "un-oignon",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un oignon means an onion.",
+                    "fr": "un oignon signifie « an onion » en anglais.",
+                    "de": "un oignon bedeutet eine Zwiebel."
+                  }
+                },
+                {
+                  "targetId": "un-concombre",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un concombre means a cucumber.",
+                    "fr": "un concombre signifie « a cucumber » en anglais.",
+                    "de": "un concombre bedeutet eine Gurke."
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-4",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-5",
+              "pairs": [
+                {
+                  "targetId": "une-courgette",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une courgette means a zucchini.",
+                    "fr": "une courgette signifie « a zucchini » en anglais.",
+                    "de": "une courgette bedeutet eine Zucchini."
+                  }
+                },
+                {
+                  "targetId": "un-haricot-vert",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un haricot vert means a green bean.",
+                    "fr": "un haricot vert signifie « a green bean » en anglais.",
+                    "de": "un haricot vert bedeutet eine grüne Bohne."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overview",
+      "stage": "overview",
+      "role": "overview",
+      "label": {
+        "en": "Overview",
+        "fr": "Vue d’ensemble",
+        "de": "Übersicht"
+      },
+      "pages": [
+        {
+          "pageId": "overview-page",
+          "estimatedDurationS": 90,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Review all words and their details.",
+            "fr": "Révisez tous les mots et leurs détails.",
+            "de": "Überprüfe alle Wörter und ihre Details."
+          },
+          "items": [
+            {
+              "type": "vocabulary_gender_select",
+              "itemId": "gender-overview",
+              "targetIds": [
+                "une-pomme",
+                "une-banane",
+                "une-orange",
+                "une-fraise",
+                "un-citron",
+                "un-raisin",
+                "une-poire",
+                "une-tomate",
+                "une-carotte",
+                "une-pomme-de-terre",
+                "une-salade",
+                "un-oignon",
+                "un-concombre",
+                "une-courgette",
+                "un-haricot-vert"
+              ],
+              "rows": [
+                {
+                  "targetId": "une-pomme",
+                  "answerExplanation": {
+                    "en": "pomme is feminine.",
+                    "fr": "pomme est féminin.",
+                    "de": "pomme ist feminin."
+                  }
+                },
+                {
+                  "targetId": "une-banane",
+                  "answerExplanation": {
+                    "en": "banane is feminine.",
+                    "fr": "banane est féminin.",
+                    "de": "banane ist feminin."
+                  }
+                },
+                {
+                  "targetId": "une-orange",
+                  "answerExplanation": {
+                    "en": "orange is feminine.",
+                    "fr": "orange est féminin.",
+                    "de": "orange ist feminin."
+                  }
+                },
+                {
+                  "targetId": "une-fraise",
+                  "answerExplanation": {
+                    "en": "fraise is feminine.",
+                    "fr": "fraise est féminin.",
+                    "de": "fraise ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-citron",
+                  "answerExplanation": {
+                    "en": "citron is masculine.",
+                    "fr": "citron est masculin.",
+                    "de": "citron ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-raisin",
+                  "answerExplanation": {
+                    "en": "raisin is masculine.",
+                    "fr": "raisin est masculin.",
+                    "de": "raisin ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "une-poire",
+                  "answerExplanation": {
+                    "en": "poire is feminine.",
+                    "fr": "poire est féminin.",
+                    "de": "poire ist feminin."
+                  }
+                },
+                {
+                  "targetId": "une-tomate",
+                  "answerExplanation": {
+                    "en": "tomate is feminine.",
+                    "fr": "tomate est féminin.",
+                    "de": "tomate ist feminin."
+                  }
+                },
+                {
+                  "targetId": "une-carotte",
+                  "answerExplanation": {
+                    "en": "carotte is feminine.",
+                    "fr": "carotte est féminin.",
+                    "de": "carotte ist feminin."
+                  }
+                },
+                {
+                  "targetId": "une-pomme-de-terre",
+                  "answerExplanation": {
+                    "en": "pomme de terre is feminine.",
+                    "fr": "pomme de terre est féminin.",
+                    "de": "pomme de terre ist feminin."
+                  }
+                },
+                {
+                  "targetId": "une-salade",
+                  "answerExplanation": {
+                    "en": "salade is feminine.",
+                    "fr": "salade est féminin.",
+                    "de": "salade ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-oignon",
+                  "answerExplanation": {
+                    "en": "oignon is masculine.",
+                    "fr": "oignon est masculin.",
+                    "de": "oignon ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-concombre",
+                  "answerExplanation": {
+                    "en": "concombre is masculine.",
+                    "fr": "concombre est masculin.",
+                    "de": "concombre ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "une-courgette",
+                  "answerExplanation": {
+                    "en": "courgette is feminine.",
+                    "fr": "courgette est féminin.",
+                    "de": "courgette ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-haricot-vert",
+                  "answerExplanation": {
+                    "en": "haricot vert is masculine.",
+                    "fr": "haricot vert est masculin.",
+                    "de": "haricot vert ist maskulin."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "stage": "practice",
+      "role": "exercise",
+      "label": {
+        "en": "Practice",
+        "fr": "Entraînement",
+        "de": "Übung"
+      },
+      "pages": [
+        {
+          "pageId": "gap-une-pomme",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-pomme",
+              "targetId": "une-pomme",
+              "before": "Manger une",
+              "after": " croquante.",
+              "referenceTargetIds": [
+                "une-pomme",
+                "une-banane",
+                "une-orange",
+                "une-fraise"
+              ],
+              "accepted": {
+                "answers": [
+                  "pomme"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is pomme.",
+                "fr": "Le mot manquant est pomme.",
+                "de": "Das fehlende Wort ist pomme."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-banane",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-banane",
+              "targetId": "une-banane",
+              "before": "Éplucher une",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-banane",
+                "une-pomme",
+                "une-orange",
+                "une-fraise"
+              ],
+              "accepted": {
+                "answers": [
+                  "banane"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is banane.",
+                "fr": "Le mot manquant est banane.",
+                "de": "Das fehlende Wort ist banane."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-orange",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-orange",
+              "targetId": "une-orange",
+              "before": "Presser une",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-orange",
+                "une-pomme",
+                "une-banane",
+                "une-fraise"
+              ],
+              "accepted": {
+                "answers": [
+                  "orange"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is orange.",
+                "fr": "Le mot manquant est orange.",
+                "de": "Das fehlende Wort ist orange."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-fraise",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-fraise",
+              "targetId": "une-fraise",
+              "before": "Cueillir une",
+              "after": " rouge.",
+              "referenceTargetIds": [
+                "une-fraise",
+                "une-pomme",
+                "une-banane",
+                "une-orange"
+              ],
+              "accepted": {
+                "answers": [
+                  "fraise"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is fraise.",
+                "fr": "Le mot manquant est fraise.",
+                "de": "Das fehlende Wort ist fraise."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-citron",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-citron",
+              "targetId": "un-citron",
+              "before": "Ajouter un jus de",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-citron",
+                "une-pomme",
+                "une-banane",
+                "une-orange"
+              ],
+              "accepted": {
+                "answers": [
+                  "citron"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is citron.",
+                "fr": "Le mot manquant est citron.",
+                "de": "Das fehlende Wort ist citron."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-raisin",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-raisin",
+              "targetId": "un-raisin",
+              "before": "Acheter du",
+              "after": " noir.",
+              "referenceTargetIds": [
+                "un-raisin",
+                "une-pomme",
+                "une-banane",
+                "une-orange"
+              ],
+              "accepted": {
+                "answers": [
+                  "raisin"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is raisin.",
+                "fr": "Le mot manquant est raisin.",
+                "de": "Das fehlende Wort ist raisin."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-poire",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-poire",
+              "targetId": "une-poire",
+              "before": "Mordre dans une",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-poire",
+                "une-pomme",
+                "une-banane",
+                "une-orange"
+              ],
+              "accepted": {
+                "answers": [
+                  "poire"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is poire.",
+                "fr": "Le mot manquant est poire.",
+                "de": "Das fehlende Wort ist poire."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-tomate",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-tomate",
+              "targetId": "une-tomate",
+              "before": "Couper une",
+              "after": " rouge.",
+              "referenceTargetIds": [
+                "une-tomate",
+                "une-pomme",
+                "une-banane",
+                "une-orange"
+              ],
+              "accepted": {
+                "answers": [
+                  "tomate"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is tomate.",
+                "fr": "Le mot manquant est tomate.",
+                "de": "Das fehlende Wort ist tomate."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-carotte",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-carotte",
+              "targetId": "une-carotte",
+              "before": "Râper une",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-carotte",
+                "une-pomme",
+                "une-banane",
+                "une-orange"
+              ],
+              "accepted": {
+                "answers": [
+                  "carotte"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is carotte.",
+                "fr": "Le mot manquant est carotte.",
+                "de": "Das fehlende Wort ist carotte."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-pomme-de-terre",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-pomme-de-terre",
+              "targetId": "une-pomme-de-terre",
+              "before": "Éplucher une",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-pomme-de-terre",
+                "une-pomme",
+                "une-banane",
+                "une-orange"
+              ],
+              "accepted": {
+                "answers": [
+                  "pomme de terre"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is pomme de terre.",
+                "fr": "Le mot manquant est pomme de terre.",
+                "de": "Das fehlende Wort ist pomme de terre."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-salade",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-salade",
+              "targetId": "une-salade",
+              "before": "Préparer une",
+              "after": " fraîche.",
+              "referenceTargetIds": [
+                "une-salade",
+                "une-pomme",
+                "une-banane",
+                "une-orange"
+              ],
+              "accepted": {
+                "answers": [
+                  "salade"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is salade.",
+                "fr": "Le mot manquant est salade.",
+                "de": "Das fehlende Wort ist salade."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-oignon",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-oignon",
+              "targetId": "un-oignon",
+              "before": "Émincer un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-oignon",
+                "une-pomme",
+                "une-banane",
+                "une-orange"
+              ],
+              "accepted": {
+                "answers": [
+                  "oignon"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is oignon.",
+                "fr": "Le mot manquant est oignon.",
+                "de": "Das fehlende Wort ist oignon."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-concombre",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-concombre",
+              "targetId": "un-concombre",
+              "before": "Trancher un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-concombre",
+                "une-pomme",
+                "une-banane",
+                "une-orange"
+              ],
+              "accepted": {
+                "answers": [
+                  "concombre"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is concombre.",
+                "fr": "Le mot manquant est concombre.",
+                "de": "Das fehlende Wort ist concombre."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-courgette",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-courgette",
+              "targetId": "une-courgette",
+              "before": "Cuisiner une",
+              "after": " verte.",
+              "referenceTargetIds": [
+                "une-courgette",
+                "une-pomme",
+                "une-banane",
+                "une-orange"
+              ],
+              "accepted": {
+                "answers": [
+                  "courgette"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is courgette.",
+                "fr": "Le mot manquant est courgette.",
+                "de": "Das fehlende Wort ist courgette."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-haricot-vert",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-haricot-vert",
+              "targetId": "un-haricot-vert",
+              "before": "Cuire un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-haricot-vert",
+                "une-pomme",
+                "une-banane",
+                "une-orange"
+              ],
+              "accepted": {
+                "answers": [
+                  "haricot vert"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is haricot vert.",
+                "fr": "Le mot manquant est haricot vert.",
+                "de": "Das fehlende Wort ist haricot vert."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Exam",
+        "fr": "Examen",
+        "de": "Prüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-pomme",
+              "targetId": "une-pomme",
+              "prompt": {
+                "en": "an apple",
+                "de": "ein Apfel"
+              },
+              "accepted": {
+                "answers": [
+                  "une pomme"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "an apple in French is une pomme.",
+                "fr": "an apple en français est une pomme.",
+                "de": "ein Apfel auf Französisch ist une pomme."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-banane",
+              "targetId": "une-banane",
+              "prompt": {
+                "en": "a banana",
+                "de": "eine Banane"
+              },
+              "accepted": {
+                "answers": [
+                  "une banane"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a banana in French is une banane.",
+                "fr": "a banana en français est une banane.",
+                "de": "eine Banane auf Französisch ist une banane."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-orange",
+              "targetId": "une-orange",
+              "prompt": {
+                "en": "an orange",
+                "de": "eine Orange"
+              },
+              "accepted": {
+                "answers": [
+                  "une orange"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "an orange in French is une orange.",
+                "fr": "an orange en français est une orange.",
+                "de": "eine Orange auf Französisch ist une orange."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-fraise",
+              "targetId": "une-fraise",
+              "prompt": {
+                "en": "a strawberry",
+                "de": "eine Erdbeere"
+              },
+              "accepted": {
+                "answers": [
+                  "une fraise"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a strawberry in French is une fraise.",
+                "fr": "a strawberry en français est une fraise.",
+                "de": "eine Erdbeere auf Französisch ist une fraise."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-citron",
+              "targetId": "un-citron",
+              "prompt": {
+                "en": "a lemon",
+                "de": "eine Zitrone"
+              },
+              "accepted": {
+                "answers": [
+                  "un citron"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a lemon in French is un citron.",
+                "fr": "a lemon en français est un citron.",
+                "de": "eine Zitrone auf Französisch ist un citron."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-raisin",
+              "targetId": "un-raisin",
+              "prompt": {
+                "en": "a grape",
+                "de": "eine Traube"
+              },
+              "accepted": {
+                "answers": [
+                  "un raisin"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a grape in French is un raisin.",
+                "fr": "a grape en français est un raisin.",
+                "de": "eine Traube auf Französisch ist un raisin."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-poire",
+              "targetId": "une-poire",
+              "prompt": {
+                "en": "a pear",
+                "de": "eine Birne"
+              },
+              "accepted": {
+                "answers": [
+                  "une poire"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a pear in French is une poire.",
+                "fr": "a pear en français est une poire.",
+                "de": "eine Birne auf Französisch ist une poire."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-tomate",
+              "targetId": "une-tomate",
+              "prompt": {
+                "en": "a tomato",
+                "de": "eine Tomate"
+              },
+              "accepted": {
+                "answers": [
+                  "une tomate"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a tomato in French is une tomate.",
+                "fr": "a tomato en français est une tomate.",
+                "de": "eine Tomate auf Französisch ist une tomate."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-page-2",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-carotte",
+              "targetId": "une-carotte",
+              "prompt": {
+                "en": "a carrot",
+                "de": "eine Karotte"
+              },
+              "accepted": {
+                "answers": [
+                  "une carotte"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a carrot in French is une carotte.",
+                "fr": "a carrot en français est une carotte.",
+                "de": "eine Karotte auf Französisch ist une carotte."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-pomme-de-terre",
+              "targetId": "une-pomme-de-terre",
+              "prompt": {
+                "en": "a potato",
+                "de": "eine Kartoffel"
+              },
+              "accepted": {
+                "answers": [
+                  "une pomme de terre"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a potato in French is une pomme de terre.",
+                "fr": "a potato en français est une pomme de terre.",
+                "de": "eine Kartoffel auf Französisch ist une pomme de terre."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-salade",
+              "targetId": "une-salade",
+              "prompt": {
+                "en": "a lettuce",
+                "de": "ein Salat"
+              },
+              "accepted": {
+                "answers": [
+                  "une salade"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a lettuce in French is une salade.",
+                "fr": "a lettuce en français est une salade.",
+                "de": "ein Salat auf Französisch ist une salade."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-oignon",
+              "targetId": "un-oignon",
+              "prompt": {
+                "en": "an onion",
+                "de": "eine Zwiebel"
+              },
+              "accepted": {
+                "answers": [
+                  "un oignon"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "an onion in French is un oignon.",
+                "fr": "an onion en français est un oignon.",
+                "de": "eine Zwiebel auf Französisch ist un oignon."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-concombre",
+              "targetId": "un-concombre",
+              "prompt": {
+                "en": "a cucumber",
+                "de": "eine Gurke"
+              },
+              "accepted": {
+                "answers": [
+                  "un concombre"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a cucumber in French is un concombre.",
+                "fr": "a cucumber en français est un concombre.",
+                "de": "eine Gurke auf Französisch ist un concombre."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-courgette",
+              "targetId": "une-courgette",
+              "prompt": {
+                "en": "a zucchini",
+                "de": "eine Zucchini"
+              },
+              "accepted": {
+                "answers": [
+                  "une courgette"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a zucchini in French is une courgette.",
+                "fr": "a zucchini en français est une courgette.",
+                "de": "eine Zucchini auf Französisch ist une courgette."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-haricot-vert",
+              "targetId": "un-haricot-vert",
+              "prompt": {
+                "en": "a green bean",
+                "de": "eine grüne Bohne"
+              },
+              "accepted": {
+                "answers": [
+                  "un haricot vert"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a green bean in French is un haricot vert.",
+                "fr": "a green bean en français est un haricot vert.",
+                "de": "eine grüne Bohne auf Französisch ist un haricot vert."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

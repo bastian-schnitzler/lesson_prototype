@@ -1,0 +1,1092 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-months-and-dates",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les mois et la date",
+  "objective": {
+    "en": "Name the twelve months and express dates in French.",
+    "fr": "Nommer les douze mois et dire la date en français.",
+    "de": "Nenne die zwölf Monate und sage das Datum auf Französisch."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-content-v1",
+    "generatedAt": "2026-10-07T14:59:24.371Z",
+    "inputHashes": {
+      "outline": "77f0e46b798ff1aade665ee7ebeebc166ccd88d30054624a964b5606a20bf426",
+      "brief": "2425e6a3b736d8c244b613fd34b747f12b910e34ecbaccd2d09de1c1332c34f8"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "daily_life",
+  "steps": [
+    {
+      "id": "introduction",
+      "stage": "introduction",
+      "role": "introduction",
+      "label": {
+        "en": "Introduction",
+        "fr": "Introduction",
+        "de": "Einführung"
+      },
+      "pages": [
+        {
+          "pageId": "intro-first-half",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-first-half",
+              "targetIds": [
+                "janvier",
+                "fevrier",
+                "mars",
+                "avril",
+                "mai",
+                "juin"
+              ],
+              "text": {
+                "en": "The first six months of the year:\n\n- `janvier`\n- `février`\n- `mars`\n- `avril`\n- `mai`\n- `juin`",
+                "fr": "Les six premiers mois de l’année :\n\n- `janvier`\n- `février`\n- `mars`\n- `avril`\n- `mai`\n- `juin`",
+                "de": "Die ersten sechs Monate des Jahres:\n\n- `janvier`\n- `février`\n- `mars`\n- `avril`\n- `mai`\n- `juin` "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "intro-second-half",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-second-half",
+              "targetIds": [
+                "juillet",
+                "aout",
+                "septembre",
+                "octobre",
+                "novembre",
+                "decembre"
+              ],
+              "text": {
+                "en": "The last six months of the year:\n\n- `juillet`\n- `août`\n- `septembre`\n- `octobre`\n- `novembre`\n- `décembre`",
+                "fr": "Les six derniers mois de l’année :\n\n- `juillet`\n- `août`\n- `septembre`\n- `octobre`\n- `novembre`\n- `décembre`",
+                "de": "Die letzten sechs Monate des Jahres:\n\n- `juillet`\n- `août`\n- `septembre`\n- `octobre`\n- `novembre`\n- `décembre` "
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "cards-first-half",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-first-half",
+              "targetIds": [
+                "janvier",
+                "fevrier",
+                "mars",
+                "avril",
+                "mai",
+                "juin"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "cards-second-half",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-second-half",
+              "targetIds": [
+                "juillet",
+                "aout",
+                "septembre",
+                "octobre",
+                "novembre",
+                "decembre"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "match-1",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-2",
+              "pairs": [
+                {
+                  "targetId": "janvier",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "janvier means January.",
+                    "fr": "janvier signifie « January » en anglais.",
+                    "de": "janvier bedeutet Januar."
+                  }
+                },
+                {
+                  "targetId": "fevrier",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "février means February.",
+                    "fr": "février signifie « February » en anglais.",
+                    "de": "février bedeutet Februar."
+                  }
+                },
+                {
+                  "targetId": "mars",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "mars means March.",
+                    "fr": "mars signifie « March » en anglais.",
+                    "de": "mars bedeutet März."
+                  }
+                },
+                {
+                  "targetId": "avril",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "avril means April.",
+                    "fr": "avril signifie « April » en anglais.",
+                    "de": "avril bedeutet April."
+                  }
+                },
+                {
+                  "targetId": "mai",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "mai means May.",
+                    "fr": "mai signifie « May » en anglais.",
+                    "de": "mai bedeutet Mai."
+                  }
+                },
+                {
+                  "targetId": "juin",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "juin means June.",
+                    "fr": "juin signifie « June » en anglais.",
+                    "de": "juin bedeutet Juni."
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-2",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-3",
+              "pairs": [
+                {
+                  "targetId": "juillet",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "juillet means July.",
+                    "fr": "juillet signifie « July » en anglais.",
+                    "de": "juillet bedeutet Juli."
+                  }
+                },
+                {
+                  "targetId": "aout",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "août means August.",
+                    "fr": "août signifie « August » en anglais.",
+                    "de": "août bedeutet August."
+                  }
+                },
+                {
+                  "targetId": "septembre",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "septembre means September.",
+                    "fr": "septembre signifie « September » en anglais.",
+                    "de": "septembre bedeutet September."
+                  }
+                },
+                {
+                  "targetId": "octobre",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "octobre means October.",
+                    "fr": "octobre signifie « October » en anglais.",
+                    "de": "octobre bedeutet Oktober."
+                  }
+                },
+                {
+                  "targetId": "novembre",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "novembre means November.",
+                    "fr": "novembre signifie « November » en anglais.",
+                    "de": "novembre bedeutet November."
+                  }
+                },
+                {
+                  "targetId": "decembre",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "décembre means December.",
+                    "fr": "décembre signifie « December » en anglais.",
+                    "de": "décembre bedeutet Dezember."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overview",
+      "stage": "overview",
+      "role": "overview",
+      "label": {
+        "en": "Overview",
+        "fr": "Vue d’ensemble",
+        "de": "Übersicht"
+      },
+      "pages": [
+        {
+          "pageId": "overview-page",
+          "estimatedDurationS": 90,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Review all words and their details.",
+            "fr": "Révisez tous les mots et leurs détails.",
+            "de": "Überprüfe alle Wörter und ihre Details."
+          },
+          "items": [
+            {
+              "type": "vocabulary_overview",
+              "itemId": "vocab-overview",
+              "targetIds": [
+                "janvier",
+                "fevrier",
+                "mars",
+                "avril",
+                "mai",
+                "juin",
+                "juillet",
+                "aout",
+                "septembre",
+                "octobre",
+                "novembre",
+                "decembre"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "stage": "practice",
+      "role": "exercise",
+      "label": {
+        "en": "Practice",
+        "fr": "Entraînement",
+        "de": "Übung"
+      },
+      "pages": [
+        {
+          "pageId": "gap-janvier",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-janvier",
+              "targetId": "janvier",
+              "before": "Le premier mois est",
+              "after": ".",
+              "referenceTargetIds": [
+                "janvier",
+                "fevrier",
+                "mars",
+                "avril"
+              ],
+              "accepted": {
+                "answers": [
+                  "janvier"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is janvier.",
+                "fr": "Le mot manquant est janvier.",
+                "de": "Das fehlende Wort ist janvier."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-fevrier",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-fevrier",
+              "targetId": "fevrier",
+              "before": "Le deuxième mois est",
+              "after": ".",
+              "referenceTargetIds": [
+                "fevrier",
+                "janvier",
+                "mars",
+                "avril"
+              ],
+              "accepted": {
+                "answers": [
+                  "février"
+                ],
+                "accentSensitive": [
+                  "février"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is février.",
+                "fr": "Le mot manquant est février.",
+                "de": "Das fehlende Wort ist février."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-mars",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-mars",
+              "targetId": "mars",
+              "before": "Le troisième mois est",
+              "after": ".",
+              "referenceTargetIds": [
+                "mars",
+                "janvier",
+                "fevrier",
+                "avril"
+              ],
+              "accepted": {
+                "answers": [
+                  "mars"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is mars.",
+                "fr": "Le mot manquant est mars.",
+                "de": "Das fehlende Wort ist mars."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-avril",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-avril",
+              "targetId": "avril",
+              "before": "Le quatrième mois est",
+              "after": ".",
+              "referenceTargetIds": [
+                "avril",
+                "janvier",
+                "fevrier",
+                "mars"
+              ],
+              "accepted": {
+                "answers": [
+                  "avril"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is avril.",
+                "fr": "Le mot manquant est avril.",
+                "de": "Das fehlende Wort ist avril."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-mai",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-mai",
+              "targetId": "mai",
+              "before": "Le cinquième mois est",
+              "after": ".",
+              "referenceTargetIds": [
+                "mai",
+                "janvier",
+                "fevrier",
+                "mars"
+              ],
+              "accepted": {
+                "answers": [
+                  "mai"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is mai.",
+                "fr": "Le mot manquant est mai.",
+                "de": "Das fehlende Wort ist mai."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-juin",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-juin",
+              "targetId": "juin",
+              "before": "Le sixième mois est",
+              "after": ".",
+              "referenceTargetIds": [
+                "juin",
+                "janvier",
+                "fevrier",
+                "mars"
+              ],
+              "accepted": {
+                "answers": [
+                  "juin"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is juin.",
+                "fr": "Le mot manquant est juin.",
+                "de": "Das fehlende Wort ist juin."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-juillet",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-juillet",
+              "targetId": "juillet",
+              "before": "Le septième mois est",
+              "after": ".",
+              "referenceTargetIds": [
+                "juillet",
+                "janvier",
+                "fevrier",
+                "mars"
+              ],
+              "accepted": {
+                "answers": [
+                  "juillet"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is juillet.",
+                "fr": "Le mot manquant est juillet.",
+                "de": "Das fehlende Wort ist juillet."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-aout",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-aout",
+              "targetId": "aout",
+              "before": "Le huitième mois est",
+              "after": ".",
+              "referenceTargetIds": [
+                "aout",
+                "janvier",
+                "fevrier",
+                "mars"
+              ],
+              "accepted": {
+                "answers": [
+                  "août"
+                ],
+                "accentSensitive": [
+                  "août"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is août.",
+                "fr": "Le mot manquant est août.",
+                "de": "Das fehlende Wort ist août."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-septembre",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-septembre",
+              "targetId": "septembre",
+              "before": "Le neuvième mois est",
+              "after": ".",
+              "referenceTargetIds": [
+                "septembre",
+                "janvier",
+                "fevrier",
+                "mars"
+              ],
+              "accepted": {
+                "answers": [
+                  "septembre"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is septembre.",
+                "fr": "Le mot manquant est septembre.",
+                "de": "Das fehlende Wort ist septembre."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-octobre",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-octobre",
+              "targetId": "octobre",
+              "before": "Le dixième mois est",
+              "after": ".",
+              "referenceTargetIds": [
+                "octobre",
+                "janvier",
+                "fevrier",
+                "mars"
+              ],
+              "accepted": {
+                "answers": [
+                  "octobre"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is octobre.",
+                "fr": "Le mot manquant est octobre.",
+                "de": "Das fehlende Wort ist octobre."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-novembre",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-novembre",
+              "targetId": "novembre",
+              "before": "Le onzième mois est",
+              "after": ".",
+              "referenceTargetIds": [
+                "novembre",
+                "janvier",
+                "fevrier",
+                "mars"
+              ],
+              "accepted": {
+                "answers": [
+                  "novembre"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is novembre.",
+                "fr": "Le mot manquant est novembre.",
+                "de": "Das fehlende Wort ist novembre."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-decembre",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-decembre",
+              "targetId": "decembre",
+              "before": "Le douzième mois est",
+              "after": ".",
+              "referenceTargetIds": [
+                "decembre",
+                "janvier",
+                "fevrier",
+                "mars"
+              ],
+              "accepted": {
+                "answers": [
+                  "décembre"
+                ],
+                "accentSensitive": [
+                  "décembre"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is décembre.",
+                "fr": "Le mot manquant est décembre.",
+                "de": "Das fehlende Wort ist décembre."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Exam",
+        "fr": "Examen",
+        "de": "Prüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-janvier",
+              "targetId": "janvier",
+              "prompt": {
+                "en": "January",
+                "de": "Januar"
+              },
+              "accepted": {
+                "answers": [
+                  "janvier"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "January in French is janvier.",
+                "fr": "January en français est janvier.",
+                "de": "Januar auf Französisch ist janvier."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-fevrier",
+              "targetId": "fevrier",
+              "prompt": {
+                "en": "February",
+                "de": "Februar"
+              },
+              "accepted": {
+                "answers": [
+                  "février"
+                ],
+                "accentSensitive": [
+                  "février"
+                ]
+              },
+              "answerExplanation": {
+                "en": "February in French is février.",
+                "fr": "February en français est février.",
+                "de": "Februar auf Französisch ist février."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-mars",
+              "targetId": "mars",
+              "prompt": {
+                "en": "March",
+                "de": "März"
+              },
+              "accepted": {
+                "answers": [
+                  "mars"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "March in French is mars.",
+                "fr": "March en français est mars.",
+                "de": "März auf Französisch ist mars."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-avril",
+              "targetId": "avril",
+              "prompt": {
+                "en": "April",
+                "de": "April"
+              },
+              "accepted": {
+                "answers": [
+                  "avril"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "April in French is avril.",
+                "fr": "April en français est avril.",
+                "de": "April auf Französisch ist avril."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-mai",
+              "targetId": "mai",
+              "prompt": {
+                "en": "May",
+                "de": "Mai"
+              },
+              "accepted": {
+                "answers": [
+                  "mai"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "May in French is mai.",
+                "fr": "May en français est mai.",
+                "de": "Mai auf Französisch ist mai."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-juin",
+              "targetId": "juin",
+              "prompt": {
+                "en": "June",
+                "de": "Juni"
+              },
+              "accepted": {
+                "answers": [
+                  "juin"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "June in French is juin.",
+                "fr": "June en français est juin.",
+                "de": "Juni auf Französisch ist juin."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-page-2",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-juillet",
+              "targetId": "juillet",
+              "prompt": {
+                "en": "July",
+                "de": "Juli"
+              },
+              "accepted": {
+                "answers": [
+                  "juillet"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "July in French is juillet.",
+                "fr": "July en français est juillet.",
+                "de": "Juli auf Französisch ist juillet."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-aout",
+              "targetId": "aout",
+              "prompt": {
+                "en": "August",
+                "de": "August"
+              },
+              "accepted": {
+                "answers": [
+                  "août"
+                ],
+                "accentSensitive": [
+                  "août"
+                ]
+              },
+              "answerExplanation": {
+                "en": "August in French is août.",
+                "fr": "August en français est août.",
+                "de": "August auf Französisch ist août."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-septembre",
+              "targetId": "septembre",
+              "prompt": {
+                "en": "September",
+                "de": "September"
+              },
+              "accepted": {
+                "answers": [
+                  "septembre"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "September in French is septembre.",
+                "fr": "September en français est septembre.",
+                "de": "September auf Französisch ist septembre."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-octobre",
+              "targetId": "octobre",
+              "prompt": {
+                "en": "October",
+                "de": "Oktober"
+              },
+              "accepted": {
+                "answers": [
+                  "octobre"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "October in French is octobre.",
+                "fr": "October en français est octobre.",
+                "de": "Oktober auf Französisch ist octobre."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-novembre",
+              "targetId": "novembre",
+              "prompt": {
+                "en": "November",
+                "de": "November"
+              },
+              "accepted": {
+                "answers": [
+                  "novembre"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "November in French is novembre.",
+                "fr": "November en français est novembre.",
+                "de": "November auf Französisch ist novembre."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-decembre",
+              "targetId": "decembre",
+              "prompt": {
+                "en": "December",
+                "de": "Dezember"
+              },
+              "accepted": {
+                "answers": [
+                  "décembre"
+                ],
+                "accentSensitive": [
+                  "décembre"
+                ]
+              },
+              "answerExplanation": {
+                "en": "December in French is décembre.",
+                "fr": "December en français est décembre.",
+                "de": "Dezember auf Französisch ist décembre."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

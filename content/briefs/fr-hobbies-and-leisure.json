@@ -1,0 +1,577 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-hobbies-and-leisure",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les loisirs",
+  "objective": {
+    "en": "Name twelve common hobbies and leisure activities in French.",
+    "fr": "Nommer une douzaine de loisirs et activités en français.",
+    "de": "Nenne zwölf häufige Hobbys und Freizeitaktivitäten auf Französisch."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T14:59:26.041Z",
+    "inputHashes": {
+      "outline": "5d458dd0403a5bc3062c78796aab10768baa04ec7f6ac018197b117a11919f35"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "free_time",
+  "coverageNotes": {
+    "en": "Covers verbs and noun forms for hobbies.",
+    "fr": "Couvre les verbes et les noms d’activités de loisir.",
+    "de": "Deckt Verben und Substantive für Freizeitaktivitäten ab."
+  },
+  "targetCount": 12,
+  "countRationale": {
+    "en": "Twelve items give comprehensive coverage of popular free-time pursuits.",
+    "fr": "Douze éléments couvrent largement les passe-temps courants.",
+    "de": "Zwölf Begriffe bieten eine breite Übersicht über beliebte Hobbys."
+  },
+  "difficultyBalance": {
+    "en": "Core infinitives (lire, danser) balanced with noun activities (une randonnée).",
+    "fr": "Verbes simples équilibrés avec des noms d’activités.",
+    "de": "Einfache Verben ausgewogen mit Substantiven."
+  },
+  "prerequisites": [
+    {
+      "en": "Basic verbs like aimer, faire.",
+      "fr": "Verbes de base comme aimer, faire.",
+      "de": "Grundverben wie aimer, faire."
+    }
+  ],
+  "groups": [
+    {
+      "id": "leisure-verbs",
+      "label": {
+        "en": "Action hobbies (verbs)",
+        "fr": "Verbes de loisirs",
+        "de": "Hobbys als Verben"
+      },
+      "targetIds": [
+        "lire",
+        "voyager",
+        "cuisiner",
+        "danser",
+        "chanter",
+        "dessiner"
+      ]
+    },
+    {
+      "id": "leisure-nouns",
+      "label": {
+        "en": "Media & outdoor hobbies",
+        "fr": "Médias et activités",
+        "de": "Medien & Aktivitäten"
+      },
+      "targetIds": [
+        "une-musique",
+        "un-cinema",
+        "des-jeux-video",
+        "une-photo",
+        "une-randonnee",
+        "un-jardinage"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "lire",
+      "term": "lire",
+      "translations": {
+        "en": [
+          "to read",
+          "reading"
+        ],
+        "de": [
+          "lesen"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "lire",
+      "examForms": [
+        "lire"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/liʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "J’aime lire un roman le soir.",
+        "translation": {
+          "en": "I like reading a novel in the evening.",
+          "de": "Ich lese abends gerne einen Roman."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "voyager",
+      "term": "voyager",
+      "translations": {
+        "en": [
+          "to travel",
+          "traveling"
+        ],
+        "de": [
+          "reisen"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "voyager",
+      "examForms": [
+        "voyager"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/vwajaʒe/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Elle aime voyager en Italie.",
+        "translation": {
+          "en": "She likes traveling in Italy.",
+          "de": "Sie reist gerne nach Italien."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "cuisiner",
+      "term": "cuisiner",
+      "translations": {
+        "en": [
+          "to cook",
+          "cooking"
+        ],
+        "de": [
+          "kochen"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "cuisiner",
+      "examForms": [
+        "cuisiner"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/kyizine/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il aime cuisiner pour ses amis.",
+        "translation": {
+          "en": "He likes cooking for his friends.",
+          "de": "Er kocht gerne für seine Freunde."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "danser",
+      "term": "danser",
+      "translations": {
+        "en": [
+          "to dance",
+          "dancing"
+        ],
+        "de": [
+          "tanzen"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "danser",
+      "examForms": [
+        "danser"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/dɑ̃se/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Elles aiment danser la salsa.",
+        "translation": {
+          "en": "They like dancing salsa.",
+          "de": "Sie tanzen gerne Salsa."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "chanter",
+      "term": "chanter",
+      "translations": {
+        "en": [
+          "to sing",
+          "singing"
+        ],
+        "de": [
+          "singen"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "chanter",
+      "examForms": [
+        "chanter"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/ʃɑ̃te/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il aime chanter dans une chorale.",
+        "translation": {
+          "en": "He likes singing in a choir.",
+          "de": "Er singt gerne in einem Chor."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "dessiner",
+      "term": "dessiner",
+      "translations": {
+        "en": [
+          "to draw",
+          "drawing"
+        ],
+        "de": [
+          "zeichnen"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "dessiner",
+      "examForms": [
+        "dessiner"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/desine/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "L’enfant aime dessiner des animaux.",
+        "translation": {
+          "en": "The child likes drawing animals.",
+          "de": "Das Kind zeichnet gerne Tiere."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-musique",
+      "term": "musique",
+      "translations": {
+        "en": [
+          "a music track",
+          "music"
+        ],
+        "de": [
+          "eine Musik"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une musique",
+      "examForms": [
+        "une musique"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn myzik/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "J’écoute une musique douce.",
+        "translation": {
+          "en": "I listen to soft music.",
+          "de": "Ich höre eine sanfte Musik."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-cinema",
+      "term": "cinéma",
+      "translations": {
+        "en": [
+          "a cinema",
+          "a movie theater"
+        ],
+        "de": [
+          "ein Kino"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un cinéma",
+      "examForms": [
+        "un cinéma"
+      ],
+      "accentSensitive": [
+        "cinéma"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ sinema/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il y a un cinéma dans ma rue.",
+        "translation": {
+          "en": "There is a cinema in my street.",
+          "de": "Es gibt ein Kino in meiner Straße."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "des-jeux-video",
+      "term": "jeux vidéo",
+      "translations": {
+        "en": [
+          "video games"
+        ],
+        "de": [
+          "Videospiele"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "plural",
+      "teachingForm": "des jeux vidéo",
+      "examForms": [
+        "des jeux vidéo",
+        "des jeux video"
+      ],
+      "accentSensitive": [
+        "jeux",
+        "vidéo"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/de ʒø mejeo/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Les ados achètent des jeux vidéo.",
+        "translation": {
+          "en": "Teens buy video games.",
+          "de": "Teens kaufen Videospiele."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-photo",
+      "term": "photo",
+      "translations": {
+        "en": [
+          "a photo",
+          "photography"
+        ],
+        "de": [
+          "ein Foto"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une photo",
+      "examForms": [
+        "une photo"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn fɔto/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il prend une photo du paysage.",
+        "translation": {
+          "en": "He takes a photo of the landscape.",
+          "de": "Er macht ein Foto der Landschaft."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-randonnee",
+      "term": "randonnée",
+      "translations": {
+        "en": [
+          "a hike",
+          "hiking"
+        ],
+        "de": [
+          "eine Wanderung"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une randonnée",
+      "examForms": [
+        "une randonnée"
+      ],
+      "accentSensitive": [
+        "randonnée"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn ʁɑ̃dɔne/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Nous faisons une randonnée en montagne.",
+        "translation": {
+          "en": "We go on a hike in the mountains.",
+          "de": "Wir machen eine Wanderung in den Bergen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-jardinage",
+      "term": "jardinage",
+      "translations": {
+        "en": [
+          "a gardening activity"
+        ],
+        "de": [
+          "eine Gartenarbeit"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un jardinage",
+      "examForms": [
+        "un jardinage"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ ʒaʁdinaʒ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Mon père fait un jardinage régulier.",
+        "translation": {
+          "en": "My father does regular gardening.",
+          "de": "Mein Vater macht regelmäßige Gartenarbeit."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "lire",
+        "voyager",
+        "cuisiner",
+        "danser",
+        "chanter",
+        "dessiner",
+        "une-musique",
+        "un-cinema",
+        "des-jeux-video",
+        "une-photo",
+        "une-randonnee",
+        "un-jardinage"
+      ],
+      "estimatedDurationS": 180
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "lire",
+            "voyager",
+            "cuisiner",
+            "danser",
+            "chanter",
+            "dessiner"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "une-musique",
+            "un-cinema",
+            "des-jeux-video",
+            "une-photo",
+            "une-randonnee",
+            "un-jardinage"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

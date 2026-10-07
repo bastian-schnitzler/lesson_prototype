@@ -52,8 +52,8 @@ function play(plan: LessonPlan, respond: (u: PlanUnit, role: string) => UnitResp
   return r;
 }
 
-it('reviews all twenty first-ten samples, both categories', () => {
-  expect(IDS).toHaveLength(20);
+it('reviews all sample lessons across both categories', () => {
+  expect(IDS.length).toBeGreaterThanOrEqual(20);
   expect(new Set(IDS.map((id) => read('lessons', id).kind))).toEqual(new Set(['vocabulary', 'grammar']));
 });
 

@@ -1,0 +1,513 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-meals-of-the-day",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les repas de la journée",
+  "objective": {
+    "en": "Name the four daily meals and associated food items in French.",
+    "fr": "Nommer les repas et une dizaine d’aliments qui vont avec en français.",
+    "de": "Nenne die vier Tagesmahlzeiten und dazugehörige Lebensmittel auf Französisch."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T14:59:31.048Z",
+    "inputHashes": {
+      "outline": "bc7e6107bac427fbc08de78e10c410fa43eb460667c05a2b2af43fd521a93d38"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "food_and_drink",
+  "coverageNotes": {
+    "en": "Covers breakfast, lunch, snack, dinner, jam, cereal, and soup.",
+    "fr": "Couvre le petit-déjeuner, déjeuner, goûter, dîner, la confiture, les céréales et la soupe.",
+    "de": "Deckt Frühstück, Mittagessen, Nachmittagsimbiß, Abendessen und Beilagen ab."
+  },
+  "targetCount": 10,
+  "countRationale": {
+    "en": "Ten items cover the full schedule of daily meals and typical dishes.",
+    "fr": "Dix éléments couvrent tous les repas de la journée et aliments associés.",
+    "de": "Zehn Begriffe decken alle Tagesmahlzeiten und typische Nahrungsmittel ab."
+  },
+  "difficultyBalance": {
+    "en": "Core meal names (le déjeuner, le dîner) balanced with food items (la confiture, la soupe).",
+    "fr": "Noms de repas simples équilibrés avec les aliments.",
+    "de": "Mahlzeitenbezeichnungen ausgewogen mit Lebensmitteln."
+  },
+  "prerequisites": [
+    {
+      "en": "Food and drink basics.",
+      "fr": "Bases de l’alimentation.",
+      "de": "Grundlagen zu Essen und Trinken."
+    }
+  ],
+  "groups": [
+    {
+      "id": "four-meals",
+      "label": {
+        "en": "Four meals of the day",
+        "fr": "Quatre repas de la journée",
+        "de": "Vier Tagesmahlzeiten"
+      },
+      "targetIds": [
+        "le-petit-dejeuner",
+        "le-dejeuner",
+        "le-gouter",
+        "le-diner"
+      ]
+    },
+    {
+      "id": "meal-foods",
+      "label": {
+        "en": "Meal food items",
+        "fr": "Aliments des repas",
+        "de": "Lebensmittel zu den Mahlzeiten"
+      },
+      "targetIds": [
+        "des-cereales",
+        "la-confiture",
+        "la-soupe",
+        "un-toast",
+        "un-yaourt",
+        "le-dessert"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "le-petit-dejeuner",
+      "term": "petit-déjeuner",
+      "translations": {
+        "en": [
+          "breakfast"
+        ],
+        "de": [
+          "das Frühstück"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un petit-déjeuner",
+      "examForms": [
+        "un petit-déjeuner",
+        "un petit dejeuner"
+      ],
+      "accentSensitive": [
+        "petit-déjeuner"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ pəti deʒœne/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Prendre un petit-déjeuner complet.",
+        "translation": {
+          "en": "Have a full breakfast.",
+          "de": "Ein vollständiges Frühstück einnehmen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "le-dejeuner",
+      "term": "déjeuner",
+      "translations": {
+        "en": [
+          "lunch"
+        ],
+        "de": [
+          "das Mittagessen"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un déjeuner",
+      "examForms": [
+        "un déjeuner",
+        "un dejeuner"
+      ],
+      "accentSensitive": [
+        "déjeuner"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ deʒœne/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un déjeuner rapide à midi.",
+        "translation": {
+          "en": "A quick lunch at noon.",
+          "de": "Ein schnelles Mittagessen um zwölf."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "le-gouter",
+      "term": "goûter",
+      "translations": {
+        "en": [
+          "afternoon snack"
+        ],
+        "de": [
+          "der Nachmittagsimbiß"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un goûter",
+      "examForms": [
+        "un goûter",
+        "un gouter"
+      ],
+      "accentSensitive": [
+        "goûter"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ ɡute/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Les enfants prennent un goûter à quatre heures.",
+        "translation": {
+          "en": "Children have a snack at 4pm.",
+          "de": "Kinder essen um 16 Uhr einen Snack."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "le-diner",
+      "term": "dîner",
+      "translations": {
+        "en": [
+          "dinner"
+        ],
+        "de": [
+          "das Abendessen"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un dîner",
+      "examForms": [
+        "un dîner",
+        "un diner"
+      ],
+      "accentSensitive": [
+        "dîner"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ dine/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un dîner en famille.",
+        "translation": {
+          "en": "A family dinner.",
+          "de": "Ein Abendessen im Familienkreis."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "des-cereales",
+      "term": "céréales",
+      "translations": {
+        "en": [
+          "cereal"
+        ],
+        "de": [
+          "Müsli",
+          "Cerealien"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "plural",
+      "teachingForm": "des céréales",
+      "examForms": [
+        "des céréales",
+        "des cereales"
+      ],
+      "accentSensitive": [
+        "céréales"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/de seʁeal/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Manger des céréales avec du lait.",
+        "translation": {
+          "en": "Eat cereal with milk.",
+          "de": "Müsli mit Milch essen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "la-confiture",
+      "term": "confiture",
+      "translations": {
+        "en": [
+          "jam"
+        ],
+        "de": [
+          "Marmelade"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une confiture",
+      "examForms": [
+        "une confiture"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn kɔ̃fityʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Étaler une confiture de fraises.",
+        "translation": {
+          "en": "Spread strawberry jam.",
+          "de": "Erdbeermarmelade streichen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "la-soupe",
+      "term": "soupe",
+      "translations": {
+        "en": [
+          "soup"
+        ],
+        "de": [
+          "Suppe"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une soupe",
+      "examForms": [
+        "une soupe"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn sup/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Manger une soupe chaude en hiver.",
+        "translation": {
+          "en": "Eat hot soup in winter.",
+          "de": "Heiße Suppe im Winter essen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-toast",
+      "term": "toast",
+      "translations": {
+        "en": [
+          "a toast"
+        ],
+        "de": [
+          "ein Toast"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un toast",
+      "examForms": [
+        "un toast"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ tɔst/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un toast grillé avec du beurre.",
+        "translation": {
+          "en": "A grilled toast with butter.",
+          "de": "Ein geröstetes Toast mit Butter."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-yaourt",
+      "term": "yaourt",
+      "translations": {
+        "en": [
+          "a yogurt"
+        ],
+        "de": [
+          "ein Joghurt"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un yaourt",
+      "examForms": [
+        "un yaourt"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ jauʁt/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un yaourt nature comme dessert.",
+        "translation": {
+          "en": "A plain yogurt for dessert.",
+          "de": "Ein Naturjoghurt als Nachtisch."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "le-dessert",
+      "term": "dessert",
+      "translations": {
+        "en": [
+          "a dessert"
+        ],
+        "de": [
+          "ein Nachtisch"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un dessert",
+      "examForms": [
+        "un dessert"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ desɛʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Choisir un dessert sucré.",
+        "translation": {
+          "en": "Choose a sweet dessert.",
+          "de": "Einen süßen Nachtisch wählen."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "le-petit-dejeuner",
+        "le-dejeuner",
+        "le-gouter",
+        "le-diner",
+        "des-cereales",
+        "la-confiture",
+        "la-soupe",
+        "un-toast",
+        "un-yaourt",
+        "le-dessert"
+      ],
+      "estimatedDurationS": 150
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "le-petit-dejeuner",
+            "le-dejeuner",
+            "le-gouter",
+            "le-diner",
+            "des-cereales"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "la-confiture",
+            "la-soupe",
+            "un-toast",
+            "un-yaourt",
+            "le-dessert"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

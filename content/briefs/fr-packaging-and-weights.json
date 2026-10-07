@@ -1,0 +1,508 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-packaging-and-weights",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les quantités et emballages",
+  "objective": {
+    "en": "Name ten quantities and packaging units in French with indefinite articles.",
+    "fr": "Nommer une dizaine de quantités et d’emballages en français avec leurs articles indéfinis.",
+    "de": "Nenne zehn Mengenangaben und Verpackungen auf Französisch mit unbestimmten Artikeln."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T14:59:27.728Z",
+    "inputHashes": {
+      "outline": "8b48fd2d8d6ecb804ceec6345eeec804bae4d4dc48ba91d8c6cde15a5686eaae"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "shopping",
+  "coverageNotes": {
+    "en": "Covers weights, liquid measures, and common food containers.",
+    "fr": "Couvre les poids, mesures de liquides et contenants alimentaires courants.",
+    "de": "Deckt Gewichte, Flüssigkeitsmaße und gängige Lebensmittelverpackungen ab."
+  },
+  "targetCount": 10,
+  "countRationale": {
+    "en": "Ten items provide standard grocery measurement and container vocabulary.",
+    "fr": "Dix éléments couvrent les unités de mesure et contenants essentiels.",
+    "de": "Zehn Begriffe decken Mengenangaben und Behälter ab."
+  },
+  "difficultyBalance": {
+    "en": "Core measures (kilo, litre) balanced with container nouns (bouteille, boîte).",
+    "fr": "Mesures simples équilibrées avec les contenants.",
+    "de": "Einfache Maße ausgewogen mit Verpackungen."
+  },
+  "prerequisites": [
+    {
+      "en": "Indefinite articles un, une.",
+      "fr": "Articles indéfinis un, une.",
+      "de": "Unbestimmte Artikel un, une."
+    }
+  ],
+  "groups": [
+    {
+      "id": "weights-measures",
+      "label": {
+        "en": "Weights & Measures",
+        "fr": "Poids et mesures",
+        "de": "Gewichte & Maße"
+      },
+      "targetIds": [
+        "un-kilo",
+        "un-gramme",
+        "un-litre",
+        "une-tranche",
+        "une-douzaine"
+      ]
+    },
+    {
+      "id": "containers",
+      "label": {
+        "en": "Containers & Packages",
+        "fr": "Contenants et paquets",
+        "de": "Behälter & Packungen"
+      },
+      "targetIds": [
+        "une-bouteille",
+        "une-boite",
+        "un-paquet",
+        "un-pot",
+        "un-morceau"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "un-kilo",
+      "term": "kilo",
+      "translations": {
+        "en": [
+          "a kilo",
+          "a kilogram"
+        ],
+        "de": [
+          "ein Kilo"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un kilo",
+      "examForms": [
+        "un kilo"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ kilo/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Acheter un kilo de pommes.",
+        "translation": {
+          "en": "Buy a kilo of apples.",
+          "de": "Ein Kilo Äpfel kaufen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-gramme",
+      "term": "gramme",
+      "translations": {
+        "en": [
+          "a gram"
+        ],
+        "de": [
+          "ein Gramm"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un gramme",
+      "examForms": [
+        "un gramme"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ ɡʁam/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Ajouter cent grammes de beurre.",
+        "translation": {
+          "en": "Add one hundred grams of butter.",
+          "de": "Hundert Gramm Butter hinzufügen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-litre",
+      "term": "litre",
+      "translations": {
+        "en": [
+          "a liter"
+        ],
+        "de": [
+          "ein Liter"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un litre",
+      "examForms": [
+        "un litre"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ litʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Boire un litre d’eau par jour.",
+        "translation": {
+          "en": "Drink a liter of water a day.",
+          "de": "Einen Liter Wasser pro Tag trinken."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-tranche",
+      "term": "tranche",
+      "translations": {
+        "en": [
+          "a slice"
+        ],
+        "de": [
+          "eine Scheibe"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une tranche",
+      "examForms": [
+        "une tranche"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn tʁɑ̃ʃ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Une tranche de jambon blanc.",
+        "translation": {
+          "en": "A slice of ham.",
+          "de": "Eine Scheibe Schinken."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-douzaine",
+      "term": "douzaine",
+      "translations": {
+        "en": [
+          "a dozen"
+        ],
+        "de": [
+          "ein Dutzend"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une douzaine",
+      "examForms": [
+        "une douzaine"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn duzɛn/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Une douzaine d’œufs frais.",
+        "translation": {
+          "en": "A dozen eggs.",
+          "de": "Ein Dutzend Eier."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-bouteille",
+      "term": "bouteille",
+      "translations": {
+        "en": [
+          "a bottle"
+        ],
+        "de": [
+          "eine Flasche"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une bouteille",
+      "examForms": [
+        "une bouteille"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn butɛj/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Une bouteille de jus de fruits.",
+        "translation": {
+          "en": "A bottle of fruit juice.",
+          "de": "Eine Flasche Fruchtsaft."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-boite",
+      "term": "boîte",
+      "translations": {
+        "en": [
+          "a box",
+          "a can",
+          "a tin"
+        ],
+        "de": [
+          "eine Dose",
+          "eine Schachtel"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une boîte",
+      "examForms": [
+        "une boîte",
+        "une boite"
+      ],
+      "accentSensitive": [
+        "boîte"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn bwat/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Une boîte de haricots verts.",
+        "translation": {
+          "en": "A can of green beans.",
+          "de": "Eine Dose grüne Bohnen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-paquet",
+      "term": "paquet",
+      "translations": {
+        "en": [
+          "a packet",
+          "a pack",
+          "a parcel"
+        ],
+        "de": [
+          "eine Packung"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un paquet",
+      "examForms": [
+        "un paquet"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ pakɛ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un paquet de gâteaux.",
+        "translation": {
+          "en": "A pack of cookies.",
+          "de": "Eine Packung Kekse."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-pot",
+      "term": "pot",
+      "translations": {
+        "en": [
+          "a jar",
+          "a pot"
+        ],
+        "de": [
+          "ein Glas",
+          "ein Topf"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un pot",
+      "examForms": [
+        "un pot"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ po/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un pot de confiture de fraises.",
+        "translation": {
+          "en": "A jar of strawberry jam.",
+          "de": "Ein Glas Erdbeermarmelade."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-morceau",
+      "term": "morceau",
+      "translations": {
+        "en": [
+          "a piece"
+        ],
+        "de": [
+          "ein Stück"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un morceau",
+      "examForms": [
+        "un morceau"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ mɔʁso/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Un morceau de fromage de chèvre.",
+        "translation": {
+          "en": "A piece of goat cheese.",
+          "de": "Ein Stück Ziegenkäse."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "un-kilo",
+        "un-gramme",
+        "un-litre",
+        "une-tranche",
+        "une-douzaine",
+        "une-bouteille",
+        "une-boite",
+        "un-paquet",
+        "un-pot",
+        "un-morceau"
+      ],
+      "estimatedDurationS": 150
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "un-kilo",
+            "un-gramme",
+            "un-litre",
+            "une-tranche",
+            "une-douzaine"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "une-bouteille",
+            "une-boite",
+            "un-paquet",
+            "un-pot",
+            "un-morceau"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

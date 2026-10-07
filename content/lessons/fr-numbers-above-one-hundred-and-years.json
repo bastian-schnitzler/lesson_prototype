@@ -1,0 +1,945 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-numbers-above-one-hundred-and-years",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les grands nombres et les années",
+  "objective": {
+    "en": "Read and say numbers above 100, years, prices, and distances in French.",
+    "fr": "Lire et dire les nombres à partir de cent, les années, prix et distances en français.",
+    "de": "Lies und sage Zahlen über 100, Jahreszahlen, Preise und Entfernungen auf Französisch."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-content-v1",
+    "generatedAt": "2026-10-07T14:59:29.408Z",
+    "inputHashes": {
+      "outline": "33c488f00c76439173af1cf4fe707f324b05c083a99667950de4ed32b09f02c7",
+      "brief": "46bddab64adce409c0701b3b40ded2b34e3d0bfb5cc942d6a688383c9cd3104c"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "daily_life",
+  "steps": [
+    {
+      "id": "introduction",
+      "stage": "introduction",
+      "role": "introduction",
+      "label": {
+        "en": "Introduction",
+        "fr": "Introduction",
+        "de": "Einführung"
+      },
+      "pages": [
+        {
+          "pageId": "intro-hundreds-thousands",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-hundreds-thousands",
+              "targetIds": [
+                "cent",
+                "deux-cents",
+                "cinq-cents",
+                "mille",
+                "deux-mille"
+              ],
+              "text": {
+                "en": "Hundreds and thousands:\n\n- `cent` (100)\n- `deux cents` (200)\n- `cinq cents` (500)\n- `mille` (1000)\n- `deux mille` (2000)",
+                "fr": "Centaines et milliers :\n\n- `cent` (100)\n- `deux cents` (200)\n- `cinq cents` (500)\n- `mille` (1000)\n- `deux mille` (2000)",
+                "de": "Hunderter und Tausender:\n\n- `cent` (100)\n- `deux cents` (200)\n- `cinq cents` (500)\n- `mille` (1000)\n- `deux mille` (2000) "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "intro-years-prices",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-years-prices",
+              "targetIds": [
+                "deux-mille-vingt-six",
+                "mille-neuf-cent-quatre-vingt-dix",
+                "cent-euros",
+                "mille-kilometres",
+                "un-million"
+              ],
+              "text": {
+                "en": "Years, prices, and large distances:\n\n- `deux mille vingt-six` (2026)\n- `mille neuf cent quatre-vingt-dix` (1990)\n- `cent euros` (€100)\n- `mille kilomètres` (1000 km)\n- `un million` (1,000,000)",
+                "fr": "Années, prix et grandes distances :\n\n- `deux mille vingt-six` (2026)\n- `mille neuf cent quatre-vingt-dix` (1990)\n- `cent euros` (100 €)\n- `mille kilomètres` (1000 km)\n- `un million` (1 000 000)",
+                "de": "Jahre, Preise und große Entfernungen:\n\n- `deux mille vingt-six` (2026)\n- `mille neuf cent quatre-vingt-dix` (1990)\n- `cent euros` (100 €)\n- `mille kilomètres` (1000 km)\n- `un million` (1.000.000) "
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "cards-hundreds-thousands",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-hundreds-thousands",
+              "targetIds": [
+                "cent",
+                "deux-cents",
+                "cinq-cents",
+                "mille",
+                "deux-mille"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "cards-years-prices",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-years-prices",
+              "targetIds": [
+                "deux-mille-vingt-six",
+                "mille-neuf-cent-quatre-vingt-dix",
+                "cent-euros",
+                "mille-kilometres",
+                "un-million"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "match-1",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-2",
+              "pairs": [
+                {
+                  "targetId": "cent",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "cent means one hundred.",
+                    "fr": "cent signifie « one hundred » en anglais.",
+                    "de": "cent bedeutet hundert."
+                  }
+                },
+                {
+                  "targetId": "deux-cents",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "deux cents means two hundred.",
+                    "fr": "deux cents signifie « two hundred » en anglais.",
+                    "de": "deux cents bedeutet zweihundert."
+                  }
+                },
+                {
+                  "targetId": "cinq-cents",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "cinq cents means five hundred.",
+                    "fr": "cinq cents signifie « five hundred » en anglais.",
+                    "de": "cinq cents bedeutet fünfhundert."
+                  }
+                },
+                {
+                  "targetId": "mille",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "mille means one thousand.",
+                    "fr": "mille signifie « one thousand » en anglais.",
+                    "de": "mille bedeutet tausend."
+                  }
+                },
+                {
+                  "targetId": "deux-mille",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "deux mille means two thousand.",
+                    "fr": "deux mille signifie « two thousand » en anglais.",
+                    "de": "deux mille bedeutet zweitausend."
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-2",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-3",
+              "pairs": [
+                {
+                  "targetId": "deux-mille-vingt-six",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "deux mille vingt-six means two thousand twenty-six.",
+                    "fr": "deux mille vingt-six signifie « two thousand twenty-six » en anglais.",
+                    "de": "deux mille vingt-six bedeutet zweitausendsechsundzwanzig."
+                  }
+                },
+                {
+                  "targetId": "mille-neuf-cent-quatre-vingt-dix",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "mille neuf cent quatre-vingt-dix means nineteen ninety.",
+                    "fr": "mille neuf cent quatre-vingt-dix signifie « nineteen ninety » en anglais.",
+                    "de": "mille neuf cent quatre-vingt-dix bedeutet neunzehnhundertneunzig."
+                  }
+                },
+                {
+                  "targetId": "cent-euros",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "cent euros means one hundred euros.",
+                    "fr": "cent euros signifie « one hundred euros » en anglais.",
+                    "de": "cent euros bedeutet hundert Euro."
+                  }
+                },
+                {
+                  "targetId": "mille-kilometres",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "mille kilomètres means one thousand kilometers.",
+                    "fr": "mille kilomètres signifie « one thousand kilometers » en anglais.",
+                    "de": "mille kilomètres bedeutet tausend Kilometer."
+                  }
+                },
+                {
+                  "targetId": "un-million",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un million means a million.",
+                    "fr": "un million signifie « a million » en anglais.",
+                    "de": "un million bedeutet eine Million."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overview",
+      "stage": "overview",
+      "role": "overview",
+      "label": {
+        "en": "Overview",
+        "fr": "Vue d’ensemble",
+        "de": "Übersicht"
+      },
+      "pages": [
+        {
+          "pageId": "overview-page",
+          "estimatedDurationS": 90,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Review all words and their details.",
+            "fr": "Révisez tous les mots et leurs détails.",
+            "de": "Überprüfe alle Wörter und ihre Details."
+          },
+          "items": [
+            {
+              "type": "vocabulary_overview",
+              "itemId": "vocab-overview",
+              "targetIds": [
+                "cent",
+                "deux-cents",
+                "cinq-cents",
+                "mille",
+                "deux-mille",
+                "deux-mille-vingt-six",
+                "mille-neuf-cent-quatre-vingt-dix",
+                "cent-euros",
+                "mille-kilometres",
+                "un-million"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "stage": "practice",
+      "role": "exercise",
+      "label": {
+        "en": "Practice",
+        "fr": "Entraînement",
+        "de": "Übung"
+      },
+      "pages": [
+        {
+          "pageId": "gap-cent",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-cent",
+              "targetId": "cent",
+              "before": "J’ai",
+              "after": " euros.",
+              "referenceTargetIds": [
+                "cent",
+                "deux-cents",
+                "cinq-cents",
+                "mille"
+              ],
+              "accepted": {
+                "answers": [
+                  "cent"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is cent.",
+                "fr": "Le mot manquant est cent.",
+                "de": "Das fehlende Wort ist cent."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-deux-cents",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-deux-cents",
+              "targetId": "deux-cents",
+              "before": "Le livre fait",
+              "after": " pages.",
+              "referenceTargetIds": [
+                "deux-cents",
+                "cent",
+                "cinq-cents",
+                "mille"
+              ],
+              "accepted": {
+                "answers": [
+                  "deux cents"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is deux cents.",
+                "fr": "Le mot manquant est deux cents.",
+                "de": "Das fehlende Wort ist deux cents."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-cinq-cents",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-cinq-cents",
+              "targetId": "cinq-cents",
+              "before": "Un trajet de",
+              "after": " mètres.",
+              "referenceTargetIds": [
+                "cinq-cents",
+                "cent",
+                "deux-cents",
+                "mille"
+              ],
+              "accepted": {
+                "answers": [
+                  "cinq cents"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is cinq cents.",
+                "fr": "Le mot manquant est cinq cents.",
+                "de": "Das fehlende Wort ist cinq cents."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-mille",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-mille",
+              "targetId": "mille",
+              "before": "Cette ville a",
+              "after": " habitants.",
+              "referenceTargetIds": [
+                "mille",
+                "cent",
+                "deux-cents",
+                "cinq-cents"
+              ],
+              "accepted": {
+                "answers": [
+                  "mille"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is mille.",
+                "fr": "Le mot manquant est mille.",
+                "de": "Das fehlende Wort ist mille."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-deux-mille",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-deux-mille",
+              "targetId": "deux-mille",
+              "before": "Il gagne",
+              "after": " euros par mois.",
+              "referenceTargetIds": [
+                "deux-mille",
+                "cent",
+                "deux-cents",
+                "cinq-cents"
+              ],
+              "accepted": {
+                "answers": [
+                  "deux mille"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is deux mille.",
+                "fr": "Le mot manquant est deux mille.",
+                "de": "Das fehlende Wort ist deux mille."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-deux-mille-vingt-six",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-deux-mille-vingt-six",
+              "targetId": "deux-mille-vingt-six",
+              "before": "L’année actuelle est",
+              "after": ".",
+              "referenceTargetIds": [
+                "deux-mille-vingt-six",
+                "cent",
+                "deux-cents",
+                "cinq-cents"
+              ],
+              "accepted": {
+                "answers": [
+                  "deux mille vingt-six"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is deux mille vingt-six.",
+                "fr": "Le mot manquant est deux mille vingt-six.",
+                "de": "Das fehlende Wort ist deux mille vingt-six."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-mille-neuf-cent-quatre-vingt-dix",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-mille-neuf-cent-quatre-vingt-dix",
+              "targetId": "mille-neuf-cent-quatre-vingt-dix",
+              "before": "Mon frère est né en",
+              "after": ".",
+              "referenceTargetIds": [
+                "mille-neuf-cent-quatre-vingt-dix",
+                "cent",
+                "deux-cents",
+                "cinq-cents"
+              ],
+              "accepted": {
+                "answers": [
+                  "mille neuf cent quatre-vingt-dix"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is mille neuf cent quatre-vingt-dix.",
+                "fr": "Le mot manquant est mille neuf cent quatre-vingt-dix.",
+                "de": "Das fehlende Wort ist mille neuf cent quatre-vingt-dix."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-cent-euros",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-cent-euros",
+              "targetId": "cent-euros",
+              "before": "La veste coûte",
+              "after": ".",
+              "referenceTargetIds": [
+                "cent-euros",
+                "cent",
+                "deux-cents",
+                "cinq-cents"
+              ],
+              "accepted": {
+                "answers": [
+                  "cent euros"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is cent euros.",
+                "fr": "Le mot manquant est cent euros.",
+                "de": "Das fehlende Wort ist cent euros."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-mille-kilometres",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-mille-kilometres",
+              "targetId": "mille-kilometres",
+              "before": "Parcourir",
+              "after": " en voiture.",
+              "referenceTargetIds": [
+                "mille-kilometres",
+                "cent",
+                "deux-cents",
+                "cinq-cents"
+              ],
+              "accepted": {
+                "answers": [
+                  "mille kilomètres"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is mille kilomètres.",
+                "fr": "Le mot manquant est mille kilomètres.",
+                "de": "Das fehlende Wort ist mille kilomètres."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-million",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-million",
+              "targetId": "un-million",
+              "before": "Gagner un",
+              "after": " d’euros au loto.",
+              "referenceTargetIds": [
+                "un-million",
+                "cent",
+                "deux-cents",
+                "cinq-cents"
+              ],
+              "accepted": {
+                "answers": [
+                  "million"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is million.",
+                "fr": "Le mot manquant est million.",
+                "de": "Das fehlende Wort ist million."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Exam",
+        "fr": "Examen",
+        "de": "Prüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-cent",
+              "targetId": "cent",
+              "prompt": {
+                "en": "one hundred",
+                "de": "hundert"
+              },
+              "accepted": {
+                "answers": [
+                  "cent"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "one hundred in French is cent.",
+                "fr": "one hundred en français est cent.",
+                "de": "hundert auf Französisch ist cent."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-deux-cents",
+              "targetId": "deux-cents",
+              "prompt": {
+                "en": "two hundred",
+                "de": "zweihundert"
+              },
+              "accepted": {
+                "answers": [
+                  "deux cents"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "two hundred in French is deux cents.",
+                "fr": "two hundred en français est deux cents.",
+                "de": "zweihundert auf Französisch ist deux cents."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-cinq-cents",
+              "targetId": "cinq-cents",
+              "prompt": {
+                "en": "five hundred",
+                "de": "fünfhundert"
+              },
+              "accepted": {
+                "answers": [
+                  "cinq cents"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "five hundred in French is cinq cents.",
+                "fr": "five hundred en français est cinq cents.",
+                "de": "fünfhundert auf Französisch ist cinq cents."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-mille",
+              "targetId": "mille",
+              "prompt": {
+                "en": "one thousand",
+                "de": "tausend"
+              },
+              "accepted": {
+                "answers": [
+                  "mille"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "one thousand in French is mille.",
+                "fr": "one thousand en français est mille.",
+                "de": "tausend auf Französisch ist mille."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-deux-mille",
+              "targetId": "deux-mille",
+              "prompt": {
+                "en": "two thousand",
+                "de": "zweitausend"
+              },
+              "accepted": {
+                "answers": [
+                  "deux mille"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "two thousand in French is deux mille.",
+                "fr": "two thousand en français est deux mille.",
+                "de": "zweitausend auf Französisch ist deux mille."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-page-2",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-deux-mille-vingt-six",
+              "targetId": "deux-mille-vingt-six",
+              "prompt": {
+                "en": "two thousand twenty-six",
+                "de": "zweitausendsechsundzwanzig"
+              },
+              "accepted": {
+                "answers": [
+                  "deux mille vingt-six"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "two thousand twenty-six in French is deux mille vingt-six.",
+                "fr": "two thousand twenty-six en français est deux mille vingt-six.",
+                "de": "zweitausendsechsundzwanzig auf Französisch ist deux mille vingt-six."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-mille-neuf-cent-quatre-vingt-dix",
+              "targetId": "mille-neuf-cent-quatre-vingt-dix",
+              "prompt": {
+                "en": "nineteen ninety",
+                "de": "neunzehnhundertneunzig"
+              },
+              "accepted": {
+                "answers": [
+                  "mille neuf cent quatre-vingt-dix"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "nineteen ninety in French is mille neuf cent quatre-vingt-dix.",
+                "fr": "nineteen ninety en français est mille neuf cent quatre-vingt-dix.",
+                "de": "neunzehnhundertneunzig auf Französisch ist mille neuf cent quatre-vingt-dix."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-cent-euros",
+              "targetId": "cent-euros",
+              "prompt": {
+                "en": "one hundred euros",
+                "de": "hundert Euro"
+              },
+              "accepted": {
+                "answers": [
+                  "cent euros"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "one hundred euros in French is cent euros.",
+                "fr": "one hundred euros en français est cent euros.",
+                "de": "hundert Euro auf Französisch ist cent euros."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-mille-kilometres",
+              "targetId": "mille-kilometres",
+              "prompt": {
+                "en": "one thousand kilometers",
+                "de": "tausend Kilometer"
+              },
+              "accepted": {
+                "answers": [
+                  "mille kilomètres",
+                  "mille kilometres"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "one thousand kilometers in French is mille kilomètres.",
+                "fr": "one thousand kilometers en français est mille kilomètres.",
+                "de": "tausend Kilometer auf Französisch ist mille kilomètres."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-million",
+              "targetId": "un-million",
+              "prompt": {
+                "en": "a million",
+                "de": "eine Million"
+              },
+              "accepted": {
+                "answers": [
+                  "un million"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a million in French is un million.",
+                "fr": "a million en français est un million.",
+                "de": "eine Million auf Französisch ist un million."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

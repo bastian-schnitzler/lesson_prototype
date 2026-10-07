@@ -1,0 +1,505 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-means-of-transport",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les moyens de transport",
+  "objective": {
+    "en": "Name ten means of transport and movement phrases in French.",
+    "fr": "Nommer une dizaine de moyens de transport et dire comment on se déplace en français.",
+    "de": "Nenne zehn Fortbewegungsmittel und Fortbewegungsarten auf Französisch."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T15:03:50.928Z",
+    "inputHashes": {
+      "outline": "f7f1aeb882447c1fb0f10672b47c2fc0c169b261f9d972c171cf9bef63f2bf13"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "travel",
+  "coverageNotes": {
+    "en": "Covers public transport, personal vehicles, and walking.",
+    "fr": "Couvre les transports en commun, véhicules personnels et déplacements à pied.",
+    "de": "Deckt öffentliche Verkehrsmittel, eigene Fahrzeuge und Fußwege ab."
+  },
+  "targetCount": 10,
+  "countRationale": {
+    "en": "Ten items cover standard daily travel options.",
+    "fr": "Dix éléments couvrent les modes de déplacement usuels.",
+    "de": "Zehn Begriffe decken alltägliche Transportmöglichkeiten ab."
+  },
+  "difficultyBalance": {
+    "en": "Core nouns (le bus, le train) balanced with prepositional travel phrases (en voiture, à vélo).",
+    "fr": "Noms simples équilibrés avec les expressions de déplacement.",
+    "de": "Einfache Nomen ausgewogen mit Fortbewegungsarten."
+  },
+  "prerequisites": [
+    {
+      "en": "Prepositions en / à basics.",
+      "fr": "Prépositions en / à.",
+      "de": "Präpositionen en / à."
+    }
+  ],
+  "groups": [
+    {
+      "id": "public-transport",
+      "label": {
+        "en": "Public & Long-distance transport",
+        "fr": "Transports en commun",
+        "de": "Öffentliche Verkehrsmittel"
+      },
+      "targetIds": [
+        "un-bus",
+        "un-metro",
+        "un-train",
+        "un-avion",
+        "un-taxi"
+      ]
+    },
+    {
+      "id": "personal-travel",
+      "label": {
+        "en": "Personal vehicles & Travel modes",
+        "fr": "Véhicules et modes de déplacement",
+        "de": "Eigene Fahrzeuge & Modi"
+      },
+      "targetIds": [
+        "une-voiture",
+        "un-velo",
+        "une-moto",
+        "en-voiture",
+        "a-velo"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "un-bus",
+      "term": "bus",
+      "translations": {
+        "en": [
+          "a bus"
+        ],
+        "de": [
+          "ein Bus"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un bus",
+      "examForms": [
+        "un bus"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ bys/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Prendre un bus pour aller au centre.",
+        "translation": {
+          "en": "Take a bus to go downtown.",
+          "de": "Einen Bus nehmen, um ins Zentrum zu fahren."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-metro",
+      "term": "métro",
+      "translations": {
+        "en": [
+          "a subway",
+          "a metro train"
+        ],
+        "de": [
+          "eine U-Bahn"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un métro",
+      "examForms": [
+        "un métro"
+      ],
+      "accentSensitive": [
+        "métro"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ me tʁo/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le métro parisien est rapide.",
+        "translation": {
+          "en": "The Paris metro is fast.",
+          "de": "Die Pariser U-Bahn ist schnell."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-train",
+      "term": "train",
+      "translations": {
+        "en": [
+          "a train"
+        ],
+        "de": [
+          "ein Zug"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un train",
+      "examForms": [
+        "un train"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ tʁɛ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un train à grande vitesse.",
+        "translation": {
+          "en": "A high-speed train.",
+          "de": "Ein Hochgeschwindigkeitszug."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-avion",
+      "term": "avion",
+      "translations": {
+        "en": [
+          "an airplane",
+          "a plane"
+        ],
+        "de": [
+          "ein Flugzeug"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un avion",
+      "examForms": [
+        "un avion"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ navjɔ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un avion vole au-dessus des nuages.",
+        "translation": {
+          "en": "A plane flies above clouds.",
+          "de": "Ein Flugzeug fliegt über den Wolken."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-taxi",
+      "term": "taxi",
+      "translations": {
+        "en": [
+          "a taxi"
+        ],
+        "de": [
+          "ein Taxi"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un taxi",
+      "examForms": [
+        "un taxi"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ taksi/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Appeler un taxi après le spectacle.",
+        "translation": {
+          "en": "Call a taxi after the show.",
+          "de": "Ein Taxi nach der Vorstellung rufen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-voiture",
+      "term": "voiture",
+      "translations": {
+        "en": [
+          "a car"
+        ],
+        "de": [
+          "ein Auto"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une voiture",
+      "examForms": [
+        "une voiture"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn vwatyʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Conduire une voiture électrique.",
+        "translation": {
+          "en": "Drive an electric car.",
+          "de": "Ein Elektroauto fahren."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-velo",
+      "term": "vélo",
+      "translations": {
+        "en": [
+          "a bicycle",
+          "a bike"
+        ],
+        "de": [
+          "ein Fahrrad"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un vélo",
+      "examForms": [
+        "un vélo"
+      ],
+      "accentSensitive": [
+        "vélo"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ velo/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Faire un tour sur un vélo rouge.",
+        "translation": {
+          "en": "Take a ride on a red bike.",
+          "de": "Eine Runde auf einem roten Fahrrad drehen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-moto",
+      "term": "moto",
+      "translations": {
+        "en": [
+          "a motorcycle",
+          "a motorbike"
+        ],
+        "de": [
+          "ein Motorrad"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une moto",
+      "examForms": [
+        "une moto"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn mɔto/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Piloter une moto.",
+        "translation": {
+          "en": "Ride a motorbike.",
+          "de": "Ein Motorrad fahren."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "en-voiture",
+      "term": "en voiture",
+      "translations": {
+        "en": [
+          "by car"
+        ],
+        "de": [
+          "mit dem Auto"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "en voiture",
+      "examForms": [
+        "en voiture"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/ɑ̃ vwatyʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Voyager en voiture.",
+        "translation": {
+          "en": "Travel by car.",
+          "de": "Mit dem Auto reisen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "a-velo",
+      "term": "à vélo",
+      "translations": {
+        "en": [
+          "by bike",
+          "cycling"
+        ],
+        "de": [
+          "mit dem Fahrrad"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "à vélo",
+      "examForms": [
+        "à vélo"
+      ],
+      "accentSensitive": [
+        "à",
+        "vélo"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/a velo/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Se déplacer à vélo en ville.",
+        "translation": {
+          "en": "Get around town by bike.",
+          "de": "Sich in der Stadt mit dem Fahrrad fortbewegen."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "un-bus",
+        "un-metro",
+        "un-train",
+        "un-avion",
+        "un-taxi",
+        "une-voiture",
+        "un-velo",
+        "une-moto",
+        "en-voiture",
+        "a-velo"
+      ],
+      "estimatedDurationS": 150
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "un-bus",
+            "un-metro",
+            "un-train",
+            "un-avion",
+            "un-taxi"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "une-voiture",
+            "un-velo",
+            "une-moto",
+            "en-voiture",
+            "a-velo"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

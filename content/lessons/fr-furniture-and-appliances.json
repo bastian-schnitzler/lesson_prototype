@@ -1,0 +1,1190 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-furniture-and-appliances",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les meubles et appareils",
+  "objective": {
+    "en": "Name twelve common pieces of furniture and household appliances in French with indefinite articles.",
+    "fr": "Nommer une douzaine de meubles et d’appareils de la maison en français avec leurs articles indéfinis.",
+    "de": "Nenne zwölf häufige Möbelstücke und Haushaltsgeräte auf Französisch mit unbestimmten Artikeln."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-content-v1",
+    "generatedAt": "2026-10-07T14:59:24.382Z",
+    "inputHashes": {
+      "outline": "b0d4af8f59f71cfda8bbf40d2d875e90a66a56fded6e49dd4bb4fa51e43b4416",
+      "brief": "59dac5aa5e2339ad7837678f9ab96daba69ac31361be8aeb4859ed19b94cae75"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "house_and_home",
+  "steps": [
+    {
+      "id": "introduction",
+      "stage": "introduction",
+      "role": "introduction",
+      "label": {
+        "en": "Introduction",
+        "fr": "Introduction",
+        "de": "Einführung"
+      },
+      "pages": [
+        {
+          "pageId": "intro-furniture",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-furniture",
+              "targetIds": [
+                "un-lit",
+                "une-armoire",
+                "un-canape",
+                "une-table",
+                "une-chaise",
+                "une-etagere"
+              ],
+              "text": {
+                "en": "Here are six pieces of **furniture**:\n\n- `un lit`\n- `une armoire`\n- `un canapé`\n- `une table`\n- `une chaise`\n- `une étagère`",
+                "fr": "Voici six **meubles** :\n\n- `un lit`\n- `une armoire`\n- `un canapé`\n- `une table`\n- `une chaise`\n- `une étagère`",
+                "de": "Hier sind sechs **Möbelstücke**:\n\n- `un lit`\n- `une armoire`\n- `un canapé`\n- `une table`\n- `une chaise`\n- `une étagère` "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "intro-appliances",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-appliances",
+              "targetIds": [
+                "un-frigo",
+                "une-lampe",
+                "une-television",
+                "un-four",
+                "un-lave-linge",
+                "un-aspirateur"
+              ],
+              "text": {
+                "en": "Here are six household **appliances**:\n\n- `un frigo`\n- `une lampe`\n- `une télévision`\n- `un four`\n- `un lave-linge`\n- `un aspirateur`",
+                "fr": "Voici six **appareils** de la maison :\n\n- `un frigo`\n- `une lampe`\n- `une télévision`\n- `un four`\n- `un lave-linge`\n- `un aspirateur`",
+                "de": "Hier sind sechs **Haushaltsgeräte**:\n\n- `un frigo`\n- `une lampe`\n- `une télévision`\n- `un four`\n- `un lave-linge`\n- `un aspirateur` "
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "cards-furniture",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-furniture",
+              "targetIds": [
+                "un-lit",
+                "une-armoire",
+                "un-canape",
+                "une-table",
+                "une-chaise",
+                "une-etagere"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "cards-appliances",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-appliances",
+              "targetIds": [
+                "un-frigo",
+                "une-lampe",
+                "une-television",
+                "un-four",
+                "un-lave-linge",
+                "un-aspirateur"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "match-1",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-2",
+              "pairs": [
+                {
+                  "targetId": "un-lit",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un lit means a bed.",
+                    "fr": "un lit signifie « a bed » en anglais.",
+                    "de": "un lit bedeutet ein Bett."
+                  }
+                },
+                {
+                  "targetId": "une-armoire",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une armoire means a wardrobe.",
+                    "fr": "une armoire signifie « a wardrobe » en anglais.",
+                    "de": "une armoire bedeutet ein Schrank."
+                  }
+                },
+                {
+                  "targetId": "un-canape",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un canapé means a sofa.",
+                    "fr": "un canapé signifie « a sofa » en anglais.",
+                    "de": "un canapé bedeutet ein Sofa."
+                  }
+                },
+                {
+                  "targetId": "une-table",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une table means a table.",
+                    "fr": "une table signifie « a table » en anglais.",
+                    "de": "une table bedeutet ein Tisch."
+                  }
+                },
+                {
+                  "targetId": "une-chaise",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une chaise means a chair.",
+                    "fr": "une chaise signifie « a chair » en anglais.",
+                    "de": "une chaise bedeutet ein Stuhl."
+                  }
+                },
+                {
+                  "targetId": "une-etagere",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une étagère means a shelf.",
+                    "fr": "une étagère signifie « a shelf » en anglais.",
+                    "de": "une étagère bedeutet ein Regal."
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-2",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-3",
+              "pairs": [
+                {
+                  "targetId": "un-frigo",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un frigo means a fridge.",
+                    "fr": "un frigo signifie « a fridge » en anglais.",
+                    "de": "un frigo bedeutet ein Kühlschrank."
+                  }
+                },
+                {
+                  "targetId": "une-lampe",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une lampe means a lamp.",
+                    "fr": "une lampe signifie « a lamp » en anglais.",
+                    "de": "une lampe bedeutet eine Lampe."
+                  }
+                },
+                {
+                  "targetId": "une-television",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une télévision means a television.",
+                    "fr": "une télévision signifie « a television » en anglais.",
+                    "de": "une télévision bedeutet ein Fernseher."
+                  }
+                },
+                {
+                  "targetId": "un-four",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un four means an oven.",
+                    "fr": "un four signifie « an oven » en anglais.",
+                    "de": "un four bedeutet ein Ofen."
+                  }
+                },
+                {
+                  "targetId": "un-lave-linge",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un lave-linge means a washing machine.",
+                    "fr": "un lave-linge signifie « a washing machine » en anglais.",
+                    "de": "un lave-linge bedeutet eine Waschmaschine."
+                  }
+                },
+                {
+                  "targetId": "un-aspirateur",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un aspirateur means a vacuum cleaner.",
+                    "fr": "un aspirateur signifie « a vacuum cleaner » en anglais.",
+                    "de": "un aspirateur bedeutet ein Staubsauger."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overview",
+      "stage": "overview",
+      "role": "overview",
+      "label": {
+        "en": "Overview",
+        "fr": "Vue d’ensemble",
+        "de": "Übersicht"
+      },
+      "pages": [
+        {
+          "pageId": "overview-page",
+          "estimatedDurationS": 90,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Review all words and their details.",
+            "fr": "Révisez tous les mots et leurs détails.",
+            "de": "Überprüfe alle Wörter und ihre Details."
+          },
+          "items": [
+            {
+              "type": "vocabulary_gender_select",
+              "itemId": "gender-overview",
+              "targetIds": [
+                "un-lit",
+                "une-armoire",
+                "un-canape",
+                "une-table",
+                "une-chaise",
+                "une-etagere",
+                "un-frigo",
+                "une-lampe",
+                "une-television",
+                "un-four",
+                "un-lave-linge",
+                "un-aspirateur"
+              ],
+              "rows": [
+                {
+                  "targetId": "un-lit",
+                  "answerExplanation": {
+                    "en": "lit is masculine.",
+                    "fr": "lit est masculin.",
+                    "de": "lit ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "une-armoire",
+                  "answerExplanation": {
+                    "en": "armoire is feminine.",
+                    "fr": "armoire est féminin.",
+                    "de": "armoire ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-canape",
+                  "answerExplanation": {
+                    "en": "canapé is masculine.",
+                    "fr": "canapé est masculin.",
+                    "de": "canapé ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "une-table",
+                  "answerExplanation": {
+                    "en": "table is feminine.",
+                    "fr": "table est féminin.",
+                    "de": "table ist feminin."
+                  }
+                },
+                {
+                  "targetId": "une-chaise",
+                  "answerExplanation": {
+                    "en": "chaise is feminine.",
+                    "fr": "chaise est féminin.",
+                    "de": "chaise ist feminin."
+                  }
+                },
+                {
+                  "targetId": "une-etagere",
+                  "answerExplanation": {
+                    "en": "étagère is feminine.",
+                    "fr": "étagère est féminin.",
+                    "de": "étagère ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-frigo",
+                  "answerExplanation": {
+                    "en": "frigo is masculine.",
+                    "fr": "frigo est masculin.",
+                    "de": "frigo ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "une-lampe",
+                  "answerExplanation": {
+                    "en": "lampe is feminine.",
+                    "fr": "lampe est féminin.",
+                    "de": "lampe ist feminin."
+                  }
+                },
+                {
+                  "targetId": "une-television",
+                  "answerExplanation": {
+                    "en": "télévision is feminine.",
+                    "fr": "télévision est féminin.",
+                    "de": "télévision ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-four",
+                  "answerExplanation": {
+                    "en": "four is masculine.",
+                    "fr": "four est masculin.",
+                    "de": "four ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-lave-linge",
+                  "answerExplanation": {
+                    "en": "lave-linge is masculine.",
+                    "fr": "lave-linge est masculin.",
+                    "de": "lave-linge ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-aspirateur",
+                  "answerExplanation": {
+                    "en": "aspirateur is masculine.",
+                    "fr": "aspirateur est masculin.",
+                    "de": "aspirateur ist maskulin."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "stage": "practice",
+      "role": "exercise",
+      "label": {
+        "en": "Practice",
+        "fr": "Entraînement",
+        "de": "Übung"
+      },
+      "pages": [
+        {
+          "pageId": "gap-un-lit",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-lit",
+              "targetId": "un-lit",
+              "before": "Je me couche dans un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-lit",
+                "une-armoire",
+                "un-canape",
+                "une-table"
+              ],
+              "accepted": {
+                "answers": [
+                  "lit"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is lit.",
+                "fr": "Le mot manquant est lit.",
+                "de": "Das fehlende Wort ist lit."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-armoire",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-armoire",
+              "targetId": "une-armoire",
+              "before": "Range tes habits dans l’",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-armoire",
+                "un-lit",
+                "un-canape",
+                "une-table"
+              ],
+              "accepted": {
+                "answers": [
+                  "armoire"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is armoire.",
+                "fr": "Le mot manquant est armoire.",
+                "de": "Das fehlende Wort ist armoire."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-canape",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-canape",
+              "targetId": "un-canape",
+              "before": "Il s’assoit sur le",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-canape",
+                "un-lit",
+                "une-armoire",
+                "une-table"
+              ],
+              "accepted": {
+                "answers": [
+                  "canapé"
+                ],
+                "accentSensitive": [
+                  "canapé"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is canapé.",
+                "fr": "Le mot manquant est canapé.",
+                "de": "Das fehlende Wort ist canapé."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-table",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-table",
+              "targetId": "une-table",
+              "before": "Mets le couvert sur la",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-table",
+                "un-lit",
+                "une-armoire",
+                "un-canape"
+              ],
+              "accepted": {
+                "answers": [
+                  "table"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is table.",
+                "fr": "Le mot manquant est table.",
+                "de": "Das fehlende Wort ist table."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-chaise",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-chaise",
+              "targetId": "une-chaise",
+              "before": "Assieds-toi sur cette",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-chaise",
+                "un-lit",
+                "une-armoire",
+                "un-canape"
+              ],
+              "accepted": {
+                "answers": [
+                  "chaise"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is chaise.",
+                "fr": "Le mot manquant est chaise.",
+                "de": "Das fehlende Wort ist chaise."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-etagere",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-etagere",
+              "targetId": "une-etagere",
+              "before": "Pose la plante sur l’",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-etagere",
+                "un-lit",
+                "une-armoire",
+                "un-canape"
+              ],
+              "accepted": {
+                "answers": [
+                  "étagère"
+                ],
+                "accentSensitive": [
+                  "étagère"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is étagère.",
+                "fr": "Le mot manquant est étagère.",
+                "de": "Das fehlende Wort ist étagère."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-frigo",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-frigo",
+              "targetId": "un-frigo",
+              "before": "Mets le beurre dans le",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-frigo",
+                "un-lit",
+                "une-armoire",
+                "un-canape"
+              ],
+              "accepted": {
+                "answers": [
+                  "frigo"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is frigo.",
+                "fr": "Le mot manquant est frigo.",
+                "de": "Das fehlende Wort ist frigo."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-lampe",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-lampe",
+              "targetId": "une-lampe",
+              "before": "Allume la",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-lampe",
+                "un-lit",
+                "une-armoire",
+                "un-canape"
+              ],
+              "accepted": {
+                "answers": [
+                  "lampe"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is lampe.",
+                "fr": "Le mot manquant est lampe.",
+                "de": "Das fehlende Wort ist lampe."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-television",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-television",
+              "targetId": "une-television",
+              "before": "Regarde la",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-television",
+                "un-lit",
+                "une-armoire",
+                "un-canape"
+              ],
+              "accepted": {
+                "answers": [
+                  "télévision"
+                ],
+                "accentSensitive": [
+                  "télévision"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is télévision.",
+                "fr": "Le mot manquant est télévision.",
+                "de": "Das fehlende Wort ist télévision."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-four",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-four",
+              "targetId": "un-four",
+              "before": "Fais chauffer le plat au",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-four",
+                "un-lit",
+                "une-armoire",
+                "un-canape"
+              ],
+              "accepted": {
+                "answers": [
+                  "four"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is four.",
+                "fr": "Le mot manquant est four.",
+                "de": "Das fehlende Wort ist four."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-lave-linge",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-lave-linge",
+              "targetId": "un-lave-linge",
+              "before": "Mets le linge dans le",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-lave-linge",
+                "un-lit",
+                "une-armoire",
+                "un-canape"
+              ],
+              "accepted": {
+                "answers": [
+                  "lave-linge"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is lave-linge.",
+                "fr": "Le mot manquant est lave-linge.",
+                "de": "Das fehlende Wort ist lave-linge."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-aspirateur",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-aspirateur",
+              "targetId": "un-aspirateur",
+              "before": "Passe l’",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-aspirateur",
+                "un-lit",
+                "une-armoire",
+                "un-canape"
+              ],
+              "accepted": {
+                "answers": [
+                  "aspirateur"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is aspirateur.",
+                "fr": "Le mot manquant est aspirateur.",
+                "de": "Das fehlende Wort ist aspirateur."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Exam",
+        "fr": "Examen",
+        "de": "Prüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-lit",
+              "targetId": "un-lit",
+              "prompt": {
+                "en": "a bed",
+                "de": "ein Bett"
+              },
+              "accepted": {
+                "answers": [
+                  "un lit"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a bed in French is un lit.",
+                "fr": "a bed en français est un lit.",
+                "de": "ein Bett auf Französisch ist un lit."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-armoire",
+              "targetId": "une-armoire",
+              "prompt": {
+                "en": "a wardrobe",
+                "de": "ein Schrank"
+              },
+              "accepted": {
+                "answers": [
+                  "une armoire"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a wardrobe in French is une armoire.",
+                "fr": "a wardrobe en français est une armoire.",
+                "de": "ein Schrank auf Französisch ist une armoire."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-canape",
+              "targetId": "un-canape",
+              "prompt": {
+                "en": "a sofa",
+                "de": "ein Sofa"
+              },
+              "accepted": {
+                "answers": [
+                  "un canapé"
+                ],
+                "accentSensitive": [
+                  "canapé"
+                ]
+              },
+              "answerExplanation": {
+                "en": "a sofa in French is un canapé.",
+                "fr": "a sofa en français est un canapé.",
+                "de": "ein Sofa auf Französisch ist un canapé."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-table",
+              "targetId": "une-table",
+              "prompt": {
+                "en": "a table",
+                "de": "ein Tisch"
+              },
+              "accepted": {
+                "answers": [
+                  "une table"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a table in French is une table.",
+                "fr": "a table en français est une table.",
+                "de": "ein Tisch auf Französisch ist une table."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-chaise",
+              "targetId": "une-chaise",
+              "prompt": {
+                "en": "a chair",
+                "de": "ein Stuhl"
+              },
+              "accepted": {
+                "answers": [
+                  "une chaise"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a chair in French is une chaise.",
+                "fr": "a chair en français est une chaise.",
+                "de": "ein Stuhl auf Französisch ist une chaise."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-etagere",
+              "targetId": "une-etagere",
+              "prompt": {
+                "en": "a shelf",
+                "de": "ein Regal"
+              },
+              "accepted": {
+                "answers": [
+                  "une étagère"
+                ],
+                "accentSensitive": [
+                  "étagère"
+                ]
+              },
+              "answerExplanation": {
+                "en": "a shelf in French is une étagère.",
+                "fr": "a shelf en français est une étagère.",
+                "de": "ein Regal auf Französisch ist une étagère."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-page-2",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-frigo",
+              "targetId": "un-frigo",
+              "prompt": {
+                "en": "a fridge",
+                "de": "ein Kühlschrank"
+              },
+              "accepted": {
+                "answers": [
+                  "un frigo"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a fridge in French is un frigo.",
+                "fr": "a fridge en français est un frigo.",
+                "de": "ein Kühlschrank auf Französisch ist un frigo."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-lampe",
+              "targetId": "une-lampe",
+              "prompt": {
+                "en": "a lamp",
+                "de": "eine Lampe"
+              },
+              "accepted": {
+                "answers": [
+                  "une lampe"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a lamp in French is une lampe.",
+                "fr": "a lamp en français est une lampe.",
+                "de": "eine Lampe auf Französisch ist une lampe."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-television",
+              "targetId": "une-television",
+              "prompt": {
+                "en": "a television",
+                "de": "ein Fernseher"
+              },
+              "accepted": {
+                "answers": [
+                  "une télévision"
+                ],
+                "accentSensitive": [
+                  "télévision"
+                ]
+              },
+              "answerExplanation": {
+                "en": "a television in French is une télévision.",
+                "fr": "a television en français est une télévision.",
+                "de": "ein Fernseher auf Französisch ist une télévision."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-four",
+              "targetId": "un-four",
+              "prompt": {
+                "en": "an oven",
+                "de": "ein Ofen"
+              },
+              "accepted": {
+                "answers": [
+                  "un four"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "an oven in French is un four.",
+                "fr": "an oven en français est un four.",
+                "de": "ein Ofen auf Französisch ist un four."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-lave-linge",
+              "targetId": "un-lave-linge",
+              "prompt": {
+                "en": "a washing machine",
+                "de": "eine Waschmaschine"
+              },
+              "accepted": {
+                "answers": [
+                  "un lave-linge"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a washing machine in French is un lave-linge.",
+                "fr": "a washing machine en français est un lave-linge.",
+                "de": "eine Waschmaschine auf Französisch ist un lave-linge."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-aspirateur",
+              "targetId": "un-aspirateur",
+              "prompt": {
+                "en": "a vacuum cleaner",
+                "de": "ein Staubsauger"
+              },
+              "accepted": {
+                "answers": [
+                  "un aspirateur"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a vacuum cleaner in French is un aspirateur.",
+                "fr": "a vacuum cleaner en français est un aspirateur.",
+                "de": "ein Staubsauger auf Französisch ist un aspirateur."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,501 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-shops-and-shopkeepers",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les commerces et commerçants",
+  "objective": {
+    "en": "Name ten shops and shopkeepers in French with articles.",
+    "fr": "Nommer une dizaine de commerces et commerçants en français avec leurs articles.",
+    "de": "Nenne zehn Geschäfte und Händler auf Französisch mit Artikeln."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T14:59:26.036Z",
+    "inputHashes": {
+      "outline": "b764720534eb7e98e57abcab1117e94a753b461c0579269077c5b56221875892"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "places",
+  "coverageNotes": {
+    "en": "Covers main neighborhood shops and the people who work there.",
+    "fr": "Couvre les principaux commerces de quartier et les commerçants.",
+    "de": "Deckt wichtige Nachbarschaftsgeschäfte und Händler ab."
+  },
+  "targetCount": 10,
+  "countRationale": {
+    "en": "Ten items provide paired shop/shopkeeper vocabulary for A1.",
+    "fr": "Dix éléments permettent d’associer les commerces et les commerçants.",
+    "de": "Zehn Begriffe verbinden Geschäfte und Berufsgruppen."
+  },
+  "difficultyBalance": {
+    "en": "Core shops balanced with masculine/feminine shopkeeper pairs.",
+    "fr": "Commerces courants équilibrés avec les formes masculines et féminines.",
+    "de": "Gängige Geschäfte ausgewogen mit Männlich/Weiblich-Formen."
+  },
+  "prerequisites": [
+    {
+      "en": "Definite/indefinite articles.",
+      "fr": "Articles définis et indéfinis.",
+      "de": "Bestimmte und unbestimmte Artikel."
+    }
+  ],
+  "groups": [
+    {
+      "id": "food-shops",
+      "label": {
+        "en": "Food shops & staff",
+        "fr": "Commerces alimentaires",
+        "de": "Lebensmittelgeschäfte"
+      },
+      "targetIds": [
+        "une-boulangerie",
+        "un-boulanger",
+        "une-boucherie",
+        "un-boucher",
+        "un-supermarche"
+      ]
+    },
+    {
+      "id": "other-shops",
+      "label": {
+        "en": "Other shops & staff",
+        "fr": "Autres commerces",
+        "de": "Andere Geschäfte"
+      },
+      "targetIds": [
+        "une-pharmacie",
+        "un-pharmacien",
+        "une-librairie",
+        "un-libraire",
+        "une-epicerie"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "une-boulangerie",
+      "term": "boulangerie",
+      "translations": {
+        "en": [
+          "a bakery"
+        ],
+        "de": [
+          "eine Bäckerei"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une boulangerie",
+      "examForms": [
+        "une boulangerie"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn bulɑ̃ʒʁi/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "J’achète du pain dans une boulangerie.",
+        "translation": {
+          "en": "I buy bread in a bakery.",
+          "de": "Ich kaufe Brot in einer Bäckerei."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-boulanger",
+      "term": "boulanger",
+      "translations": {
+        "en": [
+          "a baker"
+        ],
+        "de": [
+          "ein Bäcker"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un boulanger",
+      "examForms": [
+        "un boulanger"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ bulɑ̃ʒe/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un boulanger fait le croissant.",
+        "translation": {
+          "en": "A baker makes the croissant.",
+          "de": "Ein Bäcker macht das Croissant."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-boucherie",
+      "term": "boucherie",
+      "translations": {
+        "en": [
+          "a butcher shop"
+        ],
+        "de": [
+          "eine Metzgerei"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une boucherie",
+      "examForms": [
+        "une boucherie"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn buʃʁi/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Elle achète du steak dans une boucherie.",
+        "translation": {
+          "en": "She buys steak in a butcher shop.",
+          "de": "Sie kauft Steak in einer Metzgerei."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-boucher",
+      "term": "boucher",
+      "translations": {
+        "en": [
+          "a butcher"
+        ],
+        "de": [
+          "ein Metzger"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un boucher",
+      "examForms": [
+        "un boucher"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ buʃe/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un boucher vend de la viande.",
+        "translation": {
+          "en": "A butcher sells meat.",
+          "de": "Ein Metzger verkauft Fleisch."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-supermarche",
+      "term": "supermarché",
+      "translations": {
+        "en": [
+          "a supermarket"
+        ],
+        "de": [
+          "ein Supermarkt"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un supermarché",
+      "examForms": [
+        "un supermarché"
+      ],
+      "accentSensitive": [
+        "supermarché"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ sypɛʁmaʁʃe/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Je fais mes courses dans un supermarché.",
+        "translation": {
+          "en": "I do my shopping in a supermarket.",
+          "de": "Ich kaufe in einem Supermarkt ein."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-pharmacie",
+      "term": "pharmacie",
+      "translations": {
+        "en": [
+          "a pharmacy"
+        ],
+        "de": [
+          "eine Apotheke"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une pharmacie",
+      "examForms": [
+        "une pharmacie"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn faʁmasi/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Achète des médicaments dans une pharmacie.",
+        "translation": {
+          "en": "Buy medicine in a pharmacy.",
+          "de": "Kaufe Medikamente in einer Apotheke."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-pharmacien",
+      "term": "pharmacien",
+      "translations": {
+        "en": [
+          "a pharmacist"
+        ],
+        "de": [
+          "ein Apotheker"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un pharmacien",
+      "examForms": [
+        "un pharmacien"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ faʁmasjɛ̃/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Un pharmacien donne des conseils.",
+        "translation": {
+          "en": "A pharmacist gives advice.",
+          "de": "Ein Apotheker berät."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-librairie",
+      "term": "librairie",
+      "translations": {
+        "en": [
+          "a bookstore"
+        ],
+        "de": [
+          "eine Buchhandlung"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une librairie",
+      "examForms": [
+        "une librairie"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn libʁɛʁi/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "J’achète un roman dans une librairie.",
+        "translation": {
+          "en": "I buy a novel in a bookstore.",
+          "de": "Ich kaufe einen Roman in einer Buchhandlung."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-libraire",
+      "term": "libraire",
+      "translations": {
+        "en": [
+          "a bookseller"
+        ],
+        "de": [
+          "ein Buchhändler"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un libraire",
+      "examForms": [
+        "un libraire"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ libʁɛʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un libraire conseille un bon livre.",
+        "translation": {
+          "en": "A bookseller recommends a good book.",
+          "de": "Ein Buchhändler empfiehlt ein gutes Buch."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-epicerie",
+      "term": "épicerie",
+      "translations": {
+        "en": [
+          "a grocery store"
+        ],
+        "de": [
+          "ein Lebensmittelladen"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une épicerie",
+      "examForms": [
+        "une épicerie"
+      ],
+      "accentSensitive": [
+        "épicerie"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn episʁi/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Une épicerie du coin est ouverte tard.",
+        "translation": {
+          "en": "A corner grocery store is open late.",
+          "de": "Ein kleiner Laden hat spät offen."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "une-boulangerie",
+        "un-boulanger",
+        "une-boucherie",
+        "un-boucher",
+        "un-supermarche",
+        "une-pharmacie",
+        "un-pharmacien",
+        "une-librairie",
+        "un-libraire",
+        "une-epicerie"
+      ],
+      "estimatedDurationS": 150
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "une-boulangerie",
+            "un-boulanger",
+            "une-boucherie",
+            "un-boucher",
+            "un-supermarche"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "une-pharmacie",
+            "un-pharmacien",
+            "une-librairie",
+            "un-libraire",
+            "une-epicerie"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

@@ -1,0 +1,950 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-household-chores",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les tâches ménagères",
+  "objective": {
+    "en": "Name ten household chores in French.",
+    "fr": "Nommer une dizaine de tâches de la maison en français.",
+    "de": "Nenne zehn Hausarbeiten auf Französisch."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-content-v1",
+    "generatedAt": "2026-10-07T15:07:10.780Z",
+    "inputHashes": {
+      "outline": "bf5ee86e9c08a72767a51ddf87a8e9cdda0908a2c3eaf156b83a280851980e81",
+      "brief": "2a572332b699a1667047a9b67392a230c6c4d2688786fcc862a1971ee3a6fdcd"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "house_and_home",
+  "steps": [
+    {
+      "id": "introduction",
+      "stage": "introduction",
+      "role": "introduction",
+      "label": {
+        "en": "Introduction",
+        "fr": "Introduction",
+        "de": "Einführung"
+      },
+      "pages": [
+        {
+          "pageId": "intro-kitchen-cleaning",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-kitchen-cleaning",
+              "targetIds": [
+                "faire-le-menage",
+                "faire-la-vaisselle",
+                "faire-la-cuisine",
+                "faire-les-courses",
+                "ranger"
+              ],
+              "text": {
+                "en": "Cleaning and kitchen chores:\n\n- `faire le ménage`\n- `faire la vaisselle`\n- `faire la cuisine`\n- `faire les courses`\n- `ranger`",
+                "fr": "Tâches de nettoyage et de cuisine :\n\n- `faire le ménage`\n- `faire la vaisselle`\n- `faire la cuisine`\n- `faire les courses`\n- `ranger`",
+                "de": "Putzen und Küchenarbeiten:\n\n- `faire le ménage`\n- `faire la vaisselle`\n- `faire la cuisine`\n- `faire les courses`\n- `ranger` "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "intro-heavy-housework",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-heavy-housework",
+              "targetIds": [
+                "passer-l-aspirateur",
+                "sortir-la-poubelle",
+                "laver-le-sol",
+                "repasser-le-linge",
+                "faire-le-lit"
+              ],
+              "text": {
+                "en": "Maintenance chores:\n\n- `passer l’aspirateur`\n- `sortir la poubelle`\n- `laver le sol`\n- `repasser le linge`\n- `faire le lit`",
+                "fr": "Tâches d’entretien :\n\n- `passer l’aspirateur`\n- `sortir la poubelle`\n- `laver le sol`\n- `repasser le linge`\n- `faire le lit`",
+                "de": "Hauspflegearbeiten:\n\n- `passer l’aspirateur`\n- `sortir la poubelle`\n- `laver le sol`\n- `repasser le linge`\n- `faire le lit` "
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "cards-kitchen-cleaning",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-kitchen-cleaning",
+              "targetIds": [
+                "faire-le-menage",
+                "faire-la-vaisselle",
+                "faire-la-cuisine",
+                "faire-les-courses",
+                "ranger"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "cards-heavy-housework",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-heavy-housework",
+              "targetIds": [
+                "passer-l-aspirateur",
+                "sortir-la-poubelle",
+                "laver-le-sol",
+                "repasser-le-linge",
+                "faire-le-lit"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "match-1",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-2",
+              "pairs": [
+                {
+                  "targetId": "faire-le-menage",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "faire le ménage means to do the housework.",
+                    "fr": "faire le ménage signifie « to do the housework » en anglais.",
+                    "de": "faire le ménage bedeutet haushalten."
+                  }
+                },
+                {
+                  "targetId": "faire-la-vaisselle",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "faire la vaisselle means to do the dishes.",
+                    "fr": "faire la vaisselle signifie « to do the dishes » en anglais.",
+                    "de": "faire la vaisselle bedeutet abwaschen."
+                  }
+                },
+                {
+                  "targetId": "faire-la-cuisine",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "faire la cuisine means to cook.",
+                    "fr": "faire la cuisine signifie « to cook » en anglais.",
+                    "de": "faire la cuisine bedeutet kochen."
+                  }
+                },
+                {
+                  "targetId": "faire-les-courses",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "faire les courses means to go grocery shopping.",
+                    "fr": "faire les courses signifie « to go grocery shopping » en anglais.",
+                    "de": "faire les courses bedeutet einkaufen gehen."
+                  }
+                },
+                {
+                  "targetId": "ranger",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "ranger means to tidy up.",
+                    "fr": "ranger signifie « to tidy up » en anglais.",
+                    "de": "ranger bedeutet aufräumen."
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-2",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-3",
+              "pairs": [
+                {
+                  "targetId": "passer-l-aspirateur",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "passer l’aspirateur means to vacuum.",
+                    "fr": "passer l’aspirateur signifie « to vacuum » en anglais.",
+                    "de": "passer l’aspirateur bedeutet staubsaugen."
+                  }
+                },
+                {
+                  "targetId": "sortir-la-poubelle",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "sortir la poubelle means to take out the trash.",
+                    "fr": "sortir la poubelle signifie « to take out the trash » en anglais.",
+                    "de": "sortir la poubelle bedeutet den Müll rausbringen."
+                  }
+                },
+                {
+                  "targetId": "laver-le-sol",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "laver le sol means to mop the floor.",
+                    "fr": "laver le sol signifie « to mop the floor » en anglais.",
+                    "de": "laver le sol bedeutet den Boden wischen."
+                  }
+                },
+                {
+                  "targetId": "repasser-le-linge",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "repasser le linge means to iron the clothes.",
+                    "fr": "repasser le linge signifie « to iron the clothes » en anglais.",
+                    "de": "repasser le linge bedeutet die Wäsche bügeln."
+                  }
+                },
+                {
+                  "targetId": "faire-le-lit",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "faire le lit means to make the bed.",
+                    "fr": "faire le lit signifie « to make the bed » en anglais.",
+                    "de": "faire le lit bedeutet das Bett machen."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overview",
+      "stage": "overview",
+      "role": "overview",
+      "label": {
+        "en": "Overview",
+        "fr": "Vue d’ensemble",
+        "de": "Übersicht"
+      },
+      "pages": [
+        {
+          "pageId": "overview-page",
+          "estimatedDurationS": 90,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Review all words and their details.",
+            "fr": "Révisez tous les mots et leurs détails.",
+            "de": "Überprüfe alle Wörter und ihre Details."
+          },
+          "items": [
+            {
+              "type": "vocabulary_overview",
+              "itemId": "vocab-overview",
+              "targetIds": [
+                "faire-le-menage",
+                "faire-la-vaisselle",
+                "faire-la-cuisine",
+                "faire-les-courses",
+                "ranger",
+                "passer-l-aspirateur",
+                "sortir-la-poubelle",
+                "laver-le-sol",
+                "repasser-le-linge",
+                "faire-le-lit"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "stage": "practice",
+      "role": "exercise",
+      "label": {
+        "en": "Practice",
+        "fr": "Entraînement",
+        "de": "Übung"
+      },
+      "pages": [
+        {
+          "pageId": "gap-faire-le-menage",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-faire-le-menage",
+              "targetId": "faire-le-menage",
+              "before": "Aider à",
+              "after": ".",
+              "referenceTargetIds": [
+                "faire-le-menage",
+                "faire-la-vaisselle",
+                "faire-la-cuisine",
+                "faire-les-courses"
+              ],
+              "accepted": {
+                "answers": [
+                  "faire le ménage"
+                ],
+                "accentSensitive": [
+                  "ménage"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is faire le ménage.",
+                "fr": "Le mot manquant est faire le ménage.",
+                "de": "Das fehlende Wort ist faire le ménage."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-faire-la-vaisselle",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-faire-la-vaisselle",
+              "targetId": "faire-la-vaisselle",
+              "before": "Laver les assiettes, c’est",
+              "after": ".",
+              "referenceTargetIds": [
+                "faire-la-vaisselle",
+                "faire-le-menage",
+                "faire-la-cuisine",
+                "faire-les-courses"
+              ],
+              "accepted": {
+                "answers": [
+                  "faire la vaisselle"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is faire la vaisselle.",
+                "fr": "Le mot manquant est faire la vaisselle.",
+                "de": "Das fehlende Wort ist faire la vaisselle."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-faire-la-cuisine",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-faire-la-cuisine",
+              "targetId": "faire-la-cuisine",
+              "before": "Préparer à manger, c’est",
+              "after": ".",
+              "referenceTargetIds": [
+                "faire-la-cuisine",
+                "faire-le-menage",
+                "faire-la-vaisselle",
+                "faire-les-courses"
+              ],
+              "accepted": {
+                "answers": [
+                  "faire la cuisine"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is faire la cuisine.",
+                "fr": "Le mot manquant est faire la cuisine.",
+                "de": "Das fehlende Wort ist faire la cuisine."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-faire-les-courses",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-faire-les-courses",
+              "targetId": "faire-les-courses",
+              "before": "Acheter à manger, c’est",
+              "after": ".",
+              "referenceTargetIds": [
+                "faire-les-courses",
+                "faire-le-menage",
+                "faire-la-vaisselle",
+                "faire-la-cuisine"
+              ],
+              "accepted": {
+                "answers": [
+                  "faire les courses"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is faire les courses.",
+                "fr": "Le mot manquant est faire les courses.",
+                "de": "Das fehlende Wort ist faire les courses."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-ranger",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-ranger",
+              "targetId": "ranger",
+              "before": "Il faut",
+              "after": " ses affaires.",
+              "referenceTargetIds": [
+                "ranger",
+                "faire-le-menage",
+                "faire-la-vaisselle",
+                "faire-la-cuisine"
+              ],
+              "accepted": {
+                "answers": [
+                  "ranger"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is ranger.",
+                "fr": "Le mot manquant est ranger.",
+                "de": "Das fehlende Wort ist ranger."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-passer-l-aspirateur",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-passer-l-aspirateur",
+              "targetId": "passer-l-aspirateur",
+              "before": "Nettoyer le sol en",
+              "after": ".",
+              "referenceTargetIds": [
+                "passer-l-aspirateur",
+                "faire-le-menage",
+                "faire-la-vaisselle",
+                "faire-la-cuisine"
+              ],
+              "accepted": {
+                "answers": [
+                  "passer l’aspirateur"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is passer l’aspirateur.",
+                "fr": "Le mot manquant est passer l’aspirateur.",
+                "de": "Das fehlende Wort ist passer l’aspirateur."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-sortir-la-poubelle",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-sortir-la-poubelle",
+              "targetId": "sortir-la-poubelle",
+              "before": "N’oublie pas de",
+              "after": ".",
+              "referenceTargetIds": [
+                "sortir-la-poubelle",
+                "faire-le-menage",
+                "faire-la-vaisselle",
+                "faire-la-cuisine"
+              ],
+              "accepted": {
+                "answers": [
+                  "sortir la poubelle"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is sortir la poubelle.",
+                "fr": "Le mot manquant est sortir la poubelle.",
+                "de": "Das fehlende Wort ist sortir la poubelle."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-laver-le-sol",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-laver-le-sol",
+              "targetId": "laver-le-sol",
+              "before": "Prendre la serpillère pour",
+              "after": ".",
+              "referenceTargetIds": [
+                "laver-le-sol",
+                "faire-le-menage",
+                "faire-la-vaisselle",
+                "faire-la-cuisine"
+              ],
+              "accepted": {
+                "answers": [
+                  "laver le sol"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is laver le sol.",
+                "fr": "Le mot manquant est laver le sol.",
+                "de": "Das fehlende Wort ist laver le sol."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-repasser-le-linge",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-repasser-le-linge",
+              "targetId": "repasser-le-linge",
+              "before": "Utiliser le fer pour",
+              "after": ".",
+              "referenceTargetIds": [
+                "repasser-le-linge",
+                "faire-le-menage",
+                "faire-la-vaisselle",
+                "faire-la-cuisine"
+              ],
+              "accepted": {
+                "answers": [
+                  "repasser le linge"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is repasser le linge.",
+                "fr": "Le mot manquant est repasser le linge.",
+                "de": "Das fehlende Wort ist repasser le linge."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-faire-le-lit",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-faire-le-lit",
+              "targetId": "faire-le-lit",
+              "before": "Bien ranger ses draps pour",
+              "after": ".",
+              "referenceTargetIds": [
+                "faire-le-lit",
+                "faire-le-menage",
+                "faire-la-vaisselle",
+                "faire-la-cuisine"
+              ],
+              "accepted": {
+                "answers": [
+                  "faire le lit"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is faire le lit.",
+                "fr": "Le mot manquant est faire le lit.",
+                "de": "Das fehlende Wort ist faire le lit."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Exam",
+        "fr": "Examen",
+        "de": "Prüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-faire-le-menage",
+              "targetId": "faire-le-menage",
+              "prompt": {
+                "en": "to do the housework",
+                "de": "haushalten"
+              },
+              "accepted": {
+                "answers": [
+                  "faire le ménage",
+                  "faire le menage"
+                ],
+                "accentSensitive": [
+                  "ménage"
+                ]
+              },
+              "answerExplanation": {
+                "en": "to do the housework in French is faire le ménage.",
+                "fr": "to do the housework en français est faire le ménage.",
+                "de": "haushalten auf Französisch ist faire le ménage."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-faire-la-vaisselle",
+              "targetId": "faire-la-vaisselle",
+              "prompt": {
+                "en": "to do the dishes",
+                "de": "abwaschen"
+              },
+              "accepted": {
+                "answers": [
+                  "faire la vaisselle"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "to do the dishes in French is faire la vaisselle.",
+                "fr": "to do the dishes en français est faire la vaisselle.",
+                "de": "abwaschen auf Französisch ist faire la vaisselle."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-faire-la-cuisine",
+              "targetId": "faire-la-cuisine",
+              "prompt": {
+                "en": "to cook",
+                "de": "kochen"
+              },
+              "accepted": {
+                "answers": [
+                  "faire la cuisine"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "to cook in French is faire la cuisine.",
+                "fr": "to cook en français est faire la cuisine.",
+                "de": "kochen auf Französisch ist faire la cuisine."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-faire-les-courses",
+              "targetId": "faire-les-courses",
+              "prompt": {
+                "en": "to go grocery shopping",
+                "de": "einkaufen gehen"
+              },
+              "accepted": {
+                "answers": [
+                  "faire les courses"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "to go grocery shopping in French is faire les courses.",
+                "fr": "to go grocery shopping en français est faire les courses.",
+                "de": "einkaufen gehen auf Französisch ist faire les courses."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-ranger",
+              "targetId": "ranger",
+              "prompt": {
+                "en": "to tidy up",
+                "de": "aufräumen"
+              },
+              "accepted": {
+                "answers": [
+                  "ranger"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "to tidy up in French is ranger.",
+                "fr": "to tidy up en français est ranger.",
+                "de": "aufräumen auf Französisch ist ranger."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-page-2",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-passer-l-aspirateur",
+              "targetId": "passer-l-aspirateur",
+              "prompt": {
+                "en": "to vacuum",
+                "de": "staubsaugen"
+              },
+              "accepted": {
+                "answers": [
+                  "passer l’aspirateur",
+                  "passer l'aspirateur"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "to vacuum in French is passer l’aspirateur.",
+                "fr": "to vacuum en français est passer l’aspirateur.",
+                "de": "staubsaugen auf Französisch ist passer l’aspirateur."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-sortir-la-poubelle",
+              "targetId": "sortir-la-poubelle",
+              "prompt": {
+                "en": "to take out the trash",
+                "de": "den Müll rausbringen"
+              },
+              "accepted": {
+                "answers": [
+                  "sortir la poubelle"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "to take out the trash in French is sortir la poubelle.",
+                "fr": "to take out the trash en français est sortir la poubelle.",
+                "de": "den Müll rausbringen auf Französisch ist sortir la poubelle."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-laver-le-sol",
+              "targetId": "laver-le-sol",
+              "prompt": {
+                "en": "to mop the floor",
+                "de": "den Boden wischen"
+              },
+              "accepted": {
+                "answers": [
+                  "laver le sol"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "to mop the floor in French is laver le sol.",
+                "fr": "to mop the floor en français est laver le sol.",
+                "de": "den Boden wischen auf Französisch ist laver le sol."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-repasser-le-linge",
+              "targetId": "repasser-le-linge",
+              "prompt": {
+                "en": "to iron the clothes",
+                "de": "die Wäsche bügeln"
+              },
+              "accepted": {
+                "answers": [
+                  "repasser le linge"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "to iron the clothes in French is repasser le linge.",
+                "fr": "to iron the clothes en français est repasser le linge.",
+                "de": "die Wäsche bügeln auf Französisch ist repasser le linge."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-faire-le-lit",
+              "targetId": "faire-le-lit",
+              "prompt": {
+                "en": "to make the bed",
+                "de": "das Bett machen"
+              },
+              "accepted": {
+                "answers": [
+                  "faire le lit"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "to make the bed in French is faire le lit.",
+                "fr": "to make the bed en français est faire le lit.",
+                "de": "das Bett machen auf Französisch ist faire le lit."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,582 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-furniture-and-appliances",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les meubles et appareils",
+  "objective": {
+    "en": "Name twelve common pieces of furniture and household appliances in French with indefinite articles.",
+    "fr": "Nommer une douzaine de meubles et d’appareils de la maison en français avec leurs articles indéfinis.",
+    "de": "Nenne zwölf häufige Möbelstücke und Haushaltsgeräte auf Französisch mit unbestimmten Artikeln."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T14:59:24.381Z",
+    "inputHashes": {
+      "outline": "b0d4af8f59f71cfda8bbf40d2d875e90a66a56fded6e49dd4bb4fa51e43b4416"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "house_and_home",
+  "coverageNotes": {
+    "en": "Covers essential furniture and major home electronics/appliances.",
+    "fr": "Couvre les meubles essentiels et les principaux appareils électroménagers.",
+    "de": "Deckt wichtige Möbelstücke und grundlegende Haushaltsgeräte ab."
+  },
+  "targetCount": 12,
+  "countRationale": {
+    "en": "Twelve targets provide balanced home furnishings vocabulary.",
+    "fr": "Douze éléments offrent un vocabulaire équilibré de l’équipement de la maison.",
+    "de": "Zwölf Begriffe bieten einen ausgewogenen Wortschatz zur Heimund Einrichtungsausstattung."
+  },
+  "difficultyBalance": {
+    "en": "8 core familiar terms balanced with 4 compound or tricky spelled items.",
+    "fr": "8 termes familiers essentiels équilibrés avec 4 mots plus complexes.",
+    "de": "8 alltägliche Begriffe ausgewogen mit 4 anspruchsvolleren Wörtern."
+  },
+  "prerequisites": [
+    {
+      "en": "Indefinite articles un, une.",
+      "fr": "Articles indéfinis un, une.",
+      "de": "Unbestimmte Artikel un, une."
+    }
+  ],
+  "groups": [
+    {
+      "id": "furniture",
+      "label": {
+        "en": "Furniture",
+        "fr": "Meubles",
+        "de": "Möbel"
+      },
+      "targetIds": [
+        "un-lit",
+        "une-armoire",
+        "un-canape",
+        "une-table",
+        "une-chaise",
+        "une-etagere"
+      ]
+    },
+    {
+      "id": "appliances",
+      "label": {
+        "en": "Appliances",
+        "fr": "Appareils",
+        "de": "Geräte"
+      },
+      "targetIds": [
+        "un-frigo",
+        "une-lampe",
+        "une-television",
+        "un-four",
+        "un-lave-linge",
+        "un-aspirateur"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "un-lit",
+      "term": "lit",
+      "translations": {
+        "en": [
+          "a bed"
+        ],
+        "de": [
+          "ein Bett"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un lit",
+      "examForms": [
+        "un lit"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ li/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Je dors dans un grand lit.",
+        "translation": {
+          "en": "I sleep in a big bed.",
+          "de": "Ich schlafe in einem großen Bett."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-armoire",
+      "term": "armoire",
+      "translations": {
+        "en": [
+          "a wardrobe",
+          "a closet"
+        ],
+        "de": [
+          "ein Schrank"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une armoire",
+      "examForms": [
+        "une armoire"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn aʁmwaʁ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Mes vêtements sont dans une armoire.",
+        "translation": {
+          "en": "My clothes are in a wardrobe.",
+          "de": "Meine Kleidung ist in einem Schrank."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-canape",
+      "term": "canapé",
+      "translations": {
+        "en": [
+          "a sofa",
+          "a couch"
+        ],
+        "de": [
+          "ein Sofa"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un canapé",
+      "examForms": [
+        "un canapé"
+      ],
+      "accentSensitive": [
+        "canapé"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ kanape/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Nous sommes assis sur un canapé.",
+        "translation": {
+          "en": "We are sitting on a sofa.",
+          "de": "Wir sitzen auf einem Sofa."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-table",
+      "term": "table",
+      "translations": {
+        "en": [
+          "a table"
+        ],
+        "de": [
+          "ein Tisch"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une table",
+      "examForms": [
+        "une table"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn tabl/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le dîner est sur la table.",
+        "translation": {
+          "en": "Dinner is on the table.",
+          "de": "Das Abendessen steht auf dem Tisch."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-chaise",
+      "term": "chaise",
+      "translations": {
+        "en": [
+          "a chair"
+        ],
+        "de": [
+          "ein Stuhl"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une chaise",
+      "examForms": [
+        "une chaise"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn ʃɛz/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Prends une chaise pour t’asseoir.",
+        "translation": {
+          "en": "Take a chair to sit down.",
+          "de": "Nimm einen Stuhl, um dich zu setzen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-etagere",
+      "term": "étagère",
+      "translations": {
+        "en": [
+          "a shelf",
+          "a bookcase"
+        ],
+        "de": [
+          "ein Regal"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une étagère",
+      "examForms": [
+        "une étagère"
+      ],
+      "accentSensitive": [
+        "étagère"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn etaʒɛʁ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Les livres sont sur une étagère.",
+        "translation": {
+          "en": "The books are on a shelf.",
+          "de": "Die Bücher stehen auf einem Regal."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-frigo",
+      "term": "frigo",
+      "translations": {
+        "en": [
+          "a fridge",
+          "a refrigerator"
+        ],
+        "de": [
+          "ein Kühlschrank"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un frigo",
+      "examForms": [
+        "un frigo"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ fʁiɡo/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le lait est dans le frigo.",
+        "translation": {
+          "en": "The milk is in the fridge.",
+          "de": "Die Milch ist im Kühlschrank."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-lampe",
+      "term": "lampe",
+      "translations": {
+        "en": [
+          "a lamp"
+        ],
+        "de": [
+          "eine Lampe"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une lampe",
+      "examForms": [
+        "une lampe"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn lɑ̃p/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "J’allume une lampe pour lire.",
+        "translation": {
+          "en": "I turn on a lamp to read.",
+          "de": "Ich schalte eine Lampe zum Lesen ein."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-television",
+      "term": "télévision",
+      "translations": {
+        "en": [
+          "a television",
+          "a TV"
+        ],
+        "de": [
+          "ein Fernseher"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une télévision",
+      "examForms": [
+        "une télévision"
+      ],
+      "accentSensitive": [
+        "télévision"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn televizjɔ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il regarde la télévision le soir.",
+        "translation": {
+          "en": "He watches television in the evening.",
+          "de": "Er schaut abends fern."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-four",
+      "term": "four",
+      "translations": {
+        "en": [
+          "an oven"
+        ],
+        "de": [
+          "ein Ofen"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un four",
+      "examForms": [
+        "un four"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ fuʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le gâteau cuit dans le four.",
+        "translation": {
+          "en": "The cake is baking in the oven.",
+          "de": "Der Kuchen backt im Ofen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-lave-linge",
+      "term": "lave-linge",
+      "translations": {
+        "en": [
+          "a washing machine"
+        ],
+        "de": [
+          "eine Waschmaschine"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un lave-linge",
+      "examForms": [
+        "un lave-linge"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ lav lɛ̃ʒ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Le lave-linge lave les vêtements.",
+        "translation": {
+          "en": "The washing machine washes clothes.",
+          "de": "Die Waschmaschine wäscht die Kleidung."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-aspirateur",
+      "term": "aspirateur",
+      "translations": {
+        "en": [
+          "a vacuum cleaner"
+        ],
+        "de": [
+          "ein Staubsauger"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un aspirateur",
+      "examForms": [
+        "un aspirateur"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ naspiʁatœʁ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Elle passe l’aspirateur dans le salon.",
+        "translation": {
+          "en": "She vacuums the living room.",
+          "de": "Sie saugt Staub im Wohnzimmer."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "un-lit",
+        "une-armoire",
+        "un-canape",
+        "une-table",
+        "une-chaise",
+        "une-etagere",
+        "un-frigo",
+        "une-lampe",
+        "une-television",
+        "un-four",
+        "un-lave-linge",
+        "un-aspirateur"
+      ],
+      "estimatedDurationS": 180
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "un-lit",
+            "une-armoire",
+            "un-canape",
+            "une-table",
+            "une-chaise",
+            "une-etagere"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "un-frigo",
+            "une-lampe",
+            "une-television",
+            "un-four",
+            "un-lave-linge",
+            "un-aspirateur"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

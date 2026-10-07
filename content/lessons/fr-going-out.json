@@ -1,0 +1,1046 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-going-out",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Sortir et s’amuser",
+  "objective": {
+    "en": "Name ten words and events for going out and entertainment in French.",
+    "fr": "Nommer une dizaine de mots et d’événements pour sortir en français.",
+    "de": "Nenne zehn Wörter für Ausgehen und Veranstaltungen auf Französisch."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-content-v1",
+    "generatedAt": "2026-10-07T15:03:50.933Z",
+    "inputHashes": {
+      "outline": "5d8caee0262ad771ab5d978391dde0a001c64a624b8b2e8c2648f8f5b045e973",
+      "brief": "5871bdf48694602fa3c077e32cca1da3c2cc516043d12670b7161ff97ee00daa"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "free_time",
+  "steps": [
+    {
+      "id": "introduction",
+      "stage": "introduction",
+      "role": "introduction",
+      "label": {
+        "en": "Introduction",
+        "fr": "Introduction",
+        "de": "Einführung"
+      },
+      "pages": [
+        {
+          "pageId": "intro-cultural-events",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-cultural-events",
+              "targetIds": [
+                "un-cinema",
+                "un-concert",
+                "un-theatre",
+                "une-exposition",
+                "une-fete"
+              ],
+              "text": {
+                "en": "Outings and events:\n\n- `un cinéma`\n- `un concert`\n- `un théâtre`\n- `une exposition`\n- `une fête`",
+                "fr": "Sorties et événements :\n\n- `un cinéma`\n- `un concert`\n- `un théâtre`\n- `une exposition`\n- `une fête`",
+                "de": "Ausflüge und Events:\n\n- `un cinéma`\n- `un concert`\n- `un théâtre`\n- `une exposition`\n- `une fête` "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "intro-outings-logistics",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-outings-logistics",
+              "targetIds": [
+                "un-billet",
+                "une-seance",
+                "un-rendez-vous",
+                "un-spectacle",
+                "une-soiree"
+              ],
+              "text": {
+                "en": "Tickets and meeting arrangements:\n\n- `un billet`\n- `une séance`\n- `un rendez-vous`\n- `un spectacle`\n- `une soirée`",
+                "fr": "Billets et organisation de sorties :\n\n- `un billet`\n- `une séance`\n- `un rendez-vous`\n- `un spectacle`\n- `une soirée`",
+                "de": "Tickets und Verabredungen:\n\n- `un billet`\n- `une séance`\n- `un rendez-vous`\n- `un spectacle`\n- `une soirée` "
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "cards-cultural-events",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-cultural-events",
+              "targetIds": [
+                "un-cinema",
+                "un-concert",
+                "un-theatre",
+                "une-exposition",
+                "une-fete"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "cards-outings-logistics",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-outings-logistics",
+              "targetIds": [
+                "un-billet",
+                "une-seance",
+                "un-rendez-vous",
+                "un-spectacle",
+                "une-soiree"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "match-1",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-2",
+              "pairs": [
+                {
+                  "targetId": "un-cinema",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un cinéma means a cinema.",
+                    "fr": "un cinéma signifie « a cinema » en anglais.",
+                    "de": "un cinéma bedeutet ein Kino."
+                  }
+                },
+                {
+                  "targetId": "un-concert",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un concert means a concert.",
+                    "fr": "un concert signifie « a concert » en anglais.",
+                    "de": "un concert bedeutet ein Konzert."
+                  }
+                },
+                {
+                  "targetId": "un-theatre",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un théâtre means a theater.",
+                    "fr": "un théâtre signifie « a theater » en anglais.",
+                    "de": "un théâtre bedeutet ein Theater."
+                  }
+                },
+                {
+                  "targetId": "une-exposition",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une exposition means an exhibition.",
+                    "fr": "une exposition signifie « an exhibition » en anglais.",
+                    "de": "une exposition bedeutet eine Ausstellung."
+                  }
+                },
+                {
+                  "targetId": "une-fete",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une fête means a party.",
+                    "fr": "une fête signifie « a party » en anglais.",
+                    "de": "une fête bedeutet ein Fest."
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-2",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-3",
+              "pairs": [
+                {
+                  "targetId": "un-billet",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un billet means a ticket.",
+                    "fr": "un billet signifie « a ticket » en anglais.",
+                    "de": "un billet bedeutet ein Ticket."
+                  }
+                },
+                {
+                  "targetId": "une-seance",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une séance means a showing.",
+                    "fr": "une séance signifie « a showing » en anglais.",
+                    "de": "une séance bedeutet eine Vorstellung."
+                  }
+                },
+                {
+                  "targetId": "un-rendez-vous",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un rendez-vous means an appointment.",
+                    "fr": "un rendez-vous signifie « an appointment » en anglais.",
+                    "de": "un rendez-vous bedeutet eine Verabredung."
+                  }
+                },
+                {
+                  "targetId": "un-spectacle",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un spectacle means a show.",
+                    "fr": "un spectacle signifie « a show » en anglais.",
+                    "de": "un spectacle bedeutet eine Aufführung."
+                  }
+                },
+                {
+                  "targetId": "une-soiree",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une soirée means an evening.",
+                    "fr": "une soirée signifie « an evening » en anglais.",
+                    "de": "une soirée bedeutet ein Abend."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overview",
+      "stage": "overview",
+      "role": "overview",
+      "label": {
+        "en": "Overview",
+        "fr": "Vue d’ensemble",
+        "de": "Übersicht"
+      },
+      "pages": [
+        {
+          "pageId": "overview-page",
+          "estimatedDurationS": 90,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Review all words and their details.",
+            "fr": "Révisez tous les mots et leurs détails.",
+            "de": "Überprüfe alle Wörter und ihre Details."
+          },
+          "items": [
+            {
+              "type": "vocabulary_gender_select",
+              "itemId": "gender-overview",
+              "targetIds": [
+                "un-cinema",
+                "un-concert",
+                "un-theatre",
+                "une-exposition",
+                "une-fete",
+                "un-billet",
+                "une-seance",
+                "un-rendez-vous",
+                "un-spectacle",
+                "une-soiree"
+              ],
+              "rows": [
+                {
+                  "targetId": "un-cinema",
+                  "answerExplanation": {
+                    "en": "cinéma is masculine.",
+                    "fr": "cinéma est masculin.",
+                    "de": "cinéma ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-concert",
+                  "answerExplanation": {
+                    "en": "concert is masculine.",
+                    "fr": "concert est masculin.",
+                    "de": "concert ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-theatre",
+                  "answerExplanation": {
+                    "en": "théâtre is masculine.",
+                    "fr": "théâtre est masculin.",
+                    "de": "théâtre ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "une-exposition",
+                  "answerExplanation": {
+                    "en": "exposition is feminine.",
+                    "fr": "exposition est féminin.",
+                    "de": "exposition ist feminin."
+                  }
+                },
+                {
+                  "targetId": "une-fete",
+                  "answerExplanation": {
+                    "en": "fête is feminine.",
+                    "fr": "fête est féminin.",
+                    "de": "fête ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-billet",
+                  "answerExplanation": {
+                    "en": "billet is masculine.",
+                    "fr": "billet est masculin.",
+                    "de": "billet ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "une-seance",
+                  "answerExplanation": {
+                    "en": "séance is feminine.",
+                    "fr": "séance est féminin.",
+                    "de": "séance ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-rendez-vous",
+                  "answerExplanation": {
+                    "en": "rendez-vous is masculine.",
+                    "fr": "rendez-vous est masculin.",
+                    "de": "rendez-vous ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-spectacle",
+                  "answerExplanation": {
+                    "en": "spectacle is masculine.",
+                    "fr": "spectacle est masculin.",
+                    "de": "spectacle ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "une-soiree",
+                  "answerExplanation": {
+                    "en": "soirée is feminine.",
+                    "fr": "soirée est féminin.",
+                    "de": "soirée ist feminin."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "stage": "practice",
+      "role": "exercise",
+      "label": {
+        "en": "Practice",
+        "fr": "Entraînement",
+        "de": "Übung"
+      },
+      "pages": [
+        {
+          "pageId": "gap-un-cinema",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-cinema",
+              "targetId": "un-cinema",
+              "before": "Regarder un film dans un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-cinema",
+                "un-concert",
+                "un-theatre",
+                "une-exposition"
+              ],
+              "accepted": {
+                "answers": [
+                  "cinéma"
+                ],
+                "accentSensitive": [
+                  "cinéma"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is cinéma.",
+                "fr": "Le mot manquant est cinéma.",
+                "de": "Das fehlende Wort ist cinéma."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-concert",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-concert",
+              "targetId": "un-concert",
+              "before": "Assister à un",
+              "after": " de rock.",
+              "referenceTargetIds": [
+                "un-concert",
+                "un-cinema",
+                "un-theatre",
+                "une-exposition"
+              ],
+              "accepted": {
+                "answers": [
+                  "concert"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is concert.",
+                "fr": "Le mot manquant est concert.",
+                "de": "Das fehlende Wort ist concert."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-theatre",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-theatre",
+              "targetId": "un-theatre",
+              "before": "Entrer dans un",
+              "after": " ancien.",
+              "referenceTargetIds": [
+                "un-theatre",
+                "un-cinema",
+                "un-concert",
+                "une-exposition"
+              ],
+              "accepted": {
+                "answers": [
+                  "théâtre"
+                ],
+                "accentSensitive": [
+                  "théâtre"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is théâtre.",
+                "fr": "Le mot manquant est théâtre.",
+                "de": "Das fehlende Wort ist théâtre."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-exposition",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-exposition",
+              "targetId": "une-exposition",
+              "before": "Visiter une",
+              "after": " de peinture.",
+              "referenceTargetIds": [
+                "une-exposition",
+                "un-cinema",
+                "un-concert",
+                "un-theatre"
+              ],
+              "accepted": {
+                "answers": [
+                  "exposition"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is exposition.",
+                "fr": "Le mot manquant est exposition.",
+                "de": "Das fehlende Wort ist exposition."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-fete",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-fete",
+              "targetId": "une-fete",
+              "before": "Danser lors d’une",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-fete",
+                "un-cinema",
+                "un-concert",
+                "un-theatre"
+              ],
+              "accepted": {
+                "answers": [
+                  "fête"
+                ],
+                "accentSensitive": [
+                  "fête"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is fête.",
+                "fr": "Le mot manquant est fête.",
+                "de": "Das fehlende Wort ist fête."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-billet",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-billet",
+              "targetId": "un-billet",
+              "before": "Réserver un",
+              "after": " de cinéma.",
+              "referenceTargetIds": [
+                "un-billet",
+                "un-cinema",
+                "un-concert",
+                "un-theatre"
+              ],
+              "accepted": {
+                "answers": [
+                  "billet"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is billet.",
+                "fr": "Le mot manquant est billet.",
+                "de": "Das fehlende Wort ist billet."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-seance",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-seance",
+              "targetId": "une-seance",
+              "before": "Choisir une",
+              "after": " du soir.",
+              "referenceTargetIds": [
+                "une-seance",
+                "un-cinema",
+                "un-concert",
+                "un-theatre"
+              ],
+              "accepted": {
+                "answers": [
+                  "séance"
+                ],
+                "accentSensitive": [
+                  "séance"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is séance.",
+                "fr": "Le mot manquant est séance.",
+                "de": "Das fehlende Wort ist séance."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-rendez-vous",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-rendez-vous",
+              "targetId": "un-rendez-vous",
+              "before": "Prendre un",
+              "after": " à dix-neuf heures.",
+              "referenceTargetIds": [
+                "un-rendez-vous",
+                "un-cinema",
+                "un-concert",
+                "un-theatre"
+              ],
+              "accepted": {
+                "answers": [
+                  "rendez-vous"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is rendez-vous.",
+                "fr": "Le mot manquant est rendez-vous.",
+                "de": "Das fehlende Wort ist rendez-vous."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-spectacle",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-spectacle",
+              "targetId": "un-spectacle",
+              "before": "Applaudir un",
+              "after": " vivant.",
+              "referenceTargetIds": [
+                "un-spectacle",
+                "un-cinema",
+                "un-concert",
+                "un-theatre"
+              ],
+              "accepted": {
+                "answers": [
+                  "spectacle"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is spectacle.",
+                "fr": "Le mot manquant est spectacle.",
+                "de": "Das fehlende Wort ist spectacle."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-soiree",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-soiree",
+              "targetId": "une-soiree",
+              "before": "Organiser une",
+              "after": " entre amis.",
+              "referenceTargetIds": [
+                "une-soiree",
+                "un-cinema",
+                "un-concert",
+                "un-theatre"
+              ],
+              "accepted": {
+                "answers": [
+                  "soirée"
+                ],
+                "accentSensitive": [
+                  "soirée"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is soirée.",
+                "fr": "Le mot manquant est soirée.",
+                "de": "Das fehlende Wort ist soirée."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Exam",
+        "fr": "Examen",
+        "de": "Prüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-cinema",
+              "targetId": "un-cinema",
+              "prompt": {
+                "en": "a cinema",
+                "de": "ein Kino"
+              },
+              "accepted": {
+                "answers": [
+                  "un cinéma"
+                ],
+                "accentSensitive": [
+                  "cinéma"
+                ]
+              },
+              "answerExplanation": {
+                "en": "a cinema in French is un cinéma.",
+                "fr": "a cinema en français est un cinéma.",
+                "de": "ein Kino auf Französisch ist un cinéma."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-concert",
+              "targetId": "un-concert",
+              "prompt": {
+                "en": "a concert",
+                "de": "ein Konzert"
+              },
+              "accepted": {
+                "answers": [
+                  "un concert"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a concert in French is un concert.",
+                "fr": "a concert en français est un concert.",
+                "de": "ein Konzert auf Französisch ist un concert."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-theatre",
+              "targetId": "un-theatre",
+              "prompt": {
+                "en": "a theater",
+                "de": "ein Theater"
+              },
+              "accepted": {
+                "answers": [
+                  "un théâtre"
+                ],
+                "accentSensitive": [
+                  "théâtre"
+                ]
+              },
+              "answerExplanation": {
+                "en": "a theater in French is un théâtre.",
+                "fr": "a theater en français est un théâtre.",
+                "de": "ein Theater auf Französisch ist un théâtre."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-exposition",
+              "targetId": "une-exposition",
+              "prompt": {
+                "en": "an exhibition",
+                "de": "eine Ausstellung"
+              },
+              "accepted": {
+                "answers": [
+                  "une exposition"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "an exhibition in French is une exposition.",
+                "fr": "an exhibition en français est une exposition.",
+                "de": "eine Ausstellung auf Französisch ist une exposition."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-fete",
+              "targetId": "une-fete",
+              "prompt": {
+                "en": "a party",
+                "de": "ein Fest"
+              },
+              "accepted": {
+                "answers": [
+                  "une fête"
+                ],
+                "accentSensitive": [
+                  "fête"
+                ]
+              },
+              "answerExplanation": {
+                "en": "a party in French is une fête.",
+                "fr": "a party en français est une fête.",
+                "de": "ein Fest auf Französisch ist une fête."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-page-2",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-billet",
+              "targetId": "un-billet",
+              "prompt": {
+                "en": "a ticket",
+                "de": "ein Ticket"
+              },
+              "accepted": {
+                "answers": [
+                  "un billet"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a ticket in French is un billet.",
+                "fr": "a ticket en français est un billet.",
+                "de": "ein Ticket auf Französisch ist un billet."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-seance",
+              "targetId": "une-seance",
+              "prompt": {
+                "en": "a showing",
+                "de": "eine Vorstellung"
+              },
+              "accepted": {
+                "answers": [
+                  "une séance"
+                ],
+                "accentSensitive": [
+                  "séance"
+                ]
+              },
+              "answerExplanation": {
+                "en": "a showing in French is une séance.",
+                "fr": "a showing en français est une séance.",
+                "de": "eine Vorstellung auf Französisch ist une séance."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-rendez-vous",
+              "targetId": "un-rendez-vous",
+              "prompt": {
+                "en": "an appointment",
+                "de": "eine Verabredung"
+              },
+              "accepted": {
+                "answers": [
+                  "un rendez-vous"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "an appointment in French is un rendez-vous.",
+                "fr": "an appointment en français est un rendez-vous.",
+                "de": "eine Verabredung auf Französisch ist un rendez-vous."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-spectacle",
+              "targetId": "un-spectacle",
+              "prompt": {
+                "en": "a show",
+                "de": "eine Aufführung"
+              },
+              "accepted": {
+                "answers": [
+                  "un spectacle"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a show in French is un spectacle.",
+                "fr": "a show en français est un spectacle.",
+                "de": "eine Aufführung auf Französisch ist un spectacle."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-soiree",
+              "targetId": "une-soiree",
+              "prompt": {
+                "en": "an evening",
+                "de": "ein Abend"
+              },
+              "accepted": {
+                "answers": [
+                  "une soirée"
+                ],
+                "accentSensitive": [
+                  "soirée"
+                ]
+              },
+              "answerExplanation": {
+                "en": "an evening in French is une soirée.",
+                "fr": "an evening en français est une soirée.",
+                "de": "ein Abend auf Französisch ist une soirée."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

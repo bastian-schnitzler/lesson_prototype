@@ -1,0 +1,1031 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-packaging-and-weights",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les quantités et emballages",
+  "objective": {
+    "en": "Name ten quantities and packaging units in French with indefinite articles.",
+    "fr": "Nommer une dizaine de quantités et d’emballages en français avec leurs articles indéfinis.",
+    "de": "Nenne zehn Mengenangaben und Verpackungen auf Französisch mit unbestimmten Artikeln."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-content-v1",
+    "generatedAt": "2026-10-07T14:59:27.729Z",
+    "inputHashes": {
+      "outline": "8b48fd2d8d6ecb804ceec6345eeec804bae4d4dc48ba91d8c6cde15a5686eaae",
+      "brief": "a21a851df160cad5fabb98aacd0fc8a9fdeea72af588a7516cb5b2ab48b6552f"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "shopping",
+  "steps": [
+    {
+      "id": "introduction",
+      "stage": "introduction",
+      "role": "introduction",
+      "label": {
+        "en": "Introduction",
+        "fr": "Introduction",
+        "de": "Einführung"
+      },
+      "pages": [
+        {
+          "pageId": "intro-weights-measures",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-weights-measures",
+              "targetIds": [
+                "un-kilo",
+                "un-gramme",
+                "un-litre",
+                "une-tranche",
+                "une-douzaine"
+              ],
+              "text": {
+                "en": "Weights and measures:\n\n- `un kilo`\n- `un gramme`\n- `un litre`\n- `une tranche`\n- `une douzaine`",
+                "fr": "Poids et mesures :\n\n- `un kilo`\n- `un gramme`\n- `un litre`\n- `une tranche`\n- `une douzaine`",
+                "de": "Gewichte und Maße:\n\n- `un kilo`\n- `un gramme`\n- `un litre`\n- `une tranche`\n- `une douzaine` "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "intro-containers",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-containers",
+              "targetIds": [
+                "une-bouteille",
+                "une-boite",
+                "un-paquet",
+                "un-pot",
+                "un-morceau"
+              ],
+              "text": {
+                "en": "Containers and packages:\n\n- `une bouteille`\n- `une boîte`\n- `un paquet`\n- `un pot`\n- `un morceau`",
+                "fr": "Contenants et paquets :\n\n- `une bouteille`\n- `une boîte`\n- `un paquet`\n- `un pot`\n- `un morceau`",
+                "de": "Behälter und Packungen:\n\n- `une bouteille`\n- `une boîte`\n- `un paquet`\n- `un pot`\n- `un morceau` "
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "cards-weights-measures",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-weights-measures",
+              "targetIds": [
+                "un-kilo",
+                "un-gramme",
+                "un-litre",
+                "une-tranche",
+                "une-douzaine"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "cards-containers",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-containers",
+              "targetIds": [
+                "une-bouteille",
+                "une-boite",
+                "un-paquet",
+                "un-pot",
+                "un-morceau"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "match-1",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-2",
+              "pairs": [
+                {
+                  "targetId": "un-kilo",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un kilo means a kilo.",
+                    "fr": "un kilo signifie « a kilo » en anglais.",
+                    "de": "un kilo bedeutet ein Kilo."
+                  }
+                },
+                {
+                  "targetId": "un-gramme",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un gramme means a gram.",
+                    "fr": "un gramme signifie « a gram » en anglais.",
+                    "de": "un gramme bedeutet ein Gramm."
+                  }
+                },
+                {
+                  "targetId": "un-litre",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un litre means a liter.",
+                    "fr": "un litre signifie « a liter » en anglais.",
+                    "de": "un litre bedeutet ein Liter."
+                  }
+                },
+                {
+                  "targetId": "une-tranche",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une tranche means a slice.",
+                    "fr": "une tranche signifie « a slice » en anglais.",
+                    "de": "une tranche bedeutet eine Scheibe."
+                  }
+                },
+                {
+                  "targetId": "une-douzaine",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une douzaine means a dozen.",
+                    "fr": "une douzaine signifie « a dozen » en anglais.",
+                    "de": "une douzaine bedeutet ein Dutzend."
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-2",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-3",
+              "pairs": [
+                {
+                  "targetId": "une-bouteille",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une bouteille means a bottle.",
+                    "fr": "une bouteille signifie « a bottle » en anglais.",
+                    "de": "une bouteille bedeutet eine Flasche."
+                  }
+                },
+                {
+                  "targetId": "une-boite",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une boîte means a box.",
+                    "fr": "une boîte signifie « a box » en anglais.",
+                    "de": "une boîte bedeutet eine Dose."
+                  }
+                },
+                {
+                  "targetId": "un-paquet",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un paquet means a packet.",
+                    "fr": "un paquet signifie « a packet » en anglais.",
+                    "de": "un paquet bedeutet eine Packung."
+                  }
+                },
+                {
+                  "targetId": "un-pot",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un pot means a jar.",
+                    "fr": "un pot signifie « a jar » en anglais.",
+                    "de": "un pot bedeutet ein Glas."
+                  }
+                },
+                {
+                  "targetId": "un-morceau",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un morceau means a piece.",
+                    "fr": "un morceau signifie « a piece » en anglais.",
+                    "de": "un morceau bedeutet ein Stück."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overview",
+      "stage": "overview",
+      "role": "overview",
+      "label": {
+        "en": "Overview",
+        "fr": "Vue d’ensemble",
+        "de": "Übersicht"
+      },
+      "pages": [
+        {
+          "pageId": "overview-page",
+          "estimatedDurationS": 90,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Review all words and their details.",
+            "fr": "Révisez tous les mots et leurs détails.",
+            "de": "Überprüfe alle Wörter und ihre Details."
+          },
+          "items": [
+            {
+              "type": "vocabulary_gender_select",
+              "itemId": "gender-overview",
+              "targetIds": [
+                "un-kilo",
+                "un-gramme",
+                "un-litre",
+                "une-tranche",
+                "une-douzaine",
+                "une-bouteille",
+                "une-boite",
+                "un-paquet",
+                "un-pot",
+                "un-morceau"
+              ],
+              "rows": [
+                {
+                  "targetId": "un-kilo",
+                  "answerExplanation": {
+                    "en": "kilo is masculine.",
+                    "fr": "kilo est masculin.",
+                    "de": "kilo ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-gramme",
+                  "answerExplanation": {
+                    "en": "gramme is masculine.",
+                    "fr": "gramme est masculin.",
+                    "de": "gramme ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-litre",
+                  "answerExplanation": {
+                    "en": "litre is masculine.",
+                    "fr": "litre est masculin.",
+                    "de": "litre ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "une-tranche",
+                  "answerExplanation": {
+                    "en": "tranche is feminine.",
+                    "fr": "tranche est féminin.",
+                    "de": "tranche ist feminin."
+                  }
+                },
+                {
+                  "targetId": "une-douzaine",
+                  "answerExplanation": {
+                    "en": "douzaine is feminine.",
+                    "fr": "douzaine est féminin.",
+                    "de": "douzaine ist feminin."
+                  }
+                },
+                {
+                  "targetId": "une-bouteille",
+                  "answerExplanation": {
+                    "en": "bouteille is feminine.",
+                    "fr": "bouteille est féminin.",
+                    "de": "bouteille ist feminin."
+                  }
+                },
+                {
+                  "targetId": "une-boite",
+                  "answerExplanation": {
+                    "en": "boîte is feminine.",
+                    "fr": "boîte est féminin.",
+                    "de": "boîte ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-paquet",
+                  "answerExplanation": {
+                    "en": "paquet is masculine.",
+                    "fr": "paquet est masculin.",
+                    "de": "paquet ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-pot",
+                  "answerExplanation": {
+                    "en": "pot is masculine.",
+                    "fr": "pot est masculin.",
+                    "de": "pot ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-morceau",
+                  "answerExplanation": {
+                    "en": "morceau is masculine.",
+                    "fr": "morceau est masculin.",
+                    "de": "morceau ist maskulin."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "stage": "practice",
+      "role": "exercise",
+      "label": {
+        "en": "Practice",
+        "fr": "Entraînement",
+        "de": "Übung"
+      },
+      "pages": [
+        {
+          "pageId": "gap-un-kilo",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-kilo",
+              "targetId": "un-kilo",
+              "before": "Je voudrais un",
+              "after": " de tomates.",
+              "referenceTargetIds": [
+                "un-kilo",
+                "un-gramme",
+                "un-litre",
+                "une-tranche"
+              ],
+              "accepted": {
+                "answers": [
+                  "kilo"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is kilo.",
+                "fr": "Le mot manquant est kilo.",
+                "de": "Das fehlende Wort ist kilo."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-gramme",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-gramme",
+              "targetId": "un-gramme",
+              "before": "Ajouter deux cents",
+              "after": "s de sucre.",
+              "referenceTargetIds": [
+                "un-gramme",
+                "un-kilo",
+                "un-litre",
+                "une-tranche"
+              ],
+              "accepted": {
+                "answers": [
+                  "gramme"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is gramme.",
+                "fr": "Le mot manquant est gramme.",
+                "de": "Das fehlende Wort ist gramme."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-litre",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-litre",
+              "targetId": "un-litre",
+              "before": "Acheter un",
+              "after": " de lait.",
+              "referenceTargetIds": [
+                "un-litre",
+                "un-kilo",
+                "un-gramme",
+                "une-tranche"
+              ],
+              "accepted": {
+                "answers": [
+                  "litre"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is litre.",
+                "fr": "Le mot manquant est litre.",
+                "de": "Das fehlende Wort ist litre."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-tranche",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-tranche",
+              "targetId": "une-tranche",
+              "before": "Couper une",
+              "after": " de pain.",
+              "referenceTargetIds": [
+                "une-tranche",
+                "un-kilo",
+                "un-gramme",
+                "un-litre"
+              ],
+              "accepted": {
+                "answers": [
+                  "tranche"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is tranche.",
+                "fr": "Le mot manquant est tranche.",
+                "de": "Das fehlende Wort ist tranche."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-douzaine",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-douzaine",
+              "targetId": "une-douzaine",
+              "before": "Acheter une",
+              "after": " d’œufs.",
+              "referenceTargetIds": [
+                "une-douzaine",
+                "un-kilo",
+                "un-gramme",
+                "un-litre"
+              ],
+              "accepted": {
+                "answers": [
+                  "douzaine"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is douzaine.",
+                "fr": "Le mot manquant est douzaine.",
+                "de": "Das fehlende Wort ist douzaine."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-bouteille",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-bouteille",
+              "targetId": "une-bouteille",
+              "before": "Ouvrir une",
+              "after": " d’eau.",
+              "referenceTargetIds": [
+                "une-bouteille",
+                "un-kilo",
+                "un-gramme",
+                "un-litre"
+              ],
+              "accepted": {
+                "answers": [
+                  "bouteille"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is bouteille.",
+                "fr": "Le mot manquant est bouteille.",
+                "de": "Das fehlende Wort ist bouteille."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-boite",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-boite",
+              "targetId": "une-boite",
+              "before": "Ouvrir une",
+              "after": " de conserve.",
+              "referenceTargetIds": [
+                "une-boite",
+                "un-kilo",
+                "un-gramme",
+                "un-litre"
+              ],
+              "accepted": {
+                "answers": [
+                  "boîte"
+                ],
+                "accentSensitive": [
+                  "boîte"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is boîte.",
+                "fr": "Le mot manquant est boîte.",
+                "de": "Das fehlende Wort ist boîte."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-paquet",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-paquet",
+              "targetId": "un-paquet",
+              "before": "Acheter un",
+              "after": " de café.",
+              "referenceTargetIds": [
+                "un-paquet",
+                "un-kilo",
+                "un-gramme",
+                "un-litre"
+              ],
+              "accepted": {
+                "answers": [
+                  "paquet"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is paquet.",
+                "fr": "Le mot manquant est paquet.",
+                "de": "Das fehlende Wort ist paquet."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-pot",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-pot",
+              "targetId": "un-pot",
+              "before": "Mettre un",
+              "after": " de yaourt sur la table.",
+              "referenceTargetIds": [
+                "un-pot",
+                "un-kilo",
+                "un-gramme",
+                "un-litre"
+              ],
+              "accepted": {
+                "answers": [
+                  "pot"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is pot.",
+                "fr": "Le mot manquant est pot.",
+                "de": "Das fehlende Wort ist pot."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-morceau",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-morceau",
+              "targetId": "un-morceau",
+              "before": "Prendre un",
+              "after": " de pain.",
+              "referenceTargetIds": [
+                "un-morceau",
+                "un-kilo",
+                "un-gramme",
+                "un-litre"
+              ],
+              "accepted": {
+                "answers": [
+                  "morceau"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is morceau.",
+                "fr": "Le mot manquant est morceau.",
+                "de": "Das fehlende Wort ist morceau."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Exam",
+        "fr": "Examen",
+        "de": "Prüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-kilo",
+              "targetId": "un-kilo",
+              "prompt": {
+                "en": "a kilo",
+                "de": "ein Kilo"
+              },
+              "accepted": {
+                "answers": [
+                  "un kilo"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a kilo in French is un kilo.",
+                "fr": "a kilo en français est un kilo.",
+                "de": "ein Kilo auf Französisch ist un kilo."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-gramme",
+              "targetId": "un-gramme",
+              "prompt": {
+                "en": "a gram",
+                "de": "ein Gramm"
+              },
+              "accepted": {
+                "answers": [
+                  "un gramme"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a gram in French is un gramme.",
+                "fr": "a gram en français est un gramme.",
+                "de": "ein Gramm auf Französisch ist un gramme."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-litre",
+              "targetId": "un-litre",
+              "prompt": {
+                "en": "a liter",
+                "de": "ein Liter"
+              },
+              "accepted": {
+                "answers": [
+                  "un litre"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a liter in French is un litre.",
+                "fr": "a liter en français est un litre.",
+                "de": "ein Liter auf Französisch ist un litre."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-tranche",
+              "targetId": "une-tranche",
+              "prompt": {
+                "en": "a slice",
+                "de": "eine Scheibe"
+              },
+              "accepted": {
+                "answers": [
+                  "une tranche"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a slice in French is une tranche.",
+                "fr": "a slice en français est une tranche.",
+                "de": "eine Scheibe auf Französisch ist une tranche."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-douzaine",
+              "targetId": "une-douzaine",
+              "prompt": {
+                "en": "a dozen",
+                "de": "ein Dutzend"
+              },
+              "accepted": {
+                "answers": [
+                  "une douzaine"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a dozen in French is une douzaine.",
+                "fr": "a dozen en français est une douzaine.",
+                "de": "ein Dutzend auf Französisch ist une douzaine."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-page-2",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-bouteille",
+              "targetId": "une-bouteille",
+              "prompt": {
+                "en": "a bottle",
+                "de": "eine Flasche"
+              },
+              "accepted": {
+                "answers": [
+                  "une bouteille"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a bottle in French is une bouteille.",
+                "fr": "a bottle en français est une bouteille.",
+                "de": "eine Flasche auf Französisch ist une bouteille."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-boite",
+              "targetId": "une-boite",
+              "prompt": {
+                "en": "a box",
+                "de": "eine Dose"
+              },
+              "accepted": {
+                "answers": [
+                  "une boîte",
+                  "une boite"
+                ],
+                "accentSensitive": [
+                  "boîte"
+                ]
+              },
+              "answerExplanation": {
+                "en": "a box in French is une boîte.",
+                "fr": "a box en français est une boîte.",
+                "de": "eine Dose auf Französisch ist une boîte."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-paquet",
+              "targetId": "un-paquet",
+              "prompt": {
+                "en": "a packet",
+                "de": "eine Packung"
+              },
+              "accepted": {
+                "answers": [
+                  "un paquet"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a packet in French is un paquet.",
+                "fr": "a packet en français est un paquet.",
+                "de": "eine Packung auf Französisch ist un paquet."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-pot",
+              "targetId": "un-pot",
+              "prompt": {
+                "en": "a jar",
+                "de": "ein Glas"
+              },
+              "accepted": {
+                "answers": [
+                  "un pot"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a jar in French is un pot.",
+                "fr": "a jar en français est un pot.",
+                "de": "ein Glas auf Französisch ist un pot."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-morceau",
+              "targetId": "un-morceau",
+              "prompt": {
+                "en": "a piece",
+                "de": "ein Stück"
+              },
+              "accepted": {
+                "answers": [
+                  "un morceau"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a piece in French is un morceau.",
+                "fr": "a piece en français est un morceau.",
+                "de": "ein Stück auf Französisch ist un morceau."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

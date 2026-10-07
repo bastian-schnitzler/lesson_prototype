@@ -1,0 +1,478 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-numbers-above-one-hundred-and-years",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les grands nombres et les années",
+  "objective": {
+    "en": "Read and say numbers above 100, years, prices, and distances in French.",
+    "fr": "Lire et dire les nombres à partir de cent, les années, prix et distances en français.",
+    "de": "Lies und sage Zahlen über 100, Jahreszahlen, Preise und Entfernungen auf Französisch."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T14:59:29.407Z",
+    "inputHashes": {
+      "outline": "33c488f00c76439173af1cf4fe707f324b05c083a99667950de4ed32b09f02c7"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "daily_life",
+  "coverageNotes": {
+    "en": "Covers hundreds, thousands, years, and large count expressions.",
+    "fr": "Couvre les centaines, les milliers, les années et grands nombres.",
+    "de": "Deckt Hunderter, Tausender, Jahreszahlen und große Zahlen aus."
+  },
+  "targetCount": 10,
+  "countRationale": {
+    "en": "Ten core large number patterns build fluency for years and prices.",
+    "fr": "Dix motifs de grands nombres pour exprimer des années et des prix.",
+    "de": "Zehn Muster für große Zahlen, Jahre und Preise."
+  },
+  "difficultyBalance": {
+    "en": "Core hundreds (cent, deux cents) balanced with current years (mille, deux mille vingt-six).",
+    "fr": "Centaines simples équilibrées avec les années actuelles.",
+    "de": "Einfache Hunderter ausgewogen mit aktuellen Jahreszahlen."
+  },
+  "prerequisites": [
+    {
+      "en": "Numbers 0-100.",
+      "fr": "Les nombres de 0 à 100.",
+      "de": "Zahlen 0-100."
+    }
+  ],
+  "groups": [
+    {
+      "id": "hundreds-thousands",
+      "label": {
+        "en": "Hundreds & Thousands",
+        "fr": "Centaines et milliers",
+        "de": "Hunderter & Tausender"
+      },
+      "targetIds": [
+        "cent",
+        "deux-cents",
+        "cinq-cents",
+        "mille",
+        "deux-mille"
+      ]
+    },
+    {
+      "id": "years-prices",
+      "label": {
+        "en": "Years & Expressions",
+        "fr": "Années et expressions",
+        "de": "Jahre & Ausdrücke"
+      },
+      "targetIds": [
+        "deux-mille-vingt-six",
+        "mille-neuf-cent-quatre-vingt-dix",
+        "cent-euros",
+        "mille-kilometres",
+        "un-million"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "cent",
+      "term": "cent",
+      "translations": {
+        "en": [
+          "one hundred"
+        ],
+        "de": [
+          "hundert"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "cent",
+      "examForms": [
+        "cent"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/sɑ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Ce livre coûte cent euros.",
+        "translation": {
+          "en": "This book costs one hundred euros.",
+          "de": "Dieses Buch kostet hundert Euro."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "deux-cents",
+      "term": "deux cents",
+      "translations": {
+        "en": [
+          "two hundred"
+        ],
+        "de": [
+          "zweihundert"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "deux cents",
+      "examForms": [
+        "deux cents"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/dø sɑ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il y a deux cents pages.",
+        "translation": {
+          "en": "There are two hundred pages.",
+          "de": "Es gibt zweihundert Seiten."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "cinq-cents",
+      "term": "cinq cents",
+      "translations": {
+        "en": [
+          "five hundred"
+        ],
+        "de": [
+          "fünfhundert"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "cinq cents",
+      "examForms": [
+        "cinq cents"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/sɛ̃k sɑ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un billet de cinq cents euros.",
+        "translation": {
+          "en": "A five-hundred euro bill.",
+          "de": "Ein Fünfhundert-Euro-Schein."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "mille",
+      "term": "mille",
+      "translations": {
+        "en": [
+          "one thousand"
+        ],
+        "de": [
+          "tausend"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "mille",
+      "examForms": [
+        "mille"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/mil/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Mille est invariable en français.",
+        "translation": {
+          "en": "Mille is invariant in French.",
+          "de": "Mille ist im Französischen unveränderlich."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "deux-mille",
+      "term": "deux mille",
+      "translations": {
+        "en": [
+          "two thousand"
+        ],
+        "de": [
+          "zweitausend"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "deux mille",
+      "examForms": [
+        "deux mille"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/dø mil/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "L’an deux mille.",
+        "translation": {
+          "en": "The year two thousand.",
+          "de": "Das Jahr zweitausend."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "deux-mille-vingt-six",
+      "term": "deux mille vingt-six",
+      "translations": {
+        "en": [
+          "two thousand twenty-six"
+        ],
+        "de": [
+          "zweitausendsechsundzwanzig"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "deux mille vingt-six",
+      "examForms": [
+        "deux mille vingt-six"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/dø mil vɛ̃tsis/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Nous sommes en deux mille vingt-six.",
+        "translation": {
+          "en": "We are in two thousand twenty-six.",
+          "de": "Wir sind im Jahr zweitausendsechsundzwanzig."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "mille-neuf-cent-quatre-vingt-dix",
+      "term": "mille neuf cent quatre-vingt-dix",
+      "translations": {
+        "en": [
+          "nineteen ninety"
+        ],
+        "de": [
+          "neunzehnhundertneunzig"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "mille neuf cent quatre-vingt-dix",
+      "examForms": [
+        "mille neuf cent quatre-vingt-dix"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/mil nœf sɑ̃ katʁə vɛ̃ dis/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Il est né en mille neuf cent quatre-vingt-dix.",
+        "translation": {
+          "en": "He was born in 1990.",
+          "de": "Er wurde 1990 geboren."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "cent-euros",
+      "term": "cent euros",
+      "translations": {
+        "en": [
+          "one hundred euros"
+        ],
+        "de": [
+          "hundert Euro"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "cent euros",
+      "examForms": [
+        "cent euros"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/sɑ̃ tøʁo/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le prix est de cent euros.",
+        "translation": {
+          "en": "The price is one hundred euros.",
+          "de": "Der Preis beträgt hundert Euro."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "mille-kilometres",
+      "term": "mille kilomètres",
+      "translations": {
+        "en": [
+          "one thousand kilometers"
+        ],
+        "de": [
+          "tausend Kilometer"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "mille kilomètres",
+      "examForms": [
+        "mille kilomètres",
+        "mille kilometres"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/mil kilɔmɛtʁ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "La distance est de mille kilomètres.",
+        "translation": {
+          "en": "The distance is 1000 km.",
+          "de": "Die Entfernung beträgt 1000 km."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-million",
+      "term": "million",
+      "translations": {
+        "en": [
+          "a million"
+        ],
+        "de": [
+          "eine Million"
+        ]
+      },
+      "wordClass": "numeral",
+      "genders": [],
+      "number": null,
+      "teachingForm": "un million",
+      "examForms": [
+        "un million"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ milijɔ̃/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Paris a plus de deux millions d’habitants.",
+        "translation": {
+          "en": "Paris has over two million residents.",
+          "de": "Paris hat über zwei Millionen Einwohner."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": false,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "cent",
+        "deux-cents",
+        "cinq-cents",
+        "mille",
+        "deux-mille",
+        "deux-mille-vingt-six",
+        "mille-neuf-cent-quatre-vingt-dix",
+        "cent-euros",
+        "mille-kilometres",
+        "un-million"
+      ],
+      "estimatedDurationS": 150
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "cent",
+            "deux-cents",
+            "cinq-cents",
+            "mille",
+            "deux-mille"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "deux-mille-vingt-six",
+            "mille-neuf-cent-quatre-vingt-dix",
+            "cent-euros",
+            "mille-kilometres",
+            "un-million"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

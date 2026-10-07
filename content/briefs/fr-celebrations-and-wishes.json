@@ -1,0 +1,508 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-celebrations-and-wishes",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les fêtes et les vœux",
+  "objective": {
+    "en": "Name ten celebration words and wish expressions in French.",
+    "fr": "Nommer une dizaine de mots des fêtes et des vœux en français.",
+    "de": "Nenne zehn Wörter für Feste und Glückwünsche auf Französisch."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T15:03:50.935Z",
+    "inputHashes": {
+      "outline": "cfd75b6dd74aa36b2d604652f3dbd5a3c2030a898da6ece5b23687201391090d"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "relations",
+  "coverageNotes": {
+    "en": "Covers birthdays, holidays, gifts, cakes, and wish phrases.",
+    "fr": "Couvre les anniversaires, fêtes, cadeaux, gâteaux et vœux.",
+    "de": "Deckt Geburtstage, Feiertage, Geschenke, Kuchen und Glückwünsche ab."
+  },
+  "targetCount": 10,
+  "countRationale": {
+    "en": "Ten items provide essential vocabulary for celebrations and greetings.",
+    "fr": "Dix éléments couvrent les célébrations et souhaits courants.",
+    "de": "Zehn Begriffe decken Feste und übliche Grüße ab."
+  },
+  "difficultyBalance": {
+    "en": "Core nouns (un cadeau, un gâteau) balanced with greeting phrases (bon anniversaire, bonne année).",
+    "fr": "Noms simples équilibrés avec les formules de vœux.",
+    "de": "Einfache Substantive ausgewogen mit Glückwunschformeln."
+  },
+  "prerequisites": [
+    {
+      "en": "Basic greetings and adjective agreements.",
+      "fr": "Salutations et adjectifs qualificatifs.",
+      "de": "Grüße und Adjektivformen."
+    }
+  ],
+  "groups": [
+    {
+      "id": "celebrations-gifts",
+      "label": {
+        "en": "Celebrations & Gifts",
+        "fr": "Fêtes et cadeaux",
+        "de": "Feste & Geschenke"
+      },
+      "targetIds": [
+        "un-anniversaire",
+        "un-noel",
+        "un-nouvel-an",
+        "un-cadeau",
+        "un-gateau"
+      ]
+    },
+    {
+      "id": "wishes-greetings",
+      "label": {
+        "en": "Wishes & Greetings",
+        "fr": "Vœux et souhaits",
+        "de": "Wünsche & Grüße"
+      },
+      "targetIds": [
+        "bon-anniversaire",
+        "joyeux-noel",
+        "bonne-annee",
+        "une-fete",
+        "une-invitation"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "un-anniversaire",
+      "term": "anniversaire",
+      "translations": {
+        "en": [
+          "a birthday"
+        ],
+        "de": [
+          "ein Geburtstag"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un anniversaire",
+      "examForms": [
+        "un anniversaire"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ nanivɛʁsɛʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Fêter un anniversaire.",
+        "translation": {
+          "en": "Celebrate a birthday.",
+          "de": "Einen Geburtstag feiern."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-noel",
+      "term": "Noël",
+      "translations": {
+        "en": [
+          "a Christmas"
+        ],
+        "de": [
+          "ein Weihnachten"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un Noël",
+      "examForms": [
+        "un Noël",
+        "un Noel"
+      ],
+      "accentSensitive": [
+        "Noël"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ nɔɛl/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Passer un beau Noël.",
+        "translation": {
+          "en": "Have a nice Christmas.",
+          "de": "Ein schönes Weihnachten verbringen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-nouvel-an",
+      "term": "Nouvel An",
+      "translations": {
+        "en": [
+          "a New Year"
+        ],
+        "de": [
+          "ein Neujahr"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un Nouvel An",
+      "examForms": [
+        "un Nouvel An",
+        "un nouvel an"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ nuvɛl ɑ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Célébrer un Nouvel An.",
+        "translation": {
+          "en": "Celebrate a New Year.",
+          "de": "Ein Neujahr feiern."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-cadeau",
+      "term": "cadeau",
+      "translations": {
+        "en": [
+          "a present",
+          "a gift"
+        ],
+        "de": [
+          "ein Geschenk"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un cadeau",
+      "examForms": [
+        "un cadeau"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ kado/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Offrir un cadeau.",
+        "translation": {
+          "en": "Give a gift.",
+          "de": "Ein Geschenk überreichen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-gateau",
+      "term": "gâteau",
+      "translations": {
+        "en": [
+          "a cake"
+        ],
+        "de": [
+          "ein Kuchen"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un gâteau",
+      "examForms": [
+        "un gâteau",
+        "un gateau"
+      ],
+      "accentSensitive": [
+        "gâteau"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ ɡato/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un gâteau avec des bougies.",
+        "translation": {
+          "en": "A cake with candles.",
+          "de": "Ein Kuchen mit Kerzen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "bon-anniversaire",
+      "term": "bon anniversaire",
+      "translations": {
+        "en": [
+          "happy birthday"
+        ],
+        "de": [
+          "alles Gute zum Geburtstag"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "bon anniversaire",
+      "examForms": [
+        "bon anniversaire"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/bɔ̃ nanivɛʁsɛʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Dire bon anniversaire à un ami.",
+        "translation": {
+          "en": "Say happy birthday to a friend.",
+          "de": "Einem Freund alles Gute zum Geburtstag wünschen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "joyeux-noel",
+      "term": "joyeux Noël",
+      "translations": {
+        "en": [
+          "Merry Christmas"
+        ],
+        "de": [
+          "frohe Weihnachten"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "joyeux Noël",
+      "examForms": [
+        "joyeux Noël",
+        "joyeux Noel"
+      ],
+      "accentSensitive": [
+        "Noël"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/ʒwajø nɔɛl/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Souhaiter un joyeux Noël.",
+        "translation": {
+          "en": "Wish a Merry Christmas.",
+          "de": "Frohe Weihnachten wünschen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "bonne-annee",
+      "term": "bonne année",
+      "translations": {
+        "en": [
+          "Happy New Year"
+        ],
+        "de": [
+          "frohes neues Jahr"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "bonne année",
+      "examForms": [
+        "bonne année",
+        "bonne annee"
+      ],
+      "accentSensitive": [
+        "année"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/bɔn ane/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Souhaiter une bonne année en janvier.",
+        "translation": {
+          "en": "Wish a Happy New Year in January.",
+          "de": "Im Januar ein frohes neues Jahr wünschen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-fete",
+      "term": "fête",
+      "translations": {
+        "en": [
+          "a celebration",
+          "a party"
+        ],
+        "de": [
+          "ein Fest"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une fête",
+      "examForms": [
+        "une fête"
+      ],
+      "accentSensitive": [
+        "fête"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn fɛt/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "C’est une grande fête.",
+        "translation": {
+          "en": "It is a big party.",
+          "de": "Es ist ein großes Fest."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-invitation",
+      "term": "invitation",
+      "translations": {
+        "en": [
+          "an invitation"
+        ],
+        "de": [
+          "eine Einladung"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une invitation",
+      "examForms": [
+        "une invitation"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn ɛ̃vitasjɔ̃/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Envoyer une invitation.",
+        "translation": {
+          "en": "Send an invitation.",
+          "de": "Eine Einladung verschicken."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "un-anniversaire",
+        "un-noel",
+        "un-nouvel-an",
+        "un-cadeau",
+        "un-gateau",
+        "bon-anniversaire",
+        "joyeux-noel",
+        "bonne-annee",
+        "une-fete",
+        "une-invitation"
+      ],
+      "estimatedDurationS": 150
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "un-anniversaire",
+            "un-noel",
+            "un-nouvel-an",
+            "un-cadeau",
+            "un-gateau"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "bon-anniversaire",
+            "joyeux-noel",
+            "bonne-annee",
+            "une-fete",
+            "une-invitation"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

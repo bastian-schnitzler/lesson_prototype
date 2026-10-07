@@ -1,0 +1,581 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-everyday-groceries",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les produits courants",
+  "objective": {
+    "en": "Name twelve everyday grocery items in French with articles.",
+    "fr": "Nommer une douzaine de produits courants en français avec leurs articles.",
+    "de": "Nenne zwölf alltägliche Lebensmittel auf Französisch mit Artikeln."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T14:59:27.723Z",
+    "inputHashes": {
+      "outline": "ce4bbe43429be1649083b62805aa73142421838b835f84e44aead2b1410befb3"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "food_and_drink",
+  "coverageNotes": {
+    "en": "Covers essential dairy, bakery, meat, fish, and staple groceries.",
+    "fr": "Couvre les produits laitiers, la boulangerie, la viande, le poisson et les aliments de base.",
+    "de": "Deckt Milchprodukte, Bäckereiwaren, Fleisch, Fisch und Grundnahrungsmittel ab."
+  },
+  "targetCount": 12,
+  "countRationale": {
+    "en": "Twelve items cover standard grocery shopping staples.",
+    "fr": "Douze éléments couvrent la liste de courses de base.",
+    "de": "Zwölf Begriffe decken den Grundbedarf beim Einkauf ab."
+  },
+  "difficultyBalance": {
+    "en": "8 basic groceries balanced with 4 accented/spelled items (des œufs, un beurre).",
+    "fr": "8 produits simples équilibrés avec 4 mots particuliers (des œufs, un beurre).",
+    "de": "8 einfache Lebensmittel ausgewogen mit 4 speziellen Wörtern."
+  },
+  "prerequisites": [
+    {
+      "en": "Indefinite articles un, une, des.",
+      "fr": "Articles indéfinis un, une, des.",
+      "de": "Unbestimmte Artikel un, une, des."
+    }
+  ],
+  "groups": [
+    {
+      "id": "fresh-staples",
+      "label": {
+        "en": "Fresh & Dairy staples",
+        "fr": "Produits frais et laitiers",
+        "de": "Frische & Milchprodukte"
+      },
+      "targetIds": [
+        "un-pain",
+        "un-lait",
+        "un-beurre",
+        "un-fromage",
+        "des-oeufs",
+        "une-viande"
+      ]
+    },
+    {
+      "id": "pantry-piscine",
+      "label": {
+        "en": "Pantry, fish & basics",
+        "fr": "Épicerie et poissons",
+        "de": "Vorrat & Fisch"
+      },
+      "targetIds": [
+        "un-poisson",
+        "un-riz",
+        "des-pates",
+        "une-huile",
+        "un-sucre",
+        "un-sel"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "un-pain",
+      "term": "pain",
+      "translations": {
+        "en": [
+          "a bread",
+          "a loaf of bread"
+        ],
+        "de": [
+          "ein Brot"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un pain",
+      "examForms": [
+        "un pain"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ pɛ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Acheter un pain frais du matin.",
+        "translation": {
+          "en": "Buy fresh morning bread.",
+          "de": "Ein frisches Brot am Morgen kaufen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-lait",
+      "term": "lait",
+      "translations": {
+        "en": [
+          "a milk carton",
+          "a milk"
+        ],
+        "de": [
+          "eine Milch"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un lait",
+      "examForms": [
+        "un lait"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ lɛ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Acheter un lait végétal.",
+        "translation": {
+          "en": "Buy a plant milk.",
+          "de": "Pflanzenmilch kaufen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-beurre",
+      "term": "beurre",
+      "translations": {
+        "en": [
+          "a butter"
+        ],
+        "de": [
+          "eine Butter"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un beurre",
+      "examForms": [
+        "un beurre"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ bœʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Mettre un beurre doux sur la table.",
+        "translation": {
+          "en": "Put a unsalted butter on table.",
+          "de": "Eine ungesalzene Butter auf den Tisch stellen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-fromage",
+      "term": "fromage",
+      "translations": {
+        "en": [
+          "a cheese"
+        ],
+        "de": [
+          "ein Käse"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un fromage",
+      "examForms": [
+        "un fromage"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ fʁɔmaʒ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "La France a un fromage par jour.",
+        "translation": {
+          "en": "France has a cheese for every day.",
+          "de": "Frankreich hat einen Käse für jeden Tag."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "des-oeufs",
+      "term": "œufs",
+      "translations": {
+        "en": [
+          "some eggs",
+          "eggs"
+        ],
+        "de": [
+          "Eier"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "plural",
+      "teachingForm": "des œufs",
+      "examForms": [
+        "des œufs",
+        "des oeufs"
+      ],
+      "accentSensitive": [
+        "œufs"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/dez ø/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Acheter des œufs au marché.",
+        "translation": {
+          "en": "Buy eggs at the market.",
+          "de": "Eier auf dem Markt kaufen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-viande",
+      "term": "viande",
+      "translations": {
+        "en": [
+          "a meat"
+        ],
+        "de": [
+          "ein Fleisch"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une viande",
+      "examForms": [
+        "une viande"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn vjɑ̃d/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Une viande rouge ou blanche.",
+        "translation": {
+          "en": "A red or white meat.",
+          "de": "Ein rotes oder weißes Fleisch."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-poisson",
+      "term": "poisson",
+      "translations": {
+        "en": [
+          "a fish"
+        ],
+        "de": [
+          "ein Fisch"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un poisson",
+      "examForms": [
+        "un poisson"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ pwasɔ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Manger un poisson frais.",
+        "translation": {
+          "en": "Eat a fresh fish.",
+          "de": "Einen frischen Fisch essen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-riz",
+      "term": "riz",
+      "translations": {
+        "en": [
+          "a rice"
+        ],
+        "de": [
+          "ein Reis"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un riz",
+      "examForms": [
+        "un riz"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ ʁi/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un riz basmati blanc.",
+        "translation": {
+          "en": "A white basmati rice.",
+          "de": "Ein weißer Basmatireis."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "des-pates",
+      "term": "pâtes",
+      "translations": {
+        "en": [
+          "some pasta",
+          "pasta"
+        ],
+        "de": [
+          "Nudeln"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "plural",
+      "teachingForm": "des pâtes",
+      "examForms": [
+        "des pâtes",
+        "des pates"
+      ],
+      "accentSensitive": [
+        "pâtes"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/de pat/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Manger des pâtes avec du fromage.",
+        "translation": {
+          "en": "Eat pasta with cheese.",
+          "de": "Nudeln mit Käse essen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-huile",
+      "term": "huile",
+      "translations": {
+        "en": [
+          "an oil"
+        ],
+        "de": [
+          "ein Öl"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une huile",
+      "examForms": [
+        "une huile"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn uil/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Une huile d’olive de qualité.",
+        "translation": {
+          "en": "A quality olive oil.",
+          "de": "Ein hochwertiges Olivenöl."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-sucre",
+      "term": "sucre",
+      "translations": {
+        "en": [
+          "a sugar"
+        ],
+        "de": [
+          "ein Zucker"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un sucre",
+      "examForms": [
+        "un sucre"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ sykʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Mettre un sucre dans le café.",
+        "translation": {
+          "en": "Put a sugar cube in coffee.",
+          "de": "Einen Würfelzucker in den Kaffee geben."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-sel",
+      "term": "sel",
+      "translations": {
+        "en": [
+          "a salt"
+        ],
+        "de": [
+          "ein Salz"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un sel",
+      "examForms": [
+        "un sel"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ sɛl/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un sel marin fin.",
+        "translation": {
+          "en": "A fine sea salt.",
+          "de": "Ein feines Meersalz."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "un-pain",
+        "un-lait",
+        "un-beurre",
+        "un-fromage",
+        "des-oeufs",
+        "une-viande",
+        "un-poisson",
+        "un-riz",
+        "des-pates",
+        "une-huile",
+        "un-sucre",
+        "un-sel"
+      ],
+      "estimatedDurationS": 180
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "un-pain",
+            "un-lait",
+            "un-beurre",
+            "un-fromage",
+            "des-oeufs",
+            "une-viande"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "un-poisson",
+            "un-riz",
+            "des-pates",
+            "une-huile",
+            "un-sucre",
+            "un-sel"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

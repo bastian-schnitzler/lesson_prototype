@@ -1,0 +1,1447 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-clothes",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les vêtements",
+  "objective": {
+    "en": "Name fifteen clothes and accessories in French with indefinite articles.",
+    "fr": "Nommer une quinzaine de vêtements et d’accessoires en français avec leurs articles indéfinis.",
+    "de": "Nenne fünfzehn Kleidungsstücke und Accessoires auf Französisch mit unbestimmten Artikeln."
+  },
+  "estimatedMinutes": 15,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-content-v1",
+    "generatedAt": "2026-10-07T14:59:29.397Z",
+    "inputHashes": {
+      "outline": "970e99074c568728884cf551fc09fe2f1545ebdcc65dd29a923c5a40ada62750",
+      "brief": "f7838202af56f791f6de537925ffd8a21a73138051d04e13e8aca4665c912286"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "shopping",
+  "steps": [
+    {
+      "id": "introduction",
+      "stage": "introduction",
+      "role": "introduction",
+      "label": {
+        "en": "Introduction",
+        "fr": "Introduction",
+        "de": "Einführung"
+      },
+      "pages": [
+        {
+          "pageId": "intro-clothes",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-clothes",
+              "targetIds": [
+                "un-pantalon",
+                "une-jupe",
+                "une-robe",
+                "une-chemise",
+                "un-pull",
+                "un-manteau",
+                "un-t-shirt",
+                "un-blouson"
+              ],
+              "text": {
+                "en": "Everyday **clothes**:\n\n- `un pantalon`\n- `une jupe`\n- `une robe`\n- `une chemise`\n- `un pull`\n- `un manteau`\n- `un t-shirt`\n- `un blouson`",
+                "fr": "Vêtements **du quotidien** :\n\n- `un pantalon`\n- `une jupe`\n- `une robe`\n- `une chemise`\n- `un pull`\n- `un manteau`\n- `un t-shirt`\n- `un blouson`",
+                "de": "Alltägliche **Kleidung**:\n\n- `un pantalon`\n- `une jupe`\n- `une robe`\n- `une chemise`\n- `un pull`\n- `un manteau`\n- `un t-shirt`\n- `un blouson` "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "intro-shoes-accessories",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-shoes-accessories",
+              "targetIds": [
+                "des-chaussures",
+                "un-chapeau",
+                "une-echarpe",
+                "des-gants",
+                "une-ceinture",
+                "des-chaussettes",
+                "un-sac"
+              ],
+              "text": {
+                "en": "Footwear and **accessories**:\n\n- `des chaussures`\n- `un chapeau`\n- `une écharpe`\n- `des gants`\n- `une ceinture`\n- `des chaussettes`\n- `un sac`",
+                "fr": "Chaussures et **accessoires** :\n\n- `des chaussures`\n- `un chapeau`\n- `une écharpe`\n- `des gants`\n- `une ceinture`\n- `des chaussettes`\n- `un sac`",
+                "de": "Schuhe und **Accessoires**:\n\n- `des chaussures`\n- `un chapeau`\n- `une écharpe`\n- `des gants`\n- `une ceinture`\n- `des chaussettes`\n- `un sac` "
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "cards-clothes",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-clothes",
+              "targetIds": [
+                "un-pantalon",
+                "une-jupe",
+                "une-robe",
+                "une-chemise",
+                "un-pull",
+                "un-manteau",
+                "un-t-shirt",
+                "un-blouson"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "cards-shoes-accessories",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-shoes-accessories",
+              "targetIds": [
+                "des-chaussures",
+                "un-chapeau",
+                "une-echarpe",
+                "des-gants",
+                "une-ceinture",
+                "des-chaussettes",
+                "un-sac"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "match-1",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-2",
+              "pairs": [
+                {
+                  "targetId": "un-pantalon",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un pantalon means a pair of trousers.",
+                    "fr": "un pantalon signifie « a pair of trousers » en anglais.",
+                    "de": "un pantalon bedeutet eine Hose."
+                  }
+                },
+                {
+                  "targetId": "une-jupe",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une jupe means a skirt.",
+                    "fr": "une jupe signifie « a skirt » en anglais.",
+                    "de": "une jupe bedeutet ein Rock."
+                  }
+                },
+                {
+                  "targetId": "une-robe",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une robe means a dress.",
+                    "fr": "une robe signifie « a dress » en anglais.",
+                    "de": "une robe bedeutet ein Kleid."
+                  }
+                },
+                {
+                  "targetId": "une-chemise",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une chemise means a shirt.",
+                    "fr": "une chemise signifie « a shirt » en anglais.",
+                    "de": "une chemise bedeutet ein Hemd."
+                  }
+                },
+                {
+                  "targetId": "un-pull",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un pull means a sweater.",
+                    "fr": "un pull signifie « a sweater » en anglais.",
+                    "de": "un pull bedeutet ein Pullover."
+                  }
+                },
+                {
+                  "targetId": "un-manteau",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un manteau means a coat.",
+                    "fr": "un manteau signifie « a coat » en anglais.",
+                    "de": "un manteau bedeutet ein Mantel."
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-2",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-3",
+              "pairs": [
+                {
+                  "targetId": "un-t-shirt",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un t-shirt means a t-shirt.",
+                    "fr": "un t-shirt signifie « a t-shirt » en anglais.",
+                    "de": "un t-shirt bedeutet ein T-Shirt."
+                  }
+                },
+                {
+                  "targetId": "un-blouson",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un blouson means a jacket.",
+                    "fr": "un blouson signifie « a jacket » en anglais.",
+                    "de": "un blouson bedeutet eine Jacke."
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-3",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-4",
+              "pairs": [
+                {
+                  "targetId": "des-chaussures",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "des chaussures means some shoes.",
+                    "fr": "des chaussures signifie « some shoes » en anglais.",
+                    "de": "des chaussures bedeutet Schuhe."
+                  }
+                },
+                {
+                  "targetId": "un-chapeau",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un chapeau means a hat.",
+                    "fr": "un chapeau signifie « a hat » en anglais.",
+                    "de": "un chapeau bedeutet ein Hut."
+                  }
+                },
+                {
+                  "targetId": "une-echarpe",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une écharpe means a scarf.",
+                    "fr": "une écharpe signifie « a scarf » en anglais.",
+                    "de": "une écharpe bedeutet ein Schal."
+                  }
+                },
+                {
+                  "targetId": "des-gants",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "des gants means some gloves.",
+                    "fr": "des gants signifie « some gloves » en anglais.",
+                    "de": "des gants bedeutet Handschuhe."
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-4",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-5",
+              "pairs": [
+                {
+                  "targetId": "une-ceinture",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une ceinture means a belt.",
+                    "fr": "une ceinture signifie « a belt » en anglais.",
+                    "de": "une ceinture bedeutet ein Gürtel."
+                  }
+                },
+                {
+                  "targetId": "des-chaussettes",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "des chaussettes means some socks.",
+                    "fr": "des chaussettes signifie « some socks » en anglais.",
+                    "de": "des chaussettes bedeutet Socken."
+                  }
+                },
+                {
+                  "targetId": "un-sac",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un sac means a bag.",
+                    "fr": "un sac signifie « a bag » en anglais.",
+                    "de": "un sac bedeutet eine Tasche."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overview",
+      "stage": "overview",
+      "role": "overview",
+      "label": {
+        "en": "Overview",
+        "fr": "Vue d’ensemble",
+        "de": "Übersicht"
+      },
+      "pages": [
+        {
+          "pageId": "overview-page",
+          "estimatedDurationS": 90,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Review all words and their details.",
+            "fr": "Révisez tous les mots et leurs détails.",
+            "de": "Überprüfe alle Wörter und ihre Details."
+          },
+          "items": [
+            {
+              "type": "vocabulary_gender_select",
+              "itemId": "gender-overview",
+              "targetIds": [
+                "un-pantalon",
+                "une-jupe",
+                "une-robe",
+                "une-chemise",
+                "un-pull",
+                "un-manteau",
+                "un-t-shirt",
+                "un-blouson",
+                "des-chaussures",
+                "un-chapeau",
+                "une-echarpe",
+                "des-gants",
+                "une-ceinture",
+                "des-chaussettes",
+                "un-sac"
+              ],
+              "rows": [
+                {
+                  "targetId": "un-pantalon",
+                  "answerExplanation": {
+                    "en": "pantalon is masculine.",
+                    "fr": "pantalon est masculin.",
+                    "de": "pantalon ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "une-jupe",
+                  "answerExplanation": {
+                    "en": "jupe is feminine.",
+                    "fr": "jupe est féminin.",
+                    "de": "jupe ist feminin."
+                  }
+                },
+                {
+                  "targetId": "une-robe",
+                  "answerExplanation": {
+                    "en": "robe is feminine.",
+                    "fr": "robe est féminin.",
+                    "de": "robe ist feminin."
+                  }
+                },
+                {
+                  "targetId": "une-chemise",
+                  "answerExplanation": {
+                    "en": "chemise is feminine.",
+                    "fr": "chemise est féminin.",
+                    "de": "chemise ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-pull",
+                  "answerExplanation": {
+                    "en": "pull is masculine.",
+                    "fr": "pull est masculin.",
+                    "de": "pull ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-manteau",
+                  "answerExplanation": {
+                    "en": "manteau is masculine.",
+                    "fr": "manteau est masculin.",
+                    "de": "manteau ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-t-shirt",
+                  "answerExplanation": {
+                    "en": "t-shirt is masculine.",
+                    "fr": "t-shirt est masculin.",
+                    "de": "t-shirt ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-blouson",
+                  "answerExplanation": {
+                    "en": "blouson is masculine.",
+                    "fr": "blouson est masculin.",
+                    "de": "blouson ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "des-chaussures",
+                  "answerExplanation": {
+                    "en": "chaussures is feminine.",
+                    "fr": "chaussures est féminin.",
+                    "de": "chaussures ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-chapeau",
+                  "answerExplanation": {
+                    "en": "chapeau is masculine.",
+                    "fr": "chapeau est masculin.",
+                    "de": "chapeau ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "une-echarpe",
+                  "answerExplanation": {
+                    "en": "écharpe is feminine.",
+                    "fr": "écharpe est féminin.",
+                    "de": "écharpe ist feminin."
+                  }
+                },
+                {
+                  "targetId": "des-gants",
+                  "answerExplanation": {
+                    "en": "gants is masculine.",
+                    "fr": "gants est masculin.",
+                    "de": "gants ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "une-ceinture",
+                  "answerExplanation": {
+                    "en": "ceinture is feminine.",
+                    "fr": "ceinture est féminin.",
+                    "de": "ceinture ist feminin."
+                  }
+                },
+                {
+                  "targetId": "des-chaussettes",
+                  "answerExplanation": {
+                    "en": "chaussettes is feminine.",
+                    "fr": "chaussettes est féminin.",
+                    "de": "chaussettes ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-sac",
+                  "answerExplanation": {
+                    "en": "sac is masculine.",
+                    "fr": "sac est masculin.",
+                    "de": "sac ist maskulin."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "stage": "practice",
+      "role": "exercise",
+      "label": {
+        "en": "Practice",
+        "fr": "Entraînement",
+        "de": "Übung"
+      },
+      "pages": [
+        {
+          "pageId": "gap-un-pantalon",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-pantalon",
+              "targetId": "un-pantalon",
+              "before": "Porter un",
+              "after": " noir.",
+              "referenceTargetIds": [
+                "un-pantalon",
+                "une-jupe",
+                "une-robe",
+                "une-chemise"
+              ],
+              "accepted": {
+                "answers": [
+                  "pantalon"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is pantalon.",
+                "fr": "Le mot manquant est pantalon.",
+                "de": "Das fehlende Wort ist pantalon."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-jupe",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-jupe",
+              "targetId": "une-jupe",
+              "before": "Porter une",
+              "after": " pliée.",
+              "referenceTargetIds": [
+                "une-jupe",
+                "un-pantalon",
+                "une-robe",
+                "une-chemise"
+              ],
+              "accepted": {
+                "answers": [
+                  "jupe"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is jupe.",
+                "fr": "Le mot manquant est jupe.",
+                "de": "Das fehlende Wort ist jupe."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-robe",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-robe",
+              "targetId": "une-robe",
+              "before": "Acheter une",
+              "after": " rouge.",
+              "referenceTargetIds": [
+                "une-robe",
+                "un-pantalon",
+                "une-jupe",
+                "une-chemise"
+              ],
+              "accepted": {
+                "answers": [
+                  "robe"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is robe.",
+                "fr": "Le mot manquant est robe.",
+                "de": "Das fehlende Wort ist robe."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-chemise",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-chemise",
+              "targetId": "une-chemise",
+              "before": "Boutonner une",
+              "after": " propre.",
+              "referenceTargetIds": [
+                "une-chemise",
+                "un-pantalon",
+                "une-jupe",
+                "une-robe"
+              ],
+              "accepted": {
+                "answers": [
+                  "chemise"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is chemise.",
+                "fr": "Le mot manquant est chemise.",
+                "de": "Das fehlende Wort ist chemise."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-pull",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-pull",
+              "targetId": "un-pull",
+              "before": "Mettre un",
+              "after": " chaud.",
+              "referenceTargetIds": [
+                "un-pull",
+                "un-pantalon",
+                "une-jupe",
+                "une-robe"
+              ],
+              "accepted": {
+                "answers": [
+                  "pull"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is pull.",
+                "fr": "Le mot manquant est pull.",
+                "de": "Das fehlende Wort ist pull."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-manteau",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-manteau",
+              "targetId": "un-manteau",
+              "before": "Mettre un",
+              "after": " noir.",
+              "referenceTargetIds": [
+                "un-manteau",
+                "un-pantalon",
+                "une-jupe",
+                "une-robe"
+              ],
+              "accepted": {
+                "answers": [
+                  "manteau"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is manteau.",
+                "fr": "Le mot manquant est manteau.",
+                "de": "Das fehlende Wort ist manteau."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-t-shirt",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-t-shirt",
+              "targetId": "un-t-shirt",
+              "before": "Porter un",
+              "after": " léger.",
+              "referenceTargetIds": [
+                "un-t-shirt",
+                "un-pantalon",
+                "une-jupe",
+                "une-robe"
+              ],
+              "accepted": {
+                "answers": [
+                  "t-shirt"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is t-shirt.",
+                "fr": "Le mot manquant est t-shirt.",
+                "de": "Das fehlende Wort ist t-shirt."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-blouson",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-blouson",
+              "targetId": "un-blouson",
+              "before": "Mettre un",
+              "after": " chaud.",
+              "referenceTargetIds": [
+                "un-blouson",
+                "un-pantalon",
+                "une-jupe",
+                "une-robe"
+              ],
+              "accepted": {
+                "answers": [
+                  "blouson"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is blouson.",
+                "fr": "Le mot manquant est blouson.",
+                "de": "Das fehlende Wort ist blouson."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-des-chaussures",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-des-chaussures",
+              "targetId": "des-chaussures",
+              "before": "Mettre des",
+              "after": " neuves.",
+              "referenceTargetIds": [
+                "des-chaussures",
+                "un-pantalon",
+                "une-jupe",
+                "une-robe"
+              ],
+              "accepted": {
+                "answers": [
+                  "chaussures"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is chaussures.",
+                "fr": "Le mot manquant est chaussures.",
+                "de": "Das fehlende Wort ist chaussures."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-chapeau",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-chapeau",
+              "targetId": "un-chapeau",
+              "before": "Mettre un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-chapeau",
+                "un-pantalon",
+                "une-jupe",
+                "une-robe"
+              ],
+              "accepted": {
+                "answers": [
+                  "chapeau"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is chapeau.",
+                "fr": "Le mot manquant est chapeau.",
+                "de": "Das fehlende Wort ist chapeau."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-echarpe",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-echarpe",
+              "targetId": "une-echarpe",
+              "before": "Mettre une",
+              "after": " chaude.",
+              "referenceTargetIds": [
+                "une-echarpe",
+                "un-pantalon",
+                "une-jupe",
+                "une-robe"
+              ],
+              "accepted": {
+                "answers": [
+                  "écharpe"
+                ],
+                "accentSensitive": [
+                  "écharpe"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is écharpe.",
+                "fr": "Le mot manquant est écharpe.",
+                "de": "Das fehlende Wort ist écharpe."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-des-gants",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-des-gants",
+              "targetId": "des-gants",
+              "before": "Mettre des",
+              "after": " noirs.",
+              "referenceTargetIds": [
+                "des-gants",
+                "un-pantalon",
+                "une-jupe",
+                "une-robe"
+              ],
+              "accepted": {
+                "answers": [
+                  "gants"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is gants.",
+                "fr": "Le mot manquant est gants.",
+                "de": "Das fehlende Wort ist gants."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-ceinture",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-ceinture",
+              "targetId": "une-ceinture",
+              "before": "Mettre une",
+              "after": " noire.",
+              "referenceTargetIds": [
+                "une-ceinture",
+                "un-pantalon",
+                "une-jupe",
+                "une-robe"
+              ],
+              "accepted": {
+                "answers": [
+                  "ceinture"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is ceinture.",
+                "fr": "Le mot manquant est ceinture.",
+                "de": "Das fehlende Wort ist ceinture."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-des-chaussettes",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-des-chaussettes",
+              "targetId": "des-chaussettes",
+              "before": "Mettre des",
+              "after": " blanches.",
+              "referenceTargetIds": [
+                "des-chaussettes",
+                "un-pantalon",
+                "une-jupe",
+                "une-robe"
+              ],
+              "accepted": {
+                "answers": [
+                  "chaussettes"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is chaussettes.",
+                "fr": "Le mot manquant est chaussettes.",
+                "de": "Das fehlende Wort ist chaussettes."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-sac",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-sac",
+              "targetId": "un-sac",
+              "before": "Porter un",
+              "after": " à main.",
+              "referenceTargetIds": [
+                "un-sac",
+                "un-pantalon",
+                "une-jupe",
+                "une-robe"
+              ],
+              "accepted": {
+                "answers": [
+                  "sac"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is sac.",
+                "fr": "Le mot manquant est sac.",
+                "de": "Das fehlende Wort ist sac."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Exam",
+        "fr": "Examen",
+        "de": "Prüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-pantalon",
+              "targetId": "un-pantalon",
+              "prompt": {
+                "en": "a pair of trousers",
+                "de": "eine Hose"
+              },
+              "accepted": {
+                "answers": [
+                  "un pantalon"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a pair of trousers in French is un pantalon.",
+                "fr": "a pair of trousers en français est un pantalon.",
+                "de": "eine Hose auf Französisch ist un pantalon."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-jupe",
+              "targetId": "une-jupe",
+              "prompt": {
+                "en": "a skirt",
+                "de": "ein Rock"
+              },
+              "accepted": {
+                "answers": [
+                  "une jupe"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a skirt in French is une jupe.",
+                "fr": "a skirt en français est une jupe.",
+                "de": "ein Rock auf Französisch ist une jupe."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-robe",
+              "targetId": "une-robe",
+              "prompt": {
+                "en": "a dress",
+                "de": "ein Kleid"
+              },
+              "accepted": {
+                "answers": [
+                  "une robe"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a dress in French is une robe.",
+                "fr": "a dress en français est une robe.",
+                "de": "ein Kleid auf Französisch ist une robe."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-chemise",
+              "targetId": "une-chemise",
+              "prompt": {
+                "en": "a shirt",
+                "de": "ein Hemd"
+              },
+              "accepted": {
+                "answers": [
+                  "une chemise"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a shirt in French is une chemise.",
+                "fr": "a shirt en français est une chemise.",
+                "de": "ein Hemd auf Französisch ist une chemise."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-pull",
+              "targetId": "un-pull",
+              "prompt": {
+                "en": "a sweater",
+                "de": "ein Pullover"
+              },
+              "accepted": {
+                "answers": [
+                  "un pull"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a sweater in French is un pull.",
+                "fr": "a sweater en français est un pull.",
+                "de": "ein Pullover auf Französisch ist un pull."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-manteau",
+              "targetId": "un-manteau",
+              "prompt": {
+                "en": "a coat",
+                "de": "ein Mantel"
+              },
+              "accepted": {
+                "answers": [
+                  "un manteau"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a coat in French is un manteau.",
+                "fr": "a coat en français est un manteau.",
+                "de": "ein Mantel auf Französisch ist un manteau."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-t-shirt",
+              "targetId": "un-t-shirt",
+              "prompt": {
+                "en": "a t-shirt",
+                "de": "ein T-Shirt"
+              },
+              "accepted": {
+                "answers": [
+                  "un t-shirt",
+                  "un tshirt"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a t-shirt in French is un t-shirt.",
+                "fr": "a t-shirt en français est un t-shirt.",
+                "de": "ein T-Shirt auf Französisch ist un t-shirt."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-blouson",
+              "targetId": "un-blouson",
+              "prompt": {
+                "en": "a jacket",
+                "de": "eine Jacke"
+              },
+              "accepted": {
+                "answers": [
+                  "un blouson"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a jacket in French is un blouson.",
+                "fr": "a jacket en français est un blouson.",
+                "de": "eine Jacke auf Französisch ist un blouson."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-page-2",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-des-chaussures",
+              "targetId": "des-chaussures",
+              "prompt": {
+                "en": "some shoes",
+                "de": "Schuhe"
+              },
+              "accepted": {
+                "answers": [
+                  "des chaussures"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "some shoes in French is des chaussures.",
+                "fr": "some shoes en français est des chaussures.",
+                "de": "Schuhe auf Französisch ist des chaussures."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-chapeau",
+              "targetId": "un-chapeau",
+              "prompt": {
+                "en": "a hat",
+                "de": "ein Hut"
+              },
+              "accepted": {
+                "answers": [
+                  "un chapeau"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a hat in French is un chapeau.",
+                "fr": "a hat en français est un chapeau.",
+                "de": "ein Hut auf Französisch ist un chapeau."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-echarpe",
+              "targetId": "une-echarpe",
+              "prompt": {
+                "en": "a scarf",
+                "de": "ein Schal"
+              },
+              "accepted": {
+                "answers": [
+                  "une écharpe"
+                ],
+                "accentSensitive": [
+                  "écharpe"
+                ]
+              },
+              "answerExplanation": {
+                "en": "a scarf in French is une écharpe.",
+                "fr": "a scarf en français est une écharpe.",
+                "de": "ein Schal auf Französisch ist une écharpe."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-des-gants",
+              "targetId": "des-gants",
+              "prompt": {
+                "en": "some gloves",
+                "de": "Handschuhe"
+              },
+              "accepted": {
+                "answers": [
+                  "des gants"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "some gloves in French is des gants.",
+                "fr": "some gloves en français est des gants.",
+                "de": "Handschuhe auf Französisch ist des gants."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-ceinture",
+              "targetId": "une-ceinture",
+              "prompt": {
+                "en": "a belt",
+                "de": "ein Gürtel"
+              },
+              "accepted": {
+                "answers": [
+                  "une ceinture"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a belt in French is une ceinture.",
+                "fr": "a belt en français est une ceinture.",
+                "de": "ein Gürtel auf Französisch ist une ceinture."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-des-chaussettes",
+              "targetId": "des-chaussettes",
+              "prompt": {
+                "en": "some socks",
+                "de": "Socken"
+              },
+              "accepted": {
+                "answers": [
+                  "des chaussettes"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "some socks in French is des chaussettes.",
+                "fr": "some socks en français est des chaussettes.",
+                "de": "Socken auf Französisch ist des chaussettes."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-sac",
+              "targetId": "un-sac",
+              "prompt": {
+                "en": "a bag",
+                "de": "eine Tasche"
+              },
+              "accepted": {
+                "answers": [
+                  "un sac"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a bag in French is un sac.",
+                "fr": "a bag en français est un sac.",
+                "de": "eine Tasche auf Französisch ist un sac."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,947 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-telling-the-time",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Demander et dire l’heure",
+  "objective": {
+    "en": "Ask for and tell the time in French including quarter past, half past, and quarter to.",
+    "fr": "Demander et dire l’heure en français, y compris les fractions d’heure.",
+    "de": "Frage nach der Uhrzeit und nenne sie auf Französisch, einschließlich Viertel vor/nach und halb."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-content-v1",
+    "generatedAt": "2026-10-07T14:59:24.394Z",
+    "inputHashes": {
+      "outline": "59d61671d4d1edd5f64841f2274d80ef96da6ee22eb5edc38778f559cb568d36",
+      "brief": "99bcd8e89425ad45c8c18c4215a76093cab414f6a60939664140b3468e5fc85a"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "daily_life",
+  "steps": [
+    {
+      "id": "introduction",
+      "stage": "introduction",
+      "role": "introduction",
+      "label": {
+        "en": "Introduction",
+        "fr": "Introduction",
+        "de": "Einführung"
+      },
+      "pages": [
+        {
+          "pageId": "intro-full-hours",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-full-hours",
+              "targetIds": [
+                "il-est-quelle-heure",
+                "il-est-huit-heures",
+                "midi",
+                "minuit",
+                "il-est-une-heure"
+              ],
+              "text": {
+                "en": "Basic question and full hours:\n\n- `Il est quelle heure ?`\n- `Il est huit heures.`\n- `midi`\n- `minuit`\n- `Il est une heure.`",
+                "fr": "Question de base et heures piles :\n\n- `Il est quelle heure ?`\n- `Il est huit heures.`\n- `midi`\n- `minuit`\n- `Il est une heure.`",
+                "de": "Grundlegende Frage und volle Stunden:\n\n- `Il est quelle heure ?`\n- `Il est huit heures.`\n- `midi`\n- `minuit`\n- `Il est une heure.` "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "intro-minutes-fractions",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-minutes-fractions",
+              "targetIds": [
+                "et-quart",
+                "et-demie",
+                "moins-le-quart",
+                "et-demi",
+                "moins-dix"
+              ],
+              "text": {
+                "en": "Expressing minutes and fractions:\n\n- `et quart` (quarter past)\n- `et demie` (half past)\n- `moins le quart` (quarter to)\n- `et demi` (with midi/minuit)\n- `moins dix` (ten to)",
+                "fr": "Exprimer les minutes et fractions :\n\n- `et quart`\n- `et demie`\n- `moins le quart`\n- `et demi`\n- `moins dix`",
+                "de": "Minuten und Viertel ausdrücken:\n\n- `et quart`\n- `et demie`\n- `moins le quart`\n- `et demi`\n- `moins dix` "
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "cards-full-hours",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-full-hours",
+              "targetIds": [
+                "il-est-quelle-heure",
+                "il-est-huit-heures",
+                "midi",
+                "minuit",
+                "il-est-une-heure"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "cards-minutes-fractions",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-minutes-fractions",
+              "targetIds": [
+                "et-quart",
+                "et-demie",
+                "moins-le-quart",
+                "et-demi",
+                "moins-dix"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "match-1",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-2",
+              "pairs": [
+                {
+                  "targetId": "il-est-quelle-heure",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "Il est quelle heure ? means What time is it?.",
+                    "fr": "Il est quelle heure ? signifie « What time is it? » en anglais.",
+                    "de": "Il est quelle heure ? bedeutet Wie viel Uhr ist es?."
+                  }
+                },
+                {
+                  "targetId": "il-est-huit-heures",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "Il est huit heures means It is eight o’clock.",
+                    "fr": "Il est huit heures signifie « It is eight o’clock » en anglais.",
+                    "de": "Il est huit heures bedeutet Es ist acht Uhr."
+                  }
+                },
+                {
+                  "targetId": "midi",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "midi means noon.",
+                    "fr": "midi signifie « noon » en anglais.",
+                    "de": "midi bedeutet Mittag."
+                  }
+                },
+                {
+                  "targetId": "minuit",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "minuit means midnight.",
+                    "fr": "minuit signifie « midnight » en anglais.",
+                    "de": "minuit bedeutet Mitternacht."
+                  }
+                },
+                {
+                  "targetId": "il-est-une-heure",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "Il est une heure means It is one o’clock.",
+                    "fr": "Il est une heure signifie « It is one o’clock » en anglais.",
+                    "de": "Il est une heure bedeutet Es ist ein Uhr."
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-2",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-3",
+              "pairs": [
+                {
+                  "targetId": "et-quart",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "et quart means quarter past.",
+                    "fr": "et quart signifie « quarter past » en anglais.",
+                    "de": "et quart bedeutet Viertel nach."
+                  }
+                },
+                {
+                  "targetId": "et-demie",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "et demie means half past.",
+                    "fr": "et demie signifie « half past » en anglais.",
+                    "de": "et demie bedeutet halb."
+                  }
+                },
+                {
+                  "targetId": "moins-le-quart",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "moins le quart means quarter to.",
+                    "fr": "moins le quart signifie « quarter to » en anglais.",
+                    "de": "moins le quart bedeutet Viertel vor."
+                  }
+                },
+                {
+                  "targetId": "et-demi",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "et demi means half past (with midi/minuit).",
+                    "fr": "et demi signifie « half past (with midi/minuit) » en anglais.",
+                    "de": "et demi bedeutet halb (mit midi/minuit)."
+                  }
+                },
+                {
+                  "targetId": "moins-dix",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "moins dix means ten to.",
+                    "fr": "moins dix signifie « ten to » en anglais.",
+                    "de": "moins dix bedeutet zehn vor."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overview",
+      "stage": "overview",
+      "role": "overview",
+      "label": {
+        "en": "Overview",
+        "fr": "Vue d’ensemble",
+        "de": "Übersicht"
+      },
+      "pages": [
+        {
+          "pageId": "overview-page",
+          "estimatedDurationS": 90,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Review all words and their details.",
+            "fr": "Révisez tous les mots et leurs détails.",
+            "de": "Überprüfe alle Wörter und ihre Details."
+          },
+          "items": [
+            {
+              "type": "vocabulary_overview",
+              "itemId": "vocab-overview",
+              "targetIds": [
+                "il-est-quelle-heure",
+                "il-est-huit-heures",
+                "midi",
+                "minuit",
+                "il-est-une-heure",
+                "et-quart",
+                "et-demie",
+                "moins-le-quart",
+                "et-demi",
+                "moins-dix"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "stage": "practice",
+      "role": "exercise",
+      "label": {
+        "en": "Practice",
+        "fr": "Entraînement",
+        "de": "Übung"
+      },
+      "pages": [
+        {
+          "pageId": "gap-il-est-quelle-heure",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-il-est-quelle-heure",
+              "targetId": "il-est-quelle-heure",
+              "before": "Pardon,",
+              "after": " ?",
+              "referenceTargetIds": [
+                "il-est-quelle-heure",
+                "il-est-huit-heures",
+                "midi",
+                "minuit"
+              ],
+              "accepted": {
+                "answers": [
+                  "il est quelle heure"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is il est quelle heure.",
+                "fr": "Le mot manquant est il est quelle heure.",
+                "de": "Das fehlende Wort ist il est quelle heure."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-il-est-huit-heures",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-il-est-huit-heures",
+              "targetId": "il-est-huit-heures",
+              "before": "Le réveil sonne,",
+              "after": ".",
+              "referenceTargetIds": [
+                "il-est-huit-heures",
+                "il-est-quelle-heure",
+                "midi",
+                "minuit"
+              ],
+              "accepted": {
+                "answers": [
+                  "il est huit heures"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is il est huit heures.",
+                "fr": "Le mot manquant est il est huit heures.",
+                "de": "Das fehlende Wort ist il est huit heures."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-midi",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-midi",
+              "targetId": "midi",
+              "before": "Il est douze heures, c’est",
+              "after": ".",
+              "referenceTargetIds": [
+                "midi",
+                "il-est-quelle-heure",
+                "il-est-huit-heures",
+                "minuit"
+              ],
+              "accepted": {
+                "answers": [
+                  "midi"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is midi.",
+                "fr": "Le mot manquant est midi.",
+                "de": "Das fehlende Wort ist midi."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-minuit",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-minuit",
+              "targetId": "minuit",
+              "before": "Il est zéro heure, c’est",
+              "after": ".",
+              "referenceTargetIds": [
+                "minuit",
+                "il-est-quelle-heure",
+                "il-est-huit-heures",
+                "midi"
+              ],
+              "accepted": {
+                "answers": [
+                  "minuit"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is minuit.",
+                "fr": "Le mot manquant est minuit.",
+                "de": "Das fehlende Wort ist minuit."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-il-est-une-heure",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-il-est-une-heure",
+              "targetId": "il-est-une-heure",
+              "before": "C’est l’après-midi,",
+              "after": ".",
+              "referenceTargetIds": [
+                "il-est-une-heure",
+                "il-est-quelle-heure",
+                "il-est-huit-heures",
+                "midi"
+              ],
+              "accepted": {
+                "answers": [
+                  "il est une heure"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is il est une heure.",
+                "fr": "Le mot manquant est il est une heure.",
+                "de": "Das fehlende Wort ist il est une heure."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-et-quart",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-et-quart",
+              "targetId": "et-quart",
+              "before": "Il est huit heures",
+              "after": ".",
+              "referenceTargetIds": [
+                "et-quart",
+                "il-est-quelle-heure",
+                "il-est-huit-heures",
+                "midi"
+              ],
+              "accepted": {
+                "answers": [
+                  "et quart"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is et quart.",
+                "fr": "Le mot manquant est et quart.",
+                "de": "Das fehlende Wort ist et quart."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-et-demie",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-et-demie",
+              "targetId": "et-demie",
+              "before": "Il est dix heures",
+              "after": ".",
+              "referenceTargetIds": [
+                "et-demie",
+                "il-est-quelle-heure",
+                "il-est-huit-heures",
+                "midi"
+              ],
+              "accepted": {
+                "answers": [
+                  "et demie"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is et demie.",
+                "fr": "Le mot manquant est et demie.",
+                "de": "Das fehlende Wort ist et demie."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-moins-le-quart",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-moins-le-quart",
+              "targetId": "moins-le-quart",
+              "before": "Il est neuf heures",
+              "after": ".",
+              "referenceTargetIds": [
+                "moins-le-quart",
+                "il-est-quelle-heure",
+                "il-est-huit-heures",
+                "midi"
+              ],
+              "accepted": {
+                "answers": [
+                  "moins le quart"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is moins le quart.",
+                "fr": "Le mot manquant est moins le quart.",
+                "de": "Das fehlende Wort ist moins le quart."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-et-demi",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-et-demi",
+              "targetId": "et-demi",
+              "before": "Il est midi",
+              "after": ".",
+              "referenceTargetIds": [
+                "et-demi",
+                "il-est-quelle-heure",
+                "il-est-huit-heures",
+                "midi"
+              ],
+              "accepted": {
+                "answers": [
+                  "et demi"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is et demi.",
+                "fr": "Le mot manquant est et demi.",
+                "de": "Das fehlende Wort ist et demi."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-moins-dix",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-moins-dix",
+              "targetId": "moins-dix",
+              "before": "Il est sept heures",
+              "after": ".",
+              "referenceTargetIds": [
+                "moins-dix",
+                "il-est-quelle-heure",
+                "il-est-huit-heures",
+                "midi"
+              ],
+              "accepted": {
+                "answers": [
+                  "moins dix"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is moins dix.",
+                "fr": "Le mot manquant est moins dix.",
+                "de": "Das fehlende Wort ist moins dix."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Exam",
+        "fr": "Examen",
+        "de": "Prüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-il-est-quelle-heure",
+              "targetId": "il-est-quelle-heure",
+              "prompt": {
+                "en": "What time is it?",
+                "de": "Wie viel Uhr ist es?"
+              },
+              "accepted": {
+                "answers": [
+                  "Il est quelle heure ?",
+                  "il est quelle heure"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "What time is it? in French is Il est quelle heure ?.",
+                "fr": "What time is it? en français est Il est quelle heure ?.",
+                "de": "Wie viel Uhr ist es? auf Französisch ist Il est quelle heure ?."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-il-est-huit-heures",
+              "targetId": "il-est-huit-heures",
+              "prompt": {
+                "en": "It is eight o’clock",
+                "de": "Es ist acht Uhr"
+              },
+              "accepted": {
+                "answers": [
+                  "Il est huit heures",
+                  "il est huit heures"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "It is eight o’clock in French is Il est huit heures.",
+                "fr": "It is eight o’clock en français est Il est huit heures.",
+                "de": "Es ist acht Uhr auf Französisch ist Il est huit heures."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-midi",
+              "targetId": "midi",
+              "prompt": {
+                "en": "noon",
+                "de": "Mittag"
+              },
+              "accepted": {
+                "answers": [
+                  "midi"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "noon in French is midi.",
+                "fr": "noon en français est midi.",
+                "de": "Mittag auf Französisch ist midi."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-minuit",
+              "targetId": "minuit",
+              "prompt": {
+                "en": "midnight",
+                "de": "Mitternacht"
+              },
+              "accepted": {
+                "answers": [
+                  "minuit"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "midnight in French is minuit.",
+                "fr": "midnight en français est minuit.",
+                "de": "Mitternacht auf Französisch ist minuit."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-il-est-une-heure",
+              "targetId": "il-est-une-heure",
+              "prompt": {
+                "en": "It is one o’clock",
+                "de": "Es ist ein Uhr"
+              },
+              "accepted": {
+                "answers": [
+                  "Il est une heure",
+                  "il est une heure"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "It is one o’clock in French is Il est une heure.",
+                "fr": "It is one o’clock en français est Il est une heure.",
+                "de": "Es ist ein Uhr auf Französisch ist Il est une heure."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-page-2",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-et-quart",
+              "targetId": "et-quart",
+              "prompt": {
+                "en": "quarter past",
+                "de": "Viertel nach"
+              },
+              "accepted": {
+                "answers": [
+                  "et quart"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "quarter past in French is et quart.",
+                "fr": "quarter past en français est et quart.",
+                "de": "Viertel nach auf Französisch ist et quart."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-et-demie",
+              "targetId": "et-demie",
+              "prompt": {
+                "en": "half past",
+                "de": "halb"
+              },
+              "accepted": {
+                "answers": [
+                  "et demie"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "half past in French is et demie.",
+                "fr": "half past en français est et demie.",
+                "de": "halb auf Französisch ist et demie."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-moins-le-quart",
+              "targetId": "moins-le-quart",
+              "prompt": {
+                "en": "quarter to",
+                "de": "Viertel vor"
+              },
+              "accepted": {
+                "answers": [
+                  "moins le quart"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "quarter to in French is moins le quart.",
+                "fr": "quarter to en français est moins le quart.",
+                "de": "Viertel vor auf Französisch ist moins le quart."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-et-demi",
+              "targetId": "et-demi",
+              "prompt": {
+                "en": "half past (with midi/minuit)",
+                "de": "halb (mit midi/minuit)"
+              },
+              "accepted": {
+                "answers": [
+                  "et demi"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "half past (with midi/minuit) in French is et demi.",
+                "fr": "half past (with midi/minuit) en français est et demi.",
+                "de": "halb (mit midi/minuit) auf Französisch ist et demi."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-moins-dix",
+              "targetId": "moins-dix",
+              "prompt": {
+                "en": "ten to",
+                "de": "zehn vor"
+              },
+              "accepted": {
+                "answers": [
+                  "moins dix"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "ten to in French is moins dix.",
+                "fr": "ten to en français est moins dix.",
+                "de": "zehn vor auf Französisch ist moins dix."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

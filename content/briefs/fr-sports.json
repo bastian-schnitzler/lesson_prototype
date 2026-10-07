@@ -1,0 +1,504 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-sports",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les sports et leurs lieux",
+  "objective": {
+    "en": "Name ten sports and the places where they are practiced in French with indefinite articles.",
+    "fr": "Nommer une dizaine de sports et les lieux où on les pratique en français avec leurs articles indéfinis.",
+    "de": "Nenne zehn Sportarten und die Orte, an denen man sie ausübt, auf Französisch mit unbestimmten Artikeln."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T14:59:26.044Z",
+    "inputHashes": {
+      "outline": "e3df2c2b3fbfc214814dbb07284eeed183e19db4cb253d16949f8a2c30912aee"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "free_time",
+  "coverageNotes": {
+    "en": "Covers main sports names and key venues (un stade, une piscine).",
+    "fr": "Couvre les sports principaux et les lieux de pratique (un stade, une piscine).",
+    "de": "Deckt wichtige Sportarten und Austragungsorte ab."
+  },
+  "targetCount": 10,
+  "countRationale": {
+    "en": "Ten items provide a strong foundation for sports and venues.",
+    "fr": "Dix éléments offrent une bonne base sur le sport.",
+    "de": "Zehn Begriffe bieten eine gute Grundlage für Sportthemen."
+  },
+  "difficultyBalance": {
+    "en": "Core popular sports balanced with venues like un stade and une piscine.",
+    "fr": "Sports populaires équilibrés avec les lieux de pratique.",
+    "de": "Beliebte Sportarten ausgewogen mit Sportstätten."
+  },
+  "prerequisites": [
+    {
+      "en": "Indefinite articles un, une.",
+      "fr": "Articles indéfinis un, une.",
+      "de": "Unbestimmte Artikel un, une."
+    }
+  ],
+  "groups": [
+    {
+      "id": "sports-list",
+      "label": {
+        "en": "Sports names",
+        "fr": "Nom des sports",
+        "de": "Sportarten"
+      },
+      "targetIds": [
+        "un-football",
+        "un-tennis",
+        "une-natation",
+        "un-velo",
+        "un-ski",
+        "un-basket-ball"
+      ]
+    },
+    {
+      "id": "sports-venues",
+      "label": {
+        "en": "Sports venues & activities",
+        "fr": "Lieux et activités",
+        "de": "Sportstätten & Aktivitäten"
+      },
+      "targetIds": [
+        "un-stade",
+        "une-piscine",
+        "une-gymnastique",
+        "une-course-a-pied"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "un-football",
+      "term": "football",
+      "translations": {
+        "en": [
+          "a soccer game",
+          "a football match"
+        ],
+        "de": [
+          "ein Fußballspiel"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un football",
+      "examForms": [
+        "un football"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ futbɔl/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il regarde un football à la télévision.",
+        "translation": {
+          "en": "He watches a soccer match on TV.",
+          "de": "Er schaut ein Fußballspiel im Fernsehen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-tennis",
+      "term": "tennis",
+      "translations": {
+        "en": [
+          "a tennis match"
+        ],
+        "de": [
+          "ein Tennisspiel"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un tennis",
+      "examForms": [
+        "un tennis"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ tɛnis/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Elle regarde un tennis intense.",
+        "translation": {
+          "en": "She watches an intense tennis match.",
+          "de": "Sie sieht ein intensives Tennisspiel."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-natation",
+      "term": "natation",
+      "translations": {
+        "en": [
+          "a swimming session"
+        ],
+        "de": [
+          "ein Schwimmtraining"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une natation",
+      "examForms": [
+        "une natation"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn natasjɔ̃/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Une natation régulière est bonne pour le dos.",
+        "translation": {
+          "en": "Regular swimming is good for the back.",
+          "de": "Regelmäßiges Schwimmen ist gut für den Rücken."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-velo",
+      "term": "vélo",
+      "translations": {
+        "en": [
+          "a bike",
+          "cycling"
+        ],
+        "de": [
+          "ein Fahrrad"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un vélo",
+      "examForms": [
+        "un vélo"
+      ],
+      "accentSensitive": [
+        "vélo"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ velo/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il achète un vélo neuf.",
+        "translation": {
+          "en": "He buys a new bike.",
+          "de": "Er kauft ein neues Fahrrad."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-ski",
+      "term": "ski",
+      "translations": {
+        "en": [
+          "a ski"
+        ],
+        "de": [
+          "ein Ski"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un ski",
+      "examForms": [
+        "un ski"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ ski/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il a perdu un ski dans la neige.",
+        "translation": {
+          "en": "He lost a ski in the snow.",
+          "de": "Er hat einen Ski im Schnee verloren."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-basket-ball",
+      "term": "basket-ball",
+      "translations": {
+        "en": [
+          "a basketball game"
+        ],
+        "de": [
+          "ein Basketballspiel"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un basket-ball",
+      "examForms": [
+        "un basket-ball"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ baskɛtbol/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il joue un basket-ball passionnant.",
+        "translation": {
+          "en": "He plays an exciting basketball game.",
+          "de": "Er spielt ein aufregendes Basketballspiel."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-stade",
+      "term": "stade",
+      "translations": {
+        "en": [
+          "a stadium"
+        ],
+        "de": [
+          "ein Stadion"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un stade",
+      "examForms": [
+        "un stade"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ stad/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "On construit un grand stade.",
+        "translation": {
+          "en": "They are building a large stadium.",
+          "de": "Sie bauen ein großes Stadion."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-piscine",
+      "term": "piscine",
+      "translations": {
+        "en": [
+          "a swimming pool"
+        ],
+        "de": [
+          "ein Schwimmbad"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une piscine",
+      "examForms": [
+        "une piscine"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn pisin/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il y a une piscine municipale près d’ici.",
+        "translation": {
+          "en": "There is a municipal swimming pool nearby.",
+          "de": "Es gibt ein städtisches Schwimmbad in der Nähe."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-gymnastique",
+      "term": "gymnastique",
+      "translations": {
+        "en": [
+          "a gymnastics routine"
+        ],
+        "de": [
+          "eine Gymnastikübung"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une gymnastique",
+      "examForms": [
+        "une gymnastique"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn ʒimnastik/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Elle pratique une gymnastique douce.",
+        "translation": {
+          "en": "She practices gentle gymnastics.",
+          "de": "Sie macht sanfte Gymnastik."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-course-a-pied",
+      "term": "course à pied",
+      "translations": {
+        "en": [
+          "a running race",
+          "a jog"
+        ],
+        "de": [
+          "ein Lauf"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une course à pied",
+      "examForms": [
+        "une course à pied"
+      ],
+      "accentSensitive": [
+        "à"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn kuʁs a pje/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Il participe à une course à pied.",
+        "translation": {
+          "en": "He takes part in a running race.",
+          "de": "Er nimmt an einem Lauf teil."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "un-football",
+        "un-tennis",
+        "une-natation",
+        "un-velo",
+        "un-ski",
+        "un-basket-ball",
+        "un-stade",
+        "une-piscine",
+        "une-gymnastique",
+        "une-course-a-pied"
+      ],
+      "estimatedDurationS": 150
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "un-football",
+            "un-tennis",
+            "une-natation",
+            "un-velo",
+            "un-ski"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "un-basket-ball",
+            "un-stade",
+            "une-piscine",
+            "une-gymnastique",
+            "une-course-a-pied"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

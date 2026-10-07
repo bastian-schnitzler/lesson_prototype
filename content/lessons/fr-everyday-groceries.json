@@ -1,0 +1,1188 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-everyday-groceries",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les produits courants",
+  "objective": {
+    "en": "Name twelve everyday grocery items in French with articles.",
+    "fr": "Nommer une douzaine de produits courants en français avec leurs articles.",
+    "de": "Nenne zwölf alltägliche Lebensmittel auf Französisch mit Artikeln."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-content-v1",
+    "generatedAt": "2026-10-07T14:59:27.724Z",
+    "inputHashes": {
+      "outline": "ce4bbe43429be1649083b62805aa73142421838b835f84e44aead2b1410befb3",
+      "brief": "69ddc4c7c1e930ba6ef352b6e1ebf3f4605b7b19188d915342a9aae13b0d920c"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "food_and_drink",
+  "steps": [
+    {
+      "id": "introduction",
+      "stage": "introduction",
+      "role": "introduction",
+      "label": {
+        "en": "Introduction",
+        "fr": "Introduction",
+        "de": "Einführung"
+      },
+      "pages": [
+        {
+          "pageId": "intro-fresh-staples",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-fresh-staples",
+              "targetIds": [
+                "un-pain",
+                "un-lait",
+                "un-beurre",
+                "un-fromage",
+                "des-oeufs",
+                "une-viande"
+              ],
+              "text": {
+                "en": "Fresh staples and dairy:\n\n- `un pain`\n- `un lait`\n- `un beurre`\n- `un fromage`\n- `des œufs`\n- `une viande`",
+                "fr": "Produits frais et laitiers :\n\n- `un pain`\n- `un lait`\n- `un beurre`\n- `un fromage`\n- `des œufs`\n- `une viande`",
+                "de": "Frische- und Milchprodukte:\n\n- `un pain`\n- `un lait`\n- `un beurre`\n- `un fromage`\n- `des œufs`\n- `une viande` "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "intro-pantry-piscine",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-pantry-piscine",
+              "targetIds": [
+                "un-poisson",
+                "un-riz",
+                "des-pates",
+                "une-huile",
+                "un-sucre",
+                "un-sel"
+              ],
+              "text": {
+                "en": "Pantry items and fish:\n\n- `un poisson`\n- `un riz`\n- `des pâtes`\n- `une huile`\n- `un sucre`\n- `un sel`",
+                "fr": "Épicerie et poisson :\n\n- `un poisson`\n- `un riz`\n- `des pâtes`\n- `une huile`\n- `un sucre`\n- `un sel`",
+                "de": "Vorrat und Fisch:\n\n- `un poisson`\n- `un riz`\n- `des pâtes`\n- `une huile`\n- `un sucre`\n- `un sel` "
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "cards-fresh-staples",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-fresh-staples",
+              "targetIds": [
+                "un-pain",
+                "un-lait",
+                "un-beurre",
+                "un-fromage",
+                "des-oeufs",
+                "une-viande"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "cards-pantry-piscine",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-pantry-piscine",
+              "targetIds": [
+                "un-poisson",
+                "un-riz",
+                "des-pates",
+                "une-huile",
+                "un-sucre",
+                "un-sel"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "match-1",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-2",
+              "pairs": [
+                {
+                  "targetId": "un-pain",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un pain means a bread.",
+                    "fr": "un pain signifie « a bread » en anglais.",
+                    "de": "un pain bedeutet ein Brot."
+                  }
+                },
+                {
+                  "targetId": "un-lait",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un lait means a milk carton.",
+                    "fr": "un lait signifie « a milk carton » en anglais.",
+                    "de": "un lait bedeutet eine Milch."
+                  }
+                },
+                {
+                  "targetId": "un-beurre",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un beurre means a butter.",
+                    "fr": "un beurre signifie « a butter » en anglais.",
+                    "de": "un beurre bedeutet eine Butter."
+                  }
+                },
+                {
+                  "targetId": "un-fromage",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un fromage means a cheese.",
+                    "fr": "un fromage signifie « a cheese » en anglais.",
+                    "de": "un fromage bedeutet ein Käse."
+                  }
+                },
+                {
+                  "targetId": "des-oeufs",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "des œufs means some eggs.",
+                    "fr": "des œufs signifie « some eggs » en anglais.",
+                    "de": "des œufs bedeutet Eier."
+                  }
+                },
+                {
+                  "targetId": "une-viande",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une viande means a meat.",
+                    "fr": "une viande signifie « a meat » en anglais.",
+                    "de": "une viande bedeutet ein Fleisch."
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-2",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-3",
+              "pairs": [
+                {
+                  "targetId": "un-poisson",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un poisson means a fish.",
+                    "fr": "un poisson signifie « a fish » en anglais.",
+                    "de": "un poisson bedeutet ein Fisch."
+                  }
+                },
+                {
+                  "targetId": "un-riz",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un riz means a rice.",
+                    "fr": "un riz signifie « a rice » en anglais.",
+                    "de": "un riz bedeutet ein Reis."
+                  }
+                },
+                {
+                  "targetId": "des-pates",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "des pâtes means some pasta.",
+                    "fr": "des pâtes signifie « some pasta » en anglais.",
+                    "de": "des pâtes bedeutet Nudeln."
+                  }
+                },
+                {
+                  "targetId": "une-huile",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une huile means an oil.",
+                    "fr": "une huile signifie « an oil » en anglais.",
+                    "de": "une huile bedeutet ein Öl."
+                  }
+                },
+                {
+                  "targetId": "un-sucre",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un sucre means a sugar.",
+                    "fr": "un sucre signifie « a sugar » en anglais.",
+                    "de": "un sucre bedeutet ein Zucker."
+                  }
+                },
+                {
+                  "targetId": "un-sel",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un sel means a salt.",
+                    "fr": "un sel signifie « a salt » en anglais.",
+                    "de": "un sel bedeutet ein Salz."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overview",
+      "stage": "overview",
+      "role": "overview",
+      "label": {
+        "en": "Overview",
+        "fr": "Vue d’ensemble",
+        "de": "Übersicht"
+      },
+      "pages": [
+        {
+          "pageId": "overview-page",
+          "estimatedDurationS": 90,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Review all words and their details.",
+            "fr": "Révisez tous les mots et leurs détails.",
+            "de": "Überprüfe alle Wörter und ihre Details."
+          },
+          "items": [
+            {
+              "type": "vocabulary_gender_select",
+              "itemId": "gender-overview",
+              "targetIds": [
+                "un-pain",
+                "un-lait",
+                "un-beurre",
+                "un-fromage",
+                "des-oeufs",
+                "une-viande",
+                "un-poisson",
+                "un-riz",
+                "des-pates",
+                "une-huile",
+                "un-sucre",
+                "un-sel"
+              ],
+              "rows": [
+                {
+                  "targetId": "un-pain",
+                  "answerExplanation": {
+                    "en": "pain is masculine.",
+                    "fr": "pain est masculin.",
+                    "de": "pain ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-lait",
+                  "answerExplanation": {
+                    "en": "lait is masculine.",
+                    "fr": "lait est masculin.",
+                    "de": "lait ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-beurre",
+                  "answerExplanation": {
+                    "en": "beurre is masculine.",
+                    "fr": "beurre est masculin.",
+                    "de": "beurre ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-fromage",
+                  "answerExplanation": {
+                    "en": "fromage is masculine.",
+                    "fr": "fromage est masculin.",
+                    "de": "fromage ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "des-oeufs",
+                  "answerExplanation": {
+                    "en": "œufs is masculine.",
+                    "fr": "œufs est masculin.",
+                    "de": "œufs ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "une-viande",
+                  "answerExplanation": {
+                    "en": "viande is feminine.",
+                    "fr": "viande est féminin.",
+                    "de": "viande ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-poisson",
+                  "answerExplanation": {
+                    "en": "poisson is masculine.",
+                    "fr": "poisson est masculin.",
+                    "de": "poisson ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-riz",
+                  "answerExplanation": {
+                    "en": "riz is masculine.",
+                    "fr": "riz est masculin.",
+                    "de": "riz ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "des-pates",
+                  "answerExplanation": {
+                    "en": "pâtes is feminine.",
+                    "fr": "pâtes est féminin.",
+                    "de": "pâtes ist feminin."
+                  }
+                },
+                {
+                  "targetId": "une-huile",
+                  "answerExplanation": {
+                    "en": "huile is feminine.",
+                    "fr": "huile est féminin.",
+                    "de": "huile ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-sucre",
+                  "answerExplanation": {
+                    "en": "sucre is masculine.",
+                    "fr": "sucre est masculin.",
+                    "de": "sucre ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-sel",
+                  "answerExplanation": {
+                    "en": "sel is masculine.",
+                    "fr": "sel est masculin.",
+                    "de": "sel ist maskulin."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "stage": "practice",
+      "role": "exercise",
+      "label": {
+        "en": "Practice",
+        "fr": "Entraînement",
+        "de": "Übung"
+      },
+      "pages": [
+        {
+          "pageId": "gap-un-pain",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-pain",
+              "targetId": "un-pain",
+              "before": "Manger un",
+              "after": " frais.",
+              "referenceTargetIds": [
+                "un-pain",
+                "un-lait",
+                "un-beurre",
+                "un-fromage"
+              ],
+              "accepted": {
+                "answers": [
+                  "pain"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is pain.",
+                "fr": "Le mot manquant est pain.",
+                "de": "Das fehlende Wort ist pain."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-lait",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-lait",
+              "targetId": "un-lait",
+              "before": "Mettre un",
+              "after": " dans le panier.",
+              "referenceTargetIds": [
+                "un-lait",
+                "un-pain",
+                "un-beurre",
+                "un-fromage"
+              ],
+              "accepted": {
+                "answers": [
+                  "lait"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is lait.",
+                "fr": "Le mot manquant est lait.",
+                "de": "Das fehlende Wort ist lait."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-beurre",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-beurre",
+              "targetId": "un-beurre",
+              "before": "Prendre un",
+              "after": " doux.",
+              "referenceTargetIds": [
+                "un-beurre",
+                "un-pain",
+                "un-lait",
+                "un-fromage"
+              ],
+              "accepted": {
+                "answers": [
+                  "beurre"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is beurre.",
+                "fr": "Le mot manquant est beurre.",
+                "de": "Das fehlende Wort ist beurre."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-fromage",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-fromage",
+              "targetId": "un-fromage",
+              "before": "Servir un",
+              "after": " français.",
+              "referenceTargetIds": [
+                "un-fromage",
+                "un-pain",
+                "un-lait",
+                "un-beurre"
+              ],
+              "accepted": {
+                "answers": [
+                  "fromage"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is fromage.",
+                "fr": "Le mot manquant est fromage.",
+                "de": "Das fehlende Wort ist fromage."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-des-oeufs",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-des-oeufs",
+              "targetId": "des-oeufs",
+              "before": "Casser des",
+              "after": " pour l’omelette.",
+              "referenceTargetIds": [
+                "des-oeufs",
+                "un-pain",
+                "un-lait",
+                "un-beurre"
+              ],
+              "accepted": {
+                "answers": [
+                  "œufs"
+                ],
+                "accentSensitive": [
+                  "œufs"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is œufs.",
+                "fr": "Le mot manquant est œufs.",
+                "de": "Das fehlende Wort ist œufs."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-viande",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-viande",
+              "targetId": "une-viande",
+              "before": "Cuisiner une",
+              "after": " tendre.",
+              "referenceTargetIds": [
+                "une-viande",
+                "un-pain",
+                "un-lait",
+                "un-beurre"
+              ],
+              "accepted": {
+                "answers": [
+                  "viande"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is viande.",
+                "fr": "Le mot manquant est viande.",
+                "de": "Das fehlende Wort ist viande."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-poisson",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-poisson",
+              "targetId": "un-poisson",
+              "before": "Commander un",
+              "after": " grillé.",
+              "referenceTargetIds": [
+                "un-poisson",
+                "un-pain",
+                "un-lait",
+                "un-beurre"
+              ],
+              "accepted": {
+                "answers": [
+                  "poisson"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is poisson.",
+                "fr": "Le mot manquant est poisson.",
+                "de": "Das fehlende Wort ist poisson."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-riz",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-riz",
+              "targetId": "un-riz",
+              "before": "Servir un",
+              "after": " chaud.",
+              "referenceTargetIds": [
+                "un-riz",
+                "un-pain",
+                "un-lait",
+                "un-beurre"
+              ],
+              "accepted": {
+                "answers": [
+                  "riz"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is riz.",
+                "fr": "Le mot manquant est riz.",
+                "de": "Das fehlende Wort ist riz."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-des-pates",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-des-pates",
+              "targetId": "des-pates",
+              "before": "Cuire des",
+              "after": " fraîches.",
+              "referenceTargetIds": [
+                "des-pates",
+                "un-pain",
+                "un-lait",
+                "un-beurre"
+              ],
+              "accepted": {
+                "answers": [
+                  "pâtes"
+                ],
+                "accentSensitive": [
+                  "pâtes"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is pâtes.",
+                "fr": "Le mot manquant est pâtes.",
+                "de": "Das fehlende Wort ist pâtes."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-huile",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-huile",
+              "targetId": "une-huile",
+              "before": "Acheter une",
+              "after": " d’olive.",
+              "referenceTargetIds": [
+                "une-huile",
+                "un-pain",
+                "un-lait",
+                "un-beurre"
+              ],
+              "accepted": {
+                "answers": [
+                  "huile"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is huile.",
+                "fr": "Le mot manquant est huile.",
+                "de": "Das fehlende Wort ist huile."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-sucre",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-sucre",
+              "targetId": "un-sucre",
+              "before": "Ajouter un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-sucre",
+                "un-pain",
+                "un-lait",
+                "un-beurre"
+              ],
+              "accepted": {
+                "answers": [
+                  "sucre"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is sucre.",
+                "fr": "Le mot manquant est sucre.",
+                "de": "Das fehlende Wort ist sucre."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-sel",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-sel",
+              "targetId": "un-sel",
+              "before": "Acheter un",
+              "after": " marin.",
+              "referenceTargetIds": [
+                "un-sel",
+                "un-pain",
+                "un-lait",
+                "un-beurre"
+              ],
+              "accepted": {
+                "answers": [
+                  "sel"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is sel.",
+                "fr": "Le mot manquant est sel.",
+                "de": "Das fehlende Wort ist sel."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Exam",
+        "fr": "Examen",
+        "de": "Prüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-pain",
+              "targetId": "un-pain",
+              "prompt": {
+                "en": "a bread",
+                "de": "ein Brot"
+              },
+              "accepted": {
+                "answers": [
+                  "un pain"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a bread in French is un pain.",
+                "fr": "a bread en français est un pain.",
+                "de": "ein Brot auf Französisch ist un pain."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-lait",
+              "targetId": "un-lait",
+              "prompt": {
+                "en": "a milk carton",
+                "de": "eine Milch"
+              },
+              "accepted": {
+                "answers": [
+                  "un lait"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a milk carton in French is un lait.",
+                "fr": "a milk carton en français est un lait.",
+                "de": "eine Milch auf Französisch ist un lait."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-beurre",
+              "targetId": "un-beurre",
+              "prompt": {
+                "en": "a butter",
+                "de": "eine Butter"
+              },
+              "accepted": {
+                "answers": [
+                  "un beurre"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a butter in French is un beurre.",
+                "fr": "a butter en français est un beurre.",
+                "de": "eine Butter auf Französisch ist un beurre."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-fromage",
+              "targetId": "un-fromage",
+              "prompt": {
+                "en": "a cheese",
+                "de": "ein Käse"
+              },
+              "accepted": {
+                "answers": [
+                  "un fromage"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a cheese in French is un fromage.",
+                "fr": "a cheese en français est un fromage.",
+                "de": "ein Käse auf Französisch ist un fromage."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-des-oeufs",
+              "targetId": "des-oeufs",
+              "prompt": {
+                "en": "some eggs",
+                "de": "Eier"
+              },
+              "accepted": {
+                "answers": [
+                  "des œufs",
+                  "des oeufs"
+                ],
+                "accentSensitive": [
+                  "œufs"
+                ]
+              },
+              "answerExplanation": {
+                "en": "some eggs in French is des œufs.",
+                "fr": "some eggs en français est des œufs.",
+                "de": "Eier auf Französisch ist des œufs."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-viande",
+              "targetId": "une-viande",
+              "prompt": {
+                "en": "a meat",
+                "de": "ein Fleisch"
+              },
+              "accepted": {
+                "answers": [
+                  "une viande"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a meat in French is une viande.",
+                "fr": "a meat en français est une viande.",
+                "de": "ein Fleisch auf Französisch ist une viande."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-page-2",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-poisson",
+              "targetId": "un-poisson",
+              "prompt": {
+                "en": "a fish",
+                "de": "ein Fisch"
+              },
+              "accepted": {
+                "answers": [
+                  "un poisson"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a fish in French is un poisson.",
+                "fr": "a fish en français est un poisson.",
+                "de": "ein Fisch auf Französisch ist un poisson."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-riz",
+              "targetId": "un-riz",
+              "prompt": {
+                "en": "a rice",
+                "de": "ein Reis"
+              },
+              "accepted": {
+                "answers": [
+                  "un riz"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a rice in French is un riz.",
+                "fr": "a rice en français est un riz.",
+                "de": "ein Reis auf Französisch ist un riz."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-des-pates",
+              "targetId": "des-pates",
+              "prompt": {
+                "en": "some pasta",
+                "de": "Nudeln"
+              },
+              "accepted": {
+                "answers": [
+                  "des pâtes",
+                  "des pates"
+                ],
+                "accentSensitive": [
+                  "pâtes"
+                ]
+              },
+              "answerExplanation": {
+                "en": "some pasta in French is des pâtes.",
+                "fr": "some pasta en français est des pâtes.",
+                "de": "Nudeln auf Französisch ist des pâtes."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-huile",
+              "targetId": "une-huile",
+              "prompt": {
+                "en": "an oil",
+                "de": "ein Öl"
+              },
+              "accepted": {
+                "answers": [
+                  "une huile"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "an oil in French is une huile.",
+                "fr": "an oil en français est une huile.",
+                "de": "ein Öl auf Französisch ist une huile."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-sucre",
+              "targetId": "un-sucre",
+              "prompt": {
+                "en": "a sugar",
+                "de": "ein Zucker"
+              },
+              "accepted": {
+                "answers": [
+                  "un sucre"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a sugar in French is un sucre.",
+                "fr": "a sugar en français est un sucre.",
+                "de": "ein Zucker auf Französisch ist un sucre."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-sel",
+              "targetId": "un-sel",
+              "prompt": {
+                "en": "a salt",
+                "de": "ein Salz"
+              },
+              "accepted": {
+                "answers": [
+                  "un sel"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a salt in French is un sel.",
+                "fr": "a salt en français est un sel.",
+                "de": "ein Salz auf Französisch ist un sel."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

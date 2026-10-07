@@ -1,0 +1,481 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-telling-the-time",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Demander et dire l’heure",
+  "objective": {
+    "en": "Ask for and tell the time in French including quarter past, half past, and quarter to.",
+    "fr": "Demander et dire l’heure en français, y compris les fractions d’heure.",
+    "de": "Frage nach der Uhrzeit und nenne sie auf Französisch, einschließlich Viertel vor/nach und halb."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T14:59:24.390Z",
+    "inputHashes": {
+      "outline": "59d61671d4d1edd5f64841f2274d80ef96da6ee22eb5edc38778f559cb568d36"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "daily_life",
+  "coverageNotes": {
+    "en": "Covers essential questions and standard hour formats.",
+    "fr": "Couvre la question principale et les expressions d’heure courantes.",
+    "de": "Deckt die Hauptfrage und gängige Uhrzeitangaben ab."
+  },
+  "targetCount": 10,
+  "countRationale": {
+    "en": "Ten core expressions cover all basic time-telling needs for A1.",
+    "fr": "Dix expressions clés couvrent tous les besoins de base pour dire l’heure.",
+    "de": "Zehn Kernausdrücke decken alle grundlegenden Zeitangaben ab."
+  },
+  "difficultyBalance": {
+    "en": "Core full hours balanced with demanding fractions (et quart, moins le quart).",
+    "fr": "Heures piles simples équilibrées avec des fractions plus complexes.",
+    "de": "Volle Stunden ausgewogen mit Viertel- und Halbangaben."
+  },
+  "prerequisites": [
+    {
+      "en": "Numbers 1-24.",
+      "fr": "Les nombres de 1 à 24.",
+      "de": "Zahlen 1-24."
+    }
+  ],
+  "groups": [
+    {
+      "id": "full-hours",
+      "label": {
+        "en": "Hours & Questions",
+        "fr": "Heures et questions",
+        "de": "Stunden & Fragen"
+      },
+      "targetIds": [
+        "il-est-quelle-heure",
+        "il-est-huit-heures",
+        "midi",
+        "minuit",
+        "il-est-une-heure"
+      ]
+    },
+    {
+      "id": "minutes-fractions",
+      "label": {
+        "en": "Fractions of time",
+        "fr": "Fractions d’heure",
+        "de": "Minuten & Viertel"
+      },
+      "targetIds": [
+        "et-quart",
+        "et-demie",
+        "moins-le-quart",
+        "et-demi",
+        "moins-dix"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "il-est-quelle-heure",
+      "term": "Il est quelle heure ?",
+      "translations": {
+        "en": [
+          "What time is it?"
+        ],
+        "de": [
+          "Wie viel Uhr ist es?"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "Il est quelle heure ?",
+      "examForms": [
+        "Il est quelle heure ?",
+        "il est quelle heure"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/il ɛ kɛl œʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Pardon monsieur, il est quelle heure ?",
+        "translation": {
+          "en": "Excuse me sir, what time is it?",
+          "de": "Entschuldigung der Herr, wie viel Uhr ist es?"
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "il-est-huit-heures",
+      "term": "Il est huit heures",
+      "translations": {
+        "en": [
+          "It is eight o’clock"
+        ],
+        "de": [
+          "Es ist acht Uhr"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "Il est huit heures",
+      "examForms": [
+        "Il est huit heures",
+        "il est huit heures"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/il ɛ ɥit œʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le cours commence, il est huit heures.",
+        "translation": {
+          "en": "Class begins, it is eight o’clock.",
+          "de": "Der Unterricht beginnt, es ist acht Uhr."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "midi",
+      "term": "midi",
+      "translations": {
+        "en": [
+          "noon",
+          "midday"
+        ],
+        "de": [
+          "Mittag"
+        ]
+      },
+      "wordClass": "other",
+      "genders": [],
+      "number": null,
+      "teachingForm": "midi",
+      "examForms": [
+        "midi"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/midi/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "On mange à midi.",
+        "translation": {
+          "en": "We eat at noon.",
+          "de": "Wir essen um Mittag."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "minuit",
+      "term": "minuit",
+      "translations": {
+        "en": [
+          "midnight"
+        ],
+        "de": [
+          "Mitternacht"
+        ]
+      },
+      "wordClass": "other",
+      "genders": [],
+      "number": null,
+      "teachingForm": "minuit",
+      "examForms": [
+        "minuit"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/minɥi/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "À minuit, le nouvel an commence.",
+        "translation": {
+          "en": "At midnight, the new year starts.",
+          "de": "Um Mitternacht beginnt das neue Jahr."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "il-est-une-heure",
+      "term": "Il est une heure",
+      "translations": {
+        "en": [
+          "It is one o’clock"
+        ],
+        "de": [
+          "Es ist ein Uhr"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "Il est une heure",
+      "examForms": [
+        "Il est une heure",
+        "il est une heure"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/il ɛ tyn œʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Attention, heure est au singulier : il est une heure.",
+        "translation": {
+          "en": "Note singular heure: it is one o’clock.",
+          "de": "Achtung Singular heure: es ist ein Uhr."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "et-quart",
+      "term": "et quart",
+      "translations": {
+        "en": [
+          "quarter past"
+        ],
+        "de": [
+          "Viertel nach"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "et quart",
+      "examForms": [
+        "et quart"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/e kaʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il est huit heures et quart.",
+        "translation": {
+          "en": "It is a quarter past eight.",
+          "de": "Es ist Viertel nach acht."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "et-demie",
+      "term": "et demie",
+      "translations": {
+        "en": [
+          "half past"
+        ],
+        "de": [
+          "halb"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "et demie",
+      "examForms": [
+        "et demie"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/e dəmi/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Il est dix heures et demie.",
+        "translation": {
+          "en": "It is half past ten.",
+          "de": "Es ist halb elf."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "moins-le-quart",
+      "term": "moins le quart",
+      "translations": {
+        "en": [
+          "quarter to"
+        ],
+        "de": [
+          "Viertel vor"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "moins le quart",
+      "examForms": [
+        "moins le quart"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/mwɛ̃ lə kaʁ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Il est neuf heures moins le quart.",
+        "translation": {
+          "en": "It is a quarter to nine.",
+          "de": "Es ist Viertel vor neun."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "et-demi",
+      "term": "et demi",
+      "translations": {
+        "en": [
+          "half past (with midi/minuit)"
+        ],
+        "de": [
+          "halb (mit midi/minuit)"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "et demi",
+      "examForms": [
+        "et demi"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/e dəmi/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Il est midi et demi.",
+        "translation": {
+          "en": "It is half past twelve.",
+          "de": "Es ist halb eins (nachmittags)."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "moins-dix",
+      "term": "moins dix",
+      "translations": {
+        "en": [
+          "ten to"
+        ],
+        "de": [
+          "zehn vor"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "moins dix",
+      "examForms": [
+        "moins dix"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/mwɛ̃ dis/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il est sept heures moins dix.",
+        "translation": {
+          "en": "It is ten to seven.",
+          "de": "Es ist ten to seven."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": false,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "il-est-quelle-heure",
+        "il-est-huit-heures",
+        "midi",
+        "minuit",
+        "il-est-une-heure",
+        "et-quart",
+        "et-demie",
+        "moins-le-quart",
+        "et-demi",
+        "moins-dix"
+      ],
+      "estimatedDurationS": 150
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "il-est-quelle-heure",
+            "il-est-huit-heures",
+            "midi",
+            "minuit",
+            "il-est-une-heure"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "et-quart",
+            "et-demie",
+            "moins-le-quart",
+            "et-demi",
+            "moins-dix"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

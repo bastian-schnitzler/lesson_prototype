@@ -1,0 +1,1186 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-household-items",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les objets de la maison",
+  "objective": {
+    "en": "Name twelve kitchen and household objects in French with indefinite articles.",
+    "fr": "Nommer une douzaine d’objets de la cuisine et de la maison en français avec leurs articles indéfinis.",
+    "de": "Nenne zwölf Küchen- und Haushaltsgegenstände auf Französisch mit unbestimmten Artikeln."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-content-v1",
+    "generatedAt": "2026-10-07T14:59:24.386Z",
+    "inputHashes": {
+      "outline": "e42377abaa1a88b5fb93d6f0a79c30b70d259d5b9824a9dbc681e68c6ea7fab7",
+      "brief": "7b020cb4cfaed6f48e6bacd1d3eb9eb2af7311b9426e4b0e91bbc53deb5f5326"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "house_and_home",
+  "steps": [
+    {
+      "id": "introduction",
+      "stage": "introduction",
+      "role": "introduction",
+      "label": {
+        "en": "Introduction",
+        "fr": "Introduction",
+        "de": "Einführung"
+      },
+      "pages": [
+        {
+          "pageId": "intro-tableware",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-tableware",
+              "targetIds": [
+                "une-assiette",
+                "un-verre",
+                "une-tasse",
+                "un-couteau",
+                "une-fourchette",
+                "une-cuillere"
+              ],
+              "text": {
+                "en": "Here are six **tableware and cutlery items**:\n\n- `une assiette`\n- `un verre`\n- `une tasse`\n- `un couteau`\n- `une fourchette`\n- `une cuillère`",
+                "fr": "Voici six **éléments de vaisselle et couverts** :\n\n- `une assiette`\n- `un verre`\n- `une tasse`\n- `un couteau`\n- `une fourchette`\n- `une cuillère`",
+                "de": "Hier sind sechs **Geschirr- und Besteckteile**:\n\n- `une assiette`\n- `un verre`\n- `une tasse`\n- `un couteau`\n- `une fourchette`\n- `une cuillère` "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "intro-cookware-linens",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-cookware-linens",
+              "targetIds": [
+                "une-casserole",
+                "une-poele",
+                "une-serviette",
+                "une-bouteille",
+                "un-bol",
+                "un-plat"
+              ],
+              "text": {
+                "en": "Here are six **cookware and linen items**:\n\n- `une casserole`\n- `une poêle`\n- `une serviette`\n- `une bouteille`\n- `un bol`\n- `un plat`",
+                "fr": "Voici six **ustensiles et linges de maison** :\n\n- `une casserole`\n- `une poêle`\n- `une serviette`\n- `une bouteille`\n- `un bol`\n- `un plat`",
+                "de": "Hier sind sechs **Kochgeschirr- und Wäscheteile**:\n\n- `une casserole`\n- `une poêle`\n- `une serviette`\n- `une bouteille`\n- `un bol`\n- `un plat` "
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "cards-tableware",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-tableware",
+              "targetIds": [
+                "une-assiette",
+                "un-verre",
+                "une-tasse",
+                "un-couteau",
+                "une-fourchette",
+                "une-cuillere"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "cards-cookware-linens",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-cookware-linens",
+              "targetIds": [
+                "une-casserole",
+                "une-poele",
+                "une-serviette",
+                "une-bouteille",
+                "un-bol",
+                "un-plat"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "match-1",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-2",
+              "pairs": [
+                {
+                  "targetId": "une-assiette",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une assiette means a plate.",
+                    "fr": "une assiette signifie « a plate » en anglais.",
+                    "de": "une assiette bedeutet ein Teller."
+                  }
+                },
+                {
+                  "targetId": "un-verre",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un verre means a glass.",
+                    "fr": "un verre signifie « a glass » en anglais.",
+                    "de": "un verre bedeutet ein Glas."
+                  }
+                },
+                {
+                  "targetId": "une-tasse",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une tasse means a cup.",
+                    "fr": "une tasse signifie « a cup » en anglais.",
+                    "de": "une tasse bedeutet eine Tasse."
+                  }
+                },
+                {
+                  "targetId": "un-couteau",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un couteau means a knife.",
+                    "fr": "un couteau signifie « a knife » en anglais.",
+                    "de": "un couteau bedeutet ein Messer."
+                  }
+                },
+                {
+                  "targetId": "une-fourchette",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une fourchette means a fork.",
+                    "fr": "une fourchette signifie « a fork » en anglais.",
+                    "de": "une fourchette bedeutet eine Gabel."
+                  }
+                },
+                {
+                  "targetId": "une-cuillere",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une cuillère means a spoon.",
+                    "fr": "une cuillère signifie « a spoon » en anglais.",
+                    "de": "une cuillère bedeutet ein Löffel."
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-2",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-3",
+              "pairs": [
+                {
+                  "targetId": "une-casserole",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une casserole means a saucepan.",
+                    "fr": "une casserole signifie « a saucepan » en anglais.",
+                    "de": "une casserole bedeutet ein Kochtopf."
+                  }
+                },
+                {
+                  "targetId": "une-poele",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une poêle means a frying pan.",
+                    "fr": "une poêle signifie « a frying pan » en anglais.",
+                    "de": "une poêle bedeutet eine Pfanne."
+                  }
+                },
+                {
+                  "targetId": "une-serviette",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une serviette means a napkin.",
+                    "fr": "une serviette signifie « a napkin » en anglais.",
+                    "de": "une serviette bedeutet eine Serviette."
+                  }
+                },
+                {
+                  "targetId": "une-bouteille",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une bouteille means a bottle.",
+                    "fr": "une bouteille signifie « a bottle » en anglais.",
+                    "de": "une bouteille bedeutet eine Flasche."
+                  }
+                },
+                {
+                  "targetId": "un-bol",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un bol means a bowl.",
+                    "fr": "un bol signifie « a bowl » en anglais.",
+                    "de": "un bol bedeutet eine Schüssel."
+                  }
+                },
+                {
+                  "targetId": "un-plat",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un plat means a dish.",
+                    "fr": "un plat signifie « a dish » en anglais.",
+                    "de": "un plat bedeutet eine Platte."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overview",
+      "stage": "overview",
+      "role": "overview",
+      "label": {
+        "en": "Overview",
+        "fr": "Vue d’ensemble",
+        "de": "Übersicht"
+      },
+      "pages": [
+        {
+          "pageId": "overview-page",
+          "estimatedDurationS": 90,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Review all words and their details.",
+            "fr": "Révisez tous les mots et leurs détails.",
+            "de": "Überprüfe alle Wörter und ihre Details."
+          },
+          "items": [
+            {
+              "type": "vocabulary_gender_select",
+              "itemId": "gender-overview",
+              "targetIds": [
+                "une-assiette",
+                "un-verre",
+                "une-tasse",
+                "un-couteau",
+                "une-fourchette",
+                "une-cuillere",
+                "une-casserole",
+                "une-poele",
+                "une-serviette",
+                "une-bouteille",
+                "un-bol",
+                "un-plat"
+              ],
+              "rows": [
+                {
+                  "targetId": "une-assiette",
+                  "answerExplanation": {
+                    "en": "assiette is feminine.",
+                    "fr": "assiette est féminin.",
+                    "de": "assiette ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-verre",
+                  "answerExplanation": {
+                    "en": "verre is masculine.",
+                    "fr": "verre est masculin.",
+                    "de": "verre ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "une-tasse",
+                  "answerExplanation": {
+                    "en": "tasse is feminine.",
+                    "fr": "tasse est féminin.",
+                    "de": "tasse ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-couteau",
+                  "answerExplanation": {
+                    "en": "couteau is masculine.",
+                    "fr": "couteau est masculin.",
+                    "de": "couteau ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "une-fourchette",
+                  "answerExplanation": {
+                    "en": "fourchette is feminine.",
+                    "fr": "fourchette est féminin.",
+                    "de": "fourchette ist feminin."
+                  }
+                },
+                {
+                  "targetId": "une-cuillere",
+                  "answerExplanation": {
+                    "en": "cuillère is feminine.",
+                    "fr": "cuillère est féminin.",
+                    "de": "cuillère ist feminin."
+                  }
+                },
+                {
+                  "targetId": "une-casserole",
+                  "answerExplanation": {
+                    "en": "casserole is feminine.",
+                    "fr": "casserole est féminin.",
+                    "de": "casserole ist feminin."
+                  }
+                },
+                {
+                  "targetId": "une-poele",
+                  "answerExplanation": {
+                    "en": "poêle is feminine.",
+                    "fr": "poêle est féminin.",
+                    "de": "poêle ist feminin."
+                  }
+                },
+                {
+                  "targetId": "une-serviette",
+                  "answerExplanation": {
+                    "en": "serviette is feminine.",
+                    "fr": "serviette est féminin.",
+                    "de": "serviette ist feminin."
+                  }
+                },
+                {
+                  "targetId": "une-bouteille",
+                  "answerExplanation": {
+                    "en": "bouteille is feminine.",
+                    "fr": "bouteille est féminin.",
+                    "de": "bouteille ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-bol",
+                  "answerExplanation": {
+                    "en": "bol is masculine.",
+                    "fr": "bol est masculin.",
+                    "de": "bol ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-plat",
+                  "answerExplanation": {
+                    "en": "plat is masculine.",
+                    "fr": "plat est masculin.",
+                    "de": "plat ist maskulin."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "stage": "practice",
+      "role": "exercise",
+      "label": {
+        "en": "Practice",
+        "fr": "Entraînement",
+        "de": "Übung"
+      },
+      "pages": [
+        {
+          "pageId": "gap-une-assiette",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-assiette",
+              "targetId": "une-assiette",
+              "before": "Pose le repas sur l’",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-assiette",
+                "un-verre",
+                "une-tasse",
+                "un-couteau"
+              ],
+              "accepted": {
+                "answers": [
+                  "assiette"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is assiette.",
+                "fr": "Le mot manquant est assiette.",
+                "de": "Das fehlende Wort ist assiette."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-verre",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-verre",
+              "targetId": "un-verre",
+              "before": "Verse l’eau dans un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-verre",
+                "une-assiette",
+                "une-tasse",
+                "un-couteau"
+              ],
+              "accepted": {
+                "answers": [
+                  "verre"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is verre.",
+                "fr": "Le mot manquant est verre.",
+                "de": "Das fehlende Wort ist verre."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-tasse",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-tasse",
+              "targetId": "une-tasse",
+              "before": "Il veut une",
+              "after": " de thé.",
+              "referenceTargetIds": [
+                "une-tasse",
+                "une-assiette",
+                "un-verre",
+                "un-couteau"
+              ],
+              "accepted": {
+                "answers": [
+                  "tasse"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is tasse.",
+                "fr": "Le mot manquant est tasse.",
+                "de": "Das fehlende Wort ist tasse."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-couteau",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-couteau",
+              "targetId": "un-couteau",
+              "before": "Je coupe la viande avec un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-couteau",
+                "une-assiette",
+                "un-verre",
+                "une-tasse"
+              ],
+              "accepted": {
+                "answers": [
+                  "couteau"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is couteau.",
+                "fr": "Le mot manquant est couteau.",
+                "de": "Das fehlende Wort ist couteau."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-fourchette",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-fourchette",
+              "targetId": "une-fourchette",
+              "before": "Pique le morceau avec la",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-fourchette",
+                "une-assiette",
+                "un-verre",
+                "une-tasse"
+              ],
+              "accepted": {
+                "answers": [
+                  "fourchette"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is fourchette.",
+                "fr": "Le mot manquant est fourchette.",
+                "de": "Das fehlende Wort ist fourchette."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-cuillere",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-cuillere",
+              "targetId": "une-cuillere",
+              "before": "Mélange le sucre avec la",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-cuillere",
+                "une-assiette",
+                "un-verre",
+                "une-tasse"
+              ],
+              "accepted": {
+                "answers": [
+                  "cuillère"
+                ],
+                "accentSensitive": [
+                  "cuillère"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is cuillère.",
+                "fr": "Le mot manquant est cuillère.",
+                "de": "Das fehlende Wort ist cuillère."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-casserole",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-casserole",
+              "targetId": "une-casserole",
+              "before": "Fais cuire les pâtes dans une",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-casserole",
+                "une-assiette",
+                "un-verre",
+                "une-tasse"
+              ],
+              "accepted": {
+                "answers": [
+                  "casserole"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is casserole.",
+                "fr": "Le mot manquant est casserole.",
+                "de": "Das fehlende Wort ist casserole."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-poele",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-poele",
+              "targetId": "une-poele",
+              "before": "Cuis les légumes dans la",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-poele",
+                "une-assiette",
+                "un-verre",
+                "une-tasse"
+              ],
+              "accepted": {
+                "answers": [
+                  "poêle"
+                ],
+                "accentSensitive": [
+                  "poêle"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is poêle.",
+                "fr": "Le mot manquant est poêle.",
+                "de": "Das fehlende Wort ist poêle."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-serviette",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-serviette",
+              "targetId": "une-serviette",
+              "before": "Prends une",
+              "after": " pour la table.",
+              "referenceTargetIds": [
+                "une-serviette",
+                "une-assiette",
+                "un-verre",
+                "une-tasse"
+              ],
+              "accepted": {
+                "answers": [
+                  "serviette"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is serviette.",
+                "fr": "Le mot manquant est serviette.",
+                "de": "Das fehlende Wort ist serviette."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-bouteille",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-bouteille",
+              "targetId": "une-bouteille",
+              "before": "Ouvre la",
+              "after": " d’eau.",
+              "referenceTargetIds": [
+                "une-bouteille",
+                "une-assiette",
+                "un-verre",
+                "une-tasse"
+              ],
+              "accepted": {
+                "answers": [
+                  "bouteille"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is bouteille.",
+                "fr": "Le mot manquant est bouteille.",
+                "de": "Das fehlende Wort ist bouteille."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-bol",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-bol",
+              "targetId": "un-bol",
+              "before": "Verse le lait dans le",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-bol",
+                "une-assiette",
+                "un-verre",
+                "une-tasse"
+              ],
+              "accepted": {
+                "answers": [
+                  "bol"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is bol.",
+                "fr": "Le mot manquant est bol.",
+                "de": "Das fehlende Wort ist bol."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-plat",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-plat",
+              "targetId": "un-plat",
+              "before": "Sers le rôti sur un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-plat",
+                "une-assiette",
+                "un-verre",
+                "une-tasse"
+              ],
+              "accepted": {
+                "answers": [
+                  "plat"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is plat.",
+                "fr": "Le mot manquant est plat.",
+                "de": "Das fehlende Wort ist plat."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Exam",
+        "fr": "Examen",
+        "de": "Prüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-assiette",
+              "targetId": "une-assiette",
+              "prompt": {
+                "en": "a plate",
+                "de": "ein Teller"
+              },
+              "accepted": {
+                "answers": [
+                  "une assiette"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a plate in French is une assiette.",
+                "fr": "a plate en français est une assiette.",
+                "de": "ein Teller auf Französisch ist une assiette."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-verre",
+              "targetId": "un-verre",
+              "prompt": {
+                "en": "a glass",
+                "de": "ein Glas"
+              },
+              "accepted": {
+                "answers": [
+                  "un verre"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a glass in French is un verre.",
+                "fr": "a glass en français est un verre.",
+                "de": "ein Glas auf Französisch ist un verre."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-tasse",
+              "targetId": "une-tasse",
+              "prompt": {
+                "en": "a cup",
+                "de": "eine Tasse"
+              },
+              "accepted": {
+                "answers": [
+                  "une tasse"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a cup in French is une tasse.",
+                "fr": "a cup en français est une tasse.",
+                "de": "eine Tasse auf Französisch ist une tasse."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-couteau",
+              "targetId": "un-couteau",
+              "prompt": {
+                "en": "a knife",
+                "de": "ein Messer"
+              },
+              "accepted": {
+                "answers": [
+                  "un couteau"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a knife in French is un couteau.",
+                "fr": "a knife en français est un couteau.",
+                "de": "ein Messer auf Französisch ist un couteau."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-fourchette",
+              "targetId": "une-fourchette",
+              "prompt": {
+                "en": "a fork",
+                "de": "eine Gabel"
+              },
+              "accepted": {
+                "answers": [
+                  "une fourchette"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a fork in French is une fourchette.",
+                "fr": "a fork en français est une fourchette.",
+                "de": "eine Gabel auf Französisch ist une fourchette."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-cuillere",
+              "targetId": "une-cuillere",
+              "prompt": {
+                "en": "a spoon",
+                "de": "ein Löffel"
+              },
+              "accepted": {
+                "answers": [
+                  "une cuillère"
+                ],
+                "accentSensitive": [
+                  "cuillère"
+                ]
+              },
+              "answerExplanation": {
+                "en": "a spoon in French is une cuillère.",
+                "fr": "a spoon en français est une cuillère.",
+                "de": "ein Löffel auf Französisch ist une cuillère."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-page-2",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-casserole",
+              "targetId": "une-casserole",
+              "prompt": {
+                "en": "a saucepan",
+                "de": "ein Kochtopf"
+              },
+              "accepted": {
+                "answers": [
+                  "une casserole"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a saucepan in French is une casserole.",
+                "fr": "a saucepan en français est une casserole.",
+                "de": "ein Kochtopf auf Französisch ist une casserole."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-poele",
+              "targetId": "une-poele",
+              "prompt": {
+                "en": "a frying pan",
+                "de": "eine Pfanne"
+              },
+              "accepted": {
+                "answers": [
+                  "une poêle"
+                ],
+                "accentSensitive": [
+                  "poêle"
+                ]
+              },
+              "answerExplanation": {
+                "en": "a frying pan in French is une poêle.",
+                "fr": "a frying pan en français est une poêle.",
+                "de": "eine Pfanne auf Französisch ist une poêle."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-serviette",
+              "targetId": "une-serviette",
+              "prompt": {
+                "en": "a napkin",
+                "de": "eine Serviette"
+              },
+              "accepted": {
+                "answers": [
+                  "une serviette"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a napkin in French is une serviette.",
+                "fr": "a napkin en français est une serviette.",
+                "de": "eine Serviette auf Französisch ist une serviette."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-bouteille",
+              "targetId": "une-bouteille",
+              "prompt": {
+                "en": "a bottle",
+                "de": "eine Flasche"
+              },
+              "accepted": {
+                "answers": [
+                  "une bouteille"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a bottle in French is une bouteille.",
+                "fr": "a bottle en français est une bouteille.",
+                "de": "eine Flasche auf Französisch ist une bouteille."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-bol",
+              "targetId": "un-bol",
+              "prompt": {
+                "en": "a bowl",
+                "de": "eine Schüssel"
+              },
+              "accepted": {
+                "answers": [
+                  "un bol"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a bowl in French is un bol.",
+                "fr": "a bowl en français est un bol.",
+                "de": "eine Schüssel auf Französisch ist un bol."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-plat",
+              "targetId": "un-plat",
+              "prompt": {
+                "en": "a dish",
+                "de": "eine Platte"
+              },
+              "accepted": {
+                "answers": [
+                  "un plat"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a dish in French is un plat.",
+                "fr": "a dish en français est un plat.",
+                "de": "eine Platte auf Französisch ist un plat."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

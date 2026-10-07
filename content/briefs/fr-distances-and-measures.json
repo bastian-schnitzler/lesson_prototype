@@ -1,0 +1,502 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-distances-and-measures",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les distances et mesures",
+  "objective": {
+    "en": "Express distance, height, and proximity in French with ten measure expressions.",
+    "fr": "Dire une distance ou une taille avec une dizaine de mots en français.",
+    "de": "Drücke Entfernung, Körpergröße und Nähe auf Französisch aus."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T14:59:31.046Z",
+    "inputHashes": {
+      "outline": "ca5ad8796533ee0b0386952e27e282a0922530e73d3132ddf507a4e8d31d5a17"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "places",
+  "coverageNotes": {
+    "en": "Covers meters, kilometers, near/far, and time distance.",
+    "fr": "Couvre mètres, kilomètres, loin/près et la distance à pied.",
+    "de": "Deckt Meter, Kilometer, nah/weit und Fußwege ab."
+  },
+  "targetCount": 10,
+  "countRationale": {
+    "en": "Ten terms cover all basic spatial and distance descriptions.",
+    "fr": "Dix termes couvrent toutes les mesures spatiales de base.",
+    "de": "Zehn Begriffe decken räumliche Grundangaben ab."
+  },
+  "difficultyBalance": {
+    "en": "Core units (mètre, kilomètre) balanced with phrase measures (à cinq minutes à pied).",
+    "fr": "Unités simples équilibrées avec les expressions de temps/distance.",
+    "de": "Einfache Einheiten ausgewogen mit Fußwegangaben."
+  },
+  "prerequisites": [
+    {
+      "en": "Numbers and spatial adverbs.",
+      "fr": "Les nombres et l’orientation.",
+      "de": "Zahlen und Orientierung."
+    }
+  ],
+  "groups": [
+    {
+      "id": "metric-units",
+      "label": {
+        "en": "Metric units",
+        "fr": "Unités métriques",
+        "de": "Metrische Einheiten"
+      },
+      "targetIds": [
+        "un-metre",
+        "un-centimetre",
+        "un-kilometre",
+        "mesurer"
+      ]
+    },
+    {
+      "id": "proximity-phrases",
+      "label": {
+        "en": "Proximity & Walking time",
+        "fr": "Proximité et temps de marche",
+        "de": "Nähe & Fußweg"
+      },
+      "targetIds": [
+        "loin",
+        "pres",
+        "a-cinq-minutes",
+        "a-pied",
+        "il-mesure",
+        "la-distance"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "un-metre",
+      "term": "mètre",
+      "translations": {
+        "en": [
+          "a meter"
+        ],
+        "de": [
+          "ein Meter"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un mètre",
+      "examForms": [
+        "un mètre"
+      ],
+      "accentSensitive": [
+        "mètre"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ mɛtʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Avancer d’un mètre.",
+        "translation": {
+          "en": "Move forward by a meter.",
+          "de": "Einen Meter vorrücken."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-centimetre",
+      "term": "centimètre",
+      "translations": {
+        "en": [
+          "a centimeter"
+        ],
+        "de": [
+          "ein Zentimeter"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un centimètre",
+      "examForms": [
+        "un centimètre"
+      ],
+      "accentSensitive": [
+        "centimètre"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ sɑ̃timɛtʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Ajouter un centimètre.",
+        "translation": {
+          "en": "Add one centimeter.",
+          "de": "Einen Zentimeter hinzufügen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-kilometre",
+      "term": "kilomètre",
+      "translations": {
+        "en": [
+          "a kilometer"
+        ],
+        "de": [
+          "ein Kilometer"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un kilomètre",
+      "examForms": [
+        "un kilomètre"
+      ],
+      "accentSensitive": [
+        "kilomètre"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ kilɔmɛtʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Marcher un kilomètre.",
+        "translation": {
+          "en": "Walk a kilometer.",
+          "de": "Einen Kilometer gehen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "mesurer",
+      "term": "mesurer",
+      "translations": {
+        "en": [
+          "to measure"
+        ],
+        "de": [
+          "messen"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "mesurer",
+      "examForms": [
+        "mesurer"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/məzyʁe/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Mesurer la pièce.",
+        "translation": {
+          "en": "Measure the room.",
+          "de": "Den Raum ausmessen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "loin",
+      "term": "loin",
+      "translations": {
+        "en": [
+          "far",
+          "far away"
+        ],
+        "de": [
+          "weit",
+          "weit weg"
+        ]
+      },
+      "wordClass": "adverb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "loin",
+      "examForms": [
+        "loin"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/lwɛ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "La gare n’est pas loin.",
+        "translation": {
+          "en": "The station is not far.",
+          "de": "Der Bahnhof ist nicht weit."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "pres",
+      "term": "près",
+      "translations": {
+        "en": [
+          "near",
+          "close"
+        ],
+        "de": [
+          "nah"
+        ]
+      },
+      "wordClass": "adverb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "près",
+      "examForms": [
+        "près"
+      ],
+      "accentSensitive": [
+        "près"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/pʁɛ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "L’école est tout près.",
+        "translation": {
+          "en": "The school is very close.",
+          "de": "Die Schule ist ganz nah."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "a-cinq-minutes",
+      "term": "à cinq minutes",
+      "translations": {
+        "en": [
+          "five minutes away"
+        ],
+        "de": [
+          "fünf Minuten entfernt"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "à cinq minutes",
+      "examForms": [
+        "à cinq minutes"
+      ],
+      "accentSensitive": [
+        "à"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/a sɛ̃k minyt/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "C’est à cinq minutes d’ici.",
+        "translation": {
+          "en": "It is five minutes from here.",
+          "de": "Es ist fünf Minuten von hier entfernt."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "a-pied",
+      "term": "à pied",
+      "translations": {
+        "en": [
+          "on foot",
+          "by walking"
+        ],
+        "de": [
+          "zu Fuß"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "à pied",
+      "examForms": [
+        "à pied"
+      ],
+      "accentSensitive": [
+        "à"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/a pje/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Aller au travail à pied.",
+        "translation": {
+          "en": "Go to work on foot.",
+          "de": "Zu Fuß zur Arbeit gehen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "il-mesure",
+      "term": "il mesure",
+      "translations": {
+        "en": [
+          "he measures",
+          "he is (height)"
+        ],
+        "de": [
+          "er ist ... groß"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "il mesure",
+      "examForms": [
+        "il mesure"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/il məzyʁ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Il mesure un mètre quatre-vingts.",
+        "translation": {
+          "en": "He is 1.80m tall.",
+          "de": "Er ist 1,80m groß."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "la-distance",
+      "term": "distance",
+      "translations": {
+        "en": [
+          "the distance"
+        ],
+        "de": [
+          "die Entfernung"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une distance",
+      "examForms": [
+        "une distance"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn distɑ̃s/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Une courte distance à pied.",
+        "translation": {
+          "en": "A short walking distance.",
+          "de": "Eine kurze Entfernung zu Fuß."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "un-metre",
+        "un-centimetre",
+        "un-kilometre",
+        "mesurer",
+        "loin",
+        "pres",
+        "a-cinq-minutes",
+        "a-pied",
+        "il-mesure",
+        "la-distance"
+      ],
+      "estimatedDurationS": 150
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "un-metre",
+            "un-centimetre",
+            "un-kilometre",
+            "mesurer",
+            "loin"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "pres",
+            "a-cinq-minutes",
+            "a-pied",
+            "il-mesure",
+            "la-distance"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

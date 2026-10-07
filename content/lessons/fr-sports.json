@@ -1,0 +1,1034 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-sports",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les sports et leurs lieux",
+  "objective": {
+    "en": "Name ten sports and the places where they are practiced in French with indefinite articles.",
+    "fr": "Nommer une dizaine de sports et les lieux où on les pratique en français avec leurs articles indéfinis.",
+    "de": "Nenne zehn Sportarten und die Orte, an denen man sie ausübt, auf Französisch mit unbestimmten Artikeln."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-content-v1",
+    "generatedAt": "2026-10-07T14:59:26.044Z",
+    "inputHashes": {
+      "outline": "e3df2c2b3fbfc214814dbb07284eeed183e19db4cb253d16949f8a2c30912aee",
+      "brief": "35f9c04d533512995ffc0fab8298f0820d2bc3c5f0bc5e5d5e2edb41b116ae65"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "free_time",
+  "steps": [
+    {
+      "id": "introduction",
+      "stage": "introduction",
+      "role": "introduction",
+      "label": {
+        "en": "Introduction",
+        "fr": "Introduction",
+        "de": "Einführung"
+      },
+      "pages": [
+        {
+          "pageId": "intro-sports-list",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-sports-list",
+              "targetIds": [
+                "un-football",
+                "un-tennis",
+                "une-natation",
+                "un-velo",
+                "un-ski",
+                "un-basket-ball"
+              ],
+              "text": {
+                "en": "Popular **sports**:\n\n- `un football`\n- `un tennis`\n- `une natation`\n- `un vélo`\n- `un ski`\n- `un basket-ball`",
+                "fr": "Sports **populaires** :\n\n- `un football`\n- `un tennis`\n- `une natation`\n- `un vélo`\n- `un ski`\n- `un basket-ball`",
+                "de": "Beliebte **Sportarten**:\n\n- `un football`\n- `un tennis`\n- `une natation`\n- `un vélo`\n- `un ski`\n- `un basket-ball` "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "intro-sports-venues",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-sports-venues",
+              "targetIds": [
+                "un-stade",
+                "une-piscine",
+                "une-gymnastique",
+                "une-course-a-pied"
+              ],
+              "text": {
+                "en": "Sports **venues and activities**:\n\n- `un stade`\n- `une piscine`\n- `une gymnastique`\n- `une course à pied`",
+                "fr": "Lieux et **activités sportives** :\n\n- `un stade`\n- `une piscine`\n- `une gymnastique`\n- `une course à pied`",
+                "de": "Sportstätten und **Aktivitäten**:\n\n- `un stade`\n- `une piscine`\n- `une gymnastique`\n- `une course à pied` "
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "cards-sports-list",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-sports-list",
+              "targetIds": [
+                "un-football",
+                "un-tennis",
+                "une-natation",
+                "un-velo",
+                "un-ski",
+                "un-basket-ball"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "cards-sports-venues",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-sports-venues",
+              "targetIds": [
+                "un-stade",
+                "une-piscine",
+                "une-gymnastique",
+                "une-course-a-pied"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "match-1",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-2",
+              "pairs": [
+                {
+                  "targetId": "un-football",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un football means a soccer game.",
+                    "fr": "un football signifie « a soccer game » en anglais.",
+                    "de": "un football bedeutet ein Fußballspiel."
+                  }
+                },
+                {
+                  "targetId": "un-tennis",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un tennis means a tennis match.",
+                    "fr": "un tennis signifie « a tennis match » en anglais.",
+                    "de": "un tennis bedeutet ein Tennisspiel."
+                  }
+                },
+                {
+                  "targetId": "une-natation",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une natation means a swimming session.",
+                    "fr": "une natation signifie « a swimming session » en anglais.",
+                    "de": "une natation bedeutet ein Schwimmtraining."
+                  }
+                },
+                {
+                  "targetId": "un-velo",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un vélo means a bike.",
+                    "fr": "un vélo signifie « a bike » en anglais.",
+                    "de": "un vélo bedeutet ein Fahrrad."
+                  }
+                },
+                {
+                  "targetId": "un-ski",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un ski means a ski.",
+                    "fr": "un ski signifie « a ski » en anglais.",
+                    "de": "un ski bedeutet ein Ski."
+                  }
+                },
+                {
+                  "targetId": "un-basket-ball",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un basket-ball means a basketball game.",
+                    "fr": "un basket-ball signifie « a basketball game » en anglais.",
+                    "de": "un basket-ball bedeutet ein Basketballspiel."
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-2",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-3",
+              "pairs": [
+                {
+                  "targetId": "un-stade",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un stade means a stadium.",
+                    "fr": "un stade signifie « a stadium » en anglais.",
+                    "de": "un stade bedeutet ein Stadion."
+                  }
+                },
+                {
+                  "targetId": "une-piscine",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une piscine means a swimming pool.",
+                    "fr": "une piscine signifie « a swimming pool » en anglais.",
+                    "de": "une piscine bedeutet ein Schwimmbad."
+                  }
+                },
+                {
+                  "targetId": "une-gymnastique",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une gymnastique means a gymnastics routine.",
+                    "fr": "une gymnastique signifie « a gymnastics routine » en anglais.",
+                    "de": "une gymnastique bedeutet eine Gymnastikübung."
+                  }
+                },
+                {
+                  "targetId": "une-course-a-pied",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une course à pied means a running race.",
+                    "fr": "une course à pied signifie « a running race » en anglais.",
+                    "de": "une course à pied bedeutet ein Lauf."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overview",
+      "stage": "overview",
+      "role": "overview",
+      "label": {
+        "en": "Overview",
+        "fr": "Vue d’ensemble",
+        "de": "Übersicht"
+      },
+      "pages": [
+        {
+          "pageId": "overview-page",
+          "estimatedDurationS": 90,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Review all words and their details.",
+            "fr": "Révisez tous les mots et leurs détails.",
+            "de": "Überprüfe alle Wörter und ihre Details."
+          },
+          "items": [
+            {
+              "type": "vocabulary_gender_select",
+              "itemId": "gender-overview",
+              "targetIds": [
+                "un-football",
+                "un-tennis",
+                "une-natation",
+                "un-velo",
+                "un-ski",
+                "un-basket-ball",
+                "un-stade",
+                "une-piscine",
+                "une-gymnastique",
+                "une-course-a-pied"
+              ],
+              "rows": [
+                {
+                  "targetId": "un-football",
+                  "answerExplanation": {
+                    "en": "football is masculine.",
+                    "fr": "football est masculin.",
+                    "de": "football ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-tennis",
+                  "answerExplanation": {
+                    "en": "tennis is masculine.",
+                    "fr": "tennis est masculin.",
+                    "de": "tennis ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "une-natation",
+                  "answerExplanation": {
+                    "en": "natation is feminine.",
+                    "fr": "natation est féminin.",
+                    "de": "natation ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-velo",
+                  "answerExplanation": {
+                    "en": "vélo is masculine.",
+                    "fr": "vélo est masculin.",
+                    "de": "vélo ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-ski",
+                  "answerExplanation": {
+                    "en": "ski is masculine.",
+                    "fr": "ski est masculin.",
+                    "de": "ski ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-basket-ball",
+                  "answerExplanation": {
+                    "en": "basket-ball is masculine.",
+                    "fr": "basket-ball est masculin.",
+                    "de": "basket-ball ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-stade",
+                  "answerExplanation": {
+                    "en": "stade is masculine.",
+                    "fr": "stade est masculin.",
+                    "de": "stade ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "une-piscine",
+                  "answerExplanation": {
+                    "en": "piscine is feminine.",
+                    "fr": "piscine est féminin.",
+                    "de": "piscine ist feminin."
+                  }
+                },
+                {
+                  "targetId": "une-gymnastique",
+                  "answerExplanation": {
+                    "en": "gymnastique is feminine.",
+                    "fr": "gymnastique est féminin.",
+                    "de": "gymnastique ist feminin."
+                  }
+                },
+                {
+                  "targetId": "une-course-a-pied",
+                  "answerExplanation": {
+                    "en": "course à pied is feminine.",
+                    "fr": "course à pied est féminin.",
+                    "de": "course à pied ist feminin."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "stage": "practice",
+      "role": "exercise",
+      "label": {
+        "en": "Practice",
+        "fr": "Entraînement",
+        "de": "Übung"
+      },
+      "pages": [
+        {
+          "pageId": "gap-un-football",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-football",
+              "targetId": "un-football",
+              "before": "Jouer un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-football",
+                "un-tennis",
+                "une-natation",
+                "un-velo"
+              ],
+              "accepted": {
+                "answers": [
+                  "football"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is football.",
+                "fr": "Le mot manquant est football.",
+                "de": "Das fehlende Wort ist football."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-tennis",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-tennis",
+              "targetId": "un-tennis",
+              "before": "Frapper la balle dans un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-tennis",
+                "un-football",
+                "une-natation",
+                "un-velo"
+              ],
+              "accepted": {
+                "answers": [
+                  "tennis"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is tennis.",
+                "fr": "Le mot manquant est tennis.",
+                "de": "Das fehlende Wort ist tennis."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-natation",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-natation",
+              "targetId": "une-natation",
+              "before": "Faire une",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-natation",
+                "un-football",
+                "un-tennis",
+                "un-velo"
+              ],
+              "accepted": {
+                "answers": [
+                  "natation"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is natation.",
+                "fr": "Le mot manquant est natation.",
+                "de": "Das fehlende Wort ist natation."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-velo",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-velo",
+              "targetId": "un-velo",
+              "before": "Faire un tour en",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-velo",
+                "un-football",
+                "un-tennis",
+                "une-natation"
+              ],
+              "accepted": {
+                "answers": [
+                  "vélo"
+                ],
+                "accentSensitive": [
+                  "vélo"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is vélo.",
+                "fr": "Le mot manquant est vélo.",
+                "de": "Das fehlende Wort ist vélo."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-ski",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-ski",
+              "targetId": "un-ski",
+              "before": "Mettre un",
+              "after": " au pied.",
+              "referenceTargetIds": [
+                "un-ski",
+                "un-football",
+                "un-tennis",
+                "une-natation"
+              ],
+              "accepted": {
+                "answers": [
+                  "ski"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is ski.",
+                "fr": "Le mot manquant est ski.",
+                "de": "Das fehlende Wort ist ski."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-basket-ball",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-basket-ball",
+              "targetId": "un-basket-ball",
+              "before": "Organiser un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-basket-ball",
+                "un-football",
+                "un-tennis",
+                "une-natation"
+              ],
+              "accepted": {
+                "answers": [
+                  "basket-ball"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is basket-ball.",
+                "fr": "Le mot manquant est basket-ball.",
+                "de": "Das fehlende Wort ist basket-ball."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-stade",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-stade",
+              "targetId": "un-stade",
+              "before": "Regarder le match dans un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-stade",
+                "un-football",
+                "un-tennis",
+                "une-natation"
+              ],
+              "accepted": {
+                "answers": [
+                  "stade"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is stade.",
+                "fr": "Le mot manquant est stade.",
+                "de": "Das fehlende Wort ist stade."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-piscine",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-piscine",
+              "targetId": "une-piscine",
+              "before": "Nager dans une",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-piscine",
+                "un-football",
+                "un-tennis",
+                "une-natation"
+              ],
+              "accepted": {
+                "answers": [
+                  "piscine"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is piscine.",
+                "fr": "Le mot manquant est piscine.",
+                "de": "Das fehlende Wort ist piscine."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-gymnastique",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-gymnastique",
+              "targetId": "une-gymnastique",
+              "before": "Pratiquer une",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-gymnastique",
+                "un-football",
+                "un-tennis",
+                "une-natation"
+              ],
+              "accepted": {
+                "answers": [
+                  "gymnastique"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is gymnastique.",
+                "fr": "Le mot manquant est gymnastique.",
+                "de": "Das fehlende Wort ist gymnastique."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-course-a-pied",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-course-a-pied",
+              "targetId": "une-course-a-pied",
+              "before": "Faire une",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-course-a-pied",
+                "un-football",
+                "un-tennis",
+                "une-natation"
+              ],
+              "accepted": {
+                "answers": [
+                  "course à pied"
+                ],
+                "accentSensitive": [
+                  "à"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is course à pied.",
+                "fr": "Le mot manquant est course à pied.",
+                "de": "Das fehlende Wort ist course à pied."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Exam",
+        "fr": "Examen",
+        "de": "Prüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-football",
+              "targetId": "un-football",
+              "prompt": {
+                "en": "a soccer game",
+                "de": "ein Fußballspiel"
+              },
+              "accepted": {
+                "answers": [
+                  "un football"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a soccer game in French is un football.",
+                "fr": "a soccer game en français est un football.",
+                "de": "ein Fußballspiel auf Französisch ist un football."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-tennis",
+              "targetId": "un-tennis",
+              "prompt": {
+                "en": "a tennis match",
+                "de": "ein Tennisspiel"
+              },
+              "accepted": {
+                "answers": [
+                  "un tennis"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a tennis match in French is un tennis.",
+                "fr": "a tennis match en français est un tennis.",
+                "de": "ein Tennisspiel auf Französisch ist un tennis."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-natation",
+              "targetId": "une-natation",
+              "prompt": {
+                "en": "a swimming session",
+                "de": "ein Schwimmtraining"
+              },
+              "accepted": {
+                "answers": [
+                  "une natation"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a swimming session in French is une natation.",
+                "fr": "a swimming session en français est une natation.",
+                "de": "ein Schwimmtraining auf Französisch ist une natation."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-velo",
+              "targetId": "un-velo",
+              "prompt": {
+                "en": "a bike",
+                "de": "ein Fahrrad"
+              },
+              "accepted": {
+                "answers": [
+                  "un vélo"
+                ],
+                "accentSensitive": [
+                  "vélo"
+                ]
+              },
+              "answerExplanation": {
+                "en": "a bike in French is un vélo.",
+                "fr": "a bike en français est un vélo.",
+                "de": "ein Fahrrad auf Französisch ist un vélo."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-ski",
+              "targetId": "un-ski",
+              "prompt": {
+                "en": "a ski",
+                "de": "ein Ski"
+              },
+              "accepted": {
+                "answers": [
+                  "un ski"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a ski in French is un ski.",
+                "fr": "a ski en français est un ski.",
+                "de": "ein Ski auf Französisch ist un ski."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-page-2",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-basket-ball",
+              "targetId": "un-basket-ball",
+              "prompt": {
+                "en": "a basketball game",
+                "de": "ein Basketballspiel"
+              },
+              "accepted": {
+                "answers": [
+                  "un basket-ball"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a basketball game in French is un basket-ball.",
+                "fr": "a basketball game en français est un basket-ball.",
+                "de": "ein Basketballspiel auf Französisch ist un basket-ball."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-stade",
+              "targetId": "un-stade",
+              "prompt": {
+                "en": "a stadium",
+                "de": "ein Stadion"
+              },
+              "accepted": {
+                "answers": [
+                  "un stade"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a stadium in French is un stade.",
+                "fr": "a stadium en français est un stade.",
+                "de": "ein Stadion auf Französisch ist un stade."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-piscine",
+              "targetId": "une-piscine",
+              "prompt": {
+                "en": "a swimming pool",
+                "de": "ein Schwimmbad"
+              },
+              "accepted": {
+                "answers": [
+                  "une piscine"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a swimming pool in French is une piscine.",
+                "fr": "a swimming pool en français est une piscine.",
+                "de": "ein Schwimmbad auf Französisch ist une piscine."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-gymnastique",
+              "targetId": "une-gymnastique",
+              "prompt": {
+                "en": "a gymnastics routine",
+                "de": "eine Gymnastikübung"
+              },
+              "accepted": {
+                "answers": [
+                  "une gymnastique"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a gymnastics routine in French is une gymnastique.",
+                "fr": "a gymnastics routine en français est une gymnastique.",
+                "de": "eine Gymnastikübung auf Französisch ist une gymnastique."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-course-a-pied",
+              "targetId": "une-course-a-pied",
+              "prompt": {
+                "en": "a running race",
+                "de": "ein Lauf"
+              },
+              "accepted": {
+                "answers": [
+                  "une course à pied"
+                ],
+                "accentSensitive": [
+                  "à"
+                ]
+              },
+              "answerExplanation": {
+                "en": "a running race in French is une course à pied.",
+                "fr": "a running race en français est une course à pied.",
+                "de": "ein Lauf auf Französisch ist une course à pied."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,501 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-rooms-of-the-home",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les pièces de la maison",
+  "objective": {
+    "en": "Name ten rooms and parts of the home in French with indefinite articles.",
+    "fr": "Nommer une dizaine de pièces et parties du logement en français avec leurs articles indéfinis.",
+    "de": "Nenne zehn Räume und Teile des Hauses auf Französisch mit unbestimmten Artikeln."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T14:59:24.360Z",
+    "inputHashes": {
+      "outline": "4f5550e9094993417ae900694d419fd7017270bb20ef80700b3c817cbdc2859a"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "house_and_home",
+  "coverageNotes": {
+    "en": "Covers main interior rooms and outdoor/exterior home spaces.",
+    "fr": "Couvre les principales pièces intérieures et espaces extérieurs du logement.",
+    "de": "Deckt wichtige Innenräume und Außenbereiche des Hauses ab."
+  },
+  "targetCount": 10,
+  "countRationale": {
+    "en": "Ten items provide ideal coverage of core home spaces for A1 learners.",
+    "fr": "Dix éléments offrent une couverture idéale des espaces de la maison pour les débutants A1.",
+    "de": "Zehn Begriffe bieten eine ideale Abdeckung der Wohnbereiche für A1-Lernende."
+  },
+  "difficultyBalance": {
+    "en": "7 single-word core nouns balanced with 3 multi-word or compound rooms.",
+    "fr": "7 noms simples essentiels équilibrés avec 3 pièces composées.",
+    "de": "7 einfache Kernwörter ausgewogen mit 3 zusammengesetzten Bezeichnungen."
+  },
+  "prerequisites": [
+    {
+      "en": "Indefinite articles un, une, des.",
+      "fr": "Articles indéfinis un, une, des.",
+      "de": "Unbestimmte Artikel un, une, des."
+    }
+  ],
+  "groups": [
+    {
+      "id": "interior",
+      "label": {
+        "en": "Interior rooms",
+        "fr": "Pièces intérieures",
+        "de": "Innenräume"
+      },
+      "targetIds": [
+        "une-cuisine",
+        "une-chambre",
+        "un-salon",
+        "une-salle-de-bains",
+        "des-toilettes",
+        "une-salle-a-manger",
+        "un-couloir"
+      ]
+    },
+    {
+      "id": "exterior",
+      "label": {
+        "en": "Exterior spaces",
+        "fr": "Espaces extérieurs",
+        "de": "Außenräume"
+      },
+      "targetIds": [
+        "un-balcon",
+        "un-jardin",
+        "un-garage"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "une-cuisine",
+      "term": "cuisine",
+      "translations": {
+        "en": [
+          "a kitchen"
+        ],
+        "de": [
+          "eine Küche"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une cuisine",
+      "examForms": [
+        "une cuisine"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn kyjzin/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Elle prépare le repas dans une cuisine.",
+        "translation": {
+          "en": "She prepares the meal in a kitchen.",
+          "de": "Sie bereitet das Essen in einer Küche zu."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-chambre",
+      "term": "chambre",
+      "translations": {
+        "en": [
+          "a bedroom"
+        ],
+        "de": [
+          "ein Schlafzimmer"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une chambre",
+      "examForms": [
+        "une chambre"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn ʃɑ̃bʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il dort dans une chambre.",
+        "translation": {
+          "en": "He sleeps in a bedroom.",
+          "de": "Er schläft in einem Schlafzimmer."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-salon",
+      "term": "salon",
+      "translations": {
+        "en": [
+          "a living room"
+        ],
+        "de": [
+          "ein Wohnzimmer"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un salon",
+      "examForms": [
+        "un salon"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ salɔ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Nous regardons la télévision dans un salon.",
+        "translation": {
+          "en": "We watch television in a living room.",
+          "de": "Wir schauen fern in einem Wohnzimmer."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-salle-de-bains",
+      "term": "salle de bains",
+      "translations": {
+        "en": [
+          "a bathroom"
+        ],
+        "de": [
+          "ein Badezimmer"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une salle de bains",
+      "examForms": [
+        "une salle de bains"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn sal də bɛ̃/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "La maison a une salle de bains à l’étage.",
+        "translation": {
+          "en": "The house has a bathroom upstairs.",
+          "de": "Das Haus hat ein Badezimmer im Obergeschoss."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "des-toilettes",
+      "term": "toilettes",
+      "translations": {
+        "en": [
+          "a restroom",
+          "toilets"
+        ],
+        "de": [
+          "eine Toilette"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "plural",
+      "teachingForm": "des toilettes",
+      "examForms": [
+        "des toilettes"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/de twalɛt/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Où sont des toilettes ?",
+        "translation": {
+          "en": "Where are restrooms?",
+          "de": "Wo ist eine Toilette?"
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-salle-a-manger",
+      "term": "salle à manger",
+      "translations": {
+        "en": [
+          "a dining room"
+        ],
+        "de": [
+          "ein Esszimmer"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une salle à manger",
+      "examForms": [
+        "une salle à manger"
+      ],
+      "accentSensitive": [
+        "à"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn sal a mɑ̃ʒe/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "On mange dans une salle à manger.",
+        "translation": {
+          "en": "We eat in a dining room.",
+          "de": "Wir essen in einem Esszimmer."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-couloir",
+      "term": "couloir",
+      "translations": {
+        "en": [
+          "a hallway",
+          "a corridor"
+        ],
+        "de": [
+          "ein Flur"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un couloir",
+      "examForms": [
+        "un couloir"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ kulwaʁ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Un couloir mène aux chambres.",
+        "translation": {
+          "en": "A hallway leads to the bedrooms.",
+          "de": "Ein Flur führt zu den Schlafzimmern."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-balcon",
+      "term": "balcon",
+      "translations": {
+        "en": [
+          "a balcony"
+        ],
+        "de": [
+          "ein Balkon"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un balcon",
+      "examForms": [
+        "un balcon"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ balkɔ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il y a un balcon avec des fleurs.",
+        "translation": {
+          "en": "There is a balcony with flowers.",
+          "de": "Es gibt einen Balkon mit Blumen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-jardin",
+      "term": "jardin",
+      "translations": {
+        "en": [
+          "a garden"
+        ],
+        "de": [
+          "ein Garten"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un jardin",
+      "examForms": [
+        "un jardin"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ ʒaʁdɛ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Les enfants jouent dans un jardin.",
+        "translation": {
+          "en": "The children play in a garden.",
+          "de": "Die Kinder spielen in einem Garten."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-garage",
+      "term": "garage",
+      "translations": {
+        "en": [
+          "a garage"
+        ],
+        "de": [
+          "eine Garage"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un garage",
+      "examForms": [
+        "un garage"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ ɡaʁaʒ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "La voiture est dans un garage.",
+        "translation": {
+          "en": "The car is in a garage.",
+          "de": "Das Auto ist in einer Garage."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "une-cuisine",
+        "une-chambre",
+        "un-salon",
+        "une-salle-de-bains",
+        "des-toilettes",
+        "une-salle-a-manger",
+        "un-couloir",
+        "un-balcon",
+        "un-jardin",
+        "un-garage"
+      ],
+      "estimatedDurationS": 150
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "une-cuisine",
+            "une-chambre",
+            "un-salon",
+            "une-salle-de-bains",
+            "des-toilettes"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "une-salle-a-manger",
+            "un-couloir",
+            "un-balcon",
+            "un-jardin",
+            "un-garage"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

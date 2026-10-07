@@ -1,0 +1,1202 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-places-in-town",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les lieux de la ville",
+  "objective": {
+    "en": "Name twelve common places in town in French with indefinite articles.",
+    "fr": "Nommer une douzaine de lieux de la ville en français avec leurs articles indéfinis.",
+    "de": "Nenne zwölf häufige Orte in der Stadt auf Französisch mit unbestimmten Artikeln."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-content-v1",
+    "generatedAt": "2026-10-07T14:59:26.032Z",
+    "inputHashes": {
+      "outline": "757efdafcacb04c90972fb33c5eb5b7f8c1fb3978dc505805c8475081cc243d5",
+      "brief": "e7eb4ea62c1234c688b0ef0a0f59d3ad43ecad3511512ddeb635b9ccc5089cc7"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "places",
+  "steps": [
+    {
+      "id": "introduction",
+      "stage": "introduction",
+      "role": "introduction",
+      "label": {
+        "en": "Introduction",
+        "fr": "Introduction",
+        "de": "Einführung"
+      },
+      "pages": [
+        {
+          "pageId": "intro-services-transport",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-services-transport",
+              "targetIds": [
+                "une-gare",
+                "une-poste",
+                "une-banque",
+                "une-mairie",
+                "un-hopital",
+                "une-ecole"
+              ],
+              "text": {
+                "en": "Here are six **public service and transport places**:\n\n- `une gare`\n- `une poste`\n- `une banque`\n- `une mairie`\n- `un hôpital`\n- `une école`",
+                "fr": "Voici six **lieux de services et de transports** :\n\n- `une gare`\n- `une poste`\n- `une banque`\n- `une mairie`\n- `un hôpital`\n- `une école`",
+                "de": "Hier sind sechs **Öffentliche und Verkehrsorte**:\n\n- `une gare`\n- `une poste`\n- `une banque`\n- `une mairie`\n- `un hôpital`\n- `une école` "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "intro-culture-leisure",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-culture-leisure",
+              "targetIds": [
+                "un-musee",
+                "un-parc",
+                "un-cinema",
+                "un-restaurant",
+                "un-theatre",
+                "une-bibliotheque"
+              ],
+              "text": {
+                "en": "Here are six **culture and leisure places**:\n\n- `un musée`\n- `un parc`\n- `un cinéma`\n- `un restaurant`\n- `un théâtre`\n- `une bibliothèque`",
+                "fr": "Voici six **lieux de culture et de loisirs** :\n\n- `un musée`\n- `un parc`\n- `un cinéma`\n- `un restaurant`\n- `un théâtre`\n- `une bibliothèque`",
+                "de": "Hier sind sechs **Kultur- und Freizeitorte**:\n\n- `un musée`\n- `un parc`\n- `un cinéma`\n- `un restaurant`\n- `un théâtre`\n- `une bibliothèque` "
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "cards-services-transport",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-services-transport",
+              "targetIds": [
+                "une-gare",
+                "une-poste",
+                "une-banque",
+                "une-mairie",
+                "un-hopital",
+                "une-ecole"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "cards-culture-leisure",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-culture-leisure",
+              "targetIds": [
+                "un-musee",
+                "un-parc",
+                "un-cinema",
+                "un-restaurant",
+                "un-theatre",
+                "une-bibliotheque"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "match-1",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-2",
+              "pairs": [
+                {
+                  "targetId": "une-gare",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une gare means a train station.",
+                    "fr": "une gare signifie « a train station » en anglais.",
+                    "de": "une gare bedeutet ein Bahnhof."
+                  }
+                },
+                {
+                  "targetId": "une-poste",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une poste means a post office.",
+                    "fr": "une poste signifie « a post office » en anglais.",
+                    "de": "une poste bedeutet eine Post."
+                  }
+                },
+                {
+                  "targetId": "une-banque",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une banque means a bank.",
+                    "fr": "une banque signifie « a bank » en anglais.",
+                    "de": "une banque bedeutet eine Bank."
+                  }
+                },
+                {
+                  "targetId": "une-mairie",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une mairie means a town hall.",
+                    "fr": "une mairie signifie « a town hall » en anglais.",
+                    "de": "une mairie bedeutet ein Rathaus."
+                  }
+                },
+                {
+                  "targetId": "un-hopital",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un hôpital means a hospital.",
+                    "fr": "un hôpital signifie « a hospital » en anglais.",
+                    "de": "un hôpital bedeutet ein Krankenhaus."
+                  }
+                },
+                {
+                  "targetId": "une-ecole",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une école means a school.",
+                    "fr": "une école signifie « a school » en anglais.",
+                    "de": "une école bedeutet eine Schule."
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-2",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-3",
+              "pairs": [
+                {
+                  "targetId": "un-musee",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un musée means a museum.",
+                    "fr": "un musée signifie « a museum » en anglais.",
+                    "de": "un musée bedeutet ein Museum."
+                  }
+                },
+                {
+                  "targetId": "un-parc",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un parc means a park.",
+                    "fr": "un parc signifie « a park » en anglais.",
+                    "de": "un parc bedeutet ein Park."
+                  }
+                },
+                {
+                  "targetId": "un-cinema",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un cinéma means a cinema.",
+                    "fr": "un cinéma signifie « a cinema » en anglais.",
+                    "de": "un cinéma bedeutet ein Kino."
+                  }
+                },
+                {
+                  "targetId": "un-restaurant",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un restaurant means a restaurant.",
+                    "fr": "un restaurant signifie « a restaurant » en anglais.",
+                    "de": "un restaurant bedeutet ein Restaurant."
+                  }
+                },
+                {
+                  "targetId": "un-theatre",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un théâtre means a theater.",
+                    "fr": "un théâtre signifie « a theater » en anglais.",
+                    "de": "un théâtre bedeutet ein Theater."
+                  }
+                },
+                {
+                  "targetId": "une-bibliotheque",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une bibliothèque means a library.",
+                    "fr": "une bibliothèque signifie « a library » en anglais.",
+                    "de": "une bibliothèque bedeutet eine Bibliothek."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overview",
+      "stage": "overview",
+      "role": "overview",
+      "label": {
+        "en": "Overview",
+        "fr": "Vue d’ensemble",
+        "de": "Übersicht"
+      },
+      "pages": [
+        {
+          "pageId": "overview-page",
+          "estimatedDurationS": 90,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Review all words and their details.",
+            "fr": "Révisez tous les mots et leurs détails.",
+            "de": "Überprüfe alle Wörter und ihre Details."
+          },
+          "items": [
+            {
+              "type": "vocabulary_gender_select",
+              "itemId": "gender-overview",
+              "targetIds": [
+                "une-gare",
+                "une-poste",
+                "une-banque",
+                "une-mairie",
+                "un-hopital",
+                "une-ecole",
+                "un-musee",
+                "un-parc",
+                "un-cinema",
+                "un-restaurant",
+                "un-theatre",
+                "une-bibliotheque"
+              ],
+              "rows": [
+                {
+                  "targetId": "une-gare",
+                  "answerExplanation": {
+                    "en": "gare is feminine.",
+                    "fr": "gare est féminin.",
+                    "de": "gare ist feminin."
+                  }
+                },
+                {
+                  "targetId": "une-poste",
+                  "answerExplanation": {
+                    "en": "poste is feminine.",
+                    "fr": "poste est féminin.",
+                    "de": "poste ist feminin."
+                  }
+                },
+                {
+                  "targetId": "une-banque",
+                  "answerExplanation": {
+                    "en": "banque is feminine.",
+                    "fr": "banque est féminin.",
+                    "de": "banque ist feminin."
+                  }
+                },
+                {
+                  "targetId": "une-mairie",
+                  "answerExplanation": {
+                    "en": "mairie is feminine.",
+                    "fr": "mairie est féminin.",
+                    "de": "mairie ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-hopital",
+                  "answerExplanation": {
+                    "en": "hôpital is masculine.",
+                    "fr": "hôpital est masculin.",
+                    "de": "hôpital ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "une-ecole",
+                  "answerExplanation": {
+                    "en": "école is feminine.",
+                    "fr": "école est féminin.",
+                    "de": "école ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-musee",
+                  "answerExplanation": {
+                    "en": "musée is masculine.",
+                    "fr": "musée est masculin.",
+                    "de": "musée ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-parc",
+                  "answerExplanation": {
+                    "en": "parc is masculine.",
+                    "fr": "parc est masculin.",
+                    "de": "parc ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-cinema",
+                  "answerExplanation": {
+                    "en": "cinéma is masculine.",
+                    "fr": "cinéma est masculin.",
+                    "de": "cinéma ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-restaurant",
+                  "answerExplanation": {
+                    "en": "restaurant is masculine.",
+                    "fr": "restaurant est masculin.",
+                    "de": "restaurant ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-theatre",
+                  "answerExplanation": {
+                    "en": "théâtre is masculine.",
+                    "fr": "théâtre est masculin.",
+                    "de": "théâtre ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "une-bibliotheque",
+                  "answerExplanation": {
+                    "en": "bibliothèque is feminine.",
+                    "fr": "bibliothèque est féminin.",
+                    "de": "bibliothèque ist feminin."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "stage": "practice",
+      "role": "exercise",
+      "label": {
+        "en": "Practice",
+        "fr": "Entraînement",
+        "de": "Übung"
+      },
+      "pages": [
+        {
+          "pageId": "gap-une-gare",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-gare",
+              "targetId": "une-gare",
+              "before": "Je prends le train dans une",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-gare",
+                "une-poste",
+                "une-banque",
+                "une-mairie"
+              ],
+              "accepted": {
+                "answers": [
+                  "gare"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is gare.",
+                "fr": "Le mot manquant est gare.",
+                "de": "Das fehlende Wort ist gare."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-poste",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-poste",
+              "targetId": "une-poste",
+              "before": "Acheter un timbre dans une",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-poste",
+                "une-gare",
+                "une-banque",
+                "une-mairie"
+              ],
+              "accepted": {
+                "answers": [
+                  "poste"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is poste.",
+                "fr": "Le mot manquant est poste.",
+                "de": "Das fehlende Wort ist poste."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-banque",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-banque",
+              "targetId": "une-banque",
+              "before": "Retirer de l’argent dans une",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-banque",
+                "une-gare",
+                "une-poste",
+                "une-mairie"
+              ],
+              "accepted": {
+                "answers": [
+                  "banque"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is banque.",
+                "fr": "Le mot manquant est banque.",
+                "de": "Das fehlende Wort ist banque."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-mairie",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-mairie",
+              "targetId": "une-mairie",
+              "before": "Obtenir des papiers dans une",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-mairie",
+                "une-gare",
+                "une-poste",
+                "une-banque"
+              ],
+              "accepted": {
+                "answers": [
+                  "mairie"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is mairie.",
+                "fr": "Le mot manquant est mairie.",
+                "de": "Das fehlende Wort ist mairie."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-hopital",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-hopital",
+              "targetId": "un-hopital",
+              "before": "Il est soigné dans un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-hopital",
+                "une-gare",
+                "une-poste",
+                "une-banque"
+              ],
+              "accepted": {
+                "answers": [
+                  "hôpital"
+                ],
+                "accentSensitive": [
+                  "hôpital"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is hôpital.",
+                "fr": "Le mot manquant est hôpital.",
+                "de": "Das fehlende Wort ist hôpital."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-ecole",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-ecole",
+              "targetId": "une-ecole",
+              "before": "L’élève va dans une",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-ecole",
+                "une-gare",
+                "une-poste",
+                "une-banque"
+              ],
+              "accepted": {
+                "answers": [
+                  "école"
+                ],
+                "accentSensitive": [
+                  "école"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is école.",
+                "fr": "Le mot manquant est école.",
+                "de": "Das fehlende Wort ist école."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-musee",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-musee",
+              "targetId": "un-musee",
+              "before": "Regarder la peinture dans un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-musee",
+                "une-gare",
+                "une-poste",
+                "une-banque"
+              ],
+              "accepted": {
+                "answers": [
+                  "musée"
+                ],
+                "accentSensitive": [
+                  "musée"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is musée.",
+                "fr": "Le mot manquant est musée.",
+                "de": "Das fehlende Wort ist musée."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-parc",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-parc",
+              "targetId": "un-parc",
+              "before": "Jouer au ballon dans un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-parc",
+                "une-gare",
+                "une-poste",
+                "une-banque"
+              ],
+              "accepted": {
+                "answers": [
+                  "parc"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is parc.",
+                "fr": "Le mot manquant est parc.",
+                "de": "Das fehlende Wort ist parc."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-cinema",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-cinema",
+              "targetId": "un-cinema",
+              "before": "Voir un film dans un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-cinema",
+                "une-gare",
+                "une-poste",
+                "une-banque"
+              ],
+              "accepted": {
+                "answers": [
+                  "cinéma"
+                ],
+                "accentSensitive": [
+                  "cinéma"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is cinéma.",
+                "fr": "Le mot manquant est cinéma.",
+                "de": "Das fehlende Wort ist cinéma."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-restaurant",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-restaurant",
+              "targetId": "un-restaurant",
+              "before": "Manger le soir dans un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-restaurant",
+                "une-gare",
+                "une-poste",
+                "une-banque"
+              ],
+              "accepted": {
+                "answers": [
+                  "restaurant"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is restaurant.",
+                "fr": "Le mot manquant est restaurant.",
+                "de": "Das fehlende Wort ist restaurant."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-theatre",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-theatre",
+              "targetId": "un-theatre",
+              "before": "Assister à une pièce dans un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-theatre",
+                "une-gare",
+                "une-poste",
+                "une-banque"
+              ],
+              "accepted": {
+                "answers": [
+                  "théâtre"
+                ],
+                "accentSensitive": [
+                  "théâtre"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is théâtre.",
+                "fr": "Le mot manquant est théâtre.",
+                "de": "Das fehlende Wort ist théâtre."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-bibliotheque",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-bibliotheque",
+              "targetId": "une-bibliotheque",
+              "before": "Lire en silence dans une",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-bibliotheque",
+                "une-gare",
+                "une-poste",
+                "une-banque"
+              ],
+              "accepted": {
+                "answers": [
+                  "bibliothèque"
+                ],
+                "accentSensitive": [
+                  "bibliothèque"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is bibliothèque.",
+                "fr": "Le mot manquant est bibliothèque.",
+                "de": "Das fehlende Wort ist bibliothèque."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Exam",
+        "fr": "Examen",
+        "de": "Prüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-gare",
+              "targetId": "une-gare",
+              "prompt": {
+                "en": "a train station",
+                "de": "ein Bahnhof"
+              },
+              "accepted": {
+                "answers": [
+                  "une gare"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a train station in French is une gare.",
+                "fr": "a train station en français est une gare.",
+                "de": "ein Bahnhof auf Französisch ist une gare."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-poste",
+              "targetId": "une-poste",
+              "prompt": {
+                "en": "a post office",
+                "de": "eine Post"
+              },
+              "accepted": {
+                "answers": [
+                  "une poste"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a post office in French is une poste.",
+                "fr": "a post office en français est une poste.",
+                "de": "eine Post auf Französisch ist une poste."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-banque",
+              "targetId": "une-banque",
+              "prompt": {
+                "en": "a bank",
+                "de": "eine Bank"
+              },
+              "accepted": {
+                "answers": [
+                  "une banque"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a bank in French is une banque.",
+                "fr": "a bank en français est une banque.",
+                "de": "eine Bank auf Französisch ist une banque."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-mairie",
+              "targetId": "une-mairie",
+              "prompt": {
+                "en": "a town hall",
+                "de": "ein Rathaus"
+              },
+              "accepted": {
+                "answers": [
+                  "une mairie"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a town hall in French is une mairie.",
+                "fr": "a town hall en français est une mairie.",
+                "de": "ein Rathaus auf Französisch ist une mairie."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-hopital",
+              "targetId": "un-hopital",
+              "prompt": {
+                "en": "a hospital",
+                "de": "ein Krankenhaus"
+              },
+              "accepted": {
+                "answers": [
+                  "un hôpital"
+                ],
+                "accentSensitive": [
+                  "hôpital"
+                ]
+              },
+              "answerExplanation": {
+                "en": "a hospital in French is un hôpital.",
+                "fr": "a hospital en français est un hôpital.",
+                "de": "ein Krankenhaus auf Französisch ist un hôpital."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-ecole",
+              "targetId": "une-ecole",
+              "prompt": {
+                "en": "a school",
+                "de": "eine Schule"
+              },
+              "accepted": {
+                "answers": [
+                  "une école"
+                ],
+                "accentSensitive": [
+                  "école"
+                ]
+              },
+              "answerExplanation": {
+                "en": "a school in French is une école.",
+                "fr": "a school en français est une école.",
+                "de": "eine Schule auf Französisch ist une école."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-page-2",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-musee",
+              "targetId": "un-musee",
+              "prompt": {
+                "en": "a museum",
+                "de": "ein Museum"
+              },
+              "accepted": {
+                "answers": [
+                  "un musée"
+                ],
+                "accentSensitive": [
+                  "musée"
+                ]
+              },
+              "answerExplanation": {
+                "en": "a museum in French is un musée.",
+                "fr": "a museum en français est un musée.",
+                "de": "ein Museum auf Französisch ist un musée."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-parc",
+              "targetId": "un-parc",
+              "prompt": {
+                "en": "a park",
+                "de": "ein Park"
+              },
+              "accepted": {
+                "answers": [
+                  "un parc"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a park in French is un parc.",
+                "fr": "a park en français est un parc.",
+                "de": "ein Park auf Französisch ist un parc."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-cinema",
+              "targetId": "un-cinema",
+              "prompt": {
+                "en": "a cinema",
+                "de": "ein Kino"
+              },
+              "accepted": {
+                "answers": [
+                  "un cinéma"
+                ],
+                "accentSensitive": [
+                  "cinéma"
+                ]
+              },
+              "answerExplanation": {
+                "en": "a cinema in French is un cinéma.",
+                "fr": "a cinema en français est un cinéma.",
+                "de": "ein Kino auf Französisch ist un cinéma."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-restaurant",
+              "targetId": "un-restaurant",
+              "prompt": {
+                "en": "a restaurant",
+                "de": "ein Restaurant"
+              },
+              "accepted": {
+                "answers": [
+                  "un restaurant"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a restaurant in French is un restaurant.",
+                "fr": "a restaurant en français est un restaurant.",
+                "de": "ein Restaurant auf Französisch ist un restaurant."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-theatre",
+              "targetId": "un-theatre",
+              "prompt": {
+                "en": "a theater",
+                "de": "ein Theater"
+              },
+              "accepted": {
+                "answers": [
+                  "un théâtre"
+                ],
+                "accentSensitive": [
+                  "théâtre"
+                ]
+              },
+              "answerExplanation": {
+                "en": "a theater in French is un théâtre.",
+                "fr": "a theater en français est un théâtre.",
+                "de": "ein Theater auf Französisch ist un théâtre."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-bibliotheque",
+              "targetId": "une-bibliotheque",
+              "prompt": {
+                "en": "a library",
+                "de": "eine Bibliothek"
+              },
+              "accepted": {
+                "answers": [
+                  "une bibliothèque"
+                ],
+                "accentSensitive": [
+                  "bibliothèque"
+                ]
+              },
+              "answerExplanation": {
+                "en": "a library in French is une bibliothèque.",
+                "fr": "a library en français est une bibliothèque.",
+                "de": "eine Bibliothek auf Französisch ist une bibliothèque."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

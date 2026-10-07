@@ -1,0 +1,504 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-streets-and-directions",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "La rue et les directions",
+  "objective": {
+    "en": "Name ten street features and directional phrases in French to navigate town.",
+    "fr": "Nommer une dizaine de mots pour s’orienter en ville en français.",
+    "de": "Nenne zehn Straßenbegriffe und Richtungsangaben auf Französisch."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T14:59:31.041Z",
+    "inputHashes": {
+      "outline": "bf348d0ac72a267ff49f921265f0e8b0ac8da807ea04e334754ab0a314a9a418"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "places",
+  "coverageNotes": {
+    "en": "Covers street elements (rue, place, pont) and directions (à droite, tout droit).",
+    "fr": "Couvre les éléments de la rue et les indications de direction.",
+    "de": "Deckt Straßenelemente und Richtungsanweisungen ab."
+  },
+  "targetCount": 10,
+  "countRationale": {
+    "en": "Ten terms form a complete basic urban orientation set.",
+    "fr": "Dix termes forment un ensemble complet pour s’orienter.",
+    "de": "Zehn Begriffe bilden ein vollständiges Set zur Orientierung."
+  },
+  "difficultyBalance": {
+    "en": "Core street terms (la rue, le pont) balanced with directional adverbs (à droite, tout droit).",
+    "fr": "Mots de la rue simples équilibrés avec les expressions de direction.",
+    "de": "Einfache Straßenbegriffe ausgewogen mit Richtungsangaben."
+  },
+  "prerequisites": [
+    {
+      "en": "Town places and prepositions.",
+      "fr": "Lieux de la ville et prépositions.",
+      "de": "Orte in der Stadt und Präpositionen."
+    }
+  ],
+  "groups": [
+    {
+      "id": "street-features",
+      "label": {
+        "en": "Street features",
+        "fr": "Éléments de la rue",
+        "de": "Straßenelemente"
+      },
+      "targetIds": [
+        "la-rue",
+        "l-avenue",
+        "la-place",
+        "le-carrefour",
+        "le-feu",
+        "le-pont"
+      ]
+    },
+    {
+      "id": "directions",
+      "label": {
+        "en": "Directions",
+        "fr": "Directions",
+        "de": "Richtungen"
+      },
+      "targetIds": [
+        "a-droite",
+        "a-gauche",
+        "tout-droit",
+        "a-cote-de"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "la-rue",
+      "term": "rue",
+      "translations": {
+        "en": [
+          "the street"
+        ],
+        "de": [
+          "die Straße"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une rue",
+      "examForms": [
+        "une rue"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn ʁy/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Habiter dans une grande rue.",
+        "translation": {
+          "en": "Live in a big street.",
+          "de": "In einer großen Straße wohnen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "l-avenue",
+      "term": "avenue",
+      "translations": {
+        "en": [
+          "the avenue"
+        ],
+        "de": [
+          "die Allee",
+          "die Avenue"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une avenue",
+      "examForms": [
+        "une avenue"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn avny/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Marcher sur une large avenue.",
+        "translation": {
+          "en": "Walk on a wide avenue.",
+          "de": "Auf einer breiten Allee gehen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "la-place",
+      "term": "place",
+      "translations": {
+        "en": [
+          "the square",
+          "the plaza"
+        ],
+        "de": [
+          "der Platz"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une place",
+      "examForms": [
+        "une place"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn plas/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Se rejoindre sur une place.",
+        "translation": {
+          "en": "Meet on a square.",
+          "de": "Sich auf einem Platz treffen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "le-carrefour",
+      "term": "carrefour",
+      "translations": {
+        "en": [
+          "the intersection",
+          "crossroads"
+        ],
+        "de": [
+          "die Kreuzung"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un carrefour",
+      "examForms": [
+        "un carrefour"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ kaʁfuʁ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Tourner dans un carrefour.",
+        "translation": {
+          "en": "Turn at an intersection.",
+          "de": "An einer Kreuzung abbiegen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "le-feu",
+      "term": "feu",
+      "translations": {
+        "en": [
+          "the traffic light"
+        ],
+        "de": [
+          "die Ampel"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un feu",
+      "examForms": [
+        "un feu"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ fø/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "S’arrêter à un feu rouge.",
+        "translation": {
+          "en": "Stop at a red traffic light.",
+          "de": "An einer roten Ampel anhalten."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "le-pont",
+      "term": "pont",
+      "translations": {
+        "en": [
+          "the bridge"
+        ],
+        "de": [
+          "die Brücke"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un pont",
+      "examForms": [
+        "un pont"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ pɔ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Traverser un pont sur la rivière.",
+        "translation": {
+          "en": "Cross a bridge over the river.",
+          "de": "Eine Brücke über den Fluss überqueren."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "a-droite",
+      "term": "à droite",
+      "translations": {
+        "en": [
+          "to the right",
+          "on the right"
+        ],
+        "de": [
+          "nach rechts",
+          "rechts"
+        ]
+      },
+      "wordClass": "adverb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "à droite",
+      "examForms": [
+        "à droite"
+      ],
+      "accentSensitive": [
+        "à"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/a dʁwat/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Tournez à droite après le feu.",
+        "translation": {
+          "en": "Turn right after the traffic light.",
+          "de": "Biegen Sie nach der Ampel rechts ab."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "a-gauche",
+      "term": "à gauche",
+      "translations": {
+        "en": [
+          "to the left",
+          "on the left"
+        ],
+        "de": [
+          "nach links",
+          "links"
+        ]
+      },
+      "wordClass": "adverb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "à gauche",
+      "examForms": [
+        "à gauche"
+      ],
+      "accentSensitive": [
+        "à"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/a ɡoʃ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "La banque est à gauche.",
+        "translation": {
+          "en": "The bank is on the left.",
+          "de": "Die Bank ist links."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "tout-droit",
+      "term": "tout droit",
+      "translations": {
+        "en": [
+          "straight ahead"
+        ],
+        "de": [
+          "geradeaus"
+        ]
+      },
+      "wordClass": "adverb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "tout droit",
+      "examForms": [
+        "tout droit"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/tu dʁwa/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Continuez tout droit pendant cent mètres.",
+        "translation": {
+          "en": "Continue straight ahead for 100 meters.",
+          "de": "Gehen Sie hundert Meter geradeaus."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "a-cote-de",
+      "term": "à côté de",
+      "translations": {
+        "en": [
+          "next to",
+          "beside"
+        ],
+        "de": [
+          "neben"
+        ]
+      },
+      "wordClass": "preposition",
+      "genders": [],
+      "number": null,
+      "teachingForm": "à côté de",
+      "examForms": [
+        "à côté de"
+      ],
+      "accentSensitive": [
+        "à",
+        "côté"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/a kote də/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "La poste est à côté du parc.",
+        "translation": {
+          "en": "The post office is next to the park.",
+          "de": "Die Post ist neben dem Park."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "la-rue",
+        "l-avenue",
+        "la-place",
+        "le-carrefour",
+        "le-feu",
+        "le-pont",
+        "a-droite",
+        "a-gauche",
+        "tout-droit",
+        "a-cote-de"
+      ],
+      "estimatedDurationS": 150
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "la-rue",
+            "l-avenue",
+            "la-place",
+            "le-carrefour",
+            "le-feu"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "le-pont",
+            "a-droite",
+            "a-gauche",
+            "tout-droit",
+            "a-cote-de"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

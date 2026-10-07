@@ -1,0 +1,551 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-colours",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les couleurs",
+  "objective": {
+    "en": "Name twelve colors in French to describe objects.",
+    "fr": "Nommer une douzaine de couleurs pour décrire un objet en français.",
+    "de": "Nenne zwölf Farben auf Französisch, um ein Objekt zu beschreiben."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T14:59:27.734Z",
+    "inputHashes": {
+      "outline": "6c02b42466f97902ada5ff2072af355c2286c8e6a68ad0acb966e41059d320f0"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "shopping",
+  "coverageNotes": {
+    "en": "Covers primary, secondary, neutral, and invariant color adjectives.",
+    "fr": "Couvre les couleurs primaires, secondaires, neutres et invariables.",
+    "de": "Deckt Primär-, Sekundär-, neutrale und unveränderliche Farben ab."
+  },
+  "targetCount": 12,
+  "countRationale": {
+    "en": "Twelve colors provide full basic descriptive color capability.",
+    "fr": "Douze couleurs couvrent toutes les descriptions de base.",
+    "de": "Zwölf Farben bieten eine vollständige Grundlage für Beschreibungen."
+  },
+  "difficultyBalance": {
+    "en": "Core simple colors (rouge, bleu) balanced with invariant compound colors (marron, orange).",
+    "fr": "Couleurs simples équilibrées avec les couleurs invariables.",
+    "de": "Einfache Farben ausgewogen mit unveränderlichen Farbbezeichnungen."
+  },
+  "prerequisites": [
+    {
+      "en": "Adjective agreement basics.",
+      "fr": "Accord de base des adjectifs.",
+      "de": "Grundlagen der Adjektivangleichung."
+    }
+  ],
+  "groups": [
+    {
+      "id": "primary-neutral",
+      "label": {
+        "en": "Primary & Neutral colors",
+        "fr": "Couleurs primaires et neutres",
+        "de": "Primäre & Neutrale Farben"
+      },
+      "targetIds": [
+        "rouge",
+        "bleu",
+        "jaune",
+        "noir",
+        "blanc",
+        "gris"
+      ]
+    },
+    {
+      "id": "secondary-other",
+      "label": {
+        "en": "Secondary & Other colors",
+        "fr": "Autres couleurs",
+        "de": "Sekundäre & Weitere Farben"
+      },
+      "targetIds": [
+        "vert",
+        "rose",
+        "marron",
+        "orange",
+        "violet",
+        "beige"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "rouge",
+      "term": "rouge",
+      "translations": {
+        "en": [
+          "red"
+        ],
+        "de": [
+          "rot"
+        ]
+      },
+      "wordClass": "adjective",
+      "genders": [],
+      "number": null,
+      "teachingForm": "rouge",
+      "examForms": [
+        "rouge"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/ʁuʒ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Une pomme rouge.",
+        "translation": {
+          "en": "A red apple.",
+          "de": "Ein roter Apfel."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "bleu",
+      "term": "bleu",
+      "translations": {
+        "en": [
+          "blue"
+        ],
+        "de": [
+          "blau"
+        ]
+      },
+      "wordClass": "adjective",
+      "genders": [],
+      "number": null,
+      "teachingForm": "bleu",
+      "examForms": [
+        "bleu"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/blø/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le ciel est bleu.",
+        "translation": {
+          "en": "The sky is blue.",
+          "de": "Der Himmel ist blau."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "jaune",
+      "term": "jaune",
+      "translations": {
+        "en": [
+          "yellow"
+        ],
+        "de": [
+          "gelb"
+        ]
+      },
+      "wordClass": "adjective",
+      "genders": [],
+      "number": null,
+      "teachingForm": "jaune",
+      "examForms": [
+        "jaune"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/ʒon/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le soleil est jaune.",
+        "translation": {
+          "en": "The sun is yellow.",
+          "de": "Die Sonne ist gelb."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "noir",
+      "term": "noir",
+      "translations": {
+        "en": [
+          "black"
+        ],
+        "de": [
+          "schwarz"
+        ]
+      },
+      "wordClass": "adjective",
+      "genders": [],
+      "number": null,
+      "teachingForm": "noir",
+      "examForms": [
+        "noir"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/nwaʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un chat noir porte bonheur.",
+        "translation": {
+          "en": "A black cat brings good luck.",
+          "de": "Eine schwarze Katze bringt Glück."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "blanc",
+      "term": "blanc",
+      "translations": {
+        "en": [
+          "white"
+        ],
+        "de": [
+          "weiß"
+        ]
+      },
+      "wordClass": "adjective",
+      "genders": [],
+      "number": null,
+      "teachingForm": "blanc",
+      "examForms": [
+        "blanc"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/blɑ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "La neige est blanche.",
+        "translation": {
+          "en": "Snow is white.",
+          "de": "Der Schnee ist weiß."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "gris",
+      "term": "gris",
+      "translations": {
+        "en": [
+          "grey",
+          "gray"
+        ],
+        "de": [
+          "grau"
+        ]
+      },
+      "wordClass": "adjective",
+      "genders": [],
+      "number": null,
+      "teachingForm": "gris",
+      "examForms": [
+        "gris"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/ɡʁi/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le ciel est gris aujourd’hui.",
+        "translation": {
+          "en": "The sky is grey today.",
+          "de": "Der Himmel ist heute grau."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "vert",
+      "term": "vert",
+      "translations": {
+        "en": [
+          "green"
+        ],
+        "de": [
+          "grün"
+        ]
+      },
+      "wordClass": "adjective",
+      "genders": [],
+      "number": null,
+      "teachingForm": "vert",
+      "examForms": [
+        "vert"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/vɛʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "L’herbe est verte.",
+        "translation": {
+          "en": "The grass is green.",
+          "de": "Das Gras ist grün."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "rose",
+      "term": "rose",
+      "translations": {
+        "en": [
+          "pink"
+        ],
+        "de": [
+          "rosa",
+          "pink"
+        ]
+      },
+      "wordClass": "adjective",
+      "genders": [],
+      "number": null,
+      "teachingForm": "rose",
+      "examForms": [
+        "rose"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/ʁoz/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Une fleur rose.",
+        "translation": {
+          "en": "A pink flower.",
+          "de": "Eine rosa Blume."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "marron",
+      "term": "marron",
+      "translations": {
+        "en": [
+          "brown"
+        ],
+        "de": [
+          "braun"
+        ]
+      },
+      "wordClass": "adjective",
+      "genders": [],
+      "number": null,
+      "teachingForm": "marron",
+      "examForms": [
+        "marron"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/maʁɔ̃/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Des chaussures marron.",
+        "translation": {
+          "en": "Brown shoes.",
+          "de": "Braune Schuhe."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "orange",
+      "term": "orange",
+      "translations": {
+        "en": [
+          "orange"
+        ],
+        "de": [
+          "orange"
+        ]
+      },
+      "wordClass": "adjective",
+      "genders": [],
+      "number": null,
+      "teachingForm": "orange",
+      "examForms": [
+        "orange"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/ɔʁɑ̃ʒ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Une balle orange.",
+        "translation": {
+          "en": "An orange ball.",
+          "de": "Ein orangener Ball."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "violet",
+      "term": "violet",
+      "translations": {
+        "en": [
+          "purple",
+          "violet"
+        ],
+        "de": [
+          "lila",
+          "violett"
+        ]
+      },
+      "wordClass": "adjective",
+      "genders": [],
+      "number": null,
+      "teachingForm": "violet",
+      "examForms": [
+        "violet"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/vjɔlɛ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Une fleur violette.",
+        "translation": {
+          "en": "A purple flower.",
+          "de": "Eine lilafarbene Blume."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "beige",
+      "term": "beige",
+      "translations": {
+        "en": [
+          "beige"
+        ],
+        "de": [
+          "beige"
+        ]
+      },
+      "wordClass": "adjective",
+      "genders": [],
+      "number": null,
+      "teachingForm": "beige",
+      "examForms": [
+        "beige"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/bɛʒ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un pantalon beige.",
+        "translation": {
+          "en": "Beige trousers.",
+          "de": "Eine beige Hose."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": false,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "rouge",
+        "bleu",
+        "jaune",
+        "noir",
+        "blanc",
+        "gris",
+        "vert",
+        "rose",
+        "marron",
+        "orange",
+        "violet",
+        "beige"
+      ],
+      "estimatedDurationS": 180
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "rouge",
+            "bleu",
+            "jaune",
+            "noir",
+            "blanc",
+            "gris"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "vert",
+            "rose",
+            "marron",
+            "orange",
+            "violet",
+            "beige"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

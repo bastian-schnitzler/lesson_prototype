@@ -1,0 +1,553 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-months-and-dates",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les mois et la date",
+  "objective": {
+    "en": "Name the twelve months and express dates in French.",
+    "fr": "Nommer les douze mois et dire la date en français.",
+    "de": "Nenne die zwölf Monate und sage das Datum auf Französisch."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T14:59:24.369Z",
+    "inputHashes": {
+      "outline": "77f0e46b798ff1aade665ee7ebeebc166ccd88d30054624a964b5606a20bf426"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "daily_life",
+  "coverageNotes": {
+    "en": "Covers all 12 months in order and standard date expressions.",
+    "fr": "Couvre les 12 mois dans l’ordre et les expressions de date courantes.",
+    "de": "Deckt alle 12 Monate in der Reihenfolge und gängige Datumsangaben ab."
+  },
+  "targetCount": 12,
+  "countRationale": {
+    "en": "Twelve items correspond to the twelve months of the year.",
+    "fr": "Douze éléments correspondent aux douze mois de l’année.",
+    "de": "Zwölf Begriffe entsprechen den zwölf Monaten des Jahres."
+  },
+  "difficultyBalance": {
+    "en": "Core months balanced with demanding spellings like février, août, décembre.",
+    "fr": "Mois simples équilibrés avec des orthographes particulières (février, août, décembre).",
+    "de": "Einfache Monate ausgewogen mit schwierigeren Schreibweisen wie février, août, décembre."
+  },
+  "prerequisites": [
+    {
+      "en": "Numbers 1-31 and days of the week.",
+      "fr": "Les nombres de 1 à 31 et les jours de la semaine.",
+      "de": "Zahlen 1-31 und Wochentage."
+    }
+  ],
+  "groups": [
+    {
+      "id": "first-half",
+      "label": {
+        "en": "January to June",
+        "fr": "Janvier à juin",
+        "de": "Januar bis Juni"
+      },
+      "targetIds": [
+        "janvier",
+        "fevrier",
+        "mars",
+        "avril",
+        "mai",
+        "juin"
+      ]
+    },
+    {
+      "id": "second-half",
+      "label": {
+        "en": "July to December",
+        "fr": "Juillet à décembre",
+        "de": "Juli bis Dezember"
+      },
+      "targetIds": [
+        "juillet",
+        "aout",
+        "septembre",
+        "octobre",
+        "novembre",
+        "decembre"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "janvier",
+      "term": "janvier",
+      "translations": {
+        "en": [
+          "January"
+        ],
+        "de": [
+          "Januar"
+        ]
+      },
+      "wordClass": "other",
+      "genders": [],
+      "number": null,
+      "teachingForm": "janvier",
+      "examForms": [
+        "janvier"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/ʒɑ̃vje/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le Nouvel An est le 1er janvier.",
+        "translation": {
+          "en": "New Year’s Day is January 1st.",
+          "de": "Neujahr ist am 1. Januar."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "fevrier",
+      "term": "février",
+      "translations": {
+        "en": [
+          "February"
+        ],
+        "de": [
+          "Februar"
+        ]
+      },
+      "wordClass": "other",
+      "genders": [],
+      "number": null,
+      "teachingForm": "février",
+      "examForms": [
+        "février"
+      ],
+      "accentSensitive": [
+        "février"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/fevʁje/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Février est le mois le plus court.",
+        "translation": {
+          "en": "February is the shortest month.",
+          "de": "Februar ist der kürzeste Monat."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "mars",
+      "term": "mars",
+      "translations": {
+        "en": [
+          "March"
+        ],
+        "de": [
+          "März"
+        ]
+      },
+      "wordClass": "other",
+      "genders": [],
+      "number": null,
+      "teachingForm": "mars",
+      "examForms": [
+        "mars"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/maʁs/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le printemps commence en mars.",
+        "translation": {
+          "en": "Spring begins in March.",
+          "de": "Der Frühling beginnt im März."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "avril",
+      "term": "avril",
+      "translations": {
+        "en": [
+          "April"
+        ],
+        "de": [
+          "April"
+        ]
+      },
+      "wordClass": "other",
+      "genders": [],
+      "number": null,
+      "teachingForm": "avril",
+      "examForms": [
+        "avril"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/avʁil/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "En avril, ne te découvre pas d’un fil.",
+        "translation": {
+          "en": "In April, do not shed a thread.",
+          "de": "Im April nicht zu früh sommerlich kleiden."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "mai",
+      "term": "mai",
+      "translations": {
+        "en": [
+          "May"
+        ],
+        "de": [
+          "Mai"
+        ]
+      },
+      "wordClass": "other",
+      "genders": [],
+      "number": null,
+      "teachingForm": "mai",
+      "examForms": [
+        "mai"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/mɛ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le 1er mai est la fête du Travail.",
+        "translation": {
+          "en": "May 1st is Labor Day.",
+          "de": "Der 1. Mai ist der Tag der Arbeit."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "juin",
+      "term": "juin",
+      "translations": {
+        "en": [
+          "June"
+        ],
+        "de": [
+          "Juni"
+        ]
+      },
+      "wordClass": "other",
+      "genders": [],
+      "number": null,
+      "teachingForm": "juin",
+      "examForms": [
+        "juin"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/ʒɥɛ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "L’été commence en juin.",
+        "translation": {
+          "en": "Summer begins in June.",
+          "de": "Der Sommer beginnt im Juni."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "juillet",
+      "term": "juillet",
+      "translations": {
+        "en": [
+          "July"
+        ],
+        "de": [
+          "Juli"
+        ]
+      },
+      "wordClass": "other",
+      "genders": [],
+      "number": null,
+      "teachingForm": "juillet",
+      "examForms": [
+        "juillet"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/ʒɥijɛ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le 14 juillet est la fête nationale.",
+        "translation": {
+          "en": "July 14th is Bastille Day.",
+          "de": "Der 14. Juli ist der Nationalfeiertag."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "aout",
+      "term": "août",
+      "translations": {
+        "en": [
+          "August"
+        ],
+        "de": [
+          "August"
+        ]
+      },
+      "wordClass": "other",
+      "genders": [],
+      "number": null,
+      "teachingForm": "août",
+      "examForms": [
+        "août"
+      ],
+      "accentSensitive": [
+        "août"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/ut/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Beaucoup de gens partent en vacances en août.",
+        "translation": {
+          "en": "Many people go on vacation in August.",
+          "de": "Viele Menschen fahren im August in den Urlaub."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "septembre",
+      "term": "septembre",
+      "translations": {
+        "en": [
+          "September"
+        ],
+        "de": [
+          "September"
+        ]
+      },
+      "wordClass": "other",
+      "genders": [],
+      "number": null,
+      "teachingForm": "septembre",
+      "examForms": [
+        "septembre"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/sɛptɑ̃bʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "La rentrée scolaire est en septembre.",
+        "translation": {
+          "en": "Back to school is in September.",
+          "de": "Schulbeginn ist im September."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "octobre",
+      "term": "octobre",
+      "translations": {
+        "en": [
+          "October"
+        ],
+        "de": [
+          "Oktober"
+        ]
+      },
+      "wordClass": "other",
+      "genders": [],
+      "number": null,
+      "teachingForm": "octobre",
+      "examForms": [
+        "octobre"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/ɔktɔbʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "L’automne s’installe en octobre.",
+        "translation": {
+          "en": "Autumn settles in in October.",
+          "de": "Der Herbst hält im Oktober Einzug."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "novembre",
+      "term": "novembre",
+      "translations": {
+        "en": [
+          "November"
+        ],
+        "de": [
+          "November"
+        ]
+      },
+      "wordClass": "other",
+      "genders": [],
+      "number": null,
+      "teachingForm": "novembre",
+      "examForms": [
+        "novembre"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/nɔvɑ̃bʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Novembre est souvent pluvieux.",
+        "translation": {
+          "en": "November is often rainy.",
+          "de": "Der November ist oft regnerisch."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "decembre",
+      "term": "décembre",
+      "translations": {
+        "en": [
+          "December"
+        ],
+        "de": [
+          "Dezember"
+        ]
+      },
+      "wordClass": "other",
+      "genders": [],
+      "number": null,
+      "teachingForm": "décembre",
+      "examForms": [
+        "décembre"
+      ],
+      "accentSensitive": [
+        "décembre"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/desɑ̃bʁ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Noël est en décembre.",
+        "translation": {
+          "en": "Christmas is in December.",
+          "de": "Weihnachten ist im Dezember."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": false,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "janvier",
+        "fevrier",
+        "mars",
+        "avril",
+        "mai",
+        "juin",
+        "juillet",
+        "aout",
+        "septembre",
+        "octobre",
+        "novembre",
+        "decembre"
+      ],
+      "estimatedDurationS": 180
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "janvier",
+            "fevrier",
+            "mars",
+            "avril",
+            "mai",
+            "juin"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "juillet",
+            "aout",
+            "septembre",
+            "octobre",
+            "novembre",
+            "decembre"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

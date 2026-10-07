@@ -1,0 +1,508 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-at-work",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Au travail",
+  "objective": {
+    "en": "Name ten workplace locations and professional environment words in French.",
+    "fr": "Dire où on travaille avec une dizaine de mots du monde professionnel en français.",
+    "de": "Nenne zehn Wörter zum Arbeitsplatz und zur Arbeitswelt auf Französisch."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T14:59:31.038Z",
+    "inputHashes": {
+      "outline": "19dc69590da8cf5b1483e1707d30c4a26f91df1dadc07785ad4c1ff6dbacba2b"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "daily_life",
+  "coverageNotes": {
+    "en": "Covers workplace types, colleagues, and equipment.",
+    "fr": "Couvre les lieux de travail, collègues et outils de bureau.",
+    "de": "Deckt Arbeitsorte, Kollegen und Bürogeräte ab."
+  },
+  "targetCount": 10,
+  "countRationale": {
+    "en": "Ten terms cover standard work setting descriptions.",
+    "fr": "Dix termes couvrent la description usuelle du cadre de travail.",
+    "de": "Zehn Begriffe decken die Beschreibung des Arbeitsumfelds ab."
+  },
+  "difficultyBalance": {
+    "en": "Core workplaces (le bureau, le magasin) balanced with L’entreprise, l’ordinateur.",
+    "fr": "Lieux simples équilibrés avec les termes de bureau.",
+    "de": "Einfache Arbeitsorte ausgewogen mit Büroausdrücken."
+  },
+  "prerequisites": [
+    {
+      "en": "Work and preposition basics.",
+      "fr": "Prépositions et verbe travailler.",
+      "de": "Präpositionen und Arbeiten."
+    }
+  ],
+  "groups": [
+    {
+      "id": "workplaces",
+      "label": {
+        "en": "Workplace locations",
+        "fr": "Lieux de travail",
+        "de": "Arbeitsorte"
+      },
+      "targetIds": [
+        "le-bureau",
+        "l-usine",
+        "le-magasin",
+        "l-entreprise",
+        "la-banque"
+      ]
+    },
+    {
+      "id": "people-tools",
+      "label": {
+        "en": "People & Tools",
+        "fr": "Personnes et outils",
+        "de": "Personen & Werkzeuge"
+      },
+      "targetIds": [
+        "le-patron",
+        "un-client",
+        "l-ordinateur",
+        "le-college",
+        "le-travail"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "le-bureau",
+      "term": "bureau",
+      "translations": {
+        "en": [
+          "the office",
+          "the desk"
+        ],
+        "de": [
+          "das Büro",
+          "der Schreibtisch"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un bureau",
+      "examForms": [
+        "un bureau"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ byʁo/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Travailler dans un bureau moderne.",
+        "translation": {
+          "en": "Work in a modern office.",
+          "de": "In einem modernen Büro arbeiten."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "l-usine",
+      "term": "usine",
+      "translations": {
+        "en": [
+          "the factory"
+        ],
+        "de": [
+          "die Fabrik"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une usine",
+      "examForms": [
+        "une usine"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn yzin/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "L’ouvrier travaille dans une usine.",
+        "translation": {
+          "en": "The worker works in a factory.",
+          "de": "Der Arbeiter arbeitet in einer Fabrik."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "le-magasin",
+      "term": "magasin",
+      "translations": {
+        "en": [
+          "the store",
+          "the shop"
+        ],
+        "de": [
+          "das Geschäft",
+          "der Laden"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un magasin",
+      "examForms": [
+        "un magasin"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ magazɛ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Vendre des vêtements dans un magasin.",
+        "translation": {
+          "en": "Sell clothes in a shop.",
+          "de": "Kleidung in einem Laden verkaufen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "l-entreprise",
+      "term": "entreprise",
+      "translations": {
+        "en": [
+          "the company",
+          "the enterprise"
+        ],
+        "de": [
+          "das Unternehmen",
+          "die Firma"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une entreprise",
+      "examForms": [
+        "une entreprise"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn ɑ̃tʁəpʁiz/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Travailler dans une grande entreprise.",
+        "translation": {
+          "en": "Work in a large company.",
+          "de": "In einer großen Firma arbeiten."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "la-banque",
+      "term": "banque",
+      "translations": {
+        "en": [
+          "the bank"
+        ],
+        "de": [
+          "die Bank"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une banque",
+      "examForms": [
+        "une banque"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn bɑ̃k/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Travailler dans une banque.",
+        "translation": {
+          "en": "Work in a bank.",
+          "de": "In einer Bank arbeiten."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "le-patron",
+      "term": "patron",
+      "translations": {
+        "en": [
+          "the boss",
+          "the employer"
+        ],
+        "de": [
+          "der Chef"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un patron",
+      "examForms": [
+        "un patron"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ patʁɔ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le patron dirige l’équipe.",
+        "translation": {
+          "en": "The boss manages the team.",
+          "de": "Der Chef leitet das Team."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-client",
+      "term": "client",
+      "translations": {
+        "en": [
+          "a customer",
+          "a client"
+        ],
+        "de": [
+          "ein Kunde"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un client",
+      "examForms": [
+        "un client"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ klijɑ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Conseiller un client au magasin.",
+        "translation": {
+          "en": "Advise a customer in the shop.",
+          "de": "Einen Kunden im Laden beraten."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "l-ordinateur",
+      "term": "ordinateur",
+      "translations": {
+        "en": [
+          "the computer"
+        ],
+        "de": [
+          "der Computer"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un ordinateur",
+      "examForms": [
+        "un ordinateur"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ nɔʁdinatœʁ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Travailler sur un ordinateur.",
+        "translation": {
+          "en": "Work on a computer.",
+          "de": "An einem Computer arbeiten."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "le-college",
+      "term": "collègue",
+      "translations": {
+        "en": [
+          "the colleague"
+        ],
+        "de": [
+          "der Kollege"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un collègue",
+      "examForms": [
+        "un collègue"
+      ],
+      "accentSensitive": [
+        "collègue"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ kɔlɛɡ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Discuter avec un collègue.",
+        "translation": {
+          "en": "Chat with a colleague.",
+          "de": "Mit einem Kollegen sprechen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "le-travail",
+      "term": "travail",
+      "translations": {
+        "en": [
+          "the work",
+          "the job"
+        ],
+        "de": [
+          "die Arbeit"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un travail",
+      "examForms": [
+        "un travail"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ tʁavaj/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Chercher un travail intéressant.",
+        "translation": {
+          "en": "Look for an interesting job.",
+          "de": "Eine interessante Arbeit suchen."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "le-bureau",
+        "l-usine",
+        "le-magasin",
+        "l-entreprise",
+        "la-banque",
+        "le-patron",
+        "un-client",
+        "l-ordinateur",
+        "le-college",
+        "le-travail"
+      ],
+      "estimatedDurationS": 150
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "le-bureau",
+            "l-usine",
+            "le-magasin",
+            "l-entreprise",
+            "la-banque"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "le-patron",
+            "un-client",
+            "l-ordinateur",
+            "le-college",
+            "le-travail"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

@@ -1,0 +1,551 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-languages-and-learning",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les langues et l’apprentissage",
+  "objective": {
+    "en": "Name ten words related to languages and learning in French.",
+    "fr": "Nommer une dizaine de mots liés aux langues et à l’apprentissage en français.",
+    "de": "Nenne zehn Wörter zu Sprachen und Lernen auf Französisch."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T15:10:44.873Z",
+    "inputHashes": {
+      "outline": "84ab9d045d986bc0aaa2f00c3087c324def7326b6ebeac6faf8f7e7867eea002"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "language",
+  "coverageNotes": {
+    "en": "Covers core languages (le français, l’anglais, l’espagnol, l’allemand) and learning verbs/nouns.",
+    "fr": "Couvre les langues principales (français, anglais, espagnol, allemand) et les verbes d’apprentissage.",
+    "de": "Deckt Hauptsprachen (Französisch, Englisch, Spanisch, Deutsch) sowie Lernverben/Nomen ab."
+  },
+  "targetCount": 11,
+  "countRationale": {
+    "en": "Ten terms provide essential vocabulary for talking about language learning.",
+    "fr": "Dix mots permettent d’exprimer l’apprentissage des langues.",
+    "de": "Zehn Begriffe decken das Thema Sprachenlernen ab."
+  },
+  "difficultyBalance": {
+    "en": "Language names balanced with action verbs (apprendre, comprendre) and structures (un mot, une phrase).",
+    "fr": "Noms de langues équilibrés avec les verbes d’action.",
+    "de": "Sprachnamen ausgewogen mit Handlungsverben."
+  },
+  "prerequisites": [
+    {
+      "en": "Basic verbs in present tense.",
+      "fr": "Verbes de base au présent.",
+      "de": "Grundverben im Präsens."
+    }
+  ],
+  "groups": [
+    {
+      "id": "language-names",
+      "label": {
+        "en": "Languages & Classes",
+        "fr": "Langues et cours",
+        "de": "Sprachen & Kurse"
+      },
+      "targetIds": [
+        "le-francais",
+        "l-anglais",
+        "l-espagnol",
+        "l-allemand",
+        "une-langue",
+        "un-cours"
+      ]
+    },
+    {
+      "id": "learning-skills",
+      "label": {
+        "en": "Verbs & Language structures",
+        "fr": "Verbes et structures",
+        "de": "Verben & Strukturen"
+      },
+      "targetIds": [
+        "apprendre",
+        "parler",
+        "comprendre",
+        "un-mot",
+        "une-phrase"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "le-francais",
+      "term": "français",
+      "translations": {
+        "en": [
+          "French [language]"
+        ],
+        "de": [
+          "Französisch"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "le français",
+      "examForms": [
+        "le français",
+        "le francais"
+      ],
+      "accentSensitive": [
+        "français"
+      ],
+      "articleException": {
+        "en": "Language names in French are used with the definite article or directly, not indefinite articles.",
+        "fr": "Les noms de langues s’utilisent avec l’article défini ou directement, pas avec un article indéfini.",
+        "de": "Sprachnamen werden mit dem bestimmten Artikel oder direkt verwendet, nicht mit unbestimmtem Artikel."
+      },
+      "genderVariants": [],
+      "pronunciation": "/lə fʁɑ̃sɛ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Apprendre le français tous les jours.",
+        "translation": {
+          "en": "Learn French every day.",
+          "de": "Jeden Tag Französisch lernen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "l-anglais",
+      "term": "anglais",
+      "translations": {
+        "en": [
+          "English [language]"
+        ],
+        "de": [
+          "Englisch"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "l’anglais",
+      "examForms": [
+        "l’anglais",
+        "l'anglais"
+      ],
+      "accentSensitive": [],
+      "articleException": {
+        "en": "Language names in French are used with the definite article or directly, not indefinite articles.",
+        "fr": "Les noms de langues s’utilisent avec l’article défini ou directement, pas avec un article indéfini.",
+        "de": "Sprachnamen werden mit dem bestimmten Artikel oder direkt verwendet, nicht mit unbestimmtem Artikel."
+      },
+      "genderVariants": [],
+      "pronunciation": "/lɑ̃ɡlɛ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Pratiquer l’anglais au travail.",
+        "translation": {
+          "en": "Practice English at work.",
+          "de": "Englisch bei der Arbeit anwenden."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "l-espagnol",
+      "term": "espagnol",
+      "translations": {
+        "en": [
+          "Spanish [language]"
+        ],
+        "de": [
+          "Spanisch"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "l’espagnol",
+      "examForms": [
+        "l’espagnol",
+        "l'espagnol"
+      ],
+      "accentSensitive": [],
+      "articleException": {
+        "en": "Language names in French are used with the definite article or directly, not indefinite articles.",
+        "fr": "Les noms de langues s’utilisent avec l’article défini ou directement, pas avec un article indéfini.",
+        "de": "Sprachnamen werden mit dem bestimmten Artikel oder direkt verwendet, nicht mit unbestimmtem Artikel."
+      },
+      "genderVariants": [],
+      "pronunciation": "/lɛspaɲɔl/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Étudier l’espagnol à l’école.",
+        "translation": {
+          "en": "Study Spanish at school.",
+          "de": "Spanisch in der Schule lernen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "l-allemand",
+      "term": "allemand",
+      "translations": {
+        "en": [
+          "German [language]"
+        ],
+        "de": [
+          "Deutsch"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "l’allemand",
+      "examForms": [
+        "l’allemand",
+        "l'allemand"
+      ],
+      "accentSensitive": [],
+      "articleException": {
+        "en": "Language names in French are used with the definite article or directly, not indefinite articles.",
+        "fr": "Les noms de langues s’utilisent avec l’article défini ou directement, pas avec un article indéfini.",
+        "de": "Sprachnamen werden mit dem bestimmten Artikel oder direkt verwendet, nicht mit unbestimmtem Artikel."
+      },
+      "genderVariants": [],
+      "pronunciation": "/lalmɑ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Parler l’allemand avec des collègues.",
+        "translation": {
+          "en": "Speak German with colleagues.",
+          "de": "Deutsch mit Kollegen sprechen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-langue",
+      "term": "langue",
+      "translations": {
+        "en": [
+          "a language"
+        ],
+        "de": [
+          "eine Sprache"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une langue",
+      "examForms": [
+        "une langue"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn lɑ̃ɡ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Apprendre une langue étrangère.",
+        "translation": {
+          "en": "Learn a foreign language.",
+          "de": "Eine Fremdsprache lernen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-cours",
+      "term": "cours",
+      "translations": {
+        "en": [
+          "a class",
+          "a course"
+        ],
+        "de": [
+          "ein Kurs"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un cours",
+      "examForms": [
+        "un cours"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ kuʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Suivre un cours de langue en ligne.",
+        "translation": {
+          "en": "Take an online language class.",
+          "de": "Einen Online-Sprachkurs belegen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "apprendre",
+      "term": "apprendre",
+      "translations": {
+        "en": [
+          "to learn"
+        ],
+        "de": [
+          "lernen"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "apprendre",
+      "examForms": [
+        "apprendre"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/apʁɑ̃dʁ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Apprendre du vocabulaire utile.",
+        "translation": {
+          "en": "Learn useful vocabulary.",
+          "de": "Nützlichen Wortschatz lernen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "parler",
+      "term": "parler",
+      "translations": {
+        "en": [
+          "to speak"
+        ],
+        "de": [
+          "sprechen"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "parler",
+      "examForms": [
+        "parler"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/paʁle/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Parler calmement et clairement.",
+        "translation": {
+          "en": "Speak calmly and clearly.",
+          "de": "Ruhig und deutlich sprechen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "comprendre",
+      "term": "comprendre",
+      "translations": {
+        "en": [
+          "to understand"
+        ],
+        "de": [
+          "verstehen"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "comprendre",
+      "examForms": [
+        "comprendre"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/kɔ̃pʁɑ̃dʁ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Comprendre une conversation.",
+        "translation": {
+          "en": "Understand a conversation.",
+          "de": "Ein Gespräch verstehen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-mot",
+      "term": "mot",
+      "translations": {
+        "en": [
+          "a word"
+        ],
+        "de": [
+          "ein Wort"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un mot",
+      "examForms": [
+        "un mot"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ mo/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Chercher un mot dans le dictionnaire.",
+        "translation": {
+          "en": "Look up a word in the dictionary.",
+          "de": "Ein Wort im Wörterbuch suchen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-phrase",
+      "term": "phrase",
+      "translations": {
+        "en": [
+          "a sentence"
+        ],
+        "de": [
+          "ein Satz"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une phrase",
+      "examForms": [
+        "une phrase"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn fʁaz/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Répéter une phrase complète.",
+        "translation": {
+          "en": "Repeat a full sentence.",
+          "de": "Einen vollständigen Satz wiederholen."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "le-francais",
+        "l-anglais",
+        "l-espagnol",
+        "l-allemand",
+        "une-langue",
+        "un-cours",
+        "apprendre",
+        "parler",
+        "comprendre",
+        "un-mot",
+        "une-phrase"
+      ],
+      "estimatedDurationS": 165
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "le-francais",
+            "l-anglais",
+            "l-espagnol",
+            "l-allemand",
+            "une-langue",
+            "un-cours"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "apprendre",
+            "parler",
+            "comprendre",
+            "un-mot",
+            "une-phrase"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

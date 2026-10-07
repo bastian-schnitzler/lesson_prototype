@@ -1,0 +1,560 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-daily-routine",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "La routine quotidienne",
+  "objective": {
+    "en": "Name twelve daily routine actions in French from waking up to going to bed.",
+    "fr": "Nommer une douzaine d’actions de la journée en français, du lever au coucher.",
+    "de": "Nenne zwölf alltägliche Handlungen vom Aufstehen bis zum Schlafengehen auf Französisch."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T14:59:31.032Z",
+    "inputHashes": {
+      "outline": "bf1702ec0b982cbc1693c31850423b5a22d7009608ee85e490c2c9e4542f62ad"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "daily_life",
+  "coverageNotes": {
+    "en": "Covers morning, daytime, and evening routine verbs.",
+    "fr": "Couvre les verbes de la routine du matin, de la journée et du soir.",
+    "de": "Deckt Verben der Morgen-, Tages- und Abendroutine ab."
+  },
+  "targetCount": 12,
+  "countRationale": {
+    "en": "Twelve reflexive and standard verbs cover a full daily cycle.",
+    "fr": "Douze verbes réfléchis et courants couvrent tout le cycle de la journée.",
+    "de": "Zwölf reflexive und gewöhnliche Verben decken den gesamten Tagesablauf ab."
+  },
+  "difficultyBalance": {
+    "en": "Core verbs (se lever, manger) balanced with pronominal forms (se réveiller, s’habiller).",
+    "fr": "Verbes simples équilibrés avec les verbes pronominaux.",
+    "de": "Einfache Verben ausgewogen mit reflexiven Verben."
+  },
+  "prerequisites": [
+    {
+      "en": "Reflexive verb basics.",
+      "fr": "Bases des verbes pronominaux.",
+      "de": "Grundlagen reflexiver Verben."
+    }
+  ],
+  "groups": [
+    {
+      "id": "morning-routine",
+      "label": {
+        "en": "Morning routine",
+        "fr": "Routine du matin",
+        "de": "Morgenroutine"
+      },
+      "targetIds": [
+        "se-reveiller",
+        "se-lever",
+        "se-doucher",
+        "s-habiller",
+        "prendre-le-petit-dejeuner",
+        "se-brosser-les-dents"
+      ]
+    },
+    {
+      "id": "day-evening-routine",
+      "label": {
+        "en": "Day & Evening routine",
+        "fr": "Routine de la journée et du soir",
+        "de": "Tages- & Abendroutine"
+      },
+      "targetIds": [
+        "partir-au-travail",
+        "travailler",
+        "dejeuner",
+        "rentrer-a-la-maison",
+        "diner",
+        "se-coucher"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "se-reveiller",
+      "term": "se réveiller",
+      "translations": {
+        "en": [
+          "to wake up"
+        ],
+        "de": [
+          "aufwachen"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "se réveiller",
+      "examForms": [
+        "se réveiller"
+      ],
+      "accentSensitive": [
+        "réveiller"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/sə ʁeveje/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Je me réveille à sept heures.",
+        "translation": {
+          "en": "I wake up at seven o’clock.",
+          "de": "Ich wache um sieben Uhr auf."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "se-lever",
+      "term": "se lever",
+      "translations": {
+        "en": [
+          "to get up"
+        ],
+        "de": [
+          "aufstehen"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "se lever",
+      "examForms": [
+        "se lever"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/sə ləve/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il se lève immédiatement.",
+        "translation": {
+          "en": "He gets up immediately.",
+          "de": "Er steht sofort auf."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "se-doucher",
+      "term": "se doucher",
+      "translations": {
+        "en": [
+          "to shower",
+          "to take a shower"
+        ],
+        "de": [
+          "duschen"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "se doucher",
+      "examForms": [
+        "se doucher"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/sə duʃe/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Elle aime se doucher le matin.",
+        "translation": {
+          "en": "She likes taking a shower in the morning.",
+          "de": "Sie duscht morgens gerne."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "s-habiller",
+      "term": "s’habiller",
+      "translations": {
+        "en": [
+          "to get dressed"
+        ],
+        "de": [
+          "sich anziehen"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "s’habiller",
+      "examForms": [
+        "s’habiller",
+        "s'habiller"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/sabije/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Mettre ses vêtements c’est s’habiller.",
+        "translation": {
+          "en": "Putting on clothes is getting dressed.",
+          "de": "Kleidung anziehen heißt sich anziehen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "prendre-le-petit-dejeuner",
+      "term": "prendre le petit-déjeuner",
+      "translations": {
+        "en": [
+          "to have breakfast"
+        ],
+        "de": [
+          "frühstücken"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "prendre le petit-déjeuner",
+      "examForms": [
+        "prendre le petit-déjeuner"
+      ],
+      "accentSensitive": [
+        "petit-déjeuner"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/pʁɑ̃dʁə lə pəti deʒœne/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Prendre le petit-déjeuner avec du café.",
+        "translation": {
+          "en": "Have breakfast with coffee.",
+          "de": "Mit Kaffee frühstücken."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "se-brosser-les-dents",
+      "term": "se brosser les dents",
+      "translations": {
+        "en": [
+          "to brush one’s teeth"
+        ],
+        "de": [
+          "Zähne putzen"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "se brosser les dents",
+      "examForms": [
+        "se brosser les dents"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/sə bʁɔse le dɑ̃/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Se brosser les dents après le repas.",
+        "translation": {
+          "en": "Brush teeth after the meal.",
+          "de": "Zähne putzen nach dem Essen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "partir-au-travail",
+      "term": "partir au travail",
+      "translations": {
+        "en": [
+          "to leave for work"
+        ],
+        "de": [
+          "zur Arbeit fahren"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "partir au travail",
+      "examForms": [
+        "partir au travail"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/paʁtiʁ o tʁavaj/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Prendre le bus pour partir au travail.",
+        "translation": {
+          "en": "Take the bus to leave for work.",
+          "de": "Den Bus nehmen, um zur Arbeit zu fahren."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "travailler",
+      "term": "travailler",
+      "translations": {
+        "en": [
+          "to work"
+        ],
+        "de": [
+          "arbeiten"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "travailler",
+      "examForms": [
+        "travailler"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/tʁavaje/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il aime travailler en équipe.",
+        "translation": {
+          "en": "He likes working in a team.",
+          "de": "Er arbeitet gerne im Team."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "dejeuner",
+      "term": "déjeuner",
+      "translations": {
+        "en": [
+          "to have lunch"
+        ],
+        "de": [
+          "zu Mittag essen"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "déjeuner",
+      "examForms": [
+        "déjeuner"
+      ],
+      "accentSensitive": [
+        "déjeuner"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/deʒœne/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Nous allons déjeuner au restaurant.",
+        "translation": {
+          "en": "We are going to have lunch at the restaurant.",
+          "de": "Wir gehen im Restaurant zu Mittag essen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "rentrer-a-la-maison",
+      "term": "rentrer à la maison",
+      "translations": {
+        "en": [
+          "to come home",
+          "to return home"
+        ],
+        "de": [
+          "nach Hause kommen"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "rentrer à la maison",
+      "examForms": [
+        "rentrer à la maison"
+      ],
+      "accentSensitive": [
+        "à"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/ʁɑ̃tʁe a la mɛzɔ̃/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Rentrer à la maison après le travail.",
+        "translation": {
+          "en": "Return home after work.",
+          "de": "Nach der Arbeit nach Hause kommen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "diner",
+      "term": "dîner",
+      "translations": {
+        "en": [
+          "to have dinner"
+        ],
+        "de": [
+          "zu Abend essen"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "dîner",
+      "examForms": [
+        "dîner"
+      ],
+      "accentSensitive": [
+        "dîner"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/dine/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Dîner en famille le soir.",
+        "translation": {
+          "en": "Have dinner with family in the evening.",
+          "de": "Abends mit der Familie zu Abend essen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "se-coucher",
+      "term": "se coucher",
+      "translations": {
+        "en": [
+          "to go to bed"
+        ],
+        "de": [
+          "schlafen gehen"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "se coucher",
+      "examForms": [
+        "se coucher"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/sə kuʃe/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il est tard, il faut se coucher.",
+        "translation": {
+          "en": "It is late, time to go to bed.",
+          "de": "Es ist spät, man muss schlafen gehen."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": false,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "se-reveiller",
+        "se-lever",
+        "se-doucher",
+        "s-habiller",
+        "prendre-le-petit-dejeuner",
+        "se-brosser-les-dents",
+        "partir-au-travail",
+        "travailler",
+        "dejeuner",
+        "rentrer-a-la-maison",
+        "diner",
+        "se-coucher"
+      ],
+      "estimatedDurationS": 180
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "se-reveiller",
+            "se-lever",
+            "se-doucher",
+            "s-habiller",
+            "prendre-le-petit-dejeuner",
+            "se-brosser-les-dents"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "partir-au-travail",
+            "travailler",
+            "dejeuner",
+            "rentrer-a-la-maison",
+            "diner",
+            "se-coucher"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

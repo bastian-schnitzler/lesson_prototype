@@ -1,0 +1,581 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-drinks-at-the-cafe",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les boissons et produits du café",
+  "objective": {
+    "en": "Name twelve drinks and café items in French with indefinite articles.",
+    "fr": "Nommer une douzaine de boissons et de produits de café en français avec leurs articles indéfinis.",
+    "de": "Nenne zwölf Getränke und Café-Produkte auf Französisch mit unbestimmten Artikeln."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T14:59:26.047Z",
+    "inputHashes": {
+      "outline": "17d1956489d31763e1b0c18ee8be0a2078da23f511d0c3a50f8cb3ce5d46e978"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "food_and_drink",
+  "coverageNotes": {
+    "en": "Covers common hot drinks, cold beverages, and pastries.",
+    "fr": "Couvre les boissons chaudes, froides et les viennoiseries.",
+    "de": "Deckt heiße, kalte Getränke und Gebäck ab."
+  },
+  "targetCount": 12,
+  "countRationale": {
+    "en": "Twelve items cover standard French café ordering vocabulary.",
+    "fr": "Douze éléments couvrent la commande classique au café.",
+    "de": "Zwölf Begriffe decken die Bestellung im Café ab."
+  },
+  "difficultyBalance": {
+    "en": "8 short core drinks balanced with 4 compound or specific beverages (une eau minérale, un chocolat chaud).",
+    "fr": "8 boissons simples équilibrées avec 4 boissons composées.",
+    "de": "8 einfache Getränke ausgewogen mit 4 zusammengesetzten Bezeichnungen."
+  },
+  "prerequisites": [
+    {
+      "en": "Indefinite articles un, une.",
+      "fr": "Articles indéfinis un, une.",
+      "de": "Unbestimmte Artikel un, une."
+    }
+  ],
+  "groups": [
+    {
+      "id": "hot-drinks-pastries",
+      "label": {
+        "en": "Hot drinks & pastries",
+        "fr": "Boissons chaudes et viennoiseries",
+        "de": "Heiße Getränke & Gebäck"
+      },
+      "targetIds": [
+        "un-cafe",
+        "un-the",
+        "un-chocolat-chaud",
+        "un-croissant",
+        "une-brioche",
+        "un-pain-au-chocolat"
+      ]
+    },
+    {
+      "id": "cold-drinks",
+      "label": {
+        "en": "Cold drinks",
+        "fr": "Boissons fraîches",
+        "de": "Kalte Getränke"
+      },
+      "targetIds": [
+        "un-jus-d-orange",
+        "une-eau-minerale",
+        "une-limonade",
+        "une-biere",
+        "un-verre-de-vin",
+        "un-soda"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "un-cafe",
+      "term": "café",
+      "translations": {
+        "en": [
+          "a coffee"
+        ],
+        "de": [
+          "ein Kaffee"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un café",
+      "examForms": [
+        "un café"
+      ],
+      "accentSensitive": [
+        "café"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ kafe/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "S’il vous plaît, un café !",
+        "translation": {
+          "en": "A coffee, please!",
+          "de": "Ein Kaffee, bitte!"
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-the",
+      "term": "thé",
+      "translations": {
+        "en": [
+          "a tea"
+        ],
+        "de": [
+          "ein Tee"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un thé",
+      "examForms": [
+        "un thé"
+      ],
+      "accentSensitive": [
+        "thé"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ te/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Elle prend un thé au citron.",
+        "translation": {
+          "en": "She takes a lemon tea.",
+          "de": "Sie trinkt einen Zitronentee."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-chocolat-chaud",
+      "term": "chocolat chaud",
+      "translations": {
+        "en": [
+          "a hot chocolate"
+        ],
+        "de": [
+          "eine heiße Schokolade"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un chocolat chaud",
+      "examForms": [
+        "un chocolat chaud"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ ʃɔkɔla ʃo/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Un chocolat chaud en hiver, c’est bon.",
+        "translation": {
+          "en": "A hot chocolate in winter is nice.",
+          "de": "Eine heiße Schokolade im Winter ist gut."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-croissant",
+      "term": "croissant",
+      "translations": {
+        "en": [
+          "a croissant"
+        ],
+        "de": [
+          "ein Croissant"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un croissant",
+      "examForms": [
+        "un croissant"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ kwasɑ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Je mange un croissant le matin.",
+        "translation": {
+          "en": "I eat a croissant in the morning.",
+          "de": "Ich esse morgens ein Croissant."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-brioche",
+      "term": "brioche",
+      "translations": {
+        "en": [
+          "a brioche"
+        ],
+        "de": [
+          "eine Brioche"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une brioche",
+      "examForms": [
+        "une brioche"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn bʁijɔʃ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Une brioche dorée pour le goûter.",
+        "translation": {
+          "en": "A golden brioche for snack time.",
+          "de": "Eine Brioche zum Nachmittagskaffee."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-pain-au-chocolat",
+      "term": "pain au chocolat",
+      "translations": {
+        "en": [
+          "a chocolate pastry"
+        ],
+        "de": [
+          "ein Schoko-Brötchen"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un pain au chocolat",
+      "examForms": [
+        "un pain au chocolat"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ pɛ̃ o ʃɔkɔla/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Prends un pain au chocolat.",
+        "translation": {
+          "en": "Take a chocolate pastry.",
+          "de": "Nimm ein Schokobrötchen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-jus-d-orange",
+      "term": "jus d’orange",
+      "translations": {
+        "en": [
+          "an orange juice"
+        ],
+        "de": [
+          "ein Orangensaft"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un jus d’orange",
+      "examForms": [
+        "un jus d’orange",
+        "un jus d'orange"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ ʒy dɔʁɑ̃ʒ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Un jus d’orange frais, s’il vous plaît.",
+        "translation": {
+          "en": "A fresh orange juice, please.",
+          "de": "Ein frischer Orangensaft, bitte."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-eau-minerale",
+      "term": "eau minérale",
+      "translations": {
+        "en": [
+          "a mineral water"
+        ],
+        "de": [
+          "ein Mineralwasser"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une eau minérale",
+      "examForms": [
+        "une eau minérale"
+      ],
+      "accentSensitive": [
+        "minérale"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn o mineʁal/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Une bouteille d’eau minérale.",
+        "translation": {
+          "en": "A bottle of mineral water.",
+          "de": "Eine Flasche Mineralwasser."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-limonade",
+      "term": "limonade",
+      "translations": {
+        "en": [
+          "a lemonade"
+        ],
+        "de": [
+          "eine Limonade"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une limonade",
+      "examForms": [
+        "une limonade"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn limɔnad/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Une limonade bien fraîche.",
+        "translation": {
+          "en": "A cold lemonade.",
+          "de": "Eine kühle Limonade."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-biere",
+      "term": "bière",
+      "translations": {
+        "en": [
+          "a beer"
+        ],
+        "de": [
+          "ein Bier"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une bière",
+      "examForms": [
+        "une bière"
+      ],
+      "accentSensitive": [
+        "bière"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn bjɛʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Ils boivent une bière en terrasse.",
+        "translation": {
+          "en": "They drink a beer on the terrace.",
+          "de": "Sie trinken ein Bier auf der Terrasse."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-verre-de-vin",
+      "term": "verre de vin",
+      "translations": {
+        "en": [
+          "a glass of wine"
+        ],
+        "de": [
+          "ein Glas Wein"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un verre de vin",
+      "examForms": [
+        "un verre de vin"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ vɛʁ də vɛ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un verre de vin rouge avec le fromage.",
+        "translation": {
+          "en": "A glass of red wine with the cheese.",
+          "de": "Ein Glas Rotwein zum Käse."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-soda",
+      "term": "soda",
+      "translations": {
+        "en": [
+          "a soda"
+        ],
+        "de": [
+          "eine Limo",
+          "ein Soda"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un soda",
+      "examForms": [
+        "un soda"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ sɔda/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Les enfants veulent un soda.",
+        "translation": {
+          "en": "The children want a soda.",
+          "de": "Die Kinder wollen eine Limo."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "un-cafe",
+        "un-the",
+        "un-chocolat-chaud",
+        "un-croissant",
+        "une-brioche",
+        "un-pain-au-chocolat",
+        "un-jus-d-orange",
+        "une-eau-minerale",
+        "une-limonade",
+        "une-biere",
+        "un-verre-de-vin",
+        "un-soda"
+      ],
+      "estimatedDurationS": 180
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "un-cafe",
+            "un-the",
+            "un-chocolat-chaud",
+            "un-croissant",
+            "une-brioche",
+            "un-pain-au-chocolat"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "un-jus-d-orange",
+            "une-eau-minerale",
+            "une-limonade",
+            "une-biere",
+            "un-verre-de-vin",
+            "un-soda"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

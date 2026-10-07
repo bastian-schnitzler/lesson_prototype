@@ -1,0 +1,1195 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-drinks-at-the-cafe",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les boissons et produits du café",
+  "objective": {
+    "en": "Name twelve drinks and café items in French with indefinite articles.",
+    "fr": "Nommer une douzaine de boissons et de produits de café en français avec leurs articles indéfinis.",
+    "de": "Nenne zwölf Getränke und Café-Produkte auf Französisch mit unbestimmten Artikeln."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-content-v1",
+    "generatedAt": "2026-10-07T14:59:26.048Z",
+    "inputHashes": {
+      "outline": "17d1956489d31763e1b0c18ee8be0a2078da23f511d0c3a50f8cb3ce5d46e978",
+      "brief": "b05467edb4695c1257f2308032b9abd7e0d078828eb6e2a1a95a065726009374"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "food_and_drink",
+  "steps": [
+    {
+      "id": "introduction",
+      "stage": "introduction",
+      "role": "introduction",
+      "label": {
+        "en": "Introduction",
+        "fr": "Introduction",
+        "de": "Einführung"
+      },
+      "pages": [
+        {
+          "pageId": "intro-hot-drinks-pastries",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-hot-drinks-pastries",
+              "targetIds": [
+                "un-cafe",
+                "un-the",
+                "un-chocolat-chaud",
+                "un-croissant",
+                "une-brioche",
+                "un-pain-au-chocolat"
+              ],
+              "text": {
+                "en": "Hot drinks and pastries:\n\n- `un café`\n- `un thé`\n- `un chocolat chaud`\n- `un croissant`\n- `une brioche`\n- `un pain au chocolat`",
+                "fr": "Boissons chaudes et viennoiseries :\n\n- `un café`\n- `un thé`\n- `un chocolat chaud`\n- `un croissant`\n- `une brioche`\n- `un pain au chocolat`",
+                "de": "Heiße Getränke und Gebäck:\n\n- `un café`\n- `un thé`\n- `un chocolat chaud`\n- `un croissant`\n- `une brioche`\n- `un pain au chocolat` "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "intro-cold-drinks",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-cold-drinks",
+              "targetIds": [
+                "un-jus-d-orange",
+                "une-eau-minerale",
+                "une-limonade",
+                "une-biere",
+                "un-verre-de-vin",
+                "un-soda"
+              ],
+              "text": {
+                "en": "Cold beverages:\n\n- `un jus d’orange`\n- `une eau minérale`\n- `une limonade`\n- `une bière`\n- `un verre de vin`\n- `un soda`",
+                "fr": "Boissons fraîches :\n\n- `un jus d’orange`\n- `une eau minérale`\n- `une limonade`\n- `une bière`\n- `un verre de vin`\n- `un soda`",
+                "de": "Kalte Getränke:\n\n- `un jus d’orange`\n- `une eau minérale`\n- `une limonade`\n- `une bière`\n- `un verre de vin`\n- `un soda` "
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "cards-hot-drinks-pastries",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-hot-drinks-pastries",
+              "targetIds": [
+                "un-cafe",
+                "un-the",
+                "un-chocolat-chaud",
+                "un-croissant",
+                "une-brioche",
+                "un-pain-au-chocolat"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "cards-cold-drinks",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-cold-drinks",
+              "targetIds": [
+                "un-jus-d-orange",
+                "une-eau-minerale",
+                "une-limonade",
+                "une-biere",
+                "un-verre-de-vin",
+                "un-soda"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "match-1",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-2",
+              "pairs": [
+                {
+                  "targetId": "un-cafe",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un café means a coffee.",
+                    "fr": "un café signifie « a coffee » en anglais.",
+                    "de": "un café bedeutet ein Kaffee."
+                  }
+                },
+                {
+                  "targetId": "un-the",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un thé means a tea.",
+                    "fr": "un thé signifie « a tea » en anglais.",
+                    "de": "un thé bedeutet ein Tee."
+                  }
+                },
+                {
+                  "targetId": "un-chocolat-chaud",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un chocolat chaud means a hot chocolate.",
+                    "fr": "un chocolat chaud signifie « a hot chocolate » en anglais.",
+                    "de": "un chocolat chaud bedeutet eine heiße Schokolade."
+                  }
+                },
+                {
+                  "targetId": "un-croissant",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un croissant means a croissant.",
+                    "fr": "un croissant signifie « a croissant » en anglais.",
+                    "de": "un croissant bedeutet ein Croissant."
+                  }
+                },
+                {
+                  "targetId": "une-brioche",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une brioche means a brioche.",
+                    "fr": "une brioche signifie « a brioche » en anglais.",
+                    "de": "une brioche bedeutet eine Brioche."
+                  }
+                },
+                {
+                  "targetId": "un-pain-au-chocolat",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un pain au chocolat means a chocolate pastry.",
+                    "fr": "un pain au chocolat signifie « a chocolate pastry » en anglais.",
+                    "de": "un pain au chocolat bedeutet ein Schoko-Brötchen."
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-2",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-3",
+              "pairs": [
+                {
+                  "targetId": "un-jus-d-orange",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un jus d’orange means an orange juice.",
+                    "fr": "un jus d’orange signifie « an orange juice » en anglais.",
+                    "de": "un jus d’orange bedeutet ein Orangensaft."
+                  }
+                },
+                {
+                  "targetId": "une-eau-minerale",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une eau minérale means a mineral water.",
+                    "fr": "une eau minérale signifie « a mineral water » en anglais.",
+                    "de": "une eau minérale bedeutet ein Mineralwasser."
+                  }
+                },
+                {
+                  "targetId": "une-limonade",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une limonade means a lemonade.",
+                    "fr": "une limonade signifie « a lemonade » en anglais.",
+                    "de": "une limonade bedeutet eine Limonade."
+                  }
+                },
+                {
+                  "targetId": "une-biere",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une bière means a beer.",
+                    "fr": "une bière signifie « a beer » en anglais.",
+                    "de": "une bière bedeutet ein Bier."
+                  }
+                },
+                {
+                  "targetId": "un-verre-de-vin",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un verre de vin means a glass of wine.",
+                    "fr": "un verre de vin signifie « a glass of wine » en anglais.",
+                    "de": "un verre de vin bedeutet ein Glas Wein."
+                  }
+                },
+                {
+                  "targetId": "un-soda",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un soda means a soda.",
+                    "fr": "un soda signifie « a soda » en anglais.",
+                    "de": "un soda bedeutet eine Limo."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overview",
+      "stage": "overview",
+      "role": "overview",
+      "label": {
+        "en": "Overview",
+        "fr": "Vue d’ensemble",
+        "de": "Übersicht"
+      },
+      "pages": [
+        {
+          "pageId": "overview-page",
+          "estimatedDurationS": 90,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Review all words and their details.",
+            "fr": "Révisez tous les mots et leurs détails.",
+            "de": "Überprüfe alle Wörter und ihre Details."
+          },
+          "items": [
+            {
+              "type": "vocabulary_gender_select",
+              "itemId": "gender-overview",
+              "targetIds": [
+                "un-cafe",
+                "un-the",
+                "un-chocolat-chaud",
+                "un-croissant",
+                "une-brioche",
+                "un-pain-au-chocolat",
+                "un-jus-d-orange",
+                "une-eau-minerale",
+                "une-limonade",
+                "une-biere",
+                "un-verre-de-vin",
+                "un-soda"
+              ],
+              "rows": [
+                {
+                  "targetId": "un-cafe",
+                  "answerExplanation": {
+                    "en": "café is masculine.",
+                    "fr": "café est masculin.",
+                    "de": "café ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-the",
+                  "answerExplanation": {
+                    "en": "thé is masculine.",
+                    "fr": "thé est masculin.",
+                    "de": "thé ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-chocolat-chaud",
+                  "answerExplanation": {
+                    "en": "chocolat chaud is masculine.",
+                    "fr": "chocolat chaud est masculin.",
+                    "de": "chocolat chaud ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-croissant",
+                  "answerExplanation": {
+                    "en": "croissant is masculine.",
+                    "fr": "croissant est masculin.",
+                    "de": "croissant ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "une-brioche",
+                  "answerExplanation": {
+                    "en": "brioche is feminine.",
+                    "fr": "brioche est féminin.",
+                    "de": "brioche ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-pain-au-chocolat",
+                  "answerExplanation": {
+                    "en": "pain au chocolat is masculine.",
+                    "fr": "pain au chocolat est masculin.",
+                    "de": "pain au chocolat ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-jus-d-orange",
+                  "answerExplanation": {
+                    "en": "jus d’orange is masculine.",
+                    "fr": "jus d’orange est masculin.",
+                    "de": "jus d’orange ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "une-eau-minerale",
+                  "answerExplanation": {
+                    "en": "eau minérale is feminine.",
+                    "fr": "eau minérale est féminin.",
+                    "de": "eau minérale ist feminin."
+                  }
+                },
+                {
+                  "targetId": "une-limonade",
+                  "answerExplanation": {
+                    "en": "limonade is feminine.",
+                    "fr": "limonade est féminin.",
+                    "de": "limonade ist feminin."
+                  }
+                },
+                {
+                  "targetId": "une-biere",
+                  "answerExplanation": {
+                    "en": "bière is feminine.",
+                    "fr": "bière est féminin.",
+                    "de": "bière ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-verre-de-vin",
+                  "answerExplanation": {
+                    "en": "verre de vin is masculine.",
+                    "fr": "verre de vin est masculin.",
+                    "de": "verre de vin ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-soda",
+                  "answerExplanation": {
+                    "en": "soda is masculine.",
+                    "fr": "soda est masculin.",
+                    "de": "soda ist maskulin."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "stage": "practice",
+      "role": "exercise",
+      "label": {
+        "en": "Practice",
+        "fr": "Entraînement",
+        "de": "Übung"
+      },
+      "pages": [
+        {
+          "pageId": "gap-un-cafe",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-cafe",
+              "targetId": "un-cafe",
+              "before": "Je commande un",
+              "after": " noir.",
+              "referenceTargetIds": [
+                "un-cafe",
+                "un-the",
+                "un-chocolat-chaud",
+                "un-croissant"
+              ],
+              "accepted": {
+                "answers": [
+                  "café"
+                ],
+                "accentSensitive": [
+                  "café"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is café.",
+                "fr": "Le mot manquant est café.",
+                "de": "Das fehlende Wort ist café."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-the",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-the",
+              "targetId": "un-the",
+              "before": "Un",
+              "after": " au citron, s’il vous plaît.",
+              "referenceTargetIds": [
+                "un-the",
+                "un-cafe",
+                "un-chocolat-chaud",
+                "un-croissant"
+              ],
+              "accepted": {
+                "answers": [
+                  "thé"
+                ],
+                "accentSensitive": [
+                  "thé"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is thé.",
+                "fr": "Le mot manquant est thé.",
+                "de": "Das fehlende Wort ist thé."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-chocolat-chaud",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-chocolat-chaud",
+              "targetId": "un-chocolat-chaud",
+              "before": "Commander un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-chocolat-chaud",
+                "un-cafe",
+                "un-the",
+                "un-croissant"
+              ],
+              "accepted": {
+                "answers": [
+                  "chocolat chaud"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is chocolat chaud.",
+                "fr": "Le mot manquant est chocolat chaud.",
+                "de": "Das fehlende Wort ist chocolat chaud."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-croissant",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-croissant",
+              "targetId": "un-croissant",
+              "before": "Manger un",
+              "after": " au beurre.",
+              "referenceTargetIds": [
+                "un-croissant",
+                "un-cafe",
+                "un-the",
+                "un-chocolat-chaud"
+              ],
+              "accepted": {
+                "answers": [
+                  "croissant"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is croissant.",
+                "fr": "Le mot manquant est croissant.",
+                "de": "Das fehlende Wort ist croissant."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-brioche",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-brioche",
+              "targetId": "une-brioche",
+              "before": "Une douce",
+              "after": " au sucre.",
+              "referenceTargetIds": [
+                "une-brioche",
+                "un-cafe",
+                "un-the",
+                "un-chocolat-chaud"
+              ],
+              "accepted": {
+                "answers": [
+                  "brioche"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is brioche.",
+                "fr": "Le mot manquant est brioche.",
+                "de": "Das fehlende Wort ist brioche."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-pain-au-chocolat",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-pain-au-chocolat",
+              "targetId": "un-pain-au-chocolat",
+              "before": "Un bon",
+              "after": " chaud.",
+              "referenceTargetIds": [
+                "un-pain-au-chocolat",
+                "un-cafe",
+                "un-the",
+                "un-chocolat-chaud"
+              ],
+              "accepted": {
+                "answers": [
+                  "pain au chocolat"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is pain au chocolat.",
+                "fr": "Le mot manquant est pain au chocolat.",
+                "de": "Das fehlende Wort ist pain au chocolat."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-jus-d-orange",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-jus-d-orange",
+              "targetId": "un-jus-d-orange",
+              "before": "Boire un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-jus-d-orange",
+                "un-cafe",
+                "un-the",
+                "un-chocolat-chaud"
+              ],
+              "accepted": {
+                "answers": [
+                  "jus d’orange"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is jus d’orange.",
+                "fr": "Le mot manquant est jus d’orange.",
+                "de": "Das fehlende Wort ist jus d’orange."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-eau-minerale",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-eau-minerale",
+              "targetId": "une-eau-minerale",
+              "before": "Commander une",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-eau-minerale",
+                "un-cafe",
+                "un-the",
+                "un-chocolat-chaud"
+              ],
+              "accepted": {
+                "answers": [
+                  "eau minérale"
+                ],
+                "accentSensitive": [
+                  "minérale"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is eau minérale.",
+                "fr": "Le mot manquant est eau minérale.",
+                "de": "Das fehlende Wort ist eau minérale."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-limonade",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-limonade",
+              "targetId": "une-limonade",
+              "before": "Une",
+              "after": " avec des glaçons.",
+              "referenceTargetIds": [
+                "une-limonade",
+                "un-cafe",
+                "un-the",
+                "un-chocolat-chaud"
+              ],
+              "accepted": {
+                "answers": [
+                  "limonade"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is limonade.",
+                "fr": "Le mot manquant est limonade.",
+                "de": "Das fehlende Wort ist limonade."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-biere",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-biere",
+              "targetId": "une-biere",
+              "before": "Commander une",
+              "after": " pression.",
+              "referenceTargetIds": [
+                "une-biere",
+                "un-cafe",
+                "un-the",
+                "un-chocolat-chaud"
+              ],
+              "accepted": {
+                "answers": [
+                  "bière"
+                ],
+                "accentSensitive": [
+                  "bière"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is bière.",
+                "fr": "Le mot manquant est bière.",
+                "de": "Das fehlende Wort ist bière."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-verre-de-vin",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-verre-de-vin",
+              "targetId": "un-verre-de-vin",
+              "before": "Servir un",
+              "after": " rouge.",
+              "referenceTargetIds": [
+                "un-verre-de-vin",
+                "un-cafe",
+                "un-the",
+                "un-chocolat-chaud"
+              ],
+              "accepted": {
+                "answers": [
+                  "verre de vin"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is verre de vin.",
+                "fr": "Le mot manquant est verre de vin.",
+                "de": "Das fehlende Wort ist verre de vin."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-soda",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-soda",
+              "targetId": "un-soda",
+              "before": "Boire un",
+              "after": " très frais.",
+              "referenceTargetIds": [
+                "un-soda",
+                "un-cafe",
+                "un-the",
+                "un-chocolat-chaud"
+              ],
+              "accepted": {
+                "answers": [
+                  "soda"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is soda.",
+                "fr": "Le mot manquant est soda.",
+                "de": "Das fehlende Wort ist soda."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Exam",
+        "fr": "Examen",
+        "de": "Prüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-cafe",
+              "targetId": "un-cafe",
+              "prompt": {
+                "en": "a coffee",
+                "de": "ein Kaffee"
+              },
+              "accepted": {
+                "answers": [
+                  "un café"
+                ],
+                "accentSensitive": [
+                  "café"
+                ]
+              },
+              "answerExplanation": {
+                "en": "a coffee in French is un café.",
+                "fr": "a coffee en français est un café.",
+                "de": "ein Kaffee auf Französisch ist un café."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-the",
+              "targetId": "un-the",
+              "prompt": {
+                "en": "a tea",
+                "de": "ein Tee"
+              },
+              "accepted": {
+                "answers": [
+                  "un thé"
+                ],
+                "accentSensitive": [
+                  "thé"
+                ]
+              },
+              "answerExplanation": {
+                "en": "a tea in French is un thé.",
+                "fr": "a tea en français est un thé.",
+                "de": "ein Tee auf Französisch ist un thé."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-chocolat-chaud",
+              "targetId": "un-chocolat-chaud",
+              "prompt": {
+                "en": "a hot chocolate",
+                "de": "eine heiße Schokolade"
+              },
+              "accepted": {
+                "answers": [
+                  "un chocolat chaud"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a hot chocolate in French is un chocolat chaud.",
+                "fr": "a hot chocolate en français est un chocolat chaud.",
+                "de": "eine heiße Schokolade auf Französisch ist un chocolat chaud."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-croissant",
+              "targetId": "un-croissant",
+              "prompt": {
+                "en": "a croissant",
+                "de": "ein Croissant"
+              },
+              "accepted": {
+                "answers": [
+                  "un croissant"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a croissant in French is un croissant.",
+                "fr": "a croissant en français est un croissant.",
+                "de": "ein Croissant auf Französisch ist un croissant."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-brioche",
+              "targetId": "une-brioche",
+              "prompt": {
+                "en": "a brioche",
+                "de": "eine Brioche"
+              },
+              "accepted": {
+                "answers": [
+                  "une brioche"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a brioche in French is une brioche.",
+                "fr": "a brioche en français est une brioche.",
+                "de": "eine Brioche auf Französisch ist une brioche."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-pain-au-chocolat",
+              "targetId": "un-pain-au-chocolat",
+              "prompt": {
+                "en": "a chocolate pastry",
+                "de": "ein Schoko-Brötchen"
+              },
+              "accepted": {
+                "answers": [
+                  "un pain au chocolat"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a chocolate pastry in French is un pain au chocolat.",
+                "fr": "a chocolate pastry en français est un pain au chocolat.",
+                "de": "ein Schoko-Brötchen auf Französisch ist un pain au chocolat."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-page-2",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-jus-d-orange",
+              "targetId": "un-jus-d-orange",
+              "prompt": {
+                "en": "an orange juice",
+                "de": "ein Orangensaft"
+              },
+              "accepted": {
+                "answers": [
+                  "un jus d’orange",
+                  "un jus d'orange"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "an orange juice in French is un jus d’orange.",
+                "fr": "an orange juice en français est un jus d’orange.",
+                "de": "ein Orangensaft auf Französisch ist un jus d’orange."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-eau-minerale",
+              "targetId": "une-eau-minerale",
+              "prompt": {
+                "en": "a mineral water",
+                "de": "ein Mineralwasser"
+              },
+              "accepted": {
+                "answers": [
+                  "une eau minérale"
+                ],
+                "accentSensitive": [
+                  "minérale"
+                ]
+              },
+              "answerExplanation": {
+                "en": "a mineral water in French is une eau minérale.",
+                "fr": "a mineral water en français est une eau minérale.",
+                "de": "ein Mineralwasser auf Französisch ist une eau minérale."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-limonade",
+              "targetId": "une-limonade",
+              "prompt": {
+                "en": "a lemonade",
+                "de": "eine Limonade"
+              },
+              "accepted": {
+                "answers": [
+                  "une limonade"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a lemonade in French is une limonade.",
+                "fr": "a lemonade en français est une limonade.",
+                "de": "eine Limonade auf Französisch ist une limonade."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-biere",
+              "targetId": "une-biere",
+              "prompt": {
+                "en": "a beer",
+                "de": "ein Bier"
+              },
+              "accepted": {
+                "answers": [
+                  "une bière"
+                ],
+                "accentSensitive": [
+                  "bière"
+                ]
+              },
+              "answerExplanation": {
+                "en": "a beer in French is une bière.",
+                "fr": "a beer en français est une bière.",
+                "de": "ein Bier auf Französisch ist une bière."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-verre-de-vin",
+              "targetId": "un-verre-de-vin",
+              "prompt": {
+                "en": "a glass of wine",
+                "de": "ein Glas Wein"
+              },
+              "accepted": {
+                "answers": [
+                  "un verre de vin"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a glass of wine in French is un verre de vin.",
+                "fr": "a glass of wine en français est un verre de vin.",
+                "de": "ein Glas Wein auf Französisch ist un verre de vin."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-soda",
+              "targetId": "un-soda",
+              "prompt": {
+                "en": "a soda",
+                "de": "eine Limo"
+              },
+              "accepted": {
+                "answers": [
+                  "un soda"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a soda in French is un soda.",
+                "fr": "a soda en français est un soda.",
+                "de": "eine Limo auf Französisch ist un soda."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

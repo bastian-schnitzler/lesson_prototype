@@ -1,0 +1,685 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-fruit-and-vegetables",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les fruits et légumes",
+  "objective": {
+    "en": "Name fifteen common fruits and vegetables in French with indefinite articles.",
+    "fr": "Nommer une quinzaine de fruits et légumes courants en français avec leurs articles indéfinis.",
+    "de": "Nenne fünfzehn häufige Obst- und Gemüsesorten auf Französisch mit unbestimmten Artikeln."
+  },
+  "estimatedMinutes": 14,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T14:59:27.716Z",
+    "inputHashes": {
+      "outline": "81dd205aeb93f72fdf136fdbe61eb95c9e1145bb635ac4162539e81fa95634f8"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "food_and_drink",
+  "coverageNotes": {
+    "en": "Covers essential fruits and everyday vegetables.",
+    "fr": "Couvre les fruits essentiels et les légumes du quotidien.",
+    "de": "Deckt wichtige Obstsorten und alltägliches Gemüse ab."
+  },
+  "targetCount": 15,
+  "countRationale": {
+    "en": "Fifteen items cover a broad produce inventory for practical shopping.",
+    "fr": "Quinze éléments couvrent un large inventaire de produits frais.",
+    "de": "Fünfzehn Begriffe decken ein breites Sortiment an frischen Lebensmitteln ab."
+  },
+  "difficultyBalance": {
+    "en": "10 short core terms balanced with 5 compound or accented names.",
+    "fr": "10 termes simples équilibrés avec 5 mots plus longs ou accentués.",
+    "de": "10 einfache Begriffe ausgewogen mit 5 anspruchsvolleren Wörtern."
+  },
+  "prerequisites": [
+    {
+      "en": "Indefinite articles un, une.",
+      "fr": "Articles indéfinis un, une.",
+      "de": "Unbestimmte Artikel un, une."
+    }
+  ],
+  "groups": [
+    {
+      "id": "fruits",
+      "label": {
+        "en": "Fruits",
+        "fr": "Fruits",
+        "de": "Obst"
+      },
+      "targetIds": [
+        "une-pomme",
+        "une-banane",
+        "une-orange",
+        "une-fraise",
+        "un-citron",
+        "un-raisin",
+        "une-poire"
+      ]
+    },
+    {
+      "id": "vegetables",
+      "label": {
+        "en": "Vegetables",
+        "fr": "Légumes",
+        "de": "Gemüse"
+      },
+      "targetIds": [
+        "une-tomate",
+        "une-carotte",
+        "une-pomme-de-terre",
+        "une-salade",
+        "un-oignon",
+        "un-concombre",
+        "une-courgette",
+        "un-haricot-vert"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "une-pomme",
+      "term": "pomme",
+      "translations": {
+        "en": [
+          "an apple"
+        ],
+        "de": [
+          "ein Apfel"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une pomme",
+      "examForms": [
+        "une pomme"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn pɔm/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Je mange une pomme rouge.",
+        "translation": {
+          "en": "I eat a red apple.",
+          "de": "Ich esse einen roten Apfel."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-banane",
+      "term": "banane",
+      "translations": {
+        "en": [
+          "a banana"
+        ],
+        "de": [
+          "eine Banane"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une banane",
+      "examForms": [
+        "une banane"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn banan/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il pèle une banane jaune.",
+        "translation": {
+          "en": "He peels a yellow banana.",
+          "de": "Er schält eine gelbe Banane."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-orange",
+      "term": "orange",
+      "translations": {
+        "en": [
+          "an orange"
+        ],
+        "de": [
+          "eine Orange"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une orange",
+      "examForms": [
+        "une orange"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn ɔʁɑ̃ʒ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Elle boit le jus d’une orange.",
+        "translation": {
+          "en": "She drinks the juice of an orange.",
+          "de": "Sie trinkt den Saft einer Orange."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-fraise",
+      "term": "fraise",
+      "translations": {
+        "en": [
+          "a strawberry"
+        ],
+        "de": [
+          "eine Erdbeere"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une fraise",
+      "examForms": [
+        "une fraise"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn fʁɛz/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Une fraise sucrée au printemps.",
+        "translation": {
+          "en": "A sweet strawberry in spring.",
+          "de": "Eine süße Erdbeere im Frühling."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-citron",
+      "term": "citron",
+      "translations": {
+        "en": [
+          "a lemon"
+        ],
+        "de": [
+          "eine Zitrone"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un citron",
+      "examForms": [
+        "un citron"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ sitʁɔ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un citron vert est très acide.",
+        "translation": {
+          "en": "A lime/lemon is very sour.",
+          "de": "Eine Zitrone ist sehr sauer."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-raisin",
+      "term": "raisin",
+      "translations": {
+        "en": [
+          "a grape",
+          "grapes"
+        ],
+        "de": [
+          "eine Traube"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un raisin",
+      "examForms": [
+        "un raisin"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ ʁɛzɛ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il mange une grappe de raisin.",
+        "translation": {
+          "en": "He eats a bunch of grapes.",
+          "de": "Er isst eine Weintraube."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-poire",
+      "term": "poire",
+      "translations": {
+        "en": [
+          "a pear"
+        ],
+        "de": [
+          "eine Birne"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une poire",
+      "examForms": [
+        "une poire"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn pwaʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Une poire juteuse en automne.",
+        "translation": {
+          "en": "A juicy pear in autumn.",
+          "de": "Eine saftige Birne im Herbst."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-tomate",
+      "term": "tomate",
+      "translations": {
+        "en": [
+          "a tomato"
+        ],
+        "de": [
+          "eine Tomate"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une tomate",
+      "examForms": [
+        "une tomate"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn tɔmat/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Une tomate fraîche pour la salade.",
+        "translation": {
+          "en": "A fresh tomato for the salad.",
+          "de": "Eine frische Tomate für den Salat."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-carotte",
+      "term": "carotte",
+      "translations": {
+        "en": [
+          "a carrot"
+        ],
+        "de": [
+          "eine Karotte"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une carotte",
+      "examForms": [
+        "une carotte"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn kaʁɔt/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le lapin mange une carotte.",
+        "translation": {
+          "en": "The rabbit eats a carrot.",
+          "de": "Das Kaninchen isst eine Karotte."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-pomme-de-terre",
+      "term": "pomme de terre",
+      "translations": {
+        "en": [
+          "a potato"
+        ],
+        "de": [
+          "eine Kartoffel"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une pomme de terre",
+      "examForms": [
+        "une pomme de terre"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn pɔm də tɛʁ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Faire cuire une pomme de terre.",
+        "translation": {
+          "en": "Cook a potato.",
+          "de": "Eine Kartoffel kochen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-salade",
+      "term": "salade",
+      "translations": {
+        "en": [
+          "a lettuce",
+          "a salad"
+        ],
+        "de": [
+          "ein Salat"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une salade",
+      "examForms": [
+        "une salade"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn salad/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Laver une salade verte.",
+        "translation": {
+          "en": "Wash a green lettuce.",
+          "de": "Einen grünen Salat waschen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-oignon",
+      "term": "oignon",
+      "translations": {
+        "en": [
+          "an onion"
+        ],
+        "de": [
+          "eine Zwiebel"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un oignon",
+      "examForms": [
+        "un oignon"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ nɔɲɔ̃/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Couper un oignon fait pleurer.",
+        "translation": {
+          "en": "Cutting an onion makes you cry.",
+          "de": "Zwiebelnschneiden bringt einen zum Weinen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-concombre",
+      "term": "concombre",
+      "translations": {
+        "en": [
+          "a cucumber"
+        ],
+        "de": [
+          "eine Gurke"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un concombre",
+      "examForms": [
+        "un concombre"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ kɔ̃kɔ̃bʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un concombre frais en été.",
+        "translation": {
+          "en": "A fresh cucumber in summer.",
+          "de": "Eine frische Gurke im Sommer."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-courgette",
+      "term": "courgette",
+      "translations": {
+        "en": [
+          "a zucchini",
+          "a courgette"
+        ],
+        "de": [
+          "eine Zucchini"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une courgette",
+      "examForms": [
+        "une courgette"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn kuʁʒɛt/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Faire sauter une courgette.",
+        "translation": {
+          "en": "Sauté a zucchini.",
+          "de": "Eine Zucchini anbraten."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-haricot-vert",
+      "term": "haricot vert",
+      "translations": {
+        "en": [
+          "a green bean"
+        ],
+        "de": [
+          "eine grüne Bohne"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un haricot vert",
+      "examForms": [
+        "un haricot vert"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ aʁiko vɛʁ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Manger un haricot vert à la vapeur.",
+        "translation": {
+          "en": "Eat a steamed green bean.",
+          "de": "Eine gedämpfte grüne Bohne essen."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "une-pomme",
+        "une-banane",
+        "une-orange",
+        "une-fraise",
+        "un-citron",
+        "un-raisin",
+        "une-poire",
+        "une-tomate",
+        "une-carotte",
+        "une-pomme-de-terre",
+        "une-salade",
+        "un-oignon",
+        "un-concombre",
+        "une-courgette",
+        "un-haricot-vert"
+      ],
+      "estimatedDurationS": 225
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "une-pomme",
+            "une-banane",
+            "une-orange",
+            "une-fraise",
+            "un-citron",
+            "un-raisin",
+            "une-poire",
+            "une-tomate"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "une-carotte",
+            "une-pomme-de-terre",
+            "une-salade",
+            "un-oignon",
+            "un-concombre",
+            "une-courgette",
+            "un-haricot-vert"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

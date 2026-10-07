@@ -1,0 +1,1022 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-feeling-ill",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Se sentir malade",
+  "objective": {
+    "en": "Name ten health and illness terms in French.",
+    "fr": "Nommer une dizaine de mots liés aux maladies et symptômes en français.",
+    "de": "Nenne zehn Begriffe zu Gesundheit und Krankheit auf Französisch."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-content-v1",
+    "generatedAt": "2026-10-07T15:10:44.868Z",
+    "inputHashes": {
+      "outline": "490ab43ecc118a45671a370b2a0d56f274fbe81f2c58b0d7ebba8d6393499a07",
+      "brief": "cde277b9629b8479629fb919ab807fd9ec82c720c616e1988f4891d546e4bb56"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "health",
+  "steps": [
+    {
+      "id": "introduction",
+      "stage": "introduction",
+      "role": "introduction",
+      "label": {
+        "en": "Introduction",
+        "fr": "Introduction",
+        "de": "Einführung"
+      },
+      "pages": [
+        {
+          "pageId": "intro-symptoms-illness",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-symptoms-illness",
+              "targetIds": [
+                "une-fievre",
+                "un-rhume",
+                "une-grippe",
+                "une-toux",
+                "avoir-mal"
+              ],
+              "text": {
+                "en": "Symptoms and common conditions:\n\n- `une fièvre`\n- `un rhume`\n- `une grippe`\n- `une toux`\n- `avoir mal`",
+                "fr": "Symptômes et problèmes courants :\n\n- `une fièvre`\n- `un rhume`\n- `une grippe`\n- `une toux`\n- `avoir mal`",
+                "de": "Symptome und häufige Beschwerden:\n\n- `une fièvre`\n- `un rhume`\n- `une grippe`\n- `une toux`\n- `avoir mal` "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "intro-medical-care-states",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-medical-care-states",
+              "targetIds": [
+                "un-medecin",
+                "un-medicament",
+                "une-pharmacie",
+                "malade",
+                "fatigue"
+              ],
+              "text": {
+                "en": "Medical care and health status:\n\n- `un médecin`\n- `un médicament`\n- `une pharmacie`\n- `malade`\n- `fatigué`",
+                "fr": "Soins médicaux et état physique :\n\n- `un médecin`\n- `un médicament`\n- `une pharmacie`\n- `malade`\n- `fatigué`",
+                "de": "Medizinische Versorgung und Befinden:\n\n- `un médecin`\n- `un médicament`\n- `une pharmacie`\n- `malade`\n- `fatigué` "
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "cards-symptoms-illness",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-symptoms-illness",
+              "targetIds": [
+                "une-fievre",
+                "un-rhume",
+                "une-grippe",
+                "une-toux",
+                "avoir-mal"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "cards-medical-care-states",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-medical-care-states",
+              "targetIds": [
+                "un-medecin",
+                "un-medicament",
+                "une-pharmacie",
+                "malade",
+                "fatigue"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "match-1",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-2",
+              "pairs": [
+                {
+                  "targetId": "une-fievre",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une fièvre means a fever.",
+                    "fr": "une fièvre signifie « a fever » en anglais.",
+                    "de": "une fièvre bedeutet Fieber."
+                  }
+                },
+                {
+                  "targetId": "un-rhume",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un rhume means a cold.",
+                    "fr": "un rhume signifie « a cold » en anglais.",
+                    "de": "un rhume bedeutet ein Schnupfen."
+                  }
+                },
+                {
+                  "targetId": "une-grippe",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une grippe means a flu.",
+                    "fr": "une grippe signifie « a flu » en anglais.",
+                    "de": "une grippe bedeutet eine Grippe."
+                  }
+                },
+                {
+                  "targetId": "une-toux",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une toux means a cough.",
+                    "fr": "une toux signifie « a cough » en anglais.",
+                    "de": "une toux bedeutet ein Husten."
+                  }
+                },
+                {
+                  "targetId": "avoir-mal",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "avoir mal means to be in pain.",
+                    "fr": "avoir mal signifie « to be in pain » en anglais.",
+                    "de": "avoir mal bedeutet Schmerzen haben."
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-2",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-3",
+              "pairs": [
+                {
+                  "targetId": "un-medecin",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un médecin means a doctor.",
+                    "fr": "un médecin signifie « a doctor » en anglais.",
+                    "de": "un médecin bedeutet ein Arzt."
+                  }
+                },
+                {
+                  "targetId": "un-medicament",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un médicament means a medicine.",
+                    "fr": "un médicament signifie « a medicine » en anglais.",
+                    "de": "un médicament bedeutet ein Medikament."
+                  }
+                },
+                {
+                  "targetId": "une-pharmacie",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une pharmacie means a pharmacy.",
+                    "fr": "une pharmacie signifie « a pharmacy » en anglais.",
+                    "de": "une pharmacie bedeutet eine Apotheke."
+                  }
+                },
+                {
+                  "targetId": "malade",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "malade means sick.",
+                    "fr": "malade signifie « sick » en anglais.",
+                    "de": "malade bedeutet krank."
+                  }
+                },
+                {
+                  "targetId": "fatigue",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "fatigué means tired.",
+                    "fr": "fatigué signifie « tired » en anglais.",
+                    "de": "fatigué bedeutet müde."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overview",
+      "stage": "overview",
+      "role": "overview",
+      "label": {
+        "en": "Overview",
+        "fr": "Vue d’ensemble",
+        "de": "Übersicht"
+      },
+      "pages": [
+        {
+          "pageId": "overview-page",
+          "estimatedDurationS": 90,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Review all words and their details.",
+            "fr": "Révisez tous les mots et leurs détails.",
+            "de": "Überprüfe alle Wörter und ihre Details."
+          },
+          "items": [
+            {
+              "type": "vocabulary_gender_select",
+              "itemId": "gender-overview",
+              "targetIds": [
+                "une-fievre",
+                "un-rhume",
+                "une-grippe",
+                "une-toux",
+                "avoir-mal",
+                "un-medecin",
+                "un-medicament",
+                "une-pharmacie",
+                "malade",
+                "fatigue"
+              ],
+              "rows": [
+                {
+                  "targetId": "une-fievre",
+                  "answerExplanation": {
+                    "en": "fièvre is feminine.",
+                    "fr": "fièvre est féminin.",
+                    "de": "fièvre ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-rhume",
+                  "answerExplanation": {
+                    "en": "rhume is masculine.",
+                    "fr": "rhume est masculin.",
+                    "de": "rhume ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "une-grippe",
+                  "answerExplanation": {
+                    "en": "grippe is feminine.",
+                    "fr": "grippe est féminin.",
+                    "de": "grippe ist feminin."
+                  }
+                },
+                {
+                  "targetId": "une-toux",
+                  "answerExplanation": {
+                    "en": "toux is feminine.",
+                    "fr": "toux est féminin.",
+                    "de": "toux ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-medecin",
+                  "answerExplanation": {
+                    "en": "médecin is masculine.",
+                    "fr": "médecin est masculin.",
+                    "de": "médecin ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-medicament",
+                  "answerExplanation": {
+                    "en": "médicament is masculine.",
+                    "fr": "médicament est masculin.",
+                    "de": "médicament ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "une-pharmacie",
+                  "answerExplanation": {
+                    "en": "pharmacie is feminine.",
+                    "fr": "pharmacie est féminin.",
+                    "de": "pharmacie ist feminin."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "stage": "practice",
+      "role": "exercise",
+      "label": {
+        "en": "Practice",
+        "fr": "Entraînement",
+        "de": "Übung"
+      },
+      "pages": [
+        {
+          "pageId": "gap-une-fievre",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-fievre",
+              "targetId": "une-fievre",
+              "before": "Prendre la température pour une",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-fievre",
+                "un-rhume",
+                "une-grippe",
+                "une-toux"
+              ],
+              "accepted": {
+                "answers": [
+                  "fièvre"
+                ],
+                "accentSensitive": [
+                  "fièvre"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is fièvre.",
+                "fr": "Le mot manquant est fièvre.",
+                "de": "Das fehlende Wort ist fièvre."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-rhume",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-rhume",
+              "targetId": "un-rhume",
+              "before": "Avoir le nez qui coule avec un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-rhume",
+                "une-fievre",
+                "une-grippe",
+                "une-toux"
+              ],
+              "accepted": {
+                "answers": [
+                  "rhume"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is rhume.",
+                "fr": "Le mot manquant est rhume.",
+                "de": "Das fehlende Wort ist rhume."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-grippe",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-grippe",
+              "targetId": "une-grippe",
+              "before": "Soigner une mauvaise",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-grippe",
+                "une-fievre",
+                "un-rhume",
+                "une-toux"
+              ],
+              "accepted": {
+                "answers": [
+                  "grippe"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is grippe.",
+                "fr": "Le mot manquant est grippe.",
+                "de": "Das fehlende Wort ist grippe."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-toux",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-toux",
+              "targetId": "une-toux",
+              "before": "Calmer une",
+              "after": " forte.",
+              "referenceTargetIds": [
+                "une-toux",
+                "une-fievre",
+                "un-rhume",
+                "une-grippe"
+              ],
+              "accepted": {
+                "answers": [
+                  "toux"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is toux.",
+                "fr": "Le mot manquant est toux.",
+                "de": "Das fehlende Wort ist toux."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-avoir-mal",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-avoir-mal",
+              "targetId": "avoir-mal",
+              "before": "Le patient dit",
+              "after": " au dos.",
+              "referenceTargetIds": [
+                "avoir-mal",
+                "une-fievre",
+                "un-rhume",
+                "une-grippe"
+              ],
+              "accepted": {
+                "answers": [
+                  "avoir mal"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is avoir mal.",
+                "fr": "Le mot manquant est avoir mal.",
+                "de": "Das fehlende Wort ist avoir mal."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-medecin",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-medecin",
+              "targetId": "un-medecin",
+              "before": "Prendre rendez-vous chez un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-medecin",
+                "une-fievre",
+                "un-rhume",
+                "une-grippe"
+              ],
+              "accepted": {
+                "answers": [
+                  "médecin"
+                ],
+                "accentSensitive": [
+                  "médecin"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is médecin.",
+                "fr": "Le mot manquant est médecin.",
+                "de": "Das fehlende Wort ist médecin."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-medicament",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-medicament",
+              "targetId": "un-medicament",
+              "before": "Acheter un",
+              "after": " efficace.",
+              "referenceTargetIds": [
+                "un-medicament",
+                "une-fievre",
+                "un-rhume",
+                "une-grippe"
+              ],
+              "accepted": {
+                "answers": [
+                  "médicament"
+                ],
+                "accentSensitive": [
+                  "médicament"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is médicament.",
+                "fr": "Le mot manquant est médicament.",
+                "de": "Das fehlende Wort ist médicament."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-pharmacie",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-pharmacie",
+              "targetId": "une-pharmacie",
+              "before": "Aller à la",
+              "after": " du quartier.",
+              "referenceTargetIds": [
+                "une-pharmacie",
+                "une-fievre",
+                "un-rhume",
+                "une-grippe"
+              ],
+              "accepted": {
+                "answers": [
+                  "pharmacie"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is pharmacie.",
+                "fr": "Le mot manquant est pharmacie.",
+                "de": "Das fehlende Wort ist pharmacie."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-malade",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-malade",
+              "targetId": "malade",
+              "before": "Il reste chez lui car il est",
+              "after": ".",
+              "referenceTargetIds": [
+                "malade",
+                "une-fievre",
+                "un-rhume",
+                "une-grippe"
+              ],
+              "accepted": {
+                "answers": [
+                  "malade"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is malade.",
+                "fr": "Le mot manquant est malade.",
+                "de": "Das fehlende Wort ist malade."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-fatigue",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-fatigue",
+              "targetId": "fatigue",
+              "before": "Dormir quand on est",
+              "after": ".",
+              "referenceTargetIds": [
+                "fatigue",
+                "une-fievre",
+                "un-rhume",
+                "une-grippe"
+              ],
+              "accepted": {
+                "answers": [
+                  "fatigué"
+                ],
+                "accentSensitive": [
+                  "fatigué"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is fatigué.",
+                "fr": "Le mot manquant est fatigué.",
+                "de": "Das fehlende Wort ist fatigué."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Exam",
+        "fr": "Examen",
+        "de": "Prüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-fievre",
+              "targetId": "une-fievre",
+              "prompt": {
+                "en": "a fever",
+                "de": "Fieber"
+              },
+              "accepted": {
+                "answers": [
+                  "une fièvre",
+                  "une fievre"
+                ],
+                "accentSensitive": [
+                  "fièvre"
+                ]
+              },
+              "answerExplanation": {
+                "en": "a fever in French is une fièvre.",
+                "fr": "a fever en français est une fièvre.",
+                "de": "Fieber auf Französisch ist une fièvre."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-rhume",
+              "targetId": "un-rhume",
+              "prompt": {
+                "en": "a cold",
+                "de": "ein Schnupfen"
+              },
+              "accepted": {
+                "answers": [
+                  "un rhume"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a cold in French is un rhume.",
+                "fr": "a cold en français est un rhume.",
+                "de": "ein Schnupfen auf Französisch ist un rhume."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-grippe",
+              "targetId": "une-grippe",
+              "prompt": {
+                "en": "a flu",
+                "de": "eine Grippe"
+              },
+              "accepted": {
+                "answers": [
+                  "une grippe"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a flu in French is une grippe.",
+                "fr": "a flu en français est une grippe.",
+                "de": "eine Grippe auf Französisch ist une grippe."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-toux",
+              "targetId": "une-toux",
+              "prompt": {
+                "en": "a cough",
+                "de": "ein Husten"
+              },
+              "accepted": {
+                "answers": [
+                  "une toux"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a cough in French is une toux.",
+                "fr": "a cough en français est une toux.",
+                "de": "ein Husten auf Französisch ist une toux."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-avoir-mal",
+              "targetId": "avoir-mal",
+              "prompt": {
+                "en": "to be in pain",
+                "de": "Schmerzen haben"
+              },
+              "accepted": {
+                "answers": [
+                  "avoir mal"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "to be in pain in French is avoir mal.",
+                "fr": "to be in pain en français est avoir mal.",
+                "de": "Schmerzen haben auf Französisch ist avoir mal."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-page-2",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-medecin",
+              "targetId": "un-medecin",
+              "prompt": {
+                "en": "a doctor",
+                "de": "ein Arzt"
+              },
+              "accepted": {
+                "answers": [
+                  "un médecin",
+                  "un medecin"
+                ],
+                "accentSensitive": [
+                  "médecin"
+                ]
+              },
+              "answerExplanation": {
+                "en": "a doctor in French is un médecin.",
+                "fr": "a doctor en français est un médecin.",
+                "de": "ein Arzt auf Französisch ist un médecin."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-medicament",
+              "targetId": "un-medicament",
+              "prompt": {
+                "en": "a medicine",
+                "de": "ein Medikament"
+              },
+              "accepted": {
+                "answers": [
+                  "un médicament",
+                  "un medicament"
+                ],
+                "accentSensitive": [
+                  "médicament"
+                ]
+              },
+              "answerExplanation": {
+                "en": "a medicine in French is un médicament.",
+                "fr": "a medicine en français est un médicament.",
+                "de": "ein Medikament auf Französisch ist un médicament."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-pharmacie",
+              "targetId": "une-pharmacie",
+              "prompt": {
+                "en": "a pharmacy",
+                "de": "eine Apotheke"
+              },
+              "accepted": {
+                "answers": [
+                  "une pharmacie"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a pharmacy in French is une pharmacie.",
+                "fr": "a pharmacy en français est une pharmacie.",
+                "de": "eine Apotheke auf Französisch ist une pharmacie."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-malade",
+              "targetId": "malade",
+              "prompt": {
+                "en": "sick",
+                "de": "krank"
+              },
+              "accepted": {
+                "answers": [
+                  "malade"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "sick in French is malade.",
+                "fr": "sick en français est malade.",
+                "de": "krank auf Französisch ist malade."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-fatigue",
+              "targetId": "fatigue",
+              "prompt": {
+                "en": "tired",
+                "de": "müde"
+              },
+              "accepted": {
+                "answers": [
+                  "fatigué",
+                  "fatigue"
+                ],
+                "accentSensitive": [
+                  "fatigué"
+                ]
+              },
+              "answerExplanation": {
+                "en": "tired in French is fatigué.",
+                "fr": "tired en français est fatigué.",
+                "de": "müde auf Französisch ist fatigué."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,580 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-household-items",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les objets de la maison",
+  "objective": {
+    "en": "Name twelve kitchen and household objects in French with indefinite articles.",
+    "fr": "Nommer une douzaine d’objets de la cuisine et de la maison en français avec leurs articles indéfinis.",
+    "de": "Nenne zwölf Küchen- und Haushaltsgegenstände auf Französisch mit unbestimmten Artikeln."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T14:59:24.385Z",
+    "inputHashes": {
+      "outline": "e42377abaa1a88b5fb93d6f0a79c30b70d259d5b9824a9dbc681e68c6ea7fab7"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "house_and_home",
+  "coverageNotes": {
+    "en": "Covers tableware, cutlery, and cookware.",
+    "fr": "Couvre la vaisselle, les couverts et les ustensiles de cuisine.",
+    "de": "Deckt Geschirr, Besteck und Kochutensilien ab."
+  },
+  "targetCount": 12,
+  "countRationale": {
+    "en": "Twelve items cover standard dining and kitchen items for beginners.",
+    "fr": "Douze éléments couvrent la vaisselle et les ustensiles de cuisine essentiels.",
+    "de": "Zwölf Begriffe decken grundlegendes Ess- und Kochgeschirr ab."
+  },
+  "difficultyBalance": {
+    "en": "8 basic short nouns balanced with 4 multi-syllable cookware or cutlery items.",
+    "fr": "8 noms courts essentiels équilibrés avec 4 mots plus longs.",
+    "de": "8 kurze Grundbegriffe ausgewogen mit 4 längeren Wörtern."
+  },
+  "prerequisites": [
+    {
+      "en": "Indefinite articles un, une.",
+      "fr": "Articles indéfinis un, une.",
+      "de": "Unbestimmte Artikel un, une."
+    }
+  ],
+  "groups": [
+    {
+      "id": "tableware",
+      "label": {
+        "en": "Tableware & Cutlery",
+        "fr": "Vaisselle et couverts",
+        "de": "Geschirr & Besteck"
+      },
+      "targetIds": [
+        "une-assiette",
+        "un-verre",
+        "une-tasse",
+        "un-couteau",
+        "une-fourchette",
+        "une-cuillere"
+      ]
+    },
+    {
+      "id": "cookware-linens",
+      "label": {
+        "en": "Cookware & Linens",
+        "fr": "Ustensiles et linge",
+        "de": "Kochgeschirr & Wäsche"
+      },
+      "targetIds": [
+        "une-casserole",
+        "une-poele",
+        "une-serviette",
+        "une-bouteille",
+        "un-bol",
+        "un-plat"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "une-assiette",
+      "term": "assiette",
+      "translations": {
+        "en": [
+          "a plate"
+        ],
+        "de": [
+          "ein Teller"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une assiette",
+      "examForms": [
+        "une assiette"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn asjɛt/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Mets la soupe dans une assiette.",
+        "translation": {
+          "en": "Put the soup on a plate.",
+          "de": "Gib die Suppe auf einen Teller."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-verre",
+      "term": "verre",
+      "translations": {
+        "en": [
+          "a glass"
+        ],
+        "de": [
+          "ein Glas"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un verre",
+      "examForms": [
+        "un verre"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ vɛʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Je bois un verre d’eau.",
+        "translation": {
+          "en": "I drink a glass of water.",
+          "de": "Ich trinke ein Glas Wasser."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-tasse",
+      "term": "tasse",
+      "translations": {
+        "en": [
+          "a cup",
+          "a mug"
+        ],
+        "de": [
+          "eine Tasse"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une tasse",
+      "examForms": [
+        "une tasse"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn tas/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il prend une tasse de café.",
+        "translation": {
+          "en": "He takes a cup of coffee.",
+          "de": "Er trinkt eine Tasse Kaffee."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-couteau",
+      "term": "couteau",
+      "translations": {
+        "en": [
+          "a knife"
+        ],
+        "de": [
+          "ein Messer"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un couteau",
+      "examForms": [
+        "un couteau"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ kuto/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Coupe le pain avec un couteau.",
+        "translation": {
+          "en": "Cut the bread with a knife.",
+          "de": "Schneide das Brot mit einem Messer."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-fourchette",
+      "term": "fourchette",
+      "translations": {
+        "en": [
+          "a fork"
+        ],
+        "de": [
+          "eine Gabel"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une fourchette",
+      "examForms": [
+        "une fourchette"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn fuʁʃɛt/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il mange sa salade avec une fourchette.",
+        "translation": {
+          "en": "He eats his salad with a fork.",
+          "de": "Er isst seinen Salat mit einer Gabel."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-cuillere",
+      "term": "cuillère",
+      "translations": {
+        "en": [
+          "a spoon"
+        ],
+        "de": [
+          "ein Löffel"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une cuillère",
+      "examForms": [
+        "une cuillère"
+      ],
+      "accentSensitive": [
+        "cuillère"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn kyjɛʁ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Mange ta soupe avec une cuillère.",
+        "translation": {
+          "en": "Eat your soup with a spoon.",
+          "de": "Iss deine Suppe mit einem Löffel."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-casserole",
+      "term": "casserole",
+      "translations": {
+        "en": [
+          "a saucepan",
+          "a pot"
+        ],
+        "de": [
+          "ein Kochtopf"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une casserole",
+      "examForms": [
+        "une casserole"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn kasʁɔl/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Fais chauffer l’eau dans une casserole.",
+        "translation": {
+          "en": "Heat the water in a saucepan.",
+          "de": "Erhitze das Wasser in einem Topf."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-poele",
+      "term": "poêle",
+      "translations": {
+        "en": [
+          "a frying pan",
+          "a skillet"
+        ],
+        "de": [
+          "eine Pfanne"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une poêle",
+      "examForms": [
+        "une poêle"
+      ],
+      "accentSensitive": [
+        "poêle"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn pwal/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Fais frire un œuf dans la poêle.",
+        "translation": {
+          "en": "Fry an egg in the pan.",
+          "de": "Brate ein Ei in der Pfanne."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-serviette",
+      "term": "serviette",
+      "translations": {
+        "en": [
+          "a napkin",
+          "a towel"
+        ],
+        "de": [
+          "eine Serviette"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une serviette",
+      "examForms": [
+        "une serviette"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn sɛʁvjɛt/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Essuie-toi avec une serviette.",
+        "translation": {
+          "en": "Wipe yourself with a towel/napkin.",
+          "de": "Trockne dich mit einem Handtuch ab."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-bouteille",
+      "term": "bouteille",
+      "translations": {
+        "en": [
+          "a bottle"
+        ],
+        "de": [
+          "eine Flasche"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une bouteille",
+      "examForms": [
+        "une bouteille"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn butɛj/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Achète une bouteille d’eau.",
+        "translation": {
+          "en": "Buy a bottle of water.",
+          "de": "Kaufe eine Flasche Wasser."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-bol",
+      "term": "bol",
+      "translations": {
+        "en": [
+          "a bowl"
+        ],
+        "de": [
+          "eine Schüssel"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un bol",
+      "examForms": [
+        "un bol"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ bɔl/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il mange des céréales dans un bol.",
+        "translation": {
+          "en": "He eats cereal in a bowl.",
+          "de": "Er isst Müsli aus einer Schüssel."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-plat",
+      "term": "plat",
+      "translations": {
+        "en": [
+          "a dish",
+          "a serving dish"
+        ],
+        "de": [
+          "eine Platte"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un plat",
+      "examForms": [
+        "un plat"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ pla/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le rosbif est sur un grand plat.",
+        "translation": {
+          "en": "The roast beef is on a large platter.",
+          "de": "Der Rinderbraten ist auf einer großen Platte."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "une-assiette",
+        "un-verre",
+        "une-tasse",
+        "un-couteau",
+        "une-fourchette",
+        "une-cuillere",
+        "une-casserole",
+        "une-poele",
+        "une-serviette",
+        "une-bouteille",
+        "un-bol",
+        "un-plat"
+      ],
+      "estimatedDurationS": 180
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "une-assiette",
+            "un-verre",
+            "une-tasse",
+            "un-couteau",
+            "une-fourchette",
+            "une-cuillere"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "une-casserole",
+            "une-poele",
+            "une-serviette",
+            "une-bouteille",
+            "un-bol",
+            "un-plat"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

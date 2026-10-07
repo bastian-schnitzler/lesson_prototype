@@ -1,0 +1,518 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-going-out",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Sortir et s’amuser",
+  "objective": {
+    "en": "Name ten words and events for going out and entertainment in French.",
+    "fr": "Nommer une dizaine de mots et d’événements pour sortir en français.",
+    "de": "Nenne zehn Wörter für Ausgehen und Veranstaltungen auf Französisch."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T15:03:50.932Z",
+    "inputHashes": {
+      "outline": "5d8caee0262ad771ab5d978391dde0a001c64a624b8b2e8c2648f8f5b045e973"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "free_time",
+  "coverageNotes": {
+    "en": "Covers cultural venues, events, tickets, and appointments.",
+    "fr": "Couvre les lieux culturels, événements, billets et rendez-vous.",
+    "de": "Deckt Kulturstätten, Veranstaltungen, Tickets und Verabredungen ab."
+  },
+  "targetCount": 10,
+  "countRationale": {
+    "en": "Ten items cover standard social outings and cultural plans.",
+    "fr": "Dix éléments couvrent les sorties culturelles et amicales.",
+    "de": "Zehn Begriffe decken Freizeit- und Kulturausflüge ab."
+  },
+  "difficultyBalance": {
+    "en": "Core venues (le cinéma, la fête) balanced with terms (une exposition, une séance).",
+    "fr": "Mots de sorties simples équilibrés avec exposition/séance.",
+    "de": "Einfache Begriffe ausgewogen mit speziellen Ausdrücken."
+  },
+  "prerequisites": [
+    {
+      "en": "Going out verbs and time basics.",
+      "fr": "Verbes de loisirs et bases de temps.",
+      "de": "Freizeitverben und Zeitgrundlagen."
+    }
+  ],
+  "groups": [
+    {
+      "id": "cultural-events",
+      "label": {
+        "en": "Cultural venues & events",
+        "fr": "Lieux et événements culturels",
+        "de": "Kulturorte & Events"
+      },
+      "targetIds": [
+        "un-cinema",
+        "un-concert",
+        "un-theatre",
+        "une-exposition",
+        "une-fete"
+      ]
+    },
+    {
+      "id": "outings-logistics",
+      "label": {
+        "en": "Tickets & Arrangements",
+        "fr": "Billets et organisation",
+        "de": "Tickets & Organisation"
+      },
+      "targetIds": [
+        "un-billet",
+        "une-seance",
+        "un-rendez-vous",
+        "un-spectacle",
+        "une-soiree"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "un-cinema",
+      "term": "cinéma",
+      "translations": {
+        "en": [
+          "a cinema",
+          "a movie theater"
+        ],
+        "de": [
+          "ein Kino"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un cinéma",
+      "examForms": [
+        "un cinéma"
+      ],
+      "accentSensitive": [
+        "cinéma"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ sinema/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Aller dans un cinéma de quartier.",
+        "translation": {
+          "en": "Go to a neighborhood cinema.",
+          "de": "In ein Kiez-Kino gehen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-concert",
+      "term": "concert",
+      "translations": {
+        "en": [
+          "a concert"
+        ],
+        "de": [
+          "ein Konzert"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un concert",
+      "examForms": [
+        "un concert"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ kɔ̃sɛʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Écouter de la musique dans un concert.",
+        "translation": {
+          "en": "Listen to music at a concert.",
+          "de": "Musik auf einem Konzert hören."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-theatre",
+      "term": "théâtre",
+      "translations": {
+        "en": [
+          "a theater"
+        ],
+        "de": [
+          "ein Theater"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un théâtre",
+      "examForms": [
+        "un théâtre"
+      ],
+      "accentSensitive": [
+        "théâtre"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ teɑ̃tʁ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Voir des comédiens dans un théâtre.",
+        "translation": {
+          "en": "See actors in a theater.",
+          "de": "Schauspieler in einem Theater sehen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-exposition",
+      "term": "exposition",
+      "translations": {
+        "en": [
+          "an exhibition",
+          "an exhibit"
+        ],
+        "de": [
+          "eine Ausstellung"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une exposition",
+      "examForms": [
+        "une exposition"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn ɛkspozisjɔ̃/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Une exposition d’art contemporain.",
+        "translation": {
+          "en": "An art exhibition.",
+          "de": "Eine Kunstausstellung."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-fete",
+      "term": "fête",
+      "translations": {
+        "en": [
+          "a party"
+        ],
+        "de": [
+          "ein Fest",
+          "eine Party"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une fête",
+      "examForms": [
+        "une fête"
+      ],
+      "accentSensitive": [
+        "fête"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn fɛt/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Organiser une fête d’anniversaire.",
+        "translation": {
+          "en": "Organize a birthday party.",
+          "de": "Eine Geburtstagsparty organisieren."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-billet",
+      "term": "billet",
+      "translations": {
+        "en": [
+          "a ticket"
+        ],
+        "de": [
+          "ein Ticket",
+          "eine Karte"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un billet",
+      "examForms": [
+        "un billet"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ bijɛ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Acheter un billet d’entrée.",
+        "translation": {
+          "en": "Buy an entry ticket.",
+          "de": "Einen Eintrittsschein kaufen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-seance",
+      "term": "séance",
+      "translations": {
+        "en": [
+          "a showing",
+          "a screening",
+          "a session"
+        ],
+        "de": [
+          "eine Vorstellung"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une séance",
+      "examForms": [
+        "une séance"
+      ],
+      "accentSensitive": [
+        "séance"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn seɑ̃s/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Une séance de vingt heures.",
+        "translation": {
+          "en": "An 8pm screening.",
+          "de": "Eine Vorstellung um 20 Uhr."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-rendez-vous",
+      "term": "rendez-vous",
+      "translations": {
+        "en": [
+          "an appointment",
+          "a date"
+        ],
+        "de": [
+          "eine Verabredung",
+          "ein Termin"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un rendez-vous",
+      "examForms": [
+        "un rendez-vous"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ ʁɑ̃devu/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "J’ai un rendez-vous avec des amis.",
+        "translation": {
+          "en": "I have a meeting with friends.",
+          "de": "Ich habe eine Verabredung mit Freunden."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-spectacle",
+      "term": "spectacle",
+      "translations": {
+        "en": [
+          "a show",
+          "a performance"
+        ],
+        "de": [
+          "eine Aufführung"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un spectacle",
+      "examForms": [
+        "un spectacle"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ spɛktakl/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un spectacle de magie.",
+        "translation": {
+          "en": "A magic show.",
+          "de": "Eine Zaubershow."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-soiree",
+      "term": "soirée",
+      "translations": {
+        "en": [
+          "an evening",
+          "a party evening"
+        ],
+        "de": [
+          "ein Abend",
+          "eine Abendveranstaltung"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une soirée",
+      "examForms": [
+        "une soirée"
+      ],
+      "accentSensitive": [
+        "soirée"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn swaʁe/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Passer une bonne soirée.",
+        "translation": {
+          "en": "Have a nice evening.",
+          "de": "Einen schönen Abend verbringen."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "un-cinema",
+        "un-concert",
+        "un-theatre",
+        "une-exposition",
+        "une-fete",
+        "un-billet",
+        "une-seance",
+        "un-rendez-vous",
+        "un-spectacle",
+        "une-soiree"
+      ],
+      "estimatedDurationS": 150
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "un-cinema",
+            "un-concert",
+            "un-theatre",
+            "une-exposition",
+            "une-fete"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "un-billet",
+            "une-seance",
+            "un-rendez-vous",
+            "un-spectacle",
+            "une-soiree"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

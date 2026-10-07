@@ -1,0 +1,1051 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-meals-of-the-day",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les repas de la journée",
+  "objective": {
+    "en": "Name the four daily meals and associated food items in French.",
+    "fr": "Nommer les repas et une dizaine d’aliments qui vont avec en français.",
+    "de": "Nenne die vier Tagesmahlzeiten und dazugehörige Lebensmittel auf Französisch."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-content-v1",
+    "generatedAt": "2026-10-07T14:59:31.049Z",
+    "inputHashes": {
+      "outline": "bc7e6107bac427fbc08de78e10c410fa43eb460667c05a2b2af43fd521a93d38",
+      "brief": "b091741181f8c023180336eba068845f34ccab112fe758c9fd0f2af8e0333b28"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "food_and_drink",
+  "steps": [
+    {
+      "id": "introduction",
+      "stage": "introduction",
+      "role": "introduction",
+      "label": {
+        "en": "Introduction",
+        "fr": "Introduction",
+        "de": "Einführung"
+      },
+      "pages": [
+        {
+          "pageId": "intro-four-meals",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-four-meals",
+              "targetIds": [
+                "le-petit-dejeuner",
+                "le-dejeuner",
+                "le-gouter",
+                "le-diner"
+              ],
+              "text": {
+                "en": "The four **daily meals**:\n\n- `le petit-déjeuner`\n- `le déjeuner`\n- `le goûter`\n- `le dîner`",
+                "fr": "Les quatre **repas de la journée** :\n\n- `le petit-déjeuner`\n- `le déjeuner`\n- `le goûter`\n- `le dîner`",
+                "de": "Die vier **Tagesmahlzeiten**:\n\n- `le petit-déjeuner`\n- `le déjeuner`\n- `le goûter`\n- `le dîner` "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "intro-meal-foods",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-meal-foods",
+              "targetIds": [
+                "des-cereales",
+                "la-confiture",
+                "la-soupe",
+                "un-toast",
+                "un-yaourt",
+                "le-dessert"
+              ],
+              "text": {
+                "en": "Foods eaten at meals:\n\n- `des céréales`\n- `la confiture`\n- `la soupe`\n- `un toast`\n- `un yaourt`\n- `le dessert`",
+                "fr": "Aliments des repas :\n\n- `des céréales`\n- `la confiture`\n- `la soupe`\n- `un toast`\n- `un yaourt`\n- `le dessert`",
+                "de": "Lebensmittel zu Mahlzeiten:\n\n- `des céréales`\n- `la confiture`\n- `la soupe`\n- `un toast`\n- `un yaourt`\n- `le dessert` "
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "cards-four-meals",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-four-meals",
+              "targetIds": [
+                "le-petit-dejeuner",
+                "le-dejeuner",
+                "le-gouter",
+                "le-diner"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "cards-meal-foods",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-meal-foods",
+              "targetIds": [
+                "des-cereales",
+                "la-confiture",
+                "la-soupe",
+                "un-toast",
+                "un-yaourt",
+                "le-dessert"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "match-1",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-2",
+              "pairs": [
+                {
+                  "targetId": "le-petit-dejeuner",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un petit-déjeuner means breakfast.",
+                    "fr": "un petit-déjeuner signifie « breakfast » en anglais.",
+                    "de": "un petit-déjeuner bedeutet das Frühstück."
+                  }
+                },
+                {
+                  "targetId": "le-dejeuner",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un déjeuner means lunch.",
+                    "fr": "un déjeuner signifie « lunch » en anglais.",
+                    "de": "un déjeuner bedeutet das Mittagessen."
+                  }
+                },
+                {
+                  "targetId": "le-gouter",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un goûter means afternoon snack.",
+                    "fr": "un goûter signifie « afternoon snack » en anglais.",
+                    "de": "un goûter bedeutet der Nachmittagsimbiß."
+                  }
+                },
+                {
+                  "targetId": "le-diner",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un dîner means dinner.",
+                    "fr": "un dîner signifie « dinner » en anglais.",
+                    "de": "un dîner bedeutet das Abendessen."
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-2",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-3",
+              "pairs": [
+                {
+                  "targetId": "des-cereales",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "des céréales means cereal.",
+                    "fr": "des céréales signifie « cereal » en anglais.",
+                    "de": "des céréales bedeutet Müsli."
+                  }
+                },
+                {
+                  "targetId": "la-confiture",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une confiture means jam.",
+                    "fr": "une confiture signifie « jam » en anglais.",
+                    "de": "une confiture bedeutet Marmelade."
+                  }
+                },
+                {
+                  "targetId": "la-soupe",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une soupe means soup.",
+                    "fr": "une soupe signifie « soup » en anglais.",
+                    "de": "une soupe bedeutet Suppe."
+                  }
+                },
+                {
+                  "targetId": "un-toast",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un toast means a toast.",
+                    "fr": "un toast signifie « a toast » en anglais.",
+                    "de": "un toast bedeutet ein Toast."
+                  }
+                },
+                {
+                  "targetId": "un-yaourt",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un yaourt means a yogurt.",
+                    "fr": "un yaourt signifie « a yogurt » en anglais.",
+                    "de": "un yaourt bedeutet ein Joghurt."
+                  }
+                },
+                {
+                  "targetId": "le-dessert",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un dessert means a dessert.",
+                    "fr": "un dessert signifie « a dessert » en anglais.",
+                    "de": "un dessert bedeutet ein Nachtisch."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overview",
+      "stage": "overview",
+      "role": "overview",
+      "label": {
+        "en": "Overview",
+        "fr": "Vue d’ensemble",
+        "de": "Übersicht"
+      },
+      "pages": [
+        {
+          "pageId": "overview-page",
+          "estimatedDurationS": 90,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Review all words and their details.",
+            "fr": "Révisez tous les mots et leurs détails.",
+            "de": "Überprüfe alle Wörter und ihre Details."
+          },
+          "items": [
+            {
+              "type": "vocabulary_gender_select",
+              "itemId": "gender-overview",
+              "targetIds": [
+                "le-petit-dejeuner",
+                "le-dejeuner",
+                "le-gouter",
+                "le-diner",
+                "des-cereales",
+                "la-confiture",
+                "la-soupe",
+                "un-toast",
+                "un-yaourt",
+                "le-dessert"
+              ],
+              "rows": [
+                {
+                  "targetId": "le-petit-dejeuner",
+                  "answerExplanation": {
+                    "en": "petit-déjeuner is masculine.",
+                    "fr": "petit-déjeuner est masculin.",
+                    "de": "petit-déjeuner ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "le-dejeuner",
+                  "answerExplanation": {
+                    "en": "déjeuner is masculine.",
+                    "fr": "déjeuner est masculin.",
+                    "de": "déjeuner ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "le-gouter",
+                  "answerExplanation": {
+                    "en": "goûter is masculine.",
+                    "fr": "goûter est masculin.",
+                    "de": "goûter ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "le-diner",
+                  "answerExplanation": {
+                    "en": "dîner is masculine.",
+                    "fr": "dîner est masculin.",
+                    "de": "dîner ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "des-cereales",
+                  "answerExplanation": {
+                    "en": "céréales is feminine.",
+                    "fr": "céréales est féminin.",
+                    "de": "céréales ist feminin."
+                  }
+                },
+                {
+                  "targetId": "la-confiture",
+                  "answerExplanation": {
+                    "en": "confiture is feminine.",
+                    "fr": "confiture est féminin.",
+                    "de": "confiture ist feminin."
+                  }
+                },
+                {
+                  "targetId": "la-soupe",
+                  "answerExplanation": {
+                    "en": "soupe is feminine.",
+                    "fr": "soupe est féminin.",
+                    "de": "soupe ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-toast",
+                  "answerExplanation": {
+                    "en": "toast is masculine.",
+                    "fr": "toast est masculin.",
+                    "de": "toast ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-yaourt",
+                  "answerExplanation": {
+                    "en": "yaourt is masculine.",
+                    "fr": "yaourt est masculin.",
+                    "de": "yaourt ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "le-dessert",
+                  "answerExplanation": {
+                    "en": "dessert is masculine.",
+                    "fr": "dessert est masculin.",
+                    "de": "dessert ist maskulin."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "stage": "practice",
+      "role": "exercise",
+      "label": {
+        "en": "Practice",
+        "fr": "Entraînement",
+        "de": "Übung"
+      },
+      "pages": [
+        {
+          "pageId": "gap-le-petit-dejeuner",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-le-petit-dejeuner",
+              "targetId": "le-petit-dejeuner",
+              "before": "Prendre un",
+              "after": " le matin.",
+              "referenceTargetIds": [
+                "le-petit-dejeuner",
+                "le-dejeuner",
+                "le-gouter",
+                "le-diner"
+              ],
+              "accepted": {
+                "answers": [
+                  "petit-déjeuner"
+                ],
+                "accentSensitive": [
+                  "petit-déjeuner"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is petit-déjeuner.",
+                "fr": "Le mot manquant est petit-déjeuner.",
+                "de": "Das fehlende Wort ist petit-déjeuner."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-le-dejeuner",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-le-dejeuner",
+              "targetId": "le-dejeuner",
+              "before": "Servir un",
+              "after": " chaud.",
+              "referenceTargetIds": [
+                "le-dejeuner",
+                "le-petit-dejeuner",
+                "le-gouter",
+                "le-diner"
+              ],
+              "accepted": {
+                "answers": [
+                  "déjeuner"
+                ],
+                "accentSensitive": [
+                  "déjeuner"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is déjeuner.",
+                "fr": "Le mot manquant est déjeuner.",
+                "de": "Das fehlende Wort ist déjeuner."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-le-gouter",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-le-gouter",
+              "targetId": "le-gouter",
+              "before": "Manger un",
+              "after": " sucré.",
+              "referenceTargetIds": [
+                "le-gouter",
+                "le-petit-dejeuner",
+                "le-dejeuner",
+                "le-diner"
+              ],
+              "accepted": {
+                "answers": [
+                  "goûter"
+                ],
+                "accentSensitive": [
+                  "goûter"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is goûter.",
+                "fr": "Le mot manquant est goûter.",
+                "de": "Das fehlende Wort ist goûter."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-le-diner",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-le-diner",
+              "targetId": "le-diner",
+              "before": "Préparer un",
+              "after": " délicieux.",
+              "referenceTargetIds": [
+                "le-diner",
+                "le-petit-dejeuner",
+                "le-dejeuner",
+                "le-gouter"
+              ],
+              "accepted": {
+                "answers": [
+                  "dîner"
+                ],
+                "accentSensitive": [
+                  "dîner"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is dîner.",
+                "fr": "Le mot manquant est dîner.",
+                "de": "Das fehlende Wort ist dîner."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-des-cereales",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-des-cereales",
+              "targetId": "des-cereales",
+              "before": "Mettre des",
+              "after": " dans le bol.",
+              "referenceTargetIds": [
+                "des-cereales",
+                "le-petit-dejeuner",
+                "le-dejeuner",
+                "le-gouter"
+              ],
+              "accepted": {
+                "answers": [
+                  "céréales"
+                ],
+                "accentSensitive": [
+                  "céréales"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is céréales.",
+                "fr": "Le mot manquant est céréales.",
+                "de": "Das fehlende Wort ist céréales."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-la-confiture",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-la-confiture",
+              "targetId": "la-confiture",
+              "before": "Mettre une",
+              "after": " sur la tartine.",
+              "referenceTargetIds": [
+                "la-confiture",
+                "le-petit-dejeuner",
+                "le-dejeuner",
+                "le-gouter"
+              ],
+              "accepted": {
+                "answers": [
+                  "confiture"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is confiture.",
+                "fr": "Le mot manquant est confiture.",
+                "de": "Das fehlende Wort ist confiture."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-la-soupe",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-la-soupe",
+              "targetId": "la-soupe",
+              "before": "Servir une",
+              "after": " de légumes.",
+              "referenceTargetIds": [
+                "la-soupe",
+                "le-petit-dejeuner",
+                "le-dejeuner",
+                "le-gouter"
+              ],
+              "accepted": {
+                "answers": [
+                  "soupe"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is soupe.",
+                "fr": "Le mot manquant est soupe.",
+                "de": "Das fehlende Wort ist soupe."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-toast",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-toast",
+              "targetId": "un-toast",
+              "before": "Manger un",
+              "after": " chaud.",
+              "referenceTargetIds": [
+                "un-toast",
+                "le-petit-dejeuner",
+                "le-dejeuner",
+                "le-gouter"
+              ],
+              "accepted": {
+                "answers": [
+                  "toast"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is toast.",
+                "fr": "Le mot manquant est toast.",
+                "de": "Das fehlende Wort ist toast."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-yaourt",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-yaourt",
+              "targetId": "un-yaourt",
+              "before": "Prendre un",
+              "after": " aux fruits.",
+              "referenceTargetIds": [
+                "un-yaourt",
+                "le-petit-dejeuner",
+                "le-dejeuner",
+                "le-gouter"
+              ],
+              "accepted": {
+                "answers": [
+                  "yaourt"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is yaourt.",
+                "fr": "Le mot manquant est yaourt.",
+                "de": "Das fehlende Wort ist yaourt."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-le-dessert",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-le-dessert",
+              "targetId": "le-dessert",
+              "before": "Servir un",
+              "after": " glacé.",
+              "referenceTargetIds": [
+                "le-dessert",
+                "le-petit-dejeuner",
+                "le-dejeuner",
+                "le-gouter"
+              ],
+              "accepted": {
+                "answers": [
+                  "dessert"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is dessert.",
+                "fr": "Le mot manquant est dessert.",
+                "de": "Das fehlende Wort ist dessert."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Exam",
+        "fr": "Examen",
+        "de": "Prüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-le-petit-dejeuner",
+              "targetId": "le-petit-dejeuner",
+              "prompt": {
+                "en": "breakfast",
+                "de": "das Frühstück"
+              },
+              "accepted": {
+                "answers": [
+                  "un petit-déjeuner",
+                  "un petit dejeuner"
+                ],
+                "accentSensitive": [
+                  "petit-déjeuner"
+                ]
+              },
+              "answerExplanation": {
+                "en": "breakfast in French is un petit-déjeuner.",
+                "fr": "breakfast en français est un petit-déjeuner.",
+                "de": "das Frühstück auf Französisch ist un petit-déjeuner."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-le-dejeuner",
+              "targetId": "le-dejeuner",
+              "prompt": {
+                "en": "lunch",
+                "de": "das Mittagessen"
+              },
+              "accepted": {
+                "answers": [
+                  "un déjeuner",
+                  "un dejeuner"
+                ],
+                "accentSensitive": [
+                  "déjeuner"
+                ]
+              },
+              "answerExplanation": {
+                "en": "lunch in French is un déjeuner.",
+                "fr": "lunch en français est un déjeuner.",
+                "de": "das Mittagessen auf Französisch ist un déjeuner."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-le-gouter",
+              "targetId": "le-gouter",
+              "prompt": {
+                "en": "afternoon snack",
+                "de": "der Nachmittagsimbiß"
+              },
+              "accepted": {
+                "answers": [
+                  "un goûter",
+                  "un gouter"
+                ],
+                "accentSensitive": [
+                  "goûter"
+                ]
+              },
+              "answerExplanation": {
+                "en": "afternoon snack in French is un goûter.",
+                "fr": "afternoon snack en français est un goûter.",
+                "de": "der Nachmittagsimbiß auf Französisch ist un goûter."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-le-diner",
+              "targetId": "le-diner",
+              "prompt": {
+                "en": "dinner",
+                "de": "das Abendessen"
+              },
+              "accepted": {
+                "answers": [
+                  "un dîner",
+                  "un diner"
+                ],
+                "accentSensitive": [
+                  "dîner"
+                ]
+              },
+              "answerExplanation": {
+                "en": "dinner in French is un dîner.",
+                "fr": "dinner en français est un dîner.",
+                "de": "das Abendessen auf Französisch ist un dîner."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-des-cereales",
+              "targetId": "des-cereales",
+              "prompt": {
+                "en": "cereal",
+                "de": "Müsli"
+              },
+              "accepted": {
+                "answers": [
+                  "des céréales",
+                  "des cereales"
+                ],
+                "accentSensitive": [
+                  "céréales"
+                ]
+              },
+              "answerExplanation": {
+                "en": "cereal in French is des céréales.",
+                "fr": "cereal en français est des céréales.",
+                "de": "Müsli auf Französisch ist des céréales."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-page-2",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-la-confiture",
+              "targetId": "la-confiture",
+              "prompt": {
+                "en": "jam",
+                "de": "Marmelade"
+              },
+              "accepted": {
+                "answers": [
+                  "une confiture"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "jam in French is une confiture.",
+                "fr": "jam en français est une confiture.",
+                "de": "Marmelade auf Französisch ist une confiture."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-la-soupe",
+              "targetId": "la-soupe",
+              "prompt": {
+                "en": "soup",
+                "de": "Suppe"
+              },
+              "accepted": {
+                "answers": [
+                  "une soupe"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "soup in French is une soupe.",
+                "fr": "soup en français est une soupe.",
+                "de": "Suppe auf Französisch ist une soupe."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-toast",
+              "targetId": "un-toast",
+              "prompt": {
+                "en": "a toast",
+                "de": "ein Toast"
+              },
+              "accepted": {
+                "answers": [
+                  "un toast"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a toast in French is un toast.",
+                "fr": "a toast en français est un toast.",
+                "de": "ein Toast auf Französisch ist un toast."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-yaourt",
+              "targetId": "un-yaourt",
+              "prompt": {
+                "en": "a yogurt",
+                "de": "ein Joghurt"
+              },
+              "accepted": {
+                "answers": [
+                  "un yaourt"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a yogurt in French is un yaourt.",
+                "fr": "a yogurt en français est un yaourt.",
+                "de": "ein Joghurt auf Französisch ist un yaourt."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-le-dessert",
+              "targetId": "le-dessert",
+              "prompt": {
+                "en": "a dessert",
+                "de": "ein Nachtisch"
+              },
+              "accepted": {
+                "answers": [
+                  "un dessert"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a dessert in French is un dessert.",
+                "fr": "a dessert en français est un dessert.",
+                "de": "ein Nachtisch auf Französisch ist un dessert."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

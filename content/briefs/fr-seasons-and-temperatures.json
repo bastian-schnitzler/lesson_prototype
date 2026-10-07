@@ -1,0 +1,500 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-seasons-and-temperatures",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les saisons et les températures",
+  "objective": {
+    "en": "Name the four seasons with prepositions and express temperatures in French.",
+    "fr": "Nommer les quatre saisons et exprimer la température en français.",
+    "de": "Nenne die vier Jahreszeiten und drücke die Temperatur auf Französisch aus."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T14:59:29.413Z",
+    "inputHashes": {
+      "outline": "0868285ef97ec8d5c731e3927400b2d34323926c548df22455d264d8d8b6330b"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "weather",
+  "coverageNotes": {
+    "en": "Covers the four seasons with correct prepositions (en été, au printemps) and degree expressions.",
+    "fr": "Couvre les quatre saisons avec prépositions (en été, au printemps) et les températures.",
+    "de": "Deckt die vier Jahreszeiten mit Präpositionen und Temperaturangaben ab."
+  },
+  "targetCount": 10,
+  "countRationale": {
+    "en": "Ten items provide complete season and temperature capability.",
+    "fr": "Dix éléments couvrent les saisons et les températures.",
+    "de": "Zehn Begriffe decken Jahreszeiten und Temperaturen ab."
+  },
+  "difficultyBalance": {
+    "en": "Core seasons balanced with temperature phrases (moins cinq, degrés).",
+    "fr": "Saisons simples équilibrées avec les expressions de température.",
+    "de": "Jahreszeiten ausgewogen mit Temperaturangaben."
+  },
+  "prerequisites": [
+    {
+      "en": "Numbers 0-40 and basic weather terms.",
+      "fr": "Les nombres de 0 à 40 et la météo.",
+      "de": "Zahlen 0-40 und Wetterbegriffe."
+    }
+  ],
+  "groups": [
+    {
+      "id": "seasons",
+      "label": {
+        "en": "Four Seasons",
+        "fr": "Les quatre saisons",
+        "de": "Vier Jahreszeiten"
+      },
+      "targetIds": [
+        "un-ete",
+        "un-automne",
+        "un-hiver",
+        "un-printemps",
+        "en-ete",
+        "au-printemps"
+      ]
+    },
+    {
+      "id": "temperatures",
+      "label": {
+        "en": "Temperatures",
+        "fr": "Les températures",
+        "de": "Temperaturen"
+      },
+      "targetIds": [
+        "il-fait-vingt-degres",
+        "il-fait-moins-cinq",
+        "une-temperature",
+        "un-degre"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "un-ete",
+      "term": "été",
+      "translations": {
+        "en": [
+          "a summer"
+        ],
+        "de": [
+          "ein Sommer"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un été",
+      "examForms": [
+        "un été"
+      ],
+      "accentSensitive": [
+        "été"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ nete/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un été chaud et ensoleillé.",
+        "translation": {
+          "en": "A hot and sunny summer.",
+          "de": "Ein heißer und sonniger Sommer."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-automne",
+      "term": "automne",
+      "translations": {
+        "en": [
+          "an autumn",
+          "a fall"
+        ],
+        "de": [
+          "ein Herbst"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un automne",
+      "examForms": [
+        "un automne"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ nɔtɔn/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un automne pluvieux.",
+        "translation": {
+          "en": "A rainy autumn.",
+          "de": "Ein regnerischer Herbst."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-hiver",
+      "term": "hiver",
+      "translations": {
+        "en": [
+          "a winter"
+        ],
+        "de": [
+          "ein Winter"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un hiver",
+      "examForms": [
+        "un hiver"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ nivɛʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un hiver très froid.",
+        "translation": {
+          "en": "A very cold winter.",
+          "de": "Ein sehr kalter Winter."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-printemps",
+      "term": "printemps",
+      "translations": {
+        "en": [
+          "a spring"
+        ],
+        "de": [
+          "ein Frühling"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un printemps",
+      "examForms": [
+        "un printemps"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ pʁɛ̃tɑ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un printemps fleuri.",
+        "translation": {
+          "en": "A flowery spring.",
+          "de": "Ein blühender Frühling."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "en-ete",
+      "term": "en été",
+      "translations": {
+        "en": [
+          "in summer"
+        ],
+        "de": [
+          "im Sommer"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "en été",
+      "examForms": [
+        "en été"
+      ],
+      "accentSensitive": [
+        "été"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/ɑ̃ nete/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "En été, nous allons à la mer.",
+        "translation": {
+          "en": "In summer, we go to the sea.",
+          "de": "Im Sommer fahren wir ans Meer."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "au-printemps",
+      "term": "au printemps",
+      "translations": {
+        "en": [
+          "in spring"
+        ],
+        "de": [
+          "im Frühling"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "au printemps",
+      "examForms": [
+        "au printemps"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/o pʁɛ̃tɑ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Au printemps, la nature s’éveille.",
+        "translation": {
+          "en": "In spring, nature awakens.",
+          "de": "Im Frühling erwacht die Natur."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "il-fait-vingt-degres",
+      "term": "il fait vingt degrés",
+      "translations": {
+        "en": [
+          "it is twenty degrees"
+        ],
+        "de": [
+          "es sind zwanzig Grad"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "il fait vingt degrés",
+      "examForms": [
+        "il fait vingt degrés"
+      ],
+      "accentSensitive": [
+        "degrés"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/il fɛ vɛ̃ dəɡʁe/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Aujourd’hui, il fait vingt degrés.",
+        "translation": {
+          "en": "Today, it is twenty degrees.",
+          "de": "Heute sind es zwanzig Grad."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "il-fait-moins-cinq",
+      "term": "il fait moins cinq",
+      "translations": {
+        "en": [
+          "it is minus five"
+        ],
+        "de": [
+          "es sind minus fünf Grad"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "il fait moins cinq",
+      "examForms": [
+        "il fait moins cinq"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/il fɛ mwɛ̃ sɛ̃k/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Attention au verglas, il fait moins cinq.",
+        "translation": {
+          "en": "Watch for ice, it is minus five.",
+          "de": "Achtung Glatteis, es sind minus fünf."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-temperature",
+      "term": "température",
+      "translations": {
+        "en": [
+          "a temperature"
+        ],
+        "de": [
+          "eine Temperatur"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une température",
+      "examForms": [
+        "une température"
+      ],
+      "accentSensitive": [
+        "température"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn tɑ̃peʁatyʁ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Une température douce.",
+        "translation": {
+          "en": "A mild temperature.",
+          "de": "Eine milde Temperatur."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-degre",
+      "term": "degré",
+      "translations": {
+        "en": [
+          "a degree"
+        ],
+        "de": [
+          "ein Grad"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un degré",
+      "examForms": [
+        "un degré"
+      ],
+      "accentSensitive": [
+        "degré"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ dəɡʁe/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il fait zéro degré.",
+        "translation": {
+          "en": "It is zero degrees.",
+          "de": "Es ist null Grad."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "un-ete",
+        "un-automne",
+        "un-hiver",
+        "un-printemps",
+        "en-ete",
+        "au-printemps",
+        "il-fait-vingt-degres",
+        "il-fait-moins-cinq",
+        "une-temperature",
+        "un-degre"
+      ],
+      "estimatedDurationS": 150
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "un-ete",
+            "un-automne",
+            "un-hiver",
+            "un-printemps",
+            "en-ete"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "au-printemps",
+            "il-fait-vingt-degres",
+            "il-fait-moins-cinq",
+            "une-temperature",
+            "un-degre"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

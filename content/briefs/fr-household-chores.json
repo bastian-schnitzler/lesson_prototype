@@ -1,0 +1,485 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-household-chores",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les tâches ménagères",
+  "objective": {
+    "en": "Name ten household chores in French.",
+    "fr": "Nommer une dizaine de tâches de la maison en français.",
+    "de": "Nenne zehn Hausarbeiten auf Französisch."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T15:07:10.779Z",
+    "inputHashes": {
+      "outline": "bf5ee86e9c08a72767a51ddf87a8e9cdda0908a2c3eaf156b83a280851980e81"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "house_and_home",
+  "coverageNotes": {
+    "en": "Covers cleaning, dishes, cooking, shopping, tidying, vacuuming, taking out trash.",
+    "fr": "Couvre le ménage, la vaisselle, la cuisine, les courses, le rangement et la poubelle.",
+    "de": "Deckt Putzen, Abwaschen, Kochen, Einkaufen, Aufräumen und Müll rausbringen ab."
+  },
+  "targetCount": 10,
+  "countRationale": {
+    "en": "Ten items provide complete daily household chore coverage.",
+    "fr": "Dix phrases couvrent toutes les tâches ménagères courantes.",
+    "de": "Zehn Begriffe decken gängige Hausarbeiten ab."
+  },
+  "difficultyBalance": {
+    "en": "Core phrases (faire le ménage, ranger) balanced with specific chores (passer l’aspirateur).",
+    "fr": "Phrases simples équilibrées avec des expressions spécifiques.",
+    "de": "Einfache Sätze ausgewogen mit speziellen Ausdrücken."
+  },
+  "prerequisites": [
+    {
+      "en": "Faire and action verb basics.",
+      "fr": "Verbe faire et verbes d’action.",
+      "de": "Das Verb faire und Aktionsverben."
+    }
+  ],
+  "groups": [
+    {
+      "id": "kitchen-cleaning",
+      "label": {
+        "en": "Cleaning & Kitchen chores",
+        "fr": "Nettoyage et cuisine",
+        "de": "Putzen & Küche"
+      },
+      "targetIds": [
+        "faire-le-menage",
+        "faire-la-vaisselle",
+        "faire-la-cuisine",
+        "faire-les-courses",
+        "ranger"
+      ]
+    },
+    {
+      "id": "heavy-housework",
+      "label": {
+        "en": "House maintenance chores",
+        "fr": "Entretien de la maison",
+        "de": "Hauspflege"
+      },
+      "targetIds": [
+        "passer-l-aspirateur",
+        "sortir-la-poubelle",
+        "laver-le-sol",
+        "repasser-le-linge",
+        "faire-le-lit"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "faire-le-menage",
+      "term": "faire le ménage",
+      "translations": {
+        "en": [
+          "to do the housework",
+          "to clean up"
+        ],
+        "de": [
+          "haushalten",
+          "putzen"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "faire le ménage",
+      "examForms": [
+        "faire le ménage",
+        "faire le menage"
+      ],
+      "accentSensitive": [
+        "ménage"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/fɛʁ lə menaʒ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Faire le ménage le samedi matin.",
+        "translation": {
+          "en": "Do housework on Saturday morning.",
+          "de": "Samstags morgens putzen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "faire-la-vaisselle",
+      "term": "faire la vaisselle",
+      "translations": {
+        "en": [
+          "to do the dishes"
+        ],
+        "de": [
+          "abwaschen"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "faire la vaisselle",
+      "examForms": [
+        "faire la vaisselle"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/fɛʁ la vɛsɛl/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Faire la vaisselle après le repas.",
+        "translation": {
+          "en": "Do the dishes after the meal.",
+          "de": "Nach dem Essen abwaschen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "faire-la-cuisine",
+      "term": "faire la cuisine",
+      "translations": {
+        "en": [
+          "to cook",
+          "to prepare food"
+        ],
+        "de": [
+          "kochen"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "faire la cuisine",
+      "examForms": [
+        "faire la cuisine"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/fɛʁ la kyjzin/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "J’aime faire la cuisine du soir.",
+        "translation": {
+          "en": "I like cooking evening meals.",
+          "de": "Ich koche gerne abends."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "faire-les-courses",
+      "term": "faire les courses",
+      "translations": {
+        "en": [
+          "to go grocery shopping"
+        ],
+        "de": [
+          "einkaufen gehen"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "faire les courses",
+      "examForms": [
+        "faire les courses"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/fɛʁ le kuʁs/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Faire les courses au supermarché.",
+        "translation": {
+          "en": "Go grocery shopping at the supermarket.",
+          "de": "Im Supermarkt einkaufen gehen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "ranger",
+      "term": "ranger",
+      "translations": {
+        "en": [
+          "to tidy up",
+          "to put away"
+        ],
+        "de": [
+          "aufräumen"
+        ]
+      },
+      "wordClass": "verb",
+      "genders": [],
+      "number": null,
+      "teachingForm": "ranger",
+      "examForms": [
+        "ranger"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/ʁɑ̃ʒe/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Ranger sa chambre tous les jours.",
+        "translation": {
+          "en": "Tidy one’s bedroom every day.",
+          "de": "Jeden Tag sein Zimmer aufräumen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "passer-l-aspirateur",
+      "term": "passer l’aspirateur",
+      "translations": {
+        "en": [
+          "to vacuum"
+        ],
+        "de": [
+          "staubsaugen"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "passer l’aspirateur",
+      "examForms": [
+        "passer l’aspirateur",
+        "passer l'aspirateur"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/pase laspiʁatœʁ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Passer l’aspirateur sur le tapis.",
+        "translation": {
+          "en": "Vacuum the carpet.",
+          "de": "Den Teppich staubsaugen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "sortir-la-poubelle",
+      "term": "sortir la poubelle",
+      "translations": {
+        "en": [
+          "to take out the trash"
+        ],
+        "de": [
+          "den Müll rausbringen"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "sortir la poubelle",
+      "examForms": [
+        "sortir la poubelle"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/sɔʁtiʁ la pubɛl/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Sortir la poubelle avant d’aller dormir.",
+        "translation": {
+          "en": "Take out the trash before sleeping.",
+          "de": "Den Müll vor dem Schlafen rausbringen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "laver-le-sol",
+      "term": "laver le sol",
+      "translations": {
+        "en": [
+          "to mop the floor"
+        ],
+        "de": [
+          "den Boden wischen"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "laver le sol",
+      "examForms": [
+        "laver le sol"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/lave lə sɔl/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Laver le sol de la cuisine.",
+        "translation": {
+          "en": "Mop the kitchen floor.",
+          "de": "Den Küchenboden wischen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "repasser-le-linge",
+      "term": "repasser le linge",
+      "translations": {
+        "en": [
+          "to iron the clothes"
+        ],
+        "de": [
+          "die Wäsche bügeln"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "repasser le linge",
+      "examForms": [
+        "repasser le linge"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/ʁəpase lə lɛ̃ʒ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Repasser le linge propre.",
+        "translation": {
+          "en": "Iron clean clothes.",
+          "de": "Die saubere Wäsche bügeln."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "faire-le-lit",
+      "term": "faire le lit",
+      "translations": {
+        "en": [
+          "to make the bed"
+        ],
+        "de": [
+          "das Bett machen"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "faire le lit",
+      "examForms": [
+        "faire le lit"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/fɛʁ lə li/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Faire le lit le matin.",
+        "translation": {
+          "en": "Make the bed in the morning.",
+          "de": "Morgens das Bett machen."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": false,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "faire-le-menage",
+        "faire-la-vaisselle",
+        "faire-la-cuisine",
+        "faire-les-courses",
+        "ranger",
+        "passer-l-aspirateur",
+        "sortir-la-poubelle",
+        "laver-le-sol",
+        "repasser-le-linge",
+        "faire-le-lit"
+      ],
+      "estimatedDurationS": 150
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "faire-le-menage",
+            "faire-la-vaisselle",
+            "faire-la-cuisine",
+            "faire-les-courses",
+            "ranger"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "passer-l-aspirateur",
+            "sortir-la-poubelle",
+            "laver-le-sol",
+            "repasser-le-linge",
+            "faire-le-lit"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

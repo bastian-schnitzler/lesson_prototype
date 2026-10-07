@@ -1,0 +1,1193 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-post-office-and-bank",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "La poste et la banque",
+  "objective": {
+    "en": "Name twelve postal and banking terms in French with indefinite articles.",
+    "fr": "Nommer une douzaine de mots de la poste et de la banque en français avec leurs articles indéfinis.",
+    "de": "Nenne zwölf Post- und Bankbegriffe auf Französisch mit unbestimmten Artikeln."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-content-v1",
+    "generatedAt": "2026-10-07T15:07:10.782Z",
+    "inputHashes": {
+      "outline": "6e53b050330f6455fde640d1caaa371d31e2deebc79d30296b6b69ac5ba7f23c",
+      "brief": "ccd5cd06f715d1a944065c0ba439895187b048ec765020736aa98f596d321a89"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "services",
+  "steps": [
+    {
+      "id": "introduction",
+      "stage": "introduction",
+      "role": "introduction",
+      "label": {
+        "en": "Introduction",
+        "fr": "Introduction",
+        "de": "Einführung"
+      },
+      "pages": [
+        {
+          "pageId": "intro-post-office",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-post-office",
+              "targetIds": [
+                "une-lettre",
+                "un-colis",
+                "un-timbre",
+                "une-enveloppe",
+                "un-facteur",
+                "une-boite-aux-lettres"
+              ],
+              "text": {
+                "en": "Postal items:\n\n- `une lettre`\n- `un colis`\n- `un timbre`\n- `une enveloppe`\n- `un facteur`\n- `une boîte aux lettres`",
+                "fr": "Objets de la poste :\n\n- `une lettre`\n- `un colis`\n- `un timbre`\n- `une enveloppe`\n- `un facteur`\n- `une boîte aux lettres`",
+                "de": "Postgegenstände:\n\n- `une lettre`\n- `un colis`\n- `un timbre`\n- `une enveloppe`\n- `un facteur`\n- `une boîte aux lettres` "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "intro-bank-money",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-bank-money",
+              "targetIds": [
+                "un-distributeur",
+                "une-carte-bancaire",
+                "un-compte",
+                "un-guichet",
+                "un-cheque",
+                "des-pieces"
+              ],
+              "text": {
+                "en": "Banking and money terms:\n\n- `un distributeur`\n- `une carte bancaire`\n- `un compte`\n- `un guichet`\n- `un chèque`\n- `des pièces`",
+                "fr": "Termes de la banque et de l’argent :\n\n- `un distributeur`\n- `une carte bancaire`\n- `un compte`\n- `un guichet`\n- `un chèque`\n- `des pièces`",
+                "de": "Bank- und Geldbegriffe:\n\n- `un distributeur`\n- `une carte bancaire`\n- `un compte`\n- `un guichet`\n- `un chèque`\n- `des pièces` "
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "cards-post-office",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-post-office",
+              "targetIds": [
+                "une-lettre",
+                "un-colis",
+                "un-timbre",
+                "une-enveloppe",
+                "un-facteur",
+                "une-boite-aux-lettres"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "cards-bank-money",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-bank-money",
+              "targetIds": [
+                "un-distributeur",
+                "une-carte-bancaire",
+                "un-compte",
+                "un-guichet",
+                "un-cheque",
+                "des-pieces"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "match-1",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-2",
+              "pairs": [
+                {
+                  "targetId": "une-lettre",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une lettre means a letter.",
+                    "fr": "une lettre signifie « a letter » en anglais.",
+                    "de": "une lettre bedeutet ein Brief."
+                  }
+                },
+                {
+                  "targetId": "un-colis",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un colis means a package.",
+                    "fr": "un colis signifie « a package » en anglais.",
+                    "de": "un colis bedeutet ein Paket."
+                  }
+                },
+                {
+                  "targetId": "un-timbre",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un timbre means a stamp.",
+                    "fr": "un timbre signifie « a stamp » en anglais.",
+                    "de": "un timbre bedeutet eine Briefmarke."
+                  }
+                },
+                {
+                  "targetId": "une-enveloppe",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une enveloppe means an envelope.",
+                    "fr": "une enveloppe signifie « an envelope » en anglais.",
+                    "de": "une enveloppe bedeutet ein Umschlag."
+                  }
+                },
+                {
+                  "targetId": "un-facteur",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un facteur means a mail carrier.",
+                    "fr": "un facteur signifie « a mail carrier » en anglais.",
+                    "de": "un facteur bedeutet ein Briefträger."
+                  }
+                },
+                {
+                  "targetId": "une-boite-aux-lettres",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une boîte aux lettres means a mailbox.",
+                    "fr": "une boîte aux lettres signifie « a mailbox » en anglais.",
+                    "de": "une boîte aux lettres bedeutet ein Briefkasten."
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-2",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-3",
+              "pairs": [
+                {
+                  "targetId": "un-distributeur",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un distributeur means an ATM.",
+                    "fr": "un distributeur signifie « an ATM » en anglais.",
+                    "de": "un distributeur bedeutet ein Geldautomat."
+                  }
+                },
+                {
+                  "targetId": "une-carte-bancaire",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une carte bancaire means a bank card.",
+                    "fr": "une carte bancaire signifie « a bank card » en anglais.",
+                    "de": "une carte bancaire bedeutet eine Bankkarte."
+                  }
+                },
+                {
+                  "targetId": "un-compte",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un compte means a bank account.",
+                    "fr": "un compte signifie « a bank account » en anglais.",
+                    "de": "un compte bedeutet ein Konto."
+                  }
+                },
+                {
+                  "targetId": "un-guichet",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un guichet means a counter.",
+                    "fr": "un guichet signifie « a counter » en anglais.",
+                    "de": "un guichet bedeutet ein Schalter."
+                  }
+                },
+                {
+                  "targetId": "un-cheque",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un chèque means a check.",
+                    "fr": "un chèque signifie « a check » en anglais.",
+                    "de": "un chèque bedeutet ein Scheck."
+                  }
+                },
+                {
+                  "targetId": "des-pieces",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "des pièces means some coins.",
+                    "fr": "des pièces signifie « some coins » en anglais.",
+                    "de": "des pièces bedeutet Münzen."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overview",
+      "stage": "overview",
+      "role": "overview",
+      "label": {
+        "en": "Overview",
+        "fr": "Vue d’ensemble",
+        "de": "Übersicht"
+      },
+      "pages": [
+        {
+          "pageId": "overview-page",
+          "estimatedDurationS": 90,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Review all words and their details.",
+            "fr": "Révisez tous les mots et leurs détails.",
+            "de": "Überprüfe alle Wörter und ihre Details."
+          },
+          "items": [
+            {
+              "type": "vocabulary_gender_select",
+              "itemId": "gender-overview",
+              "targetIds": [
+                "une-lettre",
+                "un-colis",
+                "un-timbre",
+                "une-enveloppe",
+                "un-facteur",
+                "une-boite-aux-lettres",
+                "un-distributeur",
+                "une-carte-bancaire",
+                "un-compte",
+                "un-guichet",
+                "un-cheque",
+                "des-pieces"
+              ],
+              "rows": [
+                {
+                  "targetId": "une-lettre",
+                  "answerExplanation": {
+                    "en": "lettre is feminine.",
+                    "fr": "lettre est féminin.",
+                    "de": "lettre ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-colis",
+                  "answerExplanation": {
+                    "en": "colis is masculine.",
+                    "fr": "colis est masculin.",
+                    "de": "colis ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-timbre",
+                  "answerExplanation": {
+                    "en": "timbre is masculine.",
+                    "fr": "timbre est masculin.",
+                    "de": "timbre ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "une-enveloppe",
+                  "answerExplanation": {
+                    "en": "enveloppe is feminine.",
+                    "fr": "enveloppe est féminin.",
+                    "de": "enveloppe ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-facteur",
+                  "answerExplanation": {
+                    "en": "facteur is masculine.",
+                    "fr": "facteur est masculin.",
+                    "de": "facteur ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "une-boite-aux-lettres",
+                  "answerExplanation": {
+                    "en": "boîte aux lettres is feminine.",
+                    "fr": "boîte aux lettres est féminin.",
+                    "de": "boîte aux lettres ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-distributeur",
+                  "answerExplanation": {
+                    "en": "distributeur is masculine.",
+                    "fr": "distributeur est masculin.",
+                    "de": "distributeur ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "une-carte-bancaire",
+                  "answerExplanation": {
+                    "en": "carte bancaire is feminine.",
+                    "fr": "carte bancaire est féminin.",
+                    "de": "carte bancaire ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-compte",
+                  "answerExplanation": {
+                    "en": "compte is masculine.",
+                    "fr": "compte est masculin.",
+                    "de": "compte ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-guichet",
+                  "answerExplanation": {
+                    "en": "guichet is masculine.",
+                    "fr": "guichet est masculin.",
+                    "de": "guichet ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-cheque",
+                  "answerExplanation": {
+                    "en": "chèque is masculine.",
+                    "fr": "chèque est masculin.",
+                    "de": "chèque ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "des-pieces",
+                  "answerExplanation": {
+                    "en": "pièces is feminine.",
+                    "fr": "pièces est féminin.",
+                    "de": "pièces ist feminin."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "stage": "practice",
+      "role": "exercise",
+      "label": {
+        "en": "Practice",
+        "fr": "Entraînement",
+        "de": "Übung"
+      },
+      "pages": [
+        {
+          "pageId": "gap-une-lettre",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-lettre",
+              "targetId": "une-lettre",
+              "before": "Poster une",
+              "after": " importante.",
+              "referenceTargetIds": [
+                "une-lettre",
+                "un-colis",
+                "un-timbre",
+                "une-enveloppe"
+              ],
+              "accepted": {
+                "answers": [
+                  "lettre"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is lettre.",
+                "fr": "Le mot manquant est lettre.",
+                "de": "Das fehlende Wort ist lettre."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-colis",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-colis",
+              "targetId": "un-colis",
+              "before": "Envoyer un",
+              "after": " lourd.",
+              "referenceTargetIds": [
+                "un-colis",
+                "une-lettre",
+                "un-timbre",
+                "une-enveloppe"
+              ],
+              "accepted": {
+                "answers": [
+                  "colis"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is colis.",
+                "fr": "Le mot manquant est colis.",
+                "de": "Das fehlende Wort ist colis."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-timbre",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-timbre",
+              "targetId": "un-timbre",
+              "before": "Acheter un",
+              "after": " de collection.",
+              "referenceTargetIds": [
+                "un-timbre",
+                "une-lettre",
+                "un-colis",
+                "une-enveloppe"
+              ],
+              "accepted": {
+                "answers": [
+                  "timbre"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is timbre.",
+                "fr": "Le mot manquant est timbre.",
+                "de": "Das fehlende Wort ist timbre."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-enveloppe",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-enveloppe",
+              "targetId": "une-enveloppe",
+              "before": "Fermer une",
+              "after": " blanche.",
+              "referenceTargetIds": [
+                "une-enveloppe",
+                "une-lettre",
+                "un-colis",
+                "un-timbre"
+              ],
+              "accepted": {
+                "answers": [
+                  "enveloppe"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is enveloppe.",
+                "fr": "Le mot manquant est enveloppe.",
+                "de": "Das fehlende Wort ist enveloppe."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-facteur",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-facteur",
+              "targetId": "un-facteur",
+              "before": "Bonjour au",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-facteur",
+                "une-lettre",
+                "un-colis",
+                "un-timbre"
+              ],
+              "accepted": {
+                "answers": [
+                  "facteur"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is facteur.",
+                "fr": "Le mot manquant est facteur.",
+                "de": "Das fehlende Wort ist facteur."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-boite-aux-lettres",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-boite-aux-lettres",
+              "targetId": "une-boite-aux-lettres",
+              "before": "Regarder dans une",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-boite-aux-lettres",
+                "une-lettre",
+                "un-colis",
+                "un-timbre"
+              ],
+              "accepted": {
+                "answers": [
+                  "boîte aux lettres"
+                ],
+                "accentSensitive": [
+                  "boîte"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is boîte aux lettres.",
+                "fr": "Le mot manquant est boîte aux lettres.",
+                "de": "Das fehlende Wort ist boîte aux lettres."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-distributeur",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-distributeur",
+              "targetId": "un-distributeur",
+              "before": "Trouver un",
+              "after": " de billets.",
+              "referenceTargetIds": [
+                "un-distributeur",
+                "une-lettre",
+                "un-colis",
+                "un-timbre"
+              ],
+              "accepted": {
+                "answers": [
+                  "distributeur"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is distributeur.",
+                "fr": "Le mot manquant est distributeur.",
+                "de": "Das fehlende Wort ist distributeur."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-carte-bancaire",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-carte-bancaire",
+              "targetId": "une-carte-bancaire",
+              "before": "Utiliser une",
+              "after": " sans contact.",
+              "referenceTargetIds": [
+                "une-carte-bancaire",
+                "une-lettre",
+                "un-colis",
+                "un-timbre"
+              ],
+              "accepted": {
+                "answers": [
+                  "carte bancaire"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is carte bancaire.",
+                "fr": "Le mot manquant est carte bancaire.",
+                "de": "Das fehlende Wort ist carte bancaire."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-compte",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-compte",
+              "targetId": "un-compte",
+              "before": "Vérifier son",
+              "after": " bancaire.",
+              "referenceTargetIds": [
+                "un-compte",
+                "une-lettre",
+                "un-colis",
+                "un-timbre"
+              ],
+              "accepted": {
+                "answers": [
+                  "compte"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is compte.",
+                "fr": "Le mot manquant est compte.",
+                "de": "Das fehlende Wort ist compte."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-guichet",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-guichet",
+              "targetId": "un-guichet",
+              "before": "Faire la queue à un",
+              "after": " de banque.",
+              "referenceTargetIds": [
+                "un-guichet",
+                "une-lettre",
+                "un-colis",
+                "un-timbre"
+              ],
+              "accepted": {
+                "answers": [
+                  "guichet"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is guichet.",
+                "fr": "Le mot manquant est guichet.",
+                "de": "Das fehlende Wort ist guichet."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-cheque",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-cheque",
+              "targetId": "un-cheque",
+              "before": "Signer un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-cheque",
+                "une-lettre",
+                "un-colis",
+                "un-timbre"
+              ],
+              "accepted": {
+                "answers": [
+                  "chèque"
+                ],
+                "accentSensitive": [
+                  "chèque"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is chèque.",
+                "fr": "Le mot manquant est chèque.",
+                "de": "Das fehlende Wort ist chèque."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-des-pieces",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-des-pieces",
+              "targetId": "des-pieces",
+              "before": "Payer avec des",
+              "after": ".",
+              "referenceTargetIds": [
+                "des-pieces",
+                "une-lettre",
+                "un-colis",
+                "un-timbre"
+              ],
+              "accepted": {
+                "answers": [
+                  "pièces"
+                ],
+                "accentSensitive": [
+                  "pièces"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is pièces.",
+                "fr": "Le mot manquant est pièces.",
+                "de": "Das fehlende Wort ist pièces."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Exam",
+        "fr": "Examen",
+        "de": "Prüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-lettre",
+              "targetId": "une-lettre",
+              "prompt": {
+                "en": "a letter",
+                "de": "ein Brief"
+              },
+              "accepted": {
+                "answers": [
+                  "une lettre"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a letter in French is une lettre.",
+                "fr": "a letter en français est une lettre.",
+                "de": "ein Brief auf Französisch ist une lettre."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-colis",
+              "targetId": "un-colis",
+              "prompt": {
+                "en": "a package",
+                "de": "ein Paket"
+              },
+              "accepted": {
+                "answers": [
+                  "un colis"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a package in French is un colis.",
+                "fr": "a package en français est un colis.",
+                "de": "ein Paket auf Französisch ist un colis."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-timbre",
+              "targetId": "un-timbre",
+              "prompt": {
+                "en": "a stamp",
+                "de": "eine Briefmarke"
+              },
+              "accepted": {
+                "answers": [
+                  "un timbre"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a stamp in French is un timbre.",
+                "fr": "a stamp en français est un timbre.",
+                "de": "eine Briefmarke auf Französisch ist un timbre."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-enveloppe",
+              "targetId": "une-enveloppe",
+              "prompt": {
+                "en": "an envelope",
+                "de": "ein Umschlag"
+              },
+              "accepted": {
+                "answers": [
+                  "une enveloppe"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "an envelope in French is une enveloppe.",
+                "fr": "an envelope en français est une enveloppe.",
+                "de": "ein Umschlag auf Französisch ist une enveloppe."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-facteur",
+              "targetId": "un-facteur",
+              "prompt": {
+                "en": "a mail carrier",
+                "de": "ein Briefträger"
+              },
+              "accepted": {
+                "answers": [
+                  "un facteur"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a mail carrier in French is un facteur.",
+                "fr": "a mail carrier en français est un facteur.",
+                "de": "ein Briefträger auf Französisch ist un facteur."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-boite-aux-lettres",
+              "targetId": "une-boite-aux-lettres",
+              "prompt": {
+                "en": "a mailbox",
+                "de": "ein Briefkasten"
+              },
+              "accepted": {
+                "answers": [
+                  "une boîte aux lettres",
+                  "une boite aux lettres"
+                ],
+                "accentSensitive": [
+                  "boîte"
+                ]
+              },
+              "answerExplanation": {
+                "en": "a mailbox in French is une boîte aux lettres.",
+                "fr": "a mailbox en français est une boîte aux lettres.",
+                "de": "ein Briefkasten auf Französisch ist une boîte aux lettres."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-page-2",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-distributeur",
+              "targetId": "un-distributeur",
+              "prompt": {
+                "en": "an ATM",
+                "de": "ein Geldautomat"
+              },
+              "accepted": {
+                "answers": [
+                  "un distributeur"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "an ATM in French is un distributeur.",
+                "fr": "an ATM en français est un distributeur.",
+                "de": "ein Geldautomat auf Französisch ist un distributeur."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-carte-bancaire",
+              "targetId": "une-carte-bancaire",
+              "prompt": {
+                "en": "a bank card",
+                "de": "eine Bankkarte"
+              },
+              "accepted": {
+                "answers": [
+                  "une carte bancaire"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a bank card in French is une carte bancaire.",
+                "fr": "a bank card en français est une carte bancaire.",
+                "de": "eine Bankkarte auf Französisch ist une carte bancaire."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-compte",
+              "targetId": "un-compte",
+              "prompt": {
+                "en": "a bank account",
+                "de": "ein Konto"
+              },
+              "accepted": {
+                "answers": [
+                  "un compte"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a bank account in French is un compte.",
+                "fr": "a bank account en français est un compte.",
+                "de": "ein Konto auf Französisch ist un compte."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-guichet",
+              "targetId": "un-guichet",
+              "prompt": {
+                "en": "a counter",
+                "de": "ein Schalter"
+              },
+              "accepted": {
+                "answers": [
+                  "un guichet"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a counter in French is un guichet.",
+                "fr": "a counter en français est un guichet.",
+                "de": "ein Schalter auf Französisch ist un guichet."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-cheque",
+              "targetId": "un-cheque",
+              "prompt": {
+                "en": "a check",
+                "de": "ein Scheck"
+              },
+              "accepted": {
+                "answers": [
+                  "un chèque",
+                  "un cheque"
+                ],
+                "accentSensitive": [
+                  "chèque"
+                ]
+              },
+              "answerExplanation": {
+                "en": "a check in French is un chèque.",
+                "fr": "a check en français est un chèque.",
+                "de": "ein Scheck auf Französisch ist un chèque."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-des-pieces",
+              "targetId": "des-pieces",
+              "prompt": {
+                "en": "some coins",
+                "de": "Münzen"
+              },
+              "accepted": {
+                "answers": [
+                  "des pièces",
+                  "des pieces"
+                ],
+                "accentSensitive": [
+                  "pièces"
+                ]
+              },
+              "answerExplanation": {
+                "en": "some coins in French is des pièces.",
+                "fr": "some coins en français est des pièces.",
+                "de": "Münzen auf Französisch ist des pièces."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

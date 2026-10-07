@@ -1,0 +1,584 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-hotel-words",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Le vocabulaire de l’hôtel",
+  "objective": {
+    "en": "Name twelve essential hotel terms in French with indefinite articles.",
+    "fr": "Nommer une douzaine de mots de l’hôtel en français avec leurs articles indéfinis.",
+    "de": "Nenne zwölf wichtige Hotelbegriffe auf Französisch mit unbestimmten Artikeln."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T15:07:10.776Z",
+    "inputHashes": {
+      "outline": "dad895c7581753aded71c4b40bb820cc36f7883b9da5d91506e4b50b83e189e2"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "services",
+  "coverageNotes": {
+    "en": "Covers reception, rooms, keys, breakfast options, and elevator.",
+    "fr": "Couvre la réception, les chambres, clés, formules petit-déjeuner et ascenseur.",
+    "de": "Deckt Rezeption, Zimmer, Schlüssel, Frühstücksangebote und Aufzug ab."
+  },
+  "targetCount": 12,
+  "countRationale": {
+    "en": "Twelve words cover all standard hotel accommodation needs.",
+    "fr": "Douze mots couvrent l’essentiel d’un séjour à l’hôtel.",
+    "de": "Zwölf Begriffe decken einen Hotelaufenthalt ab."
+  },
+  "difficultyBalance": {
+    "en": "Core terms (une clé, une chambre) balanced with compound options (une chambre simple, une chambre double).",
+    "fr": "Mots simples équilibrés avec chambre simple / double.",
+    "de": "Einfache Begriffe ausgewogen mit Einzel-/Doppelzimmer."
+  },
+  "prerequisites": [
+    {
+      "en": "Indefinite articles un, une.",
+      "fr": "Articles indéfinis un, une.",
+      "de": "Unbestimmte Artikel un, une."
+    }
+  ],
+  "groups": [
+    {
+      "id": "hotel-reception-rooms",
+      "label": {
+        "en": "Reception & Room types",
+        "fr": "Réception et chambres",
+        "de": "Rezeption & Zimmertypen"
+      },
+      "targetIds": [
+        "une-reception",
+        "une-chambre-simple",
+        "une-chambre-double",
+        "une-cle",
+        "une-nuit",
+        "un-hotel"
+      ]
+    },
+    {
+      "id": "hotel-services-facilities",
+      "label": {
+        "en": "Services & Facilities",
+        "fr": "Services et équipements",
+        "de": "Services & Ausstattung"
+      },
+      "targetIds": [
+        "un-petit-dejeuner-compris",
+        "un-ascenseur",
+        "un-lit",
+        "une-salle-de-bains",
+        "un-etage",
+        "une-reservation"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "une-reception",
+      "term": "réception",
+      "translations": {
+        "en": [
+          "a reception desk"
+        ],
+        "de": [
+          "eine Rezeption"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une réception",
+      "examForms": [
+        "une réception"
+      ],
+      "accentSensitive": [
+        "réception"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn ʁesɛpsjɔ̃/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Demander la clé à une réception.",
+        "translation": {
+          "en": "Ask for the key at a reception desk.",
+          "de": "Den Schlüssel an einer Rezeption erfragen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-chambre-simple",
+      "term": "chambre simple",
+      "translations": {
+        "en": [
+          "a single room"
+        ],
+        "de": [
+          "ein Einzelzimmer"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une chambre simple",
+      "examForms": [
+        "une chambre simple"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn ʃɑ̃bʁə sɛ̃pl/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Réserver une chambre simple pour une personne.",
+        "translation": {
+          "en": "Book a single room for one person.",
+          "de": "Ein Einzelzimmer für eine Person buchen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-chambre-double",
+      "term": "chambre double",
+      "translations": {
+        "en": [
+          "a double room"
+        ],
+        "de": [
+          "ein Doppelzimmer"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une chambre double",
+      "examForms": [
+        "une chambre double"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn ʃɑ̃bʁə dubl/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Une chambre double avec grand lit.",
+        "translation": {
+          "en": "A double room with a double bed.",
+          "de": "Ein Doppelzimmer mit Doppelbett."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-cle",
+      "term": "clé",
+      "translations": {
+        "en": [
+          "a key"
+        ],
+        "de": [
+          "ein Schlüssel"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une clé",
+      "examForms": [
+        "une clé",
+        "une clef"
+      ],
+      "accentSensitive": [
+        "clé"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn kle/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Rendre une clé avant midi.",
+        "translation": {
+          "en": "Return a key before noon.",
+          "de": "Einen Schlüssel vor zwölf abgeben."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-nuit",
+      "term": "nuit",
+      "translations": {
+        "en": [
+          "a night"
+        ],
+        "de": [
+          "eine Nacht"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une nuit",
+      "examForms": [
+        "une nuit"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn nɥi/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Payer cinquante euros pour une nuit.",
+        "translation": {
+          "en": "Pay fifty euros for one night.",
+          "de": "Fünfzig Euro für eine Nacht zahlen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-hotel",
+      "term": "hôtel",
+      "translations": {
+        "en": [
+          "a hotel"
+        ],
+        "de": [
+          "ein Hotel"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un hôtel",
+      "examForms": [
+        "un hôtel"
+      ],
+      "accentSensitive": [
+        "hôtel"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ nɔtɛl/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un hôtel calme au centre-ville.",
+        "translation": {
+          "en": "A quiet hotel in the city center.",
+          "de": "Ein ruhiges Hotel im Stadtzentrum."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-petit-dejeuner-compris",
+      "term": "petit-déjeuner compris",
+      "translations": {
+        "en": [
+          "an included breakfast"
+        ],
+        "de": [
+          "ein inkludiertes Frühstück"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "un petit-déjeuner compris",
+      "examForms": [
+        "un petit-déjeuner compris"
+      ],
+      "accentSensitive": [
+        "petit-déjeuner"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ pəti deʒœne kɔ̃pʁi/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Tarif avec un petit-déjeuner compris.",
+        "translation": {
+          "en": "Rate with breakfast included.",
+          "de": "Tarif mit inkludiertem Frühstück."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-ascenseur",
+      "term": "ascenseur",
+      "translations": {
+        "en": [
+          "an elevator",
+          "a lift"
+        ],
+        "de": [
+          "ein Aufzug"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un ascenseur",
+      "examForms": [
+        "un ascenseur"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ nasɑ̃sœʁ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Prendre un ascenseur jusqu’au troisième.",
+        "translation": {
+          "en": "Take an elevator to the third floor.",
+          "de": "Einen Aufzug in den dritten Stock nehmen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-lit",
+      "term": "lit",
+      "translations": {
+        "en": [
+          "a bed"
+        ],
+        "de": [
+          "ein Bett"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un lit",
+      "examForms": [
+        "un lit"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ li/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un lit confortable.",
+        "translation": {
+          "en": "A comfortable bed.",
+          "de": "Ein bequemes Bett."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-salle-de-bains",
+      "term": "salle de bains",
+      "translations": {
+        "en": [
+          "a bathroom"
+        ],
+        "de": [
+          "ein Badezimmer"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une salle de bains",
+      "examForms": [
+        "une salle de bains"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn sal də bɛ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Une chambre avec une salle de bains privée.",
+        "translation": {
+          "en": "A room with a private bathroom.",
+          "de": "Ein Zimmer mit eigenem Badezimmer."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-etage",
+      "term": "étage",
+      "translations": {
+        "en": [
+          "a floor",
+          "a story"
+        ],
+        "de": [
+          "ein Stockwerk"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un étage",
+      "examForms": [
+        "un étage"
+      ],
+      "accentSensitive": [
+        "étage"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ netaʒ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Chambre située au premier étage.",
+        "translation": {
+          "en": "Room located on the first floor.",
+          "de": "Zimmer im ersten Stock."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-reservation",
+      "term": "réservation",
+      "translations": {
+        "en": [
+          "a reservation"
+        ],
+        "de": [
+          "eine Reservierung"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une réservation",
+      "examForms": [
+        "une réservation"
+      ],
+      "accentSensitive": [
+        "réservation"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn ʁezɛʁvasjɔ̃/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Avoir une réservation au nom de Martin.",
+        "translation": {
+          "en": "Have a reservation in Martin’s name.",
+          "de": "Eine Reservierung auf den Namen Martin haben."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "une-reception",
+        "une-chambre-simple",
+        "une-chambre-double",
+        "une-cle",
+        "une-nuit",
+        "un-hotel",
+        "un-petit-dejeuner-compris",
+        "un-ascenseur",
+        "un-lit",
+        "une-salle-de-bains",
+        "un-etage",
+        "une-reservation"
+      ],
+      "estimatedDurationS": 180
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "une-reception",
+            "une-chambre-simple",
+            "une-chambre-double",
+            "une-cle",
+            "une-nuit",
+            "un-hotel"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "un-petit-dejeuner-compris",
+            "un-ascenseur",
+            "un-lit",
+            "une-salle-de-bains",
+            "un-etage",
+            "une-reservation"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

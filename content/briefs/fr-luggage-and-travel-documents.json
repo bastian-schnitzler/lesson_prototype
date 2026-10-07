@@ -1,0 +1,511 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-luggage-and-travel-documents",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les bagages et papiers de voyage",
+  "objective": {
+    "en": "Name ten words for travel luggage and identity documents in French.",
+    "fr": "Nommer une dizaine de mots pour partir en voyage en français.",
+    "de": "Nenne zehn Wörter für Reisegepäck und Reisedokumente auf Französisch."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T15:07:10.770Z",
+    "inputHashes": {
+      "outline": "03bb9dcb4d5475bf98f9028d3fe34ba5da77eb5620f4204a14334caa39a09a52"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "travel",
+  "coverageNotes": {
+    "en": "Covers suitcases, backpacks, passports, ID cards, and flight bookings.",
+    "fr": "Couvre les valises, sacs à dos, passeports, cartes d’identité et réservations.",
+    "de": "Deckt Koffer, Rucksäcke, Pässe, Ausweise und Buchungen ab."
+  },
+  "targetCount": 10,
+  "countRationale": {
+    "en": "Ten items provide essential travel preparation vocabulary.",
+    "fr": "Dix mots couvrent la préparation indispensable du voyage.",
+    "de": "Zehn Begriffe decken die Vorbereitung der Reise ab."
+  },
+  "difficultyBalance": {
+    "en": "Core luggage terms (une valise, un sac) balanced with travel documents (un passeport, une réservation).",
+    "fr": "Mots simples de bagages équilibrés avec les documents officiels.",
+    "de": "Einfache Gepäckbegriffe ausgewogen mit Ausweisdokumenten."
+  },
+  "prerequisites": [
+    {
+      "en": "Articles and travel basics.",
+      "fr": "Articles et bases du voyage.",
+      "de": "Artikel und Reisevokabular."
+    }
+  ],
+  "groups": [
+    {
+      "id": "luggage-gear",
+      "label": {
+        "en": "Luggage & Gear",
+        "fr": "Bagages et affaires",
+        "de": "Gepäck & Ausrüstung"
+      },
+      "targetIds": [
+        "une-valise",
+        "un-sac-a-dos",
+        "un-bagage-a-main",
+        "une-etiquette",
+        "un-sac"
+      ]
+    },
+    {
+      "id": "documents-airport",
+      "label": {
+        "en": "Documents & Flight info",
+        "fr": "Papiers et vols",
+        "de": "Dokumente & Flug"
+      },
+      "targetIds": [
+        "un-passeport",
+        "une-carte-d-identite",
+        "une-reservation",
+        "un-vol",
+        "un-aeroport"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "une-valise",
+      "term": "valise",
+      "translations": {
+        "en": [
+          "a suitcase"
+        ],
+        "de": [
+          "ein Koffer"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une valise",
+      "examForms": [
+        "une valise"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn valiz/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Préparer une valise pour les vacances.",
+        "translation": {
+          "en": "Pack a suitcase for vacation.",
+          "de": "Einen Koffer für den Urlaub packen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-sac-a-dos",
+      "term": "sac à dos",
+      "translations": {
+        "en": [
+          "a backpack"
+        ],
+        "de": [
+          "ein Rucksack"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un sac à dos",
+      "examForms": [
+        "un sac à dos"
+      ],
+      "accentSensitive": [
+        "à"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ sak a do/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Porter un sac à dos en randonnée.",
+        "translation": {
+          "en": "Carry a backpack on a hike.",
+          "de": "Einen Rucksack auf der Wanderung tragen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-bagage-a-main",
+      "term": "bagage à main",
+      "translations": {
+        "en": [
+          "a carry-on bag"
+        ],
+        "de": [
+          "ein Handgepäck"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un bagage à main",
+      "examForms": [
+        "un bagage à main"
+      ],
+      "accentSensitive": [
+        "à"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ baɡaʒ a mɛ̃/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Garder un bagage à main en cabine.",
+        "translation": {
+          "en": "Keep a carry-on in the cabin.",
+          "de": "Ein Handgepäck in der Kabine behalten."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-etiquette",
+      "term": "étiquette",
+      "translations": {
+        "en": [
+          "a luggage tag",
+          "a label"
+        ],
+        "de": [
+          "un Anhänger",
+          "ein Etikett"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une étiquette",
+      "examForms": [
+        "une étiquette"
+      ],
+      "accentSensitive": [
+        "étiquette"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn etikɛt/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Mettre une étiquette sur le sac.",
+        "translation": {
+          "en": "Put a tag on the bag.",
+          "de": "Einen Anhänger an die Tasche hängen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-sac",
+      "term": "sac",
+      "translations": {
+        "en": [
+          "a travel bag"
+        ],
+        "de": [
+          "eine Reisetasche"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un sac",
+      "examForms": [
+        "un sac"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ sak/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Prendre un sac de voyage.",
+        "translation": {
+          "en": "Take a travel bag.",
+          "de": "Eine Reisetasche nehmen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-passeport",
+      "term": "passeport",
+      "translations": {
+        "en": [
+          "a passport"
+        ],
+        "de": [
+          "ein Reisepass"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un passeport",
+      "examForms": [
+        "un passeport"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ paspɔʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Montrer un passeport à l’aéroport.",
+        "translation": {
+          "en": "Show a passport at the airport.",
+          "de": "Einen Pass am Flughafen vorzeigen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-carte-d-identite",
+      "term": "carte d’identité",
+      "translations": {
+        "en": [
+          "an ID card"
+        ],
+        "de": [
+          "ein Personalausweis"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une carte d’identité",
+      "examForms": [
+        "une carte d’identité",
+        "une carte d'identité"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn kaʁt didɑ̃tite/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Renouveler une carte d’identité.",
+        "translation": {
+          "en": "Renew an ID card.",
+          "de": "Einen Personalausweis erneuern."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-reservation",
+      "term": "réservation",
+      "translations": {
+        "en": [
+          "a booking",
+          "a reservation"
+        ],
+        "de": [
+          "eine Buchung"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une réservation",
+      "examForms": [
+        "une réservation"
+      ],
+      "accentSensitive": [
+        "réservation"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn ʁezɛʁvasjɔ̃/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Imprimer une réservation d’hôtel.",
+        "translation": {
+          "en": "Print a hotel booking.",
+          "de": "Eine Hotelbuchung ausdrucken."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-vol",
+      "term": "vol",
+      "translations": {
+        "en": [
+          "a flight"
+        ],
+        "de": [
+          "ein Flug"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un vol",
+      "examForms": [
+        "un vol"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ vɔl/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un vol direct pour Paris.",
+        "translation": {
+          "en": "A direct flight to Paris.",
+          "de": "Ein Direktflug nach Paris."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-aeroport",
+      "term": "aéroport",
+      "translations": {
+        "en": [
+          "an airport"
+        ],
+        "de": [
+          "ein Flughafen"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un aéroport",
+      "examForms": [
+        "un aéroport"
+      ],
+      "accentSensitive": [
+        "aéroport"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ naeʁɔpɔʁ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Arriver à un aéroport international.",
+        "translation": {
+          "en": "Arrive at an international airport.",
+          "de": "An einem internationalen Flughafen ankommen."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "une-valise",
+        "un-sac-a-dos",
+        "un-bagage-a-main",
+        "une-etiquette",
+        "un-sac",
+        "un-passeport",
+        "une-carte-d-identite",
+        "une-reservation",
+        "un-vol",
+        "un-aeroport"
+      ],
+      "estimatedDurationS": 150
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "une-valise",
+            "un-sac-a-dos",
+            "un-bagage-a-main",
+            "une-etiquette",
+            "un-sac"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "un-passeport",
+            "une-carte-d-identite",
+            "une-reservation",
+            "un-vol",
+            "un-aeroport"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

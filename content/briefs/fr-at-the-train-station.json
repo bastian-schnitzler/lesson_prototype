@@ -1,0 +1,580 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-at-the-train-station",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "À la gare",
+  "objective": {
+    "en": "Name twelve essential train station words and phrases in French.",
+    "fr": "Nommer une douzaine de mots de la gare en français.",
+    "de": "Nenne zwölf wichtige Wörter und Ausdrücke am Bahnhof auf Französisch."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T15:03:50.941Z",
+    "inputHashes": {
+      "outline": "cab95257562db05b0365e8f20ce580f19976df9cb7ee21569a301e7191d217a6"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "travel",
+  "coverageNotes": {
+    "en": "Covers tickets, platforms, departures, arrivals, and delays.",
+    "fr": "Couvre les billets, quais, voies, départs, arrivées et retards.",
+    "de": "Deckt Fahrkarten, Bahnsteige, Gleise, Abfahrten, Ankünfte und Verspätungen ab."
+  },
+  "targetCount": 12,
+  "countRationale": {
+    "en": "Twelve vocabulary items cover standard train travel tasks.",
+    "fr": "Douze mots couvrent l’ensemble d’un trajet en train.",
+    "de": "Zwölf Begriffe decken die gesamte Zugreise ab."
+  },
+  "difficultyBalance": {
+    "en": "Core terms (un billet, le quai) balanced with compound travel options (un aller simple, un aller-retour).",
+    "fr": "Termes simples équilibrés avec aller simple / aller-retour.",
+    "de": "Einfache Begriffe ausgewogen mit Hin-/Rückfahrkarten."
+  },
+  "prerequisites": [
+    {
+      "en": "Transport vocabulary and numbers.",
+      "fr": "Vocabulaire des transports et nombres.",
+      "de": "Transportvokabular und Zahlen."
+    }
+  ],
+  "groups": [
+    {
+      "id": "station-tickets",
+      "label": {
+        "en": "Tickets & Counter",
+        "fr": "Billets et guichet",
+        "de": "Fahrkarten & Schalter"
+      },
+      "targetIds": [
+        "un-billet",
+        "un-aller-simple",
+        "un-aller-retour",
+        "un-guichet",
+        "un-horaire",
+        "un-composteur"
+      ]
+    },
+    {
+      "id": "platforms-trains",
+      "label": {
+        "en": "Platforms & Train status",
+        "fr": "Quais et statut des trains",
+        "de": "Bahnsteige & Zugstatus"
+      },
+      "targetIds": [
+        "un-quai",
+        "une-voie",
+        "un-depart",
+        "une-arrivee",
+        "un-retard",
+        "un-train"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "un-billet",
+      "term": "billet",
+      "translations": {
+        "en": [
+          "a ticket"
+        ],
+        "de": [
+          "eine Fahrkarte"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un billet",
+      "examForms": [
+        "un billet"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ bijɛ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Acheter un billet de train.",
+        "translation": {
+          "en": "Buy a train ticket.",
+          "de": "Eine Fahrkarte kaufen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-aller-simple",
+      "term": "aller simple",
+      "translations": {
+        "en": [
+          "a one-way ticket"
+        ],
+        "de": [
+          "eine einfache Fahrt"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un aller simple",
+      "examForms": [
+        "un aller simple"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ nale sɛ̃pl/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Je voudrais un aller simple pour Lyon.",
+        "translation": {
+          "en": "I would like a one-way ticket to Lyon.",
+          "de": "Ich hätte gerne eine einfache Fahrt nach Lyon."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-aller-retour",
+      "term": "aller-retour",
+      "translations": {
+        "en": [
+          "a round-trip ticket",
+          "a return ticket"
+        ],
+        "de": [
+          "eine Hin- und Rückfahrkarte"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un aller-retour",
+      "examForms": [
+        "un aller-retour"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ nale ʁətuʁ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Prendre un aller-retour pour Paris.",
+        "translation": {
+          "en": "Take a round-trip ticket to Paris.",
+          "de": "Eine Hin- und Rückfahrkarte nach Paris nehmen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-guichet",
+      "term": "guichet",
+      "translations": {
+        "en": [
+          "a ticket counter",
+          "window"
+        ],
+        "de": [
+          "ein Schalter"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un guichet",
+      "examForms": [
+        "un guichet"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ ɡiʃɛ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Faire la queue à un guichet.",
+        "translation": {
+          "en": "Queue at a ticket counter.",
+          "de": "An einem Schalter anstehen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-horaire",
+      "term": "horaire",
+      "translations": {
+        "en": [
+          "a timetable",
+          "a schedule"
+        ],
+        "de": [
+          "ein Fahrplan"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un horaire",
+      "examForms": [
+        "un horaire"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ nɔʁɛʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Consulter un horaire de passage.",
+        "translation": {
+          "en": "Check a timetable.",
+          "de": "Einen Fahrplan prüfen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-composteur",
+      "term": "composteur",
+      "translations": {
+        "en": [
+          "a ticket validator"
+        ],
+        "de": [
+          "ein Entwerter"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un composteur",
+      "examForms": [
+        "un composteur"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ kɔ̃pɔstœʁ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Valider le billet dans le composteur.",
+        "translation": {
+          "en": "Validate the ticket in the machine.",
+          "de": "Die Fahrkarte im Entwerter entwerten."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-quai",
+      "term": "quai",
+      "translations": {
+        "en": [
+          "a platform"
+        ],
+        "de": [
+          "ein Bahnsteig"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un quai",
+      "examForms": [
+        "un quai"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ kɛ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Attendre le train sur un quai.",
+        "translation": {
+          "en": "Wait for the train on a platform.",
+          "de": "Auf einem Bahnsteig auf den Zug warten."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-voie",
+      "term": "voie",
+      "translations": {
+        "en": [
+          "a track"
+        ],
+        "de": [
+          "ein Gleis"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une voie",
+      "examForms": [
+        "une voie"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn vwa/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le train part d’une voie.",
+        "translation": {
+          "en": "The train departs from a track.",
+          "de": "Der Zug fährt von einem Gleis ab."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-depart",
+      "term": "départ",
+      "translations": {
+        "en": [
+          "a departure"
+        ],
+        "de": [
+          "eine Abfahrt"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un départ",
+      "examForms": [
+        "un départ",
+        "un depart"
+      ],
+      "accentSensitive": [
+        "départ"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ depaʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le départ est prévu à 14 heures.",
+        "translation": {
+          "en": "Departure is scheduled for 2pm.",
+          "de": "Die Abfahrt ist für 14 Uhr geplant."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-arrivee",
+      "term": "arrivée",
+      "translations": {
+        "en": [
+          "an arrival"
+        ],
+        "de": [
+          "eine Ankunft"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une arrivée",
+      "examForms": [
+        "une arrivée",
+        "une arrivee"
+      ],
+      "accentSensitive": [
+        "arrivée"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn aʁive/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "L’arrivée du train en gare.",
+        "translation": {
+          "en": "The train’s arrival at the station.",
+          "de": "Die Ankunft des Zuges im Bahnhof."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-retard",
+      "term": "retard",
+      "translations": {
+        "en": [
+          "a delay"
+        ],
+        "de": [
+          "eine Verspätung"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un retard",
+      "examForms": [
+        "un retard"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ ʁətaʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le train a dix minutes de retard.",
+        "translation": {
+          "en": "The train has a 10-minute delay.",
+          "de": "Der Zug hat zehn Minuten Verspätung."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-train",
+      "term": "train",
+      "translations": {
+        "en": [
+          "a train"
+        ],
+        "de": [
+          "ein Zug"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un train",
+      "examForms": [
+        "un train"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ tʁɛ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Prendre un train direct.",
+        "translation": {
+          "en": "Take a direct train.",
+          "de": "Einen direkten Zug nehmen."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "un-billet",
+        "un-aller-simple",
+        "un-aller-retour",
+        "un-guichet",
+        "un-horaire",
+        "un-composteur",
+        "un-quai",
+        "une-voie",
+        "un-depart",
+        "une-arrivee",
+        "un-retard",
+        "un-train"
+      ],
+      "estimatedDurationS": 180
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "un-billet",
+            "un-aller-simple",
+            "un-aller-retour",
+            "un-guichet",
+            "un-horaire",
+            "un-composteur"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "un-quai",
+            "une-voie",
+            "un-depart",
+            "une-arrivee",
+            "un-retard",
+            "un-train"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

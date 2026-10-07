@@ -1,0 +1,1188 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-at-the-train-station",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "À la gare",
+  "objective": {
+    "en": "Name twelve essential train station words and phrases in French.",
+    "fr": "Nommer une douzaine de mots de la gare en français.",
+    "de": "Nenne zwölf wichtige Wörter und Ausdrücke am Bahnhof auf Französisch."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-content-v1",
+    "generatedAt": "2026-10-07T15:03:50.941Z",
+    "inputHashes": {
+      "outline": "cab95257562db05b0365e8f20ce580f19976df9cb7ee21569a301e7191d217a6",
+      "brief": "2fef76f5089ab08242834951cf65ba3d347e8474d3cb93ad0725205530bfde4a"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "travel",
+  "steps": [
+    {
+      "id": "introduction",
+      "stage": "introduction",
+      "role": "introduction",
+      "label": {
+        "en": "Introduction",
+        "fr": "Introduction",
+        "de": "Einführung"
+      },
+      "pages": [
+        {
+          "pageId": "intro-station-tickets",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-station-tickets",
+              "targetIds": [
+                "un-billet",
+                "un-aller-simple",
+                "un-aller-retour",
+                "un-guichet",
+                "un-horaire",
+                "un-composteur"
+              ],
+              "text": {
+                "en": "Tickets and ticket counter:\n\n- `un billet`\n- `un aller simple`\n- `un aller-retour`\n- `un guichet`\n- `un horaire`\n- `un composteur`",
+                "fr": "Billets et guichet :\n\n- `un billet`\n- `un aller simple`\n- `un aller-retour`\n- `un guichet`\n- `un horaire`\n- `un composteur`",
+                "de": "Fahrkarten und Schalter:\n\n- `un billet`\n- `un aller simple`\n- `un aller-retour`\n- `un guichet`\n- `un horaire`\n- `un composteur` "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "intro-platforms-trains",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-platforms-trains",
+              "targetIds": [
+                "un-quai",
+                "une-voie",
+                "un-depart",
+                "une-arrivee",
+                "un-retard",
+                "un-train"
+              ],
+              "text": {
+                "en": "Platforms and travel status:\n\n- `un quai`\n- `une voie`\n- `un départ`\n- `une arrivée`\n- `un retard`\n- `un train`",
+                "fr": "Quais et statut des trains :\n\n- `un quai`\n- `une voie`\n- `un départ`\n- `une arrivée`\n- `un retard`\n- `un train`",
+                "de": "Bahnsteige und Zugstatus:\n\n- `un quai`\n- `une voie`\n- `un départ`\n- `une arrivée`\n- `un retard`\n- `un train` "
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "cards-station-tickets",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-station-tickets",
+              "targetIds": [
+                "un-billet",
+                "un-aller-simple",
+                "un-aller-retour",
+                "un-guichet",
+                "un-horaire",
+                "un-composteur"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "cards-platforms-trains",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-platforms-trains",
+              "targetIds": [
+                "un-quai",
+                "une-voie",
+                "un-depart",
+                "une-arrivee",
+                "un-retard",
+                "un-train"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "match-1",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-2",
+              "pairs": [
+                {
+                  "targetId": "un-billet",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un billet means a ticket.",
+                    "fr": "un billet signifie « a ticket » en anglais.",
+                    "de": "un billet bedeutet eine Fahrkarte."
+                  }
+                },
+                {
+                  "targetId": "un-aller-simple",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un aller simple means a one-way ticket.",
+                    "fr": "un aller simple signifie « a one-way ticket » en anglais.",
+                    "de": "un aller simple bedeutet eine einfache Fahrt."
+                  }
+                },
+                {
+                  "targetId": "un-aller-retour",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un aller-retour means a round-trip ticket.",
+                    "fr": "un aller-retour signifie « a round-trip ticket » en anglais.",
+                    "de": "un aller-retour bedeutet eine Hin- und Rückfahrkarte."
+                  }
+                },
+                {
+                  "targetId": "un-guichet",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un guichet means a ticket counter.",
+                    "fr": "un guichet signifie « a ticket counter » en anglais.",
+                    "de": "un guichet bedeutet ein Schalter."
+                  }
+                },
+                {
+                  "targetId": "un-horaire",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un horaire means a timetable.",
+                    "fr": "un horaire signifie « a timetable » en anglais.",
+                    "de": "un horaire bedeutet ein Fahrplan."
+                  }
+                },
+                {
+                  "targetId": "un-composteur",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un composteur means a ticket validator.",
+                    "fr": "un composteur signifie « a ticket validator » en anglais.",
+                    "de": "un composteur bedeutet ein Entwerter."
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-2",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-3",
+              "pairs": [
+                {
+                  "targetId": "un-quai",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un quai means a platform.",
+                    "fr": "un quai signifie « a platform » en anglais.",
+                    "de": "un quai bedeutet ein Bahnsteig."
+                  }
+                },
+                {
+                  "targetId": "une-voie",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une voie means a track.",
+                    "fr": "une voie signifie « a track » en anglais.",
+                    "de": "une voie bedeutet ein Gleis."
+                  }
+                },
+                {
+                  "targetId": "un-depart",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un départ means a departure.",
+                    "fr": "un départ signifie « a departure » en anglais.",
+                    "de": "un départ bedeutet eine Abfahrt."
+                  }
+                },
+                {
+                  "targetId": "une-arrivee",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "une arrivée means an arrival.",
+                    "fr": "une arrivée signifie « an arrival » en anglais.",
+                    "de": "une arrivée bedeutet eine Ankunft."
+                  }
+                },
+                {
+                  "targetId": "un-retard",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un retard means a delay.",
+                    "fr": "un retard signifie « a delay » en anglais.",
+                    "de": "un retard bedeutet eine Verspätung."
+                  }
+                },
+                {
+                  "targetId": "un-train",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "un train means a train.",
+                    "fr": "un train signifie « a train » en anglais.",
+                    "de": "un train bedeutet ein Zug."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overview",
+      "stage": "overview",
+      "role": "overview",
+      "label": {
+        "en": "Overview",
+        "fr": "Vue d’ensemble",
+        "de": "Übersicht"
+      },
+      "pages": [
+        {
+          "pageId": "overview-page",
+          "estimatedDurationS": 90,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Review all words and their details.",
+            "fr": "Révisez tous les mots et leurs détails.",
+            "de": "Überprüfe alle Wörter und ihre Details."
+          },
+          "items": [
+            {
+              "type": "vocabulary_gender_select",
+              "itemId": "gender-overview",
+              "targetIds": [
+                "un-billet",
+                "un-aller-simple",
+                "un-aller-retour",
+                "un-guichet",
+                "un-horaire",
+                "un-composteur",
+                "un-quai",
+                "une-voie",
+                "un-depart",
+                "une-arrivee",
+                "un-retard",
+                "un-train"
+              ],
+              "rows": [
+                {
+                  "targetId": "un-billet",
+                  "answerExplanation": {
+                    "en": "billet is masculine.",
+                    "fr": "billet est masculin.",
+                    "de": "billet ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-aller-simple",
+                  "answerExplanation": {
+                    "en": "aller simple is masculine.",
+                    "fr": "aller simple est masculin.",
+                    "de": "aller simple ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-aller-retour",
+                  "answerExplanation": {
+                    "en": "aller-retour is masculine.",
+                    "fr": "aller-retour est masculin.",
+                    "de": "aller-retour ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-guichet",
+                  "answerExplanation": {
+                    "en": "guichet is masculine.",
+                    "fr": "guichet est masculin.",
+                    "de": "guichet ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-horaire",
+                  "answerExplanation": {
+                    "en": "horaire is masculine.",
+                    "fr": "horaire est masculin.",
+                    "de": "horaire ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-composteur",
+                  "answerExplanation": {
+                    "en": "composteur is masculine.",
+                    "fr": "composteur est masculin.",
+                    "de": "composteur ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-quai",
+                  "answerExplanation": {
+                    "en": "quai is masculine.",
+                    "fr": "quai est masculin.",
+                    "de": "quai ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "une-voie",
+                  "answerExplanation": {
+                    "en": "voie is feminine.",
+                    "fr": "voie est féminin.",
+                    "de": "voie ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-depart",
+                  "answerExplanation": {
+                    "en": "départ is masculine.",
+                    "fr": "départ est masculin.",
+                    "de": "départ ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "une-arrivee",
+                  "answerExplanation": {
+                    "en": "arrivée is feminine.",
+                    "fr": "arrivée est féminin.",
+                    "de": "arrivée ist feminin."
+                  }
+                },
+                {
+                  "targetId": "un-retard",
+                  "answerExplanation": {
+                    "en": "retard is masculine.",
+                    "fr": "retard est masculin.",
+                    "de": "retard ist maskulin."
+                  }
+                },
+                {
+                  "targetId": "un-train",
+                  "answerExplanation": {
+                    "en": "train is masculine.",
+                    "fr": "train est masculin.",
+                    "de": "train ist maskulin."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "stage": "practice",
+      "role": "exercise",
+      "label": {
+        "en": "Practice",
+        "fr": "Entraînement",
+        "de": "Übung"
+      },
+      "pages": [
+        {
+          "pageId": "gap-un-billet",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-billet",
+              "targetId": "un-billet",
+              "before": "Montrer son",
+              "after": " au contrôleur.",
+              "referenceTargetIds": [
+                "un-billet",
+                "un-aller-simple",
+                "un-aller-retour",
+                "un-guichet"
+              ],
+              "accepted": {
+                "answers": [
+                  "billet"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is billet.",
+                "fr": "Le mot manquant est billet.",
+                "de": "Das fehlende Wort ist billet."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-aller-simple",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-aller-simple",
+              "targetId": "un-aller-simple",
+              "before": "Demander un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-aller-simple",
+                "un-billet",
+                "un-aller-retour",
+                "un-guichet"
+              ],
+              "accepted": {
+                "answers": [
+                  "aller simple"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is aller simple.",
+                "fr": "Le mot manquant est aller simple.",
+                "de": "Das fehlende Wort ist aller simple."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-aller-retour",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-aller-retour",
+              "targetId": "un-aller-retour",
+              "before": "Acheter un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-aller-retour",
+                "un-billet",
+                "un-aller-simple",
+                "un-guichet"
+              ],
+              "accepted": {
+                "answers": [
+                  "aller-retour"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is aller-retour.",
+                "fr": "Le mot manquant est aller-retour.",
+                "de": "Das fehlende Wort ist aller-retour."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-guichet",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-guichet",
+              "targetId": "un-guichet",
+              "before": "Acheter le billet à un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-guichet",
+                "un-billet",
+                "un-aller-simple",
+                "un-aller-retour"
+              ],
+              "accepted": {
+                "answers": [
+                  "guichet"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is guichet.",
+                "fr": "Le mot manquant est guichet.",
+                "de": "Das fehlende Wort ist guichet."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-horaire",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-horaire",
+              "targetId": "un-horaire",
+              "before": "Vérifier un",
+              "after": " du train.",
+              "referenceTargetIds": [
+                "un-horaire",
+                "un-billet",
+                "un-aller-simple",
+                "un-aller-retour"
+              ],
+              "accepted": {
+                "answers": [
+                  "horaire"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is horaire.",
+                "fr": "Le mot manquant est horaire.",
+                "de": "Das fehlende Wort ist horaire."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-composteur",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-composteur",
+              "targetId": "un-composteur",
+              "before": "Insérer le billet dans le",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-composteur",
+                "un-billet",
+                "un-aller-simple",
+                "un-aller-retour"
+              ],
+              "accepted": {
+                "answers": [
+                  "composteur"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is composteur.",
+                "fr": "Le mot manquant est composteur.",
+                "de": "Das fehlende Wort ist composteur."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-quai",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-quai",
+              "targetId": "un-quai",
+              "before": "Le train entre en gare sur un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-quai",
+                "un-billet",
+                "un-aller-simple",
+                "un-aller-retour"
+              ],
+              "accepted": {
+                "answers": [
+                  "quai"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is quai.",
+                "fr": "Le mot manquant est quai.",
+                "de": "Das fehlende Wort ist quai."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-voie",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-voie",
+              "targetId": "une-voie",
+              "before": "Annonce du train sur une",
+              "after": ".",
+              "referenceTargetIds": [
+                "une-voie",
+                "un-billet",
+                "un-aller-simple",
+                "un-aller-retour"
+              ],
+              "accepted": {
+                "answers": [
+                  "voie"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is voie.",
+                "fr": "Le mot manquant est voie.",
+                "de": "Das fehlende Wort ist voie."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-depart",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-depart",
+              "targetId": "un-depart",
+              "before": "Regarder le panneau d’un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-depart",
+                "un-billet",
+                "un-aller-simple",
+                "un-aller-retour"
+              ],
+              "accepted": {
+                "answers": [
+                  "départ"
+                ],
+                "accentSensitive": [
+                  "départ"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is départ.",
+                "fr": "Le mot manquant est départ.",
+                "de": "Das fehlende Wort ist départ."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-une-arrivee",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-une-arrivee",
+              "targetId": "une-arrivee",
+              "before": "Attendre une",
+              "after": " de voyageurs.",
+              "referenceTargetIds": [
+                "une-arrivee",
+                "un-billet",
+                "un-aller-simple",
+                "un-aller-retour"
+              ],
+              "accepted": {
+                "answers": [
+                  "arrivée"
+                ],
+                "accentSensitive": [
+                  "arrivée"
+                ]
+              },
+              "answerExplanation": {
+                "en": "The missing word is arrivée.",
+                "fr": "Le mot manquant est arrivée.",
+                "de": "Das fehlende Wort ist arrivée."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-retard",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-retard",
+              "targetId": "un-retard",
+              "before": "Le train annonce un",
+              "after": ".",
+              "referenceTargetIds": [
+                "un-retard",
+                "un-billet",
+                "un-aller-simple",
+                "un-aller-retour"
+              ],
+              "accepted": {
+                "answers": [
+                  "retard"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is retard.",
+                "fr": "Le mot manquant est retard.",
+                "de": "Das fehlende Wort ist retard."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-un-train",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-un-train",
+              "targetId": "un-train",
+              "before": "Monter dans un",
+              "after": " rapide.",
+              "referenceTargetIds": [
+                "un-train",
+                "un-billet",
+                "un-aller-simple",
+                "un-aller-retour"
+              ],
+              "accepted": {
+                "answers": [
+                  "train"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is train.",
+                "fr": "Le mot manquant est train.",
+                "de": "Das fehlende Wort ist train."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Exam",
+        "fr": "Examen",
+        "de": "Prüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-billet",
+              "targetId": "un-billet",
+              "prompt": {
+                "en": "a ticket",
+                "de": "eine Fahrkarte"
+              },
+              "accepted": {
+                "answers": [
+                  "un billet"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a ticket in French is un billet.",
+                "fr": "a ticket en français est un billet.",
+                "de": "eine Fahrkarte auf Französisch ist un billet."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-aller-simple",
+              "targetId": "un-aller-simple",
+              "prompt": {
+                "en": "a one-way ticket",
+                "de": "eine einfache Fahrt"
+              },
+              "accepted": {
+                "answers": [
+                  "un aller simple"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a one-way ticket in French is un aller simple.",
+                "fr": "a one-way ticket en français est un aller simple.",
+                "de": "eine einfache Fahrt auf Französisch ist un aller simple."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-aller-retour",
+              "targetId": "un-aller-retour",
+              "prompt": {
+                "en": "a round-trip ticket",
+                "de": "eine Hin- und Rückfahrkarte"
+              },
+              "accepted": {
+                "answers": [
+                  "un aller-retour"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a round-trip ticket in French is un aller-retour.",
+                "fr": "a round-trip ticket en français est un aller-retour.",
+                "de": "eine Hin- und Rückfahrkarte auf Französisch ist un aller-retour."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-guichet",
+              "targetId": "un-guichet",
+              "prompt": {
+                "en": "a ticket counter",
+                "de": "ein Schalter"
+              },
+              "accepted": {
+                "answers": [
+                  "un guichet"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a ticket counter in French is un guichet.",
+                "fr": "a ticket counter en français est un guichet.",
+                "de": "ein Schalter auf Französisch ist un guichet."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-horaire",
+              "targetId": "un-horaire",
+              "prompt": {
+                "en": "a timetable",
+                "de": "ein Fahrplan"
+              },
+              "accepted": {
+                "answers": [
+                  "un horaire"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a timetable in French is un horaire.",
+                "fr": "a timetable en français est un horaire.",
+                "de": "ein Fahrplan auf Französisch ist un horaire."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-composteur",
+              "targetId": "un-composteur",
+              "prompt": {
+                "en": "a ticket validator",
+                "de": "ein Entwerter"
+              },
+              "accepted": {
+                "answers": [
+                  "un composteur"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a ticket validator in French is un composteur.",
+                "fr": "a ticket validator en français est un composteur.",
+                "de": "ein Entwerter auf Französisch ist un composteur."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-page-2",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-quai",
+              "targetId": "un-quai",
+              "prompt": {
+                "en": "a platform",
+                "de": "ein Bahnsteig"
+              },
+              "accepted": {
+                "answers": [
+                  "un quai"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a platform in French is un quai.",
+                "fr": "a platform en français est un quai.",
+                "de": "ein Bahnsteig auf Französisch ist un quai."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-voie",
+              "targetId": "une-voie",
+              "prompt": {
+                "en": "a track",
+                "de": "ein Gleis"
+              },
+              "accepted": {
+                "answers": [
+                  "une voie"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a track in French is une voie.",
+                "fr": "a track en français est une voie.",
+                "de": "ein Gleis auf Französisch ist une voie."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-depart",
+              "targetId": "un-depart",
+              "prompt": {
+                "en": "a departure",
+                "de": "eine Abfahrt"
+              },
+              "accepted": {
+                "answers": [
+                  "un départ",
+                  "un depart"
+                ],
+                "accentSensitive": [
+                  "départ"
+                ]
+              },
+              "answerExplanation": {
+                "en": "a departure in French is un départ.",
+                "fr": "a departure en français est un départ.",
+                "de": "eine Abfahrt auf Französisch ist un départ."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-une-arrivee",
+              "targetId": "une-arrivee",
+              "prompt": {
+                "en": "an arrival",
+                "de": "eine Ankunft"
+              },
+              "accepted": {
+                "answers": [
+                  "une arrivée",
+                  "une arrivee"
+                ],
+                "accentSensitive": [
+                  "arrivée"
+                ]
+              },
+              "answerExplanation": {
+                "en": "an arrival in French is une arrivée.",
+                "fr": "an arrival en français est une arrivée.",
+                "de": "eine Ankunft auf Französisch ist une arrivée."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-retard",
+              "targetId": "un-retard",
+              "prompt": {
+                "en": "a delay",
+                "de": "eine Verspätung"
+              },
+              "accepted": {
+                "answers": [
+                  "un retard"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a delay in French is un retard.",
+                "fr": "a delay en français est un retard.",
+                "de": "eine Verspätung auf Französisch ist un retard."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-un-train",
+              "targetId": "un-train",
+              "prompt": {
+                "en": "a train",
+                "de": "ein Zug"
+              },
+              "accepted": {
+                "answers": [
+                  "un train"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "a train in French is un train.",
+                "fr": "a train en français est un train.",
+                "de": "ein Zug auf Französisch ist un train."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

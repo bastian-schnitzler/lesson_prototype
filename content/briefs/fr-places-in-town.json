@@ -1,0 +1,586 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-places-in-town",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les lieux de la ville",
+  "objective": {
+    "en": "Name twelve common places in town in French with indefinite articles.",
+    "fr": "Nommer une douzaine de lieux de la ville en français avec leurs articles indéfinis.",
+    "de": "Nenne zwölf häufige Orte in der Stadt auf Französisch mit unbestimmten Artikeln."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T14:59:26.030Z",
+    "inputHashes": {
+      "outline": "757efdafcacb04c90972fb33c5eb5b7f8c1fb3978dc505805c8475081cc243d5"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "places",
+  "coverageNotes": {
+    "en": "Covers essential public services, transport hubs, and cultural places.",
+    "fr": "Couvre les services publics essentiels, les gares et les lieux culturels.",
+    "de": "Deckt wichtige öffentliche Einrichtungen, Bahnhöfe und Kulturorte ab."
+  },
+  "targetCount": 12,
+  "countRationale": {
+    "en": "Twelve items cover standard town navigation needs for A1.",
+    "fr": "Douze éléments couvrent les besoins essentiels pour s’orienter en ville.",
+    "de": "Zwölf Begriffe decken wichtige Stadtorte ab."
+  },
+  "difficultyBalance": {
+    "en": "8 basic town places balanced with 4 compound or accent-sensitive terms (un hôpital, une bibliothèque).",
+    "fr": "8 lieux simples équilibrés avec 4 termes plus complexes (un hôpital, une bibliothèque).",
+    "de": "8 einfache Orte ausgewogen mit 4 anspruchsvolleren Begriffen."
+  },
+  "prerequisites": [
+    {
+      "en": "Indefinite articles un, une.",
+      "fr": "Articles indéfinis un, une.",
+      "de": "Unbestimmte Artikel un, une."
+    }
+  ],
+  "groups": [
+    {
+      "id": "services-transport",
+      "label": {
+        "en": "Services & Transport",
+        "fr": "Services et transports",
+        "de": "Dienste & Verkehr"
+      },
+      "targetIds": [
+        "une-gare",
+        "une-poste",
+        "une-banque",
+        "une-mairie",
+        "un-hopital",
+        "une-ecole"
+      ]
+    },
+    {
+      "id": "culture-leisure",
+      "label": {
+        "en": "Culture & Leisure places",
+        "fr": "Culture et loisirs",
+        "de": "Kultur & Freizeit"
+      },
+      "targetIds": [
+        "un-musee",
+        "un-parc",
+        "un-cinema",
+        "un-restaurant",
+        "un-theatre",
+        "une-bibliotheque"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "une-gare",
+      "term": "gare",
+      "translations": {
+        "en": [
+          "a train station",
+          "a station"
+        ],
+        "de": [
+          "ein Bahnhof"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une gare",
+      "examForms": [
+        "une gare"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn ɡaʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le train arrive dans une gare.",
+        "translation": {
+          "en": "The train arrives in a station.",
+          "de": "Der Zug kommt in einem Bahnhof an."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-poste",
+      "term": "poste",
+      "translations": {
+        "en": [
+          "a post office"
+        ],
+        "de": [
+          "eine Post"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une poste",
+      "examForms": [
+        "une poste"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn pɔst/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "J’envoie une lettre dans une poste.",
+        "translation": {
+          "en": "I send a letter in a post office.",
+          "de": "Ich verschicke einen Brief bei einer Post."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-banque",
+      "term": "banque",
+      "translations": {
+        "en": [
+          "a bank"
+        ],
+        "de": [
+          "eine Bank"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une banque",
+      "examForms": [
+        "une banque"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn bɑ̃k/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il retire de l’argent dans une banque.",
+        "translation": {
+          "en": "He withdraws money in a bank.",
+          "de": "Er hebt Geld bei einer Bank ab."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-mairie",
+      "term": "mairie",
+      "translations": {
+        "en": [
+          "a town hall",
+          "city hall"
+        ],
+        "de": [
+          "ein Rathaus"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une mairie",
+      "examForms": [
+        "une mairie"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn mɛʁi/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Le maire travaille dans une mairie.",
+        "translation": {
+          "en": "The mayor works in a city hall.",
+          "de": "Der Bürgermeister arbeitet in einem Rathaus."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-hopital",
+      "term": "hôpital",
+      "translations": {
+        "en": [
+          "a hospital"
+        ],
+        "de": [
+          "ein Krankenhaus"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un hôpital",
+      "examForms": [
+        "un hôpital"
+      ],
+      "accentSensitive": [
+        "hôpital"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ nopital/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Le médecin travaille dans un hôpital.",
+        "translation": {
+          "en": "The doctor works in a hospital.",
+          "de": "Der Arzt arbeitet in einem Krankenhaus."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-ecole",
+      "term": "école",
+      "translations": {
+        "en": [
+          "a school"
+        ],
+        "de": [
+          "eine Schule"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une école",
+      "examForms": [
+        "une école"
+      ],
+      "accentSensitive": [
+        "école"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn ekɔl/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Les enfants vont dans une école.",
+        "translation": {
+          "en": "Children go to a school.",
+          "de": "Die Kinder gehen in eine Schule."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-musee",
+      "term": "musée",
+      "translations": {
+        "en": [
+          "a museum"
+        ],
+        "de": [
+          "ein Museum"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un musée",
+      "examForms": [
+        "un musée"
+      ],
+      "accentSensitive": [
+        "musée"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ myze/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Nous visitons un musée.",
+        "translation": {
+          "en": "We visit a museum.",
+          "de": "Wir besichtigen ein Museum."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-parc",
+      "term": "parc",
+      "translations": {
+        "en": [
+          "a park"
+        ],
+        "de": [
+          "ein Park"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un parc",
+      "examForms": [
+        "un parc"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ paʁk/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Ils se promènent dans un parc.",
+        "translation": {
+          "en": "They walk in a park.",
+          "de": "Sie spazieren in einem Park."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-cinema",
+      "term": "cinéma",
+      "translations": {
+        "en": [
+          "a cinema",
+          "a movie theater"
+        ],
+        "de": [
+          "ein Kino"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un cinéma",
+      "examForms": [
+        "un cinéma"
+      ],
+      "accentSensitive": [
+        "cinéma"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ sinema/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "On regarde un film dans un cinéma.",
+        "translation": {
+          "en": "We watch a movie in a cinema.",
+          "de": "Wir schauen einen Film in einem Kino."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-restaurant",
+      "term": "restaurant",
+      "translations": {
+        "en": [
+          "a restaurant"
+        ],
+        "de": [
+          "ein Restaurant"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un restaurant",
+      "examForms": [
+        "un restaurant"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ ʁɛstɔʁɑ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Ils dînent dans un restaurant.",
+        "translation": {
+          "en": "They dine in a restaurant.",
+          "de": "Sie essen in einem Restaurant zu Abend."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-theatre",
+      "term": "théâtre",
+      "translations": {
+        "en": [
+          "a theater"
+        ],
+        "de": [
+          "ein Theater"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un théâtre",
+      "examForms": [
+        "un théâtre"
+      ],
+      "accentSensitive": [
+        "théâtre"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ teɑ̃tʁ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Elle voit une pièce dans un théâtre.",
+        "translation": {
+          "en": "She sees a play in a theater.",
+          "de": "Sie sieht ein Stück in einem Theater."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-bibliotheque",
+      "term": "bibliothèque",
+      "translations": {
+        "en": [
+          "a library"
+        ],
+        "de": [
+          "eine Bibliothek"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une bibliothèque",
+      "examForms": [
+        "une bibliothèque"
+      ],
+      "accentSensitive": [
+        "bibliothèque"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn bibliɔtɛk/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "J’emprunte des livres dans une bibliothèque.",
+        "translation": {
+          "en": "I borrow books in a library.",
+          "de": "Ich leihe Bücher in einer Bibliothek aus."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "une-gare",
+        "une-poste",
+        "une-banque",
+        "une-mairie",
+        "un-hopital",
+        "une-ecole",
+        "un-musee",
+        "un-parc",
+        "un-cinema",
+        "un-restaurant",
+        "un-theatre",
+        "une-bibliotheque"
+      ],
+      "estimatedDurationS": 180
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "une-gare",
+            "une-poste",
+            "une-banque",
+            "une-mairie",
+            "un-hopital",
+            "une-ecole"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "un-musee",
+            "un-parc",
+            "un-cinema",
+            "un-restaurant",
+            "un-theatre",
+            "une-bibliotheque"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

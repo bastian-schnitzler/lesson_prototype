@@ -1,0 +1,570 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-physical-description",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "La description physique",
+  "objective": {
+    "en": "Describe a person with twelve physical description adjectives and nouns in French.",
+    "fr": "Décrire une personne avec une douzaine de mots de description physique en français.",
+    "de": "Beschreibe eine Person mit zwölf Wörtern zur äußeren Erscheinung auf Französisch."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T14:59:29.401Z",
+    "inputHashes": {
+      "outline": "ae9cc2c7286b8f43734a46110a46d7041aae3bf5058ce55afa69ac26472ba534"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "relations",
+  "coverageNotes": {
+    "en": "Covers height, age, build, hair, eyes, and facial features.",
+    "fr": "Couvre la taille, l’âge, la corpulence, les cheveux, les yeux et les caractéristiques du visage.",
+    "de": "Deckt Größe, Alter, Statur, Haare, Augen und Gesichtsmerkmale ab."
+  },
+  "targetCount": 12,
+  "countRationale": {
+    "en": "Twelve words cover essential physical descriptors.",
+    "fr": "Douze mots couvrent la description physique essentielle.",
+    "de": "Zwölf Begriffe decken grundlegende Personenbeschreibungen ab."
+  },
+  "difficultyBalance": {
+    "en": "Core adjectives (grand, petit) balanced with hair/eye color phrases.",
+    "fr": "Adjectifs simples équilibrés avec les descriptions de cheveux/yeux.",
+    "de": "Einfache Adjektive ausgewogen mit Haar-/Augenbeschreibungen."
+  },
+  "prerequisites": [
+    {
+      "en": "Avoir and être verb basics.",
+      "fr": "Bases des verbes avoir et être.",
+      "de": "Grundlagen der Verben avoir et être."
+    }
+  ],
+  "groups": [
+    {
+      "id": "general-build",
+      "label": {
+        "en": "Height, age & build",
+        "fr": "Taille, âge et corpulence",
+        "de": "Größe, Alter & Statur"
+      },
+      "targetIds": [
+        "grand",
+        "petit",
+        "mince",
+        "jeune",
+        "age"
+      ]
+    },
+    {
+      "id": "hair-eyes-features",
+      "label": {
+        "en": "Hair, eyes & features",
+        "fr": "Cheveux, yeux et caractéristiques",
+        "de": "Haare, Augen & Merkmale"
+      },
+      "targetIds": [
+        "des-cheveux-blonds",
+        "des-cheveux-bruns",
+        "des-cheveux-courts",
+        "des-cheveux-longs",
+        "des-yeux-bleus",
+        "des-yeux-marrons",
+        "une-barbe"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "grand",
+      "term": "grand",
+      "translations": {
+        "en": [
+          "tall",
+          "big"
+        ],
+        "de": [
+          "groß"
+        ]
+      },
+      "wordClass": "adjective",
+      "genders": [],
+      "number": null,
+      "teachingForm": "grand",
+      "examForms": [
+        "grand"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/ɡʁɑ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il est très grand.",
+        "translation": {
+          "en": "He is very tall.",
+          "de": "Er ist sehr groß."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "petit",
+      "term": "petit",
+      "translations": {
+        "en": [
+          "short",
+          "small"
+        ],
+        "de": [
+          "klein"
+        ]
+      },
+      "wordClass": "adjective",
+      "genders": [],
+      "number": null,
+      "teachingForm": "petit",
+      "examForms": [
+        "petit"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/pəti/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le garçon est petit.",
+        "translation": {
+          "en": "The boy is short/small.",
+          "de": "Der Junge ist klein."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "mince",
+      "term": "mince",
+      "translations": {
+        "en": [
+          "thin",
+          "slender"
+        ],
+        "de": [
+          "schlank",
+          "dünn"
+        ]
+      },
+      "wordClass": "adjective",
+      "genders": [],
+      "number": null,
+      "teachingForm": "mince",
+      "examForms": [
+        "mince"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/mɛ̃s/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Elle est grande et mince.",
+        "translation": {
+          "en": "She is tall and slender.",
+          "de": "Sie ist groß und schlank."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "jeune",
+      "term": "jeune",
+      "translations": {
+        "en": [
+          "young"
+        ],
+        "de": [
+          "jung"
+        ]
+      },
+      "wordClass": "adjective",
+      "genders": [],
+      "number": null,
+      "teachingForm": "jeune",
+      "examForms": [
+        "jeune"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/ʒœn/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "C’est une jeune fille.",
+        "translation": {
+          "en": "She is a young girl.",
+          "de": "Das ist ein junges Mädchen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "age",
+      "term": "âgé",
+      "translations": {
+        "en": [
+          "old",
+          "elderly"
+        ],
+        "de": [
+          "alt"
+        ]
+      },
+      "wordClass": "adjective",
+      "genders": [],
+      "number": null,
+      "teachingForm": "âgé",
+      "examForms": [
+        "âgé"
+      ],
+      "accentSensitive": [
+        "âgé"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/aʒe/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Mon grand-père est âgé.",
+        "translation": {
+          "en": "My grandfather is elderly.",
+          "de": "Mein Großvater ist alt."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "des-cheveux-blonds",
+      "term": "cheveux blonds",
+      "translations": {
+        "en": [
+          "blond hair"
+        ],
+        "de": [
+          "blonde Haare"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "plural",
+      "teachingForm": "des cheveux blonds",
+      "examForms": [
+        "des cheveux blonds"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/de ʃəvø blɔ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Elle a des cheveux blonds.",
+        "translation": {
+          "en": "She has blond hair.",
+          "de": "Sie hat blonde Haare."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "des-cheveux-bruns",
+      "term": "cheveux bruns",
+      "translations": {
+        "en": [
+          "brown hair",
+          "dark hair"
+        ],
+        "de": [
+          "braune Haare"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "plural",
+      "teachingForm": "des cheveux bruns",
+      "examForms": [
+        "des cheveux bruns"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/de ʃəvø bʁœ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il a des cheveux bruns.",
+        "translation": {
+          "en": "He has dark/brown hair.",
+          "de": "Er hat braune Haare."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "des-cheveux-courts",
+      "term": "cheveux courts",
+      "translations": {
+        "en": [
+          "short hair"
+        ],
+        "de": [
+          "kurze Haare"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "plural",
+      "teachingForm": "des cheveux courts",
+      "examForms": [
+        "des cheveux courts"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/de ʃəvø kuʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Avoir des cheveux courts.",
+        "translation": {
+          "en": "To have short hair.",
+          "de": "Kurze Haare haben."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "des-cheveux-longs",
+      "term": "cheveux longs",
+      "translations": {
+        "en": [
+          "long hair"
+        ],
+        "de": [
+          "lange Haare"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "plural",
+      "teachingForm": "des cheveux longs",
+      "examForms": [
+        "des cheveux longs"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/de ʃəvø lɔ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Elle préfère des cheveux longs.",
+        "translation": {
+          "en": "She prefers long hair.",
+          "de": "Sie bevorzugt lange Haare."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "des-yeux-bleus",
+      "term": "yeux bleus",
+      "translations": {
+        "en": [
+          "blue eyes"
+        ],
+        "de": [
+          "blaue Augen"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "plural",
+      "teachingForm": "des yeux bleus",
+      "examForms": [
+        "des yeux bleus"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/dez ø blø/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il a des yeux bleus.",
+        "translation": {
+          "en": "He has blue eyes.",
+          "de": "Er hat blaue Augen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "des-yeux-marrons",
+      "term": "yeux marrons",
+      "translations": {
+        "en": [
+          "brown eyes"
+        ],
+        "de": [
+          "braune Augen"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "plural",
+      "teachingForm": "des yeux marrons",
+      "examForms": [
+        "des yeux marrons",
+        "des yeux marron"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/dez ø maʁɔ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Avoir des yeux marrons.",
+        "translation": {
+          "en": "To have brown eyes.",
+          "de": "Braune Augen haben."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-barbe",
+      "term": "barbe",
+      "translations": {
+        "en": [
+          "a beard"
+        ],
+        "de": [
+          "ein Bart"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une barbe",
+      "examForms": [
+        "une barbe"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn baʁb/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il porte une barbe noire.",
+        "translation": {
+          "en": "He wears a black beard.",
+          "de": "Er trägt einen schwarzen Bart."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "grand",
+        "petit",
+        "mince",
+        "jeune",
+        "age",
+        "des-cheveux-blonds",
+        "des-cheveux-bruns",
+        "des-cheveux-courts",
+        "des-cheveux-longs",
+        "des-yeux-bleus",
+        "des-yeux-marrons",
+        "une-barbe"
+      ],
+      "estimatedDurationS": 180
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "grand",
+            "petit",
+            "mince",
+            "jeune",
+            "age",
+            "des-cheveux-blonds"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "des-cheveux-bruns",
+            "des-cheveux-courts",
+            "des-cheveux-longs",
+            "des-yeux-bleus",
+            "des-yeux-marrons",
+            "une-barbe"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

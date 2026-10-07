@@ -1,0 +1,578 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-restaurant-words",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Le vocabulaire du restaurant",
+  "objective": {
+    "en": "Name twelve essential restaurant words in French with indefinite articles.",
+    "fr": "Nommer une douzaine de mots du restaurant en français avec leurs articles indéfinis.",
+    "de": "Nenne zwölf wichtige Wörter im Restaurant auf Französisch mit unbestimmten Artikeln."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T14:59:27.731Z",
+    "inputHashes": {
+      "outline": "632660a478fe115eff2bb4a8e75c3b1d0406d1bccd070c051cbc81989f14b832"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "food_and_drink",
+  "coverageNotes": {
+    "en": "Covers menu sections, staff, billing, and reservations.",
+    "fr": "Couvre la carte, le service, l’addition et les réservations.",
+    "de": "Deckt Speisekarte, Personal, Rechnung und Reservierung ab."
+  },
+  "targetCount": 12,
+  "countRationale": {
+    "en": "Twelve items cover the practical dining out experience.",
+    "fr": "Douze éléments couvrent le déroulement d’un repas au restaurant.",
+    "de": "Zwölf Begriffe decken den Restaurantbesuch ab."
+  },
+  "difficultyBalance": {
+    "en": "8 basic dining words balanced with 4 specific terms (un pourboire, une addition).",
+    "fr": "8 mots simples équilibrés avec 4 termes spécifiques.",
+    "de": "8 einfache Wörter ausgewogen mit 4 speziellen Ausdrücken."
+  },
+  "prerequisites": [
+    {
+      "en": "Indefinite articles un, une.",
+      "fr": "Articles indéfinis un, une.",
+      "de": "Unbestimmte Artikel un, une."
+    }
+  ],
+  "groups": [
+    {
+      "id": "menu-courses",
+      "label": {
+        "en": "Menu & Courses",
+        "fr": "Carte et plats",
+        "de": "Speisekarte & Gänge"
+      },
+      "targetIds": [
+        "une-carte",
+        "un-menu",
+        "une-entree",
+        "un-plat",
+        "un-dessert",
+        "une-boisson"
+      ]
+    },
+    {
+      "id": "service-payment",
+      "label": {
+        "en": "Service & Payment",
+        "fr": "Service et paiement",
+        "de": "Service & Bezahlung"
+      },
+      "targetIds": [
+        "un-serveur",
+        "une-serveuse",
+        "une-reservation",
+        "une-addition",
+        "un-pourboire",
+        "une-table"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "une-carte",
+      "term": "carte",
+      "translations": {
+        "en": [
+          "a menu (a la carte)"
+        ],
+        "de": [
+          "eine Speisekarte"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une carte",
+      "examForms": [
+        "une carte"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn kaʁt/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Regarder une carte des vins.",
+        "translation": {
+          "en": "Look at a wine menu.",
+          "de": "Eine Weinkarte ansehen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-menu",
+      "term": "menu",
+      "translations": {
+        "en": [
+          "a set menu"
+        ],
+        "de": [
+          "ein Menü"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un menu",
+      "examForms": [
+        "un menu"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ myny/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le menu du jour est à vingt euros.",
+        "translation": {
+          "en": "The daily set menu is twenty euros.",
+          "de": "Das Tagesmenü kostet zwanzig Euro."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-entree",
+      "term": "entrée",
+      "translations": {
+        "en": [
+          "a starter",
+          "an appetizer"
+        ],
+        "de": [
+          "eine Vorspeise"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une entrée",
+      "examForms": [
+        "une entrée"
+      ],
+      "accentSensitive": [
+        "entrée"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn ɑ̃tʁe/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Une soupe comme entrée.",
+        "translation": {
+          "en": "Soup as a starter.",
+          "de": "Eine Suppe als Vorspeise."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-plat",
+      "term": "plat",
+      "translations": {
+        "en": [
+          "a main course"
+        ],
+        "de": [
+          "ein Hauptgericht"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un plat",
+      "examForms": [
+        "un plat"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ pla/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un plat principal arrive.",
+        "translation": {
+          "en": "A main course arrives.",
+          "de": "Ein Hauptgericht kommt."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-dessert",
+      "term": "dessert",
+      "translations": {
+        "en": [
+          "a dessert"
+        ],
+        "de": [
+          "ein Nachtisch"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un dessert",
+      "examForms": [
+        "un dessert"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ desɛʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Prendre une tarte en dessert.",
+        "translation": {
+          "en": "Have a tart for dessert.",
+          "de": "Einen Kuchen als Nachtisch nehmen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-boisson",
+      "term": "boisson",
+      "translations": {
+        "en": [
+          "a drink",
+          "a beverage"
+        ],
+        "de": [
+          "ein Getränk"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une boisson",
+      "examForms": [
+        "une boisson"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn bwasɔ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Quelle boisson désirez-vous ?",
+        "translation": {
+          "en": "Which drink would you like?",
+          "de": "Welches Getränk möchten Sie?"
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-serveur",
+      "term": "serveur",
+      "translations": {
+        "en": [
+          "a waiter"
+        ],
+        "de": [
+          "ein Kellner"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un serveur",
+      "examForms": [
+        "un serveur"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ sɛʁvœʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un serveur apporte les cartes.",
+        "translation": {
+          "en": "A waiter brings the menus.",
+          "de": "Ein Kellner bringt die Speisekarten."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-serveuse",
+      "term": "serveuse",
+      "translations": {
+        "en": [
+          "a waitress"
+        ],
+        "de": [
+          "eine Kellnerin"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une serveuse",
+      "examForms": [
+        "une serveuse"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn sɛʁvøz/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Une serveuse prend la commande.",
+        "translation": {
+          "en": "A waitress takes the order.",
+          "de": "Eine Kellnerin nimmt die Bestellung auf."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-reservation",
+      "term": "réservation",
+      "translations": {
+        "en": [
+          "a reservation"
+        ],
+        "de": [
+          "eine Reservierung"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une réservation",
+      "examForms": [
+        "une réservation"
+      ],
+      "accentSensitive": [
+        "réservation"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn ʁezɛʁvasjɔ̃/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Faire une réservation pour deux personnes.",
+        "translation": {
+          "en": "Make a reservation for two people.",
+          "de": "Eine Reservierung für zwei Personen machen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-addition",
+      "term": "addition",
+      "translations": {
+        "en": [
+          "a bill",
+          "a check"
+        ],
+        "de": [
+          "eine Rechnung"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une addition",
+      "examForms": [
+        "une addition"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn adisjɔ̃/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Une addition, s’il vous plaît !",
+        "translation": {
+          "en": "A bill, please!",
+          "de": "Eine Rechnung, bitte!"
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-pourboire",
+      "term": "pourboire",
+      "translations": {
+        "en": [
+          "a tip"
+        ],
+        "de": [
+          "ein Trinkgeld"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un pourboire",
+      "examForms": [
+        "un pourboire"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ puʁbwaʁ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Laisser un pourboire sur la table.",
+        "translation": {
+          "en": "Leave a tip on the table.",
+          "de": "Ein Trinkgeld auf dem Tisch lassen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-table",
+      "term": "table",
+      "translations": {
+        "en": [
+          "a table"
+        ],
+        "de": [
+          "ein Tisch"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une table",
+      "examForms": [
+        "une table"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn tabl/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Réserver une table près de la fenêtre.",
+        "translation": {
+          "en": "Book a table near the window.",
+          "de": "Einen Tisch am Fenster reservieren."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "une-carte",
+        "un-menu",
+        "une-entree",
+        "un-plat",
+        "un-dessert",
+        "une-boisson",
+        "un-serveur",
+        "une-serveuse",
+        "une-reservation",
+        "une-addition",
+        "un-pourboire",
+        "une-table"
+      ],
+      "estimatedDurationS": 180
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "une-carte",
+            "un-menu",
+            "une-entree",
+            "un-plat",
+            "un-dessert",
+            "une-boisson"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "un-serveur",
+            "une-serveuse",
+            "une-reservation",
+            "une-addition",
+            "un-pourboire",
+            "une-table"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

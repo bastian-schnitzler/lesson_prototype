@@ -1,0 +1,508 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-feeling-ill",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Se sentir malade",
+  "objective": {
+    "en": "Name ten health and illness terms in French.",
+    "fr": "Nommer une dizaine de mots liés aux maladies et symptômes en français.",
+    "de": "Nenne zehn Begriffe zu Gesundheit und Krankheit auf Französisch."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T15:10:44.866Z",
+    "inputHashes": {
+      "outline": "490ab43ecc118a45671a370b2a0d56f274fbe81f2c58b0d7ebba8d6393499a07"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "health",
+  "coverageNotes": {
+    "en": "Covers common symptoms (fever, cold, flu, cough), doctor, pharmacy, medicine, and adjectives for ill and tired.",
+    "fr": "Couvre les symptômes courants (fièvre, rhume, grippe, toux), le médecin, la pharmacie, les médicaments et états physique.",
+    "de": "Deckt häufige Symptome (Fieber, Schnupfen, Grippe, Husten), Arzt, Apotheke, Medikamente und Befinden ab."
+  },
+  "targetCount": 10,
+  "countRationale": {
+    "en": "Ten terms cover fundamental illness expressions for basic medical communication.",
+    "fr": "Dix mots permettent d’exprimer l’état de santé de base.",
+    "de": "Zehn Begriffe reichen für Grundlegende Krankheitsausdrücke aus."
+  },
+  "difficultyBalance": {
+    "en": "Core symptoms (un rhume, la fièvre) balanced with verbs and adjectives (avoir mal, fatigué).",
+    "fr": "Symptômes simples équilibrés avec expressions et adjectifs.",
+    "de": "Einfache Symptome ausgewogen mit Redewendungen und Adjektiven."
+  },
+  "prerequisites": [
+    {
+      "en": "Expressing feelings with avoir and être.",
+      "fr": "Exprimer des sensations avec avoir et être.",
+      "de": "Empfindungen ausdrücken mit avoir und être."
+    }
+  ],
+  "groups": [
+    {
+      "id": "symptoms-illness",
+      "label": {
+        "en": "Symptoms & Illnesses",
+        "fr": "Symptômes et maladies",
+        "de": "Symptome & Krankheiten"
+      },
+      "targetIds": [
+        "une-fievre",
+        "un-rhume",
+        "une-grippe",
+        "une-toux",
+        "avoir-mal"
+      ]
+    },
+    {
+      "id": "medical-care-states",
+      "label": {
+        "en": "Medical care & States",
+        "fr": "Soins et état de santé",
+        "de": "Medizinische Versorgung & Befinden"
+      },
+      "targetIds": [
+        "un-medecin",
+        "un-medicament",
+        "une-pharmacie",
+        "malade",
+        "fatigue"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "une-fievre",
+      "term": "fièvre",
+      "translations": {
+        "en": [
+          "a fever"
+        ],
+        "de": [
+          "Fieber"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une fièvre",
+      "examForms": [
+        "une fièvre",
+        "une fievre"
+      ],
+      "accentSensitive": [
+        "fièvre"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn fjɛvʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Avoir une forte fièvre ce soir.",
+        "translation": {
+          "en": "Have a high fever tonight.",
+          "de": "Heute Abend hohes Fieber haben."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-rhume",
+      "term": "rhume",
+      "translations": {
+        "en": [
+          "a cold"
+        ],
+        "de": [
+          "ein Schnupfen",
+          "eine Erkältung"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un rhume",
+      "examForms": [
+        "un rhume"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ ʁym/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Attraper un rhume en hiver.",
+        "translation": {
+          "en": "Catch a cold in winter.",
+          "de": "Im Winter eine Erkältung bekommen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-grippe",
+      "term": "grippe",
+      "translations": {
+        "en": [
+          "a flu"
+        ],
+        "de": [
+          "eine Grippe"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une grippe",
+      "examForms": [
+        "une grippe"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn ɡʁip/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Rester au lit avec une grippe.",
+        "translation": {
+          "en": "Stay in bed with flu.",
+          "de": "Mit einer Grippe im Bett bleiben."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-toux",
+      "term": "toux",
+      "translations": {
+        "en": [
+          "a cough"
+        ],
+        "de": [
+          "ein Husten"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une toux",
+      "examForms": [
+        "une toux"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn tu/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Une toux sèche depuis deux jours.",
+        "translation": {
+          "en": "A dry cough for two days.",
+          "de": "Ein trockener Husten seit zwei Tagen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "avoir-mal",
+      "term": "avoir mal",
+      "translations": {
+        "en": [
+          "to be in pain",
+          "to hurt"
+        ],
+        "de": [
+          "Schmerzen haben",
+          "weh tun"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "avoir mal",
+      "examForms": [
+        "avoir mal"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/avwaʁ mal/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Avoir mal à la tête.",
+        "translation": {
+          "en": "Have a headache.",
+          "de": "Kopfschmerzen haben."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-medecin",
+      "term": "médecin",
+      "translations": {
+        "en": [
+          "a doctor"
+        ],
+        "de": [
+          "ein Arzt"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un médecin",
+      "examForms": [
+        "un médecin",
+        "un medecin"
+      ],
+      "accentSensitive": [
+        "médecin"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ medsɛ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Consulter un médecin généraliste.",
+        "translation": {
+          "en": "Consult a general practitioner.",
+          "de": "Einen Hausarzt konsultieren."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-medicament",
+      "term": "médicament",
+      "translations": {
+        "en": [
+          "a medicine",
+          "medication"
+        ],
+        "de": [
+          "ein Medikament"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un médicament",
+      "examForms": [
+        "un médicament",
+        "un medicament"
+      ],
+      "accentSensitive": [
+        "médicament"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ medikamɑ̃/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Prendre un médicament contre la douleur.",
+        "translation": {
+          "en": "Take medicine for the pain.",
+          "de": "Ein Medikament gegen die Schmerzen nehmen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-pharmacie",
+      "term": "pharmacie",
+      "translations": {
+        "en": [
+          "a pharmacy"
+        ],
+        "de": [
+          "eine Apotheke"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une pharmacie",
+      "examForms": [
+        "une pharmacie"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn faʁmasi/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Trouver une pharmacie de garde.",
+        "translation": {
+          "en": "Find an on-call pharmacy.",
+          "de": "Eine Notapotheke finden."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "malade",
+      "term": "malade",
+      "translations": {
+        "en": [
+          "sick",
+          "ill"
+        ],
+        "de": [
+          "krank"
+        ]
+      },
+      "wordClass": "adjective",
+      "genders": [],
+      "number": null,
+      "teachingForm": "malade",
+      "examForms": [
+        "malade"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/malad/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Être malade toute la semaine.",
+        "translation": {
+          "en": "Be sick all week.",
+          "de": "Die ganze Woche krank sein."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "fatigue",
+      "term": "fatigué",
+      "translations": {
+        "en": [
+          "tired"
+        ],
+        "de": [
+          "müde"
+        ]
+      },
+      "wordClass": "adjective",
+      "genders": [],
+      "number": null,
+      "teachingForm": "fatigué",
+      "examForms": [
+        "fatigué",
+        "fatigue"
+      ],
+      "accentSensitive": [
+        "fatigué"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/fatiɡe/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Je suis fatigué ce soir.",
+        "translation": {
+          "en": "I am tired tonight.",
+          "de": "Ich bin heute Abend müde."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "une-fievre",
+        "un-rhume",
+        "une-grippe",
+        "une-toux",
+        "avoir-mal",
+        "un-medecin",
+        "un-medicament",
+        "une-pharmacie",
+        "malade",
+        "fatigue"
+      ],
+      "estimatedDurationS": 150
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "une-fievre",
+            "un-rhume",
+            "une-grippe",
+            "une-toux",
+            "avoir-mal"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "un-medecin",
+            "un-medicament",
+            "une-pharmacie",
+            "malade",
+            "fatigue"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

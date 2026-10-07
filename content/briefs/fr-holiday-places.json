@@ -1,0 +1,508 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-holiday-places",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les lieux de vacances",
+  "objective": {
+    "en": "Name ten holiday places and destinations in French with articles.",
+    "fr": "Nommer une dizaine de lieux de vacances en français.",
+    "de": "Nenne zehn Urlaubsorte und Reiseziele auf Französisch mit Artikeln."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T15:07:10.774Z",
+    "inputHashes": {
+      "outline": "a41f5893f017e6a6e1c32a317a80f03ed0e3e702dbd5bbed24b435a2054a49d3"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "travel",
+  "coverageNotes": {
+    "en": "Covers sea, beach, mountains, countryside, lakes, and camping.",
+    "fr": "Couvre la mer, la plage, la montagne, la campagne, le lac et le camping.",
+    "de": "Deckt Meer, Strand, Berge, Land, See und Campingplatz ab."
+  },
+  "targetCount": 10,
+  "countRationale": {
+    "en": "Ten terms cover all classic holiday environments.",
+    "fr": "Dix mots couvrent tous les environnements de vacances.",
+    "de": "Zehn Begriffe decken alle klassischen Urlaubsregionen ab."
+  },
+  "difficultyBalance": {
+    "en": "Core places (la mer, la plage) balanced with mountain and country destinations.",
+    "fr": "Lieux côtiers simples équilibrés avec la montagne et la campagne.",
+    "de": "Einfache Küstenorte ausgewogen mit Berg- und Landzielen."
+  },
+  "prerequisites": [
+    {
+      "en": "Prepositions à la / à le / en.",
+      "fr": "Prépositions de lieu à la, à la, en.",
+      "de": "Ortspräpositionen à la, en."
+    }
+  ],
+  "groups": [
+    {
+      "id": "coastal-water",
+      "label": {
+        "en": "Sea & Water places",
+        "fr": "Mer et eau",
+        "de": "Meer & Gewässer"
+      },
+      "targetIds": [
+        "une-mer",
+        "une-plage",
+        "un-lac",
+        "une-ile",
+        "une-cote"
+      ]
+    },
+    {
+      "id": "nature-outdoors",
+      "label": {
+        "en": "Mountains, Country & Camping",
+        "fr": "Montagne, campagne et camping",
+        "de": "Berge, Land & Camping"
+      },
+      "targetIds": [
+        "une-montagne",
+        "une-campagne",
+        "un-camping",
+        "une-foret",
+        "un-village"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "une-mer",
+      "term": "mer",
+      "translations": {
+        "en": [
+          "a sea"
+        ],
+        "de": [
+          "ein Meer"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une mer",
+      "examForms": [
+        "une mer"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn mɛʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Nager dans une mer chaude.",
+        "translation": {
+          "en": "Swim in a warm sea.",
+          "de": "In einem warmen Meer schwimmen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-plage",
+      "term": "plage",
+      "translations": {
+        "en": [
+          "a beach"
+        ],
+        "de": [
+          "ein Strand"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une plage",
+      "examForms": [
+        "une plage"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn plaʒ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "S’allonger sur une plage de sable.",
+        "translation": {
+          "en": "Lie on a sandy beach.",
+          "de": "Sich an einen Sandstrand legen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-lac",
+      "term": "lac",
+      "translations": {
+        "en": [
+          "a lake"
+        ],
+        "de": [
+          "ein See"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un lac",
+      "examForms": [
+        "un lac"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ lak/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Faire du bateau sur un lac.",
+        "translation": {
+          "en": "Go boating on a lake.",
+          "de": "Auf einem See Boot fahren."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-ile",
+      "term": "île",
+      "translations": {
+        "en": [
+          "an island"
+        ],
+        "de": [
+          "eine Insel"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une île",
+      "examForms": [
+        "une île",
+        "une ile"
+      ],
+      "accentSensitive": [
+        "île"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn il/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Visiter une île méditerranéenne.",
+        "translation": {
+          "en": "Visit a Mediterranean island.",
+          "de": "Eine Mittelmeerinsel besuchen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-cote",
+      "term": "côte",
+      "translations": {
+        "en": [
+          "a coast"
+        ],
+        "de": [
+          "eine Küste"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une côte",
+      "examForms": [
+        "une côte",
+        "une cote"
+      ],
+      "accentSensitive": [
+        "côte"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn kot/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Admirer une côte sauvage.",
+        "translation": {
+          "en": "Admire a wild coast.",
+          "de": "Eine wilde Küste bewundern."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-montagne",
+      "term": "montagne",
+      "translations": {
+        "en": [
+          "a mountain"
+        ],
+        "de": [
+          "ein Berg",
+          "ein Gebirge"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une montagne",
+      "examForms": [
+        "une montagne"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn mɔ̃taɲ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Skier sur une montagne enneigée.",
+        "translation": {
+          "en": "Ski on a snowy mountain.",
+          "de": "Auf einem verschneiten Berg Skifahren."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-campagne",
+      "term": "campagne",
+      "translations": {
+        "en": [
+          "a countryside"
+        ],
+        "de": [
+          "ein Land",
+          "eine Landschaft"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une campagne",
+      "examForms": [
+        "une campagne"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn kɑ̃paɲ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un séjour dans une campagne paisible.",
+        "translation": {
+          "en": "A stay in peaceful countryside.",
+          "de": "Ein Aufenthalt in einer ruhigen Landschaft."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-camping",
+      "term": "camping",
+      "translations": {
+        "en": [
+          "a campsite"
+        ],
+        "de": [
+          "ein Campingplatz"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un camping",
+      "examForms": [
+        "un camping"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ kampiŋ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Monter une tente dans un camping.",
+        "translation": {
+          "en": "Set up a tent in a campsite.",
+          "de": "Ein Zelt auf einem Campingplatz aufstellen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-foret",
+      "term": "forêt",
+      "translations": {
+        "en": [
+          "a forest"
+        ],
+        "de": [
+          "ein Wald"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une forêt",
+      "examForms": [
+        "une forêt",
+        "une foret"
+      ],
+      "accentSensitive": [
+        "forêt"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn fɔʁɛ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Se promener dans une forêt de sapins.",
+        "translation": {
+          "en": "Walk in a pine forest.",
+          "de": "In einem Tannenwald spazieren."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-village",
+      "term": "village",
+      "translations": {
+        "en": [
+          "a village"
+        ],
+        "de": [
+          "ein Dorf"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un village",
+      "examForms": [
+        "un village"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ vilaʒ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Visiter un beau village pittoresque.",
+        "translation": {
+          "en": "Visit a picturesque village.",
+          "de": "Ein malerisches Dorf besuchen."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "une-mer",
+        "une-plage",
+        "un-lac",
+        "une-ile",
+        "une-cote",
+        "une-montagne",
+        "une-campagne",
+        "un-camping",
+        "une-foret",
+        "un-village"
+      ],
+      "estimatedDurationS": 150
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "une-mer",
+            "une-plage",
+            "un-lac",
+            "une-ile",
+            "une-cote"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "une-montagne",
+            "une-campagne",
+            "un-camping",
+            "une-foret",
+            "un-village"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

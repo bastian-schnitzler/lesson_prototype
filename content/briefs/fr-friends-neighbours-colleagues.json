@@ -1,0 +1,507 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-friends-neighbours-colleagues",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Amis, voisins et collègues",
+  "objective": {
+    "en": "Name ten words for personal and social relationships in French with gender distinctions.",
+    "fr": "Nommer une dizaine de mots désignant l’entourage social en français avec le genre.",
+    "de": "Nenne zehn Wörter für soziales Umfeld auf Französisch mit Geschlechtsunterscheidung."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T15:10:44.870Z",
+    "inputHashes": {
+      "outline": "12dba01d2a003752ddc15804d2b8aa1fe05eabe19997f1bb9f08d67d1a6cab1c"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "relations",
+  "coverageNotes": {
+    "en": "Covers male and female forms for friend, neighbour, colleague, buddy, and person.",
+    "fr": "Couvre le masculin et féminin pour ami, voisin, collègue, copain et personne.",
+    "de": "Deckt Männlich und Weiblich für Freund, Nachbar, Kollege, Kumpel und Person ab."
+  },
+  "targetCount": 10,
+  "countRationale": {
+    "en": "Ten terms cover essential social environment nouns with gender contrast.",
+    "fr": "Dix mots couvrent l’entourage amical, de voisinage et professionnel.",
+    "de": "Zehn Begriffe decken Freundeskreis, Nachbarschaft und Arbeitswelt ab."
+  },
+  "difficultyBalance": {
+    "en": "Friend and neighbor nouns balanced with workplace colleague and gender pairs.",
+    "fr": "Mots d’amis et voisins équilibrés avec les termes professionnels.",
+    "de": "Freunde und Nachbarn ausgewogen mit Arbeitskollegen."
+  },
+  "prerequisites": [
+    {
+      "en": "Articles un and une.",
+      "fr": "Articles un et une.",
+      "de": "Artikel un und une."
+    }
+  ],
+  "groups": [
+    {
+      "id": "friends-buddies",
+      "label": {
+        "en": "Friends & Buddies",
+        "fr": "Amis et copains",
+        "de": "Freunde & Kumpel"
+      },
+      "targetIds": [
+        "un-ami",
+        "une-amie",
+        "un-copain",
+        "une-copine",
+        "une-personne"
+      ]
+    },
+    {
+      "id": "neighbours-colleagues",
+      "label": {
+        "en": "Neighbours & Colleagues",
+        "fr": "Voisins et collègues",
+        "de": "Nachbarn & Kollegen"
+      },
+      "targetIds": [
+        "un-voisin",
+        "une-voisine",
+        "un-collegue",
+        "une-collegue",
+        "un-camarade"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "un-ami",
+      "term": "ami",
+      "translations": {
+        "en": [
+          "a friend [m.]"
+        ],
+        "de": [
+          "ein Freund"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un ami",
+      "examForms": [
+        "un ami"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ nami/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Inviter un ami au restaurant.",
+        "translation": {
+          "en": "Invite a male friend to dinner.",
+          "de": "Einen Freund ins Restaurant einladen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-amie",
+      "term": "amie",
+      "translations": {
+        "en": [
+          "a friend [f.]"
+        ],
+        "de": [
+          "eine Freundin"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une amie",
+      "examForms": [
+        "une amie"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn nami/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Téléphoner à une amie proche.",
+        "translation": {
+          "en": "Call a close female friend.",
+          "de": "Eine enge Freundin anrufen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-copain",
+      "term": "copain",
+      "translations": {
+        "en": [
+          "a buddy [m.]",
+          "a pal"
+        ],
+        "de": [
+          "ein Kumpel"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un copain",
+      "examForms": [
+        "un copain"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ kɔpɛ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Jouer au foot avec un copain.",
+        "translation": {
+          "en": "Play soccer with a buddy.",
+          "de": "Mit einem Kumpel Fußball spielen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-copine",
+      "term": "copine",
+      "translations": {
+        "en": [
+          "a buddy [f.]",
+          "a gal pal"
+        ],
+        "de": [
+          "eine Kumpeline",
+          "eine Freundin"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une copine",
+      "examForms": [
+        "une copine"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn kɔpin/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Discuter avec une copine.",
+        "translation": {
+          "en": "Chat with a female friend.",
+          "de": "Mit einer Kumpeline quatschen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-personne",
+      "term": "personne",
+      "translations": {
+        "en": [
+          "a person"
+        ],
+        "de": [
+          "eine Person"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une personne",
+      "examForms": [
+        "une personne"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn pɛʁsɔn/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Une personne aimable et dynamique.",
+        "translation": {
+          "en": "A kind and dynamic person.",
+          "de": "Eine freundliche und dynamische Person."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-voisin",
+      "term": "voisin",
+      "translations": {
+        "en": [
+          "a neighbour [m.]"
+        ],
+        "de": [
+          "ein Nachbar"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un voisin",
+      "examForms": [
+        "un voisin"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ vwazɛ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Saluer un voisin dans l’escalier.",
+        "translation": {
+          "en": "Greet a neighbor in the stairs.",
+          "de": "Einen Nachbarn im Treppenhaus grüßen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-voisine",
+      "term": "voisine",
+      "translations": {
+        "en": [
+          "a neighbour [f.]"
+        ],
+        "de": [
+          "eine Nachbarin"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une voisine",
+      "examForms": [
+        "une voisine"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn vwazin/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Offrir des fleurs à une voisine.",
+        "translation": {
+          "en": "Give flowers to a neighbor.",
+          "de": "Einer Nachbarin Blumen schenken."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-collegue",
+      "term": "collègue",
+      "translations": {
+        "en": [
+          "a colleague [m.]"
+        ],
+        "de": [
+          "ein Kollege"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un collègue",
+      "examForms": [
+        "un collègue",
+        "un collegue"
+      ],
+      "accentSensitive": [
+        "collègue"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ kɔlɛɡ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Manger à la cantine avec un collègue.",
+        "translation": {
+          "en": "Eat in the cafeteria with a colleague.",
+          "de": "Mit einem Kollegen in der Kantine essen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-collegue",
+      "term": "collègue",
+      "translations": {
+        "en": [
+          "a colleague [f.]"
+        ],
+        "de": [
+          "eine Kollegin"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une collègue",
+      "examForms": [
+        "une collègue",
+        "une collegue"
+      ],
+      "accentSensitive": [
+        "collègue"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn kɔlɛɡ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Réserver une salle avec une collègue.",
+        "translation": {
+          "en": "Reserve a room with a colleague.",
+          "de": "Einen Raum mit einer Kollegin reservieren."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-camarade",
+      "term": "camarade",
+      "translations": {
+        "en": [
+          "a classmate",
+          "comrade"
+        ],
+        "de": [
+          "ein Mitschüler"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un camarade",
+      "examForms": [
+        "un camarade"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ kamaʁad/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Étudier avec un camarade de classe.",
+        "translation": {
+          "en": "Study with a classmate.",
+          "de": "Mit einem Mitschüler lernen."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "un-ami",
+        "une-amie",
+        "un-copain",
+        "une-copine",
+        "une-personne",
+        "un-voisin",
+        "une-voisine",
+        "un-collegue",
+        "une-collegue",
+        "un-camarade"
+      ],
+      "estimatedDurationS": 150
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "un-ami",
+            "une-amie",
+            "un-copain",
+            "une-copine",
+            "une-personne"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "un-voisin",
+            "une-voisine",
+            "un-collegue",
+            "une-collegue",
+            "un-camarade"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

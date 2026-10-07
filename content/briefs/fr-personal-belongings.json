@@ -1,0 +1,582 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-personal-belongings",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les objets personnels",
+  "objective": {
+    "en": "Name twelve personal belongings in French with articles.",
+    "fr": "Nommer une douzaine d’objets personnels en français avec leurs articles.",
+    "de": "Nenne zwölf persönliche Gegenstände auf Französisch mit Artikeln."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T15:03:50.937Z",
+    "inputHashes": {
+      "outline": "9d50f2574b0c21c41c5ddb8122b2eaeef903799d22d193ffe7ce06c8d0379511"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "daily_life",
+  "coverageNotes": {
+    "en": "Covers essential everyday carry items like keys, wallet, phone, umbrella.",
+    "fr": "Couvre les objets indispensables du quotidien (clés, portefeuille, téléphone, parapluie).",
+    "de": "Deckt wichtige Alltagsgegenstände ab (Schlüssel, Geldbörse, Telefon, Regenschirm)."
+  },
+  "targetCount": 12,
+  "countRationale": {
+    "en": "Twelve items cover typical personal carry accessories.",
+    "fr": "Douze objets couvrent le contenu d’un sac ou des poches.",
+    "de": "Zwölf Gegenstände decken typische persönliche Utensilien ab."
+  },
+  "difficultyBalance": {
+    "en": "Core items (un sac, des clés) balanced with complex compound terms (un téléphone portable, un portefeuille).",
+    "fr": "Objets simples équilibrés avec les termes composés.",
+    "de": "Einfache Dinge ausgewogen mit zusammengesetzten Begriffen."
+  },
+  "prerequisites": [
+    {
+      "en": "Articles le, la, les, un, une, des.",
+      "fr": "Articles définis et indéfinis.",
+      "de": "Bestimmte und unbestimmte Artikel."
+    }
+  ],
+  "groups": [
+    {
+      "id": "pocket-carry",
+      "label": {
+        "en": "Pockets & Wallet items",
+        "fr": "Poches et portefeuille",
+        "de": "Taschen- & Geldbörsen-Inhalt"
+      },
+      "targetIds": [
+        "des-cles",
+        "un-portefeuille",
+        "un-sac",
+        "un-telephone-portable",
+        "des-lunettes",
+        "une-montre"
+      ]
+    },
+    {
+      "id": "accessories-docs",
+      "label": {
+        "en": "Accessories & Weather gear",
+        "fr": "Accessoires et météo",
+        "de": "Accessoires & Wetterutensilien"
+      },
+      "targetIds": [
+        "un-parapluie",
+        "un-mouchoir",
+        "une-carte-d-identite",
+        "un-passeport",
+        "un-agenda",
+        "un-stylo"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "des-cles",
+      "term": "clés",
+      "translations": {
+        "en": [
+          "some keys",
+          "keys"
+        ],
+        "de": [
+          "Schlüssel"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "plural",
+      "teachingForm": "des clés",
+      "examForms": [
+        "des clés",
+        "des clefs"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/de kle/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Chercher des clés de maison.",
+        "translation": {
+          "en": "Look for house keys.",
+          "de": "Haustürschlüssel suchen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-portefeuille",
+      "term": "portefeuille",
+      "translations": {
+        "en": [
+          "a wallet"
+        ],
+        "de": [
+          "eine Geldbörse"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un portefeuille",
+      "examForms": [
+        "un portefeuille"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ pɔʁtəfœj/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Garder son argent dans un portefeuille.",
+        "translation": {
+          "en": "Keep money in a wallet.",
+          "de": "Geld in einer Geldbörse aufbewahren."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-sac",
+      "term": "sac",
+      "translations": {
+        "en": [
+          "a bag"
+        ],
+        "de": [
+          "eine Tasche"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un sac",
+      "examForms": [
+        "un sac"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ sak/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Prendre un sac à dos.",
+        "translation": {
+          "en": "Take a backpack.",
+          "de": "Einen Rucksack nehmen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-telephone-portable",
+      "term": "téléphone portable",
+      "translations": {
+        "en": [
+          "a mobile phone",
+          "cell phone"
+        ],
+        "de": [
+          "ein Handy"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un téléphone portable",
+      "examForms": [
+        "un téléphone portable",
+        "un telephone portable"
+      ],
+      "accentSensitive": [
+        "téléphone"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ telefɔn pɔʁtabl/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Répondre sur un téléphone portable.",
+        "translation": {
+          "en": "Answer on a mobile phone.",
+          "de": "Auf einem Handy antworten."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "des-lunettes",
+      "term": "lunettes",
+      "translations": {
+        "en": [
+          "some glasses",
+          "glasses"
+        ],
+        "de": [
+          "eine Brille"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "plural",
+      "teachingForm": "des lunettes",
+      "examForms": [
+        "des lunettes"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/de lynɛt/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Porter des lunettes de vue.",
+        "translation": {
+          "en": "Wear eyeglasses.",
+          "de": "Eine Brille tragen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-montre",
+      "term": "montre",
+      "translations": {
+        "en": [
+          "a watch"
+        ],
+        "de": [
+          "eine Armbanduhr"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une montre",
+      "examForms": [
+        "une montre"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn mɔ̃tʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Regarder l’heure sur une montre.",
+        "translation": {
+          "en": "Look at the time on a watch.",
+          "de": "Die Uhrzeit auf einer Armbanduhr ablesen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-parapluie",
+      "term": "parapluie",
+      "translations": {
+        "en": [
+          "an umbrella"
+        ],
+        "de": [
+          "ein Regenschirm"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un parapluie",
+      "examForms": [
+        "un parapluie"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ paʁaplɥi/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Ouvrir un parapluie quand il pleut.",
+        "translation": {
+          "en": "Open an umbrella when it rains.",
+          "de": "Einen Regenschirm öffnen, wenn es regnet."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-mouchoir",
+      "term": "mouchoir",
+      "translations": {
+        "en": [
+          "a tissue",
+          "a handkerchief"
+        ],
+        "de": [
+          "ein Taschentuch"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un mouchoir",
+      "examForms": [
+        "un mouchoir"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ muʃwaʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Prendre un mouchoir en papier.",
+        "translation": {
+          "en": "Take a paper tissue.",
+          "de": "Ein Papiertaschentuch nehmen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-carte-d-identite",
+      "term": "carte d’identité",
+      "translations": {
+        "en": [
+          "an ID card",
+          "identity card"
+        ],
+        "de": [
+          "ein Personalausweis"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une carte d’identité",
+      "examForms": [
+        "une carte d’identité",
+        "une carte d'identité"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn kaʁt didɑ̃tite/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Présenter une carte d’identité.",
+        "translation": {
+          "en": "Show an ID card.",
+          "de": "Einen Personalausweis vorzeigen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-passeport",
+      "term": "passeport",
+      "translations": {
+        "en": [
+          "a passport"
+        ],
+        "de": [
+          "ein Reisepass"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un passeport",
+      "examForms": [
+        "un passeport"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ paspɔʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Présenter un passeport à la douane.",
+        "translation": {
+          "en": "Show a passport at customs.",
+          "de": "Einen Pass am Zoll vorzeigen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-agenda",
+      "term": "agenda",
+      "translations": {
+        "en": [
+          "a planner",
+          "a diary"
+        ],
+        "de": [
+          "ein Terminkalender"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un agenda",
+      "examForms": [
+        "un agenda"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ naʒɛ̃da/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Noter les rendez-vous dans un agenda.",
+        "translation": {
+          "en": "Note appointments in a planner.",
+          "de": "Termine in einen Kalender eintragen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-stylo",
+      "term": "stylo",
+      "translations": {
+        "en": [
+          "a pen"
+        ],
+        "de": [
+          "ein Stift"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un stylo",
+      "examForms": [
+        "un stylo"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ stilo/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Prendre un stylo pour signer.",
+        "translation": {
+          "en": "Take a pen to sign.",
+          "de": "Einen Stift zum Unterschreiben nehmen."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "des-cles",
+        "un-portefeuille",
+        "un-sac",
+        "un-telephone-portable",
+        "des-lunettes",
+        "une-montre",
+        "un-parapluie",
+        "un-mouchoir",
+        "une-carte-d-identite",
+        "un-passeport",
+        "un-agenda",
+        "un-stylo"
+      ],
+      "estimatedDurationS": 180
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "des-cles",
+            "un-portefeuille",
+            "un-sac",
+            "un-telephone-portable",
+            "des-lunettes",
+            "une-montre"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "un-parapluie",
+            "un-mouchoir",
+            "une-carte-d-identite",
+            "un-passeport",
+            "un-agenda",
+            "un-stylo"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

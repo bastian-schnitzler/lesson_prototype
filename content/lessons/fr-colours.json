@@ -1,0 +1,1080 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-colours",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les couleurs",
+  "objective": {
+    "en": "Name twelve colors in French to describe objects.",
+    "fr": "Nommer une douzaine de couleurs pour décrire un objet en français.",
+    "de": "Nenne zwölf Farben auf Französisch, um ein Objekt zu beschreiben."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-content-v1",
+    "generatedAt": "2026-10-07T14:59:27.736Z",
+    "inputHashes": {
+      "outline": "6c02b42466f97902ada5ff2072af355c2286c8e6a68ad0acb966e41059d320f0",
+      "brief": "b614e9d30eeeae6719bf01273333413a2815de23dc20eef495f912889ce13d55"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "shopping",
+  "steps": [
+    {
+      "id": "introduction",
+      "stage": "introduction",
+      "role": "introduction",
+      "label": {
+        "en": "Introduction",
+        "fr": "Introduction",
+        "de": "Einführung"
+      },
+      "pages": [
+        {
+          "pageId": "intro-primary-neutral",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-primary-neutral",
+              "targetIds": [
+                "rouge",
+                "bleu",
+                "jaune",
+                "noir",
+                "blanc",
+                "gris"
+              ],
+              "text": {
+                "en": "Primary and neutral colors:\n\n- `rouge`\n- `bleu`\n- `jaune`\n- `noir`\n- `blanc`\n- `gris`",
+                "fr": "Couleurs primaires et neutres :\n\n- `rouge`\n- `bleu`\n- `jaune`\n- `noir`\n- `blanc`\n- `gris`",
+                "de": "Primäre und neutrale Farben:\n\n- `rouge`\n- `bleu`\n- `jaune`\n- `noir`\n- `blanc`\n- `gris` "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "intro-secondary-other",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the introduction to learn the words.",
+            "fr": "Lisez l’introduction pour apprendre les mots.",
+            "de": "Lies die Einführung, um die Wörter zu lernen."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "intro-secondary-other",
+              "targetIds": [
+                "vert",
+                "rose",
+                "marron",
+                "orange",
+                "violet",
+                "beige"
+              ],
+              "text": {
+                "en": "Secondary and other colors:\n\n- `vert`\n- `rose`\n- `marron`\n- `orange`\n- `violet`\n- `beige`",
+                "fr": "Autres couleurs :\n\n- `vert`\n- `rose`\n- `marron`\n- `orange`\n- `violet`\n- `beige`",
+                "de": "Sekundäre und weitere Farben:\n\n- `vert`\n- `rose`\n- `marron`\n- `orange`\n- `violet`\n- `beige` "
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "cards-primary-neutral",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-primary-neutral",
+              "targetIds": [
+                "rouge",
+                "bleu",
+                "jaune",
+                "noir",
+                "blanc",
+                "gris"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "cards-secondary-other",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word.",
+            "fr": "Rappelez-vous chaque mot.",
+            "de": "Erinnere dich an jedes Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "cards-secondary-other",
+              "targetIds": [
+                "vert",
+                "rose",
+                "marron",
+                "orange",
+                "violet",
+                "beige"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "match-1",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-2",
+              "pairs": [
+                {
+                  "targetId": "rouge",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "rouge means red.",
+                    "fr": "rouge signifie « red » en anglais.",
+                    "de": "rouge bedeutet rot."
+                  }
+                },
+                {
+                  "targetId": "bleu",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "bleu means blue.",
+                    "fr": "bleu signifie « blue » en anglais.",
+                    "de": "bleu bedeutet blau."
+                  }
+                },
+                {
+                  "targetId": "jaune",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "jaune means yellow.",
+                    "fr": "jaune signifie « yellow » en anglais.",
+                    "de": "jaune bedeutet gelb."
+                  }
+                },
+                {
+                  "targetId": "noir",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "noir means black.",
+                    "fr": "noir signifie « black » en anglais.",
+                    "de": "noir bedeutet schwarz."
+                  }
+                },
+                {
+                  "targetId": "blanc",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "blanc means white.",
+                    "fr": "blanc signifie « white » en anglais.",
+                    "de": "blanc bedeutet weiß."
+                  }
+                },
+                {
+                  "targetId": "gris",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "gris means grey.",
+                    "fr": "gris signifie « grey » en anglais.",
+                    "de": "gris bedeutet grau."
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-2",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each item with its translation.",
+            "fr": "Associez chaque élément à sa traduction.",
+            "de": "Ordne jedem Element seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-item-3",
+              "pairs": [
+                {
+                  "targetId": "vert",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "vert means green.",
+                    "fr": "vert signifie « green » en anglais.",
+                    "de": "vert bedeutet grün."
+                  }
+                },
+                {
+                  "targetId": "rose",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "rose means pink.",
+                    "fr": "rose signifie « pink » en anglais.",
+                    "de": "rose bedeutet rosa."
+                  }
+                },
+                {
+                  "targetId": "marron",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "marron means brown.",
+                    "fr": "marron signifie « brown » en anglais.",
+                    "de": "marron bedeutet braun."
+                  }
+                },
+                {
+                  "targetId": "orange",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "orange means orange.",
+                    "fr": "orange signifie « orange » en anglais.",
+                    "de": "orange bedeutet orange."
+                  }
+                },
+                {
+                  "targetId": "violet",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "violet means purple.",
+                    "fr": "violet signifie « purple » en anglais.",
+                    "de": "violet bedeutet lila."
+                  }
+                },
+                {
+                  "targetId": "beige",
+                  "nativeLabel": null,
+                  "answerExplanation": {
+                    "en": "beige means beige.",
+                    "fr": "beige signifie « beige » en anglais.",
+                    "de": "beige bedeutet beige."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overview",
+      "stage": "overview",
+      "role": "overview",
+      "label": {
+        "en": "Overview",
+        "fr": "Vue d’ensemble",
+        "de": "Übersicht"
+      },
+      "pages": [
+        {
+          "pageId": "overview-page",
+          "estimatedDurationS": 90,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Review all words and their details.",
+            "fr": "Révisez tous les mots et leurs détails.",
+            "de": "Überprüfe alle Wörter und ihre Details."
+          },
+          "items": [
+            {
+              "type": "vocabulary_overview",
+              "itemId": "vocab-overview",
+              "targetIds": [
+                "rouge",
+                "bleu",
+                "jaune",
+                "noir",
+                "blanc",
+                "gris",
+                "vert",
+                "rose",
+                "marron",
+                "orange",
+                "violet",
+                "beige"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "stage": "practice",
+      "role": "exercise",
+      "label": {
+        "en": "Practice",
+        "fr": "Entraînement",
+        "de": "Übung"
+      },
+      "pages": [
+        {
+          "pageId": "gap-rouge",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-rouge",
+              "targetId": "rouge",
+              "before": "Une voiture",
+              "after": ".",
+              "referenceTargetIds": [
+                "rouge",
+                "bleu",
+                "jaune",
+                "noir"
+              ],
+              "accepted": {
+                "answers": [
+                  "rouge"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is rouge.",
+                "fr": "Le mot manquant est rouge.",
+                "de": "Das fehlende Wort ist rouge."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-bleu",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-bleu",
+              "targetId": "bleu",
+              "before": "Un stylo",
+              "after": ".",
+              "referenceTargetIds": [
+                "bleu",
+                "rouge",
+                "jaune",
+                "noir"
+              ],
+              "accepted": {
+                "answers": [
+                  "bleu"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is bleu.",
+                "fr": "Le mot manquant est bleu.",
+                "de": "Das fehlende Wort ist bleu."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-jaune",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-jaune",
+              "targetId": "jaune",
+              "before": "Un citron",
+              "after": ".",
+              "referenceTargetIds": [
+                "jaune",
+                "rouge",
+                "bleu",
+                "noir"
+              ],
+              "accepted": {
+                "answers": [
+                  "jaune"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is jaune.",
+                "fr": "Le mot manquant est jaune.",
+                "de": "Das fehlende Wort ist jaune."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-noir",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-noir",
+              "targetId": "noir",
+              "before": "Un café",
+              "after": ".",
+              "referenceTargetIds": [
+                "noir",
+                "rouge",
+                "bleu",
+                "jaune"
+              ],
+              "accepted": {
+                "answers": [
+                  "noir"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is noir.",
+                "fr": "Le mot manquant est noir.",
+                "de": "Das fehlende Wort ist noir."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-blanc",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-blanc",
+              "targetId": "blanc",
+              "before": "Un papier",
+              "after": ".",
+              "referenceTargetIds": [
+                "blanc",
+                "rouge",
+                "bleu",
+                "jaune"
+              ],
+              "accepted": {
+                "answers": [
+                  "blanc"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is blanc.",
+                "fr": "Le mot manquant est blanc.",
+                "de": "Das fehlende Wort ist blanc."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-gris",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-gris",
+              "targetId": "gris",
+              "before": "Un nuage",
+              "after": ".",
+              "referenceTargetIds": [
+                "gris",
+                "rouge",
+                "bleu",
+                "jaune"
+              ],
+              "accepted": {
+                "answers": [
+                  "gris"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is gris.",
+                "fr": "Le mot manquant est gris.",
+                "de": "Das fehlende Wort ist gris."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-vert",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-vert",
+              "targetId": "vert",
+              "before": "Un thé",
+              "after": ".",
+              "referenceTargetIds": [
+                "vert",
+                "rouge",
+                "bleu",
+                "jaune"
+              ],
+              "accepted": {
+                "answers": [
+                  "vert"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is vert.",
+                "fr": "Le mot manquant est vert.",
+                "de": "Das fehlende Wort ist vert."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-rose",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-rose",
+              "targetId": "rose",
+              "before": "Une chemise",
+              "after": ".",
+              "referenceTargetIds": [
+                "rose",
+                "rouge",
+                "bleu",
+                "jaune"
+              ],
+              "accepted": {
+                "answers": [
+                  "rose"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is rose.",
+                "fr": "Le mot manquant est rose.",
+                "de": "Das fehlende Wort ist rose."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-marron",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-marron",
+              "targetId": "marron",
+              "before": "Un sac",
+              "after": ".",
+              "referenceTargetIds": [
+                "marron",
+                "rouge",
+                "bleu",
+                "jaune"
+              ],
+              "accepted": {
+                "answers": [
+                  "marron"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is marron.",
+                "fr": "Le mot manquant est marron.",
+                "de": "Das fehlende Wort ist marron."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-orange",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-orange",
+              "targetId": "orange",
+              "before": "Un fruit",
+              "after": ".",
+              "referenceTargetIds": [
+                "orange",
+                "rouge",
+                "bleu",
+                "jaune"
+              ],
+              "accepted": {
+                "answers": [
+                  "orange"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is orange.",
+                "fr": "Le mot manquant est orange.",
+                "de": "Das fehlende Wort ist orange."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-violet",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-violet",
+              "targetId": "violet",
+              "before": "Un manteau",
+              "after": ".",
+              "referenceTargetIds": [
+                "violet",
+                "rouge",
+                "bleu",
+                "jaune"
+              ],
+              "accepted": {
+                "answers": [
+                  "violet"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is violet.",
+                "fr": "Le mot manquant est violet.",
+                "de": "Das fehlende Wort ist violet."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-beige",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing word.",
+            "fr": "Écrivez le mot manquant.",
+            "de": "Schreib das fehlende Wort."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-beige",
+              "targetId": "beige",
+              "before": "Un mur",
+              "after": ".",
+              "referenceTargetIds": [
+                "beige",
+                "rouge",
+                "bleu",
+                "jaune"
+              ],
+              "accepted": {
+                "answers": [
+                  "beige"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "The missing word is beige.",
+                "fr": "Le mot manquant est beige.",
+                "de": "Das fehlende Wort ist beige."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Exam",
+        "fr": "Examen",
+        "de": "Prüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-rouge",
+              "targetId": "rouge",
+              "prompt": {
+                "en": "red",
+                "de": "rot"
+              },
+              "accepted": {
+                "answers": [
+                  "rouge"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "red in French is rouge.",
+                "fr": "red en français est rouge.",
+                "de": "rot auf Französisch ist rouge."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-bleu",
+              "targetId": "bleu",
+              "prompt": {
+                "en": "blue",
+                "de": "blau"
+              },
+              "accepted": {
+                "answers": [
+                  "bleu"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "blue in French is bleu.",
+                "fr": "blue en français est bleu.",
+                "de": "blau auf Französisch ist bleu."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-jaune",
+              "targetId": "jaune",
+              "prompt": {
+                "en": "yellow",
+                "de": "gelb"
+              },
+              "accepted": {
+                "answers": [
+                  "jaune"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "yellow in French is jaune.",
+                "fr": "yellow en français est jaune.",
+                "de": "gelb auf Französisch ist jaune."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-noir",
+              "targetId": "noir",
+              "prompt": {
+                "en": "black",
+                "de": "schwarz"
+              },
+              "accepted": {
+                "answers": [
+                  "noir"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "black in French is noir.",
+                "fr": "black en français est noir.",
+                "de": "schwarz auf Französisch ist noir."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-blanc",
+              "targetId": "blanc",
+              "prompt": {
+                "en": "white",
+                "de": "weiß"
+              },
+              "accepted": {
+                "answers": [
+                  "blanc"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "white in French is blanc.",
+                "fr": "white en français est blanc.",
+                "de": "weiß auf Französisch ist blanc."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-gris",
+              "targetId": "gris",
+              "prompt": {
+                "en": "grey",
+                "de": "grau"
+              },
+              "accepted": {
+                "answers": [
+                  "gris"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "grey in French is gris.",
+                "fr": "grey en français est gris.",
+                "de": "grau auf Französisch ist gris."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-page-2",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate each item into French.",
+            "fr": "Traduisez chaque élément en français.",
+            "de": "Übersetze jeden Begriff ins Französische."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-vert",
+              "targetId": "vert",
+              "prompt": {
+                "en": "green",
+                "de": "grün"
+              },
+              "accepted": {
+                "answers": [
+                  "vert"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "green in French is vert.",
+                "fr": "green en français est vert.",
+                "de": "grün auf Französisch ist vert."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-rose",
+              "targetId": "rose",
+              "prompt": {
+                "en": "pink",
+                "de": "rosa"
+              },
+              "accepted": {
+                "answers": [
+                  "rose"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "pink in French is rose.",
+                "fr": "pink en français est rose.",
+                "de": "rosa auf Französisch ist rose."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-marron",
+              "targetId": "marron",
+              "prompt": {
+                "en": "brown",
+                "de": "braun"
+              },
+              "accepted": {
+                "answers": [
+                  "marron"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "brown in French is marron.",
+                "fr": "brown en français est marron.",
+                "de": "braun auf Französisch ist marron."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-orange",
+              "targetId": "orange",
+              "prompt": {
+                "en": "orange",
+                "de": "orange"
+              },
+              "accepted": {
+                "answers": [
+                  "orange"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "orange in French is orange.",
+                "fr": "orange en français est orange.",
+                "de": "orange auf Französisch ist orange."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-violet",
+              "targetId": "violet",
+              "prompt": {
+                "en": "purple",
+                "de": "lila"
+              },
+              "accepted": {
+                "answers": [
+                  "violet"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "purple in French is violet.",
+                "fr": "purple en français est violet.",
+                "de": "lila auf Französisch ist violet."
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-beige",
+              "targetId": "beige",
+              "prompt": {
+                "en": "beige",
+                "de": "beige"
+              },
+              "accepted": {
+                "answers": [
+                  "beige"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "beige in French is beige.",
+                "fr": "beige en français est beige.",
+                "de": "beige auf Französisch ist beige."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

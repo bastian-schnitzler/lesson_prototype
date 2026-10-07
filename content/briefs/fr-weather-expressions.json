@@ -1,0 +1,478 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-weather-expressions",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Le temps qu’il fait",
+  "objective": {
+    "en": "Describe the weather with ten common weather expressions in French.",
+    "fr": "Dire le temps qu’il fait avec une dizaine d’expressions météo en français.",
+    "de": "Beschreibe das Wetter mit zehn gängigen Wetterausdrücken auf Französisch."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T14:59:29.410Z",
+    "inputHashes": {
+      "outline": "9064c0d78726bd40a35dcafe2143080655150db2e23ad05083dd65e35c096299"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "weather",
+  "coverageNotes": {
+    "en": "Covers il fait..., il y a..., and il pleut/neige expressions.",
+    "fr": "Couvre les expressions avec il fait..., il y a..., et il pleut/neige.",
+    "de": "Deckt Ausdrücke mit il fait..., il y a... sowie il pleut/neige ab."
+  },
+  "targetCount": 10,
+  "countRationale": {
+    "en": "Ten items cover all standard daily weather reports.",
+    "fr": "Dix éléments couvrent le bulletin météo de tous les jours.",
+    "de": "Zehn Begriffe decken den alltäglichen Wetterbericht ab."
+  },
+  "difficultyBalance": {
+    "en": "Core il fait beau/froid balanced with il y a du vent/du soleil.",
+    "fr": "Expressions simples avec il fait équilibrées avec il y a du...",
+    "de": "Einfache Ausdrücke mit il fait ausgewogen mit il y a du..."
+  },
+  "prerequisites": [
+    {
+      "en": "Impersonal il fait / il y a basics.",
+      "fr": "Bases des formes impersonnelles il fait / il y a.",
+      "de": "Grundlagen unpersönlicher Formen il fait / il y a."
+    }
+  ],
+  "groups": [
+    {
+      "id": "il-fait",
+      "label": {
+        "en": "Il fait... expressions",
+        "fr": "Expressions avec il fait",
+        "de": "Il fait... Ausdrücke"
+      },
+      "targetIds": [
+        "il-fait-beau",
+        "il-fait-chaud",
+        "il-fait-froid",
+        "il-fait-mauvais"
+      ]
+    },
+    {
+      "id": "verbs-il-y-a",
+      "label": {
+        "en": "Verbs & Il y a... expressions",
+        "fr": "Verbes et il y a",
+        "de": "Verben & Il y a..."
+      },
+      "targetIds": [
+        "il-pleut",
+        "il-neige",
+        "il-y-a-du-vent",
+        "il-y-a-du-soleil",
+        "il-y-a-des-nuages",
+        "il-y-a-du-brouillard"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "il-fait-beau",
+      "term": "il fait beau",
+      "translations": {
+        "en": [
+          "the weather is nice"
+        ],
+        "de": [
+          "es ist schönes Wetter"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "il fait beau",
+      "examForms": [
+        "il fait beau"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/il fɛ bo/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Aujourd’hui, il fait beau.",
+        "translation": {
+          "en": "Today, the weather is nice.",
+          "de": "Heute ist das Wetter schön."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "il-fait-chaud",
+      "term": "il fait chaud",
+      "translations": {
+        "en": [
+          "it is hot"
+        ],
+        "de": [
+          "es ist warm",
+          "es ist heiß"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "il fait chaud",
+      "examForms": [
+        "il fait chaud"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/il fɛ ʃo/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "En juillet, il fait chaud.",
+        "translation": {
+          "en": "In July, it is hot.",
+          "de": "Im Juli ist es heiß."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "il-fait-froid",
+      "term": "il fait froid",
+      "translations": {
+        "en": [
+          "it is cold"
+        ],
+        "de": [
+          "es ist kalt"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "il fait froid",
+      "examForms": [
+        "il fait froid"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/il fɛ fʁwa/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "En janvier, il fait froid.",
+        "translation": {
+          "en": "In January, it is cold.",
+          "de": "Im Januar ist es kalt."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "il-fait-mauvais",
+      "term": "il fait mauvais",
+      "translations": {
+        "en": [
+          "the weather is bad"
+        ],
+        "de": [
+          "es ist schlechtes Wetter"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "il fait mauvais",
+      "examForms": [
+        "il fait mauvais"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/il fɛ movɛ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Restons à la maison, il fait mauvais.",
+        "translation": {
+          "en": "Let’s stay home, weather is bad.",
+          "de": "Bleiben wir zu Hause, das Wetter ist schlecht."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "il-pleut",
+      "term": "il pleut",
+      "translations": {
+        "en": [
+          "it is raining"
+        ],
+        "de": [
+          "es regnet"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "il pleut",
+      "examForms": [
+        "il pleut"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/il plø/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Prends ton parapluie, il pleut.",
+        "translation": {
+          "en": "Take your umbrella, it is raining.",
+          "de": "Nimm deinen Regenschirm, es regnet."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "il-neige",
+      "term": "il neige",
+      "translations": {
+        "en": [
+          "it is snowing"
+        ],
+        "de": [
+          "es schneit"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "il neige",
+      "examForms": [
+        "il neige"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/il nɛʒ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Tout est blanc, il neige !",
+        "translation": {
+          "en": "Everything is white, it is snowing!",
+          "de": "Alles ist weiß, es schneit!"
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "il-y-a-du-vent",
+      "term": "il y a du vent",
+      "translations": {
+        "en": [
+          "it is windy"
+        ],
+        "de": [
+          "es ist windig"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "il y a du vent",
+      "examForms": [
+        "il y a du vent"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/il i a dy vɑ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Attention au chapeau, il y a du vent.",
+        "translation": {
+          "en": "Watch your hat, it is windy.",
+          "de": "Achtung beim Hut, es ist windig."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "il-y-a-du-soleil",
+      "term": "il y a du soleil",
+      "translations": {
+        "en": [
+          "it is sunny"
+        ],
+        "de": [
+          "die Sonne scheint"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "il y a du soleil",
+      "examForms": [
+        "il y a du soleil"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/il i a dy sɔlɛj/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Mets tes lunettes, il y a du soleil.",
+        "translation": {
+          "en": "Put on your sunglasses, it is sunny.",
+          "de": "Setz deine Sonnenbrille auf, die Sonne scheint."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "il-y-a-des-nuages",
+      "term": "il y a des nuages",
+      "translations": {
+        "en": [
+          "it is cloudy"
+        ],
+        "de": [
+          "es ist bewölkt"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "il y a des nuages",
+      "examForms": [
+        "il y a des nuages"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/il i a de nɥaʒ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Le ciel est gris, il y a des nuages.",
+        "translation": {
+          "en": "Sky is grey, it is cloudy.",
+          "de": "Der Himmel ist grau, es gibt Wolken."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "il-y-a-du-brouillard",
+      "term": "il y a du brouillard",
+      "translations": {
+        "en": [
+          "it is foggy"
+        ],
+        "de": [
+          "es ist neblig"
+        ]
+      },
+      "wordClass": "phrase",
+      "genders": [],
+      "number": null,
+      "teachingForm": "il y a du brouillard",
+      "examForms": [
+        "il y a du brouillard"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/il i a dy bʁujaʁ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "On ne voit rien, il y a du brouillard.",
+        "translation": {
+          "en": "We see nothing, it is foggy.",
+          "de": "Man sieht nichts, es ist neblig."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": false,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "il-fait-beau",
+        "il-fait-chaud",
+        "il-fait-froid",
+        "il-fait-mauvais",
+        "il-pleut",
+        "il-neige",
+        "il-y-a-du-vent",
+        "il-y-a-du-soleil",
+        "il-y-a-des-nuages",
+        "il-y-a-du-brouillard"
+      ],
+      "estimatedDurationS": 150
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "il-fait-beau",
+            "il-fait-chaud",
+            "il-fait-froid",
+            "il-fait-mauvais",
+            "il-pleut"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "il-neige",
+            "il-y-a-du-vent",
+            "il-y-a-du-soleil",
+            "il-y-a-des-nuages",
+            "il-y-a-du-brouillard"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

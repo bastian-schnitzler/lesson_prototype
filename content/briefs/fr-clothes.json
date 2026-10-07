@@ -1,0 +1,691 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-clothes",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Les vêtements",
+  "objective": {
+    "en": "Name fifteen clothes and accessories in French with indefinite articles.",
+    "fr": "Nommer une quinzaine de vêtements et d’accessoires en français avec leurs articles indéfinis.",
+    "de": "Nenne fünfzehn Kleidungsstücke und Accessoires auf Französisch mit unbestimmten Artikeln."
+  },
+  "estimatedMinutes": 14,
+  "provenance": {
+    "generator": "claude-direct-authoring",
+    "model": "gemini-3.6-flash",
+    "promptVersion": "manual-brief-v1",
+    "generatedAt": "2026-10-07T14:59:29.395Z",
+    "inputHashes": {
+      "outline": "970e99074c568728884cf551fc09fe2f1545ebdcc65dd29a923c5a40ada62750"
+    }
+  },
+  "kind": "vocabulary",
+  "theme": "shopping",
+  "coverageNotes": {
+    "en": "Covers main clothing items and common accessories.",
+    "fr": "Couvre les vêtements principaux et les accessoires courants.",
+    "de": "Deckt wichtige Kleidungsstücke und gängige Accessoires ab."
+  },
+  "targetCount": 15,
+  "countRationale": {
+    "en": "Fifteen items cover a complete basic wardrobe.",
+    "fr": "Quinze éléments couvrent une garde-robe de base complète.",
+    "de": "Fünfzehn Begriffe decken eine vollständige Grundgarderobe ab."
+  },
+  "difficultyBalance": {
+    "en": "10 core familiar clothes balanced with 5 plural or complex accessories.",
+    "fr": "10 vêtements courants équilibrés avec 5 accessoires ou formes pluriel.",
+    "de": "10 gängige Kleidungsstücke ausgewogen mit 5 Accessoires oder Pluralformen."
+  },
+  "prerequisites": [
+    {
+      "en": "Indefinite articles un, une, des.",
+      "fr": "Articles indéfinis un, une, des.",
+      "de": "Unbestimmte Artikel un, une, des."
+    }
+  ],
+  "groups": [
+    {
+      "id": "clothes",
+      "label": {
+        "en": "Clothing items",
+        "fr": "Vêtements",
+        "de": "Kleidungsstücke"
+      },
+      "targetIds": [
+        "un-pantalon",
+        "une-jupe",
+        "une-robe",
+        "une-chemise",
+        "un-pull",
+        "un-manteau",
+        "un-t-shirt",
+        "un-blouson"
+      ]
+    },
+    {
+      "id": "shoes-accessories",
+      "label": {
+        "en": "Shoes & Accessories",
+        "fr": "Chaussures et accessoires",
+        "de": "Schuhe & Accessoires"
+      },
+      "targetIds": [
+        "des-chaussures",
+        "un-chapeau",
+        "une-echarpe",
+        "des-gants",
+        "une-ceinture",
+        "des-chaussettes",
+        "un-sac"
+      ]
+    }
+  ],
+  "targets": [
+    {
+      "id": "un-pantalon",
+      "term": "pantalon",
+      "translations": {
+        "en": [
+          "a pair of trousers",
+          "pants"
+        ],
+        "de": [
+          "eine Hose"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un pantalon",
+      "examForms": [
+        "un pantalon"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ pɑ̃talɔ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Mettre un pantalon bleu.",
+        "translation": {
+          "en": "Put on blue trousers.",
+          "de": "Eine blaue Hose anziehen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-jupe",
+      "term": "jupe",
+      "translations": {
+        "en": [
+          "a skirt"
+        ],
+        "de": [
+          "ein Rock"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une jupe",
+      "examForms": [
+        "une jupe"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn ʒyp/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Elle porte une jupe courte.",
+        "translation": {
+          "en": "She wears a short skirt.",
+          "de": "Sie trägt einen kurzen Rock."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-robe",
+      "term": "robe",
+      "translations": {
+        "en": [
+          "a dress"
+        ],
+        "de": [
+          "ein Kleid"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une robe",
+      "examForms": [
+        "une robe"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn ʁɔb/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Une belle robe de soirée.",
+        "translation": {
+          "en": "A beautiful evening dress.",
+          "de": "Ein schönes Abendkleid."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-chemise",
+      "term": "chemise",
+      "translations": {
+        "en": [
+          "a shirt"
+        ],
+        "de": [
+          "ein Hemd"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une chemise",
+      "examForms": [
+        "une chemise"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn ʃəmiz/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Il met une chemise blanche.",
+        "translation": {
+          "en": "He puts on a white shirt.",
+          "de": "Er zieht ein weißes Hemd an."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-pull",
+      "term": "pull",
+      "translations": {
+        "en": [
+          "a sweater",
+          "a jumper"
+        ],
+        "de": [
+          "ein Pullover"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un pull",
+      "examForms": [
+        "un pull"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ pyl/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un pull en laine chaud.",
+        "translation": {
+          "en": "A warm wool sweater.",
+          "de": "Ein warmer Wollpullover."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-manteau",
+      "term": "manteau",
+      "translations": {
+        "en": [
+          "a coat"
+        ],
+        "de": [
+          "ein Mantel"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un manteau",
+      "examForms": [
+        "un manteau"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ mɑ̃to/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Mettre un manteau en hiver.",
+        "translation": {
+          "en": "Put on a coat in winter.",
+          "de": "Im Winter einen Mantel anziehen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-t-shirt",
+      "term": "t-shirt",
+      "translations": {
+        "en": [
+          "a t-shirt"
+        ],
+        "de": [
+          "ein T-Shirt"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un t-shirt",
+      "examForms": [
+        "un t-shirt",
+        "un tshirt"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ tiʃœʁt/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un t-shirt en coton.",
+        "translation": {
+          "en": "A cotton t-shirt.",
+          "de": "Ein Baumwoll-T-Shirt."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-blouson",
+      "term": "blouson",
+      "translations": {
+        "en": [
+          "a jacket"
+        ],
+        "de": [
+          "eine Jacke"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un blouson",
+      "examForms": [
+        "un blouson"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ bluzɔ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Un blouson en cuir.",
+        "translation": {
+          "en": "A leather jacket.",
+          "de": "Eine Lederjacke."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "des-chaussures",
+      "term": "chaussures",
+      "translations": {
+        "en": [
+          "some shoes",
+          "shoes"
+        ],
+        "de": [
+          "Schuhe"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "plural",
+      "teachingForm": "des chaussures",
+      "examForms": [
+        "des chaussures"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/de ʃosyʁ/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Des chaussures de sport.",
+        "translation": {
+          "en": "Sports shoes.",
+          "de": "Sportschuhe."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-chapeau",
+      "term": "chapeau",
+      "translations": {
+        "en": [
+          "a hat"
+        ],
+        "de": [
+          "ein Hut"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un chapeau",
+      "examForms": [
+        "un chapeau"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ ʃapo/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Mettre un chapeau sur la tête.",
+        "translation": {
+          "en": "Put a hat on your head.",
+          "de": "Einen Hut auf den Kopf setzen."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-echarpe",
+      "term": "écharpe",
+      "translations": {
+        "en": [
+          "a scarf"
+        ],
+        "de": [
+          "ein Schal"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une écharpe",
+      "examForms": [
+        "une écharpe"
+      ],
+      "accentSensitive": [
+        "écharpe"
+      ],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn eʃaʁp/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Une écharpe en laine.",
+        "translation": {
+          "en": "A wool scarf.",
+          "de": "Ein Wollschal."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "des-gants",
+      "term": "gants",
+      "translations": {
+        "en": [
+          "some gloves",
+          "gloves"
+        ],
+        "de": [
+          "Handschuhe"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "plural",
+      "teachingForm": "des gants",
+      "examForms": [
+        "des gants"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/de ɡɑ̃/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Mettre des gants quand il fait froid.",
+        "translation": {
+          "en": "Put on gloves when cold.",
+          "de": "Handschuhe anziehen, wenn es kalt ist."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "une-ceinture",
+      "term": "ceinture",
+      "translations": {
+        "en": [
+          "a belt"
+        ],
+        "de": [
+          "ein Gürtel"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "singular",
+      "teachingForm": "une ceinture",
+      "examForms": [
+        "une ceinture"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/yn sɛ̃tyʁ/",
+      "difficulty": "demanding",
+      "context": {
+        "sentence": "Une ceinture en cuir.",
+        "translation": {
+          "en": "A leather belt.",
+          "de": "Ein Ledergürtel."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "des-chaussettes",
+      "term": "chaussettes",
+      "translations": {
+        "en": [
+          "some socks",
+          "socks"
+        ],
+        "de": [
+          "Socken"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "number": "plural",
+      "teachingForm": "des chaussettes",
+      "examForms": [
+        "des chaussettes"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/de ʃosɛt/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Des chaussettes chaudes.",
+        "translation": {
+          "en": "Warm socks.",
+          "de": "Warme Socken."
+        }
+      },
+      "ambiguityNote": null
+    },
+    {
+      "id": "un-sac",
+      "term": "sac",
+      "translations": {
+        "en": [
+          "a bag",
+          "a handbag"
+        ],
+        "de": [
+          "eine Tasche"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "number": "singular",
+      "teachingForm": "un sac",
+      "examForms": [
+        "un sac"
+      ],
+      "accentSensitive": [],
+      "articleException": null,
+      "genderVariants": [],
+      "pronunciation": "/œ̃ sak/",
+      "difficulty": "core",
+      "context": {
+        "sentence": "Elle porte un sac à main.",
+        "translation": {
+          "en": "She carries a handbag.",
+          "de": "Sie trägt eine Handtasche."
+        }
+      },
+      "ambiguityNote": null
+    }
+  ],
+  "plan": {
+    "introduction": {
+      "estimatedDurationS": 60
+    },
+    "flashcards": {
+      "estimatedDurationS": 120
+    },
+    "matching": {
+      "groupSize": 6,
+      "estimatedDurationS": 90
+    },
+    "genderOverview": {
+      "scored": true,
+      "estimatedDurationS": 90
+    },
+    "typedGaps": {
+      "targetIds": [
+        "un-pantalon",
+        "une-jupe",
+        "une-robe",
+        "une-chemise",
+        "un-pull",
+        "un-manteau",
+        "un-t-shirt",
+        "un-blouson",
+        "des-chaussures",
+        "un-chapeau",
+        "une-echarpe",
+        "des-gants",
+        "une-ceinture",
+        "des-chaussettes",
+        "un-sac"
+      ],
+      "estimatedDurationS": 225
+    },
+    "listening": {
+      "required": false,
+      "practiceTargetIds": [],
+      "estimatedDurationS": null
+    },
+    "exam": {
+      "pages": [
+        {
+          "pageId": "exam-page-1",
+          "kind": "translation",
+          "targetIds": [
+            "un-pantalon",
+            "une-jupe",
+            "une-robe",
+            "une-chemise",
+            "un-pull",
+            "un-manteau",
+            "un-t-shirt",
+            "un-blouson"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        },
+        {
+          "pageId": "exam-page-2",
+          "kind": "translation",
+          "targetIds": [
+            "des-chaussures",
+            "un-chapeau",
+            "une-echarpe",
+            "des-gants",
+            "une-ceinture",
+            "des-chaussettes",
+            "un-sac"
+          ],
+          "estimatedDurationS": 120,
+          "timeLimitS": 180
+        }
+      ]
+    }
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}
