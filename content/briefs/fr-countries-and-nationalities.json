@@ -106,9 +106,6 @@
       "examForms": [
         "l'Espagne"
       ],
-      "acceptedVariants": [
-        "Espagne"
-      ],
       "accentSensitive": [],
       "articleException": {
         "en": "Country names take definite articles in standard usage.",
@@ -146,9 +143,6 @@
       "teachingForm": "le Japon",
       "examForms": [
         "le Japon"
-      ],
-      "acceptedVariants": [
-        "Japon"
       ],
       "accentSensitive": [],
       "articleException": {
@@ -188,9 +182,6 @@
       "examForms": [
         "la France"
       ],
-      "acceptedVariants": [
-        "France"
-      ],
       "accentSensitive": [],
       "articleException": {
         "en": "Country names take definite articles in standard usage.",
@@ -228,9 +219,6 @@
       "teachingForm": "l'Allemagne",
       "examForms": [
         "l'Allemagne"
-      ],
-      "acceptedVariants": [
-        "Allemagne"
       ],
       "accentSensitive": [],
       "articleException": {
@@ -270,9 +258,6 @@
       "examForms": [
         "le Canada"
       ],
-      "acceptedVariants": [
-        "Canada"
-      ],
       "accentSensitive": [],
       "articleException": {
         "en": "Country names take definite articles in standard usage.",
@@ -310,9 +295,6 @@
       "teachingForm": "l'Italie",
       "examForms": [
         "l'Italie"
-      ],
-      "acceptedVariants": [
-        "Italie"
       ],
       "accentSensitive": [],
       "articleException": {
@@ -352,9 +334,6 @@
       "examForms": [
         "le Mexique"
       ],
-      "acceptedVariants": [
-        "Mexique"
-      ],
       "accentSensitive": [],
       "articleException": {
         "en": "Country names take definite articles in standard usage.",
@@ -392,7 +371,6 @@
         "espagnol",
         "espagnole"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
@@ -428,7 +406,6 @@
         "japonais",
         "japonaise"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
@@ -464,7 +441,6 @@
         "français",
         "française"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
@@ -500,7 +476,6 @@
         "allemand",
         "allemande"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
@@ -536,7 +511,6 @@
         "canadien",
         "canadienne"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
@@ -572,7 +546,6 @@
         "italien",
         "italienne"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
@@ -608,7 +581,6 @@
         "mexicain",
         "mexicaine"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [

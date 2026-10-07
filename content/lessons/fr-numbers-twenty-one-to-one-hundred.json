@@ -1265,9 +1265,7 @@
               "targetId": "num-21",
               "accepted": {
                 "answers": [
-                  "vingt-et-un",
-                  "21",
-                  "vingt et un"
+                  "vingt-et-un"
                 ],
                 "accentSensitive": []
               },
@@ -1287,8 +1285,7 @@
               "targetId": "num-30",
               "accepted": {
                 "answers": [
-                  "trente",
-                  "30"
+                  "trente"
                 ],
                 "accentSensitive": []
               },
@@ -1308,8 +1305,7 @@
               "targetId": "num-40",
               "accepted": {
                 "answers": [
-                  "quarante",
-                  "40"
+                  "quarante"
                 ],
                 "accentSensitive": []
               },
@@ -1329,8 +1325,7 @@
               "targetId": "num-50",
               "accepted": {
                 "answers": [
-                  "cinquante",
-                  "50"
+                  "cinquante"
                 ],
                 "accentSensitive": []
               },
@@ -1350,8 +1345,7 @@
               "targetId": "num-60",
               "accepted": {
                 "answers": [
-                  "soixante",
-                  "60"
+                  "soixante"
                 ],
                 "accentSensitive": []
               },
@@ -1371,8 +1365,7 @@
               "targetId": "num-70",
               "accepted": {
                 "answers": [
-                  "soixante-dix",
-                  "70"
+                  "soixante-dix"
                 ],
                 "accentSensitive": []
               },
@@ -1392,9 +1385,7 @@
               "targetId": "num-71",
               "accepted": {
                 "answers": [
-                  "soixante-et-onze",
-                  "71",
-                  "soixante et onze"
+                  "soixante-et-onze"
                 ],
                 "accentSensitive": []
               },
@@ -1414,9 +1405,7 @@
               "targetId": "num-80",
               "accepted": {
                 "answers": [
-                  "quatre-vingts",
-                  "80",
-                  "quatre-vingt"
+                  "quatre-vingts"
                 ],
                 "accentSensitive": []
               },
@@ -1436,9 +1425,7 @@
               "targetId": "num-81",
               "accepted": {
                 "answers": [
-                  "quatre-vingt-un",
-                  "81",
-                  "quatre-vingt-et-un"
+                  "quatre-vingt-un"
                 ],
                 "accentSensitive": []
               },
@@ -1458,8 +1445,7 @@
               "targetId": "num-90",
               "accepted": {
                 "answers": [
-                  "quatre-vingt-dix",
-                  "90"
+                  "quatre-vingt-dix"
                 ],
                 "accentSensitive": []
               },
@@ -1479,8 +1465,7 @@
               "targetId": "num-91",
               "accepted": {
                 "answers": [
-                  "quatre-vingt-onze",
-                  "91"
+                  "quatre-vingt-onze"
                 ],
                 "accentSensitive": []
               },
@@ -1500,8 +1485,7 @@
               "targetId": "num-100",
               "accepted": {
                 "answers": [
-                  "cent",
-                  "100"
+                  "cent"
                 ],
                 "accentSensitive": []
               },
@@ -1533,9 +1517,7 @@
               "targetId": "num-21",
               "accepted": {
                 "answers": [
-                  "vingt-et-un",
-                  "21",
-                  "vingt et un"
+                  "vingt-et-un"
                 ],
                 "accentSensitive": []
               },
@@ -1551,8 +1533,7 @@
               "targetId": "num-30",
               "accepted": {
                 "answers": [
-                  "trente",
-                  "30"
+                  "trente"
                 ],
                 "accentSensitive": []
               },
@@ -1568,8 +1549,7 @@
               "targetId": "num-40",
               "accepted": {
                 "answers": [
-                  "quarante",
-                  "40"
+                  "quarante"
                 ],
                 "accentSensitive": []
               },
@@ -1585,8 +1565,7 @@
               "targetId": "num-50",
               "accepted": {
                 "answers": [
-                  "cinquante",
-                  "50"
+                  "cinquante"
                 ],
                 "accentSensitive": []
               },
@@ -1602,8 +1581,7 @@
               "targetId": "num-60",
               "accepted": {
                 "answers": [
-                  "soixante",
-                  "60"
+                  "soixante"
                 ],
                 "accentSensitive": []
               },
@@ -1619,8 +1597,7 @@
               "targetId": "num-70",
               "accepted": {
                 "answers": [
-                  "soixante-dix",
-                  "70"
+                  "soixante-dix"
                 ],
                 "accentSensitive": []
               },
@@ -1636,9 +1613,7 @@
               "targetId": "num-71",
               "accepted": {
                 "answers": [
-                  "soixante-et-onze",
-                  "71",
-                  "soixante et onze"
+                  "soixante-et-onze"
                 ],
                 "accentSensitive": []
               },
@@ -1654,9 +1629,7 @@
               "targetId": "num-80",
               "accepted": {
                 "answers": [
-                  "quatre-vingts",
-                  "80",
-                  "quatre-vingt"
+                  "quatre-vingts"
                 ],
                 "accentSensitive": []
               },
@@ -1672,9 +1645,7 @@
               "targetId": "num-81",
               "accepted": {
                 "answers": [
-                  "quatre-vingt-un",
-                  "81",
-                  "quatre-vingt-et-un"
+                  "quatre-vingt-un"
                 ],
                 "accentSensitive": []
               },
@@ -1690,8 +1661,7 @@
               "targetId": "num-90",
               "accepted": {
                 "answers": [
-                  "quatre-vingt-dix",
-                  "90"
+                  "quatre-vingt-dix"
                 ],
                 "accentSensitive": []
               },
@@ -1707,8 +1677,7 @@
               "targetId": "num-91",
               "accepted": {
                 "answers": [
-                  "quatre-vingt-onze",
-                  "91"
+                  "quatre-vingt-onze"
                 ],
                 "accentSensitive": []
               },
@@ -1724,8 +1693,7 @@
               "targetId": "num-100",
               "accepted": {
                 "answers": [
-                  "cent",
-                  "100"
+                  "cent"
                 ],
                 "accentSensitive": []
               },
@@ -1747,7 +1715,7 @@
     "generatedAt": "2026-10-06T22:13:22.000Z",
     "inputHashes": {
       "outline": "5d5ff64270578ef66cbd7c21ff3c2f6c33fa608915bc92128178a1877b69de42",
-      "brief": "371b914cc4f24b605b644b4e8d2127da8a412300aba0f498fe19823030c65062"
+      "brief": "a32420866f2be170dd1b902e9f85e5ce258c245a9a53693f2f90846d8c30cdef"
     }
   }
 }

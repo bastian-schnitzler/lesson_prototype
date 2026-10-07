@@ -105,7 +105,6 @@
       "examForms": [
         "un accent aigu"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -141,7 +140,6 @@
       "examForms": [
         "un accent grave"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -178,7 +176,6 @@
       "examForms": [
         "un accent circonflexe"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -214,7 +211,6 @@
       "examForms": [
         "une cédille"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -250,7 +246,6 @@
       "examForms": [
         "un tréma"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -281,9 +276,6 @@
       "number": null,
       "teachingForm": "épeler",
       "examForms": [
-        "épeler"
-      ],
-      "acceptedVariants": [
         "épeler"
       ],
       "accentSensitive": [],
@@ -323,7 +315,6 @@
       "examForms": [
         "un nom"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -358,7 +349,6 @@
       "examForms": [
         "un prénom"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -393,7 +383,6 @@
       "examForms": [
         "une lettre"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -429,7 +418,6 @@
       "examForms": [
         "une majuscule"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -464,7 +452,6 @@
       "examForms": [
         "une minuscule"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -499,7 +486,6 @@
       "examForms": [
         "un trait d'union"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],

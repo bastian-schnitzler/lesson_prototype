@@ -121,7 +121,6 @@
       "examForms": [
         "zéro"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -154,9 +153,6 @@
       "teachingForm": "un",
       "examForms": [
         "un"
-      ],
-      "acceptedVariants": [
-        "une"
       ],
       "accentSensitive": [],
       "articleException": null,
@@ -192,7 +188,6 @@
       "examForms": [
         "deux"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -225,7 +220,6 @@
       "examForms": [
         "trois"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -258,7 +252,6 @@
       "examForms": [
         "quatre"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -291,7 +284,6 @@
       "examForms": [
         "cinq"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -324,7 +316,6 @@
       "examForms": [
         "six"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -357,7 +348,6 @@
       "examForms": [
         "sept"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -390,7 +380,6 @@
       "examForms": [
         "huit"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -423,7 +412,6 @@
       "examForms": [
         "neuf"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -456,7 +444,6 @@
       "examForms": [
         "dix"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -489,7 +476,6 @@
       "examForms": [
         "onze"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -522,7 +508,6 @@
       "examForms": [
         "douze"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -555,7 +540,6 @@
       "examForms": [
         "treize"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -588,7 +572,6 @@
       "examForms": [
         "quatorze"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -621,7 +604,6 @@
       "examForms": [
         "quinze"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -654,7 +636,6 @@
       "examForms": [
         "seize"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -687,7 +668,6 @@
       "examForms": [
         "dix-sept"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -720,7 +700,6 @@
       "examForms": [
         "dix-huit"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -753,7 +732,6 @@
       "examForms": [
         "dix-neuf"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -786,7 +764,6 @@
       "examForms": [
         "vingt"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],

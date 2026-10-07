@@ -4,6 +4,7 @@ import { nativeLocales } from '../schemas/artifactCommon.ts';
 import { briefSchema, contentSchema, isSupportedKind, type Brief, type LessonContent } from '../schemas/artifacts.ts';
 import type { GrammarBrief, GrammarContent, GrammarItem } from '../schemas/grammar.ts';
 import type { OutlineEntry } from '../schemas/outline.ts';
+import { vocabularyExamAnswers } from '../domain/vocabularyAnswers.ts';
 import { VOCABULARY_STAGES, type VocabularyBrief, type VocabularyContent, type VocabularyItem, type VocabularyTarget } from '../schemas/vocabulary.ts';
 
 /**
@@ -111,8 +112,6 @@ function checkVocabularyBrief(b: VocabularyBrief, ctx: OutlineContext, issues: I
       issues.check(t.number !== null, `${p}.number`, 'a noun needs a grammatical number');
       if (ctx.lang === 'fr' && t.articleException === null) {
         for (const f of t.examForms) { const m = frArticleIssue(t, f); issues.check(!m, `${p}.examForms`, m ?? ''); }
-        // The exam always asks for the indefinite article, so full-credit variants carry it too (no definite, bare or other-number forms).
-        for (const f of t.acceptedVariants) { const m = frArticleIssue(t, f); issues.check(!m, `${p}.acceptedVariants`, m ?? ''); }
       }
       if (ctx.lang === 'fr' && t.articleException !== null) {
         issues.check(!t.examForms.some((f) => FR_INDEFINITE.test(f)), `${p}.articleException`, 'remove the articleException: the exam forms use an indefinite article');
@@ -321,7 +320,9 @@ function checkVocabularyContent(c: VocabularyContent, b: VocabularyBrief, ctx: C
           case 'vocabulary_listening_dictation': {
             const t = targets.get(item.targetId);
             if (!known(item.targetId, ip) || !t) break;
-            for (const f of t.examForms) issues.check(item.accepted.answers.includes(f), ip, `accepted answers must include the exam form "${f}"`);
+            // Accepted answers follow the shared rule only; no per-item extras (single point of truth).
+            const expected = vocabularyExamAnswers(t, ctx.lang, item.type === 'vocabulary_translation_exam' ? item.prompt : undefined);
+            issues.check(sameSet(item.accepted.answers, expected), `${ip}.accepted.answers`, `must be exactly ${expected.map((a) => `"${a}"`).join(', ')} (exam forms${t.genderVariants.length ? ', plus gender variants when the prompt does not disambiguate' : ''})`);
             if (item.type === 'vocabulary_listening_dictation') issues.check(item.accepted.answers.includes(t.teachingForm), ip, `dictation must accept the spoken teaching form "${t.teachingForm}"`);
             if (item.type === 'vocabulary_translation_exam' && t.genderVariants.length) {
               const acceptsAll = t.genderVariants.every((v) => item.accepted.answers.includes(v));

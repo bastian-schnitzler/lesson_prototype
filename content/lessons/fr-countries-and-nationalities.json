@@ -1048,8 +1048,7 @@
               "targetId": "target-espagne",
               "accepted": {
                 "answers": [
-                  "l'Espagne",
-                  "Espagne"
+                  "l'Espagne"
                 ],
                 "accentSensitive": []
               },
@@ -1069,8 +1068,7 @@
               "targetId": "target-japon",
               "accepted": {
                 "answers": [
-                  "le Japon",
-                  "Japon"
+                  "le Japon"
                 ],
                 "accentSensitive": []
               },
@@ -1090,8 +1088,7 @@
               "targetId": "target-france",
               "accepted": {
                 "answers": [
-                  "la France",
-                  "France"
+                  "la France"
                 ],
                 "accentSensitive": []
               },
@@ -1111,8 +1108,7 @@
               "targetId": "target-allemagne",
               "accepted": {
                 "answers": [
-                  "l'Allemagne",
-                  "Allemagne"
+                  "l'Allemagne"
                 ],
                 "accentSensitive": []
               },
@@ -1132,8 +1128,7 @@
               "targetId": "target-canada",
               "accepted": {
                 "answers": [
-                  "le Canada",
-                  "Canada"
+                  "le Canada"
                 ],
                 "accentSensitive": []
               },
@@ -1153,8 +1148,7 @@
               "targetId": "target-italie",
               "accepted": {
                 "answers": [
-                  "l'Italie",
-                  "Italie"
+                  "l'Italie"
                 ],
                 "accentSensitive": []
               },
@@ -1174,8 +1168,7 @@
               "targetId": "target-mexique",
               "accepted": {
                 "answers": [
-                  "le Mexique",
-                  "Mexique"
+                  "le Mexique"
                 ],
                 "accentSensitive": []
               },
@@ -1360,7 +1353,7 @@
     "generatedAt": "2026-10-06T22:13:22.000Z",
     "inputHashes": {
       "outline": "4bf17f4e2b096c50de82ca8f715c42f5826e58849c6093eccfc4fc8dd81c4df2",
-      "brief": "a7c68e61cddd9618d19597a8b7436493ffbedd92b053400a2aa133a5d2fb90cc"
+      "brief": "7b34946520073327fcdad38a735b2f722b48cbed5c6fd86682fc3e61ad36a683"
     }
   }
 }

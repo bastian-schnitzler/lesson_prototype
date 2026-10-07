@@ -997,8 +997,7 @@
               "targetId": "target-celibataire",
               "accepted": {
                 "answers": [
-                  "célibataire",
-                  "celibataire"
+                  "célibataire"
                 ],
                 "accentSensitive": []
               },
@@ -1066,7 +1065,7 @@
     "generatedAt": "2026-10-06T22:13:22.000Z",
     "inputHashes": {
       "outline": "4ae829bf24bae08d9a146632298e7f1fcd7676f64f1ef8a2940d950403848108",
-      "brief": "dd8107d4d410c9187561913650d67d504a8ceadecdb973bc5cb703c21c7a1a6d"
+      "brief": "56fac44653376d02e331b0a79d7a532db167efcace08738665a454d6c6fcf6f1"
     }
   }
 }

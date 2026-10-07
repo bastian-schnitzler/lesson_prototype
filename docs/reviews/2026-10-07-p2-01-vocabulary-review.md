@@ -46,7 +46,7 @@ P2-02 and P2-03 replace single entries, such as drag-and-drop matching and flipp
 | --- | --- | --- |
 | Non-nouns | no gender, number or article exception; no gender selector; plain overview when a lesson has no nouns | validator (D8), `genderOverview.scored` must equal "has nouns" |
 | Noun articles | `un`/`une` agree with the accepted genders in the singular and `des` the plural; a singular target never accepts a plural form | **new:** `frArticleIssue` for exam forms |
-| Accepted variants | the final exam always asks for the indefinite article, so full-credit variants carry the agreeing indefinite article too; definite (`le nom`) and bare forms are not accepted, and accent-less answers are left to the classifier (50 % for accents or capitals) | **new:** validator |
+| Accepted answers | no per-target `acceptedVariants` and no per-item `extraAnswers`. Fully correct answers are the exam forms, plus gender variants when the prompt does not disambiguate, all derived by `vocabularyExamAnswers`. Accent, capital and ligature differences go to the classifier (50 %). Definite or bare noun forms are wrong, because the exam always asks for the indefinite article. Genuine alternative spellings belong among the exam forms. | **new:** fields removed; the validator requires accepted answers to equal the rule |
 | Teaching form | the displayed form is examined as shown: one of the exam forms, or an adjective's gender pair (`espagnol, espagnole`) | **new:** validator |
 | Article exceptions | only when no indefinite form is grammatical (countries, days used without an article, set phrases) | **new:** an exception next to an indefinite exam form is rejected |
 | Plural targets | `number: plural` takes `des` (`des ciseaux`) | **new:** validator. No current sample has a plural target. |
@@ -62,6 +62,17 @@ The briefs were corrected and the content's translation-exam and dictation answe
 - **`fr-personal-details-on-a-form`:** bare, accent-less and definite variants (`nom`, `prenom`, `le nom`) are removed.
 
 These three samples changed after the P1-08 review and are worth a quick look.
+
+### Accepted variants removed
+
+`acceptedVariants` let a brief mark extra answers as fully correct, and content `extraAnswers` did the same per item. In the samples these extras mostly bypassed the general rules:
+
+- Accent-less forms (`une soeur`, `un grand pere`, `celibataire`) got full credit despite the 50 % rule and D40.
+- Capitalised forms (`Écoutez`) and bare or definite forms (`Espagne`, `le lundi`, `matin`) were accepted.
+- Digits (`21`) were accepted.
+- Some extras only repeated the exam form.
+
+Both fields are removed from the schemas, the generator and all briefs and lessons, including the test fixtures. The general rules are the single source of truth. Alternatives that are now marked wrong or graded at 50 % include `vingt et un`, `quatre-vingt`, `une` (numeral) and `Quel jour est-on ?`. A genuine alternative must be added as an exam form.
 
 The brief prompt (`brief-v3`) now states the same rules so that newly generated briefs follow them.
 

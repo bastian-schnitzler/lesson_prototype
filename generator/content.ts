@@ -2,6 +2,7 @@ import { mkdir, readFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { sha256 } from '../scripts/catalog.ts';
 import { briefInputHash } from '../src/catalog/scan.ts';
+import { vocabularyExamAnswers } from '../src/domain/vocabularyAnswers.ts';
 import { ARTIFACT_SCHEMA_VERSION, type LocalizedText } from '../src/schemas/artifactCommon.ts';
 import { isSupportedKind } from '../src/schemas/artifacts.ts';
 import type { GrammarBrief } from '../src/schemas/grammar.ts';
@@ -88,9 +89,9 @@ function assembleVocabulary(brief: VocabularyBrief, sections: ReturnType<typeof 
   const dictations = byTarget(exam.dictation, 'exam', dictationIds, issues);
   if (issues.size) return undefined;
 
-  const answers = (id: string, extra: string[] = []) => {
+  const answers = (id: string, prompt?: LocalizedText) => {
     const t = targets.get(id)!;
-    return { answers: [...new Set([...t.examForms, ...t.acceptedVariants, ...extra])].slice(0, 8), accentSensitive: t.accentSensitive };
+    return { answers: vocabularyExamAnswers(t, brief.lang, prompt), accentSensitive: t.accentSensitive };
   };
   const pages = <T>(list: T[], total: number, make: (x: T, durationS: number, n: number) => object) => {
     const durations = splitDuration(total, list.length);
@@ -134,7 +135,7 @@ function assembleVocabulary(brief: VocabularyBrief, sections: ReturnType<typeof 
       step('exam', 'exam', 'exam', COPY.exam, plan.exam.pages.map((pg) =>
         page(pg.pageId, pg.estimatedDurationS, pg.kind === 'translation' ? COPY.exam[1] : COPY.dictation[1], pg.targetIds.map((id) =>
           pg.kind === 'translation'
-            ? { type: 'vocabulary_translation_exam', itemId: `exam-${id}`, targetId: id, prompt: translations.get(id)!.prompt, accepted: answers(id, translations.get(id)!.extraAnswers), answerExplanation: translations.get(id)!.answerExplanation }
+            ? { type: 'vocabulary_translation_exam', itemId: `exam-${id}`, targetId: id, prompt: translations.get(id)!.prompt, accepted: answers(id, translations.get(id)!.prompt), answerExplanation: translations.get(id)!.answerExplanation }
             : { type: 'vocabulary_listening_dictation', itemId: `dictation-${id}`, targetId: id, accepted: answers(id), answerExplanation: dictations.get(id)!.answerExplanation }), pg.timeLimitS))),
     ],
   };

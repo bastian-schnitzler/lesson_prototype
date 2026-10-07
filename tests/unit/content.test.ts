@@ -47,7 +47,7 @@ function sectionResponses(id: string): Record<string, unknown> {
       introduction: { groups: brief.groups.map((g: { id: string }) => ({ groupId: g.id, text: intro.text })) },
       words: { targets: brief.targets.map((t: { id: string }) => ({ targetId: t.id, matchingLabel: pairs.get(t.id)!.nativeLabel, matchingExplanation: pairs.get(t.id)!.answerExplanation, genderExplanation: rows.get(t.id)?.answerExplanation ?? null })) },
       practice: { typedGaps: of('vocabulary_typed_gap').map(({ itemId: _, type: __, ...gap }) => gap), listening: [] },
-      exam: { translation: of('vocabulary_translation_exam').map((it) => ({ targetId: it.targetId, prompt: it.prompt, extraAnswers: [], answerExplanation: it.answerExplanation })), dictation: [] },
+      exam: { translation: of('vocabulary_translation_exam').map((it) => ({ targetId: it.targetId, prompt: it.prompt, answerExplanation: it.answerExplanation })), dictation: [] },
     };
   }
   const steps = fixture('lessons', id).steps as { role: string; blockId: string | null; pages: { pageId: string; items: Item[] }[] }[];

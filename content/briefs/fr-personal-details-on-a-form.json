@@ -114,7 +114,6 @@
       "examForms": [
         "un nom"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -150,7 +149,6 @@
       "examForms": [
         "un prénom"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -186,7 +184,6 @@
       "examForms": [
         "une adresse"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -221,7 +218,6 @@
       "examForms": [
         "une date de naissance"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -256,7 +252,6 @@
       "examForms": [
         "un lieu de naissance"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -292,7 +287,6 @@
       "examForms": [
         "une nationalité"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -328,7 +322,6 @@
       "examForms": [
         "une profession"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -362,9 +355,6 @@
       "examForms": [
         "célibataire"
       ],
-      "acceptedVariants": [
-        "celibataire"
-      ],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
@@ -397,9 +387,6 @@
       "number": null,
       "teachingForm": "marié",
       "examForms": [
-        "marié"
-      ],
-      "acceptedVariants": [
         "marié"
       ],
       "accentSensitive": [
@@ -440,7 +427,6 @@
       "examForms": [
         "une signature"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],

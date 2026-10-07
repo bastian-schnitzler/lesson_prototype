@@ -104,7 +104,6 @@
       "examForms": [
         "un père"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -139,7 +138,6 @@
       "examForms": [
         "une mère"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -174,7 +172,6 @@
       "examForms": [
         "un frère"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -208,9 +205,6 @@
       "teachingForm": "une sœur",
       "examForms": [
         "une sœur"
-      ],
-      "acceptedVariants": [
-        "une soeur"
       ],
       "accentSensitive": [],
       "articleException": null,
@@ -246,7 +240,6 @@
       "examForms": [
         "un fils"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -281,7 +274,6 @@
       "examForms": [
         "une fille"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -316,9 +308,6 @@
       "examForms": [
         "un grand-père"
       ],
-      "acceptedVariants": [
-        "un grand pere"
-      ],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -352,9 +341,6 @@
       "teachingForm": "une grand-mère",
       "examForms": [
         "une grand-mère"
-      ],
-      "acceptedVariants": [
-        "une grand mere"
       ],
       "accentSensitive": [],
       "articleException": null,
@@ -391,7 +377,6 @@
       "examForms": [
         "un cousin"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
@@ -429,7 +414,6 @@
       "examForms": [
         "une cousine"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
@@ -466,7 +450,6 @@
       "examForms": [
         "un oncle"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -501,7 +484,6 @@
       "examForms": [
         "une tante"
       ],
-      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],

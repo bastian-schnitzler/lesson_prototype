@@ -1996,8 +1996,7 @@
               "targetId": "num-1",
               "accepted": {
                 "answers": [
-                  "un",
-                  "une"
+                  "un"
                 ],
                 "accentSensitive": []
               },
@@ -2437,8 +2436,7 @@
               "targetId": "num-1",
               "accepted": {
                 "answers": [
-                  "un",
-                  "une"
+                  "un"
                 ],
                 "accentSensitive": []
               },
@@ -2776,7 +2774,7 @@
     "generatedAt": "2026-10-06T22:13:22.000Z",
     "inputHashes": {
       "outline": "f5c2e26f0d49c85474c605075c68524cc8c43d498b7bbc757ed8b9fe4c45b346",
-      "brief": "8b7e33c5b465c86b5458716f17ba870ba836bf1143feb921387758a0dbca06ed"
+      "brief": "69ec061c644bc730a77dc55e1e9e276e20a4deb2db4eef4d771b82f71102b682"
     }
   }
 }

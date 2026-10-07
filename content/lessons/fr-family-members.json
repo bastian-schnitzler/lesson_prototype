@@ -1010,8 +1010,7 @@
               "targetId": "target-soeur",
               "accepted": {
                 "answers": [
-                  "une sœur",
-                  "une soeur"
+                  "une sœur"
                 ],
                 "accentSensitive": []
               },
@@ -1083,8 +1082,7 @@
               "targetId": "target-grand-pere",
               "accepted": {
                 "answers": [
-                  "un grand-père",
-                  "un grand pere"
+                  "un grand-père"
                 ],
                 "accentSensitive": []
               },
@@ -1104,8 +1102,7 @@
               "targetId": "target-grand-mere",
               "accepted": {
                 "answers": [
-                  "une grand-mère",
-                  "une grand mere"
+                  "une grand-mère"
                 ],
                 "accentSensitive": []
               },
@@ -1211,7 +1208,7 @@
     "generatedAt": "2026-10-06T22:13:22.000Z",
     "inputHashes": {
       "outline": "f8cc866f40b14d622bb256822a1e1952ddbe2530b844f4bb87364bbcd1cd1822",
-      "brief": "fcfc52704cbc04f02a99a440dae2a061ca8847d807096a13a70e1f05eb65fd3b"
+      "brief": "5b658c23225d5e4bcea6ae97075051c0574775dc171ea5fbcbd8dd6ce5c29416"
     }
   }
 }

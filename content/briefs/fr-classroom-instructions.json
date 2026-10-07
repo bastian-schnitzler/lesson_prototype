@@ -103,9 +103,6 @@
       "examForms": [
         "écoutez"
       ],
-      "acceptedVariants": [
-        "Écoutez"
-      ],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -138,9 +135,6 @@
       "teachingForm": "lisez",
       "examForms": [
         "lisez"
-      ],
-      "acceptedVariants": [
-        "Lisez"
       ],
       "accentSensitive": [],
       "articleException": null,
@@ -175,9 +169,6 @@
       "examForms": [
         "écrivez"
       ],
-      "acceptedVariants": [
-        "Écrivez"
-      ],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -210,9 +201,6 @@
       "teachingForm": "répétez",
       "examForms": [
         "répétez"
-      ],
-      "acceptedVariants": [
-        "Répétez"
       ],
       "accentSensitive": [],
       "articleException": null,
@@ -248,9 +236,6 @@
       "examForms": [
         "regardez"
       ],
-      "acceptedVariants": [
-        "Regardez"
-      ],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -284,9 +269,6 @@
       "teachingForm": "parlez",
       "examForms": [
         "parlez"
-      ],
-      "acceptedVariants": [
-        "Parlez"
       ],
       "accentSensitive": [],
       "articleException": null,
@@ -322,9 +304,6 @@
       "examForms": [
         "complétez"
       ],
-      "acceptedVariants": [
-        "Complétez"
-      ],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -359,9 +338,6 @@
       "examForms": [
         "cochez"
       ],
-      "acceptedVariants": [
-        "Cochez"
-      ],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -394,9 +370,6 @@
       "teachingForm": "ouvrez le livre",
       "examForms": [
         "ouvrez le livre"
-      ],
-      "acceptedVariants": [
-        "Ouvrez le livre"
       ],
       "accentSensitive": [],
       "articleException": null,
@@ -431,9 +404,6 @@
       "examForms": [
         "fermez le livre"
       ],
-      "acceptedVariants": [
-        "Fermez le livre"
-      ],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -466,9 +436,6 @@
       "teachingForm": "levez la main",
       "examForms": [
         "levez la main"
-      ],
-      "acceptedVariants": [
-        "Levez la main"
       ],
       "accentSensitive": [],
       "articleException": null,

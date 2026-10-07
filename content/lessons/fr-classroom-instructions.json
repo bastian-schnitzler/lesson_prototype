@@ -789,8 +789,7 @@
               "targetId": "target-ecoutez",
               "accepted": {
                 "answers": [
-                  "écoutez",
-                  "Écoutez"
+                  "écoutez"
                 ],
                 "accentSensitive": []
               },
@@ -810,8 +809,7 @@
               "targetId": "target-lisez",
               "accepted": {
                 "answers": [
-                  "lisez",
-                  "Lisez"
+                  "lisez"
                 ],
                 "accentSensitive": []
               },
@@ -831,8 +829,7 @@
               "targetId": "target-ecrivez",
               "accepted": {
                 "answers": [
-                  "écrivez",
-                  "Écrivez"
+                  "écrivez"
                 ],
                 "accentSensitive": []
               },
@@ -852,8 +849,7 @@
               "targetId": "target-repetez",
               "accepted": {
                 "answers": [
-                  "répétez",
-                  "Répétez"
+                  "répétez"
                 ],
                 "accentSensitive": []
               },
@@ -873,8 +869,7 @@
               "targetId": "target-regardez",
               "accepted": {
                 "answers": [
-                  "regardez",
-                  "Regardez"
+                  "regardez"
                 ],
                 "accentSensitive": []
               },
@@ -894,8 +889,7 @@
               "targetId": "target-parlez",
               "accepted": {
                 "answers": [
-                  "parlez",
-                  "Parlez"
+                  "parlez"
                 ],
                 "accentSensitive": []
               },
@@ -927,8 +921,7 @@
               "targetId": "target-completez",
               "accepted": {
                 "answers": [
-                  "complétez",
-                  "Complétez"
+                  "complétez"
                 ],
                 "accentSensitive": []
               },
@@ -948,8 +941,7 @@
               "targetId": "target-cochez",
               "accepted": {
                 "answers": [
-                  "cochez",
-                  "Cochez"
+                  "cochez"
                 ],
                 "accentSensitive": []
               },
@@ -969,8 +961,7 @@
               "targetId": "target-ouvrez-le-livre",
               "accepted": {
                 "answers": [
-                  "ouvrez le livre",
-                  "Ouvrez le livre"
+                  "ouvrez le livre"
                 ],
                 "accentSensitive": []
               },
@@ -990,8 +981,7 @@
               "targetId": "target-fermez-le-livre",
               "accepted": {
                 "answers": [
-                  "fermez le livre",
-                  "Fermez le livre"
+                  "fermez le livre"
                 ],
                 "accentSensitive": []
               },
@@ -1011,8 +1001,7 @@
               "targetId": "target-levez-la-main",
               "accepted": {
                 "answers": [
-                  "levez la main",
-                  "Levez la main"
+                  "levez la main"
                 ],
                 "accentSensitive": []
               },
@@ -1044,8 +1033,7 @@
               "targetId": "target-ecoutez",
               "accepted": {
                 "answers": [
-                  "écoutez",
-                  "Écoutez"
+                  "écoutez"
                 ],
                 "accentSensitive": []
               },
@@ -1061,8 +1049,7 @@
               "targetId": "target-ecrivez",
               "accepted": {
                 "answers": [
-                  "écrivez",
-                  "Écrivez"
+                  "écrivez"
                 ],
                 "accentSensitive": []
               },
@@ -1078,8 +1065,7 @@
               "targetId": "target-repetez",
               "accepted": {
                 "answers": [
-                  "répétez",
-                  "Répétez"
+                  "répétez"
                 ],
                 "accentSensitive": []
               },
@@ -1095,8 +1081,7 @@
               "targetId": "target-levez-la-main",
               "accepted": {
                 "answers": [
-                  "levez la main",
-                  "Levez la main"
+                  "levez la main"
                 ],
                 "accentSensitive": []
               },
@@ -1118,7 +1103,7 @@
     "generatedAt": "2026-10-06T22:13:22.000Z",
     "inputHashes": {
       "outline": "e59ae0fa961d6955e3408b36a8db08eb4d0a98bbca4e292eca36f60a4b3c75bd",
-      "brief": "73064f4f84f9f929a26ebf7ceb804924745cfe5b5cbf82a06b8b832d89585ed1"
+      "brief": "c92142625d92e1d2281282164b71f32ec7f93bbc791184e0895cf6aebe71e830"
     }
   }
 }

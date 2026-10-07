@@ -101,14 +101,18 @@ describe('brief validation', () => {
     expect(messages(checkContent('fr-classroom-instructions', (c) => practice(c)[2].items.push(practice(c)[0].items[0])))).toMatch(/listening-choice pages contain only listening-choice items/);
   });
 
-  it('enforces the French noun article policy in exam forms, variants, teaching forms and exceptions (D39)', () => {
+  it('enforces the French noun article policy in exam forms, teaching forms and exceptions (D39)', () => {
     const noun = (b: Json) => b.targets[0]; // un livre, masculine singular
     expect(messages(checkBrief('fr-classroom-objects', (b) => (noun(b).examForms = ['un livre', 'des livres'])))).toMatch(/"des livres" uses "des" but a singular masculine noun takes un/);
     expect(messages(checkBrief('fr-classroom-objects', (b) => (noun(b).examForms = ['une livre'])))).toMatch(/"une livre" uses "une"/);
-    expect(messages(checkBrief('fr-classroom-objects', (b) => (noun(b).acceptedVariants = ['livre'])))).toMatch(/"livre" must include the indefinite article/);
-    expect(messages(checkBrief('fr-classroom-objects', (b) => (noun(b).acceptedVariants = ['le livre'])))).toMatch(/"le livre" must include the indefinite article/);
     expect(messages(checkBrief('fr-classroom-objects', (b) => (noun(b).teachingForm = 'le livre')))).toMatch(/"le livre" must be one of the exam forms/);
     expect(messages(checkBrief('fr-classroom-objects', (b) => (noun(b).articleException = { en: 'x', fr: 'x', de: 'x' })))).toMatch(/remove the articleException/);
+  });
+
+  it('derives exam answers only from exam forms; extra accepted answers are rejected', () => {
+    const exam = (c: Json) => c.steps.find((st: Json) => st.stage === 'exam').pages[0].items[0];
+    expect(messages(checkContent('fr-classroom-objects', (c) => exam(c).accepted.answers.push('livre')))).toMatch(/accepted\.answers: must be exactly "un livre"/);
+    expect(messages(checkContent('fr-classroom-objects'))).toBe('');
   });
 
   it('requires listening when the intent asks for oral recognition', () => {

@@ -50,7 +50,6 @@ const targetSchema = (lang: string) =>
     teachingForm: LearningTextSchema,
     /** Full accepted exam answers, article included where required (D39). */
     examForms: z.array(LearningTextSchema).min(1).max(4),
-    acceptedVariants: z.array(LearningTextSchema).max(6),
     /** Words of the exam forms whose accents mark a different word (D40). */
     accentSensitive: z.array(LearningTextSchema).max(4),
     /** Why a noun has no indefinite-article form (proper names, set phrases…); null otherwise. */
