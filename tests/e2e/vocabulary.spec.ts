@@ -93,7 +93,7 @@ async function step(page: Page, data: ReturnType<typeof lessonData>, opts: Optio
     // Listening choice: play the word, then pick the option that says it.
     for (const unit of await page.locator('.units .unit:has(fieldset.choices)').all()) {
       const word = await heard(page, unit);
-      await unit.locator('fieldset.choices label').filter({ hasText: new RegExp(`^\\s*${escape(word)}\\s*$`) }).click();
+      await unit.locator('fieldset.choices label').filter({ has: page.locator('span[lang]', { hasText: new RegExp(`^\\s*${escape(word)}\\s*$`) }) }).click(); // the word, not its gender label
     }
     // Translation and dictation exam.
     for (const unit of await page.locator('.units .unit:has(.field)').all()) {

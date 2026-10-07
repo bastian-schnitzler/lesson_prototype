@@ -63,7 +63,7 @@ async function answerListening(page: Page, right = true) {
   await page.getByRole('button', { name: 'Listen' }).click();
   const word = await page.evaluate(() => (window as unknown as { __spoken: string[] }).__spoken.at(-1)!);
   for (const option of await page.locator('fieldset.choices label').all()) {
-    if (((await option.textContent())!.trim() === word) === right) { await option.click(); break; }
+    if (((await option.locator('span[lang]').textContent())!.trim() === word) === right) { await option.click(); break; }
   }
   await proceed(page);
   if (!right) {
@@ -295,7 +295,7 @@ test('plays French listening choice and dictation with a suitable voice', async 
     await page.getByRole('button', { name: 'Listen' }).click();
     const word = await page.evaluate(() => (window as unknown as { __spoken: string[] }).__spoken.at(-1)!);
     const options = page.locator('fieldset.choices label');
-    for (const option of await options.all()) if (((await option.textContent())!.trim() === word) === right) return option.click();
+    for (const option of await options.all()) if (((await option.locator('span[lang]').textContent())!.trim() === word) === right) return option.click();
   };
   await choose(false);
   await expect(page.locator('fieldset.choices .choice-gender')).toHaveCount(0); // fr-classroom-instructions has no nouns
