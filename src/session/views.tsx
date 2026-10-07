@@ -165,7 +165,7 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
         <div className="task-footer">
           {page.role === 'presentation' && !ready && <p className="muted">{t('session.revealAll')}</p>}
           <span className="continue-wrap">
-            <button type="button" className="button button-primary" disabled={!ready || celebrating} onClick={onContinue}>
+            <button type="button" className="button button-primary" disabled={!ready} aria-disabled={celebrating || undefined} onClick={() => !celebrating && onContinue()}>
               {t('session.continue')}
             </button>
           </span>
@@ -178,33 +178,34 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
 
 /* ------------------------------------------------------------- results */
 
-function ResultRow({ unit, locked, lang }: { unit: PlanUnit; locked: LockedUnit; lang: string }) {
+/**
+ * One reviewed mistake (results page, same style as matching corrections): the task, the correct
+ * answer in green with the learner's answer struck through in red directly below, an "almost" or
+ * timeout note, and the explanation. Fully correct answers are not listed.
+ */
+function ResultMistake({ unit, locked, lang }: { unit: PlanUnit; locked: LockedUnit; lang: string }) {
   const { t, locale } = useI18n();
   const prompt = [unit.prompt.native, unit.prompt.learning, unit.prompt.before !== undefined ? `${unit.prompt.before ?? ''} ____ ${unit.prompt.after ?? ''}` : undefined].find(Boolean) ?? t('session.typeWhatYouHear');
   const given = answerText(unit, locked.response, t);
   const correct = unit.answerLang === 'ui' ? t(unit.answer as MessageKey) : unit.answer;
-  const ok = locked.outcome === 'fully_correct';
   return (
-    <li className={`result-row outcome-${locked.outcome}`}>
-      <span className="result-icon" aria-hidden="true">{ok ? '✓' : locked.outcome === 'orthography_only' ? '!' : '✕'}</span>
-      <div>
-        <p lang={unit.prompt.native ? undefined : lang}>{prompt}</p>
-        <p>
-          <span className="label-muted">{t('result.yourAnswer')}</span>{' '}
-          <span className="given" lang={lang}>{given || t('result.noAnswer')}</span>
-        </p>
-        {!(ok && given === correct) && (
-          <p>
-            <span className="label-muted">{t('result.correctAnswer')}</span> <span className="answer" lang={unit.answerLang === 'learning' ? lang : undefined}>{correct}</span>
-            {unit.form && <span lang={lang}> · {unit.form}</span>}
-          </p>
-        )}
-        <p className="result-class">
-          {t(`outcome.${locked.outcome}`)} · {t('result.points', { earned: locked.points, possible: 1 })}
-        </p>
-        {locked.timedOut && <p className="muted">{t('result.timedOut')}</p>}
-        {!ok && <p className="explanation">{unit.explanation[locale]}</p>}
+    <li className={`outcome-${locked.outcome}`}>
+      <div className="result-fix">
+        <span className="result-prompt" lang={unit.prompt.native ? undefined : lang}>{prompt}</span>
+        <span className="match-arrow" aria-hidden="true">→</span>
+        <strong className="match-right">
+          <span className="visually-hidden">{t('result.correctAnswer')}: </span><span lang={unit.answerLang === 'learning' ? lang : undefined}>{correct}</span>
+          {unit.form && <span lang={lang}> · {unit.form}</span>}
+        </strong>
+        <span className="match-wrong"><span className="visually-hidden">{t('result.yourAnswer')}: </span><s lang={lang}>{given || t('result.noAnswer')}</s></span>
       </div>
+      {(locked.outcome === 'orthography_only' || locked.timedOut) && (
+        <p className="result-notes">
+          {locked.outcome === 'orthography_only' && <span className="result-note result-note-almost">{t('feedback.almost')}</span>}
+          {locked.timedOut && <span className="result-note">{t('result.timedOut')}</span>}
+        </p>
+      )}
+      <p className="muted">{unit.explanation[locale]}</p>
     </li>
   );
 }
@@ -243,23 +244,33 @@ export function ResultsView({ plan, record, dispatch }: { plan: LessonPlan; reco
       <h2 className="small-heading">{t('result.chooseReview')}</h2>
       <div className="result-menu" role="group" aria-label={t('result.chooseReview')}>
         <button type="button" className="button button-outline" aria-pressed={record.selection === 'exam'} onClick={() => dispatch({ type: 'select', selection: 'exam' })}>
-          {t('result.examButton', { earned: pts(examTally.earned), possible: examTally.possible })}
+          {t('session.examPage')}
         </button>
         {results.steps.filter((s) => s.role !== 'exam' && (s.role === 'presentation' || s.tally.possible > 0) && plan.steps.find((p) => p.stepId === s.stepId)).map((s) => {
           const label = plan.steps.find((p) => p.stepId === s.stepId)!.label[locale];
           return (
             <button key={s.stepId} type="button" className="button button-outline" aria-pressed={record.selection === s.stepId} onClick={() => dispatch({ type: 'select', selection: s.stepId })}>
-              {s.role === 'practice' ? `${label} ${pts(s.tally.earned)} / ${s.tally.possible}` : t('result.completed', { label })}
+              {s.role === 'practice' ? label : t('result.completed', { label })}
             </button>
           );
         })}
       </div>
       <h2 className="small-heading">{selectedStep ? selectedStep.label[locale] : t('result.examAnswers')}</h2>
-      {units.length ? (
-        <ul className="result-list">
-          {units.map((u) => record.locked[u.id] && <ResultRow key={u.id} unit={u} locked={record.locked[u.id]} lang={plan.lang} />)}
-        </ul>
-      ) : (
+      {units.length ? (() => {
+        const reviewed = units.filter((u) => record.locked[u.id]);
+        const mistakes = reviewed.filter((u) => record.locked[u.id].outcome !== 'fully_correct');
+        return (
+          <>
+            <p className="match-summary">
+              <strong>{t('result.summary', { correct: reviewed.length - mistakes.length, total: reviewed.length })}</strong>
+              {mistakes.length > 0 ? <> {t('session.matchReview')}</> : <> {t('result.noMistakes')}</>}
+            </p>
+            <ul className="match-corrections result-list">
+              {mistakes.map((u) => <ResultMistake key={u.id} unit={u} locked={record.locked[u.id]} lang={plan.lang} />)}
+            </ul>
+          </>
+        );
+      })() : (
         <p className="muted">{t('result.completionOnly')}</p>
       )}
     </section>

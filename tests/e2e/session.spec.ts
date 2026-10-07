@@ -89,9 +89,14 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   await proceed(page);
 
   await expect(page.getByRole('heading', { name: 'Your exam answers' })).toBeVisible();
-  await expect(page.getByText('Accent / case correction', { exact: false })).toHaveCount(0);
+  await expect(page.locator('.result-note-almost')).toHaveCount(0);
+  await expect(page.locator('.result-list')).not.toContainText(/\d \/ 1/); // no point fractions in the review
   await page.getByRole('button', { name: /^Typed gaps/ }).click();
-  await expect(page.getByText('Accent / case correction · 0.5 / 1')).toBeVisible();
+  // Only mistakes are listed; the capitalised "Chaise" is an "almost" with half a point.
+  await expect(page.locator('.result-note-almost')).toBeVisible();
+  await expect(page.locator('.match-summary')).toContainText(/of 4 correct\./);
+  const listed = await page.locator('.result-list > li').count();
+  expect(listed).toBeLessThan(4 + 1);
   await page.getByRole('link', { name: 'Lesson overview' }).click();
   await expect(page.locator('tr[data-lesson-id="fr-classroom-objects"] .score')).not.toBeEmpty();
 });
@@ -192,8 +197,9 @@ test('plays French listening choice and dictation with a suitable voice', async 
   await page.getByRole('textbox').last().fill(await heard(1));
   await proceed(page);
   await expect(page.getByRole('heading', { name: 'Your exam answers' })).toBeVisible();
-  await expect(page.getByText('Accent / case correction · 0.5 / 1')).toBeVisible();
-  await expect(page.locator('.result-row').last()).toContainText('Fully correct');
+  // The capitalised dictation answer is listed as "almost" (half a point); the exact one is not listed.
+  await expect(page.locator('.result-list > li.outcome-orthography_only')).toHaveCount(1);
+  await expect(page.locator('.result-note-almost')).toBeVisible();
 });
 
 test('replaces voice-less listening pages with help and excludes skips from scores', async ({ page }) => {
@@ -217,7 +223,7 @@ test('replaces voice-less listening pages with help and excludes skips from scor
   await page.getByRole('button', { name: 'Skip listening task' }).click();
   await expect(page.getByRole('heading', { name: 'Your exam answers' })).toBeVisible();
   await expect(page.locator('.summary-card')).toContainText(/Final exam: [0-4] \/ 4/);
-  expect(await page.locator('.result-row').count()).toBe(4);
+  await expect(page.locator('.match-summary')).toContainText(/of 4 correct\./); // skipped listening items are not counted
 });
 
 test('replaces a revealed flashcard Listen button with Install language, which opens the help dialog', async ({ page }) => {
