@@ -135,7 +135,6 @@ export function PronounMatchRenderer(props: RendererProps) {
     action();
   };
 
-  const filled = rows.filter((u) => responseOf(props, u.id)).length;
   const right = rows.filter((u) => props.locked[u.id]?.outcome === 'fully_correct').length;
   return (
     <div className={`pronoun-match${drag ? ' is-dragging' : ''}`}>
@@ -164,7 +163,7 @@ export function PronounMatchRenderer(props: RendererProps) {
                 aria-pressed={selected?.kind === 'row' && selected.id === u.id}
                 aria-label={tokenId ? t('session.slotFilled', { pronoun: u.prompt.learning ?? '', form: textOf(tokenId) }) : t('session.slotEmpty', { pronoun: u.prompt.learning ?? '' })}
                 onClick={unlessDragged(() => clickRow(u.id))} {...(tokenId ? dragHandlers(tokenId, u.id) : {})}>
-                {tokenId ? <span className="token token-placed form-token" lang={plan.lang}>{textOf(tokenId)}</span> : <span className="muted">{t('session.dropForm')}</span>}
+                {tokenId ? <span className="form-placed" lang={plan.lang}>{textOf(tokenId)}</span> : <span className="muted">{t('session.dropForm')}</span>}
               </button>
               {outcome && outcome !== 'fully_correct' && (
                 <>
@@ -178,7 +177,7 @@ export function PronounMatchRenderer(props: RendererProps) {
       </ul>
       {!checked && (
         <p className="muted" aria-live="polite">
-          {selected?.kind === 'token' ? t('session.matchSelected', { item: textOf(selected.id) }) : ''} {t('session.rowsFilled', { n: filled, total: rows.length })}
+          {selected?.kind === 'token' ? t('session.matchSelected', { item: textOf(selected.id) }) : ''}
         </p>
       )}
       {drag && <span className="token form-token drag-ghost" lang={plan.lang} style={{ left: drag.x, top: drag.y }} aria-hidden="true">{textOf(drag.tokenId)}</span>}

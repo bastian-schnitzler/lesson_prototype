@@ -478,12 +478,13 @@ test('pronoun/form matching by drag and drop and by clicks, with per-row checks 
   await drag(bank.getByRole('button', { name: 'suis' }), slot('je'));
   await expect(slot('je')).toHaveText('suis');
   await expect(bank.getByRole('button', { name: 'suis' })).toHaveCount(0);
-  await drag(slot('je').locator('.token'), slot('tu'));
+  await drag(slot('je').locator('.form-placed'), slot('tu'));
   await expect(slot('tu')).toHaveText('suis');
   await expect(slot('je')).toHaveText('Choose a form');
-  await drag(slot('tu').locator('.token'), bank);
+  await drag(slot('tu').locator('.form-placed'), bank);
   await expect(bank.getByRole('button', { name: 'suis' })).toBeVisible();
-  await expect(page.getByText('0 of 3 rows filled.')).toBeVisible();
+  await expect(slot('tu')).toHaveText('Choose a form');
+  await expect(page.locator('.form-slot .token')).toHaveCount(0); // a placed form has no token frame
   // Click alternative: a form, then its row; a row, then its form.
   await drag(bank.getByRole('button', { name: 'suis' }), slot('je'));
   await bank.getByRole('button', { name: 'est' }).click();

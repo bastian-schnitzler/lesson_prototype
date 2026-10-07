@@ -42,7 +42,7 @@ describe('pronoun/form matching (P3-02)', () => {
     expect(screen.getAllByRole('listitem')).toHaveLength(3);
     expect(bank().getAllByRole('button').map((b) => b.textContent).sort()).toEqual(['es', 'est', 'suis']);
     expect(screen.getByRole('button', { name: 'je: no form yet' })).toBeInTheDocument();
-    expect(screen.getByText('0 of 3 rows filled.')).toBeInTheDocument();
+    expect(screen.queryByText(/rows filled/)).toBeNull();
   });
 
   it('places a selected form in a row, or a selected row receives a form', () => {

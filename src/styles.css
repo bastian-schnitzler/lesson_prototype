@@ -2203,7 +2203,13 @@ html {
   box-shadow: 0 0 0 1px var(--incorrect);
 }
 
-.form-slot.is-wrong .token {
+.form-slot .form-placed {
+  /* One form per row: the placed form is plain text in the slot, without a token frame. */
+  touch-action: none;
+  cursor: grab;
+}
+
+.form-slot.is-wrong .form-placed {
   color: var(--incorrect);
   text-decoration: line-through;
 }
