@@ -8,7 +8,7 @@ import { buildPlan, type PlanPage, type PlanUnit } from '../../src/domain/sessio
 import { scoreUnit, type LockedUnit } from '../../src/domain/session/session.ts';
 import { PronounMatchRenderer, PronounTypingRenderer } from '../../src/session/grammarRenderers.tsx';
 import { checkedOrder, MatchingRenderer } from '../../src/session/vocabularyRenderers.tsx';
-import { StartView } from '../../src/session/views.tsx';
+import { promptParts, StartView } from '../../src/session/views.tsx';
 import { skipsFeedbackWhenCorrect } from '../../src/domain/session/session.ts';
 import type { RendererProps } from '../../src/session/controls.tsx';
 
@@ -226,5 +226,25 @@ describe('P3-02 review: final full stops and one-row matching', () => {
     expect(screen.queryByRole('group', { name: 'Available forms' })).toBeNull();
     expect(container.querySelector('.gap-sentence')).toHaveTextContent(`${page.units[0].prompt.learning} ____`);
     expect(screen.getAllByRole('radio')).toHaveLength(4);
+  });
+});
+
+describe('results task columns (P3-02 review)', () => {
+  const t = (key: string) => (key === 'session.typeWhatYouHear' ? 'Write what you hear' : key);
+  const CONTENT = resolve(import.meta.dirname, '../../content');
+  const sample = (id: string) => buildPlan(lessonOf(CONTENT, id), JSON.parse(readFileSync(join(CONTENT, 'briefs', `${id}.json`), 'utf8')), 'en');
+
+  it('gives word order no task text instead of "Write what you hear"', () => {
+    const units = sample('fr-negation-ne-pas').pages.flatMap((p) => p.units);
+    for (const u of units.filter((x) => x.kind === 'order')) expect(promptParts(u, t as never)).toEqual([]);
+    expect(units.flatMap((u) => promptParts(u, t as never))).not.toContain('Write what you hear');
+  });
+
+  it('splits a task at its arrows and keeps "Write what you hear" for dictation', () => {
+    const plurals = sample('fr-regular-noun-plurals').pages.flatMap((p) => p.units);
+    expect(plurals.some((u) => promptParts(u, t as never).length === 2)).toBe(true);
+    const dictation = buildPlan(lessonOf(FIXTURES, 'fr-classroom-objects'), JSON.parse(readFileSync(join(FIXTURES, 'briefs', 'fr-classroom-objects.json'), 'utf8')), 'en')
+      .pages.flatMap((p) => p.units).find((u) => u.itemType === 'vocabulary_listening_dictation')!;
+    expect(promptParts(dictation, t as never)).toEqual(['Write what you hear']);
   });
 });

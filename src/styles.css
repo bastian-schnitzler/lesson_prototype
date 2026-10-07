@@ -1742,6 +1742,11 @@ select {
     column-gap: 0.6rem;
   }
 
+  /* Lists without task text (word order): the answer follows the icon directly. */
+  .result-list.no-prompt {
+    grid-template-columns: 1.5rem minmax(0, 1fr);
+  }
+
   .result-list .result-item,
   .result-list .result-body,
   .result-list .result-fix {
