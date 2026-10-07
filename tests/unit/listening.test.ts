@@ -21,7 +21,9 @@ const answer = (record: SessionRecord) => {
 const advanceTo = (record: SessionRecord, wanted: (record: SessionRecord) => boolean) => {
   let next = record;
   while (!wanted(next)) {
-    if (next.phase === 'answering' && plan.pages[next.pageIndex].role === 'practice') next = answer(next);
+    const page = plan.pages[next.pageIndex];
+    if (next.phase === 'answering' && page.role === 'practice') next = answer(next);
+    for (const item of page.items) if (item.type === 'vocabulary_flashcards') for (const key of item.targetIds) next = sessionReducer(plan, next, { type: 'reveal', itemKey: `${page.pageId}/${item.itemId}`, key, now: 0 });
     next = apply(next, 'continue');
   }
   return next;

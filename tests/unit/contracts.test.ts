@@ -3,7 +3,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { buildPlan, type LessonPlan, type PlanUnit } from '../../src/domain/session/plan.ts';
-import { isListeningPage, lessonResults, progress, scoreUnit, sessionReducer, startSession, type UnitResponse } from '../../src/domain/session/session.ts';
+import { isListeningPage, lessonResults, progress, scoreUnit, sessionReducer, startSession, type SessionRecord, type UnitResponse } from '../../src/domain/session/session.ts';
 import { briefSchema, contentSchema } from '../../src/schemas/artifacts.ts';
 import { rendererRegistry } from '../../src/session/renderers.tsx';
 
@@ -21,6 +21,13 @@ const planOf = (id: string, motherTongue: 'en' | 'de') => {
 const key = (u: PlanUnit): UnitResponse =>
   u.kind === 'text' ? u.accepted.answers[0] : u.kind === 'choice' ? u.correct[0] : u.kind === 'order' ? u.acceptedOrders[0] : { tokenId: u.faultyTokenId, text: u.correction.accepted.answers[0] };
 
+/** Reveals every flashcard of the active page, as a learner must before Continue (P2-02). */
+function revealPage(plan: LessonPlan, r: SessionRecord): SessionRecord {
+  const page = plan.pages[r.pageIndex];
+  for (const item of page.items) if (item.type === 'vocabulary_flashcards') for (const key of item.targetIds) r = sessionReducer(plan, r, { type: 'reveal', itemKey: `${page.pageId}/${item.itemId}`, key, now: 0 });
+  return r;
+}
+
 /** A wrong but complete response; practice Continue requires every unit to be answered. */
 const wrong = (u: PlanUnit): UnitResponse =>
   u.kind === 'text' ? 'zzz' : u.kind === 'choice' ? u.options.find((o) => !u.correct.includes(o.id))!.id
@@ -37,6 +44,7 @@ function play(plan: LessonPlan, respond: (u: PlanUnit, role: string) => UnitResp
       if (response !== undefined) r = sessionReducer(plan, r, { type: 'draft', unitId: u.id, response, now: 0 });
     }
     if (isListeningPage(page)) r = sessionReducer(plan, r, { type: 'voice_ready', now: 0 });
+    r = revealPage(plan, r);
     const next = sessionReducer(plan, r, { type: 'continue', now: 1, interfaceLanguage: 'en' });
     if (next === r) throw new Error(`Continue is blocked on ${page.pageId}`);
     r = next;

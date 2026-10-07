@@ -15,7 +15,10 @@ function setup(id = VOC) {
   let record = startSession(plan, { sessionId: 's1', contentHash: 'h', level: 'A1', motherTongue: 'en', seed: 7, now: 0 });
   const act = (action: SessionAction) => (record = sessionReducer(plan, record, action));
   const page = () => plan.pages[record.pageIndex];
-  const proceed = (now = 0) => act({ type: 'continue', now, interfaceLanguage: 'en' });
+  const proceed = (now = 0) => {
+    for (const item of page().items) if (item.type === 'vocabulary_flashcards') for (const key of item.targetIds) act({ type: 'reveal', itemKey: `${page().pageId}/${item.itemId}`, key, now });
+    return act({ type: 'continue', now, interfaceLanguage: 'en' });
+  };
   /** Answers every unit of the current page correctly (or with `answer`). */
   const answerAll = (answer?: (unitId: string) => unknown, now = 0) => {
     for (const u of page().units) {

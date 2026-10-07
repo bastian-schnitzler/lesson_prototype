@@ -59,11 +59,11 @@ it('keeps German sentences grammatical for an unknown browser', () => {
 
 it('replaces Listen with an Install language button that opens the help dialog when no voice exists', () => {
   const item = { type: 'vocabulary_flashcards', itemId: 'f', targetIds: ['t'] };
-  const plan = { lang: 'fr', targets: new Map([['t', { id: 't', teachingForm: 'la lettre', translations: { en: ['letter'] }, genders: ['feminine'] }]]) };
+  const plan = { lang: 'fr', targets: new Map([['t', { id: 't', teachingForm: 'la lettre', translations: { en: ['letter'] }, genders: ['feminine'], context: { sentence: 'Une lettre.', translation: { en: 'A letter.' } } }]]) };
   const Renderer = rendererRegistry.vocabulary_flashcards;
   render(<PreferencesProvider initial={{ interfaceLanguage: 'en', motherTongue: 'en' }}>
     {/* @ts-expect-error minimal plan and item for the flashcard renderer */}
-    <Renderer item={item} units={[]} plan={plan} mode="answering" drafts={{}} locked={{}} onChange={() => undefined} seed={1} motherTongue="en" />
+    <Renderer item={item} units={[]} plan={plan} mode="answering" drafts={{}} locked={{}} onChange={() => undefined} seed={1} motherTongue="en" pageId="p" revealed={{ 'p/f': ['t'] }} onReveal={() => undefined} />
   </PreferencesProvider>);
   expect(screen.queryByRole('button', { name: 'Listen' })).toBeNull();
   fireEvent.click(screen.getByRole('button', { name: 'Install language' }));

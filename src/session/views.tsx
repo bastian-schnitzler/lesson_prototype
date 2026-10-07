@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 import { useI18n, useLastTry } from '../app/context.tsx';
 import { formatScore, roundHalfUp1 } from '../domain/format.ts';
 import type { LessonPlan, PlanUnit } from '../domain/session/plan.ts';
-import { headerScore, isAnswered, isListeningPage, lessonResults, POLICY, progress, type LockedUnit, type SessionRecord, type UnitResponse } from '../domain/session/session.ts';
+import { headerScore, isAnswered, isListeningPage, presentationComplete, lessonResults, POLICY, progress, type LockedUnit, type SessionRecord, type UnitResponse } from '../domain/session/session.ts';
 import type { MessageKey } from '../i18n/messages.ts';
 import { rendererRegistry, UnitFeedback } from './renderers.tsx';
 import type { SessionInput } from './useSession.ts';
@@ -103,7 +103,7 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
     if (needsVoice && page.role === 'exam' && voiceStatus === 'available') dispatch({ type: 'voice_ready' });
   }, [needsVoice, page.pageId, page.role, voiceStatus, dispatch]);
   const mode = page.role === 'exam' ? 'exam' : record.phase === 'feedback' ? 'feedback' : 'answering';
-  const ready = page.role !== 'practice' || record.phase === 'feedback' || page.units.every((u) => isAnswered(u, record.drafts[u.id]));
+  const ready = page.role === 'presentation' ? presentationComplete(page, record) : page.role !== 'practice' || record.phase === 'feedback' || page.units.every((u) => isAnswered(u, record.drafts[u.id]));
   const heading = useRef<HTMLHeadingElement>(null);
   useEffect(() => heading.current?.focus(), [record.pageIndex]);
 
@@ -139,11 +139,15 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
               onChange={(unitId, response) => dispatch({ type: 'draft', unitId, response })}
               seed={record.seed}
               motherTongue={record.motherTongue}
+              pageId={page.pageId}
+              revealed={record.revealed ?? {}}
+              onReveal={(itemKey, key) => dispatch({ type: 'reveal', itemKey, key })}
             />
           );
         })}
         <div className="task-footer">
           {page.role === 'practice' && !ready && <p className="muted">{t('session.answerAll')}</p>}
+          {page.role === 'presentation' && !ready && <p className="muted">{t('session.revealAll')}</p>}
           <button type="button" className="button button-primary" disabled={!ready} onClick={() => dispatch({ type: 'continue' })}>
             {t('session.continue')}
           </button>

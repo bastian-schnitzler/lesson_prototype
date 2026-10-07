@@ -982,17 +982,122 @@ select {
   border-radius: var(--radius-card);
 }
 
-.flashcards {
+.flashcard-deck {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.flashcard {
   display: grid;
   gap: 0.5rem;
+  justify-items: start;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-card);
+  background: var(--bg);
+}
+
+.flashcard-revealed {
+  border-color: var(--indigo);
+}
+
+.flashcard p {
+  margin: 0;
+}
+
+.flashcard-side {
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.flashcard-meaning,
+.flashcard-form {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.flashcard-form {
+  color: #c7d2fe;
+}
+
+.flashcard-back {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: start;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+  width: 100%;
+}
+
+.flashcard-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.matching-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem 1.5rem;
+}
+
+.match-item small {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.matching-columns ul {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.flashcards details {
-  padding: 0.75rem 1rem;
+.match-item {
+  width: 100%;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
   border: 1px solid var(--border-strong);
   border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  text-align: left;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+}
+
+.match-item:hover {
+  border-color: var(--focus);
+}
+
+.match-item[aria-pressed='true'] {
+  border-color: var(--indigo);
+  background: #1e1b4b;
+}
+
+.pair-badge {
+  min-width: 1.6rem;
+  height: 1.6rem;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--indigo);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.match-result {
+  margin: 0;
 }
 
 .total-score {
@@ -1046,6 +1151,10 @@ select {
 }
 
 @media (max-width: 600px) {
+  .matching-columns {
+    gap: 0.5rem;
+  }
+
   .stage-list li {
     flex-wrap: wrap;
     row-gap: 0;

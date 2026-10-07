@@ -7,6 +7,27 @@ test.beforeEach(async ({ page }) => {
 
 const proceed = (page: Page) => page.getByRole('button', { name: 'Continue' }).click();
 
+/** Reveals every flashcard of the current page, card by card. */
+async function revealCards(page: Page) {
+  for (;;) {
+    const reveal = page.getByRole('button', { name: 'Reveal French' });
+    if (await reveal.count()) await reveal.click();
+    const next = page.getByRole('button', { name: 'Next card' });
+    if (!(await next.count()) || (await next.isDisabled())) break;
+    await next.click();
+  }
+}
+
+/** Pairs the n-th mother-tongue item with the n-th French item (shuffled, so some pairs are wrong). */
+async function matchAll(page: Page) {
+  const native = page.locator('.matching-columns ul').first().getByRole('button');
+  const french = page.locator('.matching-columns ul').last().getByRole('button');
+  for (let i = 0; i < (await french.count()); i++) {
+    await native.nth(i).click();
+    await french.nth(i).click();
+  }
+}
+
 /** Selects the first offered option in every select of the current page. */
 async function chooseAll(page: Page) {
   for (const select of await page.locator('.task-card select:not([disabled])').all()) await select.selectOption({ index: 1 });
@@ -17,12 +38,14 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   await expect(page.getByRole('heading', { level: 1, name: 'Les objets de la classe' })).toBeVisible();
   await proceed(page); // start
   await proceed(page); // introduction
+  await expect(page.getByRole('button', { name: 'Continue' })).toBeDisabled(); // flashcards not yet revealed
+  await revealCards(page);
   await proceed(page); // flashcards
   await expect(page.getByRole('button', { name: 'Continue' })).toBeDisabled();
-  await chooseAll(page);
+  await matchAll(page);
   await proceed(page);
   await expect(page.getByText(/Fully correct|Incorrect/).first()).toBeVisible();
-  await expect(page.locator('.task-card select').first()).toBeDisabled();
+  await expect(page.locator('.matching-columns')).toHaveCount(0); // locked pairs show results only
   await proceed(page);
 
   await page.reload();
@@ -104,8 +127,9 @@ async function reachListeningPractice(page: Page) {
   await page.goto('./#/lesson/fr-classroom-instructions/play');
   await proceed(page); // start
   await proceed(page); // introduction
+  await revealCards(page);
   await proceed(page); // flashcards
-  await chooseAll(page); // matching
+  await matchAll(page); // matching
   await proceed(page);
   await proceed(page); // matching feedback
   await proceed(page); // overview
@@ -174,12 +198,12 @@ test('replaces voice-less listening pages with help and excludes skips from scor
   expect(await page.locator('.result-row').count()).toBe(4);
 });
 
-test('replaces a flashcard Listen button with Install language, which opens the help dialog', async ({ page }) => {
+test('replaces a revealed flashcard Listen button with Install language, which opens the help dialog', async ({ page }) => {
   await mockFrenchVoice(page, false);
   await page.goto('./#/lesson/fr-classroom-instructions/play');
   await proceed(page); // start
   await proceed(page); // introduction
-  await page.locator('.task-card summary').first().click();
+  await page.getByRole('button', { name: 'Reveal French' }).click();
   await expect(page.getByRole('button', { name: 'Listen' })).toHaveCount(0);
   await page.getByRole('button', { name: 'Install language' }).first().click();
   const dialog = page.getByRole('dialog', { name: 'French voice not installed' });
@@ -190,4 +214,52 @@ test('replaces a flashcard Listen button with Install language, which opens the 
   await page.getByRole('button', { name: 'Install language' }).first().click();
   await dialog.getByRole('button', { name: 'Close' }).click();
   await expect(dialog).toBeHidden();
+});
+
+test('flashcards hide the French form until revealed and keep revealed cards after a reload', async ({ page }) => {
+  await page.goto('./#/lesson/fr-classroom-objects/play');
+  await proceed(page); // start
+  await proceed(page); // introduction
+  const card = page.locator('.flashcard');
+  await expect(card).toContainText('book');
+  await expect(card).not.toContainText('un livre');
+  await expect(page.getByText('Reveal every card to continue.')).toBeVisible();
+  await page.getByRole('button', { name: 'Reveal French' }).click();
+  await expect(card.locator('[lang="fr"]').first()).toHaveText('un livre');
+  await expect(card).toContainText('Masculine');
+  await page.reload();
+  await page.getByRole('button', { name: 'Resume lesson' }).click();
+  await expect(page.getByText('Card 1 of 4 · 1 of 4 revealed')).toBeVisible();
+  await expect(page.locator('.flashcard')).toContainText('un livre');
+});
+
+test('matching pairs by keyboard, lets a pair be reassigned and locks it with feedback', async ({ page }) => {
+  await page.goto('./#/lesson/fr-classroom-objects/play');
+  await proceed(page); // start
+  await proceed(page); // introduction
+  await revealCards(page);
+  await proceed(page); // flashcards
+  const native = page.locator('.matching-columns ul').first().getByRole('button');
+  const french = page.locator('.matching-columns ul').last().getByRole('button');
+  // Keyboard: focus an English word, press Enter, focus a French form, press Space.
+  const book = native.filter({ hasText: 'book' });
+  await book.focus();
+  await page.keyboard.press('Enter');
+  await expect(book).toHaveAttribute('aria-pressed', 'true');
+  const wrong = french.filter({ hasText: 'une chaise' });
+  await wrong.focus();
+  await page.keyboard.press('Space');
+  await expect(page.getByText('1 of 4 pairs assigned.')).toBeVisible();
+  // Reassign: pairing "book" with un livre moves it away from une chaise.
+  await book.click();
+  await french.filter({ hasText: 'un livre' }).click();
+  await expect(french.filter({ hasText: 'une chaise' }).locator('.pair-badge')).toHaveCount(0);
+  await expect(page.getByText('1 of 4 pairs assigned.')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Continue' })).toBeDisabled();
+  for (const [en, fr] of [['chair', 'une chaise'], ['pen', 'un stylo'], ['table', 'une table']]) {
+    await native.filter({ hasText: en }).click();
+    await french.filter({ hasText: fr }).click();
+  }
+  await proceed(page);
+  await expect(page.getByText(/Fully correct/)).toHaveCount(4);
 });

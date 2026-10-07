@@ -112,6 +112,11 @@ function activate(plan: LessonPlan, r: SessionRecord, now: number): SessionRecor
   return { ...r, exam: { ...r.exam, [page.pageId]: { startedAt: now, deadline: now + (page.timeLimitS ?? 0) * 1000, timedOut: false } } };
 }
 
+/** Flashcard pages complete once every card was revealed (P2-02); other presentation pages at once. */
+export function presentationComplete(page: PlanPage, r: Pick<SessionRecord, 'revealed'>): boolean {
+  return page.items.every((item) => item.type !== 'vocabulary_flashcards' || item.targetIds.every((id) => (r.revealed?.[`${page.pageId}/${item.itemId}`] ?? []).includes(id)));
+}
+
 export function isListeningPage(page: PlanPage): boolean {
   return page.units.length > 0 && page.units.every((u) => u.itemType === 'vocabulary_listening_choice' || u.itemType === 'vocabulary_listening_dictation');
 }
@@ -169,7 +174,10 @@ export function sessionReducer(plan: LessonPlan, r: SessionRecord, action: Sessi
       next = advance(plan, { ...lockPage(page, r, action.interfaceLanguage, true), exam: { ...r.exam, [page.pageId]: { ...r.exam[page.pageId], timedOut: true } } }, now);
       break;
     case 'continue':
-      if (page.role === 'presentation') next = advance(plan, r, now);
+      if (page.role === 'presentation') {
+        if (!presentationComplete(page, r)) return r;
+        next = advance(plan, r, now);
+      }
       else if (page.role === 'exam') {
         if (isListeningPage(page) && deadline === undefined) return r;
         if (expired) return sessionReducer(plan, r, { type: 'expire', now, interfaceLanguage: action.interfaceLanguage });

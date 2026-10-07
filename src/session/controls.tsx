@@ -24,6 +24,11 @@ export interface RendererProps {
   onChange: (unitId: string, response: UnitResponse) => void;
   seed: number;
   motherTongue: Locale;
+  /** Page of the item, so presentation progress can be keyed as `${pageId}/${itemId}`. */
+  pageId: string;
+  /** Revealed presentation keys (flashcards) per item key; stored in the session for resume. */
+  revealed: Record<string, string[]>;
+  onReveal: (itemKey: string, key: string) => void;
 }
 
 /* ---------------------------------------------------------------- helpers */
