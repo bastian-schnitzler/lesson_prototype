@@ -28,7 +28,7 @@ These issue bodies were published to GitHub in P0-04 on 2026-10-06. Each GitHub 
 | P2-02 | [#22](https://github.com/bastian-schnitzler/lesson_prototype/issues/22) | Implement vocabulary introduction, flashcards, and matching |
 | P2-03 | [#23](https://github.com/bastian-schnitzler/lesson_prototype/issues/23) | Implement noun-gender overview, typed gaps, and translation exam |
 | P2-04 | [#24](https://github.com/bastian-schnitzler/lesson_prototype/issues/24) | Integrate complete vocabulary sessions and end-to-end validation |
-| P2-05 | [#25](https://github.com/bastian-schnitzler/lesson_prototype/issues/25) | Update vocabulary lesson mockups from the prototype |
+| P2-06 | [#25](https://github.com/bastian-schnitzler/lesson_prototype/issues/25) | Update vocabulary lesson mockups from the prototype |
 | P3-01 | [#26](https://github.com/bastian-schnitzler/lesson_prototype/issues/26) | Review grammar renderer composition and mixed exam support |
 | P3-02 | [#27](https://github.com/bastian-schnitzler/lesson_prototype/issues/27) | Implement pronoun/form matching and typing with tests |
 | P3-03 | [#28](https://github.com/bastian-schnitzler/lesson_prototype/issues/28) | Implement multiple-choice gaps and exact-typing phrase gaps |
@@ -520,7 +520,51 @@ Acceptance:
 
 Dependencies: P2-03, P1-02.
 
-### P2-05: Update vocabulary lesson mockups from the prototype
+### P2-05: Deliver formatted introduction and explanation text from generation
+
+Milestone: **Phase 2**.
+
+Scope: vocabulary `vocabulary_introduction.text` and grammar `grammar_explanation.text` are currently unformatted plain text. They render as one dense paragraph in lessons and previews and are hard to read. The generating LLM should deliver this text already formatted, for example as Markdown, and the app should render the formatting. This issue starts with a short design brainstorm, records the decision in SPEC, then implements it and brings the existing briefs and lessons up to date.
+
+Brainstorm (decide and record in SPEC before implementing):
+
+- **Format options:**
+  - (a) A restricted Markdown subset: paragraphs, line breaks, `**bold**`, `*italic*`, and bulleted or numbered lists. No headings, links, images, tables or raw HTML.
+  - (b) Structured JSON blocks, such as `paragraph`, `list`, `tip` and `example`, with typed inline spans. These validate through the schema and need no parser, and Gemini structured output enforces them.
+  - (c) A hybrid of the two.
+  - Compare the options on LLM reliability, validation strength, locale parity across en/fr/de, diff readability in reviews, and rendering effort.
+- **Learning-language spans:** decide how French forms inside explanations are marked, for example `{{fr:je suis}}` or a span type. Marked forms get `lang="fr"` for screen readers and fonts, consistent highlighting, and an optional Listen control. Decide whether bold alone may mark learning-language forms.
+- **Rendering:** choose a small in-app renderer that produces React elements without `innerHTML`, or a vetted library with sanitising, and keep bundle size in mind.
+  - Use it everywhere the text appears: `IntroductionRenderer`, `ExplanationRenderer`, Content previews (`ContentReview`), and the Draft `explanationPlan` if briefs adopt the format too.
+  - Raw JSON stays unchanged.
+  - Output must be semantic HTML (`p`, `ul`/`ol`, `strong`, `em`) in the dark design.
+- **Validation:**
+  - Allow only the chosen syntax.
+  - Check structural parity across locales: the same number of paragraphs, list items and learning-language spans.
+  - Set length limits per block.
+  - Reject leftover plain-text artefacts such as `\n` literals or HTML.
+  - Plain text must still be valid, or it fails with a clear diagnostic that names the item.
+- **Scope of fields:** decide whether other learner-facing prose follows. Candidates are grammar `heading`, rule explanations, pitfalls, teaching notes, and brief `explanationPlan`/`coverageNotes`. Answer explanations probably stay plain.
+- **Existing artifacts:**
+  - Changing the schema or prompts changes the input hashes, so all existing lessons become stale.
+  - Choose between three options:
+    - A one-off migration script that wraps current text as single paragraphs. This is cheap, keeps the reviewed wording and adds no formatting.
+    - Regeneration of content only with `make generate ID=<id> REGENERATE=1`. Briefs stay unless the decision extends formatting to them.
+    - Hand-authoring the sample lessons, as in P1-08.
+  - Consider ordering: if P2-04 has already generated the remaining 38 vocabulary lessons, all 48 vocabulary lessons and the 10 grammar samples are affected. Doing this before the P2-04 bulk generation avoids a second regeneration.
+  - Regenerated or edited samples need a renewed content review before the bulk expansion (SPEC P1-08 review gate).
+
+Acceptance:
+
+- A SPEC decision (new D-number) records the chosen format, its allowed syntax, learning-language marking, affected fields and the migration or regeneration approach. Schemas, structured-output schemas and prompts follow it.
+- Content validation enforces the syntax and locale parity. Invalid or unsupported markup makes the artifact invalid with a precise path and message.
+- One shared formatter renders introductions and grammar explanations in the lesson session and in the Content preview, with semantic HTML, `lang` on learning-language spans and no `innerHTML`.
+- All existing briefs and lessons in `content/` are valid and current again after migration or regeneration. Changed sample texts are reviewed, and `make sample-lessons` passes.
+- `make test` covers the parser/renderer, including edge cases, malicious input and locale parity, plus validation failures and prompt/schema snapshots. `make test-e2e` shows formatted introduction and explanation pages on desktop and narrow without horizontal overflow.
+
+Dependencies: P2-02, P2-04.
+
+### P2-06: Update vocabulary lesson mockups from the prototype
 
 GitHub: [#25](https://github.com/bastian-schnitzler/lesson_prototype/issues/25).
 
@@ -537,7 +581,7 @@ Acceptance:
 - Record the prototype revision used for comparison. Resolve implementation/specification differences or record them as follow-up work; mockup updates must not silently change agreed behavior.
 - Refresh applicable published GitHub issues and their diagrams/PlantUML code and server-rendered preview URLs; verify source parity, links, and rendering. This issue is required to close the phase.
 
-Dependencies: P2-04.
+Dependencies: P2-04, P2-05.
 
 ## Phase 3 — grammar
 
@@ -556,7 +600,7 @@ Acceptance:
 - Duplicate form text, alternative valid forms/orders, rule coverage, and item-level correction feedback are supported.
 - Pronoun matching/typing is selected only for appropriate objectives.
 
-Dependencies: P1-10, P2-05.
+Dependencies: P1-10, P2-06.
 
 ### P3-02: Implement pronoun/form matching and typing with tests
 
@@ -757,11 +801,12 @@ Use fenced Mermaid and applicable fenced PlantUML source directly in GitHub bodi
 | P1-11 | Vocabulary progression and listening, SPEC section 6 | [Listening choice](mockups/03-vocabulary-lesson/06-listening/listening-choice.puml), [no-voice help](mockups/03-vocabulary-lesson/06-listening/no-voice-help.puml), [listening dictation](mockups/03-vocabulary-lesson/07-exam/listening-dictation.puml) |
 | P2-02 | Vocabulary progression, SPEC section 6 | [Introduction](mockups/03-vocabulary-lesson/02-introduction/introduction.puml), [flashcard](mockups/03-vocabulary-lesson/03-flashcards/front.puml), [revealed card](mockups/03-vocabulary-lesson/03-flashcards/revealed.puml), [matching](mockups/03-vocabulary-lesson/04-matching/matching.puml) |
 | P2-03, P2-04 | Vocabulary progression, SPEC section 6; shared session flow, section 5 | [Gender exercise](mockups/03-vocabulary-lesson/05-gender-overview/gender-select.puml), [reviewed overview](mockups/03-vocabulary-lesson/05-gender-overview/reviewed-overview.puml), [previous results](mockups/03-vocabulary-lesson/08-results/gender-results.puml), [listening choice](mockups/03-vocabulary-lesson/06-listening/listening-choice.puml), [listening dictation](mockups/03-vocabulary-lesson/07-exam/listening-dictation.puml); relevant stage 05/06 screens |
+| P2-05 | Vocabulary introduction, SPEC section 6; grammar explanation, section 7 | [Introduction](mockups/03-vocabulary-lesson/02-introduction/introduction.puml), [grammar explanation](mockups/04-grammar-lesson/02-00-explanation/singular-forms.puml) |
 | P3-02 | Grammar blocks, SPEC section 7; practice flow, section 5 | [Pronoun matching](mockups/04-grammar-lesson/02-01-exercise-pronoun-match/pronoun-match.puml), [pronoun typing](mockups/04-grammar-lesson/02-02-exercise-pronoun-typing/pronoun-typing.puml) |
 | P3-03 | Grammar blocks, SPEC section 7; practice flow, section 5 | [Choice gap](mockups/04-grammar-lesson/02-03-exercise-gap-choice/gap-choice.puml), [typed gap](mockups/04-grammar-lesson/02-04-exercise-gap-typing/gap-typing.puml), [feedback](mockups/04-grammar-lesson/02-04-exercise-gap-typing/feedback.puml) |
 | P3-04 | Grammar blocks, SPEC section 7 | [Word order](mockups/04-grammar-lesson/02-05-exercise-word-order/word-order.puml), [error spotter](mockups/04-grammar-lesson/02-06-exercise-error-spotter/error-spotter.puml) |
 | P3-05, P3-06 | Grammar blocks, placeholder, exam/results, SPEC section 7 | [Placeholder](mockups/04-grammar-lesson/03-feedback-placeholder/feedback-placeholder.puml), [mixed exam](mockups/04-grammar-lesson/04-exam/mixed-exam.puml), [grammar results](mockups/04-grammar-lesson/05-results/exam-results.puml) |
 
-The phase-closing issues P1-12, P2-05, and P3-07 include before/after source changes and PlantUML-enabled previews for their respective index/artifact, vocabulary, and grammar screens from the [root mockup guide](mockups/README.md). P4-02 and P5-02 receive category-specific assets when those pages exist. The Claude review issue P0-02 uses the specification's applicable flows and mockups as review inputs.
+The phase-closing issues P1-12, P2-06, and P3-07 include before/after source changes and PlantUML-enabled previews for their respective index/artifact, vocabulary, and grammar screens from the [root mockup guide](mockups/README.md). P4-02 and P5-02 receive category-specific assets when those pages exist. The Claude review issue P0-02 uses the specification's applicable flows and mockups as review inputs.
 
 Browse sources and embedded SPEC previews using the [organized mockup guide](mockups/README.md). Keep applicable diagrams and rendered mockups in published issue bodies, not only in the linked specification.
