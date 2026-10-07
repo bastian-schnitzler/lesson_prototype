@@ -1717,7 +1717,11 @@ select {
   }
 }
 
-/* Task → correct answer on one line; the learner's answer struck through directly under the correct answer. */
+/*
+ * Task → correct answer on one line; the learner's answer struck through directly under the correct
+ * answer. Wide screens align every prompt part, arrow and answer in columns across the list (P3-02
+ * review): the list is the grid, rows and their bodies are subgrids.
+ */
 .result-fix {
   display: grid;
   grid-template-columns: auto auto 1fr;
@@ -1726,8 +1730,40 @@ select {
   row-gap: 0.15rem;
 }
 
-.result-fix .match-wrong {
-  grid-column: 3;
+.result-answer {
+  display: grid;
+  row-gap: 0.15rem;
+}
+
+@media (min-width: 601px) {
+  .result-list {
+    display: grid;
+    grid-template-columns: 1.5rem repeat(var(--parts, 1), auto auto) minmax(0, 1fr);
+    column-gap: 0.6rem;
+  }
+
+  .result-list .result-item,
+  .result-list .result-body,
+  .result-list .result-fix {
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+  }
+
+  .result-list .result-body {
+    grid-column: 2 / -1;
+  }
+
+  .result-list .result-body > :not(.result-fix) {
+    grid-column: 1 / -1;
+  }
+
+  .result-list .result-prompt {
+    grid-column: span var(--span, 1);
+  }
+
+  .result-list .result-answer {
+    grid-column: -2 / -1;
+  }
 }
 
 .result-prompt {
@@ -1746,6 +1782,10 @@ select {
 
   .result-fix .match-wrong {
     grid-column: 1;
+  }
+
+  .result-fix > .match-arrow:empty {
+    display: none;
   }
 }
 

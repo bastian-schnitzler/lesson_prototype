@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState, type CSSProperties } from 'react';
 
 import { useI18n, useLastTry } from '../app/context.tsx';
 import { formatScore, roundHalfUp1 } from '../domain/format.ts';
@@ -306,9 +306,30 @@ function ExamIntro({ plan, page }: { plan: LessonPlan; page: PlanPage }) {
  * mistake the learner's answer struck through directly below the correct answer, an "almost" or
  * timeout note and the explanation.
  */
-function ResultItem({ unit, locked, lang }: { unit: PlanUnit; locked: LockedUnit; lang: string }) {
-  const { t, locale } = useI18n();
+/** The task line of a result row, split at its arrows (un stylo → des ____) into aligned columns. */
+function promptParts(unit: PlanUnit, t: (key: MessageKey) => string): string[] {
   const prompt = [unit.prompt.native, unit.prompt.learning, unit.prompt.before !== undefined ? `${unit.prompt.before ?? ''} ____ ${unit.prompt.after ?? ''}` : undefined].find(Boolean) ?? t('session.typeWhatYouHear');
+  if (unit.itemType === 'vocabulary_gender_select') return [`${prompt}:`];
+  return prompt.split(/\s*→\s*/).map((part) => part.trim());
+}
+
+/**
+ * The prompt columns of one result row (P3-02 review): every part is followed by an arrow, and a row
+ * with fewer parts than the longest row lets its first part span the missing columns, so all arrows
+ * and answers line up in columns across the list.
+ */
+function PromptCells({ parts, columns, lang, arrows = true }: { parts: string[]; columns: number; lang?: string; arrows?: boolean }) {
+  return parts.map((part, n) => (
+    <Fragment key={n}>
+      <span className="result-prompt" lang={lang} style={n === 0 ? ({ '--span': 2 * (columns - parts.length) + 1 } as CSSProperties) : undefined}>{part}</span>
+      <span className="match-arrow" aria-hidden="true">{arrows ? '→' : ''}</span>
+    </Fragment>
+  ));
+}
+
+function ResultItem({ unit, locked, lang, columns }: { unit: PlanUnit; locked: LockedUnit; lang: string; columns: number }) {
+  const { t, locale } = useI18n();
+  const parts = promptParts(unit, t);
   const given = answerText(unit, locked.response, t);
   const correct = unit.answerLang === 'ui' ? t(unit.answer as MessageKey) : unit.answer;
   const ok = locked.outcome === 'fully_correct';
@@ -319,16 +340,18 @@ function ResultItem({ unit, locked, lang }: { unit: PlanUnit; locked: LockedUnit
         <span className="result-icon" aria-label={t(OUTCOME_LABEL[locked.outcome])}>{ok ? '✓' : '✕'}</span>
         <div className="result-body">
           <div className="result-fix result-gender">
-            <span className="result-prompt" lang={lang}>{prompt}:</span>
-            {ok ? (
-              <strong className="match-right"><span className="visually-hidden">{t('result.yourAnswer')}: </span>{given}</strong>
-            ) : (
-              <>
-                <s className="match-wrong"><span className="visually-hidden">{t('result.yourAnswer')}: </span>{given || t('result.noAnswer')}</s>
-                <span className="match-arrow" aria-hidden="true">→</span>
-                <strong className="match-right"><span className="visually-hidden">{t('result.correctAnswer')}: </span>{correct}</strong>
-              </>
-            )}
+            <PromptCells parts={parts} columns={columns} lang={lang} arrows={false} />
+            <span className="result-answer">
+              {ok ? (
+                <strong className="match-right"><span className="visually-hidden">{t('result.yourAnswer')}: </span>{given}</strong>
+              ) : (
+                <span>
+                  <s className="match-wrong"><span className="visually-hidden">{t('result.yourAnswer')}: </span>{given || t('result.noAnswer')}</s>
+                  <span className="match-arrow" aria-hidden="true"> → </span>
+                  <strong className="match-right"><span className="visually-hidden">{t('result.correctAnswer')}: </span>{correct}</strong>
+                </span>
+              )}
+            </span>
           </div>
           {!ok && <p className="muted">{unit.explanation[locale]}</p>}
         </div>
@@ -340,13 +363,14 @@ function ResultItem({ unit, locked, lang }: { unit: PlanUnit; locked: LockedUnit
       <span className="result-icon" aria-label={t(OUTCOME_LABEL[locked.outcome])}>{ok ? '✓' : locked.outcome === 'orthography_only' ? '!' : '✕'}</span>
       <div className="result-body">
         <div className="result-fix">
-          <span className="result-prompt" lang={unit.prompt.native ? undefined : lang}>{prompt}</span>
-          <span className="match-arrow" aria-hidden="true">→</span>
-          <strong className="match-right">
-            <span className="visually-hidden">{t('result.correctAnswer')}: </span><span lang={unit.answerLang === 'learning' ? lang : undefined}>{correct}</span>
-            {unit.form && <span lang={lang}> · {unit.form}</span>}
-          </strong>
-          {!ok && <span className="match-wrong"><span className="visually-hidden">{t('result.yourAnswer')}: </span><s lang={lang}>{given || t('result.noAnswer')}</s></span>}
+          <PromptCells parts={parts} columns={columns} lang={unit.prompt.native ? undefined : lang} />
+          <span className="result-answer">
+            <strong className="match-right">
+              <span className="visually-hidden">{t('result.correctAnswer')}: </span><span lang={unit.answerLang === 'learning' ? lang : undefined}>{correct}</span>
+              {unit.form && <span lang={lang}> · {unit.form}</span>}
+            </strong>
+            {!ok && <span className="match-wrong"><span className="visually-hidden">{t('result.yourAnswer')}: </span><s lang={lang}>{given || t('result.noAnswer')}</s></span>}
+          </span>
         </div>
         {(locked.outcome === 'orthography_only' || locked.timedOut) && (
           <p className="result-notes">
@@ -450,9 +474,14 @@ export function ResultsView({ plan, record, dispatch }: { plan: LessonPlan; reco
           return sections.map((sec) => (
             <section key={sec.key} className={`result-section${sections.length > 1 ? ' is-framed' : ''}`} style={sec.groupId ? reviewColor(plan.groups.findIndex((g) => g.id === sec.groupId)) : undefined}>
               {sections.length > 1 && (sec.groupId || sec.key !== 'single') && <h3 className="result-section-title">{title(sec)}</h3>}
-              <ul className="result-list">
-                {sec.units.map((u) => <ResultItem key={u.id} unit={u} locked={record.locked[u.id]} lang={plan.lang} />)}
-              </ul>
+              {(() => {
+                const columns = Math.max(...sec.units.map((u) => promptParts(u, t).length));
+                return (
+                  <ul className="result-list" style={{ '--parts': columns } as CSSProperties}>
+                    {sec.units.map((u) => <ResultItem key={u.id} unit={u} locked={record.locked[u.id]} lang={plan.lang} columns={columns} />)}
+                  </ul>
+                );
+              })()}
             </section>
           ));
         };
