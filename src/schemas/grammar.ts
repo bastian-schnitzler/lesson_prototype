@@ -27,6 +27,14 @@ export const GRAMMAR_EXERCISE_TYPES = [
 export const GrammarExerciseTypeSchema = z.enum(GRAMMAR_EXERCISE_TYPES);
 export type GrammarExerciseType = z.infer<typeof GrammarExerciseTypeSchema>;
 
+/**
+ * Pronoun/form exercises drill person forms, so they suit only topics with person-marked forms
+ * (pronouns and verb conjugation); article, adverb, negation or question lessons use gaps and word
+ * order instead (SPEC section 7, P3-01).
+ */
+export const PRONOUN_FORM_TYPES: readonly GrammarExerciseType[] = ['grammar_pronoun_form_match', 'grammar_pronoun_form_typing'];
+export const PRONOUN_FORM_TOPICS = ['pronouns', 'verbs_morphology', 'verb_usage'] as const;
+
 /** Final exams use written production only. */
 export const GRAMMAR_EXAM_TYPES = ['grammar_gap_typing', 'grammar_pronoun_form_typing', 'grammar_word_order'] as const;
 

@@ -675,7 +675,9 @@ Acceptance:
 - Duplicate form text, alternative valid forms/orders, rule coverage, and item-level correction feedback are supported.
 - Pronoun matching/typing is selected only for appropriate objectives.
 
-Dependencies: P1-10, P2-08.
+Outcome (2026-10-08): [review record](reviews/2026-10-08-p3-01-grammar-review.md). Pronoun/form exercises are validated to the topics `pronouns`, `verbs_morphology` and `verb_usage`. Content items must assess exactly the rules planned for their exercise or exam page. Mixed exams, duplicate forms and alternative forms and orders are covered by tests. The dependency on P2-08 was removed at the product owner's request: phase 3 starts while phase 2 stays open.
+
+Dependencies: P1-10.
 
 ### P3-02: Implement pronoun/form matching and typing with tests
 

@@ -2,7 +2,7 @@ import type { z } from 'zod';
 
 import { nativeLocales } from '../schemas/artifactCommon.ts';
 import { briefSchema, contentSchema, hasContentFile, isSupportedKind, type Brief, type LessonContent } from '../schemas/artifacts.ts';
-import type { GrammarBrief, GrammarContent, GrammarItem } from '../schemas/grammar.ts';
+import { PRONOUN_FORM_TOPICS, PRONOUN_FORM_TYPES, type GrammarBrief, type GrammarContent, type GrammarItem } from '../schemas/grammar.ts';
 import type { OutlineEntry } from '../schemas/outline.ts';
 import { learningForms, parseRichText, richTextShape } from '../domain/richText.ts';
 import type { VocabularyBrief, VocabularyTarget } from '../schemas/vocabulary.ts';
@@ -166,6 +166,12 @@ function checkVocabularyBrief(b: VocabularyBrief, ctx: OutlineContext, issues: I
   if (!issues.list.length) checkMinutes(b.estimatedMinutes, vocabularyLesson(b).steps.flatMap((s) => s.pages).reduce((n, pg) => n + pg.estimatedDurationS, 0), issues);
 }
 
+/** Pronoun/form exercises only for topics with person-marked forms (P3-01). */
+function checkPronounFormTopic(b: GrammarBrief, type: string, path: string, issues: Issues) {
+  if (!PRONOUN_FORM_TYPES.includes(type as never)) return;
+  issues.check((PRONOUN_FORM_TOPICS as readonly string[]).includes(b.topic), path, `${type} suits only ${PRONOUN_FORM_TOPICS.join(', ')} topics, not ${b.topic}; use gaps or word order`);
+}
+
 function checkGrammarBrief(b: GrammarBrief, issues: Issues) {
   const rules = new Set(b.rules.map((r) => r.id));
   issues.unique(b.rules.map((r) => r.id), 'rules', 'rule ID');
@@ -180,12 +186,14 @@ function checkGrammarBrief(b: GrammarBrief, issues: Issues) {
     }
     block.exercises.forEach((ex, j) => {
       for (const r of ex.ruleIds) issues.check(block.ruleIds.includes(r), `blocks.${i}.exercises.${j}.ruleIds`, `rule ${r} is not taught in this block`);
+      checkPronounFormTopic(b, ex.type, `blocks.${i}.exercises.${j}.type`, issues);
     });
   });
   for (const r of rules) issues.check(taught.has(r), 'blocks', `rule ${r} is never taught`);
   const examined = new Set(b.exam.pages.flatMap((pg) => pg.ruleIds));
   b.exam.pages.forEach((pg, i) => {
     for (const r of pg.ruleIds) issues.check(rules.has(r), `exam.pages.${i}.ruleIds`, `unknown rule ${r}`);
+    checkPronounFormTopic(b, pg.type, `exam.pages.${i}.type`, issues);
   });
   for (const r of rules) issues.check(examined.has(r), 'exam.pages', `the exam does not cover rule ${r}`);
   checkMinutes(
@@ -293,6 +301,13 @@ function checkGrammarItem(item: GrammarItem, path: string, rules: Set<string>, e
   if ('answerExplanation' in item) checkExplanations([item], path, issues);
 }
 
+/** Items assess only the planned rules, and together they assess every planned rule (P3-01). */
+function checkRuleCoverage(items: GrammarItem[], planned: string[], path: string, label: string, issues: Issues) {
+  const assessed = new Set(items.flatMap((it) => ('ruleIds' in it ? it.ruleIds : [])));
+  for (const r of assessed) issues.check(planned.includes(r), path, `rule ${r} is not planned for ${label}`);
+  for (const r of planned) issues.check(assessed.has(r), path, `no item of ${label} assesses rule ${r}`);
+}
+
 function checkGrammarContent(c: GrammarContent, b: GrammarBrief, issues: Issues) {
   const rules = new Set(b.rules.map((r) => r.id));
   // Expected sequence: per block one explanation step, then one step per planned exercise; feedback; exam.
@@ -315,6 +330,11 @@ function checkGrammarContent(c: GrammarContent, b: GrammarBrief, issues: Issues)
     if (want.exercise) {
       issues.check(items.every((it) => it.type === want.exercise!.type), sp, `planned exercise ${want.exercise.id} is ${want.exercise.type}`);
       issues.check(items.length === want.exercise.itemCount, sp, `planned exercise ${want.exercise.id} has ${want.exercise.itemCount} items`);
+      checkRuleCoverage(items, want.exercise.ruleIds, sp, `planned exercise ${want.exercise.id}`, issues);
+    }
+    if (want.role === 'explanation') {
+      const block = b.blocks.find((x) => x.id === want.blockId)!;
+      for (const it of items) if ('ruleIds' in it) for (const r of it.ruleIds) issues.check(block.ruleIds.includes(r), sp, `rule ${r} is not taught in block ${block.id}`);
     }
     step.pages.forEach((page, pi) => {
       const pp = `${sp}.pages.${pi}`;
@@ -323,6 +343,7 @@ function checkGrammarContent(c: GrammarContent, b: GrammarBrief, issues: Issues)
         if (issues.check(plan !== undefined, `${pp}.pageId`, `exam page ${page.pageId} is not in the brief's exam plan`) && plan) {
           issues.check(page.timeLimitS === plan.timeLimitS, `${pp}.timeLimitS`, `must equal the brief's limit ${plan.timeLimitS}s`);
           issues.check(page.items.every((it) => it.type === plan.type) && page.items.length === plan.itemCount, `${pp}.items`, `page plan expects ${plan.itemCount} ${plan.type} items`);
+          checkRuleCoverage(page.items, plan.ruleIds, `${pp}.items`, `exam page ${plan.pageId}`, issues);
         }
       } else {
         issues.check(page.timeLimitS === null, `${pp}.timeLimitS`, 'only exam pages have a countdown');
