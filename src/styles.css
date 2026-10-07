@@ -1842,20 +1842,20 @@ select {
   vertical-align: middle;
 }
 
-/* While the typed answer lacks the required article, the "with article" badge turns purple. */
+/* While the typed answer lacks the required article, the "with article" badge turns red. */
 .article-badge.is-alert {
-  border-color: var(--progress);
-  background: #2e1065;
-  color: #ddd6fe;
+  border-color: var(--incorrect);
+  background: rgb(255 82 82 / 0.14);
+  color: #fecaca;
 }
 
 /* Neutral exam hint (no correctness): shown under the field after Continue while the article is missing. */
 .info-box {
   margin: 0.4rem 0 0;
   padding: 0.5rem 0.8rem;
-  border-left: 3px solid var(--indigo);
+  border-left: 3px solid var(--incorrect);
   border-radius: var(--radius);
-  background: #1e1b4b;
+  background: rgb(255 82 82 / 0.12);
   color: var(--text);
   font-size: 15px;
 }
@@ -1914,6 +1914,29 @@ select {
   margin: 0;
 }
 
+/* P2-04 review: the word line and the choice row keep their size before and after Check. */
+.gender-word {
+  flex-basis: 100%;
+  flex-wrap: nowrap;
+}
+
+.gender-label {
+  display: grid;
+}
+
+.gender-label > span {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 0.5rem;
+  grid-area: 1 / 1;
+}
+
+.gender-label > .is-hidden {
+  visibility: hidden;
+}
+
+
 /* Typed gaps: the reference words sit above the sentence, centred and narrower, with more padding. */
 .units:has(.reference-list) .references {
   margin: 0 0 1.5rem;
@@ -1967,4 +1990,88 @@ select {
   display: flex;
   justify-content: flex-end;
   gap: 0.75rem;
+}
+
+/* ------------------------------------------------------------ P2-04 review: inline feedback, results */
+
+/* Single-answer practice: the typed field turns red (amber for half a point) and the correct answer follows in green. */
+.text-input.is-wrong {
+  border-color: var(--incorrect);
+  box-shadow: 0 0 0 1px var(--incorrect);
+  color: var(--incorrect);
+}
+
+.text-input.is-almost {
+  border-color: var(--partial);
+  box-shadow: 0 0 0 1px var(--partial);
+  color: var(--partial);
+}
+
+.text-input.is-right {
+  border-color: var(--correct);
+  color: var(--correct);
+}
+
+.inline-answer {
+  color: var(--correct);
+  font-weight: 700;
+}
+
+/* Choices: the chosen wrong option red, the correct option green. */
+.choice.is-right {
+  border-color: var(--correct);
+  box-shadow: inset 0 0 0 1px var(--correct);
+  color: var(--correct);
+}
+
+.choice.is-wrong {
+  border-color: var(--incorrect);
+  box-shadow: inset 0 0 0 1px var(--incorrect);
+  color: var(--incorrect);
+}
+
+/* The half-point explanation sits below the Continue button, which keeps its place. */
+.task-footer {
+  flex-wrap: wrap;
+}
+
+.footer-note {
+  flex-basis: 100%;
+  margin: 0;
+}
+
+/* Gender results: "word: gender" on one line. */
+.result-fix.result-gender {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+
+.result-gender .match-wrong {
+  color: var(--incorrect);
+}
+
+/* Final exam results: translation and dictation accordions. */
+.result-accordion {
+  margin-top: 1rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-card);
+}
+
+.result-accordion > summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.result-accordion[open] > summary {
+  border-bottom: 1px solid var(--border);
+}
+
+.result-accordion > .result-section {
+  margin: 0.75rem 1rem;
 }

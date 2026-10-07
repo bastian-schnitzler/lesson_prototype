@@ -79,7 +79,7 @@ async function step(page: Page, data: ReturnType<typeof lessonData>, opts: Optio
     }
     // Gender page: pick the accepted gender of each bare term.
     for (const row of await page.locator('.gender-row').all()) {
-      const term = (await row.locator('.gender-lemma').textContent())!;
+      const term = (await row.locator('.gender-label > span').first().locator('.gender-lemma').textContent())!;
       const t = [...data.target.values()].find((x) => x.term === term);
       if (t?.genders.length && (await row.locator('fieldset:not([disabled])').count())) await row.getByText(t.genders[0] === 'feminine' ? 'Feminine' : 'Masculine', { exact: true }).click();
     }
@@ -105,7 +105,7 @@ async function step(page: Page, data: ReturnType<typeof lessonData>, opts: Optio
     await primary(page).click();
     // A correct practice page flashes green and moves on; otherwise confirm the shown feedback.
     await expect(page.locator('.task-card.is-celebrating')).toHaveCount(0, { timeout: 10_000 });
-    if ((await page.locator('.feedback, .match-results, .gender-page .match-summary').count()) && (await primary(page).count())) await primary(page).click();
+    if ((await page.locator('.feedback, .inline-answer, .choice.is-wrong, .match-results, .gender-page .match-summary').count()) && (await primary(page).count())) await primary(page).click();
   }
 }
 
@@ -140,7 +140,7 @@ test('plays a multi-group noun lesson perfectly: group-wise stages, exam info, 1
   await expect(page.locator('.summary-card .results-total')).toHaveText('Lesson total: 100 / 100');
   await expect(page.locator('.summary-card .total-score')).toHaveText(`${data.examUnits} / ${data.examUnits}`);
   // Only scored parts are offered; each word group is one frame with its name shown once.
-  await expect(page.locator('.result-menu button')).toHaveText(['Final exam', 'Matching', 'Gender and overview', 'Practice']);
+  await expect(page.locator('.result-menu button')).toHaveText(['Final exam', 'Matching', 'Gender and overview', 'Practice', 'Listening']);
   await page.getByRole('button', { name: 'Practice' }).click();
   await expect(page.locator('.result-section.is-framed')).toHaveCount(data.brief.groups.length);
   await expect(page.locator('.result-section-title')).toHaveText(data.brief.groups.map((g: Json) => g.label.en));

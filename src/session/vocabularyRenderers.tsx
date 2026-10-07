@@ -372,8 +372,16 @@ export function GenderRenderer(props: RendererProps) {
             <li key={id} className={`gender-row${checked && unit ? (wrong ? ' is-wrong' : ' is-right') : ''}`}>
               <div className="gender-word">
                 {target && <ListenButton text={shown} lang={plan.lang} variant="icon" label={t('session.listenWord', { word: shown })} />}
-                <span className="gender-lemma" lang={plan.lang}>{shown}</span>
-                {checked && <small className="muted">{target?.translations[motherTongue]?.join(' / ')}</small>}
+                {/* Both versions share one grid cell, so the card keeps its size when Check reveals the teaching form. */}
+                <span className="gender-label">
+                  <span className={checked ? 'is-hidden' : undefined} aria-hidden={checked || undefined}>
+                    <span className="gender-lemma" lang={plan.lang}>{target?.term ?? id}</span>
+                  </span>
+                  <span className={checked ? undefined : 'is-hidden'} aria-hidden={!checked || undefined}>
+                    <span className="gender-lemma" lang={plan.lang}>{target?.teachingForm ?? id}</span>
+                    <small className="muted">{target?.translations[motherTongue]?.join(' / ')}</small>
+                  </span>
+                </span>
               </div>
               {unit ? (
                 <fieldset className="gender-options" disabled={checked || !!props.locked[unit.id]}>

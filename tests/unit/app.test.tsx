@@ -151,6 +151,7 @@ describe('lesson artifact page', () => {
     expect(screen.getAllByText(/Translations: German/).length).toBeGreaterThan(0);
     // Every vocabulary lesson has the same derived stages, listening included (P2-04).
     expect(screen.getByRole('rowheader', { name: /07 Final exam/ })).toBeInTheDocument();
+    expect(screen.getByRole('cell', { name: 'Answer 8 items on 2 timed pages' })).toBeInTheDocument(); // translation + dictation per word
     expect(screen.getByRole('rowheader', { name: /06 Listening/ })).toBeInTheDocument();
     expect(screen.getByRole('rowheader', { name: /04 Gender \+ overview/ })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Lesson preview' })).toBeInTheDocument();

@@ -58,7 +58,8 @@ describe('fixture artifacts', () => {
   it('derives vocabulary lessons from the brief and rejects a vocabulary content file (P2-04)', () => {
     const brief = load('fr-classroom-objects', 'brief');
     const lesson = vocabularyLesson(brief);
-    expect(lesson.steps.map((st) => st.stage)).toEqual(['introduction', 'flashcards', 'matching', 'overview', 'practice', 'exam']);
+    expect(lesson.steps.map((st) => st.stage)).toEqual(['introduction', 'flashcards', 'matching', 'overview', 'practice', 'practice', 'exam']);
+    expect(lesson.steps.map((st) => st.id)).toEqual(['introduction', 'flashcards', 'matching', 'overview', 'practice', 'listening', 'exam']);
     expect(() => contentSchema('vocabulary', 'fr').parse(lesson)).not.toThrow();
     expect(messages(validateContent(lesson, { ...ctx('fr-classroom-objects'), brief }))).toMatch(/vocabulary lessons have no content file/);
   });
@@ -116,9 +117,9 @@ describe('brief validation', () => {
     const ids = brief.targets.map((t: Json) => t.id).sort();
     const of = (type: string) => lesson.steps.flatMap((st) => st.pages.flatMap((pg) => pg.items)).filter((it) => it.type === type).map((it) => ('targetId' in it ? it.targetId : '')).sort();
     for (const type of ['vocabulary_typed_gap', 'vocabulary_listening_choice', 'vocabulary_translation_exam', 'vocabulary_listening_dictation']) expect(of(type), type).toEqual(ids);
-    const practice = lesson.steps[4].pages;
+    const practice = [...lesson.steps[4].pages, ...lesson.steps[5].pages];
     expect(practice.every((pg) => pg.items.length === 1)).toBe(true);
-    expect(lesson.steps[5].pages.every((pg) => pg.timeLimitS !== null && pg.items.length <= 6)).toBe(true);
+    expect(lesson.steps[6].pages.every((pg) => pg.timeLimitS !== null && pg.items.length <= 6)).toBe(true);
   });
 
   it('enforces the French noun article policy in exam forms, teaching forms and exceptions (D39)', () => {
@@ -134,7 +135,7 @@ describe('brief validation', () => {
 
   it('derives exam answers (translation and dictation) only from exam forms', () => {
     const brief = load('fr-classroom-objects', 'brief');
-    const exam = vocabularyLesson(brief).steps[5].pages.flatMap((pg) => pg.items);
+    const exam = vocabularyLesson(brief).steps[6].pages.flatMap((pg) => pg.items);
     for (const item of exam) if ('accepted' in item && 'targetId' in item) expect(item.accepted.answers).toEqual(brief.targets.find((t: Json) => t.id === item.targetId).examForms);
   });
 

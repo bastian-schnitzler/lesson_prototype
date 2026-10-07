@@ -14,18 +14,17 @@ export function VocabularyBriefView({ data }: ArtifactViewProps) {
   const demanding = brief.targets.filter((target) => target.difficulty === 'demanding').length;
   // Stages, durations and exam pages are derived from the brief (P2-04); every word takes part in every exercise.
   const lesson = vocabularyLesson(brief);
-  const [, , matching, overview, practice, exam] = lesson.steps;
+  const [introduction, flashcards, matching, overview, practice, listening, exam] = lesson.steps;
   const total = (pages: { estimatedDurationS: number }[]) => pages.reduce((sum, page) => sum + page.estimatedDurationS, 0);
-  const isListen = (page: (typeof practice.pages)[number]) => page.items.every((item) => item.type === 'vocabulary_listening_choice');
   const hasNouns = brief.targets.some((target) => target.wordClass === 'noun');
   type Stage = 'introduction' | 'flashcards' | 'matching' | 'genderOverview' | 'typedGaps' | 'listening';
   const stages: { stage: Stage; activity: string; durationS: number; scored: boolean }[] = [
-    { stage: 'introduction', activity: t('activity.introduction'), durationS: total(lesson.steps[0].pages), scored: false },
-    { stage: 'flashcards', activity: t('activity.flashcards', { count: brief.targets.length }), durationS: total(lesson.steps[1].pages), scored: false },
+    { stage: 'introduction', activity: t('activity.introduction'), durationS: total(introduction.pages), scored: false },
+    { stage: 'flashcards', activity: t('activity.flashcards', { count: brief.targets.length }), durationS: total(flashcards.pages), scored: false },
     { stage: 'matching', activity: t('activity.matching', { size: VOCABULARY_TIMING.matchingGroupSize }), durationS: total(matching.pages), scored: true },
     { stage: 'genderOverview', activity: t(hasNouns ? 'activity.genderOverview' : 'activity.overview'), durationS: total(overview.pages), scored: hasNouns },
-    { stage: 'typedGaps', activity: t('activity.typedGaps', { count: brief.targets.length }), durationS: total(practice.pages.filter((page) => !isListen(page))), scored: true },
-    { stage: 'listening', activity: t('activity.listening', { count: brief.targets.length }), durationS: total(practice.pages.filter(isListen)), scored: true },
+    { stage: 'typedGaps', activity: t('activity.typedGaps', { count: brief.targets.length }), durationS: total(practice.pages), scored: true },
+    { stage: 'listening', activity: t('activity.listening', { count: brief.targets.length }), durationS: total(listening.pages), scored: true },
   ];
   const examKind = (page: (typeof exam.pages)[number]) => (page.items[0]?.type === 'vocabulary_listening_dictation' ? 'listening_dictation' : 'translation');
   const examTargets = exam.pages.reduce((sum, page) => sum + page.items.length, 0);

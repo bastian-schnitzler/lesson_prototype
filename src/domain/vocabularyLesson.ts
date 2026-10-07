@@ -52,7 +52,7 @@ export function vocabularyLesson(brief: VocabularyBrief): VocabularyContent {
   const nouns = brief.targets.filter((t) => t.wordClass === 'noun');
   const page = (pageId: string, estimatedDurationS: number, instructions: LocalizedText, items: Page['items'], timeLimitS: number | null = null): Page =>
     ({ pageId, estimatedDurationS, timeLimitS, instructions, items });
-  const step = (id: Step['stage'], role: Step['role'], label: LocalizedText, pages: Page[]): Step => ({ id, stage: id, role, label, pages });
+  const step = (id: string, role: Step['role'], label: LocalizedText, pages: Page[], stage = id as Step['stage']): Step => ({ id, stage, role, label, pages });
   const examChunks = brief.groups.flatMap((g) => chunk(g.targetIds, T.examPageSize).map((ids, n) => ({ key: `${g.id}-${n + 1}`, ids })));
   const answers = (id: string, prompt?: LocalizedText | Partial<LocalizedText>) => ({ answers: vocabularyExamAnswers(targets.get(id)!, brief.lang, prompt), accentSensitive: targets.get(id)!.accentSensitive });
   const prompt = (id: string) => {
@@ -75,15 +75,16 @@ export function vocabularyLesson(brief: VocabularyBrief): VocabularyContent {
           type: 'vocabulary_gender_select', itemId: 'gender', targetIds: all, rows: nouns.map((t) => ({ targetId: t.id, answerExplanation: t.genderExplanation! })),
         }])]) }
       : step('overview', 'overview', COPY.overview[0], [page('overview', T.overviewBase + T.overviewPerWord * all.length, COPY.overview[1], [{ type: 'vocabulary_overview', itemId: 'overview', targetIds: all }])]),
+    // Stage 5 has two steps, so typed gaps and listening are reviewed separately in the results menu (P2-04 review).
     step('practice', 'exercise', COPY.practice[0], [
       ...brief.targets.map((t) => page(`gap-${t.id}`, T.gapPage, COPY.practice[1], [{
         type: 'vocabulary_typed_gap', itemId: `gap-${t.id}`, targetId: t.id, before: t.gap.before, after: t.gap.after,
         referenceTargetIds: t.gap.referenceTargetIds, accepted: t.gap.accepted, answerExplanation: t.gap.explanation,
       }])),
-      ...brief.targets.map((t) => page(`listen-${t.id}`, T.listeningPage, COPY.listening[1], [{
-        type: 'vocabulary_listening_choice', itemId: `listen-${t.id}`, targetId: t.id, optionTargetIds: t.listeningOptionTargetIds, answerExplanation: t.explanation,
-      }])),
     ]),
+    step('listening', 'exercise', COPY.listening[0], brief.targets.map((t) => page(`listen-${t.id}`, T.listeningPage, COPY.listening[1], [{
+      type: 'vocabulary_listening_choice', itemId: `listen-${t.id}`, targetId: t.id, optionTargetIds: t.listeningOptionTargetIds, answerExplanation: t.explanation,
+    }])), 'practice'),
     step('exam', 'exam', COPY.exam[0], [
       ...examChunks.map(({ key, ids }) => page(`exam-${key}`, T.translationPerWord * ids.length, COPY.exam[1], ids.map((id) => ({
         type: 'vocabulary_translation_exam' as const, itemId: `exam-${id}`, targetId: id, prompt: prompt(id), accepted: answers(id, prompt(id)), answerExplanation: targets.get(id)!.explanation,

@@ -38,18 +38,21 @@ async function matchAll(page: Page, { wrong = true } = {}) {
 }
 
 /**
- * Answers a typed gap: a correct answer flashes green and moves on by itself; otherwise the
- * correction is shown and a second Continue confirms it.
+ * Answers a typed gap: a correct answer flashes green and moves on by itself; otherwise the field
+ * is marked in place (red, or amber for half a point) with the correct answer, and Continue confirms it.
  */
-async function answerGap(page: Page, word: string) {
+async function answerGap(page: Page, word: string, check?: () => Promise<void>) {
   await page.getByRole('textbox').fill(word);
   await proceed(page);
-  // Either the correction appears, or (after the green flash) the next page shows an empty field.
+  // Either the inline correction appears, or (after the green flash) the next page shows an empty field.
   await page.waitForFunction(() => {
     const field = document.querySelector<HTMLInputElement>('.task-card input.text-input');
-    return !!document.querySelector('.feedback') || !field || field.value === '';
+    return !!document.querySelector('.inline-answer') || !field || field.value === '';
   });
-  if (await page.locator('.feedback').count()) await proceed(page);
+  if (await page.locator('.inline-answer').count()) {
+    await check?.();
+    await proceed(page);
+  }
 }
 
 /**
@@ -64,7 +67,7 @@ async function answerListening(page: Page, right = true) {
   }
   await proceed(page);
   if (!right) {
-    await expect(page.locator('.feedback').first()).toBeVisible();
+    await expect(page.locator('.choice.is-wrong')).toHaveCount(1);
     await proceed(page);
   } else await expect(page.locator('.task-card.is-celebrating')).toHaveCount(0);
 }
@@ -115,7 +118,14 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   await expect(page.getByText('Gender and overview')).toBeVisible();
   await expect(page.locator('.task-card select')).toHaveCount(0);
   await chooseGenders(page);
+  // Check reveals the teaching form and translation without resizing the cards.
+  const sizes = () => page.locator('.gender-row').evaluateAll((rows) => rows.map((r) => Math.round(r.getBoundingClientRect().height)));
+  const before = await sizes();
   await proceed(page);
+  await expect(page.locator('.gender-page .match-summary')).toBeVisible();
+  const after = await sizes();
+  const rights = await page.locator('.gender-row').evaluateAll((rows) => rows.map((r) => !r.classList.contains('is-wrong')));
+  expect(after.filter((_, n) => rights[n])).toEqual(before.filter((_, n) => rights[n])); // wrong rows add their explanation
   await proceed(page);
   // Typed gaps: the cursor is already in the field; the four reference words stand above it.
   await expect(page.getByRole('textbox')).toBeFocused();
@@ -124,7 +134,15 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   await expect(refs).toHaveCount(4);
   expect((await refs.last().boundingBox())!.y).toBeLessThan(field.y); // the reference words stand above the field
   for (const word of ['livre', 'Chaise', 'stylo', 'table']) {
-    await answerGap(page, word);
+    // The capitalised "Chaise" earns half a point: the field turns amber, the correct answer follows in
+    // green, and only then an explanation appears below the Continue button, which keeps its place.
+    await answerGap(page, word, async () => {
+      await expect(page.locator('.text-input.is-almost')).toBeVisible();
+      await expect(page.locator('.inline-answer')).toHaveText(/chaise/);
+      await expect(page.locator('.units .feedback')).toHaveCount(0); // no feedback card under the field
+      const button = (await page.getByRole('button', { name: 'Continue' }).boundingBox())!;
+      expect((await page.locator('.footer-note').boundingBox())!.y).toBeGreaterThan(button.y);
+    });
   }
   // Every vocabulary lesson continues with a listening choice per word (P2-04).
   for (let n = 0; n < 4; n++) await answerListening(page);
@@ -142,7 +160,7 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   await expect(page.locator('.article-badge').first()).toHaveClass(/is-alert/);
   await expect(page.locator('.info-box')).toHaveCount(0);
   await proceed(page);
-  await expect(page.getByRole('status').filter({ hasText: 'Type the article before the word' })).toBeVisible();
+  await expect(page.getByRole('status').filter({ hasText: 'Type the indefinite article before the word (un, une or des).' })).toBeVisible();
   await expect(page.getByRole('timer')).toBeVisible();
   await page.getByRole('textbox').first().fill('un livre');
   await expect(page.locator('.article-badge').first()).not.toHaveClass(/is-alert/);
@@ -158,14 +176,20 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   await page.getByRole('button', { name: /^Practice/ }).click();
   // The capitalised "Chaise" is an "almost" with half a point.
   await expect(page.locator('.result-note-almost')).toBeVisible();
-  await expect(page.locator('.match-summary')).toContainText(/of 8 correct\./);
-  await expect(page.locator('.result-item')).toHaveCount(8); // every answer (typed gaps and listening) is listed, correct ones too
+  await expect(page.locator('.match-summary')).toContainText(/of 4 correct\./);
+  await expect(page.locator('.result-item')).toHaveCount(4); // every answer is listed, correct ones too
   const menu = await page.locator('.result-menu button').allTextContents();
   // The highlighted final exam comes first, then the exercises in the order they were presented.
   expect(menu[0]).toBe('Final exam');
   await expect(page.locator('.result-menu .button-exam')).toHaveText('Final exam');
   expect(menu[1]).toBe('Matching'); // unscored parts (introduction, flashcards) are not offered
   expect(menu.join()).not.toMatch(/Introduction|Flashcards/);
+  expect(menu.slice(-1)).toEqual(['Listening']); // listening has its own results (P2-04 review)
+  // Gender results name the word once: "word: chosen gender", a mistake struck through → the correct gender.
+  await page.getByRole('button', { name: 'Gender and overview' }).click();
+  await expect(page.locator('.result-gender').first()).toHaveText(/^(livre|chaise|stylo|table):\s*(Your answer: )?(Masculine|Feminine)/);
+  await expect(page.locator('.result-gender').first()).not.toContainText(/\b(un|une) /);
+  await page.getByRole('button', { name: /^Practice/ }).click();
   // The card shows the selected part (heading and score), the lesson title and the lesson total only.
   await expect(page.locator('.summary-card h1')).toHaveText('Practice');
   await expect(page.locator('.summary-card')).toContainText('Les objets de la classe');
@@ -267,7 +291,10 @@ test('plays French listening choice and dictation with a suitable voice', async 
   };
   await choose(false);
   await proceed(page);
-  await expect(page.locator('.feedback').first()).toBeVisible();
+  // A wrong choice: the chosen option red, the correct one green, no feedback card.
+  await expect(page.locator('.choice.is-wrong')).toHaveCount(1);
+  await expect(page.locator('.choice.is-right')).toHaveCount(1);
+  await expect(page.locator('.feedback')).toHaveCount(0);
   await proceed(page);
   await choose(true);
   await proceed(page);
@@ -293,7 +320,10 @@ test('plays French listening choice and dictation with a suitable voice', async 
   for (let n = 1; n < 4; n++) await page.getByRole('textbox').nth(n).fill(await heard(n));
   await proceed(page);
   await expect(page.getByRole('heading', { name: 'Your exam answers' })).toBeVisible();
-  // The capitalised dictation answer is listed as "almost" (half a point); the exact one is not listed.
+  // Translation (open) and dictation are separate accordions.
+  await expect(page.locator('.result-accordion > summary')).toHaveText([/^Translation/, /^Dictation/]);
+  await page.locator('.result-accordion > summary').filter({ hasText: 'Dictation' }).click();
+  // The capitalised dictation answer is listed as "almost" (half a point).
   await expect(page.locator('.result-list > li.outcome-orthography_only')).toHaveCount(1);
   await expect(page.locator('.result-note-almost')).toBeVisible();
 });

@@ -111,7 +111,7 @@ describe.each(IDS.filter((id) => read('briefs', id).kind === 'vocabulary'))('%s 
     const content = lessonOf(join(ROOT, 'content'), id), brief = read('briefs', id);
     const plan = buildPlan(content, briefSchema('vocabulary', 'fr').parse(brief), 'en', { interleaveGroups: true, examIntro: true });
     const stages = new Set(plan.pages.map((p) => p.stepId));
-    expect(stages.size).toBe(6);
+    expect(stages.size).toBe(7); // six stages; stage 5 has a typed-gap and a listening step
     expect(plan.pages.filter((p) => p.special === 'examIntro')).toHaveLength(1);
     expect(lessonResults(plan, play(plan, key)).total).toBe(100);
     expect(lessonResults(plan, play(plan, (u, role) => (role === 'practice' ? wrong(u) : undefined))).total).toBe(0);

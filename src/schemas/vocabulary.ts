@@ -215,6 +215,7 @@ export const vocabularyContentSchema = (lang: string) =>
           pages: z.array(pageSchema(lang)).min(1).max(60),
         }),
       )
-      .length(VOCABULARY_STAGES.length),
+      // Six stages in seven steps: stage 5 is split into typed gaps and listening (P2-04).
+      .length(VOCABULARY_STAGES.length + 1),
   });
 export type VocabularyContent = z.infer<ReturnType<typeof vocabularyContentSchema>>;
