@@ -654,7 +654,7 @@
                 "rule-on-informal-we"
               ],
               "before": "",
-              "after": "sommes amis. (we)",
+              "after": "sommes amis.",
               "answerExplanation": {
                 "en": "Answer: Nous. Use nous, vous, ils, elles for plural subjects. Use on as an informal equivalent to nous in spoken French.",
                 "fr": "Réponse : Nous. Utiliser nous, vous, ils, elles pour les sujets au pluriel. Utiliser on comme équivalent informel de nous à l'oral.",
@@ -678,7 +678,12 @@
                   "text": "Nous"
                 }
               ],
-              "answerChoiceId": "c-3"
+              "answerChoiceId": "c-3",
+              "hint": {
+                "en": "we",
+                "fr": "1re personne du pluriel",
+                "de": "wir"
+              }
             }
           ]
         },
@@ -700,7 +705,7 @@
                 "rule-on-informal-we"
               ],
               "before": "",
-              "after": "sont amis. (Paul et Léa)",
+              "after": "sont amis.",
               "answerExplanation": {
                 "en": "Answer: Ils. Use nous, vous, ils, elles for plural subjects. Use on as an informal equivalent to nous in spoken French.",
                 "fr": "Réponse : Ils. Utiliser nous, vous, ils, elles pour les sujets au pluriel. Utiliser on comme équivalent informel de nous à l'oral.",
@@ -724,7 +729,12 @@
                   "text": "Elles"
                 }
               ],
-              "answerChoiceId": "c-2"
+              "answerChoiceId": "c-2",
+              "hint": {
+                "en": "Paul and Léa",
+                "fr": "Paul et Léa",
+                "de": "Paul und Léa"
+              }
             }
           ]
         },
@@ -746,7 +756,7 @@
                 "rule-on-informal-we"
               ],
               "before": "",
-              "after": "sont sœurs. (Léa et Marie)",
+              "after": "sont sœurs.",
               "answerExplanation": {
                 "en": "Answer: Elles. Use nous, vous, ils, elles for plural subjects. Use on as an informal equivalent to nous in spoken French.",
                 "fr": "Réponse : Elles. Utiliser nous, vous, ils, elles pour les sujets au pluriel. Utiliser on comme équivalent informel de nous à l'oral.",
@@ -770,7 +780,12 @@
                   "text": "Nous"
                 }
               ],
-              "answerChoiceId": "c-1"
+              "answerChoiceId": "c-1",
+              "hint": {
+                "en": "Léa and Marie",
+                "fr": "Léa et Marie",
+                "de": "Léa und Marie"
+              }
             }
           ]
         },
@@ -792,7 +807,7 @@
                 "rule-on-informal-we"
               ],
               "before": "",
-              "after": "est ici. (we, spoken French)",
+              "after": "est ici.",
               "answerExplanation": {
                 "en": "Answer: On. Use nous, vous, ils, elles for plural subjects. Use on as an informal equivalent to nous in spoken French.",
                 "fr": "Réponse : On. Utiliser nous, vous, ils, elles pour les sujets au pluriel. Utiliser on comme équivalent informel de nous à l'oral.",
@@ -816,7 +831,12 @@
                   "text": "On"
                 }
               ],
-              "answerChoiceId": "c-3"
+              "answerChoiceId": "c-3",
+              "hint": {
+                "en": "we, spoken French",
+                "fr": "nous, à l’oral",
+                "de": "wir, gesprochenes Französisch"
+              }
             }
           ]
         }
@@ -907,7 +927,7 @@
                 "rule-tu-vs-vous"
               ],
               "before": "",
-              "after": "vas bien, Thomas ? (one close friend)",
+              "after": "vas bien, Thomas ?",
               "answerExplanation": {
                 "en": "Answer: Tu. Use tu for informal singular and vous for formal singular or any plural.",
                 "fr": "Réponse : Tu. Utiliser tu pour le singulier informel et vous pour le singulier formel ou tout pluriel.",
@@ -931,7 +951,12 @@
                   "text": "Tu"
                 }
               ],
-              "answerChoiceId": "c-3"
+              "answerChoiceId": "c-3",
+              "hint": {
+                "en": "one close friend",
+                "fr": "un ami proche",
+                "de": "ein enger Freund"
+              }
             }
           ]
         },
@@ -952,7 +977,7 @@
                 "rule-tu-vs-vous"
               ],
               "before": "Bonjour Madame,",
-              "after": "allez bien ? (polite, one person)",
+              "after": "allez bien ?",
               "answerExplanation": {
                 "en": "Answer: vous. Use tu for informal singular and vous for formal singular or any plural.",
                 "fr": "Réponse : vous. Utiliser tu pour le singulier informel et vous pour le singulier formel ou tout pluriel.",
@@ -976,7 +1001,12 @@
                   "text": "tu"
                 }
               ],
-              "answerChoiceId": "c-2"
+              "answerChoiceId": "c-2",
+              "hint": {
+                "en": "polite, one person",
+                "fr": "poli, une personne",
+                "de": "höflich, eine Person"
+              }
             }
           ]
         },
@@ -997,7 +1027,7 @@
                 "rule-tu-vs-vous"
               ],
               "before": "",
-              "after": "êtes prêts, Paul et Léa ? (two people)",
+              "after": "êtes prêts, Paul et Léa ?",
               "answerExplanation": {
                 "en": "Answer: Vous. Use tu for informal singular and vous for formal singular or any plural.",
                 "fr": "Réponse : Vous. Utiliser tu pour le singulier informel et vous pour le singulier formel ou tout pluriel.",
@@ -1021,7 +1051,12 @@
                   "text": "Nous"
                 }
               ],
-              "answerChoiceId": "c-1"
+              "answerChoiceId": "c-1",
+              "hint": {
+                "en": "two people",
+                "fr": "deux personnes",
+                "de": "zwei Personen"
+              }
             }
           ]
         },
@@ -1042,7 +1077,7 @@
                 "rule-tu-vs-vous"
               ],
               "before": "",
-              "after": "viens, Léa ? (one close friend)",
+              "after": "viens, Léa ?",
               "answerExplanation": {
                 "en": "Answer: Tu. Use tu for informal singular and vous for formal singular or any plural.",
                 "fr": "Réponse : Tu. Utiliser tu pour le singulier informel et vous pour le singulier formel ou tout pluriel.",
@@ -1066,7 +1101,12 @@
                   "text": "Tu"
                 }
               ],
-              "answerChoiceId": "c-3"
+              "answerChoiceId": "c-3",
+              "hint": {
+                "en": "one close friend",
+                "fr": "un ami proche",
+                "de": "ein enger Freund"
+              }
             }
           ]
         }

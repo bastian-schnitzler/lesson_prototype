@@ -217,6 +217,7 @@ describe('grammar content validation', () => {
   it('validates answer keys of every interaction', () => {
     expect(messages(checkContent('fr-verb-etre-present', (c) => (c.steps[2].pages[0].items[0].answerChoiceId = 'c-x')))).toMatch(/answerChoiceId/);
     expect(messages(checkContent('fr-verb-etre-present', (c) => (c.steps[2].pages[0].items[0].choices[1].text = 'suis')))).toMatch(/duplicate choice text/);
+    expect(messages(checkContent('fr-verb-etre-present', (c) => (c.steps[2].pages[0].items[0].after += ' (singulier)')))).toMatch(/put cues into hint/);
     expect(messages(checkContent('fr-verb-etre-present', (c) => (c.steps[1].pages[0].items[0].rows[0].validForms = ['sommes'])))).toMatch(/no token with a valid form/);
     expect(messages(checkContent('fr-negation-ne-pas', (c) => c.steps[1].pages[0].items[0].acceptedOrders[0].pop()))).toMatch(/every token exactly once/);
     expect(messages(checkContent('fr-negation-ne-pas', (c) => (c.steps[4].pages[0].items[0].faultyTokenId = 'w9')))).toMatch(/faultyTokenId/);

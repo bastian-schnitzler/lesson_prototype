@@ -103,7 +103,7 @@
                 "rule-singular-gender"
               ],
               "before": "Voici",
-              "after": "livre. (masculin singulier)",
+              "after": "livre.",
               "answerExplanation": {
                 "en": "Answer: un. Use 'un' before singular masculine nouns and 'une' before singular feminine nouns.",
                 "fr": "Réponse : un. Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier.",
@@ -127,7 +127,12 @@
                   "text": "un"
                 }
               ],
-              "answerChoiceId": "c-3"
+              "answerChoiceId": "c-3",
+              "hint": {
+                "en": "masculine singular",
+                "fr": "masculin singulier",
+                "de": "maskulin Singular"
+              }
             }
           ]
         },
@@ -148,7 +153,7 @@
                 "rule-singular-gender"
               ],
               "before": "Voici",
-              "after": "table. (féminin singulier)",
+              "after": "table.",
               "answerExplanation": {
                 "en": "Answer: une. Use 'un' before singular masculine nouns and 'une' before singular feminine nouns.",
                 "fr": "Réponse : une. Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier.",
@@ -172,7 +177,12 @@
                   "text": "un"
                 }
               ],
-              "answerChoiceId": "c-2"
+              "answerChoiceId": "c-2",
+              "hint": {
+                "en": "feminine singular",
+                "fr": "féminin singulier",
+                "de": "feminin Singular"
+              }
             }
           ]
         },
@@ -193,7 +203,7 @@
                 "rule-singular-gender"
               ],
               "before": "Voici",
-              "after": "stylo. (masculin singulier)",
+              "after": "stylo.",
               "answerExplanation": {
                 "en": "Answer: un. Use 'un' before singular masculine nouns and 'une' before singular feminine nouns.",
                 "fr": "Réponse : un. Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier.",
@@ -217,7 +227,12 @@
                   "text": "des"
                 }
               ],
-              "answerChoiceId": "c-1"
+              "answerChoiceId": "c-1",
+              "hint": {
+                "en": "masculine singular",
+                "fr": "masculin singulier",
+                "de": "maskulin Singular"
+              }
             }
           ]
         },
@@ -238,7 +253,7 @@
                 "rule-singular-gender"
               ],
               "before": "Voici",
-              "after": "chaise. (féminin singulier)",
+              "after": "chaise.",
               "answerExplanation": {
                 "en": "Answer: une. Use 'un' before singular masculine nouns and 'une' before singular feminine nouns.",
                 "fr": "Réponse : une. Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier.",
@@ -262,7 +277,12 @@
                   "text": "une"
                 }
               ],
-              "answerChoiceId": "c-3"
+              "answerChoiceId": "c-3",
+              "hint": {
+                "en": "feminine singular",
+                "fr": "féminin singulier",
+                "de": "feminin Singular"
+              }
             }
           ]
         },
@@ -283,7 +303,7 @@
                 "rule-singular-gender"
               ],
               "before": "Voici",
-              "after": "cahier. (masculin singulier)",
+              "after": "cahier.",
               "answerExplanation": {
                 "en": "Answer: un. Use 'un' before singular masculine nouns and 'une' before singular feminine nouns.",
                 "fr": "Réponse : un. Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier.",
@@ -307,7 +327,12 @@
                   "text": "une"
                 }
               ],
-              "answerChoiceId": "c-2"
+              "answerChoiceId": "c-2",
+              "hint": {
+                "en": "masculine singular",
+                "fr": "masculin singulier",
+                "de": "maskulin Singular"
+              }
             }
           ]
         }
@@ -542,7 +567,7 @@
                 "rule-plural-des"
               ],
               "before": "J’ai",
-              "after": "livres. (pluriel indéfini)",
+              "after": "livres.",
               "answerExplanation": {
                 "en": "Answer: des. Use 'des' before any plural noun, whether masculine or feminine.",
                 "fr": "Réponse : des. Utilisez 'des' devant tous les noms au pluriel, qu'ils soient masculins ou féminins.",
@@ -566,7 +591,12 @@
                   "text": "des"
                 }
               ],
-              "answerChoiceId": "c-3"
+              "answerChoiceId": "c-3",
+              "hint": {
+                "en": "plural, indefinite",
+                "fr": "pluriel indéfini",
+                "de": "Plural, unbestimmt"
+              }
             }
           ]
         },
@@ -587,7 +617,7 @@
                 "rule-plural-des"
               ],
               "before": "Voici",
-              "after": "tables. (pluriel indéfini)",
+              "after": "tables.",
               "answerExplanation": {
                 "en": "Answer: des. Use 'des' before any plural noun, whether masculine or feminine.",
                 "fr": "Réponse : des. Utilisez 'des' devant tous les noms au pluriel, qu'ils soient masculins ou féminins.",
@@ -611,7 +641,12 @@
                   "text": "une"
                 }
               ],
-              "answerChoiceId": "c-2"
+              "answerChoiceId": "c-2",
+              "hint": {
+                "en": "plural, indefinite",
+                "fr": "pluriel indéfini",
+                "de": "Plural, unbestimmt"
+              }
             }
           ]
         },
@@ -632,7 +667,7 @@
                 "rule-plural-des"
               ],
               "before": "Nous avons",
-              "after": "stylos. (pluriel indéfini)",
+              "after": "stylos.",
               "answerExplanation": {
                 "en": "Answer: des. Use 'des' before any plural noun, whether masculine or feminine.",
                 "fr": "Réponse : des. Utilisez 'des' devant tous les noms au pluriel, qu'ils soient masculins ou féminins.",
@@ -656,7 +691,12 @@
                   "text": "une"
                 }
               ],
-              "answerChoiceId": "c-1"
+              "answerChoiceId": "c-1",
+              "hint": {
+                "en": "plural, indefinite",
+                "fr": "pluriel indéfini",
+                "de": "Plural, unbestimmt"
+              }
             }
           ]
         },
@@ -677,7 +717,7 @@
                 "rule-plural-des"
               ],
               "before": "Elle a",
-              "after": "chaises. (pluriel indéfini)",
+              "after": "chaises.",
               "answerExplanation": {
                 "en": "Answer: des. Use 'des' before any plural noun, whether masculine or feminine.",
                 "fr": "Réponse : des. Utilisez 'des' devant tous les noms au pluriel, qu'ils soient masculins ou féminins.",
@@ -701,7 +741,12 @@
                   "text": "des"
                 }
               ],
-              "answerChoiceId": "c-3"
+              "answerChoiceId": "c-3",
+              "hint": {
+                "en": "plural, indefinite",
+                "fr": "pluriel indéfini",
+                "de": "Plural, unbestimmt"
+              }
             }
           ]
         },
@@ -722,7 +767,7 @@
                 "rule-plural-des"
               ],
               "before": "Tu as",
-              "after": "cahiers. (pluriel indéfini)",
+              "after": "cahiers.",
               "answerExplanation": {
                 "en": "Answer: des. Use 'des' before any plural noun, whether masculine or feminine.",
                 "fr": "Réponse : des. Utilisez 'des' devant tous les noms au pluriel, qu'ils soient masculins ou féminins.",
@@ -746,7 +791,12 @@
                   "text": "un"
                 }
               ],
-              "answerChoiceId": "c-2"
+              "answerChoiceId": "c-2",
+              "hint": {
+                "en": "plural, indefinite",
+                "fr": "pluriel indéfini",
+                "de": "Plural, unbestimmt"
+              }
             }
           ]
         }

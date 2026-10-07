@@ -176,6 +176,8 @@ export const grammarItemSchema = (lang: string) =>
       after: z.string().max(200),
       choices: z.array(z.strictObject({ choiceId: NestedIdSchema, text: LearningTextSchema })).length(4),
       answerChoiceId: NestedIdSchema,
+      /** Optional cue shown on its own line above the sentence, e.g. "plural, definite article" (P3-02 review). */
+      hint: LocalizedTextSchema.nullable(),
       ...scored,
     }),
     z.strictObject({

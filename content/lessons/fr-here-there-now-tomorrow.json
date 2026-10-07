@@ -103,7 +103,7 @@
                 "rule-place-adverbs"
               ],
               "before": "Le livre est",
-              "after": "sur cette table, tout près de moi. (here / hier)",
+              "after": "sur cette table, tout près de moi.",
               "answerExplanation": {
                 "en": "Answer: ici. Use 'ici' for 'here' and 'là' for 'there' (or 'here' in informal spoken French) to indicate location.",
                 "fr": "Réponse : ici. Utiliser 'ici' pour 'ici' et 'là' pour 'là/ici' afin d'indiquer un emplacement.",
@@ -127,7 +127,12 @@
                   "text": "ici"
                 }
               ],
-              "answerChoiceId": "c-3"
+              "answerChoiceId": "c-3",
+              "hint": {
+                "en": "here",
+                "fr": "en anglais : here",
+                "de": "hier"
+              }
             }
           ]
         },
@@ -148,7 +153,7 @@
                 "rule-place-adverbs"
               ],
               "before": "Le livre est",
-              "after": "sur cette table, loin de moi. (there / da/dort)",
+              "after": "sur cette table, loin de moi.",
               "answerExplanation": {
                 "en": "Answer: là. Use 'ici' for 'here' and 'là' for 'there' (or 'here' in informal spoken French) to indicate location.",
                 "fr": "Réponse : là. Utiliser 'ici' pour 'ici' et 'là' pour 'là/ici' afin d'indiquer un emplacement.",
@@ -172,7 +177,12 @@
                   "text": "demain"
                 }
               ],
-              "answerChoiceId": "c-2"
+              "answerChoiceId": "c-2",
+              "hint": {
+                "en": "there",
+                "fr": "en anglais : there",
+                "de": "da / dort"
+              }
             }
           ]
         },
@@ -193,7 +203,7 @@
                 "rule-place-adverbs"
               ],
               "before": "Je suis",
-              "after": "dans cette pièce, près de vous. (here / hier)",
+              "after": "dans cette pièce, près de vous.",
               "answerExplanation": {
                 "en": "Answer: ici. Use 'ici' for 'here' and 'là' for 'there' (or 'here' in informal spoken French) to indicate location.",
                 "fr": "Réponse : ici. Utiliser 'ici' pour 'ici' et 'là' pour 'là/ici' afin d'indiquer un emplacement.",
@@ -217,7 +227,12 @@
                   "text": "bientôt"
                 }
               ],
-              "answerChoiceId": "c-1"
+              "answerChoiceId": "c-1",
+              "hint": {
+                "en": "here",
+                "fr": "en anglais : here",
+                "de": "hier"
+              }
             }
           ]
         },
@@ -238,7 +253,7 @@
                 "rule-place-adverbs"
               ],
               "before": "Tu es",
-              "after": "dans l’autre pièce ? (there / da/dort)",
+              "after": "dans l’autre pièce ?",
               "answerExplanation": {
                 "en": "Answer: là. Use 'ici' for 'here' and 'là' for 'there' (or 'here' in informal spoken French) to indicate location.",
                 "fr": "Réponse : là. Utiliser 'ici' pour 'ici' et 'là' pour 'là/ici' afin d'indiquer un emplacement.",
@@ -262,7 +277,12 @@
                   "text": "là"
                 }
               ],
-              "answerChoiceId": "c-3"
+              "answerChoiceId": "c-3",
+              "hint": {
+                "en": "there",
+                "fr": "en anglais : there",
+                "de": "da / dort"
+              }
             }
           ]
         }
@@ -506,7 +526,7 @@
                 "rule-time-adverbs-future"
               ],
               "before": "Hier, c’était lundi.",
-              "after": "c’est mardi. (today / heute)",
+              "after": "c’est mardi.",
               "answerExplanation": {
                 "en": "Answer: aujourd'hui. Use 'maintenant' (now) and 'aujourd'hui' (today) to locate an event in the present time. Use 'demain' (tomorrow), 'bientôt' (soon), and 'tout de suite' (right away) for future or immediate events.",
                 "fr": "Réponse : aujourd'hui. Utiliser 'maintenant' et 'aujourd'hui' pour situer un événement au présent. Utiliser 'demain', 'bientôt' et 'tout de suite' pour des événements futurs ou immédiats.",
@@ -530,7 +550,12 @@
                   "text": "aujourd'hui"
                 }
               ],
-              "answerChoiceId": "c-3"
+              "answerChoiceId": "c-3",
+              "hint": {
+                "en": "today",
+                "fr": "en anglais : today",
+                "de": "heute"
+              }
             }
           ]
         },
@@ -552,7 +577,7 @@
                 "rule-time-adverbs-future"
               ],
               "before": "Je travaille",
-              "after": "à cet instant. (now / jetzt)",
+              "after": "à cet instant.",
               "answerExplanation": {
                 "en": "Answer: maintenant. Use 'maintenant' (now) and 'aujourd'hui' (today) to locate an event in the present time. Use 'demain' (tomorrow), 'bientôt' (soon), and 'tout de suite' (right away) for future or immediate events.",
                 "fr": "Réponse : maintenant. Utiliser 'maintenant' et 'aujourd'hui' pour situer un événement au présent. Utiliser 'demain', 'bientôt' et 'tout de suite' pour des événements futurs ou immédiats.",
@@ -576,7 +601,12 @@
                   "text": "demain"
                 }
               ],
-              "answerChoiceId": "c-2"
+              "answerChoiceId": "c-2",
+              "hint": {
+                "en": "now",
+                "fr": "en anglais : now",
+                "de": "jetzt"
+              }
             }
           ]
         },
@@ -598,7 +628,7 @@
                 "rule-time-adverbs-future"
               ],
               "before": "Aujourd’hui, c’est mardi.",
-              "after": "ce sera mercredi. (tomorrow / morgen)",
+              "after": "ce sera mercredi.",
               "answerExplanation": {
                 "en": "Answer: demain. Use 'maintenant' (now) and 'aujourd'hui' (today) to locate an event in the present time. Use 'demain' (tomorrow), 'bientôt' (soon), and 'tout de suite' (right away) for future or immediate events.",
                 "fr": "Réponse : demain. Utiliser 'maintenant' et 'aujourd'hui' pour situer un événement au présent. Utiliser 'demain', 'bientôt' et 'tout de suite' pour des événements futurs ou immédiats.",
@@ -622,7 +652,12 @@
                   "text": "ici"
                 }
               ],
-              "answerChoiceId": "c-1"
+              "answerChoiceId": "c-1",
+              "hint": {
+                "en": "tomorrow",
+                "fr": "en anglais : tomorrow",
+                "de": "morgen"
+              }
             }
           ]
         },
@@ -644,7 +679,7 @@
                 "rule-time-adverbs-future"
               ],
               "before": "Dans un petit moment, je viens",
-              "after": "(soon / bald).",
+              "after": ".",
               "answerExplanation": {
                 "en": "Answer: bientôt. Use 'maintenant' (now) and 'aujourd'hui' (today) to locate an event in the present time. Use 'demain' (tomorrow), 'bientôt' (soon), and 'tout de suite' (right away) for future or immediate events.",
                 "fr": "Réponse : bientôt. Utiliser 'maintenant' et 'aujourd'hui' pour situer un événement au présent. Utiliser 'demain', 'bientôt' et 'tout de suite' pour des événements futurs ou immédiats.",
@@ -668,7 +703,12 @@
                   "text": "bientôt"
                 }
               ],
-              "answerChoiceId": "c-3"
+              "answerChoiceId": "c-3",
+              "hint": {
+                "en": "soon",
+                "fr": "en anglais : soon",
+                "de": "bald"
+              }
             }
           ]
         },
@@ -690,7 +730,7 @@
                 "rule-time-adverbs-future"
               ],
               "before": "Je viens",
-              "after": "sans attendre. (right away / sofort)",
+              "after": "sans attendre.",
               "answerExplanation": {
                 "en": "Answer: tout de suite. Use 'maintenant' (now) and 'aujourd'hui' (today) to locate an event in the present time. Use 'demain' (tomorrow), 'bientôt' (soon), and 'tout de suite' (right away) for future or immediate events.",
                 "fr": "Réponse : tout de suite. Utiliser 'maintenant' et 'aujourd'hui' pour situer un événement au présent. Utiliser 'demain', 'bientôt' et 'tout de suite' pour des événements futurs ou immédiats.",
@@ -714,7 +754,12 @@
                   "text": "demain"
                 }
               ],
-              "answerChoiceId": "c-2"
+              "answerChoiceId": "c-2",
+              "hint": {
+                "en": "right away",
+                "fr": "en anglais : right away",
+                "de": "sofort"
+              }
             }
           ]
         }

@@ -9,6 +9,7 @@ import { scoreUnit, type LockedUnit } from '../../src/domain/session/session.ts'
 import { PronounMatchRenderer, PronounTypingRenderer } from '../../src/session/grammarRenderers.tsx';
 import { checkedOrder, MatchingRenderer } from '../../src/session/vocabularyRenderers.tsx';
 import { promptParts, StartView } from '../../src/session/views.tsx';
+import { UnitsRenderer } from '../../src/session/controls.tsx';
 import { skipsFeedbackWhenCorrect } from '../../src/domain/session/session.ts';
 import type { RendererProps } from '../../src/session/controls.tsx';
 
@@ -246,5 +247,19 @@ describe('results task columns (P3-02 review)', () => {
     const dictation = buildPlan(lessonOf(FIXTURES, 'fr-classroom-objects'), JSON.parse(readFileSync(join(FIXTURES, 'briefs', 'fr-classroom-objects.json'), 'utf8')), 'en')
       .pages.flatMap((p) => p.units).find((u) => u.itemType === 'vocabulary_listening_dictation')!;
     expect(promptParts(dictation, t as never)).toEqual(['Write what you hear']);
+  });
+});
+
+describe('gap choice hint (P3-02 review)', () => {
+  it('shows the cue on its own line above the sentence, in the interface language, not in the exam', () => {
+    const CONTENT = resolve(import.meta.dirname, '../../content');
+    const id = 'fr-definite-articles-and-elision';
+    const plan = buildPlan(lessonOf(CONTENT, id), JSON.parse(readFileSync(join(CONTENT, 'briefs', `${id}.json`), 'utf8')), 'en');
+    const page = plan.pages.find((p) => p.items[0]?.type === 'grammar_gap_choice' && /enfants/.test(p.units[0].prompt.after ?? ''))!;
+    const { container } = renderPage(UnitsRenderer, plan, page);
+    const hint = container.querySelector('.gap-hint')!;
+    expect(hint).toHaveTextContent('plural, definite article');
+    expect(hint.compareDocumentPosition(container.querySelector('.gap-sentence')!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(container.querySelector('.gap-sentence')).toHaveTextContent(/^Voici ____ enfants\.$/);
   });
 });

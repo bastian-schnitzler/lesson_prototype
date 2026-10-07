@@ -307,8 +307,9 @@ export function UnitsRenderer(props: RendererProps) {
   return (
     <div className="units">
       <ReferenceWords {...props} />
-      {item.type === 'grammar_gap_typing' && item.hint && props.mode !== 'exam' && (
-        <p className="muted">
+      {/* Gap cues stand on their own line above the sentence (practice only). */}
+      {(item.type === 'grammar_gap_typing' || item.type === 'grammar_gap_choice') && item.hint && props.mode !== 'exam' && (
+        <p className="muted gap-hint">
           {t('session.hint')} {item.hint[locale]}
         </p>
       )}

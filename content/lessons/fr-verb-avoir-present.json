@@ -840,7 +840,7 @@
                 "rule-avoir-possession"
               ],
               "before": "J'",
-              "after": "vingt ans. (avoir)",
+              "after": "vingt ans.",
               "answerExplanation": {
                 "en": "Answer: ai. Use avoir + [number] + ans to state age (e.g., J'ai vingt ans). Never use être. Use avoir with nouns to express possession (e.g., Nous avons un chien).",
                 "fr": "Réponse : ai. Utilisez avoir + [nombre] + ans pour exprimer l'âge (ex. J'ai vingt ans). N'utilisez jamais être. Utilisez avoir avec des noms pour exprimer la possession (ex. Nous avons un chien).",
@@ -864,7 +864,12 @@
                   "text": "ai"
                 }
               ],
-              "answerChoiceId": "c-3"
+              "answerChoiceId": "c-3",
+              "hint": {
+                "en": "Verb: avoir",
+                "fr": "Verbe : avoir",
+                "de": "Verb: avoir"
+              }
             }
           ]
         },
@@ -886,7 +891,7 @@
                 "rule-avoir-possession"
               ],
               "before": "Tu",
-              "after": "dix-huit ans. (avoir)",
+              "after": "dix-huit ans.",
               "answerExplanation": {
                 "en": "Answer: as. Use avoir + [number] + ans to state age (e.g., J'ai vingt ans). Never use être. Use avoir with nouns to express possession (e.g., Nous avons un chien).",
                 "fr": "Réponse : as. Utilisez avoir + [nombre] + ans pour exprimer l'âge (ex. J'ai vingt ans). N'utilisez jamais être. Utilisez avoir avec des noms pour exprimer la possession (ex. Nous avons un chien).",
@@ -910,7 +915,12 @@
                   "text": "es"
                 }
               ],
-              "answerChoiceId": "c-2"
+              "answerChoiceId": "c-2",
+              "hint": {
+                "en": "Verb: avoir",
+                "fr": "Verbe : avoir",
+                "de": "Verb: avoir"
+              }
             }
           ]
         },
@@ -932,7 +942,7 @@
                 "rule-avoir-possession"
               ],
               "before": "Elle",
-              "after": "un vélo. (avoir)",
+              "after": "un vélo.",
               "answerExplanation": {
                 "en": "Answer: a. Use avoir + [number] + ans to state age (e.g., J'ai vingt ans). Never use être. Use avoir with nouns to express possession (e.g., Nous avons un chien).",
                 "fr": "Réponse : a. Utilisez avoir + [nombre] + ans pour exprimer l'âge (ex. J'ai vingt ans). N'utilisez jamais être. Utilisez avoir avec des noms pour exprimer la possession (ex. Nous avons un chien).",
@@ -956,7 +966,12 @@
                   "text": "as"
                 }
               ],
-              "answerChoiceId": "c-1"
+              "answerChoiceId": "c-1",
+              "hint": {
+                "en": "Verb: avoir",
+                "fr": "Verbe : avoir",
+                "de": "Verb: avoir"
+              }
             }
           ]
         },
@@ -978,7 +993,7 @@
                 "rule-avoir-possession"
               ],
               "before": "Nous",
-              "after": "deux livres. (avoir)",
+              "after": "deux livres.",
               "answerExplanation": {
                 "en": "Answer: avons. Use avoir + [number] + ans to state age (e.g., J'ai vingt ans). Never use être. Use avoir with nouns to express possession (e.g., Nous avons un chien).",
                 "fr": "Réponse : avons. Utilisez avoir + [nombre] + ans pour exprimer l'âge (ex. J'ai vingt ans). N'utilisez jamais être. Utilisez avoir avec des noms pour exprimer la possession (ex. Nous avons un chien).",
@@ -1002,7 +1017,12 @@
                   "text": "avons"
                 }
               ],
-              "answerChoiceId": "c-3"
+              "answerChoiceId": "c-3",
+              "hint": {
+                "en": "Verb: avoir",
+                "fr": "Verbe : avoir",
+                "de": "Verb: avoir"
+              }
             }
           ]
         },
@@ -1024,7 +1044,7 @@
                 "rule-avoir-possession"
               ],
               "before": "Vous",
-              "after": "trente ans. (avoir)",
+              "after": "trente ans.",
               "answerExplanation": {
                 "en": "Answer: avez. Use avoir + [number] + ans to state age (e.g., J'ai vingt ans). Never use être. Use avoir with nouns to express possession (e.g., Nous avons un chien).",
                 "fr": "Réponse : avez. Utilisez avoir + [nombre] + ans pour exprimer l'âge (ex. J'ai vingt ans). N'utilisez jamais être. Utilisez avoir avec des noms pour exprimer la possession (ex. Nous avons un chien).",
@@ -1048,7 +1068,12 @@
                   "text": "êtes"
                 }
               ],
-              "answerChoiceId": "c-2"
+              "answerChoiceId": "c-2",
+              "hint": {
+                "en": "Verb: avoir",
+                "fr": "Verbe : avoir",
+                "de": "Verb: avoir"
+              }
             }
           ]
         }

@@ -344,7 +344,7 @@
                 "rule-silent-endings"
               ],
               "before": "Tu",
-              "after": "à Paris. (habiter)",
+              "after": "à Paris.",
               "answerExplanation": {
                 "en": "Answer: habites. Remove -er from the infinitive and add -e (je), -es (tu), and -e (il/elle/on). The endings -e, -es, and -ent are silent in pronunciation.",
                 "fr": "Réponse : habites. Retirez -er de l'infinitif et ajoutez -e (je), -es (tu) et -e (il/elle/on). Les terminaisons -e, -es et -ent sont muettes à la prononciation.",
@@ -368,7 +368,12 @@
                   "text": "habites"
                 }
               ],
-              "answerChoiceId": "c-3"
+              "answerChoiceId": "c-3",
+              "hint": {
+                "en": "Verb: habiter",
+                "fr": "Verbe : habiter",
+                "de": "Verb: habiter"
+              }
             }
           ]
         },
@@ -390,7 +395,7 @@
                 "rule-silent-endings"
               ],
               "before": "Elle",
-              "after": "la musique. (aimer)",
+              "after": "la musique.",
               "answerExplanation": {
                 "en": "Answer: aime. Remove -er from the infinitive and add -e (je), -es (tu), and -e (il/elle/on). The endings -e, -es, and -ent are silent in pronunciation.",
                 "fr": "Réponse : aime. Retirez -er de l'infinitif et ajoutez -e (je), -es (tu) et -e (il/elle/on). Les terminaisons -e, -es et -ent sont muettes à la prononciation.",
@@ -414,7 +419,12 @@
                   "text": "aimes"
                 }
               ],
-              "answerChoiceId": "c-2"
+              "answerChoiceId": "c-2",
+              "hint": {
+                "en": "Verb: aimer",
+                "fr": "Verbe : aimer",
+                "de": "Verb: aimer"
+              }
             }
           ]
         },
@@ -436,7 +446,7 @@
                 "rule-silent-endings"
               ],
               "before": "On",
-              "after": "à Lyon. (travailler)",
+              "after": "à Lyon.",
               "answerExplanation": {
                 "en": "Answer: travaille. Remove -er from the infinitive and add -e (je), -es (tu), and -e (il/elle/on). The endings -e, -es, and -ent are silent in pronunciation.",
                 "fr": "Réponse : travaille. Retirez -er de l'infinitif et ajoutez -e (je), -es (tu) et -e (il/elle/on). Les terminaisons -e, -es et -ent sont muettes à la prononciation.",
@@ -460,7 +470,12 @@
                   "text": "travaillons"
                 }
               ],
-              "answerChoiceId": "c-1"
+              "answerChoiceId": "c-1",
+              "hint": {
+                "en": "Verb: travailler",
+                "fr": "Verbe : travailler",
+                "de": "Verb: travailler"
+              }
             }
           ]
         },
@@ -482,7 +497,7 @@
                 "rule-silent-endings"
               ],
               "before": "Je",
-              "after": "français. (parler)",
+              "after": "français.",
               "answerExplanation": {
                 "en": "Answer: parle. Remove -er from the infinitive and add -e (je), -es (tu), and -e (il/elle/on). The endings -e, -es, and -ent are silent in pronunciation.",
                 "fr": "Réponse : parle. Retirez -er de l'infinitif et ajoutez -e (je), -es (tu) et -e (il/elle/on). Les terminaisons -e, -es et -ent sont muettes à la prononciation.",
@@ -506,7 +521,12 @@
                   "text": "parle"
                 }
               ],
-              "answerChoiceId": "c-3"
+              "answerChoiceId": "c-3",
+              "hint": {
+                "en": "Verb: parler",
+                "fr": "Verbe : parler",
+                "de": "Verb: parler"
+              }
             }
           ]
         }

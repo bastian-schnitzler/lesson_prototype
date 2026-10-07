@@ -65,7 +65,7 @@ it('previews both error-spotter correction modes alongside all other grammar int
   const common = { ruleIds: ['rule-singular'], answerExplanation: explanation };
   const accepted = { answers: ['suis'], accentSensitive: [] };
   content.steps[1].pages[0].items.push(
-    { type: 'grammar_gap_choice', itemId: 'choice-preview', before: 'Je', after: 'ici.', choices: ['suis', 'es', 'est', 'sont'].map((text, i) => ({ choiceId: `c-${i}`, text })), answerChoiceId: 'c-0', ...common },
+    { type: 'grammar_gap_choice', itemId: 'choice-preview', before: 'Je', after: 'ici.', hint: null, choices: ['suis', 'es', 'est', 'sont'].map((text, i) => ({ choiceId: `c-${i}`, text })), answerChoiceId: 'c-0', ...common },
     { type: 'grammar_word_order', itemId: 'order-preview', tokens: [{ tokenId: 'b', text: 'suis' }, { tokenId: 'a', text: 'Je' }], acceptedOrders: [['a', 'b']], ...common },
     ...(['type', 'select'] as const).map((mode) => ({ type: 'grammar_error_spotter' as const, itemId: `spot-${mode}`, tokens: [{ tokenId: 'a', text: 'Je' }, { tokenId: 'b', text: 'est' }], faultyTokenId: 'b', correction: { mode, accepted, choices: mode === 'select' ? ['suis', 'es'] : [] }, ...common })),
   );

@@ -129,7 +129,8 @@
                   "text": "livres"
                 }
               ],
-              "answerChoiceId": "c-3"
+              "answerChoiceId": "c-3",
+              "hint": null
             }
           ]
         },
@@ -175,7 +176,8 @@
                   "text": "chaise"
                 }
               ],
-              "answerChoiceId": "c-2"
+              "answerChoiceId": "c-2",
+              "hint": null
             }
           ]
         },
@@ -221,7 +223,8 @@
                   "text": "stylox"
                 }
               ],
-              "answerChoiceId": "c-1"
+              "answerChoiceId": "c-1",
+              "hint": null
             }
           ]
         },
@@ -267,7 +270,8 @@
                   "text": "tables"
                 }
               ],
-              "answerChoiceId": "c-3"
+              "answerChoiceId": "c-3",
+              "hint": null
             }
           ]
         },
@@ -313,7 +317,8 @@
                   "text": "cahier"
                 }
               ],
-              "answerChoiceId": "c-2"
+              "answerChoiceId": "c-2",
+              "hint": null
             }
           ]
         }

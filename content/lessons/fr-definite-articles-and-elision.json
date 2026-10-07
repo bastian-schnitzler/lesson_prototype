@@ -126,7 +126,7 @@
                 "rule-def-elision"
               ],
               "before": "Voici",
-              "after": "garçon. (masculin singulier, article défini)",
+              "after": "garçon.",
               "answerExplanation": {
                 "en": "Answer: le. Use 'le' for masculine singular, 'la' for feminine singular, and 'les' for all plural nouns. 'le' and 'la' become 'l'' before a word starting with a vowel or a silent 'h'.",
                 "fr": "Réponse : le. Utilisez 'le' pour le masculin singulier, 'la' pour le féminin singulier et 'les' pour tous les noms au pluriel. 'le' et 'la' deviennent 'l'' devant un mot commençant par une voyelle ou un 'h' muet.",
@@ -150,7 +150,12 @@
                   "text": "le"
                 }
               ],
-              "answerChoiceId": "c-3"
+              "answerChoiceId": "c-3",
+              "hint": {
+                "en": "masculine singular, definite article",
+                "fr": "masculin singulier, article défini",
+                "de": "maskulin Singular, bestimmter Artikel"
+              }
             }
           ]
         },
@@ -172,7 +177,7 @@
                 "rule-def-elision"
               ],
               "before": "Voici",
-              "after": "fille. (féminin singulier, article défini)",
+              "after": "fille.",
               "answerExplanation": {
                 "en": "Answer: la. Use 'le' for masculine singular, 'la' for feminine singular, and 'les' for all plural nouns. 'le' and 'la' become 'l'' before a word starting with a vowel or a silent 'h'.",
                 "fr": "Réponse : la. Utilisez 'le' pour le masculin singulier, 'la' pour le féminin singulier et 'les' pour tous les noms au pluriel. 'le' et 'la' deviennent 'l'' devant un mot commençant par une voyelle ou un 'h' muet.",
@@ -196,7 +201,12 @@
                   "text": "le"
                 }
               ],
-              "answerChoiceId": "c-2"
+              "answerChoiceId": "c-2",
+              "hint": {
+                "en": "feminine singular, definite article",
+                "fr": "féminin singulier, article défini",
+                "de": "feminin Singular, bestimmter Artikel"
+              }
             }
           ]
         },
@@ -218,7 +228,7 @@
                 "rule-def-elision"
               ],
               "before": "Voici",
-              "after": "ami. (masculin singulier, article défini)",
+              "after": "ami.",
               "answerExplanation": {
                 "en": "Answer: l'. Use 'le' for masculine singular, 'la' for feminine singular, and 'les' for all plural nouns. 'le' and 'la' become 'l'' before a word starting with a vowel or a silent 'h'.",
                 "fr": "Réponse : l'. Utilisez 'le' pour le masculin singulier, 'la' pour le féminin singulier et 'les' pour tous les noms au pluriel. 'le' et 'la' deviennent 'l'' devant un mot commençant par une voyelle ou un 'h' muet.",
@@ -242,7 +252,12 @@
                   "text": "la"
                 }
               ],
-              "answerChoiceId": "c-1"
+              "answerChoiceId": "c-1",
+              "hint": {
+                "en": "masculine singular, definite article",
+                "fr": "masculin singulier, article défini",
+                "de": "maskulin Singular, bestimmter Artikel"
+              }
             }
           ]
         },
@@ -264,7 +279,7 @@
                 "rule-def-elision"
               ],
               "before": "Voici",
-              "after": "hôtel. (h muet, article défini)",
+              "after": "hôtel.",
               "answerExplanation": {
                 "en": "Answer: l'. Use 'le' for masculine singular, 'la' for feminine singular, and 'les' for all plural nouns. 'le' and 'la' become 'l'' before a word starting with a vowel or a silent 'h'.",
                 "fr": "Réponse : l'. Utilisez 'le' pour le masculin singulier, 'la' pour le féminin singulier et 'les' pour tous les noms au pluriel. 'le' et 'la' deviennent 'l'' devant un mot commençant par une voyelle ou un 'h' muet.",
@@ -288,7 +303,12 @@
                   "text": "l'"
                 }
               ],
-              "answerChoiceId": "c-3"
+              "answerChoiceId": "c-3",
+              "hint": {
+                "en": "silent h, definite article",
+                "fr": "h muet, article défini",
+                "de": "stummes h, bestimmter Artikel"
+              }
             }
           ]
         },
@@ -310,7 +330,7 @@
                 "rule-def-elision"
               ],
               "before": "Voici",
-              "after": "enfants. (pluriel, article défini)",
+              "after": "enfants.",
               "answerExplanation": {
                 "en": "Answer: les. Use 'le' for masculine singular, 'la' for feminine singular, and 'les' for all plural nouns. 'le' and 'la' become 'l'' before a word starting with a vowel or a silent 'h'.",
                 "fr": "Réponse : les. Utilisez 'le' pour le masculin singulier, 'la' pour le féminin singulier et 'les' pour tous les noms au pluriel. 'le' et 'la' deviennent 'l'' devant un mot commençant par une voyelle ou un 'h' muet.",
@@ -334,7 +354,12 @@
                   "text": "le"
                 }
               ],
-              "answerChoiceId": "c-2"
+              "answerChoiceId": "c-2",
+              "hint": {
+                "en": "plural, definite article",
+                "fr": "pluriel, article défini",
+                "de": "Plural, bestimmter Artikel"
+              }
             }
           ]
         },
@@ -356,7 +381,7 @@
                 "rule-def-elision"
               ],
               "before": "Voici",
-              "after": "amies. (pluriel, article défini)",
+              "after": "amies.",
               "answerExplanation": {
                 "en": "Answer: les. Use 'le' for masculine singular, 'la' for feminine singular, and 'les' for all plural nouns. 'le' and 'la' become 'l'' before a word starting with a vowel or a silent 'h'.",
                 "fr": "Réponse : les. Utilisez 'le' pour le masculin singulier, 'la' pour le féminin singulier et 'les' pour tous les noms au pluriel. 'le' et 'la' deviennent 'l'' devant un mot commençant par une voyelle ou un 'h' muet.",
@@ -380,7 +405,12 @@
                   "text": "la"
                 }
               ],
-              "answerChoiceId": "c-1"
+              "answerChoiceId": "c-1",
+              "hint": {
+                "en": "plural, definite article",
+                "fr": "pluriel, article défini",
+                "de": "Plural, bestimmter Artikel"
+              }
             }
           ]
         }

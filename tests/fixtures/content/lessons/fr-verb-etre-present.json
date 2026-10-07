@@ -222,6 +222,7 @@
                 }
               ],
               "answerChoiceId": "c-es",
+              "hint": null,
               "ruleIds": [
                 "r-singular"
               ],
@@ -267,6 +268,7 @@
                 }
               ],
               "answerChoiceId": "c-suis",
+              "hint": null,
               "ruleIds": [
                 "r-singular"
               ],

@@ -311,6 +311,7 @@
                 }
               ],
               "answerChoiceId": "c-n",
+              "hint": null,
               "ruleIds": [
                 "r-elision"
               ],

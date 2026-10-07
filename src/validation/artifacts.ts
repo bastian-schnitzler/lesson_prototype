@@ -272,6 +272,7 @@ function checkGrammarItem(item: GrammarItem, path: string, rules: Set<string>, e
       issues.unique(item.choices.map((ch) => ch.choiceId), path, 'choice ID');
       issues.unique(item.choices.map((ch) => ch.text), path, 'choice text');
       issues.check(item.choices.some((ch) => ch.choiceId === item.answerChoiceId), path, 'answerChoiceId must be one of the choices');
+      issues.check(!/\(.*\)/.test(`${item.before} ${item.after}`), path, 'put cues into hint (shown above the sentence), not in parentheses inside the sentence');
       break;
     case 'grammar_gap_typing':
       if (exam) issues.check(item.hint === null, path, 'exam gaps have no hint');

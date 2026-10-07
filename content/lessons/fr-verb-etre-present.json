@@ -440,6 +440,7 @@
                 }
               ],
               "answerChoiceId": "suis",
+              "hint": null,
               "ruleIds": [
                 "rule-singular-forms"
               ],
@@ -485,6 +486,7 @@
                 }
               ],
               "answerChoiceId": "es",
+              "hint": null,
               "ruleIds": [
                 "rule-singular-forms"
               ],
@@ -530,6 +532,7 @@
                 }
               ],
               "answerChoiceId": "est",
+              "hint": null,
               "ruleIds": [
                 "rule-singular-forms"
               ],
@@ -575,6 +578,7 @@
                 }
               ],
               "answerChoiceId": "est",
+              "hint": null,
               "ruleIds": [
                 "rule-singular-forms"
               ],
