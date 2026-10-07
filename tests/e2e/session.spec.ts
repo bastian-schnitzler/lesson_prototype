@@ -24,8 +24,8 @@ const PAIRS: Record<string, string> = {
  * always shows corrections (a fully correct page skips them).
  */
 async function matchAll(page: Page, { wrong = true } = {}) {
-  const native = page.locator('.matching-columns ul').first().getByRole('button');
-  const french = page.locator('.matching-columns ul').last().getByRole('button');
+  const native = page.locator('.matching-columns > ul').first().getByRole('button');
+  const french = page.locator('.matching-columns > ul').last().getByRole('button');
   const words = await native.allTextContents();
   for (const [n, word] of words.entries()) {
     const partner = wrong && n < 2 ? PAIRS[words[1 - n]] : PAIRS[word];
@@ -255,8 +255,8 @@ test('matching pairs by keyboard, lets a pair be reassigned and locks it with fe
   await proceed(page); // introduction
   await revealCards(page);
   await proceed(page); // flashcards
-  const native = page.locator('.matching-columns ul').first().getByRole('button');
-  const french = page.locator('.matching-columns ul').last().getByRole('button');
+  const native = page.locator('.matching-columns > ul').first().getByRole('button');
+  const french = page.locator('.matching-columns > ul').last().getByRole('button');
   // Keyboard: focus an English word, press Enter, focus a French form, press Space.
   const book = native.filter({ hasText: 'book' });
   await book.focus();
@@ -285,6 +285,13 @@ test('matching pairs by keyboard, lets a pair be reassigned and locks it with fe
     const box = (await french.first().boundingBox())!;
     await page.mouse.move(box.x - 40, box.y + box.height / 2);
     await expect(page.locator('.match-curve-live')).toHaveCount(1);
+    // Over a target box the live curve ends at that box's inner (left) border, not under the pointer.
+    const target = (await french.filter({ hasText: 'un stylo' }).boundingBox())!;
+    const frame = (await page.locator('.matching-frame').boundingBox())!;
+    await page.mouse.move(target.x + target.width / 2, target.y + target.height / 2);
+    const d = (await page.locator('.match-curve-live').getAttribute('d'))!;
+    const endX = Number(d.trim().split(/[ ,]+/).at(-2));
+    expect(Math.abs(endX - (target.x - frame.x))).toBeLessThan(1);
     await native.filter({ hasText: 'pen' }).click(); // deselect
   } else {
     await expect(page.locator('.match-curves')).toHaveCount(0);

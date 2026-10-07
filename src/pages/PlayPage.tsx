@@ -63,7 +63,7 @@ export function PlayPage({ manifest, lessonId }: { manifest: Manifest; lessonId:
   // The attempt's mother tongue is the starting-page choice, never the course language (D38).
   const motherTongue: Locale = course && isMotherTongueAllowed(prefs.motherTongue, course.lang) ? prefs.motherTongue : LOCALES.find((l) => l !== course?.lang) ?? 'en';
   const plan: LessonPlan | undefined = useMemo(
-    () => (loaded.status === 'ready' ? buildPlan(loaded.content, loaded.brief, active?.motherTongue ?? motherTongue) : undefined),
+    () => (loaded.status === 'ready' ? buildPlan(loaded.content, loaded.brief, active?.motherTongue ?? motherTongue, { interleaveGroups: true }) : undefined),
     [loaded, active?.motherTongue, motherTongue],
   );
 

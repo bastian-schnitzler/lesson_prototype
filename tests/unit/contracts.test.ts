@@ -82,3 +82,14 @@ describe.each(IDS)('%s', (id) => {
     expect(lessonResults(plan, empty)).toMatchObject({ total: 0, practice: { earned: 0 }, exam: { earned: 0 } });
   });
 });
+
+it('orders a learner session as introduction, flashcards, introduction, flashcards, … and still completes', () => {
+  const content = read('lessons', 'fr-family-members'), brief = read('briefs', 'fr-family-members');
+  const plan = buildPlan(contentSchema('vocabulary', 'fr').parse(content), briefSchema('vocabulary', 'fr').parse(brief), 'en', { interleaveGroups: true });
+  const kinds = plan.pages.slice(0, 4).map((p) => p.items[0].type);
+  expect(kinds).toEqual(['vocabulary_introduction', 'vocabulary_flashcards', 'vocabulary_introduction', 'vocabulary_flashcards']);
+  const [intro1, cards1] = plan.pages;
+  expect(cards1.items[0].type === 'vocabulary_flashcards' && cards1.items[0].targetIds).toEqual(intro1.items[0].type === 'vocabulary_introduction' && intro1.items[0].targetIds);
+  expect(plan.pages.map((p) => p.index)).toEqual(plan.pages.map((_, n) => n));
+  expect(lessonResults(plan, play(plan, key)).total).toBe(100);
+});

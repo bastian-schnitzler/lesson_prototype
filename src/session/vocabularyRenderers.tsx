@@ -102,9 +102,11 @@ function Flashcard({ id, index, total, plan, motherTongue, initiallyFlipped, onF
         </div>
         <div className="flashcard-face flashcard-back" inert={!flipped}>
           <p className="flashcard-side">{languageName(plan.lang)}</p>
-          <p className="flashcard-form" lang={plan.lang}>{target?.teachingForm}</p>
+          <p className="flashcard-form">
+            <span lang={plan.lang}>{target?.teachingForm}</span>
+            {target && <ListenButton text={target.teachingForm} lang={plan.lang} variant="icon" size="large" label={t('session.listenWord', { word: target.teachingForm })} />}
+          </p>
           {target && target.genders.length > 0 && <p className="muted">{genderLabel(target, t)}</p>}
-          {target && <ListenButton text={target.teachingForm} lang={plan.lang} />}
           {target && (
             <p className="flashcard-example">
               <ListenButton text={target.context.sentence} lang={plan.lang} variant="icon" label={t('session.listenSentence')} />
@@ -195,11 +197,13 @@ export function MatchingRenderer(props: RendererProps) {
               const n = pairNumber.get(u.id);
               const target = targetOf(u.id);
               return (
-                <li key={u.id}>
+                <li key={u.id} className="match-cell">
                   <button type="button" ref={register(`learning:${u.id}`)} className={`match-item${n ? ' is-paired' : ''}`} lang={plan.lang} aria-pressed={selected?.side === 'learning' && selected.id === u.id}
                     aria-label={n ? t('session.pairedWith', { item: formLabel(u.id), partner: nativeText(pairOf(u.id)!) }) : formLabel(u.id)} onClick={() => pick('learning', u.id)}>
                     <span>{target?.teachingForm}{target?.genders.length ? <small>{genderLabel(target, t)}</small> : null}</span>{n && <span className="pair-badge" aria-hidden="true">{n}</span>}
                   </button>
+                  {/* A separate control (buttons cannot nest), drawn inside the box after the word. */}
+                  {target && <span className="match-audio"><ListenButton text={target.teachingForm} lang={plan.lang} variant="icon" label={t('session.listenWord', { word: target.teachingForm })} /></span>}
                 </li>
               );
             })}
@@ -259,7 +263,19 @@ function MatchingCurves({ pairs, selected, boxes, children }: {
     };
     const next = {
       pairs: pairs.flatMap(([from, to]) => { const a = anchor(from), b = anchor(to); return a && b ? [curve(a, b)] : []; }),
-      live: (() => { const a = selected ? anchor(selected) : undefined; return a && pointer ? curve(a, pointer) : null; })(),
+      live: (() => {
+        const a = selected ? anchor(selected) : undefined;
+        if (!a || !pointer || !selected) return null;
+        // Over a box of the other column, the curve stops at that box's inner border instead of crossing it.
+        const otherSide = selected.startsWith('native:') ? 'learning:' : 'native:';
+        for (const [key, element] of boxes.current) {
+          if (!key.startsWith(otherSide)) continue;
+          const r = element.getBoundingClientRect();
+          const x = pointer.x + origin.left, y = pointer.y + origin.top;
+          if (x >= r.left && x <= r.right && y >= r.top && y <= r.bottom) return curve(a, { x: (otherSide === 'learning:' ? r.left : r.right) - origin.left, y: pointer.y });
+        }
+        return curve(a, pointer);
+      })(),
     };
     if (JSON.stringify(next) !== JSON.stringify(paths)) setPaths(next);
   });

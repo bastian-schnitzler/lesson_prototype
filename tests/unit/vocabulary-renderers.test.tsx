@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
-import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, expect, it, vi } from 'vitest';
 import { PreferencesProvider } from '../../src/app/context.tsx';
 import { buildPlan } from '../../src/domain/session/plan.ts';
@@ -19,7 +19,7 @@ function renderMatching(seed: number, drafts: Record<string, string> = {}, onCha
         seed={seed} motherTongue="en" pageId={page.pageId} revealed={{}} onReveal={() => undefined} />
     </PreferencesProvider>,
   );
-  const [native, french] = screen.getAllByRole('list').map((l) => within(l).getAllByRole('button').map((b) => b.textContent!));
+  const [native, french] = screen.getAllByRole('list').map((l) => [...l.querySelectorAll('.match-item')].map((b) => b.textContent!));
   cleanup();
   return { native, french, onChange };
 }
