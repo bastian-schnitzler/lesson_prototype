@@ -452,6 +452,69 @@ P1-03 implements these contracts in `src/schemas/artifactCommon.ts`, `vocabulary
 
 Store word-order punctuation and repeated tokens explicitly. Do not split sentences with a simplistic space-only parser. Allow multiple correct sequences/answers when linguistically valid, while ensuring prompts make the intended answer assessable.
 
+### Formatted teaching text (D46)
+
+Vocabulary `vocabulary_introduction.text` and grammar `grammar_explanation.text` are generated as **restricted Markdown**, one string per interface locale. One parser (`src/domain/richText.ts`) serves the validator and the renderer (`RichText`). Any other prose field stays plain text.
+
+**Syntax**
+
+| Element | Write | Renders as |
+| --- | --- | --- |
+| Paragraph | text; a blank line separates paragraphs (a single line break becomes a space) | `<p>` |
+| Bulleted list | every line of the block starts with `- ` | `<ul>` |
+| Numbered list | every line of the block starts with `1. `, `2. `, … | `<ol>` |
+| Key idea | `**bold**`, plain text inside | `<strong>` |
+| Learning-language form | `` `un livre` ``, `` `je suis` ``, `` `Il est médecin.` `` | highlighted span with `lang` set to the course language |
+
+Not allowed: headings, block quotes, tables, code fences, `*`/`+` bullets, `*italics*`, links, images, HTML, literal `\n`, markup inside bold or inside backticks, and a list without a blank line before and after it.
+
+**How to write it (generation guidance)**
+
+- **Introduction (one per target group):**
+  1. A short lead paragraph names the topic or pattern, with one `**bold**` key idea.
+  2. A list gives the group's targets, one per line, as `` `teaching form` `` followed by "– meaning" and an optional short example sentence.
+  3. A closing paragraph adds one useful observation (gender, pronunciation, spelling) or a study tip.
+
+  Do not quiz the learner.
+- **Grammar explanation (one per teaching block):**
+  1. A rule paragraph states the rule, with one `**bold**` key idea.
+  2. A list gives the forms or cases, one per line, each with a backticked example.
+  3. A final paragraph or list names the typical pitfall.
+
+  The separate form table and examples are rendered after the text, so the text should not repeat them in full.
+- **Backticks** go around every learning-language word, form or sentence quoted in the text, in every locale, including the French locale. Do not use them for interface-language words, IPA or endings such as -er.
+- **Parity:** en, fr and de have the same paragraphs and lists in the same order, and exactly the same backticked forms. Only the surrounding prose is translated.
+- **Length and tone:** keep paragraphs to one to three sentences and lists to at most about eight items. The text stays within the long-text limit of 1,200 characters per locale. The tone addresses the learner directly.
+- **Answer policy:** the text must not contradict the answer policy. It shows nouns with the indefinite article that the exam asks for, and it does not promise alternative spellings that are not exam forms.
+
+Example (en and de of one introduction; fr has the same structure and forms):
+
+```text
+These six classroom objects are **masculine**: they take `un`.
+
+- `un livre` – book
+- `un cahier` – exercise book
+
+Learn each word together with its article – the article tells you the gender.
+```
+
+```text
+Diese sechs Gegenstände sind **maskulin**: Sie haben `un`.
+
+- `un livre` – Buch
+- `un cahier` – Heft
+
+Lerne jedes Wort mit seinem Artikel – der Artikel zeigt das Genus.
+```
+
+**Validation and rendering**
+
+- Content validation reports every syntax error with its locale and block.
+- It requires the same block structure (for example `p|ul:6|p`) and the same multiset of backticked forms in every locale.
+- Plain text without markup is still valid, as one paragraph.
+- The renderer produces only `p`, `ul`, `ol`, `li`, `strong` and `span` elements and never interprets HTML.
+- The content prompt (`content-v2`) carries these rules, so regenerated lessons follow them. The twenty samples were reformatted by hand.
+
 ## 5. Session, scoring, progress, and exam timing
 
 ### Shared session contract

@@ -758,9 +758,40 @@ select {
 }
 
 .stage-list {
-  columns: 2;
+  display: grid;
+  gap: 0.4rem;
   margin: 0;
-  padding-left: 1.5rem;
+  padding-left: 0;
+  list-style: none;
+  counter-reset: stage;
+}
+
+.stage-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--review-color);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.stage-list li::before {
+  counter-increment: stage;
+  content: counter(stage) ".";
+  min-width: 1.5rem;
+  color: var(--review-color);
+  font-weight: 600;
+}
+
+.stage-list li span {
+  flex: 1;
+}
+
+.stage-list small {
+  color: var(--muted);
+  white-space: nowrap;
 }
 
 .start-actions {
@@ -1015,8 +1046,14 @@ select {
 }
 
 @media (max-width: 600px) {
-  .stage-list {
-    columns: 1;
+  .stage-list li {
+    flex-wrap: wrap;
+    row-gap: 0;
+  }
+
+  .stage-list small {
+    flex-basis: 100%;
+    padding-left: 2.25rem;
   }
 
   .field-row {
