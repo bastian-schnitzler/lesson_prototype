@@ -1,6 +1,6 @@
 # Lesson exercise prototype specification
 
-Status: **Draft 0.34 — vocabulary composition and answer-policy review (P2-01)**. Date: 2026-10-07.
+Status: **Draft 0.35 — formatted teaching text (P2-05)**. Date: 2026-10-07.
 
 This document specifies the prototype and its phased implementation. It is the maintained requirements document: no separate requirements file exists. It does not authorize starting implementation before the specification review. The backlog is in [ISSUES.md](ISSUES.md) and published as GitHub issues in `bastian-schnitzler/lesson_prototype`.
 
@@ -75,6 +75,7 @@ Confirmed decisions are identified below. Other defaults make the draft concrete
 | D43 | Answer keys during an active exam | **Confirmed (P0-02):** known prototype limitation. Generated content is public static JSON, so the artifact page is not locked during an active exam; no UI change. |
 | D44 | Vocabulary completion | **Confirmed (P0-02):** phase 2 requires all 48 fr/A1 vocabulary lessons to be generated, reviewed by sampling, and playable, matching the grammar requirement for phase 3. |
 | D45 | Preference persistence | **Confirmed (P0-02):** mother tongue and interface language persist in browser storage across full reloads; en/en apply only on first visit or when storage is unavailable. |
+| D46 | Formatted teaching text | **Confirmed (P2-05):** vocabulary introduction text and grammar explanation text are restricted Markdown, one string per locale. Allowed: paragraphs separated by a blank line, bulleted (`- `) and numbered (`1. `) lists, `**bold**`, and `` `learning-language form` `` for forms in the course language. Not allowed: headings, quotes, tables, code fences, links, images, HTML, italics or nesting. The app parses it into semantic elements (no `innerHTML`, no Markdown library); learning-language forms render highlighted with `lang` set. Validation rejects other syntax and requires the same block structure and the same learning-language forms in every locale. Other prose (headings, brief plans, answer explanations) stays plain. The twenty samples were reformatted by hand rather than regenerated. |
 
 ## 2. Runtime and delivery architecture
 
@@ -375,7 +376,7 @@ const nativeTranslationsSchema = (lang: Locale) =>
 
 `Locale` is `z.infer<typeof LocaleSchema>`. Non-locale learning languages (none at present) keep all three keys.
 
-Use `LocalizedTextSchema` for generated objectives, introduction copy, learner-facing step labels/instructions, rule explanations, teaching notes, pitfalls, and every scored answer unit's `answerExplanation`. Use the course's native-translations schema for vocabulary meanings and worked-example translations; translation-source prompts use corresponding localized native-language text, selected by mother tongue. If an exercise uses longer native prompts, its prompt map has required entries for every mother tongue other than the learning language under the same item ID. Canonical learning-language terms, example sentences, gaps, tokens, answer keys and pronunciation text remain single fields in `lang`; do not translate the assessed answer to the interface or mother tongue.
+Use `LocalizedTextSchema` for generated objectives, introduction copy (restricted Markdown, D46), learner-facing step labels/instructions, rule explanations, teaching notes, pitfalls, and every scored answer unit's `answerExplanation`. Use the course's native-translations schema for vocabulary meanings and worked-example translations; translation-source prompts use corresponding localized native-language text, selected by mother tongue. If an exercise uses longer native prompts, its prompt map has required entries for every mother tongue other than the learning language under the same item ID. Canonical learning-language terms, example sentences, gaps, tokens, answer keys and pronunciation text remain single fields in `lang`; do not translate the assessed answer to the interface or mother tongue.
 
 Vocabulary briefs include translation variants for every available mother tongue (en/de for French courses) for every target and native prompt, plus all three support-language objective/context/explanation plans. Grammar briefs include all three objective/rule-plan/pitfall variants and worked-example translations for every available mother tongue. Content generation receives the outline, full multilingual brief, category schema and explicit locale requirements; it fills the same IDs and shared plan with all three support-language realizations. Validate identical assessed meaning and answer-key applicability across translated prompts during pedagogical review; locale-specific examples must not silently change the expected answer or item difficulty.
 
@@ -450,6 +451,69 @@ Content stores canonical item and choice order. Matching sides, gap choices, and
 P1-03 implements these contracts in `src/schemas/artifactCommon.ts`, `vocabulary.ts`, `grammar.ts` and `artifacts.ts` (structural Zod schemas that convert to JSON Schema), with cross-reference, coverage, timing and wording checks in `src/validation/artifacts.ts` and the shared free-text classifier in `src/domain/answers.ts`. Contract fixtures for noun vocabulary, non-noun vocabulary with listening, conjugation grammar and non-conjugation grammar live in `tests/fixtures/content/`.
 
 Store word-order punctuation and repeated tokens explicitly. Do not split sentences with a simplistic space-only parser. Allow multiple correct sequences/answers when linguistically valid, while ensuring prompts make the intended answer assessable.
+
+### Formatted teaching text (D46)
+
+Vocabulary `vocabulary_introduction.text` and grammar `grammar_explanation.text` are generated as **restricted Markdown**, one string per interface locale. One parser (`src/domain/richText.ts`) serves the validator and the renderer (`RichText`). Any other prose field stays plain text.
+
+**Syntax**
+
+| Element | Write | Renders as |
+| --- | --- | --- |
+| Paragraph | text; a blank line separates paragraphs (a single line break becomes a space) | `<p>` |
+| Bulleted list | every line of the block starts with `- ` | `<ul>` |
+| Numbered list | every line of the block starts with `1. `, `2. `, … | `<ol>` |
+| Key idea | `**bold**`, plain text inside | `<strong>` |
+| Learning-language form | `` `un livre` ``, `` `je suis` ``, `` `Il est médecin.` `` | highlighted span with `lang` set to the course language |
+
+Not allowed: headings, block quotes, tables, code fences, `*`/`+` bullets, `*italics*`, links, images, HTML, literal `\n`, markup inside bold or inside backticks, and a list without a blank line before and after it.
+
+**How to write it (generation guidance)**
+
+- **Introduction (one per target group):**
+  1. A short lead paragraph names the topic or pattern, with one `**bold**` key idea.
+  2. A list gives the group's targets, one per line, as `` `teaching form` `` followed by "– meaning" and an optional short example sentence.
+  3. A closing paragraph adds one useful observation (gender, pronunciation, spelling) or a study tip.
+
+  Do not quiz the learner.
+- **Grammar explanation (one per teaching block):**
+  1. A rule paragraph states the rule, with one `**bold**` key idea.
+  2. A list gives the forms or cases, one per line, each with a backticked example.
+  3. A final paragraph or list names the typical pitfall.
+
+  The separate form table and examples are rendered after the text, so the text should not repeat them in full.
+- **Backticks** go around every learning-language word, form or sentence quoted in the text, in every locale, including the French locale. Do not use them for interface-language words, IPA or endings such as -er.
+- **Parity:** en, fr and de have the same paragraphs and lists in the same order, and exactly the same backticked forms. Only the surrounding prose is translated.
+- **Length and tone:** keep paragraphs to one to three sentences and lists to at most about eight items. The text stays within the long-text limit of 1,200 characters per locale. The tone addresses the learner directly.
+- **Answer policy:** the text must not contradict the answer policy. It shows nouns with the indefinite article that the exam asks for, and it does not promise alternative spellings that are not exam forms.
+
+Example (en and de of one introduction; fr has the same structure and forms):
+
+```text
+These six classroom objects are **masculine**: they take `un`.
+
+- `un livre` – book
+- `un cahier` – exercise book
+
+Learn each word together with its article – the article tells you the gender.
+```
+
+```text
+Diese sechs Gegenstände sind **maskulin**: Sie haben `un`.
+
+- `un livre` – Buch
+- `un cahier` – Heft
+
+Lerne jedes Wort mit seinem Artikel – der Artikel zeigt das Genus.
+```
+
+**Validation and rendering**
+
+- Content validation reports every syntax error with its locale and block.
+- It requires the same block structure (for example `p|ul:6|p`) and the same multiset of backticked forms in every locale.
+- Plain text without markup is still valid, as one paragraph.
+- The renderer produces only `p`, `ul`, `ol`, `li`, `strong` and `span` elements and never interprets HTML.
+- The content prompt (`content-v2`) carries these rules, so regenerated lessons follow them. The twenty samples were reformatted by hand.
 
 ## 5. Session, scoring, progress, and exam timing
 
@@ -3204,3 +3268,4 @@ When publishing the agreed backlog, include relevant Mermaid flows as fenced `me
 | 0.32 | 2026-10-07 | P1-12: refreshed the index, vocabulary/grammar artifact-view and Raw JSON mockups from the prototype at `ac00dea` (comparison record in the [mockup README](mockups/README.md#phase-1-comparison)). Draft views show target groups and teaching blocks as numbered tabs like the Content view; grammar form tables are labelled Subject / Form / Example. Follow-ups recorded: repeated grammar step labels in content, rule IDs versus rule numbers. |
 | 0.33 | 2026-10-07 | Added P2-05: generation delivers formatted (for example Markdown) vocabulary introductions and grammar explanations, which the app renders. The issue brainstorms the format, validation and migration/regeneration of existing briefs and lessons. The vocabulary mockup refresh moves to P2-06 (#25) and stays last in phase 2 (D30). |
 | 0.34 | 2026-10-07 | P2-01: reviewed vocabulary renderer composition and answer policies ([record](reviews/2026-10-07-p2-01-vocabulary-review.md)). Split the renderer registry into shared unit controls, vocabulary and grammar renderers. Removed `acceptedVariants` from briefs and `extraAnswers` from content generation: exam answers derive only from exam forms (plus undisambiguated gender variants). Enforced article agreement, teaching form ∈ exam forms and genuine article exceptions; fixed three samples (alphabet, jobs, personal details) and the brief prompt (`brief-v3`). |
+| 0.35 | 2026-10-07 | P2-05: D46 restricted Markdown for vocabulary introductions and grammar explanations, with a shared parser/renderer, locale-parity validation, updated content prompts, and hand-reformatted sample texts. |

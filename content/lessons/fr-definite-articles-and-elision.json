@@ -51,9 +51,9 @@
                 "de": "Bestimmte Artikel und Elision"
               },
               "text": {
-                "en": "Le is masculine singular, la feminine singular, and les plural for both genders. Before a vowel or mute h, le and la become l': l'ami, l'hôtel. The apostrophe joins the article to the noun. Les never becomes l': les amis. Learn the gender even when l' hides it. An aspirate h blocks elision, as in le héros.",
-                "fr": "Le est masculin singulier, la féminin singulier et les pluriel pour les deux genres. Devant une voyelle ou un h muet, le et la deviennent l' : l'ami, l'hôtel. L'apostrophe relie l'article au nom. Les ne devient jamais l' : les amis. Retenez le genre même quand l' le cache. Le h aspiré bloque l'élision : le héros.",
-                "de": "Le ist männlicher Singular, la weiblicher Singular, les Plural für beide Geschlechter. Vor Vokal oder stummem h werden le und la zu l': l'ami, l'hôtel. Die Apostrophe verbindet Artikel und Nomen. Les wird nie l': les amis. Lerne das Genus auch dann, wenn l' es verdeckt. Ein h aspiré verhindert die Elision, wie in le héros."
+                "en": "French has three definite articles:\n\n- `le` – masculine singular\n- `la` – feminine singular\n- `les` – plural, for both genders\n\nBefore a vowel or a mute h, `le` and `la` become `l'`: `l'ami`, `l'hôtel`. `les` never elides: `les amis`. An aspirate h blocks elision: `le héros`.\n\n**Learn the gender** even when `l'` hides it.",
+                "fr": "Le français a trois articles définis :\n\n- `le` – masculin singulier\n- `la` – féminin singulier\n- `les` – pluriel, pour les deux genres\n\nDevant une voyelle ou un h muet, `le` et `la` deviennent `l'` : `l'ami`, `l'hôtel`. `les` ne s'élide jamais : `les amis`. Le h aspiré bloque l'élision : `le héros`.\n\n**Retenez le genre** même quand `l'` le cache.",
+                "de": "Französisch hat drei bestimmte Artikel:\n\n- `le` – männlich Singular\n- `la` – weiblich Singular\n- `les` – Plural, für beide Genera\n\nVor Vokal oder stummem h werden `le` und `la` zu `l'`: `l'ami`, `l'hôtel`. `les` wird nie elidiert: `les amis`. Ein h aspiré verhindert die Elision: `le héros`.\n\n**Lerne das Genus** auch dann, wenn `l'` es verdeckt."
               },
               "formTable": [],
               "examples": [
@@ -418,9 +418,9 @@
                 "de": "Vorlieben-Verben und bestimmte Artikel"
               },
               "text": {
-                "en": "For general likes and dislikes, use a definite article after aimer, adorer or détester: J'aime le café. Elle adore la musique. Nous détestons l'hiver. Use les for a whole class in the plural: J'aime les chats. Keep elision before vowels. These examples express general preferences; other constructions with infinitives do not need a noun article.",
-                "fr": "Pour un goût général, utilisez l'article défini après aimer, adorer ou détester : J'aime le café. Elle adore la musique. Nous détestons l'hiver. Pour une catégorie au pluriel, utilisez les : J'aime les chats. Gardez l'élision devant les voyelles. Ces exemples expriment des goûts généraux ; un infinitif après aimer ne demande pas d'article de nom.",
-                "de": "Bei allgemeinen Vorlieben steht nach aimer, adorer oder détester der bestimmte Artikel: J'aime le café. Elle adore la musique. Nous détestons l'hiver. Für eine ganze Klasse im Plural verwende les: J'aime les chats. Beachte die Elision vor Vokalen. Diese Beispiele sind allgemeine Vorlieben; ein Infinitiv nach aimer benötigt keinen Nomenartikel."
+                "en": "For general likes and dislikes, use a **definite article** after `aimer`, `adorer` or `détester`:\n\n- `J'aime le café.`\n- `Elle adore la musique.`\n- `Nous détestons l'hiver.`\n\nFor a whole category in the plural, use `les`: `J'aime les chats.` Keep the elision before vowels. An infinitive after `aimer` needs no article.",
+                "fr": "Pour un goût général, utilisez l'**article défini** après `aimer`, `adorer` ou `détester` :\n\n- `J'aime le café.`\n- `Elle adore la musique.`\n- `Nous détestons l'hiver.`\n\nPour une catégorie au pluriel, utilisez `les` : `J'aime les chats.` Gardez l'élision devant une voyelle. Un infinitif après `aimer` ne demande pas d'article.",
+                "de": "Bei allgemeinen Vorlieben steht nach `aimer`, `adorer` oder `détester` der **bestimmte Artikel**:\n\n- `J'aime le café.`\n- `Elle adore la musique.`\n- `Nous détestons l'hiver.`\n\nFür eine ganze Kategorie im Plural verwende `les`: `J'aime les chats.` Behalte die Elision vor Vokalen. Ein Infinitiv nach `aimer` braucht keinen Artikel."
               },
               "formTable": [],
               "examples": [

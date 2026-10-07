@@ -7,6 +7,7 @@ import { headerScore, isAnswered, isListeningPage, lessonResults, POLICY, progre
 import type { MessageKey } from '../i18n/messages.ts';
 import { rendererRegistry, UnitFeedback } from './renderers.tsx';
 import type { SessionInput } from './useSession.ts';
+import { reviewColor } from '../artifacts/briefParts.tsx';
 import type { VoiceStatus } from './speech.ts';
 import { VoiceHelp } from './VoiceHelp.tsx';
 
@@ -33,8 +34,11 @@ export function StartView({ plan, level, resumable, notice, onStart, onResume }:
       <p className="muted">{t('session.minutes', { minutes: plan.estimatedMinutes })} · {t('session.scoredSteps', { count: scored.length })}</p>
       <h2 className="small-heading">{t('session.stages')}</h2>
       <ol className="stage-list">
-        {plan.steps.map((s) => (
-          <li key={s.stepId}>{s.label[locale]}</li>
+        {plan.steps.map((s, n) => (
+          <li key={s.stepId} style={reviewColor(n)}>
+            <span>{s.label[locale]}</span>
+            <small>{t(s.role === 'exam' ? 'assessment.exam' : s.role === 'practice' ? 'assessment.practice' : 'assessment.none')}</small>
+          </li>
         ))}
       </ol>
       <p className="muted">{t('session.weights', { practice: POLICY.practiceWeight, exam: POLICY.examWeight })}</p>

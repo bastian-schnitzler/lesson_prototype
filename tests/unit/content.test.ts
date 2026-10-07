@@ -5,7 +5,7 @@ import { join, resolve } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { BriefOptions } from '../../generator/briefs.ts';
 import { generateLesson, splitDuration } from '../../generator/content.ts';
-import { normalizeLocalIds } from '../../generator/contentPrompts.ts';
+import { CONTENT_PROMPT_VERSION, normalizeLocalIds } from '../../generator/contentPrompts.ts';
 import { GenerationError, type GenerationRequest } from '../../generator/gemini.ts';
 import { scanContentDir } from '../../scripts/catalog.ts';
 
@@ -86,7 +86,7 @@ describe('offline lesson content generation', () => {
     const manifest = scanContentDir(dir).manifest.artifacts[id];
     expect(manifest.content?.status).toBe('valid');
     const lesson = JSON.parse(readFileSync(join(dir, 'lessons', `${id}.json`), 'utf8'));
-    expect(lesson.provenance).toMatchObject({ model: 'fake-model', promptVersion: 'content-v1' });
+    expect(lesson.provenance).toMatchObject({ model: 'fake-model', promptVersion: CONTENT_PROMPT_VERSION });
     generate.mockClear();
     await expect(generateLesson(id, opts)).resolves.toMatchObject({ status: 'reused', brief: 'reused' });
     expect(generate).not.toHaveBeenCalled();

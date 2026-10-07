@@ -60,9 +60,9 @@
                 "un-sac"
               ],
               "text": {
-                "en": "These six classroom objects are masculine: they take the indefinite article un. You see them every day in class: un livre, un cahier, un stylo, un tableau, un crayon and un sac. Learn each word together with its article, because the article tells you the gender.",
-                "fr": "Ces six objets de la classe sont masculins : ils prennent l’article indéfini un. Vous les voyez tous les jours en classe : un livre, un cahier, un stylo, un tableau, un crayon et un sac. Apprenez chaque mot avec son article, car l’article indique le genre.",
-                "de": "Diese sechs Gegenstände aus dem Klassenzimmer sind maskulin: Sie haben den unbestimmten Artikel un. Du siehst sie jeden Tag im Unterricht: un livre, un cahier, un stylo, un tableau, un crayon und un sac. Lerne jedes Wort mit seinem Artikel, denn der Artikel zeigt das Genus."
+                "en": "These six classroom objects are **masculine**: they take the indefinite article `un`.\n\n- `un livre`\n- `un cahier`\n- `un stylo`\n- `un tableau`\n- `un crayon`\n- `un sac`\n\nLearn each word together with its article – the article tells you the gender.",
+                "fr": "Ces six objets de la classe sont **masculins** : ils prennent l'article indéfini `un`.\n\n- `un livre`\n- `un cahier`\n- `un stylo`\n- `un tableau`\n- `un crayon`\n- `un sac`\n\nApprenez chaque mot avec son article – l'article indique le genre.",
+                "de": "Diese sechs Gegenstände aus dem Klassenzimmer sind **maskulin**: Sie haben den unbestimmten Artikel `un`.\n\n- `un livre`\n- `un cahier`\n- `un stylo`\n- `un tableau`\n- `un crayon`\n- `un sac`\n\nLerne jedes Wort mit seinem Artikel – der Artikel zeigt das Genus."
               }
             }
           ]
@@ -89,9 +89,9 @@
                 "une-carte"
               ],
               "text": {
-                "en": "These six objects are feminine: they take une. Une table and une chaise furnish the room; une trousse, une règle and une gomme are in your school bag, and une carte hangs on the wall. Note the accent grave in règle. The gender often differs from German: une table but der Tisch.",
-                "fr": "Ces six objets sont féminins : ils prennent une. Une table et une chaise meublent la salle ; une trousse, une règle et une gomme sont dans votre sac, et une carte est au mur. Remarquez l’accent grave de règle. Le genre est souvent différent de l’allemand : une table mais « der Tisch ».",
-                "de": "Diese sechs Gegenstände sind feminin: Sie haben une. Une table und une chaise stehen im Raum; une trousse, une règle und une gomme sind in deiner Schultasche, und une carte hängt an der Wand. Achte auf den accent grave in règle. Das Genus weicht oft vom Deutschen ab: une table, aber der Tisch."
+                "en": "These six objects are **feminine**: they take `une`.\n\n- In the room: `une table`, `une chaise`, and `une carte` on the wall.\n- In your school bag: `une trousse`, `une règle`, `une gomme`.\n\nNote the accent grave in `une règle`. French gender often differs from German: `une table`, but der Tisch.",
+                "fr": "Ces six objets sont **féminins** : ils prennent `une`.\n\n- Dans la salle : `une table`, `une chaise`, et `une carte` au mur.\n- Dans votre sac : `une trousse`, `une règle`, `une gomme`.\n\nRemarquez l'accent grave de `une règle`. Le genre diffère souvent de l'allemand : `une table`, mais « der Tisch ».",
+                "de": "Diese sechs Gegenstände sind **feminin**: Sie haben `une`.\n\n- Im Raum: `une table`, `une chaise` und `une carte` an der Wand.\n- In der Schultasche: `une trousse`, `une règle`, `une gomme`.\n\nAchte auf den accent grave in `une règle`. Das Genus weicht oft vom Deutschen ab: `une table`, aber der Tisch."
               }
             }
           ]

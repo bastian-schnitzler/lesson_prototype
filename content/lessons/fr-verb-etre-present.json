@@ -60,9 +60,9 @@
                 "de": "être im Singular"
               },
               "text": {
-                "en": "Être (to be) is irregular: its forms must be learned by heart. In the singular you say je suis, tu es and il/elle/on est. Use être to give your nationality, your job or how you feel: Je suis étudiant. Elle est française. Careful: tu es and il est sound the same, but tu es ends in -s and il est in -t. Before a job, French uses no article: Il est médecin.",
-                "fr": "Être est irrégulier : il faut apprendre ses formes par cœur. Au singulier, on dit je suis, tu es et il/elle/on est. On utilise être pour dire sa nationalité, sa profession ou son état : Je suis étudiant. Elle est française. Attention : tu es et il est se prononcent pareil, mais tu es se termine par -s et il est par -t. Devant une profession, il n’y a pas d’article : Il est médecin.",
-                "de": "Être (sein) ist unregelmäßig: Die Formen lernt man auswendig. Im Singular sagt man je suis, tu es und il/elle/on est. Mit être nennt man Nationalität, Beruf oder Befinden: Je suis étudiant. Elle est française. Achtung: tu es und il est klingen gleich, aber tu es endet auf -s und il est auf -t. Vor einem Beruf steht kein Artikel: Il est médecin."
+                "en": "`être` (to be) is **irregular**: learn its forms by heart. In the singular you say `je suis`, `tu es` and `il/elle/on est`.\n\nUse `être` for nationality, job or how you feel: `Je suis étudiant.` `Elle est française.`\n\n- `tu es` and `il est` sound the same, but `tu es` ends in -s and `il est` in -t.\n- Before a job there is no article: `Il est médecin.`",
+                "fr": "`être` est **irrégulier** : apprenez ses formes par cœur. Au singulier, on dit `je suis`, `tu es` et `il/elle/on est`.\n\nOn utilise `être` pour la nationalité, le métier ou l'état : `Je suis étudiant.` `Elle est française.`\n\n- `tu es` et `il est` se prononcent pareil, mais `tu es` finit par -s et `il est` par -t.\n- Devant un métier, pas d'article : `Il est médecin.`",
+                "de": "`être` (sein) ist **unregelmäßig**: Lerne die Formen auswendig. Im Singular sagt man `je suis`, `tu es` und `il/elle/on est`.\n\nMit `être` nennst du Nationalität, Beruf oder Befinden: `Je suis étudiant.` `Elle est française.`\n\n- `tu es` und `il est` klingen gleich, aber `tu es` endet auf -s und `il est` auf -t.\n- Vor einem Beruf steht kein Artikel: `Il est médecin.`"
               },
               "formTable": [
                 {
@@ -621,9 +621,9 @@
                 "de": "être im Plural"
               },
               "text": {
-                "en": "In the plural you say nous sommes, vous êtes and ils/elles sont. Êtes has an accent circonflexe on the first e. Before êtes, the s of vous is pronounced as z: vous êtes [vu zɛt]. Listen carefully to ils sont with an s sound (they are) and ils ont with a z sound (they have, from avoir).",
-                "fr": "Au pluriel, on dit nous sommes, vous êtes et ils/elles sont. Êtes prend un accent circonflexe sur le premier e. Devant êtes, le s de vous se prononce z : vous êtes [vu zɛt]. Écoutez bien la différence entre ils sont, avec le son s (être), et ils ont, avec le son z (avoir).",
-                "de": "Im Plural sagt man nous sommes, vous êtes und ils/elles sont. Êtes hat einen accent circonflexe auf dem ersten e. Vor êtes wird das s von vous als z gesprochen: vous êtes [vu zɛt]. Achte auf ils sont mit s-Laut (sie sind) und ils ont mit z-Laut (sie haben, von avoir)."
+                "en": "In the plural you say `nous sommes`, `vous êtes` and `ils/elles sont`.\n\n- `vous êtes` has an accent circonflexe on the first e, and the s of vous sounds like z: [vu zɛt].\n- Listen for the difference: `ils sont` with an s sound (they are) and `ils ont` with a z sound (they have, from avoir).",
+                "fr": "Au pluriel, on dit `nous sommes`, `vous êtes` et `ils/elles sont`.\n\n- `vous êtes` prend un accent circonflexe sur le premier e, et le s de vous se prononce z : [vu zɛt].\n- Écoutez la différence : `ils sont` avec le son s (être) et `ils ont` avec le son z (avoir).",
+                "de": "Im Plural sagt man `nous sommes`, `vous êtes` und `ils/elles sont`.\n\n- `vous êtes` hat einen accent circonflexe auf dem ersten e, und das s von vous klingt wie z: [vu zɛt].\n- Achte auf den Unterschied: `ils sont` mit s-Laut (sie sind) und `ils ont` mit z-Laut (sie haben, von avoir)."
               },
               "formTable": [
                 {

@@ -12,7 +12,19 @@ import { grammarItemSchema, type GrammarBrief, type GrammarExerciseType } from '
 import type { VocabularyBrief } from '../src/schemas/vocabulary.ts';
 import type { OutlineContext } from '../src/validation/artifacts.ts';
 
-export const CONTENT_PROMPT_VERSION = 'content-v1';
+export const CONTENT_PROMPT_VERSION = 'content-v2';
+
+/** D46 (SPEC "Formatted teaching text"): format rules shared by introduction and explanation texts. */
+const RICH_TEXT = [
+  'Format each text as restricted Markdown.',
+  'Allowed: paragraphs separated by one blank line; bulleted lists whose lines all start with "- "; numbered lists whose lines start with "1. ", "2. "; **bold** for one key idea per paragraph; backticks around every learning-language word, form or sentence quoted in the text (`un livre`, `je suis`, `Il est médecin.`), in every locale including the learning-language locale.',
+  'Not allowed: headings, quotes, tables, code fences, "*" or "+" bullets, *italics*, links, images, HTML, a visible backslash-n in the decoded text (inside the JSON string a line break is the escape \\n and a blank line is \\n\\n), markup inside bold or backticks, and a list without a blank line before and after it. Do not backtick interface-language words, IPA or endings such as -er.',
+  'Keep paragraphs to 1–3 sentences and lists to at most 8 lines; stay within 1200 characters per locale; address the learner directly.',
+  'en, fr and de use the same paragraphs and lists in the same order and exactly the same backticked forms; only the surrounding prose is translated.',
+  'Show nouns with the indefinite article the exam asks for, and do not promise alternative spellings that are not exam forms.',
+].join(' ');
+const INTRO_SHAPE = 'Structure: a short lead paragraph naming the topic or pattern with one **bold** key idea; a list with one line per target of the group, "`teaching form` – meaning" plus an optional short example sentence; a closing paragraph with one useful observation (gender, pronunciation, spelling) or a study tip. Example (en): "These six classroom objects are **masculine**: they take `un`.\\n\\n- `un livre` – book\\n- `un cahier` – exercise book\\n\\nLearn each word together with its article."';
+const EXPLANATION_SHAPE = 'Structure: a rule paragraph with one **bold** key idea; a list of the forms or cases, one per line, each with a backticked example; a final paragraph or list naming the typical pitfall. The form table and examples are shown separately after the text, so do not repeat them in full.';
 
 /**
  * One separately generated and validated part of a lesson (SPEC "Generator behavior"):
@@ -36,7 +48,7 @@ export const vocabularySections = (lang: string, brief: VocabularyBrief) => {
     introduction: {
       key: 'introduction',
       schema: z.strictObject({ groups: z.array(z.strictObject({ groupId: NestedIdSchema, text: LocalizedLongTextSchema })).min(1) }),
-      task: `Write the introduction page text for each target group (${brief.groups.map((g) => g.id).join(', ')}): present the topic, what the learner will be able to do, and the group's words with a useful observation (pattern, pronunciation, spelling). Do not quiz the learner.`,
+      task: `Write the introduction page text for each target group (${brief.groups.map((g) => g.id).join(', ')}): present the topic, what the learner will be able to do, and the group's words with a useful observation (pattern, pronunciation, spelling). Do not quiz the learner. ${INTRO_SHAPE} ${RICH_TEXT}`,
     },
     words: {
       key: 'words',
@@ -114,7 +126,7 @@ export const grammarSections = (lang: string, brief: GrammarBrief): Section[] =>
         explanation: (grammarItemSchema(lang).options.find((o) => o.shape.type.value === 'grammar_explanation') as z.ZodObject).omit({ itemId: true, type: true, ruleIds: true }),
         exercises: z.array(z.strictObject({ exerciseId: NestedIdSchema, items: z.array(itemSchema(lang, types)).min(1).max(12) })),
       }),
-      task: `Teaching block ${block.id} ("${block.title.en}"), rules ${block.ruleIds.join(', ')}. explanation follows the block's explanationPlan with a form table where forms are taught and examples from the brief or similar. exercises: one entry per planned exercise in this order, each with exactly the planned number of items of its type and ruleIds from this block: ${block.exercises.map((e) => `${e.id} = ${e.itemCount} × ${e.type} (${ITEM_GUIDANCE[e.type]})`).join('; ')}.`,
+      task: `Teaching block ${block.id} ("${block.title.en}"), rules ${block.ruleIds.join(', ')}. explanation follows the block's explanationPlan with a form table where forms are taught and examples from the brief or similar. explanation.text: ${EXPLANATION_SHAPE} ${RICH_TEXT} exercises: one entry per planned exercise in this order, each with exactly the planned number of items of its type and ruleIds from this block: ${block.exercises.map((e) => `${e.id} = ${e.itemCount} × ${e.type} (${ITEM_GUIDANCE[e.type]})`).join('; ')}.`,
     };
   }),
   {

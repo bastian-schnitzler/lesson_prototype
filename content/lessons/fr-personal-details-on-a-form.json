@@ -49,9 +49,9 @@
                 "target-lieu-de-naissance"
               ],
               "text": {
-                "en": "On a form, nom is your surname and prénom your first name. Adresse is your postal address. Date de naissance asks when you were born; lieu de naissance asks where. A French date usually uses day/month/year: 15/03/2000. Nationalité asks your citizenship and profession your occupation. Célibataire means unmarried, marié or mariée means married. Use marié for a man and mariée for a woman. Signature asks for your signature. The translation exam uses un or une for common nouns, even though form labels normally appear without articles.\nIdentity Information: un nom, un prénom, une adresse, une date de naissance, un lieu de naissance.",
-                "fr": "Sur un formulaire, nom désigne votre nom de famille et prénom votre prénom. Adresse est votre adresse postale. Date de naissance demande quand vous êtes né ; lieu de naissance demande où. La date française suit généralement jour/mois/année : 15/03/2000. Nationalité demande votre citoyenneté et profession votre métier. Célibataire signifie non marié ; marié ou mariée signifie en couple par mariage. Marié est masculin, mariée féminin. Signature demande votre signature. L'examen demande un ou une pour les noms communs, même si les champs d'un formulaire n'ont généralement pas d'article.\nInformations d'identité: un nom, un prénom, une adresse, une date de naissance, un lieu de naissance.",
-                "de": "Auf einem Formular ist nom der Nachname und prénom der Vorname. Adresse ist die Postanschrift. Date de naissance fragt nach dem Geburtsdatum, lieu de naissance nach dem Geburtsort. Französische Daten stehen meist als Tag/Monat/Jahr: 15/03/2000. Nationalité fragt nach der Staatsangehörigkeit, profession nach dem Beruf. Célibataire heißt ledig, marié oder mariée verheiratet. Marié ist männlich, mariée weiblich. Signature verlangt die Unterschrift. In der Übersetzungsprüfung stehen gewöhnliche Nomen mit un oder une, obwohl Formularfelder meist keinen Artikel haben.\nAngaben zur Person: un nom, un prénom, une adresse, une date de naissance, un lieu de naissance."
+                "en": "The fields of a **form**:\n\n- `un nom` – surname\n- `un prénom` – first name\n- `une adresse` – postal address\n- `une date de naissance` – date of birth, usually day/month/year: 15/03/2000\n- `un lieu de naissance` – place of birth\n\nForm labels usually have no article, but the translation exam asks for `un` or `une`.",
+                "fr": "Les champs d'un **formulaire** :\n\n- `un nom` – le nom de famille\n- `un prénom` – le nom personnel\n- `une adresse` – l'adresse postale\n- `une date de naissance` – en général jour/mois/année : 15/03/2000\n- `un lieu de naissance` – l'endroit où l'on est né\n\nLes champs n'ont généralement pas d'article, mais l'examen de traduction demande `un` ou `une`.",
+                "de": "Die Felder eines **Formulars**:\n\n- `un nom` – Nachname\n- `un prénom` – Vorname\n- `une adresse` – Postanschrift\n- `une date de naissance` – Geburtsdatum, meist Tag/Monat/Jahr: 15/03/2000\n- `un lieu de naissance` – Geburtsort\n\nFormularfelder haben meist keinen Artikel, aber die Übersetzungsprüfung verlangt `un` oder `une`."
               }
             }
           ]
@@ -76,9 +76,9 @@
                 "target-marie"
               ],
               "text": {
-                "en": "Status and Profession: une nationalité, une profession, célibataire, marié. Say each word aloud and study its example.\nPrécisez votre nationalité sur la fiche. — Specify your nationality on the form.\nQuelle est votre profession actuelle ? — What is your current occupation?\nCochez la case célibataire si vous n'êtes pas marié. — Check the single box if you are not married.\nIl est marié depuis deux ans. — He has been married for two years.",
-                "fr": "Statut et profession: une nationalité, une profession, célibataire, marié. Dites chaque mot à voix haute et étudiez son exemple.\nPrécisez votre nationalité sur la fiche.\nQuelle est votre profession actuelle ?\nCochez la case célibataire si vous n'êtes pas marié.\nIl est marié depuis deux ans.",
-                "de": "Status und Beruf: une nationalité, une profession, célibataire, marié. Sprich jedes Wort laut und lies sein Beispiel.\nPrécisez votre nationalité sur la fiche. — Geben Sie Ihre Staatsangehörigkeit auf dem Formular an.\nQuelle est votre profession actuelle ? — Was ist Ihr aktueller Beruf?\nCochez la case célibataire si vous n'êtes pas marié. — Kreuzen Sie das Kästchen ledig an, wenn Sie nicht verheiratet sind.\nIl est marié depuis deux ans. — Er ist seit zwei Jahren verheiratet."
+                "en": "**Status and profession**. Say each word aloud and study its example:\n\n- `une nationalité` – citizenship: Précisez votre nationalité sur la fiche.\n- `une profession` – occupation: Quelle est votre profession actuelle ?\n- `célibataire` – single: Cochez la case célibataire si vous n'êtes pas marié.\n- `marié` – married: Il est marié depuis deux ans.\n\n`marié` describes a man; a woman is mariée.",
+                "fr": "**Situation et profession**. Dites chaque mot à voix haute et étudiez son exemple :\n\n- `une nationalité` : Précisez votre nationalité sur la fiche.\n- `une profession` : Quelle est votre profession actuelle ?\n- `célibataire` : Cochez la case célibataire si vous n'êtes pas marié.\n- `marié` : Il est marié depuis deux ans.\n\n`marié` se dit d'un homme ; pour une femme, on écrit mariée.",
+                "de": "**Familienstand und Beruf**. Sprich jedes Wort laut und lies das Beispiel:\n\n- `une nationalité` – Staatsangehörigkeit: Précisez votre nationalité sur la fiche.\n- `une profession` – Beruf: Quelle est votre profession actuelle ?\n- `célibataire` – ledig: Cochez la case célibataire si vous n'êtes pas marié.\n- `marié` – verheiratet: Il est marié depuis deux ans.\n\n`marié` bezieht sich auf einen Mann; für eine Frau schreibt man mariée."
               }
             }
           ]
@@ -100,9 +100,9 @@
                 "target-signature"
               ],
               "text": {
-                "en": "Form Validation: une signature. Say each word aloud and study its example.\nN'oubliez pas d'apposer votre signature en bas du document. — Do not forget to put your signature at the bottom of the document.",
-                "fr": "Validation du formulaire: une signature. Dites chaque mot à voix haute et étudiez son exemple.\nN'oubliez pas d'apposer votre signature en bas du document.",
-                "de": "Formularbestätigung: une signature. Sprich jedes Wort laut und lies sein Beispiel.\nN'oubliez pas d'apposer votre signature en bas du document. — Vergessen Sie nicht, Ihre Unterschrift unten auf dem Dokument anzubringen."
+                "en": "At the end of a form you sign: `une signature`.\n\nN'oubliez pas d'apposer votre signature en bas du document. – Do not forget to sign at the bottom of the document.",
+                "fr": "À la fin d'un formulaire, on signe : `une signature`.\n\nN'oubliez pas d'apposer votre signature en bas du document.",
+                "de": "Am Ende eines Formulars unterschreibst du: `une signature`.\n\nN'oubliez pas d'apposer votre signature en bas du document. – Vergessen Sie nicht, unten auf dem Dokument zu unterschreiben."
               }
             }
           ]

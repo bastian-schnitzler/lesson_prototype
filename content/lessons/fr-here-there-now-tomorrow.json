@@ -50,9 +50,9 @@
                 "de": "Ortsangaben: Ici und Là"
               },
               "text": {
-                "en": "Use 'ici' for 'here' and 'là' for 'there' (or 'here' in informal spoken French) to indicate location. In everyday spoken French, 'là' often replaces 'ici' to mean 'here'. Je suis ici dans le bureau. Tu es là ?",
-                "fr": "Utiliser 'ici' pour 'ici' et 'là' pour 'là/ici' afin d'indiquer un emplacement. À l'oral, 'là' remplace souvent 'ici' pour dire 'ici'. Je suis ici dans le bureau. Tu es là ?",
-                "de": "Verwende 'ici' für 'hier' und 'là' für 'da/dort' (oder umgangssprachlich 'hier'), um Orte anzugeben. In der Umgangssprache ersetzt 'là' oft 'ici' im Sinne von 'hier'. Je suis ici dans le bureau. Tu es là ?"
+                "en": "Two adverbs say **where**:\n\n- `ici` – here: `Je suis ici dans le bureau.`\n- `là` – there: `Tu es là ?`\n\nIn everyday spoken French, `là` often replaces `ici` and also means \"here\".",
+                "fr": "Deux adverbes disent **où** :\n\n- `ici` – l'endroit où l'on est : `Je suis ici dans le bureau.`\n- `là` – un autre endroit : `Tu es là ?`\n\nÀ l'oral, `là` remplace souvent `ici` et veut aussi dire « ici ».",
+                "de": "Zwei Adverbien sagen, **wo** etwas ist:\n\n- `ici` – hier: `Je suis ici dans le bureau.`\n- `là` – da, dort: `Tu es là ?`\n\nIn der Umgangssprache ersetzt `là` oft `ici` und bedeutet dann auch „hier“."
               },
               "formTable": [],
               "examples": [
@@ -445,9 +445,9 @@
                 "de": "Zeitangaben: Gegenwart und Zukunft"
               },
               "text": {
-                "en": "Use 'maintenant' (now) and 'aujourd'hui' (today) to locate an event in the present time. Use 'demain' (tomorrow), 'bientôt' (soon), and 'tout de suite' (right away) for future or immediate events. Do not confuse 'tout de suite' (immediately) with 'bientôt' (in a short time). Aujourd'hui, nous travaillons. Je viens tout de suite. Demain, il va téléphoner.",
-                "fr": "Utiliser 'maintenant' et 'aujourd'hui' pour situer un événement au présent. Utiliser 'demain', 'bientôt' et 'tout de suite' pour des événements futurs ou immédiats. Ne pas confondre 'tout de suite' (immédiatement) et 'bientôt' (dans un moment). Aujourd'hui, nous travaillons. Je viens tout de suite. Demain, il va téléphoner.",
-                "de": "Verwende 'maintenant' (jetzt) und 'aujourd'hui' (heute), um ein Ereignis in der Gegenwart einzuordnen. Verwende 'demain' (morgen), 'bientôt' (bald) und 'tout de suite' (sofort) für zukünftige oder unmittelbare Ereignisse. Verwechseln Sie 'tout de suite' (sofort) nicht mit 'bientôt' (bald). Aujourd'hui, nous travaillons. Je viens tout de suite. Demain, il va téléphoner."
+                "en": "Adverbs of **time**:\n\n- `maintenant` – now\n- `aujourd'hui` – today: `Aujourd'hui, nous travaillons.`\n- `tout de suite` – right away: `Je viens tout de suite.`\n- `bientôt` – soon\n- `demain` – tomorrow: `Demain, il va téléphoner.`\n\nDo not confuse `tout de suite` (immediately) with `bientôt` (in a little while).",
+                "fr": "Les adverbes de **temps** :\n\n- `maintenant` – en ce moment\n- `aujourd'hui` – ce jour : `Aujourd'hui, nous travaillons.`\n- `tout de suite` – immédiatement : `Je viens tout de suite.`\n- `bientôt` – dans peu de temps\n- `demain` – le jour suivant : `Demain, il va téléphoner.`\n\nNe confondez pas `tout de suite` (immédiatement) et `bientôt` (dans un moment).",
+                "de": "Adverbien der **Zeit**:\n\n- `maintenant` – jetzt\n- `aujourd'hui` – heute: `Aujourd'hui, nous travaillons.`\n- `tout de suite` – sofort: `Je viens tout de suite.`\n- `bientôt` – bald\n- `demain` – morgen: `Demain, il va téléphoner.`\n\nVerwechsle `tout de suite` (sofort) nicht mit `bientôt` (bald)."
               },
               "formTable": [],
               "examples": [

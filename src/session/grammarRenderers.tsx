@@ -1,4 +1,5 @@
 import { useI18n } from '../app/context.tsx';
+import { RichText } from '../components/RichText.tsx';
 import type { RendererProps } from './controls.tsx';
 
 /** Grammar presentation renderers; scored grammar items use the shared `UnitsRenderer`. */
@@ -9,7 +10,7 @@ export function ExplanationRenderer({ item, plan, motherTongue }: RendererProps)
   return (
     <>
       <h3>{item.heading[locale]}</h3>
-      <p className="explanation-text">{item.text[locale]}</p>
+      <RichText text={item.text[locale]} lang={plan.lang} className="rich-text explanation-text" />
       {item.formTable.length > 0 && (
         <div className="table-wrap">
           <table className="data-table">

@@ -51,9 +51,9 @@
                 "de": "Fragen stellen mit Intonation"
               },
               "text": {
-                "en": "Keep statement word order and raise your voice at the end: Tu parles français ? In writing, use a question mark. This common informal question asks for yes or no. Answer Oui, je parle français or Non, je ne parle pas français. Here you choose the punctuation or response that matches the written meaning; no pitch recognition is assessed.",
-                "fr": "Gardez l'ordre d'une affirmation et montez la voix à la fin : Tu parles français ? À l'écrit, ajoutez un point d'interrogation. Cette question familière demande oui ou non. Répondez Oui, je parle français ou Non, je ne parle pas français. Ici, vous choisissez la ponctuation ou la réponse correspondant au sens écrit ; l'intonation n'est pas évaluée à l'écoute.",
-                "de": "Behalte die Wortstellung der Aussage und hebe am Ende die Stimme: Tu parles français ? Schreibe ein Fragezeichen. Diese häufige informelle Frage erwartet Ja oder Nein. Antworte Oui, je parle français oder Non, je ne parle pas français. Hier wählst du Satzzeichen oder Antwort passend zur schriftlichen Bedeutung; die Tonhöhe wird nicht geprüft."
+                "en": "The simplest yes/no question keeps the **statement word order** and rises at the end: `Tu parles français ?` In writing, add a question mark.\n\n- `Oui, je parle français.`\n- `Non, je ne parle pas français.`\n\nHere you choose the punctuation or answer that fits the written meaning; your pitch is not assessed.",
+                "fr": "La question oui/non la plus simple garde l'**ordre de l'affirmation** et monte à la fin : `Tu parles français ?` À l'écrit, ajoutez un point d'interrogation.\n\n- `Oui, je parle français.`\n- `Non, je ne parle pas français.`\n\nIci, vous choisissez la ponctuation ou la réponse qui correspond au sens écrit ; l'intonation n'est pas évaluée.",
+                "de": "Die einfachste Ja/Nein-Frage behält die **Wortstellung der Aussage** und steigt am Ende an: `Tu parles français ?` Schriftlich steht ein Fragezeichen.\n\n- `Oui, je parle français.`\n- `Non, je ne parle pas français.`\n\nHier wählst du Satzzeichen oder Antwort passend zur schriftlichen Bedeutung; die Tonhöhe wird nicht bewertet."
               },
               "formTable": [],
               "examples": [
@@ -312,9 +312,9 @@
                 "de": "Fragen stellen mit Est-ce que"
               },
               "text": {
-                "en": "Place Est-ce que before the ordinary subject–verb order: Est-ce que vous habitez ici ? Before a vowel or mute h, que becomes qu': Est-ce qu'il aime le chocolat ? Do not invert the subject and verb after est-ce que. The question marker is one unit in the word-order tasks. Keep the question mark last.",
-                "fr": "Placez Est-ce que avant le sujet et le verbe dans leur ordre habituel : Est-ce que vous habitez ici ? Devant une voyelle ou un h muet, que devient qu' : Est-ce qu'il aime le chocolat ? N'inversez pas le sujet et le verbe après est-ce que. Dans les tâches d'ordre des mots, gardez le marqueur interrogatif ensemble. Le point d'interrogation vient à la fin.",
-                "de": "Setze Est-ce que vor die normale Reihenfolge Subjekt–Verb: Est-ce que vous habitez ici ? Vor einem Vokal oder stummem h wird que zu qu': Est-ce qu'il aime le chocolat ? Drehe nach est-ce que Subjekt und Verb nicht um. Halte bei den Wortstellungstasks den Frageausdruck zusammen. Das Fragezeichen steht zuletzt."
+                "en": "Put `Est-ce que` before the normal **subject–verb order**: `Est-ce que vous habitez ici ?`\n\n- Before a vowel or mute h, que becomes qu': `Est-ce qu'il aime le chocolat ?`\n- Do not invert subject and verb after `est-ce que`.\n\nIn the word-order tasks the question marker is one unit, and the question mark comes last.",
+                "fr": "Placez `Est-ce que` devant l'**ordre habituel sujet–verbe** : `Est-ce que vous habitez ici ?`\n\n- Devant une voyelle ou un h muet, que devient qu' : `Est-ce qu'il aime le chocolat ?`\n- N'inversez pas le sujet et le verbe après `est-ce que`.\n\nDans les exercices d'ordre des mots, le marqueur interrogatif forme un bloc et le point d'interrogation vient en dernier.",
+                "de": "Setze `Est-ce que` vor die normale **Reihenfolge Subjekt–Verb**: `Est-ce que vous habitez ici ?`\n\n- Vor Vokal oder stummem h wird que zu qu': `Est-ce qu'il aime le chocolat ?`\n- Nach `est-ce que` werden Subjekt und Verb nicht vertauscht.\n\nBei den Wortstellungsaufgaben ist der Frageausdruck ein Block, und das Fragezeichen steht zuletzt."
               },
               "formTable": [],
               "examples": [

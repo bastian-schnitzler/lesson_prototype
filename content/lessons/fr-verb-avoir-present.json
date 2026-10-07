@@ -50,9 +50,9 @@
                 "de": "Formen des Verbs avoir im Präsens"
               },
               "text": {
-                "en": "Present forms of avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Note the elision in j'ai. Do not write 'je ai'; always combine them into 'j'ai'. Do not confuse 'ils ont' (they have) with 'ils sont' (they are). J'ai un livre et tu as un stylo. Nous avons une maison et ils ont une voiture. In nous avons, vous avez and ils ont, link the pronoun to the vowel with a z sound. J'ai replaces je ai. Ils ont has z; ils sont has s.",
-                "fr": "Formes du présent d'avoir : j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Notez l'élision pour j'ai. N'écrivez pas 'je ai' ; utilisez toujours la forme élidée 'j'ai'. Ne confondez pas 'ils ont' (ils possèdent) et 'ils sont' (du verbe être). J'ai un livre et tu as un stylo. Nous avons une maison et ils ont une voiture. Dans nous avons, vous avez et ils ont, faites la liaison avec le son z. J'ai remplace je ai. Ils ont a le son z ; ils sont a le son s.",
-                "de": "Präsensformen von avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Beachten Sie die Elision bei j'ai. Schreiben Sie nicht 'je ai', sondern immer die elidierte Form 'j'ai'. Verwechseln Sie nicht 'ils ont' (sie haben) mit 'ils sont' (sie sind). J'ai un livre et tu as un stylo. Nous avons une maison et ils ont une voiture. Verbinde nous avons, vous avez und ils ont mit einem z-Laut. J'ai ersetzt je ai. Ils ont hat z, ils sont hat s."
+                "en": "The present forms of `avoir` (to have):\n\n- `j'ai` – never \"je ai\": je elides before the vowel\n- `tu as`\n- `il/elle/on a`\n- `nous avons`\n- `vous avez`\n- `ils/elles ont`\n\nIn `nous avons`, `vous avez` and `ils ont`, link the pronoun with a **z sound**. Do not confuse `ils ont` (they have, z sound) with `ils sont` (they are, s sound).",
+                "fr": "Les formes du présent d'`avoir` :\n\n- `j'ai` – jamais « je ai » : je s'élide devant la voyelle\n- `tu as`\n- `il/elle/on a`\n- `nous avons`\n- `vous avez`\n- `ils/elles ont`\n\nDans `nous avons`, `vous avez` et `ils ont`, faites la liaison avec le **son z**. Ne confondez pas `ils ont` (avoir, son z) et `ils sont` (être, son s).",
+                "de": "Die Präsensformen von `avoir` (haben):\n\n- `j'ai` – nie „je ai“: je wird vor dem Vokal elidiert\n- `tu as`\n- `il/elle/on a`\n- `nous avons`\n- `vous avez`\n- `ils/elles ont`\n\nBei `nous avons`, `vous avez` und `ils ont` bindest du mit einem **z-Laut**. Verwechsle `ils ont` (sie haben, z-Laut) nicht mit `ils sont` (sie sind, s-Laut)."
               },
               "formTable": [
                 {
@@ -686,9 +686,9 @@
                 "de": "Alter und Besitz ausdrücken"
               },
               "text": {
-                "en": "Use avoir + [number] + ans to state age (e.g., J'ai vingt ans). Never use être. Use avoir with nouns to express possession (e.g., Nous avons un chien). Do not use 'être' for age (e.g. avoid 'je suis 20 ans'). Always use 'avoir'. J'ai vingt-cinq ans. Elle a un chat et deux chiens.",
-                "fr": "Utilisez avoir + [nombre] + ans pour exprimer l'âge (ex. J'ai vingt ans). N'utilisez jamais être. Utilisez avoir avec des noms pour exprimer la possession (ex. Nous avons un chien). N'utilisez pas 'être' pour l'âge (évitez 'je suis 20 ans'). Utilisez toujours 'avoir'. J'ai vingt-cinq ans. Elle a un chat et deux chiens.",
-                "de": "Verwenden Sie avoir + [Zahl] + ans für das Alter (z. B. J'ai vingt ans). Niemals être benutzen. Verwenden Sie avoir mit Substantiven, um Besitz auszudrücken (z. B. Nous avons un chien). Verwenden Sie für das Alter nicht 'être' (vermeiden Sie 'je suis 20 ans'). Nutzen Sie immer 'avoir'. J'ai vingt-cinq ans. Elle a un chat et deux chiens."
+                "en": "Use `avoir` for:\n\n- **Age**: avoir + number + ans – `J'ai vingt-cinq ans.` Never use être for age.\n- **Possession**: `Elle a un chat et deux chiens.`",
+                "fr": "Utilisez `avoir` pour :\n\n- **L'âge** : avoir + nombre + ans – `J'ai vingt-cinq ans.` N'utilisez jamais être pour l'âge.\n- **La possession** : `Elle a un chat et deux chiens.`",
+                "de": "Verwende `avoir` für:\n\n- **Alter**: avoir + Zahl + ans – `J'ai vingt-cinq ans.` Nie être für das Alter.\n- **Besitz**: `Elle a un chat et deux chiens.`"
               },
               "formTable": [],
               "examples": [
