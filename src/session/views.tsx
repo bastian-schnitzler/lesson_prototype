@@ -1,9 +1,9 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { useI18n, useLastTry } from '../app/context.tsx';
 import { formatScore, roundHalfUp1 } from '../domain/format.ts';
 import type { LessonPlan, PlanUnit } from '../domain/session/plan.ts';
-import { headerScore, isAnswered, isListeningPage, lessonResults, POLICY, progress, type LockedUnit, type SessionRecord, type UnitResponse } from '../domain/session/session.ts';
+import { headerScore, isAnswered, isListeningPage, presentationComplete, scoreUnit, lessonResults, POLICY, progress, type LockedUnit, type SessionRecord, type UnitResponse } from '../domain/session/session.ts';
 import type { MessageKey } from '../i18n/messages.ts';
 import { rendererRegistry, UnitFeedback } from './renderers.tsx';
 import type { SessionInput } from './useSession.ts';
@@ -25,23 +25,29 @@ interface StartViewProps {
 
 export function StartView({ plan, level, resumable, notice, onStart, onResume }: StartViewProps) {
   const { t, locale, languageName } = useI18n();
-  const scored = plan.steps.filter((s) => s.role !== 'presentation');
   return (
     <section className="task-card start-card" aria-labelledby="start-title">
       <p className="label-muted">{t('index.courseLabel', { language: languageName(plan.lang), level })}</p>
+      <span className="kind-badge">{t(`kind.${plan.kind}`)}</span>
       <h1 id="start-title" lang={plan.lang}>{plan.title}</h1>
       <p className="lead">{plan.objective[locale]}</p>
-      <p className="muted">{t('session.minutes', { minutes: plan.estimatedMinutes })} · {t('session.scoredSteps', { count: scored.length })}</p>
-      <h2 className="small-heading">{t('session.stages')}</h2>
-      <ol className="stage-list">
-        {plan.steps.map((s, n) => (
-          <li key={s.stepId} style={reviewColor(n)}>
-            <span>{s.label[locale]}</span>
-            <small>{t(s.role === 'exam' ? 'assessment.exam' : s.role === 'practice' ? 'assessment.practice' : 'assessment.none')}</small>
-          </li>
-        ))}
-      </ol>
-      <p className="muted">{t('session.weights', { practice: POLICY.practiceWeight, exam: POLICY.examWeight })}</p>
+      <p className="muted">
+        {t('session.minutes', { minutes: plan.estimatedMinutes })}
+        {plan.targets.size > 0 && <> · {t('session.vocabularyCount', { count: plan.targets.size })}</>}
+      </p>
+      {plan.groups.length > 0 && (
+        <>
+          <h2 className="small-heading">{t('session.groups')}</h2>
+          <ol className="group-list">
+            {plan.groups.map((g, n) => (
+              <li key={g.id} style={reviewColor(n)}>
+                <span>{g.label[locale]}</span>
+                <small>{t('session.vocabularyCount', { count: g.targetIds.length })}</small>
+              </li>
+            ))}
+          </ol>
+        </>
+      )}
       {notice && <p className="note" role="note">{notice}</p>}
       {resumable ? (
         <div className="start-actions">
@@ -103,9 +109,18 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
     if (needsVoice && page.role === 'exam' && voiceStatus === 'available') dispatch({ type: 'voice_ready' });
   }, [needsVoice, page.pageId, page.role, voiceStatus, dispatch]);
   const mode = page.role === 'exam' ? 'exam' : record.phase === 'feedback' ? 'feedback' : 'answering';
-  const ready = page.role !== 'practice' || record.phase === 'feedback' || page.units.every((u) => isAnswered(u, record.drafts[u.id]));
+  const ready = page.role === 'presentation' ? presentationComplete(page, record) : page.role !== 'practice' || record.phase === 'feedback' || page.units.every((u) => isAnswered(u, record.drafts[u.id]));
   const heading = useRef<HTMLHeadingElement>(null);
   useEffect(() => heading.current?.focus(), [record.pageIndex]);
+  // A fully correct matching page plays a short success animation, then skips its feedback (P2-02).
+  const [celebrating, setCelebrating] = useState(false);
+  const onContinue = () => {
+    const perfect = record.phase === 'answering' && page.items.every((it) => it.type === 'vocabulary_matching')
+      && page.units.every((u) => scoreUnit(u, record.drafts[u.id]).outcome === 'fully_correct');
+    if (!perfect) return dispatch({ type: 'continue' });
+    setCelebrating(true);
+    window.setTimeout(() => { setCelebrating(false); dispatch({ type: 'continue' }); }, 900);
+  };
 
   return (
     <>
@@ -121,7 +136,8 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
           <button type="button" className="button button-primary" onClick={() => dispatch({ type: 'skip_no_voice' })}>{t('session.voiceSkip')}</button>
         </section>
       ) : (
-      <section className="task-card" aria-labelledby="task-heading">
+      <section className={`task-card${celebrating ? ' is-celebrating' : ''}`} aria-labelledby="task-heading">
+        {celebrating && <span className="visually-hidden" role="status">{t('session.allCorrect')}</span>}
         <p className="label-muted">{page.stepLabel[locale]}{page.role === 'exam' ? ` · ${t('session.examPage')}` : ''}</p>
         <h1 id="task-heading" ref={heading} tabIndex={-1} className="task-heading">{page.instructions[locale]}</h1>
         {page.role === 'exam' && remainingMs !== undefined && <Countdown remainingMs={remainingMs} />}
@@ -139,14 +155,19 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
               onChange={(unitId, response) => dispatch({ type: 'draft', unitId, response })}
               seed={record.seed}
               motherTongue={record.motherTongue}
+              pageId={page.pageId}
+              revealed={record.revealed ?? {}}
+              onReveal={(itemKey, key) => dispatch({ type: 'reveal', itemKey, key })}
             />
           );
         })}
         <div className="task-footer">
-          {page.role === 'practice' && !ready && <p className="muted">{t('session.answerAll')}</p>}
-          <button type="button" className="button button-primary" disabled={!ready} onClick={() => dispatch({ type: 'continue' })}>
-            {t('session.continue')}
-          </button>
+          {page.role === 'presentation' && !ready && <p className="muted">{t('session.revealAll')}</p>}
+          <span className="continue-wrap">
+            <button type="button" className="button button-primary" disabled={!ready || celebrating} onClick={onContinue}>
+              {t('session.continue')}
+            </button>
+          </span>
         </div>
       </section>
       )}

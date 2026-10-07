@@ -67,12 +67,20 @@ export interface LessonPlan {
   steps: { stepId: string; label: LocalizedText; role: 'practice' | 'exam' | 'presentation' }[];
   /** Vocabulary targets by ID, for renderers that show teaching forms and translations. */
   targets: Map<string, VocabularyTarget>;
+  /** Lesson category, shown on the start page. */
+  kind: LessonContent['kind'];
+  /** Vocabulary target groups from the brief (start page); empty for grammar. */
+  groups: { id: string; label: LocalizedText; targetIds: string[] }[];
 }
 
 const GENDER_OPTIONS = ['masculine', 'feminine', 'neuter'] as const;
 
-/** Builds the plan for one attempt; `motherTongue` fixes native prompts and labels. */
-export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Locale): LessonPlan {
+/**
+ * Builds the plan for one attempt; `motherTongue` fixes native prompts and labels. With
+ * `interleaveGroups` (the learner session) each vocabulary group's introduction page is followed
+ * directly by that group's flashcards (P2-02); artifact previews keep the step order.
+ */
+export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Locale, { interleaveGroups = false } = {}): LessonPlan {
   const targets = new Map(brief.kind === 'vocabulary' ? brief.targets.map((t) => [t.id, t]) : []);
   const native = (map: Partial<Record<Locale, string>> | null | undefined) => map?.[motherTongue] ?? Object.values(map ?? {})[0] ?? '';
   const translation = (id: string) => targets.get(id)?.translations[motherTongue]?.[0] ?? id;
@@ -180,10 +188,24 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
       });
     }
   });
+  if (interleaveGroups) interleaveIntroductions(pages);
   return {
     lessonId: content.id, lang: content.lang, title: content.title, objective: content.objective, estimatedMinutes: content.estimatedMinutes, pages, targets,
+    kind: content.kind, groups: brief.kind === 'vocabulary' ? brief.groups.map((g) => ({ id: g.id, label: g.label, targetIds: g.targetIds })) : [],
     steps: steps.map((s) => ({ stepId: s.id, label: s.label, role: s.role === 'exam' ? 'exam' : pages.some((p) => p.stepId === s.id && p.role === 'practice') ? 'practice' : 'presentation' })),
   };
+}
+
+/** Reorders in place: intro 1, cards 1, intro 2, cards 2, … (pages paired by group order). */
+function interleaveIntroductions(pages: PlanPage[]) {
+  const isIntro = (p: PlanPage) => p.items.some((it) => it.type === 'vocabulary_introduction');
+  const isCards = (p: PlanPage) => p.items.some((it) => it.type === 'vocabulary_flashcards');
+  const intros = pages.filter(isIntro), cards = pages.filter(isCards);
+  if (!intros.length || !cards.length) return;
+  const start = pages.findIndex((p) => isIntro(p) || isCards(p));
+  const merged = Array.from({ length: Math.max(intros.length, cards.length) }, (_, n) => [intros[n], cards[n]]).flat().filter((p): p is PlanPage => !!p);
+  pages.splice(start, merged.length, ...merged);
+  pages.forEach((p, n) => (p.index = n));
 }
 
 /** Deterministic pseudo-random order from the session seed (SPEC: runtime shuffle with a stored seed). */

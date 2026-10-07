@@ -15,7 +15,10 @@ function setup(id = VOC) {
   let record = startSession(plan, { sessionId: 's1', contentHash: 'h', level: 'A1', motherTongue: 'en', seed: 7, now: 0 });
   const act = (action: SessionAction) => (record = sessionReducer(plan, record, action));
   const page = () => plan.pages[record.pageIndex];
-  const proceed = (now = 0) => act({ type: 'continue', now, interfaceLanguage: 'en' });
+  const proceed = (now = 0) => {
+    for (const item of page().items) if (item.type === 'vocabulary_flashcards') for (const key of item.targetIds) act({ type: 'reveal', itemKey: `${page().pageId}/${item.itemId}`, key, now });
+    return act({ type: 'continue', now, interfaceLanguage: 'en' });
+  };
   /** Answers every unit of the current page correctly (or with `answer`). */
   const answerAll = (answer?: (unitId: string) => unknown, now = 0) => {
     for (const u of page().units) {
@@ -182,5 +185,29 @@ describe('contract additions from the P1-10 review', () => {
     expect(graded.length).toBeGreaterThan(0);
     expect(graded.every((u) => u.ruleIds && u.ruleIds.length > 0)).toBe(true);
     expect(setup().plan.pages.flatMap((p) => p.units).every((u) => u.ruleIds === undefined)).toBe(true);
+  });
+});
+
+describe('matching feedback (P2-02)', () => {
+  const toMatching = () => {
+    const s = setup();
+    while (!s.page().items.some((it) => it.type === 'vocabulary_matching')) s.proceed();
+    return s;
+  };
+  it('skips the correction view when every pair is correct', () => {
+    const s = toMatching();
+    const matching = s.page().pageId;
+    s.answerAll();
+    s.proceed();
+    expect(s.record.phase).toBe('answering');
+    expect(s.page().pageId).not.toBe(matching);
+    expect(s.record.completed).toContain(matching);
+  });
+  it('shows the correction view when a pair is wrong', () => {
+    const s = toMatching();
+    const units = s.page().units;
+    s.answerAll((id) => (id === units[0].id ? (units[1] as { correct: string[] }).correct[0] : undefined));
+    s.proceed();
+    expect(s.record.phase).toBe('feedback');
   });
 });

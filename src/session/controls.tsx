@@ -1,4 +1,4 @@
-import { useId, useRef, type ReactNode } from 'react';
+import { useId, useRef, useState, type ReactNode } from 'react';
 
 import { useI18n } from '../app/context.tsx';
 import type { LockedUnit, UnitResponse } from '../domain/session/session.ts';
@@ -24,20 +24,42 @@ export interface RendererProps {
   onChange: (unitId: string, response: UnitResponse) => void;
   seed: number;
   motherTongue: Locale;
+  /** Page of the item, so presentation progress can be keyed as `${pageId}/${itemId}`. */
+  pageId: string;
+  /** Revealed presentation keys (flashcards) per item key; stored in the session for resume. */
+  revealed: Record<string, string[]>;
+  onReveal: (itemKey: string, key: string) => void;
 }
 
 /* ---------------------------------------------------------------- helpers */
 
-/** Plays a word; without an installed learning-language voice it becomes an install-help button. */
-export function ListenButton({ text, lang }: { text: string; lang: string }) {
+/**
+ * Plays a word or sentence; without an installed learning-language voice it becomes an install-help
+ * button. The icon variant is a small speaker button (e.g. before an example sentence).
+ */
+export function ListenButton({ text, lang, variant = 'text', label, size = 'small' }: { text: string; lang: string; variant?: 'text' | 'icon'; label?: string; size?: 'small' | 'large' }) {
   const { t } = useI18n();
   const status = useVoiceStatus(lang);
   const dialog = useRef<HTMLDialogElement>(null);
   const titleId = useId();
-  const openHelp = () => dialog.current?.showModal();
+  // The help content mounts only while the dialog is open; many Listen controls share a page.
+  const [helpOpen, setHelpOpen] = useState(false);
+  const openHelp = () => {
+    setHelpOpen(true);
+    dialog.current?.showModal();
+  };
   return (
     <div className="listen">
-      {status === 'unavailable' ? (
+      {variant === 'icon' ? (
+        <button type="button" className={`icon-button icon-button-${size}${status === 'unavailable' ? ' is-unavailable' : ''}`} aria-haspopup={status === 'unavailable' ? 'dialog' : undefined}
+          aria-label={status === 'unavailable' ? t('voice.install') : label ?? t('session.listen')} title={status === 'unavailable' ? t('voice.install') : label ?? t('session.listen')}
+          onClick={() => (status === 'unavailable' ? openHelp() : speak(text, lang) || openHelp())}>
+          <svg aria-hidden="true" viewBox="0 0 24 24" width={size === 'large' ? 22 : 16} height={size === 'large' ? 22 : 16} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor" />
+            <path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" />
+          </svg>
+        </button>
+      ) : status === 'unavailable' ? (
         <button type="button" className="button button-outline button-small" aria-haspopup="dialog" onClick={openHelp}>
           {t('voice.install')}
         </button>
@@ -46,10 +68,10 @@ export function ListenButton({ text, lang }: { text: string; lang: string }) {
           {t('session.listen')}
         </button>
       )}
-      <dialog ref={dialog} className="voice-help-dialog" aria-labelledby={titleId} onClick={(e) => e.target === e.currentTarget && e.currentTarget.close()}>
+      <dialog ref={dialog} className="voice-help-dialog" aria-labelledby={titleId} onClose={() => setHelpOpen(false)} onClick={(e) => e.target === e.currentTarget && e.currentTarget.close()}>
         <h2 id={titleId}>{t('voice.missingTitle')}</h2>
         <p>{t('voice.missingIntro')}</p>
-        <VoiceHelp />
+        {helpOpen && <VoiceHelp />}
         <button type="button" className="button button-primary button-small" onClick={() => dialog.current?.close()}>{t('voice.close')}</button>
       </dialog>
     </div>

@@ -1,6 +1,6 @@
 # Lesson exercise prototype specification
 
-Status: **Draft 0.35 — formatted teaching text (P2-05)**. Date: 2026-10-07.
+Status: **Draft 0.36 — vocabulary introduction, flashcards and matching (P2-02)**. Date: 2026-10-07.
 
 This document specifies the prototype and its phased implementation. It is the maintained requirements document: no separate requirements file exists. It does not authorize starting implementation before the specification review. The backlog is in [ISSUES.md](ISSUES.md) and published as GitHub issues in `bastian-schnitzler/lesson_prototype`.
 
@@ -660,12 +660,14 @@ The registry starts with **baseline renderers** for every vocabulary and grammar
 
 Keep six stages, integrating noun-gender practice into the overview stage and listening into the practice and exam stages (D41):
 
-1. **Introduction:** targets with native translation, French teaching form, audio, and applicable gender badge.
-2. **Flashcards:** native-language front; French, applicable gender, and audio on the back. Track completion.
-3. **Matching:** connect native/French targets in manageable groups. Applicable French forms show gender. Continue locks answers and shows corrections with their generated explanations before confirmation.
+1. **Introduction:** the formatted group text (D46) only, without a word table. In the learner session each group's introduction page is followed directly by that group's flashcards (introduction 1, flashcards 1, introduction 2, …); artifact previews keep the step order.
+2. **Flashcards:** all cards of a group on one page, in two columns on wide screens and one below the other on phones. The front shows only the native-language meaning; a flip button in the top-right corner turns the card to the French side only (teaching form with a large speaker button that reads it aloud, applicable gender, and the context sentence with a small speaker button that reads the whole sentence) and back, without changing the card's size. The first flip of each card is stored in the session (`revealed`), so progress survives a resume, and Continue is enabled once every card of the page was turned.
+3. **Matching:** connect native/French targets in manageable groups. The two columns are shuffled independently from the session seed; the learner selects an item on either side and then its partner on the other (pointer, touch or keyboard: every item is a button). Each French form has a small speaker button inside its box. On wide screens (from 720 px) the columns stand apart and a Bézier curve starts at the inner middle of the selected box and follows the pointer; over a box of the other column it stops at that box's inner border, and a click docks it onto the partner; every pair stays joined by its curve. On phones pairs are numbered instead. Paired boxes have a purple border; pairs stay editable until Continue, and choosing a taken partner moves it. Applicable French forms show gender. Continue (enabled once every pair is assigned) locks one unit per French form. Continue stays greyed out (no extra hint) until every pair is assigned. The following view starts with a summary ("4 of 6 pairs correct") and lists only the mistakes, without point counts: the correct meaning in green with an arrow to the French word (speaker, gender) on the first line, the learner's choice struck through in red directly below the correct meaning, then the generated explanation. When every pair is correct, Continue briefly turns the content area green and skips that view.
 4. **Gender exercise and reviewed overview:** show **all vocabulary on one page**. Nouns have a select box with an initially unanswered state and appropriate gender options; other word classes have no gender input. While answering, show noun lemmas without articles, gender tags, or audio that supplies an article. This temporarily overrides the earlier stages' gender-display rule so the answer is not exposed. Preserve explicit gender/context policies for nouns that accept more than one gender. Continue locks all noun choices and scores one unit per noun. The same page then becomes the overview, showing the learner's selected gender, correct gender and teaching form, right/wrong indicators, translations, audio, and pre-generated explanations for mistakes. Continue acknowledges the overview and proceeds to gaps. Retain the locked row results for final-results review. Lessons without applicable nouns use a plain, unscored overview and skip the gender exercise.
 5. **Typed context gaps and listening choice:** typed gaps show four visible, noninteractive reference choices; type the missing word without article. Show applicable gender alongside reference forms. Listening-choice pages play a target with browser speech and the learner selects it from four written learning-language options (choices are interactive here). Continue shows correctness, correction, and the generated explanation, then confirms/advances.
 6. **Timed translation and listening exam:** translation pages show a native prompt and require the French answer including the indefinite article where applicable; no gender/audio/answer hints. Listening-dictation pages play a target (replayable until lock) and the learner writes it in the teaching form, article included where applicable, scored by the shared free-text classifier. Each page uses its brief-defined countdown. Answer feedback is deferred until the full exam is complete.
+
+**Lesson start page (P2-02):** course label, the lesson category as a badge in the card's top-right corner (Vocabulary, Grammar), title, objective and estimated minutes. Vocabulary lessons add the total number of words and the brief's word groups as numbered, colour-coded rows with each group's word count on the right. The start page does **not** list the lesson steps, the number of scored steps or the scoring weights and exam time limits; the weights appear on the results page.
 
 After the exam, the final results page defaults to exam answers and offers a button menu for prior exercise results. Introduction/flashcards/plain review remain completion-only. Matching, applicable noun-gender answers, typed gaps, listening choice, and the exam are scored. All scored practice types share the existing 35% practice contribution by possible units; the exam remains 65%. The gender overview answers and confirmation are one learner page for progress, using an estimate that includes both answering and review.
 
@@ -1249,7 +1251,7 @@ scale 1.3
 
 ### Lesson start
 
-The duration shown here is the lesson estimate. Continue starts or resumes the session. There are no preparation or generating states.
+The duration shown here is the lesson estimate. Continue starts or resumes the session. There are no preparation or generating states. Content follows the start-page rule in section 6: category badge, minutes, word count and colour-coded word groups for vocabulary; no step list, scored-step count or weights.
 
 <a id="mockup-03-vocabulary-lesson-01-startpage-lesson-start"></a>
 
@@ -1277,22 +1279,18 @@ scale 1.3
   {
     .
     { <color:#020617>xxx</color> | {
+    { <color:#94A3B8>French / A1</color> | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | <color:#94A3B8>( Vocabulary )</color> }
     <color:#E2E8F0><size:30><b>Les objets de la classe</b></size></color>
     .
     <color:#E2E8F0>Learn to name objects around you and use the right article.</color>
     .
-    { <color:#E2E8F0><b>12 vocabulary items</b></color> | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | <color:#E2E8F0><b>About 14 minutes</b></color> }
+    <color:#94A3B8>About 13 minutes   ·   12 words</color>
     .
-    <color:#94A3B8>Lesson stages</color>
-.
-<color:#E2E8F0>01  Introduction       ·       02  Flashcards</color>
-.
-<color:#E2E8F0>03  Matching           ·       04  Gender + overview</color>
-.
-<color:#E2E8F0>05  Typed gaps         ·       06  Final exam</color>
+    <color:#E2E8F0><b>Word groups</b></color>
+    { <color:#A5B4FC><b>1.</b></color>  <color:#E2E8F0>Masculine objects</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxx</color> | <color:#94A3B8>6 words</color> }
+    { <color:#67E8F9><b>2.</b></color>  <color:#E2E8F0>Feminine objects</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxxx</color> | <color:#94A3B8>6 words</color> }
     .
-    <color:#94A3B8>Practice contributes 35%. The final exam contributes 65%.</color>
-    <color:#94A3B8>Each exam page has its own time limit.</color>
+    <color:#94A3B8>No step list and no scoring weights here; weights appear on the results page.</color>
     .
     [ <color:#020617>                      Continue                      </color> ]
     .
@@ -2426,17 +2424,9 @@ scale 1.3
 .
 <color:#E2E8F0><size:20><b>Say who someone is and how they are</b></size></color>
 .
-<color:#94A3B8>3 explanation + practice blocks   /   About 13 minutes</color>
-<color:#94A3B8>Teaching blocks</color>
+<color:#94A3B8>( Grammar )   ·   About 13 minutes</color>
 .
-<color:#E2E8F0>01  Singular forms</color>
-.
-<color:#E2E8F0>02  Plural forms</color>
-.
-<color:#E2E8F0>03  Forms in sentences</color>
-.
-<color:#94A3B8>Practice contributes 35%. The final exam contributes 65%.</color>
-<color:#E2E8F0>Exam pages have their own brief-defined countdowns.</color>
+<color:#94A3B8>No step list and no scoring weights here; weights appear on the results page.</color>
 .
 [ <color:#020617>                      Continue                      </color> ]
 .
@@ -3269,3 +3259,4 @@ When publishing the agreed backlog, include relevant Mermaid flows as fenced `me
 | 0.33 | 2026-10-07 | Added P2-05: generation delivers formatted (for example Markdown) vocabulary introductions and grammar explanations, which the app renders. The issue brainstorms the format, validation and migration/regeneration of existing briefs and lessons. The vocabulary mockup refresh moves to P2-06 (#25) and stays last in phase 2 (D30). |
 | 0.34 | 2026-10-07 | P2-01: reviewed vocabulary renderer composition and answer policies ([record](reviews/2026-10-07-p2-01-vocabulary-review.md)). Split the renderer registry into shared unit controls, vocabulary and grammar renderers. Removed `acceptedVariants` from briefs and `extraAnswers` from content generation: exam answers derive only from exam forms (plus undisambiguated gender variants). Enforced article agreement, teaching form ∈ exam forms and genuine article exceptions; fixed three samples (alphabet, jobs, personal details) and the brief prompt (`brief-v3`). |
 | 0.35 | 2026-10-07 | P2-05: D46 restricted Markdown for vocabulary introductions and grammar explanations, with a shared parser/renderer, locale-parity validation, updated content prompts, and hand-reformatted sample texts. |
+| 0.36 | 2026-10-07 | P2-02: introduction text without word table; start page with a category badge, total word count and colour-coded word groups, without step list, scored-step count and weights (start mockups updated so the rule is not lost again); matching feedback lists only mistakes and a fully correct page skips it after a success animation; sentence audio on flashcards; flashcard groups on one page (two columns on wide screens) with a size-stable flip card, flip progress stored in the session and a turn-all gate; two-column, independently shuffled, keyboard-operable matching with Bézier pair curves on wide screens and numbers on phones, purple paired boxes; wider lesson content; start-page stages in one column. |

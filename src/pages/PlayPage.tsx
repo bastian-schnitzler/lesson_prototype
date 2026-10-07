@@ -59,11 +59,13 @@ export function PlayPage({ manifest, lessonId }: { manifest: Manifest; lessonId:
   const resumable = saved && saved.status === 'active' && saved.contentHash === contentHash ? saved : undefined;
   const changed = saved && saved.status === 'active' && saved.contentHash !== contentHash;
   const [active, setActive] = useState<SessionRecord | undefined>();
+  // While a lesson runs, the header offers "Cancel lesson"; on the start and results pages "Lesson overview".
+  const [inLesson, setInLesson] = useState(false);
 
   // The attempt's mother tongue is the starting-page choice, never the course language (D38).
   const motherTongue: Locale = course && isMotherTongueAllowed(prefs.motherTongue, course.lang) ? prefs.motherTongue : LOCALES.find((l) => l !== course?.lang) ?? 'en';
   const plan: LessonPlan | undefined = useMemo(
-    () => (loaded.status === 'ready' ? buildPlan(loaded.content, loaded.brief, active?.motherTongue ?? motherTongue) : undefined),
+    () => (loaded.status === 'ready' ? buildPlan(loaded.content, loaded.brief, active?.motherTongue ?? motherTongue, { interleaveGroups: true }) : undefined),
     [loaded, active?.motherTongue, motherTongue],
   );
 
@@ -87,7 +89,7 @@ export function PlayPage({ manifest, lessonId }: { manifest: Manifest; lessonId:
   else if (loaded.status === 'loading' || !plan) body = loaded.status === 'error' ? <StatusMessage kind="error">{t('detail.loadFailed', { error: loaded.error })}</StatusMessage> : <StatusMessage>{t('state.loading')}</StatusMessage>;
   else if (!active)
     body = <StartView plan={plan} level={course.level} resumable={resumable} notice={changed ? t('session.changedContent') : undefined} onStart={start} onResume={() => resumable && setActive(resumable)} />;
-  else body = <ActiveSession key={active.sessionId} plan={plan} initial={active} onRestart={start} />;
+  else body = <ActiveSession key={active.sessionId} plan={plan} initial={active} onRestart={start} onPhase={setInLesson} />;
 
   return (
     <>
@@ -98,7 +100,7 @@ export function PlayPage({ manifest, lessonId }: { manifest: Manifest; lessonId:
         title={<span className="brand">{t('app.brand')}</span>}
         actions={
           <a className="button button-outline" href={href.index()}>
-            {t('action.lessonOverview')}
+            {t(active && inLesson ? 'action.cancelLesson' : 'action.lessonOverview')}
           </a>
         }
       />
@@ -109,10 +111,11 @@ export function PlayPage({ manifest, lessonId }: { manifest: Manifest; lessonId:
   );
 }
 
-function ActiveSession({ plan, initial, onRestart }: { plan: LessonPlan; initial: SessionRecord; onRestart: () => void }) {
+function ActiveSession({ plan, initial, onRestart, onPhase }: { plan: LessonPlan; initial: SessionRecord; onRestart: () => void; onPhase: (inLesson: boolean) => void }) {
   const { t, locale } = useI18n();
   const voiceStatus = useVoiceStatus(plan.lang);
   const { record, dispatch, saveFailed, remainingMs } = useSession(plan, initial, locale, voiceStatus);
+  useEffect(() => onPhase(record.phase !== 'results'), [record.phase, onPhase]);
   return (
     <>
       {saveFailed && <StatusMessage>{t('session.saveFailed')}</StatusMessage>}
