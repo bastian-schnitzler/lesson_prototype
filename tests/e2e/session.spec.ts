@@ -455,5 +455,6 @@ test('matching pairs by keyboard, lets a pair be reassigned and locks it with fe
   // Only the background turns green; boxes keep their colour and every curve stays.
   await expect(page.locator('.task-card.is-celebrating .matching')).toBeAttached();
   await expect(french.and(page.locator('.is-right'))).toHaveCount(0);
+  if (page.viewportSize()!.width >= 720) await expect(page.locator('.match-curve.is-thin')).toHaveCount(4); // thin purple curves
   await expect(page.getByText('Gender and overview')).toBeVisible();
 });

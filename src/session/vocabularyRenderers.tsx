@@ -335,7 +335,7 @@ function MatchingCurves({ pairs, selected, boxes, arranged = false, celebrating 
       {children}
       {wide && (
         <svg className="match-curves" aria-hidden="true">
-          {paths.pairs.map((d, n) => <path key={n} d={d} className={`match-curve${arranged && !celebrating ? ' is-checked' : ''}`} />)}
+          {paths.pairs.map((d, n) => <path key={n} d={d} className={`match-curve${arranged && !celebrating ? ' is-checked' : ''}${celebrating ? ' is-thin' : ''}`} />)}
           {selected && paths.live && <path d={paths.live} className="match-curve match-curve-live" />}
         </svg>
       )}

@@ -2110,6 +2110,11 @@ select {
   stroke-dasharray: 7 6;
 }
 
+/* All pairs correct: the purple curves stay but are drawn thin (P2-04 review). */
+.match-curve.is-thin {
+  stroke-width: 1.5;
+}
+
 /* Gender page: the summary line keeps its space before Check; the scrollbar never shifts the page. */
 .match-summary.is-reserved {
   visibility: hidden;
