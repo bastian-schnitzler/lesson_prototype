@@ -1,6 +1,6 @@
 import { compareLevels } from '../schemas/common.ts';
 import { MANIFEST_SCHEMA_VERSION, type LessonArtifacts, type Manifest } from '../schemas/manifest.ts';
-import type { Brief } from '../schemas/artifacts.ts';
+import { hasContentFile, type Brief } from '../schemas/artifacts.ts';
 import { OutlineFileSchema, type OutlineEntry, type OutlineFile } from '../schemas/outline.ts';
 import { validateBrief, validateContent, type ValidationResult } from '../validation/artifacts.ts';
 
@@ -129,6 +129,10 @@ export function scanCatalog(input: CatalogInput): CatalogResult {
         continue;
       }
       const where = `content/${dir}/${file.name}`;
+      if (slot === 'content' && !hasContentFile(meta.entry.kind)) {
+        warnings.push(`${where}: vocabulary lessons have no content file (the brief is the whole lesson); ignored`);
+        continue;
+      }
       let data: unknown;
       try {
         data = JSON.parse(file.text);

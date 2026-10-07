@@ -8,9 +8,10 @@ import type { MessageKey } from '../i18n/messages.ts';
 import type { Locale } from '../schemas/common.ts';
 import { rendererRegistry, UnitFeedback } from './renderers.tsx';
 import { answerText } from './controls.tsx';
+import { missingArticle } from '../domain/articleHint.ts';
 import type { SessionInput } from './useSession.ts';
 import { reviewColor } from '../artifacts/briefParts.tsx';
-import type { VoiceStatus } from './speech.ts';
+import { useVoiceStatus, type VoiceStatus } from './speech.ts';
 import { VoiceHelp } from './VoiceHelp.tsx';
 
 /* ------------------------------------------------------------ start page */
@@ -27,6 +28,9 @@ interface StartViewProps {
 
 export function StartView({ plan, level, resumable, notice, onStart, onResume }: StartViewProps) {
   const { t, locale, languageName } = useI18n();
+  // Lessons with listening tasks cannot start (or resume) without a learning-language voice (P2-04 review).
+  const voiceStatus = useVoiceStatus(plan.lang);
+  const needsVoice = plan.pages.some(isListeningPage);
   return (
     <section className="task-card start-card" aria-labelledby="start-title">
       <p className="label-muted">{t('index.courseLabel', { language: languageName(plan.lang), level })}</p>
@@ -51,7 +55,15 @@ export function StartView({ plan, level, resumable, notice, onStart, onResume }:
         </>
       )}
       {notice && <p className="note" role="note">{notice}</p>}
-      {resumable ? (
+      {needsVoice && voiceStatus === 'checking' ? (
+        <p className="muted" role="status">{t('session.voiceChecking')}</p>
+      ) : needsVoice && voiceStatus === 'unavailable' ? (
+        <div className="voice-help voice-required" role="alert">
+          <h2 className="small-heading">{t('session.voiceHelpTitle')}</h2>
+          <p>{t('session.voiceRequired')}</p>
+          <VoiceHelp />
+        </div>
+      ) : resumable ? (
         <div className="start-actions">
           <button type="button" className="button button-primary" onClick={onResume}>{t('session.resume')}</button>
           <button type="button" className="button button-outline" onClick={onStart}>{t('session.restart')}</button>
@@ -118,14 +130,29 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
     const field = document.querySelector<HTMLInputElement>('.task-card input.text-input:not([readonly]):not([disabled])');
     (field ?? heading.current)?.focus();
   }, [record.pageIndex]);
-  // A fully correct matching page plays a short success animation, then skips its feedback (P2-02).
+  // A fully correct single-answer page plays a short success animation, then skips its feedback (P2-02, P2-04).
   const [celebrating, setCelebrating] = useState(false);
+  // Exam units missing their article get an info box after Continue; the next Continue submits anyway.
+  const [articleWarnings, setArticleWarnings] = useState<string[]>([]);
+  useEffect(() => setArticleWarnings([]), [record.pageIndex]);
+  // Single-answer practice pages mark the answer in place (red/green) instead of a feedback card (P2-04 review).
+  const inline = page.role === 'practice' && skipsFeedbackWhenCorrect(page);
+  const almost = inline && record.phase === 'feedback' ? page.units.filter((u) => record.locked[u.id]?.outcome === 'orthography_only') : [];
   const onContinue = () => {
+    if (page.role === 'exam') {
+      // Translation only: a dictation has no article hint (P2-04 review).
+      const missing = page.units.filter((u) => u.itemType === 'vocabulary_translation_exam'
+        && missingArticle((record.drafts[u.id] as string | undefined) ?? '', u.answer, plan.lang)).map((u) => u.id);
+      if (missing.length && !articleWarnings.length) return setArticleWarnings(missing);
+      setArticleWarnings([]);
+    }
     const perfect = record.phase === 'answering' && skipsFeedbackWhenCorrect(page)
       && page.units.every((u) => scoreUnit(u, record.drafts[u.id]).outcome === 'fully_correct');
     if (!perfect) return dispatch({ type: 'continue' });
     setCelebrating(true);
-    window.setTimeout(() => { setCelebrating(false); dispatch({ type: 'continue' }); }, 900);
+    // Matching first slides every word level with its meaning (0.6 s), so its flash lasts longer.
+    const pause = page.items.some((it) => it.type === 'vocabulary_matching') ? 1500 : 900;
+    window.setTimeout(() => { setCelebrating(false); dispatch({ type: 'continue' }); }, pause);
   };
 
   return (
@@ -166,6 +193,8 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
               revealed={record.revealed ?? {}}
               onReveal={(itemKey, key) => dispatch({ type: 'reveal', itemKey, key })}
               celebrating={celebrating}
+              articleWarnings={articleWarnings}
+              inlineFeedback={inline}
             />
           );
         })}
@@ -177,6 +206,13 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
               {t(page.role === 'practice' && record.phase === 'answering' ? 'session.check' : 'session.continue')}
             </button>
           </span>
+          {/* Only a half-point answer explains itself, below the button so the button never moves. */}
+          {almost.map((u) => (
+            <div key={u.id} className="feedback outcome-orthography_only footer-note" role="status">
+              <p className="feedback-title"><span aria-hidden="true">!</span> {t('feedback.almost')}</p>
+              <p className="explanation">{u.explanation[locale]}</p>
+            </div>
+          ))}
         </div>
       </section>
       )}
@@ -234,6 +270,29 @@ function ResultItem({ unit, locked, lang }: { unit: PlanUnit; locked: LockedUnit
   const given = answerText(unit, locked.response, t);
   const correct = unit.answerLang === 'ui' ? t(unit.answer as MessageKey) : unit.answer;
   const ok = locked.outcome === 'fully_correct';
+  // Gender rows (P2-04 review): "word: chosen gender", and for a mistake the struck gender → the correct one.
+  if (unit.itemType === 'vocabulary_gender_select') {
+    return (
+      <li className={`result-item outcome-${locked.outcome}`}>
+        <span className="result-icon" aria-label={t(OUTCOME_LABEL[locked.outcome])}>{ok ? '✓' : '✕'}</span>
+        <div className="result-body">
+          <div className="result-fix result-gender">
+            <span className="result-prompt" lang={lang}>{prompt}:</span>
+            {ok ? (
+              <strong className="match-right"><span className="visually-hidden">{t('result.yourAnswer')}: </span>{given}</strong>
+            ) : (
+              <>
+                <s className="match-wrong"><span className="visually-hidden">{t('result.yourAnswer')}: </span>{given || t('result.noAnswer')}</s>
+                <span className="match-arrow" aria-hidden="true">→</span>
+                <strong className="match-right"><span className="visually-hidden">{t('result.correctAnswer')}: </span>{correct}</strong>
+              </>
+            )}
+          </div>
+          {!ok && <p className="muted">{unit.explanation[locale]}</p>}
+        </div>
+      </li>
+    );
+  }
   return (
     <li className={`result-item outcome-${locked.outcome}`}>
       <span className="result-icon" aria-label={t(OUTCOME_LABEL[locked.outcome])}>{ok ? '✓' : locked.outcome === 'orthography_only' ? '!' : '✕'}</span>
@@ -269,7 +328,11 @@ function unitTarget(page: PlanPage, unit: PlanUnit): string | undefined {
   return unit.id.startsWith(`${page.pageId}/${unit.itemId}/`) ? rest : undefined;
 }
 
-/** Splits units into consecutive sections: by vocabulary group, otherwise by page ("Part n"). */
+/**
+ * Splits units into sections, each shown once in its own frame: by vocabulary group (across all
+ * pages of the part, so a group's name is never repeated), otherwise by consecutive page
+ * ("Part n") when a page holds several answers; consecutive single-answer pages share one section.
+ */
 function resultSections(plan: LessonPlan, pages: PlanPage[]) {
   const groupOf = new Map(plan.groups.flatMap((g) => g.targetIds.map((id) => [id, g] as const)));
   const sections: { key: string; groupId?: string; part: number; units: PlanUnit[] }[] = [];
@@ -277,9 +340,10 @@ function resultSections(plan: LessonPlan, pages: PlanPage[]) {
     for (const unit of page.units) {
       const target = unitTarget(page, unit);
       const group = target ? groupOf.get(target) : undefined;
-      const key = `${page.pageId}|${group?.id ?? ''}`;
-      const last = sections.at(-1);
-      if (last?.key === key) last.units.push(unit);
+      const key = group ? `group|${group.id}` : page.units.length > 1 ? `page|${page.pageId}` : 'single';
+      // One section per group across the whole part (typed gaps and listening of a group share a frame).
+      const existing = group ? sections.find((sec) => sec.key === key) : sections.at(-1)?.key === key ? sections.at(-1) : undefined;
+      if (existing) existing.units.push(unit);
       else sections.push({ key, groupId: group?.id, part: n + 1, units: [unit] });
     }
   });
@@ -307,7 +371,8 @@ export function ResultsView({ plan, record, dispatch }: { plan: LessonPlan; reco
   const sectionScore = selectedStep?.role === 'presentation' || !selectedTally?.possible
     ? t('result.completedShort')
     : `${pts(selectedTally.earned)} / ${selectedTally.possible}`;
-  const exerciseSteps = results.steps.filter((s) => s.role !== 'exam' && (s.role === 'presentation' || s.tally.possible > 0) && plan.steps.some((p) => p.stepId === s.stepId));
+  // Only scored parts can be reviewed; presentation stages (introduction, flashcards) are left out.
+  const exerciseSteps = results.steps.filter((s) => s.role !== 'exam' && s.role !== 'presentation' && s.tally.possible > 0 && plan.steps.some((p) => p.stepId === s.stepId));
 
   return (
     <section aria-labelledby="results-title">
@@ -328,7 +393,7 @@ export function ResultsView({ plan, record, dispatch }: { plan: LessonPlan; reco
           const label = plan.steps.find((p) => p.stepId === s.stepId)!.label[locale];
           return (
             <button key={s.stepId} type="button" className="button button-outline" aria-pressed={record.selection === s.stepId} onClick={() => dispatch({ type: 'select', selection: s.stepId })}>
-              {s.role === 'presentation' ? t('result.completed', { label }) : label}
+              {label}
             </button>
           );
         })}
@@ -336,20 +401,39 @@ export function ResultsView({ plan, record, dispatch }: { plan: LessonPlan; reco
       <h2 className="small-heading">{selectedStep ? selectedStep.label[locale] : t('result.examAnswers')}</h2>
       {units.some((u) => record.locked[u.id]) ? (() => {
         const reviewed = units.filter((u) => record.locked[u.id]);
-        const correct = reviewed.filter((u) => record.locked[u.id].outcome === 'fully_correct').length;
-        const sections = resultSections(plan, pages).map((sec) => ({ ...sec, units: sec.units.filter((u) => record.locked[u.id]) })).filter((sec) => sec.units.length);
-        const title = (sec: (typeof sections)[number]) => plan.groups.find((g) => g.id === sec.groupId)?.label[locale] ?? t('result.part', { n: sec.part });
+        const correct = (list: PlanUnit[]) => list.filter((u) => record.locked[u.id].outcome === 'fully_correct').length;
+        const renderSections = (subset: PlanPage[]) => {
+          const sections = resultSections(plan, subset).map((sec) => ({ ...sec, units: sec.units.filter((u) => record.locked[u.id]) })).filter((sec) => sec.units.length);
+          const title = (sec: (typeof sections)[number]) => plan.groups.find((g) => g.id === sec.groupId)?.label[locale] ?? t('result.part', { n: sec.part });
+          return sections.map((sec) => (
+            <section key={sec.key} className={`result-section${sections.length > 1 ? ' is-framed' : ''}`} style={sec.groupId ? reviewColor(plan.groups.findIndex((g) => g.id === sec.groupId)) : undefined}>
+              {sections.length > 1 && (sec.groupId || sec.key !== 'single') && <h3 className="result-section-title">{title(sec)}</h3>}
+              <ul className="result-list">
+                {sec.units.map((u) => <ResultItem key={u.id} unit={u} locked={record.locked[u.id]} lang={plan.lang} />)}
+              </ul>
+            </section>
+          ));
+        };
+        // The vocabulary exam is reviewed in two accordions: translation (open) and dictation (P2-04 review).
+        const isDictation = (p: PlanPage) => p.units.length > 0 && p.units.every((u) => u.itemType === 'vocabulary_listening_dictation');
+        const parts = !selectedStep && pages.some(isDictation) && pages.some((p) => !isDictation(p))
+          ? [{ key: 'translation', label: t('result.translation'), pages: pages.filter((p) => !isDictation(p)) }, { key: 'dictation', label: t('result.dictation'), pages: pages.filter(isDictation) }]
+          : undefined;
         return (
           <>
-            <p className="match-summary"><strong>{t('result.summary', { correct, total: reviewed.length })}</strong></p>
-            {sections.map((sec) => (
-              <section key={sec.key} className="result-section">
-                {sections.length > 1 && <h3 className="result-section-title">{title(sec)}</h3>}
-                <ul className="result-list">
-                  {sec.units.map((u) => <ResultItem key={u.id} unit={u} locked={record.locked[u.id]} lang={plan.lang} />)}
-                </ul>
-              </section>
-            ))}
+            <p className="match-summary"><strong>{t('result.summary', { correct: correct(reviewed), total: reviewed.length })}</strong></p>
+            {parts ? parts.map((part, n) => {
+              const partUnits = part.pages.flatMap((p) => p.units).filter((u) => record.locked[u.id]);
+              return (
+                <details key={part.key} className="result-accordion" open={n === 0}>
+                  <summary>
+                    <span>{part.label}</span>
+                    <span className="muted">{t('result.summary', { correct: correct(partUnits), total: partUnits.length })}</span>
+                  </summary>
+                  {renderSections(part.pages)}
+                </details>
+              );
+            }) : renderSections(pages)}
           </>
         );
       })() : (

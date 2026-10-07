@@ -10,9 +10,10 @@ const learningLanguage = (page: import('@playwright/test').Page) => page.getByRo
 
 test('lists the discovered course in outline order with state-labeled Content buttons and Start for ready lessons', async ({ page }) => {
   const rows = page.locator('tbody tr');
-  await expect(rows).toHaveCount(8);
-  await expect(rows.locator('.ordinal')).toHaveText(['01', '02', '03', '04', '05', '06', '07', '08']);
-  await expect(rows.nth(2).getByRole('link').first()).toHaveText('Content');
+  await expect(rows).toHaveCount(9);
+  await expect(rows.locator('.ordinal')).toHaveText(['01', '02', '03', '04', '05', '06', '07', '08', '09']);
+  await expect(rows.nth(2).getByRole('link').first()).toHaveText('Draft'); // vocabulary: the brief is the whole lesson (P2-04)
+  await expect(rows.nth(3).getByRole('link').first()).toHaveText('Content');
   await expect(rows.nth(4).getByRole('link').first()).toContainText('Draft');
   await expect(rows.nth(2).getByRole('link', { name: 'Start lesson' })).toHaveAttribute('href', '#/lesson/fr-classroom-objects/play');
   await expect(rows.nth(4).getByRole('link', { name: 'Start lesson' })).toHaveCount(0);
@@ -86,7 +87,7 @@ test('groups content pages and keeps artifact header actions the same height', a
   await expect(panel).toContainText('vocabulary_flashcards');
   await expect(panel).not.toContainText('vocabulary_introduction');
   await tabs.last().click();
-  await expect(panel).toContainText('vocabulary_translation_exam');
+  await expect(panel).toContainText('vocabulary_listening_dictation'); // the derived lesson preview ends with dictation (P2-04)
   const heights = await Promise.all([
     page.getByRole('link', { name: 'Lesson overview' }),
     page.getByRole('button', { name: 'Raw JSON' }),

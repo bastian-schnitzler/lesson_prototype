@@ -1,6 +1,7 @@
 import { compareLevels, LESSON_KINDS, type LessonKind, type Level } from '../schemas/common.ts';
 import type { Course, LessonArtifacts, Manifest } from '../schemas/manifest.ts';
 import type { OutlineEntry } from '../schemas/outline.ts';
+import { hasContentFile } from '../schemas/artifacts.ts';
 
 export interface CourseSelection {
   lang: string;
@@ -97,11 +98,12 @@ export const PLAYABLE_KINDS: ReadonlySet<LessonKind> = new Set<LessonKind>(['voc
 
 export type NotReadyReason = 'missingDraft' | 'missingContent' | ArtifactProblem | 'unsupported';
 
-/** Why Start lesson is unavailable; empty when all three artifacts are valid, current and playable. */
+/** Why Start lesson is unavailable; empty when all required artifacts are valid, current and playable. */
 export function readiness(kind: LessonKind, artifacts: LessonArtifacts | undefined, playable = PLAYABLE_KINDS): NotReadyReason[] {
   const reasons: NotReadyReason[] = [];
   if (!artifacts?.draft) reasons.push('missingDraft');
-  if (!artifacts?.content) reasons.push('missingContent');
+  // Vocabulary lessons consist of the brief only (P2-04).
+  if (hasContentFile(kind) && !artifacts?.content) reasons.push('missingContent');
   for (const p of PROBLEM_ORDER) if (artifacts?.draft?.status === p || artifacts?.content?.status === p) reasons.push(p);
   if (!playable.has(kind)) reasons.push('unsupported');
   return reasons;

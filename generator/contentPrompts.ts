@@ -1,21 +1,13 @@
 import { z } from 'zod';
-import {
-  AcceptedAnswersSchema,
-  LocalizedLongTextSchema,
-  LocalizedTextSchema,
-  NestedIdSchema,
-  nativeLocales,
-  nativeTextSchema,
-} from '../src/schemas/artifactCommon.ts';
+import { NestedIdSchema, nativeLocales } from '../src/schemas/artifactCommon.ts';
 import type { Brief } from '../src/schemas/artifacts.ts';
 import { grammarItemSchema, type GrammarBrief, type GrammarExerciseType } from '../src/schemas/grammar.ts';
-import type { VocabularyBrief } from '../src/schemas/vocabulary.ts';
 import type { OutlineContext } from '../src/validation/artifacts.ts';
 
 export const CONTENT_PROMPT_VERSION = 'content-v2';
 
 /** D46 (SPEC "Formatted teaching text"): format rules shared by introduction and explanation texts. */
-const RICH_TEXT = [
+export const RICH_TEXT = [
   'Format each text as restricted Markdown.',
   'Allowed: paragraphs separated by one blank line; bulleted lists whose lines all start with "- "; numbered lists whose lines start with "1. ", "2. "; **bold** for one key idea per paragraph; backticks around every learning-language word, form or sentence quoted in the text (`un livre`, `je suis`, `Il est médecin.`), in every locale including the learning-language locale.',
   'Not allowed: headings, quotes, tables, code fences, "*" or "+" bullets, *italics*, links, images, HTML, a visible backslash-n in the decoded text (inside the JSON string a line break is the escape \\n and a blank line is \\n\\n), markup inside bold or backticks, and a list without a blank line before and after it. Do not backtick interface-language words, IPA or endings such as -er.',
@@ -23,81 +15,19 @@ const RICH_TEXT = [
   'en, fr and de use the same paragraphs and lists in the same order and exactly the same backticked forms; only the surrounding prose is translated.',
   'Show nouns with the indefinite article the exam asks for, and do not promise alternative spellings that are not exam forms.',
 ].join(' ');
-const INTRO_SHAPE = 'Structure: a short lead paragraph naming the topic or pattern with one **bold** key idea; a list with one line per target of the group, "`teaching form` – meaning" plus an optional short example sentence; a closing paragraph with one useful observation (gender, pronunciation, spelling) or a study tip. Example (en): "These six classroom objects are **masculine**: they take `un`.\\n\\n- `un livre` – book\\n- `un cahier` – exercise book\\n\\nLearn each word together with its article."';
+export const INTRO_SHAPE = 'Structure: a short lead paragraph naming the topic or pattern with one **bold** key idea; a list with one line per target of the group, "`teaching form` – meaning" plus an optional short example sentence; a closing paragraph with one useful observation (gender, pronunciation, spelling) or a study tip. Example (en): "These six classroom objects are **masculine**: they take `un`.\\n\\n- `un livre` – book\\n- `un cahier` – exercise book\\n\\nLearn each word together with its article."';
 const EXPLANATION_SHAPE = 'Structure: a rule paragraph with one **bold** key idea; a list of the forms or cases, one per line, each with a backticked example; a final paragraph or list naming the typical pitfall. The form table and examples are shown separately after the text, so do not repeat them in full.';
 
 /**
  * One separately generated and validated part of a lesson (SPEC "Generator behavior"):
- * vocabulary lessons use four sections, grammar lessons one per teaching block plus the
- * exam. Everything the brief already determines is assembled locally in content.ts.
+ * vocabulary briefs use three sections after the word inventory (generator/vocabulary.ts),
+ * grammar lessons one per teaching block plus the exam (assembled locally in content.ts).
  */
 export interface Section {
   key: string;
   schema: z.ZodType;
   task: string;
 }
-
-/* -------------------------------------------------------------- vocabulary */
-
-export const vocabularySections = (lang: string, brief: VocabularyBrief) => {
-  const nouns = brief.targets.filter((t) => t.wordClass === 'noun').map((t) => t.id);
-  const translationTargets = brief.plan.exam.pages.filter((p) => p.kind === 'translation').flatMap((p) => p.targetIds);
-  const dictationTargets = brief.plan.exam.pages.filter((p) => p.kind === 'listening_dictation').flatMap((p) => p.targetIds);
-  const listening = brief.plan.listening.practiceTargetIds;
-  return {
-    introduction: {
-      key: 'introduction',
-      schema: z.strictObject({ groups: z.array(z.strictObject({ groupId: NestedIdSchema, text: LocalizedLongTextSchema })).min(1) }),
-      task: `Write the introduction page text for each target group (${brief.groups.map((g) => g.id).join(', ')}): present the topic, what the learner will be able to do, and the group's words with a useful observation (pattern, pronunciation, spelling). Do not quiz the learner. ${INTRO_SHAPE} ${RICH_TEXT}`,
-    },
-    words: {
-      key: 'words',
-      schema: z.strictObject({
-        targets: z
-          .array(
-            z.strictObject({
-              targetId: NestedIdSchema,
-              /** Only when two targets of one matching group share a native label in some locale. */
-              matchingLabel: nativeTextSchema(lang).nullable(),
-              matchingExplanation: LocalizedTextSchema,
-              genderExplanation: LocalizedTextSchema.nullable(),
-            }),
-          )
-          .min(1),
-      }),
-      task: `For every target (${brief.targets.map((t) => t.id).join(', ')}): matchingExplanation explains the meaning shown when a matching pair is corrected. matchingLabel is null unless two targets of the same matching group (groups of ${brief.plan.matching.groupSize}, in inventory order within each target group) would show the same native label in some mother tongue; then give a short disambiguated label for every mother tongue. genderExplanation is required exactly for the nouns (${nouns.join(', ') || 'none'}) and null otherwise: state the lexical gender and the matching indefinite article; do not invent a universal spelling rule.`,
-    },
-    practice: {
-      key: 'practice',
-      schema: z.strictObject({
-        typedGaps: z
-          .array(
-            z.strictObject({
-              targetId: NestedIdSchema,
-              before: z.string().max(200),
-              after: z.string().max(200),
-              referenceTargetIds: z.array(NestedIdSchema).length(4),
-              accepted: AcceptedAnswersSchema,
-              answerExplanation: LocalizedTextSchema,
-            }),
-          )
-          .min(1),
-        listening: z.array(z.strictObject({ targetId: NestedIdSchema, optionTargetIds: z.array(NestedIdSchema).length(4), answerExplanation: LocalizedTextSchema })),
-      }),
-      task: `typedGaps: exactly one contextual ${lang} sentence per target in this order: ${brief.plan.typedGaps.targetIds.join(', ')}. The sentence is before + gap + after; the gap takes the target without its article, so the article (if any) stays in "before". accepted.answers are article-free forms that fit; referenceTargetIds are four distinct target IDs including the answer, where no other reference fits the gap. listening: ${listening.length ? `one item per target in this order: ${listening.join(', ')}; optionTargetIds are four distinct targets including the answer, preferably similar-sounding` : 'must be an empty array'}. Each answerExplanation explains why the answer fits.`,
-    },
-    exam: {
-      key: 'exam',
-      schema: z.strictObject({
-        translation: z
-          .array(z.strictObject({ targetId: NestedIdSchema, prompt: nativeTextSchema(lang), answerExplanation: LocalizedTextSchema }))
-          .min(1),
-        dictation: z.array(z.strictObject({ targetId: NestedIdSchema, answerExplanation: LocalizedTextSchema })),
-      }),
-      task: `translation: one item per target in this order: ${translationTargets.join(', ')}. prompt is the native-language cue for every mother tongue; when a mother tongue does not mark gender or number that the ${lang} answer requires, the prompt says so (e.g. "student (female)"). The learner answers with the exam form (article included for nouns); accepted answers are derived locally from the brief's exam forms. dictation: ${dictationTargets.length ? `one item per target in this order: ${dictationTargets.join(', ')}` : 'must be an empty array'}. Each answerExplanation explains meaning, gender/article or spelling, naming accents rather than only showing characters.`,
-    },
-  } satisfies Record<string, Section>;
-};
 
 /* ----------------------------------------------------------------- grammar */
 

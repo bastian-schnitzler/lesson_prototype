@@ -520,6 +520,14 @@ Acceptance:
 - No reference-choice clicking, exam answer leaks, or false gender tags occur.
 - Rebuild/deploy the updated static content and verify representative Pages journeys.
 
+Review additions (SPEC 0.40):
+
+- Every single-answer practice page (typed gap, listening choice, multiple choice, one typed word, word order, error spot) and matching skip the feedback when fully correct; only the chosen answer lights up green, not the whole content area.
+- Vocabulary exam: the "with article" badge turns purple while the article is missing; the info box appears only after Continue (which then does not submit) and stays until Continue is pressed again.
+- A lesson with listening tasks cannot start or resume without a learning-language voice; its start page shows the personalised install help.
+- The results menu offers only scored parts; result groups are framed once with their name instead of repeating it per answer.
+- A vocabulary lesson is its brief (D47): no lesson content file; the brief holds group introductions and per-word exercise texts, and the application derives the same six stages for every lesson with every word in every exercise, listening choice and dictation included. Nouns are examined only as indefinite article + noun. The standard is 18 words per lesson.
+
 Dependencies: P2-03, P1-02.
 
 ### P2-05: Deliver formatted introduction and explanation text from generation
@@ -574,29 +582,27 @@ GitHub: [#57](https://github.com/bastian-schnitzler/lesson_prototype/issues/57).
 
 Milestone: **Phase 2**.
 
-Scope: the 38 fr/A1 vocabulary outline entries that still have no artifacts. For each, Claude in Claude Code writes the brief first and then the lesson content directly, as the P1-08 samples were written, instead of running the offline generator (`make generate`).
+Scope: the 38 fr/A1 vocabulary outline entries that still have no artifacts. For each, Claude in Claude Code writes the brief directly, as the P1-08 samples were written, instead of running the offline generator (`make generate`). Since P2-04 a vocabulary lesson is its brief (D47): there is no lesson content file, and the application derives the same six stages for every lesson.
 
 Acceptance:
 
-- Every remaining vocabulary entry has `content/briefs/<id>.json` and `content/lessons/<id>.json`, written in outline order and in batches of about five lessons per commit, with review checkpoints.
+- Every remaining vocabulary entry has `content/briefs/<id>.json` (no `content/lessons/<id>.json`), written in outline order and in batches of about five lessons per commit, with review checkpoints.
 - Briefs follow SPEC section 4:
-  - target count policy: about 12 on average, around 8 for a demanding load, at most 20 unless a finite inventory needs more
-  - groups, with mixed difficulty where the topic allows
-  - the article policy: D39, agreement, `term` without article, teaching form among the exam forms, and genuine exceptions only
+  - target count policy: the standard of 18 words; more or fewer only in exceptional cases, explained in `countRationale` (D14)
+  - 2–4 groups of about 4–8 related words, with mixed difficulty where the topic allows
+  - the article policy: D39, agreement, `term` without article, teaching form among the exam forms, and genuine exceptions only; nouns are examined only as indefinite article + noun, so teaching form, exam forms and gender variants of nouns carry `un`/`une`/`des`
   - exam forms as the only accepted answers (no variants)
-  - listening coverage wherever the intent names oral recognition or pronunciation
-  - page durations and exam limits
   - complete en/fr/de and native maps
-- Lessons follow the contracts and the reviewed sample style:
-  - formatted introductions (D46)
-  - matching labels unique in every locale
-  - typed gaps with four reference words of which exactly one fits
-  - translation prompts that disambiguate gender
+- Exercise texts follow the contracts and the reviewed sample style:
+  - formatted group introductions (D46)
+  - per word: explanation, gender explanation for nouns, matching label only where a derived matching page would repeat a translation, exam prompt only where the first translation does not disambiguate gender
+  - a typed gap per word with four reference words of which exactly one fits
+  - four listening options per word, preferably similar-sounding
   - explanations that name the accent mark (D28)
-  - exact exam answers
-- Provenance records hand authoring (for example `generator: "claude-direct-authoring"`, `promptVersion: "manual-brief-v1"` / `"manual-content-v1"`) and the current input hashes computed with the repository's hash functions. No Gemini calls.
+  - `estimatedMinutes` equal to the derived page estimates
+- Provenance records hand authoring (for example `generator: "claude-direct-authoring"`, `promptVersion: "manual-brief-v2"`) and the current input hashes computed with the repository's hash functions. No Gemini calls.
 - `make catalog` reports no warnings. All 48 vocabulary lessons are valid and current. The sample check and the contract test cover every authored lesson, not only the first twenty.
-- A pedagogical review samples different themes, large inventories and listening-heavy intents. Flagged issues are fixed before the next batch.
+- A pedagogical review samples different themes, large inventories and the listening options. Flagged issues are fixed before the next batch.
 - Rebuild and deploy the static content and verify representative Pages journeys.
 
 Dependencies: P2-01, P2-05.

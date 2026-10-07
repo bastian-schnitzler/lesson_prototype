@@ -68,10 +68,9 @@ describe('scanCatalog', () => {
 
   it('validates fixture artifacts and marks them stale when their outline entry changes', () => {
     const fixtures = scanContentDir(FIXTURE_CONTENT).manifest.artifacts;
-    for (const id of ['fr-classroom-objects', 'fr-classroom-instructions', 'fr-verb-etre-present', 'fr-negation-ne-pas']) {
-      expect(fixtures[id].draft?.status, id).toBe('valid');
-      expect(fixtures[id].content?.status, id).toBe('valid');
-    }
+    for (const id of ['fr-classroom-objects', 'fr-classroom-instructions', 'fr-verb-etre-present', 'fr-negation-ne-pas']) expect(fixtures[id].draft?.status, id).toBe('valid');
+    for (const id of ['fr-verb-etre-present', 'fr-negation-ne-pas']) expect(fixtures[id].content?.status, id).toBe('valid');
+    expect(fixtures['fr-classroom-objects'].content).toBeUndefined(); // vocabulary: the brief is the whole lesson (P2-04)
     expect(fixtures['fr-fix-pronouns'].content?.status).toBe('invalid');
 
     const read = (p: string) => readFileSync(join(FIXTURE_CONTENT, p), 'utf8');
@@ -79,11 +78,13 @@ describe('scanCatalog', () => {
     const r = scanCatalog({
       outlines: [{ name: 'fr-a1.json', text: outlineText }],
       briefs: [{ name: 'fr-classroom-objects.json', text: read('briefs/fr-classroom-objects.json') }],
-      lessons: [{ name: 'fr-classroom-objects.json', text: read('lessons/fr-classroom-objects.json') }],
+      lessons: [{ name: 'fr-classroom-objects.json', text: '{}' }],
       hash: sha256,
     });
     expect(r.manifest.artifacts['fr-classroom-objects'].draft?.status).toBe('stale');
-    expect(r.manifest.artifacts['fr-classroom-objects'].content?.status).toBe('stale');
+    // A vocabulary content file is ignored with a warning.
+    expect(r.manifest.artifacts['fr-classroom-objects'].content).toBeUndefined();
+    expect(r.warnings.join('\n')).toMatch(/vocabulary lessons have no content file/);
   });
 
   it('canonicalizes JSON with sorted keys', () => {

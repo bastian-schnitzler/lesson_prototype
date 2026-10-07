@@ -7,6 +7,7 @@ import { z } from 'zod';
 import { briefSchema, contentSchema, type Brief } from '../../src/schemas/artifacts.ts';
 import { OutlineFileSchema } from '../../src/schemas/outline.ts';
 import { validateBrief, validateContent, type OutlineContext } from '../../src/validation/artifacts.ts';
+import { vocabularyLesson } from '../../src/domain/vocabularyLesson.ts';
 
 const ROOT = resolve(import.meta.dirname, '..', '..');
 const FIXTURES = join(ROOT, 'tests', 'fixtures', 'content');
@@ -41,14 +42,26 @@ function checkContent(id: FixtureId, mutate?: (c: Json) => void, mutateBrief?: (
 
 const messages = (r: { issues: { path: string; message: string }[] }) => r.issues.map((i) => `${i.path}: ${i.message}`).join('\n');
 
+const VOCABULARY = new Set<FixtureId>(['fr-classroom-objects', 'fr-classroom-instructions']);
+
 describe('fixture artifacts', () => {
-  it.each(FIXTURE_IDS)('%s brief and content are valid', (id) => {
+  it.each(FIXTURE_IDS)('%s brief (and grammar content) are valid', (id) => {
     const brief = checkBrief(id);
     expect(messages(brief)).toBe('');
     expect(brief.status).toBe('valid');
+    if (VOCABULARY.has(id)) return;
     const content = checkContent(id);
     expect(messages(content)).toBe('');
     expect(content.status).toBe('valid');
+  });
+
+  it('derives vocabulary lessons from the brief and rejects a vocabulary content file (P2-04)', () => {
+    const brief = load('fr-classroom-objects', 'brief');
+    const lesson = vocabularyLesson(brief);
+    expect(lesson.steps.map((st) => st.stage)).toEqual(['introduction', 'flashcards', 'matching', 'overview', 'practice', 'practice', 'exam']);
+    expect(lesson.steps.map((st) => st.id)).toEqual(['introduction', 'flashcards', 'matching', 'overview', 'practice', 'listening', 'exam']);
+    expect(() => contentSchema('vocabulary', 'fr').parse(lesson)).not.toThrow();
+    expect(messages(validateContent(lesson, { ...ctx('fr-classroom-objects'), brief }))).toMatch(/vocabulary lessons have no content file/);
   });
 
   it('covers nouns, non-nouns, conjugation and non-conjugation grammar', () => {
@@ -69,6 +82,7 @@ describe('multilingual contract', () => {
   it('rejects partial locale maps', () => {
     expect(checkBrief('fr-classroom-objects', (b) => delete b.objective.de).status).toBe('invalid');
     expect(checkContent('fr-verb-etre-present', (c) => delete c.steps[1].pages[0].items[0].rows[0].answerExplanation.fr).status).toBe('invalid');
+    expect(checkBrief('fr-classroom-objects', (b) => delete b.targets[0].gap.explanation.fr).status).toBe('invalid');
   });
 
   it('requires native translations for every mother tongue except the learning language', () => {
@@ -93,12 +107,19 @@ describe('brief validation', () => {
     expect(messages(checkBrief('fr-classroom-objects', (b) => b.groups[0].targetIds.pop()))).toMatch(/exactly one group/);
     expect(messages(checkBrief('fr-classroom-objects', (b) => (b.targets[0].examForms = ['le livre'])))).toMatch(/indefinite article/);
     expect(messages(checkBrief('fr-classroom-instructions', (b) => (b.targets[0].genders = ['masculine'])))).toMatch(/only nouns have a gender/);
-    expect(messages(checkBrief('fr-classroom-objects', (b) => (b.plan.genderOverview.scored = false)))).toMatch(/must be true when the lesson has nouns/);
+    expect(messages(checkBrief('fr-classroom-objects', (b) => (b.targets[0].genderExplanation = null)))).toMatch(/genderExplanation: required for a noun/);
+    expect(messages(checkBrief('fr-classroom-instructions', (b) => (b.targets[0].genderExplanation = { en: 'x', fr: 'x', de: 'x' })))).toMatch(/only nouns have a gender explanation/);
   });
 
-  it('keeps listening-choice items on pages of their own, so the no-voice help can replace the page', () => {
-    const practice = (c: Json) => c.steps.find((st: Json) => st.stage === 'practice').pages;
-    expect(messages(checkContent('fr-classroom-instructions', (c) => practice(c)[2].items.push(practice(c)[0].items[0])))).toMatch(/listening-choice pages contain only listening-choice items/);
+  it('puts every word into every exercise, with listening choices on pages of their own (P2-04)', () => {
+    const brief = load('fr-classroom-instructions', 'brief');
+    const lesson = vocabularyLesson(brief);
+    const ids = brief.targets.map((t: Json) => t.id).sort();
+    const of = (type: string) => lesson.steps.flatMap((st) => st.pages.flatMap((pg) => pg.items)).filter((it) => it.type === type).map((it) => ('targetId' in it ? it.targetId : '')).sort();
+    for (const type of ['vocabulary_typed_gap', 'vocabulary_listening_choice', 'vocabulary_translation_exam', 'vocabulary_listening_dictation']) expect(of(type), type).toEqual(ids);
+    const practice = [...lesson.steps[4].pages, ...lesson.steps[5].pages];
+    expect(practice.every((pg) => pg.items.length === 1)).toBe(true);
+    expect(lesson.steps[6].pages.every((pg) => pg.timeLimitS !== null && pg.items.length <= 6)).toBe(true);
   });
 
   it('enforces the French noun article policy in exam forms, teaching forms and exceptions (D39)', () => {
@@ -106,31 +127,28 @@ describe('brief validation', () => {
     expect(messages(checkBrief('fr-classroom-objects', (b) => (noun(b).examForms = ['un livre', 'des livres'])))).toMatch(/"des livres" uses "des" but a singular masculine noun takes un/);
     expect(messages(checkBrief('fr-classroom-objects', (b) => (noun(b).examForms = ['une livre'])))).toMatch(/"une livre" uses "une"/);
     expect(messages(checkBrief('fr-classroom-objects', (b) => (noun(b).teachingForm = 'le livre')))).toMatch(/"le livre" must be one of the exam forms/);
+    expect(messages(checkBrief('fr-classroom-objects', (b) => (noun(b).teachingForm = 'le livre')))).toMatch(/teachingForm: "le livre" must include the indefinite article/);
+    expect(messages(checkBrief('fr-classroom-objects', (b) => (noun(b).genderVariants = ['livre'])))).toMatch(/genderVariants: "livre" must include the indefinite article/);
     expect(messages(checkBrief('fr-classroom-objects', (b) => (noun(b).term = 'le livre')))).toMatch(/"le livre" must be the base term without article/);
     expect(messages(checkBrief('fr-classroom-objects', (b) => (noun(b).articleException = { en: 'x', fr: 'x', de: 'x' })))).toMatch(/remove the articleException/);
   });
 
-  it('derives exam answers only from exam forms; extra accepted answers are rejected', () => {
-    const exam = (c: Json) => c.steps.find((st: Json) => st.stage === 'exam').pages[0].items[0];
-    expect(messages(checkContent('fr-classroom-objects', (c) => exam(c).accepted.answers.push('livre')))).toMatch(/accepted\.answers: must be exactly "un livre"/);
-    expect(messages(checkContent('fr-classroom-objects'))).toBe('');
+  it('derives exam answers (translation and dictation) only from exam forms', () => {
+    const brief = load('fr-classroom-objects', 'brief');
+    const exam = vocabularyLesson(brief).steps[6].pages.flatMap((pg) => pg.items);
+    for (const item of exam) if ('accepted' in item && 'targetId' in item) expect(item.accepted.answers).toEqual(brief.targets.find((t: Json) => t.id === item.targetId).examForms);
   });
 
   it('validates formatted introductions and explanations: syntax and locale parity (D46)', () => {
-    const intro = (c: Json) => c.steps[0].pages[0].items[0];
-    expect(messages(checkContent('fr-classroom-objects', (c) => (intro(c).text.de = '# Titel\n\n' + intro(c).text.de)))).toMatch(/text\.de: block 1: headings are not allowed/);
-    expect(messages(checkContent('fr-classroom-objects', (c) => (intro(c).text.fr = 'Un paragraphe.\n\n- liste')))).toMatch(/text\.fr: block structure p\|ul:1 differs from en/);
-    expect(messages(checkContent('fr-classroom-objects', (c) => (intro(c).text.en = intro(c).text.en + ' Also `une table`.')))).toMatch(/learning-language forms differ/);
+    const intro = (b: Json) => b.groups[0].introduction;
+    expect(messages(checkBrief('fr-classroom-objects', (b) => (intro(b).de = '# Titel\n\n' + intro(b).de)))).toMatch(/introduction\.de: block 1: headings are not allowed/);
+    expect(messages(checkBrief('fr-classroom-objects', (b) => (intro(b).fr = 'Un paragraphe.\n\n- liste')))).toMatch(/introduction\.fr: block structure p\|ul:1 differs from en/);
+    expect(messages(checkBrief('fr-classroom-objects', (b) => (intro(b).en = intro(b).en + ' Also `une table`.')))).toMatch(/learning-language forms differ/);
     const explanation = (c: Json) => c.steps[0].pages[0].items[0];
     expect(messages(checkContent('fr-verb-etre-present', (c) => (explanation(c).text.en = '<b>HTML</b>')))).toMatch(/HTML not allowed/);
   });
 
-  it('requires listening when the intent asks for oral recognition', () => {
-    expect(messages(checkBrief('fr-classroom-instructions', (b) => (b.plan.listening.required = false)))).toMatch(/oral recognition/);
-  });
-
-  it('requires every target in exactly one translation exam item and matching minutes', () => {
-    expect(messages(checkBrief('fr-classroom-objects', (b) => b.plan.exam.pages[1].targetIds.pop()))).toMatch(/exactly one translation exam item/);
+  it('requires the lesson length of the derived pages', () => {
     expect(messages(checkBrief('fr-classroom-objects', (b) => (b.estimatedMinutes += 3)))).toMatch(/estimatedMinutes/);
   });
 
@@ -147,44 +165,25 @@ describe('brief validation', () => {
   });
 });
 
-describe('vocabulary content validation', () => {
-  it('enforces the six-stage order and allowed item types', () => {
-    expect(messages(checkContent('fr-classroom-objects', (c) => c.steps.reverse()))).toMatch(/expected stage introduction/);
-    expect(messages(checkContent('fr-classroom-instructions', (c) => (c.steps[3].pages[0].items[0].type = 'vocabulary_gender_select')))).not.toBe('');
+describe('vocabulary exercise texts in the brief (P2-04)', () => {
+  it('checks typed gaps: four distinct references including the word, article-free answers, one fitting reference', () => {
+    expect(messages(checkBrief('fr-classroom-objects', (b) => (b.targets[0].gap.accepted.answers = ['un livre'])))).toMatch(/article-free/);
+    expect(messages(checkBrief('fr-classroom-objects', (b) => (b.targets[0].gap.referenceTargetIds = ['chaise', 'chaise', 'stylo', 'table'])))).toMatch(/four distinct reference targets including the word/);
+    expect(messages(checkBrief('fr-classroom-objects', (b) => (b.targets[0].gap.accepted.answers = ['livre', 'chaise'])))).toMatch(/exactly one reference choice may fit/);
   });
 
-  it('copies exam limits from the brief and keeps practice untimed', () => {
-    expect(messages(checkContent('fr-classroom-objects', (c) => (c.steps[5].pages[0].timeLimitS = 30)))).toMatch(/brief's limit 60s/);
-    expect(messages(checkContent('fr-classroom-objects', (c) => (c.steps[4].pages[0].timeLimitS = 30)))).toMatch(/no countdown/);
+  it('checks listening options and matching labels', () => {
+    expect(messages(checkBrief('fr-classroom-objects', (b) => (b.targets[0].listeningOptionTargetIds = ['chaise', 'stylo', 'table', 'nope'])))).toMatch(/four distinct options including the word/);
+    expect(messages(checkBrief('fr-classroom-objects', (b) => (b.targets[1].matchingLabel = { en: 'book', de: 'Stuhl' })))).toMatch(/duplicate en matching label.* book/);
   });
 
-  it('checks typed gaps, matching labels and gender rows', () => {
-    expect(messages(checkContent('fr-classroom-objects', (c) => (c.steps[4].pages[0].items[0].accepted.answers = ['un livre'])))).toMatch(/article-free/);
-    expect(messages(checkContent('fr-classroom-objects', (c) => (c.steps[2].pages[0].items[0].pairs[1].nativeLabel = { en: 'book', de: 'Stuhl' })))).toMatch(/duplicate en label book/);
-    expect(messages(checkContent('fr-classroom-objects', (c) => c.steps[3].pages[0].items[0].rows.pop()))).toMatch(/exactly the nouns/);
-  });
-
-  it('requires disambiguated prompts or all gender variants in translation exams', () => {
-    const r = checkContent('fr-classroom-objects', (c) => (c.steps[5].pages[0].items[0].prompt = { en: 'book', de: 'Buch' }), (b) => (b.targets[0].genderVariants = ['une livre']));
-    expect(messages(r)).toMatch(/disambiguate gender/);
+  it('requires disambiguated exam prompts for words with gender variants', () => {
+    const r = checkBrief('fr-classroom-objects', (b) => { b.targets[0].genderVariants = ['une livre']; b.targets[0].examPrompt = { en: b.targets[0].translations.en[0], de: b.targets[0].translations.de[0] }; });
+    expect(messages(r)).toMatch(/examPrompt: must disambiguate gender/);
   });
 
   it('requires corrections to name the accent mark', () => {
-    const r = checkContent('fr-classroom-instructions', (c) => (c.steps[5].pages[0].items[0].answerExplanation.en = 'Écoutez is written with é.'));
-    expect(messages(r)).toMatch(/must name the mark/);
-  });
-
-  it('checks the summed page estimates', () => {
-    expect(messages(checkContent('fr-classroom-objects', (c) => (c.steps[0].pages[0].estimatedDurationS = 600)))).toMatch(/estimatedMinutes/);
-  });
-
-  it('marks content stale when its brief changed', () => {
-    const r = validateContent(load('fr-classroom-objects', 'content'), {
-      ...ctx('fr-classroom-objects'),
-      brief: load('fr-classroom-objects', 'brief'),
-      briefHash: 'some-other-brief-hash-00',
-    });
-    expect(r.status).toBe('stale');
+    expect(messages(checkBrief('fr-classroom-instructions', (b) => (b.targets[0].explanation.en = 'Écoutez is written with é.')))).toMatch(/must name the mark/);
   });
 });
 

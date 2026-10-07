@@ -2,12 +2,13 @@
 import { readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { expect, it } from 'vitest';
+import { lessonOf } from './lessonFixture.ts';
 import { buildPlan } from '../../src/domain/session/plan.ts';
 import { headerScore, isListeningPage, lessonResults, progress, sessionReducer, startSession, type SessionRecord } from '../../src/domain/session/session.ts';
 
 const fixture = resolve(import.meta.dirname, '../fixtures/content');
 const read = (dir: string) => JSON.parse(readFileSync(join(fixture, dir, 'fr-classroom-instructions.json'), 'utf8'));
-const plan = buildPlan(read('lessons'), read('briefs'), 'en');
+const plan = buildPlan(lessonOf(fixture, 'fr-classroom-instructions'), read('briefs'), 'en');
 const start = () => startSession(plan, { sessionId: 's', contentHash: 'h', level: 'A1', motherTongue: 'en', seed: 1, now: 0 });
 const apply = (record: SessionRecord, type: 'continue' | 'skip_no_voice' | 'voice_ready', now = 0) => sessionReducer(plan, record, { type, now, interfaceLanguage: 'en' });
 const answer = (record: SessionRecord) => {

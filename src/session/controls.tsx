@@ -32,6 +32,10 @@ export interface RendererProps {
   onReveal: (itemKey: string, key: string) => void;
   /** True during the green success flash of a fully correct page (the correct choice lights up). */
   celebrating?: boolean;
+  /** Exam units whose missing-article info box is shown after Continue, until Continue is pressed again. */
+  articleWarnings?: string[];
+  /** Single-answer practice page: typed and chosen answers are marked in place, without a feedback card. */
+  inlineFeedback?: boolean;
 }
 
 /* ---------------------------------------------------------------- helpers */
@@ -145,7 +149,7 @@ export function UnitRow({ unit, props, children }: { unit: PlanUnit; props: Rend
   return (
     <div className="unit">
       {children}
-      {props.mode === 'feedback' && locked && <UnitFeedback unit={unit} locked={locked} lang={lang} />}
+      {props.mode === 'feedback' && locked && !(props.inlineFeedback && (unit.kind === 'text' || unit.kind === 'choice')) && <UnitFeedback unit={unit} locked={locked} lang={lang} />}
     </div>
   );
 }
@@ -153,10 +157,15 @@ export function UnitRow({ unit, props, children }: { unit: PlanUnit; props: Rend
 const value = (props: RendererProps, unit: PlanUnit) => props.locked[unit.id]?.response ?? props.drafts[unit.id];
 const readOnly = (props: RendererProps, unit: PlanUnit) => props.mode === 'feedback' || !!props.locked[unit.id];
 
+/** Outcome of a locked unit while its page shows inline feedback; empty otherwise. */
+const inlineOutcome = (props: RendererProps, unit: PlanUnit) => (props.inlineFeedback && props.mode === 'feedback' ? props.locked[unit.id]?.outcome ?? '' : '');
+
 export function TextControl({ unit, props, label }: { unit: PlanUnit; props: RendererProps; label: string }) {
-  return (
+  const { t } = useI18n();
+  const outcome = inlineOutcome(props, unit);
+  const field = (
     <input
-      className="text-input"
+      className={`text-input${outcome ? ` is-${outcome === 'fully_correct' ? 'right' : outcome === 'orthography_only' ? 'almost' : 'wrong'}` : ''}`}
       lang={props.plan.lang}
       aria-label={label}
       autoComplete="off"
@@ -167,6 +176,15 @@ export function TextControl({ unit, props, label }: { unit: PlanUnit; props: Ren
       onChange={(e) => props.onChange(unit.id, e.target.value)}
     />
   );
+  // Typed gaps show the correct word as the green reference card above, so only the field is marked.
+  if (!outcome || outcome === 'fully_correct' || unit.itemType === 'vocabulary_typed_gap') return field;
+  // Other typed answers: the field turns red (amber) and the correct answer follows in green.
+  return (
+    <>
+      {field}{' '}
+      <strong className="inline-answer" lang={props.plan.lang}><span className="visually-hidden">{t('result.correctAnswer')}: </span>{unit.answer}</strong>
+    </>
+  );
 }
 
 export function ChoiceControl({ unit, props, label, layout }: { unit: PlanUnit & { kind: 'choice' }; props: RendererProps; label: string; layout: 'select' | 'radio' }) {
@@ -174,6 +192,9 @@ export function ChoiceControl({ unit, props, label, layout }: { unit: PlanUnit &
   const options = seededOrder(unit.options, props.seed, unit.id);
   const current = (value(props, unit) as string | undefined) ?? '';
   const disabled = readOnly(props, unit);
+  // Inline feedback: the chosen wrong option turns red, the correct option green (P2-04 review).
+  const checked = !!inlineOutcome(props, unit);
+  const choiceState = (id: string) => (!checked ? '' : unit.correct.includes(id) ? ' is-right' : current === id ? ' is-wrong' : '');
   if (layout === 'select') {
     return (
       <select aria-label={label} value={current} disabled={disabled} onChange={(e) => props.onChange(unit.id, e.target.value)}>
@@ -190,7 +211,7 @@ export function ChoiceControl({ unit, props, label, layout }: { unit: PlanUnit &
     <fieldset className="choices" disabled={disabled}>
       <legend className="visually-hidden">{label}</legend>
       {options.map((o) => (
-        <label key={o.id} className="choice">
+        <label key={o.id} className={`choice${choiceState(o.id)}`}>
           <input type="radio" name={unit.id} value={o.id} checked={current === o.id} onChange={() => props.onChange(unit.id, o.id)} />
           <OptionText option={o} lang={props.plan.lang} />
         </label>
@@ -302,15 +323,17 @@ export function UnitsRenderer(props: RendererProps) {
                   <span lang={unit.prompt.native ? undefined : lang}>
                     {prompt || t('session.typeWhatYouHear')}
                     {/* Vocabulary translation tasks say whether the French answer needs an article. */}
+                    {/* The badge turns purple while the typed answer lacks the required article. */}
                     {unit.itemType === 'vocabulary_translation_exam' && (
-                      <small className="article-badge">{t(startsWithArticle(unit.answer, lang) ? 'session.withArticle' : 'session.withoutArticle')}</small>
+                      <small className={`article-badge${!readOnly(props, unit) && missingArticle((value(props, unit) as string | undefined) ?? '', unit.answer, lang) ? ' is-alert' : ''}`}>
+                        {t(startsWithArticle(unit.answer, lang) ? 'session.withArticle' : 'session.withoutArticle')}
+                      </small>
                     )}
                   </span>
                   <TextControl unit={unit} props={props} label={prompt || t('session.typeWhatYouHear')} />
                 </label>
-                {(unit.itemType === 'vocabulary_translation_exam' || unit.itemType === 'vocabulary_listening_dictation') && !readOnly(props, unit)
-                  && missingArticle((value(props, unit) as string | undefined) ?? '', unit.answer, lang) && (
-                  <p className="info-box" role="status">{t('session.typeArticle')}</p>
+                {props.articleWarnings?.includes(unit.id) && !readOnly(props, unit) && (
+                  <p className="info-box" role="status">{t(/^(un|une|des)\s/iu.test(unit.answer) ? 'session.typeArticle' : 'session.typeDefiniteArticle')}</p>
                 )}
               </>
             ) : unit.kind === 'choice' ? (

@@ -2,8 +2,9 @@
 import { readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
+import { lessonOf } from './lessonFixture.ts';
 import { buildPlan, seededOrder, type LessonPlan } from '../../src/domain/session/plan.ts';
-import { headerScore, lessonResults, progress, scoreUnit, sessionReducer, startSession, type SessionAction, type SessionRecord } from '../../src/domain/session/session.ts';
+import { headerScore, isListeningPage, lessonResults, progress, scoreUnit, sessionReducer, skipsFeedbackWhenCorrect, startSession, type SessionAction, type SessionRecord } from '../../src/domain/session/session.ts';
 
 const FIXTURES = resolve(import.meta.dirname, '../fixtures/content');
 const load = (dir: string, id: string) => JSON.parse(readFileSync(join(FIXTURES, dir, `${id}.json`), 'utf8'));
@@ -11,12 +12,14 @@ const VOC = 'fr-classroom-objects';
 const GRAM = 'fr-verb-etre-present';
 
 function setup(id = VOC) {
-  const plan = buildPlan(load('lessons', id), load('briefs', id), 'en');
+  const plan = buildPlan(lessonOf(FIXTURES, id), load('briefs', id), 'en');
   let record = startSession(plan, { sessionId: 's1', contentHash: 'h', level: 'A1', motherTongue: 'en', seed: 7, now: 0 });
   const act = (action: SessionAction) => (record = sessionReducer(plan, record, action));
   const page = () => plan.pages[record.pageIndex];
   const proceed = (now = 0) => {
     for (const item of page().items) if (item.type === 'vocabulary_flashcards') for (const key of item.targetIds) act({ type: 'reveal', itemKey: `${page().pageId}/${item.itemId}`, key, now });
+    // Every vocabulary lesson has listening pages (P2-04); the test browser has a voice.
+    if (isListeningPage(page())) act({ type: 'voice_ready', now });
     return act({ type: 'continue', now, interfaceLanguage: 'en' });
   };
   /** Answers every unit of the current page correctly (or with `answer`). */
@@ -33,11 +36,12 @@ describe('lesson plan', () => {
   it('flattens concrete pages with roles and scorable units', () => {
     const { plan } = setup();
     expect(plan.pages.map((p) => [p.pageId, p.role, p.units.length])).toEqual([
-      ['intro-1', 'presentation', 0], ['cards-1', 'presentation', 0], ['match-1', 'practice', 4], ['gender-1', 'practice', 4],
+      ['intro-all', 'presentation', 0], ['cards-all', 'presentation', 0], ['match-1', 'practice', 4], ['overview', 'practice', 4],
       ['gap-livre', 'practice', 1], ['gap-chaise', 'practice', 1], ['gap-stylo', 'practice', 1], ['gap-table', 'practice', 1],
-      ['exam-1', 'exam', 2], ['exam-2', 'exam', 2],
-    ]);
-    const exam = plan.pages[8].units[0];
+      ['listen-livre', 'practice', 1], ['listen-chaise', 'practice', 1], ['listen-stylo', 'practice', 1], ['listen-table', 'practice', 1],
+      ['exam-all-1', 'exam', 4], ['dictation-all-1', 'exam', 4],
+    ]); // derived from the brief: every word in every exercise (P2-04)
+    const exam = plan.pages.find((p) => p.role === 'exam')!.units[0];
     expect(exam.prompt.native).toBe('a book');
     const grammar = setup(GRAM).plan;
     expect(grammar.pages.find((p) => p.role === 'exam')?.timeLimitS).toBe(90);
@@ -69,13 +73,13 @@ describe('one Continue action', () => {
     s.act({ type: 'draft', unitId: livre, response: 'livre', now: 0 });
     expect(s.record.locked[livre].points).toBe(0);
     s.proceed();
-    expect(s.page().pageId).toBe('gender-1');
+    expect(s.page().pageId).toBe('overview');
     expect(s.record.locked[livre].points).toBe(0);
   });
 
   it('gives half credit for accent/case-only typing and none for wrong words', () => {
     const { plan } = setup();
-    const unit = plan.pages[8].units[0];
+    const unit = plan.pages.find((p) => p.role === 'exam')!.units[0];
     expect(scoreUnit(unit, 'un livre')).toEqual({ outcome: 'fully_correct', points: 1 });
     expect(scoreUnit(unit, 'Un livre')).toEqual({ outcome: 'orthography_only', points: 0.5 });
     expect(scoreUnit(unit, 'une livre')).toEqual({ outcome: 'incorrect', points: 0 });
@@ -86,9 +90,9 @@ describe('one Continue action', () => {
 describe('progress, header score and exam timing', () => {
   it('weights progress by page duration and hides exam points until the exam is complete', () => {
     const s = setup();
-    s.proceed(); // intro 60 s
-    expect(progress(s.plan, s.record)).toBeCloseTo((100 * 60) / 470);
-    s.proceed(); // cards 90 s
+    s.proceed(); // intro 32 s of 432 s (derived durations, P2-04)
+    expect(progress(s.plan, s.record)).toBeCloseTo((100 * 32) / 432);
+    s.proceed(); // cards 40 s
     while (s.page().role === 'practice') {
       s.answerAll();
       s.proceed();
@@ -98,7 +102,7 @@ describe('progress, header score and exam timing', () => {
         s.proceed();
       }
     }
-    expect(s.page().pageId).toBe('exam-1');
+    expect(s.page().pageId).toBe('exam-all-1');
     expect(headerScore(s.plan, s.record)).toBeCloseTo(35);
     s.answerAll(() => 'faux', 1000);
     s.proceed(1000);
@@ -118,19 +122,23 @@ describe('progress, header score and exam timing', () => {
       s.proceed(5_000);
       if (s.record.phase === 'feedback') s.proceed(5_000);
     }
-    expect(s.record.exam['exam-1']).toEqual({ startedAt: 5_000, deadline: 65_000, timedOut: false });
+    // Four words at 20 s each (derived limit, P2-04).
+    expect(s.record.exam['exam-all-1']).toEqual({ startedAt: 5_000, deadline: 85_000, timedOut: false });
     const [first, second] = s.page().units;
     s.act({ type: 'draft', unitId: first.id, response: 'un livre', now: 30_000 });
-    s.act({ type: 'expire', now: 64_999, interfaceLanguage: 'en' });
-    expect(s.page().pageId).toBe('exam-1');
-    s.act({ type: 'draft', unitId: second.id, response: 'une chaise', now: 65_000 }); // after the deadline: ignored
-    s.proceed(65_001); // a late Continue resolves as the timeout, once
-    s.act({ type: 'expire', now: 65_002, interfaceLanguage: 'en' });
-    expect(s.page().pageId).toBe('exam-2');
+    s.act({ type: 'expire', now: 84_999, interfaceLanguage: 'en' });
+    expect(s.page().pageId).toBe('exam-all-1');
+    s.act({ type: 'draft', unitId: second.id, response: 'une chaise', now: 85_000 }); // after the deadline: ignored
+    s.act({ type: 'continue', now: 85_001, interfaceLanguage: 'en' }); // a late Continue resolves as the timeout, once
+    s.act({ type: 'expire', now: 85_002, interfaceLanguage: 'en' });
+    expect(s.page().pageId).toBe('dictation-all-1');
     expect(s.record.locked[first.id]).toMatchObject({ outcome: 'fully_correct', points: 1, timedOut: true });
     expect(s.record.locked[second.id]).toMatchObject({ outcome: 'unanswered', points: 0, timedOut: true });
-    expect(s.record.exam['exam-1'].timedOut).toBe(true);
-    expect(s.record.exam['exam-2'].deadline).toBe(65_001 + 60_000);
+    expect(s.record.exam['exam-all-1'].timedOut).toBe(true);
+    // The dictation countdown (30 s per word) starts once its audio can play.
+    expect(s.record.exam['dictation-all-1']).toBeUndefined();
+    s.act({ type: 'voice_ready', now: 90_000 });
+    expect(s.record.exam['dictation-all-1'].deadline).toBe(90_000 + 120_000);
   });
 
   it('weights practice 35% and exam 65% regardless of item counts', () => {
@@ -212,5 +220,35 @@ describe('matching feedback (P2-02)', () => {
     s.answerAll((id) => (id === units[0].id ? (units[1] as { correct: string[] }).correct[0] : undefined));
     s.proceed();
     expect(s.record.phase).toBe('feedback');
+  });
+});
+
+describe('green-and-continue for single-answer pages (P2-04 review)', () => {
+  const pages = (id: string) => setup(id).plan.pages;
+  it('applies to every practice page whose items each ask for one answer', () => {
+    const listening = pages('fr-classroom-instructions').filter((p) => p.units.some((u) => u.itemType === 'vocabulary_listening_choice') && p.role === 'practice');
+    expect(listening.length).toBeGreaterThan(0);
+    for (const p of listening) expect(skipsFeedbackWhenCorrect(p)).toBe(true);
+    const typed = pages(VOC).filter((p) => p.items.some((it) => it.type === 'vocabulary_typed_gap'));
+    for (const p of typed) expect(skipsFeedbackWhenCorrect(p)).toBe(true);
+  });
+  it('keeps the checked view for pages with several answers per item and never applies to exam pages', () => {
+    const gender = pages(VOC).filter((p) => p.items.some((it) => it.type === 'vocabulary_gender_select') && p.units.length > 1);
+    expect(gender.length).toBeGreaterThan(0);
+    for (const p of gender) expect(skipsFeedbackWhenCorrect(p)).toBe(false);
+    for (const p of pages(VOC).filter((p) => p.role === 'exam')) expect(skipsFeedbackWhenCorrect(p)).toBe(false);
+  });
+  it('moves straight on after a fully correct listening choice', () => {
+    const s = setup('fr-classroom-instructions');
+    while (!s.page().units.some((u) => u.itemType === 'vocabulary_listening_choice')) {
+      if (s.page().role === 'practice') s.answerAll();
+      s.proceed();
+      if (s.record.phase === 'feedback') s.proceed();
+    }
+    const id = s.page().pageId;
+    s.answerAll();
+    s.proceed();
+    expect(s.record.phase).toBe('answering');
+    expect(s.page().pageId).not.toBe(id);
   });
 });

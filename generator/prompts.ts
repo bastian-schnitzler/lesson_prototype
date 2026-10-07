@@ -1,15 +1,16 @@
 import { z } from 'zod';
 import { nativeLocales } from '../src/schemas/artifactCommon.ts';
 import { grammarBriefSchema } from '../src/schemas/grammar.ts';
-import { vocabularyBriefSchema } from '../src/schemas/vocabulary.ts';
+import { vocabularyInventorySchema } from './vocabulary.ts';
 import type { SupportedKind } from '../src/schemas/artifacts.ts';
 import type { OutlineContext } from '../src/validation/artifacts.ts';
 
-export const PROMPT_VERSION = 'brief-v3';
+export const PROMPT_VERSION = 'brief-v4';
 const trusted = { schemaVersion: true, id: true, lang: true, level: true, locales: true, provenance: true } as const;
 
+/** Model payload of a brief call: vocabulary returns its word inventory first (generator/vocabulary.ts). */
 export function payloadSchema(kind: SupportedKind, lang: string) {
-  return kind === 'vocabulary' ? vocabularyBriefSchema(lang).omit(trusted) : grammarBriefSchema(lang).omit(trusted);
+  return kind === 'vocabulary' ? vocabularyInventorySchema(lang) : grammarBriefSchema(lang).omit(trusted);
 }
 
 /**
@@ -50,25 +51,23 @@ Stay within this outline's intent and classification. Set kind and topic/theme e
 Write every support map (objectives, notes, labels, rule summaries, explanations) in en, fr and de with equivalent meaning.
 Native translation maps must contain exactly ${nativeLocales(ctx.lang).join(', ')}; no learning-language key. Learning terms and examples stay in ${ctx.lang}.
 Use stable unique IDs and no unknown references. Every nested ID is lowercase kebab-case: letters a–z, digits and hyphens only, max 48 characters (e.g. "rule-je-tu", "block-2", "ex-gap-1"); no underscores, dots or capitals. Scoring is practiceWeight 35, examWeight 65, orthographyCredit 0.5.
-Normally aim for 10–15 minutes; longer is allowed when necessary to cover the outline.
-estimatedMinutes must equal max(1, round(sum of all planned duration seconds / 60)). Set a suitable timeLimitS on every exam page.
 Do not emit schemaVersion, id, lang, level, locales or provenance: those are supplied locally.
 Use concise strings within the original Zod limits: labels 120, ordinary support text 300, long text 1200, learning text 300 characters.
 `;
   const category = ctx.entry.kind === 'vocabulary' ? `
-Aim for about 12 targets normally and around 8 for a demanding load; never more than 20 unless this lesson needs a complete finite inventory (e.g. numbers, the alphabet). Mix core and demanding targets where the topic naturally allows it, but do not force a mix or mark targets demanding only to create one. Explain count and difficulty balance.
-targetCount equals targets.length. Every target belongs to exactly one group. Include context, pronunciation, native translations, teaching form and exam forms. examForms are the only fully correct exam answers (the exam always asks for the indefinite article of nouns); list genuine alternative spellings there, never accent-less, capitalised or definite forms: the shared scorer grades those.
-Only nouns have nonempty genders and a number; non-nouns use genders [], number null, articleException null. French noun examForms include un/une/des unless a localized articleException explains otherwise.
-French noun articles agree with gender and number: un (masculine singular), une (feminine singular), des (plural); never add a plural form to a singular target. term is the bare base term without any article, also for countries (term "Japon", teachingForm "le Japon"); teachingForm is one of examForms (adjectives may list both genders as "espagnol, espagnole"). Use articleException only when no indefinite form is grammatical (proper names, set phrases, days used without article).
+This call plans the word inventory of a vocabulary lesson: targets and groups. The lesson itself is derived by the application: every word takes part in every exercise (introduction, flashcards, matching, gender/overview, typed gap, listening choice, translation and dictation exam), with fixed durations and time limits; exercise texts are written in later steps. Do not emit estimatedMinutes, plans, durations or exercise texts.
+The standard is 18 targets. Use more or fewer only in exceptional cases and explain why in countRationale: a complete finite inventory (e.g. numbers, the alphabet, days of the week) or an unusually demanding load. Mix core and demanding targets where the topic naturally allows it, but do not force a mix or mark targets demanding only to create one. Explain count and difficulty balance.
+targetCount equals targets.length. Every target belongs to exactly one group; use 2–4 groups of about 4–8 related words. Include context, pronunciation, native translations, teaching form and exam forms. examForms are the only fully correct exam answers; list genuine alternative spellings there, never accent-less, capitalised or definite forms: the shared scorer grades those.
+Only nouns have nonempty genders and a number; non-nouns use genders [], number null, articleException null.
+Nouns are examined only as indefinite article + noun, in translation and in dictation: for French nouns, teachingForm, every examForm and every genderVariant start with un/une/des, agreeing with gender and number: un (masculine singular), une (feminine singular), des (plural); never add a plural form to a singular target. Use articleException only when no indefinite form is grammatical (proper names such as countries, set phrases, days used without article); then explain it in every locale.
+term is the bare base term without any article, also for countries (term "Japon", teachingForm "le Japon"); teachingForm is one of examForms (adjectives may list both genders as "espagnol, espagnole").
 accentSensitive entries are whole words present in examForms and only mark accents that change meaning.
-genderOverview.scored is true exactly when nouns occur. typedGaps and listening reference known target IDs without duplicates.
-Every target appears exactly once in a translation exam page. If outline intent requests oral recognition/pronunciation/listening, listening.required is true, practice IDs and duration are present, and an additional listening_dictation exam page is included.
-Listening duration is null exactly when practiceTargetIds is empty. Sum introduction, flashcards, matching, genderOverview, typedGaps, listening (when present), and exam page estimates for estimatedMinutes.
 ` : `
 Divide teaching into 2–4 blocks, each with explanation plan, examples, pitfalls and 1–3 suitable practice exercises. Select only exercise types useful for this topic, not all six by default.
 Every rule is taught in a block; exercises reference rules taught in their block. Every rule is covered in the exam. Rule, block, exercise and exam page IDs are unique in their respective inventories.
 Exam pages use grammar_gap_typing or grammar_pronoun_form_typing; grammar_word_order is only for sentence order/structure. Include feedbackPlaceholder duration.
-Sum each block's explanation and exercise estimates, feedbackPlaceholder estimate and exam page estimates for estimatedMinutes.
+Normally aim for 10–15 minutes; longer is allowed when necessary to cover the outline. Set a suitable timeLimitS on every exam page.
+estimatedMinutes must equal max(1, round(sum of all planned duration seconds / 60)): sum each block's explanation and exercise estimates, feedbackPlaceholder estimate and exam page estimates.
 `;
   return common + category + (repair ? `\nRepair the previous attempt. Validation errors:\n${repair}\nReturn the complete corrected object.` : '');
 }

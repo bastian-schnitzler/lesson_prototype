@@ -57,6 +57,13 @@
       "topic": "negation",
       "workingTitle": "La négation ne… pas",
       "intent": "Mettre une phrase à la forme négative avec ne… pas autour du verbe, et n' devant une voyelle : je ne parle pas, je n'habite pas."
+    },
+    {
+      "id": "fr-family-members",
+      "kind": "vocabulary",
+      "theme": "relations",
+      "workingTitle": "La famille",
+      "intent": "Nommer une douzaine de membres de la famille avec leur article : le père, la mère, le frère, la sœur, les grands-parents, le cousin…"
     }
   ]
 }

@@ -3,13 +3,14 @@ import { join, resolve } from 'node:path';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, expect, it, vi } from 'vitest';
 import { PreferencesProvider } from '../../src/app/context.tsx';
+import { lessonOf } from './lessonFixture.ts';
 import { buildPlan } from '../../src/domain/session/plan.ts';
 import { GenderRenderer, MatchingRenderer } from '../../src/session/vocabularyRenderers.tsx';
 
 afterEach(cleanup);
 const FIXTURES = resolve(import.meta.dirname, '../fixtures/content');
 const load = (dir: string) => JSON.parse(readFileSync(join(FIXTURES, dir, 'fr-classroom-objects.json'), 'utf8'));
-const plan = buildPlan(load('lessons'), load('briefs'), 'en');
+const plan = buildPlan(lessonOf(FIXTURES, 'fr-classroom-objects'), load('briefs'), 'en');
 const page = plan.pages.find((p) => p.items[0].type === 'vocabulary_matching')!;
 
 function renderMatching(seed: number, drafts: Record<string, string> = {}, onChange = vi.fn()) {
@@ -50,7 +51,7 @@ it('records a pair by target identity and moves an option away from its previous
 });
 
 const content = (dir: string) => JSON.parse(readFileSync(join(resolve(import.meta.dirname, '../../content'), dir, 'fr-countries-and-nationalities.json'), 'utf8'));
-const countries = buildPlan(content('lessons'), content('briefs'), 'en');
+const countries = buildPlan(lessonOf(resolve(import.meta.dirname, '../../content'), 'fr-countries-and-nationalities'), content('briefs'), 'en');
 const genderPage = countries.pages.find((p) => p.items[0].type === 'vocabulary_gender_select')!;
 const renderGender = (mode: 'answering' | 'feedback', locked: Record<string, { response: string; outcome: string; points: number; timedOut: boolean; interfaceLanguage: 'en' }> = {}) =>
   render(
@@ -87,6 +88,6 @@ it('marks the choices in place after Check: green for right, red for wrong, purp
   const wrongRow = container.querySelector('.gender-row.is-wrong')!;
   expect(wrongRow.querySelector('.gender-option.is-wrong input')).toHaveProperty('value', wrongChoice);
   expect(wrongRow.querySelector('.gender-option.is-answer input')).toHaveProperty('value', first.correct[0]);
-  expect(wrongRow.querySelector('.gender-explanation')).not.toBeNull();
+  expect(wrongRow.querySelector('.gender-explanation')).toBeNull(); // no explanation on the gender page (P2-04 review)
   expect(container.querySelectorAll('.gender-row.is-right .gender-option.is-right')).toHaveLength(units.length - 1);
 });

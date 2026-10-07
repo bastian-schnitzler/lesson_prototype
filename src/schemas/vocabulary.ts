@@ -36,7 +36,7 @@ export type Gender = z.infer<typeof GenderSchema>;
 
 /* =================================================================== brief */
 
-const targetSchema = (lang: string) =>
+export const vocabularyTargetSchema = (lang: string) =>
   z.strictObject({
     id: NestedIdSchema,
     /** Base term in the learning language, without article: livre. */
@@ -60,15 +60,43 @@ const targetSchema = (lang: string) =>
     difficulty: z.enum(['core', 'demanding']),
     context: z.strictObject({ sentence: LearningTextSchema, translation: nativeTextSchema(lang) }),
     ambiguityNote: LocalizedTextSchema.nullable(),
+    /*
+     * Exercise texts (P2-04: the brief is the whole vocabulary lesson; there is no content file).
+     * Every word takes part in every exercise; the application derives pages, durations and limits.
+     */
+    /** Why the French form means this word: correction text of matching, listening choice, translation and dictation. */
+    explanation: LocalizedTextSchema,
+    /** Nouns only: lexical gender and indefinite article, shown when the gender choice is corrected; null otherwise. */
+    genderExplanation: LocalizedTextSchema.nullable(),
+    /** Disambiguated native label when two words of one matching group share a translation in some locale; null otherwise. */
+    matchingLabel: nativeTextSchema(lang).nullable(),
+    /** Native exam prompt when the first translation is ambiguous (e.g. gender of a nationality); null uses the first translation. */
+    examPrompt: nativeTextSchema(lang).nullable(),
+    /** Typed context gap: before + gap + after; the gap takes the word without its article. */
+    gap: z.strictObject({
+      before: z.string().max(200),
+      after: z.string().max(200),
+      /** Article-free answers. */
+      accepted: AcceptedAnswersSchema,
+      /** Four distinct, non-clickable reference words including the answer, of which only the answer fits. */
+      referenceTargetIds: z.array(NestedIdSchema).length(4),
+      explanation: LocalizedTextSchema,
+    }),
+    /** Listening choice: four distinct written options including the word, preferably similar-sounding. */
+    listeningOptionTargetIds: z.array(NestedIdSchema).length(4),
   });
-export type VocabularyTarget = z.infer<ReturnType<typeof targetSchema>>;
+export type VocabularyTarget = z.infer<ReturnType<typeof vocabularyTargetSchema>>;
 
-const examPagePlanSchema = z.strictObject({
-  pageId: NestedIdSchema,
-  kind: z.enum(['translation', 'listening_dictation']),
-  targetIds: z.array(NestedIdSchema).min(1).max(12),
-  estimatedDurationS: DurationSecondsSchema,
-  timeLimitS: TimeLimitSecondsSchema,
+/** Exercise-text fields of a target, generated after the word inventory (P2-04). */
+export const TARGET_EXERCISE_FIELDS = { explanation: true, genderExplanation: true, matchingLabel: true, examPrompt: true, gap: true, listeningOptionTargetIds: true } as const;
+
+/** Groups keep large inventories manageable; every target belongs to exactly one. */
+export const vocabularyGroupSchema = z.strictObject({
+  id: NestedIdSchema,
+  label: LocalizedLabelSchema,
+  targetIds: z.array(NestedIdSchema).min(1).max(16),
+  /** Introduction text of the group in restricted Markdown (D46). */
+  introduction: LocalizedLongTextSchema,
 });
 
 export const vocabularyBriefSchema = (lang: string) =>
@@ -81,31 +109,18 @@ export const vocabularyBriefSchema = (lang: string) =>
     countRationale: LocalizedTextSchema,
     difficultyBalance: LocalizedTextSchema,
     prerequisites: z.array(LocalizedTextSchema).max(4),
-    /** Groups keep large inventories manageable; every target belongs to exactly one. */
-    groups: z
-      .array(z.strictObject({ id: NestedIdSchema, label: LocalizedLabelSchema, targetIds: z.array(NestedIdSchema).min(1).max(16) }))
-      .min(1)
-      .max(6),
-    targets: z.array(targetSchema(lang)).min(1).max(60),
-    plan: z.strictObject({
-      introduction: z.strictObject({ estimatedDurationS: DurationSecondsSchema }),
-      flashcards: z.strictObject({ estimatedDurationS: DurationSecondsSchema }),
-      matching: z.strictObject({ groupSize: z.number().int().min(2).max(12), estimatedDurationS: DurationSecondsSchema }),
-      genderOverview: z.strictObject({ scored: z.boolean(), estimatedDurationS: DurationSecondsSchema }),
-      typedGaps: z.strictObject({ targetIds: z.array(NestedIdSchema).min(1).max(60), estimatedDurationS: DurationSecondsSchema }),
-      listening: z.strictObject({
-        /** True when the outline intent asks for oral recognition or pronunciation. */
-        required: z.boolean(),
-        practiceTargetIds: z.array(NestedIdSchema).max(60),
-        estimatedDurationS: DurationSecondsSchema.nullable(),
-      }),
-      exam: z.strictObject({ pages: z.array(examPagePlanSchema).min(1).max(60) }),
-    }),
+    groups: z.array(vocabularyGroupSchema).min(1).max(6),
+    targets: z.array(vocabularyTargetSchema(lang)).min(1).max(60),
     scoring: ScoringPolicySchema,
   });
 export type VocabularyBrief = z.infer<ReturnType<typeof vocabularyBriefSchema>>;
 
 /* ================================================================= content */
+
+/*
+ * The renderable vocabulary lesson. It is never stored: the application derives it from the brief
+ * (src/domain/vocabularyLesson.ts) for sessions and previews.
+ */
 
 const unit = { answerExplanation: LocalizedTextSchema };
 
@@ -200,6 +215,7 @@ export const vocabularyContentSchema = (lang: string) =>
           pages: z.array(pageSchema(lang)).min(1).max(60),
         }),
       )
-      .length(VOCABULARY_STAGES.length),
+      // Six stages in seven steps: stage 5 is split into typed gaps and listening (P2-04).
+      .length(VOCABULARY_STAGES.length + 1),
   });
 export type VocabularyContent = z.infer<ReturnType<typeof vocabularyContentSchema>>;
