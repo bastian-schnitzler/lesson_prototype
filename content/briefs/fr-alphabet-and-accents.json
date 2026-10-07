@@ -101,20 +101,13 @@
         "masculine"
       ],
       "number": "singular",
-      "teachingForm": "l'accent aigu",
+      "teachingForm": "un accent aigu",
       "examForms": [
         "un accent aigu"
       ],
-      "acceptedVariants": [
-        "accent aigu",
-        "l'accent aigu"
-      ],
+      "acceptedVariants": [],
       "accentSensitive": [],
-      "articleException": {
-        "en": "Elision occurs before a vowel sound.",
-        "fr": "Élision devant un son voyelle.",
-        "de": "Elision vor einem Vokallaut."
-      },
+      "articleException": null,
       "genderVariants": [],
       "pronunciation": "/ak.sɑ̃ e.ɡy/",
       "difficulty": "core",
@@ -144,20 +137,13 @@
         "masculine"
       ],
       "number": "singular",
-      "teachingForm": "l'accent grave",
+      "teachingForm": "un accent grave",
       "examForms": [
         "un accent grave"
       ],
-      "acceptedVariants": [
-        "accent grave",
-        "l'accent grave"
-      ],
+      "acceptedVariants": [],
       "accentSensitive": [],
-      "articleException": {
-        "en": "Elision occurs before a vowel sound.",
-        "fr": "Élision devant un son voyelle.",
-        "de": "Elision vor einem Vokallaut."
-      },
+      "articleException": null,
       "genderVariants": [],
       "pronunciation": "/ak.sɑ̃ ɡʁav/",
       "difficulty": "core",
@@ -188,20 +174,13 @@
         "masculine"
       ],
       "number": "singular",
-      "teachingForm": "l'accent circonflexe",
+      "teachingForm": "un accent circonflexe",
       "examForms": [
         "un accent circonflexe"
       ],
-      "acceptedVariants": [
-        "accent circonflexe",
-        "l'accent circonflexe"
-      ],
+      "acceptedVariants": [],
       "accentSensitive": [],
-      "articleException": {
-        "en": "Elision occurs before a vowel sound.",
-        "fr": "Élision devant un son voyelle.",
-        "de": "Elision vor einem Vokallaut."
-      },
+      "articleException": null,
       "genderVariants": [],
       "pronunciation": "/ak.sɑ̃ siʁ.kɔ̃.flɛks/",
       "difficulty": "demanding",
@@ -231,14 +210,11 @@
         "feminine"
       ],
       "number": "singular",
-      "teachingForm": "la cédille",
+      "teachingForm": "une cédille",
       "examForms": [
         "une cédille"
       ],
-      "acceptedVariants": [
-        "cédille",
-        "la cédille"
-      ],
+      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -270,14 +246,11 @@
         "masculine"
       ],
       "number": "singular",
-      "teachingForm": "le tréma",
+      "teachingForm": "un tréma",
       "examForms": [
         "un tréma"
       ],
-      "acceptedVariants": [
-        "tréma",
-        "le tréma"
-      ],
+      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -346,14 +319,11 @@
         "masculine"
       ],
       "number": "singular",
-      "teachingForm": "le nom",
+      "teachingForm": "un nom",
       "examForms": [
         "un nom"
       ],
-      "acceptedVariants": [
-        "nom",
-        "le nom"
-      ],
+      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -384,14 +354,11 @@
         "masculine"
       ],
       "number": "singular",
-      "teachingForm": "le prénom",
+      "teachingForm": "un prénom",
       "examForms": [
         "un prénom"
       ],
-      "acceptedVariants": [
-        "prénom",
-        "le prénom"
-      ],
+      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -422,14 +389,11 @@
         "feminine"
       ],
       "number": "singular",
-      "teachingForm": "la lettre",
+      "teachingForm": "une lettre",
       "examForms": [
         "une lettre"
       ],
-      "acceptedVariants": [
-        "lettre",
-        "la lettre"
-      ],
+      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -461,14 +425,11 @@
         "feminine"
       ],
       "number": "singular",
-      "teachingForm": "la majuscule",
+      "teachingForm": "une majuscule",
       "examForms": [
         "une majuscule"
       ],
-      "acceptedVariants": [
-        "majuscule",
-        "la majuscule"
-      ],
+      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -499,14 +460,11 @@
         "feminine"
       ],
       "number": "singular",
-      "teachingForm": "la minuscule",
+      "teachingForm": "une minuscule",
       "examForms": [
         "une minuscule"
       ],
-      "acceptedVariants": [
-        "minuscule",
-        "la minuscule"
-      ],
+      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -537,14 +495,11 @@
         "masculine"
       ],
       "number": "singular",
-      "teachingForm": "le trait d'union",
+      "teachingForm": "un trait d'union",
       "examForms": [
         "un trait d'union"
       ],
-      "acceptedVariants": [
-        "trait d'union",
-        "le trait d'union"
-      ],
+      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],

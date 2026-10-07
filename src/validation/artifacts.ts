@@ -4,7 +4,7 @@ import { nativeLocales } from '../schemas/artifactCommon.ts';
 import { briefSchema, contentSchema, isSupportedKind, type Brief, type LessonContent } from '../schemas/artifacts.ts';
 import type { GrammarBrief, GrammarContent, GrammarItem } from '../schemas/grammar.ts';
 import type { OutlineEntry } from '../schemas/outline.ts';
-import { VOCABULARY_STAGES, type VocabularyBrief, type VocabularyContent, type VocabularyItem } from '../schemas/vocabulary.ts';
+import { VOCABULARY_STAGES, type VocabularyBrief, type VocabularyContent, type VocabularyItem, type VocabularyTarget } from '../schemas/vocabulary.ts';
 
 /**
  * Cross-reference and pedagogical checks that JSON Schema cannot express
@@ -83,6 +83,18 @@ function checkMinutes(estimatedMinutes: number, seconds: number, issues: Issues)
 const ORAL_INTENT = /\b(oral|à l'oral|prononc|mündlich|aussprech|aussprache|aloud|pronounc|listen)/iu;
 const FR_INDEFINITE = /^(un|une|des) \S/u;
 
+/**
+ * French noun article policy (D39): the indefinite article agrees with number and the accepted
+ * genders (un/une singular, des plural). Returns a message when `form` breaks it.
+ */
+function frArticleIssue(t: VocabularyTarget, form: string): string | undefined {
+  const article = /^(un|une|des) /u.exec(form)?.[1];
+  if (!article) return `"${form}" must include the indefinite article un/une/des (D39) or the target must declare an articleException`;
+  const allowed = t.number === 'plural' ? ['des'] : t.genders.map((g) => (g === 'feminine' ? 'une' : 'un'));
+  if (!allowed.includes(article)) return `"${form}" uses "${article}" but a ${t.number} ${t.genders.join('/')} noun takes ${allowed.join(' or ')}`;
+  return undefined;
+}
+
 function checkVocabularyBrief(b: VocabularyBrief, ctx: OutlineContext, issues: Issues) {
   const ids = b.targets.map((t) => t.id);
   const known = new Set(ids);
@@ -98,13 +110,20 @@ function checkVocabularyBrief(b: VocabularyBrief, ctx: OutlineContext, issues: I
       issues.check(t.genders.length > 0, `${p}.genders`, 'a noun needs at least one accepted gender');
       issues.check(t.number !== null, `${p}.number`, 'a noun needs a grammatical number');
       if (ctx.lang === 'fr' && t.articleException === null) {
-        for (const f of t.examForms) issues.check(FR_INDEFINITE.test(f), `${p}.examForms`, `"${f}" must include the indefinite article un/une/des (D39) or declare an articleException`);
+        for (const f of t.examForms) { const m = frArticleIssue(t, f); issues.check(!m, `${p}.examForms`, m ?? ''); }
+        // The exam always asks for the indefinite article, so full-credit variants carry it too (no definite, bare or other-number forms).
+        for (const f of t.acceptedVariants) { const m = frArticleIssue(t, f); issues.check(!m, `${p}.acceptedVariants`, m ?? ''); }
+      }
+      if (ctx.lang === 'fr' && t.articleException !== null) {
+        issues.check(!t.examForms.some((f) => FR_INDEFINITE.test(f)), `${p}.articleException`, 'remove the articleException: the exam forms use an indefinite article');
       }
     } else {
       issues.check(t.genders.length === 0, `${p}.genders`, 'only nouns have a gender (D8)');
       issues.check(t.number === null, `${p}.number`, 'only nouns have a grammatical number here');
       issues.check(t.articleException === null, `${p}.articleException`, 'only nouns can have an article exception');
     }
+    // The displayed teaching form is examined as shown: one exam form, or an adjective's gender pair (espagnol, espagnole).
+    issues.check(t.examForms.includes(t.teachingForm) || t.teachingForm === t.examForms.join(', '), `${p}.teachingForm`, `"${t.teachingForm}" must be one of the exam forms (D39)`);
     const words = new Set(t.examForms.flatMap((f) => f.toLowerCase().split(/\s+/)));
     for (const w of t.accentSensitive) issues.check(words.has(w.toLowerCase()), `${p}.accentSensitive`, `"${w}" is not a word of the exam forms`);
   });

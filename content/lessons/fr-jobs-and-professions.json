@@ -986,9 +986,7 @@
               "targetId": "target-medecin",
               "accepted": {
                 "answers": [
-                  "un médecin",
-                  "des médecins",
-                  "médecin"
+                  "un médecin"
                 ],
                 "accentSensitive": []
               },
@@ -1008,9 +1006,7 @@
               "targetId": "target-professeur",
               "accepted": {
                 "answers": [
-                  "un professeur",
-                  "des professeurs",
-                  "professeur"
+                  "un professeur"
                 ],
                 "accentSensitive": []
               },
@@ -1030,9 +1026,7 @@
               "targetId": "target-serveur",
               "accepted": {
                 "answers": [
-                  "un serveur",
-                  "des serveurs",
-                  "serveur"
+                  "un serveur"
                 ],
                 "accentSensitive": []
               },
@@ -1052,9 +1046,7 @@
               "targetId": "target-serveuse",
               "accepted": {
                 "answers": [
-                  "une serveuse",
-                  "des serveuses",
-                  "serveuse"
+                  "une serveuse"
                 ],
                 "accentSensitive": []
               },
@@ -1074,9 +1066,7 @@
               "targetId": "target-vendeur",
               "accepted": {
                 "answers": [
-                  "un vendeur",
-                  "des vendeurs",
-                  "vendeur"
+                  "un vendeur"
                 ],
                 "accentSensitive": []
               },
@@ -1096,9 +1086,7 @@
               "targetId": "target-vendeuse",
               "accepted": {
                 "answers": [
-                  "une vendeuse",
-                  "des vendeuses",
-                  "vendeuse"
+                  "une vendeuse"
                 ],
                 "accentSensitive": []
               },
@@ -1130,9 +1118,7 @@
               "targetId": "target-infirmier",
               "accepted": {
                 "answers": [
-                  "un infirmier",
-                  "des infirmiers",
-                  "infirmier"
+                  "un infirmier"
                 ],
                 "accentSensitive": []
               },
@@ -1152,9 +1138,7 @@
               "targetId": "target-infirmiere",
               "accepted": {
                 "answers": [
-                  "une infirmière",
-                  "des infirmières",
-                  "infirmière"
+                  "une infirmière"
                 ],
                 "accentSensitive": []
               },
@@ -1174,9 +1158,7 @@
               "targetId": "target-etudiant",
               "accepted": {
                 "answers": [
-                  "un étudiant",
-                  "des étudiants",
-                  "étudiant"
+                  "un étudiant"
                 ],
                 "accentSensitive": []
               },
@@ -1196,9 +1178,7 @@
               "targetId": "target-etudiante",
               "accepted": {
                 "answers": [
-                  "une étudiante",
-                  "des étudiantes",
-                  "étudiante"
+                  "une étudiante"
                 ],
                 "accentSensitive": []
               },
@@ -1218,9 +1198,7 @@
               "targetId": "target-avocat",
               "accepted": {
                 "answers": [
-                  "un avocat",
-                  "des avocats",
-                  "avocat"
+                  "un avocat"
                 ],
                 "accentSensitive": []
               },
@@ -1240,9 +1218,7 @@
               "targetId": "target-cuisinier",
               "accepted": {
                 "answers": [
-                  "un cuisinier",
-                  "des cuisiniers",
-                  "cuisinier"
+                  "un cuisinier"
                 ],
                 "accentSensitive": []
               },
@@ -1268,7 +1244,7 @@
     "generatedAt": "2026-10-06T22:13:22.000Z",
     "inputHashes": {
       "outline": "81d4271653a9d257711d12eabf9a098017262a3b52bbd88bbeaeddd824a3dd58",
-      "brief": "caeec9a5a74d9d102d961f938f27552caede867612d6135cea8215f1266464c1"
+      "brief": "bce8bbac8f8c4d63526ba7506587e691dd5bc83f7a80b1025c6be85e6a9e92b5"
     }
   }
 }

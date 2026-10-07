@@ -108,12 +108,9 @@
       "number": "singular",
       "teachingForm": "un médecin",
       "examForms": [
-        "un médecin",
-        "des médecins"
+        "un médecin"
       ],
-      "acceptedVariants": [
-        "médecin"
-      ],
+      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -148,12 +145,9 @@
       "number": "singular",
       "teachingForm": "un professeur",
       "examForms": [
-        "un professeur",
-        "des professeurs"
+        "un professeur"
       ],
-      "acceptedVariants": [
-        "professeur"
-      ],
+      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
@@ -186,12 +180,9 @@
       "number": "singular",
       "teachingForm": "un serveur",
       "examForms": [
-        "un serveur",
-        "des serveurs"
+        "un serveur"
       ],
-      "acceptedVariants": [
-        "serveur"
-      ],
+      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
@@ -226,12 +217,9 @@
       "number": "singular",
       "teachingForm": "une serveuse",
       "examForms": [
-        "une serveuse",
-        "des serveuses"
+        "une serveuse"
       ],
-      "acceptedVariants": [
-        "serveuse"
-      ],
+      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
@@ -267,12 +255,9 @@
       "number": "singular",
       "teachingForm": "un vendeur",
       "examForms": [
-        "un vendeur",
-        "des vendeurs"
+        "un vendeur"
       ],
-      "acceptedVariants": [
-        "vendeur"
-      ],
+      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
@@ -308,12 +293,9 @@
       "number": "singular",
       "teachingForm": "une vendeuse",
       "examForms": [
-        "une vendeuse",
-        "des vendeuses"
+        "une vendeuse"
       ],
-      "acceptedVariants": [
-        "vendeuse"
-      ],
+      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
@@ -349,12 +331,9 @@
       "number": "singular",
       "teachingForm": "un infirmier",
       "examForms": [
-        "un infirmier",
-        "des infirmiers"
+        "un infirmier"
       ],
-      "acceptedVariants": [
-        "infirmier"
-      ],
+      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
@@ -390,12 +369,9 @@
       "number": "singular",
       "teachingForm": "une infirmière",
       "examForms": [
-        "une infirmière",
-        "des infirmières"
+        "une infirmière"
       ],
-      "acceptedVariants": [
-        "infirmière"
-      ],
+      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
@@ -431,12 +407,9 @@
       "number": "singular",
       "teachingForm": "un étudiant",
       "examForms": [
-        "un étudiant",
-        "des étudiants"
+        "un étudiant"
       ],
-      "acceptedVariants": [
-        "étudiant"
-      ],
+      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
@@ -472,12 +445,9 @@
       "number": "singular",
       "teachingForm": "une étudiante",
       "examForms": [
-        "une étudiante",
-        "des étudiantes"
+        "une étudiante"
       ],
-      "acceptedVariants": [
-        "étudiante"
-      ],
+      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
@@ -513,12 +483,9 @@
       "number": "singular",
       "teachingForm": "un avocat",
       "examForms": [
-        "un avocat",
-        "des avocats"
+        "un avocat"
       ],
-      "acceptedVariants": [
-        "avocat"
-      ],
+      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
@@ -554,12 +521,9 @@
       "number": "singular",
       "teachingForm": "un cuisinier",
       "examForms": [
-        "un cuisinier",
-        "des cuisiniers"
+        "un cuisinier"
       ],
-      "acceptedVariants": [
-        "cuisinier"
-      ],
+      "acceptedVariants": [],
       "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
