@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore, type ReactNode, type RefObject } from 'react';
 
 import { useI18n } from '../app/context.tsx';
 import { RichText } from '../components/RichText.tsx';
@@ -57,48 +57,63 @@ export function IntroductionRenderer({ item, plan, motherTongue }: RendererProps
 }
 
 /**
- * Flashcards (P2-02): one card at a time. The front shows only the mother-tongue meaning; revealing
- * shows the French teaching form, gender, audio and context. Reveals are stored in the session, so
- * progress survives a resume, and the page completes once every card was revealed.
+ * Flashcards (P2-02): every card of the group on one page (two columns on wide screens). A card
+ * shows the mother-tongue meaning; the flip button turns it to the French side only (teaching form,
+ * gender, audio, context) without changing its size, and back again. The first flip of each card
+ * is stored in the session, so progress survives a resume; the page completes once every card was
+ * turned at least once.
  */
 export function FlashcardsRenderer({ item, plan, motherTongue, pageId, revealed, onReveal }: RendererProps) {
-  const { t, languageName } = useI18n();
-  const [index, setIndex] = useState(0);
+  const { t } = useI18n();
   if (item.type !== 'vocabulary_flashcards') return null;
   const itemKey = `${pageId}/${item.itemId}`;
   const seen = revealed[itemKey] ?? [];
-  const id = item.targetIds[Math.min(index, item.targetIds.length - 1)];
-  const target = plan.targets.get(id);
-  const isRevealed = seen.includes(id);
   const total = item.targetIds.length;
   return (
     <div className="flashcard-deck">
-      <p className="label-muted" aria-live="polite">
-        {t('session.cardOf', { n: index + 1, total })} · {t('session.cardsRevealed', { n: seen.filter((s) => item.targetIds.includes(s)).length, total })}
-      </p>
-      <article className={`flashcard${isRevealed ? ' flashcard-revealed' : ''}`} aria-label={t('session.cardOf', { n: index + 1, total })}>
-        <p className="flashcard-side">{t(`locale.${motherTongue}`)}</p>
-        <p className="flashcard-meaning">{target?.translations[motherTongue]?.join(' / ') ?? id}</p>
-        {isRevealed && target ? (
-          <div className="flashcard-back">
-            <p className="flashcard-side">{languageName(plan.lang)}</p>
-            <p className="flashcard-form" lang={plan.lang}>{target.teachingForm}</p>
-            {target.genders.length > 0 && <p className="muted">{genderLabel(target, t)}</p>}
-            <ListenButton text={target.teachingForm} lang={plan.lang} />
-            <p><span lang={plan.lang}>{target.context.sentence}</span> <span className="muted">– {target.context.translation[motherTongue]}</span></p>
-          </div>
-        ) : (
-          <>
-            <p className="muted">{t('session.recallHint')}</p>
-            <button type="button" className="button button-outline" onClick={() => onReveal(itemKey, id)}>{t('session.revealCard')}</button>
-          </>
-        )}
-      </article>
-      <div className="flashcard-nav">
-        <button type="button" className="button button-outline button-small" disabled={index === 0} onClick={() => setIndex(index - 1)}>{t('session.previousCard')}</button>
-        <button type="button" className="button button-outline button-small" disabled={index >= total - 1} onClick={() => setIndex(index + 1)}>{t('session.nextCard')}</button>
-      </div>
+      <p className="muted">{t('session.recallHint')}</p>
+      <p className="label-muted" aria-live="polite">{t('session.cardsRevealed', { n: seen.filter((s) => item.targetIds.includes(s)).length, total })}</p>
+      <ul className="flashcard-grid">
+        {item.targetIds.map((id, n) => (
+          <li key={id}>
+            <Flashcard id={id} index={n} total={total} plan={plan} motherTongue={motherTongue} initiallyFlipped={seen.includes(id)} onFlip={() => onReveal(itemKey, id)} />
+          </li>
+        ))}
+      </ul>
     </div>
+  );
+}
+
+function Flashcard({ id, index, total, plan, motherTongue, initiallyFlipped, onFlip }: {
+  id: string; index: number; total: number; plan: LessonPlan; motherTongue: Locale; initiallyFlipped: boolean; onFlip: () => void;
+}) {
+  const { t, languageName } = useI18n();
+  const [flipped, setFlipped] = useState(initiallyFlipped);
+  const target = plan.targets.get(id);
+  const label = t('session.cardOf', { n: index + 1, total });
+  const flip = () => {
+    if (!flipped) onFlip();
+    setFlipped(!flipped);
+  };
+  return (
+    <article className={`flashcard${flipped ? ' is-flipped' : ''}`} aria-label={label}>
+      <button type="button" className="flip-button" aria-pressed={flipped} aria-label={flipped ? t('session.flipBack') : t('session.flipCard')} onClick={flip}>
+        <span aria-hidden="true">⟲</span>
+      </button>
+      <div className="flashcard-inner">
+        <div className="flashcard-face flashcard-front" inert={flipped}>
+          <p className="flashcard-side">{t(`locale.${motherTongue}`)}</p>
+          <p className="flashcard-meaning">{target?.translations[motherTongue]?.join(' / ') ?? id}</p>
+        </div>
+        <div className="flashcard-face flashcard-back" inert={!flipped}>
+          <p className="flashcard-side">{languageName(plan.lang)}</p>
+          <p className="flashcard-form" lang={plan.lang}>{target?.teachingForm}</p>
+          {target && target.genders.length > 0 && <p className="muted">{genderLabel(target, t)}</p>}
+          {target && <ListenButton text={target.teachingForm} lang={plan.lang} />}
+          {target && <p><span lang={plan.lang}>{target.context.sentence}</span> <span className="muted">– {target.context.translation[motherTongue]}</span></p>}
+        </div>
+      </div>
+    </article>
   );
 }
 
@@ -111,6 +126,7 @@ export function MatchingRenderer(props: RendererProps) {
   const { t } = useI18n();
   const { item, units, plan, seed, mode } = props;
   const [selected, setSelected] = useState<{ side: 'native' | 'learning'; id: string } | null>(null);
+  const boxes = useRef(new Map<string, HTMLButtonElement>());
   if (item.type !== 'vocabulary_matching') return null;
   const choiceUnits = units.filter((u): u is PlanUnit & { kind: 'choice' } => u.kind === 'choice');
   const options = choiceUnits[0]?.options ?? [];
@@ -151,41 +167,118 @@ export function MatchingRenderer(props: RendererProps) {
   };
   const assigned = choiceUnits.filter((u) => pairOf(u.id)).length;
   const current = selected ? (selected.side === 'native' ? nativeText(selected.id) : formLabel(selected.id)) : '';
+  const register = (key: string) => (element: HTMLButtonElement | null) => { if (element) boxes.current.set(key, element); else boxes.current.delete(key); };
+  const pairs = choiceUnits.flatMap((u) => (pairOf(u.id) ? [[`native:${pairOf(u.id)}`, `learning:${u.id}`] as const] : []));
   return (
     <div className="matching">
       <p className="muted">{t('session.matchHint')}</p>
-      <div className="matching-columns">
-        <ul aria-label={t(`locale.${props.motherTongue}`)}>
-          {nativeOrder.map((o) => {
-            const unit = unitForOption(o.id);
-            const n = unit ? pairNumber.get(unit.id) : undefined;
-            return (
-              <li key={o.id}>
-                <button type="button" className="match-item" aria-pressed={selected?.side === 'native' && selected.id === o.id}
-                  aria-label={n ? t('session.pairedWith', { item: o.text, partner: formLabel(unit!.id) }) : o.text} onClick={() => pick('native', o.id)}>
-                  <span>{o.text}</span>{n && <span className="pair-badge" aria-hidden="true">{n}</span>}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-        <ul aria-label={t('session.frenchForms')}>
-          {learningOrder.map((u) => {
-            const n = pairNumber.get(u.id);
-            return (
-              <li key={u.id}>
-                <button type="button" className="match-item" lang={plan.lang} aria-pressed={selected?.side === 'learning' && selected.id === u.id}
-                  aria-label={n ? t('session.pairedWith', { item: formLabel(u.id), partner: nativeText(pairOf(u.id)!) }) : formLabel(u.id)} onClick={() => pick('learning', u.id)}>
-                  <span>{targetOf(u.id)?.teachingForm}{targetOf(u.id)?.genders.length ? <small>{genderLabel(targetOf(u.id)!, t)}</small> : null}</span>{n && <span className="pair-badge" aria-hidden="true">{n}</span>}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      <MatchingCurves pairs={pairs} selected={selected && `${selected.side}:${selected.id}`} boxes={boxes}>
+        <div className="matching-columns">
+          <ul aria-label={t(`locale.${props.motherTongue}`)}>
+            {nativeOrder.map((o) => {
+              const unit = unitForOption(o.id);
+              const n = unit ? pairNumber.get(unit.id) : undefined;
+              return (
+                <li key={o.id}>
+                  <button type="button" ref={register(`native:${o.id}`)} className={`match-item${n ? ' is-paired' : ''}`} aria-pressed={selected?.side === 'native' && selected.id === o.id}
+                    aria-label={n ? t('session.pairedWith', { item: o.text, partner: formLabel(unit!.id) }) : o.text} onClick={() => pick('native', o.id)}>
+                    <span>{o.text}</span>{n && <span className="pair-badge" aria-hidden="true">{n}</span>}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+          <ul aria-label={t('session.frenchForms')}>
+            {learningOrder.map((u) => {
+              const n = pairNumber.get(u.id);
+              const target = targetOf(u.id);
+              return (
+                <li key={u.id}>
+                  <button type="button" ref={register(`learning:${u.id}`)} className={`match-item${n ? ' is-paired' : ''}`} lang={plan.lang} aria-pressed={selected?.side === 'learning' && selected.id === u.id}
+                    aria-label={n ? t('session.pairedWith', { item: formLabel(u.id), partner: nativeText(pairOf(u.id)!) }) : formLabel(u.id)} onClick={() => pick('learning', u.id)}>
+                    <span>{target?.teachingForm}{target?.genders.length ? <small>{genderLabel(target, t)}</small> : null}</span>{n && <span className="pair-badge" aria-hidden="true">{n}</span>}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </MatchingCurves>
       <p className="muted" aria-live="polite">
         {current ? t('session.matchSelected', { item: current }) : ''} {t('session.pairsAssigned', { n: assigned, total: choiceUnits.length })}
       </p>
+    </div>
+  );
+}
+
+const WIDE_MATCHING = '(min-width: 720px)';
+function useMediaQuery(query: string): boolean {
+  return useSyncExternalStore(
+    (notify) => {
+      const list = window.matchMedia?.(query);
+      list?.addEventListener('change', notify);
+      return () => list?.removeEventListener('change', notify);
+    },
+    () => window.matchMedia?.(query).matches ?? false,
+    () => false,
+  );
+}
+
+/**
+ * Wide-screen matching overlay: a Bézier curve joins each pair from the inner middle of the left box
+ * to the inner middle of the right box; while a box is selected, a live curve follows the pointer.
+ * Phones keep the numbered badges instead (the overlay is not rendered).
+ */
+function MatchingCurves({ pairs, selected, boxes, children }: {
+  pairs: readonly (readonly [string, string])[]; selected: string | null; boxes: RefObject<Map<string, HTMLButtonElement>>; children: ReactNode;
+}) {
+  const wide = useMediaQuery(WIDE_MATCHING);
+  const frame = useRef<HTMLDivElement>(null);
+  const [pointer, setPointer] = useState<{ x: number; y: number } | null>(null);
+  const [paths, setPaths] = useState<{ pairs: string[]; live: string | null }>({ pairs: [], live: null });
+  const [, setLayout] = useState(0);
+  useEffect(() => {
+    if (!frame.current || typeof ResizeObserver === 'undefined') return;
+    const observer = new ResizeObserver(() => setLayout((n) => n + 1));
+    observer.observe(frame.current);
+    return () => observer.disconnect();
+  }, []);
+  useLayoutEffect(() => {
+    if (!wide || !frame.current) return;
+    const origin = frame.current.getBoundingClientRect();
+    const anchor = (key: string) => {
+      const box = boxes.current.get(key)?.getBoundingClientRect();
+      if (!box) return undefined;
+      return { x: (key.startsWith('native:') ? box.right : box.left) - origin.left, y: box.top + box.height / 2 - origin.top };
+    };
+    const curve = (a: { x: number; y: number }, b: { x: number; y: number }) => {
+      const dx = Math.max(40, Math.abs(b.x - a.x) / 2) * (b.x >= a.x ? 1 : -1);
+      return `M ${a.x} ${a.y} C ${a.x + dx} ${a.y}, ${b.x - dx} ${b.y}, ${b.x} ${b.y}`;
+    };
+    const next = {
+      pairs: pairs.flatMap(([from, to]) => { const a = anchor(from), b = anchor(to); return a && b ? [curve(a, b)] : []; }),
+      live: (() => { const a = selected ? anchor(selected) : undefined; return a && pointer ? curve(a, pointer) : null; })(),
+    };
+    if (JSON.stringify(next) !== JSON.stringify(paths)) setPaths(next);
+  });
+  return (
+    <div
+      ref={frame}
+      className={`matching-frame${wide ? ' is-wide' : ''}`}
+      onPointerMove={(e) => {
+        if (!wide || !selected || !frame.current) return;
+        const origin = frame.current.getBoundingClientRect();
+        setPointer({ x: e.clientX - origin.left, y: e.clientY - origin.top });
+      }}
+      onPointerLeave={() => setPointer(null)}
+    >
+      {children}
+      {wide && (
+        <svg className="match-curves" aria-hidden="true">
+          {paths.pairs.map((d, n) => <path key={n} d={d} className="match-curve" />)}
+          {selected && paths.live && <path d={paths.live} className="match-curve match-curve-live" />}
+        </svg>
+      )}
     </div>
   );
 }

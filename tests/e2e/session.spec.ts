@@ -7,15 +7,10 @@ test.beforeEach(async ({ page }) => {
 
 const proceed = (page: Page) => page.getByRole('button', { name: 'Continue' }).click();
 
-/** Reveals every flashcard of the current page, card by card. */
+/** Turns every flashcard of the current page to its French side. */
 async function revealCards(page: Page) {
-  for (;;) {
-    const reveal = page.getByRole('button', { name: 'Reveal French' });
-    if (await reveal.count()) await reveal.click();
-    const next = page.getByRole('button', { name: 'Next card' });
-    if (!(await next.count()) || (await next.isDisabled())) break;
-    await next.click();
-  }
+  const unturned = page.getByRole('button', { name: 'Flip card to French' });
+  while (await unturned.count()) await unturned.first().click();
 }
 
 /** Pairs the n-th mother-tongue item with the n-th French item (shuffled, so some pairs are wrong). */
@@ -203,7 +198,7 @@ test('replaces a revealed flashcard Listen button with Install language, which o
   await page.goto('./#/lesson/fr-classroom-instructions/play');
   await proceed(page); // start
   await proceed(page); // introduction
-  await page.getByRole('button', { name: 'Reveal French' }).click();
+  await page.getByRole('button', { name: 'Flip card to French' }).first().click();
   await expect(page.getByRole('button', { name: 'Listen' })).toHaveCount(0);
   await page.getByRole('button', { name: 'Install language' }).first().click();
   const dialog = page.getByRole('dialog', { name: 'French voice not installed' });
@@ -216,21 +211,29 @@ test('replaces a revealed flashcard Listen button with Install language, which o
   await expect(dialog).toBeHidden();
 });
 
-test('flashcards hide the French form until revealed and keep revealed cards after a reload', async ({ page }) => {
+test('flashcards show a group on one page, flip to the French side only and keep turned cards after a reload', async ({ page }) => {
   await page.goto('./#/lesson/fr-classroom-objects/play');
   await proceed(page); // start
   await proceed(page); // introduction
-  const card = page.locator('.flashcard');
-  await expect(card).toContainText('book');
-  await expect(card).not.toContainText('un livre');
-  await expect(page.getByText('Reveal every card to continue.')).toBeVisible();
-  await page.getByRole('button', { name: 'Reveal French' }).click();
-  await expect(card.locator('[lang="fr"]').first()).toHaveText('un livre');
-  await expect(card).toContainText('Masculine');
+  const cards = page.locator('.flashcard');
+  await expect(cards).toHaveCount(4);
+  const first = cards.first();
+  const front = first.locator('.flashcard-front'), back = first.locator('.flashcard-back');
+  await expect(front).toContainText('book');
+  await expect(page.getByText('Flip every card to continue.')).toBeVisible();
+  const before = await first.boundingBox();
+  await first.getByRole('button', { name: 'Flip card to French' }).click();
+  await expect(first.getByRole('button', { name: 'Flip card back' })).toHaveAttribute('aria-pressed', 'true');
+  await expect(back.locator('[lang="fr"]').first()).toHaveText('un livre');
+  await expect(back).toContainText('Masculine');
+  await expect(front).toHaveAttribute('inert', '');
+  await page.waitForTimeout(600); // flip animation
+  const after = await first.boundingBox();
+  expect(Math.abs(after!.height - before!.height)).toBeLessThan(1);
   await page.reload();
   await page.getByRole('button', { name: 'Resume lesson' }).click();
-  await expect(page.getByText('Card 1 of 4 · 1 of 4 revealed')).toBeVisible();
-  await expect(page.locator('.flashcard')).toContainText('un livre');
+  await expect(page.getByText('1 of 4 cards turned')).toBeVisible();
+  await expect(page.locator('.flashcard').first()).toHaveClass(/is-flipped/);
 });
 
 test('matching pairs by keyboard, lets a pair be reassigned and locks it with feedback', async ({ page }) => {
@@ -259,6 +262,20 @@ test('matching pairs by keyboard, lets a pair be reassigned and locks it with fe
   for (const [en, fr] of [['chair', 'une chaise'], ['pen', 'un stylo'], ['table', 'une table']]) {
     await native.filter({ hasText: en }).click();
     await french.filter({ hasText: fr }).click();
+  }
+  await expect(page.locator('.match-item.is-paired')).toHaveCount(8); // purple border on both sides
+  if (page.viewportSize()!.width >= 720) {
+    // Wide screens draw one curve per pair and hide the numbers; a dashed curve follows the pointer.
+    await expect(page.locator('.match-curve:not(.match-curve-live)')).toHaveCount(4);
+    await expect(page.locator('.pair-badge').first()).toBeHidden();
+    await native.filter({ hasText: 'pen' }).click();
+    const box = (await french.first().boundingBox())!;
+    await page.mouse.move(box.x - 40, box.y + box.height / 2);
+    await expect(page.locator('.match-curve-live')).toHaveCount(1);
+    await native.filter({ hasText: 'pen' }).click(); // deselect
+  } else {
+    await expect(page.locator('.match-curves')).toHaveCount(0);
+    await expect(page.locator('.pair-badge').first()).toBeVisible();
   }
   await proceed(page);
   await expect(page.getByText(/Fully correct/)).toHaveCount(4);
