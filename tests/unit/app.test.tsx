@@ -38,11 +38,11 @@ describe('lesson index', () => {
   it('lists the fr/A1 course in outline order with one state-labeled Content button and Start only for ready lessons', async () => {
     const table = await renderIndex();
     expect(screen.getByRole('heading', { level: 1, name: 'Your lessons' })).toBeInTheDocument();
-    expect(ordinals(table)).toEqual(['01', '02', '03', '04', '05', '06', '07', '08']);
+    expect(ordinals(table)).toEqual(['01', '02', '03', '04', '05', '06', '07', '08', '09']);
     const labels = within(table).getAllByRole('row').slice(1).map((r) => within(r).getAllByRole('link')[0].textContent);
-    expect(labels).toEqual(['Outline', 'Content ⚠', 'Content', 'Content', 'Draft ⚠', 'Outline', 'Content', 'Content']);
+    expect(labels).toEqual(['Outline', 'Content ⚠', 'Content', 'Content', 'Draft ⚠', 'Outline', 'Content', 'Content', 'Content']);
     expect(within(table).getAllByRole('link')[0]).toHaveAttribute('href', '#/lesson/fr-fix-greetings');
-    expect(screen.getAllByRole('link', { name: 'Start lesson' }).map((a) => a.getAttribute('href'))).toEqual(['#/lesson/fr-classroom-objects/play', '#/lesson/fr-verb-etre-present/play', '#/lesson/fr-classroom-instructions/play', '#/lesson/fr-negation-ne-pas/play']);
+    expect(screen.getAllByRole('link', { name: 'Start lesson' }).map((a) => a.getAttribute('href'))).toEqual(['#/lesson/fr-classroom-objects/play', '#/lesson/fr-verb-etre-present/play', '#/lesson/fr-classroom-instructions/play', '#/lesson/fr-negation-ne-pas/play', '#/lesson/fr-family-members/play']);
     expect(within(screen.getByRole('radiogroup', { name: 'Learning language' })).getByRole('radio', { name: 'fr', checked: true })).toBeInTheDocument();
     expect(screen.getByRole('radio', { name: 'A1', checked: true })).toBeInTheDocument();
   });
@@ -51,11 +51,11 @@ describe('lesson index', () => {
     const user = userEvent.setup();
     const table = await renderIndex();
     await user.click(screen.getByRole('checkbox', { name: 'Grammar' }));
-    expect(ordinals(table)).toEqual(['01', '03', '05', '06', '07']);
+    expect(ordinals(table)).toEqual(['01', '03', '05', '06', '07', '09']);
     for (const name of ['Voc', 'Func', 'Reading']) await user.click(screen.getByRole('checkbox', { name }));
     expect(screen.getByText('No categories are selected.')).toBeInTheDocument();
     await user.click(screen.getByRole('link', { name: 'Show all categories' }));
-    expect(rowIds(await screen.findByRole('table'))).toHaveLength(8);
+    expect(rowIds(await screen.findByRole('table'))).toHaveLength(9);
   });
 
   it('switches language and level from the catalog and keeps category selection', async () => {
@@ -107,7 +107,7 @@ describe('lesson index', () => {
     await user.click(screen.getByRole('radio', { name: 'B1' }));
     expect(await screen.findByText('Loading…')).toBeInTheDocument();
     await user.click(screen.getByRole('radio', { name: 'A1' }));
-    await waitFor(() => expect(rowIds(screen.getByRole('table'))).toHaveLength(8));
+    await waitFor(() => expect(rowIds(screen.getByRole('table'))).toHaveLength(9));
     await act(async () => release());
     expect(rowIds(screen.getByRole('table'))[0]).toBe('fr-fix-greetings');
   });

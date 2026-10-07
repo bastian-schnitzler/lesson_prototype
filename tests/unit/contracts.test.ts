@@ -103,3 +103,15 @@ it('puts the exam info page right before the first exam page without changing sc
   expect(plan.pages.slice(0, intro).every((p) => p.role !== 'exam')).toBe(true);
   expect(lessonResults(plan, play(plan, key)).total).toBe(100);
 });
+
+describe.each(IDS.filter((id) => read('lessons', id).kind === 'vocabulary'))('%s as a learner session', (id) => {
+  it('completes all six stages in session order (groups interleaved, exam info page) with 100 and 0', () => {
+    const content = read('lessons', id), brief = read('briefs', id);
+    const plan = buildPlan(contentSchema('vocabulary', 'fr').parse(content), briefSchema('vocabulary', 'fr').parse(brief), 'en', { interleaveGroups: true, examIntro: true });
+    const stages = new Set(plan.pages.map((p) => p.stepId));
+    expect(stages.size).toBe(6);
+    expect(plan.pages.filter((p) => p.special === 'examIntro')).toHaveLength(1);
+    expect(lessonResults(plan, play(plan, key)).total).toBe(100);
+    expect(lessonResults(plan, play(plan, (u, role) => (role === 'practice' ? wrong(u) : undefined))).total).toBe(0);
+  });
+});

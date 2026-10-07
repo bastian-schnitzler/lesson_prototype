@@ -10,8 +10,8 @@ const learningLanguage = (page: import('@playwright/test').Page) => page.getByRo
 
 test('lists the discovered course in outline order with state-labeled Content buttons and Start for ready lessons', async ({ page }) => {
   const rows = page.locator('tbody tr');
-  await expect(rows).toHaveCount(8);
-  await expect(rows.locator('.ordinal')).toHaveText(['01', '02', '03', '04', '05', '06', '07', '08']);
+  await expect(rows).toHaveCount(9);
+  await expect(rows.locator('.ordinal')).toHaveText(['01', '02', '03', '04', '05', '06', '07', '08', '09']);
   await expect(rows.nth(2).getByRole('link').first()).toHaveText('Content');
   await expect(rows.nth(4).getByRole('link').first()).toContainText('Draft');
   await expect(rows.nth(2).getByRole('link', { name: 'Start lesson' })).toHaveAttribute('href', '#/lesson/fr-classroom-objects/play');

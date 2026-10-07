@@ -1,0 +1,1214 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-family-members",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "La famille",
+  "objective": {
+    "en": "Learn and practice 12 core vocabulary terms for family members in French with their correct gender and indefinite articles.",
+    "fr": "Apprendre et pratiquer 12 termes de vocabulaire essentiels pour les membres de la famille en français avec leur genre et articles indéfinis.",
+    "de": "Lerne und übe 12 Kernvokabeln für Familienmitglieder auf Französisch mit dem richtigen Genus und unbestimmten Artikeln."
+  },
+  "estimatedMinutes": 14,
+  "kind": "vocabulary",
+  "theme": "relations",
+  "steps": [
+    {
+      "id": "introduction",
+      "stage": "introduction",
+      "role": "introduction",
+      "label": {
+        "en": "Introduction",
+        "fr": "Introduction",
+        "de": "Einführung"
+      },
+      "pages": [
+        {
+          "pageId": "introduction-1",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read and say the new words aloud.",
+            "fr": "Lisez et dites les nouveaux mots à voix haute.",
+            "de": "Lies die neuen Wörter und sprich sie laut."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "introduction-1",
+              "targetIds": [
+                "target-pere",
+                "target-mere",
+                "target-frere",
+                "target-soeur",
+                "target-fils",
+                "target-fille"
+              ],
+              "text": {
+                "en": "Learn family nouns with `un` or `une`:\n\n- `un père` – father, `une mère` – mother\n- `un frère` – brother, `une sœur` – sister\n- `un fils` – son: the final s is pronounced, the l is silent\n- `une fille` – daughter (in other contexts also girl)\n\nWith mon or ma the article disappears – Ma sœur s'appelle Léa – but the **exam asks for** `un` or `une`.",
+                "fr": "Apprenez les noms de la famille avec `un` ou `une` :\n\n- `un père`, `une mère` – les parents\n- `un frère`, `une sœur` – les enfants entre eux\n- `un fils` : le s final se prononce, le l est muet\n- `une fille` : l'enfant féminin (ailleurs aussi une jeune personne)\n\nAvec mon ou ma, l'article disparaît – Ma sœur s'appelle Léa – mais **l'examen demande** `un` ou `une`.",
+                "de": "Lerne Familienbezeichnungen mit `un` oder `une`:\n\n- `un père` – Vater, `une mère` – Mutter\n- `un frère` – Bruder, `une sœur` – Schwester\n- `un fils` – Sohn: das s wird gesprochen, das l ist stumm\n- `une fille` – Tochter (sonst auch Mädchen)\n\nMit mon oder ma fällt der Artikel weg – Ma sœur s'appelle Léa –, aber **die Prüfung verlangt** `un` oder `une`."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "introduction-2",
+          "estimatedDurationS": 30,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read and say the new words aloud.",
+            "fr": "Lisez et dites les nouveaux mots à voix haute.",
+            "de": "Lies die neuen Wörter und sprich sie laut."
+          },
+          "items": [
+            {
+              "type": "vocabulary_introduction",
+              "itemId": "introduction-2",
+              "targetIds": [
+                "target-grand-pere",
+                "target-grand-mere",
+                "target-cousin",
+                "target-cousine",
+                "target-oncle",
+                "target-tante"
+              ],
+              "text": {
+                "en": "The **extended family**. Say each word aloud and study its example:\n\n- `un grand-père` – grandfather: Mon grand-père a 70 ans.\n- `une grand-mère` – grandmother: Ma grand-mère fait un gâteau.\n- `un cousin` – male cousin: Mon cousin joue au football.\n- `une cousine` – female cousin: Ma cousine habite à Lyon.\n- `un oncle` – uncle: Mon oncle travaille à la banque.\n- `une tante` – aunt: Ma tante voyage beaucoup.\n\n`un grand-père` and `une grand-mère` need a hyphen.",
+                "fr": "La **famille élargie**. Dites chaque mot à voix haute et étudiez son exemple :\n\n- `un grand-père` : Mon grand-père a 70 ans.\n- `une grand-mère` : Ma grand-mère fait un gâteau.\n- `un cousin` : Mon cousin joue au football.\n- `une cousine` : Ma cousine habite à Lyon.\n- `un oncle` : Mon oncle travaille à la banque.\n- `une tante` : Ma tante voyage beaucoup.\n\n`un grand-père` et `une grand-mère` prennent un trait d'union.",
+                "de": "Die **erweiterte Familie**. Sprich jedes Wort laut und lies das Beispiel:\n\n- `un grand-père` – Großvater: Mon grand-père a 70 ans.\n- `une grand-mère` – Großmutter: Ma grand-mère fait un gâteau.\n- `un cousin` – Cousin: Mon cousin joue au football.\n- `une cousine` – Cousine: Ma cousine habite à Lyon.\n- `un oncle` – Onkel: Mon oncle travaille à la banque.\n- `une tante` – Tante: Ma tante voyage beaucoup.\n\n`un grand-père` und `une grand-mère` brauchen einen Bindestrich."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "flashcards-1",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall the word and compare both sides.",
+            "fr": "Rappelez-vous le mot et comparez les deux faces.",
+            "de": "Erinnere dich an das Wort und vergleiche beide Seiten."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "flashcards-1",
+              "targetIds": [
+                "target-pere",
+                "target-mere",
+                "target-frere",
+                "target-soeur",
+                "target-fils",
+                "target-fille"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "flashcards-2",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall the word and compare both sides.",
+            "fr": "Rappelez-vous le mot et comparez les deux faces.",
+            "de": "Erinnere dich an das Wort und vergleiche beide Seiten."
+          },
+          "items": [
+            {
+              "type": "vocabulary_flashcards",
+              "itemId": "flashcards-2",
+              "targetIds": [
+                "target-grand-pere",
+                "target-grand-mere",
+                "target-cousin",
+                "target-cousine",
+                "target-oncle",
+                "target-tante"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "match-1",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each word with its translation.",
+            "fr": "Associez chaque mot à sa traduction.",
+            "de": "Ordne jedem Wort seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-1",
+              "pairs": [
+                {
+                  "targetId": "target-pere",
+                  "nativeLabel": {
+                    "en": "father",
+                    "de": "Vater"
+                  },
+                  "answerExplanation": {
+                    "en": "un père means father.  Père has an accent grave on è.",
+                    "fr": "La forme à retenir est « un père ».  Père prend un accent grave sur le è.",
+                    "de": "un père bedeutet Vater.  Père hat einen accent grave auf è."
+                  }
+                },
+                {
+                  "targetId": "target-mere",
+                  "nativeLabel": {
+                    "en": "mother",
+                    "de": "Mutter"
+                  },
+                  "answerExplanation": {
+                    "en": "une mère means mother.  Mère has an accent grave on è.",
+                    "fr": "La forme à retenir est « une mère ».  Mère prend un accent grave sur le è.",
+                    "de": "une mère bedeutet Mutter.  Mère hat einen accent grave auf è."
+                  }
+                },
+                {
+                  "targetId": "target-frere",
+                  "nativeLabel": {
+                    "en": "brother",
+                    "de": "Bruder"
+                  },
+                  "answerExplanation": {
+                    "en": "un frère means brother.  Frère has an accent grave on è.",
+                    "fr": "La forme à retenir est « un frère ».  Frère prend un accent grave sur le è.",
+                    "de": "un frère bedeutet Bruder.  Frère hat einen accent grave auf è."
+                  }
+                },
+                {
+                  "targetId": "target-soeur",
+                  "nativeLabel": {
+                    "en": "sister",
+                    "de": "Schwester"
+                  },
+                  "answerExplanation": {
+                    "en": "une sœur means sister.  Sœur uses the ligature œ; the final r is pronounced.",
+                    "fr": "La forme à retenir est « une sœur ».  Sœur contient la ligature œ ; le r final se prononce.",
+                    "de": "une sœur bedeutet Schwester.  Sœur enthält die Ligatur œ; das End-r wird gesprochen."
+                  }
+                },
+                {
+                  "targetId": "target-fils",
+                  "nativeLabel": {
+                    "en": "son",
+                    "de": "Sohn"
+                  },
+                  "answerExplanation": {
+                    "en": "un fils means son.  Fils means son; pronounce the final s, not the l.",
+                    "fr": "La forme à retenir est « un fils ».  Fils désigne un enfant masculin ; prononcez le s, pas le l.",
+                    "de": "un fils bedeutet Sohn.  Fils heißt Sohn; sprich das s, aber nicht das l."
+                  }
+                },
+                {
+                  "targetId": "target-fille",
+                  "nativeLabel": {
+                    "en": "daughter",
+                    "de": "Tochter"
+                  },
+                  "answerExplanation": {
+                    "en": "une fille means daughter. ",
+                    "fr": "La forme à retenir est « une fille ». ",
+                    "de": "une fille bedeutet Tochter. "
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-2",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each word with its translation.",
+            "fr": "Associez chaque mot à sa traduction.",
+            "de": "Ordne jedem Wort seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "vocabulary_matching",
+              "itemId": "match-2",
+              "pairs": [
+                {
+                  "targetId": "target-grand-pere",
+                  "nativeLabel": {
+                    "en": "grandfather",
+                    "de": "Großvater"
+                  },
+                  "answerExplanation": {
+                    "en": "un grand-père means grandfather. ",
+                    "fr": "La forme à retenir est « un grand-père ». ",
+                    "de": "un grand-père bedeutet Großvater. "
+                  }
+                },
+                {
+                  "targetId": "target-grand-mere",
+                  "nativeLabel": {
+                    "en": "grandmother",
+                    "de": "Großmutter"
+                  },
+                  "answerExplanation": {
+                    "en": "une grand-mère means grandmother. ",
+                    "fr": "La forme à retenir est « une grand-mère ». ",
+                    "de": "une grand-mère bedeutet Großmutter. "
+                  }
+                },
+                {
+                  "targetId": "target-cousin",
+                  "nativeLabel": {
+                    "en": "cousin (male) (masculine)",
+                    "de": "Cousin (männlich)"
+                  },
+                  "answerExplanation": {
+                    "en": "un cousin means cousin (male). ",
+                    "fr": "La forme à retenir est « un cousin ». ",
+                    "de": "un cousin bedeutet Cousin. "
+                  }
+                },
+                {
+                  "targetId": "target-cousine",
+                  "nativeLabel": {
+                    "en": "cousin (female) (feminine)",
+                    "de": "Cousine (weiblich)"
+                  },
+                  "answerExplanation": {
+                    "en": "une cousine means cousin (female). ",
+                    "fr": "La forme à retenir est « une cousine ». ",
+                    "de": "une cousine bedeutet Cousine. "
+                  }
+                },
+                {
+                  "targetId": "target-oncle",
+                  "nativeLabel": {
+                    "en": "uncle",
+                    "de": "Onkel"
+                  },
+                  "answerExplanation": {
+                    "en": "un oncle means uncle. ",
+                    "fr": "La forme à retenir est « un oncle ». ",
+                    "de": "un oncle bedeutet Onkel. "
+                  }
+                },
+                {
+                  "targetId": "target-tante",
+                  "nativeLabel": {
+                    "en": "aunt",
+                    "de": "Tante"
+                  },
+                  "answerExplanation": {
+                    "en": "une tante means aunt. ",
+                    "fr": "La forme à retenir est « une tante ». ",
+                    "de": "une tante bedeutet Tante. "
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "overview",
+      "stage": "overview",
+      "role": "overview",
+      "label": {
+        "en": "Gender and overview",
+        "fr": "Genre et vue d’ensemble",
+        "de": "Genus und Übersicht"
+      },
+      "pages": [
+        {
+          "pageId": "overview",
+          "estimatedDurationS": 90,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Review every word and the noun genders.",
+            "fr": "Revoyez tous les mots et le genre des noms.",
+            "de": "Sieh dir alle Wörter und das Genus der Nomen an."
+          },
+          "items": [
+            {
+              "type": "vocabulary_gender_select",
+              "itemId": "overview",
+              "targetIds": [
+                "target-pere",
+                "target-mere",
+                "target-frere",
+                "target-soeur",
+                "target-fils",
+                "target-fille",
+                "target-grand-pere",
+                "target-grand-mere",
+                "target-cousin",
+                "target-cousine",
+                "target-oncle",
+                "target-tante"
+              ],
+              "rows": [
+                {
+                  "targetId": "target-pere",
+                  "answerExplanation": {
+                    "en": "un père: masculine. Learn the noun together with its article. Père has an accent grave on è.",
+                    "fr": "« un père » : masculin. Apprenez le nom avec son article. Père prend un accent grave sur le è.",
+                    "de": "un père: männlich. Lerne das Nomen mit seinem Artikel. Père hat einen accent grave auf è."
+                  }
+                },
+                {
+                  "targetId": "target-mere",
+                  "answerExplanation": {
+                    "en": "une mère: feminine. Learn the noun together with its article. Mère has an accent grave on è.",
+                    "fr": "« une mère » : féminin. Apprenez le nom avec son article. Mère prend un accent grave sur le è.",
+                    "de": "une mère: weiblich. Lerne das Nomen mit seinem Artikel. Mère hat einen accent grave auf è."
+                  }
+                },
+                {
+                  "targetId": "target-frere",
+                  "answerExplanation": {
+                    "en": "un frère: masculine. Learn the noun together with its article. Frère has an accent grave on è.",
+                    "fr": "« un frère » : masculin. Apprenez le nom avec son article. Frère prend un accent grave sur le è.",
+                    "de": "un frère: männlich. Lerne das Nomen mit seinem Artikel. Frère hat einen accent grave auf è."
+                  }
+                },
+                {
+                  "targetId": "target-soeur",
+                  "answerExplanation": {
+                    "en": "une sœur: feminine. Learn the noun together with its article. Sœur uses the ligature œ; the final r is pronounced.",
+                    "fr": "« une sœur » : féminin. Apprenez le nom avec son article. Sœur contient la ligature œ ; le r final se prononce.",
+                    "de": "une sœur: weiblich. Lerne das Nomen mit seinem Artikel. Sœur enthält die Ligatur œ; das End-r wird gesprochen."
+                  }
+                },
+                {
+                  "targetId": "target-fils",
+                  "answerExplanation": {
+                    "en": "un fils: masculine. Learn the noun together with its article. Fils means son; pronounce the final s, not the l.",
+                    "fr": "« un fils » : masculin. Apprenez le nom avec son article. Fils désigne un enfant masculin ; prononcez le s, pas le l.",
+                    "de": "un fils: männlich. Lerne das Nomen mit seinem Artikel. Fils heißt Sohn; sprich das s, aber nicht das l."
+                  }
+                },
+                {
+                  "targetId": "target-fille",
+                  "answerExplanation": {
+                    "en": "une fille: feminine. Learn the noun together with its article.",
+                    "fr": "« une fille » : féminin. Apprenez le nom avec son article.",
+                    "de": "une fille: weiblich. Lerne das Nomen mit seinem Artikel."
+                  }
+                },
+                {
+                  "targetId": "target-grand-pere",
+                  "answerExplanation": {
+                    "en": "un grand-père: masculine. Learn the noun together with its article.",
+                    "fr": "« un grand-père » : masculin. Apprenez le nom avec son article.",
+                    "de": "un grand-père: männlich. Lerne das Nomen mit seinem Artikel."
+                  }
+                },
+                {
+                  "targetId": "target-grand-mere",
+                  "answerExplanation": {
+                    "en": "une grand-mère: feminine. Learn the noun together with its article.",
+                    "fr": "« une grand-mère » : féminin. Apprenez le nom avec son article.",
+                    "de": "une grand-mère: weiblich. Lerne das Nomen mit seinem Artikel."
+                  }
+                },
+                {
+                  "targetId": "target-cousin",
+                  "answerExplanation": {
+                    "en": "un cousin: masculine. Learn the noun together with its article.",
+                    "fr": "« un cousin » : masculin. Apprenez le nom avec son article.",
+                    "de": "un cousin: männlich. Lerne das Nomen mit seinem Artikel."
+                  }
+                },
+                {
+                  "targetId": "target-cousine",
+                  "answerExplanation": {
+                    "en": "une cousine: feminine. Learn the noun together with its article.",
+                    "fr": "« une cousine » : féminin. Apprenez le nom avec son article.",
+                    "de": "une cousine: weiblich. Lerne das Nomen mit seinem Artikel."
+                  }
+                },
+                {
+                  "targetId": "target-oncle",
+                  "answerExplanation": {
+                    "en": "un oncle: masculine. Learn the noun together with its article.",
+                    "fr": "« un oncle » : masculin. Apprenez le nom avec son article.",
+                    "de": "un oncle: männlich. Lerne das Nomen mit seinem Artikel."
+                  }
+                },
+                {
+                  "targetId": "target-tante",
+                  "answerExplanation": {
+                    "en": "une tante: feminine. Learn the noun together with its article.",
+                    "fr": "« une tante » : féminin. Apprenez le nom avec son article.",
+                    "de": "une tante: weiblich. Lerne das Nomen mit seinem Artikel."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "practice",
+      "stage": "practice",
+      "role": "exercise",
+      "label": {
+        "en": "Practice",
+        "fr": "Entraînement",
+        "de": "Übung"
+      },
+      "pages": [
+        {
+          "pageId": "gap-target-pere",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or phrase without its article.",
+            "fr": "Écrivez le mot ou l’expression sans son article.",
+            "de": "Schreib das fehlende Wort oder die Wendung ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-target-pere",
+              "targetId": "target-pere",
+              "before": "Le papa est le ",
+              "after": ".",
+              "referenceTargetIds": [
+                "target-mere",
+                "target-pere",
+                "target-soeur",
+                "target-frere"
+              ],
+              "accepted": {
+                "answers": [
+                  "père"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "un père means father.  Père has an accent grave on è.",
+                "fr": "La forme à retenir est « un père ».  Père prend un accent grave sur le è.",
+                "de": "un père bedeutet Vater.  Père hat einen accent grave auf è."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-target-mere",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or phrase without its article.",
+            "fr": "Écrivez le mot ou l’expression sans son article.",
+            "de": "Schreib das fehlende Wort oder die Wendung ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-target-mere",
+              "targetId": "target-mere",
+              "before": "La maman est la ",
+              "after": ".",
+              "referenceTargetIds": [
+                "target-frere",
+                "target-mere",
+                "target-fils",
+                "target-soeur"
+              ],
+              "accepted": {
+                "answers": [
+                  "mère"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "une mère means mother.  Mère has an accent grave on è.",
+                "fr": "La forme à retenir est « une mère ».  Mère prend un accent grave sur le è.",
+                "de": "une mère bedeutet Mutter.  Mère hat einen accent grave auf è."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-target-frere",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or phrase without its article.",
+            "fr": "Écrivez le mot ou l’expression sans son article.",
+            "de": "Schreib das fehlende Wort oder die Wendung ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-target-frere",
+              "targetId": "target-frere",
+              "before": "Le fils de mes parents est mon ",
+              "after": ".",
+              "referenceTargetIds": [
+                "target-soeur",
+                "target-frere",
+                "target-fille",
+                "target-fils"
+              ],
+              "accepted": {
+                "answers": [
+                  "frère"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "un frère means brother.  Frère has an accent grave on è.",
+                "fr": "La forme à retenir est « un frère ».  Frère prend un accent grave sur le è.",
+                "de": "un frère bedeutet Bruder.  Frère hat einen accent grave auf è."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-target-soeur",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or phrase without its article.",
+            "fr": "Écrivez le mot ou l’expression sans son article.",
+            "de": "Schreib das fehlende Wort oder die Wendung ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-target-soeur",
+              "targetId": "target-soeur",
+              "before": "La fille de mes parents est ma ",
+              "after": ".",
+              "referenceTargetIds": [
+                "target-fils",
+                "target-soeur",
+                "target-grand-pere",
+                "target-fille"
+              ],
+              "accepted": {
+                "answers": [
+                  "sœur"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "une sœur means sister.  Sœur uses the ligature œ; the final r is pronounced.",
+                "fr": "La forme à retenir est « une sœur ».  Sœur contient la ligature œ ; le r final se prononce.",
+                "de": "une sœur bedeutet Schwester.  Sœur enthält die Ligatur œ; das End-r wird gesprochen."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-target-fils",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or phrase without its article.",
+            "fr": "Écrivez le mot ou l’expression sans son article.",
+            "de": "Schreib das fehlende Wort oder die Wendung ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-target-fils",
+              "targetId": "target-fils",
+              "before": "Paul est leur enfant masculin : leur ",
+              "after": ".",
+              "referenceTargetIds": [
+                "target-fille",
+                "target-fils",
+                "target-grand-mere",
+                "target-grand-pere"
+              ],
+              "accepted": {
+                "answers": [
+                  "fils"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "un fils means son.  Fils means son; pronounce the final s, not the l.",
+                "fr": "La forme à retenir est « un fils ».  Fils désigne un enfant masculin ; prononcez le s, pas le l.",
+                "de": "un fils bedeutet Sohn.  Fils heißt Sohn; sprich das s, aber nicht das l."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-target-fille",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or phrase without its article.",
+            "fr": "Écrivez le mot ou l’expression sans son article.",
+            "de": "Schreib das fehlende Wort oder die Wendung ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-target-fille",
+              "targetId": "target-fille",
+              "before": "Léa est leur enfant féminin : leur ",
+              "after": ".",
+              "referenceTargetIds": [
+                "target-grand-pere",
+                "target-fille",
+                "target-cousin",
+                "target-grand-mere"
+              ],
+              "accepted": {
+                "answers": [
+                  "fille"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "une fille means daughter. ",
+                "fr": "La forme à retenir est « une fille ». ",
+                "de": "une fille bedeutet Tochter. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-target-grand-pere",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or phrase without its article.",
+            "fr": "Écrivez le mot ou l’expression sans son article.",
+            "de": "Schreib das fehlende Wort oder die Wendung ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-target-grand-pere",
+              "targetId": "target-grand-pere",
+              "before": "Le père de mon père est mon ",
+              "after": ".",
+              "referenceTargetIds": [
+                "target-grand-mere",
+                "target-grand-pere",
+                "target-cousine",
+                "target-cousin"
+              ],
+              "accepted": {
+                "answers": [
+                  "grand-père"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "un grand-père means grandfather. ",
+                "fr": "La forme à retenir est « un grand-père ». ",
+                "de": "un grand-père bedeutet Großvater. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-target-grand-mere",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or phrase without its article.",
+            "fr": "Écrivez le mot ou l’expression sans son article.",
+            "de": "Schreib das fehlende Wort oder die Wendung ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-target-grand-mere",
+              "targetId": "target-grand-mere",
+              "before": "La mère de ma mère est ma ",
+              "after": ".",
+              "referenceTargetIds": [
+                "target-cousin",
+                "target-grand-mere",
+                "target-oncle",
+                "target-cousine"
+              ],
+              "accepted": {
+                "answers": [
+                  "grand-mère"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "une grand-mère means grandmother. ",
+                "fr": "La forme à retenir est « une grand-mère ». ",
+                "de": "une grand-mère bedeutet Großmutter. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-target-cousin",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or phrase without its article.",
+            "fr": "Écrivez le mot ou l’expression sans son article.",
+            "de": "Schreib das fehlende Wort oder die Wendung ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-target-cousin",
+              "targetId": "target-cousin",
+              "before": "Paul est le fils de ma tante : mon ",
+              "after": ".",
+              "referenceTargetIds": [
+                "target-cousine",
+                "target-cousin",
+                "target-tante",
+                "target-oncle"
+              ],
+              "accepted": {
+                "answers": [
+                  "cousin"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "un cousin means cousin (male). ",
+                "fr": "La forme à retenir est « un cousin ». ",
+                "de": "un cousin bedeutet Cousin. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-target-cousine",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or phrase without its article.",
+            "fr": "Écrivez le mot ou l’expression sans son article.",
+            "de": "Schreib das fehlende Wort oder die Wendung ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-target-cousine",
+              "targetId": "target-cousine",
+              "before": "Léa est la fille de mon oncle : ma ",
+              "after": ".",
+              "referenceTargetIds": [
+                "target-oncle",
+                "target-cousine",
+                "target-pere",
+                "target-tante"
+              ],
+              "accepted": {
+                "answers": [
+                  "cousine"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "une cousine means cousin (female). ",
+                "fr": "La forme à retenir est « une cousine ». ",
+                "de": "une cousine bedeutet Cousine. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-target-oncle",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or phrase without its article.",
+            "fr": "Écrivez le mot ou l’expression sans son article.",
+            "de": "Schreib das fehlende Wort oder die Wendung ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-target-oncle",
+              "targetId": "target-oncle",
+              "before": "Le frère de ma mère est mon ",
+              "after": ".",
+              "referenceTargetIds": [
+                "target-tante",
+                "target-oncle",
+                "target-mere",
+                "target-pere"
+              ],
+              "accepted": {
+                "answers": [
+                  "oncle"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "un oncle means uncle. ",
+                "fr": "La forme à retenir est « un oncle ». ",
+                "de": "un oncle bedeutet Onkel. "
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-target-tante",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Write the missing word or phrase without its article.",
+            "fr": "Écrivez le mot ou l’expression sans son article.",
+            "de": "Schreib das fehlende Wort oder die Wendung ohne Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_typed_gap",
+              "itemId": "gap-target-tante",
+              "targetId": "target-tante",
+              "before": "La sœur de mon père est ma ",
+              "after": ".",
+              "referenceTargetIds": [
+                "target-pere",
+                "target-tante",
+                "target-frere",
+                "target-mere"
+              ],
+              "accepted": {
+                "answers": [
+                  "tante"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "une tante means aunt. ",
+                "fr": "La forme à retenir est « une tante ». ",
+                "de": "une tante bedeutet Tante. "
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Final exam",
+        "fr": "Examen final",
+        "de": "Abschlussprüfung"
+      },
+      "pages": [
+        {
+          "pageId": "page-exam-1",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate into French; include the required article for nouns.",
+            "fr": "Traduisez en français ; ajoutez l’article demandé pour les noms.",
+            "de": "Übersetze ins Französische; schreibe bei Nomen den verlangten Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-1-1",
+              "targetId": "target-pere",
+              "accepted": {
+                "answers": [
+                  "un père"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "un père means father.  Père has an accent grave on è.",
+                "fr": "La forme à retenir est « un père ».  Père prend un accent grave sur le è.",
+                "de": "un père bedeutet Vater.  Père hat einen accent grave auf è."
+              },
+              "prompt": {
+                "en": "father",
+                "de": "Vater"
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-1-2",
+              "targetId": "target-mere",
+              "accepted": {
+                "answers": [
+                  "une mère"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "une mère means mother.  Mère has an accent grave on è.",
+                "fr": "La forme à retenir est « une mère ».  Mère prend un accent grave sur le è.",
+                "de": "une mère bedeutet Mutter.  Mère hat einen accent grave auf è."
+              },
+              "prompt": {
+                "en": "mother",
+                "de": "Mutter"
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-1-3",
+              "targetId": "target-frere",
+              "accepted": {
+                "answers": [
+                  "un frère"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "un frère means brother.  Frère has an accent grave on è.",
+                "fr": "La forme à retenir est « un frère ».  Frère prend un accent grave sur le è.",
+                "de": "un frère bedeutet Bruder.  Frère hat einen accent grave auf è."
+              },
+              "prompt": {
+                "en": "brother",
+                "de": "Bruder"
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-1-4",
+              "targetId": "target-soeur",
+              "accepted": {
+                "answers": [
+                  "une sœur"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "une sœur means sister.  Sœur uses the ligature œ; the final r is pronounced.",
+                "fr": "La forme à retenir est « une sœur ».  Sœur contient la ligature œ ; le r final se prononce.",
+                "de": "une sœur bedeutet Schwester.  Sœur enthält die Ligatur œ; das End-r wird gesprochen."
+              },
+              "prompt": {
+                "en": "sister",
+                "de": "Schwester"
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-1-5",
+              "targetId": "target-fils",
+              "accepted": {
+                "answers": [
+                  "un fils"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "un fils means son.  Fils means son; pronounce the final s, not the l.",
+                "fr": "La forme à retenir est « un fils ».  Fils désigne un enfant masculin ; prononcez le s, pas le l.",
+                "de": "un fils bedeutet Sohn.  Fils heißt Sohn; sprich das s, aber nicht das l."
+              },
+              "prompt": {
+                "en": "son",
+                "de": "Sohn"
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-1-6",
+              "targetId": "target-fille",
+              "accepted": {
+                "answers": [
+                  "une fille"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "une fille means daughter. ",
+                "fr": "La forme à retenir est « une fille ». ",
+                "de": "une fille bedeutet Tochter. "
+              },
+              "prompt": {
+                "en": "daughter",
+                "de": "Tochter"
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "page-exam-2",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Translate into French; include the required article for nouns.",
+            "fr": "Traduisez en français ; ajoutez l’article demandé pour les noms.",
+            "de": "Übersetze ins Französische; schreibe bei Nomen den verlangten Artikel."
+          },
+          "items": [
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-2-1",
+              "targetId": "target-grand-pere",
+              "accepted": {
+                "answers": [
+                  "un grand-père"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "un grand-père means grandfather. ",
+                "fr": "La forme à retenir est « un grand-père ». ",
+                "de": "un grand-père bedeutet Großvater. "
+              },
+              "prompt": {
+                "en": "grandfather",
+                "de": "Großvater"
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-2-2",
+              "targetId": "target-grand-mere",
+              "accepted": {
+                "answers": [
+                  "une grand-mère"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "une grand-mère means grandmother. ",
+                "fr": "La forme à retenir est « une grand-mère ». ",
+                "de": "une grand-mère bedeutet Großmutter. "
+              },
+              "prompt": {
+                "en": "grandmother",
+                "de": "Großmutter"
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-2-3",
+              "targetId": "target-cousin",
+              "accepted": {
+                "answers": [
+                  "un cousin"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "un cousin means cousin (male). ",
+                "fr": "La forme à retenir est « un cousin ». ",
+                "de": "un cousin bedeutet Cousin. "
+              },
+              "prompt": {
+                "en": "cousin (male) (masculine singular form)",
+                "de": "Cousin (männliche Singularform)"
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-2-4",
+              "targetId": "target-cousine",
+              "accepted": {
+                "answers": [
+                  "une cousine"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "une cousine means cousin (female). ",
+                "fr": "La forme à retenir est « une cousine ». ",
+                "de": "une cousine bedeutet Cousine. "
+              },
+              "prompt": {
+                "en": "cousin (female) (feminine singular form)",
+                "de": "Cousine (weibliche Singularform)"
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-2-5",
+              "targetId": "target-oncle",
+              "accepted": {
+                "answers": [
+                  "un oncle"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "un oncle means uncle. ",
+                "fr": "La forme à retenir est « un oncle ». ",
+                "de": "un oncle bedeutet Onkel. "
+              },
+              "prompt": {
+                "en": "uncle",
+                "de": "Onkel"
+              }
+            },
+            {
+              "type": "vocabulary_translation_exam",
+              "itemId": "exam-2-6",
+              "targetId": "target-tante",
+              "accepted": {
+                "answers": [
+                  "une tante"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "une tante means aunt. ",
+                "fr": "La forme à retenir est « une tante ». ",
+                "de": "une tante bedeutet Tante. "
+              },
+              "prompt": {
+                "en": "aunt",
+                "de": "Tante"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "provenance": {
+    "generator": "codex-direct-authoring",
+    "model": "gpt-6",
+    "promptVersion": "manual-content-v1",
+    "generatedAt": "2026-10-06T22:13:22.000Z",
+    "inputHashes": {
+      "outline": "f8cc866f40b14d622bb256822a1e1952ddbe2530b844f4bb87364bbcd1cd1822",
+      "brief": "5b658c23225d5e4bcea6ae97075051c0574775dc171ea5fbcbd8dd6ce5c29416"
+    }
+  }
+}
