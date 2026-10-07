@@ -28,6 +28,7 @@ These issue bodies were published to GitHub in P0-04 on 2026-10-06. Each GitHub 
 | P2-02 | [#22](https://github.com/bastian-schnitzler/lesson_prototype/issues/22) | Implement vocabulary introduction, flashcards, and matching |
 | P2-03 | [#23](https://github.com/bastian-schnitzler/lesson_prototype/issues/23) | Implement noun-gender overview, typed gaps, and translation exam |
 | P2-04 | [#24](https://github.com/bastian-schnitzler/lesson_prototype/issues/24) | Integrate complete vocabulary sessions and end-to-end validation |
+| P2-05 | [#52](https://github.com/bastian-schnitzler/lesson_prototype/issues/52) | Deliver formatted introduction and explanation text from generation |
 | P2-06 | [#25](https://github.com/bastian-schnitzler/lesson_prototype/issues/25) | Update vocabulary lesson mockups from the prototype |
 | P3-01 | [#26](https://github.com/bastian-schnitzler/lesson_prototype/issues/26) | Review grammar renderer composition and mixed exam support |
 | P3-02 | [#27](https://github.com/bastian-schnitzler/lesson_prototype/issues/27) | Implement pronoun/form matching and typing with tests |
@@ -521,6 +522,8 @@ Acceptance:
 Dependencies: P2-03, P1-02.
 
 ### P2-05: Deliver formatted introduction and explanation text from generation
+
+GitHub: [#52](https://github.com/bastian-schnitzler/lesson_prototype/issues/52).
 
 Milestone: **Phase 2**.
 
