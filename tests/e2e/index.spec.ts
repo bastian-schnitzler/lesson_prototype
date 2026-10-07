@@ -72,7 +72,7 @@ test('never shows generation controls', async ({ page }) => {
 
 test('groups content pages and keeps artifact header actions the same height', async ({ page }) => {
   await page.goto('./#/lesson/fr-classroom-objects');
-  const tabs = page.getByRole('tab');
+  const tabs = page.getByRole('tablist', { name: 'Lesson pages' }).getByRole('tab');
   const navigation = page.locator('.content-page-navigation');
   expect(await navigation.evaluate((element) => element.scrollWidth - element.clientWidth)).toBeLessThanOrEqual(0);
   if (page.viewportSize()!.width < 600) {
@@ -80,7 +80,7 @@ test('groups content pages and keeps artifact header actions the same height', a
     expect(new Set(tops).size).toBeGreaterThan(1);
   }
   await expect(tabs.first()).toHaveAttribute('aria-selected', 'true');
-  const panel = page.getByRole('tabpanel');
+  const panel = page.locator('.content-page-navigation + [role="tabpanel"]');
   await expect(panel).toContainText('vocabulary_introduction');
   await page.getByRole('navigation', { name: 'Lesson outline' }).getByRole('button', { name: /Flashcards/ }).click();
   await expect(panel).toContainText('vocabulary_flashcards');
@@ -93,5 +93,18 @@ test('groups content pages and keeps artifact header actions the same height', a
     page.getByRole('link', { name: 'Start lesson' }),
   ].map(async (button) => (await button.boundingBox())!.height));
   expect(Math.max(...heights) - Math.min(...heights)).toBeLessThanOrEqual(1);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBeLessThanOrEqual(0);
+});
+
+test('shows one Draft teaching block at a time through keyboard-operable tabs', async ({ page }) => {
+  await page.goto('./#/lesson/fr-verb-etre-present');
+  const tabs = page.getByRole('tablist', { name: 'Teaching blocks' }).getByRole('tab');
+  await expect(tabs).toHaveCount(2);
+  await expect(page.getByRole('article', { name: /01/ })).toBeVisible();
+  await tabs.first().focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(tabs.nth(1)).toBeFocused();
+  await expect(page.getByRole('article', { name: /02/ })).toBeVisible();
+  await expect(page.getByRole('article', { name: /01/ })).toHaveCount(0);
   expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBeLessThanOrEqual(0);
 });

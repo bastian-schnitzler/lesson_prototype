@@ -156,15 +156,27 @@ describe('lesson artifact page', () => {
     expect(screen.getByRole('rowheader', { name: /06 Examen final/ })).toBeInTheDocument();
   });
 
-  it('renders the grammar Draft with rules, block cards, exercises and the mixed exam', async () => {
+  it('renders the grammar Draft with rules, tabbed block cards, exercises and the mixed exam', async () => {
+    const user = userEvent.setup();
     await renderIndex();
     go('#/lesson/fr-verb-etre-present');
     expect(await screen.findByRole('heading', { name: 'Teaching blocks' })).toBeInTheDocument();
     expect(screen.getByText('je suis, tu es, il/elle est')).toBeInTheDocument();
+    const blocks = screen.getByRole('tablist', { name: 'Teaching blocks' });
+    const tabs = within(blocks).getAllByRole('tab');
+    expect(tabs.map((tab) => tab.textContent)).toEqual([expect.stringMatching(/^Singular forms.*Rule 1$/), expect.stringMatching(/^Plural forms/)]);
     const block = screen.getByRole('article', { name: /01 Singular forms/ });
     expect(within(block).getByRole('rowheader', { name: 'Pronoun–form matching' })).toBeInTheDocument();
     expect(within(block).getByRole('heading', { name: 'Pitfalls' })).toBeInTheDocument();
+    // Only the selected block is shown; arrow keys and clicks switch blocks.
+    expect(screen.queryByRole('article', { name: /02 Plural forms/ })).toBeNull();
+    tabs[0].focus();
+    await user.keyboard('{ArrowRight}');
+    expect(tabs[1]).toHaveAttribute('aria-selected', 'true');
+    expect(tabs[1]).toHaveFocus();
     expect(screen.getByRole('article', { name: /02 Plural forms/ })).toBeInTheDocument();
+    await user.click(tabs[0]);
+    expect(screen.getByRole('article', { name: /01 Singular forms/ })).toBeInTheDocument();
     const exam = screen.getByRole('heading', { name: 'Mixed final exam' }).closest('section')!;
     const pages = within(exam).getAllByRole('row').slice(1);
     expect(pages.map((r) => within(r).getAllByRole('cell')[0].textContent)).toEqual(['Typed gaps', 'Pronoun–form typing']);

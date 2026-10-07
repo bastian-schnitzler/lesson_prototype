@@ -1,6 +1,6 @@
 # Lesson exercise prototype specification
 
-Status: **Draft 0.31 — shared contract review (P1-10)**. Date: 2026-10-07.
+Status: **Draft 0.32 — phase 1 index and artifact-view mockup refresh (P1-12)**. Date: 2026-10-07.
 
 This document specifies the prototype and its phased implementation. It is the maintained requirements document: no separate requirements file exists. It does not authorize starting implementation before the specification review. The backlog is in [ISSUES.md](ISSUES.md) and published as GitHub issues in `bastian-schnitzler/lesson_prototype`.
 
@@ -254,8 +254,8 @@ Resolve Draft and Content components through a registry keyed by the artifact's 
 
 | Component | Structured presentation |
 | --- | --- |
-| `VocabularyBriefView` | Objective and duration cards; target inventory with learning-language form and selected-mother-tongue translation, word class, applicable gender/articles, and difficulty; target-count/difficulty rationale; six-stage plan and scoring policy; per-exam-page coverage and time limits. |
-| `GrammarBriefView` | Objective/duration and coverage; 2–4 block cards with rules, worked examples, common pitfalls, and proposed exercise types; mixed-exam coverage, answer-unit plan, and each page's time limit. |
+| `VocabularyBriefView` | Objective and duration cards; target inventory as numbered group tabs (one target group shown at a time) with learning-language form and selected-mother-tongue translation, word class, applicable gender/articles, and difficulty; target-count/difficulty rationale; six-stage plan and scoring policy; per-exam-page coverage and time limits. |
+| `GrammarBriefView` | Objective/duration and coverage; 2–4 teaching blocks as numbered tabs (one block card shown at a time) with rules, worked examples, common pitfalls, and proposed exercise types; mixed-exam coverage, answer-unit plan, and each page's time limit. |
 | `VocabularyContentView` | Numbered stage outline and grouped page tabs; selected-page cards with introduction text, front/reveal flashcard previews, matching pairs, noun-gender/overview table, contextual typed gaps and reference words, and translation-exam pages. Show the actual prompts, teaching forms, accepted answers, point units, generated explanations, durations, and timers where applicable. |
 | `GrammarContentView` | Numbered step outline and grouped page tabs; selected explanation/block cards with form tables and examples; read-only previews for each defined exercise type, including pronoun rows, choice/typed gaps, word tokens, and error spotting. Include the production-feedback placeholder and mixed exam pages, accepted answers, point units, explanations, durations, and countdown limits. |
 
@@ -802,26 +802,29 @@ scale 1.3
   .
   <color:#1E293B>───────────────────────────────────────────────────────────────────────────────────────────────────────────────────</color>
   .
-  { <color:#94A3B8>Learning language</color> | { <color:#E2E8F0>●  fr</color> } | <color:#020617>xx</color> | <color:#334155>│</color> | <color:#020617>xx</color> | <color:#94A3B8>Level</color> | { <color:#E2E8F0>●  A1</color> } | <color:#020617>xx</color> | <color:#334155>│</color> | <color:#020617>xx</color> | <color:#94A3B8>Categories</color> | { <color:#E2E8F0>☑  Voc</color> | <color:#E2E8F0>☑  Grammar</color> | <color:#E2E8F0>☑  Func</color> | <color:#E2E8F0>☑  Reading</color> } }
+  { <color:#94A3B8>Learning language</color> | [ <color:#4338CA><b>fr</b></color> ] | <color:#020617>xx</color> | <color:#334155>│</color> | <color:#020617>xx</color> | <color:#94A3B8>Level</color> | [ <color:#4338CA><b>A1</b></color> ] | <color:#020617>xx</color> | <color:#334155>│</color> | <color:#020617>xx</color> | <color:#94A3B8>Categories</color> | { [ <color:#4338CA><b>Voc</b></color> ] | [ <color:#4338CA><b>Grammar</b></color> ] | [ <color:#4338CA><b>Func</b></color> ] | [ <color:#4338CA><b>Reading</b></color> ] } }
   .
   <color:#E2E8F0><size:30><b>Your lessons</b></size></color>
-  <color:#E2E8F0>French A1   /   120 lessons in course order.</color>
+  <color:#E2E8F0>French / A1 / 120 lessons in course order.</color>
   .
   {
     <color:#E2E8F0><b>No.</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Lesson</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Category</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Content</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score on last try</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Actions</b></color>
     . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
-    <color:#E2E8F0>01</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Saluer et dire au revoir</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Function</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Outline</color> ] | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
+    <color:#E2E8F0>01</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Saluer et dire au revoir</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Functions</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Outline</color> ] | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
     . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
     <color:#E2E8F0>02</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Les pronoms je, tu, il, elle...</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Grammar</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Content</color> ] | <color:#020617>xxx</color> | <color:#E2E8F0><b>76.5%</b></color> | <color:#020617>xxx</color> | [ <color:#020617>   Start lesson   </color> ]
     . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
-    <color:#E2E8F0>03</color> | <color:#020617>xxx</color> | <color:#E2E8F0>L'alphabet et les accents</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Vocabulary</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Draft</color> ] | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
+    <color:#E2E8F0>03</color> | <color:#020617>xxx</color> | <color:#E2E8F0>L'alphabet et les accents</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Vocabulary</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Content</color> ] | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | [ <color:#020617>   Start lesson   </color> ]
     . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
     <color:#E2E8F0>04</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Le verbe être au présent</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Grammar</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Content</color> ] | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | [ <color:#020617>   Start lesson   </color> ]
     . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
-    <color:#E2E8F0>05</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Les pays et les nationalités</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Vocabulary</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Outline</color> ] | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
+    <color:#E2E8F0>05</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Les pays et les nationalités</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Vocabulary</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Content</color> ] | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | [ <color:#020617>   Start lesson   </color> ]
+    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
+    <color:#E2E8F0>06</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Se présenter</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Functions</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Outline</color> ] | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
     . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
    }
   .
+  <color:#94A3B8>Content shows the highest available artifact: Outline, Draft or Content. Start appears only for valid, current content.</color>
   <color:#94A3B8>Last-try scores appear after completion and clear on page reload.</color>
   .
    } | <color:#020617>xxx</color> }
@@ -851,28 +854,29 @@ scale 1.3
 {
 .
 { <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
+{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr (course language)</color> | <color:#E2E8F0>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
 .
-{ [ <color:#4338CA>Lesson overview</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>Raw JSON</color> ] | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | [ <color:#020617>Start lesson</color> ] }
+<color:#E2E8F0><b>LESSON PROTOTYPE</b></color>
+{ [ <color:#4338CA>Lesson overview</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>Raw JSON</color> ] | <color:#020617>xxx</color> | [ <color:#020617>   Start lesson   </color> ] | <color:#020617>xxxxxxxxxxxxxxxxxxxx</color> | [ <color:#4338CA>Outline</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>Draft</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>Content</color> ] }
 .
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+<color:#1E293B>──────────────────────────────────────────────────────────────────────────────</color>
 .
 <color:#E2E8F0><size:30><b>Les objets de la classe</b></size></color>
 .
 {
 .
 { <color:#020617>xxx</color> | {
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<back:#0F172A><color:#E2E8F0><size:20><b>  OUTLINE  /  Lesson outline  </b></size></color></back>
+<back:#020617><color:#94A3B8><b> OUTLINE </b></color></back>  <color:#E2E8F0><size:20><b>Lesson outline</b></size></color>
 .
 {
-<color:#94A3B8>Lesson 11</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Vocabulary</color> | <color:#020617>xxx</color> | <color:#E2E8F0>French A1</color>
-.
-<color:#E2E8F0>Theme</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Education</color> | <color:#020617>xxx</color> | <color:#E2E8F0>ID: fr-classroom-objects</color>
+<color:#94A3B8>Lesson 11</color> | <color:#020617>xxx</color> | <color:#E2E8F0>( Vocabulary )</color> | <color:#020617>xxx</color> | <color:#E2E8F0>French / A1</color> | <color:#020617>xxx</color> | <color:#94A3B8>Theme</color>
+. | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | <color:#E2E8F0>Education</color>
  }
 .
-<color:#E2E8F0><size:18><b>Outline intent</b></size></color>
+<color:#94A3B8>ID</color>
+<color:#64748B>fr-classroom-objects</color>
+.
+<color:#94A3B8>Outline intent</color>
 <color:#E2E8F0>Nommer une douzaine d'objets de la classe avec leur article :</color>
 <color:#E2E8F0>un livre, un cahier, un stylo, une table, une chaise, un tableau…</color>
 .
@@ -883,49 +887,65 @@ scale 1.3
 {
 .
 { <color:#020617>xxx</color> | {
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+<back:#020617><color:#94A3B8><b> DRAFT </b></color></back>  <color:#E2E8F0><size:20><b>Lesson plan</b></size></color>
 .
-<back:#0F172A><color:#E2E8F0><size:20><b>  DRAFT  /  Vocabulary plan  </b></size></color></back>
+<color:#94A3B8>12 targets   /   About 13 minutes   /   Translations: English   /   Explanations: English</color>
 .
-<color:#94A3B8>12 targets   /   About 14 minutes   /   Translation: en   /   Explanations: en</color>
+<color:#E2E8F0><size:17><b>Learning objective</b></size></color>
+<color:#E2E8F0>Learn to identify and name twelve common classroom objects in French with their indefinite articles.</color>
 .
-<color:#E2E8F0><b>Target inventory</b></color>
+<color:#E2E8F0><size:17><b>Prerequisites</b></size></color>
+<color:#E2E8F0>• Basic understanding of French singular indefinite articles (un, une).</color>
+.
+<color:#E2E8F0><size:17><b>Target inventory</b></size></color>
 {
-<color:#E2E8F0><b>Target</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>English</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Gender / article</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Difficulty</b></color>
+<back:#020617><color:#A5B4FC><b>1.</b></color> <color:#E2E8F0>Masculine objects</color>   <color:#94A3B8>6 targets</color></back> | <color:#020617>xxx</color> | <color:#67E8F9><b>2.</b></color> <color:#E2E8F0>Feminine objects</color>   <color:#94A3B8>6 targets</color>
+}
+<color:#A5B4FC>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</color>
+<color:#E2E8F0><b>Masculine objects (6)</b></color>
+{
+<color:#94A3B8><b>Target</b></color> | <color:#020617>xxx</color> | <color:#94A3B8><b>Translation (English)</b></color> | <color:#020617>xxx</color> | <color:#94A3B8><b>Word class</b></color> | <color:#020617>xxx</color> | <color:#94A3B8><b>Gender / number</b></color> | <color:#020617>xxx</color> | <color:#94A3B8><b>Difficulty</b></color> | <color:#020617>xxx</color> | <color:#94A3B8><b>Answers and context</b></color>
 .
-<color:#E2E8F0>livre</color> | <color:#020617>xxx</color> | <color:#E2E8F0>book</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine / un</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Core</color>
+<color:#E2E8F0><b>un livre</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0>a book</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Noun</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine, singular</color> | <color:#020617>xxx</color> | <color:#E2E8F0>( Core )</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Exam answer: </color><color:#00E676><b>un livre</b></color><color:#94A3B8>   /œ̃ livʁ/</color>
 .
-<color:#E2E8F0>chaise</color> | <color:#020617>xxx</color> | <color:#E2E8F0>chair</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Feminine / une</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Core</color>
+<color:#E2E8F0><b>un tableau</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0>a board / a blackboard</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Noun</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine, singular</color> | <color:#020617>xxx</color> | <color:#FBBF24>( More demanding )</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Exam answer: </color><color:#00E676><b>un tableau</b></color><color:#94A3B8>   /œ̃ tablo/</color>
+ }
+<color:#94A3B8>Each row also shows its example sentence with translation. One group tab is shown at a time.</color>
 .
-<color:#E2E8F0>tableau</color> | <color:#020617>xxx</color> | <color:#E2E8F0>board</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine / un</color> | <color:#020617>xxx</color> | <color:#E2E8F0>More demanding</color>
+{
+<color:#E2E8F0><size:17><b>Target count</b></size></color> | <color:#020617>xxx</color> | <color:#E2E8F0><size:17><b>Difficulty balance</b></size></color>
+<color:#E2E8F0>Twelve items provide a comprehensive initial</color> | <color:#020617>xxx</color> | <color:#94A3B8>8 core / 4 more demanding</color>
+<color:#E2E8F0>classroom vocabulary without overwhelming A1 beginners.</color> | <color:#020617>xxx</color> | <color:#E2E8F0>4 slightly more demanding terms: spelling or accents.</color>
  }
 .
-[ <color:#4338CA>Show all 12 targets</color> ]
-.
-<color:#E2E8F0><b>Difficulty balance</b></color>
-<color:#E2E8F0>9 core words and 3 harder spellings keep recall practice manageable.</color>
-.
-<color:#E2E8F0><b>Lesson plan</b></color>
+<color:#E2E8F0><size:17><b>Lesson plan</b></size></color>
 {
-<color:#E2E8F0><b>Stage</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>What the learner does</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Assessment</b></color>
+<color:#94A3B8><b>Stage</b></color> | <color:#020617>xxx</color> | <color:#94A3B8><b>What the learner does</b></color> | <color:#020617>xxx</color> | <color:#94A3B8><b>Duration</b></color> | <color:#020617>xxx</color> | <color:#94A3B8><b>Assessment</b></color>
 .
-<color:#E2E8F0>01 Introduction</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Explore the topic and learning goal</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Completion</color>
+<color:#E2E8F0><b>01 Introduction</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0>Explore the topic and learning goal</color> | <color:#020617>xxx</color> | <color:#E2E8F0>1 min</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Not scored</color>
 .
-<color:#E2E8F0>02 Flashcards</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Recall English / French with audio</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Completion</color>
+<color:#E2E8F0><b>02 Flashcards</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0>Recall 12 words with audio</color> | <color:#020617>xxx</color> | <color:#E2E8F0>2 min</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Not scored</color>
 .
-<color:#E2E8F0>03 Matching</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Pair all 12 translations</color> | <color:#020617>xxx</color> | <color:#E2E8F0>12 points</color>
+<color:#E2E8F0><b>03 Matching</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0>Pair translations in groups of 6</color> | <color:#020617>xxx</color> | <color:#E2E8F0>1 min 30 s</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Practice score</color>
 .
-<color:#E2E8F0>04 Gender + overview</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Choose noun gender, then review</color> | <color:#020617>xxx</color> | <color:#E2E8F0>12 points</color>
+<color:#E2E8F0><b>04 Gender + overview</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0>Choose noun genders, then review all words</color> | <color:#020617>xxx</color> | <color:#E2E8F0>1 min 30 s</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Practice score</color>
 .
-<color:#E2E8F0>05 Typed gaps</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Complete 12 contextual sentences</color> | <color:#020617>xxx</color> | <color:#E2E8F0>12 points</color>
+<color:#E2E8F0><b>05 Typed gaps</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0>Complete 12 contextual sentences</color> | <color:#020617>xxx</color> | <color:#E2E8F0>3 min</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Practice score</color>
 .
-<color:#E2E8F0>06 Final exam</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Translate English to French</color> | <color:#020617>xxx</color> | <color:#E2E8F0>12 points; 65% weight</color>
+<color:#E2E8F0><b>06 Final exam</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0>Answer 12 items on 2 timed pages</color> | <color:#020617>xxx</color> | <color:#E2E8F0>4 min</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Exam score</color>
  }
 .
-<color:#E2E8F0><b>Exam timing plan</b></color>
-<color:#94A3B8>Each page has its own brief-defined limit: page 1, book, 35 seconds.</color>
-<color:#E2E8F0>Nouns require the applicable indefinite article; non-nouns do not.</color>
-<color:#E2E8F0>Gender selectors hide article and audio clues while answering.</color>
+<color:#E2E8F0><size:17><b>Exam pages</b></size></color>
+<color:#94A3B8>Each page has its own time limit; the countdown starts when the page opens.</color>
+{
+<color:#94A3B8><b>Page</b></color> | <color:#020617>xxx</color> | <color:#94A3B8><b>Task</b></color> | <color:#020617>xxx</color> | <color:#94A3B8><b>Covers</b></color> | <color:#020617>xxx</color> | <color:#94A3B8><b>Duration</b></color> | <color:#020617>xxx</color> | <color:#94A3B8><b>Time limit</b></color>
+.
+<color:#E2E8F0><b>1</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0>Translation</color> | <color:#020617>xxx</color> | <color:#E2E8F0>un livre, un cahier, un stylo, un tableau, un crayon, un sac</color> | <color:#020617>xxx</color> | <color:#E2E8F0>2 min</color> | <color:#020617>xxx</color> | <color:#E2E8F0>3 min</color>
+.
+<color:#E2E8F0><b>2</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0>Translation</color> | <color:#020617>xxx</color> | <color:#E2E8F0>une table, une chaise, une trousse, une règle, une gomme, une carte</color> | <color:#020617>xxx</color> | <color:#E2E8F0>2 min</color> | <color:#020617>xxx</color> | <color:#E2E8F0>3 min</color>
+ }
+.
+<color:#94A3B8>Scoring: practice 35%, exam 65%; answers wrong only in accents or capitals earn 50% credit.</color>
 .
  } | <color:#020617>xxx</color> }
 .
@@ -934,40 +954,56 @@ scale 1.3
 {
 .
 { <color:#020617>xxx</color> | {
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+<back:#020617><color:#94A3B8><b> CONTENT </b></color></back>  <color:#E2E8F0><size:20><b>Lesson content</b></size></color>
 .
-<back:#0F172A><color:#E2E8F0><size:20><b>  CONTENT  /  Vocabulary lesson  </b></size></color></back>
+<color:#94A3B8>About 13 minutes   /   Translations: English   /   Explanations: English</color>
 .
-<color:#94A3B8>Numbered outline   /   Grouped page tabs   /   Read-only preview</color>
+<color:#E2E8F0>Learn to identify and name twelve common classroom objects in French with their indefinite articles.</color>
+<color:#94A3B8>Scoring: practice 35%, exam 65%; answers wrong only in accents or capitals earn 50% credit.</color>
 .
-<color:#E2E8F0><b>Lesson outline</b></color>
-<color:#A5B4FC>1. Introduction — Pages 1–2</color>
-<color:#67E8F9>2. Flashcards — Pages 3–4</color>
-<color:#86EFAC>3. Matching — Page 5</color>
-<color:#FCD34D>4. Gender and overview — Page 6</color>
-<color:#FDA4AF>5. Practice — Pages 7–10</color>
-<color:#D8B4FE>6. Final exam — Pages 11–12</color>
+<color:#E2E8F0><size:17><b>Lesson outline</b></size></color>
+{
+<color:#A5B4FC><b>1.</b></color> <color:#E2E8F0>Introduction</color>   <color:#94A3B8>Page 1–2</color> | <color:#020617>xxx</color> | <color:#67E8F9><b>2.</b></color> <color:#E2E8F0>Flashcards</color>   <color:#94A3B8>Page 3–4</color> | <color:#020617>xxx</color> | <color:#86EFAC><b>3.</b></color> <color:#E2E8F0>Matching</color>   <color:#94A3B8>Page 5–6</color> | <color:#020617>xxx</color> | <color:#FCD34D><b>4.</b></color> <color:#E2E8F0>Gender and overview</color>   <color:#94A3B8>Page 7</color>
+<color:#FDA4AF><b>5.</b></color> <color:#E2E8F0>Practice</color>   <color:#94A3B8>Page 8–19</color> | <color:#020617>xxx</color> | <color:#D8B4FE><b>6.</b></color> <color:#E2E8F0>Final exam</color>   <color:#94A3B8>Page 20–21</color>
+}
 .
 {
-<color:#A5B4FC><b>1. Introduction</b></color> | <color:#67E8F9><b>2. Flashcards</b></color> | <color:#86EFAC><b>3. Matching</b></color> | <color:#FCD34D><b>4. Overview</b></color> | <color:#FDA4AF><b>5. Practice</b></color> | <color:#D8B4FE><b>6. Final exam</b></color>
-[Page 1] [Page 2] | [<b>Page 3</b>] [Page 4] | [Page 5] | [Page 6] | [Page 7] [Page 8] [Page 9] [Page 10] | [Page 11] [Page 12]
+<color:#A5B4FC>1. Introduction</color> | <color:#020617>xxx</color> | <color:#67E8F9>2. Flashcards</color> | <color:#020617>xxx</color> | <color:#86EFAC>3. Matching</color> | <color:#020617>xxx</color> | <color:#FCD34D>4. Gender and overview</color>
+{ [<b>Page 1</b>] | [Page 2] } | <color:#020617>xxx</color> | { [Page 3] | [Page 4] } | <color:#020617>xxx</color> | { [Page 5] | [Page 6] } | <color:#020617>xxx</color> | { [Page 7] }
 }
-<color:#94A3B8>Wrap groups and page buttons onto multiple lines when needed; no horizontal scrolling.</color>
+{
+<color:#FDA4AF>5. Practice</color>
+{ [Page 8] | [Page 9] | [Page 10] | [Page 11] | [Page 12] | [Page 13] | [Page 14] | [Page 15] | [Page 16] | [Page 17] | [Page 18] | [Page 19] }
+}
+{
+<color:#D8B4FE>6. Final exam</color>
+{ [Page 20] | [Page 21] }
+}
+<color:#94A3B8>Outline cards and page groups wrap onto more lines when needed; no horizontal scrolling.</color>
 .
-<color:#67E8F9><b>2. Flashcards — Page 3</b></color>
-<color:#94A3B8>60 seconds estimated   /   No countdown   /   0 point units</color>
-<color:#E2E8F0>Front: un livre   /   Back: book   /   Masculine</color>
-<color:#E2E8F0>Front: une chaise   /   Back: chair   /   Feminine</color>
-<color:#94A3B8>Only the selected page appears here. Other prompts and answers remain accessible through the tabs.</color>
+<color:#A5B4FC><b>1. Introduction</b></color>
+<color:#E2E8F0><b>Page 1</b></color><color:#94A3B8> (intro-group-masculine)</color>
+<color:#94A3B8>30 s · No countdown · Point units: 0</color>
+<color:#E2E8F0>Read the introduction and listen to the new words.</color>
+<color:#94A3B8>Task type: vocabulary_introduction · intro-group-masculine</color>
+<color:#E2E8F0>These six classroom objects are masculine: they take the indefinite article un. …</color>
+{
+<color:#94A3B8><b>Target</b></color> | <color:#020617>xxx</color> | <color:#94A3B8><b>Translation (English)</b></color> | <color:#020617>xxx</color> | <color:#94A3B8><b>Gender / number</b></color>
 .
+<color:#E2E8F0>un livre</color><color:#94A3B8>  /œ̃ livʁ/</color> | <color:#020617>xxx</color> | <color:#E2E8F0>a book</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine</color>
+.
+<color:#E2E8F0>un cahier</color><color:#94A3B8>  /œ̃ kaje/</color> | <color:#020617>xxx</color> | <color:#E2E8F0>a notebook</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine</color>
+ }
+<color:#94A3B8>Only the selected page appears. Every prompt, accepted answer, explanation and limit stays reachable through the tabs.</color>
 .
  } | <color:#020617>xxx</color> }
 .
  }
 .
- } | <color:#020617>xxx</color> }
 .
- }
+} | <color:#020617>xxx</color> }
+.
+}
 @endsalt
 ```
 <!-- mockup:end mockups/02-artifact-view/vocabulary/lesson-detail.puml -->
@@ -992,28 +1028,29 @@ scale 1.3
 {
 .
 { <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
+{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr (course language)</color> | <color:#E2E8F0>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
 .
-{ [ <color:#4338CA>Lesson overview</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>Raw JSON</color> ] | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | [ <color:#020617>Start lesson</color> ] }
+<color:#E2E8F0><b>LESSON PROTOTYPE</b></color>
+{ [ <color:#4338CA>Lesson overview</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>Raw JSON</color> ] | <color:#020617>xxx</color> | [ <color:#020617>   Start lesson   </color> ] | <color:#020617>xxxxxxxxxxxxxxxxxxxx</color> | [ <color:#4338CA>Outline</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>Draft</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>Content</color> ] }
 .
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+<color:#1E293B>──────────────────────────────────────────────────────────────────────────────</color>
 .
 <color:#E2E8F0><size:30><b>Le verbe être au présent</b></size></color>
 .
 {
 .
 { <color:#020617>xxx</color> | {
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<back:#0F172A><color:#E2E8F0><size:20><b>  OUTLINE  /  Lesson outline  </b></size></color></back>
+<back:#020617><color:#94A3B8><b> OUTLINE </b></color></back>  <color:#E2E8F0><size:20><b>Lesson outline</b></size></color>
 .
 {
-<color:#94A3B8>Lesson 4</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Grammar</color> | <color:#020617>xxx</color> | <color:#E2E8F0>French A1</color>
-.
-<color:#E2E8F0>Topic</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Verb forms</color> | <color:#020617>xxx</color> | <color:#E2E8F0>ID: fr-verb-etre-present</color>
+<color:#94A3B8>Lesson 4</color> | <color:#020617>xxx</color> | <color:#E2E8F0>( Grammar )</color> | <color:#020617>xxx</color> | <color:#E2E8F0>French / A1</color> | <color:#020617>xxx</color> | <color:#94A3B8>Topic</color>
+. | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | <color:#E2E8F0>Verb forms</color>
  }
 .
-<color:#E2E8F0><size:18><b>Outline intent</b></size></color>
+<color:#94A3B8>ID</color>
+<color:#64748B>fr-verb-etre-present</color>
+.
+<color:#94A3B8>Outline intent</color>
 <color:#E2E8F0>Conjuguer être au présent avec tous les pronoms pour dire sa nationalité,</color>
 <color:#E2E8F0>sa profession ou son état : je suis, tu es, il est…</color>
 .
@@ -1024,87 +1061,123 @@ scale 1.3
 {
 .
 { <color:#020617>xxx</color> | {
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+<back:#020617><color:#94A3B8><b> DRAFT </b></color></back>  <color:#E2E8F0><size:20><b>Lesson plan</b></size></color>
 .
-<back:#0F172A><color:#E2E8F0><size:20><b>  DRAFT  /  Grammar plan  </b></size></color></back>
+<color:#94A3B8>2 teaching blocks   /   About 12 minutes   /   Translations: English   /   Explanations: English</color>
 .
-<color:#94A3B8>3 explanation + practice blocks   /   About 13 minutes</color>
-.
-<color:#E2E8F0><b>Learning objective</b></color>
-<color:#E2E8F0>Choose the present-tense form of être for the subject.</color>
+<color:#E2E8F0><size:17><b>Learning objective</b></size></color>
+<color:#E2E8F0>Conjugate the irregular verb être in the present tense with all subject pronouns to express nationality, profession, and state.</color>
 .
 {
-<color:#E2E8F0><b>Block</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Rule / example</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Practice plan</b></color>
-.
-<color:#E2E8F0>01 Singular forms</color> | <color:#020617>xxx</color> | <color:#E2E8F0>je suis; tu es; il / elle est</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Pronoun matching and typing</color>
-.
-<color:#E2E8F0>02 Plural forms</color> | <color:#020617>xxx</color> | <color:#E2E8F0>nous sommes; vous êtes; ils / elles sont</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Choice gaps and typed gaps</color>
-.
-<color:#E2E8F0>03 Forms in context</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Tu es étudiant.</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Word order and error spotting</color>
+<color:#E2E8F0><size:17><b>Scope boundaries</b></size></color> | <color:#020617>xxx</color> | <color:#E2E8F0><size:17><b>Prerequisites</b></size></color>
+<color:#E2E8F0>Covers present indicative forms of être for all subject pronouns.</color> | <color:#020617>xxx</color> | <color:#E2E8F0>• Basic subject pronouns: je, tu, il, elle, on, nous, vous, ils, elles</color>
+<color:#E2E8F0>Excludes past tenses, subjunctive, and complex agreement.</color> | <color:#020617>xxx</color> | .
  }
 .
+<color:#E2E8F0><size:17><b>Rules</b></size></color>
+<color:#E2E8F0>1. Singular forms of être: je suis, tu es, il/elle/on est.</color>
+<color:#E2E8F0>2. Plural forms of être: nous sommes, vous êtes, ils/elles sont.</color>
+<color:#E2E8F0>3. Pronounce obligatory liaisons with vous êtes [vu zɛt] and ils sont vs ils ont.</color>
+.
+<color:#E2E8F0><size:17><b>Teaching blocks</b></size></color>
 {
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>Teaching rule and pitfall</b></color>
-.
-<color:#E2E8F0>Tu uses es; il and elle use est.</color>
-<color:#E2E8F0>Example: Tu es étudiant. Elle est étudiante.</color>
-<color:#E2E8F0>Pitfall: es and est sound alike but have different subjects.</color>
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
-<color:#E2E8F0><b>Mixed final exam plan</b></color>
-<color:#E2E8F0>Pronoun typing + typed gaps; word order only for sentence structure.</color>
-<color:#94A3B8>Each page defines tested forms, possible points, and its countdown.</color>
-<color:#E2E8F0>Example: one typed form, 30 seconds; a 3-answer form table, 60 seconds.</color>
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<back:#0F172A><color:#E2E8F0><size:20><b>  CONTENT  /  Grammar lesson  </b></size></color></back>
-.
-<color:#94A3B8>Numbered outline   /   Grouped page tabs   /   Read-only preview</color>
-.
-<color:#E2E8F0><b>Lesson outline</b></color>
-<color:#A5B4FC>1. Singular explanation — Page 1</color>
-<color:#67E8F9>2. Singular matching — Pages 2–4</color>
-<color:#86EFAC>3. Singular typing — Pages 5–7</color>
-<color:#FCD34D>4. Plural explanation — Page 8</color>
-<color:#FDA4AF>5. Plural practice — Pages 9–11</color>
-<color:#D8B4FE>6. Feedback — Page 12</color>
-<color:#A5B4FC>7. Final exam — Pages 13–14</color>
-.
-{
-<color:#A5B4FC><b>1. Explanation</b></color> | <color:#67E8F9><b>2. Matching</b></color> | <color:#86EFAC><b>3. Typing</b></color> | <color:#FCD34D><b>4. Explanation</b></color> | <color:#FDA4AF><b>5. Practice</b></color> | <color:#D8B4FE><b>6. Feedback</b></color> | <color:#A5B4FC><b>7. Exam</b></color>
-[Page 1] | [<b>Page 2</b>] [Page 3] [Page 4] | [Page 5] [Page 6] [Page 7] | [Page 8] | [Page 9] [Page 10] [Page 11] | [Page 12] | [Page 13] [Page 14]
+<back:#020617><color:#A5B4FC><b>1.</b></color> <color:#E2E8F0>Singular forms: je, tu, il, elle, on</color>   <color:#94A3B8>Rule 1</color></back> | <color:#020617>xxx</color> | <color:#67E8F9><b>2.</b></color> <color:#E2E8F0>Plural forms and liaisons: nous, vous, ils, elles</color>   <color:#94A3B8>Rule 2, Rule 3</color>
 }
-<color:#94A3B8>Wrap groups and page buttons onto multiple lines when needed; no horizontal scrolling.</color>
+<color:#A5B4FC>━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━</color>
+<color:#94A3B8>01</color> <color:#E2E8F0><b>Singular forms: je, tu, il, elle, on</b></color>
+<color:#94A3B8>Rule 1</color>
+<color:#94A3B8><b>Explanation plan (2 min)</b></color>
+<color:#E2E8F0>Introduce the irregular singular forms of être. Detail usage with professions, nationalities, and basic feelings.</color>
+<color:#94A3B8><b>Examples</b></color>
+<color:#E2E8F0>• <b>Je suis étudiant.</b></color><color:#94A3B8> – I am a student.</color>
+<color:#E2E8F0>• <b>Elle est française.</b></color><color:#94A3B8> – She is French.</color>
+<color:#94A3B8><b>Pitfalls</b></color>
+<color:#E2E8F0>• Do not confuse 'tu es' with 'il est', despite identical pronunciation [ɛ].</color>
+<color:#94A3B8><b>Exercises</b></color>
+{
+<color:#94A3B8><b>Exercise</b></color> | <color:#020617>xxx</color> | <color:#94A3B8><b>Items</b></color> | <color:#020617>xxx</color> | <color:#94A3B8><b>Rules</b></color> | <color:#020617>xxx</color> | <color:#94A3B8><b>Duration</b></color>
 .
-<color:#67E8F9><b>2. Singular matching — Page 2</b></color>
-<color:#94A3B8>30 seconds estimated   /   No countdown   /   3 point units</color>
-<color:#E2E8F0>Prompt: Choose the form for each pronoun.</color>
-<color:#E2E8F0>Options: suis, es, est</color>
-<color:#00E676>Accepted answers: je → suis; tu → es; il → est</color>
-<color:#E2E8F0>Explanation: With je use suis, with tu use es, with il use est.</color>
-<color:#94A3B8>Only the selected page appears here. Other rules, prompts and answers remain accessible through the tabs.</color>
+<color:#E2E8F0><b>Pronoun–form matching</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0>4</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Rule 1</color> | <color:#020617>xxx</color> | <color:#E2E8F0>1 min</color>
 .
+<color:#E2E8F0><b>Multiple-choice gaps</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0>4</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Rule 1</color> | <color:#020617>xxx</color> | <color:#E2E8F0>1 min</color>
+ }
+<color:#94A3B8>One teaching block is shown at a time.</color>
+.
+<color:#94A3B8>Personalised feedback placeholder: 30 s</color>
+.
+<color:#E2E8F0><size:17><b>Mixed final exam</b></size></color>
+<color:#94A3B8>Each page has its own time limit; the countdown starts when the page opens.</color>
+{
+<color:#94A3B8><b>Page</b></color> | <color:#020617>xxx</color> | <color:#94A3B8><b>Task</b></color> | <color:#020617>xxx</color> | <color:#94A3B8><b>Items</b></color> | <color:#020617>xxx</color> | <color:#94A3B8><b>Rules</b></color> | <color:#020617>xxx</color> | <color:#94A3B8><b>Duration</b></color> | <color:#020617>xxx</color> | <color:#94A3B8><b>Time limit</b></color>
+.
+<color:#E2E8F0><b>1</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0>Pronoun–form typing</color> | <color:#020617>xxx</color> | <color:#E2E8F0>6</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Rule 1, Rule 2</color> | <color:#020617>xxx</color> | <color:#E2E8F0>1 min 30 s</color> | <color:#020617>xxx</color> | <color:#E2E8F0>2 min</color>
+.
+<color:#E2E8F0><b>2</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0>Typed gaps</color> | <color:#020617>xxx</color> | <color:#E2E8F0>6</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Rule 1, Rule 2, Rule 3</color> | <color:#020617>xxx</color> | <color:#E2E8F0>1 min 30 s</color> | <color:#020617>xxx</color> | <color:#E2E8F0>2 min</color>
+ }
+.
+<color:#94A3B8>Scoring: practice 35%, exam 65%; answers wrong only in accents or capitals earn 50% credit.</color>
 .
  } | <color:#020617>xxx</color> }
 .
  }
 .
+{
+.
+{ <color:#020617>xxx</color> | {
+<back:#020617><color:#94A3B8><b> CONTENT </b></color></back>  <color:#E2E8F0><size:20><b>Lesson content</b></size></color>
+.
+<color:#94A3B8>About 12 minutes   /   Translations: English   /   Explanations: English</color>
+.
+<color:#E2E8F0>Conjugate the irregular verb être in the present tense with all subject pronouns to express nationality, profession, and state.</color>
+<color:#94A3B8>Scoring: practice 35%, exam 65%; answers wrong only in accents or capitals earn 50% credit.</color>
+.
+<color:#E2E8F0><size:17><b>Lesson outline</b></size></color>
+{
+<color:#A5B4FC><b>1.</b></color> <color:#E2E8F0>Singular forms: je, tu, il, elle, on</color>   <color:#94A3B8>Page 1</color> | <color:#020617>xxx</color> | <color:#67E8F9><b>2.</b></color> <color:#E2E8F0>Singular forms: je, tu, il, elle, on</color>   <color:#94A3B8>Page 2–5</color> | <color:#020617>xxx</color> | <color:#86EFAC><b>3.</b></color> <color:#E2E8F0>Singular forms: je, tu, il, elle, on</color>   <color:#94A3B8>Page 6–9</color> | <color:#020617>xxx</color> | <color:#FCD34D><b>4.</b></color> <color:#E2E8F0>Plural forms and liaisons: nous, vous, ils, elles</color>   <color:#94A3B8>Page 10</color>
+<color:#FDA4AF><b>5.</b></color> <color:#E2E8F0>Plural forms and liaisons: nous, vous, ils, elles</color>   <color:#94A3B8>Page 11–14</color> | <color:#020617>xxx</color> | <color:#D8B4FE><b>6.</b></color> <color:#E2E8F0>Plural forms and liaisons: nous, vous, ils, elles</color>   <color:#94A3B8>Page 15–18</color> | <color:#020617>xxx</color> | <color:#A5B4FC><b>7.</b></color> <color:#E2E8F0>Your feedback</color>   <color:#94A3B8>Page 19</color> | <color:#020617>xxx</color> | <color:#67E8F9><b>8.</b></color> <color:#E2E8F0>Final exam</color>   <color:#94A3B8>Page 20–21</color>
+}
+.
+{
+<color:#A5B4FC>1. Singular forms: je, tu, il, elle, on</color> | <color:#020617>xxx</color> | <color:#67E8F9>2. Singular forms: je, tu, il, elle, on</color> | <color:#020617>xxx</color> | <color:#86EFAC>3. Singular forms: je, tu, il, elle, on</color>
+{ [<b>Page 1</b>] } | <color:#020617>xxx</color> | { [Page 2] | [Page 3] | [Page 4] | [Page 5] } | <color:#020617>xxx</color> | { [Page 6] | [Page 7] | [Page 8] | [Page 9] }
+}
+{
+<color:#FCD34D>4. Plural forms and liaisons: nous, vous, ils, elles</color> | <color:#020617>xxx</color> | <color:#FDA4AF>5. Plural forms and liaisons: nous, vous, ils, elles</color>
+{ [Page 10] } | <color:#020617>xxx</color> | { [Page 11] | [Page 12] | [Page 13] | [Page 14] }
+}
+{
+<color:#D8B4FE>6. Plural forms and liaisons: nous, vous, ils, elles</color> | <color:#020617>xxx</color> | <color:#A5B4FC>7. Your feedback</color> | <color:#020617>xxx</color> | <color:#67E8F9>8. Final exam</color>
+{ [Page 15] | [Page 16] | [Page 17] | [Page 18] } | <color:#020617>xxx</color> | { [Page 19] } | <color:#020617>xxx</color> | { [Page 20] | [Page 21] }
+}
+<color:#94A3B8>Outline cards and page groups wrap onto more lines when needed; no horizontal scrolling.</color>
+.
+<color:#A5B4FC><b>1. Singular forms: je, tu, il, elle, on</b></color>
+<color:#E2E8F0><b>Page 1</b></color><color:#94A3B8> (block-singular-explanation)</color>
+<color:#94A3B8>2 min · No countdown · Point units: 0</color>
+<color:#E2E8F0>Read the explanation and the examples.</color>
+<color:#94A3B8>Task type: grammar_explanation · block-singular-explanation</color>
+<color:#E2E8F0>Rules: rule-singular-forms</color>
+<color:#E2E8F0><b>être in the singular</b></color>
+<color:#E2E8F0>Être (to be) is irregular: its forms must be learned by heart. …</color>
+{
+<color:#94A3B8><b>Subject</b></color> | <color:#020617>xxx</color> | <color:#94A3B8><b>Form</b></color> | <color:#020617>xxx</color> | <color:#94A3B8><b>Example</b></color>
+.
+<color:#E2E8F0>je</color> | <color:#020617>xxx</color> | <color:#E2E8F0>suis</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Je suis étudiant.</color>
+.
+<color:#E2E8F0>tu</color> | <color:#020617>xxx</color> | <color:#E2E8F0>es</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Tu es fatigué ?</color>
+.
+<color:#E2E8F0>il / elle / on</color> | <color:#020617>xxx</color> | <color:#E2E8F0>est</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Elle est française.</color>
+ }
+<color:#94A3B8>Only the selected page appears. Every prompt, accepted answer, explanation and limit stays reachable through the tabs.</color>
+.
  } | <color:#020617>xxx</color> }
 .
  }
+.
+.
+} | <color:#020617>xxx</color> }
+.
+}
 @endsalt
 ```
 <!-- mockup:end mockups/02-artifact-view/grammar/lesson-detail.puml -->
@@ -1745,23 +1818,22 @@ scale 1.3
 {
 .
 { <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
+{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr (course language)</color> | <color:#E2E8F0>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
 .
-{ [ <color:#4338CA>Lesson overview</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>Structured view</color> ] | <color:#020617>xxx</color> | [ <color:#020617>   Start lesson   </color> ] }
+<color:#E2E8F0><b>LESSON PROTOTYPE</b></color>
+{ [ <color:#4338CA>Lesson overview</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>Structured view</color> ] | <color:#020617>xxx</color> | [ <color:#020617>   Start lesson   </color> ] | <color:#020617>xxxxxxxxxxxxxxxxxxxx</color> | [ <color:#4338CA>Outline</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>Draft</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>Content</color> ] }
 .
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+<color:#1E293B>──────────────────────────────────────────────────────────────────────────────</color>
 .
 <color:#E2E8F0><size:30><b>Les objets de la classe</b></size></color>
-<color:#94A3B8>French A1   /   Raw JSON</color>
+<color:#94A3B8>Select an object or array to expand or collapse it. Arrow keys move through the tree.</color>
 .
 {T
-+ <color:#E2E8F0>▾ artifacts  (object · 3 keys)</color>
-++ <color:#E2E8F0>▸ outline  (object)</color>
-++ <color:#E2E8F0>▸ draft  (object)</color>
-++ <color:#E2E8F0>▸ content  (object)</color>
++ <color:#64748B>▾</color> <color:#E2E8F0>Combined artifact object</color> <color:#94A3B8>(object · 3 keys)</color>
+++ <color:#64748B>▸</color> <color:#E2E8F0>outline</color> <color:#94A3B8>(object · 5 keys)</color>
+++ <color:#64748B>▸</color> <color:#E2E8F0>draft</color> <color:#94A3B8>(object · 20 keys)</color>
+++ <color:#64748B>▸</color> <color:#E2E8F0>content</color> <color:#94A3B8>(object · 12 keys)</color>
 }
-.
-<color:#94A3B8>Select an object or array to expand or collapse it.</color>
 .
 } | <color:#020617>xxx</color> }
 .
@@ -1785,39 +1857,40 @@ scale 1.3
 {
 .
 { <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
+{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr (course language)</color> | <color:#E2E8F0>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
 .
-{ [ <color:#4338CA>Lesson overview</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>Structured view</color> ] | <color:#020617>xxx</color> | [ <color:#020617>   Start lesson   </color> ] }
+<color:#E2E8F0><b>LESSON PROTOTYPE</b></color>
+{ [ <color:#4338CA>Lesson overview</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>Structured view</color> ] | <color:#020617>xxx</color> | [ <color:#020617>   Start lesson   </color> ] | <color:#020617>xxxxxxxxxxxxxxxxxxxx</color> | [ <color:#4338CA>Outline</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>Draft</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>Content</color> ] }
 .
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+<color:#1E293B>──────────────────────────────────────────────────────────────────────────────</color>
 .
 <color:#E2E8F0><size:30><b>Les objets de la classe</b></size></color>
-<color:#94A3B8>French A1   /   Raw JSON</color>
+<color:#94A3B8>Select an object or array to expand or collapse it. Arrow keys move through the tree.</color>
 .
 {T
-+ <color:#E2E8F0>▾ artifacts  (object · 3 keys)</color>
-++ <color:#E2E8F0>▸ outline  (object)</color>
-++ <color:#E2E8F0>▸ draft  (object)</color>
-++ <color:#E2E8F0>▾ content  (object · 10 keys)</color>
-+++ <color:#94A3B8>schemaVersion: </color><color:#E2E8F0>2</color>
-+++ <color:#94A3B8>id: </color><color:#E2E8F0>"fr-classroom-objects"</color>
-+++ <color:#94A3B8>kind: </color><color:#E2E8F0>"vocabulary"</color>
-+++ <color:#94A3B8>lang: </color><color:#E2E8F0>"fr"</color>
-+++ <color:#94A3B8>level: </color><color:#E2E8F0>"A1"</color>
-+++ <color:#94A3B8>title: </color><color:#E2E8F0>"Les objets de la classe"</color>
-+++ <color:#E2E8F0>▾ objective  (object · 3 keys)</color>
-++++ <color:#94A3B8>en: </color><color:#E2E8F0>"Name classroom objects."</color>
-++++ <color:#94A3B8>fr: </color><color:#E2E8F0>"Nommer les objets de la classe."</color>
-++++ <color:#94A3B8>de: </color><color:#E2E8F0>"Gegenstände im Klassenzimmer benennen."</color>
-+++ <color:#E2E8F0>▾ locales  [3]</color>
-++++ <color:#94A3B8>0: </color><color:#E2E8F0>"en"</color>
-++++ <color:#94A3B8>1: </color><color:#E2E8F0>"fr"</color>
-++++ <color:#94A3B8>2: </color><color:#E2E8F0>"de"</color>
-+++ <color:#E2E8F0>▸ steps  [6]</color>
-+++ <color:#E2E8F0>▸ provenance  (object)</color>
++ <color:#64748B>▾</color> <color:#E2E8F0>Combined artifact object</color> <color:#94A3B8>(object · 3 keys)</color>
+++ <color:#64748B>▸</color> <color:#E2E8F0>outline</color> <color:#94A3B8>(object · 5 keys)</color>
+++ <color:#64748B>▸</color> <color:#E2E8F0>draft</color> <color:#94A3B8>(object · 20 keys)</color>
+++ <color:#64748B>▾</color> <color:#E2E8F0>content</color> <color:#94A3B8>(object · 12 keys)</color>
++++ <color:#E2E8F0>schemaVersion</color><color:#64748B>: </color><color:#C4B5FD>2</color>
++++ <color:#E2E8F0>id</color><color:#64748B>: </color><color:#67E8F9>"fr-classroom-objects"</color>
++++ <color:#E2E8F0>lang</color><color:#64748B>: </color><color:#67E8F9>"fr"</color>
++++ <color:#E2E8F0>level</color><color:#64748B>: </color><color:#67E8F9>"A1"</color>
++++ <color:#64748B>▾</color> <color:#E2E8F0>locales</color> <color:#94A3B8>(array · 3 items)</color>
+++++ <color:#E2E8F0>0</color><color:#64748B>: </color><color:#67E8F9>"en"</color>
+++++ <color:#E2E8F0>1</color><color:#64748B>: </color><color:#67E8F9>"fr"</color>
+++++ <color:#E2E8F0>2</color><color:#64748B>: </color><color:#67E8F9>"de"</color>
++++ <color:#E2E8F0>title</color><color:#64748B>: </color><color:#67E8F9>"Les objets de la classe"</color>
++++ <color:#64748B>▾</color> <color:#E2E8F0>objective</color> <color:#94A3B8>(object · 3 keys)</color>
+++++ <color:#E2E8F0>en</color><color:#64748B>: </color><color:#67E8F9>"Learn to identify and name twelve common classroom objects…"</color>
+++++ <color:#E2E8F0>fr</color><color:#64748B>: </color><color:#67E8F9>"Apprendre à identifier et nommer douze objets courants…"</color>
+++++ <color:#E2E8F0>de</color><color:#64748B>: </color><color:#67E8F9>"Lerne, zwölf häufige Klassenzimmergegenstände…"</color>
++++ <color:#E2E8F0>estimatedMinutes</color><color:#64748B>: </color><color:#C4B5FD>13</color>
++++ <color:#64748B>▸</color> <color:#E2E8F0>provenance</color> <color:#94A3B8>(object · 5 keys)</color>
++++ <color:#E2E8F0>kind</color><color:#64748B>: </color><color:#67E8F9>"vocabulary"</color>
++++ <color:#E2E8F0>theme</color><color:#64748B>: </color><color:#67E8F9>"education"</color>
++++ <color:#64748B>▸</color> <color:#E2E8F0>steps</color> <color:#94A3B8>(array · 6 items)</color>
 }
-.
-<color:#94A3B8>Select an object or array to expand or collapse it.</color>
 .
 } | <color:#020617>xxx</color> }
 .
@@ -3127,3 +3200,4 @@ When publishing the agreed backlog, include relevant Mermaid flows as fenced `me
 | 0.29 | 2026-10-06 | P1-09: session engine (plan, scoring, reducer, storage), start/resume page, session host with duration-weighted progress, live score header and per-page countdown, final results with exam/practice menu. Baseline renderers for every vocabulary and grammar item type make both categories playable in phase 1; phases 2/3 refine individual renderers. |
 | 0.30 | 2026-10-07 | P1-11: listening choice/dictation audio speaks the teaching form (IPA pronunciation text is shown in previews, not spoken); dictation must accept the teaching form. Without a learning-language voice, listening pages show the help page with Skip, and other Listen controls become **Install language** buttons opening the help in a modal dialog. The help is personalised to the detected OS and browser with researched Windows (language feature Text-to-speech; Firefox 106+), macOS (Manage Voices) and Linux (Speech Dispatcher, Snap/Flatpak caveat) steps. |
 | 0.31 | 2026-10-07 | P1-10: reviewed the shared plan/session/scoring/renderer contracts against all twenty samples ([record](reviews/2026-10-07-p1-10-contract-review.md)); every sample plays to 100 and 0 in a permanent contract test. Listening-choice pages must be homogeneous; unknown item types fail plan building; grammar units carry `ruleIds`; the session stores presentation progress (`revealed`). Ownership of shared matching, typing, token, audio and result controls is recorded for phases 2 and 3. |
+| 0.32 | 2026-10-07 | P1-12: refreshed the index, vocabulary/grammar artifact-view and Raw JSON mockups from the prototype at `ac00dea` (comparison record in the [mockup README](mockups/README.md#phase-1-comparison)). Draft views show target groups and teaching blocks as numbered tabs like the Content view; grammar form tables are labelled Subject / Form / Example. Follow-ups recorded: repeated grammar step labels in content, rule IDs versus rule numbers. |

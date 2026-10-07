@@ -1,5 +1,5 @@
-import type { GrammarBrief, GrammarExerciseType } from '../schemas/grammar.ts';
-import { BriefBlock, Learn, ScoringNote, SummaryLine, TextList, useBriefText } from './briefParts.tsx';
+import type { GrammarBrief } from '../schemas/grammar.ts';
+import { BriefBlock, DraftTabs, Learn, ScoringNote, SummaryLine, TextList, useBriefText } from './briefParts.tsx';
 import type { ArtifactViewProps } from './registry.ts';
 
 /** Draft view of a validated grammar brief (SPEC section 3, "Structured artifact components"). */
@@ -9,7 +9,6 @@ export function GrammarBriefView({ data }: ArtifactViewProps) {
   const { t, ui, native, duration } = text;
   const ruleNumber = new Map(brief.rules.map((rule, n) => [rule.id, n + 1]));
   const ruleLabels = (ids: string[]) => ids.map((id) => t('brief.rule', { number: ruleNumber.get(id) ?? id })).join(', ');
-  const exercises = (types: GrammarExerciseType[]) => [...new Set(types)].map((type) => t(`exercise.${type}`)).join(', ');
 
   return (
     <div className="brief">
@@ -42,33 +41,8 @@ export function GrammarBriefView({ data }: ArtifactViewProps) {
       </BriefBlock>
 
       <BriefBlock title={t('brief.blocks')}>
-        <div className="table-wrap">
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th scope="col">{t('brief.col.block')}</th>
-                <th scope="col">{t('brief.col.rules')}</th>
-                <th scope="col">{t('brief.col.example')}</th>
-                <th scope="col">{t('brief.col.practice')}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {brief.blocks.map((block, n) => (
-                <tr key={block.id}>
-                  <th scope="row">
-                    <span className="step-number">{String(n + 1).padStart(2, '0')}</span> {ui(block.title)}
-                  </th>
-                  <td>{ruleLabels(block.ruleIds)}</td>
-                  <td>
-                    <Learn lang={brief.lang}>{block.examples[0].text}</Learn>
-                  </td>
-                  <td>{exercises(block.exercises.map((e) => e.type))}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        {brief.blocks.map((block, n) => (
+        <DraftTabs label={t('brief.blocks')} tabs={brief.blocks.map((block) => ({ id: block.id, title: ui(block.title), meta: ruleLabels(block.ruleIds) }))}>
+          {(n) => { const block = brief.blocks[n]; return (
           <article key={block.id} className="block-card" aria-labelledby={`block-${block.id}`}>
             <h4 id={`block-${block.id}`}>
               <span className="step-number">{String(n + 1).padStart(2, '0')}</span> {ui(block.title)}
@@ -113,7 +87,8 @@ export function GrammarBriefView({ data }: ArtifactViewProps) {
               </table>
             </div>
           </article>
-        ))}
+        ); }}
+        </DraftTabs>
         <p className="muted">{t('brief.feedbackPlaceholder', { duration: duration(brief.feedbackPlaceholder.estimatedDurationS) })}</p>
       </BriefBlock>
 
