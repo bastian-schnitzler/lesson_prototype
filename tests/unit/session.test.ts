@@ -252,3 +252,64 @@ describe('green-and-continue for single-answer pages (P2-04 review)', () => {
     expect(s.page().pageId).not.toBe(id);
   });
 });
+
+describe('grammar renderer composition (P3-01)', () => {
+  const GRAMMAR_TYPES = ['grammar_pronoun_form_match', 'grammar_pronoun_form_typing', 'grammar_gap_choice', 'grammar_gap_typing', 'grammar_word_order', 'grammar_error_spotter'];
+
+  /** The être fixture plus a timed word-order page, so the exam mixes all three exam types. */
+  function mixedExam() {
+    const content = lessonOf(FIXTURES, GRAM) as Extract<ReturnType<typeof lessonOf>, { kind: 'grammar' }>;
+    const exam = content.steps.at(-1)!;
+    exam.pages.push({
+      pageId: 'exam-order', estimatedDurationS: 40, timeLimitS: 60, instructions: exam.pages[0].instructions,
+      items: [{
+        type: 'grammar_word_order', itemId: 'order-1', ruleIds: ['r-plural'], answerExplanation: { en: 'e', fr: 'e', de: 'e' },
+        tokens: [{ tokenId: 'a', text: 'nous' }, { tokenId: 'b', text: 'sommes' }, { tokenId: 'c', text: 'ici' }, { tokenId: 'd', text: 'aujourd’hui' }],
+        acceptedOrders: [['a', 'b', 'c', 'd'], ['d', 'a', 'b', 'c']],
+      }],
+    });
+    return buildPlan(content, load('briefs', GRAM), 'en');
+  }
+
+  it('plans every practice type of the fixture as scorable units with an item-level explanation', () => {
+    const { plan } = setup(GRAM);
+    const units = plan.pages.filter((p) => p.role === 'practice').flatMap((p) => p.units);
+    expect(new Set(units.map((u) => u.itemType))).toEqual(new Set(GRAMMAR_TYPES.filter((t) => t !== 'grammar_word_order')));
+    for (const u of units) expect(u.explanation.en.length).toBeGreaterThan(0);
+  });
+
+  it('grades a mixed exam (typed gaps, typed pronoun forms, word order) with the one shared scorer', () => {
+    const plan = mixedExam();
+    const exam = plan.pages.filter((p) => p.role === 'exam');
+    expect(new Set(exam.flatMap((p) => p.units.map((u) => u.kind)))).toEqual(new Set(['text', 'order']));
+    expect(new Set(exam.flatMap((p) => p.items.map((i) => i.type)))).toEqual(new Set(['grammar_gap_typing', 'grammar_pronoun_form_typing', 'grammar_word_order']));
+    let record = startSession(plan, { sessionId: 's', contentHash: 'h', level: 'A1', motherTongue: 'en', seed: 1, now: 0 });
+    const act = (action: SessionAction) => (record = sessionReducer(plan, record, action));
+    const right = (u: (typeof exam)[number]['units'][number]) => (u.kind === 'text' ? u.accepted.answers[0] : u.kind === 'choice' ? u.correct[0] : u.kind === 'order' ? u.acceptedOrders.at(-1) : { tokenId: u.faultyTokenId, text: u.correction.accepted.answers[0] });
+    for (let guard = 0; record.phase !== 'results' && guard < 200; guard++) {
+      const page = plan.pages[record.pageIndex];
+      if (record.phase === 'answering') for (const u of page.units) act({ type: 'draft', unitId: u.id, response: right(u) as never, now: 0 });
+      act({ type: 'continue', now: 0, interfaceLanguage: 'en' });
+    }
+    expect(record.phase).toBe('results');
+    const results = lessonResults(plan, record);
+    expect(results.exam).toMatchObject({ earned: exam.flatMap((p) => p.units).length, possible: exam.flatMap((p) => p.units).length });
+    expect(results.examScore).toBe(100);
+  });
+
+  it('accepts duplicate form texts, alternative valid forms and alternative word orders', () => {
+    const tokens = (texts: string[]) => texts.map((text, n) => ({ id: `t${n}`, text, lang: 'learning' as const }));
+    const base = { id: 'u', itemId: 'i', prompt: {}, explanation: { en: 'e', fr: 'e', de: 'e' }, answer: '', answerLang: 'learning' as const };
+    // Two tokens with the same text are both correct for the row (il / elle est).
+    const match = { ...base, kind: 'choice' as const, itemType: 'grammar_pronoun_form_match' as const, options: tokens(['est', 'est', 'sont']), correct: ['t0', 't1'] };
+    expect(scoreUnit(match, 't1').points).toBe(1);
+    expect(scoreUnit(match, 't2').points).toBe(0);
+    const typing = { ...base, kind: 'text' as const, itemType: 'grammar_pronoun_form_typing' as const, accepted: { answers: ['payes', 'paies'], accentSensitive: [] } };
+    expect(scoreUnit(typing, 'paies').points).toBe(1);
+    // Repeated words have distinct tokens; either token order of the same sentence counts.
+    const order = { ...base, kind: 'order' as const, itemType: 'grammar_word_order' as const, tokens: tokens(['nous', 'nous', 'lavons']), acceptedOrders: [['t0', 't2', 't1'], ['t1', 't0', 't2']] };
+    expect(scoreUnit(order, ['t1', 't2', 't0']).points).toBe(1); // same sentence as the first order
+    expect(scoreUnit(order, ['t0', 't1', 't2']).points).toBe(1); // the alternative order
+    expect(scoreUnit(order, ['t2', 't0', 't1']).points).toBe(0);
+  });
+});

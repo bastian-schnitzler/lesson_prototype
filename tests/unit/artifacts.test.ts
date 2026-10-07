@@ -158,6 +158,13 @@ describe('brief validation', () => {
     expect(checkBrief('fr-verb-etre-present', (b) => (b.blocks = [b.blocks[0]])).status).toBe('invalid');
   });
 
+  it('allows pronoun/form exercises only for pronoun and verb topics (P3-01)', () => {
+    expect(checkBrief('fr-verb-etre-present').status).toBe('valid');
+    const r = checkBrief('fr-negation-ne-pas', (b) => (b.blocks[0].exercises[0].type = 'grammar_pronoun_form_match'));
+    expect(messages(r)).toMatch(/blocks\.0\.exercises\.0\.type: grammar_pronoun_form_match suits only pronouns, verbs_morphology, verb_usage topics, not negation/);
+    expect(messages(checkBrief('fr-negation-ne-pas', (b) => (b.exam.pages[0].type = 'grammar_pronoun_form_typing')))).toMatch(/exam\.pages\.0\.type: grammar_pronoun_form_typing suits only/);
+  });
+
   it('marks valid briefs from older outline entries as stale', () => {
     const r = validateBrief(load('fr-classroom-objects', 'brief'), { ...ctx('fr-classroom-objects'), outlineHash: 'another-outline-hash-0000' });
     expect(r.status).toBe('stale');
@@ -202,6 +209,12 @@ describe('grammar content validation', () => {
     expect(messages(checkContent('fr-negation-ne-pas', (c) => (c.steps[4].pages[0].items[0].correction.choices = ['pas', 'non'])))).toMatch(/select mode/);
     expect(messages(checkContent('fr-verb-etre-present', (c) => (c.steps[8].pages[0].items[0].hint = { en: 'h', fr: 'h', de: 'h' })))).toMatch(/no hint/);
     expect(messages(checkContent('fr-verb-etre-present', (c) => (c.steps[6].pages[0].items[0].ruleIds = ['r-x'])))).toMatch(/unknown rule r-x/);
+  });
+
+  it('requires items to assess exactly the planned rules of their exercise or exam page (P3-01)', () => {
+    expect(messages(checkContent('fr-verb-etre-present', (c) => (c.steps[2].pages[0].items[0].ruleIds = ['r-plural'])))).toMatch(/rule r-plural is not planned for planned exercise/);
+    expect(messages(checkContent('fr-verb-etre-present', (c) => (c.steps[8].pages[0].items[0].ruleIds = ['r-plural'])))).toMatch(/no item of exam page exam-gaps assesses rule r-singular/);
+    expect(messages(checkContent('fr-verb-etre-present', (c) => (c.steps[0].pages[0].items[0].ruleIds = ['r-plural'])))).toMatch(/rule r-plural is not taught in block/);
   });
 
   it('keeps the production feedback step a fixed placeholder', () => {
