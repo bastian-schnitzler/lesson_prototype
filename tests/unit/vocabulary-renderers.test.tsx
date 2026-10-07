@@ -88,6 +88,6 @@ it('marks the choices in place after Check: green for right, red for wrong, purp
   const wrongRow = container.querySelector('.gender-row.is-wrong')!;
   expect(wrongRow.querySelector('.gender-option.is-wrong input')).toHaveProperty('value', wrongChoice);
   expect(wrongRow.querySelector('.gender-option.is-answer input')).toHaveProperty('value', first.correct[0]);
-  expect(wrongRow.querySelector('.gender-explanation')).not.toBeNull();
+  expect(wrongRow.querySelector('.gender-explanation')).toBeNull(); // no explanation on the gender page (P2-04 review)
   expect(container.querySelectorAll('.gender-row.is-right .gender-option.is-right')).toHaveLength(units.length - 1);
 });

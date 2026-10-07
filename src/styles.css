@@ -1909,10 +1909,6 @@ select {
   cursor: default;
 }
 
-.gender-explanation {
-  flex-basis: 100%;
-  margin: 0;
-}
 
 /* P2-04 review: the word line and the choice row keep their size before and after Check. */
 .gender-word {
@@ -2074,4 +2070,39 @@ select {
 
 .result-accordion > .result-section {
   margin: 0.75rem 1rem;
+}
+
+/* Matching after Check (P2-04 review): French words sit level with their correct meaning;
+   right ones green, wrong ones red, and only the wrong pairs keep a red curve. */
+.matching.is-checked .match-item:disabled {
+  opacity: 1;
+  cursor: default;
+}
+
+.matching.is-checked .match-item.is-right {
+  border-color: var(--correct);
+  box-shadow: inset 0 0 0 1px var(--correct);
+  color: var(--correct);
+}
+
+.matching.is-checked .match-item.is-wrong {
+  border-color: var(--incorrect);
+  box-shadow: inset 0 0 0 1px var(--incorrect);
+  color: var(--incorrect);
+}
+
+.match-curve.is-checked {
+  stroke: var(--incorrect);
+  animation: curve-in 0.3s ease 0.6s both;
+}
+
+@keyframes curve-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .match-curve.is-checked {
+    animation: none;
+  }
 }

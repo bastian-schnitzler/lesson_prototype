@@ -176,8 +176,9 @@ export function TextControl({ unit, props, label }: { unit: PlanUnit; props: Ren
       onChange={(e) => props.onChange(unit.id, e.target.value)}
     />
   );
-  if (!outcome || outcome === 'fully_correct') return field;
-  // A wrong or half-point answer: the field turns red (amber) and the correct answer follows in green.
+  // Typed gaps show the correct word as the green reference card above, so only the field is marked.
+  if (!outcome || outcome === 'fully_correct' || unit.itemType === 'vocabulary_typed_gap') return field;
+  // Other typed answers: the field turns red (amber) and the correct answer follows in green.
   return (
     <>
       {field}{' '}

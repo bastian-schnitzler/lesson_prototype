@@ -150,7 +150,9 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
       && page.units.every((u) => scoreUnit(u, record.drafts[u.id]).outcome === 'fully_correct');
     if (!perfect) return dispatch({ type: 'continue' });
     setCelebrating(true);
-    window.setTimeout(() => { setCelebrating(false); dispatch({ type: 'continue' }); }, 900);
+    // Matching first slides every word level with its meaning (0.6 s), so its flash lasts longer.
+    const pause = page.items.some((it) => it.type === 'vocabulary_matching') ? 1500 : 900;
+    window.setTimeout(() => { setCelebrating(false); dispatch({ type: 'continue' }); }, pause);
   };
 
   return (

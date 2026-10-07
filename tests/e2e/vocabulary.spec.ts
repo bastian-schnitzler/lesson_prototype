@@ -105,7 +105,7 @@ async function step(page: Page, data: ReturnType<typeof lessonData>, opts: Optio
     await primary(page).click();
     // A correct practice page flashes green and moves on; otherwise confirm the shown feedback.
     await expect(page.locator('.task-card.is-celebrating')).toHaveCount(0, { timeout: 10_000 });
-    if ((await page.locator('.feedback, .inline-answer, .choice.is-wrong, .match-results, .gender-page .match-summary').count()) && (await primary(page).count())) await primary(page).click();
+    if ((await page.locator('.feedback, .text-input.is-wrong, .text-input.is-almost, .choice.is-wrong, .matching.is-checked, .gender-page .match-summary').count()) && (await primary(page).count())) await primary(page).click();
   }
 }
 

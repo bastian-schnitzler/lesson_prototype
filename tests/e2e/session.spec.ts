@@ -44,12 +44,12 @@ async function matchAll(page: Page, { wrong = true } = {}) {
 async function answerGap(page: Page, word: string, check?: () => Promise<void>) {
   await page.getByRole('textbox').fill(word);
   await proceed(page);
-  // Either the inline correction appears, or (after the green flash) the next page shows an empty field.
+  // Either the field is marked in place, or (after the green flash) the next page shows an empty field.
   await page.waitForFunction(() => {
     const field = document.querySelector<HTMLInputElement>('.task-card input.text-input');
-    return !!document.querySelector('.inline-answer') || !field || field.value === '';
+    return !!document.querySelector('.text-input.is-wrong, .text-input.is-almost') || !field || field.value === '';
   });
-  if (await page.locator('.inline-answer').count()) {
+  if (await page.locator('.text-input.is-wrong, .text-input.is-almost').count()) {
     await check?.();
     await proceed(page);
   }
@@ -101,16 +101,20 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   await expect(page.getByRole('button', { name: 'Check' })).toBeDisabled(); // practice pages are checked first
   await matchAll(page);
   await proceed(page);
-  // Results list only the mistakes: word, struck-through choice and the correct meaning, no point counts.
+  // Checked in place (no correction view): every French word moves level with its correct meaning,
+  // right ones green and wrong ones red; only the two wrong pairs keep a (red) curve on wide screens.
   await expect(page.locator('.match-summary')).toContainText('2 of 4 pairs correct.');
-  await expect(page.locator('.match-corrections > li')).toHaveCount(2);
-  await expect(page.locator('.match-corrections .match-wrong s').first()).toBeVisible();
-  const fix = page.locator('.match-fix').first();
-  const right = (await fix.locator('.match-right').boundingBox())!, wrong = (await fix.locator('.match-wrong').boundingBox())!;
-  expect(Math.abs(right.x - wrong.x)).toBeLessThan(1); // the wrong choice sits directly under the correct meaning
-  expect(wrong.y).toBeGreaterThan(right.y);
-  await expect(page.locator('.match-results')).not.toContainText('0 / 1');
-  await expect(page.locator('.matching-columns')).toHaveCount(0);
+  const french = page.locator('.matching-columns > ul').last().locator('.match-item');
+  await expect(french.and(page.locator('.is-wrong'))).toHaveCount(2);
+  await expect(french.and(page.locator('.is-right'))).toHaveCount(2);
+  if (page.viewportSize()!.width >= 720) await expect(page.locator('.match-curve.is-checked')).toHaveCount(2);
+  await page.waitForTimeout(700); // the slide animation
+  for (const meaning of await page.locator('.matching-columns > ul').first().locator('.match-item').all()) {
+    const word = PAIRS[(await meaning.textContent())!.replace(/\d+$/, '').trim()];
+    const partner = french.filter({ hasText: word });
+    expect(Math.abs((await partner.boundingBox())!.y - (await meaning.boundingBox())!.y)).toBeLessThan(2);
+  }
+  await expect(page.locator('.match-corrections')).toHaveCount(0);
   await proceed(page);
 
   await page.reload();
@@ -138,7 +142,8 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
     // green, and only then an explanation appears below the Continue button, which keeps its place.
     await answerGap(page, word, async () => {
       await expect(page.locator('.text-input.is-almost')).toBeVisible();
-      await expect(page.locator('.inline-answer')).toHaveText(/chaise/);
+      await expect(page.locator('.inline-answer')).toHaveCount(0); // the green reference card shows the word
+      await expect(page.locator('.reference-list li.is-correct')).toHaveText(/chaise/);
       await expect(page.locator('.units .feedback')).toHaveCount(0); // no feedback card under the field
       const button = (await page.getByRole('button', { name: 'Continue' }).boundingBox())!;
       expect((await page.locator('.footer-note').boundingBox())!.y).toBeGreaterThan(button.y);
@@ -443,5 +448,6 @@ test('matching pairs by keyboard, lets a pair be reassigned and locks it with fe
   // All pairs correct: a short success animation, then the correction view is skipped.
   await proceed(page);
   await expect(page.getByRole('status').filter({ hasText: 'All correct!' })).toBeAttached();
+  await expect(french.and(page.locator('.is-right'))).toHaveCount(4); // every French word green, level with its meaning
   await expect(page.getByText('Gender and overview')).toBeVisible();
 });

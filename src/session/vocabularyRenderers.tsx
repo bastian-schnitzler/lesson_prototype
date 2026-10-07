@@ -121,10 +121,10 @@ function Flashcard({ id, index, total, plan, motherTongue, initiallyFlipped, onF
 /**
  * Matching (P2-02): mother-tongue meanings and French forms in two independently shuffled columns.
  * Select one item on either side, then its partner on the other; pairs stay editable until Continue,
- * which locks one point unit per French form and shows corrections with their explanations.
+ * which locks one point unit per French form; the page is then checked in place (P2-04 review).
  */
 export function MatchingRenderer(props: RendererProps) {
-  const { t, locale } = useI18n();
+  const { t } = useI18n();
   const { item, units, plan, seed, mode } = props;
   const [selected, setSelected] = useState<{ side: 'native' | 'learning'; id: string } | null>(null);
   const boxes = useRef(new Map<string, HTMLButtonElement>());
@@ -145,45 +145,15 @@ export function MatchingRenderer(props: RendererProps) {
     return target?.genders.length ? `${target.teachingForm} (${genderLabel(target, t)})` : target?.teachingForm ?? '';
   };
 
-  if (mode !== 'answering') {
-    // Results: a short summary, then only the mistakes – the word, the learner's choice struck through,
-    // the correct meaning and the explanation. Correct pairs are not repeated.
-    const mistakes = choiceUnits.filter((unit) => props.locked[unit.id]?.outcome !== 'fully_correct');
-    const correct = choiceUnits.length - mistakes.length;
-    return (
-      <div className="match-results">
-        <p className="match-summary">
-          <strong>{t('session.matchSummary', { correct, total: choiceUnits.length })}</strong>
-          {mistakes.length > 0 && <> {t('session.matchReview')}</>}
-        </p>
-        <ul className="match-corrections">
-          {mistakes.map((unit) => {
-            const target = targetOf(unit.id);
-            const chosen = nativeText(pairOf(unit.id) ?? '');
-            return (
-              <li key={unit.id}>
-                <div className="match-fix">
-                  <strong className="match-right"><span className="visually-hidden">{t('session.correctMeaning')}: </span>{nativeText(unit.correct[0])}</strong>
-                  <span className="match-arrow" aria-hidden="true">→</span>
-                  <span className="match-word">
-                    <span lang={plan.lang}>{target?.teachingForm}</span>
-                    {target && <ListenButton text={target.teachingForm} lang={plan.lang} variant="icon" label={t('session.listenWord', { word: target.teachingForm })} />}
-                    {target?.genders.length ? <small>{genderLabel(target, t)}</small> : null}
-                  </span>
-                  <span className="match-wrong"><span className="visually-hidden">{t('session.yourChoice')}: </span><s>{chosen || t('session.noAnswer')}</s></span>
-                </div>
-                <p className="muted">{unit.explanation[locale]}</p>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    );
-  }
-
   const nativeOrder = seededOrder(options, seed, `${item.itemId}/native`);
-  const learningOrder = seededOrder(choiceUnits, seed, `${item.itemId}/learning`);
-  const pairNumber = new Map(learningOrder.filter((u) => pairOf(u.id)).map((u, n) => [u.id, n + 1]));
+  // After Check (or during the success flash) every French word moves level with its correct meaning
+  // (P2-04 review): correct words turn green, wrong ones red, and only wrong pairs keep their (red) curve.
+  const checked = mode !== 'answering' || !!props.celebrating;
+  const outcomeOf = (unitId: string) => (props.locked[unitId]?.outcome ?? (props.celebrating ? 'fully_correct' : undefined));
+  const isWrong = (unitId: string) => checked && outcomeOf(unitId) !== 'fully_correct';
+  const shuffled = seededOrder(choiceUnits, seed, `${item.itemId}/learning`);
+  const learningOrder = checked ? [...choiceUnits].sort((a, b) => nativeOrder.findIndex((o) => o.id === a.correct[0]) - nativeOrder.findIndex((o) => o.id === b.correct[0])) : shuffled;
+  const pairNumber = new Map(learningOrder.filter((u) => pairOf(u.id) && (!checked || isWrong(u.id))).map((u, n) => [u.id, n + 1]));
   const unitForOption = (optionId: string) => choiceUnits.find((u) => pairOf(u.id) === optionId);
   const assign = (unitId: string, optionId: string) => {
     for (const other of choiceUnits) if (other.id !== unitId && pairOf(other.id) === optionId) props.onChange(other.id, '');
@@ -191,6 +161,7 @@ export function MatchingRenderer(props: RendererProps) {
     setSelected(null);
   };
   const pick = (side: 'native' | 'learning', id: string) => {
+    if (checked) return;
     if (selected && selected.side !== side) {
       if (side === 'learning') assign(id, selected.id);
       else assign(selected.id, id);
@@ -201,12 +172,15 @@ export function MatchingRenderer(props: RendererProps) {
   const register = (key: string) => (element: HTMLButtonElement | null) => { if (element) boxes.current.set(key, element); else boxes.current.delete(key); };
   // While a paired word is being reassigned, its current curve is hidden; Esc restores it.
   const selectedKey = selected && `${selected.side}:${selected.id}`;
-  const pairs = choiceUnits.flatMap((u) => (pairOf(u.id) ? [[`native:${pairOf(u.id)}`, `learning:${u.id}`] as const] : []))
+  const pairs = choiceUnits.flatMap((u) => (pairOf(u.id) && (!checked || isWrong(u.id) || props.celebrating) ? [[`native:${pairOf(u.id)}`, `learning:${u.id}`] as const] : []))
     .filter(([from, to]) => from !== selectedKey && to !== selectedKey);
+  const right = choiceUnits.filter((u) => outcomeOf(u.id) === 'fully_correct').length;
   return (
-    <div className="matching">
-      <p className="muted">{t('session.matchHint')}</p>
-      <MatchingCurves pairs={pairs} selected={selectedKey} boxes={boxes}>
+    <div className={`matching${checked ? ' is-checked' : ''}`}>
+      {checked && !props.celebrating
+        ? <p className="match-summary" role="status"><strong>{t('session.matchSummary', { correct: right, total: choiceUnits.length })}</strong></p>
+        : <p className="muted">{t('session.matchHint')}</p>}
+      <MatchingCurves pairs={pairs} selected={selectedKey} boxes={boxes} arranged={checked}>
         <div className="matching-columns" style={{ '--rows': choiceUnits.length } as CSSProperties}>
           <ul aria-label={t(`locale.${props.motherTongue}`)}>
             {nativeOrder.map((o) => {
@@ -214,7 +188,7 @@ export function MatchingRenderer(props: RendererProps) {
               const n = unit ? pairNumber.get(unit.id) : undefined;
               return (
                 <li key={o.id}>
-                  <button type="button" ref={register(`native:${o.id}`)} className={`match-item${n ? ' is-paired' : ''}`} aria-pressed={selected?.side === 'native' && selected.id === o.id}
+                  <button type="button" ref={register(`native:${o.id}`)} className={`match-item${n ? ' is-paired' : ''}`} disabled={checked} aria-pressed={selected?.side === 'native' && selected.id === o.id}
                     aria-label={n ? t('session.pairedWith', { item: o.text, partner: formLabel(unit!.id) }) : o.text} onClick={() => pick('native', o.id)}>
                     <span>{o.text}</span>{n && <span className="pair-badge" aria-hidden="true">{n}</span>}
                   </button>
@@ -227,8 +201,9 @@ export function MatchingRenderer(props: RendererProps) {
               const n = pairNumber.get(u.id);
               const target = targetOf(u.id);
               return (
-                <li key={u.id} className="match-cell">
-                  <button type="button" ref={register(`learning:${u.id}`)} className={`match-item${n ? ' is-paired' : ''}`} lang={plan.lang} aria-pressed={selected?.side === 'learning' && selected.id === u.id}
+                <li key={u.id} className="match-cell" data-flip={u.id}>
+                  <button type="button" ref={register(`learning:${u.id}`)} disabled={checked}
+                    className={`match-item${n ? ' is-paired' : ''}${checked ? (isWrong(u.id) ? ' is-wrong' : ' is-right') : ''}`} lang={plan.lang} aria-pressed={selected?.side === 'learning' && selected.id === u.id}
                     aria-label={n ? t('session.pairedWith', { item: formLabel(u.id), partner: nativeText(pairOf(u.id)!) }) : formLabel(u.id)} onClick={() => pick('learning', u.id)}>
                     <span>{target?.teachingForm}{target?.genders.length ? <small>{genderLabel(target, t)}</small> : null}</span>{n && <span className="pair-badge" aria-hidden="true">{n}</span>}
                   </button>
@@ -240,9 +215,11 @@ export function MatchingRenderer(props: RendererProps) {
           </ul>
         </div>
       </MatchingCurves>
-      <p className="muted" aria-live="polite">
-        {current ? t('session.matchSelected', { item: current }) : ''} {t('session.pairsAssigned', { n: assigned, total: choiceUnits.length })}
-      </p>
+      {!checked && (
+        <p className="muted" aria-live="polite">
+          {current ? t('session.matchSelected', { item: current }) : ''} {t('session.pairsAssigned', { n: assigned, total: choiceUnits.length })}
+        </p>
+      )}
     </div>
   );
 }
@@ -265,11 +242,33 @@ function useMediaQuery(query: string): boolean {
  * to the inner middle of the right box; while a box is selected, a live curve follows the pointer.
  * Phones keep the numbered badges instead (the overlay is not rendered).
  */
-function MatchingCurves({ pairs, selected, boxes, children }: {
-  pairs: readonly (readonly [string, string])[]; selected: string | null; boxes: RefObject<Map<string, HTMLButtonElement>>; children: ReactNode;
+function MatchingCurves({ pairs, selected, boxes, arranged = false, children }: {
+  pairs: readonly (readonly [string, string])[]; selected: string | null; boxes: RefObject<Map<string, HTMLButtonElement>>; arranged?: boolean; children: ReactNode;
 }) {
   const wide = useMediaQuery(WIDE_MATCHING);
   const frame = useRef<HTMLDivElement>(null);
+  // FLIP: when the French column is re-sorted after Check, each box slides from its old row to the new one.
+  const tops = useRef(new Map<string, number>());
+  const wasArranged = useRef(arranged);
+  useLayoutEffect(() => {
+    const cells = [...(frame.current?.querySelectorAll<HTMLElement>('[data-flip]') ?? [])];
+    const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    if (arranged && !wasArranged.current && !reduce) {
+      for (const cell of cells) {
+        const before = tops.current.get(cell.dataset.flip!);
+        if (before === undefined) continue;
+        const delta = before - cell.getBoundingClientRect().top;
+        if (!delta) continue;
+        cell.style.transition = 'none';
+        cell.style.transform = `translateY(${delta}px)`;
+        void cell.offsetHeight; // apply the start position before transitioning back
+        cell.style.transition = 'transform 0.6s ease';
+        cell.style.transform = '';
+      }
+    }
+    wasArranged.current = arranged;
+    tops.current = new Map(cells.map((cell) => [cell.dataset.flip!, cell.getBoundingClientRect().top]));
+  });
   const [pointer, setPointer] = useState<{ x: number; y: number } | null>(null);
   const [paths, setPaths] = useState<{ pairs: string[]; live: string | null }>({ pairs: [], live: null });
   const [, setLayout] = useState(0);
@@ -323,7 +322,7 @@ function MatchingCurves({ pairs, selected, boxes, children }: {
       {children}
       {wide && (
         <svg className="match-curves" aria-hidden="true">
-          {paths.pairs.map((d, n) => <path key={n} d={d} className="match-curve" />)}
+          {paths.pairs.map((d, n) => <path key={n} d={d} className={`match-curve${arranged ? ' is-checked' : ''}`} />)}
           {selected && paths.live && <path d={paths.live} className="match-curve match-curve-live" />}
         </svg>
       )}
@@ -342,10 +341,10 @@ export function OverviewRenderer({ item, plan, motherTongue }: RendererProps) {
  * that reads only the bare term (no article or gender clue); other words show no input. After Check
  * the choices are marked in place: a correct choice has a green border, a wrong choice a red border
  * and the correct gender is highlighted in purple; the word shows its teaching form and translation,
- * and wrong rows add the explanation. The button then reads Continue.
+ * without explanations. The button then reads Continue.
  */
 export function GenderRenderer(props: RendererProps) {
-  const { t, locale } = useI18n();
+  const { t } = useI18n();
   const { item, units, plan, mode, motherTongue } = props;
   if (item.type !== 'vocabulary_gender_select') return null;
   const unitOf = (id: string) => units.find((u): u is PlanUnit & { kind: 'choice' } => u.kind === 'choice' && u.correct.length > 0 && u.id.endsWith(`/${id}`));
@@ -396,7 +395,6 @@ export function GenderRenderer(props: RendererProps) {
               ) : (
                 <span className="muted">{t('session.noGender')}</span>
               )}
-              {wrong && unit && <p className="gender-explanation muted">{unit.explanation[locale]}</p>}
             </li>
           );
         })}
