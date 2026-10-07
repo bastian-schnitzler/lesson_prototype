@@ -161,18 +161,16 @@ export function MatchingRenderer(props: RendererProps) {
             const chosen = nativeText(pairOf(unit.id) ?? '');
             return (
               <li key={unit.id}>
-                <div className="match-word">
-                  <span lang={plan.lang}>{target?.teachingForm}</span>
-                  {target && <ListenButton text={target.teachingForm} lang={plan.lang} variant="icon" label={t('session.listenWord', { word: target.teachingForm })} />}
-                  {target?.genders.length ? <small>{genderLabel(target, t)}</small> : null}
+                <div className="match-fix">
+                  <strong className="match-right"><span className="visually-hidden">{t('session.correctMeaning')}: </span>{nativeText(unit.correct[0])}</strong>
+                  <span className="match-arrow" aria-hidden="true">→</span>
+                  <span className="match-word">
+                    <span lang={plan.lang}>{target?.teachingForm}</span>
+                    {target && <ListenButton text={target.teachingForm} lang={plan.lang} variant="icon" label={t('session.listenWord', { word: target.teachingForm })} />}
+                    {target?.genders.length ? <small>{genderLabel(target, t)}</small> : null}
+                  </span>
+                  <span className="match-wrong"><span className="visually-hidden">{t('session.yourChoice')}: </span><s>{chosen || t('session.noAnswer')}</s></span>
                 </div>
-                <p className="match-answers">
-                  <span className="visually-hidden">{t('session.yourChoice')}: </span>
-                  <s className="match-wrong">{chosen || t('session.noAnswer')}</s>
-                  <span aria-hidden="true"> → </span>
-                  <span className="visually-hidden">{t('session.correctMeaning')}: </span>
-                  <strong className="match-right">{nativeText(unit.correct[0])}</strong>
-                </p>
                 <p className="muted">{unit.explanation[locale]}</p>
               </li>
             );

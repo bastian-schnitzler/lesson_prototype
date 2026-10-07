@@ -136,7 +136,8 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
           <button type="button" className="button button-primary" onClick={() => dispatch({ type: 'skip_no_voice' })}>{t('session.voiceSkip')}</button>
         </section>
       ) : (
-      <section className="task-card" aria-labelledby="task-heading">
+      <section className={`task-card${celebrating ? ' is-celebrating' : ''}`} aria-labelledby="task-heading">
+        {celebrating && <span className="visually-hidden" role="status">{t('session.allCorrect')}</span>}
         <p className="label-muted">{page.stepLabel[locale]}{page.role === 'exam' ? ` · ${t('session.examPage')}` : ''}</p>
         <h1 id="task-heading" ref={heading} tabIndex={-1} className="task-heading">{page.instructions[locale]}</h1>
         {page.role === 'exam' && remainingMs !== undefined && <Countdown remainingMs={remainingMs} />}
@@ -161,33 +162,16 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
           );
         })}
         <div className="task-footer">
-          {page.role === 'practice' && !ready && <p className="muted">{t('session.answerAll')}</p>}
           {page.role === 'presentation' && !ready && <p className="muted">{t('session.revealAll')}</p>}
           <span className="continue-wrap">
             <button type="button" className="button button-primary" disabled={!ready || celebrating} onClick={onContinue}>
               {t('session.continue')}
             </button>
-            {celebrating && <CheckCloud label={t('session.allCorrect')} />}
           </span>
         </div>
       </section>
       )}
     </>
-  );
-}
-
-/** Success cue for a fully correct matching page: three green checks rise from the Continue button. */
-function CheckCloud({ label }: { label: string }) {
-  const check = (n: number) => (
-    <svg key={n} className={`cloud-check cloud-check-${n}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M5 12.5l4.5 4.5L19 7.5" />
-    </svg>
-  );
-  return (
-    <span className="check-cloud" role="status">
-      <span className="visually-hidden">{label}</span>
-      <span aria-hidden="true">{[1, 2, 3].map(check)}</span>
-    </span>
   );
 }
 

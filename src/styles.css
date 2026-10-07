@@ -286,8 +286,20 @@ select {
   min-height: 52px;
 }
 
-.button-primary:hover {
+.button-primary:hover:not(:disabled) {
   background: #fff;
+}
+
+/* Disabled actions (e.g. Continue before every pair or answer is set) are visibly greyed out. */
+.button:disabled {
+  cursor: not-allowed;
+}
+
+.button-primary:disabled {
+  background: var(--disabled-bg);
+  border-color: var(--disabled-bg);
+  color: #1e293b;
+  opacity: 0.55;
 }
 
 .button-small {
@@ -1439,37 +1451,22 @@ select {
   display: inline-block;
 }
 
-.check-cloud {
-  position: absolute;
-  left: 50%;
-  bottom: 100%;
-  width: 0;
-  height: 0;
-  pointer-events: none;
+/* Fully correct matching: the content area briefly turns green before the next page. */
+.task-card.is-celebrating {
+  animation: success-flash 0.9s ease-out both;
 }
 
-.cloud-check {
-  position: absolute;
-  color: var(--correct);
-  opacity: 0;
-  animation: cloud-rise 0.9s ease-out forwards;
-}
-
-.cloud-check-1 { width: 30px; height: 30px; --dx: -38px; --dy: -46px; }
-.cloud-check-2 { width: 20px; height: 20px; --dx: 10px; --dy: -64px; animation-delay: 0.08s; }
-.cloud-check-3 { width: 24px; height: 24px; --dx: 40px; --dy: -38px; animation-delay: 0.16s; }
-
-@keyframes cloud-rise {
-  0% { opacity: 0; transform: translate(-50%, 10px) scale(0.4); }
-  25% { opacity: 1; }
-  100% { opacity: 0; transform: translate(calc(-50% + var(--dx)), var(--dy)) scale(1); }
+@keyframes success-flash {
+  0% { background-color: var(--surface); border-color: var(--border); }
+  30% { background-color: rgb(0 230 118 / 0.22); border-color: var(--correct); }
+  100% { background-color: rgb(0 230 118 / 0.12); border-color: var(--correct); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cloud-check {
+  .task-card.is-celebrating {
     animation: none;
-    opacity: 1;
-    transform: translate(calc(-50% + var(--dx)), var(--dy));
+    background-color: rgb(0 230 118 / 0.15);
+    border-color: var(--correct);
   }
 }
 
@@ -1499,8 +1496,25 @@ select {
   margin: 0;
 }
 
+/* Correct meaning → French word on the first row; the wrong choice struck through right below the meaning. */
+.match-fix {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: center;
+  column-gap: 0.6rem;
+  row-gap: 0.15rem;
+}
+
+.match-fix .match-wrong {
+  grid-column: 1;
+}
+
+.match-arrow {
+  color: var(--muted);
+}
+
 .match-word {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   flex-wrap: wrap;
   gap: 0.5rem;

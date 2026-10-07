@@ -55,7 +55,11 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   // Results list only the mistakes: word, struck-through choice and the correct meaning, no point counts.
   await expect(page.locator('.match-summary')).toContainText('2 of 4 pairs correct.');
   await expect(page.locator('.match-corrections > li')).toHaveCount(2);
-  await expect(page.locator('.match-corrections s').first()).toBeVisible();
+  await expect(page.locator('.match-corrections .match-wrong s').first()).toBeVisible();
+  const fix = page.locator('.match-fix').first();
+  const right = (await fix.locator('.match-right').boundingBox())!, wrong = (await fix.locator('.match-wrong').boundingBox())!;
+  expect(Math.abs(right.x - wrong.x)).toBeLessThan(1); // the wrong choice sits directly under the correct meaning
+  expect(wrong.y).toBeGreaterThan(right.y);
   await expect(page.locator('.match-results')).not.toContainText('0 / 1');
   await expect(page.locator('.matching-columns')).toHaveCount(0);
   await proceed(page);
