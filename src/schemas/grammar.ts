@@ -15,8 +15,9 @@ import {
 } from './artifactCommon.ts';
 import { TopicSchema } from './common.ts';
 
-/** The six practice interactions (SPEC section 7). */
+/** The seven practice interactions (SPEC section 7). */
 export const GRAMMAR_EXERCISE_TYPES = [
+  'grammar_person_matching',
   'grammar_pronoun_form_match',
   'grammar_pronoun_form_typing',
   'grammar_gap_choice',
@@ -32,8 +33,14 @@ export type GrammarExerciseType = z.infer<typeof GrammarExerciseTypeSchema>;
  * (pronouns and verb conjugation); article, adverb, negation or question lessons use gaps and word
  * order instead (SPEC section 7, P3-01).
  */
-export const PRONOUN_FORM_TYPES: readonly GrammarExerciseType[] = ['grammar_pronoun_form_match', 'grammar_pronoun_form_typing'];
+export const PRONOUN_FORM_TYPES: readonly GrammarExerciseType[] = ['grammar_person_matching', 'grammar_pronoun_form_match', 'grammar_pronoun_form_typing'];
 export const PRONOUN_FORM_TOPICS = ['pronouns', 'verbs_morphology', 'verb_usage'] as const;
+/** Lessons that teach pronouns or verb forms always include person matching (P3-02 review). */
+export const PERSON_MATCHING_TOPICS = ['pronouns', 'verbs_morphology'] as const;
+
+/** Grammatical persons in display order: the singular block, then the plural block. */
+export const PERSONS = ['1sg', '2sg', '3sg', '1pl', '2pl', '3pl'] as const;
+export const PersonSchema = z.enum(PERSONS);
 
 /** Final exams use written production only. */
 export const GRAMMAR_EXAM_TYPES = ['grammar_gap_typing', 'grammar_pronoun_form_typing', 'grammar_word_order'] as const;
@@ -115,6 +122,31 @@ export const grammarItemSchema = (lang: string) =>
       examples: z.array(exampleSchema(lang)).max(8),
     }),
     z.strictObject({ type: z.literal('production_feedback_placeholder'), itemId: NestedIdSchema }),
+    z.strictObject({
+      /**
+       * Person matching (P3-02 review): the vocabulary matching board with one row per person, the
+       * three singular rows, a gap, then the three plural rows (three rows when the lesson teaches one
+       * number only). translation: mother-tongue pronoun to French pronoun (he → il); forms: French
+       * pronoun to verb form (je → suis). Repeated forms count for every person they belong to.
+       */
+      type: z.literal('grammar_person_matching'),
+      itemId: NestedIdSchema,
+      ruleIds: z.array(NestedIdSchema).min(1),
+      mode: z.enum(['translation', 'forms']),
+      rows: z
+        .array(z.strictObject({
+          person: PersonSchema,
+          /** forms mode: the French pronoun on the left; null in translation mode. */
+          pronoun: LearningTextSchema.nullable(),
+          /** translation mode: the mother-tongue prompt on the left; null in forms mode. */
+          native: nativeTextSchema(lang).nullable(),
+          /** The French box on the right: the pronoun (translation) or the verb form (forms). */
+          answer: LearningTextSchema,
+          answerExplanation: LocalizedTextSchema,
+        }))
+        .min(3)
+        .max(6),
+    }),
     z.strictObject({
       type: z.literal('grammar_pronoun_form_match'),
       itemId: NestedIdSchema,

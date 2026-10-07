@@ -14,7 +14,7 @@
     "fr": "Employer être au présent avec tous les pronoms sujets.",
     "de": "Être im Präsens mit allen Subjektpronomen verwenden."
   },
-  "estimatedMinutes": 9,
+  "estimatedMinutes": 10,
   "provenance": {
     "generator": "fixture",
     "model": "none",
@@ -22,7 +22,7 @@
     "generatedAt": "2026-10-06T00:00:00Z",
     "inputHashes": {
       "outline": "5c2392d3863624855b6f75ffe68c23d6dd290c31c1f2f6004022fb2b42d34e34",
-      "brief": "126e07191c02e85e16ecaeea2063cd41530610e5baa41c98e3f44314651266c2"
+      "brief": "75caac4911972208534e2adca03e5217fa1779cadb35400e8c2d23389196e9d7"
     }
   },
   "kind": "grammar",
@@ -275,6 +275,73 @@
                 "fr": "Avec je, on dit suis.",
                 "de": "Zu je gehört suis."
               }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-sg-persons",
+      "role": "exercise",
+      "blockId": "b-singular",
+      "label": {
+        "en": "Singular forms",
+        "fr": "Formes du singulier",
+        "de": "Singularformen"
+      },
+      "pages": [
+        {
+          "pageId": "ex-sg-persons-1",
+          "estimatedDurationS": 40,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Connect each pronoun with its partner.",
+            "fr": "Reliez chaque pronom à son partenaire.",
+            "de": "Verbinde jedes Pronomen mit seinem Partner."
+          },
+          "items": [
+            {
+              "type": "grammar_person_matching",
+              "itemId": "ex-sg-persons-1",
+              "ruleIds": [
+                "r-singular"
+              ],
+              "mode": "forms",
+              "rows": [
+                {
+                  "person": "1sg",
+                  "pronoun": "je",
+                  "native": null,
+                  "answer": "suis",
+                  "answerExplanation": {
+                    "en": "Je takes suis.",
+                    "fr": "Avec je, on dit suis.",
+                    "de": "Zu je gehört suis."
+                  }
+                },
+                {
+                  "person": "2sg",
+                  "pronoun": "tu",
+                  "native": null,
+                  "answer": "es",
+                  "answerExplanation": {
+                    "en": "Tu takes es.",
+                    "fr": "Avec tu, on dit es.",
+                    "de": "Zu tu gehört es."
+                  }
+                },
+                {
+                  "person": "3sg",
+                  "pronoun": "il / elle",
+                  "native": null,
+                  "answer": "est",
+                  "answerExplanation": {
+                    "en": "Il and elle take est.",
+                    "fr": "Avec il et elle, on dit est.",
+                    "de": "Zu il und elle gehört est."
+                  }
+                }
+              ]
             }
           ]
         }

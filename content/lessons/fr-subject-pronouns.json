@@ -14,7 +14,7 @@
     "fr": "Apprendre et utiliser correctement les pronoms sujets français (je, tu, il, elle, on, nous, vous, ils, elles).",
     "de": "Lernen und korrekte Verwendung der französischen Subjektpronomen (je, tu, il, elle, on, nous, vous, ils, elles)."
   },
-  "estimatedMinutes": 17,
+  "estimatedMinutes": 18,
   "kind": "grammar",
   "topic": "pronouns",
   "steps": [
@@ -499,6 +499,125 @@
                   "translation": {
                     "en": "They are friends and they are sisters.",
                     "de": "Sie sind Freunde und sie sind Schwestern."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-pronoun-translation",
+      "role": "exercise",
+      "blockId": "block-plural-pronouns",
+      "label": {
+        "en": "Plural Subject Pronouns and Informal On",
+        "fr": "Les pronoms sujets du pluriel et le pronom on",
+        "de": "Subjektpronomen im Plural und das informelle On"
+      },
+      "pages": [
+        {
+          "pageId": "ex-pronoun-translation-1",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Connect each pronoun with its partner.",
+            "fr": "Reliez chaque pronom à son partenaire.",
+            "de": "Verbinde jedes Pronomen mit seinem Partner."
+          },
+          "items": [
+            {
+              "type": "grammar_person_matching",
+              "itemId": "ex-pronoun-translation-1",
+              "ruleIds": [
+                "rule-singular-pronouns",
+                "rule-plural-pronouns"
+              ],
+              "mode": "translation",
+              "rows": [
+                {
+                  "person": "1sg",
+                  "pronoun": null,
+                  "native": {
+                    "en": "I",
+                    "de": "ich"
+                  },
+                  "answer": "je",
+                  "answerExplanation": {
+                    "en": "I is je; before a vowel it becomes j’.",
+                    "fr": "Je correspond à « I » ; devant une voyelle, il devient j’.",
+                    "de": "Ich heißt je; vor einem Vokal wird es zu j’."
+                  }
+                },
+                {
+                  "person": "2sg",
+                  "pronoun": null,
+                  "native": {
+                    "en": "you (one friend)",
+                    "de": "du"
+                  },
+                  "answer": "tu",
+                  "answerExplanation": {
+                    "en": "One person you know well is tu.",
+                    "fr": "Pour une personne proche, on dit tu.",
+                    "de": "Eine vertraute Person sprichst du mit tu an."
+                  }
+                },
+                {
+                  "person": "3sg",
+                  "pronoun": null,
+                  "native": {
+                    "en": "he",
+                    "de": "er"
+                  },
+                  "answer": "il",
+                  "answerExplanation": {
+                    "en": "He is il.",
+                    "fr": "Il correspond à « he ».",
+                    "de": "Er heißt il."
+                  }
+                },
+                {
+                  "person": "1pl",
+                  "pronoun": null,
+                  "native": {
+                    "en": "we",
+                    "de": "wir"
+                  },
+                  "answer": "nous",
+                  "answerExplanation": {
+                    "en": "We is nous; on is the informal spoken alternative.",
+                    "fr": "Nous correspond à « we » ; on est l’alternative familière à l’oral.",
+                    "de": "Wir heißt nous; on ist die umgangssprachliche Alternative."
+                  }
+                },
+                {
+                  "person": "2pl",
+                  "pronoun": null,
+                  "native": {
+                    "en": "you (several people)",
+                    "de": "ihr"
+                  },
+                  "answer": "vous",
+                  "answerExplanation": {
+                    "en": "Several people are always vous.",
+                    "fr": "Pour plusieurs personnes, on dit toujours vous.",
+                    "de": "Mehrere Personen sprichst du immer mit vous an."
+                  }
+                },
+                {
+                  "person": "3pl",
+                  "pronoun": null,
+                  "native": {
+                    "en": "they (men or a mixed group)",
+                    "de": "sie (Männer oder gemischte Gruppe)"
+                  },
+                  "answer": "ils",
+                  "answerExplanation": {
+                    "en": "A group of men or a mixed group is ils.",
+                    "fr": "Pour un groupe d’hommes ou un groupe mixte, on dit ils.",
+                    "de": "Eine Gruppe von Männern oder eine gemischte Gruppe ist ils."
                   }
                 }
               ]
@@ -1255,7 +1374,7 @@
     "generatedAt": "2026-10-06T22:13:22.000Z",
     "inputHashes": {
       "outline": "b476d53fe06441adecdd0702cbcd6c4296b5d821033fe4fe6cf775b302b0d695",
-      "brief": "2317e612bec8e84dd1232df0fd7ba3fb7a894d5c1ec3d8f09a78f584804edc7b"
+      "brief": "cda763f6ede1b254f187e375d81db02c8dfdaf7a03f09d2bd74b8a098f1a8077"
     }
   }
 }

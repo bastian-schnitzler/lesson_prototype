@@ -4,9 +4,11 @@ import { cleanup, fireEvent, render, screen, within } from '@testing-library/rea
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { PreferencesProvider } from '../../src/app/context.tsx';
 import { lessonOf } from './lessonFixture.ts';
-import { buildPlan, type PlanPage } from '../../src/domain/session/plan.ts';
+import { buildPlan, type PlanPage, type PlanUnit } from '../../src/domain/session/plan.ts';
 import { scoreUnit, type LockedUnit } from '../../src/domain/session/session.ts';
 import { PronounMatchRenderer, PronounTypingRenderer } from '../../src/session/grammarRenderers.tsx';
+import { checkedOrder, MatchingRenderer } from '../../src/session/vocabularyRenderers.tsx';
+import { skipsFeedbackWhenCorrect } from '../../src/domain/session/session.ts';
 import type { RendererProps } from '../../src/session/controls.tsx';
 
 afterEach(cleanup);
@@ -137,5 +139,49 @@ describe('pronoun/form typing (P3-02)', () => {
     const { container } = renderPage(PronounTypingRenderer, plan, exam, { mode: 'exam', drafts: { [exam.units[0].id]: 'wrong' } });
     expect(container.querySelectorAll('.is-right, .is-wrong, .is-almost, .inline-answer, .row-explanation')).toHaveLength(0);
     expect(scoreUnit(exam.units[0], undefined)).toEqual({ outcome: 'unanswered', points: 0 });
+  });
+});
+
+describe('person matching (P3-02 review)', () => {
+  const CONTENT = resolve(import.meta.dirname, '../../content');
+  const sample = (id: string) => buildPlan(lessonOf(CONTENT, id), JSON.parse(readFileSync(join(CONTENT, 'briefs', `${id}.json`), 'utf8')), 'en');
+  const er = sample('fr-er-verbs-present');
+  const board = pageOf(er, 'grammar_person_matching');
+  const columns = (container: HTMLElement) => [...container.querySelectorAll('.matching-columns > ul')].map((ul) => [...ul.children].map((li) => li.classList.contains('match-gap') ? '—' : li.querySelector('.match-item')!.textContent));
+
+  it('plans one unit per French box; a form shared by several persons is right for each of them', () => {
+    expect(board.units.map((u) => u.prompt.learning)).toEqual(['parle', 'parles', 'parle', 'parlons', 'parlez', 'parlent']);
+    expect(board.units[0].kind === 'choice' && board.units[0].correct).toEqual(['1sg', '3sg']);
+    expect(scoreUnit(board.units[2], '1sg').points).toBe(1);
+    expect(skipsFeedbackWhenCorrect(board)).toBe(true); // all right: green flash, no checked view
+  });
+
+  it('keeps the persons in order on the left, with a gap between the singular and the plural rows', () => {
+    const { container } = renderPage(MatchingRenderer, er, board);
+    const [left, right] = columns(container);
+    expect(left).toEqual(['je', 'tu', 'il / elle / on', '—', 'nous', 'vous', 'ils / elles']);
+    expect(right[3]).toBe('—');
+    expect(right.filter((x) => x !== '—').sort()).toEqual(['parle', 'parle', 'parlent', 'parles', 'parlez', 'parlons']);
+    expect(container.querySelector('.matching.has-gap')).not.toBeNull();
+  });
+
+  it('shows three rows without a gap when the board covers one number, and translates pronouns', () => {
+    const fixture = pageOf(planOf(), 'grammar_person_matching');
+    const three = renderPage(MatchingRenderer, planOf(), fixture);
+    expect(columns(three.container)[0]).toEqual(['je', 'tu', 'il / elle']);
+    expect(three.container.querySelector('.has-gap')).toBeNull();
+    cleanup();
+    const pronouns = sample('fr-subject-pronouns');
+    const translation = renderPage(MatchingRenderer, pronouns, pageOf(pronouns, 'grammar_person_matching'));
+    expect(columns(translation.container)[0]).toEqual(['I', 'you (one friend)', 'he', '—', 'we', 'you (several people)', 'they (men or a mixed group)']);
+  });
+
+  it('after Check moves every French box level with a correct partner, also for shared forms', () => {
+    const rows = ['1sg', '2sg', '3sg', '1pl', '2pl', '3pl'];
+    const units = board.units as (PlanUnit & { kind: 'choice' })[];
+    // The second parle was paired with je, the first one with il: both are right and keep their rows.
+    const pairs: Record<string, string> = { [units[2].id]: '1sg', [units[0].id]: '3sg', [units[1].id]: '1pl', [units[3].id]: '2sg' };
+    const order = checkedOrder(units, rows, (id) => pairs[id]);
+    expect(order.map((u) => u.id)).toEqual([units[2].id, units[1].id, units[0].id, units[3].id, units[4].id, units[5].id]);
   });
 });

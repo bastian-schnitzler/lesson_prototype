@@ -499,3 +499,40 @@ test('pronoun/form matching by drag and drop and by clicks, with per-row checks 
   await expect(page.locator('.form-row.is-wrong').first()).toContainText('Tu takes es');
   await expect(page.getByRole('button', { name: 'Continue' })).toBeEnabled();
 });
+
+test('person matching: persons in order, checked in place like vocabulary matching (P3-02 review)', async ({ page }) => {
+  await page.goto('./#/lesson/fr-verb-etre-present/play');
+  await proceed(page); // start
+  await proceed(page); // explanation
+  const bank = page.getByRole('group', { name: 'Available forms' });
+  for (const [form, n] of [['suis', 0], ['es', 1], ['est', 2]] as const) {
+    await bank.getByRole('button', { name: form, exact: true }).click();
+    await page.locator('.form-slot').nth(n).click();
+  }
+  await proceed(page); // Check
+  await proceed(page); // feedback
+  for (const answer of ['es', 'suis']) {
+    await page.locator('fieldset.choices label').filter({ hasText: new RegExp(`^${answer}$`) }).click();
+    await proceed(page);
+    await expect(page.locator('.task-card.is-celebrating')).toHaveCount(0);
+  }
+  // The board: je, tu, il / elle on the left in person order, the forms shuffled on the right.
+  const left = page.locator('.matching-columns > ul').first().getByRole('button');
+  const right = page.locator('.matching-columns > ul').last().locator('.match-item');
+  await expect(left).toHaveText(['je', 'tu', 'il / elle']);
+  await expect(page.locator('.match-gap')).toHaveCount(0); // one number: three rows, no gap
+  // je → es and tu → suis are swapped; il / elle → est is right.
+  for (const [pronoun, form] of [['je', 'es'], ['tu', 'suis'], ['il / elle', 'est']]) {
+    await left.filter({ hasText: new RegExp(`^${pronoun}$`) }).click();
+    await right.filter({ hasText: new RegExp(`^${form}$`) }).click();
+  }
+  await proceed(page); // Check
+  await expect(page.locator('.match-summary')).toContainText('1 of 3 pairs correct.');
+  await expect(right.and(page.locator('.is-wrong'))).toHaveCount(2);
+  if (page.viewportSize()!.width >= 720) await expect(page.locator('.match-curve.is-checked')).toHaveCount(2);
+  await page.waitForTimeout(1300); // the slide
+  for (const [pronoun, form] of [['je', 'suis'], ['tu', 'es'], ['il / elle', 'est']]) {
+    const a = (await left.filter({ hasText: new RegExp(`^${pronoun}\\d*$`) }).boundingBox())!, b = (await right.filter({ hasText: new RegExp(`^${form}\\d*$`) }).boundingBox())!; // wrong pairs keep their number badge
+    expect(Math.abs(a.y - b.y)).toBeLessThan(2);
+  }
+});

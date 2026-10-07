@@ -24,6 +24,7 @@ export const rendererRegistry: Record<Item['type'], ComponentType<RendererProps>
   vocabulary_listening_dictation: UnitsRenderer,
   grammar_explanation: ExplanationRenderer,
   production_feedback_placeholder: PlaceholderRenderer,
+  grammar_person_matching: MatchingRenderer,
   grammar_pronoun_form_match: PronounMatchRenderer,
   grammar_pronoun_form_typing: PronounTypingRenderer,
   grammar_gap_choice: UnitsRenderer,

@@ -132,6 +132,16 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
           kind: 'text', id: id(), itemId: item.itemId, itemType: item.type, prompt: {}, speak: form(item.targetId),
           accepted: item.accepted, explanation: item.answerExplanation, answer: item.accepted.answers[0], answerLang: 'learning',
         }];
+      case 'grammar_person_matching': {
+        // One unit per French box on the right; its options are the persons on the left (P3-02 review).
+        // A form shared by several persons (je parle, il parle) is right for each of them.
+        const options = item.rows.map((r) => ({ id: r.person, text: item.mode === 'translation' ? native(r.native) : r.pronoun ?? '', lang: item.mode === 'translation' ? 'native' as const : 'learning' as const }));
+        return item.rows.map((r) => ({
+          kind: 'choice', id: id(`/${r.person}`), itemId: item.itemId, itemType: item.type, prompt: { learning: r.answer },
+          options, correct: item.rows.filter((x) => x.answer === r.answer).map((x) => x.person),
+          explanation: r.answerExplanation, answer: options.find((o) => o.id === r.person)!.text, answerLang: options[0].lang,
+        }));
+      }
       case 'grammar_pronoun_form_match': {
         const options = item.tokens.map((t) => ({ id: t.tokenId, text: t.text, lang: 'learning' as const }));
         return item.rows.map((r) => ({

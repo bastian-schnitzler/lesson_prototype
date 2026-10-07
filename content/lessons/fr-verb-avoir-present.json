@@ -14,7 +14,7 @@
     "fr": "Conjuguer le verbe avoir au présent, dire son âge et exprimer la possession.",
     "de": "Das Verb avoir im Präsens konjugieren, das Alter angeben und Besitz ausdrücken."
   },
-  "estimatedMinutes": 14,
+  "estimatedMinutes": 15,
   "kind": "grammar",
   "topic": "verbs_morphology",
   "steps": [
@@ -99,6 +99,106 @@
                   "translation": {
                     "en": "We have a house and they have a car.",
                     "de": "Wir haben ein Haus und sie haben ein Auto."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-forms-persons",
+      "role": "exercise",
+      "blockId": "block-forms",
+      "label": {
+        "en": "Forms of the verb avoir in the present tense",
+        "fr": "Les formes du verbe avoir au présent",
+        "de": "Formen des Verbs avoir im Präsens"
+      },
+      "pages": [
+        {
+          "pageId": "ex-forms-persons-1",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Connect each pronoun with its partner.",
+            "fr": "Reliez chaque pronom à son partenaire.",
+            "de": "Verbinde jedes Pronomen mit seinem Partner."
+          },
+          "items": [
+            {
+              "type": "grammar_person_matching",
+              "itemId": "ex-forms-persons-1",
+              "ruleIds": [
+                "rule-avoir-forms"
+              ],
+              "mode": "forms",
+              "rows": [
+                {
+                  "person": "1sg",
+                  "pronoun": "je (j’)",
+                  "native": null,
+                  "answer": "ai",
+                  "answerExplanation": {
+                    "en": "Je takes ai and elides before the vowel: j’ai.",
+                    "fr": "Avec je, on dit ai, et je s’élide devant la voyelle : j’ai.",
+                    "de": "Zu je gehört ai; vor dem Vokal wird je zu j’: j’ai."
+                  }
+                },
+                {
+                  "person": "2sg",
+                  "pronoun": "tu",
+                  "native": null,
+                  "answer": "as",
+                  "answerExplanation": {
+                    "en": "Tu takes as.",
+                    "fr": "Avec tu, on dit as.",
+                    "de": "Zu tu gehört as."
+                  }
+                },
+                {
+                  "person": "3sg",
+                  "pronoun": "il / elle / on",
+                  "native": null,
+                  "answer": "a",
+                  "answerExplanation": {
+                    "en": "Il, elle and on take a, without an accent.",
+                    "fr": "Avec il, elle et on, on écrit a, sans accent.",
+                    "de": "Zu il, elle und on gehört a, ohne Akzent."
+                  }
+                },
+                {
+                  "person": "1pl",
+                  "pronoun": "nous",
+                  "native": null,
+                  "answer": "avons",
+                  "answerExplanation": {
+                    "en": "Nous takes avons.",
+                    "fr": "Avec nous, on dit avons.",
+                    "de": "Zu nous gehört avons."
+                  }
+                },
+                {
+                  "person": "2pl",
+                  "pronoun": "vous",
+                  "native": null,
+                  "answer": "avez",
+                  "answerExplanation": {
+                    "en": "Vous takes avez.",
+                    "fr": "Avec vous, on dit avez.",
+                    "de": "Zu vous gehört avez."
+                  }
+                },
+                {
+                  "person": "3pl",
+                  "pronoun": "ils / elles",
+                  "native": null,
+                  "answer": "ont",
+                  "answerExplanation": {
+                    "en": "Ils and elles take ont; ils sont belongs to être.",
+                    "fr": "Avec ils et elles, on dit ont ; ils sont appartient à être.",
+                    "de": "Zu ils und elles gehört ont; ils sont gehört zu être."
                   }
                 }
               ]
@@ -1258,7 +1358,7 @@
     "generatedAt": "2026-10-06T22:13:22.000Z",
     "inputHashes": {
       "outline": "6330aa315b82f91f79b5f684caf8264ae01a4b0148b010ab9324c3b67e0028be",
-      "brief": "9d1905d04785c02569cb116388dcf711c7c93d62f68c7b6cb3d232fcfddf5606"
+      "brief": "a1162dd8924c831733264b22e76c82ffa1125b71e471c50257d2f667900e9173"
     }
   }
 }

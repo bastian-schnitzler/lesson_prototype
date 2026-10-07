@@ -14,7 +14,7 @@
     "fr": "Employer être au présent avec tous les pronoms sujets.",
     "de": "Être im Präsens mit allen Subjektpronomen verwenden."
   },
-  "estimatedMinutes": 9,
+  "estimatedMinutes": 10,
   "provenance": {
     "generator": "fixture",
     "model": "none",
@@ -107,6 +107,15 @@
             "r-singular"
           ],
           "estimatedDurationS": 60
+        },
+        {
+          "id": "ex-sg-persons",
+          "type": "grammar_person_matching",
+          "itemCount": 1,
+          "ruleIds": [
+            "r-singular"
+          ],
+          "estimatedDurationS": 40
         }
       ]
     },

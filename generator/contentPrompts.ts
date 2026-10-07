@@ -4,7 +4,7 @@ import type { Brief } from '../src/schemas/artifacts.ts';
 import { grammarItemSchema, type GrammarBrief, type GrammarExerciseType } from '../src/schemas/grammar.ts';
 import type { OutlineContext } from '../src/validation/artifacts.ts';
 
-export const CONTENT_PROMPT_VERSION = 'content-v2';
+export const CONTENT_PROMPT_VERSION = 'content-v3';
 
 /** D46 (SPEC "Formatted teaching text"): format rules shared by introduction and explanation texts. */
 export const RICH_TEXT = [
@@ -39,6 +39,7 @@ function itemSchema(lang: string, types: readonly GrammarExerciseType[]) {
 }
 
 export const ITEM_GUIDANCE: Record<GrammarExerciseType, string> = {
+  grammar_person_matching: 'one item = the person matching board: rows in person order 1sg, 2sg, 3sg, then 1pl, 2pl, 3pl, exactly the three singular persons, the three plural persons, or all six, matching what the block teaches; mode translation: native is the mother-tongue pronoun for every mother tongue (disambiguate, e.g. "you (one person)"), pronoun null, answer the French pronoun; mode forms: pronoun is the French pronoun, native null, answer the verb form; left labels unique, repeated answer forms allowed; one answerExplanation per row',
   grammar_pronoun_form_match: 'one item = rows of pronouns with their validForms plus draggable tokens covering every row (extra distractor tokens allowed; repeated texts get distinct tokenIds)',
   grammar_pronoun_form_typing: 'one item = rows of pronouns, each with accepted forms',
   grammar_gap_choice: 'one sentence gap (before/after) with exactly four distinct choices and answerChoiceId',

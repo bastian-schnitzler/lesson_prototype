@@ -14,7 +14,7 @@
     "fr": "Conjuguer le verbe irrégulier être au présent avec tous les pronoms sujets pour exprimer la nationalité, la profession et l'état.",
     "de": "Das unregelmäßige Verb être im Präsens mit allen Subjektpronomen konjugieren, um Nationalität, Beruf und Zustand auszudrücken."
   },
-  "estimatedMinutes": 12,
+  "estimatedMinutes": 13,
   "provenance": {
     "generator": "lesson-prototype",
     "model": "gemini-3.8-flash",
@@ -204,6 +204,16 @@
             "rule-liaison-pronunciation"
           ],
           "estimatedDurationS": 70
+        },
+        {
+          "id": "ex-persons",
+          "type": "grammar_person_matching",
+          "itemCount": 1,
+          "ruleIds": [
+            "rule-singular-forms",
+            "rule-plural-forms"
+          ],
+          "estimatedDurationS": 60
         }
       ]
     }

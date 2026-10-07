@@ -165,6 +165,15 @@ describe('brief validation', () => {
     expect(messages(checkBrief('fr-negation-ne-pas', (b) => (b.exam.pages[0].type = 'grammar_pronoun_form_typing')))).toMatch(/exam\.pages\.0\.type: grammar_pronoun_form_typing suits only/);
   });
 
+  it('requires person matching in pronoun and verb-form lessons; boards may review earlier blocks (P3-02 review)', () => {
+    const r = checkBrief('fr-verb-etre-present', (b) => b.blocks[0].exercises.splice(2, 1));
+    expect(messages(r)).toMatch(/verbs_morphology lessons include a grammar_person_matching exercise/);
+    // The plural block may hold a six-row board with the singular rule; other exercises may not.
+    expect(checkBrief('fr-verb-etre-present', (b) => { const board = b.blocks[0].exercises.splice(2, 1)[0]; b.blocks[1].exercises[0] = { ...board, ruleIds: ['r-singular', 'r-plural'] }; b.blocks[1].exercises[0].estimatedDurationS = 60; b.estimatedMinutes = 9; }).status).toBe('valid');
+    expect(messages(checkBrief('fr-verb-etre-present', (b) => (b.blocks[1].exercises[1].ruleIds = ['r-singular'])))).toMatch(/rule r-singular is not taught in this block$/m);
+    expect(messages(checkBrief('fr-verb-etre-present', (b) => (b.blocks[0].exercises[2].ruleIds = ['r-plural'])))).toMatch(/rule r-plural is not taught in this block or an earlier one/);
+  });
+
   it('marks valid briefs from older outline entries as stale', () => {
     const r = validateBrief(load('fr-classroom-objects', 'brief'), { ...ctx('fr-classroom-objects'), outlineHash: 'another-outline-hash-0000' });
     expect(r.status).toBe('stale');
@@ -207,14 +216,24 @@ describe('grammar content validation', () => {
     expect(messages(checkContent('fr-negation-ne-pas', (c) => c.steps[1].pages[0].items[0].acceptedOrders[0].pop()))).toMatch(/every token exactly once/);
     expect(messages(checkContent('fr-negation-ne-pas', (c) => (c.steps[4].pages[0].items[0].faultyTokenId = 'w9')))).toMatch(/faultyTokenId/);
     expect(messages(checkContent('fr-negation-ne-pas', (c) => (c.steps[4].pages[0].items[0].correction.choices = ['pas', 'non'])))).toMatch(/select mode/);
-    expect(messages(checkContent('fr-verb-etre-present', (c) => (c.steps[8].pages[0].items[0].hint = { en: 'h', fr: 'h', de: 'h' })))).toMatch(/no hint/);
-    expect(messages(checkContent('fr-verb-etre-present', (c) => (c.steps[6].pages[0].items[0].ruleIds = ['r-x'])))).toMatch(/unknown rule r-x/);
+    expect(messages(checkContent('fr-verb-etre-present', (c) => (c.steps[9].pages[0].items[0].hint = { en: 'h', fr: 'h', de: 'h' })))).toMatch(/no hint/);
+    expect(messages(checkContent('fr-verb-etre-present', (c) => (c.steps[7].pages[0].items[0].ruleIds = ['r-x'])))).toMatch(/unknown rule r-x/);
   });
 
   it('requires items to assess exactly the planned rules of their exercise or exam page (P3-01)', () => {
     expect(messages(checkContent('fr-verb-etre-present', (c) => (c.steps[2].pages[0].items[0].ruleIds = ['r-plural'])))).toMatch(/rule r-plural is not planned for planned exercise/);
-    expect(messages(checkContent('fr-verb-etre-present', (c) => (c.steps[8].pages[0].items[0].ruleIds = ['r-plural'])))).toMatch(/no item of exam page exam-gaps assesses rule r-singular/);
+    expect(messages(checkContent('fr-verb-etre-present', (c) => (c.steps[9].pages[0].items[0].ruleIds = ['r-plural'])))).toMatch(/no item of exam page exam-gaps assesses rule r-singular/);
     expect(messages(checkContent('fr-verb-etre-present', (c) => (c.steps[0].pages[0].items[0].ruleIds = ['r-plural'])))).toMatch(/rule r-plural is not taught in block/);
+  });
+
+  it('checks person matching boards: person blocks in order, one mode, unique prompts, one board per page (P3-02 review)', () => {
+    const board = (c: Json) => c.steps[3].pages[0].items[0];
+    expect(checkContent('fr-verb-etre-present').status).toBe('valid');
+    expect(messages(checkContent('fr-verb-etre-present', (c) => (board(c).rows[0].person = '1pl')))).toMatch(/persons must be \[1sg,2sg,3sg\] or \[1pl,2pl,3pl\] or \[1sg,2sg,3sg,1pl,2pl,3pl\] in this order, not \[1pl,2sg,3sg\]/);
+    expect(messages(checkContent('fr-verb-etre-present', (c) => [board(c).rows[0], board(c).rows[1]] = [board(c).rows[1], board(c).rows[0]]))).toMatch(/in this order/);
+    expect(messages(checkContent('fr-verb-etre-present', (c) => (board(c).rows[0].native = { en: 'I', de: 'ich' })))).toMatch(/forms rows have a pronoun and no native prompt/);
+    expect(messages(checkContent('fr-verb-etre-present', (c) => (board(c).rows[1].pronoun = 'je')))).toMatch(/duplicate pronoun/);
+    expect(messages(checkContent('fr-verb-etre-present', (c) => c.steps[3].pages[0].items.push({ ...board(c), itemId: 'second' }), (b) => (b.blocks[0].exercises[2].itemCount = 2)))).toMatch(/each person matching board has a page of its own/);
   });
 
   it('keeps the production feedback step a fixed placeholder', () => {

@@ -152,7 +152,7 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
     if (!perfect) return dispatch({ type: 'continue' });
     setCelebrating(true);
     // Matching first slides every word level with its meaning, then flashes (0.9 s) like other pages.
-    const pause = page.items.some((it) => it.type === 'vocabulary_matching') ? MATCH_SLIDE_MS + 1000 : 900;
+    const pause = page.items.some((it) => it.type === 'vocabulary_matching' || it.type === 'grammar_person_matching') ? MATCH_SLIDE_MS + 1000 : 900;
     window.setTimeout(() => { setCelebrating(false); dispatch({ type: 'continue' }); }, pause);
   };
 

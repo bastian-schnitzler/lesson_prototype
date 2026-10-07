@@ -120,7 +120,7 @@ function activate(plan: LessonPlan, r: SessionRecord, now: number): SessionRecor
  */
 export function skipsFeedbackWhenCorrect(page: PlanPage): boolean {
   return page.role === 'practice' && page.items.length > 0
-    && page.items.every((item) => item.type === 'vocabulary_matching' || page.units.filter((u) => u.itemId === item.itemId).length === 1);
+    && page.items.every((item) => item.type === 'vocabulary_matching' || item.type === 'grammar_person_matching' || page.units.filter((u) => u.itemId === item.itemId).length === 1);
 }
 
 /** Such pages answered fully correctly go straight on (after a green flash); feedback would only repeat the answers. */

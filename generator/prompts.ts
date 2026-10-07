@@ -5,7 +5,7 @@ import { vocabularyInventorySchema } from './vocabulary.ts';
 import type { SupportedKind } from '../src/schemas/artifacts.ts';
 import type { OutlineContext } from '../src/validation/artifacts.ts';
 
-export const PROMPT_VERSION = 'brief-v5';
+export const PROMPT_VERSION = 'brief-v6';
 const trusted = { schemaVersion: true, id: true, lang: true, level: true, locales: true, provenance: true } as const;
 
 /** Model payload of a brief call: vocabulary returns its word inventory first (generator/vocabulary.ts). */
@@ -65,7 +65,7 @@ accentSensitive entries are whole words present in examForms and only mark accen
 ` : `
 Divide teaching into 2–4 blocks, each with explanation plan, examples, pitfalls and 1–3 suitable practice exercises. Select only exercise types useful for this topic, not all six by default.
 Every rule is taught in a block; exercises reference rules taught in their block. Every rule is covered in the exam. Rule, block, exercise and exam page IDs are unique in their respective inventories.
-Exam pages use grammar_gap_typing, grammar_pronoun_form_typing or grammar_word_order and may mix them; grammar_word_order is only for sentence order/structure. grammar_pronoun_form_match and grammar_pronoun_form_typing are allowed only for the topics pronouns, verbs_morphology and verb_usage; never force conjugation rows onto article, adverb, negation or question lessons. Include feedbackPlaceholder duration.
+Exam pages use grammar_gap_typing, grammar_pronoun_form_typing or grammar_word_order and may mix them; grammar_word_order is only for sentence order/structure. grammar_person_matching, grammar_pronoun_form_match and grammar_pronoun_form_typing are allowed only for the topics pronouns, verbs_morphology and verb_usage; lessons with the topic pronouns or verbs_morphology include at least one grammar_person_matching exercise (practice only; translation mode: mother-tongue pronoun to French pronoun, forms mode: French pronoun to verb form; three rows when the block teaches only the singular or only the plural persons, else six); never force conjugation rows onto article, adverb, negation or question lessons. Include feedbackPlaceholder duration.
 Normally aim for 10–15 minutes; longer is allowed when necessary to cover the outline. Set a suitable timeLimitS on every exam page.
 estimatedMinutes must equal max(1, round(sum of all planned duration seconds / 60)): sum each block's explanation and exercise estimates, feedbackPlaceholder estimate and exam page estimates.
 `;
