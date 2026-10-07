@@ -164,6 +164,7 @@ const en = {
   'session.voiceChecking': "Looking for a French voice…",
   'session.voiceHelpTitle': "French voice unavailable",
   'session.voiceHelpIntro': "This exercise uses your browser’s speech synthesis. No French voice was found, so the audio task cannot play.",
+  'session.voiceRequired': "This lesson has listening tasks and needs a French voice in your browser. Install one as described below, then restart the browser and reload this page to start the lesson.",
   'voice.install': "Install language",
   'voice.missingTitle': "French voice not installed",
   'voice.missingIntro': "Your system has no French text-to-speech voice (language pack), so words cannot be played aloud.",
@@ -228,7 +229,6 @@ const en = {
   'result.practice': "Practice: {earned} / {possible} ({score})",
   'result.exam': "Final exam: {earned} / {possible} ({score})",
   'result.chooseReview': "Choose results to review",
-  'result.completed': "{label} completed",
   'result.examAnswers': "Your exam answers",
   'result.completionOnly': "This step is not scored; it was completed.",
 
@@ -495,6 +495,7 @@ const fr: Messages = {
   'session.voiceChecking': "Recherche d’une voix française…",
   'session.voiceHelpTitle': "Voix française indisponible",
   'session.voiceHelpIntro': "Cet exercice utilise la synthèse vocale du navigateur. Aucune voix française n’a été trouvée ; l’exercice audio ne peut pas fonctionner.",
+  'session.voiceRequired': "Cette leçon contient des exercices d’écoute et nécessite une voix française dans le navigateur. Installez-en une comme indiqué ci-dessous, puis redémarrez le navigateur et rechargez cette page pour commencer la leçon.",
   'voice.install': "Installer la langue",
   'voice.missingTitle': "Voix française non installée",
   'voice.missingIntro': "Votre système n’a pas de voix de synthèse française (module linguistique) : les mots ne peuvent pas être lus à voix haute.",
@@ -559,7 +560,6 @@ const fr: Messages = {
   'result.practice': "Entraînement : {earned} / {possible} ({score})",
   'result.exam': "Examen final : {earned} / {possible} ({score})",
   'result.chooseReview': "Choisissez les résultats à revoir",
-  'result.completed': "{label} terminé",
   'result.examAnswers': "Vos réponses à l’examen",
   'result.completionOnly': "Cette étape n’est pas notée ; elle a été terminée.",
 
@@ -823,6 +823,7 @@ const de: Messages = {
   'session.voiceChecking': "Suche nach einer französischen Stimme…",
   'session.voiceHelpTitle': "Französische Stimme nicht verfügbar",
   'session.voiceHelpIntro': "Diese Übung verwendet die Sprachausgabe des Browsers. Es wurde keine französische Stimme gefunden; die Hörübung kann nicht abgespielt werden.",
+  'session.voiceRequired': "Diese Lektion enthält Hörübungen und braucht eine französische Stimme im Browser. Installiere eine wie unten beschrieben, starte den Browser neu und lade diese Seite neu, um die Lektion zu beginnen.",
   'voice.install': "Sprache installieren",
   'voice.missingTitle': "Französisches Sprachpaket nicht installiert",
   'voice.missingIntro': "Auf deinem System ist keine französische Sprachausgabe-Stimme (Sprachpaket) installiert, deshalb können Wörter nicht vorgelesen werden.",
@@ -887,7 +888,6 @@ const de: Messages = {
   'result.practice': "Übungen: {earned} / {possible} ({score})",
   'result.exam': "Abschlussprüfung: {earned} / {possible} ({score})",
   'result.chooseReview': "Ergebnisse zum Ansehen auswählen",
-  'result.completed': "{label} abgeschlossen",
   'result.examAnswers': "Deine Prüfungsantworten",
   'result.completionOnly': "Dieser Schritt wird nicht bewertet; er wurde abgeschlossen.",
 

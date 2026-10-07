@@ -32,6 +32,8 @@ export interface RendererProps {
   onReveal: (itemKey: string, key: string) => void;
   /** True during the green success flash of a fully correct page (the correct choice lights up). */
   celebrating?: boolean;
+  /** Exam units whose missing-article info box is shown after Continue, until Continue is pressed again. */
+  articleWarnings?: string[];
 }
 
 /* ---------------------------------------------------------------- helpers */
@@ -302,14 +304,16 @@ export function UnitsRenderer(props: RendererProps) {
                   <span lang={unit.prompt.native ? undefined : lang}>
                     {prompt || t('session.typeWhatYouHear')}
                     {/* Vocabulary translation tasks say whether the French answer needs an article. */}
+                    {/* The badge turns purple while the typed answer lacks the required article. */}
                     {unit.itemType === 'vocabulary_translation_exam' && (
-                      <small className="article-badge">{t(startsWithArticle(unit.answer, lang) ? 'session.withArticle' : 'session.withoutArticle')}</small>
+                      <small className={`article-badge${!readOnly(props, unit) && missingArticle((value(props, unit) as string | undefined) ?? '', unit.answer, lang) ? ' is-alert' : ''}`}>
+                        {t(startsWithArticle(unit.answer, lang) ? 'session.withArticle' : 'session.withoutArticle')}
+                      </small>
                     )}
                   </span>
                   <TextControl unit={unit} props={props} label={prompt || t('session.typeWhatYouHear')} />
                 </label>
-                {(unit.itemType === 'vocabulary_translation_exam' || unit.itemType === 'vocabulary_listening_dictation') && !readOnly(props, unit)
-                  && missingArticle((value(props, unit) as string | undefined) ?? '', unit.answer, lang) && (
+                {props.articleWarnings?.includes(unit.id) && !readOnly(props, unit) && (
                   <p className="info-box" role="status">{t('session.typeArticle')}</p>
                 )}
               </>

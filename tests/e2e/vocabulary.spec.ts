@@ -24,6 +24,26 @@ function lessonData(id: string) {
   };
 }
 
+/** A French test voice: lessons with listening tasks need one to start. */
+async function mockFrenchVoice(page: Page) {
+  await page.addInitScript(() => {
+    const spoken: string[] = [];
+    Object.defineProperty(window, '__spoken', { value: spoken, configurable: true });
+    const french = { lang: 'fr-FR', name: 'Test French', voiceURI: 'test-fr', localService: true, default: true };
+    Object.defineProperty(window, 'speechSynthesis', { configurable: true, value: {
+      getVoices: () => [french], cancel: () => undefined, speak: (u: { text: string }) => { spoken.push(u.text); },
+      addEventListener: () => undefined, removeEventListener: () => undefined,
+    } });
+    Object.defineProperty(window, 'SpeechSynthesisUtterance', { configurable: true, value: class { text: string; lang = ''; voice: unknown; constructor(text: string) { this.text = text; } } });
+  });
+}
+
+/** Plays a unit's audio and returns the spoken text (mocked voice). */
+async function heard(page: Page, unit: ReturnType<Page['locator']>) {
+  await unit.getByRole('button', { name: 'Listen' }).click();
+  return page.evaluate(() => (window as unknown as { __spoken: string[] }).__spoken.at(-1)!);
+}
+
 const primary = (page: Page) => page.getByRole('button', { name: /^(Continue|Check)$/ });
 
 /**
@@ -66,10 +86,16 @@ async function step(page: Page, data: ReturnType<typeof lessonData>, opts: Optio
       const gap = data.gaps.find((g) => text.includes(g.before.trim()));
       await page.getByRole('textbox').fill(gap.accepted.answers[0]);
     }
-    // Translation exam.
-    for (const field of await page.locator('.units .field').all()) {
+    // Listening choice: play the word, then pick the option that says it.
+    for (const unit of await page.locator('.units .unit:has(fieldset.choices)').all()) {
+      const word = await heard(page, unit);
+      await unit.locator('fieldset.choices label').filter({ hasText: new RegExp(`^\\s*${escape(word)}\\s*$`) }).click();
+    }
+    // Translation and dictation exam.
+    for (const unit of await page.locator('.units .unit:has(.field)').all()) {
+      const field = unit.locator('.field');
       const label = (await field.locator('span').first().textContent())!.replace(/(with|without) article$/, '').trim();
-      const correct = data.exam.get(label);
+      const correct = data.exam.get(label) ?? (label === 'Write what you hear' ? await heard(page, unit) : undefined);
       if (correct !== undefined) await field.locator('input').fill(opts.exam ? opts.exam(correct) : correct);
     }
     await primary(page).click();
@@ -108,6 +134,11 @@ test('plays a multi-group noun lesson perfectly: group-wise stages, exam info, 1
   await solve(page, data);
   await expect(page.locator('.summary-card .results-total')).toHaveText('Lesson total: 100 / 100');
   await expect(page.locator('.summary-card .total-score')).toHaveText(`${data.exam.size} / ${data.exam.size}`);
+  // Only scored parts are offered; each word group is one frame with its name shown once.
+  await expect(page.locator('.result-menu button')).toHaveText(['Final exam', 'Matching', 'Gender and overview', 'Practice']);
+  await page.getByRole('button', { name: 'Practice' }).click();
+  await expect(page.locator('.result-section.is-framed')).toHaveCount(data.brief.groups.length);
+  await expect(page.locator('.result-section-title')).toHaveText(data.brief.groups.map((g: Json) => g.label.en));
   // The last-try score appears on the index and disappears after a full reload.
   await page.locator('.results-footer').getByRole('link', { name: 'Lesson overview' }).click();
   const score = page.locator('tr[data-lesson-id="fr-family-members"] .score');
@@ -146,8 +177,10 @@ test('half credit for a capitalised exam answer, then Repeat lesson starts a fre
 });
 
 test('a lesson without nouns has no gender page, no gender tags and non-clickable reference words', async ({ page }) => {
+  await mockFrenchVoice(page);
   const data = lessonData('fr-classroom-instructions');
   await page.goto('./#/lesson/fr-classroom-instructions/play');
+  await page.reload(); // the hash change alone does not run the voice mock
   await primary(page).click();
   const stages = new Set<string>();
   for (let guard = 0; guard < 40 && !(await page.getByRole('timer').count()) && !(await page.locator('.summary-card').count()); guard++) {

@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { buildPlan, seededOrder, type LessonPlan } from '../../src/domain/session/plan.ts';
-import { headerScore, lessonResults, progress, scoreUnit, sessionReducer, startSession, type SessionAction, type SessionRecord } from '../../src/domain/session/session.ts';
+import { headerScore, lessonResults, progress, scoreUnit, sessionReducer, skipsFeedbackWhenCorrect, startSession, type SessionAction, type SessionRecord } from '../../src/domain/session/session.ts';
 
 const FIXTURES = resolve(import.meta.dirname, '../fixtures/content');
 const load = (dir: string, id: string) => JSON.parse(readFileSync(join(FIXTURES, dir, `${id}.json`), 'utf8'));
@@ -212,5 +212,35 @@ describe('matching feedback (P2-02)', () => {
     s.answerAll((id) => (id === units[0].id ? (units[1] as { correct: string[] }).correct[0] : undefined));
     s.proceed();
     expect(s.record.phase).toBe('feedback');
+  });
+});
+
+describe('green-and-continue for single-answer pages (P2-04 review)', () => {
+  const pages = (id: string) => setup(id).plan.pages;
+  it('applies to every practice page whose items each ask for one answer', () => {
+    const listening = pages('fr-classroom-instructions').filter((p) => p.units.some((u) => u.itemType === 'vocabulary_listening_choice') && p.role === 'practice');
+    expect(listening.length).toBeGreaterThan(0);
+    for (const p of listening) expect(skipsFeedbackWhenCorrect(p)).toBe(true);
+    const typed = pages(VOC).filter((p) => p.items.some((it) => it.type === 'vocabulary_typed_gap'));
+    for (const p of typed) expect(skipsFeedbackWhenCorrect(p)).toBe(true);
+  });
+  it('keeps the checked view for pages with several answers per item and never applies to exam pages', () => {
+    const gender = pages(VOC).filter((p) => p.items.some((it) => it.type === 'vocabulary_gender_select') && p.units.length > 1);
+    expect(gender.length).toBeGreaterThan(0);
+    for (const p of gender) expect(skipsFeedbackWhenCorrect(p)).toBe(false);
+    for (const p of pages(VOC).filter((p) => p.role === 'exam')) expect(skipsFeedbackWhenCorrect(p)).toBe(false);
+  });
+  it('moves straight on after a fully correct listening choice', () => {
+    const s = setup('fr-classroom-instructions');
+    while (!s.page().units.some((u) => u.itemType === 'vocabulary_listening_choice')) {
+      if (s.page().role === 'practice') s.answerAll();
+      s.proceed();
+      if (s.record.phase === 'feedback') s.proceed();
+    }
+    const id = s.page().pageId;
+    s.answerAll();
+    s.proceed();
+    expect(s.record.phase).toBe('answering');
+    expect(s.page().pageId).not.toBe(id);
   });
 });

@@ -112,9 +112,15 @@ function activate(plan: LessonPlan, r: SessionRecord, now: number): SessionRecor
   return { ...r, exam: { ...r.exam, [page.pageId]: { startedAt: now, deadline: now + (page.timeLimitS ?? 0) * 1000, timedOut: false } } };
 }
 
-/** Practice pages whose correct answers need no confirmation view (matching, typed gaps). */
+/**
+ * Practice pages whose correct answers need no confirmation view: matching, and every page whose
+ * items each ask for exactly one answer (typed gap, listening choice, multiple choice, one typed
+ * word, word order, error spot). Pages with several answers per item (gender rows, conjugation
+ * tables) keep their checked view.
+ */
 export function skipsFeedbackWhenCorrect(page: PlanPage): boolean {
-  return page.items.length > 0 && page.items.every((item) => item.type === 'vocabulary_matching' || item.type === 'vocabulary_typed_gap');
+  return page.role === 'practice' && page.items.length > 0
+    && page.items.every((item) => item.type === 'vocabulary_matching' || page.units.filter((u) => u.itemId === item.itemId).length === 1);
 }
 
 /** Such pages answered fully correctly go straight on (after a green flash); feedback would only repeat the answers. */

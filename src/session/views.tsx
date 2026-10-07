@@ -8,9 +8,10 @@ import type { MessageKey } from '../i18n/messages.ts';
 import type { Locale } from '../schemas/common.ts';
 import { rendererRegistry, UnitFeedback } from './renderers.tsx';
 import { answerText } from './controls.tsx';
+import { missingArticle } from '../domain/articleHint.ts';
 import type { SessionInput } from './useSession.ts';
 import { reviewColor } from '../artifacts/briefParts.tsx';
-import type { VoiceStatus } from './speech.ts';
+import { useVoiceStatus, type VoiceStatus } from './speech.ts';
 import { VoiceHelp } from './VoiceHelp.tsx';
 
 /* ------------------------------------------------------------ start page */
@@ -27,6 +28,9 @@ interface StartViewProps {
 
 export function StartView({ plan, level, resumable, notice, onStart, onResume }: StartViewProps) {
   const { t, locale, languageName } = useI18n();
+  // Lessons with listening tasks cannot start (or resume) without a learning-language voice (P2-04 review).
+  const voiceStatus = useVoiceStatus(plan.lang);
+  const needsVoice = plan.pages.some(isListeningPage);
   return (
     <section className="task-card start-card" aria-labelledby="start-title">
       <p className="label-muted">{t('index.courseLabel', { language: languageName(plan.lang), level })}</p>
@@ -51,7 +55,15 @@ export function StartView({ plan, level, resumable, notice, onStart, onResume }:
         </>
       )}
       {notice && <p className="note" role="note">{notice}</p>}
-      {resumable ? (
+      {needsVoice && voiceStatus === 'checking' ? (
+        <p className="muted" role="status">{t('session.voiceChecking')}</p>
+      ) : needsVoice && voiceStatus === 'unavailable' ? (
+        <div className="voice-help voice-required" role="alert">
+          <h2 className="small-heading">{t('session.voiceHelpTitle')}</h2>
+          <p>{t('session.voiceRequired')}</p>
+          <VoiceHelp />
+        </div>
+      ) : resumable ? (
         <div className="start-actions">
           <button type="button" className="button button-primary" onClick={onResume}>{t('session.resume')}</button>
           <button type="button" className="button button-outline" onClick={onStart}>{t('session.restart')}</button>
@@ -118,9 +130,18 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
     const field = document.querySelector<HTMLInputElement>('.task-card input.text-input:not([readonly]):not([disabled])');
     (field ?? heading.current)?.focus();
   }, [record.pageIndex]);
-  // A fully correct matching page plays a short success animation, then skips its feedback (P2-02).
+  // A fully correct single-answer page plays a short success animation, then skips its feedback (P2-02, P2-04).
   const [celebrating, setCelebrating] = useState(false);
+  // Exam units missing their article get an info box after Continue; the next Continue submits anyway.
+  const [articleWarnings, setArticleWarnings] = useState<string[]>([]);
+  useEffect(() => setArticleWarnings([]), [record.pageIndex]);
   const onContinue = () => {
+    if (page.role === 'exam') {
+      const missing = page.units.filter((u) => (u.itemType === 'vocabulary_translation_exam' || u.itemType === 'vocabulary_listening_dictation')
+        && missingArticle((record.drafts[u.id] as string | undefined) ?? '', u.answer, plan.lang)).map((u) => u.id);
+      if (missing.length && !articleWarnings.length) return setArticleWarnings(missing);
+      setArticleWarnings([]);
+    }
     const perfect = record.phase === 'answering' && skipsFeedbackWhenCorrect(page)
       && page.units.every((u) => scoreUnit(u, record.drafts[u.id]).outcome === 'fully_correct');
     if (!perfect) return dispatch({ type: 'continue' });
@@ -166,6 +187,7 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
               revealed={record.revealed ?? {}}
               onReveal={(itemKey, key) => dispatch({ type: 'reveal', itemKey, key })}
               celebrating={celebrating}
+              articleWarnings={articleWarnings}
             />
           );
         })}
@@ -269,7 +291,11 @@ function unitTarget(page: PlanPage, unit: PlanUnit): string | undefined {
   return unit.id.startsWith(`${page.pageId}/${unit.itemId}/`) ? rest : undefined;
 }
 
-/** Splits units into consecutive sections: by vocabulary group, otherwise by page ("Part n"). */
+/**
+ * Splits units into consecutive sections, each shown once in its own frame: by vocabulary group
+ * (across pages, so single-item practice pages do not repeat the group name), otherwise by page
+ * ("Part n") when a page holds several answers; consecutive single-answer pages share one section.
+ */
 function resultSections(plan: LessonPlan, pages: PlanPage[]) {
   const groupOf = new Map(plan.groups.flatMap((g) => g.targetIds.map((id) => [id, g] as const)));
   const sections: { key: string; groupId?: string; part: number; units: PlanUnit[] }[] = [];
@@ -277,7 +303,7 @@ function resultSections(plan: LessonPlan, pages: PlanPage[]) {
     for (const unit of page.units) {
       const target = unitTarget(page, unit);
       const group = target ? groupOf.get(target) : undefined;
-      const key = `${page.pageId}|${group?.id ?? ''}`;
+      const key = group ? `group|${group.id}` : page.units.length > 1 ? `page|${page.pageId}` : 'single';
       const last = sections.at(-1);
       if (last?.key === key) last.units.push(unit);
       else sections.push({ key, groupId: group?.id, part: n + 1, units: [unit] });
@@ -307,7 +333,8 @@ export function ResultsView({ plan, record, dispatch }: { plan: LessonPlan; reco
   const sectionScore = selectedStep?.role === 'presentation' || !selectedTally?.possible
     ? t('result.completedShort')
     : `${pts(selectedTally.earned)} / ${selectedTally.possible}`;
-  const exerciseSteps = results.steps.filter((s) => s.role !== 'exam' && (s.role === 'presentation' || s.tally.possible > 0) && plan.steps.some((p) => p.stepId === s.stepId));
+  // Only scored parts can be reviewed; presentation stages (introduction, flashcards) are left out.
+  const exerciseSteps = results.steps.filter((s) => s.role !== 'exam' && s.role !== 'presentation' && s.tally.possible > 0 && plan.steps.some((p) => p.stepId === s.stepId));
 
   return (
     <section aria-labelledby="results-title">
@@ -328,7 +355,7 @@ export function ResultsView({ plan, record, dispatch }: { plan: LessonPlan; reco
           const label = plan.steps.find((p) => p.stepId === s.stepId)!.label[locale];
           return (
             <button key={s.stepId} type="button" className="button button-outline" aria-pressed={record.selection === s.stepId} onClick={() => dispatch({ type: 'select', selection: s.stepId })}>
-              {s.role === 'presentation' ? t('result.completed', { label }) : label}
+              {label}
             </button>
           );
         })}
@@ -343,8 +370,8 @@ export function ResultsView({ plan, record, dispatch }: { plan: LessonPlan; reco
           <>
             <p className="match-summary"><strong>{t('result.summary', { correct, total: reviewed.length })}</strong></p>
             {sections.map((sec) => (
-              <section key={sec.key} className="result-section">
-                {sections.length > 1 && <h3 className="result-section-title">{title(sec)}</h3>}
+              <section key={sec.key} className={`result-section${sections.length > 1 ? ' is-framed' : ''}`} style={sec.groupId ? reviewColor(plan.groups.findIndex((g) => g.id === sec.groupId)) : undefined}>
+                {sections.length > 1 && (sec.groupId || sec.key !== 'single') && <h3 className="result-section-title">{title(sec)}</h3>}
                 <ul className="result-list">
                   {sec.units.map((u) => <ResultItem key={u.id} unit={u} locked={record.locked[u.id]} lang={plan.lang} />)}
                 </ul>

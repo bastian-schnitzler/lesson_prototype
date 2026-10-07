@@ -520,6 +520,13 @@ Acceptance:
 - No reference-choice clicking, exam answer leaks, or false gender tags occur.
 - Rebuild/deploy the updated static content and verify representative Pages journeys.
 
+Review additions (SPEC 0.40):
+
+- Every single-answer practice page (typed gap, listening choice, multiple choice, one typed word, word order, error spot) and matching skip the feedback when fully correct; only the chosen answer lights up green, not the whole content area.
+- Vocabulary exam: the "with article" badge turns purple while the article is missing; the info box appears only after Continue (which then does not submit) and stays until Continue is pressed again.
+- A lesson with listening tasks cannot start or resume without a learning-language voice; its start page shows the personalised install help.
+- The results menu offers only scored parts; result groups are framed once with their name instead of repeating it per answer.
+
 Dependencies: P2-03, P1-02.
 
 ### P2-05: Deliver formatted introduction and explanation text from generation
