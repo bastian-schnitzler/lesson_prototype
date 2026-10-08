@@ -38,6 +38,7 @@ These issue bodies were published to GitHub in P0-04 on 2026-10-06. Each GitHub 
 | P3-04 | [#29](https://github.com/bastian-schnitzler/lesson_prototype/issues/29) | Implement word order and grammar error spotter |
 | P3-05 | [#30](https://github.com/bastian-schnitzler/lesson_prototype/issues/30) | Implement production-feedback placeholder, timed mixed exams, and answer review |
 | P3-06 | [#31](https://github.com/bastian-schnitzler/lesson_prototype/issues/31) | Complete all grammar lessons and end-to-end course validation |
+| P3-07 | [#67](https://github.com/bastian-schnitzler/lesson_prototype/issues/67) | Lengthen grammar lessons: length rules, new verbs and the ten samples rewritten |
 | P3-08 | [#32](https://github.com/bastian-schnitzler/lesson_prototype/issues/32) | Update grammar lesson mockups from the prototype |
 | P4-01 | [#33](https://github.com/bastian-schnitzler/lesson_prototype/issues/33) | Define functions requirements and implementation backlog |
 | P4-02 | [#34](https://github.com/bastian-schnitzler/lesson_prototype/issues/34) | Update function lesson mockups from the prototype |
@@ -772,6 +773,8 @@ Acceptance:
 Dependencies: P3-05, P1-02, P2-07.
 
 ### P3-07: Lengthen grammar lessons: length rules, new verbs and the ten samples rewritten
+
+GitHub: [#67](https://github.com/bastian-schnitzler/lesson_prototype/issues/67).
 
 Milestone: **Phase 3**.
 
