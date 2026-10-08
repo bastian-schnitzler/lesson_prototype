@@ -14,7 +14,7 @@
     "fr": "Identifier le genre des noms français et choisir correctement entre les articles indéfinis un, une et des.",
     "de": "Das Genus französischer Nomen erkennen und die unbestimmten Artikel un, une und des korrekt auswählen."
   },
-  "estimatedMinutes": 12,
+  "estimatedMinutes": 17,
   "kind": "grammar",
   "topic": "nouns_and_determiners",
   "steps": [
@@ -33,9 +33,9 @@
           "estimatedDurationS": 120,
           "timeLimitS": null,
           "instructions": {
-            "en": "Read the rule and examples.",
-            "fr": "Lisez la règle et les exemples.",
-            "de": "Lies die Regel und die Beispiele."
+            "en": "Read the explanation and the examples.",
+            "fr": "Lisez l’explication et les exemples.",
+            "de": "Lies die Erklärung und die Beispiele."
           },
           "items": [
             {
@@ -81,14 +81,14 @@
       "role": "exercise",
       "blockId": "block-singular-articles",
       "label": {
-        "en": "Singular Indefinite Articles: un and une",
-        "fr": "Les articles indéfinis au singulier : un et une",
-        "de": "Unbestimmte Artikel im Singular: un und une"
+        "en": "Multiple-choice gaps 1",
+        "fr": "Phrases à trous à choix multiple 1",
+        "de": "Lücken mit Auswahl 1"
       },
       "pages": [
         {
           "pageId": "ex-singular-choice-1",
-          "estimatedDurationS": 20,
+          "estimatedDurationS": 10,
           "timeLimitS": null,
           "instructions": {
             "en": "Choose the word that completes the sentence.",
@@ -98,47 +98,43 @@
           "items": [
             {
               "type": "grammar_gap_choice",
-              "itemId": "ex-singular-choice-1",
               "ruleIds": [
                 "rule-singular-gender"
               ],
               "before": "Voici",
               "after": "livre.",
-              "answerExplanation": {
-                "en": "Answer: un. Use 'un' before singular masculine nouns and 'une' before singular feminine nouns.",
-                "fr": "Réponse : un. Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier.",
-                "de": "Antwort: un. Verwende 'un' vor männlichen Nomen im Singular und 'une' vor weiblichen Nomen im Singular."
-              },
               "choices": [
-                {
-                  "choiceId": "c-0",
-                  "text": "une"
-                },
                 {
                   "choiceId": "c-1",
                   "text": "des"
                 },
                 {
                   "choiceId": "c-2",
-                  "text": "le"
+                  "text": "un"
                 },
                 {
                   "choiceId": "c-3",
-                  "text": "un"
+                  "text": "une"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "la"
                 }
               ],
-              "answerChoiceId": "c-3",
-              "hint": {
-                "en": "masculine singular",
-                "fr": "masculin singulier",
-                "de": "maskulin Singular"
-              }
+              "answerChoiceId": "c-2",
+              "hint": null,
+              "answerExplanation": {
+                "en": "livre is masculine: un livre.",
+                "fr": "livre est masculin : un livre.",
+                "de": "livre ist maskulin: un livre."
+              },
+              "itemId": "ex-singular-choice-1"
             }
           ]
         },
         {
           "pageId": "ex-singular-choice-2",
-          "estimatedDurationS": 20,
+          "estimatedDurationS": 10,
           "timeLimitS": null,
           "instructions": {
             "en": "Choose the word that completes the sentence.",
@@ -148,122 +144,12 @@
           "items": [
             {
               "type": "grammar_gap_choice",
-              "itemId": "ex-singular-choice-2",
               "ruleIds": [
                 "rule-singular-gender"
               ],
               "before": "Voici",
               "after": "table.",
-              "answerExplanation": {
-                "en": "Answer: une. Use 'un' before singular masculine nouns and 'une' before singular feminine nouns.",
-                "fr": "Réponse : une. Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier.",
-                "de": "Antwort: une. Verwende 'un' vor männlichen Nomen im Singular und 'une' vor weiblichen Nomen im Singular."
-              },
               "choices": [
-                {
-                  "choiceId": "c-0",
-                  "text": "des"
-                },
-                {
-                  "choiceId": "c-1",
-                  "text": "la"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "une"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "un"
-                }
-              ],
-              "answerChoiceId": "c-2",
-              "hint": {
-                "en": "feminine singular",
-                "fr": "féminin singulier",
-                "de": "feminin Singular"
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "ex-singular-choice-3",
-          "estimatedDurationS": 20,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "itemId": "ex-singular-choice-3",
-              "ruleIds": [
-                "rule-singular-gender"
-              ],
-              "before": "Voici",
-              "after": "stylo.",
-              "answerExplanation": {
-                "en": "Answer: un. Use 'un' before singular masculine nouns and 'une' before singular feminine nouns.",
-                "fr": "Réponse : un. Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier.",
-                "de": "Antwort: un. Verwende 'un' vor männlichen Nomen im Singular und 'une' vor weiblichen Nomen im Singular."
-              },
-              "choices": [
-                {
-                  "choiceId": "c-0",
-                  "text": "les"
-                },
-                {
-                  "choiceId": "c-1",
-                  "text": "un"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "une"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "des"
-                }
-              ],
-              "answerChoiceId": "c-1",
-              "hint": {
-                "en": "masculine singular",
-                "fr": "masculin singulier",
-                "de": "maskulin Singular"
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "ex-singular-choice-4",
-          "estimatedDurationS": 20,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "itemId": "ex-singular-choice-4",
-              "ruleIds": [
-                "rule-singular-gender"
-              ],
-              "before": "Voici",
-              "after": "chaise.",
-              "answerExplanation": {
-                "en": "Answer: une. Use 'un' before singular masculine nouns and 'une' before singular feminine nouns.",
-                "fr": "Réponse : une. Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier.",
-                "de": "Antwort: une. Verwende 'un' vor männlichen Nomen im Singular und 'une' vor weiblichen Nomen im Singular."
-              },
-              "choices": [
-                {
-                  "choiceId": "c-0",
-                  "text": "un"
-                },
                 {
                   "choiceId": "c-1",
                   "text": "des"
@@ -275,20 +161,26 @@
                 {
                   "choiceId": "c-3",
                   "text": "une"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "un"
                 }
               ],
               "answerChoiceId": "c-3",
-              "hint": {
-                "en": "feminine singular",
-                "fr": "féminin singulier",
-                "de": "feminin Singular"
-              }
+              "hint": null,
+              "answerExplanation": {
+                "en": "table is feminine: une table.",
+                "fr": "table est féminin : une table.",
+                "de": "table ist feminin: une table."
+              },
+              "itemId": "ex-singular-choice-2"
             }
           ]
         },
         {
-          "pageId": "ex-singular-choice-5",
-          "estimatedDurationS": 20,
+          "pageId": "ex-singular-choice-3",
+          "estimatedDurationS": 10,
           "timeLimitS": null,
           "instructions": {
             "en": "Choose the word that completes the sentence.",
@@ -298,25 +190,107 @@
           "items": [
             {
               "type": "grammar_gap_choice",
-              "itemId": "ex-singular-choice-5",
+              "ruleIds": [
+                "rule-singular-gender"
+              ],
+              "before": "C’est",
+              "after": "stylo.",
+              "choices": [
+                {
+                  "choiceId": "c-1",
+                  "text": "la"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "une"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "un"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "des"
+                }
+              ],
+              "answerChoiceId": "c-3",
+              "hint": null,
+              "answerExplanation": {
+                "en": "stylo is masculine: un stylo.",
+                "fr": "stylo est masculin : un stylo.",
+                "de": "stylo ist maskulin: un stylo."
+              },
+              "itemId": "ex-singular-choice-3"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-singular-choice-4",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "ruleIds": [
+                "rule-singular-gender"
+              ],
+              "before": "C’est",
+              "after": "chaise.",
+              "choices": [
+                {
+                  "choiceId": "c-1",
+                  "text": "une"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "des"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "le"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "un"
+                }
+              ],
+              "answerChoiceId": "c-1",
+              "hint": null,
+              "answerExplanation": {
+                "en": "chaise is feminine: une chaise.",
+                "fr": "chaise est féminin : une chaise.",
+                "de": "chaise ist feminin: une chaise."
+              },
+              "itemId": "ex-singular-choice-4"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-singular-choice-5",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
               "ruleIds": [
                 "rule-singular-gender"
               ],
               "before": "Voici",
               "after": "cahier.",
-              "answerExplanation": {
-                "en": "Answer: un. Use 'un' before singular masculine nouns and 'une' before singular feminine nouns.",
-                "fr": "Réponse : un. Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier.",
-                "de": "Antwort: un. Verwende 'un' vor männlichen Nomen im Singular und 'une' vor weiblichen Nomen im Singular."
-              },
               "choices": [
                 {
-                  "choiceId": "c-0",
-                  "text": "des"
-                },
-                {
                   "choiceId": "c-1",
-                  "text": "la"
+                  "text": "des"
                 },
                 {
                   "choiceId": "c-2",
@@ -325,14 +299,112 @@
                 {
                   "choiceId": "c-3",
                   "text": "une"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "la"
                 }
               ],
               "answerChoiceId": "c-2",
-              "hint": {
-                "en": "masculine singular",
-                "fr": "masculin singulier",
-                "de": "maskulin Singular"
-              }
+              "hint": null,
+              "answerExplanation": {
+                "en": "cahier is masculine: un cahier.",
+                "fr": "cahier est masculin : un cahier.",
+                "de": "cahier ist maskulin: un cahier."
+              },
+              "itemId": "ex-singular-choice-5"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-singular-choice-6",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "ruleIds": [
+                "rule-singular-gender"
+              ],
+              "before": "C’est",
+              "after": "maison.",
+              "choices": [
+                {
+                  "choiceId": "c-1",
+                  "text": "le"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "un"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "des"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "une"
+                }
+              ],
+              "answerChoiceId": "c-4",
+              "hint": null,
+              "answerExplanation": {
+                "en": "maison is feminine: une maison.",
+                "fr": "maison est féminin : une maison.",
+                "de": "maison ist feminin: une maison."
+              },
+              "itemId": "ex-singular-choice-6"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-singular-choice-7",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "ruleIds": [
+                "rule-singular-gender"
+              ],
+              "before": "Voici",
+              "after": "ordinateur.",
+              "choices": [
+                {
+                  "choiceId": "c-1",
+                  "text": "une"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "des"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "un"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "la"
+                }
+              ],
+              "answerChoiceId": "c-3",
+              "hint": null,
+              "answerExplanation": {
+                "en": "ordinateur is masculine: un ordinateur.",
+                "fr": "ordinateur est masculin : un ordinateur.",
+                "de": "ordinateur ist maskulin: un ordinateur."
+              },
+              "itemId": "ex-singular-choice-7"
             }
           ]
         }
@@ -343,140 +415,471 @@
       "role": "exercise",
       "blockId": "block-singular-articles",
       "label": {
-        "en": "Singular Indefinite Articles: un and une",
-        "fr": "Les articles indéfinis au singulier : un et une",
-        "de": "Unbestimmte Artikel im Singular: un und une"
+        "en": "Typed gaps 1",
+        "fr": "Phrases à trous à écrire 1",
+        "de": "Lücken zum Schreiben 1"
       },
       "pages": [
         {
           "pageId": "ex-singular-typing-1",
-          "estimatedDurationS": 23,
+          "estimatedDurationS": 15,
           "timeLimitS": null,
           "instructions": {
-            "en": "Write the missing word or expression.",
-            "fr": "Écrivez le mot ou l’expression qui manque.",
-            "de": "Schreib das fehlende Wort oder die Wendung."
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
           },
           "items": [
             {
               "type": "grammar_gap_typing",
-              "itemId": "ex-singular-typing-1",
               "ruleIds": [
                 "rule-singular-gender"
               ],
-              "before": "Voici",
-              "after": "table. (féminin singulier)",
-              "answerExplanation": {
-                "en": "Answer: une. Use 'un' before singular masculine nouns and 'une' before singular feminine nouns.",
-                "fr": "Réponse : une. Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier.",
-                "de": "Antwort: une. Verwende 'un' vor männlichen Nomen im Singular und 'une' vor weiblichen Nomen im Singular."
-              },
+              "before": "C’est",
+              "after": "sac.",
               "accepted": {
                 "answers": [
-                  "une"
+                  "un"
                 ],
                 "accentSensitive": []
               },
-              "hint": null
+              "hint": null,
+              "answerExplanation": {
+                "en": "sac is masculine: un sac.",
+                "fr": "sac est masculin : un sac.",
+                "de": "sac ist maskulin: un sac."
+              },
+              "itemId": "ex-singular-typing-1"
             }
           ]
         },
         {
           "pageId": "ex-singular-typing-2",
-          "estimatedDurationS": 23,
+          "estimatedDurationS": 15,
           "timeLimitS": null,
           "instructions": {
-            "en": "Write the missing word or expression.",
-            "fr": "Écrivez le mot ou l’expression qui manque.",
-            "de": "Schreib das fehlende Wort oder die Wendung."
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
           },
           "items": [
             {
               "type": "grammar_gap_typing",
-              "itemId": "ex-singular-typing-2",
               "ruleIds": [
                 "rule-singular-gender"
               ],
-              "before": "Voici",
-              "after": "stylo. (masculin singulier)",
-              "answerExplanation": {
-                "en": "Answer: un. Use 'un' before singular masculine nouns and 'une' before singular feminine nouns.",
-                "fr": "Réponse : un. Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier.",
-                "de": "Antwort: un. Verwende 'un' vor männlichen Nomen im Singular und 'une' vor weiblichen Nomen im Singular."
-              },
-              "accepted": {
-                "answers": [
-                  "un"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null
-            }
-          ]
-        },
-        {
-          "pageId": "ex-singular-typing-3",
-          "estimatedDurationS": 22,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Write the missing word or expression.",
-            "fr": "Écrivez le mot ou l’expression qui manque.",
-            "de": "Schreib das fehlende Wort oder die Wendung."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "itemId": "ex-singular-typing-3",
-              "ruleIds": [
-                "rule-singular-gender"
-              ],
-              "before": "Voici",
-              "after": "chaise. (féminin singulier)",
-              "answerExplanation": {
-                "en": "Answer: une. Use 'un' before singular masculine nouns and 'une' before singular feminine nouns.",
-                "fr": "Réponse : une. Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier.",
-                "de": "Antwort: une. Verwende 'un' vor männlichen Nomen im Singular und 'une' vor weiblichen Nomen im Singular."
-              },
+              "before": "C’est",
+              "after": "voiture.",
               "accepted": {
                 "answers": [
                   "une"
                 ],
                 "accentSensitive": []
               },
-              "hint": null
+              "hint": null,
+              "answerExplanation": {
+                "en": "voiture is feminine: une voiture.",
+                "fr": "voiture est féminin : une voiture.",
+                "de": "voiture ist feminin: une voiture."
+              },
+              "itemId": "ex-singular-typing-2"
             }
           ]
         },
         {
-          "pageId": "ex-singular-typing-4",
-          "estimatedDurationS": 22,
+          "pageId": "ex-singular-typing-3",
+          "estimatedDurationS": 15,
           "timeLimitS": null,
           "instructions": {
-            "en": "Write the missing word or expression.",
-            "fr": "Écrivez le mot ou l’expression qui manque.",
-            "de": "Schreib das fehlende Wort oder die Wendung."
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
           },
           "items": [
             {
               "type": "grammar_gap_typing",
-              "itemId": "ex-singular-typing-4",
               "ruleIds": [
                 "rule-singular-gender"
               ],
               "before": "Voici",
-              "after": "cahier. (masculin singulier)",
-              "answerExplanation": {
-                "en": "Answer: un. Use 'un' before singular masculine nouns and 'une' before singular feminine nouns.",
-                "fr": "Réponse : un. Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier.",
-                "de": "Antwort: un. Verwende 'un' vor männlichen Nomen im Singular und 'une' vor weiblichen Nomen im Singular."
-              },
+              "after": "vélo.",
               "accepted": {
                 "answers": [
                   "un"
                 ],
                 "accentSensitive": []
               },
-              "hint": null
+              "hint": null,
+              "answerExplanation": {
+                "en": "vélo is masculine: un vélo.",
+                "fr": "vélo est masculin : un vélo.",
+                "de": "vélo ist maskulin: un vélo."
+              },
+              "itemId": "ex-singular-typing-3"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-singular-typing-4",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-singular-gender"
+              ],
+              "before": "Voici",
+              "after": "clé.",
+              "accepted": {
+                "answers": [
+                  "une"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null,
+              "answerExplanation": {
+                "en": "clé is feminine: une clé.",
+                "fr": "clé est féminin : une clé.",
+                "de": "clé ist feminin: une clé."
+              },
+              "itemId": "ex-singular-typing-4"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-singular-typing-5",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-singular-gender"
+              ],
+              "before": "C’est",
+              "after": "chat.",
+              "accepted": {
+                "answers": [
+                  "un"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null,
+              "answerExplanation": {
+                "en": "chat is masculine: un chat.",
+                "fr": "chat est masculin : un chat.",
+                "de": "chat ist maskulin: un chat."
+              },
+              "itemId": "ex-singular-typing-5"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-singular-typing-6",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-singular-gender"
+              ],
+              "before": "C’est",
+              "after": "pomme.",
+              "accepted": {
+                "answers": [
+                  "une"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null,
+              "answerExplanation": {
+                "en": "pomme is feminine: une pomme.",
+                "fr": "pomme est féminin : une pomme.",
+                "de": "pomme ist feminin: une pomme."
+              },
+              "itemId": "ex-singular-typing-6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-singular-spot",
+      "role": "exercise",
+      "blockId": "block-singular-articles",
+      "label": {
+        "en": "Error spotting 1",
+        "fr": "Repérer l’erreur 1",
+        "de": "Fehler finden 1"
+      },
+      "pages": [
+        {
+          "pageId": "ex-singular-spot-1",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Find the wrong word and correct it.",
+            "fr": "Trouvez le mot faux et corrigez-le.",
+            "de": "Finde das falsche Wort und korrigiere es."
+          },
+          "items": [
+            {
+              "type": "grammar_error_spotter",
+              "ruleIds": [
+                "rule-singular-gender"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-1",
+                  "text": "Voici"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "une"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "livre"
+                }
+              ],
+              "faultyTokenId": "t-2",
+              "correction": {
+                "mode": "select",
+                "accepted": {
+                  "answers": [
+                    "un"
+                  ],
+                  "accentSensitive": []
+                },
+                "choices": [
+                  "un",
+                  "une",
+                  "des"
+                ]
+              },
+              "answerExplanation": {
+                "en": "livre is masculine, so un, not une.",
+                "fr": "livre est masculin : un, et non une.",
+                "de": "livre ist maskulin, also un, nicht une."
+              },
+              "itemId": "ex-singular-spot-1"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-singular-spot-2",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Find the wrong word and correct it.",
+            "fr": "Trouvez le mot faux et corrigez-le.",
+            "de": "Finde das falsche Wort und korrigiere es."
+          },
+          "items": [
+            {
+              "type": "grammar_error_spotter",
+              "ruleIds": [
+                "rule-singular-gender"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-1",
+                  "text": "C’est"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "un"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "table"
+                }
+              ],
+              "faultyTokenId": "t-2",
+              "correction": {
+                "mode": "type",
+                "accepted": {
+                  "answers": [
+                    "une"
+                  ],
+                  "accentSensitive": []
+                },
+                "choices": []
+              },
+              "answerExplanation": {
+                "en": "table is feminine, so une, not un.",
+                "fr": "table est féminin : une, et non un.",
+                "de": "table ist feminin, also une, nicht un."
+              },
+              "itemId": "ex-singular-spot-2"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-singular-spot-3",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Find the wrong word and correct it.",
+            "fr": "Trouvez le mot faux et corrigez-le.",
+            "de": "Finde das falsche Wort und korrigiere es."
+          },
+          "items": [
+            {
+              "type": "grammar_error_spotter",
+              "ruleIds": [
+                "rule-singular-gender"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-1",
+                  "text": "C’est"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "une"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "stylo"
+                }
+              ],
+              "faultyTokenId": "t-2",
+              "correction": {
+                "mode": "type",
+                "accepted": {
+                  "answers": [
+                    "un"
+                  ],
+                  "accentSensitive": []
+                },
+                "choices": []
+              },
+              "answerExplanation": {
+                "en": "stylo is masculine, so un, not une.",
+                "fr": "stylo est masculin : un, et non une.",
+                "de": "stylo ist maskulin, also un, nicht une."
+              },
+              "itemId": "ex-singular-spot-3"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-singular-spot-4",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Find the wrong word and correct it.",
+            "fr": "Trouvez le mot faux et corrigez-le.",
+            "de": "Finde das falsche Wort und korrigiere es."
+          },
+          "items": [
+            {
+              "type": "grammar_error_spotter",
+              "ruleIds": [
+                "rule-singular-gender"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-1",
+                  "text": "Voici"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "un"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "porte"
+                }
+              ],
+              "faultyTokenId": "t-2",
+              "correction": {
+                "mode": "select",
+                "accepted": {
+                  "answers": [
+                    "une"
+                  ],
+                  "accentSensitive": []
+                },
+                "choices": [
+                  "une",
+                  "un",
+                  "des"
+                ]
+              },
+              "answerExplanation": {
+                "en": "porte is feminine, so une, not un.",
+                "fr": "porte est féminin : une, et non un.",
+                "de": "porte ist feminin, also une, nicht un."
+              },
+              "itemId": "ex-singular-spot-4"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-singular-spot-5",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Find the wrong word and correct it.",
+            "fr": "Trouvez le mot faux et corrigez-le.",
+            "de": "Finde das falsche Wort und korrigiere es."
+          },
+          "items": [
+            {
+              "type": "grammar_error_spotter",
+              "ruleIds": [
+                "rule-singular-gender"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-1",
+                  "text": "C’est"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "une"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "crayon"
+                }
+              ],
+              "faultyTokenId": "t-2",
+              "correction": {
+                "mode": "type",
+                "accepted": {
+                  "answers": [
+                    "un"
+                  ],
+                  "accentSensitive": []
+                },
+                "choices": []
+              },
+              "answerExplanation": {
+                "en": "crayon is masculine, so un, not une.",
+                "fr": "crayon est masculin : un, et non une.",
+                "de": "crayon ist maskulin, also un, nicht une."
+              },
+              "itemId": "ex-singular-spot-5"
             }
           ]
         }
@@ -497,9 +900,9 @@
           "estimatedDurationS": 90,
           "timeLimitS": null,
           "instructions": {
-            "en": "Read the rule and examples.",
-            "fr": "Lisez la règle et les exemples.",
-            "de": "Lies die Regel und die Beispiele."
+            "en": "Read the explanation and the examples.",
+            "fr": "Lisez l’explication et les exemples.",
+            "de": "Lies die Erklärung und die Beispiele."
           },
           "items": [
             {
@@ -545,14 +948,14 @@
       "role": "exercise",
       "blockId": "block-plural-article",
       "label": {
-        "en": "Plural Indefinite Article: des",
-        "fr": "L'article indéfini au pluriel : des",
-        "de": "Der unbestimmte Artikel im Plural: des"
+        "en": "Multiple-choice gaps 2",
+        "fr": "Phrases à trous à choix multiple 2",
+        "de": "Lücken mit Auswahl 2"
       },
       "pages": [
         {
           "pageId": "ex-plural-choice-1",
-          "estimatedDurationS": 18,
+          "estimatedDurationS": 10,
           "timeLimitS": null,
           "instructions": {
             "en": "Choose the word that completes the sentence.",
@@ -562,47 +965,43 @@
           "items": [
             {
               "type": "grammar_gap_choice",
-              "itemId": "ex-plural-choice-1",
               "ruleIds": [
                 "rule-plural-des"
               ],
-              "before": "J’ai",
+              "before": "Voici",
               "after": "livres.",
-              "answerExplanation": {
-                "en": "Answer: des. Use 'des' before any plural noun, whether masculine or feminine.",
-                "fr": "Réponse : des. Utilisez 'des' devant tous les noms au pluriel, qu'ils soient masculins ou féminins.",
-                "de": "Antwort: des. Verwende 'des' vor allen Nomen im Plural, egal ob männlich oder weiblich."
-              },
               "choices": [
                 {
-                  "choiceId": "c-0",
+                  "choiceId": "c-1",
                   "text": "un"
                 },
                 {
-                  "choiceId": "c-1",
-                  "text": "une"
-                },
-                {
                   "choiceId": "c-2",
-                  "text": "le"
+                  "text": "des"
                 },
                 {
                   "choiceId": "c-3",
-                  "text": "des"
+                  "text": "les"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "une"
                 }
               ],
-              "answerChoiceId": "c-3",
-              "hint": {
-                "en": "plural, indefinite",
-                "fr": "pluriel indéfini",
-                "de": "Plural, unbestimmt"
-              }
+              "answerChoiceId": "c-2",
+              "hint": null,
+              "answerExplanation": {
+                "en": "livres is plural, so the article is des – for masculine and feminine nouns alike.",
+                "fr": "livres est au pluriel : l’article est des, pour les noms masculins comme féminins.",
+                "de": "livres steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
+              },
+              "itemId": "ex-plural-choice-1"
             }
           ]
         },
         {
           "pageId": "ex-plural-choice-2",
-          "estimatedDurationS": 18,
+          "estimatedDurationS": 10,
           "timeLimitS": null,
           "instructions": {
             "en": "Choose the word that completes the sentence.",
@@ -612,47 +1011,43 @@
           "items": [
             {
               "type": "grammar_gap_choice",
-              "itemId": "ex-plural-choice-2",
               "ruleIds": [
                 "rule-plural-des"
               ],
-              "before": "Voici",
+              "before": "Ce sont",
               "after": "tables.",
-              "answerExplanation": {
-                "en": "Answer: des. Use 'des' before any plural noun, whether masculine or feminine.",
-                "fr": "Réponse : des. Utilisez 'des' devant tous les noms au pluriel, qu'ils soient masculins ou féminins.",
-                "de": "Antwort: des. Verwende 'des' vor allen Nomen im Plural, egal ob männlich oder weiblich."
-              },
               "choices": [
-                {
-                  "choiceId": "c-0",
-                  "text": "un"
-                },
                 {
                   "choiceId": "c-1",
                   "text": "la"
                 },
                 {
                   "choiceId": "c-2",
-                  "text": "des"
+                  "text": "un"
                 },
                 {
                   "choiceId": "c-3",
+                  "text": "des"
+                },
+                {
+                  "choiceId": "c-4",
                   "text": "une"
                 }
               ],
-              "answerChoiceId": "c-2",
-              "hint": {
-                "en": "plural, indefinite",
-                "fr": "pluriel indéfini",
-                "de": "Plural, unbestimmt"
-              }
+              "answerChoiceId": "c-3",
+              "hint": null,
+              "answerExplanation": {
+                "en": "tables is plural, so the article is des – for masculine and feminine nouns alike.",
+                "fr": "tables est au pluriel : l’article est des, pour les noms masculins comme féminins.",
+                "de": "tables steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
+              },
+              "itemId": "ex-plural-choice-2"
             }
           ]
         },
         {
           "pageId": "ex-plural-choice-3",
-          "estimatedDurationS": 18,
+          "estimatedDurationS": 10,
           "timeLimitS": null,
           "instructions": {
             "en": "Choose the word that completes the sentence.",
@@ -662,47 +1057,43 @@
           "items": [
             {
               "type": "grammar_gap_choice",
-              "itemId": "ex-plural-choice-3",
               "ruleIds": [
                 "rule-plural-des"
               ],
-              "before": "Nous avons",
+              "before": "Voici",
               "after": "stylos.",
-              "answerExplanation": {
-                "en": "Answer: des. Use 'des' before any plural noun, whether masculine or feminine.",
-                "fr": "Réponse : des. Utilisez 'des' devant tous les noms au pluriel, qu'ils soient masculins ou féminins.",
-                "de": "Antwort: des. Verwende 'des' vor allen Nomen im Plural, egal ob männlich oder weiblich."
-              },
               "choices": [
                 {
-                  "choiceId": "c-0",
-                  "text": "le"
-                },
-                {
                   "choiceId": "c-1",
-                  "text": "des"
-                },
-                {
-                  "choiceId": "c-2",
                   "text": "un"
                 },
                 {
-                  "choiceId": "c-3",
+                  "choiceId": "c-2",
                   "text": "une"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "des"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "le"
                 }
               ],
-              "answerChoiceId": "c-1",
-              "hint": {
-                "en": "plural, indefinite",
-                "fr": "pluriel indéfini",
-                "de": "Plural, unbestimmt"
-              }
+              "answerChoiceId": "c-3",
+              "hint": null,
+              "answerExplanation": {
+                "en": "stylos is plural, so the article is des – for masculine and feminine nouns alike.",
+                "fr": "stylos est au pluriel : l’article est des, pour les noms masculins comme féminins.",
+                "de": "stylos steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
+              },
+              "itemId": "ex-plural-choice-3"
             }
           ]
         },
         {
           "pageId": "ex-plural-choice-4",
-          "estimatedDurationS": 18,
+          "estimatedDurationS": 10,
           "timeLimitS": null,
           "instructions": {
             "en": "Choose the word that completes the sentence.",
@@ -712,47 +1103,43 @@
           "items": [
             {
               "type": "grammar_gap_choice",
-              "itemId": "ex-plural-choice-4",
               "ruleIds": [
                 "rule-plural-des"
               ],
-              "before": "Elle a",
+              "before": "Ce sont",
               "after": "chaises.",
-              "answerExplanation": {
-                "en": "Answer: des. Use 'des' before any plural noun, whether masculine or feminine.",
-                "fr": "Réponse : des. Utilisez 'des' devant tous les noms au pluriel, qu'ils soient masculins ou féminins.",
-                "de": "Antwort: des. Verwende 'des' vor allen Nomen im Plural, egal ob männlich oder weiblich."
-              },
               "choices": [
                 {
-                  "choiceId": "c-0",
+                  "choiceId": "c-1",
                   "text": "une"
                 },
                 {
-                  "choiceId": "c-1",
-                  "text": "un"
-                },
-                {
                   "choiceId": "c-2",
-                  "text": "la"
+                  "text": "des"
                 },
                 {
                   "choiceId": "c-3",
-                  "text": "des"
+                  "text": "un"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "le"
                 }
               ],
-              "answerChoiceId": "c-3",
-              "hint": {
-                "en": "plural, indefinite",
-                "fr": "pluriel indéfini",
-                "de": "Plural, unbestimmt"
-              }
+              "answerChoiceId": "c-2",
+              "hint": null,
+              "answerExplanation": {
+                "en": "chaises is plural, so the article is des – for masculine and feminine nouns alike.",
+                "fr": "chaises est au pluriel : l’article est des, pour les noms masculins comme féminins.",
+                "de": "chaises steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
+              },
+              "itemId": "ex-plural-choice-4"
             }
           ]
         },
         {
           "pageId": "ex-plural-choice-5",
-          "estimatedDurationS": 18,
+          "estimatedDurationS": 10,
           "timeLimitS": null,
           "instructions": {
             "en": "Choose the word that completes the sentence.",
@@ -762,25 +1149,107 @@
           "items": [
             {
               "type": "grammar_gap_choice",
-              "itemId": "ex-plural-choice-5",
               "ruleIds": [
                 "rule-plural-des"
               ],
-              "before": "Tu as",
-              "after": "cahiers.",
-              "answerExplanation": {
-                "en": "Answer: des. Use 'des' before any plural noun, whether masculine or feminine.",
-                "fr": "Réponse : des. Utilisez 'des' devant tous les noms au pluriel, qu'ils soient masculins ou féminins.",
-                "de": "Antwort: des. Verwende 'des' vor allen Nomen im Plural, egal ob männlich oder weiblich."
-              },
+              "before": "Voici",
+              "after": "amis.",
               "choices": [
                 {
-                  "choiceId": "c-0",
+                  "choiceId": "c-1",
+                  "text": "des"
+                },
+                {
+                  "choiceId": "c-2",
                   "text": "une"
                 },
                 {
+                  "choiceId": "c-3",
+                  "text": "la"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "un"
+                }
+              ],
+              "answerChoiceId": "c-1",
+              "hint": null,
+              "answerExplanation": {
+                "en": "amis is plural, so the article is des – for masculine and feminine nouns alike.",
+                "fr": "amis est au pluriel : l’article est des, pour les noms masculins comme féminins.",
+                "de": "amis steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
+              },
+              "itemId": "ex-plural-choice-5"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-plural-choice-6",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "ruleIds": [
+                "rule-plural-des"
+              ],
+              "before": "Ce sont",
+              "after": "photos.",
+              "choices": [
+                {
                   "choiceId": "c-1",
+                  "text": "des"
+                },
+                {
+                  "choiceId": "c-2",
                   "text": "le"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "un"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "une"
+                }
+              ],
+              "answerChoiceId": "c-1",
+              "hint": null,
+              "answerExplanation": {
+                "en": "photos is plural, so the article is des – for masculine and feminine nouns alike.",
+                "fr": "photos est au pluriel : l’article est des, pour les noms masculins comme féminins.",
+                "de": "photos steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
+              },
+              "itemId": "ex-plural-choice-6"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-plural-choice-7",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "ruleIds": [
+                "rule-plural-des"
+              ],
+              "before": "Voici",
+              "after": "oranges.",
+              "choices": [
+                {
+                  "choiceId": "c-1",
+                  "text": "la"
                 },
                 {
                   "choiceId": "c-2",
@@ -789,14 +1258,421 @@
                 {
                   "choiceId": "c-3",
                   "text": "un"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "une"
                 }
               ],
               "answerChoiceId": "c-2",
-              "hint": {
-                "en": "plural, indefinite",
-                "fr": "pluriel indéfini",
-                "de": "Plural, unbestimmt"
-              }
+              "hint": null,
+              "answerExplanation": {
+                "en": "oranges is plural, so the article is des – for masculine and feminine nouns alike.",
+                "fr": "oranges est au pluriel : l’article est des, pour les noms masculins comme féminins.",
+                "de": "oranges steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
+              },
+              "itemId": "ex-plural-choice-7"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-plural-typing",
+      "role": "exercise",
+      "blockId": "block-plural-article",
+      "label": {
+        "en": "Typed gaps 2",
+        "fr": "Phrases à trous à écrire 2",
+        "de": "Lücken zum Schreiben 2"
+      },
+      "pages": [
+        {
+          "pageId": "ex-plural-typing-1",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-plural-des"
+              ],
+              "before": "Voici",
+              "after": "clés.",
+              "accepted": {
+                "answers": [
+                  "des"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null,
+              "answerExplanation": {
+                "en": "clés is plural, so the article is des – for masculine and feminine nouns alike.",
+                "fr": "clés est au pluriel : l’article est des, pour les noms masculins comme féminins.",
+                "de": "clés steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
+              },
+              "itemId": "ex-plural-typing-1"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-plural-typing-2",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-plural-des"
+              ],
+              "before": "Ce sont",
+              "after": "chats.",
+              "accepted": {
+                "answers": [
+                  "des"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null,
+              "answerExplanation": {
+                "en": "chats is plural, so the article is des – for masculine and feminine nouns alike.",
+                "fr": "chats est au pluriel : l’article est des, pour les noms masculins comme féminins.",
+                "de": "chats steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
+              },
+              "itemId": "ex-plural-typing-2"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-plural-typing-3",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-plural-des"
+              ],
+              "before": "Voici",
+              "after": "pommes.",
+              "accepted": {
+                "answers": [
+                  "des"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null,
+              "answerExplanation": {
+                "en": "pommes is plural, so the article is des – for masculine and feminine nouns alike.",
+                "fr": "pommes est au pluriel : l’article est des, pour les noms masculins comme féminins.",
+                "de": "pommes steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
+              },
+              "itemId": "ex-plural-typing-3"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-plural-typing-4",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-plural-des"
+              ],
+              "before": "Ce sont",
+              "after": "vélos.",
+              "accepted": {
+                "answers": [
+                  "des"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null,
+              "answerExplanation": {
+                "en": "vélos is plural, so the article is des – for masculine and feminine nouns alike.",
+                "fr": "vélos est au pluriel : l’article est des, pour les noms masculins comme féminins.",
+                "de": "vélos steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
+              },
+              "itemId": "ex-plural-typing-4"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-plural-typing-5",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-plural-des"
+              ],
+              "before": "Voici",
+              "after": "bouteilles.",
+              "accepted": {
+                "answers": [
+                  "des"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null,
+              "answerExplanation": {
+                "en": "bouteilles is plural, so the article is des – for masculine and feminine nouns alike.",
+                "fr": "bouteilles est au pluriel : l’article est des, pour les noms masculins comme féminins.",
+                "de": "bouteilles steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
+              },
+              "itemId": "ex-plural-typing-5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-plural-spot",
+      "role": "exercise",
+      "blockId": "block-plural-article",
+      "label": {
+        "en": "Error spotting 2",
+        "fr": "Repérer l’erreur 2",
+        "de": "Fehler finden 2"
+      },
+      "pages": [
+        {
+          "pageId": "ex-plural-spot-1",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Find the wrong word and correct it.",
+            "fr": "Trouvez le mot faux et corrigez-le.",
+            "de": "Finde das falsche Wort und korrigiere es."
+          },
+          "items": [
+            {
+              "type": "grammar_error_spotter",
+              "ruleIds": [
+                "rule-plural-des"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-1",
+                  "text": "Voici"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "un"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "livres"
+                }
+              ],
+              "faultyTokenId": "t-2",
+              "correction": {
+                "mode": "select",
+                "accepted": {
+                  "answers": [
+                    "des"
+                  ],
+                  "accentSensitive": []
+                },
+                "choices": [
+                  "des",
+                  "un",
+                  "une"
+                ]
+              },
+              "answerExplanation": {
+                "en": "livres is plural: des, not un or une.",
+                "fr": "livres est au pluriel : des, et non un ou une.",
+                "de": "livres steht im Plural: des, nicht un oder une."
+              },
+              "itemId": "ex-plural-spot-1"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-plural-spot-2",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Find the wrong word and correct it.",
+            "fr": "Trouvez le mot faux et corrigez-le.",
+            "de": "Finde das falsche Wort und korrigiere es."
+          },
+          "items": [
+            {
+              "type": "grammar_error_spotter",
+              "ruleIds": [
+                "rule-plural-des"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-1",
+                  "text": "Ce"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "sont"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "une"
+                },
+                {
+                  "tokenId": "t-4",
+                  "text": "tables"
+                }
+              ],
+              "faultyTokenId": "t-3",
+              "correction": {
+                "mode": "type",
+                "accepted": {
+                  "answers": [
+                    "des"
+                  ],
+                  "accentSensitive": []
+                },
+                "choices": []
+              },
+              "answerExplanation": {
+                "en": "tables is plural: des, not un or une.",
+                "fr": "tables est au pluriel : des, et non un ou une.",
+                "de": "tables steht im Plural: des, nicht un oder une."
+              },
+              "itemId": "ex-plural-spot-2"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-plural-spot-3",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Find the wrong word and correct it.",
+            "fr": "Trouvez le mot faux et corrigez-le.",
+            "de": "Finde das falsche Wort und korrigiere es."
+          },
+          "items": [
+            {
+              "type": "grammar_error_spotter",
+              "ruleIds": [
+                "rule-plural-des"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-1",
+                  "text": "Voici"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "une"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "fleurs"
+                }
+              ],
+              "faultyTokenId": "t-2",
+              "correction": {
+                "mode": "select",
+                "accepted": {
+                  "answers": [
+                    "des"
+                  ],
+                  "accentSensitive": []
+                },
+                "choices": [
+                  "des",
+                  "une",
+                  "un"
+                ]
+              },
+              "answerExplanation": {
+                "en": "fleurs is plural: des, not un or une.",
+                "fr": "fleurs est au pluriel : des, et non un ou une.",
+                "de": "fleurs steht im Plural: des, nicht un oder une."
+              },
+              "itemId": "ex-plural-spot-3"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-plural-spot-4",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Find the wrong word and correct it.",
+            "fr": "Trouvez le mot faux et corrigez-le.",
+            "de": "Finde das falsche Wort und korrigiere es."
+          },
+          "items": [
+            {
+              "type": "grammar_error_spotter",
+              "ruleIds": [
+                "rule-plural-des"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-1",
+                  "text": "Ce"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "sont"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "un"
+                },
+                {
+                  "tokenId": "t-4",
+                  "text": "stylos"
+                }
+              ],
+              "faultyTokenId": "t-3",
+              "correction": {
+                "mode": "type",
+                "accepted": {
+                  "answers": [
+                    "des"
+                  ],
+                  "accentSensitive": []
+                },
+                "choices": []
+              },
+              "answerExplanation": {
+                "en": "stylos is plural: des, not un or une.",
+                "fr": "stylos est au pluriel : des, et non un ou une.",
+                "de": "stylos steht im Plural: des, nicht un oder une."
+              },
+              "itemId": "ex-plural-spot-4"
             }
           ]
         }
@@ -841,182 +1717,374 @@
       },
       "pages": [
         {
-          "pageId": "exam-page-singular-plural-typing",
-          "estimatedDurationS": 190,
-          "timeLimitS": 240,
+          "pageId": "exam-singular",
+          "estimatedDurationS": 90,
+          "timeLimitS": 140,
           "instructions": {
-            "en": "Write the missing word or expression.",
-            "fr": "Écrivez le mot ou l’expression qui manque.",
-            "de": "Schreib das fehlende Wort oder die Wendung."
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
           },
           "items": [
             {
               "type": "grammar_gap_typing",
-              "itemId": "exam-1-1",
               "ruleIds": [
                 "rule-singular-gender"
               ],
               "before": "Voici",
-              "after": "stylo. (masculin singulier)",
-              "answerExplanation": {
-                "en": "Answer: un. Use 'un' before singular masculine nouns and 'une' before singular feminine nouns.",
-                "fr": "Réponse : un. Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier.",
-                "de": "Antwort: un. Verwende 'un' vor männlichen Nomen im Singular und 'une' vor weiblichen Nomen im Singular."
-              },
+              "after": "bureau.",
               "accepted": {
                 "answers": [
                   "un"
                 ],
                 "accentSensitive": []
               },
-              "hint": null
+              "hint": null,
+              "answerExplanation": {
+                "en": "bureau is masculine: un bureau.",
+                "fr": "bureau est masculin : un bureau.",
+                "de": "bureau ist maskulin: un bureau."
+              },
+              "itemId": "exam-singular-1"
             },
             {
               "type": "grammar_gap_typing",
-              "itemId": "exam-1-2",
               "ruleIds": [
-                "rule-plural-des"
+                "rule-singular-gender"
               ],
-              "before": "Elle a",
-              "after": "chaises. (pluriel indéfini)",
-              "answerExplanation": {
-                "en": "Answer: des. Use 'des' before any plural noun, whether masculine or feminine.",
-                "fr": "Réponse : des. Utilisez 'des' devant tous les noms au pluriel, qu'ils soient masculins ou féminins.",
-                "de": "Antwort: des. Verwende 'des' vor allen Nomen im Plural, egal ob männlich oder weiblich."
-              },
+              "before": "C’est",
+              "after": "lampe.",
               "accepted": {
                 "answers": [
-                  "des"
+                  "une"
                 ],
                 "accentSensitive": []
               },
-              "hint": null
+              "hint": null,
+              "answerExplanation": {
+                "en": "lampe is feminine: une lampe.",
+                "fr": "lampe est féminin : une lampe.",
+                "de": "lampe ist feminin: une lampe."
+              },
+              "itemId": "exam-singular-2"
             },
             {
               "type": "grammar_gap_typing",
-              "itemId": "exam-1-3",
               "ruleIds": [
                 "rule-singular-gender"
               ],
               "before": "Voici",
-              "after": "cahier. (masculin singulier)",
-              "answerExplanation": {
-                "en": "Answer: un. Use 'un' before singular masculine nouns and 'une' before singular feminine nouns.",
-                "fr": "Réponse : un. Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier.",
-                "de": "Antwort: un. Verwende 'un' vor männlichen Nomen im Singular und 'une' vor weiblichen Nomen im Singular."
-              },
+              "after": "journal.",
               "accepted": {
                 "answers": [
                   "un"
                 ],
                 "accentSensitive": []
               },
-              "hint": null
+              "hint": null,
+              "answerExplanation": {
+                "en": "journal is masculine: un journal.",
+                "fr": "journal est masculin : un journal.",
+                "de": "journal ist maskulin: un journal."
+              },
+              "itemId": "exam-singular-3"
             },
             {
               "type": "grammar_gap_typing",
-              "itemId": "exam-1-4",
               "ruleIds": [
-                "rule-plural-des"
+                "rule-singular-gender"
               ],
-              "before": "J’ai",
-              "after": "livres. (pluriel indéfini)",
-              "answerExplanation": {
-                "en": "Answer: des. Use 'des' before any plural noun, whether masculine or feminine.",
-                "fr": "Réponse : des. Utilisez 'des' devant tous les noms au pluriel, qu'ils soient masculins ou féminins.",
-                "de": "Antwort: des. Verwende 'des' vor allen Nomen im Plural, egal ob männlich oder weiblich."
-              },
+              "before": "C’est",
+              "after": "photo.",
               "accepted": {
                 "answers": [
-                  "des"
+                  "une"
                 ],
                 "accentSensitive": []
               },
-              "hint": null
+              "hint": null,
+              "answerExplanation": {
+                "en": "photo is feminine: une photo.",
+                "fr": "photo est féminin : une photo.",
+                "de": "photo ist feminin: une photo."
+              },
+              "itemId": "exam-singular-4"
             },
             {
               "type": "grammar_gap_typing",
-              "itemId": "exam-1-5",
               "ruleIds": [
                 "rule-singular-gender"
               ],
               "before": "Voici",
-              "after": "livre. (masculin singulier)",
-              "answerExplanation": {
-                "en": "Answer: un. Use 'un' before singular masculine nouns and 'une' before singular feminine nouns.",
-                "fr": "Réponse : un. Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier.",
-                "de": "Antwort: un. Verwende 'un' vor männlichen Nomen im Singular und 'une' vor weiblichen Nomen im Singular."
-              },
+              "after": "arbre.",
               "accepted": {
                 "answers": [
                   "un"
                 ],
                 "accentSensitive": []
               },
-              "hint": null
+              "hint": null,
+              "answerExplanation": {
+                "en": "arbre is masculine: un arbre.",
+                "fr": "arbre est masculin : un arbre.",
+                "de": "arbre ist maskulin: un arbre."
+              },
+              "itemId": "exam-singular-5"
             },
             {
               "type": "grammar_gap_typing",
-              "itemId": "exam-1-6",
+              "ruleIds": [
+                "rule-singular-gender"
+              ],
+              "before": "C’est",
+              "after": "banane.",
+              "accepted": {
+                "answers": [
+                  "une"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null,
+              "answerExplanation": {
+                "en": "banane is feminine: une banane.",
+                "fr": "banane est féminin : une banane.",
+                "de": "banane ist feminin: une banane."
+              },
+              "itemId": "exam-singular-6"
+            }
+          ]
+        },
+        {
+          "pageId": "exam-plural",
+          "estimatedDurationS": 75,
+          "timeLimitS": 120,
+          "instructions": {
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
               "ruleIds": [
                 "rule-plural-des"
               ],
-              "before": "Nous avons",
-              "after": "stylos. (pluriel indéfini)",
-              "answerExplanation": {
-                "en": "Answer: des. Use 'des' before any plural noun, whether masculine or feminine.",
-                "fr": "Réponse : des. Utilisez 'des' devant tous les noms au pluriel, qu'ils soient masculins ou féminins.",
-                "de": "Antwort: des. Verwende 'des' vor allen Nomen im Plural, egal ob männlich oder weiblich."
-              },
+              "before": "Voici",
+              "after": "gâteaux.",
               "accepted": {
                 "answers": [
                   "des"
                 ],
                 "accentSensitive": []
               },
-              "hint": null
+              "hint": null,
+              "answerExplanation": {
+                "en": "gâteaux is plural, so the article is des – for masculine and feminine nouns alike.",
+                "fr": "gâteaux est au pluriel : l’article est des, pour les noms masculins comme féminins.",
+                "de": "gâteaux steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
+              },
+              "itemId": "exam-plural-1"
             },
             {
               "type": "grammar_gap_typing",
-              "itemId": "exam-1-7",
+              "ruleIds": [
+                "rule-plural-des"
+              ],
+              "before": "Ce sont",
+              "after": "lampes.",
+              "accepted": {
+                "answers": [
+                  "des"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null,
+              "answerExplanation": {
+                "en": "lampes is plural, so the article is des – for masculine and feminine nouns alike.",
+                "fr": "lampes est au pluriel : l’article est des, pour les noms masculins comme féminins.",
+                "de": "lampes steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
+              },
+              "itemId": "exam-plural-2"
+            },
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-plural-des"
+              ],
+              "before": "Voici",
+              "after": "journaux.",
+              "accepted": {
+                "answers": [
+                  "des"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null,
+              "answerExplanation": {
+                "en": "journaux is plural, so the article is des – for masculine and feminine nouns alike.",
+                "fr": "journaux est au pluriel : l’article est des, pour les noms masculins comme féminins.",
+                "de": "journaux steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
+              },
+              "itemId": "exam-plural-3"
+            },
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-plural-des"
+              ],
+              "before": "Ce sont",
+              "after": "assiettes.",
+              "accepted": {
+                "answers": [
+                  "des"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null,
+              "answerExplanation": {
+                "en": "assiettes is plural, so the article is des – for masculine and feminine nouns alike.",
+                "fr": "assiettes est au pluriel : l’article est des, pour les noms masculins comme féminins.",
+                "de": "assiettes steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
+              },
+              "itemId": "exam-plural-4"
+            },
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-plural-des"
+              ],
+              "before": "Voici",
+              "after": "arbres.",
+              "accepted": {
+                "answers": [
+                  "des"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null,
+              "answerExplanation": {
+                "en": "arbres is plural, so the article is des – for masculine and feminine nouns alike.",
+                "fr": "arbres est au pluriel : l’article est des, pour les noms masculins comme féminins.",
+                "de": "arbres steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
+              },
+              "itemId": "exam-plural-5"
+            }
+          ]
+        },
+        {
+          "pageId": "exam-mixed",
+          "estimatedDurationS": 75,
+          "timeLimitS": 120,
+          "instructions": {
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
               "ruleIds": [
                 "rule-singular-gender"
               ],
               "before": "Voici",
-              "after": "stylo. (masculin singulier)",
-              "answerExplanation": {
-                "en": "Answer: un. Use 'un' before singular masculine nouns and 'une' before singular feminine nouns.",
-                "fr": "Réponse : un. Utilisez 'un' devant un nom masculin singulier et 'une' devant un nom féminin singulier.",
-                "de": "Antwort: un. Verwende 'un' vor männlichen Nomen im Singular und 'une' vor weiblichen Nomen im Singular."
-              },
+              "after": "sandwich.",
               "accepted": {
                 "answers": [
                   "un"
                 ],
                 "accentSensitive": []
               },
-              "hint": null
+              "hint": null,
+              "answerExplanation": {
+                "en": "sandwich is masculine: un sandwich.",
+                "fr": "sandwich est masculin : un sandwich.",
+                "de": "sandwich ist maskulin: un sandwich."
+              },
+              "itemId": "exam-mixed-1"
             },
             {
               "type": "grammar_gap_typing",
-              "itemId": "exam-1-8",
               "ruleIds": [
                 "rule-plural-des"
               ],
-              "before": "Tu as",
-              "after": "cahiers. (pluriel indéfini)",
-              "answerExplanation": {
-                "en": "Answer: des. Use 'des' before any plural noun, whether masculine or feminine.",
-                "fr": "Réponse : des. Utilisez 'des' devant tous les noms au pluriel, qu'ils soient masculins ou féminins.",
-                "de": "Antwort: des. Verwende 'des' vor allen Nomen im Plural, egal ob männlich oder weiblich."
-              },
+              "before": "Voici",
+              "after": "sandwichs.",
               "accepted": {
                 "answers": [
                   "des"
                 ],
                 "accentSensitive": []
               },
-              "hint": null
+              "hint": null,
+              "answerExplanation": {
+                "en": "sandwichs is plural, so the article is des – for masculine and feminine nouns alike.",
+                "fr": "sandwichs est au pluriel : l’article est des, pour les noms masculins comme féminins.",
+                "de": "sandwichs steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
+              },
+              "itemId": "exam-mixed-2"
+            },
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-singular-gender"
+              ],
+              "before": "C’est",
+              "after": "fleur.",
+              "accepted": {
+                "answers": [
+                  "une"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null,
+              "answerExplanation": {
+                "en": "fleur is feminine: une fleur.",
+                "fr": "fleur est féminin : une fleur.",
+                "de": "fleur ist feminin: une fleur."
+              },
+              "itemId": "exam-mixed-3"
+            },
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-plural-des"
+              ],
+              "before": "Ce sont",
+              "after": "sacs.",
+              "accepted": {
+                "answers": [
+                  "des"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null,
+              "answerExplanation": {
+                "en": "sacs is plural, so the article is des – for masculine and feminine nouns alike.",
+                "fr": "sacs est au pluriel : l’article est des, pour les noms masculins comme féminins.",
+                "de": "sacs steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
+              },
+              "itemId": "exam-mixed-4"
+            },
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-singular-gender"
+              ],
+              "before": "C’est",
+              "after": "film.",
+              "accepted": {
+                "answers": [
+                  "un"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null,
+              "answerExplanation": {
+                "en": "film is masculine: un film.",
+                "fr": "film est masculin : un film.",
+                "de": "film ist maskulin: un film."
+              },
+              "itemId": "exam-mixed-5"
             }
           ]
         }
@@ -1024,13 +2092,13 @@
     }
   ],
   "provenance": {
-    "generator": "codex-direct-authoring",
-    "model": "gpt-6",
-    "promptVersion": "manual-content-v1",
-    "generatedAt": "2026-10-06T22:13:22.000Z",
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "content-v4",
+    "generatedAt": "2026-10-08T00:17:18.468Z",
     "inputHashes": {
       "outline": "21cea9aeeacae2d7d0c58cde432c039e81a485c45fc20fb3991afbe89e01be25",
-      "brief": "d99e075e09bce48c8305ba6088d61f2dc49bda236903e13a4c01fecd2841f850"
+      "brief": "6cb8f864256f2e6a8aae4b443dd1bc165c07029dcf80b114891649a1bbf490d1"
     }
   }
 }

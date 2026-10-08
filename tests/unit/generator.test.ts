@@ -53,7 +53,8 @@ const CALLS = { [VOC]: 4, [GRAM]: 1 } as Record<string, number>;
 function options(dir: string, impl: (request: GenerationRequest) => Promise<string> = async (request) => output(VOC, request.label)) {
   const generate = vi.fn(async (request: GenerationRequest) => ({ text: await impl(request), model: 'fake-model' }));
   const adapter = vi.fn(() => ({ generate }));
-  return { opts: { contentDir: dir, adapter, sleep: async () => {} } satisfies BriefOptions, generate, adapter };
+  // The small fixtures predate the lesson length rules (P3-07); one test below applies them.
+  return { opts: { contentDir: dir, adapter, sleep: async () => {}, lengthRules: false } satisfies BriefOptions, generate, adapter };
 }
 const saved = (dir: string, id = VOC) => join(dir, 'briefs', id + '.json');
 
@@ -91,6 +92,15 @@ describe('offline brief authoring', () => {
     await generateBrief(GRAM, opts);
     expect(generate.mock.calls[1][0].prompt).toContain('unknown rule');
     expect(scanContentDir(dir).manifest.artifacts[GRAM].draft?.status).toBe('valid');
+  });
+
+  it('asks the model to lengthen a grammar brief that misses the length rules (P3-07)', async () => {
+    const dir = setup();
+    const { opts, generate } = options(dir, async () => output(GRAM));
+    // The short fixture never meets the rules, so the call budget runs out and nothing is saved.
+    await expect(generateBrief(GRAM, { ...opts, lengthRules: true })).rejects.toThrow(/at least 34 \(P3-07\)/);
+    expect(generate.mock.calls[1][0].prompt).toMatch(/at least 16 \(P3-07\)/);
+    expect(scanContentDir(dir).manifest.artifacts[GRAM].draft).toBeUndefined();
   });
 
   it('repairs a vocabulary section on its own and leaves the inventory and other sections untouched (P2-04)', async () => {

@@ -14,7 +14,7 @@
     "fr": "Conjuguer le verbe avoir au présent, dire son âge et exprimer la possession.",
     "de": "Das Verb avoir im Präsens konjugieren, das Alter angeben und Besitz ausdrücken."
   },
-  "estimatedMinutes": 15,
+  "estimatedMinutes": 19,
   "kind": "grammar",
   "topic": "verbs_morphology",
   "steps": [
@@ -33,9 +33,9 @@
           "estimatedDurationS": 120,
           "timeLimitS": null,
           "instructions": {
-            "en": "Read the rule and examples.",
-            "fr": "Lisez la règle et les exemples.",
-            "de": "Lies die Regel und die Beispiele."
+            "en": "Read the explanation and the examples.",
+            "fr": "Lisez l’explication et les exemples.",
+            "de": "Lies die Erklärung und die Beispiele."
           },
           "items": [
             {
@@ -112,14 +112,14 @@
       "role": "exercise",
       "blockId": "block-forms",
       "label": {
-        "en": "Forms of the verb avoir in the present tense",
-        "fr": "Les formes du verbe avoir au présent",
-        "de": "Formen des Verbs avoir im Präsens"
+        "en": "Person matching",
+        "fr": "Relier les personnes",
+        "de": "Personen verbinden"
       },
       "pages": [
         {
           "pageId": "ex-forms-persons-1",
-          "estimatedDurationS": 60,
+          "estimatedDurationS": 48,
           "timeLimitS": null,
           "instructions": {
             "en": "Connect each pronoun with its partner.",
@@ -129,7 +129,6 @@
           "items": [
             {
               "type": "grammar_person_matching",
-              "itemId": "ex-forms-persons-1",
               "ruleIds": [
                 "rule-avoir-forms"
               ],
@@ -141,8 +140,8 @@
                   "native": null,
                   "answer": "ai",
                   "answerExplanation": {
-                    "en": "Je takes ai and elides before the vowel: j’ai.",
-                    "fr": "Avec je, on dit ai, et je s’élide devant la voyelle : j’ai.",
+                    "en": "With je, avoir is ai, and je becomes j’ before the vowel: j’ai.",
+                    "fr": "Avec je, avoir devient ai, et je s’élide devant la voyelle : j’ai.",
                     "de": "Zu je gehört ai; vor dem Vokal wird je zu j’: j’ai."
                   }
                 },
@@ -152,9 +151,9 @@
                   "native": null,
                   "answer": "as",
                   "answerExplanation": {
-                    "en": "Tu takes as.",
-                    "fr": "Avec tu, on dit as.",
-                    "de": "Zu tu gehört as."
+                    "en": "With tu, avoir is as.",
+                    "fr": "Avec tu, avoir devient as.",
+                    "de": "Zu tu gehört die Form as."
                   }
                 },
                 {
@@ -163,9 +162,9 @@
                   "native": null,
                   "answer": "a",
                   "answerExplanation": {
-                    "en": "Il, elle and on take a, without an accent.",
-                    "fr": "Avec il, elle et on, on écrit a, sans accent.",
-                    "de": "Zu il, elle und on gehört a, ohne Akzent."
+                    "en": "With il, elle, on, avoir is a – without an accent; à with an accent grave is the preposition.",
+                    "fr": "Avec il, elle, on, avoir devient a, sans accent ; à avec un accent grave est la préposition.",
+                    "de": "Zu il, elle, on gehört a, ohne Akzent; à mit Accent grave ist die Präposition."
                   }
                 },
                 {
@@ -174,9 +173,9 @@
                   "native": null,
                   "answer": "avons",
                   "answerExplanation": {
-                    "en": "Nous takes avons.",
-                    "fr": "Avec nous, on dit avons.",
-                    "de": "Zu nous gehört avons."
+                    "en": "With nous, avoir is avons.",
+                    "fr": "Avec nous, avoir devient avons.",
+                    "de": "Zu nous gehört die Form avons."
                   }
                 },
                 {
@@ -185,9 +184,9 @@
                   "native": null,
                   "answer": "avez",
                   "answerExplanation": {
-                    "en": "Vous takes avez.",
-                    "fr": "Avec vous, on dit avez.",
-                    "de": "Zu vous gehört avez."
+                    "en": "With vous, avoir is avez.",
+                    "fr": "Avec vous, avoir devient avez.",
+                    "de": "Zu vous gehört die Form avez."
                   }
                 },
                 {
@@ -196,12 +195,13 @@
                   "native": null,
                   "answer": "ont",
                   "answerExplanation": {
-                    "en": "Ils and elles take ont; ils sont belongs to être.",
-                    "fr": "Avec ils et elles, on dit ont ; ils sont appartient à être.",
-                    "de": "Zu ils und elles gehört ont; ils sont gehört zu être."
+                    "en": "Ils ont: ils ont (avoir, liaison [z]) – ils sont belongs to être.",
+                    "fr": "Ils ont : ils ont (avoir, liaison [z]) – ils sont appartient à être.",
+                    "de": "Ils ont: ils ont (avoir, Bindung [z]) – ils sont gehört zu être."
                   }
                 }
-              ]
+              ],
+              "itemId": "ex-forms-persons-1"
             }
           ]
         }
@@ -212,314 +212,158 @@
       "role": "exercise",
       "blockId": "block-forms",
       "label": {
-        "en": "Forms of the verb avoir in the present tense",
-        "fr": "Les formes du verbe avoir au présent",
-        "de": "Formen des Verbs avoir im Präsens"
+        "en": "Pronoun–form matching",
+        "fr": "Associer pronom et forme",
+        "de": "Pronomen und Form zuordnen"
       },
       "pages": [
         {
           "pageId": "ex-forms-match-1",
-          "estimatedDurationS": 15,
+          "estimatedDurationS": 30,
           "timeLimitS": null,
           "instructions": {
-            "en": "Choose the French form for each row; the verb is given when needed.",
-            "fr": "Choisissez la forme française pour chaque ligne ; le verbe est indiqué si nécessaire.",
-            "de": "Wähle die französische Form für jede Zeile; das Verb ist bei Bedarf angegeben."
+            "en": "Choose the form for each pronoun.",
+            "fr": "Choisissez la forme pour chaque pronom.",
+            "de": "Wähle die Form für jedes Pronomen."
           },
           "items": [
             {
               "type": "grammar_pronoun_form_match",
-              "itemId": "ex-forms-match-1",
               "ruleIds": [
                 "rule-avoir-forms"
               ],
               "tokens": [
                 {
-                  "tokenId": "t-0",
-                  "text": "ont"
-                },
-                {
-                  "tokenId": "t-1",
-                  "text": "a"
+                  "tokenId": "t-3",
+                  "text": "avons"
                 },
                 {
                   "tokenId": "t-2",
+                  "text": "a"
+                },
+                {
+                  "tokenId": "t-1",
                   "text": "as"
                 },
                 {
-                  "tokenId": "t-3",
-                  "text": "ai"
+                  "tokenId": "t-4",
+                  "text": "avez"
                 }
               ],
               "rows": [
                 {
-                  "rowId": "row-1",
-                  "pronoun": "J' (avoir)",
-                  "answerExplanation": {
-                    "en": "Answer: ai. Present forms of avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Note the elision in j'ai.",
-                    "fr": "Réponse : ai. Formes du présent d'avoir : j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Notez l'élision pour j'ai.",
-                    "de": "Antwort: ai. Präsensformen von avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Beachten Sie die Elision bei j'ai."
-                  },
+                  "rowId": "r-1",
+                  "pronoun": "tu",
                   "validForms": [
-                    "ai"
-                  ]
+                    "as"
+                  ],
+                  "answerExplanation": {
+                    "en": "With tu, avoir is as.",
+                    "fr": "Avec tu, avoir devient as.",
+                    "de": "Zu tu gehört die Form as."
+                  }
+                },
+                {
+                  "rowId": "r-2",
+                  "pronoun": "elle",
+                  "validForms": [
+                    "a"
+                  ],
+                  "answerExplanation": {
+                    "en": "With il, elle, on, avoir is a – without an accent; à with an accent grave is the preposition.",
+                    "fr": "Avec il, elle, on, avoir devient a, sans accent ; à avec un accent grave est la préposition.",
+                    "de": "Zu il, elle, on gehört a, ohne Akzent; à mit Accent grave ist die Präposition."
+                  }
+                },
+                {
+                  "rowId": "r-3",
+                  "pronoun": "nous",
+                  "validForms": [
+                    "avons"
+                  ],
+                  "answerExplanation": {
+                    "en": "With nous, avoir is avons.",
+                    "fr": "Avec nous, avoir devient avons.",
+                    "de": "Zu nous gehört die Form avons."
+                  }
                 }
-              ]
+              ],
+              "itemId": "ex-forms-match-1"
             }
           ]
         },
         {
           "pageId": "ex-forms-match-2",
-          "estimatedDurationS": 15,
+          "estimatedDurationS": 30,
           "timeLimitS": null,
           "instructions": {
-            "en": "Choose the French form for each row; the verb is given when needed.",
-            "fr": "Choisissez la forme française pour chaque ligne ; le verbe est indiqué si nécessaire.",
-            "de": "Wähle die französische Form für jede Zeile; das Verb ist bei Bedarf angegeben."
+            "en": "Choose the form for each pronoun.",
+            "fr": "Choisissez la forme pour chaque pronom.",
+            "de": "Wähle die Form für jedes Pronomen."
           },
           "items": [
             {
               "type": "grammar_pronoun_form_match",
-              "itemId": "ex-forms-match-2",
               "ruleIds": [
                 "rule-avoir-forms"
               ],
               "tokens": [
                 {
-                  "tokenId": "t-0",
-                  "text": "avez"
-                },
-                {
-                  "tokenId": "t-1",
-                  "text": "a"
+                  "tokenId": "t-4",
+                  "text": "as"
                 },
                 {
                   "tokenId": "t-2",
+                  "text": "ont"
+                },
+                {
+                  "tokenId": "t-1",
+                  "text": "avez"
+                },
+                {
+                  "tokenId": "t-3",
                   "text": "ai"
-                },
-                {
-                  "tokenId": "t-3",
-                  "text": "as"
                 }
               ],
               "rows": [
                 {
-                  "rowId": "row-1",
-                  "pronoun": "Tu (avoir)",
-                  "answerExplanation": {
-                    "en": "Answer: as. Present forms of avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Note the elision in j'ai.",
-                    "fr": "Réponse : as. Formes du présent d'avoir : j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Notez l'élision pour j'ai.",
-                    "de": "Antwort: as. Präsensformen von avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Beachten Sie die Elision bei j'ai."
-                  },
-                  "validForms": [
-                    "as"
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "pageId": "ex-forms-match-3",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the French form for each row; the verb is given when needed.",
-            "fr": "Choisissez la forme française pour chaque ligne ; le verbe est indiqué si nécessaire.",
-            "de": "Wähle die französische Form für jede Zeile; das Verb ist bei Bedarf angegeben."
-          },
-          "items": [
-            {
-              "type": "grammar_pronoun_form_match",
-              "itemId": "ex-forms-match-3",
-              "ruleIds": [
-                "rule-avoir-forms"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-0",
-                  "text": "ai"
-                },
-                {
-                  "tokenId": "t-1",
-                  "text": "ont"
-                },
-                {
-                  "tokenId": "t-2",
-                  "text": "as"
-                },
-                {
-                  "tokenId": "t-3",
-                  "text": "a"
-                }
-              ],
-              "rows": [
-                {
-                  "rowId": "row-1",
-                  "pronoun": "Elle (avoir)",
-                  "answerExplanation": {
-                    "en": "Answer: a. Present forms of avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Note the elision in j'ai.",
-                    "fr": "Réponse : a. Formes du présent d'avoir : j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Notez l'élision pour j'ai.",
-                    "de": "Antwort: a. Präsensformen von avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Beachten Sie die Elision bei j'ai."
-                  },
-                  "validForms": [
-                    "a"
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "pageId": "ex-forms-match-4",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the French form for each row; the verb is given when needed.",
-            "fr": "Choisissez la forme française pour chaque ligne ; le verbe est indiqué si nécessaire.",
-            "de": "Wähle die französische Form für jede Zeile; das Verb ist bei Bedarf angegeben."
-          },
-          "items": [
-            {
-              "type": "grammar_pronoun_form_match",
-              "itemId": "ex-forms-match-4",
-              "ruleIds": [
-                "rule-avoir-forms"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-0",
-                  "text": "a"
-                },
-                {
-                  "tokenId": "t-1",
-                  "text": "ont"
-                },
-                {
-                  "tokenId": "t-2",
-                  "text": "avez"
-                },
-                {
-                  "tokenId": "t-3",
-                  "text": "avons"
-                }
-              ],
-              "rows": [
-                {
-                  "rowId": "row-1",
-                  "pronoun": "Nous (avoir)",
-                  "answerExplanation": {
-                    "en": "Answer: avons. Present forms of avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Note the elision in j'ai.",
-                    "fr": "Réponse : avons. Formes du présent d'avoir : j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Notez l'élision pour j'ai.",
-                    "de": "Antwort: avons. Präsensformen von avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Beachten Sie die Elision bei j'ai."
-                  },
-                  "validForms": [
-                    "avons"
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "pageId": "ex-forms-match-5",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the French form for each row; the verb is given when needed.",
-            "fr": "Choisissez la forme française pour chaque ligne ; le verbe est indiqué si nécessaire.",
-            "de": "Wähle die französische Form für jede Zeile; das Verb ist bei Bedarf angegeben."
-          },
-          "items": [
-            {
-              "type": "grammar_pronoun_form_match",
-              "itemId": "ex-forms-match-5",
-              "ruleIds": [
-                "rule-avoir-forms"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-0",
-                  "text": "as"
-                },
-                {
-                  "tokenId": "t-1",
-                  "text": "ont"
-                },
-                {
-                  "tokenId": "t-2",
-                  "text": "avons"
-                },
-                {
-                  "tokenId": "t-3",
-                  "text": "avez"
-                }
-              ],
-              "rows": [
-                {
-                  "rowId": "row-1",
-                  "pronoun": "Vous (avoir)",
-                  "answerExplanation": {
-                    "en": "Answer: avez. Present forms of avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Note the elision in j'ai.",
-                    "fr": "Réponse : avez. Formes du présent d'avoir : j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Notez l'élision pour j'ai.",
-                    "de": "Antwort: avez. Präsensformen von avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Beachten Sie die Elision bei j'ai."
-                  },
+                  "rowId": "r-1",
+                  "pronoun": "vous",
                   "validForms": [
                     "avez"
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "pageId": "ex-forms-match-6",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the French form for each row; the verb is given when needed.",
-            "fr": "Choisissez la forme française pour chaque ligne ; le verbe est indiqué si nécessaire.",
-            "de": "Wähle die französische Form für jede Zeile; das Verb ist bei Bedarf angegeben."
-          },
-          "items": [
-            {
-              "type": "grammar_pronoun_form_match",
-              "itemId": "ex-forms-match-6",
-              "ruleIds": [
-                "rule-avoir-forms"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-0",
-                  "text": "avons"
-                },
-                {
-                  "tokenId": "t-1",
-                  "text": "as"
-                },
-                {
-                  "tokenId": "t-2",
-                  "text": "a"
-                },
-                {
-                  "tokenId": "t-3",
-                  "text": "ont"
-                }
-              ],
-              "rows": [
-                {
-                  "rowId": "row-1",
-                  "pronoun": "Ils (avoir)",
+                  ],
                   "answerExplanation": {
-                    "en": "Answer: ont. Present forms of avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Note the elision in j'ai.",
-                    "fr": "Réponse : ont. Formes du présent d'avoir : j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Notez l'élision pour j'ai.",
-                    "de": "Antwort: ont. Präsensformen von avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Beachten Sie die Elision bei j'ai."
-                  },
+                    "en": "With vous, avoir is avez.",
+                    "fr": "Avec vous, avoir devient avez.",
+                    "de": "Zu vous gehört die Form avez."
+                  }
+                },
+                {
+                  "rowId": "r-2",
+                  "pronoun": "ils",
                   "validForms": [
                     "ont"
-                  ]
+                  ],
+                  "answerExplanation": {
+                    "en": "Ils ont: ils ont (avoir, liaison [z]) – ils sont belongs to être.",
+                    "fr": "Ils ont : ils ont (avoir, liaison [z]) – ils sont appartient à être.",
+                    "de": "Ils ont: ils ont (avoir, Bindung [z]) – ils sont gehört zu être."
+                  }
+                },
+                {
+                  "rowId": "r-3",
+                  "pronoun": "j’",
+                  "validForms": [
+                    "ai"
+                  ],
+                  "answerExplanation": {
+                    "en": "With je, avoir is ai, and je becomes j’ before the vowel: j’ai.",
+                    "fr": "Avec je, avoir devient ai, et je s’élide devant la voyelle : j’ai.",
+                    "de": "Zu je gehört ai; vor dem Vokal wird je zu j’: j’ai."
+                  }
                 }
-              ]
+              ],
+              "itemId": "ex-forms-match-2"
             }
           ]
         }
@@ -530,224 +374,382 @@
       "role": "exercise",
       "blockId": "block-forms",
       "label": {
-        "en": "Forms of the verb avoir in the present tense",
-        "fr": "Les formes du verbe avoir au présent",
-        "de": "Formen des Verbs avoir im Präsens"
+        "en": "Pronoun–form typing",
+        "fr": "Écrire la forme pour chaque pronom",
+        "de": "Form zum Pronomen schreiben"
       },
       "pages": [
         {
           "pageId": "ex-forms-typing-1",
-          "estimatedDurationS": 20,
+          "estimatedDurationS": 45,
           "timeLimitS": null,
           "instructions": {
-            "en": "Write the French form for each row; the verb is given when needed.",
-            "fr": "Écrivez la forme française pour chaque ligne ; le verbe est indiqué si nécessaire.",
-            "de": "Schreib die französische Form für jede Zeile; das Verb ist bei Bedarf angegeben."
+            "en": "Type the form for each pronoun.",
+            "fr": "Écrivez la forme pour chaque pronom.",
+            "de": "Schreib die Form zu jedem Pronomen."
           },
           "items": [
             {
               "type": "grammar_pronoun_form_typing",
-              "itemId": "ex-forms-typing-1",
               "ruleIds": [
                 "rule-avoir-forms"
               ],
               "rows": [
                 {
-                  "rowId": "row-1",
-                  "pronoun": "Tu (avoir)",
-                  "answerExplanation": {
-                    "en": "Answer: as. Present forms of avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Note the elision in j'ai.",
-                    "fr": "Réponse : as. Formes du présent d'avoir : j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Notez l'élision pour j'ai.",
-                    "de": "Antwort: as. Präsensformen von avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Beachten Sie die Elision bei j'ai."
-                  },
-                  "accepted": {
-                    "answers": [
-                      "as"
-                    ],
-                    "accentSensitive": []
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "pageId": "ex-forms-typing-2",
-          "estimatedDurationS": 20,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Write the French form for each row; the verb is given when needed.",
-            "fr": "Écrivez la forme française pour chaque ligne ; le verbe est indiqué si nécessaire.",
-            "de": "Schreib die französische Form für jede Zeile; das Verb ist bei Bedarf angegeben."
-          },
-          "items": [
-            {
-              "type": "grammar_pronoun_form_typing",
-              "itemId": "ex-forms-typing-2",
-              "ruleIds": [
-                "rule-avoir-forms"
-              ],
-              "rows": [
-                {
-                  "rowId": "row-1",
-                  "pronoun": "Elle (avoir)",
-                  "answerExplanation": {
-                    "en": "Answer: a. Present forms of avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Note the elision in j'ai.",
-                    "fr": "Réponse : a. Formes du présent d'avoir : j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Notez l'élision pour j'ai.",
-                    "de": "Antwort: a. Präsensformen von avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Beachten Sie die Elision bei j'ai."
-                  },
-                  "accepted": {
-                    "answers": [
-                      "a"
-                    ],
-                    "accentSensitive": []
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "pageId": "ex-forms-typing-3",
-          "estimatedDurationS": 20,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Write the French form for each row; the verb is given when needed.",
-            "fr": "Écrivez la forme française pour chaque ligne ; le verbe est indiqué si nécessaire.",
-            "de": "Schreib die französische Form für jede Zeile; das Verb ist bei Bedarf angegeben."
-          },
-          "items": [
-            {
-              "type": "grammar_pronoun_form_typing",
-              "itemId": "ex-forms-typing-3",
-              "ruleIds": [
-                "rule-avoir-forms"
-              ],
-              "rows": [
-                {
-                  "rowId": "row-1",
-                  "pronoun": "Nous (avoir)",
-                  "answerExplanation": {
-                    "en": "Answer: avons. Present forms of avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Note the elision in j'ai.",
-                    "fr": "Réponse : avons. Formes du présent d'avoir : j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Notez l'élision pour j'ai.",
-                    "de": "Antwort: avons. Präsensformen von avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Beachten Sie die Elision bei j'ai."
-                  },
-                  "accepted": {
-                    "answers": [
-                      "avons"
-                    ],
-                    "accentSensitive": []
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "pageId": "ex-forms-typing-4",
-          "estimatedDurationS": 20,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Write the French form for each row; the verb is given when needed.",
-            "fr": "Écrivez la forme française pour chaque ligne ; le verbe est indiqué si nécessaire.",
-            "de": "Schreib die französische Form für jede Zeile; das Verb ist bei Bedarf angegeben."
-          },
-          "items": [
-            {
-              "type": "grammar_pronoun_form_typing",
-              "itemId": "ex-forms-typing-4",
-              "ruleIds": [
-                "rule-avoir-forms"
-              ],
-              "rows": [
-                {
-                  "rowId": "row-1",
-                  "pronoun": "Vous (avoir)",
-                  "answerExplanation": {
-                    "en": "Answer: avez. Present forms of avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Note the elision in j'ai.",
-                    "fr": "Réponse : avez. Formes du présent d'avoir : j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Notez l'élision pour j'ai.",
-                    "de": "Antwort: avez. Präsensformen von avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Beachten Sie die Elision bei j'ai."
-                  },
-                  "accepted": {
-                    "answers": [
-                      "avez"
-                    ],
-                    "accentSensitive": []
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "pageId": "ex-forms-typing-5",
-          "estimatedDurationS": 20,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Write the French form for each row; the verb is given when needed.",
-            "fr": "Écrivez la forme française pour chaque ligne ; le verbe est indiqué si nécessaire.",
-            "de": "Schreib die französische Form für jede Zeile; das Verb ist bei Bedarf angegeben."
-          },
-          "items": [
-            {
-              "type": "grammar_pronoun_form_typing",
-              "itemId": "ex-forms-typing-5",
-              "ruleIds": [
-                "rule-avoir-forms"
-              ],
-              "rows": [
-                {
-                  "rowId": "row-1",
-                  "pronoun": "Ils (avoir)",
-                  "answerExplanation": {
-                    "en": "Answer: ont. Present forms of avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Note the elision in j'ai.",
-                    "fr": "Réponse : ont. Formes du présent d'avoir : j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Notez l'élision pour j'ai.",
-                    "de": "Antwort: ont. Präsensformen von avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Beachten Sie die Elision bei j'ai."
-                  },
-                  "accepted": {
-                    "answers": [
-                      "ont"
-                    ],
-                    "accentSensitive": []
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "pageId": "ex-forms-typing-6",
-          "estimatedDurationS": 20,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Write the French form for each row; the verb is given when needed.",
-            "fr": "Écrivez la forme française pour chaque ligne ; le verbe est indiqué si nécessaire.",
-            "de": "Schreib die französische Form für jede Zeile; das Verb ist bei Bedarf angegeben."
-          },
-          "items": [
-            {
-              "type": "grammar_pronoun_form_typing",
-              "itemId": "ex-forms-typing-6",
-              "ruleIds": [
-                "rule-avoir-forms"
-              ],
-              "rows": [
-                {
-                  "rowId": "row-1",
-                  "pronoun": "J' (avoir)",
-                  "answerExplanation": {
-                    "en": "Answer: ai. Present forms of avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Note the elision in j'ai.",
-                    "fr": "Réponse : ai. Formes du présent d'avoir : j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Notez l'élision pour j'ai.",
-                    "de": "Antwort: ai. Präsensformen von avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Beachten Sie die Elision bei j'ai."
-                  },
+                  "rowId": "r-1",
+                  "pronoun": "j’",
                   "accepted": {
                     "answers": [
                       "ai"
                     ],
                     "accentSensitive": []
+                  },
+                  "answerExplanation": {
+                    "en": "With je, avoir is ai, and je becomes j’ before the vowel: j’ai.",
+                    "fr": "Avec je, avoir devient ai, et je s’élide devant la voyelle : j’ai.",
+                    "de": "Zu je gehört ai; vor dem Vokal wird je zu j’: j’ai."
+                  }
+                },
+                {
+                  "rowId": "r-2",
+                  "pronoun": "tu",
+                  "accepted": {
+                    "answers": [
+                      "as"
+                    ],
+                    "accentSensitive": []
+                  },
+                  "answerExplanation": {
+                    "en": "With tu, avoir is as.",
+                    "fr": "Avec tu, avoir devient as.",
+                    "de": "Zu tu gehört die Form as."
+                  }
+                },
+                {
+                  "rowId": "r-3",
+                  "pronoun": "on",
+                  "accepted": {
+                    "answers": [
+                      "a"
+                    ],
+                    "accentSensitive": []
+                  },
+                  "answerExplanation": {
+                    "en": "With il, elle, on, avoir is a – without an accent; à with an accent grave is the preposition.",
+                    "fr": "Avec il, elle, on, avoir devient a, sans accent ; à avec un accent grave est la préposition.",
+                    "de": "Zu il, elle, on gehört a, ohne Akzent; à mit Accent grave ist die Präposition."
                   }
                 }
-              ]
+              ],
+              "itemId": "ex-forms-typing-1"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-forms-typing-2",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the form for each pronoun.",
+            "fr": "Écrivez la forme pour chaque pronom.",
+            "de": "Schreib die Form zu jedem Pronomen."
+          },
+          "items": [
+            {
+              "type": "grammar_pronoun_form_typing",
+              "ruleIds": [
+                "rule-avoir-forms"
+              ],
+              "rows": [
+                {
+                  "rowId": "r-1",
+                  "pronoun": "nous",
+                  "accepted": {
+                    "answers": [
+                      "avons"
+                    ],
+                    "accentSensitive": []
+                  },
+                  "answerExplanation": {
+                    "en": "With nous, avoir is avons.",
+                    "fr": "Avec nous, avoir devient avons.",
+                    "de": "Zu nous gehört die Form avons."
+                  }
+                },
+                {
+                  "rowId": "r-2",
+                  "pronoun": "vous",
+                  "accepted": {
+                    "answers": [
+                      "avez"
+                    ],
+                    "accentSensitive": []
+                  },
+                  "answerExplanation": {
+                    "en": "With vous, avoir is avez.",
+                    "fr": "Avec vous, avoir devient avez.",
+                    "de": "Zu vous gehört die Form avez."
+                  }
+                },
+                {
+                  "rowId": "r-3",
+                  "pronoun": "elles",
+                  "accepted": {
+                    "answers": [
+                      "ont"
+                    ],
+                    "accentSensitive": []
+                  },
+                  "answerExplanation": {
+                    "en": "Elles ont: ils ont (avoir, liaison [z]) – ils sont belongs to être.",
+                    "fr": "Elles ont : ils ont (avoir, liaison [z]) – ils sont appartient à être.",
+                    "de": "Elles ont: ils ont (avoir, Bindung [z]) – ils sont gehört zu être."
+                  }
+                }
+              ],
+              "itemId": "ex-forms-typing-2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-forms-choice",
+      "role": "exercise",
+      "blockId": "block-forms",
+      "label": {
+        "en": "Multiple-choice gaps 1",
+        "fr": "Phrases à trous à choix multiple 1",
+        "de": "Lücken mit Auswahl 1"
+      },
+      "pages": [
+        {
+          "pageId": "ex-forms-choice-1",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "ruleIds": [
+                "rule-avoir-forms"
+              ],
+              "before": "J’",
+              "after": "un stylo.",
+              "choices": [
+                {
+                  "choiceId": "c-1",
+                  "text": "a"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "avez"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "ai"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "as"
+                }
+              ],
+              "answerChoiceId": "c-3",
+              "hint": null,
+              "answerExplanation": {
+                "en": "With je, avoir is ai, and je becomes j’ before the vowel: j’ai.",
+                "fr": "Avec je, avoir devient ai, et je s’élide devant la voyelle : j’ai.",
+                "de": "Zu je gehört ai; vor dem Vokal wird je zu j’: j’ai."
+              },
+              "itemId": "ex-forms-choice-1"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-forms-choice-2",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "ruleIds": [
+                "rule-avoir-forms"
+              ],
+              "before": "Tu",
+              "after": "une question ?",
+              "choices": [
+                {
+                  "choiceId": "c-1",
+                  "text": "a"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "ont"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "ai"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "as"
+                }
+              ],
+              "answerChoiceId": "c-4",
+              "hint": null,
+              "answerExplanation": {
+                "en": "With tu, avoir is as.",
+                "fr": "Avec tu, avoir devient as.",
+                "de": "Zu tu gehört die Form as."
+              },
+              "itemId": "ex-forms-choice-2"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-forms-choice-3",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "ruleIds": [
+                "rule-avoir-forms"
+              ],
+              "before": "Il",
+              "after": "un livre.",
+              "choices": [
+                {
+                  "choiceId": "c-1",
+                  "text": "as"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "ont"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "a"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "à"
+                }
+              ],
+              "answerChoiceId": "c-3",
+              "hint": null,
+              "answerExplanation": {
+                "en": "With il, elle, on, avoir is a – without an accent; à with an accent grave is the preposition.",
+                "fr": "Avec il, elle, on, avoir devient a, sans accent ; à avec un accent grave est la préposition.",
+                "de": "Zu il, elle, on gehört a, ohne Akzent; à mit Accent grave ist die Präposition."
+              },
+              "itemId": "ex-forms-choice-3"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-forms-choice-4",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "ruleIds": [
+                "rule-avoir-forms"
+              ],
+              "before": "Nous",
+              "after": "cours à neuf heures.",
+              "choices": [
+                {
+                  "choiceId": "c-1",
+                  "text": "sommes"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "ont"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "avons"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "avez"
+                }
+              ],
+              "answerChoiceId": "c-3",
+              "hint": null,
+              "answerExplanation": {
+                "en": "With nous, avoir is avons.",
+                "fr": "Avec nous, avoir devient avons.",
+                "de": "Zu nous gehört die Form avons."
+              },
+              "itemId": "ex-forms-choice-4"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-forms-choice-5",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "ruleIds": [
+                "rule-avoir-forms"
+              ],
+              "before": "Vous",
+              "after": "une voiture ?",
+              "choices": [
+                {
+                  "choiceId": "c-1",
+                  "text": "ont"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "avez"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "êtes"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "avons"
+                }
+              ],
+              "answerChoiceId": "c-2",
+              "hint": null,
+              "answerExplanation": {
+                "en": "With vous, avoir is avez.",
+                "fr": "Avec vous, avoir devient avez.",
+                "de": "Zu vous gehört die Form avez."
+              },
+              "itemId": "ex-forms-choice-5"
             }
           ]
         }
@@ -768,9 +770,9 @@
           "estimatedDurationS": 120,
           "timeLimitS": null,
           "instructions": {
-            "en": "Read the rule and examples.",
-            "fr": "Lisez la règle et les exemples.",
-            "de": "Lies die Regel und die Beispiele."
+            "en": "Read the explanation and the examples.",
+            "fr": "Lisez l’explication et les exemples.",
+            "de": "Lies die Erklärung und die Beispiele."
           },
           "items": [
             {
@@ -813,18 +815,18 @@
       ]
     },
     {
-      "id": "ex-usage-gap",
+      "id": "ex-usage-choice",
       "role": "exercise",
       "blockId": "block-usage",
       "label": {
-        "en": "Expressing age and possession",
-        "fr": "Exprimer l'âge et la possession",
-        "de": "Alter und Besitz ausdrücken"
+        "en": "Multiple-choice gaps 2",
+        "fr": "Phrases à trous à choix multiple 2",
+        "de": "Lücken mit Auswahl 2"
       },
       "pages": [
         {
-          "pageId": "ex-usage-gap-1",
-          "estimatedDurationS": 18,
+          "pageId": "ex-usage-choice-1",
+          "estimatedDurationS": 10,
           "timeLimitS": null,
           "instructions": {
             "en": "Choose the word that completes the sentence.",
@@ -834,48 +836,43 @@
           "items": [
             {
               "type": "grammar_gap_choice",
-              "itemId": "ex-usage-gap-1",
               "ruleIds": [
-                "rule-avoir-age",
-                "rule-avoir-possession"
+                "rule-avoir-age"
               ],
-              "before": "J'",
+              "before": "J’",
               "after": "vingt ans.",
-              "answerExplanation": {
-                "en": "Answer: ai. Use avoir + [number] + ans to state age (e.g., J'ai vingt ans). Never use être. Use avoir with nouns to express possession (e.g., Nous avons un chien).",
-                "fr": "Réponse : ai. Utilisez avoir + [nombre] + ans pour exprimer l'âge (ex. J'ai vingt ans). N'utilisez jamais être. Utilisez avoir avec des noms pour exprimer la possession (ex. Nous avons un chien).",
-                "de": "Antwort: ai. Verwenden Sie avoir + [Zahl] + ans für das Alter (z. B. J'ai vingt ans). Niemals être benutzen. Verwenden Sie avoir mit Substantiven, um Besitz auszudrücken (z. B. Nous avons un chien)."
-              },
               "choices": [
                 {
-                  "choiceId": "c-0",
+                  "choiceId": "c-1",
                   "text": "suis"
                 },
                 {
-                  "choiceId": "c-1",
-                  "text": "as"
-                },
-                {
                   "choiceId": "c-2",
-                  "text": "a"
+                  "text": "as"
                 },
                 {
                   "choiceId": "c-3",
                   "text": "ai"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "est"
                 }
               ],
               "answerChoiceId": "c-3",
-              "hint": {
-                "en": "Verb: avoir",
-                "fr": "Verbe : avoir",
-                "de": "Verb: avoir"
-              }
+              "hint": null,
+              "answerExplanation": {
+                "en": "French gives age with avoir + number + ans: j’ ai … ans. Être is wrong here.",
+                "fr": "En français, l’âge se dit avec avoir + nombre + ans : j’ ai … ans. Être est faux ici.",
+                "de": "Das Alter steht im Französischen mit avoir + Zahl + ans: j’ ai … ans. Être ist hier falsch."
+              },
+              "itemId": "ex-usage-choice-1"
             }
           ]
         },
         {
-          "pageId": "ex-usage-gap-2",
-          "estimatedDurationS": 18,
+          "pageId": "ex-usage-choice-2",
+          "estimatedDurationS": 10,
           "timeLimitS": null,
           "instructions": {
             "en": "Choose the word that completes the sentence.",
@@ -885,77 +882,15 @@
           "items": [
             {
               "type": "grammar_gap_choice",
-              "itemId": "ex-usage-gap-2",
               "ruleIds": [
-                "rule-avoir-age",
-                "rule-avoir-possession"
+                "rule-avoir-age"
               ],
-              "before": "Tu",
-              "after": "dix-huit ans.",
-              "answerExplanation": {
-                "en": "Answer: as. Use avoir + [number] + ans to state age (e.g., J'ai vingt ans). Never use être. Use avoir with nouns to express possession (e.g., Nous avons un chien).",
-                "fr": "Réponse : as. Utilisez avoir + [nombre] + ans pour exprimer l'âge (ex. J'ai vingt ans). N'utilisez jamais être. Utilisez avoir avec des noms pour exprimer la possession (ex. Nous avons un chien).",
-                "de": "Antwort: as. Verwenden Sie avoir + [Zahl] + ans für das Alter (z. B. J'ai vingt ans). Niemals être benutzen. Verwenden Sie avoir mit Substantiven, um Besitz auszudrücken (z. B. Nous avons un chien)."
-              },
+              "before": "Mon frère",
+              "after": "douze ans.",
               "choices": [
                 {
-                  "choiceId": "c-0",
-                  "text": "ai"
-                },
-                {
                   "choiceId": "c-1",
-                  "text": "ont"
-                },
-                {
-                  "choiceId": "c-2",
                   "text": "as"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "es"
-                }
-              ],
-              "answerChoiceId": "c-2",
-              "hint": {
-                "en": "Verb: avoir",
-                "fr": "Verbe : avoir",
-                "de": "Verb: avoir"
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "ex-usage-gap-3",
-          "estimatedDurationS": 18,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "itemId": "ex-usage-gap-3",
-              "ruleIds": [
-                "rule-avoir-age",
-                "rule-avoir-possession"
-              ],
-              "before": "Elle",
-              "after": "un vélo.",
-              "answerExplanation": {
-                "en": "Answer: a. Use avoir + [number] + ans to state age (e.g., J'ai vingt ans). Never use être. Use avoir with nouns to express possession (e.g., Nous avons un chien).",
-                "fr": "Réponse : a. Utilisez avoir + [nombre] + ans pour exprimer l'âge (ex. J'ai vingt ans). N'utilisez jamais être. Utilisez avoir avec des noms pour exprimer la possession (ex. Nous avons un chien).",
-                "de": "Antwort: a. Verwenden Sie avoir + [Zahl] + ans für das Alter (z. B. J'ai vingt ans). Niemals être benutzen. Verwenden Sie avoir mit Substantiven, um Besitz auszudrücken (z. B. Nous avons un chien)."
-              },
-              "choices": [
-                {
-                  "choiceId": "c-0",
-                  "text": "ont"
-                },
-                {
-                  "choiceId": "c-1",
-                  "text": "a"
                 },
                 {
                   "choiceId": "c-2",
@@ -963,72 +898,27 @@
                 },
                 {
                   "choiceId": "c-3",
-                  "text": "as"
-                }
-              ],
-              "answerChoiceId": "c-1",
-              "hint": {
-                "en": "Verb: avoir",
-                "fr": "Verbe : avoir",
-                "de": "Verb: avoir"
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "ex-usage-gap-4",
-          "estimatedDurationS": 18,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "itemId": "ex-usage-gap-4",
-              "ruleIds": [
-                "rule-avoir-age",
-                "rule-avoir-possession"
-              ],
-              "before": "Nous",
-              "after": "deux livres.",
-              "answerExplanation": {
-                "en": "Answer: avons. Use avoir + [number] + ans to state age (e.g., J'ai vingt ans). Never use être. Use avoir with nouns to express possession (e.g., Nous avons un chien).",
-                "fr": "Réponse : avons. Utilisez avoir + [nombre] + ans pour exprimer l'âge (ex. J'ai vingt ans). N'utilisez jamais être. Utilisez avoir avec des noms pour exprimer la possession (ex. Nous avons un chien).",
-                "de": "Antwort: avons. Verwenden Sie avoir + [Zahl] + ans für das Alter (z. B. J'ai vingt ans). Niemals être benutzen. Verwenden Sie avoir mit Substantiven, um Besitz auszudrücken (z. B. Nous avons un chien)."
-              },
-              "choices": [
-                {
-                  "choiceId": "c-0",
-                  "text": "sommes"
+                  "text": "a"
                 },
                 {
-                  "choiceId": "c-1",
-                  "text": "avez"
-                },
-                {
-                  "choiceId": "c-2",
+                  "choiceId": "c-4",
                   "text": "ont"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "avons"
                 }
               ],
               "answerChoiceId": "c-3",
-              "hint": {
-                "en": "Verb: avoir",
-                "fr": "Verbe : avoir",
-                "de": "Verb: avoir"
-              }
+              "hint": null,
+              "answerExplanation": {
+                "en": "French gives age with avoir + number + ans: il a … ans. Être is wrong here.",
+                "fr": "En français, l’âge se dit avec avoir + nombre + ans : il a … ans. Être est faux ici.",
+                "de": "Das Alter steht im Französischen mit avoir + Zahl + ans: il a … ans. Être ist hier falsch."
+              },
+              "itemId": "ex-usage-choice-2"
             }
           ]
         },
         {
-          "pageId": "ex-usage-gap-5",
-          "estimatedDurationS": 18,
+          "pageId": "ex-usage-choice-3",
+          "estimatedDurationS": 10,
           "timeLimitS": null,
           "instructions": {
             "en": "Choose the word that completes the sentence.",
@@ -1038,42 +928,818 @@
           "items": [
             {
               "type": "grammar_gap_choice",
-              "itemId": "ex-usage-gap-5",
               "ruleIds": [
-                "rule-avoir-age",
-                "rule-avoir-possession"
+                "rule-avoir-age"
               ],
-              "before": "Vous",
-              "after": "trente ans.",
-              "answerExplanation": {
-                "en": "Answer: avez. Use avoir + [number] + ans to state age (e.g., J'ai vingt ans). Never use être. Use avoir with nouns to express possession (e.g., Nous avons un chien).",
-                "fr": "Réponse : avez. Utilisez avoir + [nombre] + ans pour exprimer l'âge (ex. J'ai vingt ans). N'utilisez jamais être. Utilisez avoir avec des noms pour exprimer la possession (ex. Nous avons un chien).",
-                "de": "Antwort: avez. Verwenden Sie avoir + [Zahl] + ans für das Alter (z. B. J'ai vingt ans). Niemals être benutzen. Verwenden Sie avoir mit Substantiven, um Besitz auszudrücken (z. B. Nous avons un chien)."
-              },
+              "before": "Tu",
+              "after": "quel âge ?",
               "choices": [
                 {
-                  "choiceId": "c-0",
-                  "text": "avons"
-                },
-                {
                   "choiceId": "c-1",
-                  "text": "as"
+                  "text": "avez"
                 },
                 {
                   "choiceId": "c-2",
+                  "text": "as"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "a"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "es"
+                }
+              ],
+              "answerChoiceId": "c-2",
+              "hint": null,
+              "answerExplanation": {
+                "en": "French gives age with avoir + number + ans: tu as … ans. Être is wrong here.",
+                "fr": "En français, l’âge se dit avec avoir + nombre + ans : tu as … ans. Être est faux ici.",
+                "de": "Das Alter steht im Französischen mit avoir + Zahl + ans: tu as … ans. Être ist hier falsch."
+              },
+              "itemId": "ex-usage-choice-3"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-usage-choice-4",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "ruleIds": [
+                "rule-avoir-age"
+              ],
+              "before": "Nous",
+              "after": "trente ans.",
+              "choices": [
+                {
+                  "choiceId": "c-1",
+                  "text": "avons"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "sommes"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "ont"
+                },
+                {
+                  "choiceId": "c-4",
                   "text": "avez"
+                }
+              ],
+              "answerChoiceId": "c-1",
+              "hint": null,
+              "answerExplanation": {
+                "en": "French gives age with avoir + number + ans: nous avons … ans. Être is wrong here.",
+                "fr": "En français, l’âge se dit avec avoir + nombre + ans : nous avons … ans. Être est faux ici.",
+                "de": "Das Alter steht im Französischen mit avoir + Zahl + ans: nous avons … ans. Être ist hier falsch."
+              },
+              "itemId": "ex-usage-choice-4"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-usage-choice-5",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "ruleIds": [
+                "rule-avoir-possession"
+              ],
+              "before": "Vous",
+              "after": "un chien ?",
+              "choices": [
+                {
+                  "choiceId": "c-1",
+                  "text": "avez"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "a"
                 },
                 {
                   "choiceId": "c-3",
                   "text": "êtes"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "avons"
                 }
               ],
-              "answerChoiceId": "c-2",
+              "answerChoiceId": "c-1",
+              "hint": null,
+              "answerExplanation": {
+                "en": "Possession uses avoir: vous avez + noun.",
+                "fr": "La possession s’exprime avec avoir : vous avez + nom.",
+                "de": "Besitz drückt man mit avoir aus: vous avez + Nomen."
+              },
+              "itemId": "ex-usage-choice-5"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-usage-choice-6",
+          "estimatedDurationS": 10,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the word that completes the sentence.",
+            "fr": "Choisissez le mot qui complète la phrase.",
+            "de": "Wähle das Wort, das den Satz ergänzt."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_choice",
+              "ruleIds": [
+                "rule-avoir-possession"
+              ],
+              "before": "Ils",
+              "after": "un appartement à Paris.",
+              "choices": [
+                {
+                  "choiceId": "c-1",
+                  "text": "ont"
+                },
+                {
+                  "choiceId": "c-2",
+                  "text": "avez"
+                },
+                {
+                  "choiceId": "c-3",
+                  "text": "a"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "sont"
+                }
+              ],
+              "answerChoiceId": "c-1",
+              "hint": null,
+              "answerExplanation": {
+                "en": "Possession uses avoir: ils ont + noun.",
+                "fr": "La possession s’exprime avec avoir : ils ont + nom.",
+                "de": "Besitz drückt man mit avoir aus: ils ont + Nomen."
+              },
+              "itemId": "ex-usage-choice-6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-usage-typing",
+      "role": "exercise",
+      "blockId": "block-usage",
+      "label": {
+        "en": "Typed gaps",
+        "fr": "Phrases à trous à écrire",
+        "de": "Lücken zum Schreiben"
+      },
+      "pages": [
+        {
+          "pageId": "ex-usage-typing-1",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-avoir-age"
+              ],
+              "before": "Ma grand-mère",
+              "after": "quatre-vingts ans.",
+              "accepted": {
+                "answers": [
+                  "a"
+                ],
+                "accentSensitive": []
+              },
               "hint": {
-                "en": "Verb: avoir",
-                "fr": "Verbe : avoir",
-                "de": "Verb: avoir"
-              }
+                "en": "avoir",
+                "fr": "avoir",
+                "de": "avoir"
+              },
+              "answerExplanation": {
+                "en": "French gives age with avoir + number + ans: elle a … ans. Être is wrong here.",
+                "fr": "En français, l’âge se dit avec avoir + nombre + ans : elle a … ans. Être est faux ici.",
+                "de": "Das Alter steht im Französischen mit avoir + Zahl + ans: elle a … ans. Être ist hier falsch."
+              },
+              "itemId": "ex-usage-typing-1"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-usage-typing-2",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-avoir-age"
+              ],
+              "before": "J’",
+              "after": "dix-huit ans.",
+              "accepted": {
+                "answers": [
+                  "ai"
+                ],
+                "accentSensitive": []
+              },
+              "hint": {
+                "en": "avoir",
+                "fr": "avoir",
+                "de": "avoir"
+              },
+              "answerExplanation": {
+                "en": "French gives age with avoir + number + ans: j’ ai … ans. Être is wrong here.",
+                "fr": "En français, l’âge se dit avec avoir + nombre + ans : j’ ai … ans. Être est faux ici.",
+                "de": "Das Alter steht im Französischen mit avoir + Zahl + ans: j’ ai … ans. Être ist hier falsch."
+              },
+              "itemId": "ex-usage-typing-2"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-usage-typing-3",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-avoir-age"
+              ],
+              "before": "Vous",
+              "after": "quel âge ?",
+              "accepted": {
+                "answers": [
+                  "avez"
+                ],
+                "accentSensitive": []
+              },
+              "hint": {
+                "en": "avoir",
+                "fr": "avoir",
+                "de": "avoir"
+              },
+              "answerExplanation": {
+                "en": "French gives age with avoir + number + ans: vous avez … ans. Être is wrong here.",
+                "fr": "En français, l’âge se dit avec avoir + nombre + ans : vous avez … ans. Être est faux ici.",
+                "de": "Das Alter steht im Französischen mit avoir + Zahl + ans: vous avez … ans. Être ist hier falsch."
+              },
+              "itemId": "ex-usage-typing-3"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-usage-typing-4",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-avoir-age"
+              ],
+              "before": "Les jumeaux",
+              "after": "six ans.",
+              "accepted": {
+                "answers": [
+                  "ont"
+                ],
+                "accentSensitive": []
+              },
+              "hint": {
+                "en": "avoir",
+                "fr": "avoir",
+                "de": "avoir"
+              },
+              "answerExplanation": {
+                "en": "French gives age with avoir + number + ans: ils ont … ans. Être is wrong here.",
+                "fr": "En français, l’âge se dit avec avoir + nombre + ans : ils ont … ans. Être est faux ici.",
+                "de": "Das Alter steht im Französischen mit avoir + Zahl + ans: ils ont … ans. Être ist hier falsch."
+              },
+              "itemId": "ex-usage-typing-4"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-usage-typing-5",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
+          },
+          "items": [
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-avoir-possession"
+              ],
+              "before": "Nous",
+              "after": "un jardin.",
+              "accepted": {
+                "answers": [
+                  "avons"
+                ],
+                "accentSensitive": []
+              },
+              "hint": {
+                "en": "avoir",
+                "fr": "avoir",
+                "de": "avoir"
+              },
+              "answerExplanation": {
+                "en": "Possession uses avoir: nous avons + noun.",
+                "fr": "La possession s’exprime avec avoir : nous avons + nom.",
+                "de": "Besitz drückt man mit avoir aus: nous avons + Nomen."
+              },
+              "itemId": "ex-usage-typing-5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-usage-order",
+      "role": "exercise",
+      "blockId": "block-usage",
+      "label": {
+        "en": "Word order",
+        "fr": "Ordre des mots",
+        "de": "Wortstellung"
+      },
+      "pages": [
+        {
+          "pageId": "ex-usage-order-1",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Put the words in the right order.",
+            "fr": "Mettez les mots dans le bon ordre.",
+            "de": "Bring die Wörter in die richtige Reihenfolge."
+          },
+          "items": [
+            {
+              "type": "grammar_word_order",
+              "ruleIds": [
+                "rule-avoir-age"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-2",
+                  "text": "vingt-cinq"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "ans"
+                },
+                {
+                  "tokenId": "t-1",
+                  "text": "J’ai"
+                }
+              ],
+              "acceptedOrders": [
+                [
+                  "t-1",
+                  "t-2",
+                  "t-3"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "French gives age with avoir + number + ans: j’ ai … ans. Être is wrong here.",
+                "fr": "En français, l’âge se dit avec avoir + nombre + ans : j’ ai … ans. Être est faux ici.",
+                "de": "Das Alter steht im Französischen mit avoir + Zahl + ans: j’ ai … ans. Être ist hier falsch."
+              },
+              "itemId": "ex-usage-order-1"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-usage-order-2",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Put the words in the right order.",
+            "fr": "Mettez les mots dans le bon ordre.",
+            "de": "Bring die Wörter in die richtige Reihenfolge."
+          },
+          "items": [
+            {
+              "type": "grammar_word_order",
+              "ruleIds": [
+                "rule-avoir-age"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-5",
+                  "text": "ans"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "fille"
+                },
+                {
+                  "tokenId": "t-4",
+                  "text": "sept"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "a"
+                },
+                {
+                  "tokenId": "t-1",
+                  "text": "Ma"
+                }
+              ],
+              "acceptedOrders": [
+                [
+                  "t-1",
+                  "t-2",
+                  "t-3",
+                  "t-4",
+                  "t-5"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "French gives age with avoir + number + ans: elle a … ans. Être is wrong here.",
+                "fr": "En français, l’âge se dit avec avoir + nombre + ans : elle a … ans. Être est faux ici.",
+                "de": "Das Alter steht im Französischen mit avoir + Zahl + ans: elle a … ans. Être ist hier falsch."
+              },
+              "itemId": "ex-usage-order-2"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-usage-order-3",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Put the words in the right order.",
+            "fr": "Mettez les mots dans le bon ordre.",
+            "de": "Bring die Wörter in die richtige Reihenfolge."
+          },
+          "items": [
+            {
+              "type": "grammar_word_order",
+              "ruleIds": [
+                "rule-avoir-age"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-3",
+                  "text": "quel"
+                },
+                {
+                  "tokenId": "t-4",
+                  "text": "âge"
+                },
+                {
+                  "tokenId": "t-1",
+                  "text": "Tu"
+                },
+                {
+                  "tokenId": "t-5",
+                  "text": "?"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "as"
+                }
+              ],
+              "acceptedOrders": [
+                [
+                  "t-1",
+                  "t-2",
+                  "t-3",
+                  "t-4",
+                  "t-5"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "Asking someone’s age: tu as quel âge ? – avoir again, never être.",
+                "fr": "Pour demander l’âge : tu as quel âge ? – encore avoir, jamais être.",
+                "de": "Nach dem Alter fragen: tu as quel âge ? – wieder avoir, nie être."
+              },
+              "itemId": "ex-usage-order-3"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-usage-order-4",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Put the words in the right order.",
+            "fr": "Mettez les mots dans le bon ordre.",
+            "de": "Bring die Wörter in die richtige Reihenfolge."
+          },
+          "items": [
+            {
+              "type": "grammar_word_order",
+              "ruleIds": [
+                "rule-avoir-possession"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-3",
+                  "text": "un"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "avons"
+                },
+                {
+                  "tokenId": "t-1",
+                  "text": "Nous"
+                },
+                {
+                  "tokenId": "t-5",
+                  "text": "chien"
+                },
+                {
+                  "tokenId": "t-4",
+                  "text": "grand"
+                }
+              ],
+              "acceptedOrders": [
+                [
+                  "t-1",
+                  "t-2",
+                  "t-3",
+                  "t-4",
+                  "t-5"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "Possession uses avoir: nous avons + noun.",
+                "fr": "La possession s’exprime avec avoir : nous avons + nom.",
+                "de": "Besitz drückt man mit avoir aus: nous avons + Nomen."
+              },
+              "itemId": "ex-usage-order-4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ex-usage-spot",
+      "role": "exercise",
+      "blockId": "block-usage",
+      "label": {
+        "en": "Error spotting",
+        "fr": "Repérer l’erreur",
+        "de": "Fehler finden"
+      },
+      "pages": [
+        {
+          "pageId": "ex-usage-spot-1",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Find the wrong word and correct it.",
+            "fr": "Trouvez le mot faux et corrigez-le.",
+            "de": "Finde das falsche Wort und korrigiere es."
+          },
+          "items": [
+            {
+              "type": "grammar_error_spotter",
+              "ruleIds": [
+                "rule-avoir-age"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-1",
+                  "text": "Je suis"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "trente"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "ans"
+                }
+              ],
+              "faultyTokenId": "t-1",
+              "correction": {
+                "mode": "select",
+                "accepted": {
+                  "answers": [
+                    "J’ai"
+                  ],
+                  "accentSensitive": []
+                },
+                "choices": [
+                  "J’ai",
+                  "Je suis",
+                  "J’as"
+                ]
+              },
+              "answerExplanation": {
+                "en": "French gives age with avoir + number + ans: j’ ai … ans. Être is wrong here.",
+                "fr": "En français, l’âge se dit avec avoir + nombre + ans : j’ ai … ans. Être est faux ici.",
+                "de": "Das Alter steht im Französischen mit avoir + Zahl + ans: j’ ai … ans. Être ist hier falsch."
+              },
+              "itemId": "ex-usage-spot-1"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-usage-spot-2",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Find the wrong word and correct it.",
+            "fr": "Trouvez le mot faux et corrigez-le.",
+            "de": "Finde das falsche Wort und korrigiere es."
+          },
+          "items": [
+            {
+              "type": "grammar_error_spotter",
+              "ruleIds": [
+                "rule-avoir-age"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-1",
+                  "text": "Il"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "est"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "dix"
+                },
+                {
+                  "tokenId": "t-4",
+                  "text": "ans"
+                }
+              ],
+              "faultyTokenId": "t-2",
+              "correction": {
+                "mode": "type",
+                "accepted": {
+                  "answers": [
+                    "a"
+                  ],
+                  "accentSensitive": []
+                },
+                "choices": []
+              },
+              "answerExplanation": {
+                "en": "French gives age with avoir + number + ans: il a … ans. Être is wrong here.",
+                "fr": "En français, l’âge se dit avec avoir + nombre + ans : il a … ans. Être est faux ici.",
+                "de": "Das Alter steht im Französischen mit avoir + Zahl + ans: il a … ans. Être ist hier falsch."
+              },
+              "itemId": "ex-usage-spot-2"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-usage-spot-3",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Find the wrong word and correct it.",
+            "fr": "Trouvez le mot faux et corrigez-le.",
+            "de": "Finde das falsche Wort und korrigiere es."
+          },
+          "items": [
+            {
+              "type": "grammar_error_spotter",
+              "ruleIds": [
+                "rule-avoir-age"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-1",
+                  "text": "Nous"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "sommes"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "vingt"
+                },
+                {
+                  "tokenId": "t-4",
+                  "text": "ans"
+                }
+              ],
+              "faultyTokenId": "t-2",
+              "correction": {
+                "mode": "type",
+                "accepted": {
+                  "answers": [
+                    "avons"
+                  ],
+                  "accentSensitive": []
+                },
+                "choices": []
+              },
+              "answerExplanation": {
+                "en": "French gives age with avoir + number + ans: nous avons … ans. Être is wrong here.",
+                "fr": "En français, l’âge se dit avec avoir + nombre + ans : nous avons … ans. Être est faux ici.",
+                "de": "Das Alter steht im Französischen mit avoir + Zahl + ans: nous avons … ans. Être ist hier falsch."
+              },
+              "itemId": "ex-usage-spot-3"
+            }
+          ]
+        },
+        {
+          "pageId": "ex-usage-spot-4",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Find the wrong word and correct it.",
+            "fr": "Trouvez le mot faux et corrigez-le.",
+            "de": "Finde das falsche Wort und korrigiere es."
+          },
+          "items": [
+            {
+              "type": "grammar_error_spotter",
+              "ruleIds": [
+                "rule-avoir-possession"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-1",
+                  "text": "Tu"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "a"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "un"
+                },
+                {
+                  "tokenId": "t-4",
+                  "text": "stylo"
+                }
+              ],
+              "faultyTokenId": "t-2",
+              "correction": {
+                "mode": "type",
+                "accepted": {
+                  "answers": [
+                    "as"
+                  ],
+                  "accentSensitive": []
+                },
+                "choices": []
+              },
+              "answerExplanation": {
+                "en": "With tu, avoir is as.",
+                "fr": "Avec tu, avoir devient as.",
+                "de": "Zu tu gehört die Form as."
+              },
+              "itemId": "ex-usage-spot-4"
             }
           ]
         }
@@ -1118,258 +1784,429 @@
       },
       "pages": [
         {
-          "pageId": "page-forms",
-          "estimatedDurationS": 120,
-          "timeLimitS": 180,
+          "pageId": "exam-forms",
+          "estimatedDurationS": 90,
+          "timeLimitS": 140,
           "instructions": {
-            "en": "Write the French form for each row; the verb is given when needed.",
-            "fr": "Écrivez la forme française pour chaque ligne ; le verbe est indiqué si nécessaire.",
-            "de": "Schreib die französische Form für jede Zeile; das Verb ist bei Bedarf angegeben."
+            "en": "Type the form for each pronoun.",
+            "fr": "Écrivez la forme pour chaque pronom.",
+            "de": "Schreib die Form zu jedem Pronomen."
           },
           "items": [
             {
               "type": "grammar_pronoun_form_typing",
-              "itemId": "exam-1-1",
               "ruleIds": [
                 "rule-avoir-forms"
               ],
               "rows": [
                 {
-                  "rowId": "row-1",
-                  "pronoun": "Elle (avoir)",
-                  "answerExplanation": {
-                    "en": "Answer: a. Present forms of avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Note the elision in j'ai.",
-                    "fr": "Réponse : a. Formes du présent d'avoir : j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Notez l'élision pour j'ai.",
-                    "de": "Antwort: a. Präsensformen von avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Beachten Sie die Elision bei j'ai."
-                  },
-                  "accepted": {
-                    "answers": [
-                      "a"
-                    ],
-                    "accentSensitive": []
-                  }
-                }
-              ]
-            },
-            {
-              "type": "grammar_pronoun_form_typing",
-              "itemId": "exam-1-2",
-              "ruleIds": [
-                "rule-avoir-forms"
-              ],
-              "rows": [
-                {
-                  "rowId": "row-1",
-                  "pronoun": "Nous (avoir)",
-                  "answerExplanation": {
-                    "en": "Answer: avons. Present forms of avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Note the elision in j'ai.",
-                    "fr": "Réponse : avons. Formes du présent d'avoir : j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Notez l'élision pour j'ai.",
-                    "de": "Antwort: avons. Präsensformen von avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Beachten Sie die Elision bei j'ai."
-                  },
-                  "accepted": {
-                    "answers": [
-                      "avons"
-                    ],
-                    "accentSensitive": []
-                  }
-                }
-              ]
-            },
-            {
-              "type": "grammar_pronoun_form_typing",
-              "itemId": "exam-1-3",
-              "ruleIds": [
-                "rule-avoir-forms"
-              ],
-              "rows": [
-                {
-                  "rowId": "row-1",
-                  "pronoun": "Vous (avoir)",
-                  "answerExplanation": {
-                    "en": "Answer: avez. Present forms of avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Note the elision in j'ai.",
-                    "fr": "Réponse : avez. Formes du présent d'avoir : j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Notez l'élision pour j'ai.",
-                    "de": "Antwort: avez. Präsensformen von avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Beachten Sie die Elision bei j'ai."
-                  },
-                  "accepted": {
-                    "answers": [
-                      "avez"
-                    ],
-                    "accentSensitive": []
-                  }
-                }
-              ]
-            },
-            {
-              "type": "grammar_pronoun_form_typing",
-              "itemId": "exam-1-4",
-              "ruleIds": [
-                "rule-avoir-forms"
-              ],
-              "rows": [
-                {
-                  "rowId": "row-1",
-                  "pronoun": "Ils (avoir)",
-                  "answerExplanation": {
-                    "en": "Answer: ont. Present forms of avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Note the elision in j'ai.",
-                    "fr": "Réponse : ont. Formes du présent d'avoir : j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Notez l'élision pour j'ai.",
-                    "de": "Antwort: ont. Präsensformen von avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Beachten Sie die Elision bei j'ai."
-                  },
-                  "accepted": {
-                    "answers": [
-                      "ont"
-                    ],
-                    "accentSensitive": []
-                  }
-                }
-              ]
-            },
-            {
-              "type": "grammar_pronoun_form_typing",
-              "itemId": "exam-1-5",
-              "ruleIds": [
-                "rule-avoir-forms"
-              ],
-              "rows": [
-                {
-                  "rowId": "row-1",
-                  "pronoun": "J' (avoir)",
-                  "answerExplanation": {
-                    "en": "Answer: ai. Present forms of avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Note the elision in j'ai.",
-                    "fr": "Réponse : ai. Formes du présent d'avoir : j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Notez l'élision pour j'ai.",
-                    "de": "Antwort: ai. Präsensformen von avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Beachten Sie die Elision bei j'ai."
-                  },
+                  "rowId": "r-1",
+                  "pronoun": "j’",
                   "accepted": {
                     "answers": [
                       "ai"
                     ],
                     "accentSensitive": []
-                  }
-                }
-              ]
-            },
-            {
-              "type": "grammar_pronoun_form_typing",
-              "itemId": "exam-1-6",
-              "ruleIds": [
-                "rule-avoir-forms"
-              ],
-              "rows": [
-                {
-                  "rowId": "row-1",
-                  "pronoun": "Tu (avoir)",
-                  "answerExplanation": {
-                    "en": "Answer: as. Present forms of avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Note the elision in j'ai.",
-                    "fr": "Réponse : as. Formes du présent d'avoir : j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Notez l'élision pour j'ai.",
-                    "de": "Antwort: as. Präsensformen von avoir: j'ai, tu as, il/elle/on a, nous avons, vous avez, ils/elles ont. Beachten Sie die Elision bei j'ai."
                   },
+                  "answerExplanation": {
+                    "en": "With je, avoir is ai, and je becomes j’ before the vowel: j’ai.",
+                    "fr": "Avec je, avoir devient ai, et je s’élide devant la voyelle : j’ai.",
+                    "de": "Zu je gehört ai; vor dem Vokal wird je zu j’: j’ai."
+                  }
+                },
+                {
+                  "rowId": "r-2",
+                  "pronoun": "tu",
                   "accepted": {
                     "answers": [
                       "as"
                     ],
                     "accentSensitive": []
+                  },
+                  "answerExplanation": {
+                    "en": "With tu, avoir is as.",
+                    "fr": "Avec tu, avoir devient as.",
+                    "de": "Zu tu gehört die Form as."
+                  }
+                },
+                {
+                  "rowId": "r-3",
+                  "pronoun": "elle",
+                  "accepted": {
+                    "answers": [
+                      "a"
+                    ],
+                    "accentSensitive": []
+                  },
+                  "answerExplanation": {
+                    "en": "With il, elle, on, avoir is a – without an accent; à with an accent grave is the preposition.",
+                    "fr": "Avec il, elle, on, avoir devient a, sans accent ; à avec un accent grave est la préposition.",
+                    "de": "Zu il, elle, on gehört a, ohne Akzent; à mit Accent grave ist die Präposition."
                   }
                 }
-              ]
+              ],
+              "itemId": "exam-forms-1"
+            },
+            {
+              "type": "grammar_pronoun_form_typing",
+              "ruleIds": [
+                "rule-avoir-forms"
+              ],
+              "rows": [
+                {
+                  "rowId": "r-1",
+                  "pronoun": "nous",
+                  "accepted": {
+                    "answers": [
+                      "avons"
+                    ],
+                    "accentSensitive": []
+                  },
+                  "answerExplanation": {
+                    "en": "With nous, avoir is avons.",
+                    "fr": "Avec nous, avoir devient avons.",
+                    "de": "Zu nous gehört die Form avons."
+                  }
+                },
+                {
+                  "rowId": "r-2",
+                  "pronoun": "vous",
+                  "accepted": {
+                    "answers": [
+                      "avez"
+                    ],
+                    "accentSensitive": []
+                  },
+                  "answerExplanation": {
+                    "en": "With vous, avoir is avez.",
+                    "fr": "Avec vous, avoir devient avez.",
+                    "de": "Zu vous gehört die Form avez."
+                  }
+                },
+                {
+                  "rowId": "r-3",
+                  "pronoun": "ils",
+                  "accepted": {
+                    "answers": [
+                      "ont"
+                    ],
+                    "accentSensitive": []
+                  },
+                  "answerExplanation": {
+                    "en": "Ils ont: ils ont (avoir, liaison [z]) – ils sont belongs to être.",
+                    "fr": "Ils ont : ils ont (avoir, liaison [z]) – ils sont appartient à être.",
+                    "de": "Ils ont: ils ont (avoir, Bindung [z]) – ils sont gehört zu être."
+                  }
+                }
+              ],
+              "itemId": "exam-forms-2"
             }
           ]
         },
         {
-          "pageId": "page-usage",
-          "estimatedDurationS": 120,
-          "timeLimitS": 180,
+          "pageId": "exam-sentences",
+          "estimatedDurationS": 60,
+          "timeLimitS": 90,
           "instructions": {
-            "en": "Write the missing word or expression.",
-            "fr": "Écrivez le mot ou l’expression qui manque.",
-            "de": "Schreib das fehlende Wort oder die Wendung."
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
           },
           "items": [
             {
               "type": "grammar_gap_typing",
-              "itemId": "exam-2-1",
               "ruleIds": [
-                "rule-avoir-age",
-                "rule-avoir-possession"
+                "rule-avoir-forms"
               ],
-              "before": "Elle",
-              "after": "un vélo. (avoir)",
-              "answerExplanation": {
-                "en": "Answer: a. Use avoir + [number] + ans to state age (e.g., J'ai vingt ans). Never use être. Use avoir with nouns to express possession (e.g., Nous avons un chien).",
-                "fr": "Réponse : a. Utilisez avoir + [nombre] + ans pour exprimer l'âge (ex. J'ai vingt ans). N'utilisez jamais être. Utilisez avoir avec des noms pour exprimer la possession (ex. Nous avons un chien).",
-                "de": "Antwort: a. Verwenden Sie avoir + [Zahl] + ans für das Alter (z. B. J'ai vingt ans). Niemals être benutzen. Verwenden Sie avoir mit Substantiven, um Besitz auszudrücken (z. B. Nous avons un chien)."
+              "before": "Tu",
+              "after": "un dictionnaire ?",
+              "accepted": {
+                "answers": [
+                  "as"
+                ],
+                "accentSensitive": []
               },
+              "hint": null,
+              "answerExplanation": {
+                "en": "With tu, avoir is as.",
+                "fr": "Avec tu, avoir devient as.",
+                "de": "Zu tu gehört die Form as."
+              },
+              "itemId": "exam-sentences-1"
+            },
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-avoir-forms"
+              ],
+              "before": "Mon père",
+              "after": "une moto.",
               "accepted": {
                 "answers": [
                   "a"
                 ],
                 "accentSensitive": []
               },
-              "hint": null
+              "hint": null,
+              "answerExplanation": {
+                "en": "Mon père is 3rd person singular (like il), so avoir is a.",
+                "fr": "Mon père est à la 3e personne du singulier (comme il) : avoir devient a.",
+                "de": "Mon père ist 3. Person Singular (wie il), also heißt avoir a."
+              },
+              "itemId": "exam-sentences-2"
             },
             {
               "type": "grammar_gap_typing",
-              "itemId": "exam-2-2",
               "ruleIds": [
-                "rule-avoir-age",
-                "rule-avoir-possession"
+                "rule-avoir-forms"
               ],
               "before": "Nous",
-              "after": "deux livres. (avoir)",
-              "answerExplanation": {
-                "en": "Answer: avons. Use avoir + [number] + ans to state age (e.g., J'ai vingt ans). Never use être. Use avoir with nouns to express possession (e.g., Nous avons un chien).",
-                "fr": "Réponse : avons. Utilisez avoir + [nombre] + ans pour exprimer l'âge (ex. J'ai vingt ans). N'utilisez jamais être. Utilisez avoir avec des noms pour exprimer la possession (ex. Nous avons un chien).",
-                "de": "Antwort: avons. Verwenden Sie avoir + [Zahl] + ans für das Alter (z. B. J'ai vingt ans). Niemals être benutzen. Verwenden Sie avoir mit Substantiven, um Besitz auszudrücken (z. B. Nous avons un chien)."
-              },
+              "after": "faim.",
               "accepted": {
                 "answers": [
                   "avons"
                 ],
                 "accentSensitive": []
               },
-              "hint": null
+              "hint": null,
+              "answerExplanation": {
+                "en": "With nous, avoir is avons.",
+                "fr": "Avec nous, avoir devient avons.",
+                "de": "Zu nous gehört die Form avons."
+              },
+              "itemId": "exam-sentences-3"
             },
             {
               "type": "grammar_gap_typing",
-              "itemId": "exam-2-3",
               "ruleIds": [
-                "rule-avoir-age",
-                "rule-avoir-possession"
+                "rule-avoir-forms"
               ],
               "before": "Vous",
-              "after": "trente ans. (avoir)",
-              "answerExplanation": {
-                "en": "Answer: avez. Use avoir + [number] + ans to state age (e.g., J'ai vingt ans). Never use être. Use avoir with nouns to express possession (e.g., Nous avons un chien).",
-                "fr": "Réponse : avez. Utilisez avoir + [nombre] + ans pour exprimer l'âge (ex. J'ai vingt ans). N'utilisez jamais être. Utilisez avoir avec des noms pour exprimer la possession (ex. Nous avons un chien).",
-                "de": "Antwort: avez. Verwenden Sie avoir + [Zahl] + ans für das Alter (z. B. J'ai vingt ans). Niemals être benutzen. Verwenden Sie avoir mit Substantiven, um Besitz auszudrücken (z. B. Nous avons un chien)."
-              },
+              "after": "raison.",
               "accepted": {
                 "answers": [
                   "avez"
                 ],
                 "accentSensitive": []
               },
-              "hint": null
-            },
+              "hint": null,
+              "answerExplanation": {
+                "en": "With vous, avoir is avez.",
+                "fr": "Avec vous, avoir devient avez.",
+                "de": "Zu vous gehört die Form avez."
+              },
+              "itemId": "exam-sentences-4"
+            }
+          ]
+        },
+        {
+          "pageId": "exam-age",
+          "estimatedDurationS": 45,
+          "timeLimitS": 70,
+          "instructions": {
+            "en": "Type the missing words.",
+            "fr": "Écrivez les mots manquants.",
+            "de": "Schreib die fehlenden Wörter."
+          },
+          "items": [
             {
               "type": "grammar_gap_typing",
-              "itemId": "exam-2-4",
               "ruleIds": [
-                "rule-avoir-age",
-                "rule-avoir-possession"
+                "rule-avoir-age"
               ],
-              "before": "J'",
-              "after": "vingt ans. (avoir)",
-              "answerExplanation": {
-                "en": "Answer: ai. Use avoir + [number] + ans to state age (e.g., J'ai vingt ans). Never use être. Use avoir with nouns to express possession (e.g., Nous avons un chien).",
-                "fr": "Réponse : ai. Utilisez avoir + [nombre] + ans pour exprimer l'âge (ex. J'ai vingt ans). N'utilisez jamais être. Utilisez avoir avec des noms pour exprimer la possession (ex. Nous avons un chien).",
-                "de": "Antwort: ai. Verwenden Sie avoir + [Zahl] + ans für das Alter (z. B. J'ai vingt ans). Niemals être benutzen. Verwenden Sie avoir mit Substantiven, um Besitz auszudrücken (z. B. Nous avons un chien)."
-              },
+              "before": "J’",
+              "after": "quarante ans.",
               "accepted": {
                 "answers": [
                   "ai"
                 ],
                 "accentSensitive": []
               },
-              "hint": null
+              "hint": null,
+              "answerExplanation": {
+                "en": "French gives age with avoir + number + ans: j’ ai … ans. Être is wrong here.",
+                "fr": "En français, l’âge se dit avec avoir + nombre + ans : j’ ai … ans. Être est faux ici.",
+                "de": "Das Alter steht im Französischen mit avoir + Zahl + ans: j’ ai … ans. Être ist hier falsch."
+              },
+              "itemId": "exam-age-1"
+            },
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-avoir-age"
+              ],
+              "before": "Ma mère",
+              "after": "cinquante ans.",
+              "accepted": {
+                "answers": [
+                  "a"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null,
+              "answerExplanation": {
+                "en": "French gives age with avoir + number + ans: elle a … ans. Être is wrong here.",
+                "fr": "En français, l’âge se dit avec avoir + nombre + ans : elle a … ans. Être est faux ici.",
+                "de": "Das Alter steht im Französischen mit avoir + Zahl + ans: elle a … ans. Être ist hier falsch."
+              },
+              "itemId": "exam-age-2"
+            },
+            {
+              "type": "grammar_gap_typing",
+              "ruleIds": [
+                "rule-avoir-age"
+              ],
+              "before": "Tu",
+              "after": "seize ans ?",
+              "accepted": {
+                "answers": [
+                  "as"
+                ],
+                "accentSensitive": []
+              },
+              "hint": null,
+              "answerExplanation": {
+                "en": "French gives age with avoir + number + ans: tu as … ans. Être is wrong here.",
+                "fr": "En français, l’âge se dit avec avoir + nombre + ans : tu as … ans. Être est faux ici.",
+                "de": "Das Alter steht im Französischen mit avoir + Zahl + ans: tu as … ans. Être ist hier falsch."
+              },
+              "itemId": "exam-age-3"
+            }
+          ]
+        },
+        {
+          "pageId": "exam-order",
+          "estimatedDurationS": 75,
+          "timeLimitS": 120,
+          "instructions": {
+            "en": "Put the words in the right order.",
+            "fr": "Mettez les mots dans le bon ordre.",
+            "de": "Bring die Wörter in die richtige Reihenfolge."
+          },
+          "items": [
+            {
+              "type": "grammar_word_order",
+              "ruleIds": [
+                "rule-avoir-age"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-1",
+                  "text": "Mon"
+                },
+                {
+                  "tokenId": "t-4",
+                  "text": "soixante"
+                },
+                {
+                  "tokenId": "t-5",
+                  "text": "ans"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "grand-père"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "a"
+                }
+              ],
+              "acceptedOrders": [
+                [
+                  "t-1",
+                  "t-2",
+                  "t-3",
+                  "t-4",
+                  "t-5"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "French gives age with avoir + number + ans: il a … ans. Être is wrong here.",
+                "fr": "En français, l’âge se dit avec avoir + nombre + ans : il a … ans. Être est faux ici.",
+                "de": "Das Alter steht im Französischen mit avoir + Zahl + ans: il a … ans. Être ist hier falsch."
+              },
+              "itemId": "exam-order-1"
+            },
+            {
+              "type": "grammar_word_order",
+              "ruleIds": [
+                "rule-avoir-possession"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-1",
+                  "text": "Nous"
+                },
+                {
+                  "tokenId": "t-4",
+                  "text": "enfants"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "avons"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "deux"
+                }
+              ],
+              "acceptedOrders": [
+                [
+                  "t-1",
+                  "t-2",
+                  "t-3",
+                  "t-4"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "Possession uses avoir: nous avons + noun.",
+                "fr": "La possession s’exprime avec avoir : nous avons + nom.",
+                "de": "Besitz drückt man mit avoir aus: nous avons + Nomen."
+              },
+              "itemId": "exam-order-2"
+            },
+            {
+              "type": "grammar_word_order",
+              "ruleIds": [
+                "rule-avoir-possession"
+              ],
+              "tokens": [
+                {
+                  "tokenId": "t-4",
+                  "text": "frère"
+                },
+                {
+                  "tokenId": "t-1",
+                  "text": "Tu"
+                },
+                {
+                  "tokenId": "t-3",
+                  "text": "un"
+                },
+                {
+                  "tokenId": "t-2",
+                  "text": "as"
+                },
+                {
+                  "tokenId": "t-5",
+                  "text": "?"
+                }
+              ],
+              "acceptedOrders": [
+                [
+                  "t-1",
+                  "t-2",
+                  "t-3",
+                  "t-4",
+                  "t-5"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "Possession uses avoir: tu as + noun.",
+                "fr": "La possession s’exprime avec avoir : tu as + nom.",
+                "de": "Besitz drückt man mit avoir aus: tu as + Nomen."
+              },
+              "itemId": "exam-order-3"
             }
           ]
         }
@@ -1377,13 +2214,13 @@
     }
   ],
   "provenance": {
-    "generator": "codex-direct-authoring",
-    "model": "gpt-6",
-    "promptVersion": "manual-content-v1",
-    "generatedAt": "2026-10-06T22:13:22.000Z",
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "content-v4",
+    "generatedAt": "2026-10-08T00:17:18.245Z",
     "inputHashes": {
       "outline": "6330aa315b82f91f79b5f684caf8264ae01a4b0148b010ab9324c3b67e0028be",
-      "brief": "a1162dd8924c831733264b22e76c82ffa1125b71e471c50257d2f667900e9173"
+      "brief": "b0ed6d5e4a91658afc20bc1f56224db508d4c029a5c52004074a6ceb08e31a37"
     }
   }
 }

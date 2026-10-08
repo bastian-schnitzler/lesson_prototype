@@ -14,12 +14,12 @@
     "fr": "Identifier le genre des noms français et choisir correctement entre les articles indéfinis un, une et des.",
     "de": "Das Genus französischer Nomen erkennen und die unbestimmten Artikel un, une und des korrekt auswählen."
   },
-  "estimatedMinutes": 12,
+  "estimatedMinutes": 17,
   "provenance": {
-    "generator": "lesson-prototype",
-    "model": "gemini-3.7-flash",
-    "promptVersion": "brief-v2",
-    "generatedAt": "2026-10-06T14:25:23.130Z",
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "brief-v7",
+    "generatedAt": "2026-10-08T00:17:18.468Z",
     "inputHashes": {
       "outline": "21cea9aeeacae2d7d0c58cde432c039e81a485c45fc20fb3991afbe89e01be25"
     }
@@ -100,20 +100,29 @@
         {
           "id": "ex-singular-choice",
           "type": "grammar_gap_choice",
-          "itemCount": 5,
+          "itemCount": 7,
           "ruleIds": [
             "rule-singular-gender"
           ],
-          "estimatedDurationS": 100
+          "estimatedDurationS": 70
         },
         {
           "id": "ex-singular-typing",
           "type": "grammar_gap_typing",
-          "itemCount": 4,
+          "itemCount": 6,
           "ruleIds": [
             "rule-singular-gender"
           ],
           "estimatedDurationS": 90
+        },
+        {
+          "id": "ex-singular-spot",
+          "type": "grammar_error_spotter",
+          "itemCount": 5,
+          "ruleIds": [
+            "rule-singular-gender"
+          ],
+          "estimatedDurationS": 125
         }
       ]
     },
@@ -160,11 +169,29 @@
         {
           "id": "ex-plural-choice",
           "type": "grammar_gap_choice",
+          "itemCount": 7,
+          "ruleIds": [
+            "rule-plural-des"
+          ],
+          "estimatedDurationS": 70
+        },
+        {
+          "id": "ex-plural-typing",
+          "type": "grammar_gap_typing",
           "itemCount": 5,
           "ruleIds": [
             "rule-plural-des"
           ],
-          "estimatedDurationS": 90
+          "estimatedDurationS": 75
+        },
+        {
+          "id": "ex-plural-spot",
+          "type": "grammar_error_spotter",
+          "itemCount": 4,
+          "ruleIds": [
+            "rule-plural-des"
+          ],
+          "estimatedDurationS": 100
         }
       ]
     }
@@ -175,15 +202,35 @@
   "exam": {
     "pages": [
       {
-        "pageId": "exam-page-singular-plural-typing",
+        "pageId": "exam-singular",
         "type": "grammar_gap_typing",
-        "itemCount": 8,
+        "itemCount": 6,
+        "ruleIds": [
+          "rule-singular-gender"
+        ],
+        "estimatedDurationS": 90,
+        "timeLimitS": 140
+      },
+      {
+        "pageId": "exam-plural",
+        "type": "grammar_gap_typing",
+        "itemCount": 5,
+        "ruleIds": [
+          "rule-plural-des"
+        ],
+        "estimatedDurationS": 75,
+        "timeLimitS": 120
+      },
+      {
+        "pageId": "exam-mixed",
+        "type": "grammar_gap_typing",
+        "itemCount": 5,
         "ruleIds": [
           "rule-singular-gender",
           "rule-plural-des"
         ],
-        "estimatedDurationS": 190,
-        "timeLimitS": 240
+        "estimatedDurationS": 75,
+        "timeLimitS": 120
       }
     ]
   },
@@ -191,5 +238,6 @@
     "practiceWeight": 35,
     "examWeight": 65,
     "orthographyCredit": 0.5
-  }
+  },
+  "newVerbs": []
 }

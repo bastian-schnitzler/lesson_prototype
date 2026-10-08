@@ -270,7 +270,8 @@ export function SpotControl({ unit, props }: { unit: PlanUnit & { kind: 'spot' }
           </button>
         ))}
       </p>
-      {unit.correction.mode === 'select' ? (
+      {/* The correction appears once a word is selected (P3-07 review). */}
+      {!current.tokenId ? null : unit.correction.mode === 'select' ? (
         <fieldset className="choices" disabled={disabled}>
           <legend className="label-muted">{t('session.correction')}</legend>
           {unit.correction.choices.map((c) => (
@@ -291,9 +292,10 @@ export function SpotControl({ unit, props }: { unit: PlanUnit & { kind: 'spot' }
 }
 
 export function Gap({ before, after, lang, children }: { before?: string; after?: string; lang: string; children: ReactNode }) {
+  // A comma or full stop follows the gap directly; other text keeps a space.
   return (
     <p className="gap-sentence" lang={lang}>
-      {before} {children} {after}
+      {before} {children}{after && /^[,.]/.test(after) ? after : ` ${after ?? ''}`}
     </p>
   );
 }

@@ -2,16 +2,41 @@ import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } f
 
 import { useI18n } from '../app/context.tsx';
 import { RichText } from '../components/RichText.tsx';
-import { seededOrder, type PlanUnit } from '../domain/session/plan.ts';
+import { seededOrder, type LessonPlan, type PlanUnit } from '../domain/session/plan.ts';
+import type { Locale } from '../schemas/common.ts';
 import { ChoiceControl, Gap, TextControl, UnitRow, type RendererProps } from './controls.tsx';
 
 /** Grammar renderers: presentation items, pronoun/form rows (P3-02); other scored items use the shared `UnitsRenderer`. */
 
-export function ExplanationRenderer({ item, plan, motherTongue }: RendererProps) {
+/** "New verbs" (P3-07): the verbs a grammar lesson introduces, with their mother-tongue translation. */
+export function NewVerbs({ plan, motherTongue }: { plan: LessonPlan; motherTongue: Locale }) {
+  const { t } = useI18n();
+  if (!plan.newVerbs.length) return null;
+  return (
+    <div className="new-verbs">
+      <h2 className="small-heading">{t('session.newVerbs')}</h2>
+      <div className="table-wrap">
+        <table className="data-table">
+          <thead><tr><th scope="col">{t('session.verb')}</th><th scope="col">{t(`locale.${motherTongue}`)}</th></tr></thead>
+          <tbody>
+            {plan.newVerbs.map((v) => (
+              <tr key={v.infinitive}><th scope="row" lang={plan.lang}>{v.infinitive}</th><td lang={motherTongue}>{v.translation}</td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+export function ExplanationRenderer({ item, plan, motherTongue, pageId }: RendererProps) {
   const { locale, t } = useI18n();
   if (item.type !== 'grammar_explanation') return null;
+  // The first explanation page opens with the lesson's new verbs (P3-07).
+  const first = plan.pages.find((p) => p.items.some((it) => it.type === 'grammar_explanation'))?.pageId === pageId;
   return (
     <>
+      {first && <NewVerbs plan={plan} motherTongue={motherTongue} />}
       <h3>{item.heading[locale]}</h3>
       <RichText text={item.text[locale]} lang={plan.lang} className="rich-text explanation-text" />
       {item.formTable.length > 0 && (

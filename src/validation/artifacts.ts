@@ -2,7 +2,7 @@ import type { z } from 'zod';
 
 import { nativeLocales } from '../schemas/artifactCommon.ts';
 import { briefSchema, contentSchema, hasContentFile, isSupportedKind, type Brief, type LessonContent } from '../schemas/artifacts.ts';
-import { PERSON_MATCHING_EXEMPT, PERSON_MATCHING_TOPICS, PERSONS, PRONOUN_FORM_TOPICS, PRONOUN_FORM_TYPES, type GrammarBrief, type GrammarContent, type GrammarItem } from '../schemas/grammar.ts';
+import { GRAMMAR_LENGTH, PERSON_MATCHING_EXEMPT, PERSON_MATCHING_TOPICS, PERSONS, PRONOUN_FORM_TOPICS, PRONOUN_FORM_TYPES, type GrammarBrief, type GrammarContent, type GrammarItem } from '../schemas/grammar.ts';
 import type { OutlineEntry } from '../schemas/outline.ts';
 import { learningForms, parseRichText, richTextShape } from '../domain/richText.ts';
 import type { VocabularyBrief, VocabularyTarget } from '../schemas/vocabulary.ts';
@@ -195,6 +195,7 @@ function checkGrammarBrief(b: GrammarBrief, issues: Issues) {
   if ((PERSON_MATCHING_TOPICS as readonly string[]).includes(b.topic) && !(PERSON_MATCHING_EXEMPT as readonly string[]).includes(b.id)) {
     issues.check(b.blocks.some((x) => x.exercises.some((e) => e.type === 'grammar_person_matching')), 'blocks', `${b.topic} lessons include a grammar_person_matching exercise`);
   }
+  issues.unique(b.newVerbs.map((v) => v.infinitive), 'newVerbs', 'infinitive');
   const examined = new Set(b.exam.pages.flatMap((pg) => pg.ruleIds));
   b.exam.pages.forEach((pg, i) => {
     for (const r of pg.ruleIds) issues.check(rules.has(r), `exam.pages.${i}.ruleIds`, `unknown rule ${r}`);
@@ -320,6 +321,47 @@ function checkGrammarItem(item: GrammarItem, path: string, rules: Set<string>, e
     }
   }
   if ('answerExplanation' in item) checkExplanations([item], path, issues);
+}
+
+/** Scored units of a grammar item: one per row for row items, else one. */
+const unitCount = (item: GrammarItem) => ('rows' in item ? item.rows.length : item.type === 'grammar_explanation' || item.type === 'production_feedback_placeholder' ? 0 : 1);
+
+/**
+ * Lesson length rules (P3-07, SPEC section 7). They are a quality gate for authored and generated
+ * lessons, not a condition for playing a lesson: the generator applies the brief rules before saving,
+ * and `make sample-lessons` and the authoring tool apply both to every grammar lesson in content/.
+ */
+export function grammarBriefLengthIssues(b: GrammarBrief): Issue[] {
+  const L = GRAMMAR_LENGTH;
+  const issues = new Issues();
+  b.blocks.forEach((block, i) => issues.check(block.exercises.length >= L.exercisesPerBlock[0], `blocks.${i}.exercises`, `a teaching block has ${L.exercisesPerBlock[0]}–${L.exercisesPerBlock[1]} exercises (P3-07)`));
+  issues.check(b.exam.pages.length >= L.examPages[0] && b.exam.pages.length <= L.examPages[1], 'exam.pages', `the exam has ${L.examPages[0]}–${L.examPages[1]} pages (P3-07)`);
+  // Row items (pronoun rows, person boards) count at least three units each.
+  const planned = (type: string, n: number) => (/pronoun|person/.test(type) ? 3 * n : n);
+  const practice = b.blocks.flatMap((x) => x.exercises).reduce((n, e) => n + planned(e.type, e.itemCount), 0);
+  const exam = b.exam.pages.reduce((n, p) => n + planned(p.type, p.itemCount), 0);
+  issues.check(practice >= L.minPracticeUnits, 'blocks', `the exercises plan about ${practice} scored units; at least ${L.minPracticeUnits} (P3-07)`);
+  issues.check(exam >= L.minExamUnits, 'exam.pages', `the exam plans about ${exam} scored units; at least ${L.minExamUnits} (P3-07)`);
+  return issues.list;
+}
+
+export function grammarContentLengthIssues(c: GrammarContent): Issue[] {
+  const L = GRAMMAR_LENGTH;
+  const issues = new Issues();
+  const units = (role: 'exam' | 'practice') => c.steps.filter((s) => (role === 'exam' ? s.role === 'exam' : s.role === 'exercise')).flatMap((s) => s.pages.flatMap((pg) => pg.items)).reduce((n, it) => n + unitCount(it), 0);
+  issues.check(units('practice') >= L.minPracticeUnits, 'steps', `practice has ${units('practice')} scored units; at least ${L.minPracticeUnits} (P3-07)`);
+  issues.check(units('exam') >= L.minExamUnits, 'steps', `the exam has ${units('exam')} scored units; at least ${L.minExamUnits} (P3-07)`);
+  c.steps.forEach((step, si) => step.pages.forEach((pg, pi) => {
+    const n = pg.items.reduce((sum, it) => sum + unitCount(it), 0);
+    const path = `steps.${si}.pages.${pi}.estimatedDurationS`;
+    if (step.role === 'explanation') {
+      issues.check(pg.estimatedDurationS >= L.explanationSeconds[0] && pg.estimatedDurationS <= L.explanationSeconds[1], path, `an explanation page takes ${L.explanationSeconds[0]}–${L.explanationSeconds[1]} s`);
+    } else if (n > 0) {
+      const per = pg.estimatedDurationS / n;
+      issues.check(per >= L.secondsPerUnit[0] && per <= L.secondsPerUnit[1], path, `${Math.round(per)} s per scored unit; keep ${L.secondsPerUnit[0]}–${L.secondsPerUnit[1]} s (P3-07)`);
+    }
+  }));
+  return issues.list;
 }
 
 /** Items assess only the planned rules, and together they assess every planned rule (P3-01). */

@@ -57,6 +57,7 @@ export const SCREENSHOT_REFS: Record<string, string[]> = {
   'P3-05': ['R4', 'R5'],
   'P3-06': ['R3', 'R4', 'R5'],
   'P3-07': ['R3', 'R4', 'R5'],
+  'P3-08': ['R3', 'R4', 'R5'],
 };
 
 export function parseIssues(md: string): BacklogIssue[] {

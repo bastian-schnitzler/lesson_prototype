@@ -44,6 +44,19 @@ export const PERSON_MATCHING_EXEMPT = ['fr-imperative-mood'] as const;
 export const PERSONS = ['1sg', '2sg', '3sg', '1pl', '2pl', '3pl'] as const;
 export const PersonSchema = z.enum(PERSONS);
 
+/**
+ * Lesson length rules (P3-07, shortened to about two thirds in its review). Scored units
+ * count rows (pronoun rows, matching rows); estimates are seconds per scored unit on a page.
+ */
+export const GRAMMAR_LENGTH = {
+  minPracticeUnits: 34,
+  minExamUnits: 16,
+  examPages: [2, 4],
+  exercisesPerBlock: [2, 4],
+  secondsPerUnit: [6, 40],
+  explanationSeconds: [45, 240],
+} as const;
+
 /** Final exams use written production only. */
 export const GRAMMAR_EXAM_TYPES = ['grammar_gap_typing', 'grammar_pronoun_form_typing', 'grammar_word_order'] as const;
 
@@ -80,11 +93,16 @@ export const grammarBriefSchema = (lang: string) =>
               }),
             )
             .min(1)
-            .max(3),
+            .max(GRAMMAR_LENGTH.exercisesPerBlock[1]),
         }),
       )
       .min(2)
       .max(4),
+    /**
+     * Verbs the lesson introduces that no earlier vocabulary lesson taught (P3-07): the infinitive with a
+     * translation for every mother tongue, shown on the start page and the first explanation page.
+     */
+    newVerbs: z.array(z.strictObject({ infinitive: LearningTextSchema, translations: nativeTextSchema(lang) })).max(12),
     feedbackPlaceholder: z.strictObject({ estimatedDurationS: DurationSecondsSchema }),
     exam: z.strictObject({
       pages: z

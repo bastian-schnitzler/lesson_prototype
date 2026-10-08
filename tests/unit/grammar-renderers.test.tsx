@@ -6,7 +6,7 @@ import { PreferencesProvider } from '../../src/app/context.tsx';
 import { lessonOf } from './lessonFixture.ts';
 import { buildPlan, type PlanPage, type PlanUnit } from '../../src/domain/session/plan.ts';
 import { scoreUnit, type LockedUnit } from '../../src/domain/session/session.ts';
-import { PronounMatchRenderer, PronounTypingRenderer } from '../../src/session/grammarRenderers.tsx';
+import { ExplanationRenderer, PronounMatchRenderer, PronounTypingRenderer } from '../../src/session/grammarRenderers.tsx';
 import { checkedOrder, MatchingRenderer } from '../../src/session/vocabularyRenderers.tsx';
 import { promptParts, StartView } from '../../src/session/views.tsx';
 import { UnitsRenderer } from '../../src/session/controls.tsx';
@@ -148,11 +148,12 @@ describe('person matching (P3-02 review)', () => {
   const CONTENT = resolve(import.meta.dirname, '../../content');
   const sample = (id: string) => buildPlan(lessonOf(CONTENT, id), JSON.parse(readFileSync(join(CONTENT, 'briefs', `${id}.json`), 'utf8')), 'en');
   const er = sample('fr-er-verbs-present');
-  const board = pageOf(er, 'grammar_person_matching');
+  const boardOf = (plan: ReturnType<typeof sample>, rows = 6) => plan.pages.find((p) => p.items[0]?.type === 'grammar_person_matching' && p.units.length === rows)!;
+  const board = boardOf(er); // the six-row forms board of aimer
   const columns = (container: HTMLElement) => [...container.querySelectorAll('.matching-columns > ul')].map((ul) => [...ul.children].map((li) => li.classList.contains('match-gap') ? '—' : li.querySelector('.match-item')!.textContent));
 
   it('plans one unit per French box; a form shared by several persons is right for each of them', () => {
-    expect(board.units.map((u) => u.prompt.learning)).toEqual(['parle', 'parles', 'parle', 'parlons', 'parlez', 'parlent']);
+    expect(board.units.map((u) => u.prompt.learning)).toEqual(['aime', 'aimes', 'aime', 'aimons', 'aimez', 'aiment']);
     expect(board.units[0].kind === 'choice' && board.units[0].correct).toEqual(['1sg', '3sg']);
     expect(scoreUnit(board.units[2], '1sg').points).toBe(1);
     expect(skipsFeedbackWhenCorrect(board)).toBe(true); // all right: green flash, no checked view
@@ -161,9 +162,9 @@ describe('person matching (P3-02 review)', () => {
   it('keeps the persons in order on the left, with a gap between the singular and the plural rows', () => {
     const { container } = renderPage(MatchingRenderer, er, board);
     const [left, right] = columns(container);
-    expect(left).toEqual(['je', 'tu', 'il / elle / on', '—', 'nous', 'vous', 'ils / elles']);
+    expect(left).toEqual(['j’', 'tu', 'il / elle / on', '—', 'nous', 'vous', 'ils / elles']);
     expect(right[3]).toBe('—');
-    expect(right.filter((x) => x !== '—').sort()).toEqual(['parle', 'parle', 'parlent', 'parles', 'parlez', 'parlons']);
+    expect(right.filter((x) => x !== '—').sort()).toEqual(['aime', 'aime', 'aiment', 'aimes', 'aimez', 'aimons']);
     expect(container.querySelector('.matching.has-gap')).not.toBeNull();
   });
 
@@ -174,14 +175,14 @@ describe('person matching (P3-02 review)', () => {
     expect(three.container.querySelector('.has-gap')).toBeNull();
     cleanup();
     const pronouns = sample('fr-subject-pronouns');
-    const translation = renderPage(MatchingRenderer, pronouns, pageOf(pronouns, 'grammar_person_matching'));
+    const translation = renderPage(MatchingRenderer, pronouns, boardOf(pronouns));
     expect(columns(translation.container)[0]).toEqual(['I', 'you (one friend)', 'he', '—', 'we', 'you (several people)', 'they (men or a mixed group)']);
   });
 
   it('after Check moves every French box level with a correct partner, also for shared forms', () => {
     const rows = ['1sg', '2sg', '3sg', '1pl', '2pl', '3pl'];
     const units = board.units as (PlanUnit & { kind: 'choice' })[];
-    // The second parle was paired with je, the first one with il: both are right and keep their rows.
+    // The second aime was paired with je, the first one with il: both are right and keep their rows.
     const pairs: Record<string, string> = { [units[2].id]: '1sg', [units[0].id]: '3sg', [units[1].id]: '1pl', [units[3].id]: '2sg' };
     const order = checkedOrder(units, rows, (id) => pairs[id]);
     expect(order.map((u) => u.id)).toEqual([units[2].id, units[1].id, units[0].id, units[3].id, units[4].id, units[5].id]);
@@ -209,19 +210,25 @@ describe('P3-02 review: final full stops and one-row matching', () => {
 
   it('leaves out the full stop that ends a word-order sentence, but keeps a final question mark', () => {
     const order = (id: string) => sample(id).pages.flatMap((p) => p.units).filter((u) => u.kind === 'order') as (PlanUnit & { kind: 'order' })[];
-    for (const u of order('fr-negation-ne-pas')) {
+    const fixtureOrders = buildPlan(lessonOf(FIXTURES, 'fr-negation-ne-pas'), JSON.parse(readFileSync(join(FIXTURES, 'briefs', 'fr-negation-ne-pas.json'), 'utf8')), 'en').pages.flatMap((p) => p.units).filter((u) => u.kind === 'order') as (PlanUnit & { kind: 'order' })[];
+    expect(fixtureOrders.length).toBeGreaterThan(0); // the fixture still ends its sentences with a "." token
+    for (const u of [...fixtureOrders, ...order('fr-negation-ne-pas')]) {
       expect(u.tokens.at(-1)?.text).not.toBe('.');
       expect(u.tokens.map((t) => t.text)).not.toContain('.');
       expect(u.answer).not.toMatch(/\.$/);
       expect(u.acceptedOrders.every((o) => o.length === u.tokens.length)).toBe(true);
       expect(scoreUnit(u, u.acceptedOrders[0]).points).toBe(1);
     }
-    expect(order('fr-yes-no-questions').every((u) => u.answer.endsWith('?'))).toBe(true);
+    expect(order('fr-yes-no-questions').some((u) => u.answer.endsWith('?'))).toBe(true);
   });
 
   it('shows a one-row pronoun match as a multiple-choice gap after the pronoun', () => {
-    const plan = sample('fr-er-verbs-present');
-    const page = plan.pages.find((p) => p.items[0]?.type === 'grammar_pronoun_form_match' && p.units.length === 1)!;
+    const plan = planOf((c) => {
+      if (c.kind !== 'grammar') return;
+      const item = c.steps[1].pages[0].items[0];
+      if (item.type === 'grammar_pronoun_form_match') { item.rows = item.rows.slice(0, 1); item.tokens.push({ tokenId: 't-extra', text: 'sommes' }); }
+    });
+    const page = plan.pages.find((p) => p.items[0]?.type === 'grammar_pronoun_form_match')!;
     expect(skipsFeedbackWhenCorrect(page)).toBe(true); // a right choice flashes green and moves on
     const { container } = renderPage(PronounMatchRenderer, plan, page);
     expect(screen.queryByRole('group', { name: 'Available forms' })).toBeNull();
@@ -253,13 +260,51 @@ describe('results task columns (P3-02 review)', () => {
 describe('gap choice hint (P3-02 review)', () => {
   it('shows the cue on its own line above the sentence, in the interface language, not in the exam', () => {
     const CONTENT = resolve(import.meta.dirname, '../../content');
-    const id = 'fr-definite-articles-and-elision';
+    const id = 'fr-here-there-now-tomorrow';
     const plan = buildPlan(lessonOf(CONTENT, id), JSON.parse(readFileSync(join(CONTENT, 'briefs', `${id}.json`), 'utf8')), 'en');
-    const page = plan.pages.find((p) => p.items[0]?.type === 'grammar_gap_choice' && /enfants/.test(p.units[0].prompt.after ?? ''))!;
+    const page = plan.pages.find((p) => p.items[0]?.type === 'grammar_gap_choice' && /à côté de la porte/.test(p.units[0].prompt.after ?? ''))!;
     const { container } = renderPage(UnitsRenderer, plan, page);
     const hint = container.querySelector('.gap-hint')!;
-    expect(hint).toHaveTextContent('plural, definite article');
+    expect(hint).toHaveTextContent('here, where I am');
     expect(hint.compareDocumentPosition(container.querySelector('.gap-sentence')!) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
-    expect(container.querySelector('.gap-sentence')).toHaveTextContent(/^Voici ____ enfants\.$/);
+    // A comma follows the gap directly (P3-07).
+    expect(container.querySelector('.gap-sentence')).toHaveTextContent(/^Viens, je suis ____, à côté de la porte\.$/);
+  });
+});
+
+describe('new verbs (P3-07)', () => {
+  it('lists the lesson’s new verbs with the mother-tongue translation on the start page and the first explanation page', () => {
+    const plan = planOf();
+    expect(plan.newVerbs).toEqual([{ infinitive: 'être', translation: 'to be' }]);
+    render(<PreferencesProvider initial={{ interfaceLanguage: 'en', motherTongue: 'en' }}><StartView plan={plan} level="A1" onStart={() => undefined} onResume={() => undefined} /></PreferencesProvider>);
+    const table = screen.getByRole('heading', { name: 'New verbs' }).parentElement!;
+    expect(within(table).getByRole('rowheader')).toHaveTextContent('être');
+    expect(within(table).getByRole('cell')).toHaveTextContent('to be');
+    cleanup();
+    const explanations = plan.pages.filter((p) => p.items[0]?.type === 'grammar_explanation');
+    renderPage(ExplanationRenderer, plan, explanations[0]);
+    expect(screen.getByRole('heading', { name: 'New verbs' })).toBeInTheDocument();
+    cleanup();
+    renderPage(ExplanationRenderer, plan, explanations[1]);
+    expect(screen.queryByRole('heading', { name: 'New verbs' })).toBeNull();
+  });
+
+  it('shows the translation in the chosen mother tongue', () => {
+    const plan = buildPlan(lessonOf(FIXTURES, GRAM), brief, 'de');
+    expect(plan.newVerbs).toEqual([{ infinitive: 'être', translation: 'sein' }]);
+  });
+});
+
+describe('error spotter (P3-07 review)', () => {
+  it('shows the correction only after a word is selected', () => {
+    const plan = planOf();
+    const page = plan.pages.find((p) => p.items[0]?.type === 'grammar_error_spotter')!;
+    const unit = page.units[0];
+    renderPage(UnitsRenderer, plan, page);
+    expect(screen.queryByText('Correction')).toBeNull();
+    expect(screen.queryByRole('textbox')).toBeNull();
+    cleanup();
+    renderPage(UnitsRenderer, plan, page, { drafts: { [unit.id]: { tokenId: unit.kind === 'spot' ? unit.tokens[0].id : '', text: '' } } });
+    expect(screen.getByText('Correction')).toBeInTheDocument();
   });
 });

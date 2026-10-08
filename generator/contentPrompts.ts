@@ -4,7 +4,7 @@ import type { Brief } from '../src/schemas/artifacts.ts';
 import { grammarItemSchema, type GrammarBrief, type GrammarExerciseType } from '../src/schemas/grammar.ts';
 import type { OutlineContext } from '../src/validation/artifacts.ts';
 
-export const CONTENT_PROMPT_VERSION = 'content-v3';
+export const CONTENT_PROMPT_VERSION = 'content-v4';
 
 /** D46 (SPEC "Formatted teaching text"): format rules shared by introduction and explanation texts. */
 export const RICH_TEXT = [

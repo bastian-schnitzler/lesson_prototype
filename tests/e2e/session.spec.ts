@@ -228,13 +228,14 @@ test('locks an exam page when its brief-defined countdown expires', async ({ pag
     // A fully correct single-answer page flashes green and moves on by itself.
     await expect(page.locator('.task-card.is-celebrating')).toHaveCount(0);
     if (await page.getByRole('timer').isVisible()) break;
+    // An error spotter shows its correction only after a word is selected (P3-07 review).
+    const spot = page.locator('.spot');
+    if (await spot.locator('button.token:not([disabled])').count()) await spot.locator('button.token:not([disabled])').first().click();
     const inputs = page.locator('.task-card input.text-input:not([readonly])');
     for (const input of await inputs.all()) await input.fill('ne pas');
     await chooseAll(page);
     for (const group of await page.locator('fieldset.choices:not([disabled])').all()) await group.locator('input').first().check();
     for (const bank of await page.locator('.order-bank').all()) while (await bank.locator('button').count()) await bank.locator('button').first().click();
-    const spot = page.locator('.spot');
-    if (await spot.locator('button.token:not([disabled])').count()) await spot.locator('button.token:not([disabled])').first().click();
     await proceed(page);
   }
   await expect(page.getByRole('timer')).toHaveText('1:00');
@@ -347,6 +348,9 @@ test('blocks a lesson with listening tasks on the start page while no French voi
   await page.goto('./#/lesson/fr-verb-etre-present/play');
   await expect(page.getByRole('button', { name: 'Continue' })).toBeVisible();
   await expect(page.getByRole('alert')).toHaveCount(0);
+  // Grammar start pages list the verbs the lesson introduces (P3-07).
+  await expect(page.getByRole('heading', { name: 'New verbs' })).toBeVisible();
+  await expect(page.getByRole('row', { name: /être.*to be/ })).toBeVisible();
 });
 
 test('replaces a revealed flashcard Listen button with Install language, which opens the help dialog', async ({ page }) => {
