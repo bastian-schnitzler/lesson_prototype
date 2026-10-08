@@ -33,10 +33,6 @@ export default {
     {
       id: 'block-singular-pronouns',
       exercises: [
-        { id: 'ex-singular-persons', type: 'grammar_person_matching', items: [
-          person(SG, 'translation', [[{ en: 'I', de: 'ich' }, 'je', je], [{ en: 'you (one friend)', de: 'du' }, 'tu', tu], [{ en: 'he', de: 'er' }, 'il', il('He')]], 'sg'),
-          person(SG, 'translation', [[{ en: 'I (before a vowel)', de: 'ich (vor Vokal)' }, 'j’', jElision], [{ en: 'you (a child)', de: 'du (ein Kind)' }, 'tu', tu], [{ en: 'she', de: 'sie (eine Frau)' }, 'elle', elle('She')]], 'sg'),
-        ] },
         { id: 'ex-singular-choice', type: 'grammar_gap_choice', items: [
           gc(SG, '', 'Je', ['Tu', 'Il', 'Nous'], 'suis étudiant.', x('Suis goes with je: je suis.', 'Suis va avec je : je suis.', 'Suis gehört zu je: je suis.')),
           gc(SG, '', 'Tu', ['Je', 'Elle', 'Vous'], 'es fatigué, Marc ?', x('Es goes with tu, and Marc is a friend: tu es.', 'Es va avec tu, et Marc est un ami : tu es.', 'Es gehört zu tu, und Marc ist ein Freund: tu es.')),
@@ -44,8 +40,6 @@ export default {
           gc(SG, 'Voici Paul.', 'Il', ['Elle', 'Tu', 'Elles'], 'habite à Lyon.', il('Paul')),
           gc(SG, '', 'J’', ['Je', 'Tu', 'Il'], 'habite à Nice.', jElision),
           gc(SG, 'Moi,', 'je', ['tu', 'il', 'elle'], 'parle anglais.', je),
-          gc(SG, 'Ma mère ?', 'Elle', ['Il', 'Tu', 'Je'], 'est professeure.', elle('Ma mère')),
-          gc(SG, 'Le professeur ?', 'Il', ['Elle', 'Ils', 'Je'], 'parle vite.', il('Le professeur')),
         ] },
         { id: 'ex-singular-typing', type: 'grammar_gap_typing', items: [
           gt(SG, 'Thomas est mon ami.', cap('il'), 'est sympa.', il('Thomas')),
@@ -53,17 +47,12 @@ export default {
           gt(SG, '', cap('je'), 'suis canadien.', je, hint('I', 'la personne qui parle', 'ich')),
           gt(SG, 'Salut Tom !', cap('tu'), 'es là ?', tu, hint('one friend', 'un ami', 'ein Freund')),
           gt(SG, '', cap('j’'), 'habite ici.', jElision, hint('I', 'la personne qui parle', 'ich')),
-          gt(SG, 'Le chat est noir.', cap('il'), 'est petit.', il('Le chat (masculine noun)')),
-          gt(SG, 'Anne parle allemand.', cap('elle'), 'est suisse.', elle('Anne')),
-          gt(SG, 'Maman,', 'tu', 'es où ?', x('Children say tu to their parents.', 'Les enfants disent tu à leurs parents.', 'Kinder sagen tu zu ihren Eltern.'), hint('mum', 'maman', 'Mama')),
         ] },
         { id: 'ex-singular-spot', type: 'grammar_error_spotter', items: [
           sp(SG, ['J’habite', 'à', 'Lille'], 0, 'Je habite', jElision, ['J’habite', 'Je habite', 'Tu habite']),
           sp(SG, ['Voici', 'Sophie', ':', 'elle', 'est', 'belge'], 3, 'il', elle('Sophie'), ['elle', 'il', 'ils']),
           sp(SG, ['Voici', 'Marc', ':', 'il', 'est', 'grand'], 3, 'elle', il('Marc')),
           sp(SG, ['Je', 'suis', 'à', 'Paris'], 0, 'Tu', x('Suis goes with je: je suis.', 'Suis va avec je : je suis.', 'Suis gehört zu je: je suis.'), ['Je', 'Tu', 'Il']),
-          sp(SG, ['Tu', 'es', 'mon', 'ami'], 0, 'Il', x('Es goes with tu: tu es.', 'Es va avec tu : tu es.', 'Es gehört zu tu: tu es.')),
-          sp(SG, ['Ma', 'tante', '?', 'Elle', 'parle', 'italien'], 3, 'Il', elle('Ma tante'), ['Elle', 'Il', 'Elles']),
         ] },
       ],
     },
@@ -75,10 +64,6 @@ export default {
             [{ en: 'I', de: 'ich' }, 'je', je], [{ en: 'you (one friend)', de: 'du' }, 'tu', tu], [{ en: 'he', de: 'er' }, 'il', il('He')],
             [{ en: 'we', de: 'wir' }, 'nous', nous], [{ en: 'you (several people)', de: 'ihr' }, 'vous', vousPl], [{ en: 'they (men or a mixed group)', de: 'sie (Männer oder gemischte Gruppe)' }, 'ils', ils('They')],
           ]),
-          person([...SG, ...PL], 'translation', [
-            [{ en: 'I', de: 'ich' }, 'je', je], [{ en: 'you (a child)', de: 'du (ein Kind)' }, 'tu', tu], [{ en: 'she', de: 'sie (eine Frau)' }, 'elle', elle('She')],
-            [{ en: 'we', de: 'wir' }, 'nous', nous], [{ en: 'you (two friends)', de: 'ihr (zwei Freunde)' }, 'vous', vousPl], [{ en: 'they (women only)', de: 'sie (nur Frauen)' }, 'elles', elles('They')],
-          ]),
         ] },
         { id: 'ex-plural-gap-choice', type: 'grammar_gap_choice', items: [
           gc(PL, '', 'Nous', ['Vous', 'Ils', 'On'], 'sommes amis.', x('Sommes goes with nous: nous sommes.', 'Sommes va avec nous : nous sommes.', 'Sommes gehört zu nous: nous sommes.')),
@@ -87,16 +72,12 @@ export default {
           gc(ON, 'Chez nous,', 'on', ['nous', 'ils', 'vous'], 'est contents.', on, hint('"we", spoken French, verb in the il form', '« nous » à l’oral, verbe à la forme de il', '„wir“, gesprochen, Verb in der il-Form')),
           gc(PL, 'Les garçons ?', 'Ils', ['Elles', 'Il', 'On'], 'parlent anglais.', ils('Les garçons')),
           gc(PL, 'Toi et Paul,', 'vous', ['nous', 'ils', 'tu'], 'êtes prêts ?', vousPl),
-          gc(PL, 'Ma sœur et moi,', 'nous', ['vous', 'elles', 'ils'], 'habitons à Bordeaux.', nous),
-          gc(PL, 'Les filles ?', 'Elles', ['Ils', 'On', 'Elle'], 'sont à l’école.', elles('Les filles')),
         ] },
         { id: 'ex-plural-typing', type: 'grammar_gap_typing', items: [
           gt(PL, 'Marc et Paul sont frères.', cap('ils'), 'habitent à Nantes.', ils('Marc et Paul')),
           gt(PL, 'Anne et Julie sont étudiantes.', cap('elles'), 'parlent espagnol.', elles('Anne et Julie')),
           gt(PL, 'Toi et moi,', 'nous', 'sommes voisins.', nous, hint('you and I', 'toi et moi', 'du und ich')),
           gt(PL, 'Pierre et Sophie,', 'vous', 'êtes où ?', vousPl, hint('two people', 'deux personnes', 'zwei Personen')),
-          gt(ON, 'Ce soir,', 'on', 'regarde un film.', on, hint('"we", spoken French', '« nous » à l’oral', '„wir“, gesprochen')),
-          gt(PL, 'Le père et la fille ?', cap('ils'), 'sont en vacances.', ils('Le père et la fille (a mixed group)'), hint('father and daughter', 'le père et la fille', 'Vater und Tochter')),
         ] },
       ],
     },
@@ -110,16 +91,12 @@ export default {
           gc(TUVOUS, 'Papa,', 'tu', ['vous', 'il', 'on'], 'es à la maison ?', x('In the family, people say tu.', 'En famille, on se dit tu.', 'In der Familie sagt man tu.'), hint('your father', 'votre père', 'dein Vater')),
           gc(TUVOUS, 'Les enfants,', 'vous', ['tu', 'nous', 'ils'], 'êtes prêts ?', vousPl, hint('several children', 'plusieurs enfants', 'mehrere Kinder')),
           gc(TUVOUS, 'Excusez-moi, madame,', 'vous', ['tu', 'elle', 'on'], 'êtes la professeure ?', vousPolite, hint('a teacher', 'une professeure', 'eine Lehrerin')),
-          gc(TUVOUS, 'Emma, ma petite sœur,', 'tu', ['vous', 'elle', 'nous'], 'as faim ?', tu, hint('your little sister', 'votre petite sœur', 'deine kleine Schwester')),
-          gc(TUVOUS, 'Bonsoir monsieur,', 'vous', ['tu', 'il', 'nous'], 'cherchez quelque chose ?', vousPolite, hint('a customer in a shop', 'un client dans un magasin', 'ein Kunde im Laden')),
         ] },
         { id: 'ex-tu-vous-typing', type: 'grammar_gap_typing', items: [
           gt(TUVOUS, 'Madame Leroy,', 'vous', 'êtes médecin ?', vousPolite, hint('polite, one person', 'politesse, une personne', 'höflich, eine Person')),
           gt(TUVOUS, 'Hé, Lucas !', cap('tu'), 'es en retard !', tu, hint('a friend', 'un ami', 'ein Freund')),
           gt(TUVOUS, 'Monsieur,', 'vous', 'parlez anglais ?', vousPolite, hint('a stranger', 'un inconnu', 'ein Fremder')),
           gt(TUVOUS, 'Chloé et Hugo,', 'vous', 'êtes là ?', vousPl, hint('two friends', 'deux amis', 'zwei Freunde')),
-          gt(TUVOUS, 'Mamie,', 'tu', 'habites toujours à Lyon ?', x('In the family, people say tu, also to grandparents.', 'En famille, on dit tu, aussi aux grands-parents.', 'In der Familie sagt man tu, auch zu den Großeltern.'), hint('your grandmother', 'votre grand-mère', 'deine Oma')),
-          gt(TUVOUS, 'Bonjour docteur,', 'vous', 'êtes libre ?', vousPolite, hint('a doctor', 'un médecin', 'ein Arzt')),
         ] },
       ],
     },
@@ -132,8 +109,6 @@ export default {
       gt(SG, '', cap('j’'), 'habite à Marseille.', jElision),
       gt(SG, 'Salut Ben,', 'tu', 'es prêt ?', tu),
       gt(SG, 'Mon oncle ?', cap('il'), 'parle russe.', il('Mon oncle')),
-      gt(SG, 'Ma cousine ?', cap('elle'), 'habite à Tours.', elle('Ma cousine')),
-      gt(SG, 'Moi,', 'je', 'parle français.', je),
     ] },
     { pageId: 'exam-plural', type: 'grammar_gap_typing', items: [
       gt(PL, 'Mes frères ?', cap('ils'), 'sont grands.', ils('Mes frères')),
@@ -141,9 +116,6 @@ export default {
       gt(PL, 'Lui et moi,', 'nous', 'parlons japonais.', nous),
       gt(PL, 'Toi et Marie,', 'vous', 'êtes contentes ?', vousPl),
       gt(ON, 'Le samedi,', 'on', 'est à la maison.', on),
-      gt(PL, 'Paul et Anne ?', cap('ils'), 'habitent ensemble.', ils('Paul et Anne')),
-      gt(PL, 'Les voisines ?', cap('elles'), 'parlent fort.', elles('Les voisines')),
-      gt(PL, 'Mes amis et moi,', 'nous', 'sommes en vacances.', nous),
     ] },
     { pageId: 'exam-tu-vous', type: 'grammar_gap_typing', items: [
       gt(TUVOUS, 'Bonjour madame,', 'vous', 'êtes française ?', vousPolite),
@@ -151,9 +123,6 @@ export default {
       gt(TUVOUS, 'Monsieur Dubois,', 'vous', 'parlez allemand ?', vousPolite),
       gt(TUVOUS, 'Papi,', 'tu', 'es fatigué ?', x('In the family, people say tu.', 'En famille, on se dit tu.', 'In der Familie sagt man tu.')),
       gt(TUVOUS, 'Les amis,', 'vous', 'êtes là ?', vousPl),
-      gt(TUVOUS, 'Excusez-moi, monsieur,', 'vous', 'êtes le chauffeur ?', vousPolite),
-      gt(TUVOUS, 'Coucou Lili,', 'tu', 'es à l’école ?', tu),
-      gt(TUVOUS, 'Docteur Martin,', 'vous', 'êtes là demain ?', vousPolite),
     ] },
   ],
 } satisfies LessonDefinition;

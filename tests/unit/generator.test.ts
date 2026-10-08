@@ -98,8 +98,8 @@ describe('offline brief authoring', () => {
     const dir = setup();
     const { opts, generate } = options(dir, async () => output(GRAM));
     // The short fixture never meets the rules, so the call budget runs out and nothing is saved.
-    await expect(generateBrief(GRAM, { ...opts, lengthRules: true })).rejects.toThrow(/at least 50 \(P3-07\)/);
-    expect(generate.mock.calls[1][0].prompt).toMatch(/the exam has 3–4 pages \(P3-07\)/);
+    await expect(generateBrief(GRAM, { ...opts, lengthRules: true })).rejects.toThrow(/at least 34 \(P3-07\)/);
+    expect(generate.mock.calls[1][0].prompt).toMatch(/at least 16 \(P3-07\)/);
     expect(scanContentDir(dir).manifest.artifacts[GRAM].draft).toBeUndefined();
   });
 

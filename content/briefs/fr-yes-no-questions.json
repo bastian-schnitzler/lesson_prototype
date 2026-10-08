@@ -14,12 +14,12 @@
     "fr": "Apprendre à poser des questions fermées simples avec l'intonation ou 'est-ce que' et y répondre par 'oui' ou 'non'.",
     "de": "Lerne, einfache Ja/Nein-Fragen mit Intonation oder 'est-ce que' zu stellen und mit 'oui' oder 'non' zu antworten."
   },
-  "estimatedMinutes": 27,
+  "estimatedMinutes": 20,
   "provenance": {
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "brief-v7",
-    "generatedAt": "2026-10-07T23:58:54.716Z",
+    "generatedAt": "2026-10-08T00:17:18.767Z",
     "inputHashes": {
       "outline": "3c12786bc37e360e4fe392d664b19a6b0785f2775510b6f39fdc04fb475a22ec"
     }
@@ -116,31 +116,30 @@
         {
           "id": "ex-intonation-choice",
           "type": "grammar_gap_choice",
-          "itemCount": 8,
+          "itemCount": 6,
           "ruleIds": [
             "rule-intonation-question",
             "rule-answering-oui-non"
           ],
-          "estimatedDurationS": 80
+          "estimatedDurationS": 60
         },
         {
           "id": "ex-intonation-typing",
           "type": "grammar_gap_typing",
-          "itemCount": 8,
+          "itemCount": 5,
           "ruleIds": [
             "rule-answering-oui-non"
           ],
-          "estimatedDurationS": 120
+          "estimatedDurationS": 75
         },
         {
           "id": "ex-intonation-order",
           "type": "grammar_word_order",
-          "itemCount": 8,
+          "itemCount": 5,
           "ruleIds": [
-            "rule-intonation-question",
-            "rule-answering-oui-non"
+            "rule-intonation-question"
           ],
-          "estimatedDurationS": 200
+          "estimatedDurationS": 125
         }
       ]
     },
@@ -187,38 +186,38 @@
         {
           "id": "ex-est-ce-que-choice",
           "type": "grammar_gap_choice",
-          "itemCount": 8,
+          "itemCount": 6,
           "ruleIds": [
             "rule-est-ce-que"
           ],
-          "estimatedDurationS": 80
+          "estimatedDurationS": 60
         },
         {
           "id": "ex-est-ce-que-typing",
           "type": "grammar_gap_typing",
-          "itemCount": 8,
+          "itemCount": 5,
           "ruleIds": [
             "rule-est-ce-que"
           ],
-          "estimatedDurationS": 120
+          "estimatedDurationS": 75
         },
         {
           "id": "ex-est-ce-que-order",
           "type": "grammar_word_order",
-          "itemCount": 6,
+          "itemCount": 4,
           "ruleIds": [
             "rule-est-ce-que"
           ],
-          "estimatedDurationS": 150
+          "estimatedDurationS": 100
         },
         {
           "id": "ex-est-ce-que-spot",
           "type": "grammar_error_spotter",
-          "itemCount": 6,
+          "itemCount": 4,
           "ruleIds": [
             "rule-est-ce-que"
           ],
-          "estimatedDurationS": 150
+          "estimatedDurationS": 100
         }
       ]
     }
@@ -231,35 +230,34 @@
       {
         "pageId": "exam-order",
         "type": "grammar_word_order",
-        "itemCount": 6,
+        "itemCount": 4,
         "ruleIds": [
           "rule-intonation-question",
-          "rule-est-ce-que",
-          "rule-answering-oui-non"
+          "rule-est-ce-que"
         ],
-        "estimatedDurationS": 150,
-        "timeLimitS": 230
+        "estimatedDurationS": 100,
+        "timeLimitS": 150
       },
       {
         "pageId": "exam-est-ce-que",
         "type": "grammar_gap_typing",
-        "itemCount": 9,
+        "itemCount": 6,
         "ruleIds": [
           "rule-est-ce-que"
         ],
-        "estimatedDurationS": 135,
-        "timeLimitS": 210
+        "estimatedDurationS": 90,
+        "timeLimitS": 140
       },
       {
         "pageId": "exam-answers",
         "type": "grammar_gap_typing",
-        "itemCount": 9,
+        "itemCount": 6,
         "ruleIds": [
           "rule-answering-oui-non",
           "rule-intonation-question"
         ],
-        "estimatedDurationS": 135,
-        "timeLimitS": 210
+        "estimatedDurationS": 90,
+        "timeLimitS": 140
       }
     ]
   },

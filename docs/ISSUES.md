@@ -778,17 +778,18 @@ GitHub: [#67](https://github.com/bastian-schnitzler/lesson_prototype/issues/67).
 
 Milestone: **Phase 3**.
 
-Scope: grammar lessons are far too short compared with vocabulary lessons (the ten samples have 11–35 scored practice units and 6–12 exam units; a vocabulary lesson has about 70 and 36, and the estimates overstate the real time). Make them three to four times longer, write the length and timing rules into SPEC section 7 so that generation and hand authoring produce longer lessons, show translations of newly introduced verbs, and rewrite the ten grammar samples by hand. Requested by the product owner on 2026-10-08.
+Scope: grammar lessons are far too short compared with vocabulary lessons (the ten samples have 11–35 scored practice units and 6–12 exam units; a vocabulary lesson has about 70 and 36, and the estimates overstate the real time). Make them about two to three times longer (first three to four times, then cut to two thirds in the review), write the length and timing rules into SPEC section 7 so that generation and hand authoring produce longer lessons, show translations of newly introduced verbs, and rewrite the ten grammar samples by hand. Requested by the product owner on 2026-10-08.
 
 Acceptance:
 
-- SPEC section 7 states the length rules: at least 50 scored practice units and 24 scored exam units on 3–4 exam pages; 2–4 exercises per teaching block with 6–10 items each (person matching boards and pronoun rows count per row); realistic per-unit estimates. Validation, schemas and generator prompts enforce what can be checked.
-- Verb and pronoun lessons have several person matching boards where both modes fit (translation and forms).
+- SPEC section 7 states the length rules: at least 34 scored practice units and 16 scored exam units on 2–4 exam pages; 2–4 exercises per teaching block with 4–8 items each (person matching boards and pronoun rows count per row); realistic per-unit estimates. The checks and generator prompts enforce what can be checked. (Review: a first version with 50/24 units was too long and was cut to about two thirds.)
+- Verb lessons have one person matching board per verb; a pronoun lesson has one board.
+- Error spotters show the correction only after a word is selected.
 - Grammar briefs list the verbs a lesson introduces that no earlier vocabulary lesson taught (`newVerbs`: infinitive with a translation for every mother tongue); the start page and the first explanation page show them as a "New verbs" table.
 - Claude rewrites the ten grammar sample briefs and lessons by hand (no Gemini calls) to the new rules, with correct and natural A1 French, complete en/fr/de and current input hashes; `make sample-lessons` and `make catalog` pass without warnings.
 - Unit and end-to-end tests cover the new rules and displays; representative journeys pass.
 
-Outcome (2026-10-08): length rules as a quality gate (generator, `make sample-lessons`, authoring tool); `newVerbs` with the New verbs table; the authoring tool `scripts/author-grammar.ts` with definitions in `authoring/grammar/`; the ten samples rewritten (50–68 practice and 24 exam units, 24–27 minutes); gaps no longer put a space before a following comma or full stop.
+Outcome (2026-10-08): length rules as a quality gate (generator, `make sample-lessons`, authoring tool); `newVerbs` with the New verbs table; the authoring tool `scripts/author-grammar.ts` with definitions in `authoring/grammar/`; the ten samples rewritten (after the review: 34–42 practice and 16 exam units, 17–20 minutes; one person matching board per verb); gaps no longer put a space before a following comma or full stop.
 
 Dependencies: P3-02.
 

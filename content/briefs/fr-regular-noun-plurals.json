@@ -14,12 +14,12 @@
     "fr": "Apprendre à former le pluriel des noms réguliers avec -s et -x, et comprendre que le -s ou -x final est muet.",
     "de": "Lernen Sie, wie man den regelmäßigen Plural im Französischen mit -s und -x bildet und dass diese Endungen stumm sind."
   },
-  "estimatedMinutes": 24,
+  "estimatedMinutes": 17,
   "provenance": {
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "brief-v7",
-    "generatedAt": "2026-10-07T23:58:54.535Z",
+    "generatedAt": "2026-10-08T00:17:18.593Z",
     "inputHashes": {
       "outline": "b7ef42d6b6f8a10c79700ba5eddb9d79afaefa941237e1a5607f83ab01bfe0c8"
     }
@@ -109,32 +109,31 @@
         {
           "id": "ex-s-choice",
           "type": "grammar_gap_choice",
-          "itemCount": 8,
+          "itemCount": 6,
           "ruleIds": [
             "rule-plural-s",
             "rule-silent-plural"
           ],
-          "estimatedDurationS": 80
+          "estimatedDurationS": 60
         },
         {
           "id": "ex-s-typing",
           "type": "grammar_gap_typing",
-          "itemCount": 10,
+          "itemCount": 6,
           "ruleIds": [
-            "rule-plural-s",
-            "rule-silent-plural"
+            "rule-plural-s"
           ],
-          "estimatedDurationS": 150
+          "estimatedDurationS": 90
         },
         {
           "id": "ex-s-spot",
           "type": "grammar_error_spotter",
-          "itemCount": 8,
+          "itemCount": 5,
           "ruleIds": [
             "rule-silent-plural",
             "rule-plural-s"
           ],
-          "estimatedDurationS": 200
+          "estimatedDurationS": 125
         }
       ]
     },
@@ -181,29 +180,29 @@
         {
           "id": "ex-x-choice",
           "type": "grammar_gap_choice",
-          "itemCount": 10,
+          "itemCount": 7,
           "ruleIds": [
             "rule-plural-x"
           ],
-          "estimatedDurationS": 100
+          "estimatedDurationS": 70
         },
         {
           "id": "ex-x-typing",
           "type": "grammar_gap_typing",
-          "itemCount": 10,
-          "ruleIds": [
-            "rule-plural-x"
-          ],
-          "estimatedDurationS": 150
-        },
-        {
-          "id": "ex-x-spot",
-          "type": "grammar_error_spotter",
           "itemCount": 6,
           "ruleIds": [
             "rule-plural-x"
           ],
-          "estimatedDurationS": 150
+          "estimatedDurationS": 90
+        },
+        {
+          "id": "ex-x-spot",
+          "type": "grammar_error_spotter",
+          "itemCount": 4,
+          "ruleIds": [
+            "rule-plural-x"
+          ],
+          "estimatedDurationS": 100
         }
       ]
     }
@@ -216,33 +215,33 @@
       {
         "pageId": "exam-s",
         "type": "grammar_gap_typing",
-        "itemCount": 8,
+        "itemCount": 6,
         "ruleIds": [
           "rule-plural-s"
         ],
-        "estimatedDurationS": 120,
-        "timeLimitS": 180
+        "estimatedDurationS": 90,
+        "timeLimitS": 140
       },
       {
         "pageId": "exam-x",
         "type": "grammar_gap_typing",
-        "itemCount": 8,
+        "itemCount": 5,
         "ruleIds": [
           "rule-plural-x"
         ],
-        "estimatedDurationS": 120,
-        "timeLimitS": 180
+        "estimatedDurationS": 75,
+        "timeLimitS": 120
       },
       {
         "pageId": "exam-sentences",
         "type": "grammar_gap_typing",
-        "itemCount": 8,
+        "itemCount": 5,
         "ruleIds": [
           "rule-silent-plural",
           "rule-plural-x"
         ],
-        "estimatedDurationS": 120,
-        "timeLimitS": 180
+        "estimatedDurationS": 75,
+        "timeLimitS": 120
       }
     ]
   },

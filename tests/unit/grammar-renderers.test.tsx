@@ -294,3 +294,17 @@ describe('new verbs (P3-07)', () => {
     expect(plan.newVerbs).toEqual([{ infinitive: 'être', translation: 'sein' }]);
   });
 });
+
+describe('error spotter (P3-07 review)', () => {
+  it('shows the correction only after a word is selected', () => {
+    const plan = planOf();
+    const page = plan.pages.find((p) => p.items[0]?.type === 'grammar_error_spotter')!;
+    const unit = page.units[0];
+    renderPage(UnitsRenderer, plan, page);
+    expect(screen.queryByText('Correction')).toBeNull();
+    expect(screen.queryByRole('textbox')).toBeNull();
+    cleanup();
+    renderPage(UnitsRenderer, plan, page, { drafts: { [unit.id]: { tokenId: unit.kind === 'spot' ? unit.tokens[0].id : '', text: '' } } });
+    expect(screen.getByText('Correction')).toBeInTheDocument();
+  });
+});

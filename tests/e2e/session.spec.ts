@@ -228,13 +228,14 @@ test('locks an exam page when its brief-defined countdown expires', async ({ pag
     // A fully correct single-answer page flashes green and moves on by itself.
     await expect(page.locator('.task-card.is-celebrating')).toHaveCount(0);
     if (await page.getByRole('timer').isVisible()) break;
+    // An error spotter shows its correction only after a word is selected (P3-07 review).
+    const spot = page.locator('.spot');
+    if (await spot.locator('button.token:not([disabled])').count()) await spot.locator('button.token:not([disabled])').first().click();
     const inputs = page.locator('.task-card input.text-input:not([readonly])');
     for (const input of await inputs.all()) await input.fill('ne pas');
     await chooseAll(page);
     for (const group of await page.locator('fieldset.choices:not([disabled])').all()) await group.locator('input').first().check();
     for (const bank of await page.locator('.order-bank').all()) while (await bank.locator('button').count()) await bank.locator('button').first().click();
-    const spot = page.locator('.spot');
-    if (await spot.locator('button.token:not([disabled])').count()) await spot.locator('button.token:not([disabled])').first().click();
     await proceed(page);
   }
   await expect(page.getByRole('timer')).toHaveText('1:00');

@@ -270,7 +270,8 @@ export function SpotControl({ unit, props }: { unit: PlanUnit & { kind: 'spot' }
           </button>
         ))}
       </p>
-      {unit.correction.mode === 'select' ? (
+      {/* The correction appears once a word is selected (P3-07 review). */}
+      {!current.tokenId ? null : unit.correction.mode === 'select' ? (
         <fieldset className="choices" disabled={disabled}>
           <legend className="label-muted">{t('session.correction')}</legend>
           {unit.correction.choices.map((c) => (

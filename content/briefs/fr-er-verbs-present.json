@@ -14,12 +14,12 @@
     "fr": "Conjuguer les verbes en -er (parler, habiter, aimer) au présent avec tous les pronoms et prononcer les terminaisons muettes.",
     "de": "Konjugieren Sie regelmäßige Verben auf -er (parler, habiter, aimer) im Präsens mit allen Pronomen und sprechen Sie stumme Endungen korrekt aus."
   },
-  "estimatedMinutes": 24,
+  "estimatedMinutes": 17,
   "provenance": {
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "brief-v7",
-    "generatedAt": "2026-10-07T23:58:54.299Z",
+    "generatedAt": "2026-10-08T00:17:18.321Z",
     "inputHashes": {
       "outline": "c4214004217e367d531a6b73223f98c810ad2a2543cfbe66d837e94e4d50c4bb"
     }
@@ -125,32 +125,31 @@
         {
           "id": "ex-singular-choice",
           "type": "grammar_gap_choice",
-          "itemCount": 8,
+          "itemCount": 6,
           "ruleIds": [
             "rule-er-singular",
             "rule-silent-endings"
           ],
-          "estimatedDurationS": 80
+          "estimatedDurationS": 60
         },
         {
           "id": "ex-singular-typing",
           "type": "grammar_gap_typing",
-          "itemCount": 8,
+          "itemCount": 5,
           "ruleIds": [
-            "rule-er-singular",
-            "rule-silent-endings"
+            "rule-er-singular"
           ],
-          "estimatedDurationS": 120
+          "estimatedDurationS": 75
         },
         {
           "id": "ex-singular-spot",
           "type": "grammar_error_spotter",
-          "itemCount": 6,
+          "itemCount": 4,
           "ruleIds": [
             "rule-silent-endings",
             "rule-er-singular"
           ],
-          "estimatedDurationS": 150
+          "estimatedDurationS": 100
         }
       ]
     },
@@ -204,39 +203,39 @@
         {
           "id": "ex-persons",
           "type": "grammar_person_matching",
-          "itemCount": 2,
+          "itemCount": 1,
           "ruleIds": [
             "rule-er-singular",
             "rule-er-plural"
           ],
-          "estimatedDurationS": 96
+          "estimatedDurationS": 48
         },
         {
           "id": "ex-plural-forms",
           "type": "grammar_pronoun_form_typing",
-          "itemCount": 3,
-          "ruleIds": [
-            "rule-er-plural"
-          ],
-          "estimatedDurationS": 135
-        },
-        {
-          "id": "ex-plural-choice",
-          "type": "grammar_gap_choice",
-          "itemCount": 8,
-          "ruleIds": [
-            "rule-er-plural"
-          ],
-          "estimatedDurationS": 80
-        },
-        {
-          "id": "ex-plural-typing",
-          "type": "grammar_gap_typing",
-          "itemCount": 6,
+          "itemCount": 2,
           "ruleIds": [
             "rule-er-plural"
           ],
           "estimatedDurationS": 90
+        },
+        {
+          "id": "ex-plural-choice",
+          "type": "grammar_gap_choice",
+          "itemCount": 5,
+          "ruleIds": [
+            "rule-er-plural"
+          ],
+          "estimatedDurationS": 50
+        },
+        {
+          "id": "ex-plural-typing",
+          "type": "grammar_gap_typing",
+          "itemCount": 4,
+          "ruleIds": [
+            "rule-er-plural"
+          ],
+          "estimatedDurationS": 60
         }
       ]
     }
@@ -261,23 +260,23 @@
       {
         "pageId": "exam-singular",
         "type": "grammar_gap_typing",
-        "itemCount": 9,
+        "itemCount": 5,
         "ruleIds": [
           "rule-er-singular",
           "rule-silent-endings"
         ],
-        "estimatedDurationS": 135,
-        "timeLimitS": 210
+        "estimatedDurationS": 75,
+        "timeLimitS": 120
       },
       {
         "pageId": "exam-plural",
         "type": "grammar_gap_typing",
-        "itemCount": 9,
+        "itemCount": 5,
         "ruleIds": [
           "rule-er-plural"
         ],
-        "estimatedDurationS": 135,
-        "timeLimitS": 210
+        "estimatedDurationS": 75,
+        "timeLimitS": 120
       }
     ]
   },

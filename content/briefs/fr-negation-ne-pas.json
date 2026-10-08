@@ -14,12 +14,12 @@
     "fr": "Apprendre à former des phrases négatives simples en français avec ne...pas et n'...pas.",
     "de": "Lernen, wie man einfache Verneinungssätze im Französischen mit ne...pas und n'...pas bildet."
   },
-  "estimatedMinutes": 27,
+  "estimatedMinutes": 19,
   "provenance": {
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "brief-v7",
-    "generatedAt": "2026-10-07T23:58:54.592Z",
+    "generatedAt": "2026-10-08T00:17:18.652Z",
     "inputHashes": {
       "outline": "7d241eb94e9886f6043fd830c6fa44d3d155afddbf76e4a102308067825b0145"
     }
@@ -100,38 +100,38 @@
         {
           "id": "ex-basic-choice",
           "type": "grammar_gap_choice",
-          "itemCount": 8,
-          "ruleIds": [
-            "rule-ne-pas-structure"
-          ],
-          "estimatedDurationS": 80
-        },
-        {
-          "id": "ex-basic-word-order",
-          "type": "grammar_word_order",
-          "itemCount": 8,
-          "ruleIds": [
-            "rule-ne-pas-structure"
-          ],
-          "estimatedDurationS": 200
-        },
-        {
-          "id": "ex-basic-typing",
-          "type": "grammar_gap_typing",
-          "itemCount": 8,
-          "ruleIds": [
-            "rule-ne-pas-structure"
-          ],
-          "estimatedDurationS": 120
-        },
-        {
-          "id": "ex-basic-spot",
-          "type": "grammar_error_spotter",
           "itemCount": 6,
           "ruleIds": [
             "rule-ne-pas-structure"
           ],
-          "estimatedDurationS": 150
+          "estimatedDurationS": 60
+        },
+        {
+          "id": "ex-basic-word-order",
+          "type": "grammar_word_order",
+          "itemCount": 5,
+          "ruleIds": [
+            "rule-ne-pas-structure"
+          ],
+          "estimatedDurationS": 125
+        },
+        {
+          "id": "ex-basic-typing",
+          "type": "grammar_gap_typing",
+          "itemCount": 5,
+          "ruleIds": [
+            "rule-ne-pas-structure"
+          ],
+          "estimatedDurationS": 75
+        },
+        {
+          "id": "ex-basic-spot",
+          "type": "grammar_error_spotter",
+          "itemCount": 4,
+          "ruleIds": [
+            "rule-ne-pas-structure"
+          ],
+          "estimatedDurationS": 100
         }
       ]
     },
@@ -178,29 +178,29 @@
         {
           "id": "ex-elision-choice",
           "type": "grammar_gap_choice",
-          "itemCount": 8,
-          "ruleIds": [
-            "rule-n-elision"
-          ],
-          "estimatedDurationS": 80
-        },
-        {
-          "id": "ex-elision-typing",
-          "type": "grammar_gap_typing",
-          "itemCount": 8,
-          "ruleIds": [
-            "rule-n-elision"
-          ],
-          "estimatedDurationS": 120
-        },
-        {
-          "id": "ex-elision-order",
-          "type": "grammar_word_order",
           "itemCount": 6,
           "ruleIds": [
             "rule-n-elision"
           ],
-          "estimatedDurationS": 150
+          "estimatedDurationS": 60
+        },
+        {
+          "id": "ex-elision-typing",
+          "type": "grammar_gap_typing",
+          "itemCount": 5,
+          "ruleIds": [
+            "rule-n-elision"
+          ],
+          "estimatedDurationS": 75
+        },
+        {
+          "id": "ex-elision-order",
+          "type": "grammar_word_order",
+          "itemCount": 4,
+          "ruleIds": [
+            "rule-n-elision"
+          ],
+          "estimatedDurationS": 100
         }
       ]
     }
@@ -213,33 +213,33 @@
       {
         "pageId": "exam-order",
         "type": "grammar_word_order",
-        "itemCount": 6,
+        "itemCount": 4,
         "ruleIds": [
           "rule-ne-pas-structure",
           "rule-n-elision"
         ],
-        "estimatedDurationS": 150,
-        "timeLimitS": 230
+        "estimatedDurationS": 100,
+        "timeLimitS": 150
       },
       {
         "pageId": "exam-ne-pas",
         "type": "grammar_gap_typing",
-        "itemCount": 9,
+        "itemCount": 6,
         "ruleIds": [
           "rule-ne-pas-structure"
         ],
-        "estimatedDurationS": 135,
-        "timeLimitS": 210
+        "estimatedDurationS": 90,
+        "timeLimitS": 140
       },
       {
         "pageId": "exam-elision",
         "type": "grammar_gap_typing",
-        "itemCount": 9,
+        "itemCount": 6,
         "ruleIds": [
           "rule-n-elision"
         ],
-        "estimatedDurationS": 135,
-        "timeLimitS": 210
+        "estimatedDurationS": 90,
+        "timeLimitS": 140
       }
     ]
   },

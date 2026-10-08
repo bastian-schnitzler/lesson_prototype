@@ -14,7 +14,7 @@
     "fr": "Apprendre à utiliser correctement les articles définis français (le, la, l', les), y compris l'élision devant les voyelles et le h muet, et après les verbes de préférence.",
     "de": "Lernen Sie die korrekte Verwendung der bestimmten französischen Artikel (le, la, l', les), einschließlich der Elision vor Vokalen und stummem h, sowie nach Vorlieben-Verben."
   },
-  "estimatedMinutes": 24,
+  "estimatedMinutes": 18,
   "kind": "grammar",
   "topic": "nouns_and_determiners",
   "steps": [
@@ -429,144 +429,6 @@
               "itemId": "ex-basic-gap-choice-7"
             }
           ]
-        },
-        {
-          "pageId": "ex-basic-gap-choice-8",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-def-basic"
-              ],
-              "before": "Où est",
-              "after": "jardin ?",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "les"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "l’"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "le"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "la"
-                }
-              ],
-              "answerChoiceId": "c-3",
-              "hint": null,
-              "answerExplanation": {
-                "en": "jardin is masculine singular: le jardin.",
-                "fr": "jardin est masculin singulier : le jardin.",
-                "de": "jardin ist maskulin Singular: le jardin."
-              },
-              "itemId": "ex-basic-gap-choice-8"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-basic-gap-choice-9",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-def-basic"
-              ],
-              "before": "Voici",
-              "after": "amies de Léa.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "le"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "l’"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "les"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "la"
-                }
-              ],
-              "answerChoiceId": "c-3",
-              "hint": null,
-              "answerExplanation": {
-                "en": "amies is plural: les amies, for masculine and feminine nouns alike.",
-                "fr": "amies est au pluriel : les amies, pour le masculin comme pour le féminin.",
-                "de": "amies steht im Plural: les amies, bei maskulinen und femininen Nomen gleich."
-              },
-              "itemId": "ex-basic-gap-choice-9"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-basic-gap-choice-10",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-def-elision"
-              ],
-              "before": "C’est",
-              "after": "heure du déjeuner.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "le"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "l’"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "les"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "la"
-                }
-              ],
-              "answerChoiceId": "c-2",
-              "hint": null,
-              "answerExplanation": {
-                "en": "heure starts with a silent h, so le/la become l’: l’heure.",
-                "fr": "heure commence par un h muet : le/la devient l’ : l’heure.",
-                "de": "heure beginnt mit stummem h, also wird le/la zu l’: l’heure."
-              },
-              "itemId": "ex-basic-gap-choice-10"
-            }
-          ]
         }
       ]
     },
@@ -808,105 +670,6 @@
                 "de": "homme beginnt mit stummem h, also wird le/la zu l’: l’homme."
               },
               "itemId": "ex-basic-gap-typing-7"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-basic-gap-typing-8",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-def-basic"
-              ],
-              "before": "Voici",
-              "after": "professeur.",
-              "accepted": {
-                "answers": [
-                  "le"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "professeur is masculine singular: le professeur.",
-                "fr": "professeur est masculin singulier : le professeur.",
-                "de": "professeur ist maskulin Singular: le professeur."
-              },
-              "itemId": "ex-basic-gap-typing-8"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-basic-gap-typing-9",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-def-elision"
-              ],
-              "before": "Où est",
-              "after": "orange ?",
-              "accepted": {
-                "answers": [
-                  "l’"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "orange starts with a vowel, so le/la become l’: l’orange.",
-                "fr": "orange commence par une voyelle : le/la devient l’ : l’orange.",
-                "de": "orange beginnt mit einem Vokal, also wird le/la zu l’: l’orange."
-              },
-              "itemId": "ex-basic-gap-typing-9"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-basic-gap-typing-10",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-def-basic"
-              ],
-              "before": "Voici",
-              "after": "livres de Paul.",
-              "accepted": {
-                "answers": [
-                  "les"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "livres is plural: les livres, for masculine and feminine nouns alike.",
-                "fr": "livres est au pluriel : les livres, pour le masculin comme pour le féminin.",
-                "de": "livres steht im Plural: les livres, bei maskulinen und femininen Nomen gleich."
-              },
-              "itemId": "ex-basic-gap-typing-10"
             }
           ]
         }
@@ -1200,169 +963,6 @@
                 "de": "école beginnt mit einem Vokal, also wird le/la zu l’: l’école."
               },
               "itemId": "ex-basic-spot-5"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-basic-spot-6",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Find the wrong word and correct it.",
-            "fr": "Trouvez le mot faux et corrigez-le.",
-            "de": "Finde das falsche Wort und korrigiere es."
-          },
-          "items": [
-            {
-              "type": "grammar_error_spotter",
-              "ruleIds": [
-                "rule-def-basic"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-1",
-                  "text": "Voici"
-                },
-                {
-                  "tokenId": "t-2",
-                  "text": "la"
-                },
-                {
-                  "tokenId": "t-3",
-                  "text": "stylo"
-                },
-                {
-                  "tokenId": "t-4",
-                  "text": "de"
-                },
-                {
-                  "tokenId": "t-5",
-                  "text": "Marc"
-                }
-              ],
-              "faultyTokenId": "t-2",
-              "correction": {
-                "mode": "type",
-                "accepted": {
-                  "answers": [
-                    "le"
-                  ],
-                  "accentSensitive": []
-                },
-                "choices": []
-              },
-              "answerExplanation": {
-                "en": "stylo is masculine singular: le stylo.",
-                "fr": "stylo est masculin singulier : le stylo.",
-                "de": "stylo ist maskulin Singular: le stylo."
-              },
-              "itemId": "ex-basic-spot-6"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-basic-spot-7",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Find the wrong word and correct it.",
-            "fr": "Trouvez le mot faux et corrigez-le.",
-            "de": "Finde das falsche Wort und korrigiere es."
-          },
-          "items": [
-            {
-              "type": "grammar_error_spotter",
-              "ruleIds": [
-                "rule-def-elision"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-1",
-                  "text": "Où"
-                },
-                {
-                  "tokenId": "t-2",
-                  "text": "est"
-                },
-                {
-                  "tokenId": "t-3",
-                  "text": "le hôpital"
-                },
-                {
-                  "tokenId": "t-4",
-                  "text": "?"
-                }
-              ],
-              "faultyTokenId": "t-3",
-              "correction": {
-                "mode": "select",
-                "accepted": {
-                  "answers": [
-                    "l’hôpital"
-                  ],
-                  "accentSensitive": []
-                },
-                "choices": [
-                  "l’hôpital",
-                  "le hôpital",
-                  "la hôpital"
-                ]
-              },
-              "answerExplanation": {
-                "en": "hôpital starts with a silent h, so le/la become l’: l’hôpital.",
-                "fr": "hôpital commence par un h muet : le/la devient l’ : l’hôpital.",
-                "de": "hôpital beginnt mit stummem h, also wird le/la zu l’: l’hôpital."
-              },
-              "itemId": "ex-basic-spot-7"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-basic-spot-8",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Find the wrong word and correct it.",
-            "fr": "Trouvez le mot faux et corrigez-le.",
-            "de": "Finde das falsche Wort und korrigiere es."
-          },
-          "items": [
-            {
-              "type": "grammar_error_spotter",
-              "ruleIds": [
-                "rule-def-basic"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-1",
-                  "text": "C’est"
-                },
-                {
-                  "tokenId": "t-2",
-                  "text": "le"
-                },
-                {
-                  "tokenId": "t-3",
-                  "text": "lune"
-                }
-              ],
-              "faultyTokenId": "t-2",
-              "correction": {
-                "mode": "type",
-                "accepted": {
-                  "answers": [
-                    "la"
-                  ],
-                  "accentSensitive": []
-                },
-                "choices": []
-              },
-              "answerExplanation": {
-                "en": "lune is feminine singular: la lune.",
-                "fr": "lune est féminin singulier : la lune.",
-                "de": "lune ist feminin Singular: la lune."
-              },
-              "itemId": "ex-basic-spot-8"
             }
           ]
         }
@@ -1718,98 +1318,6 @@
               "itemId": "ex-pref-choice-6"
             }
           ]
-        },
-        {
-          "pageId": "ex-pref-choice-7",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-def-preference"
-              ],
-              "before": "Vous aimez",
-              "after": "légumes ?",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "des"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "la"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "les"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "une"
-                }
-              ],
-              "answerChoiceId": "c-3",
-              "hint": null,
-              "answerExplanation": {
-                "en": "After aimer the noun takes the definite article (general taste): les légumes.",
-                "fr": "Après aimer, le nom prend l’article défini (goût en général) : les légumes.",
-                "de": "Nach aimer steht der bestimmte Artikel (Vorliebe allgemein): les légumes."
-              },
-              "itemId": "ex-pref-choice-7"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-pref-choice-8",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-def-preference"
-              ],
-              "before": "Ils détestent",
-              "after": "sport.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "les"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "du"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "le"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "un"
-                }
-              ],
-              "answerChoiceId": "c-3",
-              "hint": null,
-              "answerExplanation": {
-                "en": "After détester the noun takes the definite article (general taste): le sport.",
-                "fr": "Après détester, le nom prend l’article défini (goût en général) : le sport.",
-                "de": "Nach détester steht der bestimmte Artikel (Vorliebe allgemein): le sport."
-              },
-              "itemId": "ex-pref-choice-8"
-            }
-          ]
         }
       ]
     },
@@ -2018,138 +1526,6 @@
                 "de": "Nach détester steht der bestimmte Artikel (Vorliebe allgemein): le fromage."
               },
               "itemId": "ex-pref-gap-typing-6"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-pref-gap-typing-7",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-def-preference"
-              ],
-              "before": "J’adore",
-              "after": "vacances.",
-              "accepted": {
-                "answers": [
-                  "les"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "After adorer the noun takes the definite article (general taste): les vacances.",
-                "fr": "Après adorer, le nom prend l’article défini (goût en général) : les vacances.",
-                "de": "Nach adorer steht der bestimmte Artikel (Vorliebe allgemein): les vacances."
-              },
-              "itemId": "ex-pref-gap-typing-7"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-pref-gap-typing-8",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-def-preference"
-              ],
-              "before": "Mes parents aiment",
-              "after": "cinéma.",
-              "accepted": {
-                "answers": [
-                  "le"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "After aimer the noun takes the definite article (general taste): le cinéma.",
-                "fr": "Après aimer, le nom prend l’article défini (goût en général) : le cinéma.",
-                "de": "Nach aimer steht der bestimmte Artikel (Vorliebe allgemein): le cinéma."
-              },
-              "itemId": "ex-pref-gap-typing-8"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-pref-gap-typing-9",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-def-preference"
-              ],
-              "before": "Tu préfères",
-              "after": "plage ?",
-              "accepted": {
-                "answers": [
-                  "la"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "After préférer the noun takes the definite article (general taste): la plage.",
-                "fr": "Après préférer, le nom prend l’article défini (goût en général) : la plage.",
-                "de": "Nach préférer steht der bestimmte Artikel (Vorliebe allgemein): la plage."
-              },
-              "itemId": "ex-pref-gap-typing-9"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-pref-gap-typing-10",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-def-preference"
-              ],
-              "before": "Elles aiment",
-              "after": "animaux.",
-              "accepted": {
-                "answers": [
-                  "les"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "After aimer the noun takes the definite article (general taste): les animaux.",
-                "fr": "Après aimer, le nom prend l’article défini (goût en général) : les animaux.",
-                "de": "Nach aimer steht der bestimmte Artikel (Vorliebe allgemein): les animaux."
-              },
-              "itemId": "ex-pref-gap-typing-10"
             }
           ]
         }
@@ -2369,111 +1745,6 @@
               "itemId": "ex-pref-order-4"
             }
           ]
-        },
-        {
-          "pageId": "ex-pref-order-5",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Put the words in the right order.",
-            "fr": "Mettez les mots dans le bon ordre.",
-            "de": "Bring die Wörter in die richtige Reihenfolge."
-          },
-          "items": [
-            {
-              "type": "grammar_word_order",
-              "ruleIds": [
-                "rule-def-preference"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-3",
-                  "text": "le"
-                },
-                {
-                  "tokenId": "t-1",
-                  "text": "Elle"
-                },
-                {
-                  "tokenId": "t-4",
-                  "text": "thé"
-                },
-                {
-                  "tokenId": "t-5",
-                  "text": "vert"
-                },
-                {
-                  "tokenId": "t-2",
-                  "text": "préfère"
-                }
-              ],
-              "acceptedOrders": [
-                [
-                  "t-1",
-                  "t-2",
-                  "t-3",
-                  "t-4",
-                  "t-5"
-                ]
-              ],
-              "answerExplanation": {
-                "en": "After préférer the noun takes the definite article (general taste): le thé vert.",
-                "fr": "Après préférer, le nom prend l’article défini (goût en général) : le thé vert.",
-                "de": "Nach préférer steht der bestimmte Artikel (Vorliebe allgemein): le thé vert."
-              },
-              "itemId": "ex-pref-order-5"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-pref-order-6",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Put the words in the right order.",
-            "fr": "Mettez les mots dans le bon ordre.",
-            "de": "Bring die Wörter in die richtige Reihenfolge."
-          },
-          "items": [
-            {
-              "type": "grammar_word_order",
-              "ruleIds": [
-                "rule-def-preference"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-2",
-                  "text": "aimez"
-                },
-                {
-                  "tokenId": "t-3",
-                  "text": "l’école"
-                },
-                {
-                  "tokenId": "t-4",
-                  "text": "?"
-                },
-                {
-                  "tokenId": "t-1",
-                  "text": "Vous"
-                }
-              ],
-              "acceptedOrders": [
-                [
-                  "t-1",
-                  "t-2",
-                  "t-3",
-                  "t-4"
-                ]
-              ],
-              "answerExplanation": {
-                "en": "After aimer the noun takes the definite article (general taste): l’école.",
-                "fr": "Après aimer, le nom prend l’article défini (goût en général) : l’école.",
-                "de": "Nach aimer steht der bestimmte Artikel (Vorliebe allgemein): l’école."
-              },
-              "itemId": "ex-pref-order-6"
-            }
-          ]
         }
       ]
     },
@@ -2517,8 +1788,8 @@
       "pages": [
         {
           "pageId": "exam-page-1",
-          "estimatedDurationS": 120,
-          "timeLimitS": 180,
+          "estimatedDurationS": 90,
+          "timeLimitS": 140,
           "instructions": {
             "en": "Type the missing words.",
             "fr": "Écrivez les mots manquants.",
@@ -2650,55 +1921,13 @@
                 "de": "garçons steht im Plural: les garçons, bei maskulinen und femininen Nomen gleich."
               },
               "itemId": "exam-page-1-6"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-def-basic"
-              ],
-              "before": "C’est",
-              "after": "sœur de Paul.",
-              "accepted": {
-                "answers": [
-                  "la"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "sœur is feminine singular: la sœur.",
-                "fr": "sœur est féminin singulier : la sœur.",
-                "de": "sœur ist feminin Singular: la sœur."
-              },
-              "itemId": "exam-page-1-7"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-def-basic"
-              ],
-              "before": "Où est",
-              "after": "métro ?",
-              "accepted": {
-                "answers": [
-                  "le"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "métro is masculine singular: le métro.",
-                "fr": "métro est masculin singulier : le métro.",
-                "de": "métro ist maskulin Singular: le métro."
-              },
-              "itemId": "exam-page-1-8"
             }
           ]
         },
         {
           "pageId": "exam-elision",
-          "estimatedDurationS": 120,
-          "timeLimitS": 180,
+          "estimatedDurationS": 75,
+          "timeLimitS": 120,
           "instructions": {
             "en": "Type the missing words.",
             "fr": "Écrivez les mots manquants.",
@@ -2809,76 +2038,13 @@
                 "de": "entrée beginnt mit einem Vokal, also wird le/la zu l’: l’entrée."
               },
               "itemId": "exam-elision-5"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-def-basic"
-              ],
-              "before": "Voici",
-              "after": "chambre.",
-              "accepted": {
-                "answers": [
-                  "la"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "chambre is feminine singular: la chambre.",
-                "fr": "chambre est féminin singulier : la chambre.",
-                "de": "chambre ist feminin Singular: la chambre."
-              },
-              "itemId": "exam-elision-6"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-def-elision"
-              ],
-              "before": "C’est",
-              "after": "heure !",
-              "accepted": {
-                "answers": [
-                  "l’"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "heure starts with a silent h, so le/la become l’: l’heure.",
-                "fr": "heure commence par un h muet : le/la devient l’ : l’heure.",
-                "de": "heure beginnt mit stummem h, also wird le/la zu l’: l’heure."
-              },
-              "itemId": "exam-elision-7"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-def-basic"
-              ],
-              "before": "Voici",
-              "after": "livre.",
-              "accepted": {
-                "answers": [
-                  "le"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "livre is masculine singular: le livre.",
-                "fr": "livre est masculin singulier : le livre.",
-                "de": "livre ist maskulin Singular: le livre."
-              },
-              "itemId": "exam-elision-8"
             }
           ]
         },
         {
           "pageId": "exam-page-2",
-          "estimatedDurationS": 120,
-          "timeLimitS": 180,
+          "estimatedDurationS": 75,
+          "timeLimitS": 120,
           "instructions": {
             "en": "Type the missing words.",
             "fr": "Écrivez les mots manquants.",
@@ -2989,69 +2155,6 @@
                 "de": "Nach aimer steht der bestimmte Artikel (Vorliebe allgemein): l’art."
               },
               "itemId": "exam-page-2-5"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-def-preference"
-              ],
-              "before": "Vous aimez",
-              "after": "poisson ?",
-              "accepted": {
-                "answers": [
-                  "le"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "After aimer the noun takes the definite article (general taste): le poisson.",
-                "fr": "Après aimer, le nom prend l’article défini (goût en général) : le poisson.",
-                "de": "Nach aimer steht der bestimmte Artikel (Vorliebe allgemein): le poisson."
-              },
-              "itemId": "exam-page-2-6"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-def-preference"
-              ],
-              "before": "J’adore",
-              "after": "neige.",
-              "accepted": {
-                "answers": [
-                  "la"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "After adorer the noun takes the definite article (general taste): la neige.",
-                "fr": "Après adorer, le nom prend l’article défini (goût en général) : la neige.",
-                "de": "Nach adorer steht der bestimmte Artikel (Vorliebe allgemein): la neige."
-              },
-              "itemId": "exam-page-2-7"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-def-preference"
-              ],
-              "before": "Ils détestent",
-              "after": "devoirs.",
-              "accepted": {
-                "answers": [
-                  "les"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "After détester the noun takes the definite article (general taste): les devoirs.",
-                "fr": "Après détester, le nom prend l’article défini (goût en général) : les devoirs.",
-                "de": "Nach détester steht der bestimmte Artikel (Vorliebe allgemein): les devoirs."
-              },
-              "itemId": "exam-page-2-8"
             }
           ]
         }
@@ -3062,10 +2165,10 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "content-v4",
-    "generatedAt": "2026-10-07T23:58:54.478Z",
+    "generatedAt": "2026-10-08T00:17:18.529Z",
     "inputHashes": {
       "outline": "54d6c8d3101f255f7b601ed8abe3d28ddde9f81411327c0f77e77dc1368e62c9",
-      "brief": "7adcfdc91ca934204e09623419916659f266730fd9646f7c3f1bb5152aaf47a9"
+      "brief": "1f0540dca29df12d3c954a10d36c18fa2f4d399bc81b5c901cb308e57e53323f"
     }
   }
 }

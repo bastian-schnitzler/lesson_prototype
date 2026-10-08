@@ -14,12 +14,12 @@
     "fr": "Conjuguer le verbe avoir au présent, dire son âge et exprimer la possession.",
     "de": "Das Verb avoir im Präsens konjugieren, das Alter angeben und Besitz ausdrücken."
   },
-  "estimatedMinutes": 26,
+  "estimatedMinutes": 19,
   "provenance": {
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "brief-v7",
-    "generatedAt": "2026-10-07T23:58:54.217Z",
+    "generatedAt": "2026-10-08T00:17:18.245Z",
     "inputHashes": {
       "outline": "6330aa315b82f91f79b5f684caf8264ae01a4b0148b010ab9324c3b67e0028be"
     }
@@ -113,11 +113,11 @@
         {
           "id": "ex-forms-persons",
           "type": "grammar_person_matching",
-          "itemCount": 2,
+          "itemCount": 1,
           "ruleIds": [
             "rule-avoir-forms"
           ],
-          "estimatedDurationS": 96
+          "estimatedDurationS": 48
         },
         {
           "id": "ex-forms-match",
@@ -131,20 +131,20 @@
         {
           "id": "ex-forms-typing",
           "type": "grammar_pronoun_form_typing",
-          "itemCount": 3,
+          "itemCount": 2,
           "ruleIds": [
             "rule-avoir-forms"
           ],
-          "estimatedDurationS": 135
+          "estimatedDurationS": 90
         },
         {
           "id": "ex-forms-choice",
           "type": "grammar_gap_choice",
-          "itemCount": 8,
+          "itemCount": 5,
           "ruleIds": [
             "rule-avoir-forms"
           ],
-          "estimatedDurationS": 80
+          "estimatedDurationS": 50
         }
       ]
     },
@@ -192,42 +192,42 @@
         {
           "id": "ex-usage-choice",
           "type": "grammar_gap_choice",
-          "itemCount": 8,
+          "itemCount": 6,
           "ruleIds": [
             "rule-avoir-age",
             "rule-avoir-possession"
           ],
-          "estimatedDurationS": 80
+          "estimatedDurationS": 60
         },
         {
           "id": "ex-usage-typing",
           "type": "grammar_gap_typing",
-          "itemCount": 8,
+          "itemCount": 5,
           "ruleIds": [
             "rule-avoir-age",
             "rule-avoir-possession"
           ],
-          "estimatedDurationS": 120
+          "estimatedDurationS": 75
         },
         {
           "id": "ex-usage-order",
           "type": "grammar_word_order",
-          "itemCount": 6,
+          "itemCount": 4,
           "ruleIds": [
             "rule-avoir-age",
             "rule-avoir-possession"
           ],
-          "estimatedDurationS": 150
+          "estimatedDurationS": 100
         },
         {
           "id": "ex-usage-spot",
           "type": "grammar_error_spotter",
-          "itemCount": 6,
+          "itemCount": 4,
           "ruleIds": [
             "rule-avoir-age",
             "rule-avoir-possession"
           ],
-          "estimatedDurationS": 150
+          "estimatedDurationS": 100
         }
       ]
     }
@@ -250,34 +250,33 @@
       {
         "pageId": "exam-sentences",
         "type": "grammar_gap_typing",
-        "itemCount": 8,
+        "itemCount": 4,
         "ruleIds": [
-          "rule-avoir-forms",
-          "rule-avoir-possession"
+          "rule-avoir-forms"
         ],
-        "estimatedDurationS": 120,
-        "timeLimitS": 180
+        "estimatedDurationS": 60,
+        "timeLimitS": 90
       },
       {
         "pageId": "exam-age",
         "type": "grammar_gap_typing",
-        "itemCount": 6,
+        "itemCount": 3,
         "ruleIds": [
           "rule-avoir-age"
         ],
-        "estimatedDurationS": 90,
-        "timeLimitS": 140
+        "estimatedDurationS": 45,
+        "timeLimitS": 70
       },
       {
         "pageId": "exam-order",
         "type": "grammar_word_order",
-        "itemCount": 4,
+        "itemCount": 3,
         "ruleIds": [
           "rule-avoir-age",
           "rule-avoir-possession"
         ],
-        "estimatedDurationS": 100,
-        "timeLimitS": 150
+        "estimatedDurationS": 75,
+        "timeLimitS": 120
       }
     ]
   },

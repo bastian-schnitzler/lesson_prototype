@@ -14,12 +14,12 @@
     "fr": "Apprendre à situer des personnes, des objets et des actions dans le temps et l'espace avec des adverbes de lieu et de temps.",
     "de": "Lernen Sie, Personen, Objekte und Handlungen mit grundlegenden Orts- und Zeitadverbien zeitlich und räumlich einzuordnen."
   },
-  "estimatedMinutes": 25,
+  "estimatedMinutes": 19,
   "provenance": {
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "brief-v7",
-    "generatedAt": "2026-10-07T23:58:54.648Z",
+    "generatedAt": "2026-10-08T00:17:18.710Z",
     "inputHashes": {
       "outline": "92cbd313533ae674aea190fbe4d278bb77e4e70d103206ca3a35e8811142c679"
     }
@@ -108,29 +108,29 @@
         {
           "id": "ex-place-choice",
           "type": "grammar_gap_choice",
-          "itemCount": 8,
-          "ruleIds": [
-            "rule-place-adverbs"
-          ],
-          "estimatedDurationS": 80
-        },
-        {
-          "id": "ex-place-typing",
-          "type": "grammar_gap_typing",
-          "itemCount": 8,
-          "ruleIds": [
-            "rule-place-adverbs"
-          ],
-          "estimatedDurationS": 120
-        },
-        {
-          "id": "ex-place-order",
-          "type": "grammar_word_order",
           "itemCount": 6,
           "ruleIds": [
             "rule-place-adverbs"
           ],
-          "estimatedDurationS": 150
+          "estimatedDurationS": 60
+        },
+        {
+          "id": "ex-place-typing",
+          "type": "grammar_gap_typing",
+          "itemCount": 6,
+          "ruleIds": [
+            "rule-place-adverbs"
+          ],
+          "estimatedDurationS": 90
+        },
+        {
+          "id": "ex-place-order",
+          "type": "grammar_word_order",
+          "itemCount": 4,
+          "ruleIds": [
+            "rule-place-adverbs"
+          ],
+          "estimatedDurationS": 100
         }
       ]
     },
@@ -185,42 +185,42 @@
         {
           "id": "ex-time-choice",
           "type": "grammar_gap_choice",
-          "itemCount": 8,
+          "itemCount": 6,
           "ruleIds": [
             "rule-time-adverbs-present",
             "rule-time-adverbs-future"
           ],
-          "estimatedDurationS": 80
+          "estimatedDurationS": 60
         },
         {
           "id": "ex-time-typing",
           "type": "grammar_gap_typing",
-          "itemCount": 8,
+          "itemCount": 5,
           "ruleIds": [
             "rule-time-adverbs-present",
             "rule-time-adverbs-future"
           ],
-          "estimatedDurationS": 120
+          "estimatedDurationS": 75
         },
         {
           "id": "ex-time-order",
           "type": "grammar_word_order",
-          "itemCount": 6,
+          "itemCount": 4,
           "ruleIds": [
             "rule-time-adverbs-present",
             "rule-time-adverbs-future"
           ],
-          "estimatedDurationS": 150
+          "estimatedDurationS": 100
         },
         {
           "id": "ex-time-spot",
           "type": "grammar_error_spotter",
-          "itemCount": 6,
+          "itemCount": 4,
           "ruleIds": [
             "rule-time-adverbs-future",
             "rule-time-adverbs-present"
           ],
-          "estimatedDurationS": 150
+          "estimatedDurationS": 100
         }
       ]
     }
@@ -233,32 +233,32 @@
       {
         "pageId": "exam-place",
         "type": "grammar_gap_typing",
-        "itemCount": 8,
+        "itemCount": 6,
         "ruleIds": [
           "rule-place-adverbs"
         ],
-        "estimatedDurationS": 120,
-        "timeLimitS": 180
+        "estimatedDurationS": 90,
+        "timeLimitS": 140
       },
       {
         "pageId": "exam-present",
         "type": "grammar_gap_typing",
-        "itemCount": 8,
+        "itemCount": 5,
         "ruleIds": [
           "rule-time-adverbs-present"
         ],
-        "estimatedDurationS": 120,
-        "timeLimitS": 180
+        "estimatedDurationS": 75,
+        "timeLimitS": 120
       },
       {
         "pageId": "exam-future",
         "type": "grammar_gap_typing",
-        "itemCount": 8,
+        "itemCount": 5,
         "ruleIds": [
           "rule-time-adverbs-future"
         ],
-        "estimatedDurationS": 120,
-        "timeLimitS": 180
+        "estimatedDurationS": 75,
+        "timeLimitS": 120
       }
     ]
   },

@@ -14,7 +14,7 @@
     "fr": "Identifier le genre des noms français et choisir correctement entre les articles indéfinis un, une et des.",
     "de": "Das Genus französischer Nomen erkennen und die unbestimmten Artikel un, une und des korrekt auswählen."
   },
-  "estimatedMinutes": 24,
+  "estimatedMinutes": 17,
   "kind": "grammar",
   "topic": "nouns_and_determiners",
   "steps": [
@@ -407,144 +407,6 @@
               "itemId": "ex-singular-choice-7"
             }
           ]
-        },
-        {
-          "pageId": "ex-singular-choice-8",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-singular-gender"
-              ],
-              "before": "C’est",
-              "after": "idée.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "un"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "une"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "des"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "le"
-                }
-              ],
-              "answerChoiceId": "c-2",
-              "hint": null,
-              "answerExplanation": {
-                "en": "idée is feminine: une idée.",
-                "fr": "idée est féminin : une idée.",
-                "de": "idée ist feminin: une idée."
-              },
-              "itemId": "ex-singular-choice-8"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-singular-choice-9",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-singular-gender"
-              ],
-              "before": "Voici",
-              "after": "garçon.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "des"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "la"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "un"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "une"
-                }
-              ],
-              "answerChoiceId": "c-3",
-              "hint": null,
-              "answerExplanation": {
-                "en": "garçon is masculine: un garçon.",
-                "fr": "garçon est masculin : un garçon.",
-                "de": "garçon ist maskulin: un garçon."
-              },
-              "itemId": "ex-singular-choice-9"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-singular-choice-10",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-singular-gender"
-              ],
-              "before": "Voici",
-              "after": "fille.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "des"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "une"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "le"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "un"
-                }
-              ],
-              "answerChoiceId": "c-2",
-              "hint": null,
-              "answerExplanation": {
-                "en": "fille is feminine: une fille.",
-                "fr": "fille est féminin : une fille.",
-                "de": "fille ist feminin: une fille."
-              },
-              "itemId": "ex-singular-choice-10"
-            }
-          ]
         }
       ]
     },
@@ -753,138 +615,6 @@
                 "de": "pomme ist feminin: une pomme."
               },
               "itemId": "ex-singular-typing-6"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-singular-typing-7",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-singular-gender"
-              ],
-              "before": "Voici",
-              "after": "téléphone.",
-              "accepted": {
-                "answers": [
-                  "un"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "téléphone is masculine: un téléphone.",
-                "fr": "téléphone est masculin : un téléphone.",
-                "de": "téléphone ist maskulin: un téléphone."
-              },
-              "itemId": "ex-singular-typing-7"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-singular-typing-8",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-singular-gender"
-              ],
-              "before": "Voici",
-              "after": "fenêtre.",
-              "accepted": {
-                "answers": [
-                  "une"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "fenêtre is feminine: une fenêtre.",
-                "fr": "fenêtre est féminin : une fenêtre.",
-                "de": "fenêtre ist feminin: une fenêtre."
-              },
-              "itemId": "ex-singular-typing-8"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-singular-typing-9",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-singular-gender"
-              ],
-              "before": "C’est",
-              "after": "hôtel.",
-              "accepted": {
-                "answers": [
-                  "un"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "hôtel is masculine: un hôtel.",
-                "fr": "hôtel est masculin : un hôtel.",
-                "de": "hôtel ist maskulin: un hôtel."
-              },
-              "itemId": "ex-singular-typing-9"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-singular-typing-10",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-singular-gender"
-              ],
-              "before": "C’est",
-              "after": "montre.",
-              "accepted": {
-                "answers": [
-                  "une"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "montre is feminine: une montre.",
-                "fr": "montre est féminin : une montre.",
-                "de": "montre ist feminin: une montre."
-              },
-              "itemId": "ex-singular-typing-10"
             }
           ]
         }
@@ -1150,157 +880,6 @@
                 "de": "crayon ist maskulin, also un, nicht une."
               },
               "itemId": "ex-singular-spot-5"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-singular-spot-6",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Find the wrong word and correct it.",
-            "fr": "Trouvez le mot faux et corrigez-le.",
-            "de": "Finde das falsche Wort und korrigiere es."
-          },
-          "items": [
-            {
-              "type": "grammar_error_spotter",
-              "ruleIds": [
-                "rule-singular-gender"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-1",
-                  "text": "Voici"
-                },
-                {
-                  "tokenId": "t-2",
-                  "text": "un"
-                },
-                {
-                  "tokenId": "t-3",
-                  "text": "gomme"
-                }
-              ],
-              "faultyTokenId": "t-2",
-              "correction": {
-                "mode": "type",
-                "accepted": {
-                  "answers": [
-                    "une"
-                  ],
-                  "accentSensitive": []
-                },
-                "choices": []
-              },
-              "answerExplanation": {
-                "en": "gomme is feminine, so une, not un.",
-                "fr": "gomme est féminin : une, et non un.",
-                "de": "gomme ist feminin, also une, nicht un."
-              },
-              "itemId": "ex-singular-spot-6"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-singular-spot-7",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Find the wrong word and correct it.",
-            "fr": "Trouvez le mot faux et corrigez-le.",
-            "de": "Finde das falsche Wort und korrigiere es."
-          },
-          "items": [
-            {
-              "type": "grammar_error_spotter",
-              "ruleIds": [
-                "rule-singular-gender"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-1",
-                  "text": "C’est"
-                },
-                {
-                  "tokenId": "t-2",
-                  "text": "une"
-                },
-                {
-                  "tokenId": "t-3",
-                  "text": "chien"
-                }
-              ],
-              "faultyTokenId": "t-2",
-              "correction": {
-                "mode": "select",
-                "accepted": {
-                  "answers": [
-                    "un"
-                  ],
-                  "accentSensitive": []
-                },
-                "choices": [
-                  "un",
-                  "une",
-                  "des"
-                ]
-              },
-              "answerExplanation": {
-                "en": "chien is masculine, so un, not une.",
-                "fr": "chien est masculin : un, et non une.",
-                "de": "chien ist maskulin, also un, nicht une."
-              },
-              "itemId": "ex-singular-spot-7"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-singular-spot-8",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Find the wrong word and correct it.",
-            "fr": "Trouvez le mot faux et corrigez-le.",
-            "de": "Finde das falsche Wort und korrigiere es."
-          },
-          "items": [
-            {
-              "type": "grammar_error_spotter",
-              "ruleIds": [
-                "rule-singular-gender"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-1",
-                  "text": "Voici"
-                },
-                {
-                  "tokenId": "t-2",
-                  "text": "un"
-                },
-                {
-                  "tokenId": "t-3",
-                  "text": "lampe"
-                }
-              ],
-              "faultyTokenId": "t-2",
-              "correction": {
-                "mode": "type",
-                "accepted": {
-                  "answers": [
-                    "une"
-                  ],
-                  "accentSensitive": []
-                },
-                "choices": []
-              },
-              "answerExplanation": {
-                "en": "lampe is feminine, so une, not un.",
-                "fr": "lampe est féminin : une, et non un.",
-                "de": "lampe ist feminin, also une, nicht un."
-              },
-              "itemId": "ex-singular-spot-8"
             }
           ]
         }
@@ -1695,144 +1274,6 @@
               "itemId": "ex-plural-choice-7"
             }
           ]
-        },
-        {
-          "pageId": "ex-plural-choice-8",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-plural-des"
-              ],
-              "before": "Ce sont",
-              "after": "fleurs.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "un"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "des"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "le"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "une"
-                }
-              ],
-              "answerChoiceId": "c-2",
-              "hint": null,
-              "answerExplanation": {
-                "en": "fleurs is plural, so the article is des – for masculine and feminine nouns alike.",
-                "fr": "fleurs est au pluriel : l’article est des, pour les noms masculins comme féminins.",
-                "de": "fleurs steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
-              },
-              "itemId": "ex-plural-choice-8"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-plural-choice-9",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-plural-des"
-              ],
-              "before": "Voici",
-              "after": "ordinateurs.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "la"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "un"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "une"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "des"
-                }
-              ],
-              "answerChoiceId": "c-4",
-              "hint": null,
-              "answerExplanation": {
-                "en": "ordinateurs is plural, so the article is des – for masculine and feminine nouns alike.",
-                "fr": "ordinateurs est au pluriel : l’article est des, pour les noms masculins comme féminins.",
-                "de": "ordinateurs steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
-              },
-              "itemId": "ex-plural-choice-9"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-plural-choice-10",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-plural-des"
-              ],
-              "before": "Ce sont",
-              "after": "cahiers.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "des"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "la"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "une"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "un"
-                }
-              ],
-              "answerChoiceId": "c-1",
-              "hint": null,
-              "answerExplanation": {
-                "en": "cahiers is plural, so the article is des – for masculine and feminine nouns alike.",
-                "fr": "cahiers est au pluriel : l’article est des, pour les noms masculins comme féminins.",
-                "de": "cahiers steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
-              },
-              "itemId": "ex-plural-choice-10"
-            }
-          ]
         }
       ]
     },
@@ -2008,105 +1449,6 @@
                 "de": "bouteilles steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
               },
               "itemId": "ex-plural-typing-5"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-plural-typing-6",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-plural-des"
-              ],
-              "before": "Ce sont",
-              "after": "garçons.",
-              "accepted": {
-                "answers": [
-                  "des"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "garçons is plural, so the article is des – for masculine and feminine nouns alike.",
-                "fr": "garçons est au pluriel : l’article est des, pour les noms masculins comme féminins.",
-                "de": "garçons steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
-              },
-              "itemId": "ex-plural-typing-6"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-plural-typing-7",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-plural-des"
-              ],
-              "before": "Voici",
-              "after": "filles.",
-              "accepted": {
-                "answers": [
-                  "des"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "filles is plural, so the article is des – for masculine and feminine nouns alike.",
-                "fr": "filles est au pluriel : l’article est des, pour les noms masculins comme féminins.",
-                "de": "filles steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
-              },
-              "itemId": "ex-plural-typing-7"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-plural-typing-8",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-plural-des"
-              ],
-              "before": "Ce sont",
-              "after": "films.",
-              "accepted": {
-                "answers": [
-                  "des"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "films is plural, so the article is des – for masculine and feminine nouns alike.",
-                "fr": "films est au pluriel : l’article est des, pour les noms masculins comme féminins.",
-                "de": "films steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
-              },
-              "itemId": "ex-plural-typing-8"
             }
           ]
         }
@@ -2333,112 +1675,6 @@
               "itemId": "ex-plural-spot-4"
             }
           ]
-        },
-        {
-          "pageId": "ex-plural-spot-5",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Find the wrong word and correct it.",
-            "fr": "Trouvez le mot faux et corrigez-le.",
-            "de": "Finde das falsche Wort und korrigiere es."
-          },
-          "items": [
-            {
-              "type": "grammar_error_spotter",
-              "ruleIds": [
-                "rule-plural-des"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-1",
-                  "text": "Voici"
-                },
-                {
-                  "tokenId": "t-2",
-                  "text": "un"
-                },
-                {
-                  "tokenId": "t-3",
-                  "text": "chiens"
-                }
-              ],
-              "faultyTokenId": "t-2",
-              "correction": {
-                "mode": "type",
-                "accepted": {
-                  "answers": [
-                    "des"
-                  ],
-                  "accentSensitive": []
-                },
-                "choices": []
-              },
-              "answerExplanation": {
-                "en": "chiens is plural: des, not un or une.",
-                "fr": "chiens est au pluriel : des, et non un ou une.",
-                "de": "chiens steht im Plural: des, nicht un oder une."
-              },
-              "itemId": "ex-plural-spot-5"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-plural-spot-6",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Find the wrong word and correct it.",
-            "fr": "Trouvez le mot faux et corrigez-le.",
-            "de": "Finde das falsche Wort und korrigiere es."
-          },
-          "items": [
-            {
-              "type": "grammar_error_spotter",
-              "ruleIds": [
-                "rule-plural-des"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-1",
-                  "text": "Ce"
-                },
-                {
-                  "tokenId": "t-2",
-                  "text": "sont"
-                },
-                {
-                  "tokenId": "t-3",
-                  "text": "une"
-                },
-                {
-                  "tokenId": "t-4",
-                  "text": "maisons"
-                }
-              ],
-              "faultyTokenId": "t-3",
-              "correction": {
-                "mode": "select",
-                "accepted": {
-                  "answers": [
-                    "des"
-                  ],
-                  "accentSensitive": []
-                },
-                "choices": [
-                  "des",
-                  "une",
-                  "un"
-                ]
-              },
-              "answerExplanation": {
-                "en": "maisons is plural: des, not un or une.",
-                "fr": "maisons est au pluriel : des, et non un ou une.",
-                "de": "maisons steht im Plural: des, nicht un oder une."
-              },
-              "itemId": "ex-plural-spot-6"
-            }
-          ]
         }
       ]
     },
@@ -2482,8 +1718,8 @@
       "pages": [
         {
           "pageId": "exam-singular",
-          "estimatedDurationS": 120,
-          "timeLimitS": 180,
+          "estimatedDurationS": 90,
+          "timeLimitS": 140,
           "instructions": {
             "en": "Type the missing words.",
             "fr": "Écrivez les mots manquants.",
@@ -2615,55 +1851,13 @@
                 "de": "banane ist feminin: une banane."
               },
               "itemId": "exam-singular-6"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-singular-gender"
-              ],
-              "before": "Voici",
-              "after": "verre.",
-              "accepted": {
-                "answers": [
-                  "un"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "verre is masculine: un verre.",
-                "fr": "verre est masculin : un verre.",
-                "de": "verre ist maskulin: un verre."
-              },
-              "itemId": "exam-singular-7"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-singular-gender"
-              ],
-              "before": "C’est",
-              "after": "assiette.",
-              "accepted": {
-                "answers": [
-                  "une"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "assiette is feminine: une assiette.",
-                "fr": "assiette est féminin : une assiette.",
-                "de": "assiette ist feminin: une assiette."
-              },
-              "itemId": "exam-singular-8"
             }
           ]
         },
         {
           "pageId": "exam-plural",
-          "estimatedDurationS": 120,
-          "timeLimitS": 180,
+          "estimatedDurationS": 75,
+          "timeLimitS": 120,
           "instructions": {
             "en": "Type the missing words.",
             "fr": "Écrivez les mots manquants.",
@@ -2774,76 +1968,13 @@
                 "de": "arbres steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
               },
               "itemId": "exam-plural-5"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-plural-des"
-              ],
-              "before": "Ce sont",
-              "after": "bananes.",
-              "accepted": {
-                "answers": [
-                  "des"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "bananes is plural, so the article is des – for masculine and feminine nouns alike.",
-                "fr": "bananes est au pluriel : l’article est des, pour les noms masculins comme féminins.",
-                "de": "bananes steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
-              },
-              "itemId": "exam-plural-6"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-plural-des"
-              ],
-              "before": "Voici",
-              "after": "verres.",
-              "accepted": {
-                "answers": [
-                  "des"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "verres is plural, so the article is des – for masculine and feminine nouns alike.",
-                "fr": "verres est au pluriel : l’article est des, pour les noms masculins comme féminins.",
-                "de": "verres steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
-              },
-              "itemId": "exam-plural-7"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-plural-des"
-              ],
-              "before": "Ce sont",
-              "after": "idées.",
-              "accepted": {
-                "answers": [
-                  "des"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "idées is plural, so the article is des – for masculine and feminine nouns alike.",
-                "fr": "idées est au pluriel : l’article est des, pour les noms masculins comme féminins.",
-                "de": "idées steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
-              },
-              "itemId": "exam-plural-8"
             }
           ]
         },
         {
           "pageId": "exam-mixed",
-          "estimatedDurationS": 120,
-          "timeLimitS": 180,
+          "estimatedDurationS": 75,
+          "timeLimitS": 120,
           "instructions": {
             "en": "Type the missing words.",
             "fr": "Écrivez les mots manquants.",
@@ -2954,69 +2085,6 @@
                 "de": "film ist maskulin: un film."
               },
               "itemId": "exam-mixed-5"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-singular-gender"
-              ],
-              "before": "Voici",
-              "after": "bouteille.",
-              "accepted": {
-                "answers": [
-                  "une"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "bouteille is feminine: une bouteille.",
-                "fr": "bouteille est féminin : une bouteille.",
-                "de": "bouteille ist feminin: une bouteille."
-              },
-              "itemId": "exam-mixed-6"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-plural-des"
-              ],
-              "before": "Ce sont",
-              "after": "montres.",
-              "accepted": {
-                "answers": [
-                  "des"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "montres is plural, so the article is des – for masculine and feminine nouns alike.",
-                "fr": "montres est au pluriel : l’article est des, pour les noms masculins comme féminins.",
-                "de": "montres steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
-              },
-              "itemId": "exam-mixed-7"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-singular-gender"
-              ],
-              "before": "C’est",
-              "after": "gâteau.",
-              "accepted": {
-                "answers": [
-                  "un"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "gâteau is masculine: un gâteau.",
-                "fr": "gâteau est masculin : un gâteau.",
-                "de": "gâteau ist maskulin: un gâteau."
-              },
-              "itemId": "exam-mixed-8"
             }
           ]
         }
@@ -3027,10 +2095,10 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "content-v4",
-    "generatedAt": "2026-10-07T23:58:54.421Z",
+    "generatedAt": "2026-10-08T00:17:18.468Z",
     "inputHashes": {
       "outline": "21cea9aeeacae2d7d0c58cde432c039e81a485c45fc20fb3991afbe89e01be25",
-      "brief": "8f60bf0b70f9c568dc6144ac680d9e230eba3968705bd34bd362e68d4f32e5db"
+      "brief": "6cb8f864256f2e6a8aae4b443dd1bc165c07029dcf80b114891649a1bbf490d1"
     }
   }
 }

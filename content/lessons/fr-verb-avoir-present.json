@@ -14,7 +14,7 @@
     "fr": "Conjuguer le verbe avoir au présent, dire son âge et exprimer la possession.",
     "de": "Das Verb avoir im Präsens konjugieren, das Alter angeben und Besitz ausdrücken."
   },
-  "estimatedMinutes": 26,
+  "estimatedMinutes": 19,
   "kind": "grammar",
   "topic": "verbs_morphology",
   "steps": [
@@ -202,112 +202,6 @@
                 }
               ],
               "itemId": "ex-forms-persons-1"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-forms-persons-2",
-          "estimatedDurationS": 48,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Connect each pronoun with its partner.",
-            "fr": "Reliez chaque pronom à son partenaire.",
-            "de": "Verbinde jedes Pronomen mit seinem Partner."
-          },
-          "items": [
-            {
-              "type": "grammar_person_matching",
-              "ruleIds": [
-                "rule-avoir-forms"
-              ],
-              "mode": "translation",
-              "rows": [
-                {
-                  "person": "1sg",
-                  "pronoun": null,
-                  "native": {
-                    "en": "I have",
-                    "de": "ich habe"
-                  },
-                  "answer": "j’ai",
-                  "answerExplanation": {
-                    "en": "With je, avoir is ai, and je becomes j’ before the vowel: j’ai.",
-                    "fr": "Avec je, avoir devient ai, et je s’élide devant la voyelle : j’ai.",
-                    "de": "Zu je gehört ai; vor dem Vokal wird je zu j’: j’ai."
-                  }
-                },
-                {
-                  "person": "2sg",
-                  "pronoun": null,
-                  "native": {
-                    "en": "you have (one friend)",
-                    "de": "du hast"
-                  },
-                  "answer": "tu as",
-                  "answerExplanation": {
-                    "en": "With tu, avoir is as.",
-                    "fr": "Avec tu, avoir devient as.",
-                    "de": "Zu tu gehört die Form as."
-                  }
-                },
-                {
-                  "person": "3sg",
-                  "pronoun": null,
-                  "native": {
-                    "en": "he has",
-                    "de": "er hat"
-                  },
-                  "answer": "il a",
-                  "answerExplanation": {
-                    "en": "With il, elle, on, avoir is a – without an accent; à with an accent grave is the preposition.",
-                    "fr": "Avec il, elle, on, avoir devient a, sans accent ; à avec un accent grave est la préposition.",
-                    "de": "Zu il, elle, on gehört a, ohne Akzent; à mit Accent grave ist die Präposition."
-                  }
-                },
-                {
-                  "person": "1pl",
-                  "pronoun": null,
-                  "native": {
-                    "en": "we have",
-                    "de": "wir haben"
-                  },
-                  "answer": "nous avons",
-                  "answerExplanation": {
-                    "en": "With nous, avoir is avons.",
-                    "fr": "Avec nous, avoir devient avons.",
-                    "de": "Zu nous gehört die Form avons."
-                  }
-                },
-                {
-                  "person": "2pl",
-                  "pronoun": null,
-                  "native": {
-                    "en": "you have (several people)",
-                    "de": "ihr habt"
-                  },
-                  "answer": "vous avez",
-                  "answerExplanation": {
-                    "en": "With vous, avoir is avez.",
-                    "fr": "Avec vous, avoir devient avez.",
-                    "de": "Zu vous gehört die Form avez."
-                  }
-                },
-                {
-                  "person": "3pl",
-                  "pronoun": null,
-                  "native": {
-                    "en": "they have (women)",
-                    "de": "sie haben (Frauen)"
-                  },
-                  "answer": "elles ont",
-                  "answerExplanation": {
-                    "en": "Elles ont: ils ont (avoir, liaison [z]) – ils sont belongs to être.",
-                    "fr": "Elles ont : ils ont (avoir, liaison [z]) – ils sont appartient à être.",
-                    "de": "Elles ont: ils ont (avoir, Bindung [z]) – ils sont gehört zu être."
-                  }
-                }
-              ],
-              "itemId": "ex-forms-persons-2"
             }
           ]
         }
@@ -616,72 +510,6 @@
               "itemId": "ex-forms-typing-2"
             }
           ]
-        },
-        {
-          "pageId": "ex-forms-typing-3",
-          "estimatedDurationS": 45,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the form for each pronoun.",
-            "fr": "Écrivez la forme pour chaque pronom.",
-            "de": "Schreib die Form zu jedem Pronomen."
-          },
-          "items": [
-            {
-              "type": "grammar_pronoun_form_typing",
-              "ruleIds": [
-                "rule-avoir-forms"
-              ],
-              "rows": [
-                {
-                  "rowId": "r-1",
-                  "pronoun": "il",
-                  "accepted": {
-                    "answers": [
-                      "a"
-                    ],
-                    "accentSensitive": []
-                  },
-                  "answerExplanation": {
-                    "en": "With il, elle, on, avoir is a – without an accent; à with an accent grave is the preposition.",
-                    "fr": "Avec il, elle, on, avoir devient a, sans accent ; à avec un accent grave est la préposition.",
-                    "de": "Zu il, elle, on gehört a, ohne Akzent; à mit Accent grave ist die Präposition."
-                  }
-                },
-                {
-                  "rowId": "r-2",
-                  "pronoun": "ils",
-                  "accepted": {
-                    "answers": [
-                      "ont"
-                    ],
-                    "accentSensitive": []
-                  },
-                  "answerExplanation": {
-                    "en": "Ils ont: ils ont (avoir, liaison [z]) – ils sont belongs to être.",
-                    "fr": "Ils ont : ils ont (avoir, liaison [z]) – ils sont appartient à être.",
-                    "de": "Ils ont: ils ont (avoir, Bindung [z]) – ils sont gehört zu être."
-                  }
-                },
-                {
-                  "rowId": "r-3",
-                  "pronoun": "vous",
-                  "accepted": {
-                    "answers": [
-                      "avez"
-                    ],
-                    "accentSensitive": []
-                  },
-                  "answerExplanation": {
-                    "en": "With vous, avoir is avez.",
-                    "fr": "Avec vous, avoir devient avez.",
-                    "de": "Zu vous gehört die Form avez."
-                  }
-                }
-              ],
-              "itemId": "ex-forms-typing-3"
-            }
-          ]
         }
       ]
     },
@@ -922,144 +750,6 @@
                 "de": "Zu vous gehört die Form avez."
               },
               "itemId": "ex-forms-choice-5"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-forms-choice-6",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-avoir-forms"
-              ],
-              "before": "Elles",
-              "after": "deux chats.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "sont"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "a"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "avons"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "ont"
-                }
-              ],
-              "answerChoiceId": "c-4",
-              "hint": null,
-              "answerExplanation": {
-                "en": "Elles ont deux chats: ils ont (avoir, liaison [z]) – ils sont belongs to être.",
-                "fr": "Elles ont deux chats : ils ont (avoir, liaison [z]) – ils sont appartient à être.",
-                "de": "Elles ont deux chats: ils ont (avoir, Bindung [z]) – ils sont gehört zu être."
-              },
-              "itemId": "ex-forms-choice-6"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-forms-choice-7",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-avoir-forms"
-              ],
-              "before": "On",
-              "after": "le temps.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "avons"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "a"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "as"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "ont"
-                }
-              ],
-              "answerChoiceId": "c-2",
-              "hint": null,
-              "answerExplanation": {
-                "en": "On takes the 3rd person singular form: on a.",
-                "fr": "On prend la forme de la 3e personne du singulier : on a.",
-                "de": "On steht mit der Form der 3. Person Singular: on a."
-              },
-              "itemId": "ex-forms-choice-7"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-forms-choice-8",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-avoir-forms"
-              ],
-              "before": "Mes amis",
-              "after": "une maison.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "avez"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "ont"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "a"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "sont"
-                }
-              ],
-              "answerChoiceId": "c-2",
-              "hint": null,
-              "answerExplanation": {
-                "en": "Mes amis is 3rd person plural (like ils), so avoir is ont.",
-                "fr": "Mes amis est à la 3e personne du pluriel (comme ils) : avoir devient ont.",
-                "de": "Mes amis ist 3. Person Plural (wie ils), also heißt avoir ont."
-              },
-              "itemId": "ex-forms-choice-8"
             }
           ]
         }
@@ -1409,98 +1099,6 @@
               "itemId": "ex-usage-choice-6"
             }
           ]
-        },
-        {
-          "pageId": "ex-usage-choice-7",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-avoir-possession"
-              ],
-              "before": "Elle",
-              "after": "une sœur.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "ai"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "est"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "avons"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "a"
-                }
-              ],
-              "answerChoiceId": "c-4",
-              "hint": null,
-              "answerExplanation": {
-                "en": "Possession uses avoir: elle a + noun.",
-                "fr": "La possession s’exprime avec avoir : elle a + nom.",
-                "de": "Besitz drückt man mit avoir aus: elle a + Nomen."
-              },
-              "itemId": "ex-usage-choice-7"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-usage-choice-8",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-avoir-possession"
-              ],
-              "before": "J’",
-              "after": "un ordinateur.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "ai"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "ont"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "suis"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "a"
-                }
-              ],
-              "answerChoiceId": "c-1",
-              "hint": null,
-              "answerExplanation": {
-                "en": "Possession uses avoir: j’ ai + noun.",
-                "fr": "La possession s’exprime avec avoir : j’ ai + nom.",
-                "de": "Besitz drückt man mit avoir aus: j’ ai + Nomen."
-              },
-              "itemId": "ex-usage-choice-8"
-            }
-          ]
         }
       ]
     },
@@ -1696,117 +1294,6 @@
                 "de": "Besitz drückt man mit avoir aus: nous avons + Nomen."
               },
               "itemId": "ex-usage-typing-5"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-usage-typing-6",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-avoir-possession"
-              ],
-              "before": "Tu",
-              "after": "un vélo ?",
-              "accepted": {
-                "answers": [
-                  "as"
-                ],
-                "accentSensitive": []
-              },
-              "hint": {
-                "en": "avoir",
-                "fr": "avoir",
-                "de": "avoir"
-              },
-              "answerExplanation": {
-                "en": "Possession uses avoir: tu as + noun.",
-                "fr": "La possession s’exprime avec avoir : tu as + nom.",
-                "de": "Besitz drückt man mit avoir aus: tu as + Nomen."
-              },
-              "itemId": "ex-usage-typing-6"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-usage-typing-7",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-avoir-possession"
-              ],
-              "before": "Paul",
-              "after": "deux enfants.",
-              "accepted": {
-                "answers": [
-                  "a"
-                ],
-                "accentSensitive": []
-              },
-              "hint": {
-                "en": "avoir",
-                "fr": "avoir",
-                "de": "avoir"
-              },
-              "answerExplanation": {
-                "en": "Possession uses avoir: il a + noun.",
-                "fr": "La possession s’exprime avec avoir : il a + nom.",
-                "de": "Besitz drückt man mit avoir aus: il a + Nomen."
-              },
-              "itemId": "ex-usage-typing-7"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-usage-typing-8",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-avoir-possession"
-              ],
-              "before": "Elles",
-              "after": "un examen demain.",
-              "accepted": {
-                "answers": [
-                  "ont"
-                ],
-                "accentSensitive": []
-              },
-              "hint": {
-                "en": "avoir",
-                "fr": "avoir",
-                "de": "avoir"
-              },
-              "answerExplanation": {
-                "en": "Possession uses avoir: elles ont + noun.",
-                "fr": "La possession s’exprime avec avoir : elles ont + nom.",
-                "de": "Besitz drückt man mit avoir aus: elles ont + Nomen."
-              },
-              "itemId": "ex-usage-typing-8"
             }
           ]
         }
@@ -2029,116 +1516,6 @@
                 "de": "Besitz drückt man mit avoir aus: nous avons + Nomen."
               },
               "itemId": "ex-usage-order-4"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-usage-order-5",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Put the words in the right order.",
-            "fr": "Mettez les mots dans le bon ordre.",
-            "de": "Bring die Wörter in die richtige Reihenfolge."
-          },
-          "items": [
-            {
-              "type": "grammar_word_order",
-              "ruleIds": [
-                "rule-avoir-possession"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-2",
-                  "text": "avez"
-                },
-                {
-                  "tokenId": "t-4",
-                  "text": "question"
-                },
-                {
-                  "tokenId": "t-1",
-                  "text": "Vous"
-                },
-                {
-                  "tokenId": "t-3",
-                  "text": "une"
-                },
-                {
-                  "tokenId": "t-5",
-                  "text": "?"
-                }
-              ],
-              "acceptedOrders": [
-                [
-                  "t-1",
-                  "t-2",
-                  "t-3",
-                  "t-4",
-                  "t-5"
-                ]
-              ],
-              "answerExplanation": {
-                "en": "Possession uses avoir: vous avez + noun.",
-                "fr": "La possession s’exprime avec avoir : vous avez + nom.",
-                "de": "Besitz drückt man mit avoir aus: vous avez + Nomen."
-              },
-              "itemId": "ex-usage-order-5"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-usage-order-6",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Put the words in the right order.",
-            "fr": "Mettez les mots dans le bon ordre.",
-            "de": "Bring die Wörter in die richtige Reihenfolge."
-          },
-          "items": [
-            {
-              "type": "grammar_word_order",
-              "ruleIds": [
-                "rule-avoir-possession"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-4",
-                  "text": "petite"
-                },
-                {
-                  "tokenId": "t-5",
-                  "text": "voiture"
-                },
-                {
-                  "tokenId": "t-3",
-                  "text": "une"
-                },
-                {
-                  "tokenId": "t-2",
-                  "text": "ont"
-                },
-                {
-                  "tokenId": "t-1",
-                  "text": "Ils"
-                }
-              ],
-              "acceptedOrders": [
-                [
-                  "t-1",
-                  "t-2",
-                  "t-3",
-                  "t-4",
-                  "t-5"
-                ]
-              ],
-              "answerExplanation": {
-                "en": "Possession uses avoir: ils ont + noun.",
-                "fr": "La possession s’exprime avec avoir : ils ont + nom.",
-                "de": "Besitz drückt man mit avoir aus: ils ont + Nomen."
-              },
-              "itemId": "ex-usage-order-6"
             }
           ]
         }
@@ -2365,116 +1742,6 @@
               "itemId": "ex-usage-spot-4"
             }
           ]
-        },
-        {
-          "pageId": "ex-usage-spot-5",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Find the wrong word and correct it.",
-            "fr": "Trouvez le mot faux et corrigez-le.",
-            "de": "Finde das falsche Wort und korrigiere es."
-          },
-          "items": [
-            {
-              "type": "grammar_error_spotter",
-              "ruleIds": [
-                "rule-avoir-possession"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-1",
-                  "text": "Elles"
-                },
-                {
-                  "tokenId": "t-2",
-                  "text": "sont"
-                },
-                {
-                  "tokenId": "t-3",
-                  "text": "un"
-                },
-                {
-                  "tokenId": "t-4",
-                  "text": "chat"
-                }
-              ],
-              "faultyTokenId": "t-2",
-              "correction": {
-                "mode": "select",
-                "accepted": {
-                  "answers": [
-                    "ont"
-                  ],
-                  "accentSensitive": []
-                },
-                "choices": [
-                  "ont",
-                  "sont",
-                  "a"
-                ]
-              },
-              "answerExplanation": {
-                "en": "Elles ont un chat: ils ont (avoir, liaison [z]) – ils sont belongs to être.",
-                "fr": "Elles ont un chat : ils ont (avoir, liaison [z]) – ils sont appartient à être.",
-                "de": "Elles ont un chat: ils ont (avoir, Bindung [z]) – ils sont gehört zu être."
-              },
-              "itemId": "ex-usage-spot-5"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-usage-spot-6",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Find the wrong word and correct it.",
-            "fr": "Trouvez le mot faux et corrigez-le.",
-            "de": "Finde das falsche Wort und korrigiere es."
-          },
-          "items": [
-            {
-              "type": "grammar_error_spotter",
-              "ruleIds": [
-                "rule-avoir-possession"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-1",
-                  "text": "Vous"
-                },
-                {
-                  "tokenId": "t-2",
-                  "text": "avons"
-                },
-                {
-                  "tokenId": "t-3",
-                  "text": "une"
-                },
-                {
-                  "tokenId": "t-4",
-                  "text": "maison"
-                }
-              ],
-              "faultyTokenId": "t-2",
-              "correction": {
-                "mode": "type",
-                "accepted": {
-                  "answers": [
-                    "avez"
-                  ],
-                  "accentSensitive": []
-                },
-                "choices": []
-              },
-              "answerExplanation": {
-                "en": "With vous, avoir is avez.",
-                "fr": "Avec vous, avoir devient avez.",
-                "de": "Zu vous gehört die Form avez."
-              },
-              "itemId": "ex-usage-spot-6"
-            }
-          ]
         }
       ]
     },
@@ -2638,8 +1905,8 @@
         },
         {
           "pageId": "exam-sentences",
-          "estimatedDurationS": 120,
-          "timeLimitS": 180,
+          "estimatedDurationS": 60,
+          "timeLimitS": 90,
           "instructions": {
             "en": "Type the missing words.",
             "fr": "Écrivez les mots manquants.",
@@ -2729,97 +1996,13 @@
                 "de": "Zu vous gehört die Form avez."
               },
               "itemId": "exam-sentences-4"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-avoir-forms"
-              ],
-              "before": "Les étudiants",
-              "after": "un professeur sympa.",
-              "accepted": {
-                "answers": [
-                  "ont"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "Les étudiants is 3rd person plural (like ils), so avoir is ont.",
-                "fr": "Les étudiants est à la 3e personne du pluriel (comme ils) : avoir devient ont.",
-                "de": "Les étudiants ist 3. Person Plural (wie ils), also heißt avoir ont."
-              },
-              "itemId": "exam-sentences-5"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-avoir-possession"
-              ],
-              "before": "J’",
-              "after": "une idée.",
-              "accepted": {
-                "answers": [
-                  "ai"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "Possession uses avoir: j’ ai + noun.",
-                "fr": "La possession s’exprime avec avoir : j’ ai + nom.",
-                "de": "Besitz drückt man mit avoir aus: j’ ai + Nomen."
-              },
-              "itemId": "exam-sentences-6"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-avoir-possession"
-              ],
-              "before": "On",
-              "after": "un problème.",
-              "accepted": {
-                "answers": [
-                  "a"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "Possession uses avoir: on a + noun.",
-                "fr": "La possession s’exprime avec avoir : on a + nom.",
-                "de": "Besitz drückt man mit avoir aus: on a + Nomen."
-              },
-              "itemId": "exam-sentences-7"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-avoir-possession"
-              ],
-              "before": "Elles",
-              "after": "trois frères.",
-              "accepted": {
-                "answers": [
-                  "ont"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "Possession uses avoir: elles ont + noun.",
-                "fr": "La possession s’exprime avec avoir : elles ont + nom.",
-                "de": "Besitz drückt man mit avoir aus: elles ont + Nomen."
-              },
-              "itemId": "exam-sentences-8"
             }
           ]
         },
         {
           "pageId": "exam-age",
-          "estimatedDurationS": 90,
-          "timeLimitS": 140,
+          "estimatedDurationS": 45,
+          "timeLimitS": 70,
           "instructions": {
             "en": "Type the missing words.",
             "fr": "Écrivez les mots manquants.",
@@ -2888,76 +2071,13 @@
                 "de": "Das Alter steht im Französischen mit avoir + Zahl + ans: tu as … ans. Être ist hier falsch."
               },
               "itemId": "exam-age-3"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-avoir-age"
-              ],
-              "before": "Nous",
-              "after": "le même âge.",
-              "accepted": {
-                "answers": [
-                  "avons"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "French gives age with avoir + number + ans: nous avons … ans. Être is wrong here.",
-                "fr": "En français, l’âge se dit avec avoir + nombre + ans : nous avons … ans. Être est faux ici.",
-                "de": "Das Alter steht im Französischen mit avoir + Zahl + ans: nous avons … ans. Être ist hier falsch."
-              },
-              "itemId": "exam-age-4"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-avoir-age"
-              ],
-              "before": "Vous",
-              "after": "vingt et un ans.",
-              "accepted": {
-                "answers": [
-                  "avez"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "French gives age with avoir + number + ans: vous avez … ans. Être is wrong here.",
-                "fr": "En français, l’âge se dit avec avoir + nombre + ans : vous avez … ans. Être est faux ici.",
-                "de": "Das Alter steht im Französischen mit avoir + Zahl + ans: vous avez … ans. Être ist hier falsch."
-              },
-              "itemId": "exam-age-5"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-avoir-age"
-              ],
-              "before": "Mes cousins",
-              "after": "onze ans.",
-              "accepted": {
-                "answers": [
-                  "ont"
-                ],
-                "accentSensitive": []
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "French gives age with avoir + number + ans: ils ont … ans. Être is wrong here.",
-                "fr": "En français, l’âge se dit avec avoir + nombre + ans : ils ont … ans. Être est faux ici.",
-                "de": "Das Alter steht im Französischen mit avoir + Zahl + ans: ils ont … ans. Être ist hier falsch."
-              },
-              "itemId": "exam-age-6"
             }
           ]
         },
         {
           "pageId": "exam-order",
-          "estimatedDurationS": 100,
-          "timeLimitS": 150,
+          "estimatedDurationS": 75,
+          "timeLimitS": 120,
           "instructions": {
             "en": "Put the words in the right order.",
             "fr": "Mettez les mots dans le bon ordre.",
@@ -3087,44 +2207,6 @@
                 "de": "Besitz drückt man mit avoir aus: tu as + Nomen."
               },
               "itemId": "exam-order-3"
-            },
-            {
-              "type": "grammar_word_order",
-              "ruleIds": [
-                "rule-avoir-age"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-1",
-                  "text": "Elle"
-                },
-                {
-                  "tokenId": "t-2",
-                  "text": "a"
-                },
-                {
-                  "tokenId": "t-4",
-                  "text": "ans"
-                },
-                {
-                  "tokenId": "t-3",
-                  "text": "dix-neuf"
-                }
-              ],
-              "acceptedOrders": [
-                [
-                  "t-1",
-                  "t-2",
-                  "t-3",
-                  "t-4"
-                ]
-              ],
-              "answerExplanation": {
-                "en": "French gives age with avoir + number + ans: elle a … ans. Être is wrong here.",
-                "fr": "En français, l’âge se dit avec avoir + nombre + ans : elle a … ans. Être est faux ici.",
-                "de": "Das Alter steht im Französischen mit avoir + Zahl + ans: elle a … ans. Être ist hier falsch."
-              },
-              "itemId": "exam-order-4"
             }
           ]
         }
@@ -3135,10 +2217,10 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "content-v4",
-    "generatedAt": "2026-10-07T23:58:54.217Z",
+    "generatedAt": "2026-10-08T00:17:18.245Z",
     "inputHashes": {
       "outline": "6330aa315b82f91f79b5f684caf8264ae01a4b0148b010ab9324c3b67e0028be",
-      "brief": "8813c795a14391db219df17b368a6b88f25d3d2a5943c0a386c50b808b2c3f2e"
+      "brief": "b0ed6d5e4a91658afc20bc1f56224db508d4c029a5c52004074a6ceb08e31a37"
     }
   }
 }
