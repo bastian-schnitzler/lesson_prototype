@@ -22,8 +22,10 @@ function shuffle<T>(list: T[], key: string): T[] {
     const j = h % (i + 1);
     [out[i], out[j]] = [out[j], out[i]];
   }
-  // A shuffle that leaves everything in place gives the order away.
-  if (out.length > 1 && out.every((x, i) => x === list[i])) out.push(out.shift()!);
+  // A shuffle that keeps the order, or simply reverses it, gives the answer away.
+  const same = (a: T[], b: T[]) => a.every((x, i) => x === b[i]);
+  if (out.length > 2 && (same(out, list) || same(out, [...list].reverse()))) out.push(out.shift()!);
+  else if (out.length === 2 && same(out, list)) out.reverse();
   return out;
 }
 

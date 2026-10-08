@@ -476,22 +476,22 @@
               "choices": [
                 {
                   "choiceId": "c-1",
-                  "text": "elle"
-                },
-                {
-                  "choiceId": "c-2",
                   "text": "il"
                 },
                 {
-                  "choiceId": "c-3",
+                  "choiceId": "c-2",
                   "text": "tu"
                 },
                 {
-                  "choiceId": "c-4",
+                  "choiceId": "c-3",
                   "text": "je"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "elle"
                 }
               ],
-              "answerChoiceId": "c-4",
+              "answerChoiceId": "c-3",
               "hint": null,
               "answerExplanation": {
                 "en": "I = je: the speaker talks about themselves.",
@@ -1714,22 +1714,22 @@
               "choices": [
                 {
                   "choiceId": "c-1",
-                  "text": "vous"
-                },
-                {
-                  "choiceId": "c-2",
                   "text": "ils"
                 },
                 {
-                  "choiceId": "c-3",
+                  "choiceId": "c-2",
                   "text": "nous"
                 },
                 {
-                  "choiceId": "c-4",
+                  "choiceId": "c-3",
                   "text": "on"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "vous"
                 }
               ],
-              "answerChoiceId": "c-4",
+              "answerChoiceId": "c-3",
               "hint": {
                 "en": "\"we\", spoken French, verb in the il form",
                 "fr": "« nous » à l’oral, verbe à la forme de il",
@@ -2497,22 +2497,22 @@
               "choices": [
                 {
                   "choiceId": "c-1",
-                  "text": "on"
-                },
-                {
-                  "choiceId": "c-2",
                   "text": "elle"
                 },
                 {
-                  "choiceId": "c-3",
+                  "choiceId": "c-2",
                   "text": "tu"
                 },
                 {
-                  "choiceId": "c-4",
+                  "choiceId": "c-3",
                   "text": "vous"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "on"
                 }
               ],
-              "answerChoiceId": "c-4",
+              "answerChoiceId": "c-3",
               "hint": {
                 "en": "a teacher",
                 "fr": "une professeure",
@@ -3459,10 +3459,10 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "content-v4",
-    "generatedAt": "2026-10-07T23:48:51.202Z",
+    "generatedAt": "2026-10-07T23:58:54.364Z",
     "inputHashes": {
       "outline": "b476d53fe06441adecdd0702cbcd6c4296b5d821033fe4fe6cf775b302b0d695",
-      "brief": "0f8c53d18004bb06a9237bbee13ee516fb0f8ff5c9308d20e1e7fbbb8b72eccc"
+      "brief": "e3bbbf46f680827d5998e394691a2c74115f26c87e62862c76d1742821adb2e9"
     }
   }
 }

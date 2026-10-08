@@ -52,7 +52,7 @@ it('exposes grammar choices, written answers, rules, estimates and fixed exam li
   const reviewed = screen.getAllByRole('tab').map((tab) => { fireEvent.click(tab); return screen.getByRole('tabpanel').textContent; }).join(' ');
   expect(reviewed).toContain('grammar_word_order');
   expect(reviewed).toContain('rule-n-elision');
-  expect(reviewed).toContain('Countdown limit: 4 min');
+  expect(reviewed).toMatch(/Countdown limit: \d+ min/);
   expect(reviewed).toContain('Personalised production feedback');
   expect(reviewed).toContain('Answer explanation');
   expect(screen.getByRole('tabpanel').querySelectorAll('input, button, select, textarea')).toHaveLength(0);

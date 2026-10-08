@@ -340,10 +340,6 @@
               ],
               "tokens": [
                 {
-                  "tokenId": "t-4",
-                  "text": "avez"
-                },
-                {
                   "tokenId": "t-3",
                   "text": "avons"
                 },
@@ -354,6 +350,10 @@
                 {
                   "tokenId": "t-1",
                   "text": "as"
+                },
+                {
+                  "tokenId": "t-4",
+                  "text": "avez"
                 }
               ],
               "rows": [
@@ -1200,22 +1200,22 @@
               "choices": [
                 {
                   "choiceId": "c-1",
-                  "text": "ont"
-                },
-                {
-                  "choiceId": "c-2",
                   "text": "as"
                 },
                 {
-                  "choiceId": "c-3",
+                  "choiceId": "c-2",
                   "text": "est"
                 },
                 {
-                  "choiceId": "c-4",
+                  "choiceId": "c-3",
                   "text": "a"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "ont"
                 }
               ],
-              "answerChoiceId": "c-4",
+              "answerChoiceId": "c-3",
               "hint": null,
               "answerExplanation": {
                 "en": "French gives age with avoir + number + ans: il a … ans. Être is wrong here.",
@@ -3135,10 +3135,10 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "content-v4",
-    "generatedAt": "2026-10-07T23:46:07.251Z",
+    "generatedAt": "2026-10-07T23:58:54.217Z",
     "inputHashes": {
       "outline": "6330aa315b82f91f79b5f684caf8264ae01a4b0148b010ab9324c3b67e0028be",
-      "brief": "06102619bfbed5024f2993d2d88dd3f49e2e99cf6f19cc15172472bb2a708878"
+      "brief": "8813c795a14391db219df17b368a6b88f25d3d2a5943c0a386c50b808b2c3f2e"
     }
   }
 }

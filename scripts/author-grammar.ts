@@ -16,7 +16,7 @@ import { MESSAGES } from '../src/i18n/messages.ts';
 import type { LocalizedText } from '../src/schemas/artifactCommon.ts';
 import type { GrammarBrief, GrammarContent, GrammarExerciseType, GrammarItem } from '../src/schemas/grammar.ts';
 import { L, type Draft, type Item, type LessonDefinition } from './author-grammar-items.ts';
-import { validateBrief, validateContent } from '../src/validation/artifacts.ts';
+import { grammarBriefLengthIssues, grammarContentLengthIssues, validateBrief, validateContent } from '../src/validation/artifacts.ts';
 import { catalogContexts } from '../generator/briefs.ts';
 
 /* -------------------------------------------------------------- estimates */
@@ -119,7 +119,11 @@ export function buildLesson(def: LessonDefinition, root = resolve(import.meta.di
   return {
     briefText, contentText, dir,
     report: `${def.id}: ${practice} practice units, ${exam} exam units on ${def.exam.length} pages, ${brief.estimatedMinutes} min`,
-    issues: [...briefResult.issues.map((i) => `brief ${i.path}: ${i.message}`), ...(contentResult?.issues ?? []).map((i) => `content ${i.path}: ${i.message}`), ...(contentResult ? [] : ['content not checked: the brief is invalid'])],
+    issues: [
+      ...briefResult.issues.map((i) => `brief ${i.path}: ${i.message}`), ...(contentResult?.issues ?? []).map((i) => `content ${i.path}: ${i.message}`), ...(contentResult ? [] : ['content not checked: the brief is invalid']),
+      ...(briefResult.value?.kind === 'grammar' ? grammarBriefLengthIssues(briefResult.value) : []).map((i) => `brief length ${i.path}: ${i.message}`),
+      ...(contentResult?.value?.kind === 'grammar' ? grammarContentLengthIssues(contentResult.value) : []).map((i) => `content length ${i.path}: ${i.message}`),
+    ],
     stale: [...briefResult.staleReasons, ...(contentResult?.staleReasons ?? [])],
   };
 }

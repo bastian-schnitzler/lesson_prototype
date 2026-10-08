@@ -6,7 +6,7 @@ import { z } from 'zod';
 
 import { briefSchema, contentSchema, type Brief } from '../../src/schemas/artifacts.ts';
 import { OutlineFileSchema } from '../../src/schemas/outline.ts';
-import { validateBrief, validateContent, type OutlineContext } from '../../src/validation/artifacts.ts';
+import { grammarBriefLengthIssues, grammarContentLengthIssues, validateBrief, validateContent, type OutlineContext } from '../../src/validation/artifacts.ts';
 import { vocabularyLesson } from '../../src/domain/vocabularyLesson.ts';
 
 const ROOT = resolve(import.meta.dirname, '..', '..');
@@ -245,6 +245,39 @@ describe('grammar content validation', () => {
   it('keeps the production feedback step a fixed placeholder', () => {
     const r = checkContent('fr-negation-ne-pas', (c) => c.steps[5].pages[0].items.push({ type: 'production_feedback_placeholder', itemId: 'feedback-2' }));
     expect(messages(r)).toMatch(/fixed production placeholder/);
+  });
+});
+
+describe('grammar lesson length (P3-07)', () => {
+  const sample = (id: string) => {
+    const read = (folder: string) => JSON.parse(readFileSync(join(ROOT, 'content', folder, `${id}.json`), 'utf8'));
+    return { brief: briefSchema('grammar', 'fr').parse(read('briefs')), content: contentSchema('grammar', 'fr').parse(read('lessons')) };
+  };
+
+  it('passes the rewritten samples and flags the short fixtures, which stay playable', () => {
+    const { brief, content } = sample('fr-verb-etre-present');
+    if (brief.kind !== 'grammar' || content.kind !== 'grammar') throw new Error('Expected grammar');
+    expect([...grammarBriefLengthIssues(brief), ...grammarContentLengthIssues(content)]).toEqual([]);
+    expect(checkContent('fr-verb-etre-present').status).toBe('valid');
+    const fixture = briefSchema('grammar', 'fr').parse(load('fr-verb-etre-present', 'brief'));
+    if (fixture.kind !== 'grammar') throw new Error('Expected grammar');
+    expect(grammarBriefLengthIssues(fixture).map((i) => i.message).join('\n')).toMatch(/the exam has 3–4 pages[\s\S]*at least 50[\s\S]*at least 24/);
+  });
+
+  it('checks exercises per block, scored units and realistic page estimates', () => {
+    const { brief, content } = sample('fr-negation-ne-pas');
+    if (brief.kind !== 'grammar' || content.kind !== 'grammar') throw new Error('Expected grammar');
+    brief.blocks[1].exercises = brief.blocks[1].exercises.slice(0, 1);
+    expect(grammarBriefLengthIssues(brief).map((i) => i.path)).toContain('blocks.1.exercises');
+    content.steps[1].pages[0].estimatedDurationS = 200;
+    content.steps[0].pages[0].estimatedDurationS = 20;
+    const messages = grammarContentLengthIssues(content).map((i) => `${i.path}: ${i.message}`).join('\n');
+    expect(messages).toMatch(/steps\.1\.pages\.0\.estimatedDurationS: 200 s per scored unit/);
+    expect(messages).toMatch(/steps\.0\.pages\.0\.estimatedDurationS: an explanation page takes 45–240 s/);
+  });
+
+  it('requires unique new verbs', () => {
+    expect(messages(checkBrief('fr-verb-etre-present', (b) => b.newVerbs.push(b.newVerbs[0])))).toMatch(/duplicate infinitive être/);
   });
 });
 

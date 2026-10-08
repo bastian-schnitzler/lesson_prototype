@@ -291,9 +291,10 @@ export function SpotControl({ unit, props }: { unit: PlanUnit & { kind: 'spot' }
 }
 
 export function Gap({ before, after, lang, children }: { before?: string; after?: string; lang: string; children: ReactNode }) {
+  // A comma or full stop follows the gap directly; other text keeps a space.
   return (
     <p className="gap-sentence" lang={lang}>
-      {before} {children} {after}
+      {before} {children}{after && /^[,.]/.test(after) ? after : ` ${after ?? ''}`}
     </p>
   );
 }

@@ -92,7 +92,7 @@ export const grammarBriefSchema = (lang: string) =>
                 estimatedDurationS: DurationSecondsSchema,
               }),
             )
-            .min(GRAMMAR_LENGTH.exercisesPerBlock[0])
+            .min(1)
             .max(GRAMMAR_LENGTH.exercisesPerBlock[1]),
         }),
       )

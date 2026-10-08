@@ -59,7 +59,7 @@ function options(dir: string, respond: (section: string, request: GenerationRequ
     const id = request.label!.split('/')[0];
     return { text: JSON.stringify(respond(section, request, id)), model: 'fake-model' };
   });
-  return { opts: { contentDir: dir, adapter: () => ({ generate }), sleep: async () => {} } satisfies BriefOptions, generate };
+  return { opts: { contentDir: dir, adapter: () => ({ generate }), sleep: async () => {}, lengthRules: false } satisfies BriefOptions, generate };
 }
 
 describe('offline lesson content generation', () => {

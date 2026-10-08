@@ -196,8 +196,6 @@ function checkGrammarBrief(b: GrammarBrief, issues: Issues) {
     issues.check(b.blocks.some((x) => x.exercises.some((e) => e.type === 'grammar_person_matching')), 'blocks', `${b.topic} lessons include a grammar_person_matching exercise`);
   }
   issues.unique(b.newVerbs.map((v) => v.infinitive), 'newVerbs', 'infinitive');
-  const [minPages, maxPages] = GRAMMAR_LENGTH.examPages;
-  issues.check(b.exam.pages.length >= minPages && b.exam.pages.length <= maxPages, 'exam.pages', `the exam has ${minPages}–${maxPages} pages (P3-07)`);
   const examined = new Set(b.exam.pages.flatMap((pg) => pg.ruleIds));
   b.exam.pages.forEach((pg, i) => {
     for (const r of pg.ruleIds) issues.check(rules.has(r), `exam.pages.${i}.ruleIds`, `unknown rule ${r}`);
@@ -328,9 +326,28 @@ function checkGrammarItem(item: GrammarItem, path: string, rules: Set<string>, e
 /** Scored units of a grammar item: one per row for row items, else one. */
 const unitCount = (item: GrammarItem) => ('rows' in item ? item.rows.length : item.type === 'grammar_explanation' || item.type === 'production_feedback_placeholder' ? 0 : 1);
 
-/** Lesson length (P3-07): enough scored units, and page estimates that fit the work on the page. */
-function checkGrammarLength(c: GrammarContent, issues: Issues) {
+/**
+ * Lesson length rules (P3-07, SPEC section 7). They are a quality gate for authored and generated
+ * lessons, not a condition for playing a lesson: the generator applies the brief rules before saving,
+ * and `make sample-lessons` and the authoring tool apply both to every grammar lesson in content/.
+ */
+export function grammarBriefLengthIssues(b: GrammarBrief): Issue[] {
   const L = GRAMMAR_LENGTH;
+  const issues = new Issues();
+  b.blocks.forEach((block, i) => issues.check(block.exercises.length >= L.exercisesPerBlock[0], `blocks.${i}.exercises`, `a teaching block has ${L.exercisesPerBlock[0]}–${L.exercisesPerBlock[1]} exercises (P3-07)`));
+  issues.check(b.exam.pages.length >= L.examPages[0] && b.exam.pages.length <= L.examPages[1], 'exam.pages', `the exam has ${L.examPages[0]}–${L.examPages[1]} pages (P3-07)`);
+  // Row items (pronoun rows, person boards) count at least three units each.
+  const planned = (type: string, n: number) => (/pronoun|person/.test(type) ? 3 * n : n);
+  const practice = b.blocks.flatMap((x) => x.exercises).reduce((n, e) => n + planned(e.type, e.itemCount), 0);
+  const exam = b.exam.pages.reduce((n, p) => n + planned(p.type, p.itemCount), 0);
+  issues.check(practice >= L.minPracticeUnits, 'blocks', `the exercises plan about ${practice} scored units; at least ${L.minPracticeUnits} (P3-07)`);
+  issues.check(exam >= L.minExamUnits, 'exam.pages', `the exam plans about ${exam} scored units; at least ${L.minExamUnits} (P3-07)`);
+  return issues.list;
+}
+
+export function grammarContentLengthIssues(c: GrammarContent): Issue[] {
+  const L = GRAMMAR_LENGTH;
+  const issues = new Issues();
   const units = (role: 'exam' | 'practice') => c.steps.filter((s) => (role === 'exam' ? s.role === 'exam' : s.role === 'exercise')).flatMap((s) => s.pages.flatMap((pg) => pg.items)).reduce((n, it) => n + unitCount(it), 0);
   issues.check(units('practice') >= L.minPracticeUnits, 'steps', `practice has ${units('practice')} scored units; at least ${L.minPracticeUnits} (P3-07)`);
   issues.check(units('exam') >= L.minExamUnits, 'steps', `the exam has ${units('exam')} scored units; at least ${L.minExamUnits} (P3-07)`);
@@ -344,6 +361,7 @@ function checkGrammarLength(c: GrammarContent, issues: Issues) {
       issues.check(per >= L.secondsPerUnit[0] && per <= L.secondsPerUnit[1], path, `${Math.round(per)} s per scored unit; keep ${L.secondsPerUnit[0]}–${L.secondsPerUnit[1]} s (P3-07)`);
     }
   }));
+  return issues.list;
 }
 
 /** Items assess only the planned rules, and together they assess every planned rule (P3-01). */
@@ -397,7 +415,6 @@ function checkGrammarContent(c: GrammarContent, b: GrammarBrief, issues: Issues)
       page.items.forEach((item, ii) => checkGrammarItem(item, `${pp}.items.${ii}`, rules, want.role === 'exam', issues));
     });
   });
-  checkGrammarLength(c, issues);
   const examPages = c.steps[c.steps.length - 1].pages.map((pg) => pg.pageId);
   issues.check(sameSet(examPages, [...examPlan.keys()]), 'steps', 'exam pages must match the brief exam plan');
 }

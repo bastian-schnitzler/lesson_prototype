@@ -621,7 +621,7 @@ Acceptance:
 - Briefs follow SPEC section 4:
   - rules with IDs
   - 2–4 teaching blocks, each with an explanation plan, examples with translations for every mother tongue, pitfalls and 2–4 suitable exercises; pronoun–form exercises only where they fit the topic, person matching in every pronoun and verb-form lesson
-  - the length rules of SPEC section 7 (P3-07) and `newVerbs` for verbs no earlier vocabulary lesson taught
+  - the length rules of SPEC section 7 (P3-07) and `newVerbs` for verbs no earlier vocabulary lesson taught; lessons are written as definitions in `authoring/grammar/` and built with `scripts/author-grammar.ts`
   - a feedback placeholder
   - mixed exam pages that cover every rule, using only typed gaps, pronoun-form typing or word order
   - durations and limits
@@ -784,6 +784,8 @@ Acceptance:
 - Grammar briefs list the verbs a lesson introduces that no earlier vocabulary lesson taught (`newVerbs`: infinitive with a translation for every mother tongue); the start page and the first explanation page show them as a "New verbs" table.
 - Claude rewrites the ten grammar sample briefs and lessons by hand (no Gemini calls) to the new rules, with correct and natural A1 French, complete en/fr/de and current input hashes; `make sample-lessons` and `make catalog` pass without warnings.
 - Unit and end-to-end tests cover the new rules and displays; representative journeys pass.
+
+Outcome (2026-10-08): length rules as a quality gate (generator, `make sample-lessons`, authoring tool); `newVerbs` with the New verbs table; the authoring tool `scripts/author-grammar.ts` with definitions in `authoring/grammar/`; the ten samples rewritten (50–68 practice and 24 exam units, 24–27 minutes); gaps no longer put a space before a following comma or full stop.
 
 Dependencies: P3-02.
 

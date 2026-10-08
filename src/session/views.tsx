@@ -312,7 +312,7 @@ function ExamIntro({ plan, page }: { plan: LessonPlan; page: PlanPage }) {
 /** The task line of a result row, split at its arrows (un stylo → des ____) into aligned columns. */
 export function promptParts(unit: PlanUnit, t: (key: MessageKey) => string): string[] {
   // Only listening units fall back to "Write what you hear"; word order has no task text, only the sentence.
-  const prompt = [unit.prompt.native, unit.prompt.learning, unit.prompt.before !== undefined ? `${unit.prompt.before ?? ''} ____ ${unit.prompt.after ?? ''}` : undefined].find(Boolean) ?? (unit.speak ? t('session.typeWhatYouHear') : undefined);
+  const prompt = [unit.prompt.native, unit.prompt.learning, unit.prompt.before !== undefined ? `${unit.prompt.before ?? ''} ____${/^[,.]/.test(unit.prompt.after ?? '') ? '' : ' '}${unit.prompt.after ?? ''}`.trim() : undefined].find(Boolean) ?? (unit.speak ? t('session.typeWhatYouHear') : undefined);
   if (!prompt) return [];
   if (unit.itemType === 'vocabulary_gender_select') return [`${prompt}:`];
   return prompt.split(/\s*→\s*/).map((part) => part.trim());

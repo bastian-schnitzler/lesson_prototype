@@ -337,22 +337,22 @@
               "choices": [
                 {
                   "choiceId": "c-1",
-                  "text": "fleures"
-                },
-                {
-                  "choiceId": "c-2",
                   "text": "fleurx"
                 },
                 {
-                  "choiceId": "c-3",
+                  "choiceId": "c-2",
                   "text": "fleur"
                 },
                 {
-                  "choiceId": "c-4",
+                  "choiceId": "c-3",
                   "text": "fleurs"
+                },
+                {
+                  "choiceId": "c-4",
+                  "text": "fleures"
                 }
               ],
-              "answerChoiceId": "c-4",
+              "answerChoiceId": "c-3",
               "hint": null,
               "answerExplanation": {
                 "en": "Most nouns add -s in the plural: une fleur → des fleurs.",
@@ -3042,10 +3042,10 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "content-v4",
-    "generatedAt": "2026-10-07T23:52:15.441Z",
+    "generatedAt": "2026-10-07T23:58:54.535Z",
     "inputHashes": {
       "outline": "b7ef42d6b6f8a10c79700ba5eddb9d79afaefa941237e1a5607f83ab01bfe0c8",
-      "brief": "3b0d6f3cf6fac5645077adcce1a4be20eae1903c8ec1ca397f75b9a962ed5c5f"
+      "brief": "580b68df27533958d55eebabaa1038225fc759fb60ee56185e03df3fa5f7477f"
     }
   }
 }

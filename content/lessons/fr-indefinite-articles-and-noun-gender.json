@@ -3027,10 +3027,10 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "content-v4",
-    "generatedAt": "2026-10-07T23:49:47.973Z",
+    "generatedAt": "2026-10-07T23:58:54.421Z",
     "inputHashes": {
       "outline": "21cea9aeeacae2d7d0c58cde432c039e81a485c45fc20fb3991afbe89e01be25",
-      "brief": "d03877335026f068a430bbfbdc8d137ff005a13d0e420d8d9e16aead4cbb0b9c"
+      "brief": "8f60bf0b70f9c568dc6144ac680d9e230eba3968705bd34bd362e68d4f32e5db"
     }
   }
 }

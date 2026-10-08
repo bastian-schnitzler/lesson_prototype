@@ -347,6 +347,9 @@ test('blocks a lesson with listening tasks on the start page while no French voi
   await page.goto('./#/lesson/fr-verb-etre-present/play');
   await expect(page.getByRole('button', { name: 'Continue' })).toBeVisible();
   await expect(page.getByRole('alert')).toHaveCount(0);
+  // Grammar start pages list the verbs the lesson introduces (P3-07).
+  await expect(page.getByRole('heading', { name: 'New verbs' })).toBeVisible();
+  await expect(page.getByRole('row', { name: /être.*to be/ })).toBeVisible();
 });
 
 test('replaces a revealed flashcard Listen button with Install language, which opens the help dialog', async ({ page }) => {

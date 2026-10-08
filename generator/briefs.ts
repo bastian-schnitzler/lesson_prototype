@@ -5,7 +5,7 @@ import { outlineEntryHash } from '../src/catalog/scan.ts';
 import { ARTIFACT_SCHEMA_VERSION } from '../src/schemas/artifactCommon.ts';
 import { isSupportedKind } from '../src/schemas/artifacts.ts';
 import { LessonIdSchema } from '../src/schemas/outline.ts';
-import { validateBrief, type OutlineContext } from '../src/validation/artifacts.ts';
+import { grammarBriefLengthIssues, validateBrief, type OutlineContext } from '../src/validation/artifacts.ts';
 import { GenerationError, type BriefAdapter } from './gemini.ts';
 import { briefPrompt, payloadSchema, PROMPT_VERSION, structuredSchema } from './prompts.ts';
 import { isCode, ModelUnit, withFileLock } from './units.ts';
@@ -22,6 +22,8 @@ export interface BriefOptions {
   concurrency?: number;
   /** Delay between worker starts, so parallel workers do not hit the API at the same moment. */
   staggerMs?: number;
+  /** Apply the grammar lesson length rules before saving (default true, P3-07); tests with small fixtures switch them off. */
+  lengthRules?: boolean;
 }
 const pending = new Map<string, Promise<BriefOutcome>>();
 const pause = (ms: number) => new Promise<void>((done) => setTimeout(done, ms));
@@ -84,8 +86,10 @@ async function generate(id: string, file: string, options: BriefOptions): Promis
         provenance: { generator: 'lesson-prototype', model: unit.model, promptVersion: PROMPT_VERSION, generatedAt: new Date().toISOString(), inputHashes: { outline: ctx.outlineHash } },
       };
       const result = validateBrief(brief, ctx);
-      if (result.status !== 'valid') {
-        unit.reject([...result.issues.map((issue) => `${issue.path}: ${issue.message}`), ...result.staleReasons]);
+      // Grammar briefs must also meet the lesson length rules (P3-07) before they are saved.
+      const length = result.value?.kind === 'grammar' && options.lengthRules !== false ? grammarBriefLengthIssues(result.value) : [];
+      if (result.status !== 'valid' || length.length) {
+        unit.reject([...result.issues, ...length].map((issue) => `${issue.path}: ${issue.message}`).concat(result.staleReasons));
         continue;
       }
       if (!isCurrent()) throw new GenerationError(`${id}: outline changed during generation; retry with the current outline.`);
