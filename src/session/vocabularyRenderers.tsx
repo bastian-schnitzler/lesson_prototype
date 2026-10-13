@@ -136,15 +136,17 @@ export function MatchingRenderer(props: RendererProps) {
     window.addEventListener('keydown', cancel);
     return () => window.removeEventListener('keydown', cancel);
   }, [selected]);
-  if (item.type !== 'vocabulary_matching' && item.type !== 'grammar_person_matching') return null;
+  if (item.type !== 'vocabulary_matching' && item.type !== 'grammar_person_matching' && item.type !== 'function_matching') return null;
   const persons = item.type === 'grammar_person_matching';
+  // Person and function boxes show the unit's French text; vocabulary boxes the target's teaching form.
+  const prompted = persons || item.type === 'function_matching';
   const choiceUnits = units.filter((u): u is PlanUnit & { kind: 'choice' } => u.kind === 'choice');
   const options = choiceUnits[0]?.options ?? [];
   const pairOf = (unitId: string) => (props.locked[unitId]?.response ?? props.drafts[unitId]) as string | undefined;
   const nativeText = (optionId: string) => options.find((o) => o.id === optionId)?.text ?? '';
   const targetOf = (unitId: string) => plan.targets.get(choiceUnits.find((u) => u.id === unitId)?.correct[0] ?? '');
   const formLabel = (unitId: string) => {
-    if (persons) return choiceUnits.find((u) => u.id === unitId)?.prompt.learning ?? '';
+    if (prompted) return choiceUnits.find((u) => u.id === unitId)?.prompt.learning ?? '';
     const target = targetOf(unitId);
     return target?.genders.length ? `${target.teachingForm} (${genderLabel(target, t)})` : target?.teachingForm ?? '';
   };
@@ -216,13 +218,13 @@ export function MatchingRenderer(props: RendererProps) {
                   <button type="button" ref={register(`learning:${u.id}`)} disabled={checked}
                     className={`match-item${n ? ' is-paired' : ''}${checked && !props.celebrating ? (isWrong(u.id) ? ' is-wrong' : ' is-right') : ''}`} lang={plan.lang} aria-pressed={selected?.side === 'learning' && selected.id === u.id}
                     aria-label={n ? t('session.pairedWith', { item: formLabel(u.id), partner: nativeText(pairOf(u.id)!) }) : formLabel(u.id)} onClick={() => pick('learning', u.id)}>
-                    {persons
+                    {prompted
                       ? <span>{u.prompt.learning}</span>
                       : <span>{target?.teachingForm}{target?.genders.length ? <small>{genderLabel(target, t)}</small> : null}</span>}
                     {n && <span className="pair-badge" aria-hidden="true">{n}</span>}
                   </button>
                   {/* A separate control (buttons cannot nest), drawn inside the box after the word. */}
-                  {formLabel(u.id) && <span className="match-audio"><ListenButton text={persons ? formLabel(u.id) : target!.teachingForm} lang={plan.lang} variant="icon" label={t('session.listenWord', { word: formLabel(u.id) })} /></span>}
+                  {formLabel(u.id) && <span className="match-audio"><ListenButton text={prompted ? formLabel(u.id).replace(/ …$/u, '') : target!.teachingForm} lang={plan.lang} variant="icon" label={t('session.listenWord', { word: formLabel(u.id) })} /></span>}
                 </li>
                 </Fragment>
               );

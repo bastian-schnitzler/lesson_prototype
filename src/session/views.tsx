@@ -3,7 +3,7 @@ import { Fragment, useEffect, useRef, useState, type CSSProperties } from 'react
 import { useI18n, useLastTry, usePreferences } from '../app/context.tsx';
 import { formatScore, roundHalfUp1 } from '../domain/format.ts';
 import type { LessonPlan, PlanPage, PlanUnit } from '../domain/session/plan.ts';
-import { headerScore, isAnswered, isListeningPage, presentationComplete, scoreUnit, skipsFeedbackWhenCorrect, lessonResults, progress, type LockedUnit, type SessionRecord } from '../domain/session/session.ts';
+import { headerScore, isAnswered, isListeningPage, isMatchingItem, nextDialogueLine, presentationComplete, scoreUnit, skipsFeedbackWhenCorrect, lessonResults, progress, type LockedUnit, type SessionRecord } from '../domain/session/session.ts';
 import type { MessageKey } from '../i18n/messages.ts';
 import type { Locale } from '../schemas/common.ts';
 import { rendererRegistry, UnitFeedback } from './renderers.tsx';
@@ -169,6 +169,7 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
   }, [needsVoice, page.pageId, page.role, voiceStatus, dispatch]);
   const mode = page.role === 'exam' ? 'exam' : record.phase === 'feedback' ? 'feedback' : 'answering';
   const ready = page.role === 'presentation' ? presentationComplete(page, record) : page.role !== 'practice' || record.phase === 'feedback' || page.units.every((u) => isAnswered(u, record.drafts[u.id]));
+  const nextLine = page.role === 'presentation' ? nextDialogueLine(page, record) : undefined;
   const heading = useRef<HTMLHeadingElement>(null);
   // Typing pages put the cursor straight into the first answer field; other pages focus the heading.
   useEffect(() => {
@@ -196,7 +197,7 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
     if (!perfect) return dispatch({ type: 'continue' });
     setCelebrating(true);
     // Matching first slides every word level with its meaning, then flashes (0.9 s) like other pages.
-    const pause = page.items.some((it) => it.type === 'vocabulary_matching' || it.type === 'grammar_person_matching') ? MATCH_SLIDE_MS + 1000 : 900;
+    const pause = page.items.some((it) => isMatchingItem(it.type)) ? MATCH_SLIDE_MS + 1000 : 900;
     window.setTimeout(() => { setCelebrating(false); dispatch({ type: 'continue' }); }, pause);
   };
 
@@ -244,12 +245,17 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
           );
         })}
         <div className="task-footer">
-          {page.role === 'presentation' && !ready && <p className="muted">{t('session.revealAll')}</p>}
+          {page.role === 'presentation' && !ready && !nextLine && <p className="muted">{t('session.revealAll')}</p>}
           <span className="continue-wrap">
+            {nextLine ? (
+              // A function dialogue unrolls line by line; after the last line the button continues (SPEC section 8).
+              <button type="button" className="button button-primary" onClick={() => dispatch({ type: 'reveal', ...nextLine })}>{t('session.nextLine')}</button>
+            ) : (
             <button type="button" className="button button-primary" disabled={!ready} aria-disabled={celebrating || undefined} onClick={() => !celebrating && onContinue()}>
               {/* Practice pages are checked first ("Check"); afterwards the same button continues. */}
               {t(page.role === 'practice' && record.phase === 'answering' ? 'session.check' : 'session.continue')}
             </button>
+            )}
           </span>
           {/* Only a half-point answer explains itself, below the button so the button never moves. */}
           {almost.map((u) => (

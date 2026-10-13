@@ -121,7 +121,12 @@ function activate(plan: LessonPlan, r: SessionRecord, now: number): SessionRecor
  */
 export function skipsFeedbackWhenCorrect(page: PlanPage): boolean {
   return page.role === 'practice' && page.items.length > 0
-    && page.items.every((item) => item.type === 'vocabulary_matching' || item.type === 'grammar_person_matching' || page.units.filter((u) => u.itemId === item.itemId).length === 1);
+    && page.items.every((item) => isMatchingItem(item.type) || page.units.filter((u) => u.itemId === item.itemId).length === 1);
+}
+
+/** Items shown on the matching board: vocabulary, person (P3-02 review) and function matching (P4-04). */
+export function isMatchingItem(type: string): boolean {
+  return type === 'vocabulary_matching' || type === 'grammar_person_matching' || type === 'function_matching';
 }
 
 /** Such pages answered fully correctly go straight on (after a green flash); feedback would only repeat the answers. */
@@ -129,9 +134,34 @@ export function skipsFeedback(page: PlanPage, r: Pick<SessionRecord, 'locked'>):
   return skipsFeedbackWhenCorrect(page) && page.units.every((u) => r.locked[u.id]?.outcome === 'fully_correct');
 }
 
-/** Flashcard pages complete once every card was revealed (P2-02); other presentation pages at once. */
+/**
+ * Presentation keys a page needs before Continue: every flashcard turned once (P2-02, function cards
+ * P4-04) and every line of a function dialogue shown (the first line is shown from the start).
+ */
+export function requiredReveals(page: PlanPage): { itemKey: string; keys: string[] }[] {
+  return page.items.flatMap((item) => {
+    const itemKey = `${page.pageId}/${item.itemId}`;
+    if (item.type === 'vocabulary_flashcards') return [{ itemKey, keys: item.targetIds }];
+    if (item.type === 'function_flashcards') return [{ itemKey, keys: item.ids }];
+    if (item.type === 'function_dialogue') return [{ itemKey, keys: item.lines.slice(1).map((l) => l.lineId) }];
+    return [];
+  });
+}
+
+/** Flashcard and dialogue pages complete once everything was revealed; other presentation pages at once. */
 export function presentationComplete(page: PlanPage, r: Pick<SessionRecord, 'revealed'>): boolean {
-  return page.items.every((item) => item.type !== 'vocabulary_flashcards' || item.targetIds.every((id) => (r.revealed?.[`${page.pageId}/${item.itemId}`] ?? []).includes(id)));
+  return requiredReveals(page).every(({ itemKey, keys }) => keys.every((key) => (r.revealed?.[itemKey] ?? []).includes(key)));
+}
+
+/** The next hidden line of a function dialogue (SPEC section 8): Next line reveals it. */
+export function nextDialogueLine(page: PlanPage, r: Pick<SessionRecord, 'revealed'>): { itemKey: string; key: string } | undefined {
+  for (const item of page.items) {
+    if (item.type !== 'function_dialogue') continue;
+    const itemKey = `${page.pageId}/${item.itemId}`;
+    const line = item.lines.slice(1).find((l) => !(r.revealed?.[itemKey] ?? []).includes(l.lineId));
+    if (line) return { itemKey, key: line.lineId };
+  }
+  return undefined;
 }
 
 export function isListeningPage(page: PlanPage): boolean {

@@ -4,7 +4,7 @@ import { join, resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { lessonOf } from './lessonFixture.ts';
 import { buildPlan, type LessonPlan, type PlanUnit } from '../../src/domain/session/plan.ts';
-import { isListeningPage, lessonResults, progress, scoreUnit, sessionReducer, startSession, type SessionRecord, type UnitResponse } from '../../src/domain/session/session.ts';
+import { isListeningPage, lessonResults, progress, requiredReveals, scoreUnit, sessionReducer, startSession, type SessionRecord, type UnitResponse } from '../../src/domain/session/session.ts';
 import { briefSchema, contentSchema } from '../../src/schemas/artifacts.ts';
 import { rendererRegistry } from '../../src/session/renderers.tsx';
 
@@ -23,10 +23,9 @@ const planOf = (id: string, motherTongue: 'en' | 'de') => {
 const key = (u: PlanUnit): UnitResponse =>
   u.kind === 'text' ? u.accepted.answers[0] : u.kind === 'choice' ? u.correct[0] : u.kind === 'order' ? u.acceptedOrders[0] : { tokenId: u.faultyTokenId, text: u.correction.accepted.answers[0] };
 
-/** Reveals every flashcard of the active page, as a learner must before Continue (P2-02). */
+/** Reveals every flashcard and dialogue line of the active page, as a learner must before Continue (P2-02, P4-04). */
 function revealPage(plan: LessonPlan, r: SessionRecord): SessionRecord {
-  const page = plan.pages[r.pageIndex];
-  for (const item of page.items) if (item.type === 'vocabulary_flashcards') for (const key of item.targetIds) r = sessionReducer(plan, r, { type: 'reveal', itemKey: `${page.pageId}/${item.itemId}`, key, now: 0 });
+  for (const { itemKey, keys } of requiredReveals(plan.pages[r.pageIndex])) for (const key of keys) r = sessionReducer(plan, r, { type: 'reveal', itemKey, key, now: 0 });
   return r;
 }
 

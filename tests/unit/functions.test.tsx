@@ -9,7 +9,7 @@ import { ContentReview } from '../../src/artifacts/ContentReview.tsx';
 import { FunctionsBriefView } from '../../src/artifacts/FunctionsBriefView.tsx';
 import { functionsPageEstimate, functionsTimeLimit } from '../../src/domain/functionsLesson.ts';
 import { buildPlan, type PlanUnit } from '../../src/domain/session/plan.ts';
-import { lessonResults, scoreUnit, sessionReducer, startSession, type UnitResponse } from '../../src/domain/session/session.ts';
+import { lessonResults, requiredReveals, scoreUnit, sessionReducer, startSession, type UnitResponse } from '../../src/domain/session/session.ts';
 import { briefSchema, contentSchema, isGeneratedKind, isSupportedKind } from '../../src/schemas/artifacts.ts';
 import type { FunctionsBrief, FunctionsContent } from '../../src/schemas/functions.ts';
 import { OutlineFileSchema } from '../../src/schemas/outline.ts';
@@ -138,6 +138,7 @@ describe('function lesson plan', () => {
     let r = startSession(plan, { sessionId: 's', contentHash: 'h', level: 'A1', motherTongue: 'de', seed: 3, now: 0 });
     for (let guard = 0; r.status !== 'completed' && guard < 200; guard++) {
       if (r.phase === 'answering') for (const u of plan.pages[r.pageIndex].units) r = sessionReducer(plan, r, { type: 'draft', unitId: u.id, response: key(u), now: 0 });
+      for (const { itemKey, keys } of requiredReveals(plan.pages[r.pageIndex])) for (const k of keys) r = sessionReducer(plan, r, { type: 'reveal', itemKey, key: k, now: 0 });
       r = sessionReducer(plan, r, { type: 'continue', now: 1, interfaceLanguage: 'en' });
     }
     expect(r.status).toBe('completed');

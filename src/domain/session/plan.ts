@@ -1,7 +1,7 @@
 import type { AcceptedAnswers, LocalizedText } from '../../schemas/artifactCommon.ts';
 import type { Brief, LessonContent } from '../../schemas/artifacts.ts';
 import type { Locale } from '../../schemas/common.ts';
-import type { FunctionsItem } from '../../schemas/functions.ts';
+import type { FunctionsBrief, FunctionsItem } from '../../schemas/functions.ts';
 import type { GrammarItem } from '../../schemas/grammar.ts';
 import { functionsTerms } from '../functionsLesson.ts';
 import type { VocabularyItem, VocabularyTarget } from '../../schemas/vocabulary.ts';
@@ -80,6 +80,8 @@ export interface LessonPlan {
   groups: { id: string; label: LocalizedText; targetIds: string[] }[];
   /** Grammar: verbs the lesson introduces, with the mother-tongue translation (P3-07); empty otherwise. */
   newVerbs: { infinitive: string; translation: string }[];
+  /** Function lessons: situation, roles, expressions and words of the brief (P4-04); undefined otherwise. */
+  functions?: Pick<FunctionsBrief, 'situation' | 'roles' | 'expressions' | 'words'>;
 }
 
 const GENDER_OPTIONS = ['masculine', 'feminine', 'neuter'] as const;
@@ -247,6 +249,7 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
     lessonId: content.id, lang: content.lang, title: content.title, objective: content.objective, estimatedMinutes: content.estimatedMinutes, pages, targets,
     kind: content.kind, groups: brief.kind === 'vocabulary' ? brief.groups.map((g) => ({ id: g.id, label: g.label, targetIds: g.targetIds })) : [],
     newVerbs: brief.kind === 'grammar' ? brief.newVerbs.map((v) => ({ infinitive: v.infinitive, translation: native(v.translations) })) : [],
+    functions: brief.kind === 'functions' ? { situation: brief.situation, roles: brief.roles, expressions: brief.expressions, words: brief.words } : undefined,
     steps: steps.map((s) => ({ stepId: s.id, label: s.label, role: s.role === 'exam' ? 'exam' : pages.some((p) => p.stepId === s.id && p.role === 'practice') ? 'practice' : 'presentation' })),
   };
 }
