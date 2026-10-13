@@ -106,8 +106,6 @@ export function buildFunctionsLesson(def: FunctionsDefinition, root = resolve(im
     ...(wordIds.length ? [{ id: 'gender', stage: 'gender' as const, role: 'exercise' as const, label: FUNCTIONS_COPY.gender[0], pages: [
       page('gender', FUNCTIONS_COPY.gender[1], [{ type: 'function_gender_select', itemId: 'gender', ids: wordIds }]),
     ] }] : []),
-    { id: 'word-order', stage: 'word_order', role: 'exercise', label: FUNCTIONS_COPY.wordOrder[0], pages:
-      def.wordOrder.map(([e, spec, explanation], n) => page(`order-${n + 1}`, FUNCTIONS_COPY.wordOrder[1], [wordOrder(`order-${n + 1}`, e, spec, explanation)])) },
     { id: 'dialogue-gaps', stage: 'dialogue_gaps', role: 'exercise', label: FUNCTIONS_COPY.dialogueGaps[0], pages: def.gaps.map((g, n) => {
       const { before, after } = splitGap(g.line, /___/);
       return page(`gap-${n + 1}`, FUNCTIONS_COPY.dialogueGaps[1], [{
@@ -115,6 +113,12 @@ export function buildFunctionsLesson(def: FunctionsDefinition, root = resolve(im
         before, after, choiceExpressionIds: [g.e, ...g.choices], answerExplanation: g.explanation,
       }]);
     }) },
+    { id: 'word-order', stage: 'word_order', role: 'exercise', label: FUNCTIONS_COPY.wordOrder[0], pages:
+      def.wordOrder.map(([e, spec, explanation], n) => page(`order-${n + 1}`, FUNCTIONS_COPY.wordOrder[1], [wordOrder(`order-${n + 1}`, e, spec, explanation)])) },
+    { id: 'listening', stage: 'listening', role: 'exercise', label: FUNCTIONS_COPY.listening[0], pages: def.listening.map((l, n) => page(`listening-${n + 1}`, FUNCTIONS_COPY.listening[1], [{
+      type: 'function_listening_choice', itemId: `listening-${n + 1}`, expressionId: l.e, context: { roleId: l.context[0], text: l.context[1] }, roleId: l.role,
+      options: l.options.map((text, m) => ({ optionId: `o${m + 1}`, text })), answerOptionId: 'o1', answerExplanation: l.explanation,
+    }])) },
     { id: 'exam', stage: 'exam', role: 'exam', label: FUNCTIONS_COPY.exam[0], pages: [
       ...replyPages.map((replies, p) => page(`exam-replies-${p + 1}`, FUNCTIONS_COPY.exam[1], replies.map((r) => {
         const n = def.replies.indexOf(r) + 1;
@@ -151,7 +155,7 @@ export function buildFunctionsLesson(def: FunctionsDefinition, root = resolve(im
   const contentResult = briefResult.value ? validateContent(JSON.parse(contentText), { ...ctx, brief: briefResult.value, briefHash }) : undefined;
   const examGaps = def.examDialogue.filter(([, line]) => line.includes('[')).length;
   const nouns = def.words.filter((w) => (w.wordClass ?? 'noun') === 'noun').length;
-  const practice = expressionIds.length * 3 + wordIds.length + nouns;
+  const practice = expressionIds.length * 4 + wordIds.length + nouns;
   return {
     briefText, contentText, dir,
     report: `${def.id}: ${expressionIds.length} expressions, ${wordIds.length} words, ${practice} practice units, ${def.replies.length + examGaps} exam units on ${replyPages.length + 1} pages, ${minutes} min`,

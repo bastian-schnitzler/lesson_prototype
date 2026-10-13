@@ -88,7 +88,8 @@ describe('function artifacts', () => {
     expect(functionsPageEstimate(exam[2].items, true)).toBe(12 * 8 + 8 * 20);
     expect(functionsTimeLimit(256)).toBe(384);
     expect(functionsPageEstimate(content.steps.find((s) => s.stage === 'gender')!.pages[0].items, false)).toBe(20 + 4 * 5);
-    expect(content.estimatedMinutes).toBe(21);
+    expect(functionsPageEstimate(content.steps.find((s) => s.stage === 'listening')!.pages[0].items, false)).toBe(30);
+    expect(content.estimatedMinutes).toBe(25);
   });
 });
 
@@ -98,8 +99,8 @@ describe('function lesson plan', () => {
   const plan = buildPlan(content, brief, 'de', { examIntro: true });
   const units = (role: string) => plan.pages.filter((p) => p.role === role).flatMap((p) => p.units);
 
-  it('has 32 practice units and 16 exam units; flashcards and the dialogue are presentation pages', () => {
-    expect(units('practice')).toHaveLength(8 + 4 + 4 + 8 + 8);
+  it('has 40 practice units and 16 exam units; flashcards and the dialogue are presentation pages', () => {
+    expect(units('practice')).toHaveLength(8 + 4 + 4 + 8 + 8 + 8);
     expect(units('exam')).toHaveLength(8 + 8);
     expect(plan.pages.slice(0, 3).map((p) => p.role)).toEqual(['presentation', 'presentation', 'presentation']);
     expect(plan.pages.find((p) => p.special === 'examIntro')).toBeDefined();

@@ -165,7 +165,7 @@ export function nextDialogueLine(page: PlanPage, r: Pick<SessionRecord, 'reveale
 }
 
 export function isListeningPage(page: PlanPage): boolean {
-  return page.units.length > 0 && page.units.every((u) => u.itemType === 'vocabulary_listening_choice' || u.itemType === 'vocabulary_listening_dictation');
+  return page.units.length > 0 && page.units.every((u) => u.itemType === 'vocabulary_listening_choice' || u.itemType === 'vocabulary_listening_dictation' || u.itemType === 'function_listening_choice');
 }
 
 function lockPage(page: PlanPage, r: SessionRecord, interfaceLanguage: Locale, timedOut: boolean): SessionRecord {

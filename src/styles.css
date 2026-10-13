@@ -2403,3 +2403,9 @@ html {
   margin: 0;
   font-size: 19px;
 }
+
+/* Listening choice (P4-05 review): replies are heard; the label names the reply until Check reveals its text. */
+.listening-option label {
+  flex: 1;
+  cursor: pointer;
+}

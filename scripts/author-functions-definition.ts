@@ -31,6 +31,11 @@ export interface FunctionsDefinition {
   wordOrder: [expression: string, tokens: string, explanation: LocalizedText][];
   /** Dialogue gaps, one per expression: role A's line, then role B's line with "___". */
   gaps: { e: string; context: [role: string, text: string]; role: string; line: string; choices: [string, string, string]; explanation: LocalizedText }[];
+  /**
+   * Listening choice, one per expression (P4-05 review): role A's line, the role of the reply and four
+   * spoken replies, the first one right (it uses the expression), the others not fitting the line.
+   */
+  listening: { e: string; context: [role: string, text: string]; role: string; options: [string, string, string, string]; explanation: LocalizedText }[];
   /** Exam part 1: replies to role A built from tokens, with distractors. */
   replies: { e: string; context: [role: string, text: string]; role: string; reply: string; distractors: string[]; explanation: LocalizedText }[];
   /**

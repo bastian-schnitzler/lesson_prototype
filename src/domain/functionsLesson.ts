@@ -16,6 +16,7 @@ export function functionsPageEstimate(items: FunctionsItem[], exam: boolean): nu
       case 'function_matching': seconds += it.pairs.length * (it.side === 'expressions' ? R.expressionPairS : R.wordPairS); break;
       case 'function_word_order': seconds += exam ? R.replyS : R.wordOrderS; break;
       case 'function_dialogue_gap_choice': seconds += R.gapChoiceS; break;
+      case 'function_listening_choice': seconds += R.listeningS; break;
       case 'function_dialogue_gap_typing': seconds += it.lines.length * R.examLineS + it.lines.filter((l) => l.gap).length * R.examGapS; break;
     }
   }

@@ -515,7 +515,7 @@ function checkFunctionsContent(c: FunctionsContent, b: FunctionsBrief, issues: I
   'steps.matching', `matching pages: ${expected.map(([side, ids]) => `${ids.length} ${side}`).join(', ')} in brief order (at most ${R.matchingPageSize} pairs per page; words on their own page)`);
 
   // Word order and dialogue gaps: one item per page and one per expression.
-  const perExpression = (stage: 'word_order' | 'dialogue_gaps', list: { expressionId: string }[]) => {
+  const perExpression = (stage: 'word_order' | 'dialogue_gaps' | 'listening', list: { expressionId: string }[]) => {
     issues.check(pageSizes(stage).every((n) => n === 1), `steps.${stage}`, 'one item per page');
     issues.check(sameSet(list.map((it) => it.expressionId), expressionIds), `steps.${stage}`, 'exactly one item per expression');
   };
@@ -538,6 +538,22 @@ function checkFunctionsContent(c: FunctionsContent, b: FunctionsBrief, issues: I
     it.choiceExpressionIds.forEach((id) => expression(id, `${p}.choiceExpressionIds`));
     checkExplanations([it], p, issues);
   });
+  // Listening choice (P4-05 review): one per expression; four distinct spoken replies, the answer uses the expression.
+  const listening = only('listening', 'function_listening_choice');
+  perExpression('listening', listening);
+  listening.forEach((it, n) => {
+    const p = `steps.listening.items.${n}`;
+    role(it.context.roleId, `${p}.context`);
+    role(it.roleId, p);
+    issues.check(it.context.roleId !== it.roleId, p, 'the reply belongs to the other role');
+    issues.unique(it.options.map((o) => o.optionId), p, 'option ID');
+    issues.unique(it.options.map((o) => plain(o.text)), p, 'option text');
+    const answer = it.options.find((o) => o.optionId === it.answerOptionId);
+    if (issues.check(answer !== undefined, p, 'answerOptionId must be one of the options') && answer && expression(it.expressionId, p)) {
+      issues.check(plain(answer.text).includes(plain(expressions.get(it.expressionId)!.text)), p, `the answer does not contain the expression "${expressions.get(it.expressionId)!.text}"`);
+    }
+    checkExplanations([it], p, issues);
+  });
 
   // Exam: reply pages (at most four, balanced), then one page with the exam dialogue.
   const examPages = step.get('exam')!.pages;
@@ -552,6 +568,7 @@ function checkFunctionsContent(c: FunctionsContent, b: FunctionsBrief, issues: I
     ...b.expressions.map((e) => plain(e.example.text)), ...b.words.map((w) => plain(w.example.text)),
     ...orders.map((it) => plain(sentence(it))), ...gaps.map((it) => plain(`${it.before} ${expressions.get(it.expressionId)?.text ?? ''} ${it.after}`)),
     ...dialogue.flatMap((d) => d.lines.map((l) => plain(l.text))),
+    ...listening.map((it) => plain(it.options.find((o) => o.optionId === it.answerOptionId)?.text ?? '')),
   ]);
   replyItems.forEach((it, n) => {
     const p = `steps.exam.replies.${n}`;

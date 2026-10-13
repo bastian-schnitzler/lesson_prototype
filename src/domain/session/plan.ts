@@ -211,6 +211,13 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
         const prompt = item.context ? { learning: `${roleLabel(item.context.roleId)}: ${item.context.text}` } : {};
         return [{ kind: 'order', id: id(), itemId: item.itemId, itemType: item.type, prompt, tokens, acceptedOrders, distractors: item.distractorTokenIds, explanation: item.answerExplanation, answer, answerLang: 'learning' }];
       }
+      case 'function_listening_choice':
+        // Audio first (P4-05 review): role A's line is spoken, the four replies are heard, not read.
+        return [{
+          kind: 'choice', id: id(), itemId: item.itemId, itemType: item.type, prompt: { learning: `${roleLabel(item.context.roleId)}: ${item.context.text}` }, speak: item.context.text,
+          options: item.options.map((o) => ({ id: o.optionId, text: o.text, lang: 'learning' })), correct: [item.answerOptionId],
+          explanation: item.answerExplanation, answer: item.options.find((o) => o.optionId === item.answerOptionId)?.text ?? '', answerLang: 'learning',
+        }];
       case 'function_dialogue_gap_choice':
         return [{
           kind: 'choice', id: id(), itemId: item.itemId, itemType: item.type,

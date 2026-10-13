@@ -48,6 +48,8 @@ export const FUNCTIONS_PAGE_RULES = {
   matchingPageSize: 6,
   wordOrderS: 25,
   gapChoiceS: 15,
+  /** Listening choice: role A's line and four spoken replies (P4-05 review). */
+  listeningS: 30,
   replyS: 30,
   /** Exam reply pages hold at most this many replies (balanced). */
   replyPageSize: 4,
@@ -58,7 +60,7 @@ export const FUNCTIONS_PAGE_RULES = {
 
 /** Content steps in lesson order. */
 /** Content steps in lesson order; `gender` (P4-05 review) only when the lesson has words. */
-export const FUNCTIONS_STAGES = ['flashcards', 'dialogue', 'matching', 'gender', 'word_order', 'dialogue_gaps', 'exam'] as const;
+export const FUNCTIONS_STAGES = ['flashcards', 'dialogue', 'matching', 'gender', 'dialogue_gaps', 'word_order', 'listening', 'exam'] as const;
 
 /* =================================================================== brief */
 
@@ -181,6 +183,20 @@ export const functionsItemSchema = (lang: string) =>
       tokens: z.array(TokenSchema).min(2).max(16),
       distractorTokenIds: z.array(NestedIdSchema).max(FUNCTIONS_LIMITS.distractors[1]),
       acceptedOrders: z.array(z.array(NestedIdSchema).min(2)).min(1).max(4),
+      answerExplanation: LocalizedTextSchema,
+    }),
+    z.strictObject({
+      /**
+       * Listening choice (P4-05 review): role A's line is only heard; the learner listens to four replies of
+       * role B (audio only) and chooses the one that fits. The texts are shown after Check and in the results.
+       */
+      type: z.literal('function_listening_choice'),
+      itemId: NestedIdSchema,
+      expressionId: NestedIdSchema,
+      context: ContextLineSchema,
+      roleId: NestedIdSchema,
+      options: z.array(z.strictObject({ optionId: NestedIdSchema, text: LearningTextSchema })).length(4),
+      answerOptionId: NestedIdSchema,
       answerExplanation: LocalizedTextSchema,
     }),
     z.strictObject({

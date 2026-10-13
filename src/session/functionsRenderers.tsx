@@ -2,7 +2,7 @@ import { useState, type ReactNode } from 'react';
 
 import { useI18n } from '../app/context.tsx';
 import { expressionDisplay } from '../domain/functionsLesson.ts';
-import type { LessonPlan } from '../domain/session/plan.ts';
+import { seededOrder, type LessonPlan } from '../domain/session/plan.ts';
 import type { Locale } from '../schemas/common.ts';
 import { Gap, ListenButton, TextControl, UnitsRenderer, type RendererProps } from './controls.tsx';
 
@@ -238,6 +238,47 @@ export function ExamDialogueRenderer(props: RendererProps) {
         })}
       </ol>
       <p className="label-muted" aria-live="polite">{t('session.lineOf', { n: lines.length, total: item.lines.length })}</p>
+    </div>
+  );
+}
+
+/**
+ * Listening choice (P4-05 review): role A's line is only heard; the four replies of role B are heard,
+ * not read, and the learner chooses the one that fits. After Check every reply shows its text; the chosen
+ * wrong reply turns red and the right one green.
+ */
+export function ListeningReplyRenderer(props: RendererProps) {
+  const { t } = useI18n();
+  const { item, plan, units, seed } = props;
+  if (item.type !== 'function_listening_choice' || !plan.functions) return null;
+  const unit = units[0];
+  if (!unit || unit.kind !== 'choice') return null;
+  const roles = plan.functions.roles;
+  const label = (id: string) => roles.find((r) => r.id === id)?.label ?? id;
+  const current = (props.locked[unit.id]?.response ?? props.drafts[unit.id]) as string | undefined;
+  const checked = props.mode === 'feedback' || !!props.celebrating;
+  const state = (id: string) => (props.celebrating ? (current === id ? ' is-right' : '') : !checked ? '' : unit.correct.includes(id) ? ' is-right' : current === id ? ' is-wrong' : '');
+  const options = seededOrder(unit.options, seed, unit.id);
+  return (
+    <div className="dialogue-task listening-reply">
+      <div className="dialogue-context">
+        <p className="dialogue-role" lang={plan.lang}>{label(item.context.roleId)}</p>
+        <div className="dialogue-text">
+          <ListenButton text={item.context.text} lang={plan.lang} size="large" label={t('session.listenTo', { role: label(item.context.roleId) })} />
+          {checked && <span lang={plan.lang}>{item.context.text}</span>}
+        </div>
+      </div>
+      <p className="dialogue-role dialogue-reply-role" lang={plan.lang}>{label(item.roleId)}</p>
+      <fieldset className="choices" disabled={checked}>
+        <legend className="visually-hidden">{t('session.chooseReply')}</legend>
+        {options.map((o, n) => (
+          <div key={o.id} className={`choice listening-option${state(o.id)}`}>
+            <input type="radio" id={`${unit.id}-${o.id}`} name={unit.id} value={o.id} checked={current === o.id} onChange={() => props.onChange(unit.id, o.id)} />
+            <label htmlFor={`${unit.id}-${o.id}`}>{checked ? <span lang={plan.lang}>{o.text}</span> : t('session.replyN', { n: n + 1 })}</label>
+            <ListenButton text={o.text} lang={plan.lang} variant="icon" label={t('session.listenReply', { n: n + 1 })} />
+          </div>
+        ))}
+      </fieldset>
     </div>
   );
 }

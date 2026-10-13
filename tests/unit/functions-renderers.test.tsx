@@ -7,7 +7,7 @@ import { buildPlan, type PlanPage } from '../../src/domain/session/plan.ts';
 import { nextDialogueLine, presentationComplete, requiredReveals, sessionReducer, skipsFeedbackWhenCorrect, startSession, type SessionRecord } from '../../src/domain/session/session.ts';
 import { briefSchema, contentSchema } from '../../src/schemas/artifacts.ts';
 import type { RendererProps } from '../../src/session/controls.tsx';
-import { DialogueGapChoiceRenderer, DialogueRenderer, ExamDialogueRenderer, FunctionFlashcardsRenderer, FunctionWordOrderRenderer } from '../../src/session/functionsRenderers.tsx';
+import { DialogueGapChoiceRenderer, DialogueRenderer, ExamDialogueRenderer, FunctionFlashcardsRenderer, FunctionWordOrderRenderer, ListeningReplyRenderer } from '../../src/session/functionsRenderers.tsx';
 import { MatchingRenderer } from '../../src/session/vocabularyRenderers.tsx';
 import { ResultsView, SessionView, StartView } from '../../src/session/views.tsx';
 
@@ -159,8 +159,8 @@ describe('function practice, exam and results (P4-05)', () => {
     render(wrap(<StartView plan={plan} level="A1" onStart={() => undefined} onResume={() => undefined} />));
     expect(screen.getByText('A customer orders at a café counter; the waiter serves her.')).toBeInTheDocument();
     expect(screen.getByText(/8 expressions · 4 words/)).toBeInTheDocument();
-    const rows = screen.getAllByRole('listitem');
-    expect(rows.map((r) => r.textContent)).toEqual([expect.stringMatching(/^Flashcards · Dialogue/), expect.stringMatching(/^Matching · Gender and overview · Word order · Dialogue gaps/), expect.stringMatching(/^Final exam.*16 items on 3 timed pages/)]);
+    const rows = [...document.querySelectorAll('.flow-list li')];
+    expect(rows.map((r) => r.textContent)).toEqual([expect.stringMatching(/^Flashcards · Dialogue/), expect.stringMatching(/^Matching · Gender and overview · Dialogue gaps · Word order · Listening/), expect.stringMatching(/^Final exam.*16 items on 3 timed pages/)]);
   });
 
   it('shows practice word order with tokens only', () => {
@@ -236,5 +236,39 @@ describe('function gender page (P4-05 review)', () => {
     expect(screen.getAllByRole('radio')).toHaveLength(8);
     fireEvent.click(screen.getAllByRole('radio')[0]);
     expect(onChange).toHaveBeenCalledWith(pg.units[0].id, 'masculine');
+  });
+});
+
+describe('function listening choice (P4-05 review)', () => {
+  const pg = page('listening-1');
+
+  it('follows word order, which follows the dialogue gaps', () => {
+    const order = [...new Set(plan.pages.map((p) => p.stepId))];
+    expect(order.indexOf('dialogue-gaps')).toBeLessThan(order.indexOf('word-order'));
+    expect(order.indexOf('word-order')).toBe(order.indexOf('listening') - 1);
+  });
+
+  it('plays role A and four replies without showing their text, then reveals it after Check', () => {
+    const { onChange } = renderItem(ListeningReplyRenderer, pg);
+    // One audio control for role A and one per reply (jsdom has no voice, so they offer the install help).
+    expect(document.querySelectorAll('.listening-reply .listen')).toHaveLength(5);
+    expect(screen.queryByText('Bonjour, madame. Vous désirez ?')).toBeNull();
+    expect(screen.getAllByRole('radio')).toHaveLength(4);
+    expect(screen.getByText('Reply 1')).toBeInTheDocument();
+    expect(screen.queryByText('Je voudrais un thé, s’il vous plaît.')).toBeNull();
+    fireEvent.click(screen.getByLabelText('Reply 2'));
+    expect(onChange).toHaveBeenCalledWith(pg.units[0].id, expect.stringMatching(/^o[1-4]$/));
+    cleanup();
+    const unit = pg.units[0];
+    const wrong = unit.kind === 'choice' ? unit.options.find((o) => !unit.correct.includes(o.id))!.id : '';
+    renderItem(ListeningReplyRenderer, pg, { mode: 'feedback', inlineFeedback: true, locked: { [unit.id]: { response: wrong, outcome: 'incorrect', points: 0, timedOut: false, interfaceLanguage: 'en' } } });
+    expect(screen.getByText('Bonjour, madame. Vous désirez ?')).toBeInTheDocument();
+    expect(screen.getByText('Je voudrais un thé, s’il vous plaît.').closest('.choice')).toHaveClass('is-right');
+    expect(document.querySelector('.choice.is-wrong')).not.toBeNull();
+  });
+
+  it('needs a French voice like other listening pages', async () => {
+    const { isListeningPage } = await import('../../src/domain/session/session.ts');
+    expect(isListeningPage(pg)).toBe(true);
   });
 });

@@ -39,5 +39,6 @@ export const FUNCTIONS_COPY = {
   wordOrder: [L('Word order', 'Ordre des mots', 'Wortstellung'), L('Put the words in order.', 'Mettez les mots dans l’ordre.', 'Bring die Wörter in die richtige Reihenfolge.')],
   dialogueGaps: [L('Dialogue gaps', 'Dialogue à trous', 'Dialoglücken'), L('Choose the expression that fits the gap.', 'Choisissez l’expression qui complète la réplique.', 'Wähle den Ausdruck, der in die Lücke passt.')],
   exam: [L('Final exam', 'Examen final', 'Abschlussprüfung'), L('Build the answer. Not every word fits.', 'Construisez la réponse. Tous les mots ne servent pas.', 'Bilde die Antwort. Nicht jedes Wort passt.')],
+  listening: [L('Listening', 'Écoute', 'Hören'), L('Listen, then choose the reply that fits.', 'Écoutez, puis choisissez la réponse qui convient.', 'Hör zu und wähle dann die passende Antwort.')],
   examDialogue: L('Fill each gap with an expression from this lesson.', 'Complétez chaque trou avec une expression de la leçon.', 'Fülle jede Lücke mit einem Ausdruck aus dieser Lektion.'),
 } as const;

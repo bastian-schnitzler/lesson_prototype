@@ -3,7 +3,7 @@ import type { ComponentType } from 'react';
 import type { Item } from '../domain/session/plan.ts';
 import { UnitsRenderer, type RendererProps } from './controls.tsx';
 import { ExplanationRenderer, PlaceholderRenderer, PronounMatchRenderer, PronounTypingRenderer } from './grammarRenderers.tsx';
-import { DialogueGapChoiceRenderer, DialogueRenderer, ExamDialogueRenderer, FunctionFlashcardsRenderer, FunctionWordOrderRenderer } from './functionsRenderers.tsx';
+import { DialogueGapChoiceRenderer, DialogueRenderer, ExamDialogueRenderer, FunctionFlashcardsRenderer, FunctionWordOrderRenderer, ListeningReplyRenderer } from './functionsRenderers.tsx';
 import { FlashcardsRenderer, GenderRenderer, IntroductionRenderer, MatchingRenderer, OverviewRenderer } from './vocabularyRenderers.tsx';
 
 export { UnitFeedback, type RendererProps } from './controls.tsx';
@@ -39,5 +39,6 @@ export const rendererRegistry: Record<Item['type'], ComponentType<RendererProps>
   function_gender_select: GenderRenderer,
   function_word_order: FunctionWordOrderRenderer,
   function_dialogue_gap_choice: DialogueGapChoiceRenderer,
+  function_listening_choice: ListeningReplyRenderer,
   function_dialogue_gap_typing: ExamDialogueRenderer,
 };
