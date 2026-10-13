@@ -1,0 +1,1367 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-ordering-at-a-cafe",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Commander au café",
+  "objective": {
+    "en": "Order a drink and a snack at a café, ask for the price and the bill.",
+    "fr": "Commander une boisson et un en-cas au café, demander le prix et l’addition.",
+    "de": "Im Café ein Getränk und einen Snack bestellen, nach dem Preis und der Rechnung fragen."
+  },
+  "estimatedMinutes": 15,
+  "provenance": {
+    "generator": "fixture",
+    "model": "none",
+    "promptVersion": "fixture-1",
+    "generatedAt": "2026-10-13T00:00:00Z",
+    "inputHashes": {
+      "outline": "0000000000000000000000000000000000000000000000000000000000000000",
+      "brief": "1111111111111111111111111111111111111111111111111111111111111111"
+    }
+  },
+  "kind": "functions",
+  "theme": "food_and_drink",
+  "steps": [
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "presentation",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "cards-expressions",
+          "estimatedDurationS": 72,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Turn every card once.",
+            "fr": "Retournez chaque carte une fois.",
+            "de": "Drehe jede Karte einmal um."
+          },
+          "items": [
+            {
+              "type": "function_flashcards",
+              "itemId": "cards-expressions",
+              "side": "expressions",
+              "ids": [
+                "je-voudrais",
+                "vous-desirez",
+                "cest-combien",
+                "laddition",
+                "et-avec-ceci",
+                "merci-au-revoir"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "cards-words",
+          "estimatedDurationS": 20,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Turn every card once.",
+            "fr": "Retournez chaque carte une fois.",
+            "de": "Drehe jede Karte einmal um."
+          },
+          "items": [
+            {
+              "type": "function_flashcards",
+              "itemId": "cards-words",
+              "side": "words",
+              "ids": [
+                "the",
+                "croissant"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dialogue",
+      "stage": "dialogue",
+      "role": "presentation",
+      "label": {
+        "en": "Dialogue at the café",
+        "fr": "Dialogue au café",
+        "de": "Dialog im Café"
+      },
+      "pages": [
+        {
+          "pageId": "dialogue",
+          "estimatedDurationS": 116,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read and listen.",
+            "fr": "Lisez et écoutez.",
+            "de": "Lies und hör zu."
+          },
+          "items": [
+            {
+              "type": "function_dialogue",
+              "itemId": "dialogue",
+              "lines": [
+                {
+                  "lineId": "l1",
+                  "roleId": "serveur",
+                  "text": "Bonjour, madame. Vous désirez ?",
+                  "translation": {
+                    "en": "Hello, madam. What would you like?",
+                    "de": "Guten Tag. Was darf es sein?"
+                  },
+                  "note": {
+                    "en": "A typical line at a café.",
+                    "fr": "Une réplique typique au café.",
+                    "de": "Ein typischer Satz im Café."
+                  },
+                  "expressionIds": [
+                    "vous-desirez"
+                  ]
+                },
+                {
+                  "lineId": "l2",
+                  "roleId": "cliente",
+                  "text": "Je voudrais un thé, s’il vous plaît.",
+                  "translation": {
+                    "en": "I would like a tea, please.",
+                    "de": "Ich hätte gern einen Tee, bitte."
+                  },
+                  "note": {
+                    "en": "A typical line at a café.",
+                    "fr": "Une réplique typique au café.",
+                    "de": "Ein typischer Satz im Café."
+                  },
+                  "expressionIds": [
+                    "je-voudrais"
+                  ]
+                },
+                {
+                  "lineId": "l3",
+                  "roleId": "serveur",
+                  "text": "Un thé, très bien. Et avec ceci ?",
+                  "translation": {
+                    "en": "A tea, very good. Anything else?",
+                    "de": "Ein Tee, sehr gern. Sonst noch etwas?"
+                  },
+                  "note": {
+                    "en": "A typical line at a café.",
+                    "fr": "Une réplique typique au café.",
+                    "de": "Ein typischer Satz im Café."
+                  },
+                  "expressionIds": [
+                    "et-avec-ceci"
+                  ]
+                },
+                {
+                  "lineId": "l4",
+                  "roleId": "cliente",
+                  "text": "Un croissant. C’est combien ?",
+                  "translation": {
+                    "en": "A croissant. How much is it?",
+                    "de": "Ein Croissant. Wie viel kostet das?"
+                  },
+                  "note": {
+                    "en": "A typical line at a café.",
+                    "fr": "Une réplique typique au café.",
+                    "de": "Ein typischer Satz im Café."
+                  },
+                  "expressionIds": [
+                    "cest-combien"
+                  ]
+                },
+                {
+                  "lineId": "l5",
+                  "roleId": "serveur",
+                  "text": "Quatre euros cinquante.",
+                  "translation": {
+                    "en": "Four euros fifty.",
+                    "de": "Vier Euro fünfzig."
+                  },
+                  "note": {
+                    "en": "A typical line at a café.",
+                    "fr": "Une réplique typique au café.",
+                    "de": "Ein typischer Satz im Café."
+                  },
+                  "expressionIds": []
+                },
+                {
+                  "lineId": "l6",
+                  "roleId": "cliente",
+                  "text": "Voilà. L’addition, s’il vous plaît.",
+                  "translation": {
+                    "en": "Here you are. The bill, please.",
+                    "de": "Bitte schön. Die Rechnung, bitte."
+                  },
+                  "note": {
+                    "en": "A typical line at a café.",
+                    "fr": "Une réplique typique au café.",
+                    "de": "Ein typischer Satz im Café."
+                  },
+                  "expressionIds": [
+                    "laddition"
+                  ]
+                },
+                {
+                  "lineId": "l7",
+                  "roleId": "serveur",
+                  "text": "Voilà, madame. Bonne journée !",
+                  "translation": {
+                    "en": "Here you are, madam. Have a nice day!",
+                    "de": "Bitte schön. Einen schönen Tag!"
+                  },
+                  "note": {
+                    "en": "A typical line at a café.",
+                    "fr": "Une réplique typique au café.",
+                    "de": "Ein typischer Satz im Café."
+                  },
+                  "expressionIds": []
+                },
+                {
+                  "lineId": "l8",
+                  "roleId": "cliente",
+                  "text": "Merci, au revoir.",
+                  "translation": {
+                    "en": "Thank you, goodbye.",
+                    "de": "Danke, auf Wiedersehen."
+                  },
+                  "note": {
+                    "en": "A typical line at a café.",
+                    "fr": "Une réplique typique au café.",
+                    "de": "Ein typischer Satz im Café."
+                  },
+                  "expressionIds": [
+                    "merci-au-revoir"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Associer",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "match-expressions",
+          "estimatedDurationS": 72,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match the expressions.",
+            "fr": "Associez les expressions.",
+            "de": "Ordne die Ausdrücke zu."
+          },
+          "items": [
+            {
+              "type": "function_matching",
+              "itemId": "match-expressions",
+              "side": "expressions",
+              "pairs": [
+                {
+                  "id": "je-voudrais",
+                  "answerExplanation": {
+                    "en": "This is its meaning.",
+                    "fr": "C’est sa signification.",
+                    "de": "Das ist seine Bedeutung."
+                  }
+                },
+                {
+                  "id": "vous-desirez",
+                  "answerExplanation": {
+                    "en": "This is its meaning.",
+                    "fr": "C’est sa signification.",
+                    "de": "Das ist seine Bedeutung."
+                  }
+                },
+                {
+                  "id": "cest-combien",
+                  "answerExplanation": {
+                    "en": "This is its meaning.",
+                    "fr": "C’est sa signification.",
+                    "de": "Das ist seine Bedeutung."
+                  }
+                },
+                {
+                  "id": "laddition",
+                  "answerExplanation": {
+                    "en": "This is its meaning.",
+                    "fr": "C’est sa signification.",
+                    "de": "Das ist seine Bedeutung."
+                  }
+                },
+                {
+                  "id": "et-avec-ceci",
+                  "answerExplanation": {
+                    "en": "This is its meaning.",
+                    "fr": "C’est sa signification.",
+                    "de": "Das ist seine Bedeutung."
+                  }
+                },
+                {
+                  "id": "merci-au-revoir",
+                  "answerExplanation": {
+                    "en": "This is its meaning.",
+                    "fr": "C’est sa signification.",
+                    "de": "Das ist seine Bedeutung."
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-words",
+          "estimatedDurationS": 20,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match the words.",
+            "fr": "Associez les mots.",
+            "de": "Ordne die Wörter zu."
+          },
+          "items": [
+            {
+              "type": "function_matching",
+              "itemId": "match-words",
+              "side": "words",
+              "pairs": [
+                {
+                  "id": "the",
+                  "answerExplanation": {
+                    "en": "This is its meaning.",
+                    "fr": "C’est sa signification.",
+                    "de": "Das ist seine Bedeutung."
+                  }
+                },
+                {
+                  "id": "croissant",
+                  "answerExplanation": {
+                    "en": "This is its meaning.",
+                    "fr": "C’est sa signification.",
+                    "de": "Das ist seine Bedeutung."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-order",
+      "stage": "word_order",
+      "role": "exercise",
+      "label": {
+        "en": "Word order",
+        "fr": "Ordre des mots",
+        "de": "Wortstellung"
+      },
+      "pages": [
+        {
+          "pageId": "order-1",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Put the words in order.",
+            "fr": "Mettez les mots dans l’ordre.",
+            "de": "Bring die Wörter in die richtige Reihenfolge."
+          },
+          "items": [
+            {
+              "type": "function_word_order",
+              "itemId": "order-1",
+              "expressionId": "je-voudrais",
+              "context": null,
+              "roleId": null,
+              "tokens": [
+                {
+                  "tokenId": "t1",
+                  "text": "Je"
+                },
+                {
+                  "tokenId": "t2",
+                  "text": "voudrais"
+                },
+                {
+                  "tokenId": "t3",
+                  "text": "un croissant"
+                }
+              ],
+              "distractorTokenIds": [],
+              "acceptedOrders": [
+                [
+                  "t1",
+                  "t2",
+                  "t3"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "The sentence uses “Je voudrais”.",
+                "fr": "La phrase utilise « Je voudrais ».",
+                "de": "Der Satz verwendet „Je voudrais“."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "order-2",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Put the words in order.",
+            "fr": "Mettez les mots dans l’ordre.",
+            "de": "Bring die Wörter in die richtige Reihenfolge."
+          },
+          "items": [
+            {
+              "type": "function_word_order",
+              "itemId": "order-2",
+              "expressionId": "vous-desirez",
+              "context": null,
+              "roleId": null,
+              "tokens": [
+                {
+                  "tokenId": "t1",
+                  "text": "Bonsoir,"
+                },
+                {
+                  "tokenId": "t2",
+                  "text": "vous"
+                },
+                {
+                  "tokenId": "t3",
+                  "text": "désirez"
+                },
+                {
+                  "tokenId": "t4",
+                  "text": "?"
+                }
+              ],
+              "distractorTokenIds": [],
+              "acceptedOrders": [
+                [
+                  "t1",
+                  "t2",
+                  "t3",
+                  "t4"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "The sentence uses “Vous désirez ?”.",
+                "fr": "La phrase utilise « Vous désirez ? ».",
+                "de": "Der Satz verwendet „Vous désirez ?“."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "order-3",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Put the words in order.",
+            "fr": "Mettez les mots dans l’ordre.",
+            "de": "Bring die Wörter in die richtige Reihenfolge."
+          },
+          "items": [
+            {
+              "type": "function_word_order",
+              "itemId": "order-3",
+              "expressionId": "cest-combien",
+              "context": null,
+              "roleId": null,
+              "tokens": [
+                {
+                  "tokenId": "t1",
+                  "text": "Le thé,"
+                },
+                {
+                  "tokenId": "t2",
+                  "text": "c’est"
+                },
+                {
+                  "tokenId": "t3",
+                  "text": "combien"
+                },
+                {
+                  "tokenId": "t4",
+                  "text": "?"
+                }
+              ],
+              "distractorTokenIds": [],
+              "acceptedOrders": [
+                [
+                  "t1",
+                  "t2",
+                  "t3",
+                  "t4"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "The sentence uses “C’est combien ?”.",
+                "fr": "La phrase utilise « C’est combien ? ».",
+                "de": "Der Satz verwendet „C’est combien ?“."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "order-4",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Put the words in order.",
+            "fr": "Mettez les mots dans l’ordre.",
+            "de": "Bring die Wörter in die richtige Reihenfolge."
+          },
+          "items": [
+            {
+              "type": "function_word_order",
+              "itemId": "order-4",
+              "expressionId": "laddition",
+              "context": null,
+              "roleId": null,
+              "tokens": [
+                {
+                  "tokenId": "t1",
+                  "text": "L’addition,"
+                },
+                {
+                  "tokenId": "t2",
+                  "text": "s’il vous plaît,"
+                },
+                {
+                  "tokenId": "t3",
+                  "text": "monsieur"
+                }
+              ],
+              "distractorTokenIds": [],
+              "acceptedOrders": [
+                [
+                  "t1",
+                  "t2",
+                  "t3"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "The sentence uses “L’addition, s’il vous plaît.”.",
+                "fr": "La phrase utilise « L’addition, s’il vous plaît. ».",
+                "de": "Der Satz verwendet „L’addition, s’il vous plaît.“."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "order-5",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Put the words in order.",
+            "fr": "Mettez les mots dans l’ordre.",
+            "de": "Bring die Wörter in die richtige Reihenfolge."
+          },
+          "items": [
+            {
+              "type": "function_word_order",
+              "itemId": "order-5",
+              "expressionId": "et-avec-ceci",
+              "context": null,
+              "roleId": null,
+              "tokens": [
+                {
+                  "tokenId": "t1",
+                  "text": "Un café."
+                },
+                {
+                  "tokenId": "t2",
+                  "text": "Et"
+                },
+                {
+                  "tokenId": "t3",
+                  "text": "avec ceci"
+                },
+                {
+                  "tokenId": "t4",
+                  "text": "?"
+                }
+              ],
+              "distractorTokenIds": [],
+              "acceptedOrders": [
+                [
+                  "t1",
+                  "t2",
+                  "t3",
+                  "t4"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "The sentence uses “Et avec ceci ?”.",
+                "fr": "La phrase utilise « Et avec ceci ? ».",
+                "de": "Der Satz verwendet „Et avec ceci ?“."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "order-6",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Put the words in order.",
+            "fr": "Mettez les mots dans l’ordre.",
+            "de": "Bring die Wörter in die richtige Reihenfolge."
+          },
+          "items": [
+            {
+              "type": "function_word_order",
+              "itemId": "order-6",
+              "expressionId": "merci-au-revoir",
+              "context": null,
+              "roleId": null,
+              "tokens": [
+                {
+                  "tokenId": "t1",
+                  "text": "Merci,"
+                },
+                {
+                  "tokenId": "t2",
+                  "text": "au revoir,"
+                },
+                {
+                  "tokenId": "t3",
+                  "text": "monsieur"
+                }
+              ],
+              "distractorTokenIds": [],
+              "acceptedOrders": [
+                [
+                  "t1",
+                  "t2",
+                  "t3"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "The sentence uses “Merci, au revoir.”.",
+                "fr": "La phrase utilise « Merci, au revoir. ».",
+                "de": "Der Satz verwendet „Merci, au revoir.“."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dialogue-gaps",
+      "stage": "dialogue_gaps",
+      "role": "exercise",
+      "label": {
+        "en": "Dialogue gaps",
+        "fr": "Dialogue à trous",
+        "de": "Dialoglücken"
+      },
+      "pages": [
+        {
+          "pageId": "gap-1",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the expression that fits the gap.",
+            "fr": "Choisissez l’expression qui convient.",
+            "de": "Wähle den passenden Ausdruck."
+          },
+          "items": [
+            {
+              "type": "function_dialogue_gap_choice",
+              "itemId": "gap-1",
+              "expressionId": "je-voudrais",
+              "context": {
+                "roleId": "serveur",
+                "text": "Bonjour, vous désirez ?"
+              },
+              "roleId": "cliente",
+              "before": "",
+              "after": "un café, s’il vous plaît.",
+              "choiceExpressionIds": [
+                "je-voudrais",
+                "vous-desirez",
+                "cest-combien",
+                "et-avec-ceci"
+              ],
+              "answerExplanation": {
+                "en": "Only this expression fits the situation.",
+                "fr": "Seule cette expression convient à la situation.",
+                "de": "Nur dieser Ausdruck passt zur Situation."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-2",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the expression that fits the gap.",
+            "fr": "Choisissez l’expression qui convient.",
+            "de": "Wähle den passenden Ausdruck."
+          },
+          "items": [
+            {
+              "type": "function_dialogue_gap_choice",
+              "itemId": "gap-2",
+              "expressionId": "merci-au-revoir",
+              "context": {
+                "roleId": "serveur",
+                "text": "Voilà votre monnaie."
+              },
+              "roleId": "cliente",
+              "before": "",
+              "after": "",
+              "choiceExpressionIds": [
+                "merci-au-revoir",
+                "vous-desirez",
+                "laddition",
+                "et-avec-ceci"
+              ],
+              "answerExplanation": {
+                "en": "Only this expression fits the situation.",
+                "fr": "Seule cette expression convient à la situation.",
+                "de": "Nur dieser Ausdruck passt zur Situation."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-3",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the expression that fits the gap.",
+            "fr": "Choisissez l’expression qui convient.",
+            "de": "Wähle den passenden Ausdruck."
+          },
+          "items": [
+            {
+              "type": "function_dialogue_gap_choice",
+              "itemId": "gap-3",
+              "expressionId": "vous-desirez",
+              "context": {
+                "roleId": "cliente",
+                "text": "Bonjour, monsieur !"
+              },
+              "roleId": "serveur",
+              "before": "Bonjour, madame.",
+              "after": "",
+              "choiceExpressionIds": [
+                "vous-desirez",
+                "je-voudrais",
+                "cest-combien",
+                "laddition"
+              ],
+              "answerExplanation": {
+                "en": "Only this expression fits the situation.",
+                "fr": "Seule cette expression convient à la situation.",
+                "de": "Nur dieser Ausdruck passt zur Situation."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-4",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the expression that fits the gap.",
+            "fr": "Choisissez l’expression qui convient.",
+            "de": "Wähle den passenden Ausdruck."
+          },
+          "items": [
+            {
+              "type": "function_dialogue_gap_choice",
+              "itemId": "gap-4",
+              "expressionId": "cest-combien",
+              "context": {
+                "roleId": "serveur",
+                "text": "Voilà votre croissant."
+              },
+              "roleId": "cliente",
+              "before": "Merci !",
+              "after": "",
+              "choiceExpressionIds": [
+                "cest-combien",
+                "je-voudrais",
+                "merci-au-revoir",
+                "et-avec-ceci"
+              ],
+              "answerExplanation": {
+                "en": "Only this expression fits the situation.",
+                "fr": "Seule cette expression convient à la situation.",
+                "de": "Nur dieser Ausdruck passt zur Situation."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-5",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the expression that fits the gap.",
+            "fr": "Choisissez l’expression qui convient.",
+            "de": "Wähle den passenden Ausdruck."
+          },
+          "items": [
+            {
+              "type": "function_dialogue_gap_choice",
+              "itemId": "gap-5",
+              "expressionId": "laddition",
+              "context": {
+                "roleId": "serveur",
+                "text": "Vous désirez autre chose ?"
+              },
+              "roleId": "cliente",
+              "before": "Non, merci.",
+              "after": "",
+              "choiceExpressionIds": [
+                "laddition",
+                "je-voudrais",
+                "vous-desirez",
+                "et-avec-ceci"
+              ],
+              "answerExplanation": {
+                "en": "Only this expression fits the situation.",
+                "fr": "Seule cette expression convient à la situation.",
+                "de": "Nur dieser Ausdruck passt zur Situation."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-6",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the expression that fits the gap.",
+            "fr": "Choisissez l’expression qui convient.",
+            "de": "Wähle den passenden Ausdruck."
+          },
+          "items": [
+            {
+              "type": "function_dialogue_gap_choice",
+              "itemId": "gap-6",
+              "expressionId": "et-avec-ceci",
+              "context": {
+                "roleId": "cliente",
+                "text": "Un thé, s’il vous plaît."
+              },
+              "roleId": "serveur",
+              "before": "Très bien.",
+              "after": "",
+              "choiceExpressionIds": [
+                "et-avec-ceci",
+                "merci-au-revoir",
+                "cest-combien",
+                "laddition"
+              ],
+              "answerExplanation": {
+                "en": "Only this expression fits the situation.",
+                "fr": "Seule cette expression convient à la situation.",
+                "de": "Nur dieser Ausdruck passt zur Situation."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Final exam",
+        "fr": "Examen final",
+        "de": "Abschlussprüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-replies-1",
+          "estimatedDurationS": 90,
+          "timeLimitS": 135,
+          "instructions": {
+            "en": "Build the answer. Not every word fits.",
+            "fr": "Construisez la réponse. Tous les mots ne conviennent pas.",
+            "de": "Bilde die Antwort. Nicht jedes Wort passt."
+          },
+          "items": [
+            {
+              "type": "function_word_order",
+              "itemId": "reply-1",
+              "expressionId": "je-voudrais",
+              "context": {
+                "roleId": "serveur",
+                "text": "Bonsoir, madame. Vous désirez ?"
+              },
+              "roleId": "cliente",
+              "tokens": [
+                {
+                  "tokenId": "t1",
+                  "text": "Je"
+                },
+                {
+                  "tokenId": "t2",
+                  "text": "voudrais"
+                },
+                {
+                  "tokenId": "t3",
+                  "text": "un chocolat chaud"
+                },
+                {
+                  "tokenId": "t4",
+                  "text": "voudrait"
+                },
+                {
+                  "tokenId": "t5",
+                  "text": "désire"
+                }
+              ],
+              "distractorTokenIds": [
+                "t4",
+                "t5"
+              ],
+              "acceptedOrders": [
+                [
+                  "t1",
+                  "t2",
+                  "t3"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "The sentence uses “Je voudrais”.",
+                "fr": "La phrase utilise « Je voudrais ».",
+                "de": "Der Satz verwendet „Je voudrais“."
+              }
+            },
+            {
+              "type": "function_word_order",
+              "itemId": "reply-2",
+              "expressionId": "laddition",
+              "context": {
+                "roleId": "serveur",
+                "text": "Vous désirez un dessert ?"
+              },
+              "roleId": "cliente",
+              "tokens": [
+                {
+                  "tokenId": "t1",
+                  "text": "Non,"
+                },
+                {
+                  "tokenId": "t2",
+                  "text": "juste"
+                },
+                {
+                  "tokenId": "t3",
+                  "text": "l’addition,"
+                },
+                {
+                  "tokenId": "t4",
+                  "text": "s’il vous plaît"
+                },
+                {
+                  "tokenId": "t5",
+                  "text": "Le"
+                }
+              ],
+              "distractorTokenIds": [
+                "t5"
+              ],
+              "acceptedOrders": [
+                [
+                  "t1",
+                  "t2",
+                  "t3",
+                  "t4"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "The sentence uses “L’addition, s’il vous plaît.”.",
+                "fr": "La phrase utilise « L’addition, s’il vous plaît. ».",
+                "de": "Der Satz verwendet „L’addition, s’il vous plaît.“."
+              }
+            },
+            {
+              "type": "function_word_order",
+              "itemId": "reply-3",
+              "expressionId": "cest-combien",
+              "context": {
+                "roleId": "serveur",
+                "text": "Voilà vos deux croissants."
+              },
+              "roleId": "cliente",
+              "tokens": [
+                {
+                  "tokenId": "t1",
+                  "text": "Merci."
+                },
+                {
+                  "tokenId": "t2",
+                  "text": "C’est"
+                },
+                {
+                  "tokenId": "t3",
+                  "text": "combien"
+                },
+                {
+                  "tokenId": "t4",
+                  "text": "?"
+                },
+                {
+                  "tokenId": "t5",
+                  "text": "comment"
+                }
+              ],
+              "distractorTokenIds": [
+                "t5"
+              ],
+              "acceptedOrders": [
+                [
+                  "t1",
+                  "t2",
+                  "t3",
+                  "t4"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "The sentence uses “C’est combien ?”.",
+                "fr": "La phrase utilise « C’est combien ? ».",
+                "de": "Der Satz verwendet „C’est combien ?“."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-replies-2",
+          "estimatedDurationS": 90,
+          "timeLimitS": 135,
+          "instructions": {
+            "en": "Build the answer. Not every word fits.",
+            "fr": "Construisez la réponse. Tous les mots ne conviennent pas.",
+            "de": "Bilde die Antwort. Nicht jedes Wort passt."
+          },
+          "items": [
+            {
+              "type": "function_word_order",
+              "itemId": "reply-4",
+              "expressionId": "vous-desirez",
+              "context": {
+                "roleId": "cliente",
+                "text": "Bonsoir !"
+              },
+              "roleId": "serveur",
+              "tokens": [
+                {
+                  "tokenId": "t1",
+                  "text": "Bonsoir, monsieur."
+                },
+                {
+                  "tokenId": "t2",
+                  "text": "Vous"
+                },
+                {
+                  "tokenId": "t3",
+                  "text": "désirez"
+                },
+                {
+                  "tokenId": "t4",
+                  "text": "?"
+                },
+                {
+                  "tokenId": "t5",
+                  "text": "désire"
+                }
+              ],
+              "distractorTokenIds": [
+                "t5"
+              ],
+              "acceptedOrders": [
+                [
+                  "t1",
+                  "t2",
+                  "t3",
+                  "t4"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "The sentence uses “Vous désirez ?”.",
+                "fr": "La phrase utilise « Vous désirez ? ».",
+                "de": "Der Satz verwendet „Vous désirez ?“."
+              }
+            },
+            {
+              "type": "function_word_order",
+              "itemId": "reply-5",
+              "expressionId": "et-avec-ceci",
+              "context": {
+                "roleId": "cliente",
+                "text": "Je voudrais une limonade."
+              },
+              "roleId": "serveur",
+              "tokens": [
+                {
+                  "tokenId": "t1",
+                  "text": "Une limonade."
+                },
+                {
+                  "tokenId": "t2",
+                  "text": "Et"
+                },
+                {
+                  "tokenId": "t3",
+                  "text": "avec ceci"
+                },
+                {
+                  "tokenId": "t4",
+                  "text": "?"
+                }
+              ],
+              "distractorTokenIds": [],
+              "acceptedOrders": [
+                [
+                  "t1",
+                  "t2",
+                  "t3",
+                  "t4"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "The sentence uses “Et avec ceci ?”.",
+                "fr": "La phrase utilise « Et avec ceci ? ».",
+                "de": "Der Satz verwendet „Et avec ceci ?“."
+              }
+            },
+            {
+              "type": "function_word_order",
+              "itemId": "reply-6",
+              "expressionId": "merci-au-revoir",
+              "context": {
+                "roleId": "serveur",
+                "text": "Bonne journée, madame !"
+              },
+              "roleId": "cliente",
+              "tokens": [
+                {
+                  "tokenId": "t1",
+                  "text": "Merci,"
+                },
+                {
+                  "tokenId": "t2",
+                  "text": "au revoir"
+                },
+                {
+                  "tokenId": "t3",
+                  "text": "et"
+                },
+                {
+                  "tokenId": "t4",
+                  "text": "bonne journée"
+                },
+                {
+                  "tokenId": "t5",
+                  "text": "bonjour"
+                }
+              ],
+              "distractorTokenIds": [
+                "t5"
+              ],
+              "acceptedOrders": [
+                [
+                  "t1",
+                  "t2",
+                  "t3",
+                  "t4"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "The sentence uses “Merci, au revoir.”.",
+                "fr": "La phrase utilise « Merci, au revoir. ».",
+                "de": "Der Satz verwendet „Merci, au revoir.“."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-dialogue",
+          "estimatedDurationS": 184,
+          "timeLimitS": 276,
+          "instructions": {
+            "en": "Fill each gap with an expression from this lesson.",
+            "fr": "Complétez chaque trou avec une expression de la leçon.",
+            "de": "Fülle jede Lücke mit einem Ausdruck aus dieser Lektion."
+          },
+          "items": [
+            {
+              "type": "function_dialogue_gap_typing",
+              "itemId": "exam-dialogue",
+              "lines": [
+                {
+                  "lineId": "x1",
+                  "roleId": "serveur",
+                  "before": "Bonsoir, monsieur.",
+                  "gap": {
+                    "gapId": "g1",
+                    "expressionId": "vous-desirez",
+                    "accepted": {
+                      "answers": [
+                        "Vous désirez"
+                      ],
+                      "accentSensitive": []
+                    },
+                    "answerExplanation": {
+                      "en": "The expected expression is “Vous désirez”.",
+                      "fr": "L’expression attendue est « Vous désirez ».",
+                      "de": "Erwartet wird der Ausdruck „Vous désirez“."
+                    }
+                  },
+                  "after": "?"
+                },
+                {
+                  "lineId": "x2",
+                  "roleId": "cliente",
+                  "before": "Bonjour.",
+                  "gap": {
+                    "gapId": "g2",
+                    "expressionId": "je-voudrais",
+                    "accepted": {
+                      "answers": [
+                        "Je voudrais"
+                      ],
+                      "accentSensitive": []
+                    },
+                    "answerExplanation": {
+                      "en": "The expected expression is “Je voudrais”.",
+                      "fr": "L’expression attendue est « Je voudrais ».",
+                      "de": "Erwartet wird der Ausdruck „Je voudrais“."
+                    }
+                  },
+                  "after": "un thé et un croissant."
+                },
+                {
+                  "lineId": "x3",
+                  "roleId": "serveur",
+                  "before": "Parfait.",
+                  "gap": {
+                    "gapId": "g3",
+                    "expressionId": "et-avec-ceci",
+                    "accepted": {
+                      "answers": [
+                        "Et avec ceci"
+                      ],
+                      "accentSensitive": []
+                    },
+                    "answerExplanation": {
+                      "en": "The expected expression is “Et avec ceci”.",
+                      "fr": "L’expression attendue est « Et avec ceci ».",
+                      "de": "Erwartet wird der Ausdruck „Et avec ceci“."
+                    }
+                  },
+                  "after": "?"
+                },
+                {
+                  "lineId": "x4",
+                  "roleId": "cliente",
+                  "before": "C’est tout.",
+                  "gap": {
+                    "gapId": "g4",
+                    "expressionId": "laddition",
+                    "accepted": {
+                      "answers": [
+                        "L’addition, s’il vous plaît"
+                      ],
+                      "accentSensitive": []
+                    },
+                    "answerExplanation": {
+                      "en": "The expected expression is “L’addition, s’il vous plaît”.",
+                      "fr": "L’expression attendue est « L’addition, s’il vous plaît ».",
+                      "de": "Erwartet wird der Ausdruck „L’addition, s’il vous plaît“."
+                    }
+                  },
+                  "after": "."
+                },
+                {
+                  "lineId": "x5",
+                  "roleId": "serveur",
+                  "before": "Voilà, monsieur.",
+                  "gap": null,
+                  "after": ""
+                },
+                {
+                  "lineId": "x6",
+                  "roleId": "cliente",
+                  "before": "Merci.",
+                  "gap": {
+                    "gapId": "g5",
+                    "expressionId": "cest-combien",
+                    "accepted": {
+                      "answers": [
+                        "C’est combien"
+                      ],
+                      "accentSensitive": []
+                    },
+                    "answerExplanation": {
+                      "en": "The expected expression is “C’est combien”.",
+                      "fr": "L’expression attendue est « C’est combien ».",
+                      "de": "Erwartet wird der Ausdruck „C’est combien“."
+                    }
+                  },
+                  "after": "?"
+                },
+                {
+                  "lineId": "x7",
+                  "roleId": "serveur",
+                  "before": "Cinq euros.",
+                  "gap": null,
+                  "after": ""
+                },
+                {
+                  "lineId": "x8",
+                  "roleId": "cliente",
+                  "before": "Voilà.",
+                  "gap": {
+                    "gapId": "g6",
+                    "expressionId": "merci-au-revoir",
+                    "accepted": {
+                      "answers": [
+                        "Merci, au revoir"
+                      ],
+                      "accentSensitive": []
+                    },
+                    "answerExplanation": {
+                      "en": "The expected expression is “Merci, au revoir”.",
+                      "fr": "L’expression attendue est « Merci, au revoir ».",
+                      "de": "Erwartet wird der Ausdruck „Merci, au revoir“."
+                    }
+                  },
+                  "after": "."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

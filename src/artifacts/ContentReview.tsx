@@ -1,13 +1,14 @@
 import { Fragment, useId, useRef, useState, type CSSProperties } from 'react';
+import { functionsTerms } from '../domain/functionsLesson.ts';
 import { buildPlan, type PlanUnit } from '../domain/session/plan.ts';
 import { RichText } from '../components/RichText.tsx';
 import type { Brief, LessonContent } from '../schemas/artifacts.ts';
 import { useBriefText, Learn, SummaryLine, ScoringNote } from './briefParts.tsx';
 
 const COPY = {
-  en: { subject: 'Subject', form: 'Form', outline: 'Lesson outline', pages: 'Lesson pages', page: 'Page', answers: 'Accepted answers', options: 'Options', explanation: 'Answer explanation', units: 'Point units', references: 'Reference words', timer: 'Countdown limit', noTimer: 'No countdown', front: 'Front', back: 'Back', placeholder: 'Personalised production feedback is planned for a later phase.', rules: 'Rules', accents: 'Meaning-sensitive accents', type: 'Task type', correction: 'Correction' },
-  fr: { subject: 'Sujet', form: 'Forme', outline: 'Plan de la leçon', pages: 'Pages de la leçon', page: 'Page', answers: 'Réponses acceptées', options: 'Options', explanation: 'Explication de la réponse', units: 'Unités de points', references: 'Mots de référence', timer: 'Limite du compte à rebours', noTimer: 'Sans compte à rebours', front: 'Recto', back: 'Verso', placeholder: 'Le retour personnalisé sur la production est prévu pour une phase ultérieure.', rules: 'Règles', accents: 'Accents qui changent le sens', type: 'Type de tâche', correction: 'Correction' },
-  de: { subject: 'Subjekt', form: 'Form', outline: 'Lektionsübersicht', pages: 'Lektionsseiten', page: 'Seite', answers: 'Akzeptierte Antworten', options: 'Optionen', explanation: 'Erklärung der Antwort', units: 'Punkteinheiten', references: 'Referenzwörter', timer: 'Zeitlimit', noTimer: 'Kein Countdown', front: 'Vorderseite', back: 'Rückseite', placeholder: 'Persönliches Feedback zur Produktion ist für eine spätere Phase vorgesehen.', rules: 'Regeln', accents: 'Bedeutungsrelevante Akzente', type: 'Aufgabentyp', correction: 'Korrektur' },
+  en: { subject: 'Subject', form: 'Form', outline: 'Lesson outline', pages: 'Lesson pages', page: 'Page', answers: 'Accepted answers', options: 'Options', explanation: 'Answer explanation', units: 'Point units', references: 'Reference words', timer: 'Countdown limit', noTimer: 'No countdown', front: 'Front', back: 'Back', placeholder: 'Personalised production feedback is planned for a later phase.', rules: 'Rules', accents: 'Meaning-sensitive accents', type: 'Task type', correction: 'Correction' , roleCol: 'Role', line: 'Line', note: 'Note', distractors: 'Distractors' },
+  fr: { subject: 'Sujet', form: 'Forme', outline: 'Plan de la leçon', pages: 'Pages de la leçon', page: 'Page', answers: 'Réponses acceptées', options: 'Options', explanation: 'Explication de la réponse', units: 'Unités de points', references: 'Mots de référence', timer: 'Limite du compte à rebours', noTimer: 'Sans compte à rebours', front: 'Recto', back: 'Verso', placeholder: 'Le retour personnalisé sur la production est prévu pour une phase ultérieure.', rules: 'Règles', accents: 'Accents qui changent le sens', type: 'Type de tâche', correction: 'Correction' , roleCol: 'Rôle', line: 'Réplique', note: 'Remarque', distractors: 'Distracteurs' },
+  de: { subject: 'Subjekt', form: 'Form', outline: 'Lektionsübersicht', pages: 'Lektionsseiten', page: 'Seite', answers: 'Akzeptierte Antworten', options: 'Optionen', explanation: 'Erklärung der Antwort', units: 'Punkteinheiten', references: 'Referenzwörter', timer: 'Zeitlimit', noTimer: 'Kein Countdown', front: 'Vorderseite', back: 'Rückseite', placeholder: 'Persönliches Feedback zur Produktion ist für eine spätere Phase vorgesehen.', rules: 'Regeln', accents: 'Bedeutungsrelevante Akzente', type: 'Aufgabentyp', correction: 'Korrektur' , roleCol: 'Rolle', line: 'Zeile', note: 'Hinweis', distractors: 'Ablenker' },
 };
 
 /** Builds presentation data only. No session hook, timer, storage or answer controls. */
@@ -21,6 +22,8 @@ export function ContentReview({ content, brief }: { content: LessonContent; brie
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
   const color = (index: number) => ({ '--review-color': ['#a5b4fc', '#67e8f9', '#86efac', '#fcd34d', '#fda4af', '#d8b4fe'][index % 6] }) as CSSProperties;
   const learning = (s: string) => <Learn lang={content.lang}>{s}</Learn>;
+  const terms = brief.kind === 'functions' ? functionsTerms(brief) : undefined;
+  const role = (id: string) => (brief.kind === 'functions' ? brief.roles.find((r) => r.id === id)?.label : undefined) ?? id;
   const optionText = (s: string, lang: string) => lang === 'ui' && s.startsWith('gender.') ? text.t(s as 'gender.masculine') : s;
   const unitAnswer = (u: PlanUnit) => {
     if (u.kind === 'text') return u.accepted.answers.join(' / ');
@@ -88,6 +91,14 @@ export function ContentReview({ content, brief }: { content: LessonContent; brie
             const t = plan.targets.get(id)!;
             return <tr key={id}><td>{learning(t.teachingForm)}<br /><small>{t.pronunciation}</small></td><td lang={text.nativeLocale}>{text.native(t.translations)?.join(' / ')}</td><td>{t.genders.map((g) => text.t(`gender.${g}`)).join(' / ')}</td></tr>;
           })}</tbody></table></div>}
+          {item.type === 'function_flashcards' && terms && <div className="table-wrap"><table className="data-table"><thead><tr><th>{copy.front}</th><th>{copy.back}</th></tr></thead><tbody>{item.ids.map((id) => {
+            const term = terms.get(id), french = learning(term?.display ?? id), translation = <span lang={text.nativeLocale}>{text.native(term?.translations ?? {})?.join(' / ')}</span>;
+            return <tr key={id}><td>{item.side === 'expressions' ? french : translation}</td><td>{item.side === 'expressions' ? translation : french}</td></tr>;
+          })}</tbody></table></div>}
+          {(item.type === 'function_dialogue' || item.type === 'function_dialogue_gap_typing') && <div className="table-wrap"><table className="data-table"><thead><tr><th>{copy.roleCol}</th><th>{copy.line}</th>{item.type === 'function_dialogue' && <><th>{text.t('brief.col.translation', { locale: text.languageName(text.nativeLocale) })}</th><th>{copy.note}</th></>}</tr></thead><tbody>{item.type === 'function_dialogue'
+            ? item.lines.map((l) => <tr key={l.lineId}><td>{learning(role(l.roleId))}</td><td>{learning(l.text)}</td><td lang={text.nativeLocale}>{text.native(l.translation)}</td><td>{text.ui(l.note)}</td></tr>)
+            : item.lines.map((l) => <tr key={l.lineId}><td>{learning(role(l.roleId))}</td><td>{learning(l.gap ? [l.before, '___', l.after].filter(Boolean).join(' ') : l.before)}</td></tr>)}</tbody></table></div>}
+          {item.type === 'function_word_order' && item.distractorTokenIds.length > 0 && <p>{copy.distractors}: {learning(item.tokens.filter((tk) => item.distractorTokenIds.includes(tk.tokenId)).map((tk) => tk.text).join(' · '))}</p>}
           {item.type === 'vocabulary_typed_gap' && <p>{copy.references}: {item.referenceTargetIds.map((id) => plan.targets.get(id)!.term).join(' · ')}</p>}
           {pg.units.filter((u) => u.itemId === item.itemId).map((u) => <div className="content-answer" key={u.id}>
             <p><code>{u.id}</code> · {copy.units}: 1</p>

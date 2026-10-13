@@ -55,7 +55,8 @@ export function isAnswered(unit: PlanUnit, response: UnitResponse | undefined | 
   switch (unit.kind) {
     case 'text': return typeof response === 'string' && normalizeAnswer(response) !== '';
     case 'choice': return typeof response === 'string' && response !== '';
-    case 'order': return Array.isArray(response) && response.length === unit.tokens.length;
+    // With distractors not every token is placed; otherwise the sentence uses every token.
+    case 'order': return Array.isArray(response) && (unit.distractors?.length ? response.length > 0 : response.length === unit.tokens.length);
     case 'spot': return typeof response === 'object' && !Array.isArray(response) && !!response.tokenId && normalizeAnswer(response.text) !== '';
   }
 }

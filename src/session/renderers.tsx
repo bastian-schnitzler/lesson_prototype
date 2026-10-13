@@ -31,4 +31,11 @@ export const rendererRegistry: Record<Item['type'], ComponentType<RendererProps>
   grammar_gap_typing: UnitsRenderer,
   grammar_word_order: UnitsRenderer,
   grammar_error_spotter: UnitsRenderer,
+  // Function lessons (P4-02): baseline renderers until P4-04/P4-05 add the full interactions.
+  function_flashcards: UnitsRenderer,
+  function_dialogue: UnitsRenderer,
+  function_matching: UnitsRenderer,
+  function_word_order: UnitsRenderer,
+  function_dialogue_gap_choice: UnitsRenderer,
+  function_dialogue_gap_typing: UnitsRenderer,
 };

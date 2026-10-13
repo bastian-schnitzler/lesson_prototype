@@ -1,0 +1,275 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-ordering-at-a-cafe",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Commander au café",
+  "objective": {
+    "en": "Order a drink and a snack at a café, ask for the price and the bill.",
+    "fr": "Commander une boisson et un en-cas au café, demander le prix et l’addition.",
+    "de": "Im Café ein Getränk und einen Snack bestellen, nach dem Preis und der Rechnung fragen."
+  },
+  "estimatedMinutes": 15,
+  "provenance": {
+    "generator": "fixture",
+    "model": "none",
+    "promptVersion": "fixture-1",
+    "generatedAt": "2026-10-13T00:00:00Z",
+    "inputHashes": {
+      "outline": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  },
+  "kind": "functions",
+  "theme": "food_and_drink",
+  "situation": {
+    "en": "A customer orders at a café; the waiter serves her.",
+    "fr": "Une cliente commande au café ; le serveur la sert.",
+    "de": "Eine Kundin bestellt im Café; der Kellner bedient sie."
+  },
+  "coverageNotes": {
+    "en": "Ordering, asking the price and the bill, and the waiter’s questions.",
+    "fr": "Commander, demander le prix et l’addition, et les questions du serveur.",
+    "de": "Bestellen, nach Preis und Rechnung fragen und die Fragen des Kellners."
+  },
+  "prerequisites": [],
+  "roles": [
+    {
+      "id": "serveur",
+      "label": "le serveur",
+      "translation": {
+        "en": "the waiter",
+        "de": "der Kellner"
+      }
+    },
+    {
+      "id": "cliente",
+      "label": "la cliente",
+      "translation": {
+        "en": "the customer",
+        "de": "die Kundin"
+      }
+    }
+  ],
+  "expressions": [
+    {
+      "id": "je-voudrais",
+      "text": "Je voudrais",
+      "openEnd": true,
+      "translations": {
+        "en": [
+          "I would like"
+        ],
+        "de": [
+          "Ich hätte gern"
+        ]
+      },
+      "explanation": {
+        "en": "Polite way to order or ask for something.",
+        "fr": "Façon polie de commander ou de demander quelque chose.",
+        "de": "Höfliche Art, etwas zu bestellen oder zu erbitten."
+      },
+      "example": {
+        "text": "Je voudrais un café.",
+        "translation": {
+          "en": "I would like a coffee.",
+          "de": "Ich hätte gern einen Kaffee."
+        }
+      }
+    },
+    {
+      "id": "vous-desirez",
+      "text": "Vous désirez ?",
+      "openEnd": false,
+      "translations": {
+        "en": [
+          "What would you like?"
+        ],
+        "de": [
+          "Was darf es sein?"
+        ]
+      },
+      "explanation": {
+        "en": "What the waiter asks to take your order.",
+        "fr": "Ce que le serveur demande pour prendre la commande.",
+        "de": "So fragt der Kellner nach der Bestellung."
+      },
+      "example": {
+        "text": "Bonjour, monsieur. Vous désirez ?",
+        "translation": {
+          "en": "Hello, sir. What would you like?",
+          "de": "Guten Tag. Was darf es sein?"
+        }
+      }
+    },
+    {
+      "id": "cest-combien",
+      "text": "C’est combien ?",
+      "openEnd": false,
+      "translations": {
+        "en": [
+          "How much is it?"
+        ],
+        "de": [
+          "Wie viel kostet das?"
+        ]
+      },
+      "explanation": {
+        "en": "Asks for the price.",
+        "fr": "Pour demander le prix.",
+        "de": "Fragt nach dem Preis."
+      },
+      "example": {
+        "text": "Le croissant, c’est combien ?",
+        "translation": {
+          "en": "How much is the croissant?",
+          "de": "Wie viel kostet das Croissant?"
+        }
+      }
+    },
+    {
+      "id": "laddition",
+      "text": "L’addition, s’il vous plaît.",
+      "openEnd": false,
+      "translations": {
+        "en": [
+          "The bill, please."
+        ],
+        "de": [
+          "Die Rechnung, bitte."
+        ]
+      },
+      "explanation": {
+        "en": "Asks for the bill politely (vous).",
+        "fr": "Pour demander l’addition poliment (vous).",
+        "de": "Bittet höflich um die Rechnung (vous)."
+      },
+      "example": {
+        "text": "Monsieur ! L’addition, s’il vous plaît.",
+        "translation": {
+          "en": "Excuse me! The bill, please.",
+          "de": "Entschuldigung! Die Rechnung, bitte."
+        }
+      }
+    },
+    {
+      "id": "et-avec-ceci",
+      "text": "Et avec ceci ?",
+      "openEnd": false,
+      "translations": {
+        "en": [
+          "Anything else?"
+        ],
+        "de": [
+          "Sonst noch etwas?"
+        ]
+      },
+      "explanation": {
+        "en": "Staff ask whether you want anything more.",
+        "fr": "Le personnel demande si vous voulez autre chose.",
+        "de": "Das Personal fragt, ob Sie noch etwas möchten."
+      },
+      "example": {
+        "text": "Un thé. Et avec ceci ?",
+        "translation": {
+          "en": "A tea. Anything else?",
+          "de": "Ein Tee. Sonst noch etwas?"
+        }
+      }
+    },
+    {
+      "id": "merci-au-revoir",
+      "text": "Merci, au revoir.",
+      "openEnd": false,
+      "translations": {
+        "en": [
+          "Thank you, goodbye."
+        ],
+        "de": [
+          "Danke, auf Wiedersehen."
+        ]
+      },
+      "explanation": {
+        "en": "Thanks and says goodbye when leaving.",
+        "fr": "Pour remercier et dire au revoir en partant.",
+        "de": "Bedankt sich und verabschiedet sich beim Gehen."
+      },
+      "example": {
+        "text": "Merci, au revoir, madame.",
+        "translation": {
+          "en": "Thank you, goodbye, madam.",
+          "de": "Danke, auf Wiedersehen."
+        }
+      }
+    }
+  ],
+  "words": [
+    {
+      "id": "the",
+      "term": "thé",
+      "teachingForm": "un thé",
+      "translations": {
+        "en": [
+          "tea"
+        ],
+        "de": [
+          "Tee"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "explanation": {
+        "en": "Masculine noun: un thé.",
+        "fr": "Nom masculin : un thé.",
+        "de": "Maskulines Nomen: un thé."
+      },
+      "example": {
+        "text": "Je voudrais un thé.",
+        "translation": {
+          "en": "I would like a tea.",
+          "de": "Ich hätte gern einen Tee."
+        }
+      }
+    },
+    {
+      "id": "croissant",
+      "term": "croissant",
+      "teachingForm": "un croissant",
+      "translations": {
+        "en": [
+          "croissant"
+        ],
+        "de": [
+          "Croissant"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "explanation": {
+        "en": "Masculine noun: un croissant.",
+        "fr": "Nom masculin : un croissant.",
+        "de": "Maskulines Nomen: un croissant."
+      },
+      "example": {
+        "text": "Un croissant, s’il vous plaît.",
+        "translation": {
+          "en": "A croissant, please.",
+          "de": "Ein Croissant, bitte."
+        }
+      }
+    }
+  ],
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

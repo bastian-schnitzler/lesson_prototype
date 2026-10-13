@@ -1,7 +1,9 @@
 import type { AcceptedAnswers, LocalizedText } from '../../schemas/artifactCommon.ts';
 import type { Brief, LessonContent } from '../../schemas/artifacts.ts';
 import type { Locale } from '../../schemas/common.ts';
+import type { FunctionsItem } from '../../schemas/functions.ts';
 import type { GrammarItem } from '../../schemas/grammar.ts';
+import { functionsTerms } from '../functionsLesson.ts';
 import type { VocabularyItem, VocabularyTarget } from '../../schemas/vocabulary.ts';
 
 /**
@@ -10,7 +12,7 @@ import type { VocabularyItem, VocabularyTarget } from '../../schemas/vocabulary.
  * session itself only stores responses keyed by unit ID.
  */
 export type PageRole = 'presentation' | 'practice' | 'exam';
-export type Item = VocabularyItem | GrammarItem;
+export type Item = VocabularyItem | GrammarItem | FunctionsItem;
 
 export interface Option {
   id: string;
@@ -39,7 +41,8 @@ interface UnitBase {
 export type PlanUnit =
   | (UnitBase & { kind: 'text'; accepted: AcceptedAnswers })
   | (UnitBase & { kind: 'choice'; options: Option[]; correct: string[] })
-  | (UnitBase & { kind: 'order'; tokens: Option[]; acceptedOrders: string[][] })
+  /** `distractors`: tokens that belong to no accepted order and stay in the bank (function exam replies). */
+  | (UnitBase & { kind: 'order'; tokens: Option[]; acceptedOrders: string[][]; distractors?: string[] })
   | (UnitBase & { kind: 'spot'; tokens: Option[]; faultyTokenId: string; correction: { mode: 'type' | 'select'; accepted: AcceptedAnswers; choices: string[] } });
 
 export interface PlanPage {
@@ -92,8 +95,14 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
   const native = (map: Partial<Record<Locale, string>> | null | undefined) => map?.[motherTongue] ?? Object.values(map ?? {})[0] ?? '';
   const translation = (id: string) => targets.get(id)?.translations[motherTongue]?.[0] ?? id;
   const form = (id: string) => targets.get(id)?.teachingForm ?? id;
+  const terms = brief.kind === 'functions' ? functionsTerms(brief) : new Map<string, never>();
+  const termText = (id: string) => terms.get(id)?.display ?? id;
+  const termNative = (id: string) => terms.get(id)?.translations[motherTongue]?.[0] ?? id;
+  const roleLabel = (id: string) => (brief.kind === 'functions' ? brief.roles.find((r) => r.id === id)?.label : undefined) ?? id;
   const steps = content.steps as { id: string; role: string; blockId?: string | null; label: LocalizedText; pages: { pageId: string; estimatedDurationS: number; timeLimitS: number | null; instructions: LocalizedText; items: Item[] }[] }[];
 
+  // A gap takes the expression itself, without the ellipsis of a sentence start.
+  const expressionText = (id: string) => (brief.kind === 'functions' ? brief.expressions.find((e) => e.id === id)?.text : undefined) ?? id;
   const unitsOf = (pageId: string, item: Item): PlanUnit[] => {
     const id = (suffix = '') => `${pageId}/${item.itemId}${suffix}`;
     switch (item.type) {
@@ -171,15 +180,35 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
           accepted: item.accepted, explanation: item.answerExplanation, answer: item.accepted.answers[0], answerLang: 'learning',
         }];
       case 'grammar_word_order': {
-        // The full stop that ends every accepted sentence is not a token to place: it is left out and not
-        // shown (P3-02 review). Punctuation inside the sentence and a final ? or ! stay tokens.
-        const last = item.acceptedOrders[0].at(-1);
-        const stop = item.tokens.find((t) => t.tokenId === last && t.text === '.') && item.acceptedOrders.every((o) => o.at(-1) === last) ? last : undefined;
-        const tokens = item.tokens.filter((t) => t.tokenId !== stop).map((t) => ({ id: t.tokenId, text: t.text, lang: 'learning' as const }));
-        const acceptedOrders = item.acceptedOrders.map((o) => o.filter((tid) => tid !== stop));
-        const text = (order: string[]) => order.map((tid) => tokens.find((t) => t.id === tid)?.text ?? '').join(' ');
-        return [{ kind: 'order', id: id(), itemId: item.itemId, itemType: item.type, prompt: {}, tokens, acceptedOrders, explanation: item.answerExplanation, answer: text(acceptedOrders[0]), answerLang: 'learning' }];
+        const { tokens, acceptedOrders, answer } = wordOrder(item);
+        return [{ kind: 'order', id: id(), itemId: item.itemId, itemType: item.type, prompt: {}, tokens, acceptedOrders, explanation: item.answerExplanation, answer, answerLang: 'learning' }];
       }
+      case 'function_matching': {
+        const options = item.pairs.map((p) => ({ id: p.id, text: termNative(p.id), lang: 'native' as const }));
+        return item.pairs.map((p) => ({
+          kind: 'choice', id: id(`/${p.id}`), itemId: item.itemId, itemType: item.type, prompt: { learning: termText(p.id) },
+          options, correct: [p.id], explanation: p.answerExplanation, answer: termNative(p.id), answerLang: 'native',
+        }));
+      }
+      case 'function_word_order': {
+        // Exam replies keep their distractors in the bank; role A's line is the context (SPEC section 8).
+        const { tokens, acceptedOrders, answer } = wordOrder(item);
+        const prompt = item.context ? { learning: `${roleLabel(item.context.roleId)}: ${item.context.text}` } : {};
+        return [{ kind: 'order', id: id(), itemId: item.itemId, itemType: item.type, prompt, tokens, acceptedOrders, distractors: item.distractorTokenIds, explanation: item.answerExplanation, answer, answerLang: 'learning' }];
+      }
+      case 'function_dialogue_gap_choice':
+        return [{
+          kind: 'choice', id: id(), itemId: item.itemId, itemType: item.type,
+          prompt: { learning: `${roleLabel(item.context.roleId)}: ${item.context.text}`, before: item.before, after: item.after },
+          options: item.choiceExpressionIds.map((e) => ({ id: e, text: expressionText(e), lang: 'learning' })), correct: [item.expressionId],
+          explanation: item.answerExplanation, answer: expressionText(item.expressionId), answerLang: 'learning',
+        }];
+      case 'function_dialogue_gap_typing':
+        // One unit per gap of the exam dialogue; the lines unroll on one timed page.
+        return item.lines.flatMap((l) => (l.gap ? [{
+          kind: 'text' as const, id: id(`/${l.gap.gapId}`), itemId: item.itemId, itemType: item.type, prompt: { before: l.before, after: l.after },
+          accepted: l.gap.accepted, explanation: l.gap.answerExplanation, answer: l.gap.accepted.answers[0], answerLang: 'learning' as const,
+        }] : []));
       case 'grammar_error_spotter': {
         const tokens = item.tokens.map((t) => ({ id: t.tokenId, text: t.text, lang: 'learning' as const }));
         const sentence = tokens.map((t) => (t.id === item.faultyTokenId ? item.correction.accepted.answers[0] : t.text)).join(' ');
@@ -190,6 +219,8 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
       case 'vocabulary_overview':
       case 'grammar_explanation':
       case 'production_feedback_placeholder':
+      case 'function_flashcards':
+      case 'function_dialogue':
         return []; // presentation only
       default: {
         // A new item type must decide here whether it is scored (compile-time exhaustiveness).
@@ -218,6 +249,20 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
     newVerbs: brief.kind === 'grammar' ? brief.newVerbs.map((v) => ({ infinitive: v.infinitive, translation: native(v.translations) })) : [],
     steps: steps.map((s) => ({ stepId: s.id, label: s.label, role: s.role === 'exam' ? 'exam' : pages.some((p) => p.stepId === s.id && p.role === 'practice') ? 'practice' : 'presentation' })),
   };
+}
+
+/**
+ * Tokens and accepted orders of a word-order item. The full stop that ends every accepted sentence
+ * is not a token to place: it is left out and not shown (P3-02 review). Punctuation inside the
+ * sentence and a final ? or ! stay tokens.
+ */
+function wordOrder(item: { tokens: { tokenId: string; text: string }[]; acceptedOrders: string[][] }) {
+  const last = item.acceptedOrders[0].at(-1);
+  const stop = item.tokens.find((t) => t.tokenId === last && t.text === '.') && item.acceptedOrders.every((o) => o.at(-1) === last) ? last : undefined;
+  const tokens = item.tokens.filter((t) => t.tokenId !== stop).map((t) => ({ id: t.tokenId, text: t.text, lang: 'learning' as const }));
+  const acceptedOrders = item.acceptedOrders.map((o) => o.filter((tid) => tid !== stop));
+  const answer = acceptedOrders[0].map((tid) => tokens.find((t) => t.id === tid)?.text ?? '').join(' ');
+  return { tokens, acceptedOrders, answer };
 }
 
 /**

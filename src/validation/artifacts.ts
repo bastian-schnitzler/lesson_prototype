@@ -6,7 +6,9 @@ import { GRAMMAR_LENGTH, PERSON_MATCHING_EXEMPT, PERSON_MATCHING_TOPICS, PERSONS
 import type { OutlineEntry } from '../schemas/outline.ts';
 import { learningForms, parseRichText, richTextShape } from '../domain/richText.ts';
 import type { VocabularyBrief, VocabularyTarget } from '../schemas/vocabulary.ts';
-import { matchingPages, vocabularyLesson } from '../domain/vocabularyLesson.ts';
+import { chunk, matchingPages, vocabularyLesson } from '../domain/vocabularyLesson.ts';
+import { functionsPageEstimate, functionsTimeLimit } from '../domain/functionsLesson.ts';
+import { FUNCTIONS_LIMITS, FUNCTIONS_PAGE_RULES, FUNCTIONS_STAGES, type FunctionsBrief, type FunctionsContent, type FunctionsItem } from '../schemas/functions.ts';
 
 /**
  * Cross-reference and pedagogical checks that JSON Schema cannot express
@@ -226,7 +228,8 @@ export function validateBrief(data: unknown, ctx: OutlineContext): ValidationRes
   const issues = new Issues();
   checkEnvelope(brief, ctx, issues);
   if (brief.kind === 'vocabulary') checkVocabularyBrief(brief, ctx, issues);
-  else checkGrammarBrief(brief, issues);
+  else if (brief.kind === 'grammar') checkGrammarBrief(brief, issues);
+  else checkFunctionsBrief(brief, ctx, issues);
   const stale = ctx.outlineHash && brief.provenance.inputHashes.outline !== ctx.outlineHash ? ['the outline entry changed after this brief was generated'] : [];
   return finish(brief, issues, stale);
 }
@@ -419,6 +422,187 @@ function checkGrammarContent(c: GrammarContent, b: GrammarBrief, issues: Issues)
   issues.check(sameSet(examPages, [...examPlan.keys()]), 'steps', 'exam pages must match the brief exam plan');
 }
 
+/* ======================================================= function lessons */
+
+/** Comparable form of a French sentence: case, apostrophes, spaces and final punctuation ignored. */
+const plain = (s: string) => s.normalize('NFC').toLowerCase().replace(/[’ʼ]/g, "'").replace(/[\s  ]+/g, ' ').replace(/[\s.!?…]+$/u, '').trim();
+
+/** Brief (D51): situation, roles, expressions and words with example sentences. */
+function checkFunctionsBrief(b: FunctionsBrief, ctx: OutlineContext, issues: Issues) {
+  issues.unique([...b.expressions.map((e) => e.id), ...b.words.map((w) => w.id), ...b.roles.map((r) => r.id)], 'expressions', 'expression, word or role ID');
+  issues.unique(b.expressions.map((e) => plain(e.text)), 'expressions', 'expression text');
+  issues.unique(b.words.map((w) => plain(w.teachingForm)), 'words', 'word');
+  issues.unique(b.roles.map((r) => plain(r.label)), 'roles', 'role label');
+  b.expressions.forEach((e, i) => {
+    const p = `expressions.${i}`;
+    issues.check(!/(\.\.\.|…)\s*$/u.test(e.text), `${p}.text`, 'write sentence starts without the ellipsis and set openEnd');
+    issues.check(plain(e.example.text).includes(plain(e.text)), `${p}.example`, `the example sentence must use the expression "${e.text}"`);
+    if (CHARACTER_ONLY.test(e.explanation.en)) issues.add(`${p}.explanation`, 'explanations name the mark (accent aigu, cédille…), not only the character');
+  });
+  b.words.forEach((w, i) => {
+    const p = `words.${i}`;
+    if (w.wordClass === 'noun') {
+      issues.check(w.genders.length > 0, `${p}.genders`, 'a noun needs at least one accepted gender');
+      if (ctx.lang === 'fr') issues.check(FR_INDEFINITE.test(w.teachingForm), `${p}.teachingForm`, `"${w.teachingForm}" must include the indefinite article un/une/des (D39)`);
+    } else issues.check(w.genders.length === 0, `${p}.genders`, 'only nouns have a gender (D8)');
+    if (ctx.lang === 'fr') issues.check(!FR_ARTICLE_START.test(w.term), `${p}.term`, `"${w.term}" must be the base term without article`);
+    issues.check(plain(w.example.text).includes(plain(w.term)), `${p}.example`, `the example sentence must use the word "${w.term}"`);
+  });
+  for (const locale of nativeLocales(ctx.lang)) {
+    issues.unique(b.expressions.map((e) => e.translations[locale]?.[0] ?? ''), 'expressions', `${locale} translation (matching labels must differ)`);
+    issues.unique(b.words.map((w) => w.translations[locale]?.[0] ?? ''), 'words', `${locale} translation (matching labels must differ)`);
+  }
+}
+
+/** The steps and pages a function lesson must have for its brief (SPEC section 8, "Page rules"). */
+function checkFunctionsContent(c: FunctionsContent, b: FunctionsBrief, issues: Issues) {
+  const L = FUNCTIONS_LIMITS, R = FUNCTIONS_PAGE_RULES;
+  const expressionIds = b.expressions.map((e) => e.id), wordIds = b.words.map((w) => w.id);
+  const expressions = new Map(b.expressions.map((e) => [e.id, e]));
+  const roles = new Set(b.roles.map((r) => r.id));
+  const role = (id: string, path: string) => issues.check(roles.has(id), path, `unknown role ${id}`);
+  const expression = (id: string, path: string) => issues.check(expressions.has(id), path, `unknown expression ${id}`);
+  const step = new Map(c.steps.map((s) => [s.stage, s]));
+  const before = issues.list.length;
+  c.steps.forEach((s, i) => {
+    issues.check(s.stage === FUNCTIONS_STAGES[i], `steps.${i}.stage`, `expected the ${FUNCTIONS_STAGES[i]} step here (section 8)`);
+    issues.check(s.role === (s.stage === 'exam' ? 'exam' : s.stage === 'flashcards' || s.stage === 'dialogue' ? 'presentation' : 'exercise'), `steps.${i}.role`, `wrong role for the ${s.stage} step`);
+  });
+  if (issues.list.length > before) return;
+  const items = (stage: (typeof FUNCTIONS_STAGES)[number]) => step.get(stage)!.pages.flatMap((pg) => pg.items);
+  const only = <T extends FunctionsItem['type']>(stage: (typeof FUNCTIONS_STAGES)[number], ...types: T[]) => {
+    const list = items(stage);
+    issues.check(list.every((it) => (types as string[]).includes(it.type)), `steps.${stage}`, `the ${stage} step holds ${types.join(' and ')} items only`);
+    return list.filter((it): it is Extract<FunctionsItem, { type: T }> => (types as string[]).includes(it.type));
+  };
+  const pageSizes = (stage: (typeof FUNCTIONS_STAGES)[number]) => step.get(stage)!.pages.map((pg) => pg.items.length);
+
+  // Flashcards: one page of all expressions, then one page of all words (none without words).
+  const cards = only('flashcards', 'function_flashcards');
+  issues.check(cards.length === (wordIds.length ? 2 : 1) && pageSizes('flashcards').every((n) => n === 1), 'steps.flashcards', 'one page for the expressions, then one for the words');
+  issues.check(sameSet(cards[0]?.ids ?? [], expressionIds) && cards[0]?.side === 'expressions', 'steps.flashcards', 'the first flashcard page holds every expression');
+  if (wordIds.length) issues.check(sameSet(cards[1]?.ids ?? [], wordIds) && cards[1]?.side === 'words', 'steps.flashcards', 'the second flashcard page holds every word');
+
+  // Model dialogue: one page, alternating roles, every expression used.
+  const dialogue = only('dialogue', 'function_dialogue');
+  if (issues.check(dialogue.length === 1, 'steps.dialogue', 'the model dialogue is one item on one page')) {
+    const lines = dialogue[0].lines;
+    issues.unique(lines.map((l) => l.lineId), 'steps.dialogue', 'line ID');
+    lines.forEach((l, n) => {
+      const p = `steps.dialogue.lines.${n}`;
+      role(l.roleId, p);
+      if (n > 0) issues.check(l.roleId !== lines[n - 1].roleId, p, 'the roles alternate');
+      for (const id of l.expressionIds) if (expression(id, p)) issues.check(plain(l.text).includes(plain(expressions.get(id)!.text)), p, `the line does not contain the expression "${expressions.get(id)!.text}"`);
+    });
+    const used = new Set(lines.flatMap((l) => l.expressionIds));
+    for (const id of expressionIds) issues.check(used.has(id), 'steps.dialogue', `the model dialogue does not use expression ${id}`);
+  }
+
+  // Matching: the expressions in balanced pages of at most six pairs, then the words on their own page.
+  const matching = only('matching', 'function_matching');
+  const expected = [...chunk(expressionIds, R.matchingPageSize).map((ids) => ['expressions', ids] as const), ...(wordIds.length ? [['words', wordIds] as const] : [])];
+  issues.check(matching.length === expected.length && pageSizes('matching').every((n) => n === 1)
+    && expected.every(([side, ids], n) => matching[n].side === side && matching[n].pairs.map((p) => p.id).join() === ids.join()),
+  'steps.matching', `matching pages: ${expected.map(([side, ids]) => `${ids.length} ${side}`).join(', ')} in brief order (at most ${R.matchingPageSize} pairs per page; words on their own page)`);
+
+  // Word order and dialogue gaps: one item per page and one per expression.
+  const perExpression = (stage: 'word_order' | 'dialogue_gaps', list: { expressionId: string }[]) => {
+    issues.check(pageSizes(stage).every((n) => n === 1), `steps.${stage}`, 'one item per page');
+    issues.check(sameSet(list.map((it) => it.expressionId), expressionIds), `steps.${stage}`, 'exactly one item per expression');
+  };
+  const orders = only('word_order', 'function_word_order');
+  perExpression('word_order', orders);
+  orders.forEach((it, n) => {
+    const p = `steps.word_order.items.${n}`;
+    issues.check(it.context === null && it.roleId === null && it.distractorTokenIds.length === 0, p, 'practice word order has tokens only: no context, role or distractors');
+    checkWordOrder(it, p, expressions, issues);
+  });
+  const gaps = only('dialogue_gaps', 'function_dialogue_gap_choice');
+  perExpression('dialogue_gaps', gaps);
+  gaps.forEach((it, n) => {
+    const p = `steps.dialogue_gaps.items.${n}`;
+    role(it.context.roleId, `${p}.context`);
+    role(it.roleId, p);
+    issues.check(it.context.roleId !== it.roleId, p, 'the gap line belongs to the other role');
+    issues.check(it.before === it.before.trim() && it.after === it.after.trim(), p, 'before and after carry no surrounding spaces (the renderer adds them)');
+    issues.check(new Set(it.choiceExpressionIds).size === 4 && it.choiceExpressionIds.includes(it.expressionId), `${p}.choiceExpressionIds`, 'four distinct expressions including the answer');
+    it.choiceExpressionIds.forEach((id) => expression(id, `${p}.choiceExpressionIds`));
+    checkExplanations([it], p, issues);
+  });
+
+  // Exam: reply pages (at most four, balanced), then one page with the exam dialogue.
+  const examPages = step.get('exam')!.pages;
+  const replies = examPages.slice(0, -1).flatMap((pg) => pg.items);
+  const last = examPages.at(-1)!.items;
+  issues.check(replies.every((it) => it.type === 'function_word_order') && last.length === 1 && last[0].type === 'function_dialogue_gap_typing', 'steps.exam', 'reply pages (word order) followed by one page with the exam dialogue');
+  const replyItems = replies.filter((it) => it.type === 'function_word_order');
+  issues.check(replyItems.length >= L.examReplies[0] && replyItems.length <= L.examReplies[1], 'steps.exam', `the exam has ${L.examReplies[0]}–${L.examReplies[1]} replies`);
+  const sizes = examPages.slice(0, -1).map((pg) => pg.items.length);
+  issues.check(sizes.join() === chunk(replyItems, R.replyPageSize).map((x) => x.length).join(), 'steps.exam', `replies stand in balanced pages of at most ${R.replyPageSize}`);
+  const practiceSentences = new Set([
+    ...b.expressions.map((e) => plain(e.example.text)), ...b.words.map((w) => plain(w.example.text)),
+    ...orders.map((it) => plain(sentence(it))), ...gaps.map((it) => plain(`${it.before} ${expressions.get(it.expressionId)?.text ?? ''} ${it.after}`)),
+    ...dialogue.flatMap((d) => d.lines.map((l) => plain(l.text))),
+  ]);
+  replyItems.forEach((it, n) => {
+    const p = `steps.exam.replies.${n}`;
+    if (issues.check(it.context !== null && it.roleId !== null, p, 'an exam reply has role A\'s line as context and the role of the reply')) {
+      role(it.context!.roleId, `${p}.context`);
+      role(it.roleId!, p);
+      issues.check(it.context!.roleId !== it.roleId, p, 'the reply belongs to the other role');
+    }
+    checkWordOrder(it, p, expressions, issues);
+    issues.check(!practiceSentences.has(plain(sentence(it))), p, `"${sentence(it)}" already occurs in the brief or in practice`);
+  });
+  const examined = new Set(replyItems.map((it) => it.expressionId));
+  if (last[0]?.type === 'function_dialogue_gap_typing') {
+    const lines = last[0].lines;
+    const p = 'steps.exam.dialogue';
+    issues.unique(lines.map((l) => l.lineId), p, 'line ID');
+    issues.unique(lines.flatMap((l) => (l.gap ? [l.gap.gapId] : [])), p, 'gap ID');
+    const gapCount = lines.filter((l) => l.gap).length;
+    issues.check(gapCount >= L.examGaps[0] && gapCount <= L.examGaps[1], p, `the exam dialogue has ${L.examGaps[0]}–${L.examGaps[1]} gaps`);
+    lines.forEach((l, n) => {
+      const lp = `${p}.lines.${n}`;
+      role(l.roleId, lp);
+      if (n > 0) issues.check(l.roleId !== lines[n - 1].roleId, lp, 'the roles alternate');
+      issues.check(l.gap !== null || (l.before.trim() !== '' && l.after === ''), lp, 'a line without a gap keeps its whole text in before');
+      issues.check(l.before === l.before.trim() && l.after === l.after.trim(), lp, 'before and after carry no surrounding spaces (the renderer adds them)');
+      if (l.gap && expression(l.gap.expressionId, lp)) {
+        examined.add(l.gap.expressionId);
+        issues.check(l.gap.accepted.answers.some((a) => plain(a) === plain(expressions.get(l.gap!.expressionId)!.text)), lp, `the accepted answers include the expression "${expressions.get(l.gap.expressionId)!.text}"`);
+        checkExplanations([l.gap], lp, issues);
+      }
+      const full = plain(`${l.before} ${l.gap?.accepted.answers[0] ?? ''} ${l.after}`);
+      if (l.gap) issues.check(!practiceSentences.has(full), lp, 'the line already occurs in the brief or in practice');
+    });
+  }
+  for (const id of expressionIds) issues.check(examined.has(id), 'steps.exam', `the exam does not assess expression ${id}`);
+
+  // Page estimates and exam limits follow the page rules.
+  c.steps.forEach((s, si) => s.pages.forEach((pg, pi) => {
+    const pp = `steps.${si}.pages.${pi}`;
+    const estimate = functionsPageEstimate(pg.items, s.stage === 'exam');
+    issues.check(pg.estimatedDurationS === estimate, `${pp}.estimatedDurationS`, `must be ${estimate} s by the page rules (section 8)`);
+    const limit = s.stage === 'exam' ? functionsTimeLimit(estimate) : null;
+    issues.check(pg.timeLimitS === limit, `${pp}.timeLimitS`, limit === null ? 'only exam pages have a countdown' : `must be ${limit} s (1.5 × estimate)`);
+  }));
+}
+
+/** The sentence of a word-order item in its first accepted order. */
+const sentence = (it: Extract<FunctionsItem, { type: 'function_word_order' }>) => it.acceptedOrders[0].map((id) => it.tokens.find((t) => t.tokenId === id)?.text ?? '').join(' ');
+
+function checkWordOrder(it: Extract<FunctionsItem, { type: 'function_word_order' }>, path: string, expressions: Map<string, FunctionsBrief['expressions'][number]>, issues: Issues) {
+  const all = it.tokens.map((t) => t.tokenId);
+  issues.unique(all, path, 'token ID');
+  issues.check(it.distractorTokenIds.every((id) => all.includes(id)), path, 'distractors must be tokens of the item');
+  const used = all.filter((id) => !it.distractorTokenIds.includes(id));
+  for (const order of it.acceptedOrders) issues.check(order.length === used.length && sameSet(order, used), path, 'each accepted order uses every token except the distractors exactly once');
+  const e = expressions.get(it.expressionId);
+  if (issues.check(e !== undefined, path, `unknown expression ${it.expressionId}`) && e) issues.check(plain(sentence(it)).includes(plain(e.text)), path, `the sentence does not contain the expression "${e.text}"`);
+  checkExplanations([it], path, issues);
+}
+
 export function validateContent(data: unknown, ctx: ContentContext): ValidationResult<LessonContent> {
   if (!isSupportedKind(ctx.entry.kind)) {
     return { status: 'invalid', issues: [{ path: 'kind', message: `${ctx.entry.kind} lessons have no agreed content schema yet` }], staleReasons: [] };
@@ -441,6 +625,7 @@ export function validateContent(data: unknown, ctx: ContentContext): ValidationR
   checkMinutes(content.estimatedMinutes, sum(pages.map((p) => p.estimatedDurationS)), issues);
 
   if (content.kind === 'grammar' && ctx.brief.kind === 'grammar') checkGrammarContent(content, ctx.brief, issues);
+  if (content.kind === 'functions' && ctx.brief.kind === 'functions') checkFunctionsContent(content, ctx.brief, issues);
 
   const stale: string[] = [];
   if (ctx.outlineHash && content.provenance.inputHashes.outline !== ctx.outlineHash) stale.push('the outline entry changed after this content was generated');
