@@ -74,6 +74,8 @@ async function answerGap(page: Page, word: string, check?: () => Promise<void>) 
  * one). A right choice lights up green and moves on; a wrong one is confirmed after its correction.
  */
 async function answerListening(page: Page, right = true) {
+  // Wait until the previous page has moved on, so the spoken word belongs to this page.
+  await expect(page.locator('.task-card.is-celebrating')).toHaveCount(0);
   await page.getByRole('button', { name: 'Listen' }).click();
   const word = await page.evaluate(() => (window as unknown as { __spoken: string[] }).__spoken.at(-1)!);
   for (const option of await page.locator('fieldset.choices label').all()) {

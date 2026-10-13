@@ -366,5 +366,5 @@ describe('Gemini boundary and CLI', () => {
     const example = readFileSync(join(ROOT, '.env.example'), 'utf8');
     expect(example).toContain('GEMINI_API_KEY=\n');
     expect(execFileSync('git', ['check-ignore', '.env'], { cwd: ROOT, encoding: 'utf8' }).trim()).toBe('.env');
-  });
+  }, 20_000); // spawns make and node processes; slow while the whole suite runs in parallel
 });

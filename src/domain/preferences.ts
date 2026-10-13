@@ -5,14 +5,16 @@ import { LOCALES, LocaleSchema, type Locale } from '../schemas/common.ts';
 export interface Preferences {
   motherTongue: Locale;
   interfaceLanguage: Locale;
+  /** Autoplay mode (P4-05 review): audio plays by itself in certain situations; on unless switched off. */
+  autoplay?: boolean;
 }
 
-export const DEFAULT_PREFERENCES: Preferences = { motherTongue: 'en', interfaceLanguage: 'en' };
+export const DEFAULT_PREFERENCES: Preferences = { motherTongue: 'en', interfaceLanguage: 'en', autoplay: true };
 
 /** Browser-storage key for the persisted preferences (D45). */
 export const PREFERENCES_KEY = 'lessonPrototype.preferences.v1';
 
-const StoredPreferencesSchema = z.object({ motherTongue: LocaleSchema, interfaceLanguage: LocaleSchema });
+const StoredPreferencesSchema = z.object({ motherTongue: LocaleSchema, interfaceLanguage: LocaleSchema, autoplay: z.boolean().default(true) });
 
 type StorageLike = Pick<Storage, 'getItem' | 'setItem'>;
 

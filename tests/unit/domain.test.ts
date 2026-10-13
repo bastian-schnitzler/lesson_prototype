@@ -133,7 +133,9 @@ describe('preferences', () => {
     const s = memory();
     expect(loadPreferences(s)).toEqual(DEFAULT_PREFERENCES);
     expect(savePreferences({ motherTongue: 'de', interfaceLanguage: 'fr' }, s)).toBe(true);
-    expect(loadPreferences(s)).toEqual({ motherTongue: 'de', interfaceLanguage: 'fr' });
+    expect(loadPreferences(s)).toEqual({ motherTongue: 'de', interfaceLanguage: 'fr', autoplay: true }); // older entries: autoplay on
+    expect(savePreferences({ motherTongue: 'de', interfaceLanguage: 'fr', autoplay: false }, s)).toBe(true);
+    expect(loadPreferences(s)).toMatchObject({ autoplay: false });
   });
 
   it('falls back to en/en when storage is corrupt, invalid or throws', () => {

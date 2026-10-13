@@ -11,6 +11,7 @@ const en = {
 
   'prefs.motherTongue': 'Mother tongue',
   'prefs.interfaceLanguage': 'Interface language',
+  'prefs.autoplay': "Autoplay",
   'prefs.motherTongueLocked': 'Choose your mother tongue on the lesson overview before starting a lesson.',
   'prefs.sameAsCourse': '{locale} is the language of this course, so it cannot be your mother tongue here.',
   'prefs.motherTongueChanged': 'Mother tongue changed to {locale} because it matched the course language.',
@@ -371,6 +372,7 @@ const fr: Messages = {
 
   'prefs.motherTongue': 'Langue maternelle',
   'prefs.interfaceLanguage': "Langue de l'interface",
+  'prefs.autoplay': "Lecture auto",
   'prefs.motherTongueLocked': "Choisissez votre langue maternelle dans l'aperçu des leçons avant de commencer une leçon.",
   'prefs.sameAsCourse': "{locale} est la langue de ce cours ; elle ne peut pas être votre langue maternelle ici.",
   'prefs.motherTongueChanged': 'La langue maternelle est passée à {locale}, car elle correspondait à la langue du cours.',
@@ -728,6 +730,7 @@ const de: Messages = {
 
   'prefs.motherTongue': 'Muttersprache',
   'prefs.interfaceLanguage': 'Sprache der Oberfläche',
+  'prefs.autoplay': "Autoplay",
   'prefs.motherTongueLocked': 'Wähle deine Muttersprache in der Lektionsübersicht, bevor du eine Lektion startest.',
   'prefs.sameAsCourse': '{locale} ist die Sprache dieses Kurses und kann hier nicht deine Muttersprache sein.',
   'prefs.motherTongueChanged': 'Die Muttersprache wurde auf {locale} geändert, weil sie der Kurssprache entsprach.',

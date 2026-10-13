@@ -1429,7 +1429,8 @@ select {
 .task-card.is-celebrating .token-placed,
 .task-card.is-celebrating .token[aria-pressed='true'],
 .task-card.is-celebrating select,
-.task-card.is-celebrating .units:not(:has(.reference-list)) .text-input {
+.task-card.is-celebrating .units:not(:has(.reference-list)) .text-input,
+.task-card.is-celebrating .form-rows .text-input {
   animation: success-flash 0.9s ease-out both;
 }
 
@@ -1464,7 +1465,8 @@ select {
   .task-card.is-celebrating .token-placed,
   .task-card.is-celebrating .token[aria-pressed='true'],
   .task-card.is-celebrating select,
-  .task-card.is-celebrating .units:not(:has(.reference-list)) .text-input {
+  .task-card.is-celebrating .units:not(:has(.reference-list)) .text-input,
+  .task-card.is-celebrating .form-rows .text-input {
     animation: none;
     border-color: var(--correct);
     background-color: rgb(0 230 118 / 0.15);
@@ -2027,12 +2029,12 @@ select {
 }
 
 /*
- * Results menu (all categories, P4-05 review): the final exam is always bold; the selected part has a
- * purple background and border. Other parts show their outcome: red when every answer is wrong, red
- * stripes when at least one answer is not fully right; parts with every answer right keep the plain look.
+ * Results menu (all categories, P4-05 review): the selected part has a purple background and border.
+ * Other parts show their outcome: red when every answer is wrong, red stripes when at least one answer
+ * is not fully right; parts with every answer right keep the plain look, the final exam its purple border.
  */
-.button-exam {
-  font-weight: 700;
+.result-menu .button.button-exam {
+  border-color: var(--progress);
 }
 
 .result-menu .button.is-all-wrong {
@@ -2422,4 +2424,52 @@ html {
 .listening-option label {
   flex: 1;
   cursor: pointer;
+}
+
+/* Autoplay switch (P4-05 review): the last header control on the right. */
+.autoplay-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.autoplay-switch input {
+  appearance: none;
+  position: relative;
+  width: 38px;
+  height: 22px;
+  margin: 0;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.autoplay-switch input::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--muted);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.autoplay-switch input:checked {
+  background: var(--indigo);
+  border-color: var(--progress);
+}
+
+.autoplay-switch input:checked::after {
+  transform: translateX(16px);
+  background: #fff;
+}
+
+.autoplay-switch input:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
 }

@@ -114,14 +114,15 @@ function activate(plan: LessonPlan, r: SessionRecord, now: number): SessionRecor
 }
 
 /**
- * Practice pages whose correct answers need no confirmation view: matching, and every page whose
+ * Practice pages whose correct answers need no confirmation view: matching, typed pronoun forms (P4-05
+ * review: all right → green flash and on), and every page whose
  * items each ask for exactly one answer (typed gap, listening choice, multiple choice, one typed
  * word, word order, error spot). Pages with several answers per item (gender rows, conjugation
  * tables) keep their checked view.
  */
 export function skipsFeedbackWhenCorrect(page: PlanPage): boolean {
   return page.role === 'practice' && page.items.length > 0
-    && page.items.every((item) => isMatchingItem(item.type) || page.units.filter((u) => u.itemId === item.itemId).length === 1);
+    && page.items.every((item) => isMatchingItem(item.type) || item.type === 'grammar_pronoun_form_typing' || page.units.filter((u) => u.itemId === item.itemId).length === 1);
 }
 
 /** Items shown on the matching board: vocabulary, person (P3-02 review) and function matching (P4-04). */

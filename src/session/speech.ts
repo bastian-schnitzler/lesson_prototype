@@ -33,14 +33,15 @@ export function useVoiceStatus(lang: string): VoiceStatus {
   return status;
 }
 
-export function speak(text: string, lang: string): boolean {
+/** Speaks a text; with `queue` it waits for speech in progress instead of interrupting it. */
+export function speak(text: string, lang: string, { queue = false } = {}): boolean {
   const voice = findVoice(lang);
   const synth = typeof window === 'undefined' ? undefined : window.speechSynthesis;
   if (!voice || !synth || typeof SpeechSynthesisUtterance === 'undefined') return false;
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = voice.lang;
   utterance.voice = voice;
-  synth.cancel();
+  if (!queue) synth.cancel();
   synth.speak(utterance);
   return true;
 }

@@ -9,7 +9,8 @@ import { briefSchema, contentSchema } from '../../src/schemas/artifacts.ts';
 import type { RendererProps } from '../../src/session/controls.tsx';
 import { DialogueGapChoiceRenderer, DialogueRenderer, ExamDialogueRenderer, FunctionFlashcardsRenderer, FunctionWordOrderRenderer, ListeningReplyRenderer } from '../../src/session/functionsRenderers.tsx';
 import { MatchingRenderer } from '../../src/session/vocabularyRenderers.tsx';
-import { isAutoSubmitPage, resultTone, ResultsView, SessionView, StartView } from '../../src/session/views.tsx';
+import { correctSentences, entryAudio, isAutoSubmitPage, resultTone, ResultsView, SessionView, StartView } from '../../src/session/views.tsx';
+import { gapSentence, pronounWithForm } from '../../src/session/autoplay.ts';
 
 /** P4-04: function flashcards, model dialogue and matching (SPEC section 8). */
 afterEach(cleanup);
@@ -292,4 +293,23 @@ it('submits multiple-choice practice pages on selection, but not matching, gende
   expect(isAutoSubmitPage(page('gender'))).toBe(false);
   expect(isAutoSubmitPage(page('order-1'))).toBe(false);
   expect(isAutoSubmitPage(page('exam-replies-1'))).toBe(false);
+});
+
+describe('autoplay (P4-05 review)', () => {
+  it('plays role A when a dialogue gap or a listening choice opens, nothing on other pages', () => {
+    expect(entryAudio(page('gap-1'))).toBe('Bonsoir, madame. Vous désirez ?');
+    expect(entryAudio(page('listening-1'))).toBe('Bonjour, madame. Vous désirez ?');
+    expect(entryAudio(page('order-1'))).toBeUndefined();
+  });
+
+  it('speaks the correct sentence of a gap after it is answered', () => {
+    expect(correctSentences(page('gap-1'))).toBe('Je voudrais un chocolat chaud, s’il vous plaît.');
+    expect(correctSentences(page('listening-1'))).toBe('Je voudrais un thé, s’il vous plaît.');
+    expect(correctSentences(page('order-1'))).toBe('Bonsoir, monsieur. Vous désirez ?');
+    expect(correctSentences(page('match-expressions-1'))).toBeUndefined();
+    expect(pronounWithForm('je', 'ai')).toBe("j'ai");
+    expect(pronounWithForm('nous', 'sommes')).toBe('nous sommes');
+    expect(gapSentence('Nous', 'sommes', 'français.')).toBe('Nous sommes français.');
+    expect(gapSentence('Il', 'est', ', je pense.')).toBe('Il est, je pense.');
+  });
 });

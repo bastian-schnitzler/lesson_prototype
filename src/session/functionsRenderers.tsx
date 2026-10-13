@@ -4,7 +4,9 @@ import { useI18n } from '../app/context.tsx';
 import { expressionDisplay } from '../domain/functionsLesson.ts';
 import { seededOrder, type LessonPlan } from '../domain/session/plan.ts';
 import type { Locale } from '../schemas/common.ts';
+import { useEffect, useRef } from 'react';
 import { Gap, ListenButton, TextControl, UnitsRenderer, type RendererProps } from './controls.tsx';
+import { useAutoplay } from './autoplay.ts';
 
 /**
  * Function lesson presentation renderers (SPEC section 8, P4-04): expression and word flashcards and
@@ -44,12 +46,15 @@ function FunctionCard({ id, label, plan, motherTongue, initiallyFlipped, onFlip 
 }) {
   const { t, locale } = useI18n();
   const [flipped, setFlipped] = useState(initiallyFlipped);
+  const say = useAutoplay(plan.lang);
+  const expression = plan.functions!.expressions.find((e) => e.id === id);
+  const word = plan.functions!.words.find((w) => w.id === id);
   const flip = () => {
+    // Autoplay (P4-05 review): turning the card to French speaks the expression or word at once.
+    if (!flipped) say(expression ? expression.text : word?.teachingForm);
     if (!flipped) onFlip();
     setFlipped(!flipped);
   };
-  const expression = plan.functions!.expressions.find((e) => e.id === id);
-  const word = plan.functions!.words.find((w) => w.id === id);
   const term = expression ?? word;
   if (!term) return null;
   // The expression is spoken without the ellipsis of a sentence start.
@@ -116,9 +121,20 @@ function withExpressions(text: string, expressions: { text: string }[]): ReactNo
  */
 export function DialogueRenderer({ item, plan, motherTongue, pageId, revealed }: RendererProps) {
   const { t } = useI18n();
+  const say = useAutoplay(plan.lang);
+  const isDialogue = item.type === 'function_dialogue';
+  const shown = new Set([isDialogue ? item.lines[0].lineId : '', ...(revealed[`${pageId}/${item.itemId}`] ?? [])]);
+  const lines = isDialogue ? item.lines.filter((l) => shown.has(l.lineId)) : [];
+  const newest = lines.at(-1)?.lineId;
+  const spoken = useRef<string | undefined>(undefined);
+  // Autoplay (P4-05 review): the first line and every next line are spoken once when they appear.
+  useEffect(() => {
+    if (!newest || spoken.current === newest) return;
+    spoken.current = newest;
+    say(lines.at(-1)?.text);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [newest]);
   if (item.type !== 'function_dialogue' || !plan.functions) return null;
-  const shown = new Set([item.lines[0].lineId, ...(revealed[`${pageId}/${item.itemId}`] ?? [])]);
-  const lines = item.lines.filter((l) => shown.has(l.lineId));
   return (
     <div className="dialogue">
       <ol className="dialogue-lines">

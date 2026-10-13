@@ -13,6 +13,7 @@ import { missingArticle } from '../domain/articleHint.ts';
 import type { SessionInput } from './useSession.ts';
 import { reviewColor } from '../artifacts/briefParts.tsx';
 import { useVoiceStatus, type VoiceStatus } from './speech.ts';
+import { gapSentence, pronounWithForm, useAutoplay } from './autoplay.ts';
 import { VoiceHelp } from './VoiceHelp.tsx';
 import { NewVerbs } from './grammarRenderers.tsx';
 
@@ -154,6 +155,33 @@ export function StartView({ plan, level, resumable, notice, onStart, onResume }:
 
 /* ---------------------------------------------------------- session host */
 
+/** Audio played when a page opens in autoplay mode (P4-05 review): the prompt that has to be heard. */
+export function entryAudio(page: PlanPage): string | undefined {
+  const item = page.items[0];
+  if (!item) return undefined;
+  if (item.type === 'function_dialogue_gap_choice' || item.type === 'function_listening_choice') return item.context.text;
+  if (item.type === 'vocabulary_listening_choice' || item.type === 'vocabulary_listening_dictation') return page.units[0]?.speak;
+  return undefined;
+}
+
+/**
+ * The correct answers of a practice page, spoken in autoplay mode as the page is checked, together with
+ * the green or red marking (P4-05 review): gaps and error spotters as whole sentences, word order as
+ * the sentence, listening choices as the right word or reply, pronoun rows as pronoun + form. Matching
+ * boards and gender pages, which have their own sounds, are left out.
+ */
+export function correctSentences(page: PlanPage): string | undefined {
+  const sentences = page.units.flatMap((u) => {
+    if (u.answerLang !== 'learning' || isMatchingItem(u.itemType)) return [];
+    if (u.kind === 'spot' || u.kind === 'order') return [u.answer];
+    if (u.prompt.before !== undefined || u.prompt.after !== undefined) return [gapSentence(u.prompt.before, u.answer, u.prompt.after)];
+    if (u.itemType === 'grammar_pronoun_form_typing' || u.itemType === 'grammar_pronoun_form_match') return [`${pronounWithForm(u.prompt.learning ?? '', u.answer)}.`];
+    if (u.itemType === 'vocabulary_listening_choice' || u.itemType === 'function_listening_choice') return [u.answer];
+    return [];
+  });
+  return sentences.length ? sentences.join(' ') : undefined;
+}
+
 /**
  * Practice pages with one multiple-choice answer (P4-05 review): radio choices (multiple-choice and
  * dialogue gaps, listening choice). Matching boards and gender pages keep their Check button.
@@ -214,6 +242,15 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
   // Dialogues unroll line by line: the model dialogue and the exam dialogue (until the page is submitted).
   const nextLine = page.role === 'presentation' || (page.role === 'exam' && record.phase === 'answering') ? nextDialogueLine(page, record) : undefined;
   const heading = useRef<HTMLHeadingElement>(null);
+  // Autoplay (P4-05 review): entering a dictation, a listening choice or a dialogue gap plays its prompt
+  // (role A's line); it waits for speech still in progress, e.g. the previous page's correct sentence.
+  const spokenPage = useRef(-1);
+  useEffect(() => {
+    if (spokenPage.current === record.pageIndex) return; // once per page (effects may run twice in development)
+    spokenPage.current = record.pageIndex;
+    if (record.phase === 'answering' && !(listening && voiceStatus !== 'available')) say(entryAudio(page), { queue: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [record.pageIndex]);
   // Typing pages put the cursor straight into the first answer field; other pages focus the heading.
   useEffect(() => {
     const field = document.querySelector<HTMLInputElement>('.task-card input.text-input:not([readonly]):not([disabled])');
@@ -226,8 +263,12 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
   useEffect(() => setArticleWarnings([]), [record.pageIndex]);
   // Single-answer practice pages mark the answer in place (red/green) instead of a feedback card (P2-04 review).
   const inline = page.role === 'practice' && skipsFeedbackWhenCorrect(page);
-  const almost = inline && record.phase === 'feedback' ? page.units.filter((u) => record.locked[u.id]?.outcome === 'orthography_only') : [];
+  // Typed pronoun rows explain themselves in their row; other half-point answers below the button.
+  const almost = inline && record.phase === 'feedback' ? page.units.filter((u) => record.locked[u.id]?.outcome === 'orthography_only' && u.itemType !== 'grammar_pronoun_form_typing') : [];
+  const say = useAutoplay(plan.lang);
   const onContinue = () => {
+    // Autoplay (P4-05 review): submitting a gap or error-spotting page speaks the correct sentence.
+    if (page.role === 'practice' && record.phase === 'answering') say(correctSentences(page));
     if (page.role === 'exam') {
       // Translation only: a dictation has no article hint (P2-04 review).
       const missing = page.units.filter((u) => u.itemType === 'vocabulary_translation_exam'
