@@ -19,7 +19,7 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "brief-v7",
-    "generatedAt": "2026-10-08T00:17:18.245Z",
+    "generatedAt": "2026-10-13T23:32:35.566Z",
     "inputHashes": {
       "outline": "6330aa315b82f91f79b5f684caf8264ae01a4b0148b010ab9324c3b67e0028be"
     }

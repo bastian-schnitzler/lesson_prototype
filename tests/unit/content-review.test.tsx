@@ -63,7 +63,7 @@ it('previews both error-spotter correction modes alongside all other grammar int
   if (content.kind !== 'grammar') throw new Error('Expected grammar');
   const explanation = { en: 'With je, use suis.', fr: 'Avec je, utilisez suis.', de: 'Mit je steht suis.' };
   const common = { ruleIds: ['rule-singular'], answerExplanation: explanation };
-  const accepted = { answers: ['suis'], accentSensitive: [] };
+  const accepted = { answers: ['suis'] };
   content.steps[1].pages[0].items.push(
     { type: 'grammar_gap_choice', itemId: 'choice-preview', before: 'Je', after: 'ici.', hint: null, choices: ['suis', 'es', 'est', 'sont'].map((text, i) => ({ choiceId: `c-${i}`, text })), answerChoiceId: 'c-0', ...common },
     { type: 'grammar_word_order', itemId: 'order-preview', tokens: [{ tokenId: 'b', text: 'suis' }, { tokenId: 'a', text: 'Je' }], acceptedOrders: [['a', 'b']], ...common },

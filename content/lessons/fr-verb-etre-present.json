@@ -19,10 +19,10 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "content-v4",
-    "generatedAt": "2026-10-08T00:17:03.004Z",
+    "generatedAt": "2026-10-13T23:32:35.997Z",
     "inputHashes": {
       "outline": "37f20906353e39b156b85e7597e3a6ecc18c349368249261ec098196b3e8c0b3",
-      "brief": "c7b3d6f4d614c49c0c45d54e073a5d183ece0517939d5539c52b50ed4ca9eacb"
+      "brief": "505e00a7b765414378520efe0c46573cf73751ecbc8cf5d301b505e7be72f301"
     }
   },
   "kind": "grammar",
@@ -434,8 +434,7 @@
               "accepted": {
                 "answers": [
                   "suis"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "être, 1st person singular",
@@ -471,8 +470,7 @@
               "accepted": {
                 "answers": [
                   "est"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "être, 3rd person singular",
@@ -508,8 +506,7 @@
               "accepted": {
                 "answers": [
                   "es"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "être, 2nd person singular",
@@ -545,8 +542,7 @@
               "accepted": {
                 "answers": [
                   "est"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "être",
@@ -582,8 +578,7 @@
               "accepted": {
                 "answers": [
                   "suis"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "être",
@@ -619,8 +614,7 @@
               "accepted": {
                 "answers": [
                   "est"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "être",
@@ -683,8 +677,7 @@
                 "accepted": {
                   "answers": [
                     "suis"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": []
               },
@@ -732,8 +725,7 @@
                 "accepted": {
                   "answers": [
                     "es"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": []
               },
@@ -781,8 +773,7 @@
                 "accepted": {
                   "answers": [
                     "est"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": [
                   "est",
@@ -838,8 +829,7 @@
                 "accepted": {
                   "answers": [
                     "est"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": []
               },
@@ -891,8 +881,7 @@
                 "accepted": {
                   "answers": [
                     "est"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": [
                   "est",
@@ -1133,8 +1122,7 @@
                   "accepted": {
                     "answers": [
                       "sommes"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "With nous, être is sommes.",
@@ -1148,8 +1136,7 @@
                   "accepted": {
                     "answers": [
                       "êtes"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "With vous, être is êtes, with an accent circonflexe on the first e.",
@@ -1163,8 +1150,7 @@
                   "accepted": {
                     "answers": [
                       "sont"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "With ils, elles, être is sont.",
@@ -1199,8 +1185,7 @@
                   "accepted": {
                     "answers": [
                       "sont"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "Elles is 3rd person plural (like ils), so être is sont.",
@@ -1214,8 +1199,7 @@
                   "accepted": {
                     "answers": [
                       "sommes"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "With nous, être is sommes.",
@@ -1229,8 +1213,7 @@
                   "accepted": {
                     "answers": [
                       "êtes"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "With vous, être is êtes, with an accent circonflexe on the first e.",
@@ -1563,8 +1546,7 @@
               "accepted": {
                 "answers": [
                   "sommes"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "être, 1st person plural",
@@ -1600,8 +1582,7 @@
               "accepted": {
                 "answers": [
                   "êtes"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "être, 2nd person plural",
@@ -1637,8 +1618,7 @@
               "accepted": {
                 "answers": [
                   "sont"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "être, 3rd person plural",
@@ -1674,8 +1654,7 @@
               "accepted": {
                 "answers": [
                   "sont"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "être",
@@ -1711,8 +1690,7 @@
               "accepted": {
                 "answers": [
                   "sommes"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "être",
@@ -1791,8 +1769,7 @@
                   "accepted": {
                     "answers": [
                       "suis"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "With je, être is suis.",
@@ -1806,8 +1783,7 @@
                   "accepted": {
                     "answers": [
                       "es"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "With tu, être is es.",
@@ -1821,8 +1797,7 @@
                   "accepted": {
                     "answers": [
                       "est"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "Il is 3rd person singular (like il), so être is est.",
@@ -1845,8 +1820,7 @@
                   "accepted": {
                     "answers": [
                       "sommes"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "With nous, être is sommes.",
@@ -1860,8 +1834,7 @@
                   "accepted": {
                     "answers": [
                       "êtes"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "With vous, être is êtes, with an accent circonflexe on the first e.",
@@ -1875,8 +1848,7 @@
                   "accepted": {
                     "answers": [
                       "sont"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "Elles is 3rd person plural (like ils), so être is sont.",
@@ -1909,8 +1881,7 @@
               "accepted": {
                 "answers": [
                   "suis"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1930,8 +1901,7 @@
               "accepted": {
                 "answers": [
                   "es"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1951,8 +1921,7 @@
               "accepted": {
                 "answers": [
                   "est"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1972,8 +1941,7 @@
               "accepted": {
                 "answers": [
                   "est"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1993,8 +1961,7 @@
               "accepted": {
                 "answers": [
                   "est"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2026,8 +1993,7 @@
               "accepted": {
                 "answers": [
                   "sommes"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2047,8 +2013,7 @@
               "accepted": {
                 "answers": [
                   "êtes"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2069,8 +2034,7 @@
               "accepted": {
                 "answers": [
                   "sont"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2090,8 +2054,7 @@
               "accepted": {
                 "answers": [
                   "sont"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2111,8 +2074,7 @@
               "accepted": {
                 "answers": [
                   "êtes"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {

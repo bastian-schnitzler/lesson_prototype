@@ -62,13 +62,11 @@ export const DurationSecondsSchema = z.number().int().min(5).max(3600);
 export const TimeLimitSecondsSchema = z.number().int().min(5).max(900);
 
 /**
- * Accepted answers for one free-text unit. `accentSensitive` lists words of
- * the answers whose accents distinguish a different word (à, où, là…); a
- * response wrong only in those accents is incorrect, not half credit (D40).
+ * Accepted answers for one free-text unit. Accent or case errors earn half a point, also where the
+ * accent makes another word (la/là): an accent is a spelling mistake (D40).
  */
 export const AcceptedAnswersSchema = z.strictObject({
   answers: z.array(LearningTextSchema).min(1).max(8),
-  accentSensitive: z.array(LearningTextSchema).max(8),
 });
 export type AcceptedAnswers = z.infer<typeof AcceptedAnswersSchema>;
 

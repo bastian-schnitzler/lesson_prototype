@@ -5,7 +5,7 @@ import { vocabularyInventorySchema } from './vocabulary.ts';
 import type { GeneratedKind } from '../src/schemas/artifacts.ts';
 import type { OutlineContext } from '../src/validation/artifacts.ts';
 
-export const PROMPT_VERSION = 'brief-v7';
+export const PROMPT_VERSION = 'brief-v8';
 const trusted = { schemaVersion: true, id: true, lang: true, level: true, locales: true, provenance: true } as const;
 
 /** Model payload of a brief call: vocabulary returns its word inventory first (generator/vocabulary.ts). */
@@ -61,7 +61,6 @@ targetCount equals targets.length. Every target belongs to exactly one group; us
 Only nouns have nonempty genders and a number; non-nouns use genders [], number null, articleException null.
 Nouns are examined only as indefinite article + noun, in translation and in dictation: for French nouns, teachingForm, every examForm and every genderVariant start with un/une/des, agreeing with gender and number: un (masculine singular), une (feminine singular), des (plural); never add a plural form to a singular target. Use articleException only when no indefinite form is grammatical (proper names such as countries, set phrases, days used without article); then explain it in every locale.
 term is the bare base term without any article, also for countries (term "Japon", teachingForm "le Japon"); teachingForm is one of examForms (adjectives may list both genders as "espagnol, espagnole").
-accentSensitive entries are whole words present in examForms and only mark accents that change meaning.
 ` : `
 Divide teaching into 2–4 blocks, each with explanation plan, examples, pitfalls and 2–4 suitable practice exercises of 4–8 items each (a person matching board or a pronoun item counts its rows; give such exercises 1–2 items). Select only exercise types useful for this topic, not all seven by default.
 Lesson length: at least 34 scored practice units in total (about 35–42) and an exam of 2–4 pages with at least 16 scored units in total. Verb lessons have exactly one person matching board per verb; a pronoun lesson has one board.

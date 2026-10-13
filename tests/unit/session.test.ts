@@ -304,7 +304,7 @@ describe('grammar renderer composition (P3-01)', () => {
     const match = { ...base, kind: 'choice' as const, itemType: 'grammar_pronoun_form_match' as const, options: tokens(['est', 'est', 'sont']), correct: ['t0', 't1'] };
     expect(scoreUnit(match, 't1').points).toBe(1);
     expect(scoreUnit(match, 't2').points).toBe(0);
-    const typing = { ...base, kind: 'text' as const, itemType: 'grammar_pronoun_form_typing' as const, accepted: { answers: ['payes', 'paies'], accentSensitive: [] } };
+    const typing = { ...base, kind: 'text' as const, itemType: 'grammar_pronoun_form_typing' as const, accepted: { answers: ['payes', 'paies'] } };
     expect(scoreUnit(typing, 'paies').points).toBe(1);
     // Repeated words have distinct tokens; either token order of the same sentence counts.
     const order = { ...base, kind: 'order' as const, itemType: 'grammar_word_order' as const, tokens: tokens(['nous', 'nous', 'lavons']), acceptedOrders: [['t0', 't2', 't1'], ['t1', 't0', 't2']] };

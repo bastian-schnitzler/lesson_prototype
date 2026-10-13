@@ -114,7 +114,6 @@
       "examForms": [
         "un père"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "pɛʁ",
@@ -148,8 +147,7 @@
         "accepted": {
           "answers": [
             "père"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-mere",
@@ -190,7 +188,6 @@
       "examForms": [
         "une mère"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "mɛʁ",
@@ -224,8 +221,7 @@
         "accepted": {
           "answers": [
             "mère"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-frere",
@@ -266,7 +262,6 @@
       "examForms": [
         "un frère"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "fʁɛʁ",
@@ -300,8 +295,7 @@
         "accepted": {
           "answers": [
             "frère"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-soeur",
@@ -342,7 +336,6 @@
       "examForms": [
         "une sœur"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "sœʁ",
@@ -376,8 +369,7 @@
         "accepted": {
           "answers": [
             "sœur"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-fils",
@@ -418,7 +410,6 @@
       "examForms": [
         "un fils"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "fis",
@@ -452,8 +443,7 @@
         "accepted": {
           "answers": [
             "fils"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-fille",
@@ -494,7 +484,6 @@
       "examForms": [
         "une fille"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "fij",
@@ -528,8 +517,7 @@
         "accepted": {
           "answers": [
             "fille"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-grand-pere",
@@ -570,7 +558,6 @@
       "examForms": [
         "un grand-père"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "ɡʁɑ̃pɛʁ",
@@ -604,8 +591,7 @@
         "accepted": {
           "answers": [
             "grand-père"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-grand-mere",
@@ -646,7 +632,6 @@
       "examForms": [
         "une grand-mère"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "ɡʁɑ̃mɛʁ",
@@ -680,8 +665,7 @@
         "accepted": {
           "answers": [
             "grand-mère"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-cousin",
@@ -723,7 +707,6 @@
       "examForms": [
         "un cousin"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
         "une cousine"
@@ -762,8 +745,7 @@
         "accepted": {
           "answers": [
             "cousin"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-cousine",
@@ -805,7 +787,6 @@
       "examForms": [
         "une cousine"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
         "un cousin"
@@ -844,8 +825,7 @@
         "accepted": {
           "answers": [
             "cousine"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-oncle",
@@ -886,7 +866,6 @@
       "examForms": [
         "un oncle"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "ɔ̃kl",
@@ -920,8 +899,7 @@
         "accepted": {
           "answers": [
             "oncle"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-tante",
@@ -962,7 +940,6 @@
       "examForms": [
         "une tante"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "tɑ̃t",
@@ -996,8 +973,7 @@
         "accepted": {
           "answers": [
             "tante"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-pere",

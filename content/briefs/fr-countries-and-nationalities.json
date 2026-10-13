@@ -116,7 +116,6 @@
       "examForms": [
         "l'Espagne"
       ],
-      "accentSensitive": [],
       "articleException": {
         "en": "Country names take definite articles in standard usage.",
         "fr": "Les noms de pays s'utilisent avec l'article défini.",
@@ -154,8 +153,7 @@
         "accepted": {
           "answers": [
             "Espagne"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-japon",
@@ -196,7 +194,6 @@
       "examForms": [
         "le Japon"
       ],
-      "accentSensitive": [],
       "articleException": {
         "en": "Country names take definite articles in standard usage.",
         "fr": "Les noms de pays s'utilisent avec l'article défini.",
@@ -234,8 +231,7 @@
         "accepted": {
           "answers": [
             "Japon"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-france",
@@ -276,7 +272,6 @@
       "examForms": [
         "la France"
       ],
-      "accentSensitive": [],
       "articleException": {
         "en": "Country names take definite articles in standard usage.",
         "fr": "Les noms de pays s'utilisent avec l'article défini.",
@@ -314,8 +309,7 @@
         "accepted": {
           "answers": [
             "France"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-allemagne",
@@ -356,7 +350,6 @@
       "examForms": [
         "l'Allemagne"
       ],
-      "accentSensitive": [],
       "articleException": {
         "en": "Country names take definite articles in standard usage.",
         "fr": "Les noms de pays s'utilisent avec l'article défini.",
@@ -394,8 +387,7 @@
         "accepted": {
           "answers": [
             "Allemagne"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-canada",
@@ -436,7 +428,6 @@
       "examForms": [
         "le Canada"
       ],
-      "accentSensitive": [],
       "articleException": {
         "en": "Country names take definite articles in standard usage.",
         "fr": "Les noms de pays s'utilisent avec l'article défini.",
@@ -474,8 +465,7 @@
         "accepted": {
           "answers": [
             "Canada"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-italie",
@@ -516,7 +506,6 @@
       "examForms": [
         "l'Italie"
       ],
-      "accentSensitive": [],
       "articleException": {
         "en": "Country names take definite articles in standard usage.",
         "fr": "Les noms de pays s'utilisent avec l'article défini.",
@@ -554,8 +543,7 @@
         "accepted": {
           "answers": [
             "Italie"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-mexique",
@@ -596,7 +584,6 @@
       "examForms": [
         "le Mexique"
       ],
-      "accentSensitive": [],
       "articleException": {
         "en": "Country names take definite articles in standard usage.",
         "fr": "Les noms de pays s'utilisent avec l'article défini.",
@@ -634,8 +621,7 @@
         "accepted": {
           "answers": [
             "Mexique"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-espagnol",
@@ -675,7 +661,6 @@
         "espagnol",
         "espagnole"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
         "espagnole"
@@ -707,8 +692,7 @@
         "accepted": {
           "answers": [
             "espagnol"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-japonais",
@@ -748,7 +732,6 @@
         "japonais",
         "japonaise"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
         "japonaise"
@@ -780,8 +763,7 @@
         "accepted": {
           "answers": [
             "japonais"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-francais",
@@ -821,7 +803,6 @@
         "français",
         "française"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
         "française"
@@ -853,8 +834,7 @@
         "accepted": {
           "answers": [
             "français"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-allemand",
@@ -894,7 +874,6 @@
         "allemand",
         "allemande"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
         "allemande"
@@ -926,8 +905,7 @@
         "accepted": {
           "answers": [
             "allemand"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-canadien",
@@ -967,7 +945,6 @@
         "canadien",
         "canadienne"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
         "canadienne"
@@ -999,8 +976,7 @@
         "accepted": {
           "answers": [
             "canadien"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-italien",
@@ -1040,7 +1016,6 @@
         "italien",
         "italienne"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
         "italienne"
@@ -1072,8 +1047,7 @@
         "accepted": {
           "answers": [
             "italien"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-mexicain",
@@ -1113,7 +1087,6 @@
         "mexicain",
         "mexicaine"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
         "mexicaine"
@@ -1145,8 +1118,7 @@
         "accepted": {
           "answers": [
             "mexicain"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-espagne",

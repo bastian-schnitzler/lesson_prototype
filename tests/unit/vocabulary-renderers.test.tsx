@@ -7,6 +7,7 @@ import { lessonOf } from './lessonFixture.ts';
 import { buildPlan } from '../../src/domain/session/plan.ts';
 import { GenderRenderer, MatchingRenderer } from '../../src/session/vocabularyRenderers.tsx';
 import { UnitsRenderer } from '../../src/session/controls.tsx';
+import { displayOrder, entryAudio } from '../../src/session/views.tsx';
 
 afterEach(cleanup);
 const FIXTURES = resolve(import.meta.dirname, '../fixtures/content');
@@ -104,4 +105,20 @@ it('shows the gender of every written option on a listening-choice page', () => 
   const labels = [...document.querySelectorAll('fieldset.choices label')];
   expect(labels).toHaveLength(4);
   for (const label of labels) expect(label.querySelector('.choice-gender')?.textContent).toMatch(/^(Masculine|Feminine)$/);
+});
+
+it('reads the dictation words in a random order fixed by the session seed', () => {
+  const dictation = plan.pages.find((p) => p.pageId.startsWith('dictation-'))!;
+  const lessonOrder = dictation.items.map((it) => it.itemId);
+  const orders = new Set([1, 2, 3, 4, 5, 6, 7, 8].map((seed) => displayOrder(dictation, seed).items.map((it) => it.itemId).join()));
+  expect(orders.size).toBeGreaterThan(1);
+  for (const order of orders) expect(order.split(',').sort()).toEqual([...lessonOrder].sort());
+  // Units follow their items, so the field order and the first word read out match what is shown.
+  const shown = displayOrder(dictation, 5);
+  expect(shown.units.map((u) => u.itemId)).toEqual(shown.items.map((it) => it.itemId));
+  expect(entryAudio(shown)).toBe(shown.units[0].speak);
+  expect(displayOrder(dictation, 5)).toEqual(shown);
+  // Other pages keep the lesson order.
+  const exam = plan.pages.find((p) => p.pageId.startsWith('exam-'))!;
+  expect(displayOrder(exam, 5)).toBe(exam);
 });

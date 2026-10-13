@@ -123,7 +123,7 @@ export function buildFunctionsLesson(def: FunctionsDefinition, root = resolve(im
       // Word translation first, as in vocabulary lessons (P4-05 review).
       ...(def.words.length ? [page('exam-words', FUNCTIONS_COPY.examWords, def.words.map((w) => ({
         type: 'function_translation_exam' as const, itemId: `word-${w.id}`, wordId: w.id, prompt: native(list(w.en)[0], list(w.de)[0]),
-        accepted: { answers: [w.form], accentSensitive: [] }, answerExplanation: w.explanation,
+        accepted: { answers: [w.form] }, answerExplanation: w.explanation,
       })), true)] : []),
       ...replyPages.map((replies, p) => page(`exam-replies-${p + 1}`, FUNCTIONS_COPY.exam[1], replies.map((r) => {
         const n = def.replies.indexOf(r) + 1;
@@ -140,7 +140,7 @@ export function buildFunctionsLesson(def: FunctionsDefinition, root = resolve(im
           const e = def.expressions.find((x) => plain(answers[0]) === plain(x.text));
           if (!e) throw new Error(`the first answer of gap [${inner}] is no expression of the lesson`);
           if (!explanation) throw new Error(`gap [${inner}] needs an explanation`);
-          return { lineId: `exam-line-${n + 1}`, roleId: role, before, translation, gap: { gapId: `gap-${n + 1}`, expressionId: e.id, accepted: { answers, accentSensitive: [] }, answerExplanation: explanation }, after };
+          return { lineId: `exam-line-${n + 1}`, roleId: role, before, translation, gap: { gapId: `gap-${n + 1}`, expressionId: e.id, accepted: { answers }, answerExplanation: explanation }, after };
         }),
       }], true),
     ] },

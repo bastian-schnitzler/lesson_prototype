@@ -219,7 +219,7 @@ Acceptance:
 - Orthography correction explanations name the actual mark: French accent aigu/grave/circonflexe, cédille, or tréma as applicable. Avoid character-only wording such as “written with é”; future German feedback uses “written with umlaut ä/ö/ü.” Apply this consistently to practice, results, and artifact previews during prompt design and content review.
 - Vocabulary noun-gender selectors and reviewed overview are a scored stage-4 interaction with conditional applicability and preserved row results.
 - Content schemas model ordered payloads, six grammar interaction types, vocabulary interactions, and mixed exams; concrete pages have positive estimated durations, and each exam page has its brief-defined positive time limit.
-- Typed answer outcomes distinguish fully correct, accent/case-only (half credit), incorrect, and unanswered while preserving the original response. Ligature/umlaut digraph substitutes (`oe`/`œ`, `ae`/`æ`, `ae`/`ä`, `oe`/`ö`, `ue`/`ü`) are half credit; answers can mark accent-distinguished words (`à`, `où`, `là`, …) accent-sensitive, so those accent errors are incorrect.
+- Typed answer outcomes distinguish fully correct, accent/case-only (half credit), incorrect, and unanswered while preserving the original response. Ligature/umlaut digraph substitutes (`oe`/`œ`, `ae`/`æ`, `ae`/`ä`, `oe`/`ö`, `ue`/`ü`) are half credit; accent errors that make another word (`à`, `où`, `là`, …) are half credit too (D40, changed in P3-03).
 - Vocabulary contracts include `vocabulary_listening_choice` (practice) and `vocabulary_listening_dictation` (exam) with brief-planned coverage; noun exam forms use the indefinite article wherever grammatical, with explicit exception forms only where none exists.
 - Strict validation enforces outline metadata, unique IDs, reference integrity, answer validity, and category sequence.
 - Brief and content schemas require complete strict maps for every native translation (each mother tongue except the learning language) and every en/fr/de localized support field, with shared IDs/answers/durations/timing/scoring. Remove single nativeLanguage from artifact envelopes; store attempt language context in sessions. Bump schema version and reject stale English-only or partial-locale artifacts; locale correctness/equivalence is reviewed separately. Include shared LocalizedTextSchema and NativeTranslationsSchema fixtures.
@@ -636,7 +636,7 @@ Acceptance:
 - Lessons follow the contracts:
   - formatted explanations (D46) with form tables
   - correct and natural A1 French
-  - accepted answers and accent-sensitive words
+  - accepted answers
   - error spotters with one faulty token and a valid correction mode
   - explanations that name the accent mark (D28)
   - unique labels for repeated exercise steps (the P1-12 follow-up)
@@ -719,7 +719,9 @@ Acceptance:
 - Four unique choices shuffle without changing answer identity.
 - Typed gaps support content-defined accepted answers and hints.
 - Common three-way text scorers/result records work in practice and exam roles; Continue confirmation and delayed exam feedback follow the shared host.
-- Checks cover accent-sensitive answers, blank responses, answer reveal policy, and scoring.
+- Checks cover accent errors (half credit, also on accent homographs, D40), blank responses, answer reveal policy, and scoring.
+
+Outcome (2026-10-14): both interactions already ran on the shared `UnitsRenderer` and scorer (P1-09, P3-01, P3-02 and P4-05 reviews); `tests/unit/gaps.test.tsx` now checks them against this issue's acceptance criteria. Review: D40 changed, a wrong accent that makes another word (`la` for `là`) is a spelling mistake worth half a point, so the `accentSensitive` field is removed from schemas, content, generator and artifact views. Dictation pages show their words in a random order fixed by the session seed.
 
 Dependencies: P3-01.
 

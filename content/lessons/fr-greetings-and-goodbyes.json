@@ -19,10 +19,10 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "functions-v1",
-    "generatedAt": "2026-10-13T19:47:55.893Z",
+    "generatedAt": "2026-10-13T23:42:16.894Z",
     "inputHashes": {
       "outline": "f1cf3bd5f3576695f7d488bf31426ea858fb5591979dadab6f74241a3e4bde2e",
-      "brief": "240643e94919658c324e8d9a304f88334355f69454664ab202458a84dc57eb04"
+      "brief": "21deff521dbb91b84858492b8c8de479a389fbb7e5bb0de5ab63be8c4ecb1ffa"
     }
   },
   "kind": "functions",
@@ -1602,8 +1602,7 @@
               "accepted": {
                 "answers": [
                   "un matin"
-                ],
-                "accentSensitive": []
+                ]
               },
               "answerExplanation": {
                 "en": "Masculine noun: un matin. Le matin means in the morning.",
@@ -1622,8 +1621,7 @@
               "accepted": {
                 "answers": [
                   "un soir"
-                ],
-                "accentSensitive": []
+                ]
               },
               "answerExplanation": {
                 "en": "Masculine noun: un soir. Le soir means in the evening.",
@@ -1642,8 +1640,7 @@
               "accepted": {
                 "answers": [
                   "très bien"
-                ],
-                "accentSensitive": []
+                ]
               },
               "answerExplanation": {
                 "en": "A strong positive answer: très (very) + bien (well).",
@@ -1662,8 +1659,7 @@
               "accepted": {
                 "answers": [
                   "pas mal"
-                ],
-                "accentSensitive": []
+                ]
               },
               "answerExplanation": {
                 "en": "Means fairly good.",
@@ -2125,8 +2121,7 @@
                       "answers": [
                         "Bonsoir",
                         "Salut"
-                      ],
-                      "accentSensitive": []
+                      ]
                     },
                     "answerExplanation": {
                       "en": "It is late, so bonsoir (or salut between friends).",
@@ -2151,8 +2146,7 @@
                       "answers": [
                         "Salut",
                         "Bonsoir"
-                      ],
-                      "accentSensitive": []
+                      ]
                     },
                     "answerExplanation": {
                       "en": "She greets her friend back: salut (or bonsoir).",
@@ -2176,8 +2170,7 @@
                     "accepted": {
                       "answers": [
                         "Ça va"
-                      ],
-                      "accentSensitive": []
+                      ]
                     },
                     "answerExplanation": {
                       "en": "He asks how she is: Ça va ?",
@@ -2201,8 +2194,7 @@
                     "accepted": {
                       "answers": [
                         "Et toi"
-                      ],
-                      "accentSensitive": []
+                      ]
                     },
                     "answerExplanation": {
                       "en": "She answers and asks back: Et toi ?",
@@ -2227,8 +2219,7 @@
                       "answers": [
                         "Ça va bien, merci",
                         "Pas mal, merci"
-                      ],
-                      "accentSensitive": []
+                      ]
                     },
                     "answerExplanation": {
                       "en": "He answers Et toi ?: Ça va bien, merci.",
@@ -2264,8 +2255,7 @@
                       "answers": [
                         "Au revoir",
                         "Salut"
-                      ],
-                      "accentSensitive": []
+                      ]
                     },
                     "answerExplanation": {
                       "en": "He says goodbye: au revoir (or salut between friends).",
@@ -2290,8 +2280,7 @@
                       "answers": [
                         "À bientôt",
                         "Au revoir"
-                      ],
-                      "accentSensitive": []
+                      ]
                     },
                     "answerExplanation": {
                       "en": "She says goodbye and that they will meet again soon: à bientôt.",

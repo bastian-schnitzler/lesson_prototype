@@ -11,8 +11,8 @@ afterEach(cleanup);
 
 describe('scoring a plural answer', () => {
   const base = { kind: 'text' as const, id: 'p/i', itemId: 'i', itemType: 'vocabulary_translation_exam' as const, prompt: { native: 'book' }, explanation: { en: 'e', fr: 'e', de: 'e' }, answerLang: 'learning' as const };
-  const unit: PlanUnit = { ...base, answer: 'un livre', accepted: { answers: ['un livre'], accentSensitive: [] }, noun: { genders: ['masculine'], pluraleTantum: false } };
-  const tantum: PlanUnit = { ...base, answer: 'des ciseaux', accepted: { answers: ['des ciseaux'], accentSensitive: [] }, noun: { genders: ['masculine'], pluraleTantum: true } };
+  const unit: PlanUnit = { ...base, answer: 'un livre', accepted: { answers: ['un livre'] }, noun: { genders: ['masculine'], pluraleTantum: false } };
+  const tantum: PlanUnit = { ...base, answer: 'des ciseaux', accepted: { answers: ['des ciseaux'] }, noun: { genders: ['masculine'], pluraleTantum: true } };
 
   it('counts a plural answer as wrong unless the noun is a plurale tantum', () => {
     expect(isPluralAnswer('des livres')).toBe(true);
@@ -32,7 +32,7 @@ describe('scoring a plural answer', () => {
   it('asks the gender after the field once des and a word are typed', () => {
     const onChange = vi.fn();
     const props = (draft: string): RendererProps => ({
-      item: { type: 'vocabulary_translation_exam', itemId: 'i', targetId: 't', prompt: { en: 'book' }, accepted: unit.kind === 'text' ? unit.accepted : { answers: [], accentSensitive: [] }, answerExplanation: { en: 'e', fr: 'e', de: 'e' } } as RendererProps['item'],
+      item: { type: 'vocabulary_translation_exam', itemId: 'i', targetId: 't', prompt: { en: 'book' }, accepted: unit.kind === 'text' ? unit.accepted : { answers: [] }, answerExplanation: { en: 'e', fr: 'e', de: 'e' } } as RendererProps['item'],
       units: [unit], plan: { lang: 'fr', targets: new Map() } as unknown as RendererProps['plan'], mode: 'exam', drafts: { [unit.id]: draft }, locked: {}, onChange,
       seed: 1, motherTongue: 'en', pageId: 'p', revealed: {}, onReveal: () => undefined,
     });

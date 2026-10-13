@@ -56,23 +56,6 @@ function foldDigraphs(s: string): string {
   );
 }
 
-const WORD_EDGE = /^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu;
-
-/**
- * True when the response differs from `answer` in the accent of a word whose
- * accent marks a different word (à vs a). Assumes both fold to the same text.
- */
-function breaksAccentSensitiveWord(response: string, answer: string, sensitive: ReadonlySet<string>): boolean {
-  if (sensitive.size === 0) return false;
-  const a = answer.split(' ');
-  const r = response.split(' ');
-  if (a.length !== r.length) return false;
-  return a.some((word, i) => {
-    const bare = word.replace(WORD_EDGE, '').toLowerCase();
-    return sensitive.has(bare) && r[i].replace(WORD_EDGE, '').toLowerCase() !== bare;
-  });
-}
-
 export function classifyAnswer(response: string, accepted: AcceptedAnswers): Classification {
   const r = normalizeAnswer(response);
   const answers = accepted.answers.map(normalizeAnswer);
@@ -82,13 +65,9 @@ export function classifyAnswer(response: string, accepted: AcceptedAnswers): Cla
   const exact = answers.findIndex((a) => a === r);
   if (exact >= 0) return { ...base, outcome: 'fully_correct', credit: 1, expected: accepted.answers[exact] };
 
-  const sensitive = new Set(accepted.accentSensitive.map((w) => normalizeAnswer(w).toLowerCase()));
+  // An accent is a spelling mistake, also where it makes another word (la/là): half a point (D40).
   const close = answers.findIndex((a) => foldAccents(a) === foldAccents(r) || foldDigraphs(a) === foldDigraphs(r));
-  if (close >= 0) {
-    const expected = accepted.answers[close];
-    if (breaksAccentSensitiveWord(r, answers[close], sensitive)) return { ...base, outcome: 'incorrect', credit: 0, expected };
-    return { ...base, outcome: 'orthography_only', credit: 0.5, expected };
-  }
+  if (close >= 0) return { ...base, outcome: 'orthography_only', credit: 0.5, expected: accepted.answers[close] };
   return { ...base, outcome: 'incorrect', credit: 0 };
 }
 

@@ -85,7 +85,6 @@
       "examForms": [
         "un livre"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "un livre",
@@ -119,8 +118,7 @@
         "accepted": {
           "answers": [
             "livre"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "livre",
@@ -161,7 +159,6 @@
       "examForms": [
         "une chaise"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "une chaise",
@@ -195,8 +192,7 @@
         "accepted": {
           "answers": [
             "chaise"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "livre",
@@ -238,7 +234,6 @@
       "examForms": [
         "un stylo"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "un stylo",
@@ -272,8 +267,7 @@
         "accepted": {
           "answers": [
             "stylo"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "livre",
@@ -314,7 +308,6 @@
       "examForms": [
         "une table"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "une table",
@@ -348,8 +341,7 @@
         "accepted": {
           "answers": [
             "table"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "livre",

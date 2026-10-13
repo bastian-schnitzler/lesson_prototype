@@ -2,7 +2,7 @@
  * Item helpers and the lesson definition format for hand-authored grammar lessons (P3-07); see
  * scripts/author-grammar.ts, which builds the brief and the lesson content from a definition.
  */
-import type { LocalizedText } from '../src/schemas/artifactCommon.ts';
+import type { AcceptedAnswers, LocalizedText } from '../src/schemas/artifactCommon.ts';
 import { PERSONS, type GrammarBrief, type GrammarExerciseType, type GrammarItem } from '../src/schemas/grammar.ts';
 
 export const L = (en: string, fr: string, de: string): LocalizedText => ({ en, fr, de });
@@ -11,6 +11,9 @@ export type Item = Exclude<GrammarItem, { type: 'grammar_explanation' | 'product
 export type Draft = Item extends infer T ? (T extends unknown ? Omit<T, 'itemId'> : never) : never;
 
 /* ------------------------------------------------------------- item helpers */
+
+/** Accepted answers: every fully correct form, the first one shown as the correct answer. */
+const accepted = (answers: string | string[]): AcceptedAnswers => ({ answers: [answers].flat() });
 
 /** Deterministic shuffle, so rebuilding a lesson yields identical files. */
 function shuffle<T>(list: T[], key: string): T[] {
@@ -36,8 +39,8 @@ export const gc = (ruleIds: string[], before: string, answer: string, wrong: [st
 };
 
 /** Typed gap; `answers` lists every accepted form, the first one is shown as the correct answer. */
-export const gt = (ruleIds: string[], before: string, answers: string | string[], after: string, explanation: LocalizedText, hint: LocalizedText | null = null, accentSensitive: string[] = []): Draft => ({
-  type: 'grammar_gap_typing', ruleIds, before, after, accepted: { answers: [answers].flat(), accentSensitive }, hint, answerExplanation: explanation,
+export const gt = (ruleIds: string[], before: string, answers: string | string[], after: string, explanation: LocalizedText, hint: LocalizedText | null = null): Draft => ({
+  type: 'grammar_gap_typing', ruleIds, before, after, accepted: accepted(answers), hint, answerExplanation: explanation,
 });
 
 /** Word order: the words in the correct order (no final full stop); `alternatives` are other valid orders of the same words. */
@@ -59,7 +62,7 @@ export const sp = (ruleIds: string[], words: string[], index: number, wrong: str
   type: 'grammar_error_spotter', ruleIds,
   tokens: words.map((text, n) => ({ tokenId: `t-${n + 1}`, text: n === index ? wrong : text })),
   faultyTokenId: `t-${index + 1}`,
-  correction: { mode: choices.length ? 'select' : 'type', accepted: { answers: [words[index]], accentSensitive: [] }, choices },
+  correction: { mode: choices.length ? 'select' : 'type', accepted: accepted(words[index]), choices },
   answerExplanation: explanation,
 });
 
@@ -77,7 +80,7 @@ export const pm = (ruleIds: string[], rows: [string, string, LocalizedText][], e
 /** Pronoun/form typing: rows of [pronoun, accepted form(s), explanation]. */
 export const pt = (ruleIds: string[], rows: [string, string | string[], LocalizedText][]): Draft => ({
   type: 'grammar_pronoun_form_typing', ruleIds,
-  rows: rows.map(([pronoun, answers, answerExplanation], n) => ({ rowId: `r-${n + 1}`, pronoun, accepted: { answers: [answers].flat(), accentSensitive: [] }, answerExplanation })),
+  rows: rows.map(([pronoun, answers, answerExplanation], n) => ({ rowId: `r-${n + 1}`, pronoun, accepted: accepted(answers), answerExplanation })),
 });
 
 /** Person matching (D48): six rows, or three rows of one number ('sg' | 'pl'). */
