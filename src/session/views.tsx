@@ -2,6 +2,7 @@ import { Fragment, useEffect, useRef, useState, type CSSProperties } from 'react
 
 import { useI18n, useLastTry, usePreferences } from '../app/context.tsx';
 import { formatScore, roundHalfUp1 } from '../domain/format.ts';
+import { answerMarks } from '../domain/answers.ts';
 import type { LessonPlan, PlanPage, PlanUnit } from '../domain/session/plan.ts';
 import { headerScore, isAnswered, isListeningPage, isMatchingItem, nextDialogueLine, presentationComplete, scoreUnit, skipsFeedbackWhenCorrect, lessonResults, progress, type LockedUnit, type SessionRecord } from '../domain/session/session.ts';
 import type { MessageKey } from '../i18n/messages.ts';
@@ -479,7 +480,7 @@ function ResultItem({ unit, locked, lang, columns }: { unit: PlanUnit; locked: L
               <span className="visually-hidden">{t('result.correctAnswer')}: </span><span lang={unit.answerLang === 'learning' ? lang : undefined}>{correct}</span>
               {unit.form && <span lang={lang}> · {unit.form}</span>}
             </strong>
-            {!ok && <span className="match-wrong"><span className="visually-hidden">{t('result.yourAnswer')}: </span><s lang={lang}>{given || t('result.noAnswer')}</s></span>}
+            {!ok && <span className="match-wrong"><span className="visually-hidden">{t('result.yourAnswer')}: </span><GivenAnswer unit={unit} given={given} lang={lang} /></span>}
           </span>
         </div>
         {(locked.outcome === 'orthography_only' || locked.timedOut) && (
@@ -491,6 +492,22 @@ function ResultItem({ unit, locked, lang, columns }: { unit: PlanUnit; locked: L
         {!ok && <p className="muted">{unit.explanation[locale]}</p>}
       </div>
     </li>
+  );
+}
+
+/**
+ * The learner's wrong answer in a result row (P4-05 review): struck through in red, or, when only the
+ * accents/capitals or only the article differ, with just those letters or the article in red.
+ */
+function GivenAnswer({ unit, given, lang }: { unit: PlanUnit; given: string; lang: string }) {
+  const { t } = useI18n();
+  if (!given) return <s>{t('result.noAnswer')}</s>;
+  const marks = unit.kind === 'text' ? answerMarks(given, unit.accepted.answers) : [{ text: given, wrong: true }];
+  if (marks.length === 1 && marks[0].wrong) return <s lang={lang}>{given}</s>;
+  return (
+    <span lang={lang} className="marked-answer">
+      {marks.map((m, n) => <span key={n} className={m.wrong ? 'mark-wrong' : 'mark-ok'}>{m.text}</span>)}
+    </span>
   );
 }
 

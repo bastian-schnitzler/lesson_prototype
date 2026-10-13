@@ -2497,3 +2497,13 @@ html {
   border-radius: 2px;
   background: var(--progress);
 }
+
+/* Results (P4-05 review): only the wrong letters or the wrong article of an answer are red. */
+.marked-answer .mark-ok {
+  color: var(--muted);
+}
+
+.marked-answer .mark-wrong {
+  color: var(--incorrect);
+  font-weight: 700;
+}
