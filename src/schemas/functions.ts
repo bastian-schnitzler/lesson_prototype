@@ -1,0 +1,238 @@
+import { z } from 'zod';
+
+import {
+  AcceptedAnswersSchema,
+  DurationSecondsSchema,
+  envelopeShape,
+  LearningTextSchema,
+  LocalizedLabelSchema,
+  LocalizedLongTextSchema,
+  LocalizedTextSchema,
+  NestedIdSchema,
+  nativeTextSchema,
+  nativeTranslationsSchema,
+  ScoringPolicySchema,
+  TimeLimitSecondsSchema,
+} from './artifactCommon.ts';
+import { ThemeSchema } from './common.ts';
+import { GenderSchema, WORD_CLASSES } from './vocabulary.ts';
+
+/**
+ * Function lessons (SPEC section 8, D50, D51): the brief holds the situation, two roles and the
+ * expressions and words with example sentences; the lesson content generated from it holds the
+ * model dialogue, every exercise and the exam.
+ */
+
+/** Counts of section 8 ("Brief and lesson content"). */
+export const FUNCTIONS_LIMITS = {
+  expressions: [6, 10],
+  words: [0, 6],
+  dialogueLines: [8, 14],
+  examReplies: [6, 8],
+  examGaps: [6, 10],
+  distractors: [0, 3],
+} as const;
+
+/** Page rules of section 8: seconds per unit, page sizes and the exam limit factor. */
+export const FUNCTIONS_PAGE_RULES = {
+  expressionCardS: 12,
+  wordCardS: 10,
+  dialogueBaseS: 20,
+  dialogueLineS: 12,
+  expressionPairS: 12,
+  wordPairS: 10,
+  /** Matching pages hold at most this many pairs (balanced). */
+  matchingPageSize: 6,
+  wordOrderS: 25,
+  gapChoiceS: 15,
+  replyS: 30,
+  /** Exam reply pages hold at most this many replies (balanced). */
+  replyPageSize: 4,
+  examLineS: 8,
+  examGapS: 20,
+  timeLimitFactor: 1.5,
+} as const;
+
+/** Content steps in lesson order. */
+export const FUNCTIONS_STAGES = ['flashcards', 'dialogue', 'matching', 'word_order', 'dialogue_gaps', 'exam'] as const;
+
+/* =================================================================== brief */
+
+const exampleSchema = (lang: string) => z.strictObject({ text: LearningTextSchema, translation: nativeTextSchema(lang) });
+
+export const functionsExpressionSchema = (lang: string) =>
+  z.strictObject({
+    id: NestedIdSchema,
+    /** The French expression as taught, without a trailing ellipsis: Je voudrais. */
+    text: LearningTextSchema,
+    /** A sentence start, displayed with a trailing " …" that is never part of an answer. */
+    openEnd: z.boolean(),
+    translations: nativeTranslationsSchema(lang),
+    /** When and how it is used, register (tu/vous). */
+    explanation: LocalizedTextSchema,
+    example: exampleSchema(lang),
+  });
+export type FunctionsExpression = z.infer<ReturnType<typeof functionsExpressionSchema>>;
+
+export const functionsWordSchema = (lang: string) =>
+  z.strictObject({
+    id: NestedIdSchema,
+    /** Base term without article: thé. */
+    term: LearningTextSchema,
+    /** Displayed form, with the indefinite article for nouns where grammatical (D39): un thé. */
+    teachingForm: LearningTextSchema,
+    translations: nativeTranslationsSchema(lang),
+    wordClass: z.enum(WORD_CLASSES),
+    /** Accepted genders for nouns; empty for every other word class (D8). */
+    genders: z.array(GenderSchema).max(3),
+    explanation: LocalizedTextSchema,
+    example: exampleSchema(lang),
+  });
+export type FunctionsWord = z.infer<ReturnType<typeof functionsWordSchema>>;
+
+export const functionsRoleSchema = (lang: string) =>
+  z.strictObject({
+    id: NestedIdSchema,
+    /** French label used in every dialogue: le serveur. */
+    label: LearningTextSchema,
+    translation: nativeTextSchema(lang),
+  });
+
+export const functionsBriefSchema = (lang: string) =>
+  z.strictObject({
+    ...envelopeShape,
+    kind: z.literal('functions'),
+    theme: ThemeSchema,
+    /** One sentence for the start page: who talks to whom, where. */
+    situation: LocalizedTextSchema,
+    /** How the expressions cover the outline intent. */
+    coverageNotes: LocalizedLongTextSchema,
+    prerequisites: z.array(LocalizedTextSchema).max(4),
+    roles: z.array(functionsRoleSchema(lang)).length(2),
+    expressions: z.array(functionsExpressionSchema(lang)).min(FUNCTIONS_LIMITS.expressions[0]).max(FUNCTIONS_LIMITS.expressions[1]),
+    words: z.array(functionsWordSchema(lang)).max(FUNCTIONS_LIMITS.words[1]),
+    scoring: ScoringPolicySchema,
+  });
+export type FunctionsBrief = z.infer<ReturnType<typeof functionsBriefSchema>>;
+
+/* ================================================================= content */
+
+const TokenSchema = z.strictObject({ tokenId: NestedIdSchema, text: LearningTextSchema });
+/** A dialogue line shown as context: role A's line above a task. */
+const ContextLineSchema = z.strictObject({ roleId: NestedIdSchema, text: LearningTextSchema });
+
+export const functionsItemSchema = (lang: string) =>
+  z.discriminatedUnion('type', [
+    z.strictObject({
+      /** Expressions: French on the front; words: mother tongue on the front (as in vocabulary). */
+      type: z.literal('function_flashcards'),
+      itemId: NestedIdSchema,
+      side: z.enum(['expressions', 'words']),
+      ids: z.array(NestedIdSchema).min(1).max(FUNCTIONS_LIMITS.expressions[1]),
+    }),
+    z.strictObject({
+      /** The model dialogue, revealed line by line; lines can be turned (translation and note). */
+      type: z.literal('function_dialogue'),
+      itemId: NestedIdSchema,
+      lines: z
+        .array(z.strictObject({
+          lineId: NestedIdSchema,
+          roleId: NestedIdSchema,
+          text: LearningTextSchema,
+          translation: nativeTextSchema(lang),
+          note: LocalizedTextSchema,
+          /** Expressions the line uses. */
+          expressionIds: z.array(NestedIdSchema).max(4),
+        }))
+        .min(FUNCTIONS_LIMITS.dialogueLines[0])
+        .max(FUNCTIONS_LIMITS.dialogueLines[1]),
+    }),
+    z.strictObject({
+      /** Mother-tongue translation on the left, French on the right; one unit per pair. */
+      type: z.literal('function_matching'),
+      itemId: NestedIdSchema,
+      side: z.enum(['expressions', 'words']),
+      pairs: z.array(z.strictObject({ id: NestedIdSchema, answerExplanation: LocalizedTextSchema })).min(2).max(FUNCTIONS_PAGE_RULES.matchingPageSize),
+    }),
+    z.strictObject({
+      /**
+       * Word order. Practice: tokens only (context null, no distractors). Exam part 1: role A's line as
+       * context and role B's reply built from tokens with 0–3 distractors that belong to no accepted order.
+       */
+      type: z.literal('function_word_order'),
+      itemId: NestedIdSchema,
+      expressionId: NestedIdSchema,
+      context: ContextLineSchema.nullable(),
+      /** Role of the built sentence; null in practice. */
+      roleId: NestedIdSchema.nullable(),
+      tokens: z.array(TokenSchema).min(2).max(16),
+      distractorTokenIds: z.array(NestedIdSchema).max(FUNCTIONS_LIMITS.distractors[1]),
+      acceptedOrders: z.array(z.array(NestedIdSchema).min(2)).min(1).max(4),
+      answerExplanation: LocalizedTextSchema,
+    }),
+    z.strictObject({
+      /** Role A's line, then role B's line with one gap and four expression choices. */
+      type: z.literal('function_dialogue_gap_choice'),
+      itemId: NestedIdSchema,
+      expressionId: NestedIdSchema,
+      context: ContextLineSchema,
+      roleId: NestedIdSchema,
+      before: z.string().max(200),
+      after: z.string().max(200),
+      choiceExpressionIds: z.array(NestedIdSchema).length(4),
+      answerExplanation: LocalizedTextSchema,
+    }),
+    z.strictObject({
+      /** Exam part 2: a new dialogue unrolled line by line; gaps take expressions and are typed. */
+      type: z.literal('function_dialogue_gap_typing'),
+      itemId: NestedIdSchema,
+      lines: z
+        .array(z.strictObject({
+          lineId: NestedIdSchema,
+          roleId: NestedIdSchema,
+          /** The whole line when it has no gap, else the text before the gap. */
+          before: z.string().max(300),
+          gap: z
+            .strictObject({
+              gapId: NestedIdSchema,
+              expressionId: NestedIdSchema,
+              accepted: AcceptedAnswersSchema,
+              answerExplanation: LocalizedTextSchema,
+            })
+            .nullable(),
+          after: z.string().max(300),
+        }))
+        .min(FUNCTIONS_LIMITS.dialogueLines[0])
+        .max(FUNCTIONS_LIMITS.dialogueLines[1]),
+    }),
+  ]);
+export type FunctionsItem = z.infer<ReturnType<typeof functionsItemSchema>>;
+
+const pageSchema = (lang: string) =>
+  z.strictObject({
+    pageId: NestedIdSchema,
+    estimatedDurationS: DurationSecondsSchema,
+    /** Exam pages only: the page estimate × 1.5, rounded. */
+    timeLimitS: TimeLimitSecondsSchema.nullable(),
+    instructions: LocalizedTextSchema,
+    items: z.array(functionsItemSchema(lang)).min(1).max(FUNCTIONS_PAGE_RULES.replyPageSize),
+  });
+
+export const functionsContentSchema = (lang: string) =>
+  z.strictObject({
+    ...envelopeShape,
+    kind: z.literal('functions'),
+    theme: ThemeSchema,
+    steps: z
+      .array(
+        z.strictObject({
+          id: NestedIdSchema,
+          stage: z.enum(FUNCTIONS_STAGES),
+          role: z.enum(['presentation', 'exercise', 'exam']),
+          label: LocalizedLabelSchema,
+          pages: z.array(pageSchema(lang)).min(1).max(20),
+        }),
+      )
+      .length(FUNCTIONS_STAGES.length),
+  });
+export type FunctionsContent = z.infer<ReturnType<typeof functionsContentSchema>>;

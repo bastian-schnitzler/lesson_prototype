@@ -2,14 +2,14 @@ import { z } from 'zod';
 import { nativeLocales } from '../src/schemas/artifactCommon.ts';
 import { grammarBriefSchema } from '../src/schemas/grammar.ts';
 import { vocabularyInventorySchema } from './vocabulary.ts';
-import type { SupportedKind } from '../src/schemas/artifacts.ts';
+import type { GeneratedKind } from '../src/schemas/artifacts.ts';
 import type { OutlineContext } from '../src/validation/artifacts.ts';
 
 export const PROMPT_VERSION = 'brief-v7';
 const trusted = { schemaVersion: true, id: true, lang: true, level: true, locales: true, provenance: true } as const;
 
 /** Model payload of a brief call: vocabulary returns its word inventory first (generator/vocabulary.ts). */
-export function payloadSchema(kind: SupportedKind, lang: string) {
+export function payloadSchema(kind: GeneratedKind, lang: string) {
   return kind === 'vocabulary' ? vocabularyInventorySchema(lang) : grammarBriefSchema(lang).omit(trusted);
 }
 
@@ -17,7 +17,7 @@ export function payloadSchema(kind: SupportedKind, lang: string) {
  * Strip unsupported JSON Schema annotations/constraints; full Zod validation remains local.
  * Nested array bounds make some models (e.g. gemini-3.5-flash) reject the request with HTTP 400, so they become descriptions.
  */
-export function structuredSchema(kind: SupportedKind, lang: string): Record<string, unknown> {
+export function structuredSchema(kind: GeneratedKind, lang: string): Record<string, unknown> {
   return toStructuredSchema(payloadSchema(kind, lang));
 }
 

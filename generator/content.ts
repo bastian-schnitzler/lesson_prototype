@@ -3,7 +3,7 @@ import { join, resolve } from 'node:path';
 import { sha256 } from '../scripts/catalog.ts';
 import { briefInputHash } from '../src/catalog/scan.ts';
 import { ARTIFACT_SCHEMA_VERSION } from '../src/schemas/artifactCommon.ts';
-import { isSupportedKind } from '../src/schemas/artifacts.ts';
+import { isGeneratedKind } from '../src/schemas/artifacts.ts';
 import type { GrammarBrief } from '../src/schemas/grammar.ts';
 import { validateBrief, validateContent, type Issue, type OutlineContext } from '../src/validation/artifacts.ts';
 import { catalogContexts, generateBrief, runBatch, type BriefOptions, type BriefOutcome } from './briefs.ts';
@@ -108,7 +108,7 @@ export function generateLesson(id: string, options: BriefOptions): Promise<Lesso
 
 async function generateContent(id: string, file: string, options: BriefOptions): Promise<LessonOutcome> {
   const ctx = catalogContexts(options.contentDir).find((c) => c.entry.id === id)!;
-  if (!isSupportedKind(ctx.entry.kind)) throw new GenerationError(`${ctx.entry.kind} generation is not implemented (phases 4/5).`);
+  if (!isGeneratedKind(ctx.entry.kind)) throw new GenerationError(`${ctx.entry.kind} generation is not implemented (phases 4/5).`);
   const briefText = await readFile(join(resolve(options.contentDir), 'briefs', `${id}.json`), 'utf8');
   const briefData: unknown = JSON.parse(briefText);
   const checked = validateBrief(briefData, ctx);

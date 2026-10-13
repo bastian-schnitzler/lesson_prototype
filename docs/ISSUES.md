@@ -855,6 +855,8 @@ Acceptance:
 - The session plan builder reads function content; the artifact page shows Outline, Draft and Content for function lessons. Start stays unavailable until P4-05 is done.
 - `make sample-lessons` and `make catalog` validate function briefs and lesson content; contract fixtures in `tests/fixtures/content/` and unit tests cover schemas and validation.
 
+Outcome (2026-10-13): `src/schemas/functions.ts` (brief and lesson content), page rules in `src/domain/functionsLesson.ts`, function checks in `src/validation/artifacts.ts`, plan units with distractor-aware scoring of exam replies, `FunctionsBriefView` and the function items in the Content preview, fixture `fr-ordering-at-a-cafe` and `tests/unit/functions.test.tsx`. The generator keeps rejecting functions (`GENERATED_KINDS`); renderers are baseline placeholders until P4-04/P4-05.
+
 Dependencies: P4-01.
 
 ### P4-03: Write and review the three function test lessons
