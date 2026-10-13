@@ -27,3 +27,16 @@ export const EXERCISE_INSTRUCTIONS = {
   grammar_word_order: L('Put the words in the right order.', 'Mettez les mots dans le bon ordre.', 'Bring die Wörter in die richtige Reihenfolge.'),
   grammar_error_spotter: L('Find the wrong word and correct it.', 'Trouvez le mot faux et corrigez-le.', 'Finde das falsche Wort und korrigiere es.'),
 } as const;
+
+/** Step labels and page instructions of function lessons (SPEC section 8); application copy, not generated text. */
+export const FUNCTIONS_COPY = {
+  flashcards: [L('Flashcards', 'Cartes mémoire', 'Karteikarten'), L('Turn every card once and listen to the expressions.', 'Retournez chaque carte une fois et écoutez les expressions.', 'Dreh jede Karte einmal um und hör dir die Ausdrücke an.')],
+  wordCards: L('Recall each word, then turn the card to check it.', 'Rappelez-vous chaque mot, puis retournez la carte pour vérifier.', 'Erinnere dich an jedes Wort und dreh dann die Karte um.'),
+  dialogue: [L('Dialogue', 'Dialogue', 'Dialog'), L('Read and listen. Turn a line to see its translation and a note.', 'Lisez et écoutez. Retournez une réplique pour voir sa traduction et une remarque.', 'Lies und hör zu. Dreh eine Zeile um, um Übersetzung und Hinweis zu sehen.')],
+  matching: [L('Matching', 'Association', 'Zuordnen'), L('Match each expression with its translation.', 'Associez chaque expression à sa traduction.', 'Ordne jedem Ausdruck seine Übersetzung zu.')],
+  wordMatching: L('Match each word with its translation.', 'Associez chaque mot à sa traduction.', 'Ordne jedem Wort seine Übersetzung zu.'),
+  wordOrder: [L('Word order', 'Ordre des mots', 'Wortstellung'), L('Put the words in order.', 'Mettez les mots dans l’ordre.', 'Bring die Wörter in die richtige Reihenfolge.')],
+  dialogueGaps: [L('Dialogue gaps', 'Dialogue à trous', 'Dialoglücken'), L('Choose the expression that fits the gap.', 'Choisissez l’expression qui complète la réplique.', 'Wähle den Ausdruck, der in die Lücke passt.')],
+  exam: [L('Final exam', 'Examen final', 'Abschlussprüfung'), L('Build the answer. Not every word fits.', 'Construisez la réponse. Tous les mots ne servent pas.', 'Bilde die Antwort. Nicht jedes Wort passt.')],
+  examDialogue: L('Fill each gap with an expression from this lesson.', 'Complétez chaque trou avec une expression de la leçon.', 'Fülle jede Lücke mit einem Ausdruck aus dieser Lektion.'),
+} as const;

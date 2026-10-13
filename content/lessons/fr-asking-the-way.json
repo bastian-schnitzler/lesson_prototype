@@ -1,0 +1,1785 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-asking-the-way",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Demander son chemin",
+  "objective": {
+    "en": "Ask a passer-by the way and understand simple directions: straight on, left, right, near.",
+    "fr": "Demander son chemin à un passant et comprendre une indication simple : tout droit, à gauche, à droite, à côté.",
+    "de": "Einen Passanten nach dem Weg fragen und einfache Wegbeschreibungen verstehen: geradeaus, links, rechts, in der Nähe."
+  },
+  "estimatedMinutes": 20,
+  "provenance": {
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "functions-v1",
+    "generatedAt": "2026-10-13T14:17:07.138Z",
+    "inputHashes": {
+      "outline": "fcc9998d354910d96645252f5de2919381a31873ba3a5902dcdacecd8024bfc9",
+      "brief": "efb9ce546a9d0590bf78dabad11e1257ef0774fd196d3a7e206f899d6a911151"
+    }
+  },
+  "kind": "functions",
+  "theme": "places",
+  "steps": [
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "presentation",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "cards-expressions",
+          "estimatedDurationS": 96,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Turn every card once and listen to the expressions.",
+            "fr": "Retournez chaque carte une fois et écoutez les expressions.",
+            "de": "Dreh jede Karte einmal um und hör dir die Ausdrücke an."
+          },
+          "items": [
+            {
+              "type": "function_flashcards",
+              "itemId": "cards-expressions",
+              "side": "expressions",
+              "ids": [
+                "excusez-moi",
+                "ou-est",
+                "cest-loin",
+                "tout-droit",
+                "a-gauche",
+                "a-droite",
+                "a-cote",
+                "merci-beaucoup"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "cards-words",
+          "estimatedDurationS": 40,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each word, then turn the card to check it.",
+            "fr": "Rappelez-vous chaque mot, puis retournez la carte pour vérifier.",
+            "de": "Erinnere dich an jedes Wort und dreh dann die Karte um."
+          },
+          "items": [
+            {
+              "type": "function_flashcards",
+              "itemId": "cards-words",
+              "side": "words",
+              "ids": [
+                "gare",
+                "rue",
+                "musee",
+                "banque"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dialogue",
+      "stage": "dialogue",
+      "role": "presentation",
+      "label": {
+        "en": "Dialogue",
+        "fr": "Dialogue",
+        "de": "Dialog"
+      },
+      "pages": [
+        {
+          "pageId": "dialogue",
+          "estimatedDurationS": 140,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read and listen. Turn a line to see its translation and a note.",
+            "fr": "Lisez et écoutez. Retournez une réplique pour voir sa traduction et une remarque.",
+            "de": "Lies und hör zu. Dreh eine Zeile um, um Übersetzung und Hinweis zu sehen."
+          },
+          "items": [
+            {
+              "type": "function_dialogue",
+              "itemId": "dialogue",
+              "lines": [
+                {
+                  "lineId": "line-1",
+                  "roleId": "touriste",
+                  "text": "Excusez-moi, monsieur. Où est la gare, s’il vous plaît ?",
+                  "translation": {
+                    "en": "Excuse me, sir. Where is the station, please?",
+                    "de": "Entschuldigen Sie. Wo ist der Bahnhof, bitte?"
+                  },
+                  "note": {
+                    "en": "Excusez-moi first, then the question Où est … ?",
+                    "fr": "D’abord Excusez-moi, puis la question Où est … ?",
+                    "de": "Zuerst Excusez-moi, dann die Frage Où est … ?"
+                  },
+                  "expressionIds": [
+                    "excusez-moi",
+                    "ou-est"
+                  ]
+                },
+                {
+                  "lineId": "line-2",
+                  "roleId": "passant",
+                  "text": "La gare ? Vous allez tout droit.",
+                  "translation": {
+                    "en": "The station? You go straight on.",
+                    "de": "Der Bahnhof? Sie gehen geradeaus."
+                  },
+                  "note": {
+                    "en": "Vous allez tout droit: the first direction.",
+                    "fr": "Vous allez tout droit : la première indication.",
+                    "de": "Vous allez tout droit: die erste Richtung."
+                  },
+                  "expressionIds": [
+                    "tout-droit"
+                  ]
+                },
+                {
+                  "lineId": "line-3",
+                  "roleId": "touriste",
+                  "text": "Tout droit ? C’est loin ?",
+                  "translation": {
+                    "en": "Straight on? Is it far?",
+                    "de": "Geradeaus? Ist es weit?"
+                  },
+                  "note": {
+                    "en": "She repeats to check and asks about the distance.",
+                    "fr": "Elle répète pour vérifier et demande la distance.",
+                    "de": "Sie wiederholt zur Sicherheit und fragt nach der Entfernung."
+                  },
+                  "expressionIds": [
+                    "cest-loin"
+                  ]
+                },
+                {
+                  "lineId": "line-4",
+                  "roleId": "passant",
+                  "text": "Non, dix minutes à pied.",
+                  "translation": {
+                    "en": "No, ten minutes on foot.",
+                    "de": "Nein, zehn Minuten zu Fuß."
+                  },
+                  "note": {
+                    "en": "À pied means walking.",
+                    "fr": "À pied veut dire en marchant.",
+                    "de": "À pied heißt zu Fuß."
+                  },
+                  "expressionIds": []
+                },
+                {
+                  "lineId": "line-5",
+                  "roleId": "touriste",
+                  "text": "Et après ?",
+                  "translation": {
+                    "en": "And then?",
+                    "de": "Und dann?"
+                  },
+                  "note": {
+                    "en": "A short way to ask for the next step.",
+                    "fr": "Une façon courte de demander la suite.",
+                    "de": "Eine kurze Frage nach dem nächsten Schritt."
+                  },
+                  "expressionIds": []
+                },
+                {
+                  "lineId": "line-6",
+                  "roleId": "passant",
+                  "text": "Après le musée, tournez à gauche.",
+                  "translation": {
+                    "en": "After the museum, turn left.",
+                    "de": "Nach dem Museum biegen Sie links ab."
+                  },
+                  "note": {
+                    "en": "Tournez à gauche: turn left after a landmark.",
+                    "fr": "Tournez à gauche : tourner à gauche après un repère.",
+                    "de": "Tournez à gauche: nach einem Orientierungspunkt links abbiegen."
+                  },
+                  "expressionIds": [
+                    "a-gauche"
+                  ]
+                },
+                {
+                  "lineId": "line-7",
+                  "roleId": "touriste",
+                  "text": "D’accord. Et il y a une banque ?",
+                  "translation": {
+                    "en": "Okay. And is there a bank?",
+                    "de": "Okay. Und gibt es eine Bank?"
+                  },
+                  "note": {
+                    "en": "Il y a … ? asks whether something exists nearby.",
+                    "fr": "Il y a … ? demande si quelque chose existe près d’ici.",
+                    "de": "Il y a … ? fragt, ob es etwas in der Nähe gibt."
+                  },
+                  "expressionIds": []
+                },
+                {
+                  "lineId": "line-8",
+                  "roleId": "passant",
+                  "text": "Oui. Ici, tournez à droite. C’est à côté.",
+                  "translation": {
+                    "en": "Yes. Turn right here. It’s close by.",
+                    "de": "Ja. Hier rechts abbiegen. Das ist ganz in der Nähe."
+                  },
+                  "note": {
+                    "en": "Two pieces of information: the direction and that it is near.",
+                    "fr": "Deux informations : la direction et la distance.",
+                    "de": "Zwei Angaben: die Richtung und die Entfernung."
+                  },
+                  "expressionIds": [
+                    "a-droite",
+                    "a-cote"
+                  ]
+                },
+                {
+                  "lineId": "line-9",
+                  "roleId": "touriste",
+                  "text": "Merci beaucoup, monsieur !",
+                  "translation": {
+                    "en": "Thank you very much, sir!",
+                    "de": "Vielen Dank!"
+                  },
+                  "note": {
+                    "en": "She thanks him warmly.",
+                    "fr": "Elle le remercie chaleureusement.",
+                    "de": "Sie bedankt sich herzlich."
+                  },
+                  "expressionIds": [
+                    "merci-beaucoup"
+                  ]
+                },
+                {
+                  "lineId": "line-10",
+                  "roleId": "passant",
+                  "text": "De rien. Bonne journée !",
+                  "translation": {
+                    "en": "You’re welcome. Have a nice day!",
+                    "de": "Gern geschehen. Einen schönen Tag!"
+                  },
+                  "note": {
+                    "en": "De rien answers merci.",
+                    "fr": "De rien répond à merci.",
+                    "de": "De rien ist die Antwort auf merci."
+                  },
+                  "expressionIds": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "match-expressions-1",
+          "estimatedDurationS": 48,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each expression with its translation.",
+            "fr": "Associez chaque expression à sa traduction.",
+            "de": "Ordne jedem Ausdruck seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "function_matching",
+              "itemId": "match-expressions-1",
+              "side": "expressions",
+              "pairs": [
+                {
+                  "id": "excusez-moi",
+                  "answerExplanation": {
+                    "en": "Polite way to address a stranger before you ask something (vous).",
+                    "fr": "Façon polie d’aborder un inconnu avant de demander quelque chose (vous).",
+                    "de": "Höfliche Art, einen Fremden vor einer Frage anzusprechen (vous)."
+                  }
+                },
+                {
+                  "id": "ou-est",
+                  "answerExplanation": {
+                    "en": "Asks for a place: Où est + the place? Où has an accent grave.",
+                    "fr": "Pour demander un lieu : Où est + le lieu ? Où a un accent grave.",
+                    "de": "Fragt nach einem Ort: Où est + Ort? Où hat einen accent grave."
+                  }
+                },
+                {
+                  "id": "cest-loin",
+                  "answerExplanation": {
+                    "en": "Asks about the distance.",
+                    "fr": "Pour demander la distance.",
+                    "de": "Fragt nach der Entfernung."
+                  }
+                },
+                {
+                  "id": "tout-droit",
+                  "answerExplanation": {
+                    "en": "A direction: keep going straight on.",
+                    "fr": "Une indication : continuer tout droit.",
+                    "de": "Eine Richtung: immer geradeaus weitergehen."
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-expressions-2",
+          "estimatedDurationS": 48,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each expression with its translation.",
+            "fr": "Associez chaque expression à sa traduction.",
+            "de": "Ordne jedem Ausdruck seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "function_matching",
+              "itemId": "match-expressions-2",
+              "side": "expressions",
+              "pairs": [
+                {
+                  "id": "a-gauche",
+                  "answerExplanation": {
+                    "en": "A direction: turn to the left.",
+                    "fr": "Une indication : tourner du côté gauche.",
+                    "de": "Eine Richtung: nach links abbiegen."
+                  }
+                },
+                {
+                  "id": "a-droite",
+                  "answerExplanation": {
+                    "en": "A direction: turn to the right.",
+                    "fr": "Une indication : tourner du côté droit.",
+                    "de": "Eine Richtung: nach rechts abbiegen."
+                  }
+                },
+                {
+                  "id": "a-cote",
+                  "answerExplanation": {
+                    "en": "Says that the place is very near.",
+                    "fr": "Pour dire que le lieu est tout près.",
+                    "de": "Sagt, dass der Ort sehr nah ist."
+                  }
+                },
+                {
+                  "id": "merci-beaucoup",
+                  "answerExplanation": {
+                    "en": "A warm thank you for the help.",
+                    "fr": "Un merci chaleureux pour l’aide.",
+                    "de": "Ein herzliches Danke für die Hilfe."
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "match-words-1",
+          "estimatedDurationS": 40,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each word with its translation.",
+            "fr": "Associez chaque mot à sa traduction.",
+            "de": "Ordne jedem Wort seine Übersetzung zu."
+          },
+          "items": [
+            {
+              "type": "function_matching",
+              "itemId": "match-words-1",
+              "side": "words",
+              "pairs": [
+                {
+                  "id": "gare",
+                  "answerExplanation": {
+                    "en": "Feminine noun: une gare.",
+                    "fr": "Nom féminin : une gare.",
+                    "de": "Feminines Nomen: une gare."
+                  }
+                },
+                {
+                  "id": "rue",
+                  "answerExplanation": {
+                    "en": "Feminine noun: une rue.",
+                    "fr": "Nom féminin : une rue.",
+                    "de": "Feminines Nomen: une rue."
+                  }
+                },
+                {
+                  "id": "musee",
+                  "answerExplanation": {
+                    "en": "Masculine noun despite the -ée ending: un musée.",
+                    "fr": "Nom masculin malgré la fin en -ée : un musée.",
+                    "de": "Maskulines Nomen trotz der Endung -ée: un musée."
+                  }
+                },
+                {
+                  "id": "banque",
+                  "answerExplanation": {
+                    "en": "Feminine noun: une banque.",
+                    "fr": "Nom féminin : une banque.",
+                    "de": "Feminines Nomen: une banque."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "word-order",
+      "stage": "word_order",
+      "role": "exercise",
+      "label": {
+        "en": "Word order",
+        "fr": "Ordre des mots",
+        "de": "Wortstellung"
+      },
+      "pages": [
+        {
+          "pageId": "order-1",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Put the words in order.",
+            "fr": "Mettez les mots dans l’ordre.",
+            "de": "Bring die Wörter in die richtige Reihenfolge."
+          },
+          "items": [
+            {
+              "type": "function_word_order",
+              "itemId": "order-1",
+              "expressionId": "excusez-moi",
+              "context": null,
+              "roleId": null,
+              "tokens": [
+                {
+                  "tokenId": "t1",
+                  "text": "Excusez-moi,"
+                },
+                {
+                  "tokenId": "t2",
+                  "text": "je"
+                },
+                {
+                  "tokenId": "t3",
+                  "text": "cherche"
+                },
+                {
+                  "tokenId": "t4",
+                  "text": "la gare"
+                }
+              ],
+              "distractorTokenIds": [],
+              "acceptedOrders": [
+                [
+                  "t1",
+                  "t2",
+                  "t3",
+                  "t4"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "Excusez-moi first, then what you are looking for.",
+                "fr": "D’abord Excusez-moi, puis ce que vous cherchez.",
+                "de": "Erst Excusez-moi, dann was Sie suchen."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "order-2",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Put the words in order.",
+            "fr": "Mettez les mots dans l’ordre.",
+            "de": "Bring die Wörter in die richtige Reihenfolge."
+          },
+          "items": [
+            {
+              "type": "function_word_order",
+              "itemId": "order-2",
+              "expressionId": "ou-est",
+              "context": null,
+              "roleId": null,
+              "tokens": [
+                {
+                  "tokenId": "t1",
+                  "text": "Pardon,"
+                },
+                {
+                  "tokenId": "t2",
+                  "text": "où est"
+                },
+                {
+                  "tokenId": "t3",
+                  "text": "le musée"
+                },
+                {
+                  "tokenId": "t4",
+                  "text": "?"
+                }
+              ],
+              "distractorTokenIds": [],
+              "acceptedOrders": [
+                [
+                  "t1",
+                  "t2",
+                  "t3",
+                  "t4"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "Où est + the place, then the question mark.",
+                "fr": "Où est + le lieu, puis le point d’interrogation.",
+                "de": "Où est + Ort, dann das Fragezeichen."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "order-3",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Put the words in order.",
+            "fr": "Mettez les mots dans l’ordre.",
+            "de": "Bring die Wörter in die richtige Reihenfolge."
+          },
+          "items": [
+            {
+              "type": "function_word_order",
+              "itemId": "order-3",
+              "expressionId": "cest-loin",
+              "context": null,
+              "roleId": null,
+              "tokens": [
+                {
+                  "tokenId": "t1",
+                  "text": "La rue Pasteur,"
+                },
+                {
+                  "tokenId": "t2",
+                  "text": "c’est"
+                },
+                {
+                  "tokenId": "t3",
+                  "text": "loin"
+                },
+                {
+                  "tokenId": "t4",
+                  "text": "?"
+                }
+              ],
+              "distractorTokenIds": [],
+              "acceptedOrders": [
+                [
+                  "t1",
+                  "t2",
+                  "t3",
+                  "t4"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "Name the place first, then ask c’est loin ?",
+                "fr": "On nomme d’abord le lieu, puis on demande c’est loin ?",
+                "de": "Erst den Ort nennen, dann c’est loin ? fragen."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "order-4",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Put the words in order.",
+            "fr": "Mettez les mots dans l’ordre.",
+            "de": "Bring die Wörter in die richtige Reihenfolge."
+          },
+          "items": [
+            {
+              "type": "function_word_order",
+              "itemId": "order-4",
+              "expressionId": "tout-droit",
+              "context": null,
+              "roleId": null,
+              "tokens": [
+                {
+                  "tokenId": "t1",
+                  "text": "Vous"
+                },
+                {
+                  "tokenId": "t2",
+                  "text": "allez"
+                },
+                {
+                  "tokenId": "t3",
+                  "text": "tout droit,"
+                },
+                {
+                  "tokenId": "t4",
+                  "text": "puis"
+                },
+                {
+                  "tokenId": "t5",
+                  "text": "à gauche"
+                }
+              ],
+              "distractorTokenIds": [],
+              "acceptedOrders": [
+                [
+                  "t1",
+                  "t2",
+                  "t3",
+                  "t4",
+                  "t5"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "Vous allez tout droit, then the next direction after puis.",
+                "fr": "Vous allez tout droit, puis la direction suivante après puis.",
+                "de": "Vous allez tout droit, dann die nächste Richtung nach puis."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "order-5",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Put the words in order.",
+            "fr": "Mettez les mots dans l’ordre.",
+            "de": "Bring die Wörter in die richtige Reihenfolge."
+          },
+          "items": [
+            {
+              "type": "function_word_order",
+              "itemId": "order-5",
+              "expressionId": "a-gauche",
+              "context": null,
+              "roleId": null,
+              "tokens": [
+                {
+                  "tokenId": "t1",
+                  "text": "Après"
+                },
+                {
+                  "tokenId": "t2",
+                  "text": "la gare,"
+                },
+                {
+                  "tokenId": "t3",
+                  "text": "tournez"
+                },
+                {
+                  "tokenId": "t4",
+                  "text": "à gauche"
+                }
+              ],
+              "distractorTokenIds": [],
+              "acceptedOrders": [
+                [
+                  "t1",
+                  "t2",
+                  "t3",
+                  "t4"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "The landmark first (après la gare), then tournez à gauche.",
+                "fr": "D’abord le repère (après la gare), puis tournez à gauche.",
+                "de": "Zuerst der Orientierungspunkt (après la gare), dann tournez à gauche."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "order-6",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Put the words in order.",
+            "fr": "Mettez les mots dans l’ordre.",
+            "de": "Bring die Wörter in die richtige Reihenfolge."
+          },
+          "items": [
+            {
+              "type": "function_word_order",
+              "itemId": "order-6",
+              "expressionId": "a-droite",
+              "context": null,
+              "roleId": null,
+              "tokens": [
+                {
+                  "tokenId": "t1",
+                  "text": "Au musée,"
+                },
+                {
+                  "tokenId": "t2",
+                  "text": "tournez"
+                },
+                {
+                  "tokenId": "t3",
+                  "text": "à droite"
+                }
+              ],
+              "distractorTokenIds": [],
+              "acceptedOrders": [
+                [
+                  "t1",
+                  "t2",
+                  "t3"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "Au musée tells where; tournez à droite tells the direction.",
+                "fr": "Au musée dit où ; tournez à droite donne la direction.",
+                "de": "Au musée sagt wo; tournez à droite gibt die Richtung."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "order-7",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Put the words in order.",
+            "fr": "Mettez les mots dans l’ordre.",
+            "de": "Bring die Wörter in die richtige Reihenfolge."
+          },
+          "items": [
+            {
+              "type": "function_word_order",
+              "itemId": "order-7",
+              "expressionId": "a-cote",
+              "context": null,
+              "roleId": null,
+              "tokens": [
+                {
+                  "tokenId": "t1",
+                  "text": "La gare ?"
+                },
+                {
+                  "tokenId": "t2",
+                  "text": "C’est"
+                },
+                {
+                  "tokenId": "t3",
+                  "text": "à côté"
+                }
+              ],
+              "distractorTokenIds": [],
+              "acceptedOrders": [
+                [
+                  "t1",
+                  "t2",
+                  "t3"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "Repeat the place, then answer c’est à côté.",
+                "fr": "On répète le lieu, puis on répond c’est à côté.",
+                "de": "Den Ort wiederholen, dann c’est à côté antworten."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "order-8",
+          "estimatedDurationS": 25,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Put the words in order.",
+            "fr": "Mettez les mots dans l’ordre.",
+            "de": "Bring die Wörter in die richtige Reihenfolge."
+          },
+          "items": [
+            {
+              "type": "function_word_order",
+              "itemId": "order-8",
+              "expressionId": "merci-beaucoup",
+              "context": null,
+              "roleId": null,
+              "tokens": [
+                {
+                  "tokenId": "t1",
+                  "text": "Merci"
+                },
+                {
+                  "tokenId": "t2",
+                  "text": "beaucoup,"
+                },
+                {
+                  "tokenId": "t3",
+                  "text": "madame"
+                },
+                {
+                  "tokenId": "t4",
+                  "text": "!"
+                }
+              ],
+              "distractorTokenIds": [],
+              "acceptedOrders": [
+                [
+                  "t1",
+                  "t2",
+                  "t3",
+                  "t4"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "Merci beaucoup, then the person.",
+                "fr": "Merci beaucoup, puis la personne.",
+                "de": "Merci beaucoup, dann die Person."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dialogue-gaps",
+      "stage": "dialogue_gaps",
+      "role": "exercise",
+      "label": {
+        "en": "Dialogue gaps",
+        "fr": "Dialogue à trous",
+        "de": "Dialoglücken"
+      },
+      "pages": [
+        {
+          "pageId": "gap-1",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the expression that fits the gap.",
+            "fr": "Choisissez l’expression qui complète la réplique.",
+            "de": "Wähle den Ausdruck, der in die Lücke passt."
+          },
+          "items": [
+            {
+              "type": "function_dialogue_gap_choice",
+              "itemId": "gap-1",
+              "expressionId": "excusez-moi",
+              "context": {
+                "roleId": "passant",
+                "text": "Bonjour, madame."
+              },
+              "roleId": "touriste",
+              "before": "Bonjour.",
+              "after": ", où est la rue Pasteur ?",
+              "choiceExpressionIds": [
+                "excusez-moi",
+                "a-cote",
+                "tout-droit",
+                "merci-beaucoup"
+              ],
+              "answerExplanation": {
+                "en": "She addresses him politely before her question.",
+                "fr": "Elle l’aborde poliment avant sa question.",
+                "de": "Sie spricht ihn vor ihrer Frage höflich an."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-2",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the expression that fits the gap.",
+            "fr": "Choisissez l’expression qui complète la réplique.",
+            "de": "Wähle den Ausdruck, der in die Lücke passt."
+          },
+          "items": [
+            {
+              "type": "function_dialogue_gap_choice",
+              "itemId": "gap-2",
+              "expressionId": "ou-est",
+              "context": {
+                "roleId": "passant",
+                "text": "Vous cherchez quelque chose ?"
+              },
+              "roleId": "touriste",
+              "before": "Oui.",
+              "after": "la gare, s’il vous plaît ?",
+              "choiceExpressionIds": [
+                "ou-est",
+                "cest-loin",
+                "a-droite",
+                "a-cote"
+              ],
+              "answerExplanation": {
+                "en": "She asks for a place: Où est la gare ?",
+                "fr": "Elle demande un lieu : Où est la gare ?",
+                "de": "Sie fragt nach einem Ort: Où est la gare ?"
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-3",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the expression that fits the gap.",
+            "fr": "Choisissez l’expression qui complète la réplique.",
+            "de": "Wähle den Ausdruck, der in die Lücke passt."
+          },
+          "items": [
+            {
+              "type": "function_dialogue_gap_choice",
+              "itemId": "gap-3",
+              "expressionId": "cest-loin",
+              "context": {
+                "roleId": "passant",
+                "text": "Le musée ? C’est rue Victor Hugo."
+              },
+              "roleId": "touriste",
+              "before": "Rue Victor Hugo ?",
+              "after": "",
+              "choiceExpressionIds": [
+                "cest-loin",
+                "excusez-moi",
+                "tout-droit",
+                "ou-est"
+              ],
+              "answerExplanation": {
+                "en": "She wants to know the distance.",
+                "fr": "Elle veut connaître la distance.",
+                "de": "Sie möchte die Entfernung wissen."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-4",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the expression that fits the gap.",
+            "fr": "Choisissez l’expression qui complète la réplique.",
+            "de": "Wähle den Ausdruck, der in die Lücke passt."
+          },
+          "items": [
+            {
+              "type": "function_dialogue_gap_choice",
+              "itemId": "gap-4",
+              "expressionId": "tout-droit",
+              "context": {
+                "roleId": "touriste",
+                "text": "Où est la banque, s’il vous plaît ?"
+              },
+              "roleId": "passant",
+              "before": "La banque ?",
+              "after": "",
+              "choiceExpressionIds": [
+                "tout-droit",
+                "cest-loin",
+                "merci-beaucoup",
+                "excusez-moi"
+              ],
+              "answerExplanation": {
+                "en": "The passer-by gives a direction.",
+                "fr": "Le passant donne une indication.",
+                "de": "Der Passant gibt eine Richtung an."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-5",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the expression that fits the gap.",
+            "fr": "Choisissez l’expression qui complète la réplique.",
+            "de": "Wähle den Ausdruck, der in die Lücke passt."
+          },
+          "items": [
+            {
+              "type": "function_dialogue_gap_choice",
+              "itemId": "gap-5",
+              "expressionId": "a-gauche",
+              "context": {
+                "roleId": "touriste",
+                "text": "À la gare, je tourne à gauche ?"
+              },
+              "roleId": "passant",
+              "before": "Oui.",
+              "after": "",
+              "choiceExpressionIds": [
+                "a-gauche",
+                "a-droite",
+                "cest-loin",
+                "ou-est"
+              ],
+              "answerExplanation": {
+                "en": "Oui confirms her question: tournez à gauche.",
+                "fr": "Oui confirme sa question : tournez à gauche.",
+                "de": "Oui bestätigt ihre Frage: tournez à gauche."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-6",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the expression that fits the gap.",
+            "fr": "Choisissez l’expression qui complète la réplique.",
+            "de": "Wähle den Ausdruck, der in die Lücke passt."
+          },
+          "items": [
+            {
+              "type": "function_dialogue_gap_choice",
+              "itemId": "gap-6",
+              "expressionId": "a-droite",
+              "context": {
+                "roleId": "touriste",
+                "text": "Le musée est à droite ?"
+              },
+              "roleId": "passant",
+              "before": "Oui, c’est ça.",
+              "after": "",
+              "choiceExpressionIds": [
+                "a-droite",
+                "a-gauche",
+                "merci-beaucoup",
+                "cest-loin"
+              ],
+              "answerExplanation": {
+                "en": "Oui, c’est ça confirms: tournez à droite.",
+                "fr": "Oui, c’est ça confirme : tournez à droite.",
+                "de": "Oui, c’est ça bestätigt: tournez à droite."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-7",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the expression that fits the gap.",
+            "fr": "Choisissez l’expression qui complète la réplique.",
+            "de": "Wähle den Ausdruck, der in die Lücke passt."
+          },
+          "items": [
+            {
+              "type": "function_dialogue_gap_choice",
+              "itemId": "gap-7",
+              "expressionId": "a-cote",
+              "context": {
+                "roleId": "touriste",
+                "text": "La banque, c’est loin ?"
+              },
+              "roleId": "passant",
+              "before": "Non.",
+              "after": "",
+              "choiceExpressionIds": [
+                "a-cote",
+                "ou-est",
+                "excusez-moi",
+                "merci-beaucoup"
+              ],
+              "answerExplanation": {
+                "en": "Not far: the bank is close by.",
+                "fr": "Pas loin : la banque est tout près.",
+                "de": "Nicht weit: Die Bank ist ganz in der Nähe."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "gap-8",
+          "estimatedDurationS": 15,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the expression that fits the gap.",
+            "fr": "Choisissez l’expression qui complète la réplique.",
+            "de": "Wähle den Ausdruck, der in die Lücke passt."
+          },
+          "items": [
+            {
+              "type": "function_dialogue_gap_choice",
+              "itemId": "gap-8",
+              "expressionId": "merci-beaucoup",
+              "context": {
+                "roleId": "passant",
+                "text": "La gare est à côté, madame."
+              },
+              "roleId": "touriste",
+              "before": "",
+              "after": "Bonne journée !",
+              "choiceExpressionIds": [
+                "merci-beaucoup",
+                "ou-est",
+                "cest-loin",
+                "tout-droit"
+              ],
+              "answerExplanation": {
+                "en": "She thanks him for the help.",
+                "fr": "Elle le remercie pour l’aide.",
+                "de": "Sie bedankt sich für die Hilfe."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Final exam",
+        "fr": "Examen final",
+        "de": "Abschlussprüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-replies-1",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Build the answer. Not every word fits.",
+            "fr": "Construisez la réponse. Tous les mots ne servent pas.",
+            "de": "Bilde die Antwort. Nicht jedes Wort passt."
+          },
+          "items": [
+            {
+              "type": "function_word_order",
+              "itemId": "reply-1",
+              "expressionId": "excusez-moi",
+              "context": {
+                "roleId": "passant",
+                "text": "Oui, madame ?"
+              },
+              "roleId": "touriste",
+              "tokens": [
+                {
+                  "tokenId": "t1",
+                  "text": "Excusez-moi,"
+                },
+                {
+                  "tokenId": "t2",
+                  "text": "je"
+                },
+                {
+                  "tokenId": "t3",
+                  "text": "cherche"
+                },
+                {
+                  "tokenId": "t4",
+                  "text": "le musée"
+                },
+                {
+                  "tokenId": "t5",
+                  "text": "chercher"
+                }
+              ],
+              "distractorTokenIds": [
+                "t5"
+              ],
+              "acceptedOrders": [
+                [
+                  "t1",
+                  "t2",
+                  "t3",
+                  "t4"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "After je the verb is cherche, not the infinitive chercher.",
+                "fr": "Après je, le verbe est cherche, pas l’infinitif chercher.",
+                "de": "Nach je steht cherche, nicht der Infinitiv chercher."
+              }
+            },
+            {
+              "type": "function_word_order",
+              "itemId": "reply-2",
+              "expressionId": "ou-est",
+              "context": {
+                "roleId": "passant",
+                "text": "Je peux vous aider ?"
+              },
+              "roleId": "touriste",
+              "tokens": [
+                {
+                  "tokenId": "t1",
+                  "text": "Oui."
+                },
+                {
+                  "tokenId": "t2",
+                  "text": "Où est"
+                },
+                {
+                  "tokenId": "t3",
+                  "text": "la rue Pasteur"
+                },
+                {
+                  "tokenId": "t4",
+                  "text": "?"
+                },
+                {
+                  "tokenId": "t5",
+                  "text": "Ou"
+                }
+              ],
+              "distractorTokenIds": [
+                "t5"
+              ],
+              "acceptedOrders": [
+                [
+                  "t1",
+                  "t2",
+                  "t3",
+                  "t4"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "Où (where) has an accent grave; ou without accent means or.",
+                "fr": "Où (lieu) a un accent grave ; ou sans accent veut dire or.",
+                "de": "Où (wo) hat einen accent grave; ou ohne Akzent heißt oder."
+              }
+            },
+            {
+              "type": "function_word_order",
+              "itemId": "reply-3",
+              "expressionId": "cest-loin",
+              "context": {
+                "roleId": "passant",
+                "text": "La gare est rue Victor Hugo."
+              },
+              "roleId": "touriste",
+              "tokens": [
+                {
+                  "tokenId": "t1",
+                  "text": "Merci."
+                },
+                {
+                  "tokenId": "t2",
+                  "text": "C’est"
+                },
+                {
+                  "tokenId": "t3",
+                  "text": "loin"
+                },
+                {
+                  "tokenId": "t4",
+                  "text": "?"
+                },
+                {
+                  "tokenId": "t5",
+                  "text": "long"
+                }
+              ],
+              "distractorTokenIds": [
+                "t5"
+              ],
+              "acceptedOrders": [
+                [
+                  "t1",
+                  "t2",
+                  "t3",
+                  "t4"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "For distance: loin (far), not long.",
+                "fr": "Pour la distance : loin, pas long.",
+                "de": "Für die Entfernung: loin (weit), nicht long (lang)."
+              }
+            },
+            {
+              "type": "function_word_order",
+              "itemId": "reply-4",
+              "expressionId": "tout-droit",
+              "context": {
+                "roleId": "touriste",
+                "text": "Pardon, où est le musée ?"
+              },
+              "roleId": "passant",
+              "tokens": [
+                {
+                  "tokenId": "t1",
+                  "text": "Le musée ?"
+                },
+                {
+                  "tokenId": "t2",
+                  "text": "Vous"
+                },
+                {
+                  "tokenId": "t3",
+                  "text": "allez"
+                },
+                {
+                  "tokenId": "t4",
+                  "text": "tout droit"
+                },
+                {
+                  "tokenId": "t5",
+                  "text": "va"
+                }
+              ],
+              "distractorTokenIds": [
+                "t5"
+              ],
+              "acceptedOrders": [
+                [
+                  "t1",
+                  "t2",
+                  "t3",
+                  "t4"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "With vous the verb is allez.",
+                "fr": "Avec vous, le verbe est allez.",
+                "de": "Mit vous heißt das Verb allez."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-replies-2",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Build the answer. Not every word fits.",
+            "fr": "Construisez la réponse. Tous les mots ne servent pas.",
+            "de": "Bilde die Antwort. Nicht jedes Wort passt."
+          },
+          "items": [
+            {
+              "type": "function_word_order",
+              "itemId": "reply-5",
+              "expressionId": "a-gauche",
+              "context": {
+                "roleId": "touriste",
+                "text": "À la banque, je tourne où ?"
+              },
+              "roleId": "passant",
+              "tokens": [
+                {
+                  "tokenId": "t1",
+                  "text": "À la banque,"
+                },
+                {
+                  "tokenId": "t2",
+                  "text": "tournez"
+                },
+                {
+                  "tokenId": "t3",
+                  "text": "à gauche"
+                },
+                {
+                  "tokenId": "t4",
+                  "text": "tourne"
+                }
+              ],
+              "distractorTokenIds": [
+                "t4"
+              ],
+              "acceptedOrders": [
+                [
+                  "t1",
+                  "t2",
+                  "t3"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "An instruction with vous: tournez.",
+                "fr": "Une indication avec vous : tournez.",
+                "de": "Eine Anweisung mit vous: tournez."
+              }
+            },
+            {
+              "type": "function_word_order",
+              "itemId": "reply-6",
+              "expressionId": "a-droite",
+              "context": {
+                "roleId": "touriste",
+                "text": "Et après le musée ?"
+              },
+              "roleId": "passant",
+              "tokens": [
+                {
+                  "tokenId": "t1",
+                  "text": "Après le musée,"
+                },
+                {
+                  "tokenId": "t2",
+                  "text": "tournez"
+                },
+                {
+                  "tokenId": "t3",
+                  "text": "à droite"
+                },
+                {
+                  "tokenId": "t4",
+                  "text": "droit"
+                }
+              ],
+              "distractorTokenIds": [
+                "t4"
+              ],
+              "acceptedOrders": [
+                [
+                  "t1",
+                  "t2",
+                  "t3"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "Right is à droite; tout droit means straight on.",
+                "fr": "Le côté, c’est à droite ; tout droit veut dire sans tourner.",
+                "de": "Rechts heißt à droite; tout droit heißt geradeaus."
+              }
+            },
+            {
+              "type": "function_word_order",
+              "itemId": "reply-7",
+              "expressionId": "a-cote",
+              "context": {
+                "roleId": "touriste",
+                "text": "Il y a une gare ici ?"
+              },
+              "roleId": "passant",
+              "tokens": [
+                {
+                  "tokenId": "t1",
+                  "text": "Oui,"
+                },
+                {
+                  "tokenId": "t2",
+                  "text": "c’est"
+                },
+                {
+                  "tokenId": "t3",
+                  "text": "à côté"
+                },
+                {
+                  "tokenId": "t4",
+                  "text": "côte"
+                }
+              ],
+              "distractorTokenIds": [
+                "t4"
+              ],
+              "acceptedOrders": [
+                [
+                  "t1",
+                  "t2",
+                  "t3"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "À côté (near) has an accent circonflexe on o and an accent aigu on e.",
+                "fr": "À côté a un accent circonflexe sur le o et un accent aigu sur le e.",
+                "de": "À côté hat einen accent circonflexe auf o und einen accent aigu auf e."
+              }
+            },
+            {
+              "type": "function_word_order",
+              "itemId": "reply-8",
+              "expressionId": "merci-beaucoup",
+              "context": {
+                "roleId": "passant",
+                "text": "Le musée est là, à droite."
+              },
+              "roleId": "touriste",
+              "tokens": [
+                {
+                  "tokenId": "t1",
+                  "text": "Ah !"
+                },
+                {
+                  "tokenId": "t2",
+                  "text": "Merci"
+                },
+                {
+                  "tokenId": "t3",
+                  "text": "beaucoup"
+                },
+                {
+                  "tokenId": "t4",
+                  "text": "!"
+                },
+                {
+                  "tokenId": "t5",
+                  "text": "beau"
+                }
+              ],
+              "distractorTokenIds": [
+                "t5"
+              ],
+              "acceptedOrders": [
+                [
+                  "t1",
+                  "t2",
+                  "t3",
+                  "t4"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "Merci beaucoup: beaucoup means very much.",
+                "fr": "Merci beaucoup : beaucoup renforce le merci.",
+                "de": "Merci beaucoup: beaucoup verstärkt das Danke."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-dialogue",
+          "estimatedDurationS": 256,
+          "timeLimitS": 384,
+          "instructions": {
+            "en": "Fill each gap with an expression from this lesson.",
+            "fr": "Complétez chaque trou avec une expression de la leçon.",
+            "de": "Fülle jede Lücke mit einem Ausdruck aus dieser Lektion."
+          },
+          "items": [
+            {
+              "type": "function_dialogue_gap_typing",
+              "itemId": "exam-dialogue",
+              "lines": [
+                {
+                  "lineId": "exam-line-1",
+                  "roleId": "touriste",
+                  "before": "",
+                  "gap": {
+                    "gapId": "gap-1",
+                    "expressionId": "excusez-moi",
+                    "accepted": {
+                      "answers": [
+                        "Excusez-moi"
+                      ],
+                      "accentSensitive": []
+                    },
+                    "answerExplanation": {
+                      "en": "She addresses a stranger politely: Excusez-moi.",
+                      "fr": "Elle aborde un inconnu poliment : Excusez-moi.",
+                      "de": "Sie spricht einen Fremden höflich an: Excusez-moi."
+                    }
+                  },
+                  "after": ", monsieur."
+                },
+                {
+                  "lineId": "exam-line-2",
+                  "roleId": "passant",
+                  "before": "Oui, madame ?",
+                  "gap": null,
+                  "after": ""
+                },
+                {
+                  "lineId": "exam-line-3",
+                  "roleId": "touriste",
+                  "before": "",
+                  "gap": {
+                    "gapId": "gap-3",
+                    "expressionId": "ou-est",
+                    "accepted": {
+                      "answers": [
+                        "Où est"
+                      ],
+                      "accentSensitive": []
+                    },
+                    "answerExplanation": {
+                      "en": "She asks for a place: Où est le musée ?",
+                      "fr": "Elle demande un lieu : Où est le musée ?",
+                      "de": "Sie fragt nach einem Ort: Où est le musée ?"
+                    }
+                  },
+                  "after": "le musée, s’il vous plaît ?"
+                },
+                {
+                  "lineId": "exam-line-4",
+                  "roleId": "passant",
+                  "before": "Le musée ?",
+                  "gap": {
+                    "gapId": "gap-4",
+                    "expressionId": "tout-droit",
+                    "accepted": {
+                      "answers": [
+                        "Vous allez tout droit"
+                      ],
+                      "accentSensitive": []
+                    },
+                    "answerExplanation": {
+                      "en": "He gives the first direction: Vous allez tout droit.",
+                      "fr": "Il donne la première indication : Vous allez tout droit.",
+                      "de": "Er gibt die erste Richtung an: Vous allez tout droit."
+                    }
+                  },
+                  "after": "."
+                },
+                {
+                  "lineId": "exam-line-5",
+                  "roleId": "touriste",
+                  "before": "Ah, tout droit.",
+                  "gap": {
+                    "gapId": "gap-5",
+                    "expressionId": "cest-loin",
+                    "accepted": {
+                      "answers": [
+                        "C’est loin"
+                      ],
+                      "accentSensitive": []
+                    },
+                    "answerExplanation": {
+                      "en": "She asks about the distance: C’est loin ?",
+                      "fr": "Elle demande la distance : C’est loin ?",
+                      "de": "Sie fragt nach der Entfernung: C’est loin ?"
+                    }
+                  },
+                  "after": "?"
+                },
+                {
+                  "lineId": "exam-line-6",
+                  "roleId": "passant",
+                  "before": "Non, cinq minutes. Après la gare,",
+                  "gap": {
+                    "gapId": "gap-6",
+                    "expressionId": "a-gauche",
+                    "accepted": {
+                      "answers": [
+                        "tournez à gauche",
+                        "tournez à droite",
+                        "Tournez à gauche",
+                        "Tournez à droite"
+                      ],
+                      "accentSensitive": []
+                    },
+                    "answerExplanation": {
+                      "en": "A direction after the station: tournez à gauche (or à droite).",
+                      "fr": "Une direction après la gare : tournez à gauche (ou à droite).",
+                      "de": "Eine Richtung nach dem Bahnhof: tournez à gauche (oder à droite)."
+                    }
+                  },
+                  "after": "."
+                },
+                {
+                  "lineId": "exam-line-7",
+                  "roleId": "touriste",
+                  "before": "D’accord. Et après ?",
+                  "gap": null,
+                  "after": ""
+                },
+                {
+                  "lineId": "exam-line-8",
+                  "roleId": "passant",
+                  "before": "Après,",
+                  "gap": {
+                    "gapId": "gap-8",
+                    "expressionId": "a-droite",
+                    "accepted": {
+                      "answers": [
+                        "tournez à droite",
+                        "tournez à gauche",
+                        "Tournez à droite",
+                        "Tournez à gauche"
+                      ],
+                      "accentSensitive": []
+                    },
+                    "answerExplanation": {
+                      "en": "The next direction: tournez à droite (or à gauche).",
+                      "fr": "La direction suivante : tournez à droite (ou à gauche).",
+                      "de": "Die nächste Richtung: tournez à droite (oder à gauche)."
+                    }
+                  },
+                  "after": ". Le musée est là."
+                },
+                {
+                  "lineId": "exam-line-9",
+                  "roleId": "touriste",
+                  "before": "Merci. Il y a une banque ?",
+                  "gap": null,
+                  "after": ""
+                },
+                {
+                  "lineId": "exam-line-10",
+                  "roleId": "passant",
+                  "before": "Oui.",
+                  "gap": {
+                    "gapId": "gap-10",
+                    "expressionId": "a-cote",
+                    "accepted": {
+                      "answers": [
+                        "C’est à côté"
+                      ],
+                      "accentSensitive": []
+                    },
+                    "answerExplanation": {
+                      "en": "The bank is near the museum: C’est à côté.",
+                      "fr": "La banque est près du musée : C’est à côté.",
+                      "de": "Die Bank ist nahe beim Museum: C’est à côté."
+                    }
+                  },
+                  "after": "du musée."
+                },
+                {
+                  "lineId": "exam-line-11",
+                  "roleId": "touriste",
+                  "before": "",
+                  "gap": {
+                    "gapId": "gap-11",
+                    "expressionId": "merci-beaucoup",
+                    "accepted": {
+                      "answers": [
+                        "Merci beaucoup"
+                      ],
+                      "accentSensitive": []
+                    },
+                    "answerExplanation": {
+                      "en": "She thanks him warmly: Merci beaucoup !",
+                      "fr": "Elle le remercie chaleureusement : Merci beaucoup !",
+                      "de": "Sie bedankt sich herzlich: Merci beaucoup !"
+                    }
+                  },
+                  "after": "! Au revoir."
+                },
+                {
+                  "lineId": "exam-line-12",
+                  "roleId": "passant",
+                  "before": "De rien. Au revoir, madame.",
+                  "gap": null,
+                  "after": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
