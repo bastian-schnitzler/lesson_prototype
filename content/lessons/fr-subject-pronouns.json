@@ -395,8 +395,7 @@
                 "answers": [
                   "Il",
                   "il"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -429,8 +428,7 @@
                 "answers": [
                   "Elle",
                   "elle"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -463,8 +461,7 @@
                 "answers": [
                   "Je",
                   "je"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "I",
@@ -501,8 +498,7 @@
                 "answers": [
                   "Tu",
                   "tu"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "one friend",
@@ -539,8 +535,7 @@
                 "answers": [
                   "J’",
                   "j’"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "I",
@@ -603,8 +598,7 @@
                 "accepted": {
                   "answers": [
                     "J’habite"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": [
                   "J’habite",
@@ -668,8 +662,7 @@
                 "accepted": {
                   "answers": [
                     "elle"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": [
                   "elle",
@@ -733,8 +726,7 @@
                 "accepted": {
                   "answers": [
                     "il"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": []
               },
@@ -786,8 +778,7 @@
                 "accepted": {
                   "answers": [
                     "Je"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": [
                   "Je",
@@ -1307,8 +1298,7 @@
                 "answers": [
                   "Ils",
                   "ils"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1341,8 +1331,7 @@
                 "answers": [
                   "Elles",
                   "elles"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1374,8 +1363,7 @@
               "accepted": {
                 "answers": [
                   "nous"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "you and I",
@@ -1411,8 +1399,7 @@
               "accepted": {
                 "answers": [
                   "vous"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "two people",
@@ -1830,8 +1817,7 @@
               "accepted": {
                 "answers": [
                   "vous"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "polite, one person",
@@ -1868,8 +1854,7 @@
                 "answers": [
                   "Tu",
                   "tu"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "a friend",
@@ -1905,8 +1890,7 @@
               "accepted": {
                 "answers": [
                   "vous"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "a stranger",
@@ -1942,8 +1926,7 @@
               "accepted": {
                 "answers": [
                   "vous"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "two friends",
@@ -2020,8 +2003,7 @@
                 "answers": [
                   "Il",
                   "il"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2042,8 +2024,7 @@
                 "answers": [
                   "Elle",
                   "elle"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2064,8 +2045,7 @@
                 "answers": [
                   "Je",
                   "je"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2086,8 +2066,7 @@
                 "answers": [
                   "J’",
                   "j’"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2107,8 +2086,7 @@
               "accepted": {
                 "answers": [
                   "tu"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2129,8 +2107,7 @@
                 "answers": [
                   "Il",
                   "il"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2163,8 +2140,7 @@
                 "answers": [
                   "Ils",
                   "ils"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2185,8 +2161,7 @@
                 "answers": [
                   "Elles",
                   "elles"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2206,8 +2181,7 @@
               "accepted": {
                 "answers": [
                   "nous"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2227,8 +2201,7 @@
               "accepted": {
                 "answers": [
                   "vous"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2248,8 +2221,7 @@
               "accepted": {
                 "answers": [
                   "on"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2281,8 +2253,7 @@
               "accepted": {
                 "answers": [
                   "vous"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2302,8 +2273,7 @@
               "accepted": {
                 "answers": [
                   "tu"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2323,8 +2293,7 @@
               "accepted": {
                 "answers": [
                   "vous"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2344,8 +2313,7 @@
               "accepted": {
                 "answers": [
                   "tu"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2365,8 +2333,7 @@
               "accepted": {
                 "answers": [
                   "vous"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {

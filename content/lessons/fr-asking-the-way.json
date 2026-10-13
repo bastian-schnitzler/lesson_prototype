@@ -19,10 +19,10 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "functions-v1",
-    "generatedAt": "2026-10-13T19:47:56.349Z",
+    "generatedAt": "2026-10-13T23:42:16.504Z",
     "inputHashes": {
       "outline": "fcc9998d354910d96645252f5de2919381a31873ba3a5902dcdacecd8024bfc9",
-      "brief": "acb3a2a44cc068fe6b790cb00dcdf1c99ec01f5c44d62d77fd431fd51be0432f"
+      "brief": "de330d6bbd854f4b3d898aa0b11c25bebf04b3dd601e7b0492ce22c9f6edb275"
     }
   },
   "kind": "functions",
@@ -1601,8 +1601,7 @@
               "accepted": {
                 "answers": [
                   "une gare"
-                ],
-                "accentSensitive": []
+                ]
               },
               "answerExplanation": {
                 "en": "Feminine noun: une gare.",
@@ -1621,8 +1620,7 @@
               "accepted": {
                 "answers": [
                   "une rue"
-                ],
-                "accentSensitive": []
+                ]
               },
               "answerExplanation": {
                 "en": "Feminine noun: une rue.",
@@ -1641,8 +1639,7 @@
               "accepted": {
                 "answers": [
                   "un musée"
-                ],
-                "accentSensitive": []
+                ]
               },
               "answerExplanation": {
                 "en": "Masculine noun despite the -ée ending: un musée.",
@@ -1661,8 +1658,7 @@
               "accepted": {
                 "answers": [
                   "une banque"
-                ],
-                "accentSensitive": []
+                ]
               },
               "answerExplanation": {
                 "en": "Feminine noun: une banque.",
@@ -2093,8 +2089,7 @@
                     "accepted": {
                       "answers": [
                         "Excusez-moi"
-                      ],
-                      "accentSensitive": []
+                      ]
                     },
                     "answerExplanation": {
                       "en": "She addresses a stranger politely: Excusez-moi.",
@@ -2129,8 +2124,7 @@
                     "accepted": {
                       "answers": [
                         "Où est"
-                      ],
-                      "accentSensitive": []
+                      ]
                     },
                     "answerExplanation": {
                       "en": "She asks for a place: Où est le musée ?",
@@ -2154,8 +2148,7 @@
                     "accepted": {
                       "answers": [
                         "Vous allez tout droit"
-                      ],
-                      "accentSensitive": []
+                      ]
                     },
                     "answerExplanation": {
                       "en": "He gives the first direction: Vous allez tout droit.",
@@ -2179,8 +2172,7 @@
                     "accepted": {
                       "answers": [
                         "C’est loin"
-                      ],
-                      "accentSensitive": []
+                      ]
                     },
                     "answerExplanation": {
                       "en": "She asks about the distance: C’est loin ?",
@@ -2205,8 +2197,7 @@
                       "answers": [
                         "tournez à gauche",
                         "Tournez à gauche"
-                      ],
-                      "accentSensitive": []
+                      ]
                     },
                     "answerExplanation": {
                       "en": "After the station, turn left: tournez à gauche.",
@@ -2242,8 +2233,7 @@
                       "answers": [
                         "tournez à droite",
                         "Tournez à droite"
-                      ],
-                      "accentSensitive": []
+                      ]
                     },
                     "answerExplanation": {
                       "en": "Then turn right: tournez à droite.",
@@ -2278,8 +2268,7 @@
                     "accepted": {
                       "answers": [
                         "C’est à côté"
-                      ],
-                      "accentSensitive": []
+                      ]
                     },
                     "answerExplanation": {
                       "en": "The bank is near the museum: C’est à côté.",
@@ -2303,8 +2292,7 @@
                     "accepted": {
                       "answers": [
                         "Merci beaucoup"
-                      ],
-                      "accentSensitive": []
+                      ]
                     },
                     "answerExplanation": {
                       "en": "She thanks him warmly: Merci beaucoup !",

@@ -564,8 +564,7 @@
               "accepted": {
                 "answers": [
                   "parle"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "Verb: parler",
@@ -601,8 +600,7 @@
               "accepted": {
                 "answers": [
                   "habites"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "Verb: habiter",
@@ -638,8 +636,7 @@
               "accepted": {
                 "answers": [
                   "regarde"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "Verb: regarder",
@@ -675,8 +672,7 @@
               "accepted": {
                 "answers": [
                   "écoute"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "Verb: écouter",
@@ -712,8 +708,7 @@
               "accepted": {
                 "answers": [
                   "aime"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "Verb: aimer",
@@ -776,8 +771,7 @@
                 "accepted": {
                   "answers": [
                     "parles"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": []
               },
@@ -825,8 +819,7 @@
                 "accepted": {
                   "answers": [
                     "travaille"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": []
               },
@@ -878,8 +871,7 @@
                 "accepted": {
                   "answers": [
                     "habite"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": [
                   "habite",
@@ -939,8 +931,7 @@
                 "accepted": {
                   "answers": [
                     "aimes"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": [
                   "aimes",
@@ -1173,8 +1164,7 @@
                   "accepted": {
                     "answers": [
                       "travaillons"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "travailler: drop -er and add -ons for nous: travaillons.",
@@ -1188,8 +1178,7 @@
                   "accepted": {
                     "answers": [
                       "travaillez"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "travailler: drop -er and add -ez for vous: travaillez.",
@@ -1203,8 +1192,7 @@
                   "accepted": {
                     "answers": [
                       "travaillent"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "travailler: drop -er and add -ent for ils, elles: travaillent.",
@@ -1239,8 +1227,7 @@
                   "accepted": {
                     "answers": [
                       "chantons"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "chanter: drop -er and add -ons for nous: chantons.",
@@ -1254,8 +1241,7 @@
                   "accepted": {
                     "answers": [
                       "regardez"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "regarder: drop -er and add -ez for vous: regardez.",
@@ -1269,8 +1255,7 @@
                   "accepted": {
                     "answers": [
                       "habitent"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "habiter: drop -er and add -ent for Elles (like ils): habitent.",
@@ -1577,8 +1562,7 @@
               "accepted": {
                 "answers": [
                   "habitons"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "Verb: habiter",
@@ -1614,8 +1598,7 @@
               "accepted": {
                 "answers": [
                   "parlez"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "Verb: parler",
@@ -1651,8 +1634,7 @@
               "accepted": {
                 "answers": [
                   "aiment"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "Verb: aimer",
@@ -1688,8 +1670,7 @@
               "accepted": {
                 "answers": [
                   "jouent"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "Verb: jouer",
@@ -1768,8 +1749,7 @@
                   "accepted": {
                     "answers": [
                       "chante"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "chanter: drop -er and add -e for je: chante.",
@@ -1783,8 +1763,7 @@
                   "accepted": {
                     "answers": [
                       "chantes"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "tu chantes: the ending -es is silent, but it must be written for tu.",
@@ -1798,8 +1777,7 @@
                   "accepted": {
                     "answers": [
                       "chante"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "chanter: drop -er and add -e for il, elle, on: chante.",
@@ -1822,8 +1800,7 @@
                   "accepted": {
                     "answers": [
                       "jouons"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "jouer: drop -er and add -ons for nous: jouons.",
@@ -1837,8 +1814,7 @@
                   "accepted": {
                     "answers": [
                       "jouez"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "jouer: drop -er and add -ez for vous: jouez.",
@@ -1852,8 +1828,7 @@
                   "accepted": {
                     "answers": [
                       "jouent"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "jouer: drop -er and add -ent for Elles (like ils): jouent.",
@@ -1886,8 +1861,7 @@
               "accepted": {
                 "answers": [
                   "travaille"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1907,8 +1881,7 @@
               "accepted": {
                 "answers": [
                   "regardes"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1928,8 +1901,7 @@
               "accepted": {
                 "answers": [
                   "habite"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1949,8 +1921,7 @@
               "accepted": {
                 "answers": [
                   "aime"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1970,8 +1941,7 @@
               "accepted": {
                 "answers": [
                   "parle"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2003,8 +1973,7 @@
               "accepted": {
                 "answers": [
                   "travaillons"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2024,8 +1993,7 @@
               "accepted": {
                 "answers": [
                   "aimez"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2045,8 +2013,7 @@
               "accepted": {
                 "answers": [
                   "parlent"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2066,8 +2033,7 @@
               "accepted": {
                 "answers": [
                   "écoutons"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2087,8 +2053,7 @@
               "accepted": {
                 "answers": [
                   "regardez"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {

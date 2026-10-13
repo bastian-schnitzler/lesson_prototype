@@ -384,8 +384,7 @@
                 "accepted": {
                   "answers": [
                     "n’"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": [
                   "n’",
@@ -527,8 +526,7 @@
               "accepted": {
                 "answers": [
                   "n’"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "ruleIds": [

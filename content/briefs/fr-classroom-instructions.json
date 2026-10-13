@@ -113,7 +113,6 @@
       "examForms": [
         "écoutez"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/e.ku.te/",
@@ -143,8 +142,7 @@
         "accepted": {
           "answers": [
             "écoutez"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-lisez",
@@ -184,7 +182,6 @@
       "examForms": [
         "lisez"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/li.ze/",
@@ -214,8 +211,7 @@
         "accepted": {
           "answers": [
             "lisez"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-ecrivez",
@@ -255,7 +251,6 @@
       "examForms": [
         "écrivez"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/e.kʁi.ve/",
@@ -285,8 +280,7 @@
         "accepted": {
           "answers": [
             "écrivez"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-repetez",
@@ -326,7 +320,6 @@
       "examForms": [
         "répétez"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/ʁe.pe.te/",
@@ -356,8 +349,7 @@
         "accepted": {
           "answers": [
             "répétez"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-regardez",
@@ -398,7 +390,6 @@
       "examForms": [
         "regardez"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/ʁə.ɡaʁ.de/",
@@ -428,8 +419,7 @@
         "accepted": {
           "answers": [
             "regardez"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-regardez",
@@ -470,7 +460,6 @@
       "examForms": [
         "parlez"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/paʁ.le/",
@@ -500,8 +489,7 @@
         "accepted": {
           "answers": [
             "parlez"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-parlez",
@@ -542,7 +530,6 @@
       "examForms": [
         "complétez"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/kɔ̃.ple.te/",
@@ -572,8 +559,7 @@
         "accepted": {
           "answers": [
             "complétez"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-cochez",
@@ -614,7 +600,6 @@
       "examForms": [
         "cochez"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/kɔ.ʃe/",
@@ -644,8 +629,7 @@
         "accepted": {
           "answers": [
             "cochez"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-ouvrez-le-livre",
@@ -685,7 +669,6 @@
       "examForms": [
         "ouvrez le livre"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/u.vʁe lə livʁ/",
@@ -715,8 +698,7 @@
         "accepted": {
           "answers": [
             "ouvrez le livre"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-ouvrez-le-livre",
@@ -756,7 +738,6 @@
       "examForms": [
         "fermez le livre"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/fɛʁ.me lə livʁ/",
@@ -786,8 +767,7 @@
         "accepted": {
           "answers": [
             "fermez le livre"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-fermez-le-livre",
@@ -827,7 +807,6 @@
       "examForms": [
         "levez la main"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/lə.ve la mɛ̃/",
@@ -857,8 +836,7 @@
         "accepted": {
           "answers": [
             "levez la main"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-levez-la-main",

@@ -395,8 +395,7 @@
               "accepted": {
                 "answers": [
                   "cahiers"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -428,8 +427,7 @@
               "accepted": {
                 "answers": [
                   "voitures"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -461,8 +459,7 @@
               "accepted": {
                 "answers": [
                   "amis"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -494,8 +491,7 @@
               "accepted": {
                 "answers": [
                   "maisons"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -527,8 +523,7 @@
               "accepted": {
                 "answers": [
                   "chats"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -560,8 +555,7 @@
               "accepted": {
                 "answers": [
                   "pommes"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -620,8 +614,7 @@
                 "accepted": {
                   "answers": [
                     "livres"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": []
               },
@@ -669,8 +662,7 @@
                 "accepted": {
                   "answers": [
                     "chats"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": [
                   "chats",
@@ -726,8 +718,7 @@
                 "accepted": {
                   "answers": [
                     "stylos"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": [
                   "stylos",
@@ -783,8 +774,7 @@
                 "accepted": {
                   "answers": [
                     "filles"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": []
               },
@@ -832,8 +822,7 @@
                 "accepted": {
                   "answers": [
                     "tables"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": []
               },
@@ -1270,8 +1259,7 @@
               "accepted": {
                 "answers": [
                   "bureaux"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1303,8 +1291,7 @@
               "accepted": {
                 "answers": [
                   "couteaux"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1336,8 +1323,7 @@
               "accepted": {
                 "answers": [
                   "feux"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1369,8 +1355,7 @@
               "accepted": {
                 "answers": [
                   "chapeaux"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1402,8 +1387,7 @@
               "accepted": {
                 "answers": [
                   "tableaux"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1435,8 +1419,7 @@
               "accepted": {
                 "answers": [
                   "châteaux"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1495,8 +1478,7 @@
                 "accepted": {
                   "answers": [
                     "cadeaux"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": [
                   "cadeaux",
@@ -1552,8 +1534,7 @@
                 "accepted": {
                   "answers": [
                     "bateaux"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": []
               },
@@ -1601,8 +1582,7 @@
                 "accepted": {
                   "answers": [
                     "jeux"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": [
                   "jeux",
@@ -1658,8 +1638,7 @@
                 "accepted": {
                   "answers": [
                     "gâteaux"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": []
               },
@@ -1732,8 +1711,7 @@
               "accepted": {
                 "answers": [
                   "arbres"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1753,8 +1731,7 @@
               "accepted": {
                 "answers": [
                   "lampes"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1774,8 +1751,7 @@
               "accepted": {
                 "answers": [
                   "films"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1795,8 +1771,7 @@
               "accepted": {
                 "answers": [
                   "portes"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1816,8 +1791,7 @@
               "accepted": {
                 "answers": [
                   "garçons"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1837,8 +1811,7 @@
               "accepted": {
                 "answers": [
                   "idées"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1870,8 +1843,7 @@
               "accepted": {
                 "answers": [
                   "drapeaux"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1891,8 +1863,7 @@
               "accepted": {
                 "answers": [
                   "jeux"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1912,8 +1883,7 @@
               "accepted": {
                 "answers": [
                   "morceaux"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1933,8 +1903,7 @@
               "accepted": {
                 "answers": [
                   "neveux"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1954,8 +1923,7 @@
               "accepted": {
                 "answers": [
                   "bateaux"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1987,8 +1955,7 @@
               "accepted": {
                 "answers": [
                   "étudiants"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2008,8 +1975,7 @@
               "accepted": {
                 "answers": [
                   "cousines"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2029,8 +1995,7 @@
               "accepted": {
                 "answers": [
                   "oiseaux"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2050,8 +2015,7 @@
               "accepted": {
                 "answers": [
                   "clés"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2071,8 +2035,7 @@
               "accepted": {
                 "answers": [
                   "gâteaux"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {

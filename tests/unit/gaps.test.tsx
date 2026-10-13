@@ -111,11 +111,10 @@ describe('exact-typing phrase gaps (P3-03)', () => {
     expect(scoreUnit(today, '  aujourd’hui ').points).toBe(1);
   });
 
-  it('gives half a point for accents or capitals, but none for a wrong accent that makes another word (D40)', () => {
-    const there = unitOf('ex-place-typing-2') as PlanUnit & { kind: 'text' };
-    expect(there.accepted).toEqual({ answers: ['là'], accentSensitive: ['là'] });
+  it('gives half a point for accents or capitals, also where the accent makes another word (D40)', () => {
+    const there = unitOf('ex-place-typing-2');
     expect(scoreUnit(there, 'là')).toEqual({ outcome: 'fully_correct', points: 1 });
-    expect(scoreUnit(there, 'la')).toEqual({ outcome: 'incorrect', points: 0 }); // the article, not "there"
+    expect(scoreUnit(there, 'la')).toEqual({ outcome: 'orthography_only', points: 0.5 }); // a spelling mistake
     expect(scoreUnit(there, 'Là')).toEqual({ outcome: 'orthography_only', points: 0.5 });
     const soon = unitOf('ex-time-typing-4');
     expect(scoreUnit(soon, 'bientot')).toEqual({ outcome: 'orthography_only', points: 0.5 });
@@ -144,12 +143,12 @@ describe('exact-typing phrase gaps (P3-03)', () => {
   it('marks a checked practice answer in place: red with the correct form, amber with the form and the explanation below', () => {
     const p = page('ex-place-typing-2');
     const unit = p.units[0];
-    const wrong = renderPage(p, { mode: 'feedback', locked: { [unit.id]: locked('la', unit) } }).container;
-    expect(wrong.querySelector('input.text-input.is-wrong')).toHaveValue('la');
+    const wrong = renderPage(p, { mode: 'feedback', locked: { [unit.id]: locked('ici', unit) } }).container;
+    expect(wrong.querySelector('input.text-input.is-wrong')).toHaveValue('ici');
     expect(wrong.querySelector('.inline-answer')).toHaveTextContent('là');
     expect(wrong.querySelector('input')).toHaveAttribute('readonly');
     cleanup();
-    const almost = renderPage(p, { mode: 'feedback', locked: { [unit.id]: locked('Là', unit) } }).container;
+    const almost = renderPage(p, { mode: 'feedback', locked: { [unit.id]: locked('la', unit) } }).container;
     expect(almost.querySelector('input.text-input.is-almost')).toBeTruthy();
     expect(almost.querySelector('.inline-answer')).toHaveTextContent('là');
   });
@@ -158,7 +157,7 @@ describe('exact-typing phrase gaps (P3-03)', () => {
     const s = sessionAt('exam-place');
     const before = headerScore(plan, s.record);
     const units = page('exam-place').units;
-    units.forEach((u, n) => s.act({ type: 'draft', unitId: u.id, response: n === 1 ? 'la' : u.answer, now: 0 }));
+    units.forEach((u, n) => s.act({ type: 'draft', unitId: u.id, response: n === 1 ? 'ici' : u.answer, now: 0 }));
     const { container } = renderPage(page('exam-place'), { drafts: s.record.drafts });
     expect(container.querySelector('.is-wrong, .is-right, .is-almost, .inline-answer, .feedback')).toBeNull();
     s.act({ type: 'continue', now: 0, interfaceLanguage: 'en' });
@@ -166,7 +165,7 @@ describe('exact-typing phrase gaps (P3-03)', () => {
     expect(headerScore(plan, s.record)).toBe(before);
     // The results then show the recorded classification of every answer.
     for (let guard = 0; s.record.phase !== 'results' && guard < 20; guard++) s.act({ type: 'continue', now: 0, interfaceLanguage: 'en' });
-    expect(s.record.locked[units[1].id]).toMatchObject({ response: 'la', outcome: 'incorrect', points: 0 });
+    expect(s.record.locked[units[1].id]).toMatchObject({ response: 'ici', outcome: 'incorrect', points: 0 });
     expect(lessonResults(plan, s.record).exam).toMatchObject({ earned: units.length - 1 });
   });
 });

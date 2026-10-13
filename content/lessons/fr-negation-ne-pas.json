@@ -701,8 +701,7 @@
               "accepted": {
                 "answers": [
                   "ne parle pas"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "negative",
@@ -738,8 +737,7 @@
               "accepted": {
                 "answers": [
                   "ne chantes pas"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "negative",
@@ -775,8 +773,7 @@
               "accepted": {
                 "answers": [
                   "ne travaille pas"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "negative",
@@ -812,8 +809,7 @@
               "accepted": {
                 "answers": [
                   "ne sommes pas"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "negative",
@@ -849,8 +845,7 @@
               "accepted": {
                 "answers": [
                   "ne parlez pas"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "negative",
@@ -921,8 +916,7 @@
                 "accepted": {
                   "answers": [
                     "pas"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": [
                   "pas",
@@ -978,8 +972,7 @@
                 "accepted": {
                   "answers": [
                     "ne"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": []
               },
@@ -1035,8 +1028,7 @@
                 "accepted": {
                   "answers": [
                     "pas"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": [
                   "pas",
@@ -1096,8 +1088,7 @@
                 "accepted": {
                   "answers": [
                     "ne"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": []
               },
@@ -1488,8 +1479,7 @@
               "accepted": {
                 "answers": [
                   "n’aime pas"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "negative",
@@ -1525,8 +1515,7 @@
               "accepted": {
                 "answers": [
                   "n’habites pas"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "negative",
@@ -1562,8 +1551,7 @@
               "accepted": {
                 "answers": [
                   "n’est pas"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "negative",
@@ -1599,8 +1587,7 @@
               "accepted": {
                 "answers": [
                   "n’avons pas"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "negative",
@@ -1636,8 +1623,7 @@
               "accepted": {
                 "answers": [
                   "n’écoutez pas"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "negative",
@@ -2129,8 +2115,7 @@
               "accepted": {
                 "answers": [
                   "ne danse pas"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2150,8 +2135,7 @@
               "accepted": {
                 "answers": [
                   "ne parles pas"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2171,8 +2155,7 @@
               "accepted": {
                 "answers": [
                   "ne regarde pas"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2192,8 +2175,7 @@
               "accepted": {
                 "answers": [
                   "ne jouons pas"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2213,8 +2195,7 @@
               "accepted": {
                 "answers": [
                   "ne travaillez pas"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2234,8 +2215,7 @@
               "accepted": {
                 "answers": [
                   "ne sont pas"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2267,8 +2247,7 @@
               "accepted": {
                 "answers": [
                   "n’habite pas"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2288,8 +2267,7 @@
               "accepted": {
                 "answers": [
                   "n’aimes pas"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2309,9 +2287,6 @@
               "accepted": {
                 "answers": [
                   "n’a pas"
-                ],
-                "accentSensitive": [
-                  "a"
                 ]
               },
               "hint": null,
@@ -2332,8 +2307,7 @@
               "accepted": {
                 "answers": [
                   "n’écoutons pas"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2353,8 +2327,7 @@
               "accepted": {
                 "answers": [
                   "n’êtes pas"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2374,8 +2347,7 @@
               "accepted": {
                 "answers": [
                   "n’aiment pas"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {

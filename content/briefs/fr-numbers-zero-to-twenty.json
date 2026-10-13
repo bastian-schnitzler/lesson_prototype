@@ -136,7 +136,6 @@
       "examForms": [
         "zéro"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "ze.ro",
@@ -166,8 +165,7 @@
         "accepted": {
           "answers": [
             "zéro"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-1",
@@ -207,7 +205,6 @@
       "examForms": [
         "un"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
         "une"
@@ -242,8 +239,7 @@
         "accepted": {
           "answers": [
             "un"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-2",
@@ -282,7 +278,6 @@
       "examForms": [
         "deux"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "dø",
@@ -312,8 +307,7 @@
         "accepted": {
           "answers": [
             "deux"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-3",
@@ -352,7 +346,6 @@
       "examForms": [
         "trois"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "tʁwa",
@@ -382,8 +375,7 @@
         "accepted": {
           "answers": [
             "trois"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-4",
@@ -422,7 +414,6 @@
       "examForms": [
         "quatre"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "katʁ",
@@ -452,8 +443,7 @@
         "accepted": {
           "answers": [
             "quatre"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-5",
@@ -492,7 +482,6 @@
       "examForms": [
         "cinq"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "sɛ̃k",
@@ -522,8 +511,7 @@
         "accepted": {
           "answers": [
             "cinq"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-6",
@@ -562,7 +550,6 @@
       "examForms": [
         "six"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "sis",
@@ -592,8 +579,7 @@
         "accepted": {
           "answers": [
             "six"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-7",
@@ -632,7 +618,6 @@
       "examForms": [
         "sept"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "sɛt",
@@ -662,8 +647,7 @@
         "accepted": {
           "answers": [
             "sept"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-8",
@@ -702,7 +686,6 @@
       "examForms": [
         "huit"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "ɥit",
@@ -732,8 +715,7 @@
         "accepted": {
           "answers": [
             "huit"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-9",
@@ -772,7 +754,6 @@
       "examForms": [
         "neuf"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "nœf",
@@ -802,8 +783,7 @@
         "accepted": {
           "answers": [
             "neuf"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-10",
@@ -842,7 +822,6 @@
       "examForms": [
         "dix"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "dis",
@@ -872,8 +851,7 @@
         "accepted": {
           "answers": [
             "dix"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-11",
@@ -912,7 +890,6 @@
       "examForms": [
         "onze"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "ɔ̃z",
@@ -942,8 +919,7 @@
         "accepted": {
           "answers": [
             "onze"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-12",
@@ -982,7 +958,6 @@
       "examForms": [
         "douze"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "duz",
@@ -1012,8 +987,7 @@
         "accepted": {
           "answers": [
             "douze"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-13",
@@ -1052,7 +1026,6 @@
       "examForms": [
         "treize"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "tʁɛz",
@@ -1082,8 +1055,7 @@
         "accepted": {
           "answers": [
             "treize"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-14",
@@ -1122,7 +1094,6 @@
       "examForms": [
         "quatorze"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "katɔʁz",
@@ -1152,8 +1123,7 @@
         "accepted": {
           "answers": [
             "quatorze"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-15",
@@ -1192,7 +1162,6 @@
       "examForms": [
         "quinze"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "kɛ̃z",
@@ -1222,8 +1191,7 @@
         "accepted": {
           "answers": [
             "quinze"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-16",
@@ -1262,7 +1230,6 @@
       "examForms": [
         "seize"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "sɛz",
@@ -1292,8 +1259,7 @@
         "accepted": {
           "answers": [
             "seize"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-17",
@@ -1332,7 +1298,6 @@
       "examForms": [
         "dix-sept"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "dis.sɛt",
@@ -1362,8 +1327,7 @@
         "accepted": {
           "answers": [
             "dix-sept"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-18",
@@ -1402,7 +1366,6 @@
       "examForms": [
         "dix-huit"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "diz.ɥit",
@@ -1432,8 +1395,7 @@
         "accepted": {
           "answers": [
             "dix-huit"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-19",
@@ -1472,7 +1434,6 @@
       "examForms": [
         "dix-neuf"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "diz.nœf",
@@ -1502,8 +1463,7 @@
         "accepted": {
           "answers": [
             "dix-neuf"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-20",
@@ -1542,7 +1502,6 @@
       "examForms": [
         "vingt"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "vɛ̃",
@@ -1572,8 +1531,7 @@
         "accepted": {
           "answers": [
             "vingt"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-0",

@@ -462,9 +462,6 @@
               "accepted": {
                 "answers": [
                   "la"
-                ],
-                "accentSensitive": [
-                  "la"
                 ]
               },
               "hint": null,
@@ -497,8 +494,7 @@
               "accepted": {
                 "answers": [
                   "le"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -530,8 +526,7 @@
               "accepted": {
                 "answers": [
                   "l’"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -563,8 +558,7 @@
               "accepted": {
                 "answers": [
                   "les"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -596,8 +590,7 @@
               "accepted": {
                 "answers": [
                   "l’"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -628,9 +621,6 @@
               "after": "mer.",
               "accepted": {
                 "answers": [
-                  "la"
-                ],
-                "accentSensitive": [
                   "la"
                 ]
               },
@@ -664,8 +654,7 @@
               "accepted": {
                 "answers": [
                   "l’"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -723,9 +712,6 @@
                 "mode": "select",
                 "accepted": {
                   "answers": [
-                    "la"
-                  ],
-                  "accentSensitive": [
                     "la"
                   ]
                 },
@@ -787,8 +773,7 @@
                 "accepted": {
                   "answers": [
                     "le"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": []
               },
@@ -840,8 +825,7 @@
                 "accepted": {
                   "answers": [
                     "l’ami"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": [
                   "l’ami",
@@ -901,8 +885,7 @@
                 "accepted": {
                   "answers": [
                     "les"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": []
               },
@@ -954,8 +937,7 @@
                 "accepted": {
                   "answers": [
                     "l’école"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": [
                   "l’école",
@@ -1357,8 +1339,7 @@
               "accepted": {
                 "answers": [
                   "le"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1389,9 +1370,6 @@
               "after": "pizza ?",
               "accepted": {
                 "answers": [
-                  "la"
-                ],
-                "accentSensitive": [
                   "la"
                 ]
               },
@@ -1425,8 +1403,7 @@
               "accepted": {
                 "answers": [
                   "les"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1457,9 +1434,6 @@
               "after": "montagne.",
               "accepted": {
                 "answers": [
-                  "la"
-                ],
-                "accentSensitive": [
                   "la"
                 ]
               },
@@ -1493,8 +1467,7 @@
               "accepted": {
                 "answers": [
                   "l’"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1526,8 +1499,7 @@
               "accepted": {
                 "answers": [
                   "le"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1816,8 +1788,7 @@
               "accepted": {
                 "answers": [
                   "le"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1836,9 +1807,6 @@
               "after": "gare ?",
               "accepted": {
                 "answers": [
-                  "la"
-                ],
-                "accentSensitive": [
                   "la"
                 ]
               },
@@ -1860,8 +1828,7 @@
               "accepted": {
                 "answers": [
                   "les"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1881,8 +1848,7 @@
               "accepted": {
                 "answers": [
                   "le"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1901,9 +1867,6 @@
               "after": "cuisine ?",
               "accepted": {
                 "answers": [
-                  "la"
-                ],
-                "accentSensitive": [
                   "la"
                 ]
               },
@@ -1925,8 +1888,7 @@
               "accepted": {
                 "answers": [
                   "les"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1958,8 +1920,7 @@
               "accepted": {
                 "answers": [
                   "l’"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1979,8 +1940,7 @@
               "accepted": {
                 "answers": [
                   "l’"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2000,8 +1960,7 @@
               "accepted": {
                 "answers": [
                   "l’"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2021,8 +1980,7 @@
               "accepted": {
                 "answers": [
                   "l’"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2042,8 +2000,7 @@
               "accepted": {
                 "answers": [
                   "l’"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2075,9 +2032,6 @@
               "accepted": {
                 "answers": [
                   "la"
-                ],
-                "accentSensitive": [
-                  "la"
                 ]
               },
               "hint": null,
@@ -2098,8 +2052,7 @@
               "accepted": {
                 "answers": [
                   "le"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2119,8 +2072,7 @@
               "accepted": {
                 "answers": [
                   "les"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2139,9 +2091,6 @@
               "after": "viande.",
               "accepted": {
                 "answers": [
-                  "la"
-                ],
-                "accentSensitive": [
                   "la"
                 ]
               },
@@ -2163,8 +2112,7 @@
               "accepted": {
                 "answers": [
                   "l’"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {

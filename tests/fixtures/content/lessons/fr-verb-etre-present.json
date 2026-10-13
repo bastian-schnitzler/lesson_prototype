@@ -441,8 +441,7 @@
                   "accepted": {
                     "answers": [
                       "sommes"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "Nous takes sommes.",
@@ -456,8 +455,7 @@
                   "accepted": {
                     "answers": [
                       "êtes"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "Vous takes êtes, with an accent circonflexe on e.",
@@ -471,8 +469,7 @@
                   "accepted": {
                     "answers": [
                       "sont"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "Ils and elles take sont.",
@@ -514,8 +511,7 @@
               "accepted": {
                 "answers": [
                   "êtes"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "Form of être",
@@ -551,8 +547,7 @@
               "accepted": {
                 "answers": [
                   "sont"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "ruleIds": [
@@ -611,8 +606,7 @@
                 "accepted": {
                   "answers": [
                     "êtes"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": []
               },
@@ -685,8 +679,7 @@
               "accepted": {
                 "answers": [
                   "es"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "ruleIds": [
@@ -706,8 +699,7 @@
               "accepted": {
                 "answers": [
                   "sommes"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "ruleIds": [
@@ -744,8 +736,7 @@
                   "accepted": {
                     "answers": [
                       "sommes"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "Nous takes sommes.",
@@ -759,8 +750,7 @@
                   "accepted": {
                     "answers": [
                       "êtes"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "Vous takes êtes, with an accent circonflexe on e.",
@@ -774,8 +764,7 @@
                   "accepted": {
                     "answers": [
                       "sont"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "Ils and elles take sont.",

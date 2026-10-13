@@ -411,8 +411,7 @@
                 "answers": [
                   "Oui",
                   "oui"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -445,8 +444,7 @@
                 "answers": [
                   "Non",
                   "non"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -479,8 +477,7 @@
                 "answers": [
                   "Oui",
                   "oui"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -513,8 +510,7 @@
                 "answers": [
                   "Non",
                   "non"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -547,8 +543,7 @@
                 "answers": [
                   "Oui",
                   "oui"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1216,8 +1211,7 @@
                 "answers": [
                   "Est-ce que",
                   "est-ce que"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1250,8 +1244,7 @@
                 "answers": [
                   "Est-ce qu’",
                   "est-ce qu’"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1284,8 +1277,7 @@
                 "answers": [
                   "Est-ce que",
                   "est-ce que"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1318,8 +1310,7 @@
                 "answers": [
                   "Est-ce qu’",
                   "est-ce qu’"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1352,8 +1343,7 @@
                 "answers": [
                   "Est-ce que",
                   "est-ce que"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1657,8 +1647,7 @@
                 "accepted": {
                   "answers": [
                     "Est-ce qu’"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": [
                   "Est-ce qu’",
@@ -1718,8 +1707,7 @@
                 "accepted": {
                   "answers": [
                     "Est-ce que"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": []
               },
@@ -1775,8 +1763,7 @@
                 "accepted": {
                   "answers": [
                     "Est-ce qu’"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": [
                   "Est-ce qu’",
@@ -1840,8 +1827,7 @@
                 "accepted": {
                   "answers": [
                     "Est-ce que"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": [
                   "Est-ce que",
@@ -2098,8 +2084,7 @@
                 "answers": [
                   "Est-ce que",
                   "est-ce que"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2120,8 +2105,7 @@
                 "answers": [
                   "Est-ce qu’",
                   "est-ce qu’"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2142,8 +2126,7 @@
                 "answers": [
                   "Est-ce que",
                   "est-ce que"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2164,8 +2147,7 @@
                 "answers": [
                   "Est-ce qu’",
                   "est-ce qu’"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2186,8 +2168,7 @@
                 "answers": [
                   "Est-ce que",
                   "est-ce que"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2208,8 +2189,7 @@
                 "answers": [
                   "Est-ce qu’",
                   "est-ce qu’"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2242,8 +2222,7 @@
                 "answers": [
                   "Oui",
                   "oui"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2264,8 +2243,7 @@
                 "answers": [
                   "Non",
                   "non"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2286,8 +2264,7 @@
                 "answers": [
                   "Oui",
                   "oui"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2308,8 +2285,7 @@
                 "answers": [
                   "Non",
                   "non"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2330,8 +2306,7 @@
                 "answers": [
                   "Oui",
                   "oui"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2351,8 +2326,7 @@
               "accepted": {
                 "answers": [
                   "?"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {

@@ -3,7 +3,7 @@ import { Fragment, useEffect, useRef, useState, type CSSProperties } from 'react
 import { useI18n, useLastTry, usePreferences } from '../app/context.tsx';
 import { formatScore, roundHalfUp1 } from '../domain/format.ts';
 import { answerMarks } from '../domain/answers.ts';
-import type { LessonPlan, PlanPage, PlanUnit } from '../domain/session/plan.ts';
+import { seededOrder, type LessonPlan, type PlanPage, type PlanUnit } from '../domain/session/plan.ts';
 import { headerScore, isAnswered, isListeningPage, isMatchingItem, nextDialogueLine, presentationComplete, scoreUnit, skipsFeedbackWhenCorrect, lessonResults, progress, type LockedUnit, type SessionRecord } from '../domain/session/session.ts';
 import type { MessageKey } from '../i18n/messages.ts';
 import type { Locale } from '../schemas/common.ts';
@@ -156,6 +156,16 @@ export function StartView({ plan, level, resumable, notice, onStart, onResume }:
 
 /* ---------------------------------------------------------- session host */
 
+/**
+ * A dictation page shows its words in a random order fixed by the session seed, so the learner cannot
+ * tell from the lesson order which word is being read out; resume shows the same order.
+ */
+export function displayOrder(page: PlanPage, seed: number): PlanPage {
+  if (!page.items.length || !page.items.every((it) => it.type === 'vocabulary_listening_dictation')) return page;
+  const items = seededOrder(page.items, seed, page.pageId);
+  return { ...page, items, units: items.flatMap((it) => page.units.filter((u) => u.itemId === it.itemId)) };
+}
+
 /** Audio played when a page opens in autoplay mode (P4-05 review): the prompt that has to be heard. */
 export function entryAudio(page: PlanPage): string | undefined {
   const item = page.items[0];
@@ -237,7 +247,7 @@ interface SessionViewProps {
 
 export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus = 'available' }: SessionViewProps) {
   const { t, locale } = useI18n();
-  const page = plan.pages[record.pageIndex];
+  const page = displayOrder(plan.pages[record.pageIndex], record.seed);
   const listening = isListeningPage(page);
   const needsVoice = listening && record.phase === 'answering';
   useEffect(() => {

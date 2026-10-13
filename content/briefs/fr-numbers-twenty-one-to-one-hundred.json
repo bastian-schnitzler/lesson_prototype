@@ -127,7 +127,6 @@
       "examForms": [
         "vingt-et-un"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/vɛ̃.t e œ̃/",
@@ -157,8 +156,7 @@
         "accepted": {
           "answers": [
             "vingt-et-un"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-30",
@@ -197,7 +195,6 @@
       "examForms": [
         "trente"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/tʁɑ̃t/",
@@ -227,8 +224,7 @@
         "accepted": {
           "answers": [
             "trente"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-40",
@@ -267,7 +263,6 @@
       "examForms": [
         "quarante"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/ka.ʁɑ̃t/",
@@ -297,8 +292,7 @@
         "accepted": {
           "answers": [
             "quarante"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-50",
@@ -337,7 +331,6 @@
       "examForms": [
         "cinquante"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/sɛ̃.kɑ̃t/",
@@ -367,8 +360,7 @@
         "accepted": {
           "answers": [
             "cinquante"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-60",
@@ -407,7 +399,6 @@
       "examForms": [
         "soixante"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/swa.sɑ̃t/",
@@ -437,8 +428,7 @@
         "accepted": {
           "answers": [
             "soixante"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-70",
@@ -477,7 +467,6 @@
       "examForms": [
         "soixante-dix"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/swa.sɑ̃t.dis/",
@@ -507,8 +496,7 @@
         "accepted": {
           "answers": [
             "soixante-dix"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-71",
@@ -547,7 +535,6 @@
       "examForms": [
         "soixante-et-onze"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/swa.sɑ̃t.e.ɔ̃z/",
@@ -577,8 +564,7 @@
         "accepted": {
           "answers": [
             "soixante-et-onze"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-80",
@@ -617,7 +603,6 @@
       "examForms": [
         "quatre-vingts"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/kat.ʁə.vɛ̃/",
@@ -647,8 +632,7 @@
         "accepted": {
           "answers": [
             "quatre-vingts"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-81",
@@ -687,7 +671,6 @@
       "examForms": [
         "quatre-vingt-un"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/kat.ʁə.vɛ̃.œ̃/",
@@ -717,8 +700,7 @@
         "accepted": {
           "answers": [
             "quatre-vingt-un"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-90",
@@ -757,7 +739,6 @@
       "examForms": [
         "quatre-vingt-dix"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/kat.ʁə.vɛ̃.dis/",
@@ -787,8 +768,7 @@
         "accepted": {
           "answers": [
             "quatre-vingt-dix"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-91",
@@ -827,7 +807,6 @@
       "examForms": [
         "quatre-vingt-onze"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/kat.ʁə.vɛ̃.ɔ̃z/",
@@ -857,8 +836,7 @@
         "accepted": {
           "answers": [
             "quatre-vingt-onze"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-100",
@@ -898,7 +876,6 @@
       "examForms": [
         "cent"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/sɑ̃/",
@@ -928,8 +905,7 @@
         "accepted": {
           "answers": [
             "cent"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "num-21",

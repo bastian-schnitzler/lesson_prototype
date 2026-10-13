@@ -1,11 +1,10 @@
 import { z } from 'zod';
-import { NestedIdSchema, nativeLocales, type AcceptedAnswers } from '../src/schemas/artifactCommon.ts';
-import { accentHomographs } from '../src/domain/answers.ts';
+import { NestedIdSchema, nativeLocales } from '../src/schemas/artifactCommon.ts';
 import type { Brief } from '../src/schemas/artifacts.ts';
 import { grammarItemSchema, type GrammarBrief, type GrammarExerciseType } from '../src/schemas/grammar.ts';
 import type { OutlineContext } from '../src/validation/artifacts.ts';
 
-export const CONTENT_PROMPT_VERSION = 'content-v4';
+export const CONTENT_PROMPT_VERSION = 'content-v5';
 
 /** D46 (SPEC "Formatted teaching text"): format rules shared by introduction and explanation texts. */
 export const RICH_TEXT = [
@@ -91,19 +90,6 @@ export function normalizeLocalIds(value: unknown): unknown {
   }));
 }
 
-/**
- * Marks every accent homograph of the accepted answers as accent-sensitive (D40, P3-03), so a model
- * that forgets one cannot turn "la" for "là" into half credit.
- */
-export function markAccentHomographs(value: unknown, lang: string): unknown {
-  if (Array.isArray(value)) return value.map((v) => markAccentHomographs(v, lang));
-  if (!value || typeof value !== 'object') return value;
-  const node = Object.fromEntries(Object.entries(value).map(([key, child]) => [key, markAccentHomographs(child, lang)]));
-  const { answers, accentSensitive } = node as Partial<AcceptedAnswers>;
-  if (!Array.isArray(answers) || !Array.isArray(accentSensitive) || !answers.every((a) => typeof a === 'string')) return node;
-  return { ...node, accentSensitive: [...new Set([...accentSensitive, ...accentHomographs(answers, lang)])] };
-}
-
 /* ------------------------------------------------------------------ prompt */
 
 export function contentPrompt(ctx: OutlineContext, brief: Brief, section: Section, repair = ''): string {
@@ -113,7 +99,7 @@ Outline: ${JSON.stringify(ctx.entry)}
 Brief: ${JSON.stringify({ ...brief, provenance: undefined })}
 Follow the brief exactly: use only its target/rule IDs, keep its terms, teaching forms and exam forms, and stay within its scope.
 Write every support text (instructions, explanations, headings, hints) in en, fr and de with equivalent meaning. Native maps contain exactly ${nativeLocales(ctx.lang).join(', ')}. Learning-language sentences, forms and answers stay in ${ctx.lang} and are correct, natural ${ctx.level} language.
-Every answerExplanation says why the answer is right (meaning, gender/article, spelling or the grammar rule) instead of repeating it, in at most two sentences; name accents and marks (accent aigu, accent grave, accent circonflexe, cédille, tréma) instead of showing a bare character. Accepted answers list every fully correct variant; accentSensitive lists words of the answers whose accents mark a different word (à, où, là…), otherwise empty.
+Every answerExplanation says why the answer is right (meaning, gender/article, spelling or the grammar rule) instead of repeating it, in at most two sentences; name accents and marks (accent aigu, accent grave, accent circonflexe, cédille, tréma) instead of showing a bare character. Accepted answers list every fully correct variant, never accent-less or capitalised forms: the shared scorer grades those.
 Use stable lowercase kebab-case IDs (letters, digits, hyphens).
 Section "${section.key}": ${section.task}
 ${repair ? `\nRepair the previous attempt. Validation errors:\n${repair}\nReturn the complete corrected section.` : ''}`;

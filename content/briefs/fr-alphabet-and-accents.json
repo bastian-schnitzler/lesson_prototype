@@ -115,7 +115,6 @@
       "examForms": [
         "un accent aigu"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/ak.sɑ̃ e.ɡy/",
@@ -149,8 +148,7 @@
         "accepted": {
           "answers": [
             "accent aigu"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-accent-grave",
@@ -192,7 +190,6 @@
       "examForms": [
         "un accent grave"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/ak.sɑ̃ ɡʁav/",
@@ -226,8 +223,7 @@
         "accepted": {
           "answers": [
             "accent grave"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-accent-circonflexe",
@@ -270,7 +266,6 @@
       "examForms": [
         "un accent circonflexe"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/ak.sɑ̃ siʁ.kɔ̃.flɛks/",
@@ -304,8 +299,7 @@
         "accepted": {
           "answers": [
             "accent circonflexe"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-cedille",
@@ -347,7 +341,6 @@
       "examForms": [
         "une cédille"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/se.dij/",
@@ -381,8 +374,7 @@
         "accepted": {
           "answers": [
             "cédille"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-trema",
@@ -424,7 +416,6 @@
       "examForms": [
         "un tréma"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/tʁe.ma/",
@@ -458,8 +449,7 @@
         "accepted": {
           "answers": [
             "tréma"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-epeler",
@@ -498,7 +488,6 @@
       "examForms": [
         "épeler"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/ep.le/",
@@ -528,8 +517,7 @@
         "accepted": {
           "answers": [
             "épeler"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-nom",
@@ -573,7 +561,6 @@
       "examForms": [
         "un nom"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/nɔ̃/",
@@ -607,8 +594,7 @@
         "accepted": {
           "answers": [
             "nom"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-prenom",
@@ -649,7 +635,6 @@
       "examForms": [
         "un prénom"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/pʁe.nɔ̃/",
@@ -683,8 +668,7 @@
         "accepted": {
           "answers": [
             "prénom"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-lettre",
@@ -725,7 +709,6 @@
       "examForms": [
         "une lettre"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/lɛtʁ/",
@@ -759,8 +742,7 @@
         "accepted": {
           "answers": [
             "lettre"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-majuscule",
@@ -802,7 +784,6 @@
       "examForms": [
         "une majuscule"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/ma.ʒys.kyl/",
@@ -836,8 +817,7 @@
         "accepted": {
           "answers": [
             "majuscule"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-minuscule",
@@ -878,7 +858,6 @@
       "examForms": [
         "une minuscule"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/mi.nys.kyl/",
@@ -912,8 +891,7 @@
         "accepted": {
           "answers": [
             "minuscule"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-trait-d-union",
@@ -954,7 +932,6 @@
       "examForms": [
         "un trait d'union"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/tʁɛ d‿y.njɔ̃/",
@@ -988,8 +965,7 @@
         "accepted": {
           "answers": [
             "trait d'union"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-accent-aigu",

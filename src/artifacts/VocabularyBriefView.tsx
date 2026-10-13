@@ -167,7 +167,6 @@ function TargetTable({ caption, targets, lang, text }: TargetTableProps) {
             const notes = [
               target.pronunciation && t('brief.pronunciation', { value: target.pronunciation }),
               target.genderVariants.length > 0 && t('brief.genderVariants', { list: target.genderVariants.join(', ') }),
-              target.accentSensitive.length > 0 && t('brief.accentSensitive', { list: target.accentSensitive.join(', ') }),
               target.articleException && t('brief.articleException', { reason: ui(target.articleException) }),
               target.ambiguityNote && t('brief.ambiguity', { note: ui(target.ambiguityNote) }),
             ].filter((note): note is string => !!note);

@@ -2,7 +2,6 @@
  * Item helpers and the lesson definition format for hand-authored grammar lessons (P3-07); see
  * scripts/author-grammar.ts, which builds the brief and the lesson content from a definition.
  */
-import { accentHomographs } from '../src/domain/answers.ts';
 import type { AcceptedAnswers, LocalizedText } from '../src/schemas/artifactCommon.ts';
 import { PERSONS, type GrammarBrief, type GrammarExerciseType, type GrammarItem } from '../src/schemas/grammar.ts';
 
@@ -13,11 +12,8 @@ export type Draft = Item extends infer T ? (T extends unknown ? Omit<T, 'itemId'
 
 /* ------------------------------------------------------------- item helpers */
 
-/** Accepted answers with every French accent homograph marked (D40): "la" for "là" scores zero. */
-const accepted = (answers: string | string[], extra: string[] = []): AcceptedAnswers => {
-  const list = [answers].flat();
-  return { answers: list, accentSensitive: [...new Set([...extra, ...accentHomographs(list, 'fr')])] };
-};
+/** Accepted answers: every fully correct form, the first one shown as the correct answer. */
+const accepted = (answers: string | string[]): AcceptedAnswers => ({ answers: [answers].flat() });
 
 /** Deterministic shuffle, so rebuilding a lesson yields identical files. */
 function shuffle<T>(list: T[], key: string): T[] {
@@ -43,8 +39,8 @@ export const gc = (ruleIds: string[], before: string, answer: string, wrong: [st
 };
 
 /** Typed gap; `answers` lists every accepted form, the first one is shown as the correct answer. */
-export const gt = (ruleIds: string[], before: string, answers: string | string[], after: string, explanation: LocalizedText, hint: LocalizedText | null = null, accentSensitive: string[] = []): Draft => ({
-  type: 'grammar_gap_typing', ruleIds, before, after, accepted: accepted(answers, accentSensitive), hint, answerExplanation: explanation,
+export const gt = (ruleIds: string[], before: string, answers: string | string[], after: string, explanation: LocalizedText, hint: LocalizedText | null = null): Draft => ({
+  type: 'grammar_gap_typing', ruleIds, before, after, accepted: accepted(answers), hint, answerExplanation: explanation,
 });
 
 /** Word order: the words in the correct order (no final full stop); `alternatives` are other valid orders of the same words. */
