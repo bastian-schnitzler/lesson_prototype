@@ -161,7 +161,7 @@ describe('function practice, exam and results (P4-05)', () => {
     expect(screen.getByText('A customer orders at a café counter; the waiter serves her.')).toBeInTheDocument();
     expect(screen.getByText(/8 expressions · 4 words/)).toBeInTheDocument();
     const rows = [...document.querySelectorAll('.flow-list li')];
-    expect(rows.map((r) => r.textContent)).toEqual([expect.stringMatching(/^Flashcards · Dialogue/), expect.stringMatching(/^Matching · Gender and overview · Dialogue gaps · Word order · Listening/), expect.stringMatching(/^Final exam.*16 items on 3 timed pages/)]);
+    expect(rows.map((r) => r.textContent)).toEqual([expect.stringMatching(/^Flashcards · Dialogue/), expect.stringMatching(/^Matching · Gender and overview · Dialogue gaps · Word order · Listening/), expect.stringMatching(/^Final exam.*20 items on 4 timed pages/)]);
   });
 
   it('shows practice word order with tokens only', () => {
@@ -222,7 +222,7 @@ describe('function practice, exam and results (P4-05)', () => {
     }
     render(wrap(<LastTryProvider><ResultsView plan={plan} record={r} dispatch={() => undefined} /></LastTryProvider>));
     const summaries = [...document.querySelectorAll('.result-accordion summary')].map((s) => s.textContent);
-    expect(summaries).toEqual(['Replies0 of 8 correct.', 'Dialogue8 of 8 correct.']);
+    expect(summaries).toEqual(['Translation4 of 4 correct.', 'Replies0 of 8 correct.', 'Dialogue8 of 8 correct.']);
     // Result menu (all categories): selected purple; others green (all right), red (all wrong) or red stripes (mixed).
     const menu = [...document.querySelectorAll('.result-menu button')];
     expect(menu[0]).toHaveAttribute('aria-pressed', 'true');
@@ -303,7 +303,7 @@ describe('autoplay (P4-05 review)', () => {
   });
 
   it('speaks the correct sentence of a gap after it is answered', () => {
-    expect(correctSentences(page('gap-1'))).toBe('Je voudrais un chocolat chaud, s’il vous plaît.');
+    expect(correctSentences(page('gap-1'))).toBeUndefined(); // dialogue gaps play only role A
     expect(correctSentences(page('listening-1'))).toBeUndefined(); // only role A is played
     expect(correctSentences(page('order-1'))).toBe('Bonsoir, monsieur. Vous désirez ?');
     expect(correctSentences(page('match-expressions-1'))).toBeUndefined();

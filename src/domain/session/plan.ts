@@ -4,6 +4,7 @@ import type { Locale } from '../../schemas/common.ts';
 import type { FunctionsBrief, FunctionsItem } from '../../schemas/functions.ts';
 import type { GrammarItem } from '../../schemas/grammar.ts';
 import { functionsTerms } from '../functionsLesson.ts';
+import { indefinitePlural } from '../plural.ts';
 import type { VocabularyItem, VocabularyTarget } from '../../schemas/vocabulary.ts';
 
 /**
@@ -38,8 +39,13 @@ interface UnitBase {
   /** Grammar rules the item assesses, for rule-level error records in results (SPEC section 7). */
   ruleIds?: string[];
 }
+/**
+ * A noun of a translation exam may also be answered as "des" + plural when the right gender is chosen
+ * (P4-05 review); the gender is stored as the draft `${unitId}#gender`.
+ */
+export interface PluralAlternative { accepted: AcceptedAnswers; genders: string[] }
 export type PlanUnit =
-  | (UnitBase & { kind: 'text'; accepted: AcceptedAnswers })
+  | (UnitBase & { kind: 'text'; accepted: AcceptedAnswers; plural?: PluralAlternative })
   | (UnitBase & { kind: 'choice'; options: Option[]; correct: string[] })
   /** `distractors`: tokens that belong to no accepted order and stay in the bank (function exam replies). */
   | (UnitBase & { kind: 'order'; tokens: Option[]; acceptedOrders: string[][]; distractors?: string[] })
@@ -137,11 +143,14 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
           options: item.optionTargetIds.map((t) => ({ id: t, text: form(t), lang: 'learning' })), correct: [item.targetId],
           explanation: item.answerExplanation, answer: form(item.targetId), answerLang: 'learning',
         }];
-      case 'vocabulary_translation_exam':
+      case 'vocabulary_translation_exam': {
+        const target = targets.get(item.targetId);
+        const plural = target && target.wordClass === 'noun' && target.number === 'singular' && !target.articleException ? pluralOf(item.accepted, target.genders) : undefined;
         return [{
           kind: 'text', id: id(), itemId: item.itemId, itemType: item.type, prompt: { native: native(item.prompt) },
-          accepted: item.accepted, explanation: item.answerExplanation, answer: item.accepted.answers[0], answerLang: 'learning',
+          accepted: item.accepted, explanation: item.answerExplanation, answer: item.accepted.answers[0], answerLang: 'learning', ...(plural ? { plural } : {}),
         }];
+      }
       case 'vocabulary_listening_dictation':
         return [{
           kind: 'text', id: id(), itemId: item.itemId, itemType: item.type, prompt: {}, speak: form(item.targetId),
@@ -211,6 +220,15 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
         const prompt = item.context ? { learning: `${roleLabel(item.context.roleId)}: ${item.context.text}` } : {};
         return [{ kind: 'order', id: id(), itemId: item.itemId, itemType: item.type, prompt, tokens, acceptedOrders, distractors: item.distractorTokenIds, explanation: item.answerExplanation, answer, answerLang: 'learning' }];
       }
+      case 'function_translation_exam': {
+        // As the vocabulary translation exam (P4-05 review), including "des" + plural with the gender.
+        const word = brief.kind === 'functions' ? brief.words.find((w) => w.id === item.wordId) : undefined;
+        const plural = word && word.wordClass === 'noun' ? pluralOf(item.accepted, word.genders) : undefined;
+        return [{
+          kind: 'text', id: id(), itemId: item.itemId, itemType: item.type, prompt: { native: native(item.prompt) },
+          accepted: item.accepted, explanation: item.answerExplanation, answer: item.accepted.answers[0], answerLang: 'learning', ...(plural ? { plural } : {}),
+        }];
+      }
       case 'function_listening_choice':
         // Audio first (P4-05 review): role A's line is spoken, the four replies are heard, not read.
         return [{
@@ -272,6 +290,12 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
     functions: brief.kind === 'functions' ? { situation: brief.situation, roles: brief.roles, expressions: brief.expressions, words: brief.words } : undefined,
     steps: steps.map((s) => ({ stepId: s.id, label: s.label, role: s.role === 'exam' ? 'exam' : pages.some((p) => p.stepId === s.id && p.role === 'practice') ? 'practice' : 'presentation' })),
   };
+}
+
+/** The "des" + plural alternative of indefinite singular answers (un livre → des livres) with their genders. */
+export function pluralOf(accepted: AcceptedAnswers, genders: readonly string[]): PluralAlternative | undefined {
+  const answers = [...new Set(accepted.answers.map(indefinitePlural).filter((a): a is string => !!a))];
+  return answers.length && genders.length ? { accepted: { answers, accentSensitive: accepted.accentSensitive }, genders: [...genders] } : undefined;
 }
 
 /**

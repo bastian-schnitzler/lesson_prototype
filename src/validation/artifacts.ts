@@ -556,7 +556,23 @@ function checkFunctionsContent(c: FunctionsContent, b: FunctionsBrief, issues: I
   });
 
   // Exam: reply pages (at most four, balanced), then one page with the exam dialogue.
-  const examPages = step.get('exam')!.pages;
+  const allExamPages = step.get('exam')!.pages;
+  // Word translation first when the lesson has words (P4-05 review): every word once, its teaching form accepted.
+  const hasWords = wordIds.length > 0;
+  const translation = hasWords ? allExamPages[0]?.items ?? [] : [];
+  if (hasWords) {
+    const ok = translation.length > 0 && translation.every((it) => it.type === 'function_translation_exam');
+    if (issues.check(ok, 'steps.exam', 'the exam starts with one page translating every word of the lesson')) {
+      const items = translation as Extract<FunctionsItem, { type: 'function_translation_exam' }>[];
+      issues.check(items.map((it) => it.wordId).join() === wordIds.join(), 'steps.exam', 'the translation page has every word once, in brief order');
+      for (const [n, it] of items.entries()) {
+        const w = b.words.find((x) => x.id === it.wordId);
+        if (w) issues.check(it.accepted.answers.includes(w.teachingForm), `steps.exam.translation.${n}`, `accepts the teaching form "${w.teachingForm}"`);
+        checkExplanations([it], `steps.exam.translation.${n}`, issues);
+      }
+    }
+  }
+  const examPages = hasWords ? allExamPages.slice(1) : allExamPages;
   const replies = examPages.slice(0, -1).flatMap((pg) => pg.items);
   const last = examPages.at(-1)!.items;
   issues.check(replies.every((it) => it.type === 'function_word_order') && last.length === 1 && last[0].type === 'function_dialogue_gap_typing', 'steps.exam', 'reply pages (word order) followed by one page with the exam dialogue');

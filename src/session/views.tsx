@@ -160,6 +160,7 @@ export function StartView({ plan, level, resumable, notice, onStart, onResume }:
 export function entryAudio(page: PlanPage): string | undefined {
   const item = page.items[0];
   if (!item) return undefined;
+  // Dialogue gaps and listening choices play role A's line (P4-05 review).
   if (item.type === 'function_dialogue_gap_choice' || item.type === 'function_listening_choice') return item.context.text;
   if (item.type === 'vocabulary_listening_choice' || item.type === 'vocabulary_listening_dictation') return page.units[0]?.speak;
   return undefined;
@@ -173,7 +174,8 @@ export function entryAudio(page: PlanPage): string | undefined {
  */
 export function correctSentences(page: PlanPage): string | undefined {
   const sentences = page.units.flatMap((u) => {
-    if (u.answerLang !== 'learning' || isMatchingItem(u.itemType)) return [];
+    // Dialogue gaps play only role A's line, on entry (P4-05 review).
+    if (u.answerLang !== 'learning' || isMatchingItem(u.itemType) || u.itemType === 'function_dialogue_gap_choice') return [];
     if (u.kind === 'spot' || u.kind === 'order') return [u.answer];
     if (u.prompt.before !== undefined || u.prompt.after !== undefined) return [gapSentence(u.prompt.before, u.answer, u.prompt.after)];
     if (u.itemType === 'grammar_pronoun_form_typing' || u.itemType === 'grammar_pronoun_form_match') return [`${pronounWithForm(u.prompt.learning ?? '', u.answer)}.`];
@@ -246,8 +248,8 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
   // Dialogues unroll line by line: the model dialogue and the exam dialogue (until the page is submitted).
   const nextLine = page.role === 'presentation' || (page.role === 'exam' && record.phase === 'answering') ? nextDialogueLine(page, record) : undefined;
   const heading = useRef<HTMLHeadingElement>(null);
-  // Autoplay (P4-05 review): entering a dictation, a listening choice or a dialogue gap plays its prompt
-  // (role A's line); it waits for speech still in progress, e.g. the previous page's correct sentence.
+  // Autoplay (P4-05 review): entering a dictation, a listening choice or a dialogue gap plays its prompt;
+  // it waits for speech still in progress, e.g. the previous page's correct sentence.
   const spokenPage = useRef(-1);
   useEffect(() => {
     if (spokenPage.current === record.pageIndex) return; // once per page (effects may run twice in development)
@@ -275,7 +277,7 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
     if (page.role === 'practice' && record.phase === 'answering') say(correctSentences(page));
     if (page.role === 'exam') {
       // Translation only: a dictation has no article hint (P2-04 review).
-      const missing = page.units.filter((u) => u.itemType === 'vocabulary_translation_exam'
+      const missing = page.units.filter((u) => (u.itemType === 'vocabulary_translation_exam' || u.itemType === 'function_translation_exam')
         && missingArticle((record.drafts[u.id] as string | undefined) ?? '', u.answer, plan.lang)).map((u) => u.id);
       if (missing.length && !articleWarnings.length) return setArticleWarnings(missing);
       setArticleWarnings([]);
@@ -385,6 +387,7 @@ function ExamIntro({ plan, page }: { plan: LessonPlan; page: PlanPage }) {
     const types = new Set(p.units.map((u) => u.itemType));
     if (types.size === 1 && types.has('vocabulary_translation_exam')) return 'examIntro.translation';
     if (types.size === 1 && types.has('vocabulary_listening_dictation')) return 'examIntro.dictation';
+    if (types.size === 1 && types.has('function_translation_exam')) return 'examIntro.translation';
     if (types.size === 1 && types.has('function_word_order')) return 'examIntro.replies';
     if (types.size === 1 && types.has('function_dialogue_gap_typing')) return 'examIntro.dialogue';
     return 'examIntro.mixed';
@@ -441,7 +444,8 @@ function PromptCells({ parts, columns, lang, arrows = true }: { parts: string[];
 function ResultItem({ unit, locked, lang, columns }: { unit: PlanUnit; locked: LockedUnit; lang: string; columns: number }) {
   const { t, locale } = useI18n();
   const parts = promptParts(unit, t);
-  const given = answerText(unit, locked.response, t);
+  // A "des" + plural answer shows the chosen gender after the word (P4-05 review).
+  const given = answerText(unit, locked.response, t) + (locked.gender ? ` (${t(`gender.${locked.gender}` as MessageKey)})` : '');
   const correct = unit.answerLang === 'ui' ? t(unit.answer as MessageKey) : unit.answer;
   const ok = locked.outcome === 'fully_correct';
   // Gender rows (P2-04 review): "word: chosen gender", and for a mistake the struck gender → the correct one.
@@ -624,12 +628,17 @@ export function ResultsView({ plan, record, dispatch }: { plan: LessonPlan; reco
         // The vocabulary exam is reviewed in two accordions: translation (open) and dictation (P2-04 review).
         const isDictation = (p: PlanPage) => p.units.length > 0 && p.units.every((u) => u.itemType === 'vocabulary_listening_dictation');
         // Function exams: Replies (open) and Dialogue (SPEC section 8).
+        const isWordTranslation = (p: PlanPage) => p.units.length > 0 && p.units.every((u) => u.itemType === 'function_translation_exam');
         const isExamDialogue = (p: PlanPage) => p.units.length > 0 && p.units.every((u) => u.itemType === 'function_dialogue_gap_typing');
         const parts = selectedStep ? undefined
           : pages.some(isDictation) && pages.some((p) => !isDictation(p))
             ? [{ key: 'translation', label: t('result.translation'), pages: pages.filter((p) => !isDictation(p)) }, { key: 'dictation', label: t('result.dictation'), pages: pages.filter(isDictation) }]
           : pages.some(isExamDialogue) && pages.some((p) => !isExamDialogue(p))
-            ? [{ key: 'replies', label: t('result.replies'), pages: pages.filter((p) => !isExamDialogue(p)) }, { key: 'dialogue', label: t('result.dialogue'), pages: pages.filter(isExamDialogue) }]
+            ? [
+              ...(pages.some(isWordTranslation) ? [{ key: 'translation', label: t('result.translation'), pages: pages.filter(isWordTranslation) }] : []),
+              { key: 'replies', label: t('result.replies'), pages: pages.filter((p) => !isExamDialogue(p) && !isWordTranslation(p)) },
+              { key: 'dialogue', label: t('result.dialogue'), pages: pages.filter(isExamDialogue) },
+            ]
           : undefined;
         return (
           <>

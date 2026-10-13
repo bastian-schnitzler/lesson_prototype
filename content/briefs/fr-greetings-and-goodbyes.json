@@ -14,12 +14,12 @@
     "fr": "Saluer quelqu’un à tout moment de la journée, demander comment il va, répondre et dire au revoir.",
     "de": "Jemanden zu jeder Tageszeit begrüßen, fragen, wie es ihm geht, antworten und sich verabschieden."
   },
-  "estimatedMinutes": 24,
+  "estimatedMinutes": 25,
   "provenance": {
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "functions-v1",
-    "generatedAt": "2026-10-13T18:26:28.348Z",
+    "generatedAt": "2026-10-13T19:47:55.893Z",
     "inputHashes": {
       "outline": "f1cf3bd5f3576695f7d488bf31426ea858fb5591979dadab6f74241a3e4bde2e"
     }

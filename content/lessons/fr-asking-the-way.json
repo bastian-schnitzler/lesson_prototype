@@ -14,15 +14,15 @@
     "fr": "Demander son chemin à un passant et comprendre une indication simple : tout droit, à gauche, à droite, à côté.",
     "de": "Einen Passanten nach dem Weg fragen und einfache Wegbeschreibungen verstehen: geradeaus, links, rechts, in der Nähe."
   },
-  "estimatedMinutes": 25,
+  "estimatedMinutes": 26,
   "provenance": {
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "functions-v1",
-    "generatedAt": "2026-10-13T18:26:28.684Z",
+    "generatedAt": "2026-10-13T19:47:56.349Z",
     "inputHashes": {
       "outline": "fcc9998d354910d96645252f5de2919381a31873ba3a5902dcdacecd8024bfc9",
-      "brief": "04fa2d89a59eb2844ff92a78d4741f728fb4e164b76dd911632871a6eb84394e"
+      "brief": "acb3a2a44cc068fe6b790cb00dcdf1c99ec01f5c44d62d77fd431fd51be0432f"
     }
   },
   "kind": "functions",
@@ -1580,6 +1580,98 @@
         "de": "Abschlussprüfung"
       },
       "pages": [
+        {
+          "pageId": "exam-words",
+          "estimatedDurationS": 60,
+          "timeLimitS": 90,
+          "instructions": {
+            "en": "Translate each word into French, with its article for nouns.",
+            "fr": "Traduisez chaque mot en français, avec l’article pour les noms.",
+            "de": "Übersetze jedes Wort ins Französische, bei Nomen mit Artikel."
+          },
+          "items": [
+            {
+              "type": "function_translation_exam",
+              "itemId": "word-gare",
+              "wordId": "gare",
+              "prompt": {
+                "en": "station",
+                "de": "Bahnhof"
+              },
+              "accepted": {
+                "answers": [
+                  "une gare"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "Feminine noun: une gare.",
+                "fr": "Nom féminin : une gare.",
+                "de": "Feminines Nomen: une gare."
+              }
+            },
+            {
+              "type": "function_translation_exam",
+              "itemId": "word-rue",
+              "wordId": "rue",
+              "prompt": {
+                "en": "street",
+                "de": "Straße"
+              },
+              "accepted": {
+                "answers": [
+                  "une rue"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "Feminine noun: une rue.",
+                "fr": "Nom féminin : une rue.",
+                "de": "Feminines Nomen: une rue."
+              }
+            },
+            {
+              "type": "function_translation_exam",
+              "itemId": "word-musee",
+              "wordId": "musee",
+              "prompt": {
+                "en": "museum",
+                "de": "Museum"
+              },
+              "accepted": {
+                "answers": [
+                  "un musée"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "Masculine noun despite the -ée ending: un musée.",
+                "fr": "Nom masculin malgré la fin en -ée : un musée.",
+                "de": "Maskulines Nomen trotz der Endung -ée: un musée."
+              }
+            },
+            {
+              "type": "function_translation_exam",
+              "itemId": "word-banque",
+              "wordId": "banque",
+              "prompt": {
+                "en": "bank",
+                "de": "Bank"
+              },
+              "accepted": {
+                "answers": [
+                  "une banque"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "Feminine noun: une banque.",
+                "fr": "Nom féminin : une banque.",
+                "de": "Feminines Nomen: une banque."
+              }
+            }
+          ]
+        },
         {
           "pageId": "exam-replies-1",
           "estimatedDurationS": 120,

@@ -2475,7 +2475,8 @@ html {
 }
 
 /* Word order (P4-05 review): placed tokens can be dragged along the line; a marker shows where. */
-.order-answer .token-placed {
+.order-answer .token-placed,
+.order-bank .token {
   touch-action: none;
   cursor: grab;
 }
@@ -2484,7 +2485,7 @@ html {
   cursor: grabbing;
 }
 
-.order-answer .token-placed.is-dragged {
+.order .token.is-dragged {
   opacity: 0.35;
 }
 

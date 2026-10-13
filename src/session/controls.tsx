@@ -1,7 +1,7 @@
 import { useId, useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from 'react';
 
 import { useI18n } from '../app/context.tsx';
-import type { LockedUnit, UnitResponse } from '../domain/session/session.ts';
+import { isPluralAnswer, type LockedUnit, type UnitResponse } from '../domain/session/session.ts';
 import { seededOrder, type Item, type LessonPlan, type Option, type PlanUnit } from '../domain/session/plan.ts';
 import type { MessageKey } from '../i18n/messages.ts';
 import type { Locale } from '../schemas/common.ts';
@@ -225,9 +225,9 @@ export function ChoiceControl({ unit, props, label, layout }: { unit: PlanUnit &
 }
 
 /**
- * Word order: tokens from the bank are placed on the line in click order. Placed tokens can be dragged
- * along the line to another position with mouse, pen or touch (P4-05 review); dropping one outside the
- * line returns it to the bank, and a click without movement also returns it.
+ * Word order: a click puts a bank token at the end of the line. Tokens can also be dragged with mouse,
+ * pen or touch (P4-05 review): from the bank to any position on the line, and along the line to another
+ * position; dropped off the line, a placed token returns to the bank, and a click on it does the same.
  */
 export function OrderControl({ unit, props }: { unit: PlanUnit & { kind: 'order' }; props: RendererProps }) {
   const { t } = useI18n();
@@ -236,9 +236,11 @@ export function OrderControl({ unit, props }: { unit: PlanUnit & { kind: 'order'
   const bank = seededOrder(unit.tokens, props.seed, unit.id).filter((tk) => !order.includes(tk.id));
   const text = (id: string) => unit.tokens.find((tk) => tk.id === id)?.text;
   const line = useRef<HTMLParagraphElement>(null);
-  const press = useRef<{ index: number; x: number; y: number; moved: boolean } | null>(null);
-  const [drag, setDrag] = useState<{ index: number; x: number; y: number; target: number | null } | null>(null);
-  // The click that follows a drag must not return the token to the bank.
+  /** The dragged token: its ID and, when it is on the line, its index there. */
+  type Source = { tokenId: string; index: number | null };
+  const press = useRef<(Source & { x: number; y: number; moved: boolean }) | null>(null);
+  const [drag, setDrag] = useState<(Source & { x: number; y: number; target: number | null }) | null>(null);
+  // The click that follows a drag must not also place or return the token.
   const suppressClick = useRef(false);
 
   /** Insertion index on the line for a pointer position; null when the pointer is outside the line. */
@@ -254,16 +256,26 @@ export function OrderControl({ unit, props }: { unit: PlanUnit & { kind: 'order'
     }
     return index;
   };
-  const move = (from: number, to: number) => {
-    const next = order.filter((_, m) => m !== from);
-    next.splice(to > from ? to - 1 : to, 0, order[from]);
+  const drop = (source: Source, target: number | null) => {
+    if (source.index === null) {
+      // From the bank: insert at the chosen position; dropped elsewhere nothing changes.
+      if (target === null) return;
+      const next = [...order];
+      next.splice(target, 0, source.tokenId);
+      props.onChange(unit.id, next);
+      return;
+    }
+    if (target === null) return props.onChange(unit.id, order.filter((_, m) => m !== source.index));
+    if (target === source.index || target === source.index + 1) return;
+    const next = order.filter((_, m) => m !== source.index);
+    next.splice(target > source.index ? target - 1 : target, 0, source.tokenId);
     props.onChange(unit.id, next);
   };
-  const handlers = (index: number) => disabled ? {} : {
+  const handlers = (source: Source) => disabled ? {} : {
     onPointerDown: (e: ReactPointerEvent<HTMLButtonElement>) => {
       if (e.button !== 0) return;
       suppressClick.current = false;
-      press.current = { index, x: e.clientX, y: e.clientY, moved: false };
+      press.current = { ...source, x: e.clientX, y: e.clientY, moved: false };
       e.currentTarget.setPointerCapture?.(e.pointerId);
     },
     onPointerMove: (e: ReactPointerEvent<HTMLButtonElement>) => {
@@ -271,42 +283,47 @@ export function OrderControl({ unit, props }: { unit: PlanUnit & { kind: 'order'
       if (!p) return;
       if (!p.moved && Math.hypot(e.clientX - p.x, e.clientY - p.y) < 6) return;
       p.moved = true;
-      setDrag({ index: p.index, x: e.clientX, y: e.clientY, target: targetAt(e.clientX, e.clientY) });
+      setDrag({ tokenId: p.tokenId, index: p.index, x: e.clientX, y: e.clientY, target: targetAt(e.clientX, e.clientY) });
     },
     onPointerUp: (e: ReactPointerEvent<HTMLButtonElement>) => {
       const p = press.current;
       press.current = null;
       if (!p?.moved) return; // a click: handled by onClick
       suppressClick.current = true;
-      const target = targetAt(e.clientX, e.clientY);
       setDrag(null);
-      if (target === null) props.onChange(unit.id, order.filter((_, m) => m !== p.index));
-      else if (target !== p.index && target !== p.index + 1) move(p.index, target);
+      drop(p, targetAt(e.clientX, e.clientY));
     },
     onPointerCancel: () => { press.current = null; setDrag(null); },
   };
-  const marker = <span key="marker" className="order-marker" aria-hidden="true" />;
+  const clicked = () => {
+    if (!suppressClick.current) return true;
+    suppressClick.current = false;
+    return false;
+  };
+  const showMarker = drag && drag.target !== null && (drag.index === null || (drag.target !== drag.index && drag.target !== drag.index + 1));
   const placed = order.map((id, n) => (
     <button key={id} type="button" className={`token token-placed${drag?.index === n ? ' is-dragged' : ''}`} disabled={disabled}
-      {...handlers(n)}
-      onClick={() => { if (suppressClick.current) { suppressClick.current = false; return; } props.onChange(unit.id, order.filter((_, m) => m !== n)); }}>
+      {...handlers({ tokenId: id, index: n })}
+      onClick={() => { if (clicked()) props.onChange(unit.id, order.filter((_, m) => m !== n)); }}>
       {text(id)}
     </button>
   ));
-  if (drag?.target !== null && drag?.target !== undefined && drag.target !== drag.index && drag.target !== drag.index + 1) placed.splice(drag.target, 0, marker);
+  if (showMarker) placed.splice(drag!.target!, 0, <span key="marker" className="order-marker" aria-hidden="true" />);
   return (
     <div className={`order${drag ? ' is-dragging' : ''}`}>
       <p ref={line} className="order-answer" lang={props.plan.lang} aria-live="polite">
-        {order.length ? placed : <span className="muted">{t('session.orderEmpty')}</span>}
+        {placed.length ? placed : <span className="muted">{t('session.orderEmpty')}</span>}
       </p>
       <p className="order-bank" lang={props.plan.lang}>
         {bank.map((tk) => (
-          <button key={tk.id} type="button" className="token" disabled={disabled} onClick={() => props.onChange(unit.id, [...order, tk.id])}>
+          <button key={tk.id} type="button" className={`token${drag?.tokenId === tk.id ? ' is-dragged' : ''}`} disabled={disabled}
+            {...handlers({ tokenId: tk.id, index: null })}
+            onClick={() => { if (clicked()) props.onChange(unit.id, [...order, tk.id]); }}>
             {tk.text}
           </button>
         ))}
       </p>
-      {drag && <span className="drag-ghost token token-placed" lang={props.plan.lang} style={{ left: drag.x, top: drag.y }} aria-hidden="true">{text(order[drag.index])}</span>}
+      {drag && <span className="drag-ghost token token-placed" lang={props.plan.lang} style={{ left: drag.x, top: drag.y }} aria-hidden="true">{text(drag.tokenId)}</span>}
     </div>
   );
 }
@@ -361,6 +378,28 @@ export function Gap({ before, after, lang, children }: { before?: string; after?
   );
 }
 
+/**
+ * After "des" + a word in a translation exam (P4-05 review) the gender is asked, because "des" does not
+ * show it: masculine/feminine pills after the field. The answer then counts when word and gender are right.
+ */
+function PluralGender({ unit, props }: { unit: PlanUnit; props: RendererProps }) {
+  const { t } = useI18n();
+  if (unit.kind !== 'text' || !unit.plural || !isPluralAnswer(value(props, unit))) return null;
+  const key = `${unit.id}#gender`;
+  const current = (props.locked[unit.id]?.gender ?? props.drafts[key]) as string | undefined;
+  return (
+    <fieldset className="gender-options plural-gender" disabled={readOnly(props, unit)}>
+      <legend className="label-muted">{t('session.pluralGender')}</legend>
+      {(['masculine', 'feminine'] as const).map((g) => (
+        <label key={g} className="gender-option">
+          <input type="radio" name={key} value={g} checked={current === g} onChange={() => props.onChange(key, g)} />
+          <span>{t(`gender.${g}`)}</span>
+        </label>
+      ))}
+    </fieldset>
+  );
+}
+
 /* ------------------------------------------------------------ renderers */
 
 export function UnitsRenderer(props: RendererProps) {
@@ -392,7 +431,7 @@ export function UnitsRenderer(props: RendererProps) {
                     {prompt || t('session.typeWhatYouHear')}
                     {/* Vocabulary translation tasks say whether the French answer needs an article. */}
                     {/* The badge turns purple while the typed answer lacks the required article. */}
-                    {unit.itemType === 'vocabulary_translation_exam' && (
+                    {(unit.itemType === 'vocabulary_translation_exam' || unit.itemType === 'function_translation_exam') && (
                       <small className={`article-badge${!readOnly(props, unit) && missingArticle((value(props, unit) as string | undefined) ?? '', unit.answer, lang) ? ' is-alert' : ''}`}>
                         {t(startsWithArticle(unit.answer, lang) ? 'session.withArticle' : 'session.withoutArticle')}
                       </small>
@@ -400,6 +439,7 @@ export function UnitsRenderer(props: RendererProps) {
                   </span>
                   <TextControl unit={unit} props={props} label={prompt || t('session.typeWhatYouHear')} />
                 </label>
+                <PluralGender unit={unit} props={props} />
                 {props.articleWarnings?.includes(unit.id) && !readOnly(props, unit) && (
                   <p className="info-box" role="status">{t(/^(un|une|des)\s/iu.test(unit.answer) ? 'session.typeArticle' : 'session.typeDefiniteArticle')}</p>
                 )}

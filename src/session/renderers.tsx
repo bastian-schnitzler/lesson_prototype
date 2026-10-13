@@ -41,4 +41,5 @@ export const rendererRegistry: Record<Item['type'], ComponentType<RendererProps>
   function_dialogue_gap_choice: DialogueGapChoiceRenderer,
   function_listening_choice: ListeningReplyRenderer,
   function_dialogue_gap_typing: ExamDialogueRenderer,
+  function_translation_exam: UnitsRenderer,
 };

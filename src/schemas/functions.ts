@@ -51,6 +51,8 @@ export const FUNCTIONS_PAGE_RULES = {
   /** Listening choice: role A's line and four spoken replies (P4-05 review). */
   listeningS: 30,
   replyS: 30,
+  /** Exam word translation (P4-05 review), as in vocabulary: seconds per word. */
+  translationS: 15,
   /** Exam reply pages hold at most this many replies (balanced). */
   replyPageSize: 4,
   examLineS: 8,
@@ -212,6 +214,18 @@ export const functionsItemSchema = (lang: string) =>
       answerExplanation: LocalizedTextSchema,
     }),
     z.strictObject({
+      /**
+       * Exam word translation (P4-05 review), the first exam page as in vocabulary lessons: the mother-tongue
+       * prompt of a lesson word, typed in French with its indefinite article.
+       */
+      type: z.literal('function_translation_exam'),
+      itemId: NestedIdSchema,
+      wordId: NestedIdSchema,
+      prompt: nativeTextSchema(lang),
+      accepted: AcceptedAnswersSchema,
+      answerExplanation: LocalizedTextSchema,
+    }),
+    z.strictObject({
       /** Exam part 2: a new dialogue unrolled line by line; gaps take expressions and are typed. */
       type: z.literal('function_dialogue_gap_typing'),
       itemId: NestedIdSchema,
@@ -246,7 +260,7 @@ const pageSchema = (lang: string) =>
     /** Exam pages only: the page estimate × 1.5, rounded. */
     timeLimitS: TimeLimitSecondsSchema.nullable(),
     instructions: LocalizedTextSchema,
-    items: z.array(functionsItemSchema(lang)).min(1).max(FUNCTIONS_PAGE_RULES.replyPageSize),
+    items: z.array(functionsItemSchema(lang)).min(1).max(FUNCTIONS_LIMITS.words[1]),
   });
 
 export const functionsContentSchema = (lang: string) =>

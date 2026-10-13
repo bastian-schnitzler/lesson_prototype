@@ -14,15 +14,15 @@
     "fr": "Saluer quelqu’un à tout moment de la journée, demander comment il va, répondre et dire au revoir.",
     "de": "Jemanden zu jeder Tageszeit begrüßen, fragen, wie es ihm geht, antworten und sich verabschieden."
   },
-  "estimatedMinutes": 24,
+  "estimatedMinutes": 25,
   "provenance": {
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "functions-v1",
-    "generatedAt": "2026-10-13T18:26:28.348Z",
+    "generatedAt": "2026-10-13T19:47:55.893Z",
     "inputHashes": {
       "outline": "f1cf3bd5f3576695f7d488bf31426ea858fb5591979dadab6f74241a3e4bde2e",
-      "brief": "06ab7111714b9b0a2d001e62bbc6943a75091e89093a604fa6879928e2aac648"
+      "brief": "240643e94919658c324e8d9a304f88334355f69454664ab202458a84dc57eb04"
     }
   },
   "kind": "functions",
@@ -1581,6 +1581,98 @@
         "de": "Abschlussprüfung"
       },
       "pages": [
+        {
+          "pageId": "exam-words",
+          "estimatedDurationS": 60,
+          "timeLimitS": 90,
+          "instructions": {
+            "en": "Translate each word into French, with its article for nouns.",
+            "fr": "Traduisez chaque mot en français, avec l’article pour les noms.",
+            "de": "Übersetze jedes Wort ins Französische, bei Nomen mit Artikel."
+          },
+          "items": [
+            {
+              "type": "function_translation_exam",
+              "itemId": "word-matin",
+              "wordId": "matin",
+              "prompt": {
+                "en": "morning",
+                "de": "Morgen"
+              },
+              "accepted": {
+                "answers": [
+                  "un matin"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "Masculine noun: un matin. Le matin means in the morning.",
+                "fr": "Nom masculin : un matin. Le matin veut dire pendant la matinée.",
+                "de": "Maskulines Nomen: un matin. Le matin heißt am Morgen."
+              }
+            },
+            {
+              "type": "function_translation_exam",
+              "itemId": "word-soir",
+              "wordId": "soir",
+              "prompt": {
+                "en": "evening",
+                "de": "Abend"
+              },
+              "accepted": {
+                "answers": [
+                  "un soir"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "Masculine noun: un soir. Le soir means in the evening.",
+                "fr": "Nom masculin : un soir. Le soir veut dire pendant la soirée.",
+                "de": "Maskulines Nomen: un soir. Le soir heißt am Abend."
+              }
+            },
+            {
+              "type": "function_translation_exam",
+              "itemId": "word-tres-bien",
+              "wordId": "tres-bien",
+              "prompt": {
+                "en": "very well",
+                "de": "sehr gut"
+              },
+              "accepted": {
+                "answers": [
+                  "très bien"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "A strong positive answer: très (very) + bien (well).",
+                "fr": "Une réponse très positive : très + bien.",
+                "de": "Eine sehr positive Antwort: très (sehr) + bien (gut)."
+              }
+            },
+            {
+              "type": "function_translation_exam",
+              "itemId": "word-pas-mal",
+              "wordId": "pas-mal",
+              "prompt": {
+                "en": "not bad",
+                "de": "nicht schlecht"
+              },
+              "accepted": {
+                "answers": [
+                  "pas mal"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "Means fairly good.",
+                "fr": "Veut dire assez bien.",
+                "de": "Bedeutet ziemlich gut."
+              }
+            }
+          ]
+        },
         {
           "pageId": "exam-replies-1",
           "estimatedDurationS": 120,

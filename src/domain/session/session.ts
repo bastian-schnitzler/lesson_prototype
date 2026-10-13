@@ -15,6 +15,8 @@ export interface LockedUnit {
   timedOut: boolean;
   /** Interface language when the answer was submitted. */
   interfaceLanguage: Locale;
+  /** Gender chosen after a "des" + plural answer (P4-05 review). */
+  gender?: string;
 }
 
 export interface SessionRecord {
@@ -61,13 +63,23 @@ export function isAnswered(unit: PlanUnit, response: UnitResponse | undefined | 
   }
 }
 
+/** A typed answer that starts with "des" and a space: then the gender choice is shown (P4-05 review). */
+export function isPluralAnswer(response: UnitResponse | undefined | null): boolean {
+  return typeof response === 'string' && /^des\s+\S/iu.test(response.trim());
+}
+
 /** First-submission scoring of one answer unit: 1, 0.5 (orthography only, text) or 0 points. */
-export function scoreUnit(unit: PlanUnit, response: UnitResponse | undefined | null): { outcome: AnswerOutcome; points: number } {
+export function scoreUnit(unit: PlanUnit, response: UnitResponse | undefined | null, gender?: string): { outcome: AnswerOutcome; points: number } {
   if (!isAnswered(unit, response)) return { outcome: 'unanswered', points: 0 };
   const right = (ok: boolean) => (ok ? { outcome: 'fully_correct' as const, points: 1 } : { outcome: 'incorrect' as const, points: 0 });
   switch (unit.kind) {
     case 'text': {
       const c = classifyAnswer(response as string, unit.accepted);
+      // "des" + plural counts like the singular answer when the chosen gender is right (P4-05 review).
+      if (c.outcome === 'incorrect' && unit.plural && gender && unit.plural.genders.includes(gender)) {
+        const p = classifyAnswer(response as string, unit.plural.accepted);
+        if (p.outcome !== 'incorrect') return { outcome: p.outcome, points: p.credit };
+      }
       return { outcome: c.outcome, points: c.credit };
     }
     case 'choice': return right(unit.correct.includes(response as string));
@@ -174,7 +186,8 @@ function lockPage(page: PlanPage, r: SessionRecord, interfaceLanguage: Locale, t
   for (const unit of page.units) {
     if (locked[unit.id]) continue;
     const response = r.drafts[unit.id] ?? null;
-    locked[unit.id] = { response, ...scoreUnit(unit, response), timedOut, interfaceLanguage };
+    const gender = unit.kind === 'text' && unit.plural && isPluralAnswer(response) ? (r.drafts[`${unit.id}#gender`] as string | undefined) : undefined;
+    locked[unit.id] = { response, ...scoreUnit(unit, response, gender), timedOut, interfaceLanguage, ...(gender ? { gender } : {}) };
   }
   return { ...r, locked };
 }
@@ -196,7 +209,13 @@ export function sessionReducer(plan: LessonPlan, r: SessionRecord, action: Sessi
   let next: SessionRecord;
   switch (action.type) {
     case 'draft': {
-      const unit = page.units.find((u) => u.id === action.unitId);
+      // The gender after a "des" + plural answer is a draft of its own (P4-05 review).
+      const unit = page.units.find((u) => u.id === action.unitId || (u.kind === 'text' && u.plural && `${u.id}#gender` === action.unitId));
+      if (unit && action.unitId !== unit.id) {
+        if (r.phase !== 'answering' || r.locked[unit.id] || expired) return r;
+        next = { ...r, drafts: { ...r.drafts, [action.unitId]: action.response } };
+        break;
+      }
       // Locked answers are immutable; input after an exam deadline is ignored.
       if (!unit || r.phase !== 'answering' || r.locked[unit.id] || expired) return r;
       next = { ...r, drafts: { ...r.drafts, [unit.id]: action.response } };

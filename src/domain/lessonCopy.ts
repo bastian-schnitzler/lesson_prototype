@@ -40,5 +40,6 @@ export const FUNCTIONS_COPY = {
   dialogueGaps: [L('Dialogue gaps', 'Dialogue à trous', 'Dialoglücken'), L('Choose the expression that fits the gap.', 'Choisissez l’expression qui complète la réplique.', 'Wähle den Ausdruck, der in die Lücke passt.')],
   exam: [L('Final exam', 'Examen final', 'Abschlussprüfung'), L('Build the answer. Not every word fits.', 'Construisez la réponse. Tous les mots ne servent pas.', 'Bilde die Antwort. Nicht jedes Wort passt.')],
   listening: [L('Listening', 'Écoute', 'Hören'), L('Listen, then choose the reply that fits.', 'Écoutez, puis choisissez la réponse qui convient.', 'Hör zu und wähle dann die passende Antwort.')],
+  examWords: L('Translate each word into French, with its article for nouns.', 'Traduisez chaque mot en français, avec l’article pour les noms.', 'Übersetze jedes Wort ins Französische, bei Nomen mit Artikel.'),
   examDialogue: L('Fill each gap with an expression from this lesson.', 'Complétez chaque trou avec une expression de la leçon.', 'Fülle jede Lücke mit einem Ausdruck aus dieser Lektion.'),
 } as const;

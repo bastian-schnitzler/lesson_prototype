@@ -65,16 +65,16 @@ describe('function artifacts', () => {
     ['a missing expression in the dialogue', (c: Json) => step(c, 'dialogue').pages[0].items[0].lines.forEach((l: Json) => (l.expressionIds = l.expressionIds.filter((e: string) => e !== 'cest-tout'))), /does not use expression cest-tout/],
     ['two lines of one role in a row', (c: Json) => (step(c, 'dialogue').pages[0].items[0].lines[1].roleId = 'serveur'), /roles alternate/],
     ['a distractor in practice', (c: Json) => (step(c, 'word_order').pages[0].items[0].distractorTokenIds = ['t3']), /tokens only/],
-    ['a distractor inside the accepted order', (c: Json) => (step(c, 'exam').pages[0].items[0].distractorTokenIds = ['t1']), /except the distractors/],
+    ['a distractor inside the accepted order', (c: Json) => (step(c, 'exam').pages[1].items[0].distractorTokenIds = ['t1']), /except the distractors/],
     ['a gap without its answer among the choices', (c: Json) => (step(c, 'dialogue_gaps').pages[0].items[0].choiceExpressionIds[0] = 'laddition'), /four distinct expressions including the answer/],
     ['an exam reply taken from practice', (c: Json) => {
-      const reply = step(c, 'exam').pages[0].items[0];
+      const reply = step(c, 'exam').pages[1].items[0];
       reply.tokens = [{ tokenId: 't1', text: 'Je' }, { tokenId: 't2', text: 'voudrais' }, { tokenId: 't3', text: 'un thé,' }, { tokenId: 't4', text: 's’il vous plaît' }];
       reply.distractorTokenIds = [];
       reply.acceptedOrders = [['t1', 't2', 't3', 't4']];
     }, /already occurs in the brief or in practice/],
     ['a wrong page estimate', (c: Json) => (step(c, 'dialogue').pages[0].estimatedDurationS = 60), /must be 140 s by the page rules/],
-    ['a wrong exam limit', (c: Json) => (step(c, 'exam').pages[2].timeLimitS = 100), /must be 384 s/],
+    ['a wrong exam limit', (c: Json) => (step(c, 'exam').pages[3].timeLimitS = 100), /must be 384 s/],
     ['a practice countdown', (c: Json) => (step(c, 'matching').pages[0].timeLimitS = 60), /only exam pages have a countdown/],
     ['steps out of order', (c: Json) => c.steps.reverse(), /expected the flashcards step/],
   ])('rejects lesson content with %s', (_, mutate, pattern) => {
@@ -84,12 +84,14 @@ describe('function artifacts', () => {
   it('derives page estimates and exam limits from the page rules (section 8)', () => {
     const content = load('lessons') as FunctionsContent;
     const exam = content.steps.at(-1)!.pages;
-    expect(functionsPageEstimate(exam[0].items, true)).toBe(4 * 30);
-    expect(functionsPageEstimate(exam[2].items, true)).toBe(12 * 8 + 8 * 20);
+    expect(functionsPageEstimate(exam[0].items, true)).toBe(4 * 15); // word translation (P4-05 review)
+    expect(exam[0].timeLimitS).toBe(90);
+    expect(functionsPageEstimate(exam[1].items, true)).toBe(4 * 30);
+    expect(functionsPageEstimate(exam[3].items, true)).toBe(12 * 8 + 8 * 20);
     expect(functionsTimeLimit(256)).toBe(384);
     expect(functionsPageEstimate(content.steps.find((s) => s.stage === 'gender')!.pages[0].items, false)).toBe(20 + 4 * 5);
     expect(functionsPageEstimate(content.steps.find((s) => s.stage === 'listening')!.pages[0].items, false)).toBe(30);
-    expect(content.estimatedMinutes).toBe(25);
+    expect(content.estimatedMinutes).toBe(26);
   });
 });
 
@@ -99,9 +101,9 @@ describe('function lesson plan', () => {
   const plan = buildPlan(content, brief, 'de', { examIntro: true });
   const units = (role: string) => plan.pages.filter((p) => p.role === role).flatMap((p) => p.units);
 
-  it('has 40 practice units and 16 exam units; flashcards and the dialogue are presentation pages', () => {
+  it('has 40 practice units and 20 exam units; flashcards and the dialogue are presentation pages', () => {
     expect(units('practice')).toHaveLength(8 + 4 + 4 + 8 + 8 + 8);
-    expect(units('exam')).toHaveLength(8 + 8);
+    expect(units('exam')).toHaveLength(4 + 8 + 8);
     expect(plan.pages.slice(0, 3).map((p) => p.role)).toEqual(['presentation', 'presentation', 'presentation']);
     expect(plan.pages.find((p) => p.special === 'examIntro')).toBeDefined();
   });

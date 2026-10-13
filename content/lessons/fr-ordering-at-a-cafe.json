@@ -14,15 +14,15 @@
     "fr": "Commander une boisson et un en-cas au café, demander le prix et l’addition, et répondre au serveur.",
     "de": "Im Café ein Getränk und einen Snack bestellen, nach Preis und Rechnung fragen und dem Kellner antworten."
   },
-  "estimatedMinutes": 25,
+  "estimatedMinutes": 26,
   "provenance": {
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "functions-v1",
-    "generatedAt": "2026-10-13T18:26:27.948Z",
+    "generatedAt": "2026-10-13T19:47:55.321Z",
     "inputHashes": {
       "outline": "3d44c42aa9721069c041b103732801561e34e993b5fde9e51f14c06cb8768c78",
-      "brief": "2629c5e9e541dec2e44453fdc4eb6ddb13088e5d1e142aa3acffb5750f767de0"
+      "brief": "740a6bf8654c5da324d3f1f709b51f7c569fa8b75de77ae8100e2f8de85f7308"
     }
   },
   "kind": "functions",
@@ -1586,6 +1586,98 @@
         "de": "Abschlussprüfung"
       },
       "pages": [
+        {
+          "pageId": "exam-words",
+          "estimatedDurationS": 60,
+          "timeLimitS": 90,
+          "instructions": {
+            "en": "Translate each word into French, with its article for nouns.",
+            "fr": "Traduisez chaque mot en français, avec l’article pour les noms.",
+            "de": "Übersetze jedes Wort ins Französische, bei Nomen mit Artikel."
+          },
+          "items": [
+            {
+              "type": "function_translation_exam",
+              "itemId": "word-cafe",
+              "wordId": "cafe",
+              "prompt": {
+                "en": "coffee",
+                "de": "Kaffee"
+              },
+              "accepted": {
+                "answers": [
+                  "un café"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "Masculine noun: un café.",
+                "fr": "Nom masculin : un café.",
+                "de": "Maskulines Nomen: un café."
+              }
+            },
+            {
+              "type": "function_translation_exam",
+              "itemId": "word-the",
+              "wordId": "the",
+              "prompt": {
+                "en": "tea",
+                "de": "Tee"
+              },
+              "accepted": {
+                "answers": [
+                  "un thé"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "Masculine noun: un thé.",
+                "fr": "Nom masculin : un thé.",
+                "de": "Maskulines Nomen: un thé."
+              }
+            },
+            {
+              "type": "function_translation_exam",
+              "itemId": "word-croissant",
+              "wordId": "croissant",
+              "prompt": {
+                "en": "croissant",
+                "de": "Croissant"
+              },
+              "accepted": {
+                "answers": [
+                  "un croissant"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "Masculine noun: un croissant.",
+                "fr": "Nom masculin : un croissant.",
+                "de": "Maskulines Nomen: un croissant."
+              }
+            },
+            {
+              "type": "function_translation_exam",
+              "itemId": "word-jus-dorange",
+              "wordId": "jus-dorange",
+              "prompt": {
+                "en": "orange juice",
+                "de": "Orangensaft"
+              },
+              "accepted": {
+                "answers": [
+                  "un jus d’orange"
+                ],
+                "accentSensitive": []
+              },
+              "answerExplanation": {
+                "en": "Masculine noun: un jus d’orange.",
+                "fr": "Nom masculin : un jus d’orange.",
+                "de": "Maskulines Nomen: un jus d’orange."
+              }
+            }
+          ]
+        },
         {
           "pageId": "exam-replies-1",
           "estimatedDurationS": 120,

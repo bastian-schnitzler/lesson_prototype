@@ -120,6 +120,11 @@ export function buildFunctionsLesson(def: FunctionsDefinition, root = resolve(im
       options: l.options.map((text, m) => ({ optionId: `o${m + 1}`, text })), answerOptionId: 'o1', answerExplanation: l.explanation,
     }])) },
     { id: 'exam', stage: 'exam', role: 'exam', label: FUNCTIONS_COPY.exam[0], pages: [
+      // Word translation first, as in vocabulary lessons (P4-05 review).
+      ...(def.words.length ? [page('exam-words', FUNCTIONS_COPY.examWords, def.words.map((w) => ({
+        type: 'function_translation_exam' as const, itemId: `word-${w.id}`, wordId: w.id, prompt: native(list(w.en)[0], list(w.de)[0]),
+        accepted: { answers: [w.form], accentSensitive: [] }, answerExplanation: w.explanation,
+      })), true)] : []),
       ...replyPages.map((replies, p) => page(`exam-replies-${p + 1}`, FUNCTIONS_COPY.exam[1], replies.map((r) => {
         const n = def.replies.indexOf(r) + 1;
         return wordOrder(`reply-${n}`, r.e, r.reply, r.explanation, r.context, r.role, r.distractors);
@@ -158,7 +163,7 @@ export function buildFunctionsLesson(def: FunctionsDefinition, root = resolve(im
   const practice = expressionIds.length * 4 + wordIds.length + nouns;
   return {
     briefText, contentText, dir,
-    report: `${def.id}: ${expressionIds.length} expressions, ${wordIds.length} words, ${practice} practice units, ${def.replies.length + examGaps} exam units on ${replyPages.length + 1} pages, ${minutes} min`,
+    report: `${def.id}: ${expressionIds.length} expressions, ${wordIds.length} words, ${practice} practice units, ${wordIds.length + def.replies.length + examGaps} exam units on ${replyPages.length + 1 + (wordIds.length ? 1 : 0)} pages, ${minutes} min`,
     issues: [
       ...briefResult.issues.map((i) => `brief ${i.path}: ${i.message}`),
       ...(contentResult?.issues ?? []).map((i) => `content ${i.path}: ${i.message}`),
