@@ -154,6 +154,16 @@ export function StartView({ plan, level, resumable, notice, onStart, onResume }:
 
 /* ---------------------------------------------------------- session host */
 
+/**
+ * Practice pages with one multiple-choice answer (P4-05 review): radio choices (multiple-choice and
+ * dialogue gaps, listening choice). Matching boards and gender pages keep their Check button.
+ */
+export function isAutoSubmitPage(page: PlanPage): boolean {
+  const unit = page.units[0];
+  return page.role === 'practice' && page.units.length === 1 && unit.kind === 'choice' && !isMatchingItem(unit.itemType)
+    && unit.itemType !== 'vocabulary_gender_select' && unit.itemType !== 'function_gender_select' && page.items.length === 1;
+}
+
 export function SessionHeader({ plan, record }: { plan: LessonPlan; record: SessionRecord }) {
   const { t, locale } = useI18n();
   const pct = progress(plan, record);
@@ -233,6 +243,15 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
     const pause = page.items.some((it) => isMatchingItem(it.type)) ? MATCH_SLIDE_MS + 1000 : 900;
     window.setTimeout(() => { setCelebrating(false); dispatch({ type: 'continue' }); }, pause);
   };
+  // Multiple choice (P4-05 review): choosing an option submits the page at once; a right answer plays the
+  // success animation and moves on, a wrong one is marked in place and waits for Continue.
+  const autoSubmit = page.role === 'practice' && record.phase === 'answering' && isAutoSubmitPage(page);
+  const choice = autoSubmit ? record.drafts[page.units[0].id] : undefined;
+  useEffect(() => {
+    if (autoSubmit && choice && !celebrating) onContinue();
+    // onContinue reads the current record; it runs once per chosen answer.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoSubmit, choice]);
 
   return (
     <>
@@ -265,7 +284,8 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
               mode={mode}
               drafts={record.drafts}
               locked={record.locked}
-              onChange={(unitId, response) => dispatch({ type: 'draft', unitId, response })}
+              // While the success animation plays the answer is fixed.
+              onChange={(unitId, response) => { if (!celebrating) dispatch({ type: 'draft', unitId, response }); }}
               seed={record.seed}
               motherTongue={record.motherTongue}
               pageId={page.pageId}
@@ -284,7 +304,7 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
               // A function dialogue unrolls line by line; after the last line the button continues (SPEC section 8).
               <button type="button" className="button button-primary" onClick={() => dispatch({ type: 'reveal', ...nextLine })}>{t('session.nextLine')}</button>
             ) : (
-            <button type="button" className="button button-primary" disabled={!ready} aria-disabled={celebrating || undefined} onClick={() => !celebrating && onContinue()}>
+            !(autoSubmit || (celebrating && isAutoSubmitPage(page))) && <button type="button" className="button button-primary" disabled={!ready} aria-disabled={celebrating || undefined} onClick={() => !celebrating && onContinue()}>
               {/* Practice pages are checked first ("Check"); afterwards the same button continues. */}
               {t(page.role === 'practice' && record.phase === 'answering' ? 'session.check' : 'session.continue')}
             </button>
@@ -462,6 +482,15 @@ function resultSections(plan: LessonPlan, pages: PlanPage[]) {
   return sections;
 }
 
+/**
+ * Result-menu colour of a part (all categories): green when every answer is fully right, red when none
+ * earned a point, red stripes when at least one answer is not fully right. Half credit counts as not right.
+ */
+export function resultTone(tally: { earned: number; possible: number }): string {
+  if (!tally.possible) return '';
+  return tally.earned === tally.possible ? ' is-all-right' : tally.earned === 0 ? ' is-all-wrong' : ' is-mixed';
+}
+
 export function ResultsView({ plan, record, dispatch }: { plan: LessonPlan; record: SessionRecord; dispatch: (action: SessionInput) => void }) {
   const { t, locale, languageName } = useI18n();
   const results = lessonResults(plan, record);
@@ -498,13 +527,13 @@ export function ResultsView({ plan, record, dispatch }: { plan: LessonPlan; reco
       <h2 className="small-heading">{t('result.chooseReview')}</h2>
       <div className="result-menu" role="group" aria-label={t('result.chooseReview')}>
         {/* The final exam comes first and stands out; the exercises follow in the order they were presented. */}
-        <button type="button" className="button button-outline button-exam" aria-pressed={record.selection === 'exam'} onClick={() => dispatch({ type: 'select', selection: 'exam' })}>
+        <button type="button" className={`button button-outline button-exam${resultTone(results.exam)}`} aria-pressed={record.selection === 'exam'} onClick={() => dispatch({ type: 'select', selection: 'exam' })}>
           {t('session.examPage')}
         </button>
         {exerciseSteps.map((s) => {
           const label = plan.steps.find((p) => p.stepId === s.stepId)!.label[locale];
           return (
-            <button key={s.stepId} type="button" className="button button-outline" aria-pressed={record.selection === s.stepId} onClick={() => dispatch({ type: 'select', selection: s.stepId })}>
+            <button key={s.stepId} type="button" className={`button button-outline${resultTone(s.tally)}`} aria-pressed={record.selection === s.stepId} onClick={() => dispatch({ type: 'select', selection: s.stepId })}>
               {label}
             </button>
           );

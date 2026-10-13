@@ -2026,15 +2026,29 @@ select {
   margin-bottom: 1rem;
 }
 
-/* Results: the final exam button stands out; Repeat lesson sits left of the primary overview link. */
+/*
+ * Results menu (all categories, P4-05 review): the final exam is always bold; the selected part has a
+ * purple background and border. Other parts show their outcome: red when every answer is wrong, red
+ * stripes when at least one answer is not fully right; parts with every answer right keep the plain look.
+ */
 .button-exam {
-  border-color: var(--progress);
-  color: #ddd6fe;
-  font-weight: 600;
+  font-weight: 700;
 }
 
-.button-exam[aria-pressed='true'] {
+.result-menu .button.is-all-wrong {
+  background: #7f1d1d;
+  border-color: #b91c1c;
+}
+
+.result-menu .button.is-mixed {
+  background: repeating-linear-gradient(135deg, #7f1d1d 0 7px, #0f172a 7px 14px);
+  border-color: #b91c1c;
+  text-shadow: 0 1px 2px #000, 0 0 4px #000;
+}
+
+.result-menu .button[aria-pressed='true'] {
   background: #1e1b4b;
+  border-color: var(--progress);
 }
 
 .results-lesson {

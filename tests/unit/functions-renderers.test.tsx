@@ -9,7 +9,7 @@ import { briefSchema, contentSchema } from '../../src/schemas/artifacts.ts';
 import type { RendererProps } from '../../src/session/controls.tsx';
 import { DialogueGapChoiceRenderer, DialogueRenderer, ExamDialogueRenderer, FunctionFlashcardsRenderer, FunctionWordOrderRenderer, ListeningReplyRenderer } from '../../src/session/functionsRenderers.tsx';
 import { MatchingRenderer } from '../../src/session/vocabularyRenderers.tsx';
-import { ResultsView, SessionView, StartView } from '../../src/session/views.tsx';
+import { isAutoSubmitPage, resultTone, ResultsView, SessionView, StartView } from '../../src/session/views.tsx';
 
 /** P4-04: function flashcards, model dialogue and matching (SPEC section 8). */
 afterEach(cleanup);
@@ -222,6 +222,11 @@ describe('function practice, exam and results (P4-05)', () => {
     render(wrap(<LastTryProvider><ResultsView plan={plan} record={r} dispatch={() => undefined} /></LastTryProvider>));
     const summaries = [...document.querySelectorAll('.result-accordion summary')].map((s) => s.textContent);
     expect(summaries).toEqual(['Replies0 of 8 correct.', 'Dialogue8 of 8 correct.']);
+    // Result menu (all categories): selected purple; others green (all right), red (all wrong) or red stripes (mixed).
+    const menu = [...document.querySelectorAll('.result-menu button')];
+    expect(menu[0]).toHaveAttribute('aria-pressed', 'true');
+    expect(menu[0]).toHaveClass('is-mixed');
+    expect(menu.slice(1).every((b) => b.classList.contains('is-all-right'))).toBe(true);
     expect(screen.getAllByText(/le serveur: Madame, vous désirez \?/).length).toBeGreaterThan(0);
   });
 });
@@ -271,4 +276,20 @@ describe('function listening choice (P4-05 review)', () => {
     const { isListeningPage } = await import('../../src/domain/session/session.ts');
     expect(isListeningPage(pg)).toBe(true);
   });
+});
+
+it('colours result-menu parts by their outcome; half credit is not fully right', () => {
+  expect(resultTone({ earned: 4, possible: 4 })).toBe(' is-all-right');
+  expect(resultTone({ earned: 0, possible: 4 })).toBe(' is-all-wrong');
+  expect(resultTone({ earned: 3.5, possible: 4 })).toBe(' is-mixed');
+  expect(resultTone({ earned: 0, possible: 0 })).toBe('');
+});
+
+it('submits multiple-choice practice pages on selection, but not matching, gender or word order (P4-05 review)', () => {
+  expect(isAutoSubmitPage(page('gap-1'))).toBe(true);
+  expect(isAutoSubmitPage(page('listening-1'))).toBe(true);
+  expect(isAutoSubmitPage(page('match-expressions-1'))).toBe(false);
+  expect(isAutoSubmitPage(page('gender'))).toBe(false);
+  expect(isAutoSubmitPage(page('order-1'))).toBe(false);
+  expect(isAutoSubmitPage(page('exam-replies-1'))).toBe(false);
 });

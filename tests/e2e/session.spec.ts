@@ -10,6 +10,20 @@ test.beforeEach(async ({ page }) => {
 /** Clicks the page's primary action: "Check" on unanswered practice pages, "Continue" otherwise. */
 const proceed = (page: Page) => page.getByRole('button', { name: /^(Continue|Check)$/ }).click();
 
+/**
+ * Submits the current page: multiple-choice practice pages submit themselves when an option is chosen
+ * (P4-05 review) – then only a wrong answer needs Continue; other pages use Check/Continue.
+ */
+async function submit(page: Page) {
+  await page.waitForTimeout(100);
+  if (await page.locator('.task-card.is-celebrating, .choice.is-wrong').count()) {
+    await expect(page.locator('.task-card.is-celebrating')).toHaveCount(0);
+    if (await page.locator('.choice.is-wrong').count()) await proceed(page);
+    return;
+  }
+  await proceed(page);
+}
+
 /** Turns every flashcard of the current page to its French side. */
 async function revealCards(page: Page) {
   const unturned = page.getByRole('button', { name: 'Flip card to French' });
@@ -65,7 +79,7 @@ async function answerListening(page: Page, right = true) {
   for (const option of await page.locator('fieldset.choices label').all()) {
     if (((await option.locator('span[lang]').textContent())!.trim() === word) === right) { await option.click(); break; }
   }
-  await proceed(page);
+  // Choosing submits the page (P4-05 review).
   if (!right) {
     await expect(page.locator('.choice.is-wrong')).toHaveCount(1);
     await proceed(page);
@@ -236,7 +250,7 @@ test('locks an exam page when its brief-defined countdown expires', async ({ pag
     await chooseAll(page);
     for (const group of await page.locator('fieldset.choices:not([disabled])').all()) await group.locator('input').first().check();
     for (const bank of await page.locator('.order-bank').all()) while (await bank.locator('button').count()) await bank.locator('button').first().click();
-    await proceed(page);
+    await submit(page);
   }
   await expect(page.getByRole('timer')).toHaveText('1:00');
   await page.clock.fastForward('01:05');
@@ -298,16 +312,14 @@ test('plays French listening choice and dictation with a suitable voice', async 
     const options = page.locator('fieldset.choices label');
     for (const option of await options.all()) if (((await option.locator('span[lang]').textContent())!.trim() === word) === right) return option.click();
   };
-  await choose(false);
+  await choose(false); // choosing submits the page (P4-05 review)
   await expect(page.locator('fieldset.choices .choice-gender')).toHaveCount(0); // fr-classroom-instructions has no nouns
-  await proceed(page);
   // A wrong choice: the chosen option red, the correct one green, no feedback card.
   await expect(page.locator('.choice.is-wrong')).toHaveCount(1);
   await expect(page.locator('.choice.is-right')).toHaveCount(1);
   await expect(page.locator('.feedback')).toHaveCount(0);
   await proceed(page);
   await choose(true);
-  await proceed(page);
   await expect(page.locator('.task-card.is-celebrating .choice:has(input:checked)')).toHaveCount(1);
   await expect(page.locator('.feedback')).toHaveCount(0);
   await expect(page.locator('.task-card.is-celebrating')).toHaveCount(0);
@@ -516,8 +528,7 @@ test('person matching: persons in order, checked in place like vocabulary matchi
   await proceed(page); // Check
   await proceed(page); // feedback
   for (const answer of ['es', 'suis']) {
-    await page.locator('fieldset.choices label').filter({ hasText: new RegExp(`^${answer}$`) }).click();
-    await proceed(page);
+    await page.locator('fieldset.choices label').filter({ hasText: new RegExp(`^${answer}$`) }).click(); // submits the page
     await expect(page.locator('.task-card.is-celebrating')).toHaveCount(0);
   }
   // The board: je, tu, il / elle on the left in person order, the forms shuffled on the right.
