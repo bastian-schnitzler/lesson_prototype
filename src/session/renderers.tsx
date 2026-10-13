@@ -3,6 +3,7 @@ import type { ComponentType } from 'react';
 import type { Item } from '../domain/session/plan.ts';
 import { UnitsRenderer, type RendererProps } from './controls.tsx';
 import { ExplanationRenderer, PlaceholderRenderer, PronounMatchRenderer, PronounTypingRenderer } from './grammarRenderers.tsx';
+import { DialogueRenderer, FunctionFlashcardsRenderer } from './functionsRenderers.tsx';
 import { FlashcardsRenderer, GenderRenderer, IntroductionRenderer, MatchingRenderer, OverviewRenderer } from './vocabularyRenderers.tsx';
 
 export { UnitFeedback, type RendererProps } from './controls.tsx';
@@ -31,10 +32,10 @@ export const rendererRegistry: Record<Item['type'], ComponentType<RendererProps>
   grammar_gap_typing: UnitsRenderer,
   grammar_word_order: UnitsRenderer,
   grammar_error_spotter: UnitsRenderer,
-  // Function lessons (P4-02): baseline renderers until P4-04/P4-05 add the full interactions.
-  function_flashcards: UnitsRenderer,
-  function_dialogue: UnitsRenderer,
-  function_matching: UnitsRenderer,
+  // Function lessons: flashcards, dialogue and matching since P4-04; the rest are baseline renderers until P4-05.
+  function_flashcards: FunctionFlashcardsRenderer,
+  function_dialogue: DialogueRenderer,
+  function_matching: MatchingRenderer,
   function_word_order: UnitsRenderer,
   function_dialogue_gap_choice: UnitsRenderer,
   function_dialogue_gap_typing: UnitsRenderer,

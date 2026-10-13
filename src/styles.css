@@ -2306,3 +2306,52 @@ html {
   width: auto;
   min-width: 18rem;
 }
+
+/* Function lessons (P4-04): the model dialogue as alternating line cards (SPEC section 8). */
+.dialogue {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.dialogue-lines {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dialogue-line {
+  width: min(100%, 36rem);
+}
+
+.dialogue-line.is-second {
+  justify-self: end;
+}
+
+.dialogue-card .flashcard-face {
+  gap: 0.35rem;
+  padding: 0.9rem 3.5rem 0.9rem 1.1rem;
+}
+
+.dialogue-line.is-second .flashcard-face {
+  background: var(--surface);
+}
+
+.dialogue-role {
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.dialogue-text {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 19px;
+}
+
+.expression-mark {
+  color: #c7d2fe;
+}

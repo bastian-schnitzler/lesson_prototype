@@ -892,6 +892,8 @@ Acceptance:
 - Matching reuses the vocabulary matching board for expressions (pages of at most 6 pairs) and words; scoring, slide and green flash as in vocabulary.
 - Unit and component tests cover card orientation, line reveal and resume, and matching pages.
 
+Outcome (2026-10-13): `src/session/functionsRenderers.tsx` (`FunctionFlashcardsRenderer`, `DialogueRenderer`), `function_matching` on the shared `MatchingRenderer`, reveal gating (`requiredReveals`, `nextDialogueLine`) with the Next line footer button, `LessonPlan.functions` with roles, expressions and words; tests in `tests/unit/functions-renderers.test.tsx`. Start stays unavailable until P4-05.
+
 Dependencies: P4-03 (the renderers are built against the three test lessons).
 
 ### P4-05: Function word order, dialogue gaps, exam and results
