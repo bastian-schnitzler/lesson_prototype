@@ -3774,7 +3774,7 @@ Use the following review, cleanup, and mockup gates in the issue plan. Full issu
 | [P2-08](https://github.com/bastian-schnitzler/lesson_prototype/issues/25) | Improve vocabulary lesson mockups from the running prototype | Final phase 2 issue, after complete-session validation and formatted text. |
 | [P3-07](https://github.com/bastian-schnitzler/lesson_prototype/issues/67) | Lengthen grammar lessons: length rules, new verbs and the ten samples rewritten | Added 2026-10-08 at the product owner's request; P2-07 follows its rules. |
 | [P3-08](https://github.com/bastian-schnitzler/lesson_prototype/issues/32) | Improve grammar lesson mockups from the running prototype | Final phase 3 issue, after complete grammar integration. |
-| P4-03 | Write and review the three function test lessons | Directly after the P4-02 schemas, before the renderers; the P4-06 generation decision follows their review. |
+| [P4-03](https://github.com/bastian-schnitzler/lesson_prototype/issues/76) | Write and review the three function test lessons | Directly after the P4-02 schemas, before the renderers; the P4-06 generation decision follows their review. |
 | [P4-08](https://github.com/bastian-schnitzler/lesson_prototype/issues/34) | Improve function lesson mockups from the running prototype | Final phase 4 issue (renumbered from P4-02 in P4-01), after end-to-end validation. |
 | [P5-02](https://github.com/bastian-schnitzler/lesson_prototype/issues/36) | Improve reading lesson mockups from the running prototype | Final phase 5 task; deferred until requirements and future implementation issues are complete. |
 

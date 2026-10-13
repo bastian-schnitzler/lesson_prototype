@@ -41,6 +41,12 @@ These issue bodies were published to GitHub in P0-04 on 2026-10-06. Each GitHub 
 | P3-07 | [#67](https://github.com/bastian-schnitzler/lesson_prototype/issues/67) | Lengthen grammar lessons: length rules, new verbs and the ten samples rewritten |
 | P3-08 | [#32](https://github.com/bastian-schnitzler/lesson_prototype/issues/32) | Update grammar lesson mockups from the prototype |
 | P4-01 | [#33](https://github.com/bastian-schnitzler/lesson_prototype/issues/33) | Define functions requirements and implementation backlog |
+| P4-02 | [#75](https://github.com/bastian-schnitzler/lesson_prototype/issues/75) | Function brief and lesson content schemas and validation |
+| P4-03 | [#76](https://github.com/bastian-schnitzler/lesson_prototype/issues/76) | Write and review the three function test lessons |
+| P4-04 | [#77](https://github.com/bastian-schnitzler/lesson_prototype/issues/77) | Function flashcards, model dialogue and matching |
+| P4-05 | [#78](https://github.com/bastian-schnitzler/lesson_prototype/issues/78) | Function word order, dialogue gaps, exam and results |
+| P4-06 | [#79](https://github.com/bastian-schnitzler/lesson_prototype/issues/79) | Decide function generation and complete the remaining eleven lessons |
+| P4-07 | [#80](https://github.com/bastian-schnitzler/lesson_prototype/issues/80) | Function end-to-end validation and deployment |
 | P4-08 | [#34](https://github.com/bastian-schnitzler/lesson_prototype/issues/34) | Update function lesson mockups from the prototype |
 | P5-01 | [#35](https://github.com/bastian-schnitzler/lesson_prototype/issues/35) | Define reading requirements and implementation backlog |
 | P5-02 | [#36](https://github.com/bastian-schnitzler/lesson_prototype/issues/36) | Update reading lesson mockups from the prototype |
@@ -835,6 +841,8 @@ Dependencies: function requirements from the user; P1 shared architecture. Categ
 
 ### P4-02: Function brief and lesson content schemas and validation
 
+GitHub: [#75](https://github.com/bastian-schnitzler/lesson_prototype/issues/75).
+
 Milestone: **Phase 4**.
 
 Scope: the executable function brief and lesson content contracts (SPEC section 8, D51): the brief holds the expressions and words with example sentences; the lesson content holds the dialogues, exercises and exam.
@@ -851,6 +859,8 @@ Dependencies: P4-01.
 
 ### P4-03: Write and review the three function test lessons
 
+GitHub: [#76](https://github.com/bastian-schnitzler/lesson_prototype/issues/76).
+
 Milestone: **Phase 4**.
 
 Scope: Claude writes the brief and lesson content of `fr-greetings-and-goodbyes`, `fr-ordering-at-a-cafe` and `fr-asking-the-way` by hand (no Gemini calls), with an authoring tool like the grammar one.
@@ -864,6 +874,8 @@ Acceptance:
 Dependencies: P4-02. The lessons become playable with P4-05.
 
 ### P4-04: Function flashcards, model dialogue and matching
+
+GitHub: [#77](https://github.com/bastian-schnitzler/lesson_prototype/issues/77).
 
 Milestone: **Phase 4**.
 
@@ -879,6 +891,8 @@ Acceptance:
 Dependencies: P4-03 (the renderers are built against the three test lessons).
 
 ### P4-05: Function word order, dialogue gaps, exam and results
+
+GitHub: [#78](https://github.com/bastian-schnitzler/lesson_prototype/issues/78).
 
 Milestone: **Phase 4**.
 
@@ -897,6 +911,8 @@ Dependencies: P4-04.
 
 ### P4-06: Decide function generation and complete the remaining eleven lessons
 
+GitHub: [#79](https://github.com/bastian-schnitzler/lesson_prototype/issues/79).
+
 Milestone: **Phase 4**.
 
 Scope: after the test-lesson review, decide with the product owner whether the remaining eleven function lessons are generated offline with Gemini or written by hand, then produce them.
@@ -910,6 +926,8 @@ Acceptance:
 Dependencies: P4-03, P4-05.
 
 ### P4-07: Function end-to-end validation and deployment
+
+GitHub: [#80](https://github.com/bastian-schnitzler/lesson_prototype/issues/80).
 
 Milestone: **Phase 4**.
 
