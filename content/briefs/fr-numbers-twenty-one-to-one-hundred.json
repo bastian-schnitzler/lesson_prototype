@@ -154,6 +154,7 @@
       "gap": {
         "before": "21 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "vingt-et-un"
@@ -224,6 +225,7 @@
       "gap": {
         "before": "30 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "trente"
@@ -294,6 +296,7 @@
       "gap": {
         "before": "40 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "quarante"
@@ -364,6 +367,7 @@
       "gap": {
         "before": "50 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "cinquante"
@@ -434,6 +438,7 @@
       "gap": {
         "before": "60 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "soixante"
@@ -504,6 +509,7 @@
       "gap": {
         "before": "70 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "soixante-dix"
@@ -574,6 +580,7 @@
       "gap": {
         "before": "71 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "soixante-et-onze"
@@ -644,6 +651,7 @@
       "gap": {
         "before": "80 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "quatre-vingts"
@@ -714,6 +722,7 @@
       "gap": {
         "before": "81 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "quatre-vingt-un"
@@ -784,6 +793,7 @@
       "gap": {
         "before": "90 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "quatre-vingt-dix"
@@ -854,6 +864,7 @@
       "gap": {
         "before": "91 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "quatre-vingt-onze"
@@ -925,6 +936,7 @@
       "gap": {
         "before": "100 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "cent"

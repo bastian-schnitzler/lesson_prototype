@@ -6,7 +6,7 @@ import { z } from 'zod';
 
 import { briefSchema, contentSchema, type Brief } from '../../src/schemas/artifacts.ts';
 import { OutlineFileSchema } from '../../src/schemas/outline.ts';
-import { grammarBriefLengthIssues, grammarContentLengthIssues, validateBrief, validateContent, type OutlineContext } from '../../src/validation/artifacts.ts';
+import { grammarBriefLengthIssues, grammarContentLengthIssues, vocabularyBriefLengthIssues, validateBrief, validateContent, type OutlineContext } from '../../src/validation/artifacts.ts';
 import { vocabularyLesson } from '../../src/domain/vocabularyLesson.ts';
 
 const ROOT = resolve(import.meta.dirname, '..', '..');
@@ -222,6 +222,7 @@ describe('grammar content validation', () => {
     expect(messages(checkContent('fr-negation-ne-pas', (c) => c.steps[1].pages[0].items[0].acceptedOrders[0].pop()))).toMatch(/every token exactly once/);
     expect(messages(checkContent('fr-negation-ne-pas', (c) => (c.steps[4].pages[0].items[0].faultyTokenId = 'w9')))).toMatch(/faultyTokenId/);
     expect(messages(checkContent('fr-negation-ne-pas', (c) => (c.steps[4].pages[0].items[0].correction.choices = ['pas', 'non'])))).toMatch(/select mode/);
+    expect(messages(checkContent('fr-negation-ne-pas', (c) => (c.steps[4].pages[0].items[0].correction.choices = ['pas', 'pas', 'ne'])))).toMatch(/choices must be distinct/);
     expect(messages(checkContent('fr-verb-etre-present', (c) => (c.steps[9].pages[0].items[0].hint = { en: 'h', fr: 'h', de: 'h' })))).toMatch(/no hint/);
     expect(messages(checkContent('fr-verb-etre-present', (c) => (c.steps[7].pages[0].items[0].ruleIds = ['r-x'])))).toMatch(/unknown rule r-x/);
   });
@@ -248,6 +249,13 @@ describe('grammar content validation', () => {
   });
 });
 
+describe('vocabulary lesson length (P6-02)', () => {
+  it('accepts up to twelve words and asks for a split above', () => {
+    expect(vocabularyBriefLengthIssues({ targets: new Array(12).fill(0) })).toEqual([]);
+    expect(vocabularyBriefLengthIssues({ targets: new Array(13).fill(0) }).map((i) => i.message).join()).toMatch(/at most 12.*split/);
+  });
+});
+
 describe('grammar lesson length (P3-07)', () => {
   const sample = (id: string) => {
     const read = (folder: string) => JSON.parse(readFileSync(join(ROOT, 'content', folder, `${id}.json`), 'utf8'));
@@ -261,7 +269,7 @@ describe('grammar lesson length (P3-07)', () => {
     expect(checkContent('fr-verb-etre-present').status).toBe('valid');
     const fixture = briefSchema('grammar', 'fr').parse(load('fr-verb-etre-present', 'brief'));
     if (fixture.kind !== 'grammar') throw new Error('Expected grammar');
-    expect(grammarBriefLengthIssues(fixture).map((i) => i.message).join('\n')).toMatch(/at least 34[\s\S]*at least 16/);
+    expect(grammarBriefLengthIssues(fixture).map((i) => i.message).join('\n')).toMatch(/at least 24[\s\S]*at least 12/);
   });
 
   it('checks exercises per block, scored units and realistic page estimates', () => {

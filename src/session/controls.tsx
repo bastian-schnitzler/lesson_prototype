@@ -108,7 +108,8 @@ export function answerText(unit: PlanUnit, response: UnitResponse | null, t: (k:
     case 'order': return (response as string[]).map((id) => unit.tokens.find((tk) => tk.id === id)?.text).join(' ');
     case 'spot': {
       const r = response as { tokenId: string; text: string };
-      return unit.tokens.map((tk) => (tk.id === r.tokenId ? `[${r.text}]` : tk.text)).join(' ');
+      // The sentence as the learner corrected it: the selected word replaced by the typed or chosen correction.
+      return unit.tokens.map((tk) => (tk.id === r.tokenId && r.text.trim() ? r.text.trim() : tk.text)).join(' ');
     }
   }
 }
@@ -137,8 +138,26 @@ export function UnitFeedback({ unit, locked, lang }: { unit: PlanUnit; locked: L
         </strong>
         <span className="match-wrong"><span className="visually-hidden">{t('result.yourAnswer')}: </span><s lang={unit.kind !== 'choice' || unit.options[0]?.lang === 'learning' ? lang : undefined}>{given || t('session.noAnswer')}</s></span>
       </div>
+      <SpotSummary unit={unit} response={locked.response} lang={lang} />
       <p className="explanation">{unit.explanation[locale]}</p>
     </div>
+  );
+}
+
+/**
+ * Error spotter feedback (P6-05): names the selected word and the submitted correction, and says so when
+ * the selected word was not the mistake. The correct sentence is shown by the caller, once.
+ */
+export function SpotSummary({ unit, response, lang }: { unit: PlanUnit; response: UnitResponse | null; lang: string }) {
+  const { t } = useI18n();
+  if (unit.kind !== 'spot' || !response || typeof response !== 'object' || Array.isArray(response) || !response.tokenId) return null;
+  const word = unit.tokens.find((tk) => tk.id === response.tokenId)?.text ?? '';
+  return (
+    <ul className="spot-summary">
+      <li>{t('feedback.selectedWord', { word })}</li>
+      {response.tokenId !== unit.faultyTokenId && <li>{t('feedback.wrongWord', { word })}</li>}
+      {response.text.trim() && <li lang={lang}>{t('feedback.yourCorrection', { text: response.text.trim() })}</li>}
+    </ul>
   );
 }
 
@@ -210,6 +229,7 @@ export function ChoiceControl({ unit, props, label, layout }: { unit: PlanUnit &
   return (
     <fieldset className="choices" disabled={disabled}>
       <legend className="visually-hidden">{label}</legend>
+      <small className="choose-hint">{t('session.chooseOne')}</small>
       {options.map((o) => (
         <label key={o.id} className={`choice${choiceState(o.id)}`}>
           <input type="radio" name={unit.id} value={o.id} checked={current === o.id} onChange={() => props.onChange(unit.id, o.id)} />
@@ -254,6 +274,7 @@ export function SpotControl({ unit, props }: { unit: PlanUnit & { kind: 'spot' }
   const { t } = useI18n();
   const current = (value(props, unit) as { tokenId: string; text: string } | undefined) ?? { tokenId: '', text: '' };
   const disabled = readOnly(props, unit);
+  const selectedWord = unit.tokens.find((tk) => tk.id === current.tokenId)?.text ?? '';
   return (
     <div className="spot">
       <p lang={props.plan.lang}>
@@ -264,16 +285,20 @@ export function SpotControl({ unit, props }: { unit: PlanUnit & { kind: 'spot' }
             className="token"
             aria-pressed={current.tokenId === tk.id}
             disabled={disabled}
-            onClick={() => props.onChange(unit.id, { ...current, tokenId: tk.id })}
+            onClick={() => props.onChange(unit.id, { tokenId: tk.id, text: tk.id === current.tokenId ? current.text : '' })} /* a new word starts a new correction */
           >
             {tk.text}
           </button>
         ))}
       </p>
-      {/* The correction appears once a word is selected (P3-07 review). */}
-      {!current.tokenId ? null : unit.correction.mode === 'select' ? (
+      {/* The correction appears once a word is selected (P3-07 review). Guided choices belong to the faulty word only (D52):
+          in practice another word is refused at once, so no unrelated replacement is ever offered for it. */}
+      {!current.tokenId ? null : unit.correction.mode === 'select' && props.mode !== 'exam' && current.tokenId !== unit.faultyTokenId ? (
+        <p className="info-box" role="status">{t('feedback.wrongWord', { word: selectedWord })} {t('session.pickAnother')}</p>
+      ) : unit.correction.mode === 'select' ? (
         <fieldset className="choices" disabled={disabled}>
-          <legend className="label-muted">{t('session.correction')}</legend>
+          <legend className="label-muted">{t('session.replaceWith', { word: selectedWord })}</legend>
+          <small className="choose-hint">{t('session.chooseOne')}</small>
           {unit.correction.choices.map((c) => (
             <label key={c} className="choice">
               <input type="radio" name={`${unit.id}-fix`} checked={current.text === c} onChange={() => props.onChange(unit.id, { ...current, text: c })} />
@@ -283,7 +308,7 @@ export function SpotControl({ unit, props }: { unit: PlanUnit & { kind: 'spot' }
         </fieldset>
       ) : (
         <label className="field">
-          <span className="label-muted">{t('session.correction')}</span>
+          <span className="label-muted">{t('session.replaceWith', { word: selectedWord })}</span>
           <input className="text-input" lang={props.plan.lang} autoComplete="off" spellCheck={false} value={current.text} readOnly={disabled} onChange={(e) => props.onChange(unit.id, { ...current, text: e.target.value })} />
         </label>
       )}
@@ -308,7 +333,6 @@ export function UnitsRenderer(props: RendererProps) {
   const item = props.item;
   return (
     <div className="units">
-      <ReferenceWords {...props} />
       {/* Gap cues stand on their own line above the sentence (practice only). */}
       {(item.type === 'grammar_gap_typing' || item.type === 'grammar_gap_choice') && item.hint && props.mode !== 'exam' && (
         <p className="muted gap-hint">
@@ -319,11 +343,14 @@ export function UnitsRenderer(props: RendererProps) {
         const prompt = unit.prompt.native ?? unit.prompt.learning ?? '';
         return (
           <UnitRow key={unit.id} unit={unit} props={props}>
-            {unit.speak && <ListenButton text={unit.speak} lang={lang} />}
+            {unit.speak && <ListenButton text={unit.speak} lang={lang} variant="icon" size="large" />}
             {unit.kind === 'text' && (unit.prompt.before !== undefined || unit.prompt.after !== undefined) ? (
-              <Gap before={unit.prompt.before} after={unit.prompt.after} lang={lang}>
-                <TextControl unit={unit} props={props} label={t('session.gapAnswer')} />
-              </Gap>
+              <>
+                {unit.prompt.question && <p className="gap-question">{unit.prompt.question}</p>}
+                <Gap before={unit.prompt.before} after={unit.prompt.after} lang={lang}>
+                  <TextControl unit={unit} props={props} label={unit.prompt.question ?? t('session.gapAnswer')} />
+                </Gap>
+              </>
             ) : unit.kind === 'text' ? (
               <>
                 <label className="field">
@@ -365,6 +392,8 @@ export function UnitsRenderer(props: RendererProps) {
           </UnitRow>
         );
       })}
+      {/* The sentence leads; the reference cards follow it (P6-03). */}
+      <ReferenceWords {...props} />
     </div>
   );
 }

@@ -163,6 +163,7 @@
       "gap": {
         "before": "0 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "zéro"
@@ -239,6 +240,7 @@
       "gap": {
         "before": "1 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "un"
@@ -309,6 +311,7 @@
       "gap": {
         "before": "2 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "deux"
@@ -379,6 +382,7 @@
       "gap": {
         "before": "3 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "trois"
@@ -449,6 +453,7 @@
       "gap": {
         "before": "4 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "quatre"
@@ -519,6 +524,7 @@
       "gap": {
         "before": "5 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "cinq"
@@ -589,6 +595,7 @@
       "gap": {
         "before": "6 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "six"
@@ -659,6 +666,7 @@
       "gap": {
         "before": "7 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "sept"
@@ -729,6 +737,7 @@
       "gap": {
         "before": "8 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "huit"
@@ -799,6 +808,7 @@
       "gap": {
         "before": "9 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "neuf"
@@ -869,6 +879,7 @@
       "gap": {
         "before": "10 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "dix"
@@ -939,6 +950,7 @@
       "gap": {
         "before": "11 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "onze"
@@ -1009,6 +1021,7 @@
       "gap": {
         "before": "12 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "douze"
@@ -1079,6 +1092,7 @@
       "gap": {
         "before": "13 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "treize"
@@ -1149,6 +1163,7 @@
       "gap": {
         "before": "14 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "quatorze"
@@ -1219,6 +1234,7 @@
       "gap": {
         "before": "15 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "quinze"
@@ -1289,6 +1305,7 @@
       "gap": {
         "before": "16 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "seize"
@@ -1359,6 +1376,7 @@
       "gap": {
         "before": "17 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "dix-sept"
@@ -1429,6 +1447,7 @@
       "gap": {
         "before": "18 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "dix-huit"
@@ -1499,6 +1518,7 @@
       "gap": {
         "before": "19 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "dix-neuf"
@@ -1569,6 +1589,7 @@
       "gap": {
         "before": "20 s’écrit en lettres : ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "vingt"

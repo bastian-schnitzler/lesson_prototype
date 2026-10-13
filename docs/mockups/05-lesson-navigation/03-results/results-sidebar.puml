@@ -1,0 +1,40 @@
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xx</color> | {
+{ <size:30><color:#E2E8F0><b>Your result</b></color></size> | <color:#020617>xxxxxx</color> | [ <color:#020617>   Lesson overview   </color> ] }
+<color:#94A3B8>L'alphabet et les accents</color>
+{ <back:#0F172A><size:36><color:#E2E8F0><b>  5 / 24  </b></color></size></back> | <color:#020617>xx</color> | <color:#94A3B8>Lesson total 38.2 / 100</color> }
+<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+.
+{ {
+<color:#94A3B8>RESULTS</color>
+<color:#635BFF>●</color> <color:#E2E8F0><b>Final exam   5 / 24</b></color>
+<color:#94A3B8>    Translation   5 / 12</color>
+<color:#94A3B8>    Dictation   0 / 12</color>
+<color:#94A3B8>○ Matching   8 / 12</color>
+<color:#94A3B8>○ Gender and overview   9 / 12</color>
+<color:#94A3B8>○ Practice   8 / 12</color>
+<color:#94A3B8>○ Listening   12 / 12</color>
+} | <color:#020617>xx</color> | {
+<size:23><color:#E2E8F0><b>Final exam</b></color></size>
+<color:#E2E8F0>5 of 24 correct.</color>
+.
+{ <size:24><color:#FBBF24>!</color></size> | <color:#020617>xx</color> | {
+<size:20><color:#E2E8F0>to spell → épeler</color></size>
+{ <color:#94A3B8>Your answer</color> | <color:#020617>xx</color> | <color:#FBBF24>epeler</color> }
+<color:#FBBF24>Almost: check the accents (0.5 / 1)</color>
+<color:#94A3B8>Time expired; the saved answer was locked.</color>
+} }
+.
+<color:#94A3B8>Only the selected part is listed; scores and explanations are never recomputed.</color>
+} }
+} | <color:#020617>xx</color> }
+.
+}
+@endsalt

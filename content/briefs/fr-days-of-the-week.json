@@ -164,6 +164,7 @@
       "gap": {
         "before": "Après dimanche, c’est ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "lundi"
@@ -244,6 +245,7 @@
       "gap": {
         "before": "Après lundi, c’est ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "mardi"
@@ -324,6 +326,7 @@
       "gap": {
         "before": "Après mardi, c’est ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "mercredi"
@@ -404,6 +407,7 @@
       "gap": {
         "before": "Après mercredi, c’est ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "jeudi"
@@ -484,6 +488,7 @@
       "gap": {
         "before": "Après jeudi, c’est ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "vendredi"
@@ -564,6 +569,7 @@
       "gap": {
         "before": "Après vendredi, c’est ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "samedi"
@@ -644,6 +650,7 @@
       "gap": {
         "before": "Après samedi, c’est ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "dimanche"
@@ -724,6 +731,7 @@
       "gap": {
         "before": "À huit heures, c’est le ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "matin"
@@ -804,6 +812,7 @@
       "gap": {
         "before": "À quinze heures, c’est l’",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "après-midi"
@@ -884,6 +893,7 @@
       "gap": {
         "before": "À vingt heures, c’est le ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "soir"
@@ -954,6 +964,7 @@
       "gap": {
         "before": "Hier, c’était mardi ; ",
         "after": ", c’est mercredi.",
+        "question": null,
         "accepted": {
           "answers": [
             "aujourd'hui"
@@ -1025,6 +1036,7 @@
       "gap": {
         "before": "Pour connaître le jour, je demande : « ",
         "after": " »",
+        "question": null,
         "accepted": {
           "answers": [
             "Quel jour sommes-nous ?"

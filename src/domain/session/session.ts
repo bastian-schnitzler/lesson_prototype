@@ -44,6 +44,8 @@ export interface SessionRecord {
   exam: Record<string, { startedAt: number; deadline: number; timedOut: boolean }>;
   /** Results menu: 'exam' or a step ID. */
   selection: string;
+  /** Read-only revisit of an earlier theory page (P6-01); absent while the learner is on `pageIndex`. */
+  viewIndex?: number;
 }
 
 export const POLICY = { practiceWeight: 35, examWeight: 65, orthographyCredit: 0.5 } as const;
@@ -94,7 +96,25 @@ export type SessionAction =
   | { type: 'voice_ready'; now: number }
   | { type: 'skip_no_voice'; now: number }
   | { type: 'reveal'; itemKey: string; key: string; now: number }
-  | { type: 'select'; selection: string };
+  | { type: 'select'; selection: string }
+  | { type: 'navigate'; pageIndex: number };
+
+/** Page the learner currently sees: a revisited theory page, else the active one. */
+export const viewedIndex = (r: Pick<SessionRecord, 'pageIndex' | 'viewIndex'>): number => r.viewIndex ?? r.pageIndex;
+
+/**
+ * Sidebar navigation (P6-01) only revisits completed theory pages, and never while an exam page is
+ * active, so it cannot bypass sequential submission, expose answers or touch a countdown. The
+ * active page itself is always a valid target (it ends the revisit).
+ */
+export function canNavigate(plan: LessonPlan, r: SessionRecord, target: number): boolean {
+  if (r.status !== 'active' || r.phase === 'results') return false;
+  const current = plan.pages[r.pageIndex];
+  const page = plan.pages[target];
+  if (!current || !page || current.role === 'exam') return false;
+  if (target === r.pageIndex) return true;
+  return target < r.pageIndex && page.role === 'presentation' && r.completed.includes(page.pageId);
+}
 
 export function startSession(plan: LessonPlan, init: { sessionId: string; contentHash: string; level: string; motherTongue: Locale; seed: number; now: number }): SessionRecord {
   const record: SessionRecord = {
@@ -156,7 +176,19 @@ function advance(plan: LessonPlan, r: SessionRecord, now: number): SessionRecord
 
 export function sessionReducer(plan: LessonPlan, r: SessionRecord, action: SessionAction): SessionRecord {
   if (action.type === 'select') return r.phase === 'results' ? { ...r, selection: action.selection } : r;
+  if (action.type === 'navigate') {
+    if (!canNavigate(plan, r, action.pageIndex)) return r;
+    const { viewIndex: _, ...rest } = r;
+    return action.pageIndex === r.pageIndex ? rest : { ...rest, viewIndex: action.pageIndex };
+  }
   if (r.status !== 'active') return r;
+  if (r.viewIndex !== undefined) {
+    // While revisiting, only Continue acts: it steps to the next revisitable page or back to the active one.
+    if (action.type !== 'continue') return r;
+    const { viewIndex, ...rest } = r;
+    const next = plan.pages.findIndex((p, i) => i > viewIndex && i < r.pageIndex && p.role === 'presentation' && r.completed.includes(p.pageId));
+    return next >= 0 ? { ...rest, viewIndex: next } : rest;
+  }
   const page = plan.pages[r.pageIndex];
   const now = action.now;
   const deadline = page.role === 'exam' ? r.exam[page.pageId]?.deadline : undefined;

@@ -45,12 +45,15 @@ export const PERSONS = ['1sg', '2sg', '3sg', '1pl', '2pl', '3pl'] as const;
 export const PersonSchema = z.enum(PERSONS);
 
 /**
- * Lesson length rules (P3-07, shortened to about two thirds in its review). Scored units
+ * Lesson length rules (P3-07, shortened to about two thirds in its review and again in P6-04 to about 12–15 minutes). Scored units
  * count rows (pronoun rows, matching rows); estimates are seconds per scored unit on a page.
  */
 export const GRAMMAR_LENGTH = {
-  minPracticeUnits: 34,
-  minExamUnits: 16,
+  minPracticeUnits: 24,
+  minExamUnits: 12,
+  /** Recommended ceilings (P6-04): longer lessons are reported by the audit, not rejected. */
+  maxPracticeUnits: 30,
+  maxExamUnits: 18,
   examPages: [2, 4],
   exercisesPerBlock: [2, 4],
   secondsPerUnit: [6, 40],

@@ -9,7 +9,7 @@ import { scoreUnit, type LockedUnit } from '../../src/domain/session/session.ts'
 import { ExplanationRenderer, PronounMatchRenderer, PronounTypingRenderer } from '../../src/session/grammarRenderers.tsx';
 import { checkedOrder, MatchingRenderer } from '../../src/session/vocabularyRenderers.tsx';
 import { promptParts, StartView } from '../../src/session/views.tsx';
-import { UnitsRenderer } from '../../src/session/controls.tsx';
+import { answerText, SpotSummary, UnitsRenderer } from '../../src/session/controls.tsx';
 import { skipsFeedbackWhenCorrect } from '../../src/domain/session/session.ts';
 import type { RendererProps } from '../../src/session/controls.tsx';
 
@@ -301,10 +301,40 @@ describe('error spotter (P3-07 review)', () => {
     const page = plan.pages.find((p) => p.items[0]?.type === 'grammar_error_spotter')!;
     const unit = page.units[0];
     renderPage(UnitsRenderer, plan, page);
-    expect(screen.queryByText('Correction')).toBeNull();
+    expect(screen.queryByText(/^Replace/)).toBeNull();
     expect(screen.queryByRole('textbox')).toBeNull();
     cleanup();
     renderPage(UnitsRenderer, plan, page, { drafts: { [unit.id]: { tokenId: unit.kind === 'spot' ? unit.tokens[0].id : '', text: '' } } });
-    expect(screen.getByText('Correction')).toBeInTheDocument();
+    // The control names the selected word, so a correction is never offered for an unnamed word (P6-05).
+    expect(screen.getByText(`Replace “${unit.kind === 'spot' ? unit.tokens[0].text : ''}” with`)).toBeInTheDocument();
+  });
+
+  it('offers guided choices only for the faulty word and refuses another word at once (D52)', () => {
+    const plan = planOf();
+    const page = plan.pages.find((p) => p.items[0]?.type === 'grammar_error_spotter')!;
+    const base = page.units[0];
+    if (base.kind !== 'spot') throw new Error('no spotter');
+    const unit = { ...base, correction: { ...base.correction, mode: 'select' as const, choices: [...base.correction.accepted.answers, 'zz'] } };
+    const other = unit.tokens.find((tk) => tk.id !== unit.faultyTokenId)!;
+    const view = (tokenId: string) => renderPage(UnitsRenderer, plan, { ...page, units: [unit] }, { units: [unit], drafts: { [unit.id]: { tokenId, text: '' } } });
+    view(other.id);
+    expect(screen.getByText(`“${other.text}” is not the mistake in this sentence. Choose another word.`)).toBeInTheDocument();
+    expect(screen.queryAllByRole('radio')).toHaveLength(0); // no replacement is offered for a word that is not the mistake
+    cleanup();
+    view(unit.faultyTokenId);
+    expect(screen.getAllByRole('radio')).toHaveLength(unit.correction.choices.length);
+  });
+
+  it('shows the corrected sentence without bracket markup and names the selected word', () => {
+    const plan = planOf();
+    const unit = plan.pages.flatMap((p) => p.units).find((u) => u.kind === 'spot')!;
+    if (unit.kind !== 'spot') throw new Error('no spotter');
+    const wrong = unit.tokens.find((tk) => tk.id !== unit.faultyTokenId)!;
+    const text = (response: { tokenId: string; text: string }) => answerText(unit, response, (k) => k);
+    expect(text({ tokenId: unit.faultyTokenId, text: 'XX' })).not.toMatch(/[\[\]]/);
+    expect(text({ tokenId: unit.faultyTokenId, text: 'XX' })).toContain('XX');
+    render(<PreferencesProvider initial={{ interfaceLanguage: 'en', motherTongue: 'en' }}><SpotSummary unit={unit} response={{ tokenId: wrong.id, text: 'zz' }} lang="fr" /></PreferencesProvider>);
+    expect(screen.getByText(`“${wrong.text}” is not the mistake in this sentence.`)).toBeInTheDocument();
+    expect(screen.getByText('Your correction: zz')).toBeInTheDocument();
   });
 });

@@ -30,6 +30,13 @@ export const VOCABULARY_TIMING = {
   dictationLimitPerWord: 30,
 } as const;
 
+/**
+ * Lesson length (P6-02, SPEC section 6): the standard inventory is 10 words and at most 12; a larger
+ * topic is split over two lessons. Every word still takes part in every exercise (D47), so the
+ * derived lesson takes about 15–20 minutes instead of 30 minutes for 18 words.
+ */
+export const VOCABULARY_LENGTH = { standardTargets: 10, maxTargets: 12 } as const;
+
 /** Splits a list into the fewest pages of at most `size` items, balanced in length (7 → 4 + 3, never 6 + 1). */
 export const chunk = <T>(list: T[], size: number): T[][] => {
   const pages = Math.ceil(list.length / size);
@@ -71,14 +78,14 @@ export function vocabularyLesson(brief: VocabularyBrief): VocabularyContent {
         pairs: ids.map((id) => ({ targetId: id, nativeLabel: targets.get(id)!.matchingLabel, answerExplanation: targets.get(id)!.explanation })),
       }]))),
     nouns.length
-      ? { ...step('overview', 'overview', COPY.gender[0], [page('overview', T.overviewBase + T.genderPerWord * all.length, COPY.gender[1], [{
-          type: 'vocabulary_gender_select', itemId: 'gender', targetIds: all, rows: nouns.map((t) => ({ targetId: t.id, answerExplanation: t.genderExplanation! })),
+      ? { ...step('overview', 'overview', COPY.gender[0], [page('overview', T.overviewBase + T.genderPerWord * nouns.length, COPY.gender[1], [{
+          type: 'vocabulary_gender_select', itemId: 'gender', targetIds: nouns.map((t) => t.id), rows: nouns.map((t) => ({ targetId: t.id, answerExplanation: t.genderExplanation! })),
         }])]) }
       : step('overview', 'overview', COPY.overview[0], [page('overview', T.overviewBase + T.overviewPerWord * all.length, COPY.overview[1], [{ type: 'vocabulary_overview', itemId: 'overview', targetIds: all }])]),
     // Stage 5 has two steps, so typed gaps and listening are reviewed separately in the results menu (P2-04 review).
     step('practice', 'exercise', COPY.practice[0], [
       ...brief.targets.map((t) => page(`gap-${t.id}`, T.gapPage, COPY.practice[1], [{
-        type: 'vocabulary_typed_gap', itemId: `gap-${t.id}`, targetId: t.id, before: t.gap.before, after: t.gap.after,
+        type: 'vocabulary_typed_gap', itemId: `gap-${t.id}`, targetId: t.id, before: t.gap.before, after: t.gap.after, question: t.gap.question,
         referenceTargetIds: t.gap.referenceTargetIds, accepted: t.gap.accepted, answerExplanation: t.gap.explanation,
       }])),
     ]),

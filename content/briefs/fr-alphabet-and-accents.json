@@ -146,6 +146,10 @@
       "gap": {
         "before": "Le signe sur le é de café est un ",
         "after": ".",
+        "question": {
+          "en": "What is the name of the accent in the word café (é)?",
+          "de": "Wie heißt der Akzent im Wort café (é)?"
+        },
         "accepted": {
           "answers": [
             "accent aigu"
@@ -223,6 +227,10 @@
       "gap": {
         "before": "Le signe sur le è de très est un ",
         "after": ".",
+        "question": {
+          "en": "What is the name of the accent in the word très (è)?",
+          "de": "Wie heißt der Akzent im Wort très (è)?"
+        },
         "accepted": {
           "answers": [
             "accent grave"
@@ -301,6 +309,10 @@
       "gap": {
         "before": "Le signe sur le ô de hôtel est un ",
         "after": ".",
+        "question": {
+          "en": "What is the name of the accent in the word hôtel (ô)?",
+          "de": "Wie heißt der Akzent im Wort hôtel (ô)?"
+        },
         "accepted": {
           "answers": [
             "accent circonflexe"
@@ -378,6 +390,10 @@
       "gap": {
         "before": "Le signe sous le ç de français est une ",
         "after": ".",
+        "question": {
+          "en": "What is the name of the mark in the word français (ç)?",
+          "de": "Wie heißt das Zeichen im Wort français (ç)?"
+        },
         "accepted": {
           "answers": [
             "cédille"
@@ -455,6 +471,10 @@
       "gap": {
         "before": "Les deux points sur le ï de naïf sont un ",
         "after": ".",
+        "question": {
+          "en": "What is the name of the mark in the word naïf (ï)?",
+          "de": "Wie heißt das Zeichen im Wort naïf (ï)?"
+        },
         "accepted": {
           "answers": [
             "tréma"
@@ -525,6 +545,7 @@
       "gap": {
         "before": "Dire les lettres de Marie, c’est ",
         "after": " un prénom.",
+        "question": null,
         "accepted": {
           "answers": [
             "épeler"
@@ -604,6 +625,7 @@
       "gap": {
         "before": "Dupont est mon ",
         "after": " de famille.",
+        "question": null,
         "accepted": {
           "answers": [
             "nom"
@@ -680,6 +702,7 @@
       "gap": {
         "before": "Marie est mon ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "prénom"
@@ -756,6 +779,7 @@
       "gap": {
         "before": "A est la première ",
         "after": " de l’alphabet.",
+        "question": null,
         "accepted": {
           "answers": [
             "lettre"
@@ -833,6 +857,7 @@
       "gap": {
         "before": "Le grand A est une ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "majuscule"
@@ -909,6 +934,7 @@
       "gap": {
         "before": "Le petit a est une ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "minuscule"
@@ -983,8 +1009,12 @@
       },
       "examPrompt": null,
       "gap": {
-        "before": "Le signe entre Jean et Paul est un ",
+        "before": "Le signe dans Jean-Paul est un ",
         "after": ".",
+        "question": {
+          "en": "What is the name of the sign in the name Jean-Paul (-)?",
+          "de": "Wie heißt das Zeichen im Namen Jean-Paul (-)?"
+        },
         "accepted": {
           "answers": [
             "trait d'union"

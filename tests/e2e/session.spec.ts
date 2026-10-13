@@ -10,6 +10,19 @@ test.beforeEach(async ({ page }) => {
 /** Clicks the page's primary action: "Check" on unanswered practice pages, "Continue" otherwise. */
 const proceed = (page: Page) => page.getByRole('button', { name: /^(Continue|Check)$/ }).click();
 
+/** Opens the results/lesson outline on narrow screens (P6-01), then picks an entry by name. */
+async function chooseResult(page: Page, name: string | RegExp) {
+  const toggle = page.locator('.sidebar-toggle');
+  if (await toggle.isVisible()) await toggle.click();
+  await page.locator('.sidebar-link', { has: page.locator('.sidebar-label', { hasText: name }) }).first().click();
+}
+
+/** Opens the compact outline on narrow screens; on wide screens the sidebar is always open. */
+async function openOutline(page: Page) {
+  const toggle = page.locator('.sidebar-toggle');
+  if (await toggle.isVisible() && (await toggle.getAttribute('aria-expanded')) !== 'true') await toggle.click();
+}
+
 /** Turns every flashcard of the current page to its French side. */
 async function revealCards(page: Page) {
   const unturned = page.getByRole('button', { name: 'Flip card to French' });
@@ -121,7 +134,7 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
 
   await page.reload();
   await page.getByRole('button', { name: 'Resume lesson' }).click();
-  await expect(page.getByText('Gender and overview')).toBeVisible();
+  await expect(page.locator('.task-card').getByText('Gender and overview')).toBeVisible();
   await expect(page.locator('.task-card select')).toHaveCount(0);
   await chooseGenders(page);
   // Check reveals the teaching form, translation and summary without moving or resizing anything.
@@ -134,12 +147,12 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   await expect(page.locator('.gender-page .match-summary')).toBeVisible();
   expect(await boxes()).toEqual(before);
   await proceed(page);
-  // Typed gaps: the cursor is already in the field; the four reference words stand above it.
+  // Typed gaps: the cursor is already in the field; the sentence leads and the four reference words follow it (P6-03).
   await expect(page.getByRole('textbox')).toBeFocused();
   const field = (await page.getByRole('textbox').boundingBox())!;
   const refs = page.locator('.reference-list > li');
   await expect(refs).toHaveCount(4);
-  expect((await refs.last().boundingBox())!.y).toBeLessThan(field.y); // the reference words stand above the field
+  expect((await refs.first().boundingBox())!.y).toBeGreaterThan(field.y); // the reference words stand below the sentence
   for (const word of ['livre', 'Chaise', 'stylo', 'table']) {
     // The capitalised "Chaise" earns half a point: the field turns amber, the correct answer follows in
     // green, and only then an explanation appears below the Continue button, which keeps its place.
@@ -156,8 +169,10 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   for (let n = 0; n < 4; n++) await answerListening(page);
   // An info page lists the exam pages, their countdowns and the number of words before the exam starts.
   await expect(page.getByRole('heading', { name: 'Your final exam' })).toBeVisible();
-  await expect(page.locator('.exam-intro')).toContainText('4 words are tested');
-  await expect(page.locator('.exam-intro li').first()).toContainText(/Translation into French · \d+ tasks/);
+  await expect(page.locator('.exam-intro')).toContainText('4 words are tested.');
+  await expect(page.locator('.exam-intro tbody tr')).toHaveCount(2); // two categories, not one row per page
+  await expect(page.locator('.exam-intro tbody tr').first()).toContainText(/Translation into French.*\d+ min/);
+  await expect(page.locator('.exam-intro')).not.toContainText(/questions|tasks/i); // no question counts
   await expect(page.getByRole('timer')).toHaveCount(0);
   await proceed(page);
   await expect(page.getByRole('timer')).toBeVisible();
@@ -173,31 +188,35 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   await page.getByRole('textbox').first().fill('un livre');
   await expect(page.locator('.article-badge').first()).not.toHaveClass(/is-alert/);
   await expect(page.locator('.info-box')).toBeVisible(); // stays until Continue is pressed again
-  const score = await page.locator('.session-score').textContent();
+  // Several fields: Enter moves on to the next field and never submits the page from a field that is not the last.
+  await page.getByRole('textbox').first().press('Enter');
+  await expect(page.getByRole('textbox').nth(1)).toBeFocused();
+  await expect(page.getByRole('timer')).toBeVisible();
+  await expect(page.locator('.session-score')).toHaveCount(0); // the exam score is sealed: no number at all during the exam
   await proceed(page);
-  await expect(page.locator('.session-score')).toHaveText(score!); // no exam feedback during the exam
+  await expect(page.locator('.session-score')).toHaveCount(0); // no exam feedback during the exam
   await proceed(page);
 
-  await expect(page.getByRole('heading', { name: 'Your exam answers' })).toBeVisible();
+  await expect(page.locator('.summary-card h1')).toHaveText('Final exam');
+  await expect(page.getByRole('heading', { name: 'Your exam answers' })).toHaveCount(0); // no sub-heading under the card
   await expect(page.locator('.result-note-almost')).toHaveCount(0);
   for (const list of await page.locator('.result-list').all()) await expect(list).not.toContainText(/\d \/ 1/); // no point fractions in the review
-  await page.getByRole('button', { name: /^Practice/ }).click();
+  await chooseResult(page, /^Practice/);
   // The capitalised "Chaise" is an "almost" with half a point.
   await expect(page.locator('.result-note-almost')).toBeVisible();
-  await expect(page.locator('.match-summary')).toContainText(/of 4 correct\./);
+  await expect(page.locator('.results-section, .result-list').first()).toBeVisible();
   await expect(page.locator('.result-item')).toHaveCount(4); // every answer is listed, correct ones too
-  const menu = await page.locator('.result-menu button').allTextContents();
+  const menu = await page.locator('.sidebar-panel .sidebar-label').allTextContents();
   // The highlighted final exam comes first, then the exercises in the order they were presented.
   expect(menu[0]).toBe('Final exam');
-  await expect(page.locator('.result-menu .button-exam')).toHaveText('Final exam');
-  expect(menu[1]).toBe('Matching'); // unscored parts (introduction, flashcards) are not offered
+  expect(menu).toContain('Matching'); // unscored parts (introduction, flashcards) are not offered
   expect(menu.join()).not.toMatch(/Introduction|Flashcards/);
   expect(menu.slice(-1)).toEqual(['Listening']); // listening has its own results (P2-04 review)
   // Gender results name the word once: "word: chosen gender", a mistake struck through → the correct gender.
-  await page.getByRole('button', { name: 'Gender and overview' }).click();
+  await chooseResult(page, 'Gender and overview');
   await expect(page.locator('.result-gender').first()).toHaveText(/^(livre|chaise|stylo|table):\s*(Your answer: )?(Masculine|Feminine)/);
   await expect(page.locator('.result-gender').first()).not.toContainText(/\b(un|une) /);
-  await page.getByRole('button', { name: /^Practice/ }).click();
+  await chooseResult(page, /^Practice/);
   // The card shows the selected part (heading and score), the lesson title and the lesson total only.
   await expect(page.locator('.summary-card h1')).toHaveText('Practice');
   await expect(page.locator('.summary-card')).toContainText('Les objets de la classe');
@@ -230,7 +249,11 @@ test('locks an exam page when its brief-defined countdown expires', async ({ pag
     if (await page.getByRole('timer').isVisible()) break;
     // An error spotter shows its correction only after a word is selected (P3-07 review).
     const spot = page.locator('.spot');
-    if (await spot.locator('button.token:not([disabled])').count()) await spot.locator('button.token:not([disabled])').first().click();
+    // Guided choices exist only for the faulty word, so try the words until the correction control appears.
+    for (const token of await spot.locator('button.token:not([disabled])').all()) {
+      await token.click();
+      if (await spot.locator('fieldset.choices, input.text-input').count()) break;
+    }
     const inputs = page.locator('.task-card input.text-input:not([readonly])');
     for (const input of await inputs.all()) await input.fill('ne pas');
     await chooseAll(page);
@@ -329,7 +352,8 @@ test('plays French listening choice and dictation with a suitable voice', async 
   await page.getByRole('textbox').first().fill(first.toUpperCase());
   for (let n = 1; n < 4; n++) await page.getByRole('textbox').nth(n).fill(await heard(n));
   await proceed(page);
-  await expect(page.getByRole('heading', { name: 'Your exam answers' })).toBeVisible();
+  await expect(page.locator('.summary-card h1')).toHaveText('Final exam');
+  await expect(page.getByRole('heading', { name: 'Your exam answers' })).toHaveCount(0); // no sub-heading under the card
   // Translation (open) and dictation are separate accordions.
   await expect(page.locator('.result-accordion > summary')).toHaveText([/^Translation/, /^Dictation/]);
   await page.locator('.result-accordion > summary').filter({ hasText: 'Dictation' }).click();
@@ -460,7 +484,7 @@ test('matching pairs by keyboard, lets a pair be reassigned and locks it with fe
   await expect(page.locator('.task-card.is-celebrating .matching')).toBeAttached();
   await expect(french.and(page.locator('.is-right'))).toHaveCount(0);
   if (page.viewportSize()!.width >= 720) await expect(page.locator('.match-curve.is-thin')).toHaveCount(4); // thin purple curves
-  await expect(page.getByText('Gender and overview')).toBeVisible();
+  await expect(page.locator('.task-card').getByText('Gender and overview')).toBeVisible();
 });
 
 test('pronoun/form matching by drag and drop and by clicks, with per-row checks (P3-02)', async ({ page }) => {
@@ -539,4 +563,59 @@ test('person matching: persons in order, checked in place like vocabulary matchi
     const a = (await left.filter({ hasText: new RegExp(`^${pronoun}\\d*$`) }).boundingBox())!, b = (await right.filter({ hasText: new RegExp(`^${form}\\d*$`) }).boundingBox())!; // wrong pairs keep their number badge
     expect(Math.abs(a.y - b.y)).toBeLessThan(2);
   }
+});
+
+test('shows the lesson outline, revisits theory read-only and submits a typed answer with Enter (P6-01, P6-03)', async ({ page }) => {
+  await mockFrenchVoice(page, true);
+  await page.goto('./#/lesson/fr-classroom-instructions/play');
+  await proceed(page); // start
+  await expect(page.locator('.session-score')).toHaveCount(0); // no numeric score on theory pages
+  await proceed(page); // introduction
+  await revealCards(page);
+  await proceed(page); // flashcards
+  await expect(page.locator('.session-score')).toHaveCount(0); // no score in the running lesson, practice included
+  await openOutline(page);
+  const done = page.locator('.sidebar-item.is-done .sidebar-link');
+  await expect(done).toHaveCount(2);
+  await expect(page.locator('.sidebar-item.is-current .sidebar-state')).toHaveText('Current page'); // state as text, not colour alone
+  await done.first().click();
+  await expect(page.locator('.sidebar-item.is-current .sidebar-link')).toContainText('Introduction');
+  await expect(page.locator('.session-score')).toHaveCount(0);
+  await expect(page.locator('.task-card input, .task-card select')).toHaveCount(0); // read-only theory
+  // The revisit survives a reload; Continue walks on to the next theory page, then back to the active page.
+  await page.reload();
+  await page.getByRole('button', { name: 'Resume lesson' }).click();
+  await expect(page.locator('.sidebar-item.is-current .sidebar-link')).toContainText('Introduction');
+  await proceed(page);
+  await expect(page.locator('.sidebar-item.is-current .sidebar-link')).toContainText('Flashcards');
+  await proceed(page);
+  await expect(page.locator('.sidebar-item.is-current .sidebar-link')).toContainText('Matching');
+  await matchAll(page);
+  await proceed(page);
+  await proceed(page); // matching feedback
+  await proceed(page); // overview
+  // Enter acts like the primary button in a typed answer.
+  const field = page.getByRole('textbox');
+  await field.fill('écoutez');
+  await field.press('Enter');
+  await expect(page.getByRole('textbox')).toHaveValue(''); // the next gap page
+  await expect(page.locator('.sidebar-item.is-current')).toHaveCount(1);
+});
+
+test('the outline retracts to a rail on wide screens and remembers it after a reload', async ({ page }) => {
+  test.skip(page.viewportSize()!.width < 900, 'narrow screens use the on-demand outline');
+  await mockFrenchVoice(page, true);
+  await page.goto('./#/lesson/fr-classroom-instructions/play');
+  await proceed(page); // start
+  await expect(page.locator('.sidebar-panel')).toBeVisible();
+  const card = page.locator('.task-card');
+  const wide = (await card.boundingBox())!.width;
+  await page.getByRole('button', { name: 'Hide the outline' }).click();
+  await expect(page.locator('.sidebar-panel')).toBeHidden();
+  expect((await card.boundingBox())!.width).toBeGreaterThan(wide + 150); // the task takes the freed width
+  await page.reload();
+  await page.getByRole('button', { name: 'Resume lesson' }).click();
+  await expect(page.locator('.sidebar-panel')).toBeHidden();
+  await page.getByRole('button', { name: 'Show the outline' }).click();
+  await expect(page.locator('.sidebar-panel')).toBeVisible();
 });

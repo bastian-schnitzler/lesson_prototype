@@ -111,6 +111,7 @@
       "gap": {
         "before": "S’il vous plaît, ",
         "after": " le dialogue.",
+        "question": null,
         "accepted": {
           "answers": [
             "écoutez"
@@ -182,6 +183,7 @@
       "gap": {
         "before": "Ouvrez le livre et ",
         "after": " le texte.",
+        "question": null,
         "accepted": {
           "answers": [
             "lisez"
@@ -253,6 +255,7 @@
       "gap": {
         "before": "Prenez un stylo et ",
         "after": " votre nom.",
+        "question": null,
         "accepted": {
           "answers": [
             "écrivez"
@@ -324,6 +327,7 @@
       "gap": {
         "before": "Écoutez et ",
         "after": " après moi.",
+        "question": null,
         "accepted": {
           "answers": [
             "répétez"

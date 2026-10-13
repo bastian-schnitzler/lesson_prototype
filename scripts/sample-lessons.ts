@@ -4,7 +4,7 @@ import { join } from 'node:path';
 import { DEFAULT_CONTENT_DIR, scanContentDir } from './catalog.ts';
 import type { CatalogResult } from '../src/catalog/scan.ts';
 import { briefSchema, contentSchema, hasContentFile } from '../src/schemas/artifacts.ts';
-import { grammarBriefLengthIssues, grammarContentLengthIssues } from '../src/validation/artifacts.ts';
+import { grammarBriefLengthIssues, grammarContentLengthIssues, grammarLengthAudit, vocabularyBriefLengthIssues } from '../src/validation/artifacts.ts';
 
 export function checkSampleLessons(result: CatalogResult, contentDir = DEFAULT_CONTENT_DIR): string[] {
   const outline = result.outlines.get('fr-a1');
@@ -35,8 +35,23 @@ function lengthProblems(result: CatalogResult, contentDir: string): string[] {
   });
 }
 
+/** P6-02 audit: vocabulary briefs above the inventory maximum are reported, not rejected (they stay playable). */
+export function vocabularyAudit(result: CatalogResult, contentDir = DEFAULT_CONTENT_DIR): string[] {
+  const outline = result.outlines.get('fr-a1');
+  if (!outline) return [];
+  return outline.entries.filter((e) => e.kind === 'vocabulary' && result.manifest.artifacts[e.id]?.draft?.status === 'valid').flatMap(({ id }) => {
+    const brief = briefSchema('vocabulary', outline.lang).parse(JSON.parse(readFileSync(join(contentDir, 'briefs', `${id}.json`), 'utf8')));
+    return brief.kind === 'vocabulary' ? vocabularyBriefLengthIssues(brief).map((i) => `${id}: ${i.message}`) : [];
+  }).concat(outline.entries.filter((e) => e.kind === 'grammar' && result.manifest.artifacts[e.id]?.content?.status === 'valid').flatMap(({ id }) => {
+    const content = contentSchema('grammar', outline.lang).parse(JSON.parse(readFileSync(join(contentDir, 'lessons', `${id}.json`), 'utf8')));
+    return content.kind === 'grammar' ? grammarLengthAudit(content).map((m) => `${id}: ${m} (P6-04)`) : [];
+  }));
+}
+
 if (import.meta.main) {
-  const problems = checkSampleLessons(scanContentDir());
+  const catalog = scanContentDir();
+  vocabularyAudit(catalog).forEach((line) => console.warn(`audit (not an error): ${line}`));
+  const problems = checkSampleLessons(catalog);
   if (problems.length) {
     problems.forEach((problem) => console.error(problem));
     process.exitCode = 1;

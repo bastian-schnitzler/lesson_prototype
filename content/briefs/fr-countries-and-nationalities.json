@@ -14,7 +14,7 @@
     "fr": "Apprendre sept noms de pays et leurs adjectifs de nationalité correspondants au masculin et au féminin.",
     "de": "Lerne sieben Ländernamen und die dazugehörigen männlichen und weiblichen Nationalitätsadjektive auf Französisch."
   },
-  "estimatedMinutes": 24,
+  "estimatedMinutes": 23,
   "provenance": {
     "generator": "lesson-prototype",
     "model": "gemini-3.6-flash",
@@ -151,6 +151,7 @@
       "gap": {
         "before": "Madrid est en ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "Espagne"
@@ -231,6 +232,7 @@
       "gap": {
         "before": "Tokyo est au ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "Japon"
@@ -311,6 +313,7 @@
       "gap": {
         "before": "Paris est en ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "France"
@@ -391,6 +394,7 @@
       "gap": {
         "before": "Berlin est en ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "Allemagne"
@@ -471,6 +475,7 @@
       "gap": {
         "before": "Ottawa est au ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "Canada"
@@ -551,6 +556,7 @@
       "gap": {
         "before": "Rome est en ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "Italie"
@@ -631,6 +637,7 @@
       "gap": {
         "before": "Mexico est au ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "Mexique"
@@ -704,6 +711,7 @@
       "gap": {
         "before": "Paul vient d’Espagne : il est ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "espagnol"
@@ -777,6 +785,7 @@
       "gap": {
         "before": "Paul vient du Japon : il est ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "japonais"
@@ -850,6 +859,7 @@
       "gap": {
         "before": "Paul vient de France : il est ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "français"
@@ -923,6 +933,7 @@
       "gap": {
         "before": "Paul vient d’Allemagne : il est ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "allemand"
@@ -996,6 +1007,7 @@
       "gap": {
         "before": "Paul vient du Canada : il est ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "canadien"
@@ -1069,6 +1081,7 @@
       "gap": {
         "before": "Paul vient d’Italie : il est ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "italien"
@@ -1142,6 +1155,7 @@
       "gap": {
         "before": "Paul vient du Mexique : il est ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "mexicain"

@@ -1,0 +1,46 @@
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xx</color> | {
+{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
+.
+{ <color:#E2E8F0><b>L'alphabet et les accents</b></color> | <color:#020617>xxx</color> | <color:#94A3B8>Progress 25%</color> | <color:#635BFF>███</color><color:#1E293B>░░░░░░░░░</color> }
+<color:#94A3B8>No numeric score on theory pages; it appears with the first practice page.</color>
+<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+.
+{ {
+<color:#94A3B8>LESSON OUTLINE</color>
+<color:#00E676>✓</color> <color:#E2E8F0>The French alphabet</color>
+<color:#94A3B8>    Done</color>
+<color:#00E676>✓</color> <color:#E2E8F0>Saying the letters</color>
+<color:#94A3B8>    Done</color>
+<color:#635BFF>●</color> <color:#E2E8F0><b>The acute accent</b></color>
+<color:#94A3B8>    Current page</color>
+<color:#94A3B8>○ Matching</color>
+<color:#94A3B8>    Next</color>
+<color:#64748B>– Typed gaps</color>
+<color:#64748B>    Locked</color>
+<color:#64748B>– Final exam</color>
+<color:#64748B>    Locked</color>
+} | <color:#020617>xx</color> | {
+<color:#94A3B8>Theory  ·  point 3 of 8</color>
+.
+<size:23><color:#E2E8F0><b>The acute accent</b></color></size>
+.
+<color:#E2E8F0>The acute accent (accent aigu) is used on one letter only: é.</color>
+.
+{ <color:#E2E8F0>café</color> | <color:#94A3B8>coffee</color> | <color:#020617>xx</color> | <color:#E2E8F0>été</color> | <color:#94A3B8>summer</color> }
+.
+{ [ <color:#4338CA>   Previous   </color> ] | <color:#020617>xx</color> | [ <color:#020617>   Continue   </color> ] }
+} }
+.
+<color:#94A3B8>Done theory points are links (read again, no points); Matching and later pages open only in order.</color>
+} | <color:#020617>xx</color> }
+.
+}
+@endsalt

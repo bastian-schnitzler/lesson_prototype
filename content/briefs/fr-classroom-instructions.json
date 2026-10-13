@@ -140,6 +140,7 @@
       "gap": {
         "before": "Pour entendre le dialogue, ",
         "after": " attentivement.",
+        "question": null,
         "accepted": {
           "answers": [
             "écoutez"
@@ -211,6 +212,7 @@
       "gap": {
         "before": "Pour comprendre le texte écrit, ",
         "after": " le texte.",
+        "question": null,
         "accepted": {
           "answers": [
             "lisez"
@@ -282,6 +284,7 @@
       "gap": {
         "before": "Avec votre stylo, ",
         "after": " la réponse.",
+        "question": null,
         "accepted": {
           "answers": [
             "écrivez"
@@ -353,6 +356,7 @@
       "gap": {
         "before": "Dites encore la même phrase : ",
         "after": " la phrase.",
+        "question": null,
         "accepted": {
           "answers": [
             "répétez"
@@ -425,6 +429,7 @@
       "gap": {
         "before": "Pour voir l’image, ",
         "after": " le tableau.",
+        "question": null,
         "accepted": {
           "answers": [
             "regardez"
@@ -497,6 +502,7 @@
       "gap": {
         "before": "Pour pratiquer l’oral, ",
         "after": " avec votre voisin.",
+        "question": null,
         "accepted": {
           "answers": [
             "parlez"
@@ -569,6 +575,7 @@
       "gap": {
         "before": "Ajoutez le mot manquant : ",
         "after": " les phrases.",
+        "question": null,
         "accepted": {
           "answers": [
             "complétez"
@@ -641,6 +648,7 @@
       "gap": {
         "before": "Marquez la case correcte : ",
         "after": " la bonne case.",
+        "question": null,
         "accepted": {
           "answers": [
             "cochez"
@@ -712,6 +720,7 @@
       "gap": {
         "before": "Pour lire la leçon, ",
         "after": " à la page vingt.",
+        "question": null,
         "accepted": {
           "answers": [
             "ouvrez le livre"
@@ -783,6 +792,7 @@
       "gap": {
         "before": "Le test commence : ",
         "after": " et rangez-le.",
+        "question": null,
         "accepted": {
           "answers": [
             "fermez le livre"
@@ -854,6 +864,7 @@
       "gap": {
         "before": "Pour poser une question, ",
         "after": " et attendez.",
+        "question": null,
         "accepted": {
           "answers": [
             "levez la main"

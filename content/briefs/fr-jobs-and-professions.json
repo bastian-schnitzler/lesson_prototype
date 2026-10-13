@@ -151,6 +151,7 @@
       "gap": {
         "before": "Il soigne les malades à l’hôpital : il est ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "médecin"
@@ -229,6 +230,7 @@
       "gap": {
         "before": "Il enseigne le français : il est ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "professeur"
@@ -310,6 +312,7 @@
       "gap": {
         "before": "Paul apporte les plats au restaurant : il est ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "serveur"
@@ -391,6 +394,7 @@
       "gap": {
         "before": "Léa apporte les plats au restaurant : elle est ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "serveuse"
@@ -473,6 +477,7 @@
       "gap": {
         "before": "Paul vend des vêtements : il est ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "vendeur"
@@ -555,6 +560,7 @@
       "gap": {
         "before": "Léa vend des vêtements : elle est ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "vendeuse"
@@ -637,6 +643,7 @@
       "gap": {
         "before": "Paul fait les soins prescrits à la clinique : il est ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "infirmier"
@@ -719,6 +726,7 @@
       "gap": {
         "before": "Léa fait les soins prescrits à la clinique : elle est ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "infirmière"
@@ -801,6 +809,7 @@
       "gap": {
         "before": "Paul étudie à l’université : il est ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "étudiant"
@@ -883,6 +892,7 @@
       "gap": {
         "before": "Léa étudie à l’université : elle est ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "étudiante"
@@ -965,6 +975,7 @@
       "gap": {
         "before": "Il défend ses clients au tribunal : il est ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "avocat"
@@ -1047,6 +1058,7 @@
       "gap": {
         "before": "Il prépare les repas au restaurant : il est ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "cuisinier"

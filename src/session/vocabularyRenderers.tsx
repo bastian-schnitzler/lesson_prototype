@@ -50,7 +50,7 @@ function TargetTable({ ids, plan, motherTongue, showGender = true }: { ids: stri
 export function IntroductionRenderer({ item, plan }: RendererProps) {
   const { locale } = useI18n();
   if (item.type !== 'vocabulary_introduction') return null;
-  return <RichText text={item.text[locale]} lang={plan.lang} className="rich-text explanation-text" />;
+  return <RichText text={item.text[locale]} lang={plan.lang} className="rich-text explanation-text" cards />;
 }
 
 /**

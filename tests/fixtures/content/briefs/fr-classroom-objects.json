@@ -116,6 +116,7 @@
       "gap": {
         "before": "Je lis un ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "livre"
@@ -192,6 +193,7 @@
       "gap": {
         "before": "Je m’assieds sur la ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "chaise"
@@ -269,6 +271,7 @@
       "gap": {
         "before": "J’écris avec un ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "stylo"
@@ -345,6 +348,7 @@
       "gap": {
         "before": "Le livre est sur la ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "table"

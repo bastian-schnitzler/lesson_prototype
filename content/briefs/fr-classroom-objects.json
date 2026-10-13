@@ -142,6 +142,7 @@
       "gap": {
         "before": "J’ouvre un",
         "after": "de français.",
+        "question": null,
         "accepted": {
           "answers": [
             "livre"
@@ -215,6 +216,7 @@
       "gap": {
         "before": "J’écris mes devoirs dans un",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "cahier"
@@ -288,6 +290,7 @@
       "gap": {
         "before": "J’écris à l’encre avec un",
         "after": "bleu.",
+        "question": null,
         "accepted": {
           "answers": [
             "stylo"
@@ -362,6 +365,7 @@
       "gap": {
         "before": "Le professeur écrit au",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "tableau"
@@ -435,6 +439,7 @@
       "gap": {
         "before": "Je dessine avec un",
         "after": "noir.",
+        "question": null,
         "accepted": {
           "answers": [
             "crayon"
@@ -510,6 +515,7 @@
       "gap": {
         "before": "Je mets mes livres dans mon",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "sac"
@@ -583,6 +589,7 @@
       "gap": {
         "before": "Les cahiers sont sur la",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "table"
@@ -656,6 +663,7 @@
       "gap": {
         "before": "Je m’assois sur une",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "chaise"
@@ -730,6 +738,7 @@
       "gap": {
         "before": "Mes crayons sont dans ma",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "trousse"
@@ -803,6 +812,7 @@
       "gap": {
         "before": "Pour tracer un trait droit, j’utilise une",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "règle"
@@ -876,6 +886,7 @@
       "gap": {
         "before": "Pour effacer le crayon, j’utilise une",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "gomme"
@@ -949,6 +960,7 @@
       "gap": {
         "before": "Regarde la",
         "after": "de France au mur.",
+        "question": null,
         "accepted": {
           "answers": [
             "carte"

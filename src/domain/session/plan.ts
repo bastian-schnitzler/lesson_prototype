@@ -24,7 +24,7 @@ interface UnitBase {
   itemId: string;
   itemType: Item['type'];
   /** Short task line for results and screen readers; already resolved to the attempt's languages. */
-  prompt: { learning?: string; native?: string; before?: string; after?: string };
+  prompt: { learning?: string; native?: string; before?: string; after?: string; question?: string };
   explanation: LocalizedText;
   /** Correct answer shown in feedback and results. */
   answer: string;
@@ -117,7 +117,7 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
       }
       case 'vocabulary_typed_gap':
         return [{
-          kind: 'text', id: id(), itemId: item.itemId, itemType: item.type, prompt: { before: item.before, after: item.after, native: translation(item.targetId) },
+          kind: 'text', id: id(), itemId: item.itemId, itemType: item.type, prompt: { before: item.before, after: item.after, native: translation(item.targetId), question: native(item.question) || undefined },
           accepted: item.accepted, explanation: item.answerExplanation, answer: item.accepted.answers[0], answerLang: 'learning',
         }];
       case 'vocabulary_listening_choice':

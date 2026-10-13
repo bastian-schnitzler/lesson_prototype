@@ -1,6 +1,6 @@
 # Lesson prototype mockups
 
-One guide for all 32 PlantUML Salt screens. Each screen folder contains only its editable `.puml` source; the matching source is embedded in [SPEC.md](../SPEC.md) as a `plantuml` code fence. PNG/SVG copies are not stored here. See the [issue asset mapping](../ISSUES.md#assets-to-include-when-publishing-applicable-issues).
+One guide for all 37 PlantUML Salt screens. Each screen folder contains only its editable `.puml` source; the matching source is embedded in [SPEC.md](../SPEC.md) as a `plantuml` code fence. PNG/SVG copies are not stored here. See the [issue asset mapping](../ISSUES.md#assets-to-include-when-publishing-applicable-issues).
 
 ## Make PlantUML rendering work in VS Code
 
@@ -32,6 +32,7 @@ Vocabulary folders include the start page, so folders 02–07 represent learning
 - [02 — Artifact view](#artifact-view)
 - [03 — Vocabulary lesson](#vocabulary-lesson)
 - [04 — Grammar lesson](#grammar-lesson)
+- [05 — Lesson navigation](#lesson-navigation)
 
 <a id="lesson-overview"></a>
 
@@ -110,3 +111,25 @@ Differences found:
 | `04-grammar-lesson/03-feedback-placeholder` | feedback placeholder | [Salt source](04-grammar-lesson/03-feedback-placeholder/feedback-placeholder.puml) · [SPEC preview](../SPEC.md#mockup-04-grammar-lesson-03-feedback-placeholder-feedback-placeholder) |
 | `04-grammar-lesson/04-exam` | mixed exam | [Salt source](04-grammar-lesson/04-exam/mixed-exam.puml) · [SPEC preview](../SPEC.md#mockup-04-grammar-lesson-04-exam-mixed-exam) |
 | `04-grammar-lesson/05-results` | exam results | [Salt source](04-grammar-lesson/05-results/exam-results.puml) · [SPEC preview](../SPEC.md#mockup-04-grammar-lesson-05-results-exam-results) |
+
+<a id="lesson-navigation"></a>
+
+## 05 — Lesson navigation
+
+Phase 6 (P6-01, D50): the V2 timeline sidebar in the theory, exam and results journeys, and the compact mobile outline.
+
+| Screen folder | Screen | Source and embedded preview |
+| --- | --- | --- |
+| `05-lesson-navigation/01-theory` | theory sidebar | [Salt source](05-lesson-navigation/01-theory/theory-sidebar.puml) · [SPEC preview](../SPEC.md#mockup-05-lesson-navigation-01-theory-theory-sidebar) |
+| `05-lesson-navigation/02-exam` | exam sidebar | [Salt source](05-lesson-navigation/02-exam/exam-sidebar.puml) · [SPEC preview](../SPEC.md#mockup-05-lesson-navigation-02-exam-exam-sidebar) |
+| `05-lesson-navigation/03-results` | results sidebar | [Salt source](05-lesson-navigation/03-results/results-sidebar.puml) · [SPEC preview](../SPEC.md#mockup-05-lesson-navigation-03-results-results-sidebar) |
+| `05-lesson-navigation/04-mobile` | mobile outline closed | [Salt source](05-lesson-navigation/04-mobile/mobile-closed.puml) · [SPEC preview](../SPEC.md#mockup-05-lesson-navigation-04-mobile-mobile-closed) |
+| `05-lesson-navigation/04-mobile` | mobile outline open | [Salt source](05-lesson-navigation/04-mobile/mobile-open.puml) · [SPEC preview](../SPEC.md#mockup-05-lesson-navigation-04-mobile-mobile-open) |
+
+### Phase 6 comparison (P6-06)
+
+Compared on 2026-10-13 against the working tree of branch `P6-01-lesson-sidebar-navigation` (uncommitted; prototype revision to be recorded when the branch is committed), desktop 1280 px and portrait 375 px:
+
+- **Matches:** timeline design (V2) with a mark and a word per state, exam pages with question counts and limits, results selection by sidebar, compact mobile outline with focus return, no score on theory pages.
+- **Salt limits:** the mobile open state shows rows inline; the real outline scrolls inside 60 % of the viewport height and rows are 44 px high.
+- **Not yet compared:** the vocabulary and grammar practice mockups keep their phase 3 layout (typed gap now shows the sentence before the reference words; error spotter labels the correction with the selected word); refresh them with the remaining authoring in P2-06/P2-07.

@@ -7,7 +7,7 @@ import type { VoiceStatus } from './speech.ts';
 import { saveSession } from '../domain/session/storage.ts';
 
 /** Reducer actions without the time and interface language, which the hook adds. */
-export type SessionInput = { type: 'draft'; unitId: string; response: UnitResponse } | { type: 'continue' } | { type: 'expire' } | { type: 'voice_ready' } | { type: 'skip_no_voice' } | { type: 'reveal'; itemKey: string; key: string } | { type: 'select'; selection: string };
+export type SessionInput = { type: 'draft'; unitId: string; response: UnitResponse } | { type: 'continue' } | { type: 'expire' } | { type: 'voice_ready' } | { type: 'skip_no_voice' } | { type: 'reveal'; itemKey: string; key: string } | { type: 'select'; selection: string } | { type: 'navigate'; pageIndex: number };
 
 /** Injectable clock, so tests can drive countdowns. */
 export const clock = { now: () => Date.now() };

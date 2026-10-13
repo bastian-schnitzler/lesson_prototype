@@ -6,7 +6,7 @@ import { GRAMMAR_LENGTH, PERSON_MATCHING_EXEMPT, PERSON_MATCHING_TOPICS, PERSONS
 import type { OutlineEntry } from '../schemas/outline.ts';
 import { learningForms, parseRichText, richTextShape } from '../domain/richText.ts';
 import type { VocabularyBrief, VocabularyTarget } from '../schemas/vocabulary.ts';
-import { matchingPages, vocabularyLesson } from '../domain/vocabularyLesson.ts';
+import { matchingPages, vocabularyLesson, VOCABULARY_LENGTH } from '../domain/vocabularyLesson.ts';
 
 /**
  * Cross-reference and pedagogical checks that JSON Schema cannot express
@@ -314,6 +314,8 @@ function checkGrammarItem(item: GrammarItem, path: string, rules: Set<string>, e
       }
       if (item.correction.mode === 'select') {
         issues.check(item.correction.choices.length >= 2 && item.correction.choices.some((ch) => item.correction.accepted.answers.includes(ch)), path, 'select mode needs 2–4 choices including an accepted answer');
+        // P6-04: the choices are replacements for the faulty word, each offered once.
+        issues.check(new Set(item.correction.choices).size === item.correction.choices.length, path, 'select-mode choices must be distinct');
       } else {
         issues.check(item.correction.choices.length === 0, path, 'type mode has no choices');
       }
@@ -343,6 +345,23 @@ export function grammarBriefLengthIssues(b: GrammarBrief): Issue[] {
   issues.check(practice >= L.minPracticeUnits, 'blocks', `the exercises plan about ${practice} scored units; at least ${L.minPracticeUnits} (P3-07)`);
   issues.check(exam >= L.minExamUnits, 'exam.pages', `the exam plans about ${exam} scored units; at least ${L.minExamUnits} (P3-07)`);
   return issues.list;
+}
+
+/** Vocabulary inventory length (P6-02, SPEC section 6): a quality gate for generated and audited briefs, not a playability condition. */
+export function vocabularyBriefLengthIssues(b: { targets: unknown[] }): Issue[] {
+  const issues = new Issues();
+  issues.check(b.targets.length <= VOCABULARY_LENGTH.maxTargets, 'targets', `lists ${b.targets.length} words; at most ${VOCABULARY_LENGTH.maxTargets} (standard ${VOCABULARY_LENGTH.standardTargets}); split a larger topic over two lessons (P6-02)`);
+  return issues.list;
+}
+
+/** P6-04 audit: authored lessons above the recommended ceilings (reported, not rejected). */
+export function grammarLengthAudit(c: GrammarContent): string[] {
+  const L = GRAMMAR_LENGTH;
+  const units = (exam: boolean) => c.steps.filter((s) => (exam ? s.role === 'exam' : s.role === 'exercise')).flatMap((s) => s.pages.flatMap((pg) => pg.items)).reduce((n, it) => n + unitCount(it), 0);
+  const out: string[] = [];
+  if (units(false) > L.maxPracticeUnits) out.push(`practice has ${units(false)} scored units; recommended at most ${L.maxPracticeUnits}`);
+  if (units(true) > L.maxExamUnits) out.push(`the exam has ${units(true)} scored units; recommended at most ${L.maxExamUnits}`);
+  return out;
 }
 
 export function grammarContentLengthIssues(c: GrammarContent): Issue[] {

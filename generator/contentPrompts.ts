@@ -4,7 +4,7 @@ import type { Brief } from '../src/schemas/artifacts.ts';
 import { grammarItemSchema, type GrammarBrief, type GrammarExerciseType } from '../src/schemas/grammar.ts';
 import type { OutlineContext } from '../src/validation/artifacts.ts';
 
-export const CONTENT_PROMPT_VERSION = 'content-v4';
+export const CONTENT_PROMPT_VERSION = 'content-v5';
 
 /** D46 (SPEC "Formatted teaching text"): format rules shared by introduction and explanation texts. */
 export const RICH_TEXT = [
@@ -45,7 +45,7 @@ export const ITEM_GUIDANCE: Record<GrammarExerciseType, string> = {
   grammar_gap_choice: 'one sentence gap (before/after) with exactly four distinct choices and answerChoiceId; a cue the learner needs (e.g. "plural, definite article", the infinitive, a meaning) goes into hint, localized and shown above the sentence, never in parentheses inside before/after; hint is null when no cue is needed',
   grammar_gap_typing: 'one sentence gap (before/after) with accepted answers; hint is a short localized hint in practice and null in the exam',
   grammar_word_order: 'tokens in shuffled display order with punctuation and repeated words as their own tokens, but no token for the full stop that ends the sentence (a final ? or ! is a token); acceptedOrders list every valid order of all tokenIds',
-  grammar_error_spotter: 'a sentence with exactly one wrong token (no omissions or insertions) and its correction; mode select needs 2–4 choices including an accepted answer, mode type has no choices',
+  grammar_error_spotter: 'a sentence with exactly one wrong token (no omissions or insertions) and its correction; the sentence must have a single defect with a single fix: if a pronoun and a verb form disagree, context in the sentence (a name, a gender) must show which of the two is meant, never a sentence that is correct with another pronoun and with another verb form; the choices are replacements for the faulty token only, and typed corrections for A1 need a short answer; mode select needs 2–4 choices including an accepted answer, mode type has no choices',
 };
 
 export const grammarSections = (lang: string, brief: GrammarBrief): Section[] => [

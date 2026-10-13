@@ -145,6 +145,7 @@
       "gap": {
         "before": "Le papa est le ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "père"
@@ -221,6 +222,7 @@
       "gap": {
         "before": "La maman est la ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "mère"
@@ -297,6 +299,7 @@
       "gap": {
         "before": "Le fils de mes parents est mon ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "frère"
@@ -373,6 +376,7 @@
       "gap": {
         "before": "La fille de mes parents est ma ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "sœur"
@@ -449,6 +453,7 @@
       "gap": {
         "before": "Paul est leur enfant masculin : leur ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "fils"
@@ -525,6 +530,7 @@
       "gap": {
         "before": "Léa est leur enfant féminin : leur ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "fille"
@@ -601,6 +607,7 @@
       "gap": {
         "before": "Le père de mon père est mon ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "grand-père"
@@ -677,6 +684,7 @@
       "gap": {
         "before": "La mère de ma mère est ma ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "grand-mère"
@@ -759,6 +767,7 @@
       "gap": {
         "before": "Paul est le fils de ma tante : mon ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "cousin"
@@ -841,6 +850,7 @@
       "gap": {
         "before": "Léa est la fille de mon oncle : ma ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "cousine"
@@ -917,6 +927,7 @@
       "gap": {
         "before": "Le frère de ma mère est mon ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "oncle"
@@ -993,6 +1004,7 @@
       "gap": {
         "before": "La sœur de mon père est ma ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "tante"

@@ -76,6 +76,11 @@ export const vocabularyTargetSchema = (lang: string) =>
     gap: z.strictObject({
       before: z.string().max(200),
       after: z.string().max(200),
+      /**
+       * Mother-tongue question shown above the sentence, with the word and the marked character visible
+       * (P6-02), e.g. "What is the name of the accent in the word café (é)?"; null shows the sentence only.
+       */
+      question: nativeTextSchema(lang).nullable(),
       /** Article-free answers. */
       accepted: AcceptedAnswersSchema,
       /** Four distinct, non-clickable reference words including the answer, of which only the answer fits. */
@@ -157,6 +162,7 @@ const vocabularyItemSchema = (lang: string) =>
       targetId: NestedIdSchema,
       before: z.string().max(200),
       after: z.string().max(200),
+      question: nativeTextSchema(lang).nullable(),
       /** Four distinct, non-clickable reference targets including the answer. */
       referenceTargetIds: z.array(NestedIdSchema).length(4),
       /** Article-free answers. */

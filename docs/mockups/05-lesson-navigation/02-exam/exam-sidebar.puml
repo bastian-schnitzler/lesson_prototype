@@ -1,0 +1,42 @@
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xx</color> | {
+{ <color:#E2E8F0><b>L'alphabet et les accents</b></color> | <color:#020617>xxx</color> | <color:#94A3B8>Progress 78%</color> | <color:#635BFF><size:32>◯</size></color><color:#E2E8F0><size:21> 42s</size></color> }
+<color:#94A3B8>Exam scores stay sealed until the whole exam is done.</color>
+<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+.
+{ {
+<color:#94A3B8>FINAL EXAM  ·  6 pages</color>
+<color:#00E676>✓</color> <color:#E2E8F0>Translation into French 1/3</color>
+<color:#94A3B8>    1 min 20 s</color>
+<color:#635BFF>●</color> <color:#E2E8F0><b>Translation into French 2/3</b></color>
+<color:#94A3B8>    1 min · current page</color>
+<color:#64748B>– Translation into French 3/3</color>
+<color:#64748B>    1 min 40 s · locked</color>
+<color:#64748B>– Dictation 1/3</color>
+<color:#64748B>    2 min · locked</color>
+<color:#64748B>– Dictation 2/3, Dictation 3/3</color>
+<color:#94A3B8>No page can be opened out of order.</color>
+} | <color:#020617>xx</color> | {
+<color:#94A3B8>FINAL EXAM  /  Page 2 of 6</color>
+<size:23><color:#E2E8F0><b>Translate into French</b></color></size>
+.
+<color:#E2E8F0>coffee</color>
+"<color:#E2E8F0>un café</color>                                    "
+<color:#E2E8F0>summer</color>
+"<color:#E2E8F0>                                               "
+.
+[ <color:#020617>   Continue   </color> ]
+} }
+.
+<color:#94A3B8>Each page has its own countdown. Results appear only after the whole exam.</color>
+} | <color:#020617>xx</color> }
+.
+}
+@endsalt

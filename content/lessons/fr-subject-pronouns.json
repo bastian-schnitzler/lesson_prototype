@@ -765,40 +765,48 @@
               "tokens": [
                 {
                   "tokenId": "t-1",
-                  "text": "Tu"
+                  "text": "Voici"
                 },
                 {
                   "tokenId": "t-2",
-                  "text": "suis"
+                  "text": "Paul"
                 },
                 {
                   "tokenId": "t-3",
-                  "text": "à"
+                  "text": ":"
                 },
                 {
                   "tokenId": "t-4",
-                  "text": "Paris"
+                  "text": "je"
+                },
+                {
+                  "tokenId": "t-5",
+                  "text": "est"
+                },
+                {
+                  "tokenId": "t-6",
+                  "text": "canadien"
                 }
               ],
-              "faultyTokenId": "t-1",
+              "faultyTokenId": "t-4",
               "correction": {
                 "mode": "select",
                 "accepted": {
                   "answers": [
-                    "Je"
+                    "il"
                   ],
                   "accentSensitive": []
                 },
                 "choices": [
-                  "Je",
-                  "Tu",
-                  "Il"
+                  "il",
+                  "je",
+                  "tu"
                 ]
               },
               "answerExplanation": {
-                "en": "Suis goes with je: je suis.",
-                "fr": "Suis va avec je : je suis.",
-                "de": "Suis gehört zu je: je suis."
+                "en": "Paul is one man or boy: il. Je would need suis.",
+                "fr": "Paul est un homme ou un garçon : il. Je demanderait suis.",
+                "de": "Paul ist ein Mann oder Junge: il. Je würde suis verlangen."
               },
               "itemId": "ex-singular-spot-4"
             }

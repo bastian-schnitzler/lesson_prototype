@@ -140,8 +140,9 @@ test('plays a multi-group noun lesson perfectly: group-wise stages, exam info, 1
   await expect(page.locator('.summary-card .results-total')).toHaveText('Lesson total: 100 / 100');
   await expect(page.locator('.summary-card .total-score')).toHaveText(`${data.examUnits} / ${data.examUnits}`);
   // Only scored parts are offered; each word group is one frame with its name shown once.
-  await expect(page.locator('.result-menu button')).toHaveText(['Final exam', 'Matching', 'Gender and overview', 'Practice', 'Listening']);
-  await page.getByRole('button', { name: 'Practice' }).click();
+  await expect(page.locator('.sidebar-panel .sidebar-label')).toHaveText(['Final exam', 'Translation', 'Dictation', 'Matching', 'Gender and overview', 'Practice', 'Listening']);
+  if (await page.locator('.sidebar-toggle').isVisible()) await page.locator('.sidebar-toggle').click();
+  await page.locator('.sidebar-link', { has: page.locator('.sidebar-label', { hasText: /^Practice/ }) }).click();
   await expect(page.locator('.result-section.is-framed')).toHaveCount(data.brief.groups.length);
   await expect(page.locator('.result-section-title')).toHaveText(data.brief.groups.map((g: Json) => g.label.en));
   // Prompts, arrows and answers line up in columns across each list on wide screens (P3-02 review).
@@ -185,8 +186,8 @@ test('half credit for a capitalised exam answer, then Repeat lesson starts a fre
   await expect(page.locator('.result-note-almost')).toHaveCount(1);
   await expect(page.locator('.summary-card .total-score')).toHaveText(`${data.examUnits - 0.5} / ${data.examUnits}`);
   await page.getByRole('button', { name: 'Repeat lesson' }).click();
-  await expect(page.locator('.task-card .label-muted').first()).toHaveText('Introduction');
-  await expect(page.locator('.session-score')).toHaveText('0 / 100');
+  await expect(page.locator('.task-card .label-muted').first()).toContainText('Introduction');
+  await expect(page.locator('.session-score')).toHaveCount(0); // no numeric score on theory pages (P6-03)
 });
 
 test('a lesson without nouns has no gender page, no gender tags and non-clickable reference words', async ({ page }) => {

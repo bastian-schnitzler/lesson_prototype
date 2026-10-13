@@ -1,19 +1,21 @@
-import { Fragment, useEffect, useRef, useState, type CSSProperties } from 'react';
+import { Fragment, useEffect, useRef, useState, type CSSProperties, type KeyboardEvent } from 'react';
 
 import { useI18n, useLastTry, usePreferences } from '../app/context.tsx';
 import { formatScore, roundHalfUp1 } from '../domain/format.ts';
 import type { LessonPlan, PlanPage, PlanUnit } from '../domain/session/plan.ts';
-import { headerScore, isAnswered, isListeningPage, presentationComplete, scoreUnit, skipsFeedbackWhenCorrect, lessonResults, progress, type LockedUnit, type SessionRecord } from '../domain/session/session.ts';
+import { canNavigate, viewedIndex, isAnswered, isListeningPage, presentationComplete, scoreUnit, skipsFeedbackWhenCorrect, lessonResults, progress, type LockedUnit, type SessionRecord } from '../domain/session/session.ts';
 import type { MessageKey } from '../i18n/messages.ts';
 import type { Locale } from '../schemas/common.ts';
 import { rendererRegistry, UnitFeedback } from './renderers.tsx';
-import { answerText } from './controls.tsx';
+import { answerText, SpotSummary } from './controls.tsx';
 import { MATCH_SLIDE_MS } from './vocabularyRenderers.tsx';
 import { missingArticle } from '../domain/articleHint.ts';
 import type { SessionInput } from './useSession.ts';
 import { reviewColor } from '../artifacts/briefParts.tsx';
 import { useVoiceStatus, type VoiceStatus } from './speech.ts';
 import { VoiceHelp } from './VoiceHelp.tsx';
+import { examKindKey } from '../domain/session/outline.ts';
+import { LessonSidebar, ResultsSidebar, type ResultsEntry } from './Sidebar.tsx';
 import { NewVerbs } from './grammarRenderers.tsx';
 
 /* ------------------------------------------------------------ start page */
@@ -125,7 +127,7 @@ export function StartView({ plan, level, resumable, notice, onStart, onResume }:
 export function SessionHeader({ plan, record }: { plan: LessonPlan; record: SessionRecord }) {
   const { t, locale } = useI18n();
   const pct = progress(plan, record);
-  const score = headerScore(plan, record);
+  // The running lesson shows progress only; scores appear on the results page (D53, P6 review).
   return (
     <div className="session-header">
       <p className="session-title" lang={plan.lang}>{plan.title}</p>
@@ -134,20 +136,21 @@ export function SessionHeader({ plan, record }: { plan: LessonPlan; record: Sess
           <span style={{ width: `${pct}%` }} />
         </div>
         <span className="muted">{formatScore(pct, locale).replace(/[.,]0%$/, '%')}</span>
-        <span className="session-score" aria-label={t('session.scoreLabel')}>{t('session.score', { score: roundHalfUp1(score).toLocaleString(locale), total: 100 })}</span>
       </div>
     </div>
   );
 }
 
-function Countdown({ remainingMs }: { remainingMs: number }) {
+function Countdown({ remainingMs, totalMs }: { remainingMs: number; totalMs: number }) {
   const { t } = useI18n();
   const total = Math.ceil(remainingMs / 1000);
   const text = `${Math.floor(total / 60)}:${String(total % 60).padStart(2, '0')}`;
   return (
-    <p className={`countdown${total <= 10 ? ' countdown-low' : ''}`} role="timer" aria-label={t('session.timeLeft', { time: text })}>
-      {text}
-    </p>
+    <div className="timer-box">
+      <span className="timer-label" aria-hidden="true">{t('session.timeLeftLabel')}</span>
+      <p className={`countdown${total <= 10 ? ' countdown-low' : ''}`} role="timer" aria-label={t('session.timeLeft', { time: text })}>{text}</p>
+      {totalMs > 0 && <span className="timer-bar" aria-hidden="true"><span style={{ width: `${Math.min(100, (100 * remainingMs) / totalMs)}%` }} /></span>}
+    </div>
   );
 }
 
@@ -161,20 +164,22 @@ interface SessionViewProps {
 
 export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus = 'available' }: SessionViewProps) {
   const { t, locale } = useI18n();
-  const page = plan.pages[record.pageIndex];
+  const shown = viewedIndex(record);
+  const revisiting = shown !== record.pageIndex;
+  const page = plan.pages[shown];
   const listening = isListeningPage(page);
-  const needsVoice = listening && record.phase === 'answering';
+  const needsVoice = listening && record.phase === 'answering' && !revisiting;
   useEffect(() => {
     if (needsVoice && page.role === 'exam' && voiceStatus === 'available') dispatch({ type: 'voice_ready' });
   }, [needsVoice, page.pageId, page.role, voiceStatus, dispatch]);
   const mode = page.role === 'exam' ? 'exam' : record.phase === 'feedback' ? 'feedback' : 'answering';
-  const ready = page.role === 'presentation' ? presentationComplete(page, record) : page.role !== 'practice' || record.phase === 'feedback' || page.units.every((u) => isAnswered(u, record.drafts[u.id]));
+  const ready = revisiting || (page.role === 'presentation' ? presentationComplete(page, record) : page.role !== 'practice' || record.phase === 'feedback' || page.units.every((u) => isAnswered(u, record.drafts[u.id])));
   const heading = useRef<HTMLHeadingElement>(null);
   // Typing pages put the cursor straight into the first answer field; other pages focus the heading.
   useEffect(() => {
     const field = document.querySelector<HTMLInputElement>('.task-card input.text-input:not([readonly]):not([disabled])');
     (field ?? heading.current)?.focus();
-  }, [record.pageIndex]);
+  }, [shown]);
   // A fully correct single-answer page plays a short success animation, then skips its feedback (P2-02, P2-04).
   const [celebrating, setCelebrating] = useState(false);
   // Exam units missing their article get an info box after Continue; the next Continue submits anyway.
@@ -182,7 +187,7 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
   useEffect(() => setArticleWarnings([]), [record.pageIndex]);
   // Single-answer practice pages mark the answer in place (red/green) instead of a feedback card (P2-04 review).
   const inline = page.role === 'practice' && skipsFeedbackWhenCorrect(page);
-  const almost = inline && record.phase === 'feedback' ? page.units.filter((u) => record.locked[u.id]?.outcome === 'orthography_only') : [];
+  const almost = inline && record.phase === 'feedback' ? page.units.filter((u) => u.kind !== 'spot' && record.locked[u.id]?.outcome === 'orthography_only') : [];
   const onContinue = () => {
     if (page.role === 'exam') {
       // Translation only: a dictation has no article hint (P2-04 review).
@@ -200,9 +205,33 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
     window.setTimeout(() => { setCelebrating(false); dispatch({ type: 'continue' }); }, pause);
   };
 
+  // Theory pages are points to learn: "Theory · point 3 of 8", with a Previous button to the point before (P6-01 review).
+  const theory = plan.pages.filter((p) => p.role === 'presentation' && p.special !== 'examIntro' && !(record.skippedNoVoice ?? []).includes(p.pageId));
+  const point = theory.findIndex((p) => p.index === shown);
+  const eyebrow = point >= 0 ? `${t('sidebar.theory')} · ${t('sidebar.pointOf', { n: point + 1, total: theory.length })}` : undefined;
+  // A theory page is titled by its point (the word group or the grammar block); the instruction becomes the lead line below it.
+  const firstItem = page.items[0];
+  const wordGroup = firstItem && 'targetIds' in firstItem && plan.groups.length > 1 ? plan.groups.find((g) => firstItem.targetIds.every((id) => g.targetIds.includes(id))) : undefined;
+  const pointTitle = point >= 0 ? (wordGroup ?? { label: page.stepLabel }).label[locale] : undefined;
+  const previous = point > 0 ? theory[point - 1].index : undefined;
+  // Enter in a typed answer acts like the primary button once it is enabled (P6-03); never while composing text or on other controls.
+  const onEnter = (e: KeyboardEvent<HTMLElement>) => {
+    const target = e.target as HTMLElement;
+    if (e.key !== 'Enter' || e.nativeEvent.isComposing || e.shiftKey || e.repeat || !(target instanceof HTMLInputElement) || target.type !== 'text' || target.readOnly) return;
+    e.preventDefault();
+    // With several fields Enter moves on to the next one and only the last field submits the page (P6-03 review).
+    const fields = [...e.currentTarget.querySelectorAll<HTMLInputElement>('input.text-input:not([readonly]):not([disabled])')];
+    const at = fields.indexOf(target);
+    if (at >= 0 && at < fields.length - 1) fields[at + 1].focus();
+    else if (ready && !celebrating) onContinue();
+  };
+
   return (
     <>
       <SessionHeader plan={plan} record={record} />
+      <div className="session-layout">
+      <LessonSidebar plan={plan} record={record} onNavigate={(pageIndex) => dispatch({ type: 'navigate', pageIndex })} />
+      <div className="session-main">
       {needsVoice && voiceStatus === 'checking' ? (
         <section className="task-card" role="status"><p>{t('session.voiceChecking')}</p></section>
       ) : needsVoice && voiceStatus === 'unavailable' ? (
@@ -214,11 +243,17 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
           <button type="button" className="button button-primary" onClick={() => dispatch({ type: 'skip_no_voice' })}>{t('session.voiceSkip')}</button>
         </section>
       ) : (
-      <section className={`task-card${celebrating ? ' is-celebrating' : ''}`} aria-labelledby="task-heading">
+      <section className={`task-card${celebrating ? ' is-celebrating' : ''}`} aria-labelledby="task-heading" onKeyDown={onEnter}>
         {celebrating && <span className="visually-hidden" role="status">{t('session.allCorrect')}</span>}
-        <p className="label-muted">{page.stepLabel[locale]}{page.role === 'exam' && page.stepLabel[locale] !== t('session.examPage') ? ` · ${t('session.examPage')}` : ''}</p>
-        <h1 id="task-heading" ref={heading} tabIndex={-1} className="task-heading">{page.special === 'examIntro' ? t('examIntro.title') : instructionsFor(page, locale, t)}</h1>
-        {page.role === 'exam' && remainingMs !== undefined && <Countdown remainingMs={remainingMs} />}
+        <div className="task-eyebrow">
+          <p className={`label-muted${pointTitle === page.stepLabel[locale] ? ' visually-hidden' : ''}`}>{`${page.stepLabel[locale]}${page.role === 'exam' && page.stepLabel[locale] !== t('session.examPage') ? ` · ${t('session.examPage')}` : ''}`}</p>
+          {eyebrow && <span className="point-badge">{eyebrow}</span>}
+        </div>
+        <div className="task-title-row">
+        <h1 id="task-heading" ref={heading} tabIndex={-1} className="task-heading">{page.special === 'examIntro' ? t('examIntro.title') : pointTitle ?? instructionsFor(page, locale, t)}</h1>
+        {page.role === 'exam' && remainingMs !== undefined && <Countdown remainingMs={remainingMs} totalMs={(page.timeLimitS ?? 0) * 1000} />}
+        </div>
+        {pointTitle && <p className="lead">{instructionsFor(page, locale, t)}</p>}
         {page.special === 'examIntro' && <ExamIntro plan={plan} page={page} />}
         {page.items.map((item) => {
           const Renderer = rendererRegistry[item.type];
@@ -245,6 +280,12 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
         })}
         <div className="task-footer">
           {page.role === 'presentation' && !ready && <p className="muted">{t('session.revealAll')}</p>}
+          {page.role === 'exam' && page.units.length > 0 && (
+            <p className="muted exam-answered" role="status">{t('session.answered', { n: page.units.filter((u) => isAnswered(u, record.drafts[u.id])).length, total: page.units.length })}</p>
+          )}
+          {previous !== undefined && canNavigate(plan, record, previous) && (
+            <button type="button" className="button button-outline" onClick={() => dispatch({ type: 'navigate', pageIndex: previous })}>{t('sidebar.previous')}</button>
+          )}
           <span className="continue-wrap">
             <button type="button" className="button button-primary" disabled={!ready} aria-disabled={celebrating || undefined} onClick={() => !celebrating && onContinue()}>
               {/* Practice pages are checked first ("Check"); afterwards the same button continues. */}
@@ -261,6 +302,8 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
         </div>
       </section>
       )}
+      </div>
+      </div>
     </>
   );
 }
@@ -277,26 +320,31 @@ function instructionsFor(page: PlanPage, locale: Locale, t: (key: MessageKey) =>
 function ExamIntro({ plan, page }: { plan: LessonPlan; page: PlanPage }) {
   const { t } = useI18n();
   const examPages = plan.pages.filter((p) => p.role === 'exam' && p.stepId === page.stepId);
-  const kind = (p: PlanPage): MessageKey => {
-    const types = new Set(p.units.map((u) => u.itemType));
-    if (types.size === 1 && types.has('vocabulary_translation_exam')) return 'examIntro.translation';
-    if (types.size === 1 && types.has('vocabulary_listening_dictation')) return 'examIntro.dictation';
-    return 'examIntro.mixed';
-  };
   const words = new Set(examPages.flatMap((p) => p.items.flatMap((it) => ('targetId' in it ? [it.targetId] : []))));
-  const tasks = examPages.reduce((n, p) => n + p.units.length, 0);
-  const minutes = (s: number) => (s % 60 ? t('unit.minutesSeconds', { m: Math.floor(s / 60), s: s % 60 }) : t('unit.minutes', { n: s / 60 }));
+  const totalS = examPages.reduce((n, p) => n + (p.timeLimitS ?? 0), 0);
+  const time = (s: number) => (s % 60 ? t('unit.minutesSeconds', { m: Math.floor(s / 60), s: s % 60 }) : t('unit.minutes', { n: s / 60 }));
+  // Two categories at most (translation, dictation): pages of one kind are one row, not one row per page.
+  const kinds = examPages.reduce<{ key: MessageKey; pages: PlanPage[] }[]>((list, p) => {
+    const key = examKindKey(p);
+    const row = list.find((r) => r.key === key);
+    if (row) row.pages.push(p); else list.push({ key, pages: [p] });
+    return list;
+  }, []);
   return (
     <div className="exam-intro">
-      <p className="lead">{plan.targets.size > 0 ? t('examIntro.words', { count: words.size, tasks }) : t('examIntro.tasks', { tasks })}</p>
-      <ol className="group-list">
-        {examPages.map((p, n) => (
-          <li key={p.pageId} style={reviewColor(n)}>
-            <span>{t(kind(p))} · {t('examIntro.items', { count: p.units.length })}</span>
-            <small>{t('examIntro.limit', { time: minutes(p.timeLimitS ?? 0) })}</small>
-          </li>
-        ))}
-      </ol>
+      <p className="lead">{plan.targets.size > 0 ? t('examIntro.words', { count: words.size }) : t('examIntro.tasks', { tasks: 0 })}</p>
+      <table className="exam-table">
+        <thead><tr><th scope="col">{t('examIntro.colPart')}</th><th scope="col">{t('examIntro.colTime')}</th></tr></thead>
+        <tbody>
+          {kinds.map((k) => (
+            <tr key={k.key}>
+              <th scope="row">{t(k.key)}{k.pages.length > 1 && <small>{t('sidebar.pages', { count: k.pages.length })}</small>}</th>
+              <td>{time(k.pages.reduce((n, p) => n + (p.timeLimitS ?? 0), 0))}</td>
+            </tr>
+          ))}
+        </tbody>
+        {kinds.length > 1 && <tfoot><tr><th scope="row">{t('examIntro.total')}</th><td>{time(totalS)}</td></tr></tfoot>}
+      </table>
       <p className="muted">{t('examIntro.rules')}</p>
     </div>
   );
@@ -383,6 +431,7 @@ function ResultItem({ unit, locked, lang, columns }: { unit: PlanUnit; locked: L
             {locked.timedOut && <span className="result-note">{t('result.timedOut')}</span>}
           </p>
         )}
+        {!ok && <SpotSummary unit={unit} response={locked.response} lang={lang} />}
         {!ok && <p className="muted">{unit.explanation[locale]}</p>}
       </div>
     </li>
@@ -434,16 +483,32 @@ export function ResultsView({ plan, record, dispatch }: { plan: LessonPlan; reco
   }, [plan.lessonId, recordCompletion, results.total]);
 
   const pts = (n: number) => n.toLocaleString(locale);
-  const selectedStep = record.selection === 'exam' ? undefined : plan.steps.find((s) => s.stepId === record.selection);
-  const pages = plan.pages.filter((p) => !(record.skippedNoVoice ?? []).includes(p.pageId) && (selectedStep ? p.stepId === selectedStep.stepId : p.role === 'exam'));
+  const isDictation = (p: PlanPage) => p.units.length > 0 && p.units.every((u) => u.itemType === 'vocabulary_listening_dictation');
+  const examPart = record.selection === 'exam:dictation' ? 'dictation' : record.selection === 'exam:translation' ? 'translation' : undefined;
+  const selectedStep = record.selection.startsWith('exam') ? undefined : plan.steps.find((s) => s.stepId === record.selection);
+  const pages = plan.pages.filter((p) => !(record.skippedNoVoice ?? []).includes(p.pageId) && (selectedStep ? p.stepId === selectedStep.stepId : p.role === 'exam' && (!examPart || isDictation(p) === (examPart === 'dictation'))));
   const units = pages.flatMap((p) => p.units);
   // The card shows the selected part first: its name as heading and its score, then the lesson total.
-  const selectedTally = selectedStep ? results.steps.find((s) => s.stepId === selectedStep.stepId)?.tally : results.exam;
+  const tallyOf = (list: PlanPage[]) => ({ earned: list.flatMap((p) => p.units).reduce((n, u) => n + (record.locked[u.id]?.points ?? 0), 0), possible: list.reduce((n, p) => n + p.units.length, 0) });
+  const selectedTally = selectedStep ? results.steps.find((s) => s.stepId === selectedStep.stepId)?.tally : examPart ? tallyOf(pages) : results.exam;
   const sectionScore = selectedStep?.role === 'presentation' || !selectedTally?.possible
     ? t('result.completedShort')
     : `${pts(selectedTally.earned)} / ${selectedTally.possible}`;
   // Only scored parts can be reviewed; presentation stages (introduction, flashcards) are left out.
   const exerciseSteps = results.steps.filter((s) => s.role !== 'exam' && s.role !== 'presentation' && s.tally.possible > 0 && plan.steps.some((p) => p.stepId === s.stepId));
+
+  // The final exam comes first (split into its parts when it has translation and dictation), then the exercises in presentation order.
+  const examPages = plan.pages.filter((p) => p.role === 'exam' && !(record.skippedNoVoice ?? []).includes(p.pageId));
+  const score = (tally: { earned: number; possible: number }) => `${pts(tally.earned)} / ${tally.possible}`;
+  const split = examPages.some(isDictation) && examPages.some((p) => !isDictation(p));
+  const entries: ResultsEntry[] = [
+    { key: 'exam', label: t('session.examPage'), score: score(results.exam) },
+    ...(split ? [
+      { key: 'exam:translation', label: t('result.translation'), score: score(tallyOf(examPages.filter((p) => !isDictation(p)))), nested: true },
+      { key: 'exam:dictation', label: t('result.dictation'), score: score(tallyOf(examPages.filter(isDictation))), nested: true },
+    ] : []),
+    ...exerciseSteps.map((s) => ({ key: s.stepId, label: plan.steps.find((p) => p.stepId === s.stepId)!.label[locale], score: score(s.tally) })),
+  ];
 
   return (
     <section aria-labelledby="results-title">
@@ -454,25 +519,11 @@ export function ResultsView({ plan, record, dispatch }: { plan: LessonPlan; reco
         <p className="results-lesson" lang={plan.lang}>{plan.title}</p>
         <p className="results-total">{t('result.lessonTotal', { score: roundHalfUp1(results.total).toLocaleString(locale) })}</p>
       </div>
-      <h2 className="small-heading">{t('result.chooseReview')}</h2>
-      <div className="result-menu" role="group" aria-label={t('result.chooseReview')}>
-        {/* The final exam comes first and stands out; the exercises follow in the order they were presented. */}
-        <button type="button" className="button button-outline button-exam" aria-pressed={record.selection === 'exam'} onClick={() => dispatch({ type: 'select', selection: 'exam' })}>
-          {t('session.examPage')}
-        </button>
-        {exerciseSteps.map((s) => {
-          const label = plan.steps.find((p) => p.stepId === s.stepId)!.label[locale];
-          return (
-            <button key={s.stepId} type="button" className="button button-outline" aria-pressed={record.selection === s.stepId} onClick={() => dispatch({ type: 'select', selection: s.stepId })}>
-              {label}
-            </button>
-          );
-        })}
-      </div>
-      <h2 className="small-heading">{selectedStep ? selectedStep.label[locale] : t('result.examAnswers')}</h2>
+      <div className="session-layout">
+      <ResultsSidebar entries={entries} selected={record.selection} onSelect={(selection) => dispatch({ type: 'select', selection })} />
+      <div className="session-main">
+      {/* No sub-heading and no "x of y correct" line: the card and the sidebar already name the part and give its score (P6 review). */}
       {units.some((u) => record.locked[u.id]) ? (() => {
-        const reviewed = units.filter((u) => record.locked[u.id]);
-        const correct = (list: PlanUnit[]) => list.filter((u) => record.locked[u.id].outcome === 'fully_correct').length;
         const renderSections = (subset: PlanPage[]) => {
           const sections = resultSections(plan, subset).map((sec) => ({ ...sec, units: sec.units.filter((u) => record.locked[u.id]) })).filter((sec) => sec.units.length);
           const title = (sec: (typeof sections)[number]) => plan.groups.find((g) => g.id === sec.groupId)?.label[locale] ?? t('result.part', { n: sec.part });
@@ -491,20 +542,16 @@ export function ResultsView({ plan, record, dispatch }: { plan: LessonPlan; reco
           ));
         };
         // The vocabulary exam is reviewed in two accordions: translation (open) and dictation (P2-04 review).
-        const isDictation = (p: PlanPage) => p.units.length > 0 && p.units.every((u) => u.itemType === 'vocabulary_listening_dictation');
-        const parts = !selectedStep && pages.some(isDictation) && pages.some((p) => !isDictation(p))
+        const parts = !selectedStep && !examPart && pages.some(isDictation) && pages.some((p) => !isDictation(p))
           ? [{ key: 'translation', label: t('result.translation'), pages: pages.filter((p) => !isDictation(p)) }, { key: 'dictation', label: t('result.dictation'), pages: pages.filter(isDictation) }]
           : undefined;
         return (
           <>
-            <p className="match-summary"><strong>{t('result.summary', { correct: correct(reviewed), total: reviewed.length })}</strong></p>
             {parts ? parts.map((part, n) => {
-              const partUnits = part.pages.flatMap((p) => p.units).filter((u) => record.locked[u.id]);
               return (
                 <details key={part.key} className="result-accordion" open={n === 0}>
                   <summary>
                     <span>{part.label}</span>
-                    <span className="muted">{t('result.summary', { correct: correct(partUnits), total: partUnits.length })}</span>
                   </summary>
                   {renderSections(part.pages)}
                 </details>
@@ -515,6 +562,8 @@ export function ResultsView({ plan, record, dispatch }: { plan: LessonPlan; reco
       })() : (
         <p className="muted">{t('result.completionOnly')}</p>
       )}
+      </div>
+      </div>
     </section>
   );
 }

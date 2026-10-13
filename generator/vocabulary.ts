@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { vocabularyLesson, vocabularyMinutes, VOCABULARY_TIMING } from '../src/domain/vocabularyLesson.ts';
 import { AcceptedAnswersSchema, ARTIFACT_SCHEMA_VERSION, LocalizedLongTextSchema, LocalizedTextSchema, NestedIdSchema, nativeTextSchema } from '../src/schemas/artifactCommon.ts';
 import { TARGET_EXERCISE_FIELDS, vocabularyBriefSchema, vocabularyGroupSchema, vocabularyTargetSchema, type VocabularyBrief } from '../src/schemas/vocabulary.ts';
-import { validateBrief, type OutlineContext } from '../src/validation/artifacts.ts';
+import { validateBrief, vocabularyBriefLengthIssues, type OutlineContext } from '../src/validation/artifacts.ts';
 import { RICH_TEXT, INTRO_SHAPE, contentPrompt, type Section } from './contentPrompts.ts';
 import type { BriefAdapter } from './gemini.ts';
 import { briefPrompt, PROMPT_VERSION, toStructuredSchema } from './prompts.ts';
@@ -53,11 +53,11 @@ export const vocabularySections = (lang: string, inventory: VocabularyInventory)
       schema: z.strictObject({
         targets: z.array(z.strictObject({
           targetId: NestedIdSchema,
-          gap: z.strictObject({ before: z.string().max(200), after: z.string().max(200), accepted: AcceptedAnswersSchema, referenceTargetIds: z.array(NestedIdSchema).length(4), explanation: LocalizedTextSchema }),
+          gap: z.strictObject({ before: z.string().max(200), after: z.string().max(200), question: nativeTextSchema(lang).nullable(), accepted: AcceptedAnswersSchema, referenceTargetIds: z.array(NestedIdSchema).length(4), explanation: LocalizedTextSchema }),
           listeningOptionTargetIds: z.array(NestedIdSchema).length(4),
         })).min(1),
       }),
-      task: `For every target (${ids}): gap is one contextual ${lang} sentence before + gap + after; the gap takes the target without its article, so the article (if any) stays in "before". gap.accepted.answers are article-free forms that fit; gap.referenceTargetIds are four distinct target IDs including the answer, where no other reference fits the gap; gap.explanation says why the word fits the sentence. listeningOptionTargetIds are four distinct targets including the answer, preferably similar-sounding.`,
+      task: `For every target (${ids}): gap is one contextual ${lang} sentence before + gap + after; the gap takes the target without its article, so the article (if any) stays in "before". gap.accepted.answers are article-free forms that fit; gap.referenceTargetIds are four distinct target IDs including the answer, where no other reference fits the gap; gap.question is null unless the gap asks the learner to name a sign, accent, letter or other metalinguistic item: then it is a question in every mother tongue that shows the word and the marked character, e.g. "What is the name of the accent in the word café (é)?"; the sentence must show every character the clue names (a hyphen question about Jean-Paul writes Jean-Paul, never "between Jean and Paul"). gap.explanation says why the word fits the sentence. listeningOptionTargetIds are four distinct targets including the answer, preferably similar-sounding.`,
     },
   } satisfies Record<string, Section>;
 };
@@ -99,7 +99,7 @@ export function sectionOfPath(path: string): 'inventory' | 'introduction' | 'wor
 }
 
 /** Generates one complete vocabulary brief; `save` writes it atomically. */
-export async function generateVocabularyBrief(ctx: OutlineContext, options: { adapter: BriefAdapter; report?: (m: string) => void; sleep?: (ms: number) => Promise<void> }, isCurrent: () => boolean): Promise<{ brief: VocabularyBrief; model: string }> {
+export async function generateVocabularyBrief(ctx: OutlineContext, options: { adapter: BriefAdapter; report?: (m: string) => void; sleep?: (ms: number) => Promise<void>; lengthRules?: boolean }, isCurrent: () => boolean): Promise<{ brief: VocabularyBrief; model: string }> {
   const id = ctx.entry.id;
   const unitOptions = { adapter: options.adapter, report: options.report, sleep: options.sleep };
   const inventorySchema = vocabularyInventorySchema(ctx.lang);
@@ -119,7 +119,10 @@ export async function generateVocabularyBrief(ctx: OutlineContext, options: { ad
   for (;;) {
     for (const key of todo) payloads[key] = await units[key].request();
     const issues = new Map<string, string[]>();
-    const merged = merge(inventory, payloads as Parameters<typeof merge>[1], issues);
+    // A too long inventory is rejected before the sections are merged (P6-02).
+    const length = options.lengthRules === false ? [] : vocabularyBriefLengthIssues(inventory);
+    if (length.length) issues.set('inventory', length.map((i) => `${i.path}: ${i.message}`));
+    const merged = length.length ? undefined : merge(inventory, payloads as Parameters<typeof merge>[1], issues);
     if (merged) {
       const models = [...new Set([inventoryUnit.model, ...Object.values(units).map((u) => u.model)])].join(', ').slice(0, 80);
       const draft = {

@@ -5,7 +5,7 @@ import { vocabularyInventorySchema } from './vocabulary.ts';
 import type { SupportedKind } from '../src/schemas/artifacts.ts';
 import type { OutlineContext } from '../src/validation/artifacts.ts';
 
-export const PROMPT_VERSION = 'brief-v7';
+export const PROMPT_VERSION = 'brief-v8';
 const trusted = { schemaVersion: true, id: true, lang: true, level: true, locales: true, provenance: true } as const;
 
 /** Model payload of a brief call: vocabulary returns its word inventory first (generator/vocabulary.ts). */
@@ -56,7 +56,7 @@ Use concise strings within the original Zod limits: labels 120, ordinary support
 `;
   const category = ctx.entry.kind === 'vocabulary' ? `
 This call plans the word inventory of a vocabulary lesson: targets and groups. The lesson itself is derived by the application: every word takes part in every exercise (introduction, flashcards, matching, gender/overview, typed gap, listening choice, translation and dictation exam), with fixed durations and time limits; exercise texts are written in later steps. Do not emit estimatedMinutes, plans, durations or exercise texts.
-The standard is 18 targets. Use more or fewer only in exceptional cases and explain why in countRationale: a complete finite inventory (e.g. numbers, the alphabet, days of the week) or an unusually demanding load. Mix core and demanding targets where the topic naturally allows it, but do not force a mix or mark targets demanding only to create one. Explain count and difficulty balance.
+The standard is 10 targets and the maximum 12: every target takes part in every exercise, so a lesson with more words becomes too long. Split a larger topic over several lessons (this lesson covers one coherent part); use fewer only when the topic is small, and explain the count in countRationale. Mix core and demanding targets where the topic naturally allows it, but do not force a mix or mark targets demanding only to create one. Explain count and difficulty balance.
 targetCount equals targets.length. Every target belongs to exactly one group; use 2–4 groups of about 4–8 related words. Include context, pronunciation, native translations, teaching form and exam forms. examForms are the only fully correct exam answers; list genuine alternative spellings there, never accent-less, capitalised or definite forms: the shared scorer grades those.
 Only nouns have nonempty genders and a number; non-nouns use genders [], number null, articleException null.
 Nouns are examined only as indefinite article + noun, in translation and in dictation: for French nouns, teachingForm, every examForm and every genderVariant start with un/une/des, agreeing with gender and number: un (masculine singular), une (feminine singular), des (plural); never add a plural form to a singular target. Use articleException only when no indefinite form is grammatical (proper names such as countries, set phrases, days used without article); then explain it in every locale.
@@ -64,7 +64,7 @@ term is the bare base term without any article, also for countries (term "Japon"
 accentSensitive entries are whole words present in examForms and only mark accents that change meaning.
 ` : `
 Divide teaching into 2–4 blocks, each with explanation plan, examples, pitfalls and 2–4 suitable practice exercises of 4–8 items each (a person matching board or a pronoun item counts its rows; give such exercises 1–2 items). Select only exercise types useful for this topic, not all seven by default.
-Lesson length: at least 34 scored practice units in total (about 35–42) and an exam of 2–4 pages with at least 16 scored units in total. Verb lessons have exactly one person matching board per verb; a pronoun lesson has one board.
+Lesson length (shortened in phase 6): at least 24 scored practice units in total (about 24–30) and an exam of 2–4 pages with at least 12 scored units in total (about 12–18). Teach one named point per block: a block title names the point the learner studies, and its explanation is short. Verb lessons have exactly one person matching board per verb; a pronoun lesson has one board.
 Realistic estimates: about 10 s per choice or matching unit, 15 s per typed unit, 25 s per word-order or error-spotter item, 60–180 s per explanation; exam time limits about 1.5 times the estimate.
 Every rule is taught in a block; exercises reference rules taught in their block. Every rule is covered in the exam. Rule, block, exercise and exam page IDs are unique in their respective inventories.
 Exam pages use grammar_gap_typing, grammar_pronoun_form_typing or grammar_word_order and may mix them; grammar_word_order is only for sentence order/structure. grammar_person_matching, grammar_pronoun_form_match and grammar_pronoun_form_typing are allowed only for the topics pronouns, verbs_morphology and verb_usage; lessons with the topic pronouns or verbs_morphology include at least one grammar_person_matching exercise, except the imperative lesson (only tu, nous, vous) (practice only; translation mode: mother-tongue pronoun to French pronoun, forms mode: French pronoun to verb form; three rows when the block teaches only the singular or only the plural persons, else six); never force conjugation rows onto article, adverb, negation or question lessons. Include feedbackPlaceholder duration.

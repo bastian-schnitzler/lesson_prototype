@@ -160,6 +160,7 @@
       "gap": {
         "before": "Dupont est mon ",
         "after": " de famille.",
+        "question": null,
         "accepted": {
           "answers": [
             "nom"
@@ -237,6 +238,7 @@
       "gap": {
         "before": "Thomas est mon ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "prénom"
@@ -314,6 +316,7 @@
       "gap": {
         "before": "12 rue Victor-Hugo est mon ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "adresse"
@@ -390,6 +393,7 @@
       "gap": {
         "before": "15/03/2000 est ma ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "date de naissance"
@@ -466,6 +470,7 @@
       "gap": {
         "before": "Paris est mon ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "lieu de naissance"
@@ -543,6 +548,7 @@
       "gap": {
         "before": "Je suis français : française est ma ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "nationalité"
@@ -620,6 +626,7 @@
       "gap": {
         "before": "Je suis médecin : médecin est ma ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "profession"
@@ -696,6 +703,7 @@
       "gap": {
         "before": "Je ne suis pas marié : je suis ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "célibataire"
@@ -773,6 +781,7 @@
       "gap": {
         "before": "Paul a une épouse : il est ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "marié"
@@ -849,6 +858,7 @@
       "gap": {
         "before": "Je signe : j’écris ma ",
         "after": ".",
+        "question": null,
         "accepted": {
           "answers": [
             "signature"

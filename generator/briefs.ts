@@ -70,7 +70,7 @@ async function generate(id: string, file: string, options: BriefOptions): Promis
     if (kind === 'vocabulary') {
       // The vocabulary brief is the whole lesson: inventory first, then its exercise texts (P2-04).
       let generated;
-      try { generated = await generateVocabularyBrief(ctx, { adapter: options.adapter(), report: options.report, sleep: options.sleep }, isCurrent); }
+      try { generated = await generateVocabularyBrief(ctx, { adapter: options.adapter(), report: options.report, sleep: options.sleep, lengthRules: options.lengthRules }, isCurrent); }
       catch (error) { if (error instanceof GenerationError) throw error; throw new GenerationError(`${id}: outline changed during generation; retry with the current outline.`); }
       await save(generated.brief);
       return { id, status: 'generated', message: `model ${generated.model}` };

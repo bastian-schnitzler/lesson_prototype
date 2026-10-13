@@ -62,17 +62,17 @@ const renderGender = (mode: 'answering' | 'feedback', locked: Record<string, { r
     </PreferencesProvider>,
   );
 
-it('shows every word on the gender page: nouns as bare lemmas with gender choices, other words without input', () => {
+it('shows only the nouns on the gender page, as bare lemmas with gender choices (P6-02)', () => {
   const { container } = renderGender('answering');
   const rows = container.querySelectorAll('.gender-row');
-  expect(rows).toHaveLength(countries.targets.size);
   const nouns = [...countries.targets.values()].filter((t) => t.wordClass === 'noun');
+  expect(rows).toHaveLength(nouns.length); // adjectives, verbs and pronouns have no gender question and no "no gender" row
   expect(container.querySelectorAll('fieldset.gender-options')).toHaveLength(nouns.length);
-  expect(screen.getAllByText('no gender')).toHaveLength(countries.targets.size - nouns.length);
+  expect(screen.queryByText('no gender')).toBeNull();
   expect(container.textContent).not.toMatch(/\b(un|une|le|la) /); // no articles while answering
   // The speaker reads only the bare term, so it gives no article or gender clue.
   const speakers = [...container.querySelectorAll('.icon-button')].map((b) => b.getAttribute('aria-label') ?? '');
-  expect(speakers).toHaveLength(countries.targets.size);
+  expect(speakers).toHaveLength(nouns.length);
   expect(speakers.join(' ')).not.toMatch(/\b(un|une|le|la) |l'/);
 });
 
@@ -85,7 +85,7 @@ it('marks the choices in place after Check: green for right, red for wrong, gree
     : { response: u.kind === 'choice' ? u.correct[0] : '', outcome: 'fully_correct', points: 1, timedOut: false, interfaceLanguage: 'en' as const }]));
   const { container } = renderGender('feedback', locked);
   expect(screen.getByText(`${units.length - 1} of ${units.length} genders correct.`)).toBeInTheDocument();
-  expect(container.querySelectorAll('.gender-row')).toHaveLength(countries.targets.size); // still one page with every word
+  expect(container.querySelectorAll('.gender-row')).toHaveLength(units.length); // still one page with every noun
   const wrongRow = container.querySelector('.gender-row.is-wrong')!;
   expect(wrongRow.querySelector('.gender-option.is-wrong input')).toHaveProperty('value', wrongChoice);
   expect(wrongRow.querySelector('.gender-option.is-answer input')).toHaveProperty('value', first.correct[0]);

@@ -4,6 +4,7 @@ import { join, resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { lessonOf } from './lessonFixture.ts';
 import { buildPlan, seededOrder, type LessonPlan } from '../../src/domain/session/plan.ts';
+import { outline } from '../../src/domain/session/outline.ts';
 import { headerScore, isListeningPage, lessonResults, progress, scoreUnit, sessionReducer, skipsFeedbackWhenCorrect, startSession, type SessionAction, type SessionRecord } from '../../src/domain/session/session.ts';
 
 const FIXTURES = resolve(import.meta.dirname, '../fixtures/content');
@@ -313,3 +314,61 @@ describe('grammar renderer composition (P3-01)', () => {
     expect(scoreUnit(order, ['t2', 't0', 't1']).points).toBe(0);
   });
 });
+
+describe('sidebar navigation (P6-01)', () => {
+  it('revisits completed theory pages read-only and returns to the active page', () => {
+    const s = setup();
+    s.proceed(); s.proceed(); // intro-all, cards-all done; on match-1
+    expect(s.page().pageId).toBe('match-1');
+    const before = s.record;
+    s.act({ type: 'navigate', pageIndex: 0 });
+    expect(s.record.viewIndex).toBe(0);
+    expect(s.record.pageIndex).toBe(before.pageIndex);
+    expect(outline(s.plan, s.record).slice(0, 3).map((e) => e.state)).toEqual(['current', 'done', 'available']);
+    // Nothing but Continue acts while revisiting; scores and progress stay put.
+    s.act({ type: 'draft', unitId: s.page().units[0].id, response: 'x', now: 1 });
+    expect(s.record.drafts).toEqual(before.drafts);
+    expect(progress(s.plan, s.record)).toBe(progress(s.plan, before));
+    s.act({ type: 'continue', now: 1, interfaceLanguage: 'en' });
+    expect(s.record.viewIndex).toBe(1);
+    s.act({ type: 'continue', now: 1, interfaceLanguage: 'en' });
+    expect(s.record.viewIndex).toBeUndefined();
+    expect(s.record.pageIndex).toBe(before.pageIndex);
+    expect(s.record.completed).toEqual(before.completed);
+  });
+
+  it('only allows completed theory pages: not locked, practice or exam pages', () => {
+    const s = setup();
+    s.act({ type: 'navigate', pageIndex: 1 }); // not completed yet
+    expect(s.record.viewIndex).toBeUndefined();
+    s.proceed(); s.proceed(); s.answerAll(); s.proceed(); // match-1 locked, feedback phase
+    s.act({ type: 'navigate', pageIndex: 2 }); // completed? practice page: never
+    expect(s.record.viewIndex).toBeUndefined();
+    s.act({ type: 'navigate', pageIndex: 5 });
+    expect(s.record.viewIndex).toBeUndefined();
+    s.act({ type: 'navigate', pageIndex: 0 });
+    expect(s.record.viewIndex).toBe(0); // allowed during feedback
+    expect(s.record.locked).toEqual(setupLocked(s));
+  });
+
+  it('is disabled during the exam and after completion, so countdowns and answers are untouched', () => {
+    const s = setup();
+    while (s.page().role !== 'exam') { s.answerAll(); s.proceed(); }
+    const before = s.record;
+    s.act({ type: 'navigate', pageIndex: 0 });
+    expect(s.record).toBe(before);
+    expect(outline(s.plan, s.record).every((e) => !e.navigable)).toBe(true);
+    while (s.record.status === 'active') { s.answerAll(); s.proceed(); }
+    s.act({ type: 'navigate', pageIndex: 0 });
+    expect(s.record.viewIndex).toBeUndefined();
+    expect(outline(s.plan, s.record).every((e) => e.state === 'done' && !e.navigable)).toBe(true);
+  });
+
+  it('reports question counts and time limits for exam pages', () => {
+    const exam = outline(setup(GRAM).plan, setup(GRAM).record).filter((e) => e.role === 'exam');
+    expect(exam.length).toBeGreaterThan(0);
+    expect(exam.every((e) => e.questionCount > 0 && e.timeLimitS !== null && e.state === 'locked')).toBe(true);
+  });
+});
+
+const setupLocked = (s: ReturnType<typeof setup>) => Object.fromEntries(Object.entries(s.record.locked));
