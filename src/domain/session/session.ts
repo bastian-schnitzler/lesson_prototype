@@ -153,10 +153,10 @@ export function presentationComplete(page: PlanPage, r: Pick<SessionRecord, 'rev
   return requiredReveals(page).every(({ itemKey, keys }) => keys.every((key) => (r.revealed?.[itemKey] ?? []).includes(key)));
 }
 
-/** The next hidden line of a function dialogue (SPEC section 8): Next line reveals it. */
+/** The next hidden line of a function dialogue or exam dialogue (SPEC section 8): Next line reveals it. */
 export function nextDialogueLine(page: PlanPage, r: Pick<SessionRecord, 'revealed'>): { itemKey: string; key: string } | undefined {
   for (const item of page.items) {
-    if (item.type !== 'function_dialogue') continue;
+    if (item.type !== 'function_dialogue' && item.type !== 'function_dialogue_gap_typing') continue;
     const itemKey = `${page.pageId}/${item.itemId}`;
     const line = item.lines.slice(1).find((l) => !(r.revealed?.[itemKey] ?? []).includes(l.lineId));
     if (line) return { itemKey, key: line.lineId };

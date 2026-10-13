@@ -4,7 +4,7 @@ import { useI18n } from '../app/context.tsx';
 import { expressionDisplay } from '../domain/functionsLesson.ts';
 import type { LessonPlan } from '../domain/session/plan.ts';
 import type { Locale } from '../schemas/common.ts';
-import { ListenButton, type RendererProps } from './controls.tsx';
+import { Gap, ListenButton, TextControl, UnitsRenderer, type RendererProps } from './controls.tsx';
 
 /**
  * Function lesson presentation renderers (SPEC section 8, P4-04): expression and word flashcards and
@@ -160,5 +160,85 @@ function DialogueLine({ line, plan, motherTongue }: { line: Extract<RendererProp
         </div>
       </div>
     </article>
+  );
+}
+
+/** Role A's line above a task (dialogue gaps, exam replies), with its role label and audio. */
+function ContextLine({ roleId, text, plan }: { roleId: string; text: string; plan: LessonPlan }) {
+  const { t } = useI18n();
+  const role = plan.functions?.roles.find((r) => r.id === roleId);
+  return (
+    <div className="dialogue-context">
+      <p className="dialogue-role" lang={plan.lang}>{role?.label}</p>
+      <div className="dialogue-text">
+        <ListenButton text={text} lang={plan.lang} variant="icon" label={t('session.listenSentence')} />
+        <span lang={plan.lang}>{text}</span>
+      </div>
+    </div>
+  );
+}
+
+const RoleLabel = ({ roleId, plan }: { roleId: string | null; plan: LessonPlan }) =>
+  roleId ? <p className="dialogue-role dialogue-reply-role" lang={plan.lang}>{plan.functions?.roles.find((r) => r.id === roleId)?.label}</p> : null;
+
+/**
+ * Word order (SPEC section 8): practice shows the tokens only; an exam reply stands under role A's line
+ * and its bank also holds the distractors ("Not every word fits").
+ */
+export function FunctionWordOrderRenderer(props: RendererProps) {
+  const { item, plan } = props;
+  if (item.type !== 'function_word_order') return null;
+  return (
+    <div className={item.context ? 'dialogue-task' : undefined}>
+      {item.context && <ContextLine roleId={item.context.roleId} text={item.context.text} plan={plan} />}
+      <RoleLabel roleId={item.roleId} plan={plan} />
+      <UnitsRenderer {...props} />
+    </div>
+  );
+}
+
+/** Dialogue gaps: role A's line, then role B's line with one gap and four expression choices. */
+export function DialogueGapChoiceRenderer(props: RendererProps) {
+  const { item, plan } = props;
+  if (item.type !== 'function_dialogue_gap_choice') return null;
+  return (
+    <div className="dialogue-task">
+      <ContextLine roleId={item.context.roleId} text={item.context.text} plan={plan} />
+      <RoleLabel roleId={item.roleId} plan={plan} />
+      <UnitsRenderer {...props} />
+    </div>
+  );
+}
+
+/**
+ * Exam part 2: the exam dialogue unrolls line by line on one timed page (the footer button reads Next
+ * line until the last line); lines with a gap have a text field, and every field stays editable until
+ * the page is submitted.
+ */
+export function ExamDialogueRenderer(props: RendererProps) {
+  const { t } = useI18n();
+  const { item, plan, pageId, revealed, units } = props;
+  if (item.type !== 'function_dialogue_gap_typing' || !plan.functions) return null;
+  const shown = new Set([item.lines[0].lineId, ...(revealed[`${pageId}/${item.itemId}`] ?? [])]);
+  const lines = item.lines.filter((l) => shown.has(l.lineId));
+  return (
+    <div className="dialogue">
+      <ol className="dialogue-lines">
+        {lines.map((line) => {
+          const unit = line.gap ? units.find((u) => u.id.endsWith(`/${line.gap!.gapId}`)) : undefined;
+          return (
+            <li key={line.lineId} className={`dialogue-line exam-line${plan.functions!.roles[1].id === line.roleId ? ' is-second' : ''}`}>
+              <p className="dialogue-role" lang={plan.lang}>{plan.functions!.roles.find((r) => r.id === line.roleId)?.label}</p>
+              {unit ? (
+                <Gap before={line.before} after={line.after} lang={plan.lang}>
+                  <TextControl unit={unit} props={props} label={t('session.gapAnswer')} />
+                </Gap>
+              ) : <p className="gap-sentence" lang={plan.lang}>{line.before}</p>}
+            </li>
+          );
+        })}
+      </ol>
+      <p className="label-muted" aria-live="polite">{t('session.lineOf', { n: lines.length, total: item.lines.length })}</p>
+    </div>
   );
 }

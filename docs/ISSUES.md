@@ -913,6 +913,8 @@ Acceptance:
 - The exam info page, delayed exam feedback, the results with Replies and Dialogue accordions and the menu of previous exercises work as in section 8; function lessons can be started from the index.
 - Unit and component tests cover distractors, alternative orders, line reveal in the exam, timeout, half credit and the results rows.
 
+Outcome (2026-10-13): renderers `FunctionWordOrderRenderer`, `DialogueGapChoiceRenderer` and `ExamDialogueRenderer` in `src/session/functionsRenderers.tsx`; Next line also on the exam dialogue page; exam info rows, Replies/Dialogue result accordions and the function start page in `src/session/views.tsx`; `functions` in `PLAYABLE_KINDS`. The results menu has one Matching entry for expressions and words. Tests in `tests/unit/functions-renderers.test.tsx`; the café lesson was played through in the browser.
+
 Dependencies: P4-04.
 
 ### P4-06: Decide function generation and complete the remaining eleven lessons

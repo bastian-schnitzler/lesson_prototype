@@ -2,14 +2,14 @@ import { readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { PreferencesProvider } from '../../src/app/context.tsx';
+import { LastTryProvider, PreferencesProvider } from '../../src/app/context.tsx';
 import { buildPlan, type PlanPage } from '../../src/domain/session/plan.ts';
-import { nextDialogueLine, presentationComplete, sessionReducer, skipsFeedbackWhenCorrect, startSession, type SessionRecord } from '../../src/domain/session/session.ts';
+import { nextDialogueLine, presentationComplete, requiredReveals, sessionReducer, skipsFeedbackWhenCorrect, startSession, type SessionRecord } from '../../src/domain/session/session.ts';
 import { briefSchema, contentSchema } from '../../src/schemas/artifacts.ts';
 import type { RendererProps } from '../../src/session/controls.tsx';
-import { DialogueRenderer, FunctionFlashcardsRenderer } from '../../src/session/functionsRenderers.tsx';
+import { DialogueGapChoiceRenderer, DialogueRenderer, ExamDialogueRenderer, FunctionFlashcardsRenderer, FunctionWordOrderRenderer } from '../../src/session/functionsRenderers.tsx';
 import { MatchingRenderer } from '../../src/session/vocabularyRenderers.tsx';
-import { SessionView } from '../../src/session/views.tsx';
+import { ResultsView, SessionView, StartView } from '../../src/session/views.tsx';
 
 /** P4-04: function flashcards, model dialogue and matching (SPEC section 8). */
 afterEach(cleanup);
@@ -144,5 +144,80 @@ describe('function matching', () => {
     renderItem(MatchingRenderer, words);
     expect(screen.getAllByRole('list')[1].querySelectorAll('.match-item')).toHaveLength(4);
     expect(screen.getByRole('button', { name: 'un jus d’orange' })).toBeInTheDocument();
+  });
+});
+
+describe('function practice, exam and results (P4-05)', () => {
+  const record = (pageIndex: number, extra: Partial<SessionRecord> = {}): SessionRecord => ({ ...startSession(plan, { sessionId: 's', contentHash: 'h', level: 'A1', motherTongue: 'de', seed: 1, now: 0 }), pageIndex, ...extra });
+  const wrap = (node: React.ReactNode) => <PreferencesProvider initial={{ interfaceLanguage: 'en', motherTongue: 'de' }}>{node}</PreferencesProvider>;
+
+  it('shows the start page with situation, counts and a three-row outline', () => {
+    render(wrap(<StartView plan={plan} level="A1" onStart={() => undefined} onResume={() => undefined} />));
+    expect(screen.getByText('A customer orders at a café counter; the waiter serves her.')).toBeInTheDocument();
+    expect(screen.getByText(/8 expressions · 4 words/)).toBeInTheDocument();
+    const rows = screen.getAllByRole('listitem');
+    expect(rows.map((r) => r.textContent)).toEqual([expect.stringMatching(/^Flashcards · Dialogue/), expect.stringMatching(/^Matching · Word order · Dialogue gaps/), expect.stringMatching(/^Final exam.*16 items on 3 timed pages/)]);
+  });
+
+  it('shows practice word order with tokens only', () => {
+    renderItem(FunctionWordOrderRenderer, page('order-1'));
+    expect(document.querySelector('.dialogue-context')).toBeNull();
+    expect([...document.querySelectorAll('.order-bank .token')].map((b) => b.textContent).sort()).toEqual(['?', 'Bonsoir,', 'Vous', 'désirez', 'monsieur.'].sort());
+  });
+
+  it('puts role A above an exam reply whose bank holds the distractors', () => {
+    const pg = page('exam-replies-1');
+    renderItem(FunctionWordOrderRenderer, pg, { item: pg.items[0], units: pg.units.filter((u) => u.itemId === pg.items[0].itemId), mode: 'exam' });
+    expect(document.querySelector('.dialogue-context .dialogue-role')).toHaveTextContent('le serveur');
+    expect(document.querySelector('.dialogue-context')).toHaveTextContent('Madame, vous désirez ?');
+    expect(document.querySelector('.dialogue-reply-role')).toHaveTextContent('la cliente');
+    expect([...document.querySelectorAll('.order-bank .token')].map((b) => b.textContent)).toEqual(expect.arrayContaining(['voudrait', 'un']));
+  });
+
+  it('shows a dialogue gap under role A with four expression choices', () => {
+    const { onChange } = renderItem(DialogueGapChoiceRenderer, page('gap-1'));
+    expect(document.querySelector('.dialogue-context')).toHaveTextContent('Bonsoir, madame. Vous désirez ?');
+    expect(screen.getAllByRole('radio')).toHaveLength(4);
+    fireEvent.click(screen.getByRole('radio', { name: 'Je voudrais' }));
+    expect(onChange).toHaveBeenCalledWith(page('gap-1').units[0].id, 'je-voudrais');
+  });
+
+  it('unrolls the exam dialogue line by line with editable gap fields', () => {
+    const pg = page('exam-dialogue');
+    const { onChange } = renderItem(ExamDialogueRenderer, pg, { mode: 'exam', revealed: { 'exam-dialogue/exam-dialogue': ['exam-line-2'] } });
+    expect(screen.getAllByRole('listitem')).toHaveLength(2);
+    const fields = screen.getAllByRole('textbox');
+    expect(fields).toHaveLength(2);
+    fireEvent.change(fields[1], { target: { value: 'Je voudrais' } });
+    expect(onChange).toHaveBeenCalledWith(pg.units[1].id, 'Je voudrais');
+    expect(screen.getByText('Line 2 of 12')).toBeInTheDocument();
+  });
+
+  it('offers Next line on the exam dialogue page, then Continue', () => {
+    const pg = page('exam-dialogue');
+    const dispatch = vi.fn();
+    const { rerender } = render(wrap(<SessionView plan={plan} record={record(pg.index)} dispatch={dispatch} remainingMs={200_000} />));
+    fireEvent.click(screen.getByRole('button', { name: 'Next line' }));
+    expect(dispatch).toHaveBeenCalledWith({ type: 'reveal', itemKey: 'exam-dialogue/exam-dialogue', key: 'exam-line-2' });
+    rerender(wrap(<SessionView plan={plan} record={record(pg.index, { revealed: { 'exam-dialogue/exam-dialogue': Array.from({ length: 11 }, (_, n) => `exam-line-${n + 2}`) } })} dispatch={dispatch} remainingMs={200_000} />));
+    expect(screen.getByRole('button', { name: 'Continue' })).toBeEnabled();
+  });
+
+  it('reviews the exam in Replies and Dialogue accordions', () => {
+    let r = record(0);
+    for (let guard = 0; r.status !== 'completed' && guard < 200; guard++) {
+      const pg = plan.pages[r.pageIndex];
+      // Practice and the exam dialogue answered correctly, exam replies left empty.
+      for (const u of pg.units) {
+        const response = u.kind === 'text' ? u.accepted.answers[0] : u.kind === 'choice' ? u.correct[0] : u.kind === 'order' && pg.role !== 'exam' ? u.acceptedOrders[0] : undefined;
+        if (response !== undefined) r = sessionReducer(plan, r, { type: 'draft', unitId: u.id, response, now: 0 });
+      }
+      for (const { itemKey, keys } of requiredReveals(pg)) for (const key of keys) r = sessionReducer(plan, r, { type: 'reveal', itemKey, key, now: 0 });
+      r = sessionReducer(plan, r, { type: 'continue', now: 1, interfaceLanguage: 'en' });
+    }
+    render(wrap(<LastTryProvider><ResultsView plan={plan} record={r} dispatch={() => undefined} /></LastTryProvider>));
+    const summaries = [...document.querySelectorAll('.result-accordion summary')].map((s) => s.textContent);
+    expect(summaries).toEqual(['Replies0 of 8 correct.', 'Dialogue8 of 8 correct.']);
+    expect(screen.getAllByText(/le serveur: Madame, vous désirez \?/).length).toBeGreaterThan(0);
   });
 });

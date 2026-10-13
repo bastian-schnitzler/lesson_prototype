@@ -39,6 +39,37 @@ export function grammarFlow(plan: LessonPlan) {
   return parts;
 }
 
+/**
+ * Function start page (SPEC section 8): the situation, the number of expressions and words, and the
+ * outline in three rows: flashcards and dialogue, the exercises, the final exam.
+ */
+function FunctionsStart({ plan }: { plan: LessonPlan }) {
+  const { t, locale } = useI18n();
+  const f = plan.functions!;
+  const parts = (['presentation', 'practice', 'exam'] as const).map((role) => {
+    const pages = plan.pages.filter((p) => p.role === role && !p.special);
+    const labels = [...new Set(pages.map((p) => p.stepLabel[locale]))];
+    return { role, labels, seconds: pages.reduce((n, p) => n + p.estimatedDurationS, 0), units: pages.reduce((n, p) => n + p.units.length, 0), pages: pages.length };
+  });
+  return (
+    <>
+      <p className="muted">{f.situation[locale]}</p>
+      <p className="muted">{t('session.expressionCount', { count: f.expressions.length })} · {t('session.vocabularyCount', { count: f.words.length })}</p>
+      <h2 className="small-heading">{t('session.lessonFlow')}</h2>
+      <ol className="group-list flow-list">
+        {parts.map((part, n) => (
+          <li key={part.role} style={reviewColor(n)}>
+            <span>{part.role === 'exam' ? t('session.examPage') : part.labels.join(' · ')}
+              {part.role === 'exam' && <small className="flow-detail">{t('activity.exam', { count: part.units, pages: part.pages })}</small>}
+            </span>
+            <small>{t('session.flowMinutes', { minutes: Math.max(1, Math.round(part.seconds / 60)) })}</small>
+          </li>
+        ))}
+      </ol>
+    </>
+  );
+}
+
 interface StartViewProps {
   plan: LessonPlan;
   level: string;
@@ -78,6 +109,7 @@ export function StartView({ plan, level, resumable, notice, onStart, onResume }:
           </ol>
         </>
       )}
+      {plan.functions && <FunctionsStart plan={plan} />}
       {plan.kind === 'grammar' && <NewVerbs plan={plan} motherTongue={motherTongue} />}
       {plan.kind === 'grammar' && (
         <>
@@ -169,7 +201,8 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
   }, [needsVoice, page.pageId, page.role, voiceStatus, dispatch]);
   const mode = page.role === 'exam' ? 'exam' : record.phase === 'feedback' ? 'feedback' : 'answering';
   const ready = page.role === 'presentation' ? presentationComplete(page, record) : page.role !== 'practice' || record.phase === 'feedback' || page.units.every((u) => isAnswered(u, record.drafts[u.id]));
-  const nextLine = page.role === 'presentation' ? nextDialogueLine(page, record) : undefined;
+  // Dialogues unroll line by line: the model dialogue and the exam dialogue (until the page is submitted).
+  const nextLine = page.role === 'presentation' || (page.role === 'exam' && record.phase === 'answering') ? nextDialogueLine(page, record) : undefined;
   const heading = useRef<HTMLHeadingElement>(null);
   // Typing pages put the cursor straight into the first answer field; other pages focus the heading.
   useEffect(() => {
@@ -287,6 +320,8 @@ function ExamIntro({ plan, page }: { plan: LessonPlan; page: PlanPage }) {
     const types = new Set(p.units.map((u) => u.itemType));
     if (types.size === 1 && types.has('vocabulary_translation_exam')) return 'examIntro.translation';
     if (types.size === 1 && types.has('vocabulary_listening_dictation')) return 'examIntro.dictation';
+    if (types.size === 1 && types.has('function_word_order')) return 'examIntro.replies';
+    if (types.size === 1 && types.has('function_dialogue_gap_typing')) return 'examIntro.dialogue';
     return 'examIntro.mixed';
   };
   const words = new Set(examPages.flatMap((p) => p.items.flatMap((it) => ('targetId' in it ? [it.targetId] : []))));
@@ -498,8 +533,13 @@ export function ResultsView({ plan, record, dispatch }: { plan: LessonPlan; reco
         };
         // The vocabulary exam is reviewed in two accordions: translation (open) and dictation (P2-04 review).
         const isDictation = (p: PlanPage) => p.units.length > 0 && p.units.every((u) => u.itemType === 'vocabulary_listening_dictation');
-        const parts = !selectedStep && pages.some(isDictation) && pages.some((p) => !isDictation(p))
-          ? [{ key: 'translation', label: t('result.translation'), pages: pages.filter((p) => !isDictation(p)) }, { key: 'dictation', label: t('result.dictation'), pages: pages.filter(isDictation) }]
+        // Function exams: Replies (open) and Dialogue (SPEC section 8).
+        const isExamDialogue = (p: PlanPage) => p.units.length > 0 && p.units.every((u) => u.itemType === 'function_dialogue_gap_typing');
+        const parts = selectedStep ? undefined
+          : pages.some(isDictation) && pages.some((p) => !isDictation(p))
+            ? [{ key: 'translation', label: t('result.translation'), pages: pages.filter((p) => !isDictation(p)) }, { key: 'dictation', label: t('result.dictation'), pages: pages.filter(isDictation) }]
+          : pages.some(isExamDialogue) && pages.some((p) => !isExamDialogue(p))
+            ? [{ key: 'replies', label: t('result.replies'), pages: pages.filter((p) => !isExamDialogue(p)) }, { key: 'dialogue', label: t('result.dialogue'), pages: pages.filter(isExamDialogue) }]
           : undefined;
         return (
           <>

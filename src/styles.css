@@ -2362,3 +2362,44 @@ html {
 .expression-mark {
   color: #c7d2fe;
 }
+
+/* Function tasks (P4-05): role A's line, then the role and task of role B, close together. */
+.dialogue-task {
+  display: grid;
+  gap: 0.35rem;
+  padding-bottom: 0.75rem;
+}
+
+.dialogue-task + .dialogue-task {
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.dialogue-context {
+  display: grid;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.dialogue-task .gap-sentence {
+  margin: 0 0 0.75rem;
+}
+
+.dialogue-task .unit {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.exam-line {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-card);
+  background: var(--bg);
+}
+
+.exam-line .gap-sentence {
+  margin: 0;
+  font-size: 19px;
+}
