@@ -73,6 +73,19 @@ function breaksAccentSensitiveWord(response: string, answer: string, sensitive: 
   });
 }
 
+/** Words whose accent marks a different word (D40), in both spellings, per learning language. */
+export const ACCENT_HOMOGRAPHS: Record<string, ReadonlySet<string>> = {
+  fr: new Set(['a', 'à', 'ou', 'où', 'la', 'là', 'du', 'dû', 'sur', 'sûr']),
+};
+
+/** The words of the accepted answers that content must mark as accent-sensitive (D40, P3-03). */
+export function accentHomographs(answers: string[], lang: string): string[] {
+  const homographs = ACCENT_HOMOGRAPHS[lang];
+  if (!homographs) return [];
+  const words = answers.flatMap((a) => normalizeAnswer(a).toLowerCase().split(/[\s']+/).map((w) => w.replace(WORD_EDGE, '')));
+  return [...new Set(words.filter((w) => homographs.has(w)))];
+}
+
 export function classifyAnswer(response: string, accepted: AcceptedAnswers): Classification {
   const r = normalizeAnswer(response);
   const answers = accepted.answers.map(normalizeAnswer);

@@ -432,7 +432,9 @@
                     "answers": [
                       "a"
                     ],
-                    "accentSensitive": []
+                    "accentSensitive": [
+                      "a"
+                    ]
                   },
                   "answerExplanation": {
                     "en": "With il, elle, on, avoir is a – without an accent; à with an accent grave is the preposition.",
@@ -1133,7 +1135,9 @@
                 "answers": [
                   "a"
                 ],
-                "accentSensitive": []
+                "accentSensitive": [
+                  "a"
+                ]
               },
               "hint": {
                 "en": "avoir",
@@ -1624,7 +1628,9 @@
                   "answers": [
                     "a"
                   ],
-                  "accentSensitive": []
+                  "accentSensitive": [
+                    "a"
+                  ]
                 },
                 "choices": []
               },
@@ -1836,7 +1842,9 @@
                     "answers": [
                       "a"
                     ],
-                    "accentSensitive": []
+                    "accentSensitive": [
+                      "a"
+                    ]
                   },
                   "answerExplanation": {
                     "en": "With il, elle, on, avoir is a – without an accent; à with an accent grave is the preposition.",
@@ -1945,7 +1953,9 @@
                 "answers": [
                   "a"
                 ],
-                "accentSensitive": []
+                "accentSensitive": [
+                  "a"
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2041,7 +2051,9 @@
                 "answers": [
                   "a"
                 ],
-                "accentSensitive": []
+                "accentSensitive": [
+                  "a"
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2217,10 +2229,10 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "content-v4",
-    "generatedAt": "2026-10-08T00:17:18.245Z",
+    "generatedAt": "2026-10-13T23:32:35.566Z",
     "inputHashes": {
       "outline": "6330aa315b82f91f79b5f684caf8264ae01a4b0148b010ab9324c3b67e0028be",
-      "brief": "b0ed6d5e4a91658afc20bc1f56224db508d4c029a5c52004074a6ceb08e31a37"
+      "brief": "56dc47ece789e3606ef62102b5fed9c3d59342ff59f4f571b08773819a09a781"
     }
   }
 }

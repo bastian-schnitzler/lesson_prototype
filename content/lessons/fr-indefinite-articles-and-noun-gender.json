@@ -2095,10 +2095,10 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "content-v4",
-    "generatedAt": "2026-10-08T00:17:18.468Z",
+    "generatedAt": "2026-10-13T23:32:33.864Z",
     "inputHashes": {
       "outline": "21cea9aeeacae2d7d0c58cde432c039e81a485c45fc20fb3991afbe89e01be25",
-      "brief": "6cb8f864256f2e6a8aae4b443dd1bc165c07029dcf80b114891649a1bbf490d1"
+      "brief": "53afd23d2fc1de3bf7d4f0484bda172fce8eb41435ee2544e2e296a058c6b297"
     }
   }
 }

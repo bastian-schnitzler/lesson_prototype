@@ -721,6 +721,8 @@ Acceptance:
 - Common three-way text scorers/result records work in practice and exam roles; Continue confirmation and delayed exam feedback follow the shared host.
 - Checks cover accent-sensitive answers, blank responses, answer reveal policy, and scoring.
 
+Outcome (2026-10-14): both interactions already ran on the shared `UnitsRenderer` and scorer (P1-09, P3-01, P3-02 and P4-05 reviews); `tests/unit/gaps.test.tsx` now checks them against this issue's acceptance criteria. The audit found unmarked accent homographs: `la`, `là` and `a` answers in four grammar samples earned half a point for the other word. Accepted answers in grammar content must now mark them (validated); `scripts/author-grammar-items.ts` and the content generator add the marks, and the ten grammar samples were rebuilt.
+
 Dependencies: P3-01.
 
 ### P3-04: Implement word order and grammar error spotter

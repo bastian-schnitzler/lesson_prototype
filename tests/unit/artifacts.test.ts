@@ -226,6 +226,13 @@ describe('grammar content validation', () => {
     expect(messages(checkContent('fr-verb-etre-present', (c) => (c.steps[7].pages[0].items[0].ruleIds = ['r-x'])))).toMatch(/unknown rule r-x/);
   });
 
+  it('requires accent homographs in accepted answers to be marked accent-sensitive (D40, P3-03)', () => {
+    const typed = (c: Json) => c.steps[6].pages[0].items[0];
+    expect(messages(checkContent('fr-verb-etre-present', (c) => (typed(c).accepted = { answers: ['est là'], accentSensitive: [] })))).toMatch(/accepted.accentSensitive: mark "là"/);
+    expect(checkContent('fr-verb-etre-present', (c) => (typed(c).accepted = { answers: ['est là'], accentSensitive: ['là'] })).issues.filter((i) => /accentSensitive/.test(i.path))).toEqual([]);
+    expect(messages(checkContent('fr-verb-etre-present', (c) => (c.steps[5].pages[0].items[0].rows[0].accepted.answers = ['a'])))).toMatch(/rows.0.accepted.accentSensitive: mark "a"/);
+  });
+
   it('requires items to assess exactly the planned rules of their exercise or exam page (P3-01)', () => {
     expect(messages(checkContent('fr-verb-etre-present', (c) => (c.steps[2].pages[0].items[0].ruleIds = ['r-plural'])))).toMatch(/rule r-plural is not planned for planned exercise/);
     expect(messages(checkContent('fr-verb-etre-present', (c) => (c.steps[9].pages[0].items[0].ruleIds = ['r-plural'])))).toMatch(/no item of exam page exam-gaps assesses rule r-singular/);

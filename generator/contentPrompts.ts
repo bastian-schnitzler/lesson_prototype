@@ -1,5 +1,6 @@
 import { z } from 'zod';
-import { NestedIdSchema, nativeLocales } from '../src/schemas/artifactCommon.ts';
+import { NestedIdSchema, nativeLocales, type AcceptedAnswers } from '../src/schemas/artifactCommon.ts';
+import { accentHomographs } from '../src/domain/answers.ts';
 import type { Brief } from '../src/schemas/artifacts.ts';
 import { grammarItemSchema, type GrammarBrief, type GrammarExerciseType } from '../src/schemas/grammar.ts';
 import type { OutlineContext } from '../src/validation/artifacts.ts';
@@ -88,6 +89,19 @@ export function normalizeLocalIds(value: unknown): unknown {
     if (key === 'acceptedOrders' && Array.isArray(child)) return [key, child.map((order) => (Array.isArray(order) ? order.map((id) => (typeof id === 'string' ? toLocalId(id) : id)) : order))];
     return [key, normalizeLocalIds(child)];
   }));
+}
+
+/**
+ * Marks every accent homograph of the accepted answers as accent-sensitive (D40, P3-03), so a model
+ * that forgets one cannot turn "la" for "là" into half credit.
+ */
+export function markAccentHomographs(value: unknown, lang: string): unknown {
+  if (Array.isArray(value)) return value.map((v) => markAccentHomographs(v, lang));
+  if (!value || typeof value !== 'object') return value;
+  const node = Object.fromEntries(Object.entries(value).map(([key, child]) => [key, markAccentHomographs(child, lang)]));
+  const { answers, accentSensitive } = node as Partial<AcceptedAnswers>;
+  if (!Array.isArray(answers) || !Array.isArray(accentSensitive) || !answers.every((a) => typeof a === 'string')) return node;
+  return { ...node, accentSensitive: [...new Set([...accentSensitive, ...accentHomographs(answers, lang)])] };
 }
 
 /* ------------------------------------------------------------------ prompt */

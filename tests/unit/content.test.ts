@@ -5,7 +5,7 @@ import { join, resolve } from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import type { BriefOptions } from '../../generator/briefs.ts';
 import { generateLesson, splitDuration } from '../../generator/content.ts';
-import { CONTENT_PROMPT_VERSION, normalizeLocalIds } from '../../generator/contentPrompts.ts';
+import { CONTENT_PROMPT_VERSION, markAccentHomographs, normalizeLocalIds } from '../../generator/contentPrompts.ts';
 import { GenerationError, type GenerationRequest } from '../../generator/gemini.ts';
 import { scanContentDir } from '../../scripts/catalog.ts';
 
@@ -127,6 +127,12 @@ describe('offline lesson content generation', () => {
   it('normalizes model-invented item IDs consistently and leaves brief IDs alone', () => {
     expect(normalizeLocalIds({ exerciseId: 'Ex_1', items: [{ choices: [{ choiceId: 'A' }, { choiceId: 'Choix Été' }], answerChoiceId: 'A', tokens: [{ tokenId: 'T_1' }], acceptedOrders: [['T_1']], ruleIds: ['r1'] }] }))
       .toEqual({ exerciseId: 'Ex_1', items: [{ choices: [{ choiceId: 'a' }, { choiceId: 'choix-ete' }], answerChoiceId: 'a', tokens: [{ tokenId: 't-1' }], acceptedOrders: [['t-1']], ruleIds: ['r1'] }] });
+  });
+
+  it('marks accent homographs of generated answers as accent-sensitive (D40, P3-03)', () => {
+    expect(markAccentHomographs({ items: [{ accepted: { answers: ['Elle est là', 'là-bas'], accentSensitive: [] } }, { correction: { accepted: { answers: ['ici'], accentSensitive: [] } } }] }, 'fr'))
+      .toEqual({ items: [{ accepted: { answers: ['Elle est là', 'là-bas'], accentSensitive: ['là'] } }, { correction: { accepted: { answers: ['ici'], accentSensitive: [] } } }] });
+    expect(markAccentHomographs({ accepted: { answers: ['la'], accentSensitive: ['la'] } }, 'de')).toEqual({ accepted: { answers: ['la'], accentSensitive: ['la'] } });
   });
 
   it('splits planned durations into whole pages of at least five seconds', () => {

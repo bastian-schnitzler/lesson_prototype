@@ -1,10 +1,11 @@
 import type { z } from 'zod';
 
-import { nativeLocales } from '../schemas/artifactCommon.ts';
+import { nativeLocales, type AcceptedAnswers } from '../schemas/artifactCommon.ts';
 import { briefSchema, contentSchema, hasContentFile, isSupportedKind, type Brief, type LessonContent } from '../schemas/artifacts.ts';
 import { GRAMMAR_LENGTH, PERSON_MATCHING_EXEMPT, PERSON_MATCHING_TOPICS, PERSONS, PRONOUN_FORM_TOPICS, PRONOUN_FORM_TYPES, type GrammarBrief, type GrammarContent, type GrammarItem } from '../schemas/grammar.ts';
 import type { OutlineEntry } from '../schemas/outline.ts';
 import { learningForms, parseRichText, richTextShape } from '../domain/richText.ts';
+import { accentHomographs } from '../domain/answers.ts';
 import type { VocabularyBrief, VocabularyTarget } from '../schemas/vocabulary.ts';
 import { chunk, matchingPages, vocabularyLesson } from '../domain/vocabularyLesson.ts';
 import { functionsPageEstimate, functionsTimeLimit } from '../domain/functionsLesson.ts';
@@ -264,8 +265,17 @@ function checkRichText(text: Record<string, string>, path: string, issues: Issue
 
 const FR_ARTICLE_START = /^(un|une|des|le|la|les|l')(\s|$)|^l'/iu;
 
-function checkGrammarItem(item: GrammarItem, path: string, rules: Set<string>, exam: boolean, issues: Issues) {
+/** Accent homographs in accepted answers are marked, so a wrong accent on them scores zero (D40, P3-03). */
+function checkAccentSensitive(accepted: AcceptedAnswers, path: string, lang: string, issues: Issues) {
+  const marked = new Set(accepted.accentSensitive.map((w) => w.toLowerCase()));
+  for (const w of accentHomographs(accepted.answers, lang)) issues.check(marked.has(w), `${path}.accentSensitive`, `mark "${w}": its accent distinguishes a different word (D40)`);
+}
+
+function checkGrammarItem(item: GrammarItem, path: string, rules: Set<string>, exam: boolean, lang: string, issues: Issues) {
   if ('ruleIds' in item) for (const r of item.ruleIds) issues.check(rules.has(r), `${path}.ruleIds`, `unknown rule ${r}`);
+  if ('accepted' in item) checkAccentSensitive(item.accepted, `${path}.accepted`, lang, issues);
+  if (item.type === 'grammar_error_spotter') checkAccentSensitive(item.correction.accepted, `${path}.correction.accepted`, lang, issues);
+  if (item.type === 'grammar_pronoun_form_typing') item.rows.forEach((r, n) => checkAccentSensitive(r.accepted, `${path}.rows.${n}.accepted`, lang, issues));
   const tokens = 'tokens' in item ? item.tokens : [];
   issues.unique(tokens.map((t) => t.tokenId), path, 'token ID');
   switch (item.type) {
@@ -415,7 +425,7 @@ function checkGrammarContent(c: GrammarContent, b: GrammarBrief, issues: Issues)
       } else {
         issues.check(page.timeLimitS === null, `${pp}.timeLimitS`, 'only exam pages have a countdown');
       }
-      page.items.forEach((item, ii) => checkGrammarItem(item, `${pp}.items.${ii}`, rules, want.role === 'exam', issues));
+      page.items.forEach((item, ii) => checkGrammarItem(item, `${pp}.items.${ii}`, rules, want.role === 'exam', c.lang, issues));
     });
   });
   const examPages = c.steps[c.steps.length - 1].pages.map((pg) => pg.pageId);

@@ -2385,10 +2385,10 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "content-v4",
-    "generatedAt": "2026-10-08T00:17:18.400Z",
+    "generatedAt": "2026-10-13T23:32:35.102Z",
     "inputHashes": {
       "outline": "0367546f1045976bcb4939d146c3b21f6c14226474b17a8ca564d616f4ff3afe",
-      "brief": "84f31dfd549c72d7e480eb5a67b3d6a1ab711b62f98a7edd3f5e1fcd4609cf1b"
+      "brief": "e7a3150c317fcdc8dd82fc8c4e8b1dbf8f07d88d6f185c3dfe1fa9435ab7601d"
     }
   }
 }

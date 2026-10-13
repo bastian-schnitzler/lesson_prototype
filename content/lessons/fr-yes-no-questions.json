@@ -2371,10 +2371,10 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "content-v4",
-    "generatedAt": "2026-10-08T00:17:18.767Z",
+    "generatedAt": "2026-10-13T23:32:36.407Z",
     "inputHashes": {
       "outline": "3c12786bc37e360e4fe392d664b19a6b0785f2775510b6f39fdc04fb475a22ec",
-      "brief": "7fb6ddfb1c219a905c9fd8d89362f6176306313871872c8ced595b958bccf2f2"
+      "brief": "f38ff38f90053afc29484ad0ec101482493e581d55fc876275ea18a24c50b1dd"
     }
   }
 }
