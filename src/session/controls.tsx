@@ -1,4 +1,4 @@
-import { useId, useRef, useState, type ReactNode } from 'react';
+import { useId, useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from 'react';
 
 import { useI18n } from '../app/context.tsx';
 import type { LockedUnit, UnitResponse } from '../domain/session/session.ts';
@@ -224,20 +224,80 @@ export function ChoiceControl({ unit, props, label, layout }: { unit: PlanUnit &
   );
 }
 
+/**
+ * Word order: tokens from the bank are placed on the line in click order. Placed tokens can be dragged
+ * along the line to another position with mouse, pen or touch (P4-05 review); dropping one outside the
+ * line returns it to the bank, and a click without movement also returns it.
+ */
 export function OrderControl({ unit, props }: { unit: PlanUnit & { kind: 'order' }; props: RendererProps }) {
   const { t } = useI18n();
   const order = (value(props, unit) as string[] | undefined) ?? [];
   const disabled = readOnly(props, unit);
   const bank = seededOrder(unit.tokens, props.seed, unit.id).filter((tk) => !order.includes(tk.id));
   const text = (id: string) => unit.tokens.find((tk) => tk.id === id)?.text;
+  const line = useRef<HTMLParagraphElement>(null);
+  const press = useRef<{ index: number; x: number; y: number; moved: boolean } | null>(null);
+  const [drag, setDrag] = useState<{ index: number; x: number; y: number; target: number | null } | null>(null);
+  // The click that follows a drag must not return the token to the bank.
+  const suppressClick = useRef(false);
+
+  /** Insertion index on the line for a pointer position; null when the pointer is outside the line. */
+  const targetAt = (x: number, y: number): number | null => {
+    const box = line.current?.getBoundingClientRect();
+    if (!box || y < box.top - 24 || y > box.bottom + 24) return null;
+    const tokens = [...(line.current?.querySelectorAll<HTMLElement>('.token-placed') ?? [])];
+    let index = tokens.length;
+    for (const [n, el] of tokens.entries()) {
+      const r = el.getBoundingClientRect();
+      const sameRow = y >= r.top - 4 && y <= r.bottom + 4;
+      if ((sameRow && x < r.left + r.width / 2) || y < r.top - 4) { index = n; break; }
+    }
+    return index;
+  };
+  const move = (from: number, to: number) => {
+    const next = order.filter((_, m) => m !== from);
+    next.splice(to > from ? to - 1 : to, 0, order[from]);
+    props.onChange(unit.id, next);
+  };
+  const handlers = (index: number) => disabled ? {} : {
+    onPointerDown: (e: ReactPointerEvent<HTMLButtonElement>) => {
+      if (e.button !== 0) return;
+      suppressClick.current = false;
+      press.current = { index, x: e.clientX, y: e.clientY, moved: false };
+      e.currentTarget.setPointerCapture?.(e.pointerId);
+    },
+    onPointerMove: (e: ReactPointerEvent<HTMLButtonElement>) => {
+      const p = press.current;
+      if (!p) return;
+      if (!p.moved && Math.hypot(e.clientX - p.x, e.clientY - p.y) < 6) return;
+      p.moved = true;
+      setDrag({ index: p.index, x: e.clientX, y: e.clientY, target: targetAt(e.clientX, e.clientY) });
+    },
+    onPointerUp: (e: ReactPointerEvent<HTMLButtonElement>) => {
+      const p = press.current;
+      press.current = null;
+      if (!p?.moved) return; // a click: handled by onClick
+      suppressClick.current = true;
+      const target = targetAt(e.clientX, e.clientY);
+      setDrag(null);
+      if (target === null) props.onChange(unit.id, order.filter((_, m) => m !== p.index));
+      else if (target !== p.index && target !== p.index + 1) move(p.index, target);
+    },
+    onPointerCancel: () => { press.current = null; setDrag(null); },
+  };
+  const marker = <span key="marker" className="order-marker" aria-hidden="true" />;
+  const placed = order.map((id, n) => (
+    <button key={id} type="button" className={`token token-placed${drag?.index === n ? ' is-dragged' : ''}`} disabled={disabled}
+      {...handlers(n)}
+      onClick={() => { if (suppressClick.current) { suppressClick.current = false; return; } props.onChange(unit.id, order.filter((_, m) => m !== n)); }}>
+      {text(id)}
+    </button>
+  ));
+  if (drag?.target !== null && drag?.target !== undefined && drag.target !== drag.index && drag.target !== drag.index + 1) placed.splice(drag.target, 0, marker);
   return (
-    <div className="order">
-      <p className="order-answer" lang={props.plan.lang} aria-live="polite">
-        {order.length ? order.map((id, n) => (
-          <button key={id} type="button" className="token token-placed" disabled={disabled} onClick={() => props.onChange(unit.id, order.filter((_, m) => m !== n))}>
-            {text(id)}
-          </button>
-        )) : <span className="muted">{t('session.orderEmpty')}</span>}
+    <div className={`order${drag ? ' is-dragging' : ''}`}>
+      <p ref={line} className="order-answer" lang={props.plan.lang} aria-live="polite">
+        {order.length ? placed : <span className="muted">{t('session.orderEmpty')}</span>}
       </p>
       <p className="order-bank" lang={props.plan.lang}>
         {bank.map((tk) => (
@@ -246,6 +306,7 @@ export function OrderControl({ unit, props }: { unit: PlanUnit & { kind: 'order'
           </button>
         ))}
       </p>
+      {drag && <span className="drag-ghost token token-placed" lang={props.plan.lang} style={{ left: drag.x, top: drag.y }} aria-hidden="true">{text(order[drag.index])}</span>}
     </div>
   );
 }

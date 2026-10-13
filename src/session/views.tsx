@@ -176,20 +176,23 @@ export function correctSentences(page: PlanPage): string | undefined {
     if (u.kind === 'spot' || u.kind === 'order') return [u.answer];
     if (u.prompt.before !== undefined || u.prompt.after !== undefined) return [gapSentence(u.prompt.before, u.answer, u.prompt.after)];
     if (u.itemType === 'grammar_pronoun_form_typing' || u.itemType === 'grammar_pronoun_form_match') return [`${pronounWithForm(u.prompt.learning ?? '', u.answer)}.`];
-    if (u.itemType === 'vocabulary_listening_choice' || u.itemType === 'function_listening_choice') return [u.answer];
+    // The listening dialogue speaks only role A (on entry), never the chosen or right reply.
+    if (u.itemType === 'vocabulary_listening_choice') return [u.answer];
     return [];
   });
   return sentences.length ? sentences.join(' ') : undefined;
 }
 
 /**
- * Practice pages with one multiple-choice answer (P4-05 review): radio choices (multiple-choice and
- * dialogue gaps, listening choice). Matching boards and gender pages keep their Check button.
+ * Practice pages with one multiple-choice answer (P4-05 review): multiple-choice and dialogue gaps.
+ * Listening choices, matching boards and gender pages keep their Check button.
  */
 export function isAutoSubmitPage(page: PlanPage): boolean {
   const unit = page.units[0];
   return page.role === 'practice' && page.units.length === 1 && unit.kind === 'choice' && !isMatchingItem(unit.itemType)
-    && unit.itemType !== 'vocabulary_gender_select' && unit.itemType !== 'function_gender_select' && page.items.length === 1;
+    && unit.itemType !== 'vocabulary_gender_select' && unit.itemType !== 'function_gender_select' && page.items.length === 1
+    // Listening choices are confirmed with Check: the learner may listen to the options first.
+    && unit.itemType !== 'vocabulary_listening_choice' && unit.itemType !== 'function_listening_choice';
 }
 
 export function SessionHeader({ plan, record }: { plan: LessonPlan; record: SessionRecord }) {

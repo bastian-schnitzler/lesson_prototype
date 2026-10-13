@@ -288,7 +288,7 @@ it('colours result-menu parts by their outcome; half credit is not fully right',
 
 it('submits multiple-choice practice pages on selection, but not matching, gender or word order (P4-05 review)', () => {
   expect(isAutoSubmitPage(page('gap-1'))).toBe(true);
-  expect(isAutoSubmitPage(page('listening-1'))).toBe(true);
+  expect(isAutoSubmitPage(page('listening-1'))).toBe(false); // confirmed with Check
   expect(isAutoSubmitPage(page('match-expressions-1'))).toBe(false);
   expect(isAutoSubmitPage(page('gender'))).toBe(false);
   expect(isAutoSubmitPage(page('order-1'))).toBe(false);
@@ -304,7 +304,7 @@ describe('autoplay (P4-05 review)', () => {
 
   it('speaks the correct sentence of a gap after it is answered', () => {
     expect(correctSentences(page('gap-1'))).toBe('Je voudrais un chocolat chaud, s’il vous plaît.');
-    expect(correctSentences(page('listening-1'))).toBe('Je voudrais un thé, s’il vous plaît.');
+    expect(correctSentences(page('listening-1'))).toBeUndefined(); // only role A is played
     expect(correctSentences(page('order-1'))).toBe('Bonsoir, monsieur. Vous désirez ?');
     expect(correctSentences(page('match-expressions-1'))).toBeUndefined();
     expect(pronounWithForm('je', 'ai')).toBe("j'ai");

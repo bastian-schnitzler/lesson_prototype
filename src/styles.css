@@ -2473,3 +2473,27 @@ html {
   outline: 2px solid var(--focus);
   outline-offset: 2px;
 }
+
+/* Word order (P4-05 review): placed tokens can be dragged along the line; a marker shows where. */
+.order-answer .token-placed {
+  touch-action: none;
+  cursor: grab;
+}
+
+.order.is-dragging .order-answer .token-placed {
+  cursor: grabbing;
+}
+
+.order-answer .token-placed.is-dragged {
+  opacity: 0.35;
+}
+
+.order-marker {
+  display: inline-block;
+  width: 3px;
+  height: 1.8rem;
+  margin: 0 0.15rem;
+  vertical-align: middle;
+  border-radius: 2px;
+  background: var(--progress);
+}

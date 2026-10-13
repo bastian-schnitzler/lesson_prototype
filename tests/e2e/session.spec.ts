@@ -81,7 +81,7 @@ async function answerListening(page: Page, right = true) {
   for (const option of await page.locator('fieldset.choices label').all()) {
     if (((await option.locator('span[lang]').textContent())!.trim() === word) === right) { await option.click(); break; }
   }
-  // Choosing submits the page (P4-05 review).
+  await proceed(page); // listening choices are confirmed with Check (P4-05 review)
   if (!right) {
     await expect(page.locator('.choice.is-wrong')).toHaveCount(1);
     await proceed(page);
@@ -314,14 +314,16 @@ test('plays French listening choice and dictation with a suitable voice', async 
     const options = page.locator('fieldset.choices label');
     for (const option of await options.all()) if (((await option.locator('span[lang]').textContent())!.trim() === word) === right) return option.click();
   };
-  await choose(false); // choosing submits the page (P4-05 review)
+  await choose(false);
   await expect(page.locator('fieldset.choices .choice-gender')).toHaveCount(0); // fr-classroom-instructions has no nouns
+  await proceed(page); // listening choices are confirmed with Check (P4-05 review)
   // A wrong choice: the chosen option red, the correct one green, no feedback card.
   await expect(page.locator('.choice.is-wrong')).toHaveCount(1);
   await expect(page.locator('.choice.is-right')).toHaveCount(1);
   await expect(page.locator('.feedback')).toHaveCount(0);
   await proceed(page);
   await choose(true);
+  await proceed(page);
   await expect(page.locator('.task-card.is-celebrating .choice:has(input:checked)')).toHaveCount(1);
   await expect(page.locator('.feedback')).toHaveCount(0);
   await expect(page.locator('.task-card.is-celebrating')).toHaveCount(0);

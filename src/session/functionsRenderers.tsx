@@ -231,12 +231,18 @@ export function DialogueGapChoiceRenderer(props: RendererProps) {
 export function ExamDialogueRenderer(props: RendererProps) {
   const { t } = useI18n();
   const { item, plan, pageId, revealed, units } = props;
+  const list = useRef<HTMLOListElement>(null);
+  const count = item.type === 'function_dialogue_gap_typing' ? 1 + (revealed[`${pageId}/${item.itemId}`] ?? []).length : 0;
+  // A newly shown line with a gap gets the cursor in its field (P4-05 review).
+  useEffect(() => {
+    if (count > 1) list.current?.querySelector<HTMLInputElement>('li:last-child input.text-input:not([readonly])')?.focus();
+  }, [count]);
   if (item.type !== 'function_dialogue_gap_typing' || !plan.functions) return null;
   const shown = new Set([item.lines[0].lineId, ...(revealed[`${pageId}/${item.itemId}`] ?? [])]);
   const lines = item.lines.filter((l) => shown.has(l.lineId));
   return (
     <div className="dialogue">
-      <ol className="dialogue-lines">
+      <ol ref={list} className="dialogue-lines">
         {lines.map((line) => {
           const unit = line.gap ? units.find((u) => u.id.endsWith(`/${line.gap!.gapId}`)) : undefined;
           return (
