@@ -380,11 +380,12 @@ export function Gap({ before, after, lang, children }: { before?: string; after?
 
 /**
  * After "des" + a word in a translation exam (P4-05 review) the gender is asked, because "des" does not
- * show it: masculine/feminine pills after the field. The answer then counts when word and gender are right.
+ * show it: masculine/feminine pills after the field, for every noun so that the choice reveals nothing.
+ * Only a plurale tantum is right in the plural, and then only with the right gender.
  */
 function PluralGender({ unit, props }: { unit: PlanUnit; props: RendererProps }) {
   const { t } = useI18n();
-  if (unit.kind !== 'text' || !unit.plural || !isPluralAnswer(value(props, unit))) return null;
+  if (unit.kind !== 'text' || !unit.noun || !isPluralAnswer(value(props, unit))) return null;
   const key = `${unit.id}#gender`;
   const current = (props.locked[unit.id]?.gender ?? props.drafts[key]) as string | undefined;
   return (

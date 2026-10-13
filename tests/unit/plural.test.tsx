@@ -2,42 +2,31 @@ import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { PreferencesProvider } from '../../src/app/context.tsx';
-import { indefinitePlural, pluralPhrase } from '../../src/domain/plural.ts';
-import { pluralOf, type PlanUnit } from '../../src/domain/session/plan.ts';
+import type { PlanUnit } from '../../src/domain/session/plan.ts';
 import { isPluralAnswer, scoreUnit } from '../../src/domain/session/session.ts';
 import { UnitsRenderer, type RendererProps } from '../../src/session/controls.tsx';
 
-/** P4-05 review: "des" + plural with the right gender counts in translation exams. */
+/** P4-05 review: plurals in translation exams count only for pluralia tantum, and then with the right gender. */
 afterEach(cleanup);
 
-describe('French plurals', () => {
-  it.each([
-    ['un livre', 'des livres'], ['une table', 'des tables'], ['un gâteau', 'des gâteaux'], ['un cheval', 'des chevaux'],
-    ['un festival', 'des festivals'], ['un jus d’orange', 'des jus d’orange'], ['une salle de classe', 'des salles de classe'],
-    ['un stylo bleu', 'des stylos bleus'], ['un œil', 'des yeux'], ['un travail', 'des travaux'], ['un nez', 'des nez'],
-  ])('%s → %s', (singular, plural) => expect(indefinitePlural(singular)).toBe(plural));
-
-  it('leaves forms without an indefinite article alone', () => {
-    expect(indefinitePlural('la France')).toBeUndefined();
-    expect(pluralPhrase('bijou')).toBe('bijoux');
-  });
-});
-
 describe('scoring a plural answer', () => {
-  const unit: PlanUnit = {
-    kind: 'text', id: 'p/i', itemId: 'i', itemType: 'vocabulary_translation_exam', prompt: { native: 'book' }, explanation: { en: 'e', fr: 'e', de: 'e' },
-    answer: 'un livre', answerLang: 'learning', accepted: { answers: ['un livre'], accentSensitive: [] },
-    plural: pluralOf({ answers: ['un livre'], accentSensitive: [] }, ['masculine']),
-  };
+  const base = { kind: 'text' as const, id: 'p/i', itemId: 'i', itemType: 'vocabulary_translation_exam' as const, prompt: { native: 'book' }, explanation: { en: 'e', fr: 'e', de: 'e' }, answerLang: 'learning' as const };
+  const unit: PlanUnit = { ...base, answer: 'un livre', accepted: { answers: ['un livre'], accentSensitive: [] }, noun: { genders: ['masculine'], pluraleTantum: false } };
+  const tantum: PlanUnit = { ...base, answer: 'des ciseaux', accepted: { answers: ['des ciseaux'], accentSensitive: [] }, noun: { genders: ['masculine'], pluraleTantum: true } };
 
-  it('needs des + the plural and the right gender', () => {
+  it('counts a plural answer as wrong unless the noun is a plurale tantum', () => {
     expect(isPluralAnswer('des livres')).toBe(true);
     expect(isPluralAnswer('desserts')).toBe(false);
-    expect(scoreUnit(unit, 'des livres', 'masculine')).toEqual({ outcome: 'fully_correct', points: 1 });
-    expect(scoreUnit(unit, 'des livres', 'feminine')).toEqual({ outcome: 'incorrect', points: 0 });
-    expect(scoreUnit(unit, 'des livres')).toEqual({ outcome: 'incorrect', points: 0 });
-    expect(scoreUnit(unit, 'Des livres', 'masculine')).toEqual({ outcome: 'orthography_only', points: 0.5 });
+    expect(scoreUnit(unit, 'des livres', 'masculine')).toEqual({ outcome: 'incorrect', points: 0 });
     expect(scoreUnit(unit, 'un livre')).toEqual({ outcome: 'fully_correct', points: 1 });
+  });
+
+  it('needs the right gender for a plurale tantum; a singular is wrong', () => {
+    expect(scoreUnit(tantum, 'des ciseaux', 'masculine')).toEqual({ outcome: 'fully_correct', points: 1 });
+    expect(scoreUnit(tantum, 'des ciseaux', 'feminine')).toEqual({ outcome: 'incorrect', points: 0 });
+    expect(scoreUnit(tantum, 'des ciseaux')).toEqual({ outcome: 'incorrect', points: 0 });
+    expect(scoreUnit(tantum, 'Des ciseaux', 'masculine')).toEqual({ outcome: 'orthography_only', points: 0.5 });
+    expect(scoreUnit(tantum, 'un ciseau', 'masculine')).toEqual({ outcome: 'incorrect', points: 0 });
   });
 
   it('asks the gender after the field once des and a word are typed', () => {
@@ -55,8 +44,8 @@ describe('scoring a plural answer', () => {
   });
 });
 
-describe('plural answers in a vocabulary exam session', () => {
-  it('stores the gender draft and scores des + plural with it when the page locks', async () => {
+describe('the gender draft in a vocabulary exam session', () => {
+  it('is stored and kept with the locked answer', async () => {
     const { readFileSync } = await import('node:fs');
     const { join, resolve } = await import('node:path');
     const { buildPlan } = await import('../../src/domain/session/plan.ts');
@@ -64,14 +53,12 @@ describe('plural answers in a vocabulary exam session', () => {
     const { vocabularyLesson } = await import('../../src/domain/vocabularyLesson.ts');
     const brief = JSON.parse(readFileSync(join(resolve(import.meta.dirname, '../fixtures/content'), 'briefs', 'fr-classroom-objects.json'), 'utf8'));
     const plan = buildPlan(vocabularyLesson(brief), brief, 'en');
-    const page = plan.pages.find((p) => p.role === 'exam' && p.units.some((u) => u.kind === 'text' && u.plural))!;
-    const unit = page.units.find((u) => u.kind === 'text' && u.plural)!;
-    const plural = unit.kind === 'text' ? unit.plural! : undefined;
+    const page = plan.pages.find((p) => p.role === 'exam' && p.units.some((u) => u.kind === 'text' && u.noun))!;
+    const unit = page.units.find((u) => u.kind === 'text' && u.noun)!;
     let r = { ...startSession(plan, { sessionId: 's', contentHash: 'h', level: 'A1', motherTongue: 'en', seed: 1, now: 0 }), pageIndex: page.index };
-    r = sessionReducer(plan, r, { type: 'draft', unitId: unit.id, response: plural!.accepted.answers[0], now: 0 });
-    r = sessionReducer(plan, r, { type: 'draft', unitId: `${unit.id}#gender`, response: plural!.genders[0], now: 0 });
-    expect(r.drafts[`${unit.id}#gender`]).toBe(plural!.genders[0]);
+    r = sessionReducer(plan, r, { type: 'draft', unitId: unit.id, response: 'des stylos', now: 0 });
+    r = sessionReducer(plan, r, { type: 'draft', unitId: `${unit.id}#gender`, response: 'masculine', now: 0 });
     r = sessionReducer(plan, r, { type: 'continue', now: 1, interfaceLanguage: 'en' });
-    expect(r.locked[unit.id]).toMatchObject({ outcome: 'fully_correct', gender: plural!.genders[0] });
+    expect(r.locked[unit.id]).toMatchObject({ outcome: 'incorrect', gender: 'masculine' }); // not a plurale tantum
   });
 });
