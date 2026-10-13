@@ -311,6 +311,13 @@ select {
   min-height: 36px;
 }
 
+/* Index Content buttons share one width whatever their label (Outline, Draft, Content; fr, de: Gliederung). */
+.artifact-button {
+  min-width: 8.5em;
+  justify-content: center;
+  text-align: center;
+}
+
 .button[aria-pressed='true'] {
   border-color: var(--indigo);
 }

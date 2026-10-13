@@ -20,7 +20,7 @@ export function ArtifactButton({ lessonId, artifacts }: { lessonId: string; arti
   const warn = state.incomplete || state.problem !== null;
   return (
     <>
-      <a className={`button button-outline button-small${warn ? ' has-warning' : ''}`} href={href.lesson(lessonId)} aria-describedby={descId}>
+      <a className={`button button-outline button-small artifact-button${warn ? ' has-warning' : ''}`} href={href.lesson(lessonId)} aria-describedby={descId}>
         {t(`artifact.${state.label}`)}
         {warn && <span aria-hidden="true"> ⚠</span>}
       </a>
