@@ -16,7 +16,7 @@ const ROOT = resolve(import.meta.dirname, '../..');
 const IDS = readdirSync(join(ROOT, 'content/briefs')).map((f) => f.replace(/\.json$/, '')).sort();
 const read = (dir: string, id: string) => JSON.parse(readFileSync(join(ROOT, 'content', dir, `${id}.json`), 'utf8'));
 const planOf = (id: string, motherTongue: 'en' | 'de') => {
-  // Vocabulary lessons are derived from the brief (P2-04); grammar lessons are parsed from their content file.
+  // Vocabulary lessons are derived from the brief (P2-04); grammar and function lessons are parsed from their content file.
   const content = lessonOf(join(ROOT, 'content'), id), brief = read('briefs', id);
   return buildPlan(brief.kind === 'vocabulary' ? content : contentSchema(content.kind, 'fr').parse(content), briefSchema(brief.kind, 'fr').parse(brief), motherTongue);
 };
@@ -54,9 +54,9 @@ function play(plan: LessonPlan, respond: (u: PlanUnit, role: string) => UnitResp
   return r;
 }
 
-it('reviews all twenty first-ten samples, both categories', () => {
-  expect(IDS).toHaveLength(20);
-  expect(new Set(IDS.map((id) => read('briefs', id).kind))).toEqual(new Set(['vocabulary', 'grammar']));
+it('reviews the twenty first-ten samples and the three function test lessons (P4-03)', () => {
+  expect(IDS).toHaveLength(23);
+  expect(IDS.filter((id) => read('briefs', id).kind === 'functions')).toEqual(['fr-asking-the-way', 'fr-greetings-and-goodbyes', 'fr-ordering-at-a-cafe']);
 });
 
 describe.each(IDS)('%s', (id) => {

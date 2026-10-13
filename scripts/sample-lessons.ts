@@ -1,4 +1,4 @@
-/** Validate the directly authored P1-08 review batch without model calls or writes. */
+/** Validate the directly authored P1-08 review batch and the P4-03 function test lessons without model calls or writes. */
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { DEFAULT_CONTENT_DIR, scanContentDir } from './catalog.ts';
@@ -6,13 +6,18 @@ import type { CatalogResult } from '../src/catalog/scan.ts';
 import { briefSchema, contentSchema, hasContentFile } from '../src/schemas/artifacts.ts';
 import { grammarBriefLengthIssues, grammarContentLengthIssues } from '../src/validation/artifacts.ts';
 
+/** Function test lessons written by hand before the generation decision (P4-03, D51). */
+export const FUNCTION_TEST_LESSONS = ['fr-greetings-and-goodbyes', 'fr-ordering-at-a-cafe', 'fr-asking-the-way'] as const;
+
 export function checkSampleLessons(result: CatalogResult, contentDir = DEFAULT_CONTENT_DIR): string[] {
   const outline = result.outlines.get('fr-a1');
   if (!outline) return ['Missing fr/A1 outline.'];
   const samples = ['grammar', 'vocabulary'].flatMap((kind) => outline.entries.filter((e) => e.kind === kind).slice(0, 10));
   const problems = [...result.errors];
   if (samples.length !== 20) problems.push('Expected ten grammar and ten vocabulary sample entries.');
-  for (const { id, kind } of samples) {
+  const functions = outline.entries.filter((e) => (FUNCTION_TEST_LESSONS as readonly string[]).includes(e.id));
+  if (functions.length !== FUNCTION_TEST_LESSONS.length) problems.push(`Expected the function test lessons ${FUNCTION_TEST_LESSONS.join(', ')}.`);
+  for (const { id, kind } of [...samples, ...functions]) {
     const artifacts = result.manifest.artifacts[id];
     // Vocabulary lessons consist of the brief only (P2-04).
     for (const slot of hasContentFile(kind) ? (['draft', 'content'] as const) : (['draft'] as const)) {
@@ -40,5 +45,5 @@ if (import.meta.main) {
   if (problems.length) {
     problems.forEach((problem) => console.error(problem));
     process.exitCode = 1;
-  } else console.log('All twenty sample lessons (ten vocabulary briefs, ten grammar briefs with content) are valid with current input hashes; grammar lessons follow the length rules. No generator calls.');
+  } else console.log('All twenty sample lessons (ten vocabulary briefs, ten grammar briefs with content) and the three function test lessons are valid with current input hashes; grammar lessons follow the length rules. No generator calls.');
 }

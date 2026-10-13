@@ -101,5 +101,5 @@ generate: export ID := $(ID)
 generate-missing: node_modules/.package-lock.json ## Generate missing supported briefs and lesson content in catalog order
 	$(NODE) generator/cli.ts generate-missing
 
-sample-lessons: node_modules/.package-lock.json ## Validate the twenty directly authored sample lessons for review (no model calls)
+sample-lessons: node_modules/.package-lock.json ## Validate the twenty sample lessons and the three function test lessons (no model calls)
 	$(NODE) scripts/sample-lessons.ts

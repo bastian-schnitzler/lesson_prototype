@@ -873,6 +873,8 @@ Acceptance:
 - Each lesson meets section 8: 6–10 expressions, 0–6 words, natural A1 French, complete en/fr/de and translations, consistent register, and the content review criteria.
 - The product owner reviews the three lessons in the artifact view (Draft and Content); findings are resolved before the renderers are built. They are played through once P4-05 is done, before P4-06.
 
+Outcome (2026-10-13, reviewed and approved by the product owner on 2026-10-13): `scripts/author-functions.ts` with the definition format in `scripts/author-functions-definition.ts`; the three lessons in `authoring/functions/` and `content/` (8 expressions, 4 words, 28 practice and 15–16 exam units, about 20 minutes each); `make sample-lessons` and the contract tests (plan, scoring, a complete session reaching 100) include them. The product owner approved the three lessons without changes.
+
 Dependencies: P4-02. The lessons become playable with P4-05.
 
 ### P4-04: Function flashcards, model dialogue and matching
