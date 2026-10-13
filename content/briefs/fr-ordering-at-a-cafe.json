@@ -14,12 +14,12 @@
     "fr": "Commander une boisson et un en-cas au café, demander le prix et l’addition, et répondre au serveur.",
     "de": "Im Café ein Getränk und einen Snack bestellen, nach Preis und Rechnung fragen und dem Kellner antworten."
   },
-  "estimatedMinutes": 20,
+  "estimatedMinutes": 21,
   "provenance": {
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "functions-v1",
-    "generatedAt": "2026-10-13T14:17:08.097Z",
+    "generatedAt": "2026-10-13T17:02:23.594Z",
     "inputHashes": {
       "outline": "3d44c42aa9721069c041b103732801561e34e993b5fde9e51f14c06cb8768c78"
     }

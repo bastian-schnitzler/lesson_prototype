@@ -14,15 +14,15 @@
     "fr": "Commander une boisson et un en-cas au café, demander le prix et l’addition, et répondre au serveur.",
     "de": "Im Café ein Getränk und einen Snack bestellen, nach Preis und Rechnung fragen und dem Kellner antworten."
   },
-  "estimatedMinutes": 20,
+  "estimatedMinutes": 21,
   "provenance": {
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "functions-v1",
-    "generatedAt": "2026-10-13T14:17:08.097Z",
+    "generatedAt": "2026-10-13T17:02:23.594Z",
     "inputHashes": {
       "outline": "3d44c42aa9721069c041b103732801561e34e993b5fde9e51f14c06cb8768c78",
-      "brief": "92a649464f13caec63e9199b8f494476f30af70cdb7e0dc12499598223304ed3"
+      "brief": "07c68026155c381e55a7de5ef72dd84958528eb59616490061964913e936627d"
     }
   },
   "kind": "functions",
@@ -38,33 +38,6 @@
         "de": "Karteikarten"
       },
       "pages": [
-        {
-          "pageId": "cards-expressions",
-          "estimatedDurationS": 96,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Turn every card once and listen to the expressions.",
-            "fr": "Retournez chaque carte une fois et écoutez les expressions.",
-            "de": "Dreh jede Karte einmal um und hör dir die Ausdrücke an."
-          },
-          "items": [
-            {
-              "type": "function_flashcards",
-              "itemId": "cards-expressions",
-              "side": "expressions",
-              "ids": [
-                "vous-desirez",
-                "je-voudrais",
-                "je-prends",
-                "et-avec-ceci",
-                "cest-tout",
-                "sur-place",
-                "cest-combien",
-                "laddition"
-              ]
-            }
-          ]
-        },
         {
           "pageId": "cards-words",
           "estimatedDurationS": 40,
@@ -84,6 +57,33 @@
                 "the",
                 "croissant",
                 "jus-dorange"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "cards-expressions",
+          "estimatedDurationS": 96,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each expression, then turn the card to check it.",
+            "fr": "Rappelez-vous chaque expression, puis retournez la carte pour vérifier.",
+            "de": "Erinnere dich an jeden Ausdruck und dreh dann die Karte um."
+          },
+          "items": [
+            {
+              "type": "function_flashcards",
+              "itemId": "cards-expressions",
+              "side": "expressions",
+              "ids": [
+                "vous-desirez",
+                "je-voudrais",
+                "je-prends",
+                "et-avec-ceci",
+                "cest-tout",
+                "sur-place",
+                "cest-combien",
+                "laddition"
               ]
             }
           ]
@@ -451,6 +451,40 @@
       ]
     },
     {
+      "id": "gender",
+      "stage": "gender",
+      "role": "exercise",
+      "label": {
+        "en": "Gender and overview",
+        "fr": "Genre et vue d’ensemble",
+        "de": "Genus und Übersicht"
+      },
+      "pages": [
+        {
+          "pageId": "gender",
+          "estimatedDurationS": 40,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the gender of each noun, then review all words.",
+            "fr": "Choisissez le genre de chaque nom, puis revoyez tous les mots.",
+            "de": "Wähle das Genus jedes Nomens und sieh dir dann alle Wörter an."
+          },
+          "items": [
+            {
+              "type": "function_gender_select",
+              "itemId": "gender",
+              "ids": [
+                "cafe",
+                "the",
+                "croissant",
+                "jus-dorange"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "word-order",
       "stage": "word_order",
       "role": "exercise",
@@ -746,11 +780,7 @@
                 },
                 {
                   "tokenId": "t4",
-                  "text": "à emporter"
-                },
-                {
-                  "tokenId": "t5",
-                  "text": "?"
+                  "text": "à emporter ?"
                 }
               ],
               "distractorTokenIds": [],
@@ -759,8 +789,7 @@
                   "t1",
                   "t2",
                   "t3",
-                  "t4",
-                  "t5"
+                  "t4"
                 ]
               ],
               "answerExplanation": {
@@ -1473,27 +1502,22 @@
                 },
                 {
                   "tokenId": "t4",
-                  "text": "à emporter"
+                  "text": "à emporter ?"
                 },
                 {
                   "tokenId": "t5",
-                  "text": "?"
-                },
-                {
-                  "tokenId": "t6",
                   "text": "et"
                 }
               ],
               "distractorTokenIds": [
-                "t6"
+                "t5"
               ],
               "acceptedOrders": [
                 [
                   "t1",
                   "t2",
                   "t3",
-                  "t4",
-                  "t5"
+                  "t4"
                 ]
               ],
               "answerExplanation": {
@@ -1618,6 +1642,10 @@
                   "lineId": "exam-line-1",
                   "roleId": "serveur",
                   "before": "Bonsoir, madame.",
+                  "translation": {
+                    "en": "Good evening, madam. What would you like?",
+                    "de": "Guten Abend. Was darf es sein?"
+                  },
                   "gap": {
                     "gapId": "gap-1",
                     "expressionId": "vous-desirez",
@@ -1639,6 +1667,10 @@
                   "lineId": "exam-line-2",
                   "roleId": "cliente",
                   "before": "Bonsoir.",
+                  "translation": {
+                    "en": "Good evening. I would like a lemonade.",
+                    "de": "Guten Abend. Ich hätte gern eine Limonade."
+                  },
                   "gap": {
                     "gapId": "gap-2",
                     "expressionId": "je-voudrais",
@@ -1661,6 +1693,10 @@
                   "lineId": "exam-line-3",
                   "roleId": "serveur",
                   "before": "Une limonade.",
+                  "translation": {
+                    "en": "A lemonade. Anything else?",
+                    "de": "Eine Limonade. Sonst noch etwas?"
+                  },
                   "gap": {
                     "gapId": "gap-3",
                     "expressionId": "et-avec-ceci",
@@ -1682,6 +1718,10 @@
                   "lineId": "exam-line-4",
                   "roleId": "cliente",
                   "before": "",
+                  "translation": {
+                    "en": "I’ll have a croissant.",
+                    "de": "Ich nehme ein Croissant."
+                  },
                   "gap": {
                     "gapId": "gap-4",
                     "expressionId": "je-prends",
@@ -1704,6 +1744,10 @@
                   "lineId": "exam-line-5",
                   "roleId": "serveur",
                   "before": "Très bien.",
+                  "translation": {
+                    "en": "Very good. For here or to take away?",
+                    "de": "Sehr gern. Hier oder zum Mitnehmen?"
+                  },
                   "gap": {
                     "gapId": "gap-5",
                     "expressionId": "sur-place",
@@ -1725,6 +1769,10 @@
                   "lineId": "exam-line-6",
                   "roleId": "cliente",
                   "before": "Sur place.",
+                  "translation": {
+                    "en": "For here. That’s all.",
+                    "de": "Hier. Das ist alles."
+                  },
                   "gap": {
                     "gapId": "gap-6",
                     "expressionId": "cest-tout",
@@ -1746,6 +1794,10 @@
                   "lineId": "exam-line-7",
                   "roleId": "serveur",
                   "before": "Voilà votre limonade et votre croissant.",
+                  "translation": {
+                    "en": "Here are your lemonade and your croissant.",
+                    "de": "Hier sind Ihre Limonade und Ihr Croissant."
+                  },
                   "gap": null,
                   "after": ""
                 },
@@ -1753,6 +1805,10 @@
                   "lineId": "exam-line-8",
                   "roleId": "cliente",
                   "before": "Merci. Le croissant,",
+                  "translation": {
+                    "en": "Thank you. How much is the croissant?",
+                    "de": "Danke. Wie viel kostet das Croissant?"
+                  },
                   "gap": {
                     "gapId": "gap-8",
                     "expressionId": "cest-combien",
@@ -1775,6 +1831,10 @@
                   "lineId": "exam-line-9",
                   "roleId": "serveur",
                   "before": "Deux euros, madame.",
+                  "translation": {
+                    "en": "Two euros, madam.",
+                    "de": "Zwei Euro."
+                  },
                   "gap": null,
                   "after": ""
                 },
@@ -1782,6 +1842,10 @@
                   "lineId": "exam-line-10",
                   "roleId": "cliente",
                   "before": "Merci.",
+                  "translation": {
+                    "en": "Thank you. The bill, please.",
+                    "de": "Danke. Die Rechnung, bitte."
+                  },
                   "gap": {
                     "gapId": "gap-10",
                     "expressionId": "laddition",
@@ -1803,6 +1867,10 @@
                   "lineId": "exam-line-11",
                   "roleId": "serveur",
                   "before": "Voilà. Bonne soirée, madame !",
+                  "translation": {
+                    "en": "Here you are. Have a nice evening, madam!",
+                    "de": "Bitte schön. Einen schönen Abend!"
+                  },
                   "gap": null,
                   "after": ""
                 },
@@ -1810,6 +1878,10 @@
                   "lineId": "exam-line-12",
                   "roleId": "cliente",
                   "before": "Merci, bonne soirée !",
+                  "translation": {
+                    "en": "Thank you, have a nice evening!",
+                    "de": "Danke, einen schönen Abend!"
+                  },
                   "gap": null,
                   "after": ""
                 }

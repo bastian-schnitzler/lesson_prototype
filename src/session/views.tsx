@@ -355,7 +355,7 @@ export function promptParts(unit: PlanUnit, t: (key: MessageKey) => string): str
   // Only listening units fall back to "Write what you hear"; word order has no task text, only the sentence.
   const prompt = [unit.prompt.native, unit.prompt.learning, unit.prompt.before !== undefined ? `${unit.prompt.before ?? ''} ____${/^[,.]/.test(unit.prompt.after ?? '') ? '' : ' '}${unit.prompt.after ?? ''}`.trim() : undefined].find(Boolean) ?? (unit.speak ? t('session.typeWhatYouHear') : undefined);
   if (!prompt) return [];
-  if (unit.itemType === 'vocabulary_gender_select') return [`${prompt}:`];
+  if (unit.itemType === 'vocabulary_gender_select' || unit.itemType === 'function_gender_select') return [`${prompt}:`];
   return prompt.split(/\s*→\s*/).map((part) => part.trim());
 }
 
@@ -380,7 +380,7 @@ function ResultItem({ unit, locked, lang, columns }: { unit: PlanUnit; locked: L
   const correct = unit.answerLang === 'ui' ? t(unit.answer as MessageKey) : unit.answer;
   const ok = locked.outcome === 'fully_correct';
   // Gender rows (P2-04 review): "word: chosen gender", and for a mistake the struck gender → the correct one.
-  if (unit.itemType === 'vocabulary_gender_select') {
+  if (unit.itemType === 'vocabulary_gender_select' || unit.itemType === 'function_gender_select') {
     return (
       <li className={`result-item outcome-${locked.outcome}`}>
         <span className="result-icon" aria-label={t(OUTCOME_LABEL[locked.outcome])}>{ok ? '✓' : '✕'}</span>

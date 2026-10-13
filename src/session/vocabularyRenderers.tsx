@@ -398,11 +398,14 @@ export function OverviewRenderer({ item, plan, motherTongue }: RendererProps) {
 export function GenderRenderer(props: RendererProps) {
   const { t } = useI18n();
   const { item, units, plan, mode, motherTongue } = props;
-  if (item.type !== 'vocabulary_gender_select') return null;
+  if (item.type !== 'vocabulary_gender_select' && item.type !== 'function_gender_select') return null;
+  // Function lessons (P4-05 review) show their words; vocabulary lessons their targets.
+  const ids = item.type === 'function_gender_select' ? item.ids : item.targetIds;
+  const targetOf = (id: string) => plan.targets.get(id) ?? plan.functions?.words.find((w) => w.id === id) as { term: string; teachingForm: string; translations: Partial<Record<Locale, string[]>> } | undefined;
   const unitOf = (id: string) => units.find((u): u is PlanUnit & { kind: 'choice' } => u.kind === 'choice' && u.correct.length > 0 && u.id.endsWith(`/${id}`));
   const value = (unitId: string) => (props.locked[unitId]?.response ?? props.drafts[unitId]) as string | undefined;
   const checked = mode === 'feedback';
-  const scored = item.targetIds.map(unitOf).filter((u): u is PlanUnit & { kind: 'choice' } => !!u);
+  const scored = ids.map(unitOf).filter((u): u is PlanUnit & { kind: 'choice' } => !!u);
   const right = scored.filter((u) => props.locked[u.id]?.outcome === 'fully_correct').length;
   const optionState = (unit: PlanUnit & { kind: 'choice' }, id: string) => {
     if (!checked) return '';
@@ -417,8 +420,8 @@ export function GenderRenderer(props: RendererProps) {
         <strong>{t('session.genderSummary', { correct: right, total: scored.length })}</strong>
       </p>
       <ul className="gender-grid">
-        {item.targetIds.map((id) => {
-          const target = plan.targets.get(id);
+        {ids.map((id) => {
+          const target = targetOf(id);
           const unit = unitOf(id);
           const wrong = checked && !!unit && props.locked[unit.id]?.outcome !== 'fully_correct';
           const shown = checked ? target?.teachingForm ?? id : target?.term ?? id;

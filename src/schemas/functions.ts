@@ -41,6 +41,9 @@ export const FUNCTIONS_PAGE_RULES = {
   dialogueLineS: 12,
   expressionPairS: 12,
   wordPairS: 10,
+  /** Gender page (as in vocabulary): base plus seconds per word. */
+  genderBaseS: 20,
+  genderWordS: 5,
   /** Matching pages hold at most this many pairs (balanced). */
   matchingPageSize: 6,
   wordOrderS: 25,
@@ -54,7 +57,8 @@ export const FUNCTIONS_PAGE_RULES = {
 } as const;
 
 /** Content steps in lesson order. */
-export const FUNCTIONS_STAGES = ['flashcards', 'dialogue', 'matching', 'word_order', 'dialogue_gaps', 'exam'] as const;
+/** Content steps in lesson order; `gender` (P4-05 review) only when the lesson has words. */
+export const FUNCTIONS_STAGES = ['flashcards', 'dialogue', 'matching', 'gender', 'word_order', 'dialogue_gaps', 'exam'] as const;
 
 /* =================================================================== brief */
 
@@ -124,7 +128,7 @@ const ContextLineSchema = z.strictObject({ roleId: NestedIdSchema, text: Learnin
 export const functionsItemSchema = (lang: string) =>
   z.discriminatedUnion('type', [
     z.strictObject({
-      /** Expressions: French on the front; words: mother tongue on the front (as in vocabulary). */
+      /** Mother tongue on the front, French with the example on the back; words first, then expressions (P4-05 review). */
       type: z.literal('function_flashcards'),
       itemId: NestedIdSchema,
       side: z.enum(['expressions', 'words']),
@@ -146,6 +150,15 @@ export const functionsItemSchema = (lang: string) =>
         }))
         .min(FUNCTIONS_LIMITS.dialogueLines[0])
         .max(FUNCTIONS_LIMITS.dialogueLines[1]),
+    }),
+    z.strictObject({
+      /**
+       * Gender page (P4-05 review): every word of the lesson on one page as in vocabulary stage 4; nouns get
+       * a masculine/feminine choice (one unit each), other words show "no gender".
+       */
+      type: z.literal('function_gender_select'),
+      itemId: NestedIdSchema,
+      ids: z.array(NestedIdSchema).min(1).max(FUNCTIONS_LIMITS.words[1]),
     }),
     z.strictObject({
       /** Mother-tongue translation on the left, French on the right; one unit per pair. */
@@ -192,6 +205,8 @@ export const functionsItemSchema = (lang: string) =>
           roleId: NestedIdSchema,
           /** The whole line when it has no gap, else the text before the gap. */
           before: z.string().max(300),
+          /** The whole line in every mother tongue: the learner translates it into the gap (P4-05 review). */
+          translation: nativeTextSchema(lang),
           gap: z
             .strictObject({
               gapId: NestedIdSchema,
@@ -233,6 +248,7 @@ export const functionsContentSchema = (lang: string) =>
           pages: z.array(pageSchema(lang)).min(1).max(20),
         }),
       )
-      .length(FUNCTIONS_STAGES.length),
+      .min(FUNCTIONS_STAGES.length - 1)
+      .max(FUNCTIONS_STAGES.length),
   });
 export type FunctionsContent = z.infer<ReturnType<typeof functionsContentSchema>>;

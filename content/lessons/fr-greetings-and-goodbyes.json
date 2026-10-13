@@ -19,10 +19,10 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "functions-v1",
-    "generatedAt": "2026-10-13T14:17:07.628Z",
+    "generatedAt": "2026-10-13T17:02:23.931Z",
     "inputHashes": {
       "outline": "f1cf3bd5f3576695f7d488bf31426ea858fb5591979dadab6f74241a3e4bde2e",
-      "brief": "08974e94240e278dcb0d1675a0ec28b7c3527568008acf02be6780cbb540a375"
+      "brief": "92d4947317307cf8d2ee7ce2fcb49302364f40bd14c70d6aab1797281290b871"
     }
   },
   "kind": "functions",
@@ -38,33 +38,6 @@
         "de": "Karteikarten"
       },
       "pages": [
-        {
-          "pageId": "cards-expressions",
-          "estimatedDurationS": 96,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Turn every card once and listen to the expressions.",
-            "fr": "Retournez chaque carte une fois et écoutez les expressions.",
-            "de": "Dreh jede Karte einmal um und hör dir die Ausdrücke an."
-          },
-          "items": [
-            {
-              "type": "function_flashcards",
-              "itemId": "cards-expressions",
-              "side": "expressions",
-              "ids": [
-                "bonjour",
-                "bonsoir",
-                "salut",
-                "ca-va",
-                "ca-va-bien",
-                "et-toi",
-                "au-revoir",
-                "a-bientot"
-              ]
-            }
-          ]
-        },
         {
           "pageId": "cards-words",
           "estimatedDurationS": 40,
@@ -84,6 +57,33 @@
                 "soir",
                 "tres-bien",
                 "pas-mal"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "cards-expressions",
+          "estimatedDurationS": 96,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each expression, then turn the card to check it.",
+            "fr": "Rappelez-vous chaque expression, puis retournez la carte pour vérifier.",
+            "de": "Erinnere dich an jeden Ausdruck und dreh dann die Karte um."
+          },
+          "items": [
+            {
+              "type": "function_flashcards",
+              "itemId": "cards-expressions",
+              "side": "expressions",
+              "ids": [
+                "bonjour",
+                "bonsoir",
+                "salut",
+                "ca-va",
+                "ca-va-bien",
+                "et-toi",
+                "au-revoir",
+                "a-bientot"
               ]
             }
           ]
@@ -444,6 +444,40 @@
                     "de": "Bedeutet ziemlich gut."
                   }
                 }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gender",
+      "stage": "gender",
+      "role": "exercise",
+      "label": {
+        "en": "Gender and overview",
+        "fr": "Genre et vue d’ensemble",
+        "de": "Genus und Übersicht"
+      },
+      "pages": [
+        {
+          "pageId": "gender",
+          "estimatedDurationS": 40,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the gender of each noun, then review all words.",
+            "fr": "Choisissez le genre de chaque nom, puis revoyez tous les mots.",
+            "de": "Wähle das Genus jedes Nomens und sieh dir dann alle Wörter an."
+          },
+          "items": [
+            {
+              "type": "function_gender_select",
+              "itemId": "gender",
+              "ids": [
+                "matin",
+                "soir",
+                "tres-bien",
+                "pas-mal"
               ]
             }
           ]
@@ -835,15 +869,15 @@
                 },
                 {
                   "tokenId": "t2",
-                  "text": "Léa."
+                  "text": "Léa,"
                 },
                 {
                   "tokenId": "t3",
-                  "text": "À bientôt"
+                  "text": "et"
                 },
                 {
                   "tokenId": "t4",
-                  "text": "!"
+                  "text": "à bientôt !"
                 }
               ],
               "distractorTokenIds": [],
@@ -856,9 +890,9 @@
                 ]
               ],
               "answerExplanation": {
-                "en": "Thank her, then say À bientôt !",
-                "fr": "On la remercie, puis on dit À bientôt !",
-                "de": "Erst danken, dann À bientôt ! sagen."
+                "en": "Thank her, then add et à bientôt !",
+                "fr": "On la remercie, puis on ajoute et à bientôt !",
+                "de": "Erst danken, dann et à bientôt ! anfügen."
               }
             }
           ]
@@ -1189,39 +1223,34 @@
               "tokens": [
                 {
                   "tokenId": "t1",
-                  "text": "Bonjour,"
+                  "text": "Ah,"
                 },
                 {
                   "tokenId": "t2",
-                  "text": "Hugo"
+                  "text": "bonjour,"
                 },
                 {
                   "tokenId": "t3",
-                  "text": "!"
+                  "text": "Hugo"
                 },
                 {
                   "tokenId": "t4",
-                  "text": "Ça va"
+                  "text": "!"
                 },
                 {
                   "tokenId": "t5",
-                  "text": "?"
-                },
-                {
-                  "tokenId": "t6",
                   "text": "jour"
                 }
               ],
               "distractorTokenIds": [
-                "t6"
+                "t5"
               ],
               "acceptedOrders": [
                 [
                   "t1",
                   "t2",
                   "t3",
-                  "t4",
-                  "t5"
+                  "t4"
                 ]
               ],
               "answerExplanation": {
@@ -1299,31 +1328,27 @@
                 },
                 {
                   "tokenId": "t2",
-                  "text": "Léa"
+                  "text": "Léa,"
                 },
                 {
                   "tokenId": "t3",
-                  "text": "!"
+                  "text": "tu"
                 },
                 {
                   "tokenId": "t4",
-                  "text": "Tu"
-                },
-                {
-                  "tokenId": "t5",
                   "text": "vas bien"
                 },
                 {
-                  "tokenId": "t6",
+                  "tokenId": "t5",
                   "text": "?"
                 },
                 {
-                  "tokenId": "t7",
+                  "tokenId": "t6",
                   "text": "vais"
                 }
               ],
               "distractorTokenIds": [
-                "t7"
+                "t6"
               ],
               "acceptedOrders": [
                 [
@@ -1331,8 +1356,7 @@
                   "t2",
                   "t3",
                   "t4",
-                  "t5",
-                  "t6"
+                  "t5"
                 ]
               ],
               "answerExplanation": {
@@ -1357,11 +1381,11 @@
                 },
                 {
                   "tokenId": "t2",
-                  "text": "Léa."
+                  "text": "Léa,"
                 },
                 {
                   "tokenId": "t3",
-                  "text": "Ça va"
+                  "text": "ça va"
                 },
                 {
                   "tokenId": "t4",
@@ -1369,7 +1393,7 @@
                 },
                 {
                   "tokenId": "t5",
-                  "text": "Sa"
+                  "text": "sa"
                 }
               ],
               "distractorTokenIds": [
@@ -1508,15 +1532,15 @@
                 },
                 {
                   "tokenId": "t2",
-                  "text": "Hugo."
+                  "text": "Hugo,"
                 },
                 {
                   "tokenId": "t3",
-                  "text": "Bonne"
+                  "text": "et"
                 },
                 {
                   "tokenId": "t4",
-                  "text": "journée"
+                  "text": "bonne journée"
                 },
                 {
                   "tokenId": "t5",
@@ -1540,9 +1564,9 @@
                 ]
               ],
               "answerExplanation": {
-                "en": "Au revoir, then the wish bonne journée (feminine).",
-                "fr": "Au revoir, puis le souhait bonne journée (féminin).",
-                "de": "Au revoir, dann der Wunsch bonne journée (feminin)."
+                "en": "Au revoir, then et and the wish bonne journée.",
+                "fr": "Au revoir, puis et et le souhait bonne journée.",
+                "de": "Au revoir, dann et und der Wunsch bonne journée."
               }
             },
             {
@@ -1561,30 +1585,35 @@
                 },
                 {
                   "tokenId": "t2",
-                  "text": "Léa."
+                  "text": "Léa,"
                 },
                 {
                   "tokenId": "t3",
-                  "text": "À bientôt"
+                  "text": "et"
                 },
                 {
                   "tokenId": "t4",
-                  "text": "!"
+                  "text": "à bientôt"
                 },
                 {
                   "tokenId": "t5",
+                  "text": "!"
+                },
+                {
+                  "tokenId": "t6",
                   "text": "tôt"
                 }
               ],
               "distractorTokenIds": [
-                "t5"
+                "t6"
               ],
               "acceptedOrders": [
                 [
                   "t1",
                   "t2",
                   "t3",
-                  "t4"
+                  "t4",
+                  "t5"
                 ]
               ],
               "answerExplanation": {
@@ -1613,6 +1642,10 @@
                   "lineId": "exam-line-1",
                   "roleId": "hugo",
                   "before": "Il est tard !",
+                  "translation": {
+                    "en": "It’s late! Good evening, Léa!",
+                    "de": "Es ist spät! Guten Abend, Léa!"
+                  },
                   "gap": {
                     "gapId": "gap-1",
                     "expressionId": "bonsoir",
@@ -1635,6 +1668,10 @@
                   "lineId": "exam-line-2",
                   "roleId": "lea",
                   "before": "",
+                  "translation": {
+                    "en": "Hi, Hugo!",
+                    "de": "Hallo, Hugo!"
+                  },
                   "gap": {
                     "gapId": "gap-2",
                     "expressionId": "salut",
@@ -1657,6 +1694,10 @@
                   "lineId": "exam-line-3",
                   "roleId": "hugo",
                   "before": "Tu es au café ?",
+                  "translation": {
+                    "en": "Are you at the café? How are you?",
+                    "de": "Bist du im Café? Wie geht’s?"
+                  },
                   "gap": {
                     "gapId": "gap-3",
                     "expressionId": "ca-va",
@@ -1678,6 +1719,10 @@
                   "lineId": "exam-line-4",
                   "roleId": "lea",
                   "before": "Oui, ça va bien, merci.",
+                  "translation": {
+                    "en": "Yes, I’m fine, thanks. And you?",
+                    "de": "Ja, mir geht’s gut, danke. Und dir?"
+                  },
                   "gap": {
                     "gapId": "gap-4",
                     "expressionId": "et-toi",
@@ -1699,6 +1744,10 @@
                   "lineId": "exam-line-5",
                   "roleId": "hugo",
                   "before": "",
+                  "translation": {
+                    "en": "I’m fine, thanks. I’m a bit tired.",
+                    "de": "Mir geht’s gut, danke. Ich bin ein bisschen müde."
+                  },
                   "gap": {
                     "gapId": "gap-5",
                     "expressionId": "ca-va-bien",
@@ -1721,6 +1770,10 @@
                   "lineId": "exam-line-6",
                   "roleId": "lea",
                   "before": "Moi aussi. Bon, je rentre.",
+                  "translation": {
+                    "en": "Me too. Well, I’m going home.",
+                    "de": "Ich auch. Also, ich gehe nach Hause."
+                  },
                   "gap": null,
                   "after": ""
                 },
@@ -1728,6 +1781,10 @@
                   "lineId": "exam-line-7",
                   "roleId": "hugo",
                   "before": "D’accord.",
+                  "translation": {
+                    "en": "Okay. Goodbye, Léa!",
+                    "de": "Okay. Auf Wiedersehen, Léa!"
+                  },
                   "gap": {
                     "gapId": "gap-7",
                     "expressionId": "au-revoir",
@@ -1750,6 +1807,10 @@
                   "lineId": "exam-line-8",
                   "roleId": "lea",
                   "before": "",
+                  "translation": {
+                    "en": "See you soon, Hugo!",
+                    "de": "Bis bald, Hugo!"
+                  },
                   "gap": {
                     "gapId": "gap-8",
                     "expressionId": "a-bientot",

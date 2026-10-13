@@ -185,6 +185,19 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
         const { tokens, acceptedOrders, answer } = wordOrder(item);
         return [{ kind: 'order', id: id(), itemId: item.itemId, itemType: item.type, prompt: {}, tokens, acceptedOrders, explanation: item.answerExplanation, answer, answerLang: 'learning' }];
       }
+      case 'function_gender_select': {
+        // As vocabulary stage 4 (P4-05 review): one choice per noun; other words show no gender.
+        const words = brief.kind === 'functions' ? brief.words : [];
+        const options = GENDER_OPTIONS.filter((g) => g !== 'neuter' || content.lang === 'de').map((g) => ({ id: g, text: `gender.${g}`, lang: 'ui' as const }));
+        return item.ids.flatMap((wid) => {
+          const w = words.find((x) => x.id === wid);
+          if (!w || w.wordClass !== 'noun') return [];
+          return [{
+            kind: 'choice' as const, id: id(`/${wid}`), itemId: item.itemId, itemType: item.type, prompt: { learning: w.term },
+            options, correct: [...w.genders], explanation: w.explanation, answer: `gender.${w.genders[0] ?? 'masculine'}`, answerLang: 'ui' as const, form: w.teachingForm,
+          }];
+        });
+      }
       case 'function_matching': {
         const options = item.pairs.map((p) => ({ id: p.id, text: termNative(p.id), lang: 'native' as const }));
         return item.pairs.map((p) => ({

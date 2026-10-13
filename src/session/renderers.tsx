@@ -36,6 +36,7 @@ export const rendererRegistry: Record<Item['type'], ComponentType<RendererProps>
   function_flashcards: FunctionFlashcardsRenderer,
   function_dialogue: DialogueRenderer,
   function_matching: MatchingRenderer,
+  function_gender_select: GenderRenderer,
   function_word_order: FunctionWordOrderRenderer,
   function_dialogue_gap_choice: DialogueGapChoiceRenderer,
   function_dialogue_gap_typing: ExamDialogueRenderer,

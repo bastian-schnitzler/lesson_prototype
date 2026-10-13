@@ -14,15 +14,15 @@
     "fr": "Demander son chemin à un passant et comprendre une indication simple : tout droit, à gauche, à droite, à côté.",
     "de": "Einen Passanten nach dem Weg fragen und einfache Wegbeschreibungen verstehen: geradeaus, links, rechts, in der Nähe."
   },
-  "estimatedMinutes": 20,
+  "estimatedMinutes": 21,
   "provenance": {
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "functions-v1",
-    "generatedAt": "2026-10-13T14:17:07.138Z",
+    "generatedAt": "2026-10-13T17:02:24.270Z",
     "inputHashes": {
       "outline": "fcc9998d354910d96645252f5de2919381a31873ba3a5902dcdacecd8024bfc9",
-      "brief": "efb9ce546a9d0590bf78dabad11e1257ef0774fd196d3a7e206f899d6a911151"
+      "brief": "54bad0607f6219b25e69fcb8f975a1b4a4ed751f5c1ccc1672f66622029a6276"
     }
   },
   "kind": "functions",
@@ -38,33 +38,6 @@
         "de": "Karteikarten"
       },
       "pages": [
-        {
-          "pageId": "cards-expressions",
-          "estimatedDurationS": 96,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Turn every card once and listen to the expressions.",
-            "fr": "Retournez chaque carte une fois et écoutez les expressions.",
-            "de": "Dreh jede Karte einmal um und hör dir die Ausdrücke an."
-          },
-          "items": [
-            {
-              "type": "function_flashcards",
-              "itemId": "cards-expressions",
-              "side": "expressions",
-              "ids": [
-                "excusez-moi",
-                "ou-est",
-                "cest-loin",
-                "tout-droit",
-                "a-gauche",
-                "a-droite",
-                "a-cote",
-                "merci-beaucoup"
-              ]
-            }
-          ]
-        },
         {
           "pageId": "cards-words",
           "estimatedDurationS": 40,
@@ -84,6 +57,33 @@
                 "rue",
                 "musee",
                 "banque"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "cards-expressions",
+          "estimatedDurationS": 96,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Recall each expression, then turn the card to check it.",
+            "fr": "Rappelez-vous chaque expression, puis retournez la carte pour vérifier.",
+            "de": "Erinnere dich an jeden Ausdruck und dreh dann die Karte um."
+          },
+          "items": [
+            {
+              "type": "function_flashcards",
+              "itemId": "cards-expressions",
+              "side": "expressions",
+              "ids": [
+                "excusez-moi",
+                "ou-est",
+                "cest-loin",
+                "tout-droit",
+                "a-gauche",
+                "a-droite",
+                "a-cote",
+                "merci-beaucoup"
               ]
             }
           ]
@@ -443,6 +443,40 @@
                     "de": "Feminines Nomen: une banque."
                   }
                 }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gender",
+      "stage": "gender",
+      "role": "exercise",
+      "label": {
+        "en": "Gender and overview",
+        "fr": "Genre et vue d’ensemble",
+        "de": "Genus und Übersicht"
+      },
+      "pages": [
+        {
+          "pageId": "gender",
+          "estimatedDurationS": 40,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Choose the gender of each noun, then review all words.",
+            "fr": "Choisissez le genre de chaque nom, puis revoyez tous les mots.",
+            "de": "Wähle das Genus jedes Nomens und sieh dir dann alle Wörter an."
+          },
+          "items": [
+            {
+              "type": "function_gender_select",
+              "itemId": "gender",
+              "ids": [
+                "gare",
+                "rue",
+                "musee",
+                "banque"
               ]
             }
           ]
@@ -1577,6 +1611,10 @@
                   "lineId": "exam-line-1",
                   "roleId": "touriste",
                   "before": "",
+                  "translation": {
+                    "en": "Excuse me, sir.",
+                    "de": "Entschuldigen Sie."
+                  },
                   "gap": {
                     "gapId": "gap-1",
                     "expressionId": "excusez-moi",
@@ -1598,6 +1636,10 @@
                   "lineId": "exam-line-2",
                   "roleId": "passant",
                   "before": "Oui, madame ?",
+                  "translation": {
+                    "en": "Yes, madam?",
+                    "de": "Ja, bitte?"
+                  },
                   "gap": null,
                   "after": ""
                 },
@@ -1605,6 +1647,10 @@
                   "lineId": "exam-line-3",
                   "roleId": "touriste",
                   "before": "",
+                  "translation": {
+                    "en": "Where is the museum, please?",
+                    "de": "Wo ist das Museum, bitte?"
+                  },
                   "gap": {
                     "gapId": "gap-3",
                     "expressionId": "ou-est",
@@ -1626,6 +1672,10 @@
                   "lineId": "exam-line-4",
                   "roleId": "passant",
                   "before": "Le musée ?",
+                  "translation": {
+                    "en": "The museum? You go straight on.",
+                    "de": "Das Museum? Sie gehen geradeaus."
+                  },
                   "gap": {
                     "gapId": "gap-4",
                     "expressionId": "tout-droit",
@@ -1647,6 +1697,10 @@
                   "lineId": "exam-line-5",
                   "roleId": "touriste",
                   "before": "Ah, tout droit.",
+                  "translation": {
+                    "en": "Ah, straight on. Is it far?",
+                    "de": "Ah, geradeaus. Ist es weit?"
+                  },
                   "gap": {
                     "gapId": "gap-5",
                     "expressionId": "cest-loin",
@@ -1668,22 +1722,24 @@
                   "lineId": "exam-line-6",
                   "roleId": "passant",
                   "before": "Non, cinq minutes. Après la gare,",
+                  "translation": {
+                    "en": "No, five minutes. After the station, turn left.",
+                    "de": "Nein, fünf Minuten. Nach dem Bahnhof biegen Sie links ab."
+                  },
                   "gap": {
                     "gapId": "gap-6",
                     "expressionId": "a-gauche",
                     "accepted": {
                       "answers": [
                         "tournez à gauche",
-                        "tournez à droite",
-                        "Tournez à gauche",
-                        "Tournez à droite"
+                        "Tournez à gauche"
                       ],
                       "accentSensitive": []
                     },
                     "answerExplanation": {
-                      "en": "A direction after the station: tournez à gauche (or à droite).",
-                      "fr": "Une direction après la gare : tournez à gauche (ou à droite).",
-                      "de": "Eine Richtung nach dem Bahnhof: tournez à gauche (oder à droite)."
+                      "en": "After the station, turn left: tournez à gauche.",
+                      "fr": "Après la gare, il faut tourner à gauche : tournez à gauche.",
+                      "de": "Nach dem Bahnhof links abbiegen: tournez à gauche."
                     }
                   },
                   "after": "."
@@ -1692,6 +1748,10 @@
                   "lineId": "exam-line-7",
                   "roleId": "touriste",
                   "before": "D’accord. Et après ?",
+                  "translation": {
+                    "en": "Okay. And then?",
+                    "de": "Okay. Und dann?"
+                  },
                   "gap": null,
                   "after": ""
                 },
@@ -1699,22 +1759,24 @@
                   "lineId": "exam-line-8",
                   "roleId": "passant",
                   "before": "Après,",
+                  "translation": {
+                    "en": "Then turn right. The museum is there.",
+                    "de": "Dann biegen Sie rechts ab. Das Museum ist dort."
+                  },
                   "gap": {
                     "gapId": "gap-8",
                     "expressionId": "a-droite",
                     "accepted": {
                       "answers": [
                         "tournez à droite",
-                        "tournez à gauche",
-                        "Tournez à droite",
-                        "Tournez à gauche"
+                        "Tournez à droite"
                       ],
                       "accentSensitive": []
                     },
                     "answerExplanation": {
-                      "en": "The next direction: tournez à droite (or à gauche).",
-                      "fr": "La direction suivante : tournez à droite (ou à gauche).",
-                      "de": "Die nächste Richtung: tournez à droite (oder à gauche)."
+                      "en": "Then turn right: tournez à droite.",
+                      "fr": "Ensuite, il faut tourner à droite : tournez à droite.",
+                      "de": "Dann rechts abbiegen: tournez à droite."
                     }
                   },
                   "after": ". Le musée est là."
@@ -1723,6 +1785,10 @@
                   "lineId": "exam-line-9",
                   "roleId": "touriste",
                   "before": "Merci. Il y a une banque ?",
+                  "translation": {
+                    "en": "Thank you. Is there a bank?",
+                    "de": "Danke. Gibt es eine Bank?"
+                  },
                   "gap": null,
                   "after": ""
                 },
@@ -1730,6 +1796,10 @@
                   "lineId": "exam-line-10",
                   "roleId": "passant",
                   "before": "Oui.",
+                  "translation": {
+                    "en": "Yes. It’s next to the museum.",
+                    "de": "Ja. Sie ist neben dem Museum."
+                  },
                   "gap": {
                     "gapId": "gap-10",
                     "expressionId": "a-cote",
@@ -1751,6 +1821,10 @@
                   "lineId": "exam-line-11",
                   "roleId": "touriste",
                   "before": "",
+                  "translation": {
+                    "en": "Thank you very much! Goodbye.",
+                    "de": "Vielen Dank! Auf Wiedersehen."
+                  },
                   "gap": {
                     "gapId": "gap-11",
                     "expressionId": "merci-beaucoup",
@@ -1772,6 +1846,10 @@
                   "lineId": "exam-line-12",
                   "roleId": "passant",
                   "before": "De rien. Au revoir, madame.",
+                  "translation": {
+                    "en": "You’re welcome. Goodbye, madam.",
+                    "de": "Gern geschehen. Auf Wiedersehen."
+                  },
                   "gap": null,
                   "after": ""
                 }

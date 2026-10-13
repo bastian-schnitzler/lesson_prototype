@@ -1,6 +1,6 @@
 # Lesson exercise prototype specification
 
-Status: **Draft 0.49 — function practice, exam, results and start (P4-05)**. Date: 2026-10-13.
+Status: **Draft 0.50 — function lesson review changes (P4-05 review)**. Date: 2026-10-13.
 
 This document specifies the prototype and its phased implementation. It is the maintained requirements document: no separate requirements file exists. It does not authorize starting implementation before the specification review. The backlog is in [ISSUES.md](ISSUES.md) and published as GitHub issues in `bastian-schnitzler/lesson_prototype`.
 
@@ -79,7 +79,7 @@ Confirmed decisions are identified below. Other defaults make the draft concrete
 | D47 | Vocabulary lesson = brief | **Confirmed (P2-04):** a vocabulary lesson consists of its brief only; there is no vocabulary file in `content/lessons/`. The brief defines the introduction per word group, the words and every exercise text (explanations, gap sentences, listening options); the application derives the same six stages for every vocabulary lesson, with every word in every exercise (flashcards, matching, gender/overview, typed gap, listening choice, translation and dictation exam) and fixed page durations and exam limits (section 6, "Derived vocabulary lesson"). In the exam, nouns are accepted only as indefinite article + noun, in translation and dictation alike (D39). Grammar lessons keep brief and content file. |
 | D48 | Person matching | **Confirmed (P3-02 review):** grammar has a seventh practice type, `grammar_person_matching`: the vocabulary matching board with person rows (three singular rows, a gap, three plural rows; three rows when only one number is taught), in translation mode (mother-tongue pronoun → French pronoun) or forms mode (French pronoun → verb form). Every pronoun or verb-form lesson (topics `pronouns`, `verbs_morphology`) has one, except the imperative lesson; checking behaves exactly like vocabulary matching and keeps the gap. |
 | D49 | Grammar lesson length | **Confirmed (P3-07, shortened in its review):** a grammar lesson takes about 15–25 minutes: at least 34 scored practice units and an exam of 2–4 pages with at least 16 scored units, 2–4 exercises of 4–8 items per teaching block, one person matching board per verb, and realistic per-unit estimates (section 7, "Lesson length"). Grammar briefs list `newVerbs` (verbs no earlier vocabulary lesson taught, with translations), shown on the start page and the first explanation page. |
-| D50 | Function lesson flow | **Confirmed (P4-01):** a function lesson is built on 6–10 expressions (about 8; phrases and sentence starts such as `Je voudrais …`) and 0–6 additional words (about 4). Sequence: flashcards (expressions French on the front, words as in vocabulary), a model dialogue revealed line by line with flippable lines (translation and note), matching of expressions and of words, word order of one example sentence per expression with only the tokens as prompt, dialogue gaps with four expression choices; exam part 1 builds replies to role A from tokens with 0–3 distractors and only the dialogue as context, exam part 2 is a new dialogue unrolled line by line whose expression gaps are typed. Details in section 8. |
+| D50 | Function lesson flow | **Confirmed (P4-01):** a function lesson is built on 6–10 expressions (about 8; phrases and sentence starts such as `Je voudrais …`) and 0–6 additional words (about 4). Sequence: flashcards (expressions French on the front, words as in vocabulary), a model dialogue revealed line by line with flippable lines (translation and note), matching of expressions and of words, word order of one example sentence per expression with only the tokens as prompt, dialogue gaps with four expression choices; exam part 1 builds replies to role A from tokens with 0–3 distractors and only the dialogue as context, exam part 2 is a new dialogue unrolled line by line whose expression gaps are typed. Details in section 8. **Revised in the P4-05 review:** word flashcards first, then expression flashcards, both with the mother tongue on the front; a gender and overview page for the words after matching; every exam-dialogue line shows its mother-tongue translation; word-order tokens admit exactly one order. |
 | D51 | Function artifacts and authoring | **Confirmed (P4-01):** a function lesson has a brief and lesson content, like grammar. The brief holds the situation, the two roles and the expressions and words with example sentences; the model dialogue, all exercises and the exam are generated in the lesson content. Claude first writes three test lessons by hand (`fr-greetings-and-goodbyes`, `fr-ordering-at-a-cafe`, `fr-asking-the-way`); the product owner decides on generation of the remaining eleven after their review. |
 
 ## 2. Runtime and delivery architecture
@@ -801,10 +801,11 @@ A function lesson teaches the **expressions** a learner needs to act in one ever
 
 ```mermaid
 flowchart TD
-    S[Start page: situation, expressions, words, outline] --> A[Flashcards: expressions, then words]
+    S[Start page: situation, expressions, words, outline] --> A[Flashcards: words, then expressions]
     A --> B[Model dialogue, revealed line by line]
     B --> C[Matching: expressions, then words]
-    C --> D[Word order: one sentence per expression]
+    C --> C2[Gender and overview of the words]
+    C2 --> D[Word order: one sentence per expression]
     D --> E[Dialogue gaps: choose the expression]
     E --> F[Exam info page]
     F --> G[Exam part 1: build replies from tokens with distractors]
@@ -824,10 +825,10 @@ A function lesson has two artifacts, like grammar (D51): the **brief** holds the
 | Brief | Expressions | 6–10, about 8 on average | Phrases and sentence starts useful in the situation: `Je voudrais …`, `J'aimerais recevoir …`, `C'est combien ?`, `L'addition, s'il vous plaît.` Each has a stable ID, the French `text`, an `openEnd` flag for sentence starts (displayed with a trailing ` …`, never part of an answer), translations for every mother tongue, a short localized `explanation` (when and how it is used, register such as tu/vous) and an example sentence with translations. |
 | Brief | Words | 0–6, about 4 on average | Additional vocabulary the dialogues need and no earlier vocabulary lesson taught (`un thé`, `un croissant`). Each word has the vocabulary target fields that apply: teaching form with the indefinite article where grammatical (D39), translations, word class, gender, a localized explanation and an example sentence with translations. |
 | Lesson | Model dialogue | 8–14 lines | Alternating lines of the two roles; each line has its French text, translations for every mother tongue, a short localized note and the IDs of the expressions it uses. Every expression occurs at least once. |
-| Lesson | Word-order sentences | one per expression | French sentences, each using its expression in a new context. |
+| Lesson | Word-order sentences | one per expression | French sentences, each using its expression in a new context. The tokens admit exactly one order (P4-05 review): final punctuation stays on the last chunk, and swappable parts (`sur place | ou | à emporter`) or two independent sentences that could change places are avoided, so exam replies are unique as well. |
 | Lesson | Dialogue gaps | one per expression | An exchange: role A's line, then role B's line with one gap that takes the expression. |
 | Lesson | Exam replies | 6–8 | Role A's line and role B's reply built from tokens, with 0–3 distractor tokens. |
-| Lesson | Exam dialogue | 8–14 lines, 6–10 gaps | A new dialogue in the same situation; the gaps take expressions and may be in the lines of either role. |
+| Lesson | Exam dialogue | 8–14 lines, 6–10 gaps | A new dialogue in the same situation; the gaps take expressions and may be in the lines of either role. Every line has its translation for every mother tongue, which tells the learner what to write into the gap (P4-05 review). |
 
 Exam sentences occur neither in the brief's example sentences nor in practice; practice sentences may differ from the brief's examples and should.
 
@@ -841,28 +842,30 @@ All sentences are natural A1 French and use only the lesson's expressions and wo
 
 | Stage | Pages | Estimate | Exam limit |
 | --- | --- | --- | --- |
-| 1 Flashcards | one page for the expressions, one for the words (left out without words) | 12 s per expression, 10 s per word | – |
+| 1 Flashcards | one page for the words (left out without words), then one for the expressions (P4-05 review) | 12 s per expression, 10 s per word | – |
 | 2 Model dialogue | one page | 20 s + 12 s per line | – |
 | 3 Matching | expressions in balanced pages of at most 6 pairs (8 → 4 + 4), then the words on their own page | 12 s per expression, 10 s per word | – |
+| 3b Gender and overview | one page with every word (left out without words); nouns get a masculine/feminine choice as in vocabulary stage 4 (P4-05 review) | 20 s + 5 s per word | – |
 | 4 Word order | one sentence per page | 25 s per sentence | – |
 | 5 Dialogue gaps | one exchange per page | 15 s per gap | – |
 | Exam info | application page (section 6, stage 6), not stored in the lesson content | 20 s | – |
 | 6 Exam part 1 | replies in balanced pages of at most 4 | 30 s per reply | 1.5 × estimate |
 | 7 Exam part 2 | one page with the whole dialogue | 8 s per line + 20 s per gap | 1.5 × estimate |
 
-With 8 expressions, 4 words, a 10-line model dialogue, 8 exam replies and an exam dialogue of 10 lines with 8 gaps, a lesson has 28 scored practice units, 16 exam units and takes about 20 minutes. The start page shows the outline in three colour-coded rows: Flashcards · Dialogue, Matching · Word order · Dialogue gaps, and the final exam ("Answer 16 items on 3 timed pages"), each with its minutes, plus the situation and the number of expressions and words.
+With 8 expressions, 4 words, a 10-line model dialogue, 8 exam replies and an exam dialogue of 10 lines with 8 gaps, a lesson has 32 scored practice units (28 plus one gender unit per noun), 16 exam units and takes about 21 minutes. The start page shows the outline in three colour-coded rows: Flashcards · Dialogue, Matching · Gender and overview · Word order · Dialogue gaps, and the final exam ("Answer 16 items on 3 timed pages"), each with its minutes, plus the situation and the number of expressions and words.
 
 ### Exercise behavior
 
 | Stage | Required interaction |
 | --- | --- |
-| Flashcards | The vocabulary flashcard page (section 6, stage 2). On the **expressions** page the front shows the French expression with a speaker button and the back the mother-tongue translation, the explanation in the interface language and the brief's example sentence with its translation. On the **words** page the order stays as in vocabulary: mother tongue on the front, French on the back. Each card is turned once before Continue is enabled; turned cards are stored (`revealed`). Completion only. |
+| Flashcards | The vocabulary flashcard page (section 6, stage 2) for both pages (P4-05 review): the mother-tongue translation on the front; the French word or expression with a speaker button, the gender (words) or the explanation (expressions) and the example sentence with its translation on the back. The words come first, because the example sentences often use them. Each card is turned once before Continue is enabled; turned cards are stored (`revealed`). Completion only. |
 | Model dialogue | The lines appear one after another as cards, alternately left (role A) and right (role B), each with the role label, the French line (expressions highlighted), a speaker button and a flip button. A turned line shows the translation in the mother tongue and the note in the interface language, without changing its size. **Next line** shows the next line; earlier lines stay visible and can be turned and played again. After the last line the button becomes **Continue**. Turning lines is optional; revealed lines are stored for resume. Completion only. |
 | Matching | The vocabulary matching board (section 6, stage 3) with curves, Check, the slide to the correct row and the green flash: mother-tongue translation on the left, French expression with speaker on the right. The words follow on their own board. One unit per pair. |
+| Gender and overview | The vocabulary gender page (section 6, stage 4) for the lesson's words (P4-05 review): every word on one page, nouns with a masculine/feminine choice, other words with "no gender"; checked in place, one unit per noun. |
 | Word order | The grammar word-order interaction (section 7) for one sentence of the lesson content, with only the tokens as prompt (no translation). Every token is used once; tokens may be multiword chunks such as `s'il vous plaît`. The final full stop is not a token. One unit per sentence; feedback card with the correct sentence and the explanation. |
 | Dialogue gaps | Role A's line (with speaker) above role B's line with one gap, and four distinct choices taken from the lesson's expressions, one of which fits. Checked like a multiple-choice gap (section 5, rule 4): a correct choice lights up green; a wrong one turns red with the correct one green and the explanation. One unit per gap. |
 | Exam part 1 | Each reply is a word-order task under role A's line (speaker allowed, it is not the answer): the bank holds the reply's tokens plus 0–3 distractors, shuffled from the session seed ("Not every word fits."). The reply is right only when its token sequence equals an accepted order; distractors must stay in the bank. Exactly one reply must be valid with the given tokens. One unit per reply, no feedback before the results. |
-| Exam part 2 | The exam dialogue unrolls line by line on one timed page. Lines with a gap have a text field in place of the expression; the learner selects the field, types the expression and presses **Next line**. Earlier lines stay visible and their fields editable until the page is submitted. On the last line the button becomes **Continue**; it, or the countdown, submits the whole page. Gaps are graded by the shared free-text classifier (section 5: 1, 0.5 for accents or capitals, 0); blank gaps earn 0. Accepted answers list every lesson expression that fits the gap; the context must make one expression clearly expected. |
+| Exam part 2 | The exam dialogue unrolls line by line on one timed page. Lines with a gap have a text field in place of the expression, and every line shows its mother-tongue translation below it (P4-05 review), so the learner translates the expression into the gap; the learner selects the field, types the expression and presses **Next line**. Earlier lines stay visible and their fields editable until the page is submitted. On the last line the button becomes **Continue**; it, or the countdown, submits the whole page. Gaps are graded by the shared free-text classifier (section 5: 1, 0.5 for accents or capitals, 0); blank gaps earn 0. Accepted answers list every lesson expression that fits the gap; the context must make one expression clearly expected. |
 
 The exam info page lists the two exam parts with their number of tasks and countdowns. Exam pages keep the practice score in the header and show no correctness until the results (section 5).
 
@@ -3338,32 +3341,29 @@ scale 1.3
 { <color:#020617>xxx</color> | {
 <color:#E2E8F0><b>FUNCTIONS  /  Expressions</b></color>
 .
-<color:#94A3B8>Turn every card once. The French expression is on the front.</color>
+<color:#94A3B8>Turn every card once. The words come first; front: English, back: French.</color>
 .
 {
 { <color:#020617>x</color> | {
-{ <color:#94A3B8>FRENCH</color> | <color:#020617>xxxxxxxxxxxxxxx</color> | [ <color:#4338CA>↻</color> ] }
-<color:#E2E8F0><size:22><b>Je voudrais …</b></size></color>
-[ <color:#4338CA>▶ Listen</color> ]
+{ <color:#94A3B8>ENGLISH</color> | <color:#020617>xxxxxxxxxxxxxxx</color> | [ <color:#4338CA>↻</color> ] }
+<color:#E2E8F0><size:22><b>What would you like?</b></size></color>
 } | <color:#020617>xx</color> | {
-{ <color:#94A3B8>ENGLISH  /  turned</color> | <color:#020617>xxxxxxxx</color> | [ <color:#4338CA>↻</color> ] }
-<color:#E2E8F0><size:22><b>I would like …</b></size></color>
+{ <color:#94A3B8>FRENCH  /  turned</color> | <color:#020617>xxxxxxxx</color> | [ <color:#4338CA>↻</color> ] }
+<color:#E2E8F0><size:22><b>Je voudrais …</b></size></color>  [ <color:#4338CA>▶</color> ]
 <color:#94A3B8>Polite way to order or ask for something.</color>
 <color:#E2E8F0>Je voudrais un café.  /  I would like a coffee.</color>
 } }
 .
 { <color:#020617>x</color> | {
-{ <color:#94A3B8>FRENCH</color> | <color:#020617>xxxxxxxxxxxxxxx</color> | [ <color:#4338CA>↻</color> ] }
-<color:#E2E8F0><size:22><b>L'addition, s'il vous plaît.</b></size></color>
-[ <color:#4338CA>▶ Listen</color> ]
+{ <color:#94A3B8>ENGLISH</color> | <color:#020617>xxxxxxxxxxxxxxx</color> | [ <color:#4338CA>↻</color> ] }
+<color:#E2E8F0><size:22><b>The bill, please.</b></size></color>
 } | <color:#020617>xx</color> | {
-{ <color:#94A3B8>FRENCH</color> | <color:#020617>xxxxxxxxxxxxxxx</color> | [ <color:#4338CA>↻</color> ] }
-<color:#E2E8F0><size:22><b>C'est combien ?</b></size></color>
-[ <color:#4338CA>▶ Listen</color> ]
+{ <color:#94A3B8>ENGLISH</color> | <color:#020617>xxxxxxxxxxxxxxx</color> | [ <color:#4338CA>↻</color> ] }
+<color:#E2E8F0><size:22><b>How much is it?</b></size></color>
 } }
 }
 .
-<color:#94A3B8>2 of 8 cards turned. A second page shows the 4 words (front: English).</color>
+<color:#94A3B8>2 of 8 cards turned. The 4 word cards came on the page before.</color>
 .
 [ <color:#64748B>                      Continue                      </color> ]
 .
@@ -3700,11 +3700,13 @@ scale 1.3
 <color:#94A3B8>Fill each gap with an expression from this lesson.</color>
 .
 { <color:#94A3B8>Le serveur</color> | <color:#E2E8F0>Bonsoir, monsieur. Vous désirez ?</color> }
-{ <color:#94A3B8>Le client</color> | { <color:#E2E8F0>Bonsoir.</color> | "<color:#E2E8F0>Je voudrais</color>       " | <color:#E2E8F0>une limonade, s'il vous plaît.</color> } }
-{ <color:#94A3B8>Le serveur</color> | <color:#E2E8F0>Très bien. Et avec ceci ?</color> }
-{ <color:#94A3B8>Le client</color> | { <color:#E2E8F0>C'est tout, merci.</color> | "<color:#94A3B8>Type here</color>         " | <color:#E2E8F0>?</color> } }
+{ <color:#020617>x</color> | <color:#94A3B8>Good evening, sir. What would you like?</color> }
+{ <color:#94A3B8>Le client</color> | { <color:#E2E8F0>Bonsoir.</color> | "<color:#E2E8F0>Je voudrais</color>       " | <color:#E2E8F0>une limonade.</color> } }
+{ <color:#020617>x</color> | <color:#94A3B8>Good evening. I would like a lemonade.</color> }
+{ <color:#94A3B8>Le serveur</color> | { <color:#E2E8F0>Une limonade.</color> | "<color:#94A3B8>Type here</color>         " | <color:#E2E8F0>?</color> } }
+{ <color:#020617>x</color> | <color:#94A3B8>A lemonade. Anything else?</color> }
 .
-<color:#94A3B8>Line 4 of 9  ·  earlier gaps stay editable until the page is submitted</color>
+<color:#94A3B8>Line 3 of 12  ·  each line shows its translation; earlier gaps stay editable</color>
 .
 { [ <color:#4338CA>        Next line        </color> ] }
 .
@@ -3887,3 +3889,4 @@ When publishing the agreed backlog, include relevant Mermaid flows as fenced `me
 | 0.47 | 2026-10-13 | P4-03: authoring tool `scripts/author-functions.ts` and the three function test lessons (greetings, café, asking the way), written by hand; `make sample-lessons` and the contract tests include them. Approved by the product owner without changes. |
 | 0.48 | 2026-10-13 | P4-04: function flashcards (expressions French first, words as in vocabulary), the model dialogue revealed line by line with a Next line footer button and turnable lines, and function matching on the shared board; reveal gating for cards and lines survives a resume. |
 | 0.49 | 2026-10-13 | P4-05: function word order and exam replies with distractors, dialogue gaps, the exam dialogue unrolled line by line on its timed page, exam info, results accordions Replies/Dialogue and the function start page; function lessons can be started. One Matching entry in the results menu. Index Content buttons share one width. |
+| 0.50 | 2026-10-13 | P4-05 review: flashcards as in vocabulary (mother tongue first), words before expressions; new gender and overview step `function_gender_select` after matching (stages now include `gender` when the lesson has words); exam-dialogue lines carry and show their mother-tongue translation (validated not to contain the answer); word-order tokens rewritten so exactly one order is valid (authoring rule). The three test lessons were rebuilt; the old test fixture is replaced by the café lesson. |

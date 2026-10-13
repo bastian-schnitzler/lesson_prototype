@@ -32,20 +32,24 @@ function renderItem(Renderer: (props: RendererProps) => unknown, pg: PlanPage, e
 }
 
 describe('function flashcards', () => {
-  it('shows the French expression on the front and translation, explanation and example on the back', () => {
+  it('shows the translation on the front and expression, explanation and example on the back, as in vocabulary', () => {
     const { onReveal } = renderItem(FunctionFlashcardsRenderer, page('cards-expressions'));
     const card = screen.getByRole('article', { name: 'Card 2 of 8' });
     const [front, back] = card.querySelectorAll('.flashcard-face');
-    expect(front).toHaveTextContent('Je voudrais …');
-    expect(front.querySelector('[lang="fr"]')).toHaveTextContent('Je voudrais …');
-    expect(back).toHaveTextContent('Ich hätte gern');
+    expect(front).toHaveTextContent('Ich hätte gern');
+    expect(front).not.toHaveTextContent('Je voudrais');
+    expect(back.querySelector('[lang="fr"]')).toHaveTextContent('Je voudrais …');
     expect(back).toHaveTextContent('The polite way to order');
     expect(back).toHaveTextContent('Je voudrais un café, s’il vous plaît. – Ich hätte gern einen Kaffee, bitte.');
-    fireEvent.click(within(card).getByRole('button', { name: 'Turn to the translation' }));
+    fireEvent.click(within(card).getByRole('button', { name: 'Flip card to French' }));
     expect(card).toHaveClass('is-flipped');
     expect(onReveal).toHaveBeenCalledWith('cards-expressions/cards-expressions', 'je-voudrais');
     fireEvent.click(within(card).getByRole('button', { name: 'Flip card back' }));
     expect(onReveal).toHaveBeenCalledTimes(1);
+  });
+
+  it('shows the word cards before the expression cards', () => {
+    expect(plan.pages.slice(0, 2).map((p) => p.pageId)).toEqual(['cards-words', 'cards-expressions']);
   });
 
   it('keeps the vocabulary order on the words page: mother tongue first, French with gender on the back', () => {
@@ -156,7 +160,7 @@ describe('function practice, exam and results (P4-05)', () => {
     expect(screen.getByText('A customer orders at a café counter; the waiter serves her.')).toBeInTheDocument();
     expect(screen.getByText(/8 expressions · 4 words/)).toBeInTheDocument();
     const rows = screen.getAllByRole('listitem');
-    expect(rows.map((r) => r.textContent)).toEqual([expect.stringMatching(/^Flashcards · Dialogue/), expect.stringMatching(/^Matching · Word order · Dialogue gaps/), expect.stringMatching(/^Final exam.*16 items on 3 timed pages/)]);
+    expect(rows.map((r) => r.textContent)).toEqual([expect.stringMatching(/^Flashcards · Dialogue/), expect.stringMatching(/^Matching · Gender and overview · Word order · Dialogue gaps/), expect.stringMatching(/^Final exam.*16 items on 3 timed pages/)]);
   });
 
   it('shows practice word order with tokens only', () => {
@@ -219,5 +223,18 @@ describe('function practice, exam and results (P4-05)', () => {
     const summaries = [...document.querySelectorAll('.result-accordion summary')].map((s) => s.textContent);
     expect(summaries).toEqual(['Replies0 of 8 correct.', 'Dialogue8 of 8 correct.']);
     expect(screen.getAllByText(/le serveur: Madame, vous désirez \?/).length).toBeGreaterThan(0);
+  });
+});
+
+describe('function gender page (P4-05 review)', () => {
+  it('asks the gender of every noun on one page, like vocabulary stage 4', async () => {
+    const { GenderRenderer } = await import('../../src/session/vocabularyRenderers.tsx');
+    const pg = page('gender');
+    expect(pg.units).toHaveLength(4);
+    expect(pg.units[0]).toMatchObject({ prompt: { learning: 'café' }, correct: ['masculine'], form: 'un café' });
+    const { onChange } = renderItem(GenderRenderer, pg);
+    expect(screen.getAllByRole('radio')).toHaveLength(8);
+    fireEvent.click(screen.getAllByRole('radio')[0]);
+    expect(onChange).toHaveBeenCalledWith(pg.units[0].id, 'masculine');
   });
 });

@@ -15,9 +15,9 @@ type Native = Partial<Record<Locale, string>>;
 const translation = (map: Partial<Record<Locale, string[]>>, locale: Locale) => map[locale]?.join(' / ') ?? '';
 
 /**
- * Flashcards: the expressions page shows the French expression on the front and the translation, the
- * explanation and the example sentence on the back; the words page keeps the vocabulary order
- * (mother tongue on the front, French on the back). Every card is turned once before Continue.
+ * Flashcards as in vocabulary (P4-05 review): the mother-tongue translation on the front; the French
+ * expression or word with audio, its explanation or gender and the example sentence on the back. The
+ * words come first, because the examples often use them. Every card is turned once before Continue.
  */
 export function FunctionFlashcardsRenderer({ item, plan, motherTongue, pageId, revealed, onReveal }: RendererProps) {
   const { t } = useI18n();
@@ -30,7 +30,7 @@ export function FunctionFlashcardsRenderer({ item, plan, motherTongue, pageId, r
       <ul className="flashcard-grid">
         {item.ids.map((id, n) => (
           <li key={id}>
-            <FunctionCard id={id} side={item.side} label={t('session.cardOf', { n: n + 1, total: item.ids.length })} plan={plan} motherTongue={motherTongue}
+            <FunctionCard id={id} label={t('session.cardOf', { n: n + 1, total: item.ids.length })} plan={plan} motherTongue={motherTongue}
               initiallyFlipped={seen.includes(id)} onFlip={() => onReveal(itemKey, id)} />
           </li>
         ))}
@@ -39,8 +39,8 @@ export function FunctionFlashcardsRenderer({ item, plan, motherTongue, pageId, r
   );
 }
 
-function FunctionCard({ id, side, label, plan, motherTongue, initiallyFlipped, onFlip }: {
-  id: string; side: 'expressions' | 'words'; label: string; plan: LessonPlan; motherTongue: Locale; initiallyFlipped: boolean; onFlip: () => void;
+function FunctionCard({ id, label, plan, motherTongue, initiallyFlipped, onFlip }: {
+  id: string; label: string; plan: LessonPlan; motherTongue: Locale; initiallyFlipped: boolean; onFlip: () => void;
 }) {
   const { t, locale } = useI18n();
   const [flipped, setFlipped] = useState(initiallyFlipped);
@@ -68,23 +68,20 @@ function FunctionCard({ id, side, label, plan, motherTongue, initiallyFlipped, o
     </div>
   );
   const meaning = <p className="flashcard-meaning" lang={motherTongue}>{translation(term.translations as Partial<Record<Locale, string[]>>, motherTongue)}</p>;
-  const frontFirst = side === 'expressions';
   return (
     <article className={`flashcard${flipped ? ' is-flipped' : ''}`} aria-label={label}>
       <button type="button" className="flip-button" aria-pressed={flipped}
-        aria-label={flipped ? t('session.flipBack') : t(frontFirst ? 'session.flipToTranslation' : 'session.flipCard')} onClick={flip}>
+        aria-label={flipped ? t('session.flipBack') : t('session.flipCard')} onClick={flip}>
         <span aria-hidden="true">⟲</span>
       </button>
       <div className="flashcard-inner">
         <div className="flashcard-face flashcard-front" inert={flipped}>
-          {frontFirst ? frenchFace : meaning}
+          {meaning}
         </div>
         <div className="flashcard-face flashcard-back" inert={!flipped}>
-          {frontFirst ? <>{meaning}<p className="muted">{term.explanation[locale]}</p>{example}</> : <>
-            {frenchFace}
-            {word && word.genders.length > 0 && <p className="muted">{word.genders.map((g) => t(`gender.${g}`)).join(' / ')}</p>}
-            {example}
-          </>}
+          {frenchFace}
+          {expression ? <p className="muted">{term.explanation[locale]}</p> : word!.genders.length > 0 && <p className="muted">{word!.genders.map((g) => t(`gender.${g}`)).join(' / ')}</p>}
+          {example}
         </div>
       </div>
     </article>
@@ -234,6 +231,8 @@ export function ExamDialogueRenderer(props: RendererProps) {
                   <TextControl unit={unit} props={props} label={t('session.gapAnswer')} />
                 </Gap>
               ) : <p className="gap-sentence" lang={plan.lang}>{line.before}</p>}
+              {/* The mother-tongue line says what to write into the gap (P4-05 review). */}
+              <p className="muted exam-translation" lang={props.motherTongue}>{(line.translation as Native)[props.motherTongue]}</p>
             </li>
           );
         })}

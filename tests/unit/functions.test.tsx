@@ -19,7 +19,7 @@ import { validateBrief, validateContent, type OutlineContext } from '../../src/v
 const ROOT = resolve(import.meta.dirname, '../..');
 const ID = 'fr-ordering-at-a-cafe';
 type Json = any;
-const load = (dir: 'briefs' | 'lessons'): Json => JSON.parse(readFileSync(join(ROOT, 'tests/fixtures/content', dir, `${ID}.json`), 'utf8'));
+const load = (dir: 'briefs' | 'lessons'): Json => JSON.parse(readFileSync(join(ROOT, 'content', dir, `${ID}.json`), 'utf8'));
 const outline = OutlineFileSchema.parse(JSON.parse(readFileSync(join(ROOT, 'content/outlines/fr-a1.json'), 'utf8')));
 const ctx: OutlineContext = { entry: outline.entries.find((e) => e.id === ID)!, lang: 'fr', level: 'A1' };
 const messages = (r: { issues: { path: string; message: string }[] }) => r.issues.map((i) => `${i.path}: ${i.message}`).join('\n');
@@ -56,25 +56,25 @@ describe('function artifacts', () => {
     ['an ellipsis in the text', (b: Json) => (b.expressions[0].text = 'Je voudrais …'), /without the ellipsis and set openEnd/],
     ['an example without its expression', (b: Json) => (b.expressions[1].example.text = 'Bonjour.'), /must use the expression/],
     ['a noun without article', (b: Json) => (b.words[0].teachingForm = 'thé'), /indefinite article/],
-    ['equal translations', (b: Json) => (b.expressions[1].translations.en = ['I would like']), /en translation/],
+    ['equal translations', (b: Json) => (b.expressions[0].translations.en = ['I would like']), /en translation/],
   ])('rejects a brief with %s', (_, mutate, pattern) => {
     expect(messages(checkBrief(mutate))).toMatch(pattern);
   });
 
   it.each([
-    ['a missing expression in the dialogue', (c: Json) => step(c, 'dialogue').pages[0].items[0].lines.forEach((l: Json) => (l.expressionIds = l.expressionIds.filter((e: string) => e !== 'merci-au-revoir'))), /does not use expression merci-au-revoir/],
+    ['a missing expression in the dialogue', (c: Json) => step(c, 'dialogue').pages[0].items[0].lines.forEach((l: Json) => (l.expressionIds = l.expressionIds.filter((e: string) => e !== 'cest-tout'))), /does not use expression cest-tout/],
     ['two lines of one role in a row', (c: Json) => (step(c, 'dialogue').pages[0].items[0].lines[1].roleId = 'serveur'), /roles alternate/],
     ['a distractor in practice', (c: Json) => (step(c, 'word_order').pages[0].items[0].distractorTokenIds = ['t3']), /tokens only/],
     ['a distractor inside the accepted order', (c: Json) => (step(c, 'exam').pages[0].items[0].distractorTokenIds = ['t1']), /except the distractors/],
     ['a gap without its answer among the choices', (c: Json) => (step(c, 'dialogue_gaps').pages[0].items[0].choiceExpressionIds[0] = 'laddition'), /four distinct expressions including the answer/],
     ['an exam reply taken from practice', (c: Json) => {
       const reply = step(c, 'exam').pages[0].items[0];
-      reply.tokens = [{ tokenId: 't1', text: 'Je' }, { tokenId: 't2', text: 'voudrais' }, { tokenId: 't3', text: 'un croissant' }];
+      reply.tokens = [{ tokenId: 't1', text: 'Je' }, { tokenId: 't2', text: 'voudrais' }, { tokenId: 't3', text: 'un thé,' }, { tokenId: 't4', text: 's’il vous plaît' }];
       reply.distractorTokenIds = [];
-      reply.acceptedOrders = [['t1', 't2', 't3']];
+      reply.acceptedOrders = [['t1', 't2', 't3', 't4']];
     }, /already occurs in the brief or in practice/],
-    ['a wrong page estimate', (c: Json) => (step(c, 'dialogue').pages[0].estimatedDurationS = 60), /must be 116 s by the page rules/],
-    ['a wrong exam limit', (c: Json) => (step(c, 'exam').pages[2].timeLimitS = 100), /must be 276 s/],
+    ['a wrong page estimate', (c: Json) => (step(c, 'dialogue').pages[0].estimatedDurationS = 60), /must be 140 s by the page rules/],
+    ['a wrong exam limit', (c: Json) => (step(c, 'exam').pages[2].timeLimitS = 100), /must be 384 s/],
     ['a practice countdown', (c: Json) => (step(c, 'matching').pages[0].timeLimitS = 60), /only exam pages have a countdown/],
     ['steps out of order', (c: Json) => c.steps.reverse(), /expected the flashcards step/],
   ])('rejects lesson content with %s', (_, mutate, pattern) => {
@@ -84,10 +84,11 @@ describe('function artifacts', () => {
   it('derives page estimates and exam limits from the page rules (section 8)', () => {
     const content = load('lessons') as FunctionsContent;
     const exam = content.steps.at(-1)!.pages;
-    expect(functionsPageEstimate(exam[0].items, true)).toBe(90);
-    expect(functionsPageEstimate(exam[2].items, true)).toBe(8 * 8 + 6 * 20);
-    expect(functionsTimeLimit(184)).toBe(276);
-    expect(content.estimatedMinutes).toBe(15);
+    expect(functionsPageEstimate(exam[0].items, true)).toBe(4 * 30);
+    expect(functionsPageEstimate(exam[2].items, true)).toBe(12 * 8 + 8 * 20);
+    expect(functionsTimeLimit(256)).toBe(384);
+    expect(functionsPageEstimate(content.steps.find((s) => s.stage === 'gender')!.pages[0].items, false)).toBe(20 + 4 * 5);
+    expect(content.estimatedMinutes).toBe(21);
   });
 });
 
@@ -97,22 +98,22 @@ describe('function lesson plan', () => {
   const plan = buildPlan(content, brief, 'de', { examIntro: true });
   const units = (role: string) => plan.pages.filter((p) => p.role === role).flatMap((p) => p.units);
 
-  it('has 20 practice units and 12 exam units; flashcards and the dialogue are presentation pages', () => {
-    expect(units('practice')).toHaveLength(6 + 2 + 6 + 6);
-    expect(units('exam')).toHaveLength(6 + 6);
+  it('has 32 practice units and 16 exam units; flashcards and the dialogue are presentation pages', () => {
+    expect(units('practice')).toHaveLength(8 + 4 + 4 + 8 + 8);
+    expect(units('exam')).toHaveLength(8 + 8);
     expect(plan.pages.slice(0, 3).map((p) => p.role)).toEqual(['presentation', 'presentation', 'presentation']);
     expect(plan.pages.find((p) => p.special === 'examIntro')).toBeDefined();
   });
 
   it('shows French expressions on matching boxes and their mother-tongue partners', () => {
-    const unit = units('practice').find((u) => u.itemType === 'function_matching')!;
+    const unit = units('practice').find((u) => u.itemType === 'function_matching' && u.id.endsWith('/je-voudrais'))!;
     expect(unit.prompt.learning).toBe('Je voudrais …');
     expect(unit.kind === 'choice' && unit.options.map((o) => o.text)).toContain('Ich hätte gern');
   });
 
   it('offers the gap expressions without the ellipsis and with role A as context', () => {
     const unit = units('practice').find((u) => u.itemType === 'function_dialogue_gap_choice')!;
-    expect(unit.prompt.learning).toBe('le serveur: Bonjour, vous désirez ?');
+    expect(unit.prompt.learning).toBe('le serveur: Bonsoir, madame. Vous désirez ?');
     expect(unit.kind === 'choice' && unit.options.find((o) => o.id === 'je-voudrais')?.text).toBe('Je voudrais');
   });
 
@@ -127,10 +128,12 @@ describe('function lesson plan', () => {
 
   it('grades typed exam-dialogue gaps with half credit for accents and capitals', () => {
     const gaps = units('exam').filter((u) => u.itemType === 'function_dialogue_gap_typing');
-    expect(gaps).toHaveLength(6);
-    expect(scoreUnit(gaps[1], 'Je voudrais').points).toBe(1);
-    expect(scoreUnit(gaps[1], 'je voudrais').points).toBe(0.5);
-    expect(scoreUnit(gaps[4], 'Cest combien').points).toBe(0);
+    expect(gaps).toHaveLength(8);
+    const gap = (answer: string) => gaps.find((u) => u.answer === answer)!;
+    expect(scoreUnit(gap('Je voudrais'), 'Je voudrais').points).toBe(1);
+    expect(scoreUnit(gap('Je voudrais'), 'je voudrais').points).toBe(0.5);
+    expect(scoreUnit(gap('Je voudrais'), 'Je prends').points).toBe(1);
+    expect(scoreUnit(gap('c’est combien'), 'Cest combien').points).toBe(0);
   });
 
   it('plays through the shared session host to a total of 100', () => {
@@ -152,10 +155,10 @@ describe('function artifact views', () => {
 
   it('shows the Draft: situation, roles, expressions with example sentences and words', () => {
     render(<PreferencesProvider initial={{ interfaceLanguage: 'de', motherTongue: 'en' }}><FunctionsBriefView data={brief} /></PreferencesProvider>);
-    expect(screen.getByText('Ausdrücke (6)')).toBeInTheDocument();
+    expect(screen.getByText('Ausdrücke (8)')).toBeInTheDocument();
     expect(screen.getByText('Je voudrais …')).toBeInTheDocument();
     expect(screen.getByText('I would like')).toBeInTheDocument();
-    expect(screen.getByText('Je voudrais un café.')).toBeInTheDocument();
+    expect(screen.getByText('Je voudrais un café, s’il vous plaît.')).toBeInTheDocument();
     expect(screen.getByText('le serveur')).toBeInTheDocument();
     expect(screen.getByText('un croissant')).toBeInTheDocument();
   });
@@ -163,10 +166,10 @@ describe('function artifact views', () => {
   it('previews every function item type read-only', () => {
     render(<PreferencesProvider initial={{ interfaceLanguage: 'en', motherTongue: 'de' }}><ContentReview content={content} brief={brief} /></PreferencesProvider>);
     const reviewed = screen.getAllByRole('tab').map((tab) => { fireEvent.click(tab); return screen.getByRole('tabpanel').textContent; }).join(' ');
-    for (const type of ['function_flashcards', 'function_dialogue', 'function_matching', 'function_word_order', 'function_dialogue_gap_choice', 'function_dialogue_gap_typing']) expect(reviewed).toContain(type);
-    expect(reviewed).toContain('Distractors: voudrait · désire');
-    expect(reviewed).toContain('Bonsoir, monsieur. ___ ?');
-    expect(reviewed).toMatch(/Countdown limit: 4 min 36 s/);
+    for (const type of ['function_flashcards', 'function_dialogue', 'function_matching', 'function_gender_select', 'function_word_order', 'function_dialogue_gap_choice', 'function_dialogue_gap_typing']) expect(reviewed).toContain(type);
+    expect(reviewed).toContain('Distractors: voudrait · un');
+    expect(reviewed).toContain('Bonsoir, madame. ___ ?');
+    expect(reviewed).toMatch(/Countdown limit: 6 min 24 s/);
     expect(screen.getByRole('tabpanel').querySelectorAll('input, button, select, textarea')).toHaveLength(0);
   });
 });

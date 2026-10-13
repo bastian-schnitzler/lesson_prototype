@@ -88,9 +88,10 @@ export function buildFunctionsLesson(def: FunctionsDefinition, root = resolve(im
   const replyPages = chunk(def.replies, FUNCTIONS_PAGE_RULES.replyPageSize);
 
   const steps: FunctionsContent['steps'] = [
+    // Words first: the example sentences often use them (P4-05 review).
     { id: 'flashcards', stage: 'flashcards', role: 'presentation', label: FUNCTIONS_COPY.flashcards[0], pages: [
-      page('cards-expressions', FUNCTIONS_COPY.flashcards[1], [{ type: 'function_flashcards', itemId: 'cards-expressions', side: 'expressions', ids: expressionIds }]),
       ...(wordIds.length ? [page('cards-words', FUNCTIONS_COPY.wordCards, [{ type: 'function_flashcards', itemId: 'cards-words', side: 'words', ids: wordIds }])] : []),
+      page('cards-expressions', FUNCTIONS_COPY.flashcards[1], [{ type: 'function_flashcards', itemId: 'cards-expressions', side: 'expressions', ids: expressionIds }]),
     ] },
     { id: 'dialogue', stage: 'dialogue', role: 'presentation', label: FUNCTIONS_COPY.dialogue[0], pages: [
       page('dialogue', FUNCTIONS_COPY.dialogue[1], [{
@@ -102,6 +103,9 @@ export function buildFunctionsLesson(def: FunctionsDefinition, root = resolve(im
       ...chunk(expressionIds, FUNCTIONS_PAGE_RULES.matchingPageSize).map((ids, n) => page(`match-expressions-${n + 1}`, FUNCTIONS_COPY.matching[1], [matching('expressions', ids, n + 1)])),
       ...(wordIds.length ? [page('match-words-1', FUNCTIONS_COPY.wordMatching, [matching('words', wordIds, 1)])] : []),
     ] },
+    ...(wordIds.length ? [{ id: 'gender', stage: 'gender' as const, role: 'exercise' as const, label: FUNCTIONS_COPY.gender[0], pages: [
+      page('gender', FUNCTIONS_COPY.gender[1], [{ type: 'function_gender_select', itemId: 'gender', ids: wordIds }]),
+    ] }] : []),
     { id: 'word-order', stage: 'word_order', role: 'exercise', label: FUNCTIONS_COPY.wordOrder[0], pages:
       def.wordOrder.map(([e, spec, explanation], n) => page(`order-${n + 1}`, FUNCTIONS_COPY.wordOrder[1], [wordOrder(`order-${n + 1}`, e, spec, explanation)])) },
     { id: 'dialogue-gaps', stage: 'dialogue_gaps', role: 'exercise', label: FUNCTIONS_COPY.dialogueGaps[0], pages: def.gaps.map((g, n) => {
@@ -118,15 +122,16 @@ export function buildFunctionsLesson(def: FunctionsDefinition, root = resolve(im
       }), true)),
       page('exam-dialogue', FUNCTIONS_COPY.examDialogue, [{
         type: 'function_dialogue_gap_typing', itemId: 'exam-dialogue',
-        lines: def.examDialogue.map(([role, line, explanation], n) => {
-          if (!line.includes('[')) return { lineId: `exam-line-${n + 1}`, roleId: role, before: line, gap: null, after: '' };
+        lines: def.examDialogue.map(([role, line, en, de, explanation], n) => {
+          const translation = native(en, de);
+          if (!line.includes('[')) return { lineId: `exam-line-${n + 1}`, roleId: role, before: line, translation, gap: null, after: '' };
           const { before, inner, after } = splitGap(line, /\[([^\]]+)\]/);
           const answers = inner.split(' / ').map((a) => a.trim());
           // The first answer names the expression; further answers are accepted alternatives.
           const e = def.expressions.find((x) => plain(answers[0]) === plain(x.text));
           if (!e) throw new Error(`the first answer of gap [${inner}] is no expression of the lesson`);
           if (!explanation) throw new Error(`gap [${inner}] needs an explanation`);
-          return { lineId: `exam-line-${n + 1}`, roleId: role, before, gap: { gapId: `gap-${n + 1}`, expressionId: e.id, accepted: { answers, accentSensitive: [] }, answerExplanation: explanation }, after };
+          return { lineId: `exam-line-${n + 1}`, roleId: role, before, translation, gap: { gapId: `gap-${n + 1}`, expressionId: e.id, accepted: { answers, accentSensitive: [] }, answerExplanation: explanation }, after };
         }),
       }], true),
     ] },
@@ -145,7 +150,8 @@ export function buildFunctionsLesson(def: FunctionsDefinition, root = resolve(im
   const briefResult = validateBrief(JSON.parse(briefText), ctx);
   const contentResult = briefResult.value ? validateContent(JSON.parse(contentText), { ...ctx, brief: briefResult.value, briefHash }) : undefined;
   const examGaps = def.examDialogue.filter(([, line]) => line.includes('[')).length;
-  const practice = expressionIds.length * 3 + wordIds.length;
+  const nouns = def.words.filter((w) => (w.wordClass ?? 'noun') === 'noun').length;
+  const practice = expressionIds.length * 3 + wordIds.length + nouns;
   return {
     briefText, contentText, dir,
     report: `${def.id}: ${expressionIds.length} expressions, ${wordIds.length} words, ${practice} practice units, ${def.replies.length + examGaps} exam units on ${replyPages.length + 1} pages, ${minutes} min`,

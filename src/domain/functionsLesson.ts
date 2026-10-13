@@ -12,6 +12,7 @@ export function functionsPageEstimate(items: FunctionsItem[], exam: boolean): nu
     switch (it.type) {
       case 'function_flashcards': seconds += it.ids.length * (it.side === 'expressions' ? R.expressionCardS : R.wordCardS); break;
       case 'function_dialogue': seconds += R.dialogueBaseS + it.lines.length * R.dialogueLineS; break;
+      case 'function_gender_select': seconds += R.genderBaseS + it.ids.length * R.genderWordS; break;
       case 'function_matching': seconds += it.pairs.length * (it.side === 'expressions' ? R.expressionPairS : R.wordPairS); break;
       case 'function_word_order': seconds += exam ? R.replyS : R.wordOrderS; break;
       case 'function_dialogue_gap_choice': seconds += R.gapChoiceS; break;

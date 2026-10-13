@@ -915,6 +915,8 @@ Acceptance:
 
 Outcome (2026-10-13): renderers `FunctionWordOrderRenderer`, `DialogueGapChoiceRenderer` and `ExamDialogueRenderer` in `src/session/functionsRenderers.tsx`; Next line also on the exam dialogue page; exam info rows, Replies/Dialogue result accordions and the function start page in `src/session/views.tsx`; `functions` in `PLAYABLE_KINDS`. The results menu has one Matching entry for expressions and words. Tests in `tests/unit/functions-renderers.test.tsx`; the café lesson was played through in the browser.
 
+Review (2026-10-13): flashcards as in vocabulary with the mother tongue first and the word cards before the expression cards; a gender and overview page for the words after matching (`function_gender_select`, the vocabulary gender page); every exam-dialogue line shows its mother-tongue translation; word-order tokens of the three lessons rewritten so exactly one order is valid (e.g. `à emporter ?` keeps its question mark), recorded as an authoring rule.
+
 Dependencies: P4-04.
 
 ### P4-06: Decide function generation and complete the remaining eleven lessons

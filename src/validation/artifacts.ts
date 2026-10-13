@@ -464,8 +464,11 @@ function checkFunctionsContent(c: FunctionsContent, b: FunctionsBrief, issues: I
   const expression = (id: string, path: string) => issues.check(expressions.has(id), path, `unknown expression ${id}`);
   const step = new Map(c.steps.map((s) => [s.stage, s]));
   const before = issues.list.length;
+  // The gender step exists exactly when the lesson has words (P4-05 review).
+  const stages = FUNCTIONS_STAGES.filter((s) => s !== 'gender' || wordIds.length > 0);
+  issues.check(c.steps.length === stages.length, 'steps', `expected ${stages.length} steps: ${stages.join(', ')}`);
   c.steps.forEach((s, i) => {
-    issues.check(s.stage === FUNCTIONS_STAGES[i], `steps.${i}.stage`, `expected the ${FUNCTIONS_STAGES[i]} step here (section 8)`);
+    issues.check(s.stage === stages[i], `steps.${i}.stage`, `expected the ${stages[i]} step here (section 8)`);
     issues.check(s.role === (s.stage === 'exam' ? 'exam' : s.stage === 'flashcards' || s.stage === 'dialogue' ? 'presentation' : 'exercise'), `steps.${i}.role`, `wrong role for the ${s.stage} step`);
   });
   if (issues.list.length > before) return;
@@ -477,11 +480,17 @@ function checkFunctionsContent(c: FunctionsContent, b: FunctionsBrief, issues: I
   };
   const pageSizes = (stage: (typeof FUNCTIONS_STAGES)[number]) => step.get(stage)!.pages.map((pg) => pg.items.length);
 
-  // Flashcards: one page of all expressions, then one page of all words (none without words).
+  // Flashcards (P4-05 review): one page of all words (none without words), then one page of all expressions.
   const cards = only('flashcards', 'function_flashcards');
-  issues.check(cards.length === (wordIds.length ? 2 : 1) && pageSizes('flashcards').every((n) => n === 1), 'steps.flashcards', 'one page for the expressions, then one for the words');
-  issues.check(sameSet(cards[0]?.ids ?? [], expressionIds) && cards[0]?.side === 'expressions', 'steps.flashcards', 'the first flashcard page holds every expression');
-  if (wordIds.length) issues.check(sameSet(cards[1]?.ids ?? [], wordIds) && cards[1]?.side === 'words', 'steps.flashcards', 'the second flashcard page holds every word');
+  const deck = [...(wordIds.length ? [['words', wordIds] as const] : []), ['expressions', expressionIds] as const];
+  issues.check(cards.length === deck.length && pageSizes('flashcards').every((n) => n === 1)
+    && deck.every(([side, ids], n) => cards[n].side === side && sameSet(cards[n].ids, ids)), 'steps.flashcards', 'one page with every word (when the lesson has words), then one page with every expression');
+
+  // Gender page (P4-05 review): every word on one page, as in vocabulary stage 4.
+  if (wordIds.length) {
+    const gender = only('gender', 'function_gender_select');
+    issues.check(gender.length === 1 && pageSizes('gender').length === 1 && gender[0].ids.join() === wordIds.join(), 'steps.gender', 'one gender page with every word in brief order');
+  }
 
   // Model dialogue: one page, alternating roles, every expression used.
   const dialogue = only('dialogue', 'function_dialogue');
@@ -574,6 +583,7 @@ function checkFunctionsContent(c: FunctionsContent, b: FunctionsBrief, issues: I
         checkExplanations([l.gap], lp, issues);
       }
       const full = plain(`${l.before} ${l.gap?.accepted.answers[0] ?? ''} ${l.after}`);
+      if (l.gap) issues.check(Object.values(l.translation).every((tr) => !plain(tr).includes(plain(l.gap!.accepted.answers[0]))), lp, 'the translation must not contain the French answer');
       if (l.gap) issues.check(!practiceSentences.has(full), lp, 'the line already occurs in the brief or in practice');
     });
   }
