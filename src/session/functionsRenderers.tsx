@@ -7,6 +7,7 @@ import type { Locale } from '../schemas/common.ts';
 import { useEffect, useRef } from 'react';
 import { Gap, ListenButton, TextControl, UnitsRenderer, type RendererProps } from './controls.tsx';
 import { useAutoplay } from './autoplay.ts';
+import { speak } from './speech.ts';
 
 /**
  * Function lesson presentation renderers (SPEC section 8, P4-04): expression and word flashcards and
@@ -294,13 +295,28 @@ export function ListeningReplyRenderer(props: RendererProps) {
       <fieldset className="choices" disabled={checked}>
         <legend className="visually-hidden">{t('session.chooseReply')}</legend>
         {options.map((o, n) => (
-          <div key={o.id} className={`choice listening-option${state(o.id)}`}>
-            <input type="radio" id={`${unit.id}-${o.id}`} name={unit.id} value={o.id} checked={current === o.id} onChange={() => props.onChange(unit.id, o.id)} />
-            <label htmlFor={`${unit.id}-${o.id}`}>{checked ? <span lang={plan.lang}>{o.text}</span> : t('session.replyN', { n: n + 1 })}</label>
-            <ListenButton text={o.text} lang={plan.lang} variant="icon" label={t('session.listenReply', { n: n + 1 })} />
-          </div>
+          // Clicking a reply selects it and plays it (again on every click); the speaker replaces the radio dot.
+          <label key={o.id} className={`choice listening-option${current === o.id ? ' is-selected' : ''}${state(o.id)}`}
+            // The label forwards a second click to its radio; that one is not played again.
+            onClick={(e) => { if (!checked && !(e.target instanceof HTMLInputElement)) speak(o.text, plan.lang); }}>
+            <input type="radio" className="visually-hidden" name={unit.id} value={o.id} checked={current === o.id} onChange={() => props.onChange(unit.id, o.id)} />
+            <SpeakerIcon />
+            {checked ? <span lang={plan.lang}>{o.text}</span> : <span>{t('session.replyN', { n: n + 1 })}</span>}
+          </label>
         ))}
       </fieldset>
     </div>
+  );
+}
+
+/** The speaker symbol of a listening reply (decorative; the whole reply plays when clicked). */
+function SpeakerIcon() {
+  return (
+    <span className="listening-speaker" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor" />
+        <path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" />
+      </svg>
+    </span>
   );
 }

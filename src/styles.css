@@ -2421,9 +2421,20 @@ html {
 }
 
 /* Listening choice (P4-05 review): replies are heard; the label names the reply until Check reveals its text. */
-.listening-option label {
-  flex: 1;
-  cursor: pointer;
+.listening-speaker {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  color: var(--text);
+}
+
+/* The selected reply has a purple border until Check marks it green or red. */
+.listening-option.is-selected:not(.is-right):not(.is-wrong) {
+  border-color: var(--progress);
+  box-shadow: inset 0 0 0 1px var(--progress);
 }
 
 /* Autoplay switch (P4-05 review): the last header control on the right. */

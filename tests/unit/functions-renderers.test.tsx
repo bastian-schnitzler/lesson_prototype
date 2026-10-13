@@ -3,7 +3,7 @@ import { join, resolve } from 'node:path';
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { LastTryProvider, PreferencesProvider } from '../../src/app/context.tsx';
-import { buildPlan, type PlanPage } from '../../src/domain/session/plan.ts';
+import { buildPlan, seededOrder, type PlanPage } from '../../src/domain/session/plan.ts';
 import { nextDialogueLine, presentationComplete, requiredReveals, sessionReducer, skipsFeedbackWhenCorrect, startSession, type SessionRecord } from '../../src/domain/session/session.ts';
 import { briefSchema, contentSchema } from '../../src/schemas/artifacts.ts';
 import type { RendererProps } from '../../src/session/controls.tsx';
@@ -247,6 +247,7 @@ describe('function gender page (P4-05 review)', () => {
 
 describe('function listening choice (P4-05 review)', () => {
   const pg = page('listening-1');
+  const seededPosition = (id: string) => (pg.units[0].kind === 'choice' ? seededOrder(pg.units[0].options, 1, pg.units[0].id).findIndex((o) => o.id === id) : -1);
 
   it('follows word order, which follows the dialogue gaps', () => {
     const order = [...new Set(plan.pages.map((p) => p.stepId))];
@@ -256,14 +257,19 @@ describe('function listening choice (P4-05 review)', () => {
 
   it('plays role A and four replies without showing their text, then reveals it after Check', () => {
     const { onChange } = renderItem(ListeningReplyRenderer, pg);
-    // One audio control for role A and one per reply (jsdom has no voice, so they offer the install help).
-    expect(document.querySelectorAll('.listening-reply .listen')).toHaveLength(5);
+    // One audio control for role A (jsdom has no voice, so it offers the install help); each reply shows a
+    // speaker symbol in place of the radio dot and plays when clicked.
+    expect(document.querySelectorAll('.listening-reply .listen')).toHaveLength(1);
+    expect(document.querySelectorAll('.listening-option .listening-speaker')).toHaveLength(4);
     expect(screen.queryByText('Bonjour, madame. Vous désirez ?')).toBeNull();
     expect(screen.getAllByRole('radio')).toHaveLength(4);
     expect(screen.getByText('Reply 1')).toBeInTheDocument();
     expect(screen.queryByText('Je voudrais un thé, s’il vous plaît.')).toBeNull();
     fireEvent.click(screen.getByLabelText('Reply 2'));
     expect(onChange).toHaveBeenCalledWith(pg.units[0].id, expect.stringMatching(/^o[1-4]$/));
+    cleanup();
+    renderItem(ListeningReplyRenderer, pg, { drafts: { [pg.units[0].id]: 'o2' } });
+    expect(screen.getByLabelText('Reply ' + (seededPosition('o2') + 1)).closest('.listening-option')).toHaveClass('is-selected');
     cleanup();
     const unit = pg.units[0];
     const wrong = unit.kind === 'choice' ? unit.options.find((o) => !unit.correct.includes(o.id))!.id : '';
