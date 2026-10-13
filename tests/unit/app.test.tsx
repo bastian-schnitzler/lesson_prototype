@@ -87,7 +87,12 @@ describe('lesson index', () => {
     await user.click(within(screen.getByRole('group', { name: 'Mother tongue' })).getByRole('radio', { name: 'de' }));
     await user.selectOptions(screen.getByRole('combobox', { name: 'Interface language' }), 'de');
     expect(await screen.findByRole('heading', { level: 1, name: 'Deine Lektionen' })).toBeInTheDocument();
-    expect(JSON.parse(localStorage.getItem(PREFERENCES_KEY)!)).toEqual({ motherTongue: 'de', interfaceLanguage: 'de' });
+    expect(JSON.parse(localStorage.getItem(PREFERENCES_KEY)!)).toEqual({ motherTongue: 'de', interfaceLanguage: 'de', autoplay: true });
+    // Autoplay switch (P4-05 review): on by default, the last header control; switching it off is stored.
+    const autoplay = screen.getByRole('switch', { name: 'Autoplay' });
+    expect(autoplay).toBeChecked();
+    await user.click(autoplay);
+    expect(JSON.parse(localStorage.getItem(PREFERENCES_KEY)!)).toMatchObject({ autoplay: false });
     expect(Object.keys(localStorage)).toEqual([PREFERENCES_KEY]);
     expect(document.documentElement.lang).toBe('de');
   });

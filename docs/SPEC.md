@@ -1,6 +1,6 @@
 # Lesson exercise prototype specification
 
-Status: **Draft 0.48 — function flashcards, dialogue and matching (P4-04)**. Date: 2026-10-13.
+Status: **Draft 0.58 — pluralia tantum, one-line course filters (P4-05 review)**. Date: 2026-10-13.
 
 This document specifies the prototype and its phased implementation. It is the maintained requirements document: no separate requirements file exists. It does not authorize starting implementation before the specification review. The backlog is in [ISSUES.md](ISSUES.md) and published as GitHub issues in `bastian-schnitzler/lesson_prototype`.
 
@@ -79,8 +79,9 @@ Confirmed decisions are identified below. Other defaults make the draft concrete
 | D47 | Vocabulary lesson = brief | **Confirmed (P2-04):** a vocabulary lesson consists of its brief only; there is no vocabulary file in `content/lessons/`. The brief defines the introduction per word group, the words and every exercise text (explanations, gap sentences, listening options); the application derives the same six stages for every vocabulary lesson, with every word in every exercise (flashcards, matching, gender/overview, typed gap, listening choice, translation and dictation exam) and fixed page durations and exam limits (section 6, "Derived vocabulary lesson"). In the exam, nouns are accepted only as indefinite article + noun, in translation and dictation alike (D39). Grammar lessons keep brief and content file. |
 | D48 | Person matching | **Confirmed (P3-02 review):** grammar has a seventh practice type, `grammar_person_matching`: the vocabulary matching board with person rows (three singular rows, a gap, three plural rows; three rows when only one number is taught), in translation mode (mother-tongue pronoun → French pronoun) or forms mode (French pronoun → verb form). Every pronoun or verb-form lesson (topics `pronouns`, `verbs_morphology`) has one, except the imperative lesson; checking behaves exactly like vocabulary matching and keeps the gap. |
 | D49 | Grammar lesson length | **Confirmed (P3-07, shortened in its review):** a grammar lesson takes about 15–25 minutes: at least 34 scored practice units and an exam of 2–4 pages with at least 16 scored units, 2–4 exercises of 4–8 items per teaching block, one person matching board per verb, and realistic per-unit estimates (section 7, "Lesson length"). Grammar briefs list `newVerbs` (verbs no earlier vocabulary lesson taught, with translations), shown on the start page and the first explanation page. |
-| D50 | Function lesson flow | **Confirmed (P4-01):** a function lesson is built on 6–10 expressions (about 8; phrases and sentence starts such as `Je voudrais …`) and 0–6 additional words (about 4). Sequence: flashcards (expressions French on the front, words as in vocabulary), a model dialogue revealed line by line with flippable lines (translation and note), matching of expressions and of words, word order of one example sentence per expression with only the tokens as prompt, dialogue gaps with four expression choices; exam part 1 builds replies to role A from tokens with 0–3 distractors and only the dialogue as context, exam part 2 is a new dialogue unrolled line by line whose expression gaps are typed. Details in section 8. |
+| D50 | Function lesson flow | **Confirmed (P4-01):** a function lesson is built on 6–10 expressions (about 8; phrases and sentence starts such as `Je voudrais …`) and 0–6 additional words (about 4). Sequence: flashcards (expressions French on the front, words as in vocabulary), a model dialogue revealed line by line with flippable lines (translation and note), matching of expressions and of words, word order of one example sentence per expression with only the tokens as prompt, dialogue gaps with four expression choices; exam part 1 builds replies to role A from tokens with 0–3 distractors and only the dialogue as context, exam part 2 is a new dialogue unrolled line by line whose expression gaps are typed. Details in section 8. **Revised in the P4-05 review:** word flashcards first, then expression flashcards, both with the mother tongue on the front; a gender and overview page for the words after matching; every exam-dialogue line shows its mother-tongue translation; word-order tokens admit exactly one order. **Revised again in the P4-05 review:** dialogue gaps come before word order, followed by a listening choice (role A heard, four replies heard, choose the fitting one). |
 | D51 | Function artifacts and authoring | **Confirmed (P4-01):** a function lesson has a brief and lesson content, like grammar. The brief holds the situation, the two roles and the expressions and words with example sentences; the model dialogue, all exercises and the exam are generated in the lesson content. Claude first writes three test lessons by hand (`fr-greetings-and-goodbyes`, `fr-ordering-at-a-cafe`, `fr-asking-the-way`); the product owner decides on generation of the remaining eleven after their review. |
+| D52 | Autoplay mode | **Confirmed (P4-05 review):** a header switch **Autoplay**, the last control on the right, on by default and stored with the preferences (D45). When on, learning-language audio plays by itself: turning a flashcard to French; each line of a function model dialogue as it appears; connecting a matching pair or clicking a French box (person boards in forms mode: pronoun + form, e.g. `nous sommes`, `j'ai`); placing a form in a pronoun row; entering a dialogue gap, a listening choice or a dictation (the prompt; dialogue gaps play nothing when checked); and, as a practice page is checked, together with the green or red marking, the correct answer (gap sentences except dialogue gaps, error-spotter sentences, word-order sentences, the right word of a vocabulary listening choice, pronoun + form of pronoun rows; the function listening choice plays only role A). Prompts on entering a page wait for speech in progress. Exam answers are never spoken. Section 5, "Autoplay". |
 
 ## 2. Runtime and delivery architecture
 
@@ -249,7 +250,7 @@ Actions contains only **Start lesson**, rendered only when all three artifacts e
 
 The detail page stacks the available **Outline**, **Draft**, and **Content** sections on one page, using structured React components and semantic HTML. Cards, tables, lists, and read-only exercise previews are the primary presentation; the user can understand all artifacts without opening raw JSON. The header contains, directly under the page title and in this order, **Lesson overview** (back to the selected course), **Raw JSON** (a view toggle), and **Start lesson** when available, alongside shared language preferences. On the same row, right-aligned, **Outline**, **Draft** and **Content** buttons scroll to the matching section (from Raw JSON they first restore the structured view). No generation controls or answer-key shortcuts inside active sessions. Missing sections have a short explanatory label; malformed/stale artifacts are inspectable with their validation errors, while Start remains unavailable.
 
-Four independently toggled category options follow learning language and level at the index top; all are active initially. The label “Voc” maps to `vocabulary`, “Func” to canonical `functions`. Filters preserve `entries` order and original ordinals. No selected categories shows an empty state with a reset link.
+Four independently toggled category options follow learning language and level at the index top, all three groups on one line on wide screens (P4-05 review); all categories are active initially. The label “Voc” maps to `vocabulary`, “Func” to canonical `functions`. Filters preserve `entries` order and original ordinals. No selected categories shows an empty state with a reset link.
 
 ### Structured artifact components
 
@@ -550,7 +551,7 @@ Practice pages have one primary footer button: it reads **Check** while answerin
 1. While answering, Continue locks the current page's response(s), records first-submission points, and shows immediate visual feedback **on that page**, without navigating away.
 2. Fully correct answers receive a clear success state. Orthography-only errors receive a distinct partial-correct state and the correctly accented/capitalized answer. Incorrect answers receive an error state and the correct answer. Both correction states also show the short pre-generated explanation of why that answer is right, including row-level corrections in grouped tasks. Include text/icons so color is not the only signal.
 3. Inputs become read-only. Continue remains the only primary action; pressing it again acknowledges the feedback and advances. It does not rescore or require retyping the correction.
-4. **Single-answer pages (P2-04 review):** on every practice page whose items each ask for exactly one answer (typed gap, listening choice, multiple choice, one typed word, word order, error spot) and on matching pages, a fully correct answer skips the feedback view: only the chosen answer (the selected option, the paired boxes and their curves, the placed tokens, the typed field, or for typed gaps the correct reference card) briefly lights up green; the rest of the content area stays unchanged, and the next page follows. Pages with several answers per item (gender rows, conjugation tables) always keep their checked view. Exam pages never use it. A wrong answer on such a page shows no feedback card (P2-04 review round 2): a typed field turns red and the correct answer follows it in green (typed gaps: the green reference card above instead); among choices (listening choice, multiple choice) the chosen wrong option turns red and the correct option green; the page waits for Continue. Only a half-point answer (accents or capitals) turns the field amber and shows an explanation ("Almost – …" and the generated explanation) **below** the Continue button, so the button keeps its place. Word order and error spotting keep their feedback card.
+4. **Single-answer pages (P2-04 review):** on every practice page whose items each ask for exactly one answer (typed gap, listening choice, multiple choice, one typed word, word order, error spot) and on matching pages, a fully correct answer skips the feedback view: only the chosen answer (the selected option, the paired boxes and their curves, the placed tokens, the typed field, or for typed gaps the correct reference card) briefly lights up green; the rest of the content area stays unchanged, and the next page follows. Pages with several answers per item (gender rows, conjugation tables) always keep their checked view. Exam pages never use it. A wrong answer on such a page shows no feedback card (P2-04 review round 2): a typed field turns red and the correct answer follows it in green (typed gaps: the green reference card above instead); among choices (listening choice, multiple choice) the chosen wrong option turns red and the correct option green; the page waits for Continue. Only a half-point answer (accents or capitals) turns the field amber and shows an explanation ("Almost – …" and the generated explanation) **below** the Continue button, so the button keeps its place. Word order and error spotting keep their feedback card. **Multiple choice (P4-05 review):** on practice pages with one multiple-choice answer (multiple-choice gaps, dialogue gaps) choosing an option submits the page at once (listening choices keep Check, so the options can be heard first), without a Check button; a right answer then plays the green animation and moves on, a wrong one is marked in place and waits for Continue. The answer cannot be changed while the animation plays. **Typed pronoun rows (P4-05 review):** a pronoun-typing page with every row right also plays the green animation and moves on without Continue; with a mistake the rows are marked in place and the page waits for Continue.
 
 Unscored presentation/review pages use Continue once to advance when their review requirements are met. Empty required answers disable Continue in practice. An exam page may submit a blank answer, recorded as unanswered for zero credit.
 
@@ -574,6 +575,21 @@ flowchart TD
     K --> M[Select previous exercise in results button menu]
     M --> K
 ```
+
+### Autoplay (D52)
+
+The header switch **Autoplay** (on by default, stored with the preferences) lets the application speak learning-language text by itself, using the same browser speech as the Listen controls (D9); without a voice nothing is played. Triggers:
+
+| Situation | Spoken |
+| --- | --- |
+| Turning a flashcard to its French side (vocabulary, function words and expressions) | the word or expression, at the click |
+| A line of a function model dialogue appears (first line, Next line) | the line |
+| Matching: clicking a French box, or connecting a pair | the French box; person boards in forms mode the pronoun with its form (`nous sommes`, `j'ai`) |
+| Pronoun/form assignment: a form is placed in a row | pronoun + form |
+| A dialogue gap, a listening choice or a dictation page opens | role A's line or the word to be heard (waits for speech in progress); dialogue gaps play nothing when checked |
+| A practice page is checked (with the start of the green or red marking; multiple choice at the click) | the correct answer: gap (not dialogue-gap) and error-spotter sentences, word-order sentences, the right word of a vocabulary listening choice, pronoun + form of pronoun rows; the function listening choice plays only role A |
+
+Exam answers are never spoken; matching and gender pages speak nothing extra on Check.
 
 ### Duration-weighted progress and live score header
 
@@ -673,7 +689,7 @@ Keep six stages, integrating noun-gender practice into the overview stage and li
 3. **Matching:** connect native/French targets in manageable groups. The two columns are shuffled independently from the session seed; the learner selects an item on either side and then its partner on the other (pointer, touch or keyboard: every item is a button). Each French form has a small speaker button inside its box. On wide screens (from 720 px) the columns stand apart and a Bézier curve starts at the inner middle of the selected box and follows the pointer; over a box of the other column it stops at that box's inner border, and a click docks it onto the partner; every pair stays joined by its curve. On phones pairs are numbered instead. Paired boxes have a purple border; pairs stay editable until Continue, and choosing a taken partner moves it. Applicable French forms show gender. Continue (enabled once every pair is assigned) locks one unit per French form. Continue stays greyed out (no extra hint) until every pair is assigned. There is no separate correction view (P2-04 review round 3): after Check every French box glides (1.2 s, frame by frame, starting slowly, speeding up and settling) into the row of its correct meaning; the slide also plays when the system asks for reduced motion, because it shows where each word belongs (Windows reports reduced motion whenever its animation effects are off), and the curves are redrawn every frame so they move with the boxes. When every pair is correct, the content area then flashes green as before (background and border, 0.9 s; boxes and curves keep their colours, the purple curves are drawn thin) and the next page follows. Otherwise a summary ("4 of 6 pairs correct") replaces the hint, correctly matched French boxes turn green and wrongly matched ones red (each level with its correct meaning), only the wrong pairs keep their curve, now red and dashed (phones: numbered badges on the wrong pairs only), the other curves disappear, and the page waits for Continue. Matching shows no explanations.
 4. **Gender exercise and reviewed overview:** show **all vocabulary on one page**. Nouns have a select box with an initially unanswered state and appropriate gender options; other word classes have no gender input. While answering, show noun lemmas without articles, gender tags, or audio that supplies an article. This temporarily overrides the earlier stages' gender-display rule so the answer is not exposed. Preserve explicit gender/context policies for nouns that accept more than one gender. Continue locks all noun choices and scores one unit per noun. The same page then becomes the overview, showing the learner's selected gender, correct gender and teaching form, right/wrong indicators, translations, audio, and pre-generated explanations for mistakes. Continue acknowledges the overview and proceeds to gaps. Retain the locked row results for final-results review. Lessons without applicable nouns use a plain, unscored overview and skip the gender exercise. Layout (P2-03): the page stays the same before and after checking. Every word sits in a compact grid (two columns on wide screens) with a speaker button left of the word; while answering, nouns show their bare `term` (never with an article; validated) with masculine/feminine choice pills and the speaker reads only that bare term, and words of other classes show "no gender". Practice pages show **Check** while answering and **Continue** afterwards. After Check a summary ("7 of 12 genders correct") appears, each word shows its teaching form (spoken by the speaker) and translation, a correct choice gets a green border, a wrong choice a red border and the correct gender a green border as well (P2-04 review round 6); there is no explanation on the gender page (P2-04 review round 3). Nothing moves when checked (P2-04 review rounds 2 and 5): the bare term and the teaching form with translation occupy the same space (the hidden one keeps its size), the choice pills always stand on their own row below the word, every state keeps a 1 px border (emphasis via an inset shadow), the summary line is reserved invisibly before Check, and the page always reserves the scrollbar gutter.
 5. **Typed context gaps and listening choice:** typed gaps use the application instruction "Choose the right word and type it." and follow reference R4: the four noninteractive reference choices as centred, padded cards one under another (applicable gender beside the word, no label) above a large sentence with the answer field; the cursor starts in the field, and once checked (also during the green success flash) the correct card lights up green; type the missing word without article. Show applicable gender alongside reference forms. Listening-choice pages play a target with browser speech and the learner selects it from four written learning-language options (choices are interactive here), each with its gender as small extra information where applicable (P2-04 review). A fully correct typed gap or listening choice lights up only the correct reference card or the chosen option green and moves on without a feedback view (section 5, rule 4). A wrong typed gap turns the field red while the correct reference card above lights up green (the answer is not repeated after the field); a wrong listening choice turns the chosen option red and the correct one green; a half-point gap turns the field amber and explains itself below the Continue button. Other practice feedback (word order, error spotting, rows) carries no point counts: "Correct", or "Almost – check the accents and capitals (half a point)" / "Incorrect" with the correct answer in green and the learner's answer struck through in red directly below, then the explanation.
-6. **Exam info page and timed translation and listening exam:** an application info page precedes the first exam page (learner sessions only): which exam pages follow (translation, dictation or mixed tasks) with their number of tasks and countdown, how many words (vocabulary) or tasks are tested, and that results follow the whole exam; it has no countdown and adds no score. translation pages show a native prompt and require the French answer including the indefinite article where applicable; no gender/audio/answer hints. Each translation prompt carries a small "with article" / "without article" badge derived from the expected answer. While an answer has exactly one word fewer than an article-bearing solution and does not start with an article, the badge turns red; no info box appears while typing. If Continue is pressed while that rule is violated, the page is not submitted: a red info box under each affected field says to type the article before the word, and it stays until Continue is pressed again, which then submits the page as it is (translation pages only, never dictation; a timeout submits without it). The info names the article family of the expected answer: "the indefinite article (un, une or des)" for nouns, and "the article (le, la, l' or les)" for the few targets with an `articleException` (countries); it reveals nothing beyond the badge. Listening-dictation pages play a target (replayable until lock) and the learner writes it in the teaching form, article included where applicable, scored by the shared free-text classifier. Each page uses its brief-defined countdown. Answer feedback is deferred until the full exam is complete.
+6. **Exam info page and timed translation and listening exam:** an application info page precedes the first exam page (learner sessions only): which exam pages follow (translation, dictation or mixed tasks) with their number of tasks and countdown, how many words (vocabulary) or tasks are tested, and that results follow the whole exam; it has no countdown and adds no score. translation pages show a native prompt and require the French answer including the indefinite article where applicable; no gender/audio/answer hints. **Plurals and gender (P4-05 review):** a noun that is not a plurale tantum must be answered in the singular; a plural answer is wrong. A plurale tantum (taught and examined with `des`) must be answered in the plural; a singular is wrong. As soon as a field of a noun holds `des` and a word, a masculine/feminine choice appears after it (for every noun, so it reveals nothing), because `des` does not show the gender; a plurale tantum then counts only with the right gender (accent or capital slips earn half a point as usual). The results show the chosen gender after the answer. Each translation prompt carries a small "with article" / "without article" badge derived from the expected answer. While an answer has exactly one word fewer than an article-bearing solution and does not start with an article, the badge turns red; no info box appears while typing. If Continue is pressed while that rule is violated, the page is not submitted: a red info box under each affected field says to type the article before the word, and it stays until Continue is pressed again, which then submits the page as it is (translation pages only, never dictation; a timeout submits without it). The info names the article family of the expected answer: "the indefinite article (un, une or des)" for nouns, and "the article (le, la, l' or les)" for the few targets with an `articleException` (countries); it reveals nothing beyond the badge. Listening-dictation pages play a target (replayable until lock) and the learner writes it in the teaching form, article included where applicable, scored by the shared free-text classifier. Each page uses its brief-defined countdown. Answer feedback is deferred until the full exam is complete.
 
 ### Derived vocabulary lesson
 
@@ -692,7 +708,7 @@ Translation prompts use `examPrompt` or the first translation; accepted answers 
 
 **Lesson start page (P2-02):** course label, the lesson category as a badge in the card's top-right corner (Vocabulary, Grammar), title, objective and estimated minutes. Vocabulary lessons add the total number of words and the brief's word groups as numbered, colour-coded rows with each group's word count on the right. Grammar lessons add the **New verbs** table when the brief lists any (P3-07) and a **lesson outline** (P3-02 review) in the same numbered, colour-coded rows: one row per teaching block (named like its explanation step and listing its exercises, e.g. "Person matching · Multiple-choice gaps"; the explanation that starts every block is not listed), then the final exam ("Answer 10 items on 2 timed pages"), each with its estimated minutes on the right. The feedback screen is not listed. Otherwise the start page does **not** list the lesson steps, the number of scored steps or the scoring weights and exam time limits; the weights appear on the results page.
 
-After the exam, the final results page defaults to exam answers and offers a button menu for prior exercise results. The results card shows the selected part first: its name as heading ("Final exam" or the exercise, e.g. "Typed gaps") and its score large ("9 / 12"), then the lesson title and "Lesson total: x / 100"; it does not explain the weighting and shows no practice/exam statistics. The menu starts with the highlighted **Final exam** button, followed by the scored exercises in the order they were presented; parts without a score (introduction, flashcards, unscored overview) are not offered (P2-04 review). The exam is selected by default. Listening has its own menu entry after the typed gaps (P2-04 review round 2: stage 5 is two steps, `practice` and `listening`). The vocabulary exam results are split into two accordions, **Translation** (open) and **Dictation** (closed), each with its own "x of y correct" in the summary. The review list (reference R5) shows every answer in its original order with ✓, ! or ✕ as task → correct answer in green; for mistakes the learner's answer is struck through in red directly below the correct answer, with an "almost (half a point)" or "time ran out" note and the explanation. On wide screens (above 600 px) each list is laid out in text columns (P3-02 review): a task with arrows ("un stylo → des ____") is split at them, and every task part, arrow and answer lines up vertically with the same column in the other rows of the list; a row with fewer parts lets its first part span the missing columns. Phones keep the stacked layout. Only listening tasks show "Write what you hear" as their task; word-order rows have no task text and show the sentence as the answer. Gender rows name the word once: "word: chosen gender" in green, or for a mistake "word: ~~chosen gender~~ → correct gender" with the explanation; the teaching form is not repeated. Answers are grouped by vocabulary group across pages (grammar: by page with several answers, "Part n"; consecutive single-answer pages share one group) after a summary line ("9 of 12 correct."). With more than one group, each group is one frame in its group colour with its name shown once at the top, not repeated per answer; no point fractions appear in the list. At the bottom right, **Lesson overview** (primary, light) follows **Repeat lesson** (outline) on its left. Introduction/flashcards/plain review remain completion-only. Matching, applicable noun-gender answers, typed gaps, listening choice, and the exam are scored. All scored practice types share the existing 35% practice contribution by possible units; the exam remains 65%. The gender overview answers and confirmation are one learner page for progress, using an estimate that includes both answering and review.
+After the exam, the final results page defaults to exam answers and offers a button menu for prior exercise results. The results card shows the selected part first: its name as heading ("Final exam" or the exercise, e.g. "Typed gaps") and its score large ("9 / 12"), then the lesson title and "Lesson total: x / 100"; it does not explain the weighting and shows no practice/exam statistics. The menu starts with the highlighted **Final exam** button, followed by the scored exercises in the order they were presented. The selected entry has a purple background and border; every other entry shows its outcome (all categories, P4-05 review): red when every answer is wrong, red diagonal stripes when at least one answer is not fully right (half credit counts as not right), and the plain look when every answer is right, the **Final exam** entry then with its purple border; parts without a score (introduction, flashcards, unscored overview) are not offered (P2-04 review). The exam is selected by default. Listening has its own menu entry after the typed gaps (P2-04 review round 2: stage 5 is two steps, `practice` and `listening`). The vocabulary exam results are split into two accordions, **Translation** (open) and **Dictation** (closed), each with its own "x of y correct" in the summary. The review list (reference R5) shows every answer in its original order with ✓, ! or ✕ as task → correct answer in green; for mistakes the learner's answer is struck through in red directly below the correct answer (P4-05 review: when only accents or capitals differ, only those letters are red; when only the article differs, only the article is red; the rest stays muted), with an "almost (half a point)" or "time ran out" note and the explanation. On wide screens (above 600 px) each list is laid out in text columns (P3-02 review): a task with arrows ("un stylo → des ____") is split at them, and every task part, arrow and answer lines up vertically with the same column in the other rows of the list; a row with fewer parts lets its first part span the missing columns. Phones keep the stacked layout. Only listening tasks show "Write what you hear" as their task; word-order rows have no task text and show the sentence as the answer. Gender rows name the word once: "word: chosen gender" in green, or for a mistake "word: ~~chosen gender~~ → correct gender" with the explanation; the teaching form is not repeated. Answers are grouped by vocabulary group across pages (grammar: by page with several answers, "Part n"; consecutive single-answer pages share one group) after a summary line ("9 of 12 correct."). With more than one group, each group is one frame in its group colour with its name shown once at the top, not repeated per answer; no point fractions appear in the list. At the bottom right, **Lesson overview** (primary, light) follows **Repeat lesson** (outline) on its left. Introduction/flashcards/plain review remain completion-only. Matching, applicable noun-gender answers, typed gaps, listening choice, and the exam are scored. All scored practice types share the existing 35% practice contribution by possible units; the exam remains 65%. The gender overview answers and confirmation are one learner page for progress, using an estimate that includes both answering and review.
 
 ```mermaid
 flowchart TD
@@ -774,7 +790,7 @@ Verb lessons have **one person matching board per verb** (a lesson on several ve
 | Pronoun/form typing | Type an accepted form in each pronoun row; handle multiple linguistically valid forms through answer keys. **Implemented (P3-02):** one labelled field per generated row; answers are normalized and classified by the shared scorer (surrounding spaces ignored; accent or case differences earn half a point). After Check in practice every field is marked in place (green, amber for half a point, red) and wrong or amber rows show the correct form in green and the row's explanation; exam pages show no marks until the results, and a blank row scores zero. |
 | Multiple-choice gaps | Exactly four choices per gap; one accepted choice; shuffle without changing answer identity. An optional localized `hint` (P3-02 review) stands on its own line above the sentence ("Hint: plural, definite article"), like the typed-gap hint; cues never go into parentheses inside the sentence (validated). |
 | Exact-typing phrase gaps | Type the missing text; optional brief-specified hint in practice, subject to exam policy. |
-| Word order | Move tokens into a sentence; support moving back/reordering, repeated words, punctuation, and valid alternative sequences. The full stop that ends the sentence is not a token (P3-02 review): content omits it, and a final `.` token that ends every accepted order is left out by the application and never shown. Punctuation inside the sentence and a final `?` or `!` stay tokens. |
+| Word order | Move tokens into a sentence; support moving back/reordering, repeated words, punctuation, and valid alternative sequences. Tokens can be dragged with mouse, pen or touch (all categories, P4-05 review): from the bank to any position on the line, and along the line to another position; dropped outside the line, or clicked, a placed token returns to the bank, and a click on a bank token puts it at the end of the line. The full stop that ends the sentence is not a token (P3-02 review): content omits it, and a final `.` token that ends every accepted order is left out by the application and never shown. Punctuation inside the sentence and a final `?` or `!` stay tokens. |
 | Error spotter | Select the faulty token, then type or select its correction as specified by the item. Give targeted practice feedback. |
 
 ### Personalized feedback and exam
@@ -801,12 +817,14 @@ A function lesson teaches the **expressions** a learner needs to act in one ever
 
 ```mermaid
 flowchart TD
-    S[Start page: situation, expressions, words, outline] --> A[Flashcards: expressions, then words]
+    S[Start page: situation, expressions, words, outline] --> A[Flashcards: words, then expressions]
     A --> B[Model dialogue, revealed line by line]
     B --> C[Matching: expressions, then words]
-    C --> D[Word order: one sentence per expression]
-    D --> E[Dialogue gaps: choose the expression]
-    E --> F[Exam info page]
+    C --> C2[Gender and overview of the words]
+    C2 --> E[Dialogue gaps: choose the expression]
+    E --> D[Word order: one sentence per expression]
+    D --> L[Listening: hear role A and four replies, choose the fitting reply]
+    L --> F[Exam info page]
     F --> G[Exam part 1: build replies from tokens with distractors]
     G --> H[Exam part 2: dialogue with typed expression gaps]
     H --> R[Final results: exam selected by default]
@@ -824,10 +842,12 @@ A function lesson has two artifacts, like grammar (D51): the **brief** holds the
 | Brief | Expressions | 6–10, about 8 on average | Phrases and sentence starts useful in the situation: `Je voudrais …`, `J'aimerais recevoir …`, `C'est combien ?`, `L'addition, s'il vous plaît.` Each has a stable ID, the French `text`, an `openEnd` flag for sentence starts (displayed with a trailing ` …`, never part of an answer), translations for every mother tongue, a short localized `explanation` (when and how it is used, register such as tu/vous) and an example sentence with translations. |
 | Brief | Words | 0–6, about 4 on average | Additional vocabulary the dialogues need and no earlier vocabulary lesson taught (`un thé`, `un croissant`). Each word has the vocabulary target fields that apply: teaching form with the indefinite article where grammatical (D39), translations, word class, gender, a localized explanation and an example sentence with translations. |
 | Lesson | Model dialogue | 8–14 lines | Alternating lines of the two roles; each line has its French text, translations for every mother tongue, a short localized note and the IDs of the expressions it uses. Every expression occurs at least once. |
-| Lesson | Word-order sentences | one per expression | French sentences, each using its expression in a new context. |
+| Lesson | Word-order sentences | one per expression | French sentences, each using its expression in a new context. The tokens admit exactly one order (P4-05 review): final punctuation stays on the last chunk, and swappable parts (`sur place | ou | à emporter`) or two independent sentences that could change places are avoided, so exam replies are unique as well. |
 | Lesson | Dialogue gaps | one per expression | An exchange: role A's line, then role B's line with one gap that takes the expression. |
+| Lesson | Exam word translation | one per word | The mother-tongue prompt and the accepted French forms (P4-05 review). |
 | Lesson | Exam replies | 6–8 | Role A's line and role B's reply built from tokens, with 0–3 distractor tokens. |
-| Lesson | Exam dialogue | 8–14 lines, 6–10 gaps | A new dialogue in the same situation; the gaps take expressions and may be in the lines of either role. |
+| Lesson | Listening replies | one per expression | Role A's line and four replies of role B, one of which uses the expression and fits; the others do not fit the line (P4-05 review). |
+| Lesson | Exam dialogue | 8–14 lines, 6–10 gaps | A new dialogue in the same situation; the gaps take expressions and may be in the lines of either role. Every line has its translation for every mother tongue, which tells the learner what to write into the gap (P4-05 review). |
 
 Exam sentences occur neither in the brief's example sentences nor in practice; practice sentences may differ from the brief's examples and should.
 
@@ -841,37 +861,43 @@ All sentences are natural A1 French and use only the lesson's expressions and wo
 
 | Stage | Pages | Estimate | Exam limit |
 | --- | --- | --- | --- |
-| 1 Flashcards | one page for the expressions, one for the words (left out without words) | 12 s per expression, 10 s per word | – |
+| 1 Flashcards | one page for the words (left out without words), then one for the expressions (P4-05 review) | 12 s per expression, 10 s per word | – |
 | 2 Model dialogue | one page | 20 s + 12 s per line | – |
 | 3 Matching | expressions in balanced pages of at most 6 pairs (8 → 4 + 4), then the words on their own page | 12 s per expression, 10 s per word | – |
-| 4 Word order | one sentence per page | 25 s per sentence | – |
-| 5 Dialogue gaps | one exchange per page | 15 s per gap | – |
+| 3b Gender and overview | one page with every word (left out without words); nouns get a masculine/feminine choice as in vocabulary stage 4 (P4-05 review) | 20 s + 5 s per word | – |
+| 4 Dialogue gaps | one exchange per page | 15 s per gap | – |
+| 5 Word order | one sentence per page | 25 s per sentence | – |
+| 5b Listening | one item per page (P4-05 review) | 30 s per item | – |
 | Exam info | application page (section 6, stage 6), not stored in the lesson content | 20 s | – |
+| 6a Exam word translation | one page with every word (left out without words), as in vocabulary (P4-05 review) | 15 s per word | 1.5 × estimate |
 | 6 Exam part 1 | replies in balanced pages of at most 4 | 30 s per reply | 1.5 × estimate |
 | 7 Exam part 2 | one page with the whole dialogue | 8 s per line + 20 s per gap | 1.5 × estimate |
 
-With 8 expressions, 4 words, a 10-line model dialogue, 8 exam replies and an exam dialogue of 10 lines with 8 gaps, a lesson has 28 scored practice units, 16 exam units and takes about 20 minutes. The start page shows the outline in three colour-coded rows: Flashcards · Dialogue, Matching · Word order · Dialogue gaps, and the final exam ("Answer 16 items on 3 timed pages"), each with its minutes, plus the situation and the number of expressions and words.
+With 8 expressions, 4 nouns as words, a 10-line model dialogue, 8 exam replies and an exam dialogue of 12 lines with 8 gaps, a lesson has 40 scored practice units, 16 exam units and takes about 25 minutes (P4-05 review: the listening exercise adds about four minutes). The start page shows the outline in three colour-coded rows: Flashcards · Dialogue, Matching · Gender and overview · Dialogue gaps · Word order · Listening, and the final exam ("Answer 16 items on 3 timed pages"), each with its minutes, plus the situation and the number of expressions and words.
 
 ### Exercise behavior
 
 | Stage | Required interaction |
 | --- | --- |
-| Flashcards | The vocabulary flashcard page (section 6, stage 2). On the **expressions** page the front shows the French expression with a speaker button and the back the mother-tongue translation, the explanation in the interface language and the brief's example sentence with its translation. On the **words** page the order stays as in vocabulary: mother tongue on the front, French on the back. Each card is turned once before Continue is enabled; turned cards are stored (`revealed`). Completion only. |
+| Flashcards | The vocabulary flashcard page (section 6, stage 2) for both pages (P4-05 review): the mother-tongue translation on the front; the French word or expression with a speaker button, the gender (words) or the explanation (expressions) and the example sentence with its translation on the back. The words come first, because the example sentences often use them. Each card is turned once before Continue is enabled; turned cards are stored (`revealed`). Completion only. |
 | Model dialogue | The lines appear one after another as cards, alternately left (role A) and right (role B), each with the role label, the French line (expressions highlighted), a speaker button and a flip button. A turned line shows the translation in the mother tongue and the note in the interface language, without changing its size. **Next line** shows the next line; earlier lines stay visible and can be turned and played again. After the last line the button becomes **Continue**. Turning lines is optional; revealed lines are stored for resume. Completion only. |
 | Matching | The vocabulary matching board (section 6, stage 3) with curves, Check, the slide to the correct row and the green flash: mother-tongue translation on the left, French expression with speaker on the right. The words follow on their own board. One unit per pair. |
-| Word order | The grammar word-order interaction (section 7) for one sentence of the lesson content, with only the tokens as prompt (no translation). Every token is used once; tokens may be multiword chunks such as `s'il vous plaît`. The final full stop is not a token. One unit per sentence; feedback card with the correct sentence and the explanation. |
+| Gender and overview | The vocabulary gender page (section 6, stage 4) for the lesson's words (P4-05 review): every word on one page, nouns with a masculine/feminine choice, other words with "no gender"; checked in place, one unit per noun. |
 | Dialogue gaps | Role A's line (with speaker) above role B's line with one gap, and four distinct choices taken from the lesson's expressions, one of which fits. Checked like a multiple-choice gap (section 5, rule 4): a correct choice lights up green; a wrong one turns red with the correct one green and the explanation. One unit per gap. |
+| Word order | The grammar word-order interaction (section 7) for one sentence of the lesson content, with only the tokens as prompt (no translation). Every token is used once; tokens may be multiword chunks such as `s'il vous plaît`. The final full stop is not a token. One unit per sentence; feedback card with the correct sentence and the explanation. |
+| Listening choice | Added in the P4-05 review. Role A's line is only heard (large Listen button); below it, four replies of role B named "Reply 1" to "Reply 4", each with a speaker symbol in place of the radio dot; clicking a reply selects it, plays it (on every click) and gives it a purple border. The learner chooses the reply that fits. Checked like a multiple-choice gap (section 5, rule 4); after Check, role A's line and every reply show their text, the chosen wrong reply red and the right one green. One unit per item. As a listening task it needs a French voice (D42): without one the lesson cannot start, and a page whose voice disappears is replaced by the help page with Skip. |
+| Exam word translation | Added in the P4-05 review: the first exam page translates every word of the lesson, as the vocabulary translation exam (mother-tongue prompt, French with the indefinite article, article badge and missing-article info, gender choice after `des`; a word taught with `des` is a plurale tantum). One unit per word. |
 | Exam part 1 | Each reply is a word-order task under role A's line (speaker allowed, it is not the answer): the bank holds the reply's tokens plus 0–3 distractors, shuffled from the session seed ("Not every word fits."). The reply is right only when its token sequence equals an accepted order; distractors must stay in the bank. Exactly one reply must be valid with the given tokens. One unit per reply, no feedback before the results. |
-| Exam part 2 | The exam dialogue unrolls line by line on one timed page. Lines with a gap have a text field in place of the expression; the learner selects the field, types the expression and presses **Next line**. Earlier lines stay visible and their fields editable until the page is submitted. On the last line the button becomes **Continue**; it, or the countdown, submits the whole page. Gaps are graded by the shared free-text classifier (section 5: 1, 0.5 for accents or capitals, 0); blank gaps earn 0. Accepted answers list every lesson expression that fits the gap; the context must make one expression clearly expected. |
+| Exam part 2 | The exam dialogue unrolls line by line on one timed page. Lines with a gap have a text field in place of the expression, and every line shows its mother-tongue translation below it (P4-05 review), so the learner translates the expression into the gap; a newly shown line puts the cursor into its field; the learner selects the field, types the expression and presses **Next line**. Earlier lines stay visible and their fields editable until the page is submitted. On the last line the button becomes **Continue**; it, or the countdown, submits the whole page. Gaps are graded by the shared free-text classifier (section 5: 1, 0.5 for accents or capitals, 0); blank gaps earn 0. Accepted answers list every lesson expression that fits the gap; the context must make one expression clearly expected. |
 
 The exam info page lists the two exam parts with their number of tasks and countdowns. Exam pages keep the practice score in the header and show no correctness until the results (section 5).
 
 ### Scoring, audio and results
 
-- Practice units: one per matching pair (expressions and words), word-order sentence and dialogue gap; exam units: one per reply and per typed gap. Flashcards and the model dialogue are completion only. The shared 35 % practice / 65 % exam weighting applies.
+- Practice units: one per matching pair (expressions and words), noun on the gender page, dialogue gap, word-order sentence and listening reply; exam units: one per reply and per typed gap. Flashcards and the model dialogue are completion only. The shared 35 % practice / 65 % exam weighting applies.
 - Every scored unit has a localized explanation, shown with practice corrections and in the results.
-- Audio speaks French expressions, words and dialogue lines (browser speech, D9). Function lessons have no listening exercise, so they start without a voice; Listen controls then become **Install language** buttons (D42).
-- Final results: the exam is selected by default, split into the accordions **Replies** (open) and **Dialogue** (closed). The menu then offers Matching expressions, Matching words, Word order and Dialogue gaps in the order presented. Reply rows show role A's line as the task and the built reply; dialogue rows show the line with the gap as the task and the typed expression.
+- Audio speaks French expressions, words and dialogue lines (browser speech, D9). Since the P4-05 review function lessons have a listening exercise, so they need a French voice to start, like vocabulary lessons (D42).
+- Final results: the exam is selected by default, split into the accordions **Translation** (the words, when the lesson has words), **Replies** and **Dialogue**; the first is open. The menu then offers Matching (expressions and words in one entry, P4-05), Gender and overview, Dialogue gaps, Word order and Listening in the order presented. Reply rows show role A's line as the task and the built reply; dialogue rows show the line with the gap as the task and the typed expression.
 
 ### Content review criteria
 
@@ -884,6 +910,7 @@ The three test lessons and every later function lesson are reviewed for: full co
 - **Implemented in P4-02:** both schemas in `src/schemas/functions.ts` (`FUNCTIONS_LIMITS`, `FUNCTIONS_PAGE_RULES`), the page rules in `src/domain/functionsLesson.ts`, validation in `src/validation/artifacts.ts` (also: exam sentences occur neither in the brief's examples nor in practice; gap `before`/`after` carry no surrounding spaces, as in grammar), plan units for the function items (an exam reply lists its `distractors`; a reply is answered once a token is placed), the Draft and Content views, and the fixture `tests/fixtures/content/*/fr-ordering-at-a-cafe.json`. The generator still rejects functions (`GENERATED_KINDS`); Start stays unavailable until P4-05 (`PLAYABLE_KINDS`).
 - **Test lessons (P4-03):** `fr-greetings-and-goodbyes`, `fr-ordering-at-a-cafe` and `fr-asking-the-way`, each with 8 expressions, 4 words, 28 practice and 15–16 exam units, about 20 minutes. Definitions in `authoring/functions/<id>.ts` (format in `scripts/author-functions-definition.ts`: tokens separated by ` | `, a practice gap written `___`, an exam gap `[answer / alternative]` whose first answer names the expression); `node scripts/author-functions.ts <id> [--dry-run]` finds the expressions each dialogue line uses, derives estimates, limits, minutes and hashes, validates and writes both files. `make sample-lessons` checks the three lessons with the twenty samples.
 - **Presentation and matching (P4-04):** `src/session/functionsRenderers.tsx` renders the expression and word flashcards and the model dialogue; `function_matching` uses the shared matching board. The session requires every card turned and every dialogue line shown (`requiredReveals`); on a dialogue page the footer button reads **Next line** (`nextDialogueLine`) until the last line, then **Continue**. Line cards of role A stand left, of role B right, with the lesson's expressions marked; turning a line is not stored.
+- **Practice, exam and results (P4-05):** `FunctionWordOrderRenderer` (tokens only in practice; exam replies under role A's line with the reply's role and the distractors in the bank), `DialogueGapChoiceRenderer`, `ExamDialogueRenderer` (lines unroll through the Next line footer button also on the timed exam page; every field stays editable until Continue or the countdown), the exam info rows "Build the replies" and "Dialogue with gaps", the results accordions Replies and Dialogue, and the start page (situation, counts, three-row outline). Function lessons are playable (`PLAYABLE_KINDS`).
 - **Renderers:** reuse the flashcard, matching board and word-order controls; new dialogue line card, dialogue gap and exam dialogue renderers; results rows for replies and dialogue gaps.
 - **Authoring:** `authoring/functions/<id>.ts` with `node scripts/author-functions.ts <id>` (like grammar, section 7), building brief and lesson content, deriving page estimates and exam limits from the page rules, validating both and writing them with current input hashes.
 - **Makefile:** `make sample-lessons` and `make catalog` validate function briefs and lesson content; `make test` and `make test-e2e` cover the new renderers and a function journey; `make mockups-sync` / `make mockups-check` include `docs/mockups/05-function-lesson/`. `make generate` / `make generate-missing` stay disabled for functions until the generation decision.
@@ -1990,7 +2017,7 @@ scale 1.3
 
 ### Browse the lesson stages and grammar exercises
 
-The folder organization follows the lesson flow. Vocabulary uses `01-startpage/`, then `02-introduction/` through `07-exam/`, and `08-results/`; `06-listening/` sits beside `06-typed-gaps/` because both belong to practice stage 5, and `07-exam/` also holds the listening-dictation page. These folder numbers include the start page; the educational six-stage numbering remains unchanged. Grammar uses `01-startpage/`, `02-00-explanation/`, double-numbered exercise folders `02-01-exercise-pronoun-match/` through `02-06-exercise-error-spotter/`, then `03-feedback-placeholder/`, `04-exam/`, and `05-results/`. The exercise folders describe the available component types, not a requirement to use all six in one lesson. Functions use `01-startpage/` to `06-dialogue-gap-choice/` in lesson order and `07-exam/` for both exam parts (P4-01). The single [root README](mockups/README.md) links every editable source and its embedded SPEC preview; there are no per-folder READMEs.
+The folder organization follows the lesson flow. Vocabulary uses `01-startpage/`, then `02-introduction/` through `07-exam/`, and `08-results/`; `06-listening/` sits beside `06-typed-gaps/` because both belong to practice stage 5, and `07-exam/` also holds the listening-dictation page. These folder numbers include the start page; the educational six-stage numbering remains unchanged. Grammar uses `01-startpage/`, `02-00-explanation/`, double-numbered exercise folders `02-01-exercise-pronoun-match/` through `02-06-exercise-error-spotter/`, then `03-feedback-placeholder/`, `04-exam/`, and `05-results/`. The exercise folders describe the available component types, not a requirement to use all six in one lesson. Functions use `01-startpage/` to `07-listening-choice/` in lesson order and `08-exam/` for both exam parts (P4-01, reordered in the P4-05 review). The single [root README](mockups/README.md) links every editable source and its embedded SPEC preview; there are no per-folder READMEs.
 
 | Category | Folders and previews |
 | --- | --- |
@@ -1998,7 +2025,7 @@ The folder organization follows the lesson flow. Vocabulary uses `01-startpage/`
 | [Artifact view](mockups/README.md#artifact-view) | Shared Outline layout, with category-specific vocabulary/grammar Draft and Content views. |
 | [Vocabulary lesson](mockups/README.md#vocabulary-lesson) | Start; [01 introduction](mockups/03-vocabulary-lesson/02-introduction/introduction.puml); [02 flashcards](mockups/03-vocabulary-lesson/03-flashcards/front.puml) and [reveal](mockups/03-vocabulary-lesson/03-flashcards/revealed.puml); [03 matching](mockups/03-vocabulary-lesson/04-matching/matching.puml); 04 gender + reviewed overview; 05 typed gaps + feedback, [listening choice](mockups/03-vocabulary-lesson/06-listening/listening-choice.puml) and [no-voice help](mockups/03-vocabulary-lesson/06-listening/no-voice-help.puml); 06 exam and [listening dictation](mockups/03-vocabulary-lesson/07-exam/listening-dictation.puml); results. |
 | [Grammar lesson](mockups/README.md#grammar-lesson) | [Start](mockups/04-grammar-lesson/01-startpage/lesson-start.puml); [explanation](mockups/04-grammar-lesson/02-00-explanation/singular-forms.puml); [pronoun matching](mockups/04-grammar-lesson/02-01-exercise-pronoun-match/pronoun-match.puml); [pronoun typing](mockups/04-grammar-lesson/02-02-exercise-pronoun-typing/pronoun-typing.puml); [choice gap](mockups/04-grammar-lesson/02-03-exercise-gap-choice/gap-choice.puml); [typed gap](mockups/04-grammar-lesson/02-04-exercise-gap-typing/gap-typing.puml) and [feedback](mockups/04-grammar-lesson/02-04-exercise-gap-typing/feedback.puml); [word order](mockups/04-grammar-lesson/02-05-exercise-word-order/word-order.puml); [error spotter](mockups/04-grammar-lesson/02-06-exercise-error-spotter/error-spotter.puml); [placeholder](mockups/04-grammar-lesson/03-feedback-placeholder/feedback-placeholder.puml); [exam](mockups/04-grammar-lesson/04-exam/mixed-exam.puml); [results](mockups/04-grammar-lesson/05-results/exam-results.puml). |
-| [Function lesson](mockups/README.md#function-lesson) | [lesson start](mockups/05-function-lesson/01-startpage/lesson-start.puml); [expression flashcards](mockups/05-function-lesson/02-flashcards/expression-flashcards.puml); [model dialogue](mockups/05-function-lesson/03-dialogue/dialogue.puml); [expression matching](mockups/05-function-lesson/04-matching/expression-matching.puml); [word order](mockups/05-function-lesson/05-word-order/word-order.puml); [dialogue gaps](mockups/05-function-lesson/06-dialogue-gap-choice/dialogue-gap-choice.puml); [exam replies](mockups/05-function-lesson/07-exam/reply-word-order.puml); [exam dialogue](mockups/05-function-lesson/07-exam/dialogue-gap-typing.puml); results use the shared results layout. |
+| [Function lesson](mockups/README.md#function-lesson) | [lesson start](mockups/05-function-lesson/01-startpage/lesson-start.puml); [expression flashcards](mockups/05-function-lesson/02-flashcards/expression-flashcards.puml); [model dialogue](mockups/05-function-lesson/03-dialogue/dialogue.puml); [expression matching](mockups/05-function-lesson/04-matching/expression-matching.puml); [dialogue gaps](mockups/05-function-lesson/05-dialogue-gap-choice/dialogue-gap-choice.puml); [word order](mockups/05-function-lesson/06-word-order/word-order.puml); [listening choice](mockups/05-function-lesson/07-listening-choice/listening-choice.puml); [exam replies](mockups/05-function-lesson/08-exam/reply-word-order.puml); [exam dialogue](mockups/05-function-lesson/08-exam/dialogue-gap-typing.puml); results use the shared results layout. |
 
 ### Additional lesson screens
 
@@ -3337,32 +3364,29 @@ scale 1.3
 { <color:#020617>xxx</color> | {
 <color:#E2E8F0><b>FUNCTIONS  /  Expressions</b></color>
 .
-<color:#94A3B8>Turn every card once. The French expression is on the front.</color>
+<color:#94A3B8>Turn every card once. The words come first; front: English, back: French.</color>
 .
 {
 { <color:#020617>x</color> | {
-{ <color:#94A3B8>FRENCH</color> | <color:#020617>xxxxxxxxxxxxxxx</color> | [ <color:#4338CA>↻</color> ] }
-<color:#E2E8F0><size:22><b>Je voudrais …</b></size></color>
-[ <color:#4338CA>▶ Listen</color> ]
+{ <color:#94A3B8>ENGLISH</color> | <color:#020617>xxxxxxxxxxxxxxx</color> | [ <color:#4338CA>↻</color> ] }
+<color:#E2E8F0><size:22><b>What would you like?</b></size></color>
 } | <color:#020617>xx</color> | {
-{ <color:#94A3B8>ENGLISH  /  turned</color> | <color:#020617>xxxxxxxx</color> | [ <color:#4338CA>↻</color> ] }
-<color:#E2E8F0><size:22><b>I would like …</b></size></color>
+{ <color:#94A3B8>FRENCH  /  turned</color> | <color:#020617>xxxxxxxx</color> | [ <color:#4338CA>↻</color> ] }
+<color:#E2E8F0><size:22><b>Je voudrais …</b></size></color>  [ <color:#4338CA>▶</color> ]
 <color:#94A3B8>Polite way to order or ask for something.</color>
 <color:#E2E8F0>Je voudrais un café.  /  I would like a coffee.</color>
 } }
 .
 { <color:#020617>x</color> | {
-{ <color:#94A3B8>FRENCH</color> | <color:#020617>xxxxxxxxxxxxxxx</color> | [ <color:#4338CA>↻</color> ] }
-<color:#E2E8F0><size:22><b>L'addition, s'il vous plaît.</b></size></color>
-[ <color:#4338CA>▶ Listen</color> ]
+{ <color:#94A3B8>ENGLISH</color> | <color:#020617>xxxxxxxxxxxxxxx</color> | [ <color:#4338CA>↻</color> ] }
+<color:#E2E8F0><size:22><b>The bill, please.</b></size></color>
 } | <color:#020617>xx</color> | {
-{ <color:#94A3B8>FRENCH</color> | <color:#020617>xxxxxxxxxxxxxxx</color> | [ <color:#4338CA>↻</color> ] }
-<color:#E2E8F0><size:22><b>C'est combien ?</b></size></color>
-[ <color:#4338CA>▶ Listen</color> ]
+{ <color:#94A3B8>ENGLISH</color> | <color:#020617>xxxxxxxxxxxxxxx</color> | [ <color:#4338CA>↻</color> ] }
+<color:#E2E8F0><size:22><b>How much is it?</b></size></color>
 } }
 }
 .
-<color:#94A3B8>2 of 8 cards turned. A second page shows the 4 words (front: English).</color>
+<color:#94A3B8>2 of 8 cards turned. The 4 word cards came on the page before.</color>
 .
 [ <color:#64748B>                      Continue                      </color> ]
 .
@@ -3495,67 +3519,13 @@ scale 1.3
 ```
 <!-- mockup:end mockups/05-function-lesson/04-matching/expression-matching.puml -->
 
-#### Functions: Word order
-
-<a id="mockup-05-function-lesson-05-word-order-word-order"></a>
-
-[Salt source](mockups/05-function-lesson/05-word-order/word-order.puml)
-
-<!-- mockup:begin mockups/05-function-lesson/05-word-order/word-order.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-{ <color:#E2E8F0><b>Commander au café</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 12.8 / 100</b></color> }
-{ <color:#E2E8F0>Progress 52%</color> | <color:#020617>xxx</color> | <color:#635BFF>██████</color><color:#1E293B>░░░░░░</color> }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#E2E8F0><size:30><b>Build the sentence</b></size></color>
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>FUNCTIONS  /  Build the sentence</b></color>
-.
-<color:#E2E8F0>Put the words in order.</color>
-.
-<color:#E2E8F0><b>Your sentence</b></color>
-{ [ <color:#4338CA>Je</color> ] | [ <color:#4338CA>voudrais</color> ] | <color:#94A3B8>____</color> | <color:#94A3B8>____</color> | <color:#94A3B8>____</color> }
-.
-<color:#E2E8F0><b>Word bank</b></color>
-{ [ <color:#4338CA>thé,</color> ] | [ <color:#4338CA>s'il vous plaît</color> ] | [ <color:#4338CA>un</color> ] }
-.
-<color:#94A3B8>One sentence per page, one for each expression; every word is used.</color>
-.
-[ <color:#64748B>                        Check                        </color> ]
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
- } | <color:#020617>xxx</color> }
-.
- }
-@endsalt
-```
-<!-- mockup:end mockups/05-function-lesson/05-word-order/word-order.puml -->
-
 #### Functions: Dialogue gaps
 
-<a id="mockup-05-function-lesson-06-dialogue-gap-choice-dialogue-gap-choice"></a>
+<a id="mockup-05-function-lesson-05-dialogue-gap-choice-dialogue-gap-choice"></a>
 
-[Salt source](mockups/05-function-lesson/06-dialogue-gap-choice/dialogue-gap-choice.puml)
+[Salt source](mockups/05-function-lesson/05-dialogue-gap-choice/dialogue-gap-choice.puml)
 
-<!-- mockup:begin mockups/05-function-lesson/06-dialogue-gap-choice/dialogue-gap-choice.puml -->
+<!-- mockup:begin mockups/05-function-lesson/05-dialogue-gap-choice/dialogue-gap-choice.puml -->
 ```plantuml
 @startsalt
 skinparam backgroundColor #020617
@@ -3605,15 +3575,125 @@ scale 1.3
  }
 @endsalt
 ```
-<!-- mockup:end mockups/05-function-lesson/06-dialogue-gap-choice/dialogue-gap-choice.puml -->
+<!-- mockup:end mockups/05-function-lesson/05-dialogue-gap-choice/dialogue-gap-choice.puml -->
+
+#### Functions: Word order
+
+<a id="mockup-05-function-lesson-06-word-order-word-order"></a>
+
+[Salt source](mockups/05-function-lesson/06-word-order/word-order.puml)
+
+<!-- mockup:begin mockups/05-function-lesson/06-word-order/word-order.puml -->
+```plantuml
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xxx</color> | {
+{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
+.
+{ <color:#E2E8F0><b>Commander au café</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 12.8 / 100</b></color> }
+{ <color:#E2E8F0>Progress 52%</color> | <color:#020617>xxx</color> | <color:#635BFF>██████</color><color:#1E293B>░░░░░░</color> }
+.
+<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+.
+<color:#E2E8F0><size:30><b>Build the sentence</b></size></color>
+.
+{
+.
+{ <color:#020617>xxx</color> | {
+<color:#E2E8F0><b>FUNCTIONS  /  Build the sentence</b></color>
+.
+<color:#E2E8F0>Put the words in order.</color>
+.
+<color:#E2E8F0><b>Your sentence</b></color>
+{ [ <color:#4338CA>Je</color> ] | [ <color:#4338CA>voudrais</color> ] | <color:#94A3B8>____</color> | <color:#94A3B8>____</color> | <color:#94A3B8>____</color> }
+.
+<color:#E2E8F0><b>Word bank</b></color>
+{ [ <color:#4338CA>thé,</color> ] | [ <color:#4338CA>s'il vous plaît</color> ] | [ <color:#4338CA>un</color> ] }
+.
+<color:#94A3B8>One sentence per page, one for each expression; every word is used.</color>
+.
+[ <color:#64748B>                        Check                        </color> ]
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+@endsalt
+```
+<!-- mockup:end mockups/05-function-lesson/06-word-order/word-order.puml -->
+
+#### Functions: Listening choice
+
+<a id="mockup-05-function-lesson-07-listening-choice-listening-choice"></a>
+
+[Salt source](mockups/05-function-lesson/07-listening-choice/listening-choice.puml)
+
+<!-- mockup:begin mockups/05-function-lesson/07-listening-choice/listening-choice.puml -->
+```plantuml
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xxx</color> | {
+{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
+.
+{ <color:#E2E8F0><b>Commander au café</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 21.0 / 100</b></color> }
+{ <color:#E2E8F0>Progress 70%</color> | <color:#020617>xxx</color> | <color:#635BFF>████████</color><color:#1E293B>░░░░</color> }
+.
+<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+.
+<color:#E2E8F0><size:30><b>Listening</b></size></color>
+.
+{
+.
+{ <color:#020617>xxx</color> | {
+<color:#E2E8F0><b>FUNCTIONS  /  Listen, then choose the reply that fits.</b></color>
+.
+<color:#94A3B8>LE SERVEUR</color>
+[ <color:#4338CA>▶ Listen</color> ]
+.
+<color:#94A3B8>LA CLIENTE</color>
+{ <color:#E2E8F0>○  Reply 1</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#4338CA>▶</color> ] }
+{ <color:#E2E8F0>○  Reply 2</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#4338CA>▶</color> ] }
+{ <color:#E2E8F0>○  Reply 3</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#4338CA>▶</color> ] }
+{ <color:#E2E8F0>○  Reply 4</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#4338CA>▶</color> ] }
+.
+<color:#94A3B8>Only audio until Check; then every line shows its text,</color>
+<color:#94A3B8>the chosen wrong reply turns red and the right one green.</color>
+.
+[ <color:#64748B>                        Check                        </color> ]
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+@endsalt
+```
+<!-- mockup:end mockups/05-function-lesson/07-listening-choice/listening-choice.puml -->
 
 #### Functions: Exam replies
 
-<a id="mockup-05-function-lesson-07-exam-reply-word-order"></a>
+<a id="mockup-05-function-lesson-08-exam-reply-word-order"></a>
 
-[Salt source](mockups/05-function-lesson/07-exam/reply-word-order.puml)
+[Salt source](mockups/05-function-lesson/08-exam/reply-word-order.puml)
 
-<!-- mockup:begin mockups/05-function-lesson/07-exam/reply-word-order.puml -->
+<!-- mockup:begin mockups/05-function-lesson/08-exam/reply-word-order.puml -->
 ```plantuml
 @startsalt
 skinparam backgroundColor #020617
@@ -3663,15 +3743,15 @@ scale 1.3
  }
 @endsalt
 ```
-<!-- mockup:end mockups/05-function-lesson/07-exam/reply-word-order.puml -->
+<!-- mockup:end mockups/05-function-lesson/08-exam/reply-word-order.puml -->
 
 #### Functions: Exam dialogue
 
-<a id="mockup-05-function-lesson-07-exam-dialogue-gap-typing"></a>
+<a id="mockup-05-function-lesson-08-exam-dialogue-gap-typing"></a>
 
-[Salt source](mockups/05-function-lesson/07-exam/dialogue-gap-typing.puml)
+[Salt source](mockups/05-function-lesson/08-exam/dialogue-gap-typing.puml)
 
-<!-- mockup:begin mockups/05-function-lesson/07-exam/dialogue-gap-typing.puml -->
+<!-- mockup:begin mockups/05-function-lesson/08-exam/dialogue-gap-typing.puml -->
 ```plantuml
 @startsalt
 skinparam backgroundColor #020617
@@ -3699,11 +3779,13 @@ scale 1.3
 <color:#94A3B8>Fill each gap with an expression from this lesson.</color>
 .
 { <color:#94A3B8>Le serveur</color> | <color:#E2E8F0>Bonsoir, monsieur. Vous désirez ?</color> }
-{ <color:#94A3B8>Le client</color> | { <color:#E2E8F0>Bonsoir.</color> | "<color:#E2E8F0>Je voudrais</color>       " | <color:#E2E8F0>une limonade, s'il vous plaît.</color> } }
-{ <color:#94A3B8>Le serveur</color> | <color:#E2E8F0>Très bien. Et avec ceci ?</color> }
-{ <color:#94A3B8>Le client</color> | { <color:#E2E8F0>C'est tout, merci.</color> | "<color:#94A3B8>Type here</color>         " | <color:#E2E8F0>?</color> } }
+{ <color:#020617>x</color> | <color:#94A3B8>Good evening, sir. What would you like?</color> }
+{ <color:#94A3B8>Le client</color> | { <color:#E2E8F0>Bonsoir.</color> | "<color:#E2E8F0>Je voudrais</color>       " | <color:#E2E8F0>une limonade.</color> } }
+{ <color:#020617>x</color> | <color:#94A3B8>Good evening. I would like a lemonade.</color> }
+{ <color:#94A3B8>Le serveur</color> | { <color:#E2E8F0>Une limonade.</color> | "<color:#94A3B8>Type here</color>         " | <color:#E2E8F0>?</color> } }
+{ <color:#020617>x</color> | <color:#94A3B8>A lemonade. Anything else?</color> }
 .
-<color:#94A3B8>Line 4 of 9  ·  earlier gaps stay editable until the page is submitted</color>
+<color:#94A3B8>Line 3 of 12  ·  each line shows its translation; earlier gaps stay editable</color>
 .
 { [ <color:#4338CA>        Next line        </color> ] }
 .
@@ -3718,7 +3800,7 @@ scale 1.3
  }
 @endsalt
 ```
-<!-- mockup:end mockups/05-function-lesson/07-exam/dialogue-gap-typing.puml -->
+<!-- mockup:end mockups/05-function-lesson/08-exam/dialogue-gap-typing.puml -->
 
 ## 10. Sample generation and review gates
 
@@ -3885,3 +3967,13 @@ When publishing the agreed backlog, include relevant Mermaid flows as fenced `me
 | 0.46 | 2026-10-13 | P4-02: executable function brief and lesson content schemas, validation (counts, coverage, roles, distractors, fresh exam sentences, page rules), plan units and scoring of exam replies with distractors, function Draft and Content views, and a contract fixture; the generator keeps rejecting functions. |
 | 0.47 | 2026-10-13 | P4-03: authoring tool `scripts/author-functions.ts` and the three function test lessons (greetings, café, asking the way), written by hand; `make sample-lessons` and the contract tests include them. Approved by the product owner without changes. |
 | 0.48 | 2026-10-13 | P4-04: function flashcards (expressions French first, words as in vocabulary), the model dialogue revealed line by line with a Next line footer button and turnable lines, and function matching on the shared board; reveal gating for cards and lines survives a resume. |
+| 0.49 | 2026-10-13 | P4-05: function word order and exam replies with distractors, dialogue gaps, the exam dialogue unrolled line by line on its timed page, exam info, results accordions Replies/Dialogue and the function start page; function lessons can be started. One Matching entry in the results menu. Index Content buttons share one width. |
+| 0.50 | 2026-10-13 | P4-05 review: flashcards as in vocabulary (mother tongue first), words before expressions; new gender and overview step `function_gender_select` after matching (stages now include `gender` when the lesson has words); exam-dialogue lines carry and show their mother-tongue translation (validated not to contain the answer); word-order tokens rewritten so exactly one order is valid (authoring rule). The three test lessons were rebuilt; the old test fixture is replaced by the café lesson. |
+| 0.51 | 2026-10-13 | P4-05 review: exercise order dialogue gaps, word order, then the new listening choice `function_listening_choice` (role A and four replies only heard, text after Check; one per expression, 30 s per page); function lessons therefore need a French voice (D42). Mockup folders renumbered (`05-dialogue-gap-choice`, `06-word-order`, `07-listening-choice`, `08-exam`). The three test lessons got eight listening items each and take 24–25 minutes. |
+| 0.52 | 2026-10-13 | P4-05 review: results menu of every category coloured by outcome (selected purple; otherwise red when all wrong, red stripes when at least one answer is not fully right, plain when all right; the final exam keeps its purple border then). |
+| 0.53 | 2026-10-13 | P4-05 review: practice pages with one multiple-choice answer submit as soon as an option is chosen (all categories); right answers animate and move on, wrong ones wait for Continue. |
+| 0.54 | 2026-10-13 | P4-05 review: autoplay mode (D52, section 5 "Autoplay") with a header switch, on by default; typed pronoun rows that are all right animate and move on without Continue; the final exam entry of the results menu keeps its purple border unless it is red or striped, without bold. |
+| 0.55 | 2026-10-13 | P4-05 review: placed word-order tokens can be dragged along the line (off the line: back to the bank); listening choices are confirmed with Check again; the function listening choice autoplays only role A; a newly shown exam-dialogue line focuses its field. |
+| 0.56 | 2026-10-13 | P4-05 review: in results, a wrong answer that differs only in accents or capitals shows just those letters in red, one that differs only in its article just the article. |
+| 0.57 | 2026-10-13 | P4-05 review: in translation exams a noun may be answered as `des` + plural with the right gender (choice appears after `des` + word); function exams start with a word-translation page (lessons now 25–26 minutes, 19–20 exam units); word-order tokens can be dragged from the bank to a position; dialogue gaps play only role A's line on entry, not the answer. |
+| 0.58 | 2026-10-13 | P4-05 review: plural answers count only for pluralia tantum, which then need the right gender; singular answers for pluralia tantum are wrong. The index shows learning language, level and categories on one line on wide screens (from 1340 px). Added outlines for de/en/fr A1–C2 and revised fr/A1 intents (sample input hashes refreshed, lesson content unchanged). |

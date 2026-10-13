@@ -1,0 +1,45 @@
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xxx</color> | {
+{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
+.
+{ <color:#E2E8F0><b>Commander au café</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 21.0 / 100</b></color> }
+{ <color:#E2E8F0>Progress 70%</color> | <color:#020617>xxx</color> | <color:#635BFF>████████</color><color:#1E293B>░░░░</color> }
+.
+<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+.
+<color:#E2E8F0><size:30><b>Listening</b></size></color>
+.
+{
+.
+{ <color:#020617>xxx</color> | {
+<color:#E2E8F0><b>FUNCTIONS  /  Listen, then choose the reply that fits.</b></color>
+.
+<color:#94A3B8>LE SERVEUR</color>
+[ <color:#4338CA>▶ Listen</color> ]
+.
+<color:#94A3B8>LA CLIENTE</color>
+{ <color:#E2E8F0>○  Reply 1</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#4338CA>▶</color> ] }
+{ <color:#E2E8F0>○  Reply 2</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#4338CA>▶</color> ] }
+{ <color:#E2E8F0>○  Reply 3</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#4338CA>▶</color> ] }
+{ <color:#E2E8F0>○  Reply 4</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#4338CA>▶</color> ] }
+.
+<color:#94A3B8>Only audio until Check; then every line shows its text,</color>
+<color:#94A3B8>the chosen wrong reply turns red and the right one green.</color>
+.
+[ <color:#64748B>                        Check                        </color> ]
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+@endsalt

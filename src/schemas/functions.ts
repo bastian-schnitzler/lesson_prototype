@@ -41,11 +41,18 @@ export const FUNCTIONS_PAGE_RULES = {
   dialogueLineS: 12,
   expressionPairS: 12,
   wordPairS: 10,
+  /** Gender page (as in vocabulary): base plus seconds per word. */
+  genderBaseS: 20,
+  genderWordS: 5,
   /** Matching pages hold at most this many pairs (balanced). */
   matchingPageSize: 6,
   wordOrderS: 25,
   gapChoiceS: 15,
+  /** Listening choice: role A's line and four spoken replies (P4-05 review). */
+  listeningS: 30,
   replyS: 30,
+  /** Exam word translation (P4-05 review), as in vocabulary: seconds per word. */
+  translationS: 15,
   /** Exam reply pages hold at most this many replies (balanced). */
   replyPageSize: 4,
   examLineS: 8,
@@ -54,7 +61,8 @@ export const FUNCTIONS_PAGE_RULES = {
 } as const;
 
 /** Content steps in lesson order. */
-export const FUNCTIONS_STAGES = ['flashcards', 'dialogue', 'matching', 'word_order', 'dialogue_gaps', 'exam'] as const;
+/** Content steps in lesson order; `gender` (P4-05 review) only when the lesson has words. */
+export const FUNCTIONS_STAGES = ['flashcards', 'dialogue', 'matching', 'gender', 'dialogue_gaps', 'word_order', 'listening', 'exam'] as const;
 
 /* =================================================================== brief */
 
@@ -124,7 +132,7 @@ const ContextLineSchema = z.strictObject({ roleId: NestedIdSchema, text: Learnin
 export const functionsItemSchema = (lang: string) =>
   z.discriminatedUnion('type', [
     z.strictObject({
-      /** Expressions: French on the front; words: mother tongue on the front (as in vocabulary). */
+      /** Mother tongue on the front, French with the example on the back; words first, then expressions (P4-05 review). */
       type: z.literal('function_flashcards'),
       itemId: NestedIdSchema,
       side: z.enum(['expressions', 'words']),
@@ -146,6 +154,15 @@ export const functionsItemSchema = (lang: string) =>
         }))
         .min(FUNCTIONS_LIMITS.dialogueLines[0])
         .max(FUNCTIONS_LIMITS.dialogueLines[1]),
+    }),
+    z.strictObject({
+      /**
+       * Gender page (P4-05 review): every word of the lesson on one page as in vocabulary stage 4; nouns get
+       * a masculine/feminine choice (one unit each), other words show "no gender".
+       */
+      type: z.literal('function_gender_select'),
+      itemId: NestedIdSchema,
+      ids: z.array(NestedIdSchema).min(1).max(FUNCTIONS_LIMITS.words[1]),
     }),
     z.strictObject({
       /** Mother-tongue translation on the left, French on the right; one unit per pair. */
@@ -171,6 +188,20 @@ export const functionsItemSchema = (lang: string) =>
       answerExplanation: LocalizedTextSchema,
     }),
     z.strictObject({
+      /**
+       * Listening choice (P4-05 review): role A's line is only heard; the learner listens to four replies of
+       * role B (audio only) and chooses the one that fits. The texts are shown after Check and in the results.
+       */
+      type: z.literal('function_listening_choice'),
+      itemId: NestedIdSchema,
+      expressionId: NestedIdSchema,
+      context: ContextLineSchema,
+      roleId: NestedIdSchema,
+      options: z.array(z.strictObject({ optionId: NestedIdSchema, text: LearningTextSchema })).length(4),
+      answerOptionId: NestedIdSchema,
+      answerExplanation: LocalizedTextSchema,
+    }),
+    z.strictObject({
       /** Role A's line, then role B's line with one gap and four expression choices. */
       type: z.literal('function_dialogue_gap_choice'),
       itemId: NestedIdSchema,
@@ -183,6 +214,18 @@ export const functionsItemSchema = (lang: string) =>
       answerExplanation: LocalizedTextSchema,
     }),
     z.strictObject({
+      /**
+       * Exam word translation (P4-05 review), the first exam page as in vocabulary lessons: the mother-tongue
+       * prompt of a lesson word, typed in French with its indefinite article.
+       */
+      type: z.literal('function_translation_exam'),
+      itemId: NestedIdSchema,
+      wordId: NestedIdSchema,
+      prompt: nativeTextSchema(lang),
+      accepted: AcceptedAnswersSchema,
+      answerExplanation: LocalizedTextSchema,
+    }),
+    z.strictObject({
       /** Exam part 2: a new dialogue unrolled line by line; gaps take expressions and are typed. */
       type: z.literal('function_dialogue_gap_typing'),
       itemId: NestedIdSchema,
@@ -192,6 +235,8 @@ export const functionsItemSchema = (lang: string) =>
           roleId: NestedIdSchema,
           /** The whole line when it has no gap, else the text before the gap. */
           before: z.string().max(300),
+          /** The whole line in every mother tongue: the learner translates it into the gap (P4-05 review). */
+          translation: nativeTextSchema(lang),
           gap: z
             .strictObject({
               gapId: NestedIdSchema,
@@ -215,7 +260,7 @@ const pageSchema = (lang: string) =>
     /** Exam pages only: the page estimate × 1.5, rounded. */
     timeLimitS: TimeLimitSecondsSchema.nullable(),
     instructions: LocalizedTextSchema,
-    items: z.array(functionsItemSchema(lang)).min(1).max(FUNCTIONS_PAGE_RULES.replyPageSize),
+    items: z.array(functionsItemSchema(lang)).min(1).max(FUNCTIONS_LIMITS.words[1]),
   });
 
 export const functionsContentSchema = (lang: string) =>
@@ -233,6 +278,7 @@ export const functionsContentSchema = (lang: string) =>
           pages: z.array(pageSchema(lang)).min(1).max(20),
         }),
       )
-      .length(FUNCTIONS_STAGES.length),
+      .min(FUNCTIONS_STAGES.length - 1)
+      .max(FUNCTIONS_STAGES.length),
   });
 export type FunctionsContent = z.infer<ReturnType<typeof functionsContentSchema>>;

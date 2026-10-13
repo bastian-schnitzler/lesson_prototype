@@ -15,6 +15,8 @@ export interface LockedUnit {
   timedOut: boolean;
   /** Interface language when the answer was submitted. */
   interfaceLanguage: Locale;
+  /** Gender chosen after a "des" + plural answer (P4-05 review). */
+  gender?: string;
 }
 
 export interface SessionRecord {
@@ -61,13 +63,20 @@ export function isAnswered(unit: PlanUnit, response: UnitResponse | undefined | 
   }
 }
 
+/** A typed answer that starts with "des" and a word: then the gender choice is shown (P4-05 review). */
+export function isPluralAnswer(response: UnitResponse | undefined | null): boolean {
+  return typeof response === 'string' && /^des\s+\S/iu.test(response.trim());
+}
+
 /** First-submission scoring of one answer unit: 1, 0.5 (orthography only, text) or 0 points. */
-export function scoreUnit(unit: PlanUnit, response: UnitResponse | undefined | null): { outcome: AnswerOutcome; points: number } {
+export function scoreUnit(unit: PlanUnit, response: UnitResponse | undefined | null, gender?: string): { outcome: AnswerOutcome; points: number } {
   if (!isAnswered(unit, response)) return { outcome: 'unanswered', points: 0 };
   const right = (ok: boolean) => (ok ? { outcome: 'fully_correct' as const, points: 1 } : { outcome: 'incorrect' as const, points: 0 });
   switch (unit.kind) {
     case 'text': {
       const c = classifyAnswer(response as string, unit.accepted);
+      // A plurale tantum answered with "des" counts only with the right gender (P4-05 review).
+      if (c.outcome !== 'incorrect' && unit.noun?.pluraleTantum && isPluralAnswer(response) && !(gender && unit.noun.genders.includes(gender))) return { outcome: 'incorrect', points: 0 };
       return { outcome: c.outcome, points: c.credit };
     }
     case 'choice': return right(unit.correct.includes(response as string));
@@ -114,14 +123,15 @@ function activate(plan: LessonPlan, r: SessionRecord, now: number): SessionRecor
 }
 
 /**
- * Practice pages whose correct answers need no confirmation view: matching, and every page whose
+ * Practice pages whose correct answers need no confirmation view: matching, typed pronoun forms (P4-05
+ * review: all right → green flash and on), and every page whose
  * items each ask for exactly one answer (typed gap, listening choice, multiple choice, one typed
  * word, word order, error spot). Pages with several answers per item (gender rows, conjugation
  * tables) keep their checked view.
  */
 export function skipsFeedbackWhenCorrect(page: PlanPage): boolean {
   return page.role === 'practice' && page.items.length > 0
-    && page.items.every((item) => isMatchingItem(item.type) || page.units.filter((u) => u.itemId === item.itemId).length === 1);
+    && page.items.every((item) => isMatchingItem(item.type) || item.type === 'grammar_pronoun_form_typing' || page.units.filter((u) => u.itemId === item.itemId).length === 1);
 }
 
 /** Items shown on the matching board: vocabulary, person (P3-02 review) and function matching (P4-04). */
@@ -153,10 +163,10 @@ export function presentationComplete(page: PlanPage, r: Pick<SessionRecord, 'rev
   return requiredReveals(page).every(({ itemKey, keys }) => keys.every((key) => (r.revealed?.[itemKey] ?? []).includes(key)));
 }
 
-/** The next hidden line of a function dialogue (SPEC section 8): Next line reveals it. */
+/** The next hidden line of a function dialogue or exam dialogue (SPEC section 8): Next line reveals it. */
 export function nextDialogueLine(page: PlanPage, r: Pick<SessionRecord, 'revealed'>): { itemKey: string; key: string } | undefined {
   for (const item of page.items) {
-    if (item.type !== 'function_dialogue') continue;
+    if (item.type !== 'function_dialogue' && item.type !== 'function_dialogue_gap_typing') continue;
     const itemKey = `${page.pageId}/${item.itemId}`;
     const line = item.lines.slice(1).find((l) => !(r.revealed?.[itemKey] ?? []).includes(l.lineId));
     if (line) return { itemKey, key: line.lineId };
@@ -165,7 +175,7 @@ export function nextDialogueLine(page: PlanPage, r: Pick<SessionRecord, 'reveale
 }
 
 export function isListeningPage(page: PlanPage): boolean {
-  return page.units.length > 0 && page.units.every((u) => u.itemType === 'vocabulary_listening_choice' || u.itemType === 'vocabulary_listening_dictation');
+  return page.units.length > 0 && page.units.every((u) => u.itemType === 'vocabulary_listening_choice' || u.itemType === 'vocabulary_listening_dictation' || u.itemType === 'function_listening_choice');
 }
 
 function lockPage(page: PlanPage, r: SessionRecord, interfaceLanguage: Locale, timedOut: boolean): SessionRecord {
@@ -173,7 +183,8 @@ function lockPage(page: PlanPage, r: SessionRecord, interfaceLanguage: Locale, t
   for (const unit of page.units) {
     if (locked[unit.id]) continue;
     const response = r.drafts[unit.id] ?? null;
-    locked[unit.id] = { response, ...scoreUnit(unit, response), timedOut, interfaceLanguage };
+    const gender = unit.kind === 'text' && unit.noun && isPluralAnswer(response) ? (r.drafts[`${unit.id}#gender`] as string | undefined) : undefined;
+    locked[unit.id] = { response, ...scoreUnit(unit, response, gender), timedOut, interfaceLanguage, ...(gender ? { gender } : {}) };
   }
   return { ...r, locked };
 }
@@ -195,7 +206,13 @@ export function sessionReducer(plan: LessonPlan, r: SessionRecord, action: Sessi
   let next: SessionRecord;
   switch (action.type) {
     case 'draft': {
-      const unit = page.units.find((u) => u.id === action.unitId);
+      // The gender after a "des" + plural answer is a draft of its own (P4-05 review).
+      const unit = page.units.find((u) => u.id === action.unitId || (u.kind === 'text' && u.noun && `${u.id}#gender` === action.unitId));
+      if (unit && action.unitId !== unit.id) {
+        if (r.phase !== 'answering' || r.locked[unit.id] || expired) return r;
+        next = { ...r, drafts: { ...r.drafts, [action.unitId]: action.response } };
+        break;
+      }
       // Locked answers are immutable; input after an exam deadline is ignored.
       if (!unit || r.phase !== 'answering' || r.locked[unit.id] || expired) return r;
       next = { ...r, drafts: { ...r.drafts, [unit.id]: action.response } };

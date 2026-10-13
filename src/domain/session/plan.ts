@@ -38,8 +38,14 @@ interface UnitBase {
   /** Grammar rules the item assesses, for rule-level error records in results (SPEC section 7). */
   ruleIds?: string[];
 }
+/**
+ * Nouns of a translation exam (P4-05 review): typing "des" + a word asks the gender, stored as the draft
+ * `${unitId}#gender`. Only a plurale tantum (taught with "des") is examined in the plural; its answer
+ * then counts only with the right gender. A plural answer for any other noun is wrong.
+ */
+export interface NounGender { genders: string[]; pluraleTantum: boolean }
 export type PlanUnit =
-  | (UnitBase & { kind: 'text'; accepted: AcceptedAnswers })
+  | (UnitBase & { kind: 'text'; accepted: AcceptedAnswers; noun?: NounGender })
   | (UnitBase & { kind: 'choice'; options: Option[]; correct: string[] })
   /** `distractors`: tokens that belong to no accepted order and stay in the bank (function exam replies). */
   | (UnitBase & { kind: 'order'; tokens: Option[]; acceptedOrders: string[][]; distractors?: string[] })
@@ -137,11 +143,14 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
           options: item.optionTargetIds.map((t) => ({ id: t, text: form(t), lang: 'learning' })), correct: [item.targetId],
           explanation: item.answerExplanation, answer: form(item.targetId), answerLang: 'learning',
         }];
-      case 'vocabulary_translation_exam':
+      case 'vocabulary_translation_exam': {
+        const target = targets.get(item.targetId);
+        const noun = target && target.wordClass === 'noun' && !target.articleException && target.genders.length ? { genders: [...target.genders], pluraleTantum: target.number === 'plural' } : undefined;
         return [{
           kind: 'text', id: id(), itemId: item.itemId, itemType: item.type, prompt: { native: native(item.prompt) },
-          accepted: item.accepted, explanation: item.answerExplanation, answer: item.accepted.answers[0], answerLang: 'learning',
+          accepted: item.accepted, explanation: item.answerExplanation, answer: item.accepted.answers[0], answerLang: 'learning', ...(noun ? { noun } : {}),
         }];
+      }
       case 'vocabulary_listening_dictation':
         return [{
           kind: 'text', id: id(), itemId: item.itemId, itemType: item.type, prompt: {}, speak: form(item.targetId),
@@ -185,6 +194,19 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
         const { tokens, acceptedOrders, answer } = wordOrder(item);
         return [{ kind: 'order', id: id(), itemId: item.itemId, itemType: item.type, prompt: {}, tokens, acceptedOrders, explanation: item.answerExplanation, answer, answerLang: 'learning' }];
       }
+      case 'function_gender_select': {
+        // As vocabulary stage 4 (P4-05 review): one choice per noun; other words show no gender.
+        const words = brief.kind === 'functions' ? brief.words : [];
+        const options = GENDER_OPTIONS.filter((g) => g !== 'neuter' || content.lang === 'de').map((g) => ({ id: g, text: `gender.${g}`, lang: 'ui' as const }));
+        return item.ids.flatMap((wid) => {
+          const w = words.find((x) => x.id === wid);
+          if (!w || w.wordClass !== 'noun') return [];
+          return [{
+            kind: 'choice' as const, id: id(`/${wid}`), itemId: item.itemId, itemType: item.type, prompt: { learning: w.term },
+            options, correct: [...w.genders], explanation: w.explanation, answer: `gender.${w.genders[0] ?? 'masculine'}`, answerLang: 'ui' as const, form: w.teachingForm,
+          }];
+        });
+      }
       case 'function_matching': {
         const options = item.pairs.map((p) => ({ id: p.id, text: termNative(p.id), lang: 'native' as const }));
         return item.pairs.map((p) => ({
@@ -198,6 +220,22 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
         const prompt = item.context ? { learning: `${roleLabel(item.context.roleId)}: ${item.context.text}` } : {};
         return [{ kind: 'order', id: id(), itemId: item.itemId, itemType: item.type, prompt, tokens, acceptedOrders, distractors: item.distractorTokenIds, explanation: item.answerExplanation, answer, answerLang: 'learning' }];
       }
+      case 'function_translation_exam': {
+        // As the vocabulary translation exam (P4-05 review); a word taught with "des" is a plurale tantum.
+        const word = brief.kind === 'functions' ? brief.words.find((w) => w.id === item.wordId) : undefined;
+        const noun = word && word.wordClass === 'noun' && word.genders.length ? { genders: [...word.genders], pluraleTantum: /^des\s/iu.test(word.teachingForm) } : undefined;
+        return [{
+          kind: 'text', id: id(), itemId: item.itemId, itemType: item.type, prompt: { native: native(item.prompt) },
+          accepted: item.accepted, explanation: item.answerExplanation, answer: item.accepted.answers[0], answerLang: 'learning', ...(noun ? { noun } : {}),
+        }];
+      }
+      case 'function_listening_choice':
+        // Audio first (P4-05 review): role A's line is spoken, the four replies are heard, not read.
+        return [{
+          kind: 'choice', id: id(), itemId: item.itemId, itemType: item.type, prompt: { learning: `${roleLabel(item.context.roleId)}: ${item.context.text}` }, speak: item.context.text,
+          options: item.options.map((o) => ({ id: o.optionId, text: o.text, lang: 'learning' })), correct: [item.answerOptionId],
+          explanation: item.answerExplanation, answer: item.options.find((o) => o.optionId === item.answerOptionId)?.text ?? '', answerLang: 'learning',
+        }];
       case 'function_dialogue_gap_choice':
         return [{
           kind: 'choice', id: id(), itemId: item.itemId, itemType: item.type,

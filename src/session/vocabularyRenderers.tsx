@@ -7,6 +7,7 @@ import { seededOrder, type LessonPlan, type PlanUnit } from '../domain/session/p
 import type { Locale } from '../schemas/common.ts';
 import type { VocabularyTarget } from '../schemas/vocabulary.ts';
 import { ListenButton, type RendererProps } from './controls.tsx';
+import { pronounWithForm, useAutoplay } from './autoplay.ts';
 
 /** Vocabulary presentation renderers; scored vocabulary items use the shared `UnitsRenderer`. */
 
@@ -87,7 +88,10 @@ function Flashcard({ id, index, total, plan, motherTongue, initiallyFlipped, onF
   const [flipped, setFlipped] = useState(initiallyFlipped);
   const target = plan.targets.get(id);
   const label = t('session.cardOf', { n: index + 1, total });
+  const say = useAutoplay(plan.lang);
   const flip = () => {
+    // Autoplay (P4-05 review): turning the card to French speaks the word at once, before anything else.
+    if (!flipped) say(target?.teachingForm);
     if (!flipped) onFlip();
     setFlipped(!flipped);
   };
@@ -130,6 +134,7 @@ export function MatchingRenderer(props: RendererProps) {
   const { item, units, plan, seed, mode } = props;
   const [selected, setSelected] = useState<{ side: 'native' | 'learning'; id: string } | null>(null);
   const boxes = useRef(new Map<string, HTMLButtonElement>());
+  const say = useAutoplay(plan.lang);
   useEffect(() => {
     if (!selected) return;
     const cancel = (event: KeyboardEvent) => { if (event.key === 'Escape') setSelected(null); };
@@ -167,9 +172,15 @@ export function MatchingRenderer(props: RendererProps) {
     for (const other of choiceUnits) if (other.id !== unitId && pairOf(other.id) === optionId) props.onChange(other.id, '');
     props.onChange(unitId, optionId);
     setSelected(null);
+    // Autoplay (P4-05 review): connecting a pair speaks its French side at once; a person board in forms
+    // mode speaks the pronoun with its form (nous sommes).
+    if (item.type === 'grammar_person_matching' && item.mode === 'forms') say(pronounWithForm(nativeText(optionId), formLabel(unitId)));
+    else say(prompted ? formLabel(unitId).replace(/ …$/u, '') : targetOf(unitId)?.teachingForm);
   };
   const pick = (side: 'native' | 'learning', id: string) => {
     if (checked) return;
+    // Autoplay (P4-05 review): clicking a French box speaks it (connecting a pair speaks in assign).
+    if (side === 'learning' && selected?.side !== 'native') say(prompted ? formLabel(id).replace(/ …$/u, '') : targetOf(id)?.teachingForm);
     if (selected && selected.side !== side) {
       if (side === 'learning') assign(id, selected.id);
       else assign(selected.id, id);
@@ -398,11 +409,14 @@ export function OverviewRenderer({ item, plan, motherTongue }: RendererProps) {
 export function GenderRenderer(props: RendererProps) {
   const { t } = useI18n();
   const { item, units, plan, mode, motherTongue } = props;
-  if (item.type !== 'vocabulary_gender_select') return null;
+  if (item.type !== 'vocabulary_gender_select' && item.type !== 'function_gender_select') return null;
+  // Function lessons (P4-05 review) show their words; vocabulary lessons their targets.
+  const ids = item.type === 'function_gender_select' ? item.ids : item.targetIds;
+  const targetOf = (id: string) => plan.targets.get(id) ?? plan.functions?.words.find((w) => w.id === id) as { term: string; teachingForm: string; translations: Partial<Record<Locale, string[]>> } | undefined;
   const unitOf = (id: string) => units.find((u): u is PlanUnit & { kind: 'choice' } => u.kind === 'choice' && u.correct.length > 0 && u.id.endsWith(`/${id}`));
   const value = (unitId: string) => (props.locked[unitId]?.response ?? props.drafts[unitId]) as string | undefined;
   const checked = mode === 'feedback';
-  const scored = item.targetIds.map(unitOf).filter((u): u is PlanUnit & { kind: 'choice' } => !!u);
+  const scored = ids.map(unitOf).filter((u): u is PlanUnit & { kind: 'choice' } => !!u);
   const right = scored.filter((u) => props.locked[u.id]?.outcome === 'fully_correct').length;
   const optionState = (unit: PlanUnit & { kind: 'choice' }, id: string) => {
     if (!checked) return '';
@@ -417,8 +431,8 @@ export function GenderRenderer(props: RendererProps) {
         <strong>{t('session.genderSummary', { correct: right, total: scored.length })}</strong>
       </p>
       <ul className="gender-grid">
-        {item.targetIds.map((id) => {
-          const target = plan.targets.get(id);
+        {ids.map((id) => {
+          const target = targetOf(id);
           const unit = unitOf(id);
           const wrong = checked && !!unit && props.locked[unit.id]?.outcome !== 'fully_correct';
           const shown = checked ? target?.teachingForm ?? id : target?.term ?? id;

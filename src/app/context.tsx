@@ -9,6 +9,7 @@ import type { Locale, Theme, Topic } from '../schemas/common.ts';
 interface PreferencesValue extends Preferences {
   setMotherTongue: (l: Locale) => void;
   setInterfaceLanguage: (l: Locale) => void;
+  setAutoplay: (on: boolean) => void;
 }
 
 const PreferencesContext = createContext<PreferencesValue | null>(null);
@@ -26,6 +27,7 @@ export function PreferencesProvider({ children, initial }: { children: ReactNode
       ...prefs,
       setMotherTongue: (motherTongue) => setPrefs((p) => (p.motherTongue === motherTongue ? p : { ...p, motherTongue })),
       setInterfaceLanguage: (interfaceLanguage) => setPrefs((p) => ({ ...p, interfaceLanguage })),
+      setAutoplay: (autoplay) => setPrefs((p) => ({ ...p, autoplay })),
     }),
     [prefs],
   );

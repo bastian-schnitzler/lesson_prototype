@@ -75,6 +75,11 @@ export function Header({ motherTongueEditable, courseLang, motherTongueOverride,
               ))}
             </select>
           </div>
+          {/* Autoplay mode (P4-05 review), the last control on the right; on by default. */}
+          <label className="autoplay-switch">
+            <input type="checkbox" role="switch" checked={prefs.autoplay !== false} onChange={(e) => prefs.setAutoplay(e.target.checked)} />
+            <span className="label-muted">{t('prefs.autoplay')}</span>
+          </label>
           {!motherTongueEditable && (
             <p id={lockedHintId} className="visually-hidden">
               {t('prefs.motherTongueLocked')}

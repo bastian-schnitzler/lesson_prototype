@@ -2,9 +2,12 @@ import { useState, type ReactNode } from 'react';
 
 import { useI18n } from '../app/context.tsx';
 import { expressionDisplay } from '../domain/functionsLesson.ts';
-import type { LessonPlan } from '../domain/session/plan.ts';
+import { seededOrder, type LessonPlan } from '../domain/session/plan.ts';
 import type { Locale } from '../schemas/common.ts';
-import { ListenButton, type RendererProps } from './controls.tsx';
+import { useEffect, useRef } from 'react';
+import { Gap, ListenButton, TextControl, UnitsRenderer, type RendererProps } from './controls.tsx';
+import { useAutoplay } from './autoplay.ts';
+import { speak } from './speech.ts';
 
 /**
  * Function lesson presentation renderers (SPEC section 8, P4-04): expression and word flashcards and
@@ -15,9 +18,9 @@ type Native = Partial<Record<Locale, string>>;
 const translation = (map: Partial<Record<Locale, string[]>>, locale: Locale) => map[locale]?.join(' / ') ?? '';
 
 /**
- * Flashcards: the expressions page shows the French expression on the front and the translation, the
- * explanation and the example sentence on the back; the words page keeps the vocabulary order
- * (mother tongue on the front, French on the back). Every card is turned once before Continue.
+ * Flashcards as in vocabulary (P4-05 review): the mother-tongue translation on the front; the French
+ * expression or word with audio, its explanation or gender and the example sentence on the back. The
+ * words come first, because the examples often use them. Every card is turned once before Continue.
  */
 export function FunctionFlashcardsRenderer({ item, plan, motherTongue, pageId, revealed, onReveal }: RendererProps) {
   const { t } = useI18n();
@@ -30,7 +33,7 @@ export function FunctionFlashcardsRenderer({ item, plan, motherTongue, pageId, r
       <ul className="flashcard-grid">
         {item.ids.map((id, n) => (
           <li key={id}>
-            <FunctionCard id={id} side={item.side} label={t('session.cardOf', { n: n + 1, total: item.ids.length })} plan={plan} motherTongue={motherTongue}
+            <FunctionCard id={id} label={t('session.cardOf', { n: n + 1, total: item.ids.length })} plan={plan} motherTongue={motherTongue}
               initiallyFlipped={seen.includes(id)} onFlip={() => onReveal(itemKey, id)} />
           </li>
         ))}
@@ -39,17 +42,20 @@ export function FunctionFlashcardsRenderer({ item, plan, motherTongue, pageId, r
   );
 }
 
-function FunctionCard({ id, side, label, plan, motherTongue, initiallyFlipped, onFlip }: {
-  id: string; side: 'expressions' | 'words'; label: string; plan: LessonPlan; motherTongue: Locale; initiallyFlipped: boolean; onFlip: () => void;
+function FunctionCard({ id, label, plan, motherTongue, initiallyFlipped, onFlip }: {
+  id: string; label: string; plan: LessonPlan; motherTongue: Locale; initiallyFlipped: boolean; onFlip: () => void;
 }) {
   const { t, locale } = useI18n();
   const [flipped, setFlipped] = useState(initiallyFlipped);
+  const say = useAutoplay(plan.lang);
+  const expression = plan.functions!.expressions.find((e) => e.id === id);
+  const word = plan.functions!.words.find((w) => w.id === id);
   const flip = () => {
+    // Autoplay (P4-05 review): turning the card to French speaks the expression or word at once.
+    if (!flipped) say(expression ? expression.text : word?.teachingForm);
     if (!flipped) onFlip();
     setFlipped(!flipped);
   };
-  const expression = plan.functions!.expressions.find((e) => e.id === id);
-  const word = plan.functions!.words.find((w) => w.id === id);
   const term = expression ?? word;
   if (!term) return null;
   // The expression is spoken without the ellipsis of a sentence start.
@@ -68,23 +74,20 @@ function FunctionCard({ id, side, label, plan, motherTongue, initiallyFlipped, o
     </div>
   );
   const meaning = <p className="flashcard-meaning" lang={motherTongue}>{translation(term.translations as Partial<Record<Locale, string[]>>, motherTongue)}</p>;
-  const frontFirst = side === 'expressions';
   return (
     <article className={`flashcard${flipped ? ' is-flipped' : ''}`} aria-label={label}>
       <button type="button" className="flip-button" aria-pressed={flipped}
-        aria-label={flipped ? t('session.flipBack') : t(frontFirst ? 'session.flipToTranslation' : 'session.flipCard')} onClick={flip}>
+        aria-label={flipped ? t('session.flipBack') : t('session.flipCard')} onClick={flip}>
         <span aria-hidden="true">⟲</span>
       </button>
       <div className="flashcard-inner">
         <div className="flashcard-face flashcard-front" inert={flipped}>
-          {frontFirst ? frenchFace : meaning}
+          {meaning}
         </div>
         <div className="flashcard-face flashcard-back" inert={!flipped}>
-          {frontFirst ? <>{meaning}<p className="muted">{term.explanation[locale]}</p>{example}</> : <>
-            {frenchFace}
-            {word && word.genders.length > 0 && <p className="muted">{word.genders.map((g) => t(`gender.${g}`)).join(' / ')}</p>}
-            {example}
-          </>}
+          {frenchFace}
+          {expression ? <p className="muted">{term.explanation[locale]}</p> : word!.genders.length > 0 && <p className="muted">{word!.genders.map((g) => t(`gender.${g}`)).join(' / ')}</p>}
+          {example}
         </div>
       </div>
     </article>
@@ -119,9 +122,20 @@ function withExpressions(text: string, expressions: { text: string }[]): ReactNo
  */
 export function DialogueRenderer({ item, plan, motherTongue, pageId, revealed }: RendererProps) {
   const { t } = useI18n();
+  const say = useAutoplay(plan.lang);
+  const isDialogue = item.type === 'function_dialogue';
+  const shown = new Set([isDialogue ? item.lines[0].lineId : '', ...(revealed[`${pageId}/${item.itemId}`] ?? [])]);
+  const lines = isDialogue ? item.lines.filter((l) => shown.has(l.lineId)) : [];
+  const newest = lines.at(-1)?.lineId;
+  const spoken = useRef<string | undefined>(undefined);
+  // Autoplay (P4-05 review): the first line and every next line are spoken once when they appear.
+  useEffect(() => {
+    if (!newest || spoken.current === newest) return;
+    spoken.current = newest;
+    say(lines.at(-1)?.text);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [newest]);
   if (item.type !== 'function_dialogue' || !plan.functions) return null;
-  const shown = new Set([item.lines[0].lineId, ...(revealed[`${pageId}/${item.itemId}`] ?? [])]);
-  const lines = item.lines.filter((l) => shown.has(l.lineId));
   return (
     <div className="dialogue">
       <ol className="dialogue-lines">
@@ -160,5 +174,149 @@ function DialogueLine({ line, plan, motherTongue }: { line: Extract<RendererProp
         </div>
       </div>
     </article>
+  );
+}
+
+/** Role A's line above a task (dialogue gaps, exam replies), with its role label and audio. */
+function ContextLine({ roleId, text, plan }: { roleId: string; text: string; plan: LessonPlan }) {
+  const { t } = useI18n();
+  const role = plan.functions?.roles.find((r) => r.id === roleId);
+  return (
+    <div className="dialogue-context">
+      <p className="dialogue-role" lang={plan.lang}>{role?.label}</p>
+      <div className="dialogue-text">
+        <ListenButton text={text} lang={plan.lang} variant="icon" label={t('session.listenSentence')} />
+        <span lang={plan.lang}>{text}</span>
+      </div>
+    </div>
+  );
+}
+
+const RoleLabel = ({ roleId, plan }: { roleId: string | null; plan: LessonPlan }) =>
+  roleId ? <p className="dialogue-role dialogue-reply-role" lang={plan.lang}>{plan.functions?.roles.find((r) => r.id === roleId)?.label}</p> : null;
+
+/**
+ * Word order (SPEC section 8): practice shows the tokens only; an exam reply stands under role A's line
+ * and its bank also holds the distractors ("Not every word fits").
+ */
+export function FunctionWordOrderRenderer(props: RendererProps) {
+  const { item, plan } = props;
+  if (item.type !== 'function_word_order') return null;
+  return (
+    <div className={item.context ? 'dialogue-task' : undefined}>
+      {item.context && <ContextLine roleId={item.context.roleId} text={item.context.text} plan={plan} />}
+      <RoleLabel roleId={item.roleId} plan={plan} />
+      <UnitsRenderer {...props} />
+    </div>
+  );
+}
+
+/** Dialogue gaps: role A's line, then role B's line with one gap and four expression choices. */
+export function DialogueGapChoiceRenderer(props: RendererProps) {
+  const { item, plan } = props;
+  if (item.type !== 'function_dialogue_gap_choice') return null;
+  return (
+    <div className="dialogue-task">
+      <ContextLine roleId={item.context.roleId} text={item.context.text} plan={plan} />
+      <RoleLabel roleId={item.roleId} plan={plan} />
+      <UnitsRenderer {...props} />
+    </div>
+  );
+}
+
+/**
+ * Exam part 2: the exam dialogue unrolls line by line on one timed page (the footer button reads Next
+ * line until the last line); lines with a gap have a text field, and every field stays editable until
+ * the page is submitted.
+ */
+export function ExamDialogueRenderer(props: RendererProps) {
+  const { t } = useI18n();
+  const { item, plan, pageId, revealed, units } = props;
+  const list = useRef<HTMLOListElement>(null);
+  const count = item.type === 'function_dialogue_gap_typing' ? 1 + (revealed[`${pageId}/${item.itemId}`] ?? []).length : 0;
+  // A newly shown line with a gap gets the cursor in its field (P4-05 review).
+  useEffect(() => {
+    if (count > 1) list.current?.querySelector<HTMLInputElement>('li:last-child input.text-input:not([readonly])')?.focus();
+  }, [count]);
+  if (item.type !== 'function_dialogue_gap_typing' || !plan.functions) return null;
+  const shown = new Set([item.lines[0].lineId, ...(revealed[`${pageId}/${item.itemId}`] ?? [])]);
+  const lines = item.lines.filter((l) => shown.has(l.lineId));
+  return (
+    <div className="dialogue">
+      <ol ref={list} className="dialogue-lines">
+        {lines.map((line) => {
+          const unit = line.gap ? units.find((u) => u.id.endsWith(`/${line.gap!.gapId}`)) : undefined;
+          return (
+            <li key={line.lineId} className={`dialogue-line exam-line${plan.functions!.roles[1].id === line.roleId ? ' is-second' : ''}`}>
+              <p className="dialogue-role" lang={plan.lang}>{plan.functions!.roles.find((r) => r.id === line.roleId)?.label}</p>
+              {unit ? (
+                <Gap before={line.before} after={line.after} lang={plan.lang}>
+                  <TextControl unit={unit} props={props} label={t('session.gapAnswer')} />
+                </Gap>
+              ) : <p className="gap-sentence" lang={plan.lang}>{line.before}</p>}
+              {/* The mother-tongue line says what to write into the gap (P4-05 review). */}
+              <p className="muted exam-translation" lang={props.motherTongue}>{(line.translation as Native)[props.motherTongue]}</p>
+            </li>
+          );
+        })}
+      </ol>
+      <p className="label-muted" aria-live="polite">{t('session.lineOf', { n: lines.length, total: item.lines.length })}</p>
+    </div>
+  );
+}
+
+/**
+ * Listening choice (P4-05 review): role A's line is only heard; the four replies of role B are heard,
+ * not read, and the learner chooses the one that fits. After Check every reply shows its text; the chosen
+ * wrong reply turns red and the right one green.
+ */
+export function ListeningReplyRenderer(props: RendererProps) {
+  const { t } = useI18n();
+  const { item, plan, units, seed } = props;
+  if (item.type !== 'function_listening_choice' || !plan.functions) return null;
+  const unit = units[0];
+  if (!unit || unit.kind !== 'choice') return null;
+  const roles = plan.functions.roles;
+  const label = (id: string) => roles.find((r) => r.id === id)?.label ?? id;
+  const current = (props.locked[unit.id]?.response ?? props.drafts[unit.id]) as string | undefined;
+  const checked = props.mode === 'feedback' || !!props.celebrating;
+  const state = (id: string) => (props.celebrating ? (current === id ? ' is-right' : '') : !checked ? '' : unit.correct.includes(id) ? ' is-right' : current === id ? ' is-wrong' : '');
+  const options = seededOrder(unit.options, seed, unit.id);
+  return (
+    <div className="dialogue-task listening-reply">
+      <div className="dialogue-context">
+        <p className="dialogue-role" lang={plan.lang}>{label(item.context.roleId)}</p>
+        <div className="dialogue-text">
+          <ListenButton text={item.context.text} lang={plan.lang} size="large" label={t('session.listenTo', { role: label(item.context.roleId) })} />
+          {checked && <span lang={plan.lang}>{item.context.text}</span>}
+        </div>
+      </div>
+      <p className="dialogue-role dialogue-reply-role" lang={plan.lang}>{label(item.roleId)}</p>
+      <fieldset className="choices" disabled={checked}>
+        <legend className="visually-hidden">{t('session.chooseReply')}</legend>
+        {options.map((o, n) => (
+          // Clicking a reply selects it and plays it (again on every click); the speaker replaces the radio dot.
+          <label key={o.id} className={`choice listening-option${current === o.id ? ' is-selected' : ''}${state(o.id)}`}
+            // The label forwards a second click to its radio; that one is not played again.
+            onClick={(e) => { if (!checked && !(e.target instanceof HTMLInputElement)) speak(o.text, plan.lang); }}>
+            <input type="radio" className="visually-hidden" name={unit.id} value={o.id} checked={current === o.id} onChange={() => props.onChange(unit.id, o.id)} />
+            <SpeakerIcon />
+            {checked ? <span lang={plan.lang}>{o.text}</span> : <span>{t('session.replyN', { n: n + 1 })}</span>}
+          </label>
+        ))}
+      </fieldset>
+    </div>
+  );
+}
+
+/** The speaker symbol of a listening reply (decorative; the whole reply plays when clicked). */
+function SpeakerIcon() {
+  return (
+    <span className="listening-speaker" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor" />
+        <path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" />
+      </svg>
+    </span>
   );
 }

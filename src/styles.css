@@ -372,9 +372,32 @@ select {
 .filter-group {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0 1.5rem;
+  gap: 0.6rem;
+  padding: 0 1rem;
   border-left: 1px solid var(--border-strong);
+}
+
+/* Wide screens (P4-05 review): language, level and categories on one line with compact options. */
+@media (min-width: 1340px) {
+  .filters {
+    flex-wrap: nowrap;
+    padding: 0.85rem 1rem;
+  }
+
+  .filters .option-row {
+    flex-wrap: nowrap;
+    gap: 0.35rem;
+  }
+
+  .filters .option span {
+    min-width: 2.4rem;
+    padding: 0.35rem 0.6rem;
+    font-size: 15px;
+  }
+
+  .filters .label-muted {
+    white-space: nowrap;
+  }
 }
 
 .filter-group:first-child {
@@ -1429,7 +1452,8 @@ select {
 .task-card.is-celebrating .token-placed,
 .task-card.is-celebrating .token[aria-pressed='true'],
 .task-card.is-celebrating select,
-.task-card.is-celebrating .units:not(:has(.reference-list)) .text-input {
+.task-card.is-celebrating .units:not(:has(.reference-list)) .text-input,
+.task-card.is-celebrating .form-rows .text-input {
   animation: success-flash 0.9s ease-out both;
 }
 
@@ -1464,7 +1488,8 @@ select {
   .task-card.is-celebrating .token-placed,
   .task-card.is-celebrating .token[aria-pressed='true'],
   .task-card.is-celebrating select,
-  .task-card.is-celebrating .units:not(:has(.reference-list)) .text-input {
+  .task-card.is-celebrating .units:not(:has(.reference-list)) .text-input,
+  .task-card.is-celebrating .form-rows .text-input {
     animation: none;
     border-color: var(--correct);
     background-color: rgb(0 230 118 / 0.15);
@@ -2026,15 +2051,29 @@ select {
   margin-bottom: 1rem;
 }
 
-/* Results: the final exam button stands out; Repeat lesson sits left of the primary overview link. */
-.button-exam {
+/*
+ * Results menu (all categories, P4-05 review): the selected part has a purple background and border.
+ * Other parts show their outcome: red when every answer is wrong, red stripes when at least one answer
+ * is not fully right; parts with every answer right keep the plain look, the final exam its purple border.
+ */
+.result-menu .button.button-exam {
   border-color: var(--progress);
-  color: #ddd6fe;
-  font-weight: 600;
 }
 
-.button-exam[aria-pressed='true'] {
+.result-menu .button.is-all-wrong {
+  background: #7f1d1d;
+  border-color: #b91c1c;
+}
+
+.result-menu .button.is-mixed {
+  background: repeating-linear-gradient(135deg, #7f1d1d 0 7px, #0f172a 7px 14px);
+  border-color: #b91c1c;
+  text-shadow: 0 1px 2px #000, 0 0 4px #000;
+}
+
+.result-menu .button[aria-pressed='true'] {
   background: #1e1b4b;
+  border-color: var(--progress);
 }
 
 .results-lesson {
@@ -2361,4 +2400,145 @@ html {
 
 .expression-mark {
   color: #c7d2fe;
+}
+
+/* Function tasks (P4-05): role A's line, then the role and task of role B, close together. */
+.dialogue-task {
+  display: grid;
+  gap: 0.35rem;
+  padding-bottom: 0.75rem;
+}
+
+.dialogue-task + .dialogue-task {
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.dialogue-context {
+  display: grid;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.dialogue-task .gap-sentence {
+  margin: 0 0 0.75rem;
+}
+
+.dialogue-task .unit {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.exam-line {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-card);
+  background: var(--bg);
+}
+
+.exam-line .gap-sentence {
+  margin: 0;
+  font-size: 19px;
+}
+
+/* Listening choice (P4-05 review): replies are heard; the label names the reply until Check reveals its text. */
+.listening-speaker {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  color: var(--text);
+}
+
+/* The selected reply has a purple border until Check marks it green or red. */
+.listening-option.is-selected:not(.is-right):not(.is-wrong) {
+  border-color: var(--progress);
+  box-shadow: inset 0 0 0 1px var(--progress);
+}
+
+/* Autoplay switch (P4-05 review): the last header control on the right. */
+.autoplay-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.autoplay-switch input {
+  appearance: none;
+  position: relative;
+  width: 38px;
+  height: 22px;
+  margin: 0;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.autoplay-switch input::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--muted);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.autoplay-switch input:checked {
+  background: var(--indigo);
+  border-color: var(--progress);
+}
+
+.autoplay-switch input:checked::after {
+  transform: translateX(16px);
+  background: #fff;
+}
+
+.autoplay-switch input:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Word order (P4-05 review): placed tokens can be dragged along the line; a marker shows where. */
+.order-answer .token-placed,
+.order-bank .token {
+  touch-action: none;
+  cursor: grab;
+}
+
+.order.is-dragging .order-answer .token-placed {
+  cursor: grabbing;
+}
+
+.order .token.is-dragged {
+  opacity: 0.35;
+}
+
+.order-marker {
+  display: inline-block;
+  width: 3px;
+  height: 1.8rem;
+  margin: 0 0.15rem;
+  vertical-align: middle;
+  border-radius: 2px;
+  background: var(--progress);
+}
+
+/* Results (P4-05 review): only the wrong letters or the wrong article of an answer are red. */
+.marked-answer .mark-ok {
+  color: var(--muted);
+}
+
+.marked-answer .mark-wrong {
+  color: var(--incorrect);
+  font-weight: 700;
 }

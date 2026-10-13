@@ -94,7 +94,7 @@ export function artifactState(artifacts: LessonArtifacts | undefined): ArtifactS
  * vocabulary and grammar item type (phases 2/3 refine them); functions/reading wait
  * for phases 4/5.
  */
-export const PLAYABLE_KINDS: ReadonlySet<LessonKind> = new Set<LessonKind>(['vocabulary', 'grammar']);
+export const PLAYABLE_KINDS: ReadonlySet<LessonKind> = new Set<LessonKind>(['vocabulary', 'grammar', 'functions']);
 
 export type NotReadyReason = 'missingDraft' | 'missingContent' | ArtifactProblem | 'unsupported';
 

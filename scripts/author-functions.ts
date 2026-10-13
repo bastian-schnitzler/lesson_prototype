@@ -88,9 +88,10 @@ export function buildFunctionsLesson(def: FunctionsDefinition, root = resolve(im
   const replyPages = chunk(def.replies, FUNCTIONS_PAGE_RULES.replyPageSize);
 
   const steps: FunctionsContent['steps'] = [
+    // Words first: the example sentences often use them (P4-05 review).
     { id: 'flashcards', stage: 'flashcards', role: 'presentation', label: FUNCTIONS_COPY.flashcards[0], pages: [
-      page('cards-expressions', FUNCTIONS_COPY.flashcards[1], [{ type: 'function_flashcards', itemId: 'cards-expressions', side: 'expressions', ids: expressionIds }]),
       ...(wordIds.length ? [page('cards-words', FUNCTIONS_COPY.wordCards, [{ type: 'function_flashcards', itemId: 'cards-words', side: 'words', ids: wordIds }])] : []),
+      page('cards-expressions', FUNCTIONS_COPY.flashcards[1], [{ type: 'function_flashcards', itemId: 'cards-expressions', side: 'expressions', ids: expressionIds }]),
     ] },
     { id: 'dialogue', stage: 'dialogue', role: 'presentation', label: FUNCTIONS_COPY.dialogue[0], pages: [
       page('dialogue', FUNCTIONS_COPY.dialogue[1], [{
@@ -102,8 +103,9 @@ export function buildFunctionsLesson(def: FunctionsDefinition, root = resolve(im
       ...chunk(expressionIds, FUNCTIONS_PAGE_RULES.matchingPageSize).map((ids, n) => page(`match-expressions-${n + 1}`, FUNCTIONS_COPY.matching[1], [matching('expressions', ids, n + 1)])),
       ...(wordIds.length ? [page('match-words-1', FUNCTIONS_COPY.wordMatching, [matching('words', wordIds, 1)])] : []),
     ] },
-    { id: 'word-order', stage: 'word_order', role: 'exercise', label: FUNCTIONS_COPY.wordOrder[0], pages:
-      def.wordOrder.map(([e, spec, explanation], n) => page(`order-${n + 1}`, FUNCTIONS_COPY.wordOrder[1], [wordOrder(`order-${n + 1}`, e, spec, explanation)])) },
+    ...(wordIds.length ? [{ id: 'gender', stage: 'gender' as const, role: 'exercise' as const, label: FUNCTIONS_COPY.gender[0], pages: [
+      page('gender', FUNCTIONS_COPY.gender[1], [{ type: 'function_gender_select', itemId: 'gender', ids: wordIds }]),
+    ] }] : []),
     { id: 'dialogue-gaps', stage: 'dialogue_gaps', role: 'exercise', label: FUNCTIONS_COPY.dialogueGaps[0], pages: def.gaps.map((g, n) => {
       const { before, after } = splitGap(g.line, /___/);
       return page(`gap-${n + 1}`, FUNCTIONS_COPY.dialogueGaps[1], [{
@@ -111,22 +113,34 @@ export function buildFunctionsLesson(def: FunctionsDefinition, root = resolve(im
         before, after, choiceExpressionIds: [g.e, ...g.choices], answerExplanation: g.explanation,
       }]);
     }) },
+    { id: 'word-order', stage: 'word_order', role: 'exercise', label: FUNCTIONS_COPY.wordOrder[0], pages:
+      def.wordOrder.map(([e, spec, explanation], n) => page(`order-${n + 1}`, FUNCTIONS_COPY.wordOrder[1], [wordOrder(`order-${n + 1}`, e, spec, explanation)])) },
+    { id: 'listening', stage: 'listening', role: 'exercise', label: FUNCTIONS_COPY.listening[0], pages: def.listening.map((l, n) => page(`listening-${n + 1}`, FUNCTIONS_COPY.listening[1], [{
+      type: 'function_listening_choice', itemId: `listening-${n + 1}`, expressionId: l.e, context: { roleId: l.context[0], text: l.context[1] }, roleId: l.role,
+      options: l.options.map((text, m) => ({ optionId: `o${m + 1}`, text })), answerOptionId: 'o1', answerExplanation: l.explanation,
+    }])) },
     { id: 'exam', stage: 'exam', role: 'exam', label: FUNCTIONS_COPY.exam[0], pages: [
+      // Word translation first, as in vocabulary lessons (P4-05 review).
+      ...(def.words.length ? [page('exam-words', FUNCTIONS_COPY.examWords, def.words.map((w) => ({
+        type: 'function_translation_exam' as const, itemId: `word-${w.id}`, wordId: w.id, prompt: native(list(w.en)[0], list(w.de)[0]),
+        accepted: { answers: [w.form], accentSensitive: [] }, answerExplanation: w.explanation,
+      })), true)] : []),
       ...replyPages.map((replies, p) => page(`exam-replies-${p + 1}`, FUNCTIONS_COPY.exam[1], replies.map((r) => {
         const n = def.replies.indexOf(r) + 1;
         return wordOrder(`reply-${n}`, r.e, r.reply, r.explanation, r.context, r.role, r.distractors);
       }), true)),
       page('exam-dialogue', FUNCTIONS_COPY.examDialogue, [{
         type: 'function_dialogue_gap_typing', itemId: 'exam-dialogue',
-        lines: def.examDialogue.map(([role, line, explanation], n) => {
-          if (!line.includes('[')) return { lineId: `exam-line-${n + 1}`, roleId: role, before: line, gap: null, after: '' };
+        lines: def.examDialogue.map(([role, line, en, de, explanation], n) => {
+          const translation = native(en, de);
+          if (!line.includes('[')) return { lineId: `exam-line-${n + 1}`, roleId: role, before: line, translation, gap: null, after: '' };
           const { before, inner, after } = splitGap(line, /\[([^\]]+)\]/);
           const answers = inner.split(' / ').map((a) => a.trim());
           // The first answer names the expression; further answers are accepted alternatives.
           const e = def.expressions.find((x) => plain(answers[0]) === plain(x.text));
           if (!e) throw new Error(`the first answer of gap [${inner}] is no expression of the lesson`);
           if (!explanation) throw new Error(`gap [${inner}] needs an explanation`);
-          return { lineId: `exam-line-${n + 1}`, roleId: role, before, gap: { gapId: `gap-${n + 1}`, expressionId: e.id, accepted: { answers, accentSensitive: [] }, answerExplanation: explanation }, after };
+          return { lineId: `exam-line-${n + 1}`, roleId: role, before, translation, gap: { gapId: `gap-${n + 1}`, expressionId: e.id, accepted: { answers, accentSensitive: [] }, answerExplanation: explanation }, after };
         }),
       }], true),
     ] },
@@ -145,10 +159,11 @@ export function buildFunctionsLesson(def: FunctionsDefinition, root = resolve(im
   const briefResult = validateBrief(JSON.parse(briefText), ctx);
   const contentResult = briefResult.value ? validateContent(JSON.parse(contentText), { ...ctx, brief: briefResult.value, briefHash }) : undefined;
   const examGaps = def.examDialogue.filter(([, line]) => line.includes('[')).length;
-  const practice = expressionIds.length * 3 + wordIds.length;
+  const nouns = def.words.filter((w) => (w.wordClass ?? 'noun') === 'noun').length;
+  const practice = expressionIds.length * 4 + wordIds.length + nouns;
   return {
     briefText, contentText, dir,
-    report: `${def.id}: ${expressionIds.length} expressions, ${wordIds.length} words, ${practice} practice units, ${def.replies.length + examGaps} exam units on ${replyPages.length + 1} pages, ${minutes} min`,
+    report: `${def.id}: ${expressionIds.length} expressions, ${wordIds.length} words, ${practice} practice units, ${wordIds.length + def.replies.length + examGaps} exam units on ${replyPages.length + 1 + (wordIds.length ? 1 : 0)} pages, ${minutes} min`,
     issues: [
       ...briefResult.issues.map((i) => `brief ${i.path}: ${i.message}`),
       ...(contentResult?.issues ?? []).map((i) => `content ${i.path}: ${i.message}`),
