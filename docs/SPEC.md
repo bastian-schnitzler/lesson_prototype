@@ -1,6 +1,6 @@
 # Lesson exercise prototype specification
 
-Status: **Draft 0.44 — longer grammar lessons and new verbs (P3-07)**. Date: 2026-10-08.
+Status: **Draft 0.45 — function lesson requirements (P4-01)**. Date: 2026-10-13.
 
 This document specifies the prototype and its phased implementation. It is the maintained requirements document: no separate requirements file exists. It does not authorize starting implementation before the specification review. The backlog is in [ISSUES.md](ISSUES.md) and published as GitHub issues in `bastian-schnitzler/lesson_prototype`.
 
@@ -20,7 +20,7 @@ The requested roadmap names phases 0–5. This specification follows those six p
 | [src/schemas/artifacts.ts](../src/schemas/artifacts.ts), [vocabulary.ts](../src/schemas/vocabulary.ts), [grammar.ts](../src/schemas/grammar.ts), [artifactCommon.ts](../src/schemas/artifactCommon.ts) | Executable multilingual brief/content schemas from P1-03 | Category factories and shared payload validation; these are the active schema contracts. |
 | [src/validation/artifacts.ts](../src/validation/artifacts.ts) | Current artifact and cross-reference validation | Checks metadata, locale coverage, IDs, hashes, coverage and brief/content consistency. |
 
-The existing French A1 outline has **48 grammar, 48 vocabulary, 14 functions, and 10 reading** entries. Display all 120 entries when fr/A1 is selected; discover additional courses from all outline files without hard-coded filenames. Functions and reading remain visible but cannot start until their requirements and renderers exist.
+The existing French A1 outline has **48 grammar, 48 vocabulary, 14 functions, and 10 reading** entries. Display all 120 entries when fr/A1 is selected; discover additional courses from all outline files without hard-coded filenames. Functions and reading remain visible but cannot start until their requirements and renderers exist (functions requirements: section 8).
 
 Prototype scope excludes accounts, placement tests, daily goals, streaks, inferred CEFR progression, live tutoring, and learner synchronization. Those features are outside the prototype requirements.
 
@@ -42,7 +42,7 @@ Confirmed decisions are identified below. Other defaults make the draft concrete
 | D10 | Personalized grammar feedback | **Confirmed:** show the fixed localized production-feedback placeholder before the final exam; its en text is “Individual feedback would be here on production.” Individual feedback analysis is deferred to production. |
 | D11 | Session persistence | **Confirmed:** browser storage supports session reload/resume. **Confirmed:** the index last-try score is in memory only and clears on a full page reload; never restore it from stored attempts. |
 | D12 | Broad vocabulary outlines | **Confirmed:** allow the number of targets necessary for the outline, with grouped presentation. Such lessons may exceed 10–15 minutes. Do not truncate an inventory at 15 or 32 or change its existing lesson ID. |
-| D13 | Phase 4/5 allocation | Phase 4 functions, phase 5 reading, both blocked on their requirements review. |
+| D13 | Phase 4/5 allocation | Phase 4 functions, phase 5 reading, each blocked on its requirements review. **Functions requirements agreed in P4-01** (D50, D51, section 8); reading remains pending. |
 | D14 | Vocabulary target count | **Confirmed, revised in P2-04:** the standard is **18 targets** per vocabulary lesson; more or fewer only in exceptional cases (a complete finite inventory such as numbers, the alphabet or the days of the week, or an unusually demanding load), explained in the brief's count rationale. Mix easier and harder targets where the topic allows it, without forcing a mix. |
 | D15 | Index and detail navigation | **Confirmed:** one Content button labeled only Outline, Draft, or Content (highest available artifact) opens the combined detail page. Actions contains only Start lesson, available for complete, valid, supported lessons. Detail header has Lesson overview, Raw JSON / Structured view, and Start lesson when available, in that order directly under the page title, plus shared language preferences. On the same row, right-aligned, **Outline**, **Draft** and **Content** buttons scroll to the matching section. |
 | D16 | Lesson header and exams | **Confirmed:** duration-weighted progress percentage and current earned score against total possible; timed exam pages only, with results after the complete exam. **Confirmed (P0-02):** keep the practice contribution visible and unchanged during exams to avoid leaking correctness, with no pending label. |
@@ -79,6 +79,8 @@ Confirmed decisions are identified below. Other defaults make the draft concrete
 | D47 | Vocabulary lesson = brief | **Confirmed (P2-04):** a vocabulary lesson consists of its brief only; there is no vocabulary file in `content/lessons/`. The brief defines the introduction per word group, the words and every exercise text (explanations, gap sentences, listening options); the application derives the same six stages for every vocabulary lesson, with every word in every exercise (flashcards, matching, gender/overview, typed gap, listening choice, translation and dictation exam) and fixed page durations and exam limits (section 6, "Derived vocabulary lesson"). In the exam, nouns are accepted only as indefinite article + noun, in translation and dictation alike (D39). Grammar lessons keep brief and content file. |
 | D48 | Person matching | **Confirmed (P3-02 review):** grammar has a seventh practice type, `grammar_person_matching`: the vocabulary matching board with person rows (three singular rows, a gap, three plural rows; three rows when only one number is taught), in translation mode (mother-tongue pronoun → French pronoun) or forms mode (French pronoun → verb form). Every pronoun or verb-form lesson (topics `pronouns`, `verbs_morphology`) has one, except the imperative lesson; checking behaves exactly like vocabulary matching and keeps the gap. |
 | D49 | Grammar lesson length | **Confirmed (P3-07, shortened in its review):** a grammar lesson takes about 15–25 minutes: at least 34 scored practice units and an exam of 2–4 pages with at least 16 scored units, 2–4 exercises of 4–8 items per teaching block, one person matching board per verb, and realistic per-unit estimates (section 7, "Lesson length"). Grammar briefs list `newVerbs` (verbs no earlier vocabulary lesson taught, with translations), shown on the start page and the first explanation page. |
+| D50 | Function lesson flow | **Confirmed (P4-01):** a function lesson is built on 6–10 expressions (about 8; phrases and sentence starts such as `Je voudrais …`) and 0–6 additional words (about 4). Sequence: flashcards (expressions French on the front, words as in vocabulary), a model dialogue revealed line by line with flippable lines (translation and note), matching of expressions and of words, word order of one example sentence per expression with only the tokens as prompt, dialogue gaps with four expression choices; exam part 1 builds replies to role A from tokens with 0–3 distractors and only the dialogue as context, exam part 2 is a new dialogue unrolled line by line whose expression gaps are typed. Details in section 8. |
+| D51 | Function artifacts and authoring | **Confirmed (P4-01):** a function lesson has a brief and lesson content, like grammar. The brief holds the situation, the two roles and the expressions and words with example sentences; the model dialogue, all exercises and the exam are generated in the lesson content. Claude first writes three test lessons by hand (`fr-greetings-and-goodbyes`, `fr-ordering-at-a-cafe`, `fr-asking-the-way`); the product owner decides on generation of the remaining eleven after their review. |
 
 ## 2. Runtime and delivery architecture
 
@@ -793,7 +795,97 @@ Every exam page uses its brief-defined countdown and defers answer feedback unti
 
 When phase 3 is complete, all **48 grammar** entries must be generatable and playable. The first-ten sample approval alone is insufficient for that phase's exit.
 
-## 8. UI design and PlantUML Salt mockups
+## 8. Functions learning flow
+
+A function lesson teaches the **expressions** a learner needs to act in one everyday situation of the outline intent (greeting someone, ordering at a café, asking the way). Its basis is a small set of ready-to-use phrases and sentence starts, shown first as flashcards and in a model dialogue, then practised in matching, word-order and dialogue-gap exercises, and finally examined in new dialogues (D50). The brief holds the expressions and words with example sentences; dialogues, exercises and exam are generated in the lesson content (D51). Requirements agreed with the product owner on 2026-10-13 (P4-01).
+
+```mermaid
+flowchart TD
+    S[Start page: situation, expressions, words, outline] --> A[Flashcards: expressions, then words]
+    A --> B[Model dialogue, revealed line by line]
+    B --> C[Matching: expressions, then words]
+    C --> D[Word order: one sentence per expression]
+    D --> E[Dialogue gaps: choose the expression]
+    E --> F[Exam info page]
+    F --> G[Exam part 1: build replies from tokens with distractors]
+    G --> H[Exam part 2: dialogue with typed expression gaps]
+    H --> R[Final results: exam selected by default]
+    R --> M[Button menu: previous exercise results]
+    M --> R
+```
+
+### Brief and lesson content
+
+A function lesson has two artifacts, like grammar (D51): the **brief** holds the expressions and words with example sentences; the **lesson content** generated from it holds the dialogues and every exercise and exam item.
+
+| Artifact | Part | Count | Content |
+| --- | --- | --- | --- |
+| Brief | Situation and roles | 1 situation, 2 roles | A localized one-sentence situation for the start page; two roles with a French label (`le serveur`, `la cliente`) used in every dialogue of the lesson. |
+| Brief | Expressions | 6–10, about 8 on average | Phrases and sentence starts useful in the situation: `Je voudrais …`, `J'aimerais recevoir …`, `C'est combien ?`, `L'addition, s'il vous plaît.` Each has a stable ID, the French `text`, an `openEnd` flag for sentence starts (displayed with a trailing ` …`, never part of an answer), translations for every mother tongue, a short localized `explanation` (when and how it is used, register such as tu/vous) and an example sentence with translations. |
+| Brief | Words | 0–6, about 4 on average | Additional vocabulary the dialogues need and no earlier vocabulary lesson taught (`un thé`, `un croissant`). Each word has the vocabulary target fields that apply: teaching form with the indefinite article where grammatical (D39), translations, word class, gender, a localized explanation and an example sentence with translations. |
+| Lesson | Model dialogue | 8–14 lines | Alternating lines of the two roles; each line has its French text, translations for every mother tongue, a short localized note and the IDs of the expressions it uses. Every expression occurs at least once. |
+| Lesson | Word-order sentences | one per expression | French sentences, each using its expression in a new context. |
+| Lesson | Dialogue gaps | one per expression | An exchange: role A's line, then role B's line with one gap that takes the expression. |
+| Lesson | Exam replies | 6–8 | Role A's line and role B's reply built from tokens, with 0–3 distractor tokens. |
+| Lesson | Exam dialogue | 8–14 lines, 6–10 gaps | A new dialogue in the same situation; the gaps take expressions and may be in the lines of either role. |
+
+Exam sentences occur neither in the brief's example sentences nor in practice; practice sentences may differ from the brief's examples and should.
+
+All sentences are natural A1 French and use only the lesson's expressions and words, earlier vocabulary and grammar the learner can understand from context. The register (tu or vous) follows the situation and stays consistent within one dialogue. Every expression is assessed at least once in each exercise and at least once in the exam.
+
+**Artifacts (D51):** `content/briefs/<id>.json` (brief) and `content/lessons/<id>.json` (lesson content), validated against each other like grammar. The lesson content stores the pages with `estimatedDurationS` and exam `timeLimitS`, following the page rules below; validation checks them against those rules and that `estimatedMinutes` equals the summed page estimates.
+
+**Test lessons first (D51):** Claude writes the brief and lesson content of three test lessons by hand: `fr-greetings-and-goodbyes`, `fr-ordering-at-a-cafe` and `fr-asking-the-way`. After their review the product owner decides how the remaining eleven are produced (offline Gemini generation or hand authoring). Until then `make generate` keeps failing explicitly for functions.
+
+### Page rules
+
+| Stage | Pages | Estimate | Exam limit |
+| --- | --- | --- | --- |
+| 1 Flashcards | one page for the expressions, one for the words (left out without words) | 12 s per expression, 10 s per word | – |
+| 2 Model dialogue | one page | 20 s + 12 s per line | – |
+| 3 Matching | expressions in balanced pages of at most 6 pairs (8 → 4 + 4), then the words on their own page | 12 s per expression, 10 s per word | – |
+| 4 Word order | one sentence per page | 25 s per sentence | – |
+| 5 Dialogue gaps | one exchange per page | 15 s per gap | – |
+| Exam info | application page (section 6, stage 6) | 20 s | – |
+| 6 Exam part 1 | replies in balanced pages of at most 4 | 30 s per reply | 1.5 × estimate |
+| 7 Exam part 2 | one page with the whole dialogue | 8 s per line + 20 s per gap | 1.5 × estimate |
+
+With 8 expressions, 4 words, a 10-line model dialogue, 8 exam replies and an exam dialogue of 10 lines with 8 gaps, a lesson has 28 scored practice units, 16 exam units and takes about 20 minutes. The start page shows the outline in three colour-coded rows: Flashcards · Dialogue, Matching · Word order · Dialogue gaps, and the final exam ("Answer 16 items on 3 timed pages"), each with its minutes, plus the situation and the number of expressions and words.
+
+### Exercise behavior
+
+| Stage | Required interaction |
+| --- | --- |
+| Flashcards | The vocabulary flashcard page (section 6, stage 2). On the **expressions** page the front shows the French expression with a speaker button and the back the mother-tongue translation, the explanation in the interface language and the brief's example sentence with its translation. On the **words** page the order stays as in vocabulary: mother tongue on the front, French on the back. Each card is turned once before Continue is enabled; turned cards are stored (`revealed`). Completion only. |
+| Model dialogue | The lines appear one after another as cards, alternately left (role A) and right (role B), each with the role label, the French line (expressions highlighted), a speaker button and a flip button. A turned line shows the translation in the mother tongue and the note in the interface language, without changing its size. **Next line** shows the next line; earlier lines stay visible and can be turned and played again. After the last line the button becomes **Continue**. Turning lines is optional; revealed lines are stored for resume. Completion only. |
+| Matching | The vocabulary matching board (section 6, stage 3) with curves, Check, the slide to the correct row and the green flash: mother-tongue translation on the left, French expression with speaker on the right. The words follow on their own board. One unit per pair. |
+| Word order | The grammar word-order interaction (section 7) for one sentence of the lesson content, with only the tokens as prompt (no translation). Every token is used once; tokens may be multiword chunks such as `s'il vous plaît`. The final full stop is not a token. One unit per sentence; feedback card with the correct sentence and the explanation. |
+| Dialogue gaps | Role A's line (with speaker) above role B's line with one gap, and four distinct choices taken from the lesson's expressions, one of which fits. Checked like a multiple-choice gap (section 5, rule 4): a correct choice lights up green; a wrong one turns red with the correct one green and the explanation. One unit per gap. |
+| Exam part 1 | Each reply is a word-order task under role A's line (speaker allowed, it is not the answer): the bank holds the reply's tokens plus 0–3 distractors, shuffled from the session seed ("Not every word fits."). The reply is right only when its token sequence equals an accepted order; distractors must stay in the bank. Exactly one reply must be valid with the given tokens. One unit per reply, no feedback before the results. |
+| Exam part 2 | The exam dialogue unrolls line by line on one timed page. Lines with a gap have a text field in place of the expression; the learner selects the field, types the expression and presses **Next line**. Earlier lines stay visible and their fields editable until the page is submitted. On the last line the button becomes **Continue**; it, or the countdown, submits the whole page. Gaps are graded by the shared free-text classifier (section 5: 1, 0.5 for accents or capitals, 0); blank gaps earn 0. Accepted answers list every lesson expression that fits the gap; the context must make one expression clearly expected. |
+
+The exam info page lists the two exam parts with their number of tasks and countdowns. Exam pages keep the practice score in the header and show no correctness until the results (section 5).
+
+### Scoring, audio and results
+
+- Practice units: one per matching pair (expressions and words), word-order sentence and dialogue gap; exam units: one per reply and per typed gap. Flashcards and the model dialogue are completion only. The shared 35 % practice / 65 % exam weighting applies.
+- Every scored unit has a localized explanation, shown with practice corrections and in the results.
+- Audio speaks French expressions, words and dialogue lines (browser speech, D9). Function lessons have no listening exercise, so they start without a voice; Listen controls then become **Install language** buttons (D42).
+- Final results: the exam is selected by default, split into the accordions **Replies** (open) and **Dialogue** (closed). The menu then offers Matching expressions, Matching words, Word order and Dialogue gaps in the order presented. Reply rows show role A's line as the task and the built reply; dialogue rows show the line with the gap as the task and the typed expression.
+
+### Content review criteria
+
+The three test lessons and every later function lesson are reviewed for: full coverage of the outline intent; 6–10 expressions and 0–6 words with natural, idiomatic A1 French; correct translations for every mother tongue and explanations in en/fr/de; a consistent register; every expression used in the model dialogue, the exercises and the exam; exam sentences that do not occur in practice; exactly one valid reply in each exam reply with its distractors (distractors are plausible but wrong: wrong person, wrong article, a piece of another expression); and dialogue gaps whose context makes the expected expression clear.
+
+### Implementation plan
+
+- **Schemas:** `src/schemas/functions.ts` with `FunctionsBriefSchema` (situation, roles, expressions and words with example sentences; bounds 6–10 / 0–6) and `FunctionsLessonContentSchema` (steps and pages with the item types `function_flashcards`, `function_dialogue`, `function_matching`, `function_word_order` with optional context line and distractors, `function_dialogue_gap_choice` and `function_dialogue_gap_typing`; bounds 8–14 lines / 6–8 replies / 6–10 gaps), registered in the artifact factory. Validation of IDs, brief/content references, coverage (every expression in the model dialogue, the exercises and the exam), choice uniqueness, token orders, that no distractor appears in an accepted order, and the page rules.
+- **Session:** the plan builder reads function content like grammar content; the session host gains in-page line reveal (Next line) for the dialogue page and the exam dialogue, stored as presentation progress.
+- **Renderers:** reuse the flashcard, matching board and word-order controls; new dialogue line card, dialogue gap and exam dialogue renderers; results rows for replies and dialogue gaps.
+- **Authoring:** `authoring/functions/<id>.ts` with `node scripts/author-functions.ts <id>` (like grammar, section 7), building brief and lesson content, deriving page estimates and exam limits from the page rules, validating both and writing them with current input hashes.
+- **Makefile:** `make sample-lessons` and `make catalog` validate function briefs and lesson content; `make test` and `make test-e2e` cover the new renderers and a function journey; `make mockups-sync` / `make mockups-check` include `docs/mockups/05-function-lesson/`. `make generate` / `make generate-missing` stay disabled for functions until the generation decision.
+
+## 9. UI design and PlantUML Salt mockups
 
 ### Visual direction and layout
 
@@ -1895,7 +1987,7 @@ scale 1.3
 
 ### Browse the lesson stages and grammar exercises
 
-The folder organization follows the lesson flow. Vocabulary uses `01-startpage/`, then `02-introduction/` through `07-exam/`, and `08-results/`; `06-listening/` sits beside `06-typed-gaps/` because both belong to practice stage 5, and `07-exam/` also holds the listening-dictation page. These folder numbers include the start page; the educational six-stage numbering remains unchanged. Grammar uses `01-startpage/`, `02-00-explanation/`, double-numbered exercise folders `02-01-exercise-pronoun-match/` through `02-06-exercise-error-spotter/`, then `03-feedback-placeholder/`, `04-exam/`, and `05-results/`. The exercise folders describe the available component types, not a requirement to use all six in one lesson. The single [root README](mockups/README.md) links every editable source and its embedded SPEC preview; there are no per-folder READMEs.
+The folder organization follows the lesson flow. Vocabulary uses `01-startpage/`, then `02-introduction/` through `07-exam/`, and `08-results/`; `06-listening/` sits beside `06-typed-gaps/` because both belong to practice stage 5, and `07-exam/` also holds the listening-dictation page. These folder numbers include the start page; the educational six-stage numbering remains unchanged. Grammar uses `01-startpage/`, `02-00-explanation/`, double-numbered exercise folders `02-01-exercise-pronoun-match/` through `02-06-exercise-error-spotter/`, then `03-feedback-placeholder/`, `04-exam/`, and `05-results/`. The exercise folders describe the available component types, not a requirement to use all six in one lesson. Functions use `01-startpage/` to `06-dialogue-gap-choice/` in lesson order and `07-exam/` for both exam parts (P4-01). The single [root README](mockups/README.md) links every editable source and its embedded SPEC preview; there are no per-folder READMEs.
 
 | Category | Folders and previews |
 | --- | --- |
@@ -1903,6 +1995,7 @@ The folder organization follows the lesson flow. Vocabulary uses `01-startpage/`
 | [Artifact view](mockups/README.md#artifact-view) | Shared Outline layout, with category-specific vocabulary/grammar Draft and Content views. |
 | [Vocabulary lesson](mockups/README.md#vocabulary-lesson) | Start; [01 introduction](mockups/03-vocabulary-lesson/02-introduction/introduction.puml); [02 flashcards](mockups/03-vocabulary-lesson/03-flashcards/front.puml) and [reveal](mockups/03-vocabulary-lesson/03-flashcards/revealed.puml); [03 matching](mockups/03-vocabulary-lesson/04-matching/matching.puml); 04 gender + reviewed overview; 05 typed gaps + feedback, [listening choice](mockups/03-vocabulary-lesson/06-listening/listening-choice.puml) and [no-voice help](mockups/03-vocabulary-lesson/06-listening/no-voice-help.puml); 06 exam and [listening dictation](mockups/03-vocabulary-lesson/07-exam/listening-dictation.puml); results. |
 | [Grammar lesson](mockups/README.md#grammar-lesson) | [Start](mockups/04-grammar-lesson/01-startpage/lesson-start.puml); [explanation](mockups/04-grammar-lesson/02-00-explanation/singular-forms.puml); [pronoun matching](mockups/04-grammar-lesson/02-01-exercise-pronoun-match/pronoun-match.puml); [pronoun typing](mockups/04-grammar-lesson/02-02-exercise-pronoun-typing/pronoun-typing.puml); [choice gap](mockups/04-grammar-lesson/02-03-exercise-gap-choice/gap-choice.puml); [typed gap](mockups/04-grammar-lesson/02-04-exercise-gap-typing/gap-typing.puml) and [feedback](mockups/04-grammar-lesson/02-04-exercise-gap-typing/feedback.puml); [word order](mockups/04-grammar-lesson/02-05-exercise-word-order/word-order.puml); [error spotter](mockups/04-grammar-lesson/02-06-exercise-error-spotter/error-spotter.puml); [placeholder](mockups/04-grammar-lesson/03-feedback-placeholder/feedback-placeholder.puml); [exam](mockups/04-grammar-lesson/04-exam/mixed-exam.puml); [results](mockups/04-grammar-lesson/05-results/exam-results.puml). |
+| [Function lesson](mockups/README.md#function-lesson) | [lesson start](mockups/05-function-lesson/01-startpage/lesson-start.puml); [expression flashcards](mockups/05-function-lesson/02-flashcards/expression-flashcards.puml); [model dialogue](mockups/05-function-lesson/03-dialogue/dialogue.puml); [expression matching](mockups/05-function-lesson/04-matching/expression-matching.puml); [word order](mockups/05-function-lesson/05-word-order/word-order.puml); [dialogue gaps](mockups/05-function-lesson/06-dialogue-gap-choice/dialogue-gap-choice.puml); [exam replies](mockups/05-function-lesson/07-exam/reply-word-order.puml); [exam dialogue](mockups/05-function-lesson/07-exam/dialogue-gap-typing.puml); results use the shared results layout. |
 
 ### Additional lesson screens
 
@@ -3157,7 +3250,474 @@ scale 1.3
 ```
 <!-- mockup:end mockups/04-grammar-lesson/05-results/exam-results.puml -->
 
-## 9. Sample generation and review gates
+#### Functions: Lesson start
+
+<a id="mockup-05-function-lesson-01-startpage-lesson-start"></a>
+
+[Salt source](mockups/05-function-lesson/01-startpage/lesson-start.puml)
+
+<!-- mockup:begin mockups/05-function-lesson/01-startpage/lesson-start.puml -->
+```plantuml
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xxx</color> | {
+{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
+.
+{ [ <color:#4338CA>Lesson overview</color> ] | <color:#020617>xxx</color> | <color:#94A3B8>French / A1</color> }
+.
+<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+.
+<color:#E2E8F0><size:30><b>Commander au café</b></size></color>
+.
+{
+.
+{ <color:#020617>xxx</color> | {
+{ <color:#E2E8F0><b>YOUR LESSON</b></color> | <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxx</color> | <color:#94A3B8>( Functions )</color> }
+.
+<color:#E2E8F0><size:20><b>Order a drink, ask for the price and the bill</b></size></color>
+.
+<color:#94A3B8>Situation: a customer orders at a café; the waiter answers.</color>
+<color:#94A3B8>8 expressions  ·  4 words  ·  About 20 minutes</color>
+.
+<color:#E2E8F0><b>Lesson outline</b></color>
+{ <color:#635BFF>1</color> | <color:#E2E8F0>Flashcards · Dialogue</color> | <color:#020617>xxxxxxxx</color> | <color:#94A3B8>5 min</color> }
+{ <color:#22D3EE>2</color> | <color:#E2E8F0>Matching · Word order · Dialogue gaps</color> | <color:#020617>xxxxxxxx</color> | <color:#94A3B8>8 min</color> }
+{ <color:#F59E0B>3</color> | <color:#E2E8F0>Final exam: answer 16 items on 3 timed pages</color> | <color:#020617>xx</color> | <color:#94A3B8>8 min</color> }
+.
+[ <color:#020617>                       Start                       </color> ]
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+@endsalt
+```
+<!-- mockup:end mockups/05-function-lesson/01-startpage/lesson-start.puml -->
+
+#### Functions: Expression flashcards
+
+<a id="mockup-05-function-lesson-02-flashcards-expression-flashcards"></a>
+
+[Salt source](mockups/05-function-lesson/02-flashcards/expression-flashcards.puml)
+
+<!-- mockup:begin mockups/05-function-lesson/02-flashcards/expression-flashcards.puml -->
+```plantuml
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xxx</color> | {
+{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
+.
+{ <color:#E2E8F0><b>Commander au café</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 0.0 / 100</b></color> }
+{ <color:#E2E8F0>Progress 4%</color> | <color:#020617>xxx</color> | <color:#635BFF></color><color:#1E293B>░░░░░░░░░░░░</color> }
+.
+<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+.
+<color:#E2E8F0><size:30><b>Expressions</b></size></color>
+.
+{
+.
+{ <color:#020617>xxx</color> | {
+<color:#E2E8F0><b>FUNCTIONS  /  Expressions</b></color>
+.
+<color:#94A3B8>Turn every card once. The French expression is on the front.</color>
+.
+{
+{ <color:#020617>x</color> | {
+{ <color:#94A3B8>FRENCH</color> | <color:#020617>xxxxxxxxxxxxxxx</color> | [ <color:#4338CA>↻</color> ] }
+<color:#E2E8F0><size:22><b>Je voudrais …</b></size></color>
+[ <color:#4338CA>▶ Listen</color> ]
+} | <color:#020617>xx</color> | {
+{ <color:#94A3B8>ENGLISH  /  turned</color> | <color:#020617>xxxxxxxx</color> | [ <color:#4338CA>↻</color> ] }
+<color:#E2E8F0><size:22><b>I would like …</b></size></color>
+<color:#94A3B8>Polite way to order or ask for something.</color>
+<color:#E2E8F0>Je voudrais un café.  /  I would like a coffee.</color>
+} }
+.
+{ <color:#020617>x</color> | {
+{ <color:#94A3B8>FRENCH</color> | <color:#020617>xxxxxxxxxxxxxxx</color> | [ <color:#4338CA>↻</color> ] }
+<color:#E2E8F0><size:22><b>L'addition, s'il vous plaît.</b></size></color>
+[ <color:#4338CA>▶ Listen</color> ]
+} | <color:#020617>xx</color> | {
+{ <color:#94A3B8>FRENCH</color> | <color:#020617>xxxxxxxxxxxxxxx</color> | [ <color:#4338CA>↻</color> ] }
+<color:#E2E8F0><size:22><b>C'est combien ?</b></size></color>
+[ <color:#4338CA>▶ Listen</color> ]
+} }
+}
+.
+<color:#94A3B8>2 of 8 cards turned. A second page shows the 4 words (front: English).</color>
+.
+[ <color:#64748B>                      Continue                      </color> ]
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+@endsalt
+```
+<!-- mockup:end mockups/05-function-lesson/02-flashcards/expression-flashcards.puml -->
+
+#### Functions: Model dialogue
+
+<a id="mockup-05-function-lesson-03-dialogue-dialogue"></a>
+
+[Salt source](mockups/05-function-lesson/03-dialogue/dialogue.puml)
+
+<!-- mockup:begin mockups/05-function-lesson/03-dialogue/dialogue.puml -->
+```plantuml
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xxx</color> | {
+{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
+.
+{ <color:#E2E8F0><b>Commander au café</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 0.0 / 100</b></color> }
+{ <color:#E2E8F0>Progress 18%</color> | <color:#020617>xxx</color> | <color:#635BFF>██</color><color:#1E293B>░░░░░░░░░░</color> }
+.
+<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+.
+<color:#E2E8F0><size:30><b>Dialogue</b></size></color>
+.
+{
+.
+{ <color:#020617>xxx</color> | {
+<color:#E2E8F0><b>FUNCTIONS  /  Dialogue at the café</b></color>
+.
+<color:#94A3B8>Read and listen. Turn a line to see its translation and a note.</color>
+.
+{ <color:#94A3B8>Le serveur</color> | <color:#E2E8F0>Bonjour, vous désirez ?</color> | [ <color:#4338CA>▶</color> ] | [ <color:#4338CA>↻</color> ] }
+.
+{ <color:#020617>xxxxxxxxxx</color> | <color:#94A3B8>Le client</color> | <color:#E2E8F0>Bonjour ! <b>Je voudrais</b> un café, s'il vous plaît.</color> | [ <color:#4338CA>▶</color> ] | [ <color:#4338CA>↻</color> ] }
+.
+{ <color:#94A3B8>Le serveur</color> | {
+<color:#E2E8F0>Un café, très bien. Et avec ceci ?</color>
+<color:#94A3B8>Turned: A coffee, very good. Anything else?</color>
+<color:#94A3B8>“Et avec ceci ?” is what staff say to ask if you want more.</color>
+} | [ <color:#4338CA>↻</color> ] }
+.
+<color:#94A3B8>Line 3 of 10</color>
+.
+[ <color:#020617>                     Next line                     </color> ]
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+@endsalt
+```
+<!-- mockup:end mockups/05-function-lesson/03-dialogue/dialogue.puml -->
+
+#### Functions: Expression matching
+
+<a id="mockup-05-function-lesson-04-matching-expression-matching"></a>
+
+[Salt source](mockups/05-function-lesson/04-matching/expression-matching.puml)
+
+<!-- mockup:begin mockups/05-function-lesson/04-matching/expression-matching.puml -->
+```plantuml
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xxx</color> | {
+{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
+.
+{ <color:#E2E8F0><b>Commander au café</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 4.1 / 100</b></color> }
+{ <color:#E2E8F0>Progress 34%</color> | <color:#020617>xxx</color> | <color:#635BFF>████</color><color:#1E293B>░░░░░░░░</color> }
+.
+<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+.
+<color:#E2E8F0><size:30><b>Match the expressions</b></size></color>
+.
+{
+.
+{ <color:#020617>xxx</color> | {
+<color:#E2E8F0><b>FUNCTIONS  /  Match the expressions</b></color>
+.
+<color:#E2E8F0>Select an expression on one side, then its partner on the other.</color>
+.
+{
+<color:#E2E8F0><b>English</b></color> | <color:#020617>xxxxxxx</color> | <color:#E2E8F0><b>French</b></color>
+.
+[ <color:#4338CA>I would like …</color> ] | <color:#635BFF>───╮</color> | [ <color:#4338CA>C'est combien ? ▶</color> ]
+.
+[ <color:#4338CA>How much is it?</color> ] | <color:#635BFF>   ╰──</color> | [ <color:#4338CA>Je voudrais … ▶</color> ]
+.
+[ <color:#4338CA>The bill, please.</color> ] | <color:#020617>xxxxxxx</color> | [ <color:#4338CA>L'addition, s'il vous plaît. ▶</color> ]
+.
+[ <color:#4338CA>What would you like?</color> ] | <color:#020617>xxxxxxx</color> | [ <color:#4338CA>Vous désirez ? ▶</color> ]
+ }
+.
+<color:#94A3B8>Expressions: 2 pages of 4 pairs; the 4 words follow on their own page.</color>
+.
+[ <color:#64748B>                        Check                        </color> ]
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+@endsalt
+```
+<!-- mockup:end mockups/05-function-lesson/04-matching/expression-matching.puml -->
+
+#### Functions: Word order
+
+<a id="mockup-05-function-lesson-05-word-order-word-order"></a>
+
+[Salt source](mockups/05-function-lesson/05-word-order/word-order.puml)
+
+<!-- mockup:begin mockups/05-function-lesson/05-word-order/word-order.puml -->
+```plantuml
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xxx</color> | {
+{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
+.
+{ <color:#E2E8F0><b>Commander au café</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 12.8 / 100</b></color> }
+{ <color:#E2E8F0>Progress 52%</color> | <color:#020617>xxx</color> | <color:#635BFF>██████</color><color:#1E293B>░░░░░░</color> }
+.
+<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+.
+<color:#E2E8F0><size:30><b>Build the sentence</b></size></color>
+.
+{
+.
+{ <color:#020617>xxx</color> | {
+<color:#E2E8F0><b>FUNCTIONS  /  Build the sentence</b></color>
+.
+<color:#E2E8F0>Put the words in order.</color>
+.
+<color:#E2E8F0><b>Your sentence</b></color>
+{ [ <color:#4338CA>Je</color> ] | [ <color:#4338CA>voudrais</color> ] | <color:#94A3B8>____</color> | <color:#94A3B8>____</color> | <color:#94A3B8>____</color> }
+.
+<color:#E2E8F0><b>Word bank</b></color>
+{ [ <color:#4338CA>thé,</color> ] | [ <color:#4338CA>s'il vous plaît</color> ] | [ <color:#4338CA>un</color> ] }
+.
+<color:#94A3B8>One sentence per page, one for each expression; every word is used.</color>
+.
+[ <color:#64748B>                        Check                        </color> ]
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+@endsalt
+```
+<!-- mockup:end mockups/05-function-lesson/05-word-order/word-order.puml -->
+
+#### Functions: Dialogue gaps
+
+<a id="mockup-05-function-lesson-06-dialogue-gap-choice-dialogue-gap-choice"></a>
+
+[Salt source](mockups/05-function-lesson/06-dialogue-gap-choice/dialogue-gap-choice.puml)
+
+<!-- mockup:begin mockups/05-function-lesson/06-dialogue-gap-choice/dialogue-gap-choice.puml -->
+```plantuml
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xxx</color> | {
+{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
+.
+{ <color:#E2E8F0><b>Commander au café</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 18.9 / 100</b></color> }
+{ <color:#E2E8F0>Progress 66%</color> | <color:#020617>xxx</color> | <color:#635BFF>████████</color><color:#1E293B>░░░░</color> }
+.
+<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+.
+<color:#E2E8F0><size:30><b>Complete the dialogue</b></size></color>
+.
+{
+.
+{ <color:#020617>xxx</color> | {
+<color:#E2E8F0><b>FUNCTIONS  /  Complete the dialogue</b></color>
+.
+{ <color:#94A3B8>Le serveur</color> | <color:#E2E8F0>Voilà votre thé, madame.</color> | [ <color:#4338CA>▶</color> ] }
+.
+{ <color:#94A3B8>La cliente</color> | <color:#E2E8F0><size:21>Merci ! ___ ?</size></color> }
+.
+<back:#0F172A><color:#E2E8F0><size:21>   C'est combien                                </size></color></back>
+.
+<back:#0F172A><color:#E2E8F0><size:21>   Je voudrais                                  </size></color></back>
+.
+<back:#0F172A><color:#E2E8F0><size:21>   Vous désirez                                 </size></color></back>
+.
+<back:#0F172A><color:#E2E8F0><size:21>   Et avec ceci                                 </size></color></back>
+.
+<color:#94A3B8>Choose the expression that fits the gap.</color>
+.
+[ <color:#64748B>                        Check                        </color> ]
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+@endsalt
+```
+<!-- mockup:end mockups/05-function-lesson/06-dialogue-gap-choice/dialogue-gap-choice.puml -->
+
+#### Functions: Exam replies
+
+<a id="mockup-05-function-lesson-07-exam-reply-word-order"></a>
+
+[Salt source](mockups/05-function-lesson/07-exam/reply-word-order.puml)
+
+<!-- mockup:begin mockups/05-function-lesson/07-exam/reply-word-order.puml -->
+```plantuml
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xxx</color> | {
+{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
+.
+{ <color:#E2E8F0><b>Commander au café</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 21.4 / 100</b></color> }
+{ <color:#E2E8F0>Progress 74%</color> | <color:#020617>xxx</color> | <color:#635BFF>█████████</color><color:#1E293B>░░░</color> | <color:#020617>xxx</color> | <color:#635BFF><size:32>◯</size></color><color:#E2E8F0><size:21> 52s</size></color> }
+.
+<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+.
+<color:#E2E8F0><size:30><b>Final exam  /  Page 1 of 3</b></size></color>
+.
+{
+.
+{ <color:#020617>xxx</color> | {
+<color:#E2E8F0><b>EXAM  /  Final exam  /  Page 1 of 3</b></color>
+.
+<color:#94A3B8>Build the answer. Not every word fits.</color>
+.
+{ <color:#94A3B8>Le serveur</color> | <color:#E2E8F0>Vous désirez autre chose ?</color> | [ <color:#4338CA>▶</color> ] }
+{ <color:#94A3B8>Le client</color> | { [ <color:#4338CA>Non,</color> ] | [ <color:#4338CA>merci.</color> ] | <color:#94A3B8>____</color> | <color:#94A3B8>____</color> | <color:#94A3B8>____</color> } }
+{ <color:#020617>xxxxxxxx</color> | { [ <color:#4338CA>L'addition,</color> ] | [ <color:#4338CA>voudrais</color> ] | [ <color:#4338CA>s'il vous plaît</color> ] | [ <color:#4338CA>Le</color> ] | [ <color:#4338CA>désirez</color> ] } }
+.
+<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+.
+{ <color:#94A3B8>La serveuse</color> | <color:#E2E8F0>Bonjour, madame. Vous désirez ?</color> | [ <color:#4338CA>▶</color> ] }
+{ <color:#94A3B8>La cliente</color> | { <color:#94A3B8>____</color> | <color:#94A3B8>____</color> | <color:#94A3B8>____</color> | <color:#94A3B8>____</color> } }
+{ <color:#020617>xxxxxxxx</color> | { [ <color:#4338CA>Bonjour !</color> ] | [ <color:#4338CA>voudrais</color> ] | [ <color:#4338CA>Je</color> ] | [ <color:#4338CA>un chocolat.</color> ] | [ <color:#4338CA>désire</color> ] } }
+.
+<color:#94A3B8>Answers are shown after the complete exam.</color>
+.
+[ <color:#020617>                      Continue                      </color> ]
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+@endsalt
+```
+<!-- mockup:end mockups/05-function-lesson/07-exam/reply-word-order.puml -->
+
+#### Functions: Exam dialogue
+
+<a id="mockup-05-function-lesson-07-exam-dialogue-gap-typing"></a>
+
+[Salt source](mockups/05-function-lesson/07-exam/dialogue-gap-typing.puml)
+
+<!-- mockup:begin mockups/05-function-lesson/07-exam/dialogue-gap-typing.puml -->
+```plantuml
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xxx</color> | {
+{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
+.
+{ <color:#E2E8F0><b>Commander au café</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 21.4 / 100</b></color> }
+{ <color:#E2E8F0>Progress 88%</color> | <color:#020617>xxx</color> | <color:#635BFF>██████████</color><color:#1E293B>░░</color> | <color:#020617>xxx</color> | <color:#635BFF><size:32>◯</size></color><color:#E2E8F0><size:21> 1:47</size></color> }
+.
+<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+.
+<color:#E2E8F0><size:30><b>Final exam  /  Page 3 of 3</b></size></color>
+.
+{
+.
+{ <color:#020617>xxx</color> | {
+<color:#E2E8F0><b>EXAM  /  Final exam  /  Page 3 of 3</b></color>
+.
+<color:#94A3B8>Fill each gap with an expression from this lesson.</color>
+.
+{ <color:#94A3B8>Le serveur</color> | <color:#E2E8F0>Bonsoir, monsieur. Vous désirez ?</color> }
+{ <color:#94A3B8>Le client</color> | { <color:#E2E8F0>Bonsoir.</color> | "<color:#E2E8F0>Je voudrais</color>       " | <color:#E2E8F0>une limonade, s'il vous plaît.</color> } }
+{ <color:#94A3B8>Le serveur</color> | <color:#E2E8F0>Très bien. Et avec ceci ?</color> }
+{ <color:#94A3B8>Le client</color> | { <color:#E2E8F0>C'est tout, merci.</color> | "<color:#94A3B8>Type here</color>         " | <color:#E2E8F0>?</color> } }
+.
+<color:#94A3B8>Line 4 of 9  ·  earlier gaps stay editable until the page is submitted</color>
+.
+{ [ <color:#4338CA>        Next line        </color> ] }
+.
+<color:#94A3B8>On the last line the button becomes Continue; time-out submits the page.</color>
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+.
+ } | <color:#020617>xxx</color> }
+.
+ }
+@endsalt
+```
+<!-- mockup:end mockups/05-function-lesson/07-exam/dialogue-gap-typing.puml -->
+
+## 10. Sample generation and review gates
 
 “First ten” refers specifically to `content/outlines/fr-a1.json`: filter that outline by kind, preserve its order, then take ten; it does not mean the first twenty overall entries.
 
@@ -3178,7 +3738,7 @@ Phase 1 creates **20 brief files and 20 lesson files**. Briefs must be reviewed 
 
 Review checks: correct language pair, appropriate A1 vocabulary, full outline-intent coverage, article/gender applicability, mixed target difficulty where the topic allows (not forced), the standard of 18 targets with explained exceptions (D14), manageable duration (allowing longer large-inventory lessons), correct examples/answer keys, sensible exercise selection (grammar), pitfalls, and exam coverage. Schema validity is necessary but does not replace this teaching-content review.
 
-## 10. Phases and acceptance criteria
+## 11. Phases and acceptance criteria
 
 Detailed implementation issue bodies and dependencies are in [ISSUES.md](ISSUES.md). The backlog is published on GitHub; [ISSUES.md](ISSUES.md#published-issue-mapping) maps each logical ID to its issue.
 
@@ -3188,7 +3748,7 @@ Detailed implementation issue bodies and dependencies are in [ISSUES.md](ISSUES.
 | 1 | Skeleton and shared contracts | Catalog discovery of all outlines, listening exercise contract/renderers with no-voice help page, learning-language/level/category selection, independent en/fr/de mother-tongue/interface controls, multilingual brief/content contracts, structured artifact viewers and header-toggle JSON tree, `dist` deployment verified on Pages, category schemas, Makefile workflow with help/run/build/generation/test/mockup targets, offline generation, environment example, approved 20 briefs/20 lessons, start/session/exercise host, shared tests, vocabulary/grammar architecture review, retirement of legacy prompt/schema files after schema migration, and final index/artifact mockup update from the prototype. |
 | 2 | Vocabulary | Introduction/audio, flashcards, matching, integrated noun-gender/reviewed overview, typed reference gaps, timed translation exam, immediate confirmed practice feedback, final results with exam/practice answer review menu, weighted progress/score header, listening choice/dictation with the no-voice help page, all 48 vocabulary lessons generatable/playable (D44), and complete journeys/tests. Close with vocabulary mockups updated from actual pages. |
 | 3 | Grammar | Seven practice interactions, 2–4 block flow, production-feedback placeholder, timed mixed exams, final results with exam/practice answer review menu and scores, all 48 grammar lessons generatable/playable, end-to-end tests, and final grammar mockup updates from actual pages. |
-| 4 | Functions | Requirements and schema review first; then define generation, interaction, scoring, content, and acceptance issues. Finish implementation with mockups refreshed from actual pages. |
+| 4 | Functions | Requirements agreed in P4-01 (section 8). Brief and lesson content schemas, flashcard/dialogue/matching and word-order/dialogue-gap/exam renderers, three hand-written test lessons, the generation decision with the remaining eleven lessons, end-to-end validation, and function mockups refreshed from actual pages. |
 | 5 | Reading | Requirements and schema review first; then define generation, interaction, scoring, content, and acceptance issues. Finish implementation with mockups refreshed from actual pages. |
 
 Phase 1 viewers can inspect grammar/vocabulary content before exercise renderers are complete. The session host is tested with fixtures and only starts lessons whose renderers are available; it must not pretend unimplemented exercises are playable.
@@ -3214,10 +3774,11 @@ Use the following review, cleanup, and mockup gates in the issue plan. Full issu
 | [P2-08](https://github.com/bastian-schnitzler/lesson_prototype/issues/25) | Improve vocabulary lesson mockups from the running prototype | Final phase 2 issue, after complete-session validation and formatted text. |
 | [P3-07](https://github.com/bastian-schnitzler/lesson_prototype/issues/67) | Lengthen grammar lessons: length rules, new verbs and the ten samples rewritten | Added 2026-10-08 at the product owner's request; P2-07 follows its rules. |
 | [P3-08](https://github.com/bastian-schnitzler/lesson_prototype/issues/32) | Improve grammar lesson mockups from the running prototype | Final phase 3 issue, after complete grammar integration. |
-| [P4-02](https://github.com/bastian-schnitzler/lesson_prototype/issues/34) | Improve function lesson mockups from the running prototype | Final phase 4 task; deferred until requirements and future implementation issues are complete. |
+| [P4-03](https://github.com/bastian-schnitzler/lesson_prototype/issues/76) | Write and review the three function test lessons | Directly after the P4-02 schemas, before the renderers; the P4-06 generation decision follows their review. |
+| [P4-08](https://github.com/bastian-schnitzler/lesson_prototype/issues/34) | Improve function lesson mockups from the running prototype | Final phase 4 issue (renumbered from P4-02 in P4-01), after end-to-end validation. |
 | [P5-02](https://github.com/bastian-schnitzler/lesson_prototype/issues/36) | Improve reading lesson mockups from the running prototype | Final phase 5 task; deferred until requirements and future implementation issues are complete. |
 
-Each phase-closing mockup issue is the **last issue of its milestone** (D30): it carries the highest logical ID in its phase (P1-12, P2-08, P3-08, P4-02, P5-02) and depends, directly or transitively, on every other issue of that phase. When work is added to a phase, the new issue takes the mockup issue's place in the numbering and the mockup issue moves to the end; existing GitHub issue numbers stay unchanged.
+Each phase-closing mockup issue is the **last issue of its milestone** (D30): it carries the highest logical ID in its phase (P1-12, P2-08, P3-08, P4-08, P5-02) and depends, directly or transitively, on every other issue of that phase. When work is added to a phase, the new issue takes the mockup issue's place in the numbering and the mockup issue moves to the end; existing GitHub issue numbers stay unchanged.
 
 Phase-closing mockup work compares actual pages and representative states with their editable Salt sources, refreshes the matching embedded PlantUML fences and checks source/Markdown parity, and updates the single root mockup README, SPEC links, and applicable published issue assets. Record the prototype revision used for comparison and resolve/document discrepancies with the agreed specification. Phase completion includes this mockup refresh. Phase 0 produces the specification rather than application pages, so its closing task is backlog publication.
 
@@ -3260,17 +3821,17 @@ Keep the ID exactly as in ISSUES.md (uppercase `P`, two-digit issue number) and 
 
 CI does not call Gemini. Live generation and pedagogical review are separate authoring checks using the configured `.env` credentials.
 
-## 11. Requirements still needed for functions and reading
+## 12. Requirements still needed for reading
 
-Do not invent their lesson sequences now. Each requirements review must define introduction/text/dialogue presentation, interaction types, target-language/native-language balance, item counts, duration, audio needs, retries/hints, exact answer or rubric rules, final exam, scoring, feedback, and content review criteria.
+The functions requirements are agreed in section 8 (P4-01). Do not invent the reading lesson sequence now. Its requirements review must define introduction/text/dialogue presentation, interaction types, target-language/native-language balance, item counts, duration, audio needs, retries/hints, exact answer or rubric rules, final exam, scoring, feedback, and content review criteria.
 
-The outline already supplies 14 functions and 10 reading intents. Use those as the future generation inputs once their schema and runtime contracts are agreed. Reuse the shared preparation/session/scoring host where it fits; introduce new typed payloads and renderers explicitly.
+The outline already supplies 10 reading intents. Use them as the future generation inputs once the reading schema and runtime contracts are agreed. Reuse the shared preparation/session/scoring host where it fits; introduce new typed payloads and renderers explicitly.
 
 ### GitHub issue diagrams and mockups
 
 When publishing the agreed backlog, include relevant Mermaid flows as fenced `mermaid` blocks and applicable Salt sources as fenced `plantuml` blocks. Include server-rendered mockup image URLs derived from the current source for GitHub display, since GitHub does not render PlantUML fences natively. Link each editable `.puml` at the specification commit and verify diagram/image rendering. Never commit PNG/SVG copies in the mockup folder. Keep each issue's examples focused on its scope and refresh its copied PlantUML source and image URL whenever the corresponding source changes. Include specification/dependency links as well. The backlog was published in P0-04; keep these assets current under the synchronization rule.
 
-## 12. Revision log
+## 13. Revision log
 
 | Version | Date | Change |
 | --- | --- | --- |
@@ -3317,3 +3878,4 @@ When publishing the agreed backlog, include relevant Mermaid flows as fenced `me
 | 0.42 | 2026-10-08 | P3-01: reviewed grammar renderer composition and mixed exams ([record](reviews/2026-10-08-p3-01-grammar-review.md)). Pronoun/form exercises are validated to the topics pronouns, verbs_morphology and verb_usage. Content items must assess exactly the rules planned for their exercise or exam page and cover them. Exam pages may mix the three exam types across pages under one shared scorer. Brief prompt `brief-v5`. P3-01 no longer depends on P2-08; phase 3 starts while phase 2 stays open. |
 | 0.43 | 2026-10-08 | P3-02 review: seventh grammar practice type `grammar_person_matching` (D48), required in pronoun and verb-form lessons and added to the four such samples and the être fixture; prompts `brief-v6` and `content-v3`. The grammar start page shows the lesson outline (teaching blocks with their exercises, then the exam) as colour-coded rows. Word order leaves out the final full stop; a one-row pronoun match is shown as a multiple-choice gap; the imperative lesson is exempt from person matching. Results lists align task parts, arrows and answers in columns. Multiple-choice gaps have an optional hint above the sentence; the samples' parenthetical cues moved there. P3-02: pronoun/form matching with a token bank, pointer drag and drop (mouse, pen, touch) and click/keyboard placement, tokens used once, placed forms shown as plain text without a frame, no fill counter, per-row checks in place with correct form and explanation; pronoun/form typing as labelled rows marked in place after Check. |
 | 0.44 | 2026-10-08 | P3-07 (new issue; the grammar mockup refresh moves to P3-08): grammar lesson length rules (D49, section 7 "Lesson length"): 2–4 exercises of 4–8 items per block, at least 34 practice and 16 exam units, 2–4 exam pages, one person matching board per verb, realistic per-unit estimates (a first version with 50/24 units was shortened to about two thirds in the review); error spotters show the correction only after a word is selected; `newVerbs` in grammar briefs, shown on the start page and the first explanation page; prompts `brief-v7` and `content-v4`; the length rules are a quality gate (generator, `make sample-lessons`, authoring tool), not a playability condition; authoring tool `scripts/author-grammar.ts`; the ten grammar samples rewritten by hand; a comma or full stop follows a gap without a space. |
+| 0.45 | 2026-10-13 | P4-01: function lesson requirements (D50, D51; new section 8 "Functions learning flow", later sections renumbered): 6–10 expressions and 0–6 words, flashcards, model dialogue, matching, word order, dialogue gaps, exam replies with distractors and a typed exam dialogue; brief (expressions and words with example sentences) and generated lesson content, page rules, scoring, results, review criteria and implementation plan; eight function mockups; three hand-written test lessons before the generation decision. Phase 4 backlog P4-02 to P4-07 added (the three test lessons are P4-03, directly after the schemas); the mockup refresh becomes P4-08. |
