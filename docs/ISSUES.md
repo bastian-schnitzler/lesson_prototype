@@ -51,7 +51,7 @@ These issue bodies were published to GitHub in P0-04 on 2026-10-06. Each GitHub 
 | P5-01 | [#35](https://github.com/bastian-schnitzler/lesson_prototype/issues/35) | Define reading requirements and implementation backlog |
 | P5-02 | [#36](https://github.com/bastian-schnitzler/lesson_prototype/issues/36) | Update reading lesson mockups from the prototype |
 | P6-01 | [#69](https://github.com/bastian-schnitzler/lesson_prototype/issues/69) | Sidebar — lesson navigation, exams and results |
-| P6-02 | not published yet | Implement the feedback according to the feedback page |
+| P6-02 | [#90](https://github.com/bastian-schnitzler/lesson_prototype/issues/90) | Implement the feedback according to the feedback page |
 | P6-06 | [#74](https://github.com/bastian-schnitzler/lesson_prototype/issues/74) | Update Phase 6 desktop and mobile mockups from the prototype |
 
 
@@ -1059,7 +1059,7 @@ Dependencies: existing shared session/navigation implementation (P1-09).
 
 ### P6-02: Implement the feedback according to the feedback page
 
-GitHub: not published yet. Replaces the former P6-02 to P6-05 ([#70](https://github.com/bastian-schnitzler/lesson_prototype/issues/70) to [#73](https://github.com/bastian-schnitzler/lesson_prototype/issues/73)), which are closed as not planned.
+GitHub: [#90](https://github.com/bastian-schnitzler/lesson_prototype/issues/90). Replaces the former P6-02 to P6-05 ([#70](https://github.com/bastian-schnitzler/lesson_prototype/issues/70) to [#73](https://github.com/bastian-schnitzler/lesson_prototype/issues/73)), which are closed as not planned.
 
 Milestone: **Phase 6**.
 
