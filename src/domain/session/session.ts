@@ -44,7 +44,7 @@ export interface SessionRecord {
   drafts: Record<string, UnitResponse>;
   locked: Record<string, LockedUnit>;
   exam: Record<string, { startedAt: number; deadline: number; timedOut: boolean }>;
-  /** Results menu: 'exam' or a step ID. */
+  /** Results sidebar: 'exam', an exam part ('exam:translation', 'exam:dictation'…) or a step ID. */
   selection: string;
 }
 
