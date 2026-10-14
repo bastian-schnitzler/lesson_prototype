@@ -223,7 +223,7 @@ describe('grammar content validation', () => {
     expect(messages(checkContent('fr-negation-ne-pas', (c) => (c.steps[4].pages[0].items[0].faultyTokenId = 'w9')))).toMatch(/faultyTokenId/);
     expect(messages(checkContent('fr-negation-ne-pas', (c) => (c.steps[4].pages[0].items[0].correction.choices = ['pas', 'non'])))).toMatch(/select mode/);
     expect(messages(checkContent('fr-verb-etre-present', (c) => (c.steps[9].pages[0].items[0].hint = { en: 'h', fr: 'h', de: 'h' })))).toMatch(/no hint/);
-    expect(messages(checkContent('fr-verb-etre-present', (c) => (c.steps[7].pages[0].items[0].ruleIds = ['r-x'])))).toMatch(/unknown rule r-x/);
+    expect(messages(checkContent('fr-verb-etre-present', (c) => (c.steps[6].pages[0].items[0].ruleIds = ['r-x'])))).toMatch(/unknown rule r-x/);
   });
 
   it('requires items to assess exactly the planned rules of their exercise or exam page (P3-01)', () => {
@@ -245,6 +245,20 @@ describe('grammar content validation', () => {
   it('keeps the production feedback step a fixed placeholder', () => {
     const r = checkContent('fr-negation-ne-pas', (c) => c.steps[5].pages[0].items.push({ type: 'production_feedback_placeholder', itemId: 'feedback-2' }));
     expect(messages(r)).toMatch(/fixed production placeholder/);
+  });
+
+  it('requires fresh exam examples: no exam sentence repeats a practice sentence or an explanation example (P3-05)', () => {
+    expect(messages(checkContent('fr-negation-ne-pas'))).not.toMatch(/fresh example/);
+    const practice = checkContent('fr-negation-ne-pas', (c) => {
+      const { tokens, acceptedOrders } = c.steps[1].pages[0].items[0];
+      Object.assign(c.steps[6].pages[0].items[0], { tokens, acceptedOrders });
+    });
+    expect(messages(practice)).toMatch(/the exam repeats ".+" from the lesson; use a fresh example/);
+    const example = checkContent('fr-negation-ne-pas', (c) => {
+      const gap = c.steps[6].pages[1].items[0];
+      c.steps[0].pages[0].items[0].examples[0].text = `${gap.before} ${gap.accepted.answers[0]} ${gap.after}.`;
+    });
+    expect(messages(example)).toMatch(/fresh example/);
   });
 });
 

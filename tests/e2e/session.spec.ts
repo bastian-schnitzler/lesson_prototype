@@ -263,6 +263,52 @@ test('builds a word-order sentence with the keyboard only (P3-04)', async ({ pag
   await expect(bank.getByRole('button')).toHaveText([word]);
 });
 
+test('grammar: placeholder, timed mixed exam and deferred answer review (P3-05)', async ({ page }) => {
+  await page.clock.install();
+  await page.goto('./#/lesson/fr-negation-ne-pas/play');
+  await proceed(page);
+  // Practice as in the countdown test below, until the production-feedback placeholder.
+  const placeholder = page.getByText('Individual feedback would be here on production.');
+  while (!(await placeholder.isVisible())) {
+    await expect(page.locator('.task-card.is-celebrating')).toHaveCount(0);
+    if (await placeholder.isVisible()) break;
+    const spot = page.locator('.spot');
+    if (await spot.locator('button.token:not([disabled])').count()) await spot.locator('button.token:not([disabled])').first().click();
+    for (const input of await page.locator('.task-card input.text-input:not([readonly])').all()) await input.fill('ne pas');
+    for (const group of await page.locator('fieldset.choices:not([disabled])').all()) await group.locator('input').first().check();
+    for (const bank of await page.locator('.order-bank').all()) while (await bank.locator('button').count()) await bank.locator('button').first().click();
+    await submit(page);
+  }
+  const score = page.locator('.session-score');
+  const practiceScore = (await score.textContent())!;
+  await proceed(page); // the placeholder adds no score and needs no answer
+  await passExamIntro(page);
+  // Exam page 1: word order, no marks after Continue.
+  await expect(page.getByRole('timer')).toHaveText('1:00');
+  for (const word of ['Nous', 'ne', 'mangeons', 'pas', 'de', 'viande']) await page.getByRole('group', { name: 'Available words' }).getByRole('button', { name: word, exact: true }).click();
+  await proceed(page);
+  // Exam page 2: a capital letter earns half a point; the page then runs out of time.
+  await expect(page.getByRole('timer')).toHaveText('0:45');
+  await expect(page.locator('.is-wrong, .is-right, .is-almost, .feedback')).toHaveCount(0);
+  await expect(score).toHaveText(practiceScore); // exam points stay hidden until the results
+  await page.getByRole('textbox').fill('N’');
+  await page.clock.fastForward('00:50');
+  // Results: the exam is selected; every answer with its class, the timeout note and the half point.
+  await expect(page.getByRole('heading', { level: 1, name: 'Final exam' })).toBeVisible();
+  await expect(page.locator('.result-item')).toHaveCount(2);
+  await expect(page.locator('.result-item.outcome-fully_correct')).toContainText('Nous ne mangeons pas de viande');
+  const half = page.locator('.result-item.outcome-orthography_only');
+  await expect(half).toContainText('Time expired; the saved answer was locked.');
+  await expect(half.locator('.result-icon')).toHaveText('!');
+  // The sidebar offers the practice exercises; one selected shows its answers, then back to the exam.
+  const nav = page.locator('.lesson-nav');
+  if (!(await nav.isVisible())) return; // phones show no sidebar on the results page
+  await nav.getByRole('button', { name: /^Find the mistake/ }).click();
+  await expect(page.getByRole('heading', { level: 1, name: 'Find the mistake' })).toBeVisible();
+  await nav.getByRole('button', { name: /^Final exam/ }).click();
+  await expect(page.getByRole('heading', { level: 1, name: 'Final exam' })).toBeVisible();
+});
+
 test('locks an exam page when its brief-defined countdown expires', async ({ page }) => {
   await page.clock.install();
   await page.goto('./#/lesson/fr-negation-ne-pas/play');

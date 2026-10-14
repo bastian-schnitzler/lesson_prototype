@@ -418,6 +418,24 @@ function checkGrammarContent(c: GrammarContent, b: GrammarBrief, issues: Issues)
   });
   const examPages = c.steps[c.steps.length - 1].pages.map((pg) => pg.pageId);
   issues.check(sameSet(examPages, [...examPlan.keys()]), 'steps', 'exam pages must match the brief exam plan');
+  // The exam uses fresh examples (P3-05): no exam sentence repeats an explanation example or a practice sentence.
+  const taught = new Set(c.steps.slice(0, -1).flatMap((step) => step.pages.flatMap((pg) => pg.items.flatMap(grammarSentences))));
+  c.steps[c.steps.length - 1].pages.forEach((page, pi) => page.items.forEach((item, ii) => {
+    for (const sentence of grammarSentences(item)) issues.check(!taught.has(sentence), `steps.${c.steps.length - 1}.pages.${pi}.items.${ii}`, `the exam repeats "${sentence}" from the lesson; use a fresh example`);
+  }));
+}
+
+/** Comparable full sentences of a grammar item (with its answer filled in); rows and placeholders have none. */
+function grammarSentences(item: GrammarItem): string[] {
+  const sentence = (s: string) => s.normalize('NFC').toLowerCase().replace(/[’ʼ]/g, "'").replace(/->|→/g, ' ').replace(/[^\p{L}\p{N}']+/gu, ' ').trim();
+  switch (item.type) {
+    case 'grammar_explanation': return item.examples.map((e) => sentence(e.text));
+    case 'grammar_gap_typing': return [sentence(`${item.before} ${item.accepted.answers[0]} ${item.after}`)];
+    case 'grammar_gap_choice': return [sentence(`${item.before} ${item.choices.find((ch) => ch.choiceId === item.answerChoiceId)?.text ?? ''} ${item.after}`)];
+    case 'grammar_word_order': return [sentence(item.acceptedOrders[0].map((id) => item.tokens.find((t) => t.tokenId === id)?.text ?? '').join(' '))];
+    case 'grammar_error_spotter': return [sentence(item.tokens.map((t) => (t.tokenId === item.faultyTokenId ? item.correction.accepted.answers[0] : t.text)).join(' '))];
+    default: return [];
+  }
 }
 
 /* ======================================================= function lessons */
