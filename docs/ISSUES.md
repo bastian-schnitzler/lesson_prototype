@@ -1059,7 +1059,9 @@ Dependencies: existing shared session/navigation implementation (P1-09).
 
 ### P6-02: Implement the feedback according to the feedback page
 
-GitHub: [#90](https://github.com/bastian-schnitzler/lesson_prototype/issues/90). Replaces the former P6-02 to P6-05 ([#70](https://github.com/bastian-schnitzler/lesson_prototype/issues/70) to [#73](https://github.com/bastian-schnitzler/lesson_prototype/issues/73)), which are closed as not planned.
+GitHub: [#90](https://github.com/bastian-schnitzler/lesson_prototype/issues/90).
+
+Replaces the former P6-02 to P6-05 ([#70](https://github.com/bastian-schnitzler/lesson_prototype/issues/70) to [#73](https://github.com/bastian-schnitzler/lesson_prototype/issues/73)), which are closed as not planned.
 
 Milestone: **Phase 6**.
 
