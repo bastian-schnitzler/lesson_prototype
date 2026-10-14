@@ -116,7 +116,7 @@ describe('exact-typing phrase gaps (P3-03)', () => {
     expect(scoreUnit(there, 'là')).toEqual({ outcome: 'fully_correct', points: 1 });
     expect(scoreUnit(there, 'la')).toEqual({ outcome: 'orthography_only', points: 0.5 }); // a spelling mistake
     expect(scoreUnit(there, 'Là')).toEqual({ outcome: 'orthography_only', points: 0.5 });
-    const soon = unitOf('ex-time-typing-4');
+    const soon = unitOf('exam-future', 3);
     expect(scoreUnit(soon, 'bientot')).toEqual({ outcome: 'orthography_only', points: 0.5 });
     expect(scoreUnit(soon, 'demain')).toEqual({ outcome: 'incorrect', points: 0 });
   });

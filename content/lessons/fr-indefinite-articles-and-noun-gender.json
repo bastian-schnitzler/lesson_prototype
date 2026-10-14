@@ -14,7 +14,7 @@
     "fr": "Identifier le genre des noms français et choisir correctement entre les articles indéfinis un, une et des.",
     "de": "Das Genus französischer Nomen erkennen und die unbestimmten Artikel un, une und des korrekt auswählen."
   },
-  "estimatedMinutes": 17,
+  "estimatedMinutes": 15,
   "kind": "grammar",
   "topic": "nouns_and_determiners",
   "steps": [
@@ -315,98 +315,6 @@
               "itemId": "ex-singular-choice-5"
             }
           ]
-        },
-        {
-          "pageId": "ex-singular-choice-6",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-singular-gender"
-              ],
-              "before": "C’est",
-              "after": "maison.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "le"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "un"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "des"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "une"
-                }
-              ],
-              "answerChoiceId": "c-4",
-              "hint": null,
-              "answerExplanation": {
-                "en": "maison is feminine: une maison.",
-                "fr": "maison est féminin : une maison.",
-                "de": "maison ist feminin: une maison."
-              },
-              "itemId": "ex-singular-choice-6"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-singular-choice-7",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-singular-gender"
-              ],
-              "before": "Voici",
-              "after": "ordinateur.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "une"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "des"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "un"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "la"
-                }
-              ],
-              "answerChoiceId": "c-3",
-              "hint": null,
-              "answerExplanation": {
-                "en": "ordinateur is masculine: un ordinateur.",
-                "fr": "ordinateur est masculin : un ordinateur.",
-                "de": "ordinateur ist maskulin: un ordinateur."
-              },
-              "itemId": "ex-singular-choice-7"
-            }
-          ]
         }
       ]
     },
@@ -577,38 +485,6 @@
                 "de": "chat ist maskulin: un chat."
               },
               "itemId": "ex-singular-typing-5"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-singular-typing-6",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-singular-gender"
-              ],
-              "before": "C’est",
-              "after": "pomme.",
-              "accepted": {
-                "answers": [
-                  "une"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "pomme is feminine: une pomme.",
-                "fr": "pomme est féminin : une pomme.",
-                "de": "pomme ist feminin: une pomme."
-              },
-              "itemId": "ex-singular-typing-6"
             }
           ]
         }
@@ -1171,98 +1047,6 @@
               "itemId": "ex-plural-choice-5"
             }
           ]
-        },
-        {
-          "pageId": "ex-plural-choice-6",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-plural-des"
-              ],
-              "before": "Ce sont",
-              "after": "photos.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "des"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "le"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "un"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "une"
-                }
-              ],
-              "answerChoiceId": "c-1",
-              "hint": null,
-              "answerExplanation": {
-                "en": "photos is plural, so the article is des – for masculine and feminine nouns alike.",
-                "fr": "photos est au pluriel : l’article est des, pour les noms masculins comme féminins.",
-                "de": "photos steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
-              },
-              "itemId": "ex-plural-choice-6"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-plural-choice-7",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-plural-des"
-              ],
-              "before": "Voici",
-              "after": "oranges.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "la"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "des"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "un"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "une"
-                }
-              ],
-              "answerChoiceId": "c-2",
-              "hint": null,
-              "answerExplanation": {
-                "en": "oranges is plural, so the article is des – for masculine and feminine nouns alike.",
-                "fr": "oranges est au pluriel : l’article est des, pour les noms masculins comme féminins.",
-                "de": "oranges steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
-              },
-              "itemId": "ex-plural-choice-7"
-            }
-          ]
         }
       ]
     },
@@ -1698,8 +1482,8 @@
       "pages": [
         {
           "pageId": "exam-singular",
-          "estimatedDurationS": 90,
-          "timeLimitS": 140,
+          "estimatedDurationS": 60,
+          "timeLimitS": 90,
           "instructions": {
             "en": "Type the missing words.",
             "fr": "Écrivez les mots manquants.",
@@ -1785,53 +1569,13 @@
                 "de": "photo ist feminin: une photo."
               },
               "itemId": "exam-singular-4"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-singular-gender"
-              ],
-              "before": "Voici",
-              "after": "arbre.",
-              "accepted": {
-                "answers": [
-                  "un"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "arbre is masculine: un arbre.",
-                "fr": "arbre est masculin : un arbre.",
-                "de": "arbre ist maskulin: un arbre."
-              },
-              "itemId": "exam-singular-5"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-singular-gender"
-              ],
-              "before": "C’est",
-              "after": "banane.",
-              "accepted": {
-                "answers": [
-                  "une"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "banane is feminine: une banane.",
-                "fr": "banane est féminin : une banane.",
-                "de": "banane ist feminin: une banane."
-              },
-              "itemId": "exam-singular-6"
             }
           ]
         },
         {
           "pageId": "exam-plural",
-          "estimatedDurationS": 75,
-          "timeLimitS": 120,
+          "estimatedDurationS": 60,
+          "timeLimitS": 90,
           "instructions": {
             "en": "Type the missing words.",
             "fr": "Écrivez les mots manquants.",
@@ -1917,33 +1661,13 @@
                 "de": "assiettes steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
               },
               "itemId": "exam-plural-4"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-plural-des"
-              ],
-              "before": "Voici",
-              "after": "arbres.",
-              "accepted": {
-                "answers": [
-                  "des"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "arbres is plural, so the article is des – for masculine and feminine nouns alike.",
-                "fr": "arbres est au pluriel : l’article est des, pour les noms masculins comme féminins.",
-                "de": "arbres steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
-              },
-              "itemId": "exam-plural-5"
             }
           ]
         },
         {
           "pageId": "exam-mixed",
-          "estimatedDurationS": 75,
-          "timeLimitS": 120,
+          "estimatedDurationS": 60,
+          "timeLimitS": 90,
           "instructions": {
             "en": "Type the missing words.",
             "fr": "Écrivez les mots manquants.",
@@ -2029,26 +1753,6 @@
                 "de": "sacs steht im Plural, also des – bei maskulinen und femininen Nomen gleich."
               },
               "itemId": "exam-mixed-4"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-singular-gender"
-              ],
-              "before": "C’est",
-              "after": "film.",
-              "accepted": {
-                "answers": [
-                  "un"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "film is masculine: un film.",
-                "fr": "film est masculin : un film.",
-                "de": "film ist maskulin: un film."
-              },
-              "itemId": "exam-mixed-5"
             }
           ]
         }
@@ -2059,10 +1763,10 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "content-v4",
-    "generatedAt": "2026-10-13T23:32:33.864Z",
+    "generatedAt": "2026-10-14T16:27:37.984Z",
     "inputHashes": {
       "outline": "21cea9aeeacae2d7d0c58cde432c039e81a485c45fc20fb3991afbe89e01be25",
-      "brief": "53afd23d2fc1de3bf7d4f0484bda172fce8eb41435ee2544e2e296a058c6b297"
+      "brief": "8de63de320999a9e3ec27a219cedc9fda406b3ad13c7a93b180e09fa8a95d6cc"
     }
   }
 }

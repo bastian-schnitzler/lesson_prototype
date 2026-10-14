@@ -14,7 +14,7 @@
     "fr": "Apprendre les mots clés français utilisés pour remplir des formulaires administratifs et d'identité.",
     "de": "Lernen Sie wichtige französische Begriffe zum Ausfüllen von Verwaltungs- und Personalausweisformularen."
   },
-  "estimatedMinutes": 18,
+  "estimatedMinutes": 14,
   "provenance": {
     "generator": "lesson-prototype",
     "model": "gemini-3.6-flash",
@@ -27,20 +27,20 @@
   "kind": "vocabulary",
   "theme": "personal_identification",
   "coverageNotes": {
-    "en": "Covers essential fields on standard forms including personal details, civil status, and signature.",
-    "fr": "Couvre les champs essentiels des formulaires standards, y compris l'état civil et la signature.",
-    "de": "Deckt wesentliche Felder auf Standardformularen ab, einschließlich persönlicher Daten, Familienstand und Unterschrift."
+    "en": "Covers essential fields on standard forms: name, address, date of birth, nationality, profession and civil status.",
+    "fr": "Couvre les champs essentiels des formulaires : nom, adresse, date de naissance, nationalité, profession et état civil.",
+    "de": "Deckt wesentliche Formularfelder ab: Name, Adresse, Geburtsdatum, Nationalität, Beruf und Familienstand."
   },
-  "targetCount": 10,
+  "targetCount": 8,
   "countRationale": {
-    "en": "10 target items cover the essential fields required to fill out standard French forms at A1 level.",
-    "fr": "10 éléments cibles couvrent les champs essentiels nécessaires pour remplir des formulaires français au niveau A1.",
-    "de": "10 Zielbegriffe decken die wesentlichen Felder ab, die zum Ausfüllen standardmäßiger französischer Formulare auf A1-Niveau erforderlich sind."
+    "en": "8 target items keep the lesson within 15 minutes and cover the essential fields of French forms at A1 level.",
+    "fr": "8 éléments cibles gardent la leçon sous 15 minutes et couvrent les champs essentiels des formulaires français au niveau A1.",
+    "de": "8 Zielbegriffe halten die Lektion unter 15 Minuten und decken die wesentlichen Felder französischer Formulare auf A1-Niveau ab."
   },
   "difficultyBalance": {
-    "en": "8 core targets cover common single-word headings, while 2 demanding targets cover key compound phrases.",
-    "fr": "8 cibles de base couvrent les rubriques simples courantes, tandis que 2 cibles exigeantes couvrent les expressions composées clés.",
-    "de": "8 Grundbegriffe decken gängige Einzelwort-Überschriften ab, während 2 anspruchsvolle Begriffe wichtige zusammengesetzte Ausdrücke behandeln."
+    "en": "7 core targets cover common single-word headings, while une date de naissance is a demanding compound phrase.",
+    "fr": "7 cibles de base couvrent les rubriques simples courantes, tandis que une date de naissance est une expression composée plus exigeante.",
+    "de": "7 Grundbegriffe decken gängige Einzelwort-Überschriften ab, während une date de naissance ein anspruchsvollerer zusammengesetzter Ausdruck ist."
   },
   "prerequisites": [
     {
@@ -61,13 +61,12 @@
         "target-nom",
         "target-prenom",
         "target-adresse",
-        "target-date-de-naissance",
-        "target-lieu-de-naissance"
+        "target-date-de-naissance"
       ],
       "introduction": {
-        "en": "The fields of a **form**:\n\n- `un nom` – surname\n- `un prénom` – first name\n- `une adresse` – postal address\n- `une date de naissance` – date of birth, usually day/month/year: 15/03/2000\n- `un lieu de naissance` – place of birth\n\nForm labels usually have no article, but the translation exam asks for `un` or `une`.",
-        "fr": "Les champs d'un **formulaire** :\n\n- `un nom` – le nom de famille\n- `un prénom` – le nom personnel\n- `une adresse` – l'adresse postale\n- `une date de naissance` – en général jour/mois/année : 15/03/2000\n- `un lieu de naissance` – l'endroit où l'on est né\n\nLes champs n'ont généralement pas d'article, mais l'examen de traduction demande `un` ou `une`.",
-        "de": "Die Felder eines **Formulars**:\n\n- `un nom` – Nachname\n- `un prénom` – Vorname\n- `une adresse` – Postanschrift\n- `une date de naissance` – Geburtsdatum, meist Tag/Monat/Jahr: 15/03/2000\n- `un lieu de naissance` – Geburtsort\n\nFormularfelder haben meist keinen Artikel, aber die Übersetzungsprüfung verlangt `un` oder `une`."
+        "en": "The fields of a **form**:\n\n- `un nom` – surname\n- `un prénom` – first name\n- `une adresse` – postal address\n- `une date de naissance` – date of birth, usually day/month/year: 15/03/2000\n\nForm labels usually have no article, but the translation exam asks for `un` or `une`.",
+        "fr": "Les champs d'un **formulaire** :\n\n- `un nom` – le nom de famille\n- `un prénom` – le nom personnel\n- `une adresse` – l'adresse postale\n- `une date de naissance` – en général jour/mois/année : 15/03/2000\n\nLes champs n'ont généralement pas d'article, mais l'examen de traduction demande `un` ou `une`.",
+        "de": "Die Felder eines **Formulars**:\n\n- `un nom` – Nachname\n- `un prénom` – Vorname\n- `une adresse` – Postanschrift\n- `une date de naissance` – Geburtsdatum, meist Tag/Monat/Jahr: 15/03/2000\n\nFormularfelder haben meist keinen Artikel, aber die Übersetzungsprüfung verlangt `un` oder `une`."
       }
     },
     {
@@ -87,22 +86,6 @@
         "en": "**Status and profession**. Say each word aloud and study its example:\n\n- `une nationalité` – citizenship: Précisez votre nationalité sur la fiche.\n- `une profession` – occupation: Quelle est votre profession actuelle ?\n- `célibataire` – single: Cochez la case célibataire si vous n'êtes pas marié.\n- `marié` – married: Il est marié depuis deux ans.\n\n`marié` describes a man; a woman is mariée.",
         "fr": "**Situation et profession**. Dites chaque mot à voix haute et étudiez son exemple :\n\n- `une nationalité` : Précisez votre nationalité sur la fiche.\n- `une profession` : Quelle est votre profession actuelle ?\n- `célibataire` : Cochez la case célibataire si vous n'êtes pas marié.\n- `marié` : Il est marié depuis deux ans.\n\n`marié` se dit d'un homme ; pour une femme, on écrit mariée.",
         "de": "**Familienstand und Beruf**. Sprich jedes Wort laut und lies das Beispiel:\n\n- `une nationalité` – Staatsangehörigkeit: Précisez votre nationalité sur la fiche.\n- `une profession` – Beruf: Quelle est votre profession actuelle ?\n- `célibataire` – ledig: Cochez la case célibataire si vous n'êtes pas marié.\n- `marié` – verheiratet: Il est marié depuis deux ans.\n\n`marié` bezieht sich auf einen Mann; für eine Frau schreibt man mariée."
-      }
-    },
-    {
-      "id": "group-validation",
-      "label": {
-        "en": "Form Validation",
-        "fr": "Validation du formulaire",
-        "de": "Formularbestätigung"
-      },
-      "targetIds": [
-        "target-signature"
-      ],
-      "introduction": {
-        "en": "At the end of a form you sign: `une signature`.\n\nN'oubliez pas d'apposer votre signature en bas du document. – Do not forget to sign at the bottom of the document.",
-        "fr": "À la fin d'un formulaire, on signe : `une signature`.\n\nN'oubliez pas d'apposer votre signature en bas du document.",
-        "de": "Am Ende eines Formulars unterschreibst du: `une signature`.\n\nN'oubliez pas d'apposer votre signature en bas du document. – Vergessen Sie nicht, unten auf dem Dokument zu unterschreiben."
       }
     }
   ],
@@ -242,8 +225,8 @@
         "referenceTargetIds": [
           "target-adresse",
           "target-prenom",
-          "target-lieu-de-naissance",
-          "target-date-de-naissance"
+          "target-date-de-naissance",
+          "target-nom"
         ],
         "explanation": {
           "en": "un prénom means first name.  Prénom has an accent aigu on é.",
@@ -254,8 +237,8 @@
       "listeningOptionTargetIds": [
         "target-adresse",
         "target-prenom",
-        "target-lieu-de-naissance",
-        "target-date-de-naissance"
+        "target-date-de-naissance",
+        "target-nom"
       ]
     },
     {
@@ -318,7 +301,7 @@
           "target-date-de-naissance",
           "target-adresse",
           "target-nationalite",
-          "target-lieu-de-naissance"
+          "target-nom"
         ],
         "explanation": {
           "en": "une adresse means address. ",
@@ -330,7 +313,7 @@
         "target-date-de-naissance",
         "target-adresse",
         "target-nationalite",
-        "target-lieu-de-naissance"
+        "target-nom"
       ]
     },
     {
@@ -389,10 +372,10 @@
           ]
         },
         "referenceTargetIds": [
-          "target-lieu-de-naissance",
           "target-date-de-naissance",
           "target-profession",
-          "target-nationalite"
+          "target-nationalite",
+          "target-nom"
         ],
         "explanation": {
           "en": "une date de naissance means date of birth. ",
@@ -401,84 +384,10 @@
         }
       },
       "listeningOptionTargetIds": [
-        "target-lieu-de-naissance",
         "target-date-de-naissance",
         "target-profession",
-        "target-nationalite"
-      ]
-    },
-    {
-      "id": "target-lieu-de-naissance",
-      "term": "lieu de naissance",
-      "translations": {
-        "en": [
-          "place of birth"
-        ],
-        "de": [
-          "Geburtsort"
-        ]
-      },
-      "wordClass": "noun",
-      "genders": [
-        "masculine"
-      ],
-      "number": "singular",
-      "teachingForm": "un lieu de naissance",
-      "examForms": [
-        "un lieu de naissance"
-      ],
-      "articleException": null,
-      "genderVariants": [],
-      "pronunciation": "/ljø də nɛsɑ̃s/",
-      "difficulty": "demanding",
-      "context": {
-        "sentence": "Quel est votre lieu de naissance ?",
-        "translation": {
-          "en": "What is your place of birth?",
-          "de": "Was ist Ihr Geburtsort?"
-        }
-      },
-      "ambiguityNote": null,
-      "explanation": {
-        "en": "un lieu de naissance means place of birth. ",
-        "fr": "La forme à retenir est « un lieu de naissance ». ",
-        "de": "un lieu de naissance bedeutet Geburtsort. "
-      },
-      "genderExplanation": {
-        "en": "un lieu de naissance: masculine. Learn the noun together with its article.",
-        "fr": "« un lieu de naissance » : masculin. Apprenez le nom avec son article.",
-        "de": "un lieu de naissance: männlich. Lerne das Nomen mit seinem Artikel."
-      },
-      "matchingLabel": {
-        "en": "place of birth",
-        "de": "Geburtsort"
-      },
-      "examPrompt": null,
-      "gap": {
-        "before": "Paris est mon ",
-        "after": ".",
-        "accepted": {
-          "answers": [
-            "lieu de naissance"
-          ]
-        },
-        "referenceTargetIds": [
-          "target-nationalite",
-          "target-lieu-de-naissance",
-          "target-celibataire",
-          "target-profession"
-        ],
-        "explanation": {
-          "en": "un lieu de naissance means place of birth. ",
-          "fr": "La forme à retenir est « un lieu de naissance ». ",
-          "de": "un lieu de naissance bedeutet Geburtsort. "
-        }
-      },
-      "listeningOptionTargetIds": [
         "target-nationalite",
-        "target-lieu-de-naissance",
-        "target-celibataire",
-        "target-profession"
+        "target-nom"
       ]
     },
     {
@@ -615,8 +524,8 @@
         "referenceTargetIds": [
           "target-celibataire",
           "target-profession",
-          "target-signature",
-          "target-marie"
+          "target-marie",
+          "target-nationalite"
         ],
         "explanation": {
           "en": "une profession means profession. ",
@@ -627,8 +536,8 @@
       "listeningOptionTargetIds": [
         "target-celibataire",
         "target-profession",
-        "target-signature",
-        "target-marie"
+        "target-marie",
+        "target-nationalite"
       ]
     },
     {
@@ -690,7 +599,7 @@
           "target-marie",
           "target-celibataire",
           "target-nom",
-          "target-signature"
+          "target-nationalite"
         ],
         "explanation": {
           "en": "célibataire means single. ",
@@ -702,7 +611,7 @@
         "target-marie",
         "target-celibataire",
         "target-nom",
-        "target-signature"
+        "target-nationalite"
       ]
     },
     {
@@ -760,10 +669,10 @@
           ]
         },
         "referenceTargetIds": [
-          "target-signature",
           "target-marie",
           "target-prenom",
-          "target-nom"
+          "target-nom",
+          "target-nationalite"
         ],
         "explanation": {
           "en": "marié means married. ",
@@ -772,84 +681,10 @@
         }
       },
       "listeningOptionTargetIds": [
-        "target-signature",
         "target-marie",
         "target-prenom",
-        "target-nom"
-      ]
-    },
-    {
-      "id": "target-signature",
-      "term": "signature",
-      "translations": {
-        "en": [
-          "signature"
-        ],
-        "de": [
-          "Unterschrift"
-        ]
-      },
-      "wordClass": "noun",
-      "genders": [
-        "feminine"
-      ],
-      "number": "singular",
-      "teachingForm": "une signature",
-      "examForms": [
-        "une signature"
-      ],
-      "articleException": null,
-      "genderVariants": [],
-      "pronunciation": "/siɲatyʁ/",
-      "difficulty": "core",
-      "context": {
-        "sentence": "N'oubliez pas d'apposer votre signature en bas du document.",
-        "translation": {
-          "en": "Do not forget to put your signature at the bottom of the document.",
-          "de": "Vergessen Sie nicht, Ihre Unterschrift unten auf dem Dokument anzubringen."
-        }
-      },
-      "ambiguityNote": null,
-      "explanation": {
-        "en": "une signature means signature. ",
-        "fr": "La forme à retenir est « une signature ». ",
-        "de": "une signature bedeutet Unterschrift. "
-      },
-      "genderExplanation": {
-        "en": "une signature: feminine. Learn the noun together with its article.",
-        "fr": "« une signature » : féminin. Apprenez le nom avec son article.",
-        "de": "une signature: weiblich. Lerne das Nomen mit seinem Artikel."
-      },
-      "matchingLabel": {
-        "en": "signature",
-        "de": "Unterschrift"
-      },
-      "examPrompt": null,
-      "gap": {
-        "before": "Je signe : j’écris ma ",
-        "after": ".",
-        "accepted": {
-          "answers": [
-            "signature"
-          ]
-        },
-        "referenceTargetIds": [
-          "target-nom",
-          "target-signature",
-          "target-adresse",
-          "target-prenom"
-        ],
-        "explanation": {
-          "en": "une signature means signature. ",
-          "fr": "La forme à retenir est « une signature ». ",
-          "de": "une signature bedeutet Unterschrift. "
-        }
-      },
-      "listeningOptionTargetIds": [
         "target-nom",
-        "target-signature",
-        "target-adresse",
-        "target-prenom"
+        "target-nationalite"
       ]
     }
   ],

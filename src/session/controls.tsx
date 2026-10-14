@@ -160,6 +160,12 @@ const readOnly = (props: RendererProps, unit: PlanUnit) => props.mode === 'feedb
 /** Outcome of a locked unit while its page shows inline feedback; empty otherwise. */
 const inlineOutcome = (props: RendererProps, unit: PlanUnit) => (props.inlineFeedback && props.mode === 'feedback' ? props.locked[unit.id]?.outcome ?? '' : '');
 
+/**
+ * Typed answers are checked as written (P6-02): no capitalisation, autocorrection, spell-check marks or
+ * autocompletion on desktop or phone keyboards.
+ */
+export const plainTyping = { autoComplete: 'off', autoCapitalize: 'none', autoCorrect: 'off', spellCheck: false } as const;
+
 export function TextControl({ unit, props, label }: { unit: PlanUnit; props: RendererProps; label: string }) {
   const { t } = useI18n();
   const outcome = inlineOutcome(props, unit);
@@ -168,9 +174,7 @@ export function TextControl({ unit, props, label }: { unit: PlanUnit; props: Ren
       className={`text-input${outcome ? ` is-${outcome === 'fully_correct' ? 'right' : outcome === 'orthography_only' ? 'almost' : 'wrong'}` : ''}`}
       lang={props.plan.lang}
       aria-label={label}
-      autoComplete="off"
-      autoCapitalize="off"
-      spellCheck={false}
+      {...plainTyping}
       value={(value(props, unit) as string | undefined) ?? ''}
       readOnly={readOnly(props, unit)}
       onChange={(e) => props.onChange(unit.id, e.target.value)}
@@ -395,7 +399,8 @@ export function SpotControl({ unit, props }: { unit: PlanUnit & { kind: 'spot' }
       ) : (
         <label className="field">
           <span className="label-muted">{t('session.correction')}</span>
-          <input className="text-input" lang={props.plan.lang} autoComplete="off" spellCheck={false} value={current.text} readOnly={disabled} onChange={(e) => props.onChange(unit.id, { ...current, text: e.target.value })} />
+          {/* The correction field appears when a word is chosen and takes the cursor at once (P6-02). */}
+          <input className="text-input" lang={props.plan.lang} {...plainTyping} autoFocus={!disabled} value={current.text} readOnly={disabled} onChange={(e) => props.onChange(unit.id, { ...current, text: e.target.value })} />
         </label>
       )}
     </div>

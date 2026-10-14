@@ -48,9 +48,6 @@ export default {
         { id: 'ex-forms-choice', type: 'grammar_gap_choice', items: [
           gc(FORMS_R, 'J’', 'ai', ['as', 'a', 'avez'], 'un stylo.', why('je')),
           gc(FORMS_R, 'Tu', 'as', ['a', 'ai', 'ont'], 'une question ?', why('tu')),
-          gc(FORMS_R, 'Il', 'a', ['as', 'à', 'ont'], 'un livre.', aNoAccent),
-          gc(FORMS_R, 'Nous', 'avons', ['avez', 'ont', 'sommes'], 'cours à neuf heures.', why('nous')),
-          gc(FORMS_R, 'Vous', 'avez', ['avons', 'êtes', 'ont'], 'une voiture ?', why('vous')),
         ] },
       ],
     },
@@ -60,28 +57,17 @@ export default {
         { id: 'ex-usage-choice', type: 'grammar_gap_choice', items: [
           gc(AGE, 'J’', 'ai', ['suis', 'as', 'est'], 'vingt ans.', age('j’', 'ai')),
           gc(AGE, 'Mon frère', 'a', ['est', 'as', 'ont'], 'douze ans.', age('il', 'a')),
-          gc(AGE, 'Tu', 'as', ['es', 'a', 'avez'], 'quel âge ?', age('tu', 'as')),
-          gc(AGE, 'Nous', 'avons', ['sommes', 'avez', 'ont'], 'trente ans.', age('nous', 'avons')),
-          gc(HAVE, 'Vous', 'avez', ['êtes', 'avons', 'a'], 'un chien ?', have('vous', 'avez')),
-          gc(HAVE, 'Ils', 'ont', ['sont', 'avez', 'a'], 'un appartement à Paris.', have('ils', 'ont')),
         ] },
         { id: 'ex-usage-typing', type: 'grammar_gap_typing', items: [
           gt(AGE, 'Ma grand-mère', 'a', 'quatre-vingts ans.', age('elle', 'a'), hint('avoir', 'avoir', 'avoir')),
           gt(AGE, 'J’', 'ai', 'dix-huit ans.', age('j’', 'ai'), hint('avoir', 'avoir', 'avoir')),
-          gt(AGE, 'Vous', 'avez', 'quel âge ?', age('vous', 'avez'), hint('avoir', 'avoir', 'avoir')),
-          gt(AGE, 'Les jumeaux', 'ont', 'six ans.', age('ils', 'ont'), hint('avoir', 'avoir', 'avoir')),
-          gt(HAVE, 'Nous', 'avons', 'un jardin.', have('nous', 'avons'), hint('avoir', 'avoir', 'avoir')),
         ] },
         { id: 'ex-usage-order', type: 'grammar_word_order', items: [
           wo(AGE, ['J’ai', 'vingt-cinq', 'ans'], age('j’', 'ai')),
           wo(AGE, ['Ma', 'fille', 'a', 'sept', 'ans'], age('elle', 'a')),
-          wo(AGE, ['Tu', 'as', 'quel', 'âge', '?'], L('Asking someone’s age: tu as quel âge ? – avoir again, never être.', 'Pour demander l’âge : tu as quel âge ? – encore avoir, jamais être.', 'Nach dem Alter fragen: tu as quel âge ? – wieder avoir, nie être.')),
-          wo(HAVE, ['Nous', 'avons', 'un', 'grand', 'chien'], have('nous', 'avons')),
         ] },
         { id: 'ex-usage-spot', type: 'grammar_error_spotter', items: [
           sp(AGE, ['J’ai', 'trente', 'ans'], 0, 'Je suis', age('j’', 'ai'), ['J’ai', 'Je suis', 'J’as']),
-          sp(AGE, ['Il', 'a', 'dix', 'ans'], 1, 'est', age('il', 'a')),
-          sp(AGE, ['Nous', 'avons', 'vingt', 'ans'], 1, 'sommes', age('nous', 'avons')),
           sp(HAVE, ['Tu', 'as', 'un', 'stylo'], 1, 'a', why('tu')),
         ] },
       ],
@@ -96,7 +82,6 @@ export default {
       gt(FORMS_R, 'Tu', 'as', 'un dictionnaire ?', why('tu')),
       gt(FORMS_R, 'Mon père', 'a', 'une moto.', why('il', 'Mon père')),
       gt(FORMS_R, 'Nous', 'avons', 'faim.', why('nous')),
-      gt(FORMS_R, 'Vous', 'avez', 'raison.', why('vous')),
     ] },
     { pageId: 'exam-age', type: 'grammar_gap_typing', items: [
       gt(AGE, 'J’', 'ai', 'quarante ans.', age('j’', 'ai')),

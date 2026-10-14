@@ -14,12 +14,12 @@
     "fr": "Saluer quelqu’un à tout moment de la journée, demander comment il va, répondre et dire au revoir.",
     "de": "Jemanden zu jeder Tageszeit begrüßen, fragen, wie es ihm geht, antworten und sich verabschieden."
   },
-  "estimatedMinutes": 25,
+  "estimatedMinutes": 16,
   "provenance": {
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "functions-v1",
-    "generatedAt": "2026-10-13T23:42:16.894Z",
+    "generatedAt": "2026-10-14T16:31:08.897Z",
     "inputHashes": {
       "outline": "f1cf3bd5f3576695f7d488bf31426ea858fb5591979dadab6f74241a3e4bde2e"
     }
@@ -82,56 +82,6 @@
       }
     },
     {
-      "id": "bonsoir",
-      "text": "Bonsoir !",
-      "openEnd": false,
-      "translations": {
-        "en": [
-          "Good evening!"
-        ],
-        "de": [
-          "Guten Abend!"
-        ]
-      },
-      "explanation": {
-        "en": "The greeting in the evening, from about six o’clock.",
-        "fr": "La salutation du soir, à partir de six heures environ.",
-        "de": "Der Gruß am Abend, etwa ab sechs Uhr."
-      },
-      "example": {
-        "text": "Bonsoir, madame. Ça va ?",
-        "translation": {
-          "en": "Good evening, madam. How are you?",
-          "de": "Guten Abend. Wie geht’s?"
-        }
-      }
-    },
-    {
-      "id": "salut",
-      "text": "Salut !",
-      "openEnd": false,
-      "translations": {
-        "en": [
-          "Hi!"
-        ],
-        "de": [
-          "Hallo!"
-        ]
-      },
-      "explanation": {
-        "en": "Informal: for friends and family. It also means bye.",
-        "fr": "Familier : entre amis et en famille. Il veut aussi dire au revoir.",
-        "de": "Umgangssprachlich: unter Freunden und in der Familie. Es heißt auch tschüss."
-      },
-      "example": {
-        "text": "Salut, Paul !",
-        "translation": {
-          "en": "Hi, Paul!",
-          "de": "Hallo, Paul!"
-        }
-      }
-    },
-    {
       "id": "ca-va",
       "text": "Ça va ?",
       "openEnd": false,
@@ -182,31 +132,6 @@
       }
     },
     {
-      "id": "et-toi",
-      "text": "Et toi ?",
-      "openEnd": false,
-      "translations": {
-        "en": [
-          "And you?"
-        ],
-        "de": [
-          "Und dir?"
-        ]
-      },
-      "explanation": {
-        "en": "Asks the same question back to a friend (tu).",
-        "fr": "Retourne la question à un ami (tu).",
-        "de": "Gibt die Frage an einen Freund zurück (tu)."
-      },
-      "example": {
-        "text": "Je vais bien. Et toi ?",
-        "translation": {
-          "en": "I’m well. And you?",
-          "de": "Mir geht’s gut. Und dir?"
-        }
-      }
-    },
-    {
       "id": "au-revoir",
       "text": "Au revoir !",
       "openEnd": false,
@@ -228,31 +153,6 @@
         "translation": {
           "en": "Goodbye, madam!",
           "de": "Auf Wiedersehen!"
-        }
-      }
-    },
-    {
-      "id": "a-bientot",
-      "text": "À bientôt !",
-      "openEnd": false,
-      "translations": {
-        "en": [
-          "See you soon!"
-        ],
-        "de": [
-          "Bis bald!"
-        ]
-      },
-      "explanation": {
-        "en": "Goodbye when you will see the person again soon.",
-        "fr": "Au revoir quand on va revoir la personne bientôt.",
-        "de": "Abschied, wenn man sich bald wiedersieht."
-      },
-      "example": {
-        "text": "Au revoir et à bientôt !",
-        "translation": {
-          "en": "Goodbye and see you soon!",
-          "de": "Auf Wiedersehen und bis bald!"
         }
       }
     }

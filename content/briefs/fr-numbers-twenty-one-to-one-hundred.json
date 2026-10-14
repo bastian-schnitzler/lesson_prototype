@@ -14,7 +14,7 @@
     "fr": "Apprendre à compter de 21 à 100 en français, comprendre un prix en euros et maîtriser les nombres composés comme 70, 80 et 90.",
     "de": "Lernen Sie auf Französisch von 21 bis 100 zu zählen, Preise in Euro zu verstehen und zusammengesetzte Zahlen wie 70, 80 und 90 zu meistern."
   },
-  "estimatedMinutes": 21,
+  "estimatedMinutes": 14,
   "provenance": {
     "generator": "lesson-prototype",
     "model": "gemini-3.6-flash",
@@ -27,20 +27,20 @@
   "kind": "vocabulary",
   "theme": "shopping",
   "coverageNotes": {
-    "en": "Covers milestone tens from 30 to 100, standard compound forms with et (21, 71), vigesimal structures (70, 80, 90, 91), and shopping context for euro prices.",
-    "fr": "Couvre les dizaines repères de 30 à 100, les formes composées avec et (21, 71), la structure vigésimale (70, 80, 90, 91) et le contexte d'achat pour les prix en euros.",
-    "de": "Deckt Zehlerschritte von 30 bis 100, zusammengesetzte Formen mit et (21, 71), die vigesimale Struktur (70, 80, 90, 91) und den Einkaufskontext für Euro-Preise ab."
+    "en": "Covers milestone tens from 30 to 100, the compound form with et (21) and the vigesimal structures (70, 80, 90), with euro prices as context.",
+    "fr": "Couvre les dizaines repères de 30 à 100, la forme composée avec et (21) et la structure vigésimale (70, 80, 90), avec les prix en euros comme contexte.",
+    "de": "Deckt Zehnerschritte von 30 bis 100, die zusammengesetzte Form mit et (21) und die vigesimale Struktur (70, 80, 90) ab, mit Euro-Preisen als Kontext."
   },
-  "targetCount": 12,
+  "targetCount": 8,
   "countRationale": {
-    "en": "12 target numbers represent the system from 21 to 100, focusing on standard patterns and key exceptions like 70, 80, and 90.",
-    "fr": "12 nombres cibles représentent le système de 21 à 100, en ciblant les schémas réguliers et les particularités comme 70, 80 et 90.",
-    "de": "12 Zielzahlen repräsentieren das System von 21 bis 100 mit Fokus auf reguläre Muster und Besonderheiten wie 70, 80 und 90."
+    "en": "8 target numbers keep the lesson within 15 minutes and show the system from 21 to 100 with the key forms 70, 80 and 90.",
+    "fr": "8 nombres cibles gardent la leçon sous 15 minutes et montrent le système de 21 à 100 avec les formes clés 70, 80 et 90.",
+    "de": "8 Zielzahlen halten die Lektion unter 15 Minuten und zeigen das System von 21 bis 100 mit den Schlüsselformen 70, 80 und 90."
   },
   "difficultyBalance": {
-    "en": "6 core targets represent basic tens and 100; 6 demanding targets cover complex additive/vigesimal structures (70, 71, 80, 81, 90, 91).",
-    "fr": "6 cibles de base représentent les dizaines simples et 100 ; 6 cibles exigeantes couvrent les structures vigésimales complexes (70, 71, 80, 81, 90, 91).",
-    "de": "6 Kernziele repräsentieren einfache Zehner und 100; 6 anspruchsvolle Ziele decken komplexe vigesimale Strukturen ab (70, 71, 80, 81, 90, 91)."
+    "en": "5 core targets represent basic tens and 100; 3 demanding targets cover the vigesimal forms 70, 80 and 90.",
+    "fr": "5 cibles de base représentent les dizaines simples et 100 ; 3 cibles exigeantes couvrent les formes vigésimales 70, 80 et 90.",
+    "de": "5 Kernziele repräsentieren einfache Zehner und 100; 3 anspruchsvolle Ziele decken die vigesimalen Formen 70, 80 und 90 ab."
   },
   "prerequisites": [
     {
@@ -60,7 +60,6 @@
       "targetIds": [
         "num-21",
         "num-30",
-        "num-40",
         "num-50",
         "num-60"
       ],
@@ -79,14 +78,12 @@
       },
       "targetIds": [
         "num-70",
-        "num-71",
-        "num-80",
-        "num-81"
+        "num-80"
       ],
       "introduction": {
-        "en": "**70 to 89**. Say each number aloud and study its example:\n\n- `soixante-dix` – 70: Ces chaussures coûtent soixante-dix euros.\n- `soixante-et-onze` – 71: L'addition est de soixante-et-onze euros.\n- `quatre-vingts` – 80: Le billet coûte quatre-vingts euros.\n- `quatre-vingt-un` – 81: Le prix est de quatre-vingt-un euros.",
-        "fr": "**De 70 à 89**. Dites chaque nombre à voix haute et étudiez son exemple :\n\n- `soixante-dix` : Ces chaussures coûtent soixante-dix euros.\n- `soixante-et-onze` : L'addition est de soixante-et-onze euros.\n- `quatre-vingts` : Le billet coûte quatre-vingts euros.\n- `quatre-vingt-un` : Le prix est de quatre-vingt-un euros.",
-        "de": "**70 bis 89**. Sprich jede Zahl laut und lies das Beispiel:\n\n- `soixante-dix` – 70: Ces chaussures coûtent soixante-dix euros.\n- `soixante-et-onze` – 71: L'addition est de soixante-et-onze euros.\n- `quatre-vingts` – 80: Le billet coûte quatre-vingts euros.\n- `quatre-vingt-un` – 81: Le prix est de quatre-vingt-un euros."
+        "en": "**70 to 89**. Say each number aloud and study its example:\n\n- `soixante-dix` – 70: Ces chaussures coûtent soixante-dix euros.\n- `quatre-vingts` – 80: Le billet coûte quatre-vingts euros.",
+        "fr": "**De 70 à 89**. Dites chaque nombre à voix haute et étudiez son exemple :\n\n- `soixante-dix` : Ces chaussures coûtent soixante-dix euros.\n- `quatre-vingts` : Le billet coûte quatre-vingts euros.",
+        "de": "**70 bis 89**. Sprich jede Zahl laut und lies das Beispiel:\n\n- `soixante-dix` – 70: Ces chaussures coûtent soixante-dix euros.\n- `quatre-vingts` – 80: Le billet coûte quatre-vingts euros."
       }
     },
     {
@@ -98,13 +95,12 @@
       },
       "targetIds": [
         "num-90",
-        "num-91",
         "num-100"
       ],
       "introduction": {
-        "en": "**90 to 100**. Say each number aloud and study its example:\n\n- `quatre-vingt-dix` – 90: Le sac coûte quatre-vingt-dix euros.\n- `quatre-vingt-onze` – 91: C'est quatre-vingt-onze euros s'il vous plaît.\n- `cent` – 100: Ce manteau coûte cent euros.",
-        "fr": "**De 90 à 100**. Dites chaque nombre à voix haute et étudiez son exemple :\n\n- `quatre-vingt-dix` : Le sac coûte quatre-vingt-dix euros.\n- `quatre-vingt-onze` : C'est quatre-vingt-onze euros s'il vous plaît.\n- `cent` : Ce manteau coûte cent euros.",
-        "de": "**90 bis 100**. Sprich jede Zahl laut und lies das Beispiel:\n\n- `quatre-vingt-dix` – 90: Le sac coûte quatre-vingt-dix euros.\n- `quatre-vingt-onze` – 91: C'est quatre-vingt-onze euros s'il vous plaît.\n- `cent` – 100: Ce manteau coûte cent euros."
+        "en": "**90 to 100**. Say each number aloud and study its example:\n\n- `quatre-vingt-dix` – 90: Le sac coûte quatre-vingt-dix euros.\n- `cent` – 100: Ce manteau coûte cent euros.",
+        "fr": "**De 90 à 100**. Dites chaque nombre à voix haute et étudiez son exemple :\n\n- `quatre-vingt-dix` : Le sac coûte quatre-vingt-dix euros.\n- `cent` : Ce manteau coûte cent euros.",
+        "de": "**90 bis 100**. Sprich jede Zahl laut und lies das Beispiel:\n\n- `quatre-vingt-dix` – 90: Le sac coûte quatre-vingt-dix euros.\n- `cent` – 100: Ce manteau coûte cent euros."
       }
     }
   ],
@@ -162,7 +158,7 @@
           "num-30",
           "num-21",
           "num-50",
-          "num-40"
+          "num-60"
         ],
         "explanation": {
           "en": "vingt-et-un means twenty-one. ",
@@ -174,7 +170,7 @@
         "num-30",
         "num-21",
         "num-50",
-        "num-40"
+        "num-60"
       ]
     },
     {
@@ -227,10 +223,10 @@
           ]
         },
         "referenceTargetIds": [
-          "num-40",
           "num-30",
           "num-60",
-          "num-50"
+          "num-50",
+          "num-21"
         ],
         "explanation": {
           "en": "trente means thirty. ",
@@ -239,78 +235,10 @@
         }
       },
       "listeningOptionTargetIds": [
-        "num-40",
         "num-30",
         "num-60",
-        "num-50"
-      ]
-    },
-    {
-      "id": "num-40",
-      "term": "quarante",
-      "translations": {
-        "en": [
-          "forty"
-        ],
-        "de": [
-          "vierzig"
-        ]
-      },
-      "wordClass": "numeral",
-      "genders": [],
-      "number": null,
-      "teachingForm": "quarante",
-      "examForms": [
-        "quarante"
-      ],
-      "articleException": null,
-      "genderVariants": [],
-      "pronunciation": "/ka.ʁɑ̃t/",
-      "difficulty": "core",
-      "context": {
-        "sentence": "Elle a quarante euros pour les courses.",
-        "translation": {
-          "en": "She has forty euros for groceries.",
-          "de": "Sie hat vierzig Euro für Lebensmittel."
-        }
-      },
-      "ambiguityNote": null,
-      "explanation": {
-        "en": "quarante means forty. ",
-        "fr": "La forme à retenir est « quarante ». ",
-        "de": "quarante bedeutet vierzig. "
-      },
-      "genderExplanation": null,
-      "matchingLabel": {
-        "en": "forty",
-        "de": "vierzig"
-      },
-      "examPrompt": null,
-      "gap": {
-        "before": "40 s’écrit en lettres : ",
-        "after": ".",
-        "accepted": {
-          "answers": [
-            "quarante"
-          ]
-        },
-        "referenceTargetIds": [
-          "num-50",
-          "num-40",
-          "num-70",
-          "num-60"
-        ],
-        "explanation": {
-          "en": "quarante means forty. ",
-          "fr": "La forme à retenir est « quarante ». ",
-          "de": "quarante bedeutet vierzig. "
-        }
-      },
-      "listeningOptionTargetIds": [
         "num-50",
-        "num-40",
-        "num-70",
-        "num-60"
+        "num-21"
       ]
     },
     {
@@ -365,8 +293,8 @@
         "referenceTargetIds": [
           "num-60",
           "num-50",
-          "num-71",
-          "num-70"
+          "num-70",
+          "num-21"
         ],
         "explanation": {
           "en": "cinquante means fifty. ",
@@ -377,8 +305,8 @@
       "listeningOptionTargetIds": [
         "num-60",
         "num-50",
-        "num-71",
-        "num-70"
+        "num-70",
+        "num-21"
       ]
     },
     {
@@ -434,7 +362,7 @@
           "num-70",
           "num-60",
           "num-80",
-          "num-71"
+          "num-21"
         ],
         "explanation": {
           "en": "soixante means sixty. ",
@@ -446,7 +374,7 @@
         "num-70",
         "num-60",
         "num-80",
-        "num-71"
+        "num-21"
       ]
     },
     {
@@ -499,10 +427,10 @@
           ]
         },
         "referenceTargetIds": [
-          "num-71",
           "num-70",
-          "num-81",
-          "num-80"
+          "num-80",
+          "num-21",
+          "num-30"
         ],
         "explanation": {
           "en": "soixante-dix means seventy. ",
@@ -511,78 +439,10 @@
         }
       },
       "listeningOptionTargetIds": [
-        "num-71",
         "num-70",
-        "num-81",
-        "num-80"
-      ]
-    },
-    {
-      "id": "num-71",
-      "term": "soixante-et-onze",
-      "translations": {
-        "en": [
-          "seventy-one"
-        ],
-        "de": [
-          "einundsiebzig"
-        ]
-      },
-      "wordClass": "numeral",
-      "genders": [],
-      "number": null,
-      "teachingForm": "soixante-et-onze",
-      "examForms": [
-        "soixante-et-onze"
-      ],
-      "articleException": null,
-      "genderVariants": [],
-      "pronunciation": "/swa.sɑ̃t.e.ɔ̃z/",
-      "difficulty": "demanding",
-      "context": {
-        "sentence": "L'addition est de soixante-et-onze euros.",
-        "translation": {
-          "en": "The bill comes to seventy-one euros.",
-          "de": "Die Rechnung beträgt einundsiebzig Euro."
-        }
-      },
-      "ambiguityNote": null,
-      "explanation": {
-        "en": "soixante-et-onze means seventy-one.  This is sixty plus eleven; retain et.",
-        "fr": "La forme à retenir est « soixante-et-onze ».  C’est soixante plus onze ; gardez et.",
-        "de": "soixante-et-onze bedeutet einundsiebzig.  Das ist sechzig plus elf; behalte et."
-      },
-      "genderExplanation": null,
-      "matchingLabel": {
-        "en": "seventy-one",
-        "de": "einundsiebzig"
-      },
-      "examPrompt": null,
-      "gap": {
-        "before": "71 s’écrit en lettres : ",
-        "after": ".",
-        "accepted": {
-          "answers": [
-            "soixante-et-onze"
-          ]
-        },
-        "referenceTargetIds": [
-          "num-80",
-          "num-71",
-          "num-90",
-          "num-81"
-        ],
-        "explanation": {
-          "en": "soixante-et-onze means seventy-one.  This is sixty plus eleven; retain et.",
-          "fr": "La forme à retenir est « soixante-et-onze ».  C’est soixante plus onze ; gardez et.",
-          "de": "soixante-et-onze bedeutet einundsiebzig.  Das ist sechzig plus elf; behalte et."
-        }
-      },
-      "listeningOptionTargetIds": [
         "num-80",
-        "num-71",
-        "num-90",
-        "num-81"
+        "num-21",
+        "num-30"
       ]
     },
     {
@@ -635,10 +495,10 @@
           ]
         },
         "referenceTargetIds": [
-          "num-81",
           "num-80",
-          "num-91",
-          "num-90"
+          "num-90",
+          "num-70",
+          "num-21"
         ],
         "explanation": {
           "en": "quatre-vingts means eighty.  Keep the final s for exactly eighty; it disappears in quatre-vingt-un.",
@@ -647,78 +507,10 @@
         }
       },
       "listeningOptionTargetIds": [
-        "num-81",
         "num-80",
-        "num-91",
-        "num-90"
-      ]
-    },
-    {
-      "id": "num-81",
-      "term": "quatre-vingt-un",
-      "translations": {
-        "en": [
-          "eighty-one"
-        ],
-        "de": [
-          "einundachtzig"
-        ]
-      },
-      "wordClass": "numeral",
-      "genders": [],
-      "number": null,
-      "teachingForm": "quatre-vingt-un",
-      "examForms": [
-        "quatre-vingt-un"
-      ],
-      "articleException": null,
-      "genderVariants": [],
-      "pronunciation": "/kat.ʁə.vɛ̃.œ̃/",
-      "difficulty": "demanding",
-      "context": {
-        "sentence": "Le prix est de quatre-vingt-un euros.",
-        "translation": {
-          "en": "The price is eighty-one euros.",
-          "de": "Der Preis beträgt einundachtzig Euro."
-        }
-      },
-      "ambiguityNote": null,
-      "explanation": {
-        "en": "quatre-vingt-un means eighty-one.  Use no et and no s after vingt.",
-        "fr": "La forme à retenir est « quatre-vingt-un ».  N’ajoutez ni et ni s après vingt.",
-        "de": "quatre-vingt-un bedeutet einundachtzig.  Setze kein et und kein s nach vingt."
-      },
-      "genderExplanation": null,
-      "matchingLabel": {
-        "en": "eighty-one",
-        "de": "einundachtzig"
-      },
-      "examPrompt": null,
-      "gap": {
-        "before": "81 s’écrit en lettres : ",
-        "after": ".",
-        "accepted": {
-          "answers": [
-            "quatre-vingt-un"
-          ]
-        },
-        "referenceTargetIds": [
-          "num-90",
-          "num-81",
-          "num-100",
-          "num-91"
-        ],
-        "explanation": {
-          "en": "quatre-vingt-un means eighty-one.  Use no et and no s after vingt.",
-          "fr": "La forme à retenir est « quatre-vingt-un ».  N’ajoutez ni et ni s après vingt.",
-          "de": "quatre-vingt-un bedeutet einundachtzig.  Setze kein et und kein s nach vingt."
-        }
-      },
-      "listeningOptionTargetIds": [
         "num-90",
-        "num-81",
-        "num-100",
-        "num-91"
+        "num-70",
+        "num-21"
       ]
     },
     {
@@ -771,10 +563,10 @@
           ]
         },
         "referenceTargetIds": [
-          "num-91",
           "num-90",
           "num-21",
-          "num-100"
+          "num-100",
+          "num-30"
         ],
         "explanation": {
           "en": "quatre-vingt-dix means ninety. ",
@@ -783,78 +575,10 @@
         }
       },
       "listeningOptionTargetIds": [
-        "num-91",
         "num-90",
         "num-21",
-        "num-100"
-      ]
-    },
-    {
-      "id": "num-91",
-      "term": "quatre-vingt-onze",
-      "translations": {
-        "en": [
-          "ninety-one"
-        ],
-        "de": [
-          "einundneunzig"
-        ]
-      },
-      "wordClass": "numeral",
-      "genders": [],
-      "number": null,
-      "teachingForm": "quatre-vingt-onze",
-      "examForms": [
-        "quatre-vingt-onze"
-      ],
-      "articleException": null,
-      "genderVariants": [],
-      "pronunciation": "/kat.ʁə.vɛ̃.ɔ̃z/",
-      "difficulty": "demanding",
-      "context": {
-        "sentence": "C'est quatre-vingt-onze euros s'il vous plaît.",
-        "translation": {
-          "en": "That is ninety-one euros please.",
-          "de": "Das macht einundneunzig Euro bitte."
-        }
-      },
-      "ambiguityNote": null,
-      "explanation": {
-        "en": "quatre-vingt-onze means ninety-one.  Use no et and no s after vingt.",
-        "fr": "La forme à retenir est « quatre-vingt-onze ».  N’ajoutez ni et ni s après vingt.",
-        "de": "quatre-vingt-onze bedeutet einundneunzig.  Setze kein et und kein s nach vingt."
-      },
-      "genderExplanation": null,
-      "matchingLabel": {
-        "en": "ninety-one",
-        "de": "einundneunzig"
-      },
-      "examPrompt": null,
-      "gap": {
-        "before": "91 s’écrit en lettres : ",
-        "after": ".",
-        "accepted": {
-          "answers": [
-            "quatre-vingt-onze"
-          ]
-        },
-        "referenceTargetIds": [
-          "num-100",
-          "num-91",
-          "num-30",
-          "num-21"
-        ],
-        "explanation": {
-          "en": "quatre-vingt-onze means ninety-one.  Use no et and no s after vingt.",
-          "fr": "La forme à retenir est « quatre-vingt-onze ».  N’ajoutez ni et ni s après vingt.",
-          "de": "quatre-vingt-onze bedeutet einundneunzig.  Setze kein et und kein s nach vingt."
-        }
-      },
-      "listeningOptionTargetIds": [
         "num-100",
-        "num-91",
-        "num-30",
-        "num-21"
+        "num-30"
       ]
     },
     {
@@ -910,8 +634,8 @@
         "referenceTargetIds": [
           "num-21",
           "num-100",
-          "num-40",
-          "num-30"
+          "num-30",
+          "num-90"
         ],
         "explanation": {
           "en": "cent means one hundred. ",
@@ -922,8 +646,8 @@
       "listeningOptionTargetIds": [
         "num-21",
         "num-100",
-        "num-40",
-        "num-30"
+        "num-30",
+        "num-90"
       ]
     }
   ],

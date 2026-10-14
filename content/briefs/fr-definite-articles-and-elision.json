@@ -14,12 +14,12 @@
     "fr": "Apprendre à utiliser correctement les articles définis français (le, la, l', les), y compris l'élision devant les voyelles et le h muet, et après les verbes de préférence.",
     "de": "Lernen Sie die korrekte Verwendung der bestimmten französischen Artikel (le, la, l', les), einschließlich der Elision vor Vokalen und stummem h, sowie nach Vorlieben-Verben."
   },
-  "estimatedMinutes": 18,
+  "estimatedMinutes": 15,
   "provenance": {
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "brief-v7",
-    "generatedAt": "2026-10-13T23:32:32.526Z",
+    "generatedAt": "2026-10-14T16:27:37.541Z",
     "inputHashes": {
       "outline": "54d6c8d3101f255f7b601ed8abe3d28ddde9f81411327c0f77e77dc1368e62c9"
     }
@@ -140,22 +140,22 @@
         {
           "id": "ex-basic-gap-choice",
           "type": "grammar_gap_choice",
-          "itemCount": 7,
+          "itemCount": 4,
           "ruleIds": [
             "rule-def-basic",
             "rule-def-elision"
           ],
-          "estimatedDurationS": 70
+          "estimatedDurationS": 40
         },
         {
           "id": "ex-basic-gap-typing",
           "type": "grammar_gap_typing",
-          "itemCount": 7,
+          "itemCount": 4,
           "ruleIds": [
             "rule-def-basic",
             "rule-def-elision"
           ],
-          "estimatedDurationS": 105
+          "estimatedDurationS": 60
         },
         {
           "id": "ex-basic-spot",
@@ -219,20 +219,20 @@
         {
           "id": "ex-pref-choice",
           "type": "grammar_gap_choice",
-          "itemCount": 6,
+          "itemCount": 5,
           "ruleIds": [
             "rule-def-preference"
           ],
-          "estimatedDurationS": 60
+          "estimatedDurationS": 50
         },
         {
           "id": "ex-pref-gap-typing",
           "type": "grammar_gap_typing",
-          "itemCount": 6,
+          "itemCount": 5,
           "ruleIds": [
             "rule-def-preference"
           ],
-          "estimatedDurationS": 90
+          "estimatedDurationS": 75
         },
         {
           "id": "ex-pref-order",
@@ -254,32 +254,32 @@
       {
         "pageId": "exam-page-1",
         "type": "grammar_gap_typing",
-        "itemCount": 6,
+        "itemCount": 4,
         "ruleIds": [
           "rule-def-basic"
         ],
-        "estimatedDurationS": 90,
-        "timeLimitS": 140
+        "estimatedDurationS": 60,
+        "timeLimitS": 90
       },
       {
         "pageId": "exam-elision",
         "type": "grammar_gap_typing",
-        "itemCount": 5,
+        "itemCount": 4,
         "ruleIds": [
           "rule-def-elision"
         ],
-        "estimatedDurationS": 75,
-        "timeLimitS": 120
+        "estimatedDurationS": 60,
+        "timeLimitS": 90
       },
       {
         "pageId": "exam-page-2",
         "type": "grammar_gap_typing",
-        "itemCount": 5,
+        "itemCount": 4,
         "ruleIds": [
           "rule-def-preference"
         ],
-        "estimatedDurationS": 75,
-        "timeLimitS": 120
+        "estimatedDurationS": 60,
+        "timeLimitS": 90
       }
     ]
   },

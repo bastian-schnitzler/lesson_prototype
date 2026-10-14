@@ -14,7 +14,7 @@
     "fr": "Apprendre sept noms de pays et leurs adjectifs de nationalité correspondants au masculin et au féminin.",
     "de": "Lerne sieben Ländernamen und die dazugehörigen männlichen und weiblichen Nationalitätsadjektive auf Französisch."
   },
-  "estimatedMinutes": 23,
+  "estimatedMinutes": 14,
   "provenance": {
     "generator": "lesson-prototype",
     "model": "gemini-3.6-flash",
@@ -27,20 +27,20 @@
   "kind": "vocabulary",
   "theme": "personal_identification",
   "coverageNotes": {
-    "en": "Covers 7 major countries and their masculine/feminine nationality forms at A1 level, fulfilling the outline requirements.",
-    "fr": "Couvre 7 pays majeurs et leurs formes de nationalité masculin/féminin au niveau A1, répondant au programme.",
-    "de": "Deckt 7 wichtige Länder und ihre männlichen/weiblichen Nationalitätsformen auf A1-Niveau ab."
+    "en": "Covers 4 major countries and their masculine/feminine nationality forms at A1 level.",
+    "fr": "Couvre 4 pays majeurs et leurs formes de nationalité masculin/féminin au niveau A1.",
+    "de": "Deckt 4 wichtige Länder und ihre männlichen/weiblichen Nationalitätsformen auf A1-Niveau ab."
   },
-  "targetCount": 14,
+  "targetCount": 8,
   "countRationale": {
-    "en": "14 targets provide a balanced set of 7 country nouns and 7 corresponding nationality adjectives without overwhelming beginner learners.",
-    "fr": "14 cibles offrent un ensemble équilibré de 7 noms de pays et 7 adjectifs de nationalité sans surcharger les débutants.",
-    "de": "14 Ziele bieten eine ausgewogene Auswahl von 7 Ländernamen und 7 Nationalitätsadjektiven, ohne Anfänger zu überfordern."
+    "en": "8 targets, four countries and their nationality adjectives, keep the lesson within 15 minutes.",
+    "fr": "8 cibles, quatre pays et leurs adjectifs de nationalité, gardent la leçon sous 15 minutes.",
+    "de": "8 Ziele, vier Länder und ihre Nationalitätsadjektive, halten die Lektion unter 15 Minuten."
   },
   "difficultyBalance": {
-    "en": "11 core items cover highly common European/global terms; 3 demanding items introduce masculine/feminine suffix shifts (-ien/-ienne, -e endings for masculine country names).",
-    "fr": "11 termes essentiels couvrent des pays très courants; 3 termes plus exigeants introduisent les alternances de suffixes (-ien/-ienne, terminaisons en -e pour les pays masculins).",
-    "de": "11 Kernbegriffe decken sehr geläufige Ländernamen ab; 3 anspruchsvollere Begriffe führen Suffixwechsel (-ien/-ienne) und Ausnahmen ein."
+    "en": "Mostly core European countries; italien, italienne adds the -ien/-ienne pattern.",
+    "fr": "Surtout des pays européens courants ; italien, italienne ajoute l'alternance -ien/-ienne.",
+    "de": "Vor allem geläufige europäische Länder; italien, italienne bringt den Wechsel -ien/-ienne."
   },
   "prerequisites": [
     {
@@ -59,17 +59,14 @@
       },
       "targetIds": [
         "target-espagne",
-        "target-japon",
         "target-france",
         "target-allemagne",
-        "target-canada",
-        "target-italie",
-        "target-mexique"
+        "target-italie"
       ],
       "introduction": {
-        "en": "Country names usually keep their **definite article**: `la France`, `le Japon`, `l'Espagne`, `l'Allemagne`, `le Canada`, `l'Italie`, `le Mexique`.\n\nTo say \"in\": use **en** with feminine countries and **au** with masculine ones – en France, en Allemagne, au Canada, au Japon.\n\n- In the exam, country answers keep their article.\n- In practice gaps, write the country name without its article.",
-        "fr": "Les noms de pays gardent généralement leur **article défini** : `la France`, `le Japon`, `l'Espagne`, `l'Allemagne`, `le Canada`, `l'Italie`, `le Mexique`.\n\nPour dire « dans » : utilisez **en** avec les pays féminins et **au** avec les pays masculins – en France, en Allemagne, au Canada, au Japon.\n\n- À l'examen, les pays gardent leur article.\n- Dans les exercices à trous, écrivez le pays sans son article.",
-        "de": "Ländernamen behalten meist ihren **bestimmten Artikel**: `la France`, `le Japon`, `l'Espagne`, `l'Allemagne`, `le Canada`, `l'Italie`, `le Mexique`.\n\nFür „in“: **en** bei weiblichen, **au** bei männlichen Ländern – en France, en Allemagne, au Canada, au Japon.\n\n- In der Prüfung behalten Länderantworten ihren Artikel.\n- In Übungslücken schreibst du das Land ohne Artikel."
+        "en": "Country names usually keep their **definite article**: `la France`, `l'Espagne`, `l'Allemagne`, `l'Italie`.\n\nTo say \"in\": use **en** with feminine countries and **au** with masculine ones – en France, en Allemagne, au Canada, au Japon.\n\n- In the exam, country answers keep their article.\n- In practice gaps, write the country name without its article.",
+        "fr": "Les noms de pays gardent généralement leur **article défini** : `la France`, `l'Espagne`, `l'Allemagne`, `l'Italie`.\n\nPour dire « dans » : utilisez **en** avec les pays féminins et **au** avec les pays masculins – en France, en Allemagne, au Canada, au Japon.\n\n- À l'examen, les pays gardent leur article.\n- Dans les exercices à trous, écrivez le pays sans son article.",
+        "de": "Ländernamen behalten meist ihren **bestimmten Artikel**: `la France`, `l'Espagne`, `l'Allemagne`, `l'Italie`.\n\nFür „in“: **en** bei weiblichen, **au** bei männlichen Ländern – en France, en Allemagne, au Canada, au Japon.\n\n- In der Prüfung behalten Länderantworten ihren Artikel.\n- In Übungslücken schreibst du das Land ohne Artikel."
       }
     },
     {
@@ -81,17 +78,14 @@
       },
       "targetIds": [
         "target-espagnol",
-        "target-japonais",
         "target-francais",
         "target-allemand",
-        "target-canadien",
-        "target-italien",
-        "target-mexicain"
+        "target-italien"
       ],
       "introduction": {
-        "en": "**Nationality adjectives** start with a lowercase letter, take no article, and agree with the person: Il est espagnol. Elle est espagnole.\n\n- `espagnol` / `espagnole` – Spanish\n- `japonais` / `japonaise` – Japanese\n- `français` / `française` – French\n- `allemand` / `allemande` – German\n- `canadien` / `canadienne` – Canadian\n- `italien` / `italienne` – Italian\n- `mexicain` / `mexicaine` – Mexican\n\nSay each pair aloud: the feminine form often makes the final consonant audible.",
-        "fr": "Les **adjectifs de nationalité** commencent par une minuscule, n'ont pas d'article et s'accordent : Il est espagnol. Elle est espagnole.\n\n- `espagnol` / `espagnole`\n- `japonais` / `japonaise`\n- `français` / `française`\n- `allemand` / `allemande`\n- `canadien` / `canadienne`\n- `italien` / `italienne`\n- `mexicain` / `mexicaine`\n\nDites chaque paire à voix haute : le féminin fait souvent entendre la consonne finale.",
-        "de": "**Nationalitätsadjektive** beginnen klein, stehen ohne Artikel und passen sich der Person an: Il est espagnol. Elle est espagnole.\n\n- `espagnol` / `espagnole` – spanisch\n- `japonais` / `japonaise` – japanisch\n- `français` / `française` – französisch\n- `allemand` / `allemande` – deutsch\n- `canadien` / `canadienne` – kanadisch\n- `italien` / `italienne` – italienisch\n- `mexicain` / `mexicaine` – mexikanisch\n\nSprich jedes Paar laut: In der weiblichen Form hört man oft den Endkonsonanten."
+        "en": "**Nationality adjectives** start with a lowercase letter, take no article, and agree with the person: Il est espagnol. Elle est espagnole.\n\n- `espagnol` / `espagnole` – Spanish\n- `français` / `française` – French\n- `allemand` / `allemande` – German\n- `italien` / `italienne` – Italian\n\nSay each pair aloud: the feminine form often makes the final consonant audible.",
+        "fr": "Les **adjectifs de nationalité** commencent par une minuscule, n'ont pas d'article et s'accordent : Il est espagnol. Elle est espagnole.\n\n- `espagnol` / `espagnole`\n- `français` / `française`\n- `allemand` / `allemande`\n- `italien` / `italienne`\n\nDites chaque paire à voix haute : le féminin fait souvent entendre la consonne finale.",
+        "de": "**Nationalitätsadjektive** beginnen klein, stehen ohne Artikel und passen sich der Person an: Il est espagnol. Elle est espagnole.\n\n- `espagnol` / `espagnole` – spanisch\n- `français` / `française` – französisch\n- `allemand` / `allemande` – deutsch\n- `italien` / `italienne` – italienisch\n\nSprich jedes Paar laut: In der weiblichen Form hört man oft den Endkonsonanten."
       }
     }
   ],
@@ -156,10 +150,10 @@
           ]
         },
         "referenceTargetIds": [
-          "target-japon",
           "target-espagne",
           "target-allemagne",
-          "target-france"
+          "target-france",
+          "target-italie"
         ],
         "explanation": {
           "en": "l'Espagne means Spain. Country names take definite articles in standard usage.",
@@ -168,88 +162,10 @@
         }
       },
       "listeningOptionTargetIds": [
-        "target-japon",
         "target-espagne",
         "target-allemagne",
-        "target-france"
-      ]
-    },
-    {
-      "id": "target-japon",
-      "term": "Japon",
-      "translations": {
-        "en": [
-          "Japan"
-        ],
-        "de": [
-          "Japan"
-        ]
-      },
-      "wordClass": "noun",
-      "genders": [
-        "masculine"
-      ],
-      "number": "singular",
-      "teachingForm": "le Japon",
-      "examForms": [
-        "le Japon"
-      ],
-      "articleException": {
-        "en": "Country names take definite articles in standard usage.",
-        "fr": "Les noms de pays s'utilisent avec l'article défini.",
-        "de": "Ländernamen werden mit dem bestimmten Artikel verwendet."
-      },
-      "genderVariants": [],
-      "pronunciation": "/lə ʒa.pɔ̃/",
-      "difficulty": "core",
-      "context": {
-        "sentence": "Il voyage au Japon.",
-        "translation": {
-          "en": "He travels to Japan.",
-          "de": "Er reist nach Japan."
-        }
-      },
-      "ambiguityNote": null,
-      "explanation": {
-        "en": "le Japon means Japan. Country names take definite articles in standard usage.",
-        "fr": "La forme à retenir est « le Japon ». Les noms de pays s'utilisent avec l'article défini.",
-        "de": "le Japon bedeutet Japan. Ländernamen werden mit dem bestimmten Artikel verwendet."
-      },
-      "genderExplanation": {
-        "en": "le Japon: masculine. Learn the noun together with its article.",
-        "fr": "« le Japon » : masculin. Apprenez le nom avec son article.",
-        "de": "le Japon: männlich. Lerne das Nomen mit seinem Artikel."
-      },
-      "matchingLabel": {
-        "en": "Japan",
-        "de": "Japan"
-      },
-      "examPrompt": null,
-      "gap": {
-        "before": "Tokyo est au ",
-        "after": ".",
-        "accepted": {
-          "answers": [
-            "Japon"
-          ]
-        },
-        "referenceTargetIds": [
-          "target-france",
-          "target-japon",
-          "target-canada",
-          "target-allemagne"
-        ],
-        "explanation": {
-          "en": "le Japon means Japan. Country names take definite articles in standard usage.",
-          "fr": "La forme à retenir est « le Japon ». Les noms de pays s'utilisent avec l'article défini.",
-          "de": "le Japon bedeutet Japan. Ländernamen werden mit dem bestimmten Artikel verwendet."
-        }
-      },
-      "listeningOptionTargetIds": [
         "target-france",
-        "target-japon",
-        "target-canada",
-        "target-allemagne"
+        "target-italie"
       ]
     },
     {
@@ -315,7 +231,7 @@
           "target-allemagne",
           "target-france",
           "target-italie",
-          "target-canada"
+          "target-espagne"
         ],
         "explanation": {
           "en": "la France means France. Country names take definite articles in standard usage.",
@@ -327,7 +243,7 @@
         "target-allemagne",
         "target-france",
         "target-italie",
-        "target-canada"
+        "target-espagne"
       ]
     },
     {
@@ -390,10 +306,10 @@
           ]
         },
         "referenceTargetIds": [
-          "target-canada",
           "target-allemagne",
-          "target-mexique",
-          "target-italie"
+          "target-italie",
+          "target-espagne",
+          "target-france"
         ],
         "explanation": {
           "en": "l'Allemagne means Germany. Country names take definite articles in standard usage.",
@@ -402,88 +318,10 @@
         }
       },
       "listeningOptionTargetIds": [
-        "target-canada",
         "target-allemagne",
-        "target-mexique",
-        "target-italie"
-      ]
-    },
-    {
-      "id": "target-canada",
-      "term": "Canada",
-      "translations": {
-        "en": [
-          "Canada"
-        ],
-        "de": [
-          "Kanada"
-        ]
-      },
-      "wordClass": "noun",
-      "genders": [
-        "masculine"
-      ],
-      "number": "singular",
-      "teachingForm": "le Canada",
-      "examForms": [
-        "le Canada"
-      ],
-      "articleException": {
-        "en": "Country names take definite articles in standard usage.",
-        "fr": "Les noms de pays s'utilisent avec l'article défini.",
-        "de": "Ländernamen werden mit dem bestimmten Artikel verwendet."
-      },
-      "genderVariants": [],
-      "pronunciation": "/lə ka.na.da/",
-      "difficulty": "core",
-      "context": {
-        "sentence": "Le Canada est très grand.",
-        "translation": {
-          "en": "Canada is very large.",
-          "de": "Kanada ist sehr groß."
-        }
-      },
-      "ambiguityNote": null,
-      "explanation": {
-        "en": "le Canada means Canada. Country names take definite articles in standard usage.",
-        "fr": "La forme à retenir est « le Canada ». Les noms de pays s'utilisent avec l'article défini.",
-        "de": "le Canada bedeutet Kanada. Ländernamen werden mit dem bestimmten Artikel verwendet."
-      },
-      "genderExplanation": {
-        "en": "le Canada: masculine. Learn the noun together with its article.",
-        "fr": "« le Canada » : masculin. Apprenez le nom avec son article.",
-        "de": "le Canada: männlich. Lerne das Nomen mit seinem Artikel."
-      },
-      "matchingLabel": {
-        "en": "Canada",
-        "de": "Kanada"
-      },
-      "examPrompt": null,
-      "gap": {
-        "before": "Ottawa est au ",
-        "after": ".",
-        "accepted": {
-          "answers": [
-            "Canada"
-          ]
-        },
-        "referenceTargetIds": [
-          "target-italie",
-          "target-canada",
-          "target-espagnol",
-          "target-mexique"
-        ],
-        "explanation": {
-          "en": "le Canada means Canada. Country names take definite articles in standard usage.",
-          "fr": "La forme à retenir est « le Canada ». Les noms de pays s'utilisent avec l'article défini.",
-          "de": "le Canada bedeutet Kanada. Ländernamen werden mit dem bestimmten Artikel verwendet."
-        }
-      },
-      "listeningOptionTargetIds": [
         "target-italie",
-        "target-canada",
-        "target-espagnol",
-        "target-mexique"
+        "target-espagne",
+        "target-france"
       ]
     },
     {
@@ -546,10 +384,10 @@
           ]
         },
         "referenceTargetIds": [
-          "target-mexique",
           "target-italie",
-          "target-japonais",
-          "target-espagnol"
+          "target-espagnol",
+          "target-espagne",
+          "target-france"
         ],
         "explanation": {
           "en": "l'Italie means Italy. Country names take definite articles in standard usage.",
@@ -558,88 +396,10 @@
         }
       },
       "listeningOptionTargetIds": [
-        "target-mexique",
         "target-italie",
-        "target-japonais",
-        "target-espagnol"
-      ]
-    },
-    {
-      "id": "target-mexique",
-      "term": "Mexique",
-      "translations": {
-        "en": [
-          "Mexico"
-        ],
-        "de": [
-          "Mexiko"
-        ]
-      },
-      "wordClass": "noun",
-      "genders": [
-        "masculine"
-      ],
-      "number": "singular",
-      "teachingForm": "le Mexique",
-      "examForms": [
-        "le Mexique"
-      ],
-      "articleException": {
-        "en": "Country names take definite articles in standard usage.",
-        "fr": "Les noms de pays s'utilisent avec l'article défini.",
-        "de": "Ländernamen werden mit dem bestimmten Artikel verwendet."
-      },
-      "genderVariants": [],
-      "pronunciation": "/lə mɛk.sik/",
-      "difficulty": "demanding",
-      "context": {
-        "sentence": "Le Mexique se trouve en Amérique.",
-        "translation": {
-          "en": "Mexico is located in America.",
-          "de": "Mexiko liegt in Amerika."
-        }
-      },
-      "ambiguityNote": null,
-      "explanation": {
-        "en": "le Mexique means Mexico. Country names take definite articles in standard usage.",
-        "fr": "La forme à retenir est « le Mexique ». Les noms de pays s'utilisent avec l'article défini.",
-        "de": "le Mexique bedeutet Mexiko. Ländernamen werden mit dem bestimmten Artikel verwendet."
-      },
-      "genderExplanation": {
-        "en": "le Mexique: masculine. Learn the noun together with its article.",
-        "fr": "« le Mexique » : masculin. Apprenez le nom avec son article.",
-        "de": "le Mexique: männlich. Lerne das Nomen mit seinem Artikel."
-      },
-      "matchingLabel": {
-        "en": "Mexico",
-        "de": "Mexiko"
-      },
-      "examPrompt": null,
-      "gap": {
-        "before": "Mexico est au ",
-        "after": ".",
-        "accepted": {
-          "answers": [
-            "Mexique"
-          ]
-        },
-        "referenceTargetIds": [
-          "target-espagnol",
-          "target-mexique",
-          "target-francais",
-          "target-japonais"
-        ],
-        "explanation": {
-          "en": "le Mexique means Mexico. Country names take definite articles in standard usage.",
-          "fr": "La forme à retenir est « le Mexique ». Les noms de pays s'utilisent avec l'article défini.",
-          "de": "le Mexique bedeutet Mexiko. Ländernamen werden mit dem bestimmten Artikel verwendet."
-        }
-      },
-      "listeningOptionTargetIds": [
         "target-espagnol",
-        "target-mexique",
-        "target-francais",
-        "target-japonais"
+        "target-espagne",
+        "target-france"
       ]
     },
     {
@@ -695,10 +455,10 @@
           ]
         },
         "referenceTargetIds": [
-          "target-japonais",
           "target-espagnol",
           "target-allemand",
-          "target-francais"
+          "target-francais",
+          "target-italien"
         ],
         "explanation": {
           "en": "espagnol, espagnole means Spanish. ",
@@ -707,81 +467,10 @@
         }
       },
       "listeningOptionTargetIds": [
-        "target-japonais",
         "target-espagnol",
         "target-allemand",
-        "target-francais"
-      ]
-    },
-    {
-      "id": "target-japonais",
-      "term": "japonais",
-      "translations": {
-        "en": [
-          "Japanese"
-        ],
-        "de": [
-          "japanisch"
-        ]
-      },
-      "wordClass": "adjective",
-      "genders": [],
-      "number": null,
-      "teachingForm": "japonais, japonaise",
-      "examForms": [
-        "japonais",
-        "japonaise"
-      ],
-      "articleException": null,
-      "genderVariants": [
-        "japonaise"
-      ],
-      "pronunciation": "/ʒa.pɔ.nɛ/",
-      "difficulty": "core",
-      "context": {
-        "sentence": "C'est un restaurant japonais.",
-        "translation": {
-          "en": "It is a Japanese restaurant.",
-          "de": "Es ist ein japanisches Restaurant."
-        }
-      },
-      "ambiguityNote": null,
-      "explanation": {
-        "en": "japonais, japonaise means Japanese. ",
-        "fr": "La forme à retenir est « japonais, japonaise ». ",
-        "de": "japonais, japonaise bedeutet japanisch. "
-      },
-      "genderExplanation": null,
-      "matchingLabel": {
-        "en": "Japanese",
-        "de": "japanisch"
-      },
-      "examPrompt": null,
-      "gap": {
-        "before": "Paul vient du Japon : il est ",
-        "after": ".",
-        "accepted": {
-          "answers": [
-            "japonais"
-          ]
-        },
-        "referenceTargetIds": [
-          "target-francais",
-          "target-japonais",
-          "target-canadien",
-          "target-allemand"
-        ],
-        "explanation": {
-          "en": "japonais, japonaise means Japanese. ",
-          "fr": "La forme à retenir est « japonais, japonaise ». ",
-          "de": "japonais, japonaise bedeutet japanisch. "
-        }
-      },
-      "listeningOptionTargetIds": [
         "target-francais",
-        "target-japonais",
-        "target-canadien",
-        "target-allemand"
+        "target-italien"
       ]
     },
     {
@@ -840,7 +529,7 @@
           "target-allemand",
           "target-francais",
           "target-italien",
-          "target-canadien"
+          "target-espagnol"
         ],
         "explanation": {
           "en": "français, française means French.  Français has a cédille under ç; its feminine form is française.",
@@ -852,7 +541,7 @@
         "target-allemand",
         "target-francais",
         "target-italien",
-        "target-canadien"
+        "target-espagnol"
       ]
     },
     {
@@ -908,10 +597,10 @@
           ]
         },
         "referenceTargetIds": [
-          "target-canadien",
           "target-allemand",
-          "target-mexicain",
-          "target-italien"
+          "target-italien",
+          "target-espagnol",
+          "target-francais"
         ],
         "explanation": {
           "en": "allemand, allemande means German. ",
@@ -920,81 +609,10 @@
         }
       },
       "listeningOptionTargetIds": [
-        "target-canadien",
         "target-allemand",
-        "target-mexicain",
-        "target-italien"
-      ]
-    },
-    {
-      "id": "target-canadien",
-      "term": "canadien",
-      "translations": {
-        "en": [
-          "Canadian"
-        ],
-        "de": [
-          "kanadisch"
-        ]
-      },
-      "wordClass": "adjective",
-      "genders": [],
-      "number": null,
-      "teachingForm": "canadien, canadienne",
-      "examForms": [
-        "canadien",
-        "canadienne"
-      ],
-      "articleException": null,
-      "genderVariants": [
-        "canadienne"
-      ],
-      "pronunciation": "/ka.na.djɛ̃/",
-      "difficulty": "demanding",
-      "context": {
-        "sentence": "Il a un passeport canadien.",
-        "translation": {
-          "en": "He has a Canadian passport.",
-          "de": "Er hat einen kanadischen Pass."
-        }
-      },
-      "ambiguityNote": null,
-      "explanation": {
-        "en": "canadien, canadienne means Canadian. ",
-        "fr": "La forme à retenir est « canadien, canadienne ». ",
-        "de": "canadien, canadienne bedeutet kanadisch. "
-      },
-      "genderExplanation": null,
-      "matchingLabel": {
-        "en": "Canadian",
-        "de": "kanadisch"
-      },
-      "examPrompt": null,
-      "gap": {
-        "before": "Paul vient du Canada : il est ",
-        "after": ".",
-        "accepted": {
-          "answers": [
-            "canadien"
-          ]
-        },
-        "referenceTargetIds": [
-          "target-italien",
-          "target-canadien",
-          "target-espagne",
-          "target-mexicain"
-        ],
-        "explanation": {
-          "en": "canadien, canadienne means Canadian. ",
-          "fr": "La forme à retenir est « canadien, canadienne ». ",
-          "de": "canadien, canadienne bedeutet kanadisch. "
-        }
-      },
-      "listeningOptionTargetIds": [
         "target-italien",
-        "target-canadien",
-        "target-espagne",
-        "target-mexicain"
+        "target-espagnol",
+        "target-francais"
       ]
     },
     {
@@ -1050,10 +668,10 @@
           ]
         },
         "referenceTargetIds": [
-          "target-mexicain",
           "target-italien",
-          "target-japon",
-          "target-espagne"
+          "target-espagne",
+          "target-espagnol",
+          "target-francais"
         ],
         "explanation": {
           "en": "italien, italienne means Italian. ",
@@ -1062,81 +680,10 @@
         }
       },
       "listeningOptionTargetIds": [
-        "target-mexicain",
         "target-italien",
-        "target-japon",
-        "target-espagne"
-      ]
-    },
-    {
-      "id": "target-mexicain",
-      "term": "mexicain",
-      "translations": {
-        "en": [
-          "Mexican"
-        ],
-        "de": [
-          "mexikanisch"
-        ]
-      },
-      "wordClass": "adjective",
-      "genders": [],
-      "number": null,
-      "teachingForm": "mexicain, mexicaine",
-      "examForms": [
-        "mexicain",
-        "mexicaine"
-      ],
-      "articleException": null,
-      "genderVariants": [
-        "mexicaine"
-      ],
-      "pronunciation": "/mɛk.si.kɛ̃/",
-      "difficulty": "demanding",
-      "context": {
-        "sentence": "Ils aiment la musique mexicaine.",
-        "translation": {
-          "en": "They like Mexican music.",
-          "de": "Sie mögen mexikanische Musik."
-        }
-      },
-      "ambiguityNote": null,
-      "explanation": {
-        "en": "mexicain, mexicaine means Mexican. ",
-        "fr": "La forme à retenir est « mexicain, mexicaine ». ",
-        "de": "mexicain, mexicaine bedeutet mexikanisch. "
-      },
-      "genderExplanation": null,
-      "matchingLabel": {
-        "en": "Mexican",
-        "de": "mexikanisch"
-      },
-      "examPrompt": null,
-      "gap": {
-        "before": "Paul vient du Mexique : il est ",
-        "after": ".",
-        "accepted": {
-          "answers": [
-            "mexicain"
-          ]
-        },
-        "referenceTargetIds": [
-          "target-espagne",
-          "target-mexicain",
-          "target-france",
-          "target-japon"
-        ],
-        "explanation": {
-          "en": "mexicain, mexicaine means Mexican. ",
-          "fr": "La forme à retenir est « mexicain, mexicaine ». ",
-          "de": "mexicain, mexicaine bedeutet mexikanisch. "
-        }
-      },
-      "listeningOptionTargetIds": [
         "target-espagne",
-        "target-mexicain",
-        "target-france",
-        "target-japon"
+        "target-espagnol",
+        "target-francais"
       ]
     }
   ],

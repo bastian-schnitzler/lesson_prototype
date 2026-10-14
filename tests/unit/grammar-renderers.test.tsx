@@ -202,7 +202,7 @@ describe('grammar start page (P3-02 review)', () => {
     expect(points(0)[0]).toMatch(/^1/);
     expect(points(0).slice(1)).toEqual(['2Match forms to pronouns', '3Choose the missing form', '4Singular forms']);
     expect(points(1)[0]).toMatch(/^5/);
-    expect(sections[2]).toHaveTextContent(/Final exam.*Answer 5 items on 2 timed pages/);
+    expect(sections[2]).toHaveTextContent(/Final exam.*Answer 5 questions on 2 timed pages/);
     expect(sections[2].querySelector('.flow-points')).toBeNull();
     for (const section of sections) expect(section.getAttribute('style')).toMatch(/--review-color/);
   });

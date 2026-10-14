@@ -14,12 +14,12 @@
     "fr": "Conjuguer le verbe irrégulier être au présent avec tous les pronoms sujets pour exprimer la nationalité, la profession et l'état.",
     "de": "Das unregelmäßige Verb être im Präsens mit allen Subjektpronomen konjugieren, um Nationalität, Beruf und Zustand auszudrücken."
   },
-  "estimatedMinutes": 18,
+  "estimatedMinutes": 15,
   "provenance": {
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "brief-v7",
-    "generatedAt": "2026-10-13T23:32:35.997Z",
+    "generatedAt": "2026-10-14T16:27:38.534Z",
     "inputHashes": {
       "outline": "37f20906353e39b156b85e7597e3a6ecc18c349368249261ec098196b3e8c0b3"
     }
@@ -115,29 +115,29 @@
         {
           "id": "ex-sg-choice",
           "type": "grammar_gap_choice",
-          "itemCount": 6,
+          "itemCount": 3,
           "ruleIds": [
             "rule-singular-forms"
           ],
-          "estimatedDurationS": 60
+          "estimatedDurationS": 30
         },
         {
           "id": "ex-sg-typing",
           "type": "grammar_gap_typing",
-          "itemCount": 6,
+          "itemCount": 3,
           "ruleIds": [
             "rule-singular-forms"
           ],
-          "estimatedDurationS": 90
+          "estimatedDurationS": 45
         },
         {
           "id": "ex-sg-spot",
           "type": "grammar_error_spotter",
-          "itemCount": 5,
+          "itemCount": 4,
           "ruleIds": [
             "rule-singular-forms"
           ],
-          "estimatedDurationS": 125
+          "estimatedDurationS": 100
         }
       ]
     },
@@ -216,22 +216,22 @@
         {
           "id": "ex-pl-choice",
           "type": "grammar_gap_choice",
-          "itemCount": 6,
+          "itemCount": 4,
+          "ruleIds": [
+            "rule-plural-forms",
+            "rule-liaison-pronunciation"
+          ],
+          "estimatedDurationS": 40
+        },
+        {
+          "id": "ex-pl-gap",
+          "type": "grammar_gap_typing",
+          "itemCount": 4,
           "ruleIds": [
             "rule-plural-forms",
             "rule-liaison-pronunciation"
           ],
           "estimatedDurationS": 60
-        },
-        {
-          "id": "ex-pl-gap",
-          "type": "grammar_gap_typing",
-          "itemCount": 5,
-          "ruleIds": [
-            "rule-plural-forms",
-            "rule-liaison-pronunciation"
-          ],
-          "estimatedDurationS": 75
         }
       ]
     }
@@ -255,23 +255,23 @@
       {
         "pageId": "exam-singular",
         "type": "grammar_gap_typing",
-        "itemCount": 5,
+        "itemCount": 3,
         "ruleIds": [
           "rule-singular-forms"
         ],
-        "estimatedDurationS": 75,
-        "timeLimitS": 120
+        "estimatedDurationS": 45,
+        "timeLimitS": 70
       },
       {
         "pageId": "exam-plural",
         "type": "grammar_gap_typing",
-        "itemCount": 5,
+        "itemCount": 3,
         "ruleIds": [
           "rule-plural-forms",
           "rule-liaison-pronunciation"
         ],
-        "estimatedDurationS": 75,
-        "timeLimitS": 120
+        "estimatedDurationS": 45,
+        "timeLimitS": 70
       }
     ]
   },

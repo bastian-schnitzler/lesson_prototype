@@ -159,8 +159,8 @@ export function entryAudio(page: PlanPage): string | undefined {
 /**
  * The correct answers of a practice page, spoken in autoplay mode as the page is checked, together with
  * the green or red marking (P4-05 review): gaps and error spotters as whole sentences, word order as
- * the sentence, listening choices as the right word or reply, pronoun rows as pronoun + form. Matching
- * boards and gender pages, which have their own sounds, are left out.
+ * the sentence, pronoun rows as pronoun + form. Matching boards and gender pages, which have their own
+ * sounds, and listening choices, whose word was just heard (P6-02), are left out.
  */
 export function correctSentences(page: PlanPage): string | undefined {
   const sentences = page.units.flatMap((u) => {
@@ -169,23 +169,22 @@ export function correctSentences(page: PlanPage): string | undefined {
     if (u.kind === 'spot' || u.kind === 'order') return [u.answer];
     if (u.prompt.before !== undefined || u.prompt.after !== undefined) return [gapSentence(u.prompt.before, u.answer, u.prompt.after)];
     if (u.itemType === 'grammar_pronoun_form_typing' || u.itemType === 'grammar_pronoun_form_match') return [`${pronounWithForm(u.prompt.learning ?? '', u.answer)}.`];
-    // The listening dialogue speaks only role A (on entry), never the chosen or right reply.
-    if (u.itemType === 'vocabulary_listening_choice') return [u.answer];
     return [];
   });
   return sentences.length ? sentences.join(' ') : undefined;
 }
 
 /**
- * Practice pages with one multiple-choice answer (P4-05 review): multiple-choice and dialogue gaps.
- * Listening choices, matching boards and gender pages keep their Check button.
+ * Practice pages with one multiple-choice answer (P4-05 review): multiple-choice and dialogue gaps, and
+ * vocabulary listening choices, whose options are written (P6-02). Listening replies, matching boards and
+ * gender pages keep their Check button.
  */
 export function isAutoSubmitPage(page: PlanPage): boolean {
   const unit = page.units[0];
   return page.role === 'practice' && page.units.length === 1 && unit.kind === 'choice' && !isMatchingItem(unit.itemType)
     && unit.itemType !== 'vocabulary_gender_select' && unit.itemType !== 'function_gender_select' && page.items.length === 1
-    // Listening choices are confirmed with Check: the learner may listen to the options first.
-    && unit.itemType !== 'vocabulary_listening_choice' && unit.itemType !== 'function_listening_choice';
+    // Listening replies are only heard, so the learner listens to all of them before Check.
+    && unit.itemType !== 'function_listening_choice';
 }
 
 export function SessionHeader({ plan, record }: { plan: LessonPlan; record: SessionRecord }) {
@@ -210,14 +209,18 @@ export function SessionHeader({ plan, record }: { plan: LessonPlan; record: Sess
   );
 }
 
-function Countdown({ remainingMs }: { remainingMs: number }) {
+/** The countdown of an exam page (P6-02, feedback #6): a box beside the heading with a bar of the time left. */
+function Countdown({ remainingMs, limitS }: { remainingMs: number; limitS?: number }) {
   const { t } = useI18n();
   const total = Math.ceil(remainingMs / 1000);
   const text = `${Math.floor(total / 60)}:${String(total % 60).padStart(2, '0')}`;
+  const share = limitS ? Math.max(0, Math.min(1, remainingMs / (limitS * 1000))) : undefined;
   return (
-    <p className={`countdown${total <= 10 ? ' countdown-low' : ''}`} role="timer" aria-label={t('session.timeLeft', { time: text })}>
-      {text}
-    </p>
+    <div className={`countdown${total <= 10 ? ' countdown-low' : ''}`}>
+      <span className="countdown-label" aria-hidden="true">{t('session.timeLeftLabel')}</span>
+      <span className="countdown-time" role="timer" aria-label={t('session.timeLeft', { time: text })}>{text}</span>
+      {share !== undefined && <span className="countdown-bar" aria-hidden="true"><span style={{ width: `${share * 100}%` }} /></span>}
+    </div>
   );
 }
 
@@ -251,11 +254,12 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
     if (record.phase === 'answering' && !(listening && voiceStatus !== 'available')) say(entryAudio(page), { queue: true });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [record.pageIndex]);
-  // Typing pages put the cursor straight into the first answer field; other pages focus the heading.
+  // Typing pages, practice and exam, put the cursor straight into the first answer field; other pages
+  // focus the heading. A listening page shows its fields only once the voice check is done (P6-02).
   useEffect(() => {
     const field = document.querySelector<HTMLInputElement>('.task-card input.text-input:not([readonly]):not([disabled])');
     (field ?? heading.current)?.focus();
-  }, [record.pageIndex]);
+  }, [record.pageIndex, voiceStatus]);
   // A fully correct single-answer page plays a short success animation, then skips its feedback (P2-02, P2-04).
   const [celebrating, setCelebrating] = useState(false);
   // Exam units missing their article get an info box after Continue; the next Continue submits anyway.
@@ -310,13 +314,17 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
       ) : (
       <section className={`task-card${celebrating ? ' is-celebrating' : ''}`} aria-labelledby="task-heading">
         {celebrating && <span className="visually-hidden" role="status">{t('session.allCorrect')}</span>}
-        <p className="label-muted">{page.stepLabel[locale]}{page.role === 'exam' && page.stepLabel[locale] !== t('session.examPage') ? ` · ${t('session.examPage')}` : ''}</p>
-        <h1 id="task-heading" ref={heading} tabIndex={-1} className="task-heading">{page.special === 'examIntro' ? t('examIntro.title') : instructionsFor(page, locale, t)}</h1>
-        {page.role === 'exam' && remainingMs !== undefined && <Countdown remainingMs={remainingMs} />}
+        <div className="task-top">
+          <div>
+            <p className="label-muted">{page.stepLabel[locale]}{page.role === 'exam' && page.stepLabel[locale] !== t('session.examPage') ? ` · ${t('session.examPage')}` : ''}</p>
+            <h1 id="task-heading" ref={heading} tabIndex={-1} className="task-heading">{page.special === 'examIntro' ? t('examIntro.title') : instructionsFor(page, locale, t)}</h1>
+          </div>
+          {page.role === 'exam' && remainingMs !== undefined && <Countdown remainingMs={remainingMs} limitS={page.timeLimitS ?? undefined} />}
+        </div>
         {page.special === 'examIntro' && <ExamIntro plan={plan} page={page} />}
-        {page.items.map((item) => {
+        {page.items.map((item, n) => {
           const Renderer = rendererRegistry[item.type];
-          return (
+          const rendered = (
             <Renderer
               key={item.itemId}
               item={item}
@@ -337,6 +345,13 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
               inlineFeedback={inline}
             />
           );
+          // Exam pages with several typed answers show each task as a numbered card (P6-02, feedback #26).
+          return examCards(page) ? (
+            <div key={item.itemId} className="exam-card">
+              <span className="exam-card-number" aria-hidden="true">{n + 1}.</span>
+              {rendered}
+            </div>
+          ) : rendered;
         })}
         <div className="task-footer">
           {page.role === 'presentation' && !ready && !nextLine && <p className="muted">{t('session.revealAll')}</p>}
@@ -365,6 +380,15 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
   );
 }
 
+/**
+ * Exam pages with more than one typed answer (vocabulary translation and dictation, grammar typed gaps)
+ * show one numbered card per task (P6-02, feedback #26); the function exam dialogue keeps its own layout.
+ */
+export function examCards(page: PlanPage): boolean {
+  return page.role === 'exam' && page.items.length > 1 && page.units.filter((u) => u.kind === 'text').length > 1
+    && !page.items.some((it) => it.type === 'function_dialogue_gap_typing');
+}
+
 /** Typed-gap pages use the application's own instruction (P2-03); other pages show their content instruction. */
 function instructionsFor(page: PlanPage, locale: Locale, t: (key: MessageKey) => string) {
   return page.items.length > 0 && page.items.every((it) => it.type === 'vocabulary_typed_gap') ? t('session.typedGapInstruction') : page.instructions[locale];
@@ -386,12 +410,25 @@ function ExamIntro({ plan, page }: { plan: LessonPlan; page: PlanPage }) {
         {examPages.map((p, n) => (
           <li key={p.pageId} style={reviewColor(n)}>
             <span>{t(examPageKind(p))} · {t('examIntro.items', { count: p.units.length })}</span>
-            <small>{t('examIntro.limit', { time: durationText(p.timeLimitS ?? 0, t) })}</small>
+            <TimeLimit seconds={p.timeLimitS ?? 0} />
           </li>
         ))}
       </ol>
       <p className="muted">{t('examIntro.rules')}</p>
     </div>
+  );
+}
+
+/** The time limit of an exam page as a stopwatch chip, "⏱ 01:20" (P6-02, feedback #13). */
+function TimeLimit({ seconds }: { seconds: number }) {
+  const { t } = useI18n();
+  return (
+    <span className="time-limit" aria-label={t('examIntro.limit', { time: durationText(seconds, t) })}>
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="14" r="7.5" /><path d="M12 14V10.5M10 2.5h4M18.2 7.3l1.3-1.3" />
+      </svg>
+      <span aria-hidden="true">{String(Math.floor(seconds / 60)).padStart(2, '0')}:{String(seconds % 60).padStart(2, '0')}</span>
+    </span>
   );
 }
 
@@ -567,7 +604,6 @@ export function ResultsView({ plan, record, dispatch, footer }: { plan: LessonPl
         <h1 id="results-title">{selectedStep ? selectedStep.label[locale] : t('session.examPage')}</h1>
         <p className="total-score">{sectionScore}</p>
         <p className="results-lesson" lang={plan.lang}>{plan.title}</p>
-        <p className="results-total">{t('result.lessonTotal', { score: roundHalfUp1(results.total).toLocaleString(locale) })}</p>
       </div>
       <h2 className="small-heading">{selectedStep ? selectedStep.label[locale] : part ? `${t('result.examAnswers')} · ${part.label}` : t('result.examAnswers')}</h2>
       {units.some((u) => record.locked[u.id]) ? (() => {

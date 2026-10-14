@@ -14,7 +14,7 @@
     "fr": "Apprendre et utiliser correctement les pronoms sujets français (je, tu, il, elle, on, nous, vous, ils, elles).",
     "de": "Lernen und korrekte Verwendung der französischen Subjektpronomen (je, tu, il, elle, on, nous, vous, ils, elles)."
   },
-  "estimatedMinutes": 20,
+  "estimatedMinutes": 15,
   "kind": "grammar",
   "topic": "pronouns",
   "steps": [
@@ -193,98 +193,6 @@
               "ruleIds": [
                 "rule-singular-pronouns"
               ],
-              "before": "Voici Marie.",
-              "after": "est française.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "Je"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "Elle"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "Il"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "Ils"
-                }
-              ],
-              "answerChoiceId": "c-2",
-              "hint": null,
-              "answerExplanation": {
-                "en": "Marie is one woman or girl: elle.",
-                "fr": "Marie est une femme ou une fille : elle.",
-                "de": "Marie ist eine Frau oder ein Mädchen: elle."
-              },
-              "itemId": "ex-singular-choice-3"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-singular-choice-4",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-singular-pronouns"
-              ],
-              "before": "Voici Paul.",
-              "after": "habite à Lyon.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "Il"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "Elles"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "Tu"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "Elle"
-                }
-              ],
-              "answerChoiceId": "c-1",
-              "hint": null,
-              "answerExplanation": {
-                "en": "Paul is one man or boy: il.",
-                "fr": "Paul est un homme ou un garçon : il.",
-                "de": "Paul ist ein Mann oder Junge: il."
-              },
-              "itemId": "ex-singular-choice-4"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-singular-choice-5",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-singular-pronouns"
-              ],
               "before": "",
               "after": "habite à Nice.",
               "choices": [
@@ -312,53 +220,7 @@
                 "fr": "Je devient j’ devant une voyelle ou un h muet : j’habite.",
                 "de": "Vor Vokal oder stummem h wird je zu j’: j’habite."
               },
-              "itemId": "ex-singular-choice-5"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-singular-choice-6",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-singular-pronouns"
-              ],
-              "before": "Moi,",
-              "after": "parle anglais.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "il"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "tu"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "je"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "elle"
-                }
-              ],
-              "answerChoiceId": "c-3",
-              "hint": null,
-              "answerExplanation": {
-                "en": "I = je: the speaker talks about themselves.",
-                "fr": "je = la personne qui parle.",
-                "de": "ich = je: die sprechende Person."
-              },
-              "itemId": "ex-singular-choice-6"
+              "itemId": "ex-singular-choice-3"
             }
           ]
         }
@@ -437,117 +299,6 @@
                 "de": "Léa ist eine Frau oder ein Mädchen: elle."
               },
               "itemId": "ex-singular-typing-2"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-singular-typing-3",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-singular-pronouns"
-              ],
-              "before": "",
-              "after": "suis canadien.",
-              "accepted": {
-                "answers": [
-                  "Je",
-                  "je"
-                ]
-              },
-              "hint": {
-                "en": "I",
-                "fr": "la personne qui parle",
-                "de": "ich"
-              },
-              "answerExplanation": {
-                "en": "I = je: the speaker talks about themselves.",
-                "fr": "je = la personne qui parle.",
-                "de": "ich = je: die sprechende Person."
-              },
-              "itemId": "ex-singular-typing-3"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-singular-typing-4",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-singular-pronouns"
-              ],
-              "before": "Salut Tom !",
-              "after": "es là ?",
-              "accepted": {
-                "answers": [
-                  "Tu",
-                  "tu"
-                ]
-              },
-              "hint": {
-                "en": "one friend",
-                "fr": "un ami",
-                "de": "ein Freund"
-              },
-              "answerExplanation": {
-                "en": "One person you know well (a friend, a child): tu.",
-                "fr": "Une personne proche (un ami, un enfant) : tu.",
-                "de": "Eine vertraute Person (Freund, Kind): tu."
-              },
-              "itemId": "ex-singular-typing-4"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-singular-typing-5",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-singular-pronouns"
-              ],
-              "before": "",
-              "after": "habite ici.",
-              "accepted": {
-                "answers": [
-                  "J’",
-                  "j’"
-                ]
-              },
-              "hint": {
-                "en": "I",
-                "fr": "la personne qui parle",
-                "de": "ich"
-              },
-              "answerExplanation": {
-                "en": "Je becomes j’ before a vowel or a silent h: j’habite.",
-                "fr": "Je devient j’ devant une voyelle ou un h muet : j’habite.",
-                "de": "Vor Vokal oder stummem h wird je zu j’: j’habite."
-              },
-              "itemId": "ex-singular-typing-5"
             }
           ]
         }
@@ -676,122 +427,6 @@
                 "de": "Sophie ist eine Frau oder ein Mädchen: elle."
               },
               "itemId": "ex-singular-spot-2"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-singular-spot-3",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Find the wrong word and correct it.",
-            "fr": "Trouvez le mot faux et corrigez-le.",
-            "de": "Finde das falsche Wort und korrigiere es."
-          },
-          "items": [
-            {
-              "type": "grammar_error_spotter",
-              "ruleIds": [
-                "rule-singular-pronouns"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-1",
-                  "text": "Voici"
-                },
-                {
-                  "tokenId": "t-2",
-                  "text": "Marc"
-                },
-                {
-                  "tokenId": "t-3",
-                  "text": ":"
-                },
-                {
-                  "tokenId": "t-4",
-                  "text": "elle"
-                },
-                {
-                  "tokenId": "t-5",
-                  "text": "est"
-                },
-                {
-                  "tokenId": "t-6",
-                  "text": "grand"
-                }
-              ],
-              "faultyTokenId": "t-4",
-              "correction": {
-                "mode": "type",
-                "accepted": {
-                  "answers": [
-                    "il"
-                  ]
-                },
-                "choices": []
-              },
-              "answerExplanation": {
-                "en": "Marc is one man or boy: il.",
-                "fr": "Marc est un homme ou un garçon : il.",
-                "de": "Marc ist ein Mann oder Junge: il."
-              },
-              "itemId": "ex-singular-spot-3"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-singular-spot-4",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Find the wrong word and correct it.",
-            "fr": "Trouvez le mot faux et corrigez-le.",
-            "de": "Finde das falsche Wort und korrigiere es."
-          },
-          "items": [
-            {
-              "type": "grammar_error_spotter",
-              "ruleIds": [
-                "rule-singular-pronouns"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-1",
-                  "text": "Tu"
-                },
-                {
-                  "tokenId": "t-2",
-                  "text": "suis"
-                },
-                {
-                  "tokenId": "t-3",
-                  "text": "à"
-                },
-                {
-                  "tokenId": "t-4",
-                  "text": "Paris"
-                }
-              ],
-              "faultyTokenId": "t-1",
-              "correction": {
-                "mode": "select",
-                "accepted": {
-                  "answers": [
-                    "Je"
-                  ]
-                },
-                "choices": [
-                  "Je",
-                  "Tu",
-                  "Il"
-                ]
-              },
-              "answerExplanation": {
-                "en": "Suis goes with je: je suis.",
-                "fr": "Suis va avec je : je suis.",
-                "de": "Suis gehört zu je: je suis."
-              },
-              "itemId": "ex-singular-spot-4"
             }
           ]
         }
@@ -1090,52 +725,6 @@
             {
               "type": "grammar_gap_choice",
               "ruleIds": [
-                "rule-plural-pronouns"
-              ],
-              "before": "Léa et Marie ?",
-              "after": "sont sœurs.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "Vous"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "Elles"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "Elle"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "Ils"
-                }
-              ],
-              "answerChoiceId": "c-2",
-              "hint": null,
-              "answerExplanation": {
-                "en": "Léa et Marie: a group of women only is elles.",
-                "fr": "Léa et Marie : un groupe de femmes seulement, c’est elles.",
-                "de": "Léa et Marie: eine Gruppe nur aus Frauen ist elles."
-              },
-              "itemId": "ex-plural-gap-choice-3"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-plural-gap-choice-4",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
                 "rule-on-informal-we"
               ],
               "before": "Chez nous,",
@@ -1169,99 +758,7 @@
                 "fr": "À l’oral, on veut souvent dire « nous » ; le verbe prend la forme de il : on est.",
                 "de": "Im gesprochenen Französisch heißt on oft „wir“; das Verb steht in der il-Form: on est."
               },
-              "itemId": "ex-plural-gap-choice-4"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-plural-gap-choice-5",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-plural-pronouns"
-              ],
-              "before": "Les garçons ?",
-              "after": "parlent anglais.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "Il"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "Ils"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "Elles"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "On"
-                }
-              ],
-              "answerChoiceId": "c-2",
-              "hint": null,
-              "answerExplanation": {
-                "en": "Les garçons: a group of men or a mixed group is ils.",
-                "fr": "Les garçons : un groupe d’hommes ou un groupe mixte, c’est ils.",
-                "de": "Les garçons: eine Gruppe von Männern oder eine gemischte Gruppe ist ils."
-              },
-              "itemId": "ex-plural-gap-choice-5"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-plural-gap-choice-6",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-plural-pronouns"
-              ],
-              "before": "Toi et Paul,",
-              "after": "êtes prêts ?",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "vous"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "ils"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "tu"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "nous"
-                }
-              ],
-              "answerChoiceId": "c-1",
-              "hint": null,
-              "answerExplanation": {
-                "en": "Several people you talk to: always vous.",
-                "fr": "Plusieurs personnes à qui on parle : toujours vous.",
-                "de": "Mehrere angesprochene Personen: immer vous."
-              },
-              "itemId": "ex-plural-gap-choice-6"
+              "itemId": "ex-plural-gap-choice-3"
             }
           ]
         }
@@ -1376,42 +873,6 @@
                 "de": "Die sprechende Person und andere: nous."
               },
               "itemId": "ex-plural-typing-3"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-plural-typing-4",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-plural-pronouns"
-              ],
-              "before": "Pierre et Sophie,",
-              "after": "êtes où ?",
-              "accepted": {
-                "answers": [
-                  "vous"
-                ]
-              },
-              "hint": {
-                "en": "two people",
-                "fr": "deux personnes",
-                "de": "zwei Personen"
-              },
-              "answerExplanation": {
-                "en": "Several people you talk to: always vous.",
-                "fr": "Plusieurs personnes à qui on parle : toujours vous.",
-                "de": "Mehrere angesprochene Personen: immer vous."
-              },
-              "itemId": "ex-plural-typing-4"
             }
           ]
         }
@@ -1634,156 +1095,6 @@
               "itemId": "ex-tu-vous-gap-choice-3"
             }
           ]
-        },
-        {
-          "pageId": "ex-tu-vous-gap-choice-4",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-tu-vs-vous"
-              ],
-              "before": "Papa,",
-              "after": "es à la maison ?",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "il"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "tu"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "on"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "vous"
-                }
-              ],
-              "answerChoiceId": "c-2",
-              "hint": {
-                "en": "your father",
-                "fr": "votre père",
-                "de": "dein Vater"
-              },
-              "answerExplanation": {
-                "en": "In the family, people say tu.",
-                "fr": "En famille, on se dit tu.",
-                "de": "In der Familie sagt man tu."
-              },
-              "itemId": "ex-tu-vous-gap-choice-4"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-tu-vous-gap-choice-5",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-tu-vs-vous"
-              ],
-              "before": "Les enfants,",
-              "after": "êtes prêts ?",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "tu"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "nous"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "ils"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "vous"
-                }
-              ],
-              "answerChoiceId": "c-4",
-              "hint": {
-                "en": "several children",
-                "fr": "plusieurs enfants",
-                "de": "mehrere Kinder"
-              },
-              "answerExplanation": {
-                "en": "Several people you talk to: always vous.",
-                "fr": "Plusieurs personnes à qui on parle : toujours vous.",
-                "de": "Mehrere angesprochene Personen: immer vous."
-              },
-              "itemId": "ex-tu-vous-gap-choice-5"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-tu-vous-gap-choice-6",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-tu-vs-vous"
-              ],
-              "before": "Excusez-moi, madame,",
-              "after": "êtes la professeure ?",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "elle"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "tu"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "vous"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "on"
-                }
-              ],
-              "answerChoiceId": "c-3",
-              "hint": {
-                "en": "a teacher",
-                "fr": "une professeure",
-                "de": "eine Lehrerin"
-              },
-              "answerExplanation": {
-                "en": "One person you address politely (a teacher, a stranger, a customer): vous.",
-                "fr": "Une personne qu’on vouvoie (un professeur, un inconnu, un client) : vous.",
-                "de": "Eine Person, die man siezt (Lehrkraft, Fremde, Kundschaft): vous."
-              },
-              "itemId": "ex-tu-vous-gap-choice-6"
-            }
-          ]
         }
       ]
     },
@@ -1905,42 +1216,6 @@
               "itemId": "ex-tu-vous-typing-3"
             }
           ]
-        },
-        {
-          "pageId": "ex-tu-vous-typing-4",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-tu-vs-vous"
-              ],
-              "before": "Chloé et Hugo,",
-              "after": "êtes là ?",
-              "accepted": {
-                "answers": [
-                  "vous"
-                ]
-              },
-              "hint": {
-                "en": "two friends",
-                "fr": "deux amis",
-                "de": "zwei Freunde"
-              },
-              "answerExplanation": {
-                "en": "Several people you talk to: always vous.",
-                "fr": "Plusieurs personnes à qui on parle : toujours vous.",
-                "de": "Mehrere angesprochene Personen: immer vous."
-              },
-              "itemId": "ex-tu-vous-typing-4"
-            }
-          ]
         }
       ]
     },
@@ -1984,8 +1259,8 @@
       "pages": [
         {
           "pageId": "exam-singular",
-          "estimatedDurationS": 90,
-          "timeLimitS": 140,
+          "estimatedDurationS": 60,
+          "timeLimitS": 90,
           "instructions": {
             "en": "Type the missing words.",
             "fr": "Écrivez les mots manquants.",
@@ -2075,54 +1350,13 @@
                 "de": "Vor Vokal oder stummem h wird je zu j’: j’habite."
               },
               "itemId": "exam-singular-4"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-singular-pronouns"
-              ],
-              "before": "Salut Ben,",
-              "after": "es prêt ?",
-              "accepted": {
-                "answers": [
-                  "tu"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "One person you know well (a friend, a child): tu.",
-                "fr": "Une personne proche (un ami, un enfant) : tu.",
-                "de": "Eine vertraute Person (Freund, Kind): tu."
-              },
-              "itemId": "exam-singular-5"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-singular-pronouns"
-              ],
-              "before": "Mon oncle ?",
-              "after": "parle russe.",
-              "accepted": {
-                "answers": [
-                  "Il",
-                  "il"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "Mon oncle is one man or boy: il.",
-                "fr": "Mon oncle est un homme ou un garçon : il.",
-                "de": "Mon oncle ist ein Mann oder Junge: il."
-              },
-              "itemId": "exam-singular-6"
             }
           ]
         },
         {
           "pageId": "exam-plural",
-          "estimatedDurationS": 75,
-          "timeLimitS": 120,
+          "estimatedDurationS": 60,
+          "timeLimitS": 90,
           "instructions": {
             "en": "Type the missing words.",
             "fr": "Écrivez les mots manquants.",
@@ -2194,26 +1428,6 @@
             {
               "type": "grammar_gap_typing",
               "ruleIds": [
-                "rule-plural-pronouns"
-              ],
-              "before": "Toi et Marie,",
-              "after": "êtes contentes ?",
-              "accepted": {
-                "answers": [
-                  "vous"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "Several people you talk to: always vous.",
-                "fr": "Plusieurs personnes à qui on parle : toujours vous.",
-                "de": "Mehrere angesprochene Personen: immer vous."
-              },
-              "itemId": "exam-plural-4"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
                 "rule-on-informal-we"
               ],
               "before": "Le samedi,",
@@ -2229,14 +1443,14 @@
                 "fr": "À l’oral, on veut souvent dire « nous » ; le verbe prend la forme de il : on est.",
                 "de": "Im gesprochenen Französisch heißt on oft „wir“; das Verb steht in der il-Form: on est."
               },
-              "itemId": "exam-plural-5"
+              "itemId": "exam-plural-4"
             }
           ]
         },
         {
           "pageId": "exam-tu-vous",
-          "estimatedDurationS": 75,
-          "timeLimitS": 120,
+          "estimatedDurationS": 60,
+          "timeLimitS": 90,
           "instructions": {
             "en": "Type the missing words.",
             "fr": "Écrivez les mots manquants.",
@@ -2322,26 +1536,6 @@
                 "de": "In der Familie sagt man tu."
               },
               "itemId": "exam-tu-vous-4"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-tu-vs-vous"
-              ],
-              "before": "Les amis,",
-              "after": "êtes là ?",
-              "accepted": {
-                "answers": [
-                  "vous"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "Several people you talk to: always vous.",
-                "fr": "Plusieurs personnes à qui on parle : toujours vous.",
-                "de": "Mehrere angesprochene Personen: immer vous."
-              },
-              "itemId": "exam-tu-vous-5"
             }
           ]
         }
@@ -2352,10 +1546,10 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "content-v4",
-    "generatedAt": "2026-10-13T23:32:35.102Z",
+    "generatedAt": "2026-10-14T16:27:59.674Z",
     "inputHashes": {
       "outline": "0367546f1045976bcb4939d146c3b21f6c14226474b17a8ca564d616f4ff3afe",
-      "brief": "e7a3150c317fcdc8dd82fc8c4e8b1dbf8f07d88d6f185c3dfe1fa9435ab7601d"
+      "brief": "f8bbb69c7f9fdefaf2b60c59007b7f1241cf0fe6f3f596e834574eedd68355b0"
     }
   }
 }

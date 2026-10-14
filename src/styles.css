@@ -842,7 +842,7 @@ select {
   font-weight: 600;
 }
 
-.group-list li span {
+.group-list li > span:not(.time-limit) {
   flex: 1;
 }
 
@@ -893,19 +893,108 @@ select {
   font-variant-numeric: tabular-nums;
 }
 
+/* Exam pages: the heading on the left, the countdown box on the right (P6-02, feedback #6). */
+.task-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0 1.25rem;
+}
+
+.task-top > div:first-child {
+  flex: 1 1 18rem;
+  min-width: 0;
+}
+
 .countdown {
-  display: inline-block;
-  margin: 0 0 1rem;
-  padding: 0.3rem 0.9rem;
-  border: 2px solid var(--border-strong);
-  border-radius: 999px;
-  font-size: 20px;
+  display: grid;
+  gap: 0.15rem;
+  min-width: 10rem;
+  margin: 0 0 1.25rem;
+  padding: 0.6rem 0.9rem 0.75rem;
+  background: var(--bg);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-card);
+}
+
+.countdown-label {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.countdown-time {
+  font-size: 28px;
+  font-weight: 700;
   font-variant-numeric: tabular-nums;
+}
+
+.countdown-bar {
+  height: 6px;
+  margin-top: 0.35rem;
+  border-radius: 999px;
+  background: var(--border);
+  overflow: hidden;
+}
+
+.countdown-bar > span {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: #67e8f9;
+  transition: width 0.25s linear;
 }
 
 .countdown-low {
   border-color: var(--incorrect);
+}
+
+.countdown-low .countdown-time {
   color: var(--incorrect);
+}
+
+.countdown-low .countdown-bar > span {
+  background: var(--incorrect);
+}
+
+/* Numbered task cards on exam pages with several typed answers (P6-02, feedback #26). */
+.exam-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+  padding: 0.9rem 1.1rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-left: 3px solid #67e8f9;
+  border-radius: 10px;
+}
+
+.exam-card-number {
+  flex: 0 0 auto;
+  min-width: 1.5rem;
+  padding-top: 0.55rem;
+  color: #67e8f9;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.exam-card > .units {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.exam-card .unit {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+@media (min-width: 640px) {
+  .exam-card .field {
+    grid-template-columns: minmax(8rem, 1fr) minmax(12rem, 2fr);
+    align-items: center;
+    gap: 1rem;
+  }
 }
 
 .units {
@@ -2041,6 +2130,27 @@ select {
   transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
+/* Exam page time limits on the exam info page (P6-02, feedback #13). */
+.time-limit {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0.75rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, Consolas, monospace;
+  font-size: 18px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.time-limit svg {
+  color: var(--muted);
+}
+
 .exam-intro .lead {
   margin-bottom: 1rem;
 }
@@ -2049,11 +2159,6 @@ select {
   margin: 0.25rem 0 0;
   font-size: 20px;
   font-weight: 600;
-}
-
-.results-total {
-  margin: 0.25rem 0 0;
-  color: var(--muted);
 }
 
 .results-footer {
@@ -2760,6 +2865,24 @@ html {
 }
 
 /* Result parts (replace the former button menu): the exam first with its parts, then the exercises. */
+.results-final {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.results-final-label {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.results-final-score {
+  font-size: 30px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
 .results-nav {
   display: grid;
   gap: 0.6rem;
@@ -2818,9 +2941,7 @@ html {
 }
 
 .summary-card.is-all-wrong .label-muted,
-.summary-card.is-all-wrong .results-total,
-.summary-card.is-mixed .label-muted,
-.summary-card.is-mixed .results-total {
+.summary-card.is-mixed .label-muted {
   color: #e2e8f0;
 }
 

@@ -14,12 +14,12 @@
     "fr": "Apprendre à poser des questions fermées simples avec l'intonation ou 'est-ce que' et y répondre par 'oui' ou 'non'.",
     "de": "Lerne, einfache Ja/Nein-Fragen mit Intonation oder 'est-ce que' zu stellen und mit 'oui' oder 'non' zu antworten."
   },
-  "estimatedMinutes": 20,
+  "estimatedMinutes": 15,
   "provenance": {
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "brief-v7",
-    "generatedAt": "2026-10-13T23:32:36.407Z",
+    "generatedAt": "2026-10-14T16:27:38.640Z",
     "inputHashes": {
       "outline": "3c12786bc37e360e4fe392d664b19a6b0785f2775510b6f39fdc04fb475a22ec"
     }
@@ -116,30 +116,30 @@
         {
           "id": "ex-intonation-choice",
           "type": "grammar_gap_choice",
-          "itemCount": 6,
+          "itemCount": 3,
           "ruleIds": [
             "rule-intonation-question",
             "rule-answering-oui-non"
           ],
-          "estimatedDurationS": 60
+          "estimatedDurationS": 30
         },
         {
           "id": "ex-intonation-typing",
           "type": "grammar_gap_typing",
-          "itemCount": 5,
+          "itemCount": 3,
           "ruleIds": [
             "rule-answering-oui-non"
           ],
-          "estimatedDurationS": 75
+          "estimatedDurationS": 45
         },
         {
           "id": "ex-intonation-order",
           "type": "grammar_word_order",
-          "itemCount": 5,
+          "itemCount": 3,
           "ruleIds": [
             "rule-intonation-question"
           ],
-          "estimatedDurationS": 125
+          "estimatedDurationS": 75
         }
       ]
     },
@@ -186,29 +186,29 @@
         {
           "id": "ex-est-ce-que-choice",
           "type": "grammar_gap_choice",
-          "itemCount": 6,
+          "itemCount": 3,
           "ruleIds": [
             "rule-est-ce-que"
           ],
-          "estimatedDurationS": 60
+          "estimatedDurationS": 30
         },
         {
           "id": "ex-est-ce-que-typing",
           "type": "grammar_gap_typing",
-          "itemCount": 5,
+          "itemCount": 3,
           "ruleIds": [
             "rule-est-ce-que"
           ],
-          "estimatedDurationS": 75
+          "estimatedDurationS": 45
         },
         {
           "id": "ex-est-ce-que-order",
           "type": "grammar_word_order",
-          "itemCount": 4,
+          "itemCount": 3,
           "ruleIds": [
             "rule-est-ce-que"
           ],
-          "estimatedDurationS": 100
+          "estimatedDurationS": 75
         },
         {
           "id": "ex-est-ce-que-spot",
@@ -230,34 +230,33 @@
       {
         "pageId": "exam-order",
         "type": "grammar_word_order",
-        "itemCount": 4,
+        "itemCount": 3,
         "ruleIds": [
           "rule-intonation-question",
           "rule-est-ce-que"
         ],
-        "estimatedDurationS": 100,
-        "timeLimitS": 150
+        "estimatedDurationS": 75,
+        "timeLimitS": 120
       },
       {
         "pageId": "exam-est-ce-que",
         "type": "grammar_gap_typing",
-        "itemCount": 6,
+        "itemCount": 3,
         "ruleIds": [
           "rule-est-ce-que"
         ],
-        "estimatedDurationS": 90,
-        "timeLimitS": 140
+        "estimatedDurationS": 45,
+        "timeLimitS": 70
       },
       {
         "pageId": "exam-answers",
         "type": "grammar_gap_typing",
-        "itemCount": 6,
+        "itemCount": 4,
         "ruleIds": [
-          "rule-answering-oui-non",
-          "rule-intonation-question"
+          "rule-answering-oui-non"
         ],
-        "estimatedDurationS": 90,
-        "timeLimitS": 140
+        "estimatedDurationS": 60,
+        "timeLimitS": 90
       }
     ]
   },
