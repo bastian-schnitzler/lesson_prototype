@@ -110,7 +110,7 @@ export function PlayPage({ manifest, lessonId }: { manifest: Manifest; lessonId:
           </a>
         }
       />
-      <main id="main" tabIndex={-1} className="page page-task">
+      <main id="main" tabIndex={-1} className={`page page-task${active && plan ? ' has-nav' : ''}`}>
         {body}
       </main>
     </>

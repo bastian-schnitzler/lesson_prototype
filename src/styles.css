@@ -2564,7 +2564,7 @@ html {
  * timeline of the learning points; the exam pages during the exam; the result parts on the results
  * page). Below 960px the sidebar gives way to a compact button that opens the same content in a drawer.
  */
-.page-task:has(.nav-layout) {
+.page-task.has-nav {
   max-width: 1320px;
 }
 
