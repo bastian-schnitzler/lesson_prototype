@@ -275,7 +275,7 @@ describe('grammar lesson length (P3-07)', () => {
     expect(checkContent('fr-verb-etre-present').status).toBe('valid');
     const fixture = briefSchema('grammar', 'fr').parse(load('fr-verb-etre-present', 'brief'));
     if (fixture.kind !== 'grammar') throw new Error('Expected grammar');
-    expect(grammarBriefLengthIssues(fixture).map((i) => i.message).join('\n')).toMatch(/at least 34[\s\S]*at least 16/);
+    expect(grammarBriefLengthIssues(fixture).map((i) => i.message).join('\n')).toMatch(/at least 22[\s\S]*at least 10/);
   });
 
   it('checks exercises per block, scored units and realistic page estimates', () => {

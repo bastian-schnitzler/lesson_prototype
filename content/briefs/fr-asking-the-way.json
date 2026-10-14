@@ -14,12 +14,12 @@
     "fr": "Demander son chemin à un passant et comprendre une indication simple : tout droit, à gauche, à droite, à côté.",
     "de": "Einen Passanten nach dem Weg fragen und einfache Wegbeschreibungen verstehen: geradeaus, links, rechts, in der Nähe."
   },
-  "estimatedMinutes": 26,
+  "estimatedMinutes": 17,
   "provenance": {
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "functions-v1",
-    "generatedAt": "2026-10-13T23:42:16.504Z",
+    "generatedAt": "2026-10-14T16:31:09.011Z",
     "inputHashes": {
       "outline": "fcc9998d354910d96645252f5de2919381a31873ba3a5902dcdacecd8024bfc9"
     }
@@ -107,31 +107,6 @@
       }
     },
     {
-      "id": "cest-loin",
-      "text": "C’est loin ?",
-      "openEnd": false,
-      "translations": {
-        "en": [
-          "Is it far?"
-        ],
-        "de": [
-          "Ist es weit?"
-        ]
-      },
-      "explanation": {
-        "en": "Asks about the distance.",
-        "fr": "Pour demander la distance.",
-        "de": "Fragt nach der Entfernung."
-      },
-      "example": {
-        "text": "Le musée, c’est loin ?",
-        "translation": {
-          "en": "Is the museum far?",
-          "de": "Ist das Museum weit?"
-        }
-      }
-    },
-    {
       "id": "tout-droit",
       "text": "Vous allez tout droit.",
       "openEnd": false,
@@ -178,81 +153,6 @@
         "translation": {
           "en": "After the bank, turn left.",
           "de": "Nach der Bank biegen Sie links ab."
-        }
-      }
-    },
-    {
-      "id": "a-droite",
-      "text": "Tournez à droite.",
-      "openEnd": false,
-      "translations": {
-        "en": [
-          "Turn right."
-        ],
-        "de": [
-          "Biegen Sie rechts ab."
-        ]
-      },
-      "explanation": {
-        "en": "A direction: turn to the right.",
-        "fr": "Une indication : tourner du côté droit.",
-        "de": "Eine Richtung: nach rechts abbiegen."
-      },
-      "example": {
-        "text": "Ici, tournez à droite.",
-        "translation": {
-          "en": "Turn right here.",
-          "de": "Hier biegen Sie rechts ab."
-        }
-      }
-    },
-    {
-      "id": "a-cote",
-      "text": "C’est à côté.",
-      "openEnd": false,
-      "translations": {
-        "en": [
-          "It’s close by."
-        ],
-        "de": [
-          "Das ist ganz in der Nähe."
-        ]
-      },
-      "explanation": {
-        "en": "Says that the place is very near.",
-        "fr": "Pour dire que le lieu est tout près.",
-        "de": "Sagt, dass der Ort sehr nah ist."
-      },
-      "example": {
-        "text": "La banque ? C’est à côté.",
-        "translation": {
-          "en": "The bank? It’s close by.",
-          "de": "Die Bank? Die ist ganz in der Nähe."
-        }
-      }
-    },
-    {
-      "id": "merci-beaucoup",
-      "text": "Merci beaucoup !",
-      "openEnd": false,
-      "translations": {
-        "en": [
-          "Thank you very much!"
-        ],
-        "de": [
-          "Vielen Dank!"
-        ]
-      },
-      "explanation": {
-        "en": "A warm thank you for the help.",
-        "fr": "Un merci chaleureux pour l’aide.",
-        "de": "Ein herzliches Danke für die Hilfe."
-      },
-      "example": {
-        "text": "Merci beaucoup, monsieur !",
-        "translation": {
-          "en": "Thank you very much, sir!",
-          "de": "Vielen Dank!"
         }
       }
     }

@@ -140,7 +140,7 @@ test('plays a multi-group noun lesson perfectly: group-wise stages, exam info, 1
   const body = (await page.locator('main').textContent())!;
   for (const t of data.target.values()) expect(body).not.toContain(t.teachingForm);
   await solve(page, data);
-  await expect(page.locator('.summary-card .results-total')).toHaveText('Lesson total: 100 / 100');
+  await expect(page.locator('.lesson-nav .results-final-score')).toHaveText('100 / 100');
   await expect(page.locator('.summary-card .total-score')).toHaveText(`${data.examUnits} / ${data.examUnits}`);
   // Only scored parts are offered; each word group is one frame with its name shown once.
   const nav = await lessonNav(page);

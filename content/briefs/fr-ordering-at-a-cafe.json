@@ -14,12 +14,12 @@
     "fr": "Commander une boisson et un en-cas au café, demander le prix et l’addition, et répondre au serveur.",
     "de": "Im Café ein Getränk und einen Snack bestellen, nach Preis und Rechnung fragen und dem Kellner antworten."
   },
-  "estimatedMinutes": 26,
+  "estimatedMinutes": 17,
   "provenance": {
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "functions-v1",
-    "generatedAt": "2026-10-13T23:42:17.269Z",
+    "generatedAt": "2026-10-14T16:31:08.712Z",
     "inputHashes": {
       "outline": "3d44c42aa9721069c041b103732801561e34e993b5fde9e51f14c06cb8768c78"
     }
@@ -103,106 +103,6 @@
         "translation": {
           "en": "I would like a coffee, please.",
           "de": "Ich hätte gern einen Kaffee, bitte."
-        }
-      }
-    },
-    {
-      "id": "je-prends",
-      "text": "Je prends",
-      "openEnd": true,
-      "translations": {
-        "en": [
-          "I’ll have"
-        ],
-        "de": [
-          "Ich nehme"
-        ]
-      },
-      "explanation": {
-        "en": "A direct, everyday way to say what you choose.",
-        "fr": "Une façon directe et courante de dire ce qu’on choisit.",
-        "de": "Eine direkte, alltägliche Art zu sagen, was man wählt."
-      },
-      "example": {
-        "text": "Je prends un thé.",
-        "translation": {
-          "en": "I’ll have a tea.",
-          "de": "Ich nehme einen Tee."
-        }
-      }
-    },
-    {
-      "id": "et-avec-ceci",
-      "text": "Et avec ceci ?",
-      "openEnd": false,
-      "translations": {
-        "en": [
-          "Anything else?"
-        ],
-        "de": [
-          "Sonst noch etwas?"
-        ]
-      },
-      "explanation": {
-        "en": "Staff ask whether you want anything more.",
-        "fr": "Le personnel demande si vous voulez autre chose.",
-        "de": "Das Personal fragt, ob Sie noch etwas möchten."
-      },
-      "example": {
-        "text": "Deux cafés. Et avec ceci ?",
-        "translation": {
-          "en": "Two coffees. Anything else?",
-          "de": "Zwei Kaffee. Sonst noch etwas?"
-        }
-      }
-    },
-    {
-      "id": "cest-tout",
-      "text": "C’est tout.",
-      "openEnd": false,
-      "translations": {
-        "en": [
-          "That’s all."
-        ],
-        "de": [
-          "Das ist alles."
-        ]
-      },
-      "explanation": {
-        "en": "Says that your order is complete.",
-        "fr": "Pour dire que la commande est finie.",
-        "de": "Sagt, dass die Bestellung vollständig ist."
-      },
-      "example": {
-        "text": "Un café, et c’est tout.",
-        "translation": {
-          "en": "A coffee, and that’s all.",
-          "de": "Einen Kaffee, und das ist alles."
-        }
-      }
-    },
-    {
-      "id": "sur-place",
-      "text": "Sur place ou à emporter ?",
-      "openEnd": false,
-      "translations": {
-        "en": [
-          "For here or to take away?"
-        ],
-        "de": [
-          "Hier oder zum Mitnehmen?"
-        ]
-      },
-      "explanation": {
-        "en": "Sur place: you stay in the café; à emporter: you take it with you.",
-        "fr": "Sur place : vous restez au café ; à emporter : vous partez avec.",
-        "de": "Sur place: Sie bleiben im Café; à emporter: Sie nehmen es mit."
-      },
-      "example": {
-        "text": "Un thé. Sur place ou à emporter ?",
-        "translation": {
-          "en": "A tea. For here or to take away?",
-          "de": "Ein Tee. Hier oder zum Mitnehmen?"
         }
       }
     },

@@ -108,7 +108,7 @@ it('shows one vocabulary target group at a time in the Draft tabs', () => {
   const { brief } = artifacts('fr-classroom-objects', 'vocabulary');
   render(<PreferencesProvider initial={{ interfaceLanguage: 'en', motherTongue: 'en' }}><VocabularyBriefView data={brief} /></PreferencesProvider>);
   const tabs = within(screen.getByRole('tablist', { name: 'Target inventory' })).getAllByRole('tab');
-  expect(tabs.map((tab) => tab.textContent)).toEqual(['Masculine objects6 targets', 'Feminine objects6 targets']);
+  expect(tabs.map((tab) => tab.textContent)).toEqual(['Masculine objects4 targets', 'Feminine objects4 targets']);
   // The first panel is the target inventory; the derived lesson preview follows below (P2-04).
   const panel = () => screen.getAllByRole('tabpanel')[0];
   expect(screen.getByRole('heading', { name: 'Lesson preview' })).toBeInTheDocument();

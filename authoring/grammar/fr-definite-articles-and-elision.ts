@@ -38,18 +38,12 @@ export default {
           gc(BASIC, 'Voici', 'la', ['le', 'les', 'l’'], 'fille.', g('fille', 'f')),
           gc(ELISION, 'Voici', 'l’', ['le', 'la', 'les'], 'ami de Paul.', e('ami')),
           gc(ELISION, 'C’est', 'l’', ['le', 'la', 'les'], 'hôtel de la gare.', e('hôtel', true)),
-          gc(BASIC, 'Voici', 'les', ['le', 'la', 'l’'], 'enfants.', g('enfants', 'pl')),
-          gc(BASIC, 'C’est', 'la', ['le', 'les', 'l’'], 'voiture de Marie.', g('voiture', 'f')),
-          gc(ELISION, 'Où est', 'l’', ['la', 'le', 'les'], 'école ?', e('école')),
         ] },
         { id: 'ex-basic-gap-typing', type: 'grammar_gap_typing', items: [
           gt(BASIC, 'Où est', 'la', 'porte ?', g('porte', 'f')),
           gt(BASIC, 'Voici', 'le', 'soleil.', g('soleil', 'm')),
           gt(ELISION, 'Voici', 'l’', 'arbre.', e('arbre')),
           gt(BASIC, 'Où sont', 'les', 'clés ?', g('clés', 'pl')),
-          gt(ELISION, 'C’est', 'l’', 'université de Lyon.', e('université')),
-          gt(BASIC, 'C’est', 'la', 'mer.', g('mer', 'f')),
-          gt(ELISION, 'Voici', 'l’', 'homme de la photo.', e('homme', true)),
         ] },
         { id: 'ex-basic-spot', type: 'grammar_error_spotter', items: [
           sp(BASIC, ['Voici', 'la', 'maison'], 1, 'le', g('maison', 'f'), ['la', 'le', 'les']),
@@ -69,7 +63,6 @@ export default {
           gc(PREF, 'Il adore', 'les', ['des', 'un', 'le'], 'chats.', p('adorer', 'les', 'chats')),
           gc(PREF, 'Nous détestons', 'la', ['une', 'de la', 'les'], 'pluie.', p('détester', 'la', 'pluie')),
           gc(PREF, 'Elle préfère', 'le', ['un', 'du', 'la'], 'thé.', p('préférer', 'le', 'thé')),
-          gc(PREF, 'J’adore', 'l’', ['une', 'la', 'le'], 'histoire.', p('adorer', 'l’', 'histoire')),
         ] },
         { id: 'ex-pref-gap-typing', type: 'grammar_gap_typing', items: [
           gt(PREF, 'J’aime', 'le', 'café.', p('aimer', 'le', 'café')),
@@ -77,7 +70,6 @@ export default {
           gt(PREF, 'Il déteste', 'les', 'films d’horreur.', p('détester', 'les', 'films d’horreur')),
           gt(PREF, 'Nous préférons', 'la', 'montagne.', p('préférer', 'la', 'montagne')),
           gt(PREF, 'Elle aime', 'l’', 'eau gazeuse.', p('aimer', 'l’', 'eau gazeuse')),
-          gt(PREF, 'Vous détestez', 'le', 'fromage ?', p('détester', 'le', 'fromage')),
         ] },
         { id: 'ex-pref-order', type: 'grammar_word_order', items: [
           wo(PREF, ['J’aime', 'le', 'chocolat', 'noir'], p('aimer', 'le', 'chocolat noir')),
@@ -94,22 +86,18 @@ export default {
       gt(BASIC, 'Où est', 'la', 'gare ?', g('gare', 'f')),
       gt(BASIC, 'Voici', 'les', 'fleurs.', g('fleurs', 'pl')),
       gt(BASIC, 'C’est', 'le', 'frère de Lucie.', g('frère', 'm')),
-      gt(BASIC, 'Où est', 'la', 'cuisine ?', g('cuisine', 'f')),
-      gt(BASIC, 'Voici', 'les', 'garçons.', g('garçons', 'pl')),
     ] },
     { pageId: 'exam-elision', type: 'grammar_gap_typing', items: [
       gt(ELISION, 'Voici', 'l’', 'étudiant.', e('étudiant')),
       gt(ELISION, 'Où est', 'l’', 'hôtel ?', e('hôtel', true)),
       gt(ELISION, 'C’est', 'l’', 'amie de Julie.', e('amie')),
       gt(ELISION, 'Voici', 'l’', 'avion.', e('avion')),
-      gt(ELISION, 'Où est', 'l’', 'entrée ?', e('entrée')),
     ] },
     { pageId: 'exam-page-2', type: 'grammar_gap_typing', items: [
       gt(PREF, 'J’aime', 'la', 'danse.', p('aimer', 'la', 'danse')),
       gt(PREF, 'Tu détestes', 'le', 'froid ?', p('détester', 'le', 'froid')),
       gt(PREF, 'Nous adorons', 'les', 'fruits.', p('adorer', 'les', 'fruits')),
       gt(PREF, 'Il préfère', 'la', 'viande.', p('préférer', 'la', 'viande')),
-      gt(PREF, 'Elles aiment', 'l’', 'art.', p('aimer', 'l’', 'art')),
     ] },
   ],
 } satisfies LessonDefinition;

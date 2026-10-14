@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 
 import { useI18n } from '../app/context.tsx';
+import { roundHalfUp1 } from '../domain/format.ts';
 import { reviewColor } from '../artifacts/briefParts.tsx';
 import { inExam, lessonOutline, numberedPoints, pointState, type NumberedPoint } from '../domain/session/outline.ts';
 import type { LessonPlan, PlanPage } from '../domain/session/plan.ts';
@@ -162,6 +163,11 @@ function ResultsNav({ plan, record, dispatch }: { plan: LessonPlan; record: Sess
   return (
     <>
       <p className="nav-kicker">{t('nav.results')}</p>
+      {/* The lesson's final score heads the result parts (P6-02), on phones above the answers. */}
+      <p className="results-final">
+        <span className="results-final-label">{t('nav.finalScore')}</span>
+        <span className="results-final-score">{roundHalfUp1(results.total).toLocaleString(locale)} / 100</span>
+      </p>
       <div className="results-nav" role="group" aria-label={t('nav.results')}>
         <button type="button" className={`results-entry is-exam${resultTone(results.exam)}`} aria-pressed={examSelected} onClick={() => select('exam')}>
           <span>{t('session.examPage')}</span>

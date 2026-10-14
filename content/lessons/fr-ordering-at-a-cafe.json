@@ -14,15 +14,15 @@
     "fr": "Commander une boisson et un en-cas au café, demander le prix et l’addition, et répondre au serveur.",
     "de": "Im Café ein Getränk und einen Snack bestellen, nach Preis und Rechnung fragen und dem Kellner antworten."
   },
-  "estimatedMinutes": 26,
+  "estimatedMinutes": 17,
   "provenance": {
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "functions-v1",
-    "generatedAt": "2026-10-13T23:42:17.269Z",
+    "generatedAt": "2026-10-14T16:31:08.712Z",
     "inputHashes": {
       "outline": "3d44c42aa9721069c041b103732801561e34e993b5fde9e51f14c06cb8768c78",
-      "brief": "5caa104ab283ea8f9def484710b9208892a8b73c737add0b57d21152906fccad"
+      "brief": "ccc4da22bf0b97c07ffec61f8541bfee665877354703612a0ce7a62e1509e95a"
     }
   },
   "kind": "functions",
@@ -63,7 +63,7 @@
         },
         {
           "pageId": "cards-expressions",
-          "estimatedDurationS": 96,
+          "estimatedDurationS": 48,
           "timeLimitS": null,
           "instructions": {
             "en": "Recall each expression, then turn the card to check it.",
@@ -78,10 +78,6 @@
               "ids": [
                 "vous-desirez",
                 "je-voudrais",
-                "je-prends",
-                "et-avec-ceci",
-                "cest-tout",
-                "sur-place",
                 "cest-combien",
                 "laddition"
               ]
@@ -161,9 +157,7 @@
                     "fr": "Le serveur répète la commande et demande si vous voulez autre chose.",
                     "de": "Der Kellner wiederholt die Bestellung und fragt, ob Sie noch etwas möchten."
                   },
-                  "expressionIds": [
-                    "et-avec-ceci"
-                  ]
+                  "expressionIds": []
                 },
                 {
                   "lineId": "line-4",
@@ -179,7 +173,6 @@
                     "de": "Je prends … wählt direkt; C’est combien ? fragt nach dem Preis."
                   },
                   "expressionIds": [
-                    "je-prends",
                     "cest-combien"
                   ]
                 },
@@ -196,9 +189,7 @@
                     "fr": "On dit le prix en euros, puis en centimes.",
                     "de": "Preise nennt man in Euro, dann in Cent."
                   },
-                  "expressionIds": [
-                    "sur-place"
-                  ]
+                  "expressionIds": []
                 },
                 {
                   "lineId": "line-6",
@@ -213,9 +204,7 @@
                     "fr": "C’est tout. termine votre commande.",
                     "de": "C’est tout. beendet Ihre Bestellung."
                   },
-                  "expressionIds": [
-                    "cest-tout"
-                  ]
+                  "expressionIds": []
                 },
                 {
                   "lineId": "line-7",
@@ -324,57 +313,6 @@
                     "en": "The polite way to order: Je voudrais + what you want.",
                     "fr": "La façon polie de commander : Je voudrais + ce que vous voulez.",
                     "de": "Die höfliche Art zu bestellen: Je voudrais + was Sie möchten."
-                  }
-                },
-                {
-                  "id": "je-prends",
-                  "answerExplanation": {
-                    "en": "A direct, everyday way to say what you choose.",
-                    "fr": "Une façon directe et courante de dire ce qu’on choisit.",
-                    "de": "Eine direkte, alltägliche Art zu sagen, was man wählt."
-                  }
-                },
-                {
-                  "id": "et-avec-ceci",
-                  "answerExplanation": {
-                    "en": "Staff ask whether you want anything more.",
-                    "fr": "Le personnel demande si vous voulez autre chose.",
-                    "de": "Das Personal fragt, ob Sie noch etwas möchten."
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "pageId": "match-expressions-2",
-          "estimatedDurationS": 48,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Match each expression with its translation.",
-            "fr": "Associez chaque expression à sa traduction.",
-            "de": "Ordne jedem Ausdruck seine Übersetzung zu."
-          },
-          "items": [
-            {
-              "type": "function_matching",
-              "itemId": "match-expressions-2",
-              "side": "expressions",
-              "pairs": [
-                {
-                  "id": "cest-tout",
-                  "answerExplanation": {
-                    "en": "Says that your order is complete.",
-                    "fr": "Pour dire que la commande est finie.",
-                    "de": "Sagt, dass die Bestellung vollständig ist."
-                  }
-                },
-                {
-                  "id": "sur-place",
-                  "answerExplanation": {
-                    "en": "Sur place: you stay in the café; à emporter: you take it with you.",
-                    "fr": "Sur place : vous restez au café ; à emporter : vous partez avec.",
-                    "de": "Sur place: Sie bleiben im Café; à emporter: Sie nehmen es mit."
                   }
                 },
                 {
@@ -517,8 +455,8 @@
               "after": "un chocolat chaud, s’il vous plaît.",
               "choiceExpressionIds": [
                 "je-voudrais",
-                "et-avec-ceci",
-                "sur-place",
+                "vous-desirez",
+                "cest-combien",
                 "laddition"
               ],
               "answerExplanation": {
@@ -552,9 +490,9 @@
               "after": "",
               "choiceExpressionIds": [
                 "vous-desirez",
-                "je-prends",
-                "cest-tout",
-                "cest-combien"
+                "je-voudrais",
+                "cest-combien",
+                "laddition"
               ],
               "answerExplanation": {
                 "en": "After the greeting, the waiter asks for the order.",
@@ -577,24 +515,24 @@
             {
               "type": "function_dialogue_gap_choice",
               "itemId": "gap-3",
-              "expressionId": "je-prends",
+              "expressionId": "cest-combien",
               "context": {
                 "roleId": "serveur",
-                "text": "Un thé ou un café ?"
+                "text": "Voilà votre jus d’orange."
               },
               "roleId": "cliente",
-              "before": "",
-              "after": "un thé, merci.",
+              "before": "Merci.",
+              "after": "",
               "choiceExpressionIds": [
-                "je-prends",
+                "cest-combien",
                 "vous-desirez",
-                "et-avec-ceci",
+                "je-voudrais",
                 "laddition"
               ],
               "answerExplanation": {
-                "en": "She chooses the tea: Je prends un thé.",
-                "fr": "Elle choisit le thé : Je prends un thé.",
-                "de": "Sie wählt den Tee: Je prends un thé."
+                "en": "She asks the price of the juice.",
+                "fr": "Elle demande le prix du jus.",
+                "de": "Sie fragt nach dem Preis des Safts."
               }
             }
           ]
@@ -612,146 +550,6 @@
             {
               "type": "function_dialogue_gap_choice",
               "itemId": "gap-4",
-              "expressionId": "et-avec-ceci",
-              "context": {
-                "roleId": "cliente",
-                "text": "Un croissant, s’il vous plaît."
-              },
-              "roleId": "serveur",
-              "before": "Très bien.",
-              "after": "",
-              "choiceExpressionIds": [
-                "et-avec-ceci",
-                "je-voudrais",
-                "cest-tout",
-                "laddition"
-              ],
-              "answerExplanation": {
-                "en": "The waiter asks whether she wants more.",
-                "fr": "Le serveur demande si elle veut autre chose.",
-                "de": "Der Kellner fragt, ob sie noch etwas möchte."
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "gap-5",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the expression that fits the gap.",
-            "fr": "Choisissez l’expression qui complète la réplique.",
-            "de": "Wähle den Ausdruck, der in die Lücke passt."
-          },
-          "items": [
-            {
-              "type": "function_dialogue_gap_choice",
-              "itemId": "gap-5",
-              "expressionId": "cest-tout",
-              "context": {
-                "roleId": "serveur",
-                "text": "Et avec ceci ?"
-              },
-              "roleId": "cliente",
-              "before": "Non.",
-              "after": "",
-              "choiceExpressionIds": [
-                "cest-tout",
-                "vous-desirez",
-                "sur-place",
-                "je-voudrais"
-              ],
-              "answerExplanation": {
-                "en": "She wants nothing more: C’est tout.",
-                "fr": "Elle ne veut rien d’autre : C’est tout.",
-                "de": "Sie möchte nichts mehr: C’est tout."
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "gap-6",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the expression that fits the gap.",
-            "fr": "Choisissez l’expression qui complète la réplique.",
-            "de": "Wähle den Ausdruck, der in die Lücke passt."
-          },
-          "items": [
-            {
-              "type": "function_dialogue_gap_choice",
-              "itemId": "gap-6",
-              "expressionId": "sur-place",
-              "context": {
-                "roleId": "cliente",
-                "text": "Un café, s’il vous plaît."
-              },
-              "roleId": "serveur",
-              "before": "Un café.",
-              "after": "",
-              "choiceExpressionIds": [
-                "sur-place",
-                "cest-tout",
-                "laddition",
-                "je-prends"
-              ],
-              "answerExplanation": {
-                "en": "The waiter asks if she drinks it here or takes it away.",
-                "fr": "Le serveur demande si elle boit ici ou emporte le café.",
-                "de": "Der Kellner fragt, ob sie hier trinkt oder mitnimmt."
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "gap-7",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the expression that fits the gap.",
-            "fr": "Choisissez l’expression qui complète la réplique.",
-            "de": "Wähle den Ausdruck, der in die Lücke passt."
-          },
-          "items": [
-            {
-              "type": "function_dialogue_gap_choice",
-              "itemId": "gap-7",
-              "expressionId": "cest-combien",
-              "context": {
-                "roleId": "serveur",
-                "text": "Voilà votre jus d’orange."
-              },
-              "roleId": "cliente",
-              "before": "Merci.",
-              "after": "",
-              "choiceExpressionIds": [
-                "cest-combien",
-                "vous-desirez",
-                "et-avec-ceci",
-                "sur-place"
-              ],
-              "answerExplanation": {
-                "en": "She asks the price of the juice.",
-                "fr": "Elle demande le prix du jus.",
-                "de": "Sie fragt nach dem Preis des Safts."
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "gap-8",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the expression that fits the gap.",
-            "fr": "Choisissez l’expression qui complète la réplique.",
-            "de": "Wähle den Ausdruck, der in die Lücke passt."
-          },
-          "items": [
-            {
-              "type": "function_dialogue_gap_choice",
-              "itemId": "gap-8",
               "expressionId": "laddition",
               "context": {
                 "roleId": "serveur",
@@ -762,9 +560,9 @@
               "after": "",
               "choiceExpressionIds": [
                 "laddition",
-                "je-prends",
-                "et-avec-ceci",
-                "vous-desirez"
+                "vous-desirez",
+                "je-voudrais",
+                "cest-combien"
               ],
               "answerExplanation": {
                 "en": "She has finished and wants to pay.",
@@ -906,205 +704,6 @@
             {
               "type": "function_word_order",
               "itemId": "order-3",
-              "expressionId": "je-prends",
-              "context": null,
-              "roleId": null,
-              "tokens": [
-                {
-                  "tokenId": "t1",
-                  "text": "Pour moi,"
-                },
-                {
-                  "tokenId": "t2",
-                  "text": "je"
-                },
-                {
-                  "tokenId": "t3",
-                  "text": "prends"
-                },
-                {
-                  "tokenId": "t4",
-                  "text": "un jus d’orange"
-                }
-              ],
-              "distractorTokenIds": [],
-              "acceptedOrders": [
-                [
-                  "t1",
-                  "t2",
-                  "t3",
-                  "t4"
-                ]
-              ],
-              "answerExplanation": {
-                "en": "Pour moi introduces your choice: je prends + the drink.",
-                "fr": "Pour moi introduit votre choix : je prends + la boisson.",
-                "de": "Pour moi leitet Ihre Wahl ein: je prends + das Getränk."
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "order-4",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Put the words in order.",
-            "fr": "Mettez les mots dans l’ordre.",
-            "de": "Bring die Wörter in die richtige Reihenfolge."
-          },
-          "items": [
-            {
-              "type": "function_word_order",
-              "itemId": "order-4",
-              "expressionId": "et-avec-ceci",
-              "context": null,
-              "roleId": null,
-              "tokens": [
-                {
-                  "tokenId": "t1",
-                  "text": "Deux croissants."
-                },
-                {
-                  "tokenId": "t2",
-                  "text": "Et"
-                },
-                {
-                  "tokenId": "t3",
-                  "text": "avec ceci"
-                },
-                {
-                  "tokenId": "t4",
-                  "text": "?"
-                }
-              ],
-              "distractorTokenIds": [],
-              "acceptedOrders": [
-                [
-                  "t1",
-                  "t2",
-                  "t3",
-                  "t4"
-                ]
-              ],
-              "answerExplanation": {
-                "en": "The waiter repeats the order, then asks Et avec ceci ?",
-                "fr": "Le serveur répète la commande, puis demande Et avec ceci ?",
-                "de": "Der Kellner wiederholt die Bestellung und fragt dann Et avec ceci ?"
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "order-5",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Put the words in order.",
-            "fr": "Mettez les mots dans l’ordre.",
-            "de": "Bring die Wörter in die richtige Reihenfolge."
-          },
-          "items": [
-            {
-              "type": "function_word_order",
-              "itemId": "order-5",
-              "expressionId": "cest-tout",
-              "context": null,
-              "roleId": null,
-              "tokens": [
-                {
-                  "tokenId": "t1",
-                  "text": "Non,"
-                },
-                {
-                  "tokenId": "t2",
-                  "text": "merci."
-                },
-                {
-                  "tokenId": "t3",
-                  "text": "C’est tout"
-                }
-              ],
-              "distractorTokenIds": [],
-              "acceptedOrders": [
-                [
-                  "t1",
-                  "t2",
-                  "t3"
-                ]
-              ],
-              "answerExplanation": {
-                "en": "First the polite no, then C’est tout.",
-                "fr": "D’abord le non poli, puis C’est tout.",
-                "de": "Erst das höfliche Nein, dann C’est tout."
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "order-6",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Put the words in order.",
-            "fr": "Mettez les mots dans l’ordre.",
-            "de": "Bring die Wörter in die richtige Reihenfolge."
-          },
-          "items": [
-            {
-              "type": "function_word_order",
-              "itemId": "order-6",
-              "expressionId": "sur-place",
-              "context": null,
-              "roleId": null,
-              "tokens": [
-                {
-                  "tokenId": "t1",
-                  "text": "Votre thé,"
-                },
-                {
-                  "tokenId": "t2",
-                  "text": "sur place"
-                },
-                {
-                  "tokenId": "t3",
-                  "text": "ou"
-                },
-                {
-                  "tokenId": "t4",
-                  "text": "à emporter ?"
-                }
-              ],
-              "distractorTokenIds": [],
-              "acceptedOrders": [
-                [
-                  "t1",
-                  "t2",
-                  "t3",
-                  "t4"
-                ]
-              ],
-              "answerExplanation": {
-                "en": "Sur place and à emporter are the two choices, joined by ou.",
-                "fr": "Sur place et à emporter sont les deux choix, reliés par ou.",
-                "de": "Sur place und à emporter sind die zwei Möglichkeiten, verbunden mit ou."
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "order-7",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Put the words in order.",
-            "fr": "Mettez les mots dans l’ordre.",
-            "de": "Bring die Wörter in die richtige Reihenfolge."
-          },
-          "items": [
-            {
-              "type": "function_word_order",
-              "itemId": "order-7",
               "expressionId": "cest-combien",
               "context": null,
               "roleId": null,
@@ -1144,7 +743,7 @@
           ]
         },
         {
-          "pageId": "order-8",
+          "pageId": "order-4",
           "estimatedDurationS": 25,
           "timeLimitS": null,
           "instructions": {
@@ -1155,7 +754,7 @@
           "items": [
             {
               "type": "function_word_order",
-              "itemId": "order-8",
+              "itemId": "order-4",
               "expressionId": "laddition",
               "context": null,
               "roleId": null,
@@ -1311,190 +910,6 @@
             {
               "type": "function_listening_choice",
               "itemId": "listening-3",
-              "expressionId": "je-prends",
-              "context": {
-                "roleId": "serveur",
-                "text": "Un café ou un thé ?"
-              },
-              "roleId": "cliente",
-              "options": [
-                {
-                  "optionId": "o1",
-                  "text": "Je prends un thé, merci."
-                },
-                {
-                  "optionId": "o2",
-                  "text": "Vous désirez ?"
-                },
-                {
-                  "optionId": "o3",
-                  "text": "Et avec ceci ?"
-                },
-                {
-                  "optionId": "o4",
-                  "text": "Sur place ou à emporter ?"
-                }
-              ],
-              "answerOptionId": "o1",
-              "answerExplanation": {
-                "en": "She chooses one of the two drinks: Je prends un thé.",
-                "fr": "Elle choisit une des deux boissons : Je prends un thé.",
-                "de": "Sie wählt eines der beiden Getränke: Je prends un thé."
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "listening-4",
-          "estimatedDurationS": 30,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Listen, then choose the reply that fits.",
-            "fr": "Écoutez, puis choisissez la réponse qui convient.",
-            "de": "Hör zu und wähle dann die passende Antwort."
-          },
-          "items": [
-            {
-              "type": "function_listening_choice",
-              "itemId": "listening-4",
-              "expressionId": "et-avec-ceci",
-              "context": {
-                "roleId": "cliente",
-                "text": "Deux croissants, s’il vous plaît."
-              },
-              "roleId": "serveur",
-              "options": [
-                {
-                  "optionId": "o1",
-                  "text": "Deux croissants. Et avec ceci ?"
-                },
-                {
-                  "optionId": "o2",
-                  "text": "Je voudrais un thé."
-                },
-                {
-                  "optionId": "o3",
-                  "text": "C’est tout."
-                },
-                {
-                  "optionId": "o4",
-                  "text": "L’addition, s’il vous plaît."
-                }
-              ],
-              "answerOptionId": "o1",
-              "answerExplanation": {
-                "en": "The waiter repeats the order and asks if she wants more.",
-                "fr": "Le serveur répète la commande et demande si elle veut autre chose.",
-                "de": "Der Kellner wiederholt die Bestellung und fragt, ob sie noch etwas möchte."
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "listening-5",
-          "estimatedDurationS": 30,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Listen, then choose the reply that fits.",
-            "fr": "Écoutez, puis choisissez la réponse qui convient.",
-            "de": "Hör zu und wähle dann die passende Antwort."
-          },
-          "items": [
-            {
-              "type": "function_listening_choice",
-              "itemId": "listening-5",
-              "expressionId": "cest-tout",
-              "context": {
-                "roleId": "serveur",
-                "text": "Et avec ceci, madame ?"
-              },
-              "roleId": "cliente",
-              "options": [
-                {
-                  "optionId": "o1",
-                  "text": "Rien, merci. C’est tout."
-                },
-                {
-                  "optionId": "o2",
-                  "text": "Vous désirez ?"
-                },
-                {
-                  "optionId": "o3",
-                  "text": "Sur place ou à emporter ?"
-                },
-                {
-                  "optionId": "o4",
-                  "text": "Et avec ceci ?"
-                }
-              ],
-              "answerOptionId": "o1",
-              "answerExplanation": {
-                "en": "She wants nothing more: C’est tout.",
-                "fr": "Elle ne veut rien d’autre : C’est tout.",
-                "de": "Sie möchte nichts mehr: C’est tout."
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "listening-6",
-          "estimatedDurationS": 30,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Listen, then choose the reply that fits.",
-            "fr": "Écoutez, puis choisissez la réponse qui convient.",
-            "de": "Hör zu und wähle dann die passende Antwort."
-          },
-          "items": [
-            {
-              "type": "function_listening_choice",
-              "itemId": "listening-6",
-              "expressionId": "sur-place",
-              "context": {
-                "roleId": "cliente",
-                "text": "Un thé, s’il vous plaît."
-              },
-              "roleId": "serveur",
-              "options": [
-                {
-                  "optionId": "o1",
-                  "text": "Un thé. Sur place ou à emporter ?"
-                },
-                {
-                  "optionId": "o2",
-                  "text": "C’est tout."
-                },
-                {
-                  "optionId": "o3",
-                  "text": "Je prends un thé."
-                },
-                {
-                  "optionId": "o4",
-                  "text": "L’addition, s’il vous plaît."
-                }
-              ],
-              "answerOptionId": "o1",
-              "answerExplanation": {
-                "en": "The waiter asks whether she drinks it here or takes it away.",
-                "fr": "Le serveur demande si elle boit ici ou emporte le thé.",
-                "de": "Der Kellner fragt, ob sie hier trinkt oder mitnimmt."
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "listening-7",
-          "estimatedDurationS": 30,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Listen, then choose the reply that fits.",
-            "fr": "Écoutez, puis choisissez la réponse qui convient.",
-            "de": "Hör zu und wähle dann die passende Antwort."
-          },
-          "items": [
-            {
-              "type": "function_listening_choice",
-              "itemId": "listening-7",
               "expressionId": "cest-combien",
               "context": {
                 "roleId": "serveur",
@@ -1529,7 +944,7 @@
           ]
         },
         {
-          "pageId": "listening-8",
+          "pageId": "listening-4",
           "estimatedDurationS": 30,
           "timeLimitS": null,
           "instructions": {
@@ -1540,7 +955,7 @@
           "items": [
             {
               "type": "function_listening_choice",
-              "itemId": "listening-8",
+              "itemId": "listening-4",
               "expressionId": "laddition",
               "context": {
                 "roleId": "serveur",
@@ -1793,210 +1208,6 @@
             {
               "type": "function_word_order",
               "itemId": "reply-3",
-              "expressionId": "je-prends",
-              "context": {
-                "roleId": "serveur",
-                "text": "Un café ou un thé, madame ?"
-              },
-              "roleId": "cliente",
-              "tokens": [
-                {
-                  "tokenId": "t1",
-                  "text": "Je"
-                },
-                {
-                  "tokenId": "t2",
-                  "text": "prends"
-                },
-                {
-                  "tokenId": "t3",
-                  "text": "un café,"
-                },
-                {
-                  "tokenId": "t4",
-                  "text": "merci"
-                },
-                {
-                  "tokenId": "t5",
-                  "text": "prend"
-                }
-              ],
-              "distractorTokenIds": [
-                "t5"
-              ],
-              "acceptedOrders": [
-                [
-                  "t1",
-                  "t2",
-                  "t3",
-                  "t4"
-                ]
-              ],
-              "answerExplanation": {
-                "en": "After je: prends, with -s.",
-                "fr": "Après je : prends, avec -s.",
-                "de": "Nach je: prends, mit -s."
-              }
-            },
-            {
-              "type": "function_word_order",
-              "itemId": "reply-4",
-              "expressionId": "et-avec-ceci",
-              "context": {
-                "roleId": "cliente",
-                "text": "Un jus d’orange, s’il vous plaît."
-              },
-              "roleId": "serveur",
-              "tokens": [
-                {
-                  "tokenId": "t1",
-                  "text": "Un jus d’orange."
-                },
-                {
-                  "tokenId": "t2",
-                  "text": "Et"
-                },
-                {
-                  "tokenId": "t3",
-                  "text": "avec ceci"
-                },
-                {
-                  "tokenId": "t4",
-                  "text": "?"
-                },
-                {
-                  "tokenId": "t5",
-                  "text": "Est"
-                }
-              ],
-              "distractorTokenIds": [
-                "t5"
-              ],
-              "acceptedOrders": [
-                [
-                  "t1",
-                  "t2",
-                  "t3",
-                  "t4"
-                ]
-              ],
-              "answerExplanation": {
-                "en": "Et (and) starts the question, not est (is).",
-                "fr": "Et (and) commence la question, pas est (is).",
-                "de": "Et (und) beginnt die Frage, nicht est (ist)."
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "exam-replies-2",
-          "estimatedDurationS": 120,
-          "timeLimitS": 180,
-          "instructions": {
-            "en": "Build the answer. Not every word fits.",
-            "fr": "Construisez la réponse. Tous les mots ne servent pas.",
-            "de": "Bilde die Antwort. Nicht jedes Wort passt."
-          },
-          "items": [
-            {
-              "type": "function_word_order",
-              "itemId": "reply-5",
-              "expressionId": "cest-tout",
-              "context": {
-                "roleId": "serveur",
-                "text": "Un croissant aussi ?"
-              },
-              "roleId": "cliente",
-              "tokens": [
-                {
-                  "tokenId": "t1",
-                  "text": "Non,"
-                },
-                {
-                  "tokenId": "t2",
-                  "text": "merci,"
-                },
-                {
-                  "tokenId": "t3",
-                  "text": "c’est"
-                },
-                {
-                  "tokenId": "t4",
-                  "text": "tout"
-                },
-                {
-                  "tokenId": "t5",
-                  "text": "tous"
-                }
-              ],
-              "distractorTokenIds": [
-                "t5"
-              ],
-              "acceptedOrders": [
-                [
-                  "t1",
-                  "t2",
-                  "t3",
-                  "t4"
-                ]
-              ],
-              "answerExplanation": {
-                "en": "C’est tout: tout without -s.",
-                "fr": "C’est tout : tout sans -s.",
-                "de": "C’est tout: tout ohne -s."
-              }
-            },
-            {
-              "type": "function_word_order",
-              "itemId": "reply-6",
-              "expressionId": "sur-place",
-              "context": {
-                "roleId": "cliente",
-                "text": "Deux cafés, s’il vous plaît."
-              },
-              "roleId": "serveur",
-              "tokens": [
-                {
-                  "tokenId": "t1",
-                  "text": "Deux cafés."
-                },
-                {
-                  "tokenId": "t2",
-                  "text": "Sur place"
-                },
-                {
-                  "tokenId": "t3",
-                  "text": "ou"
-                },
-                {
-                  "tokenId": "t4",
-                  "text": "à emporter ?"
-                },
-                {
-                  "tokenId": "t5",
-                  "text": "et"
-                }
-              ],
-              "distractorTokenIds": [
-                "t5"
-              ],
-              "acceptedOrders": [
-                [
-                  "t1",
-                  "t2",
-                  "t3",
-                  "t4"
-                ]
-              ],
-              "answerExplanation": {
-                "en": "It is a choice, so ou (or) joins the two parts.",
-                "fr": "C’est un choix, donc ou relie les deux parties.",
-                "de": "Es ist eine Wahl, deshalb verbindet ou (oder) beide Teile."
-              }
-            },
-            {
-              "type": "function_word_order",
-              "itemId": "reply-7",
               "expressionId": "cest-combien",
               "context": {
                 "roleId": "serveur",
@@ -2049,7 +1260,7 @@
             },
             {
               "type": "function_word_order",
-              "itemId": "reply-8",
+              "itemId": "reply-4",
               "expressionId": "laddition",
               "context": {
                 "roleId": "serveur",
@@ -2094,8 +1305,8 @@
         },
         {
           "pageId": "exam-dialogue",
-          "estimatedDurationS": 256,
-          "timeLimitS": 384,
+          "estimatedDurationS": 176,
+          "timeLimitS": 264,
           "instructions": {
             "en": "Fill each gap with an expression from this lesson.",
             "fr": "Complétez chaque trou avec une expression de la leçon.",
@@ -2158,99 +1369,46 @@
                 {
                   "lineId": "exam-line-3",
                   "roleId": "serveur",
-                  "before": "Une limonade.",
+                  "before": "Une limonade. Et avec ceci ?",
                   "translation": {
                     "en": "A lemonade. Anything else?",
                     "de": "Eine Limonade. Sonst noch etwas?"
                   },
-                  "gap": {
-                    "gapId": "gap-3",
-                    "expressionId": "et-avec-ceci",
-                    "accepted": {
-                      "answers": [
-                        "Et avec ceci"
-                      ]
-                    },
-                    "answerExplanation": {
-                      "en": "The waiter asks whether she wants more.",
-                      "fr": "Le serveur demande si elle veut autre chose.",
-                      "de": "Der Kellner fragt, ob sie noch etwas möchte."
-                    }
-                  },
-                  "after": "?"
+                  "gap": null,
+                  "after": ""
                 },
                 {
                   "lineId": "exam-line-4",
                   "roleId": "cliente",
-                  "before": "",
+                  "before": "Je prends un croissant.",
                   "translation": {
                     "en": "I’ll have a croissant.",
                     "de": "Ich nehme ein Croissant."
                   },
-                  "gap": {
-                    "gapId": "gap-4",
-                    "expressionId": "je-prends",
-                    "accepted": {
-                      "answers": [
-                        "Je prends",
-                        "Je voudrais"
-                      ]
-                    },
-                    "answerExplanation": {
-                      "en": "She chooses a croissant: Je prends (or Je voudrais).",
-                      "fr": "Elle choisit un croissant : Je prends (ou Je voudrais).",
-                      "de": "Sie wählt ein Croissant: Je prends (oder Je voudrais)."
-                    }
-                  },
-                  "after": "un croissant."
+                  "gap": null,
+                  "after": ""
                 },
                 {
                   "lineId": "exam-line-5",
                   "roleId": "serveur",
-                  "before": "Très bien.",
+                  "before": "Très bien. Sur place ou à emporter ?",
                   "translation": {
                     "en": "Very good. For here or to take away?",
                     "de": "Sehr gern. Hier oder zum Mitnehmen?"
                   },
-                  "gap": {
-                    "gapId": "gap-5",
-                    "expressionId": "sur-place",
-                    "accepted": {
-                      "answers": [
-                        "Sur place ou à emporter"
-                      ]
-                    },
-                    "answerExplanation": {
-                      "en": "The waiter asks: here or to take away?",
-                      "fr": "Le serveur demande : ici ou à emporter ?",
-                      "de": "Der Kellner fragt: hier oder zum Mitnehmen?"
-                    }
-                  },
-                  "after": "?"
+                  "gap": null,
+                  "after": ""
                 },
                 {
                   "lineId": "exam-line-6",
                   "roleId": "cliente",
-                  "before": "Sur place.",
+                  "before": "Sur place. C’est tout.",
                   "translation": {
                     "en": "For here. That’s all.",
                     "de": "Hier. Das ist alles."
                   },
-                  "gap": {
-                    "gapId": "gap-6",
-                    "expressionId": "cest-tout",
-                    "accepted": {
-                      "answers": [
-                        "C’est tout"
-                      ]
-                    },
-                    "answerExplanation": {
-                      "en": "She ends the order: C’est tout.",
-                      "fr": "Elle termine la commande : C’est tout.",
-                      "de": "Sie beendet die Bestellung: C’est tout."
-                    }
-                  },
-                  "after": "."
+                  "gap": null,
+                  "after": ""
                 },
                 {
                   "lineId": "exam-line-7",

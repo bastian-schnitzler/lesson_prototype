@@ -14,7 +14,7 @@
     "fr": "Apprendre à situer des personnes, des objets et des actions dans le temps et l'espace avec des adverbes de lieu et de temps.",
     "de": "Lernen Sie, Personen, Objekte und Handlungen mit grundlegenden Orts- und Zeitadverbien zeitlich und räumlich einzuordnen."
   },
-  "estimatedMinutes": 19,
+  "estimatedMinutes": 15,
   "kind": "grammar",
   "topic": "adverbs",
   "steps": [
@@ -235,156 +235,6 @@
               "itemId": "ex-place-choice-3"
             }
           ]
-        },
-        {
-          "pageId": "ex-place-choice-4",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-place-adverbs"
-              ],
-              "before": "Regarde la tour, Marie est",
-              "after": ", en haut.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "ici"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "maintenant"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "demain"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "là"
-                }
-              ],
-              "answerChoiceId": "c-4",
-              "hint": {
-                "en": "there, away from me",
-                "fr": "à un autre endroit, loin de moi",
-                "de": "da, dort, weg von mir"
-              },
-              "answerExplanation": {
-                "en": "Là means \"there\", a place away from the speaker.",
-                "fr": "Là désigne un endroit éloigné de la personne qui parle.",
-                "de": "Là heißt „da, dort“, ein Ort entfernt von der sprechenden Person."
-              },
-              "itemId": "ex-place-choice-4"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-place-choice-5",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-place-adverbs"
-              ],
-              "before": "Assieds-toi",
-              "after": ", près de moi.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "bientôt"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "ici"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "là"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "aujourd’hui"
-                }
-              ],
-              "answerChoiceId": "c-2",
-              "hint": {
-                "en": "here, where I am",
-                "fr": "à l’endroit où je suis",
-                "de": "hier, wo ich bin"
-              },
-              "answerExplanation": {
-                "en": "Ici means \"here\", the place where the speaker is.",
-                "fr": "Ici désigne l’endroit où se trouve la personne qui parle.",
-                "de": "Ici heißt „hier“, der Ort, an dem die sprechende Person ist."
-              },
-              "itemId": "ex-place-choice-5"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-place-choice-6",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-place-adverbs"
-              ],
-              "before": "Tu vois le café de l’autre côté ? Paul est",
-              "after": ".",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "maintenant"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "là"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "ici"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "demain"
-                }
-              ],
-              "answerChoiceId": "c-2",
-              "hint": {
-                "en": "there, away from me",
-                "fr": "à un autre endroit, loin de moi",
-                "de": "da, dort, weg von mir"
-              },
-              "answerExplanation": {
-                "en": "Là means \"there\", a place away from the speaker.",
-                "fr": "Là désigne un endroit éloigné de la personne qui parle.",
-                "de": "Là heißt „da, dort“, ein Ort entfernt von der sprechenden Person."
-              },
-              "itemId": "ex-place-choice-6"
-            }
-          ]
         }
       ]
     },
@@ -503,114 +353,6 @@
                 "de": "Ici heißt „hier“, der Ort, an dem die sprechende Person ist."
               },
               "itemId": "ex-place-typing-3"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-place-typing-4",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-place-adverbs"
-              ],
-              "before": "Le chat dort",
-              "after": ", au fond du jardin.",
-              "accepted": {
-                "answers": [
-                  "là"
-                ]
-              },
-              "hint": {
-                "en": "there, away from me",
-                "fr": "à un autre endroit, loin de moi",
-                "de": "da, dort, weg von mir"
-              },
-              "answerExplanation": {
-                "en": "Là means \"there\", a place away from the speaker.",
-                "fr": "Là désigne un endroit éloigné de la personne qui parle.",
-                "de": "Là heißt „da, dort“, ein Ort entfernt von der sprechenden Person."
-              },
-              "itemId": "ex-place-typing-4"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-place-typing-5",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-place-adverbs"
-              ],
-              "before": "Mets ton sac",
-              "after": ", sur ma chaise.",
-              "accepted": {
-                "answers": [
-                  "ici"
-                ]
-              },
-              "hint": {
-                "en": "here, where I am",
-                "fr": "à l’endroit où je suis",
-                "de": "hier, wo ich bin"
-              },
-              "answerExplanation": {
-                "en": "Ici means \"here\", the place where the speaker is.",
-                "fr": "Ici désigne l’endroit où se trouve la personne qui parle.",
-                "de": "Ici heißt „hier“, der Ort, an dem die sprechende Person ist."
-              },
-              "itemId": "ex-place-typing-5"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-place-typing-6",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-place-adverbs"
-              ],
-              "before": "Ton ami est",
-              "after": ", devant l’école.",
-              "accepted": {
-                "answers": [
-                  "là"
-                ]
-              },
-              "hint": {
-                "en": "there, away from me",
-                "fr": "à un autre endroit, loin de moi",
-                "de": "da, dort, weg von mir"
-              },
-              "answerExplanation": {
-                "en": "Là means \"there\", a place away from the speaker.",
-                "fr": "Là désigne un endroit éloigné de la personne qui parle.",
-                "de": "Là heißt „da, dort“, ein Ort entfernt von der sprechenden Person."
-              },
-              "itemId": "ex-place-typing-6"
             }
           ]
         }
@@ -763,56 +505,6 @@
                 "de": "Ici heißt „hier“, der Ort, an dem die sprechende Person ist."
               },
               "itemId": "ex-place-order-3"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-place-order-4",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Put the words in the right order.",
-            "fr": "Mettez les mots dans le bon ordre.",
-            "de": "Bring die Wörter in die richtige Reihenfolge."
-          },
-          "items": [
-            {
-              "type": "grammar_word_order",
-              "ruleIds": [
-                "rule-place-adverbs"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-1",
-                  "text": "Le"
-                },
-                {
-                  "tokenId": "t-4",
-                  "text": "là"
-                },
-                {
-                  "tokenId": "t-3",
-                  "text": "est"
-                },
-                {
-                  "tokenId": "t-2",
-                  "text": "bus"
-                }
-              ],
-              "acceptedOrders": [
-                [
-                  "t-1",
-                  "t-2",
-                  "t-3",
-                  "t-4"
-                ]
-              ],
-              "answerExplanation": {
-                "en": "Là means \"there\", a place away from the speaker.",
-                "fr": "Là désigne un endroit éloigné de la personne qui parle.",
-                "de": "Là heißt „da, dort“, ein Ort entfernt von der sprechenden Person."
-              },
-              "itemId": "ex-place-order-4"
             }
           ]
         }
@@ -1043,156 +735,6 @@
               "itemId": "ex-time-choice-3"
             }
           ]
-        },
-        {
-          "pageId": "ex-time-choice-4",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-time-adverbs-future"
-              ],
-              "before": "Attends, j’arrive",
-              "after": "!",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "ici"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "aujourd’hui"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "tout de suite"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "demain"
-                }
-              ],
-              "answerChoiceId": "c-3",
-              "hint": {
-                "en": "right away",
-                "fr": "immédiatement",
-                "de": "sofort"
-              },
-              "answerExplanation": {
-                "en": "Tout de suite means \"right away\", immediately.",
-                "fr": "Tout de suite veut dire « immédiatement ».",
-                "de": "Tout de suite heißt „sofort“."
-              },
-              "itemId": "ex-time-choice-4"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-time-choice-5",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-time-adverbs-future"
-              ],
-              "before": "Les vacances commencent",
-              "after": ", dans deux jours.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "ici"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "aujourd’hui"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "maintenant"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "bientôt"
-                }
-              ],
-              "answerChoiceId": "c-4",
-              "hint": {
-                "en": "soon, in a short while",
-                "fr": "dans peu de temps",
-                "de": "bald"
-              },
-              "answerExplanation": {
-                "en": "Bientôt means \"soon\", in a short while; it has an accent circonflexe on the o.",
-                "fr": "Bientôt veut dire « dans peu de temps » ; il prend un accent circonflexe sur le o.",
-                "de": "Bientôt heißt „bald“; es hat einen Accent circonflexe auf dem o."
-              },
-              "itemId": "ex-time-choice-5"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-time-choice-6",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-time-adverbs-present"
-              ],
-              "before": "Il est huit heures :",
-              "after": ", on commence le cours.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "demain"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "bientôt"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "maintenant"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "là"
-                }
-              ],
-              "answerChoiceId": "c-3",
-              "hint": {
-                "en": "now, at this moment",
-                "fr": "en ce moment",
-                "de": "jetzt, in diesem Moment"
-              },
-              "answerExplanation": {
-                "en": "Maintenant means \"now\", at this moment.",
-                "fr": "Maintenant veut dire « en ce moment ».",
-                "de": "Maintenant heißt „jetzt“, in diesem Moment."
-              },
-              "itemId": "ex-time-choice-6"
-            }
-          ]
         }
       ]
     },
@@ -1311,78 +853,6 @@
                 "de": "Maintenant heißt „jetzt“, in diesem Moment."
               },
               "itemId": "ex-time-typing-3"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-time-typing-4",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-time-adverbs-future"
-              ],
-              "before": "À",
-              "after": ", Marc !",
-              "accepted": {
-                "answers": [
-                  "bientôt"
-                ]
-              },
-              "hint": {
-                "en": "soon, in a short while",
-                "fr": "dans peu de temps",
-                "de": "bald"
-              },
-              "answerExplanation": {
-                "en": "Bientôt means \"soon\", in a short while; it has an accent circonflexe on the o.",
-                "fr": "Bientôt veut dire « dans peu de temps » ; il prend un accent circonflexe sur le o.",
-                "de": "Bientôt heißt „bald“; es hat einen Accent circonflexe auf dem o."
-              },
-              "itemId": "ex-time-typing-4"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-time-typing-5",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-time-adverbs-future"
-              ],
-              "before": "Le médecin arrive",
-              "after": ".",
-              "accepted": {
-                "answers": [
-                  "tout de suite"
-                ]
-              },
-              "hint": {
-                "en": "right away",
-                "fr": "immédiatement",
-                "de": "sofort"
-              },
-              "answerExplanation": {
-                "en": "Tout de suite means \"right away\", immediately.",
-                "fr": "Tout de suite veut dire « immédiatement ».",
-                "de": "Tout de suite heißt „sofort“."
-              },
-              "itemId": "ex-time-typing-5"
             }
           ]
         }
@@ -1535,56 +1005,6 @@
                 "de": "Aujourd’hui heißt „heute“; es wird mit Apostroph geschrieben."
               },
               "itemId": "ex-time-order-3"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-time-order-4",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Put the words in the right order.",
-            "fr": "Mettez les mots dans le bon ordre.",
-            "de": "Bring die Wörter in die richtige Reihenfolge."
-          },
-          "items": [
-            {
-              "type": "grammar_word_order",
-              "ruleIds": [
-                "rule-time-adverbs-future"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-3",
-                  "text": "arrive"
-                },
-                {
-                  "tokenId": "t-2",
-                  "text": "train"
-                },
-                {
-                  "tokenId": "t-1",
-                  "text": "Le"
-                },
-                {
-                  "tokenId": "t-4",
-                  "text": "bientôt"
-                }
-              ],
-              "acceptedOrders": [
-                [
-                  "t-1",
-                  "t-2",
-                  "t-3",
-                  "t-4"
-                ]
-              ],
-              "answerExplanation": {
-                "en": "Bientôt means \"soon\", in a short while; it has an accent circonflexe on the o.",
-                "fr": "Bientôt veut dire « dans peu de temps » ; il prend un accent circonflexe sur le o.",
-                "de": "Bientôt heißt „bald“; es hat einen Accent circonflexe auf dem o."
-              },
-              "itemId": "ex-time-order-4"
             }
           ]
         }
@@ -1866,8 +1286,8 @@
       "pages": [
         {
           "pageId": "exam-place",
-          "estimatedDurationS": 90,
-          "timeLimitS": 140,
+          "estimatedDurationS": 60,
+          "timeLimitS": 90,
           "instructions": {
             "en": "Type the missing words.",
             "fr": "Écrivez les mots manquants.",
@@ -1953,53 +1373,13 @@
                 "de": "Là heißt „da, dort“, ein Ort entfernt von der sprechenden Person."
               },
               "itemId": "exam-place-4"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-place-adverbs"
-              ],
-              "before": "Je suis",
-              "after": ", dans la cuisine !",
-              "accepted": {
-                "answers": [
-                  "ici"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "Ici means \"here\", the place where the speaker is.",
-                "fr": "Ici désigne l’endroit où se trouve la personne qui parle.",
-                "de": "Ici heißt „hier“, der Ort, an dem die sprechende Person ist."
-              },
-              "itemId": "exam-place-5"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-place-adverbs"
-              ],
-              "before": "Le taxi attend",
-              "after": ", devant l’hôtel.",
-              "accepted": {
-                "answers": [
-                  "là"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "Là means \"there\", a place away from the speaker.",
-                "fr": "Là désigne un endroit éloigné de la personne qui parle.",
-                "de": "Là heißt „da, dort“, ein Ort entfernt von der sprechenden Person."
-              },
-              "itemId": "exam-place-6"
             }
           ]
         },
         {
           "pageId": "exam-present",
-          "estimatedDurationS": 75,
-          "timeLimitS": 120,
+          "estimatedDurationS": 60,
+          "timeLimitS": 90,
           "instructions": {
             "en": "Type the missing words.",
             "fr": "Écrivez les mots manquants.",
@@ -2086,33 +1466,13 @@
                 "de": "Maintenant heißt „jetzt“, in diesem Moment."
               },
               "itemId": "exam-present-4"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-time-adverbs-present"
-              ],
-              "before": "C’est le 14 juillet",
-              "after": ".",
-              "accepted": {
-                "answers": [
-                  "aujourd’hui"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "Aujourd’hui means \"today\"; it is written with an apostrophe.",
-                "fr": "Aujourd’hui désigne ce jour-ci ; le mot s’écrit avec une apostrophe.",
-                "de": "Aujourd’hui heißt „heute“; es wird mit Apostroph geschrieben."
-              },
-              "itemId": "exam-present-5"
             }
           ]
         },
         {
           "pageId": "exam-future",
-          "estimatedDurationS": 75,
-          "timeLimitS": 120,
+          "estimatedDurationS": 60,
+          "timeLimitS": 90,
           "instructions": {
             "en": "Type the missing words.",
             "fr": "Écrivez les mots manquants.",
@@ -2199,26 +1559,6 @@
                 "de": "Bientôt heißt „bald“; es hat einen Accent circonflexe auf dem o."
               },
               "itemId": "exam-future-4"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-time-adverbs-future"
-              ],
-              "before": "Le docteur vient",
-              "after": ".",
-              "accepted": {
-                "answers": [
-                  "tout de suite"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "Tout de suite means \"right away\", immediately.",
-                "fr": "Tout de suite veut dire « immédiatement ».",
-                "de": "Tout de suite heißt „sofort“."
-              },
-              "itemId": "exam-future-5"
             }
           ]
         }
@@ -2229,10 +1569,10 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "content-v4",
-    "generatedAt": "2026-10-13T23:32:33.404Z",
+    "generatedAt": "2026-10-14T16:27:37.843Z",
     "inputHashes": {
       "outline": "0c4fac30a03f1b75a15894cc0ab8190bcf7cc3661c04d68c6a668d5eb2ae7a55",
-      "brief": "d6b301335b642e4e4e7fa24cdb5c7f3edaba77dca3a78478ef0b2acd06e046e4"
+      "brief": "4c55b906ded5dbe333b7a4f9499c55e2ab8cef873be6ade83f1bcce5790e0150"
     }
   }
 }

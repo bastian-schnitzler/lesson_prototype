@@ -7,7 +7,7 @@ import { lessonOf } from './lessonFixture.ts';
 import { buildPlan } from '../../src/domain/session/plan.ts';
 import { GenderRenderer, MatchingRenderer } from '../../src/session/vocabularyRenderers.tsx';
 import { UnitsRenderer } from '../../src/session/controls.tsx';
-import { displayOrder, entryAudio } from '../../src/session/views.tsx';
+import { displayOrder, entryAudio, examCards, isAutoSubmitPage } from '../../src/session/views.tsx';
 
 afterEach(cleanup);
 const FIXTURES = resolve(import.meta.dirname, '../fixtures/content');
@@ -106,6 +106,18 @@ it('shows the gender of every written option on a listening-choice page', () => 
   const labels = [...document.querySelectorAll('fieldset.choices label')];
   expect(labels).toHaveLength(4);
   for (const label of labels) expect(label.querySelector('.choice-gender')?.textContent).toMatch(/^(Masculine|Feminine)$/);
+});
+
+it('numbers the tasks of exam pages with several typed answers, not practice pages (P6-02, feedback #26)', () => {
+  const exam = plan.pages.filter((p) => p.role === 'exam');
+  expect(exam.length).toBeGreaterThan(0);
+  for (const p of exam) expect(examCards(p), p.pageId).toBe(p.units.length > 1);
+  expect(examCards(plan.pages.find((p) => p.items[0].type === 'vocabulary_typed_gap')!)).toBe(false);
+});
+
+it('submits a listening-choice page as soon as a written option is chosen (P6-02)', () => {
+  const listening = plan.pages.find((p) => p.items[0].type === 'vocabulary_listening_choice' && p.role === 'practice')!;
+  expect(isAutoSubmitPage(listening)).toBe(true);
 });
 
 it('reads the dictation words in a random order fixed by the session seed', () => {

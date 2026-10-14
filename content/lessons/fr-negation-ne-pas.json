@@ -14,7 +14,7 @@
     "fr": "Apprendre à former des phrases négatives simples en français avec ne...pas et n'...pas.",
     "de": "Lernen, wie man einfache Verneinungssätze im Französischen mit ne...pas und n'...pas bildet."
   },
-  "estimatedMinutes": 19,
+  "estimatedMinutes": 15,
   "kind": "grammar",
   "topic": "negation",
   "steps": [
@@ -223,144 +223,6 @@
               "itemId": "ex-basic-choice-3"
             }
           ]
-        },
-        {
-          "pageId": "ex-basic-choice-4",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-ne-pas-structure"
-              ],
-              "before": "Nous ne parlons",
-              "after": "chinois.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "ne"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "non"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "pas"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "n’"
-                }
-              ],
-              "answerChoiceId": "c-3",
-              "hint": null,
-              "answerExplanation": {
-                "en": "Ne goes before the verb and pas right after it: ne parlons pas.",
-                "fr": "Ne se place avant le verbe et pas juste après : ne parlons pas.",
-                "de": "Ne steht vor dem Verb, pas direkt danach: ne parlons pas."
-              },
-              "itemId": "ex-basic-choice-4"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-basic-choice-5",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-ne-pas-structure"
-              ],
-              "before": "Vous",
-              "after": "dansez pas ?",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "n’"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "non"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "ne"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "pas"
-                }
-              ],
-              "answerChoiceId": "c-3",
-              "hint": null,
-              "answerExplanation": {
-                "en": "Ne goes before the verb and pas right after it: ne dansez pas.",
-                "fr": "Ne se place avant le verbe et pas juste après : ne dansez pas.",
-                "de": "Ne steht vor dem Verb, pas direkt danach: ne dansez pas."
-              },
-              "itemId": "ex-basic-choice-5"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-basic-choice-6",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-ne-pas-structure"
-              ],
-              "before": "Elles ne sont",
-              "after": "là.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "n’"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "non"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "pas"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "ne"
-                }
-              ],
-              "answerChoiceId": "c-3",
-              "hint": null,
-              "answerExplanation": {
-                "en": "Ne goes before the verb and pas right after it: ne sont pas.",
-                "fr": "Ne se place avant le verbe et pas juste après : ne sont pas.",
-                "de": "Ne steht vor dem Verb, pas direkt danach: ne sont pas."
-              },
-              "itemId": "ex-basic-choice-6"
-            }
-          ]
         }
       ]
     },
@@ -543,131 +405,6 @@
               "itemId": "ex-basic-word-order-3"
             }
           ]
-        },
-        {
-          "pageId": "ex-basic-word-order-4",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Put the words in the right order.",
-            "fr": "Mettez les mots dans le bon ordre.",
-            "de": "Bring die Wörter in die richtige Reihenfolge."
-          },
-          "items": [
-            {
-              "type": "grammar_word_order",
-              "ruleIds": [
-                "rule-ne-pas-structure"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-2",
-                  "text": "ne"
-                },
-                {
-                  "tokenId": "t-4",
-                  "text": "pas"
-                },
-                {
-                  "tokenId": "t-1",
-                  "text": "Nous"
-                },
-                {
-                  "tokenId": "t-3",
-                  "text": "regardons"
-                },
-                {
-                  "tokenId": "t-6",
-                  "text": "film"
-                },
-                {
-                  "tokenId": "t-5",
-                  "text": "le"
-                }
-              ],
-              "acceptedOrders": [
-                [
-                  "t-1",
-                  "t-2",
-                  "t-3",
-                  "t-4",
-                  "t-5",
-                  "t-6"
-                ]
-              ],
-              "answerExplanation": {
-                "en": "Ne goes before the verb and pas right after it: ne regardons pas.",
-                "fr": "Ne se place avant le verbe et pas juste après : ne regardons pas.",
-                "de": "Ne steht vor dem Verb, pas direkt danach: ne regardons pas."
-              },
-              "itemId": "ex-basic-word-order-4"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-basic-word-order-5",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Put the words in the right order.",
-            "fr": "Mettez les mots dans le bon ordre.",
-            "de": "Bring die Wörter in die richtige Reihenfolge."
-          },
-          "items": [
-            {
-              "type": "grammar_word_order",
-              "ruleIds": [
-                "rule-ne-pas-structure"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-4",
-                  "text": "pas"
-                },
-                {
-                  "tokenId": "t-5",
-                  "text": "au"
-                },
-                {
-                  "tokenId": "t-1",
-                  "text": "Vous"
-                },
-                {
-                  "tokenId": "t-3",
-                  "text": "jouez"
-                },
-                {
-                  "tokenId": "t-6",
-                  "text": "tennis"
-                },
-                {
-                  "tokenId": "t-2",
-                  "text": "ne"
-                },
-                {
-                  "tokenId": "t-7",
-                  "text": "?"
-                }
-              ],
-              "acceptedOrders": [
-                [
-                  "t-1",
-                  "t-2",
-                  "t-3",
-                  "t-4",
-                  "t-5",
-                  "t-6",
-                  "t-7"
-                ]
-              ],
-              "answerExplanation": {
-                "en": "Ne goes before the verb and pas right after it: ne jouez pas.",
-                "fr": "Ne se place avant le verbe et pas juste après : ne jouez pas.",
-                "de": "Ne steht vor dem Verb, pas direkt danach: ne jouez pas."
-              },
-              "itemId": "ex-basic-word-order-5"
-            }
-          ]
         }
       ]
     },
@@ -786,78 +523,6 @@
                 "de": "Ne steht vor dem Verb, pas direkt danach: ne travaille pas."
               },
               "itemId": "ex-basic-typing-3"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-basic-typing-4",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-ne-pas-structure"
-              ],
-              "before": "Nous sommes prêts. → Nous",
-              "after": "prêts.",
-              "accepted": {
-                "answers": [
-                  "ne sommes pas"
-                ]
-              },
-              "hint": {
-                "en": "negative",
-                "fr": "négation",
-                "de": "Verneinung"
-              },
-              "answerExplanation": {
-                "en": "Ne goes before the verb and pas right after it: ne sommes pas.",
-                "fr": "Ne se place avant le verbe et pas juste après : ne sommes pas.",
-                "de": "Ne steht vor dem Verb, pas direkt danach: ne sommes pas."
-              },
-              "itemId": "ex-basic-typing-4"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-basic-typing-5",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-ne-pas-structure"
-              ],
-              "before": "Vous parlez vite. → Vous",
-              "after": "vite.",
-              "accepted": {
-                "answers": [
-                  "ne parlez pas"
-                ]
-              },
-              "hint": {
-                "en": "negative",
-                "fr": "négation",
-                "de": "Verneinung"
-              },
-              "answerExplanation": {
-                "en": "Ne goes before the verb and pas right after it: ne parlez pas.",
-                "fr": "Ne se place avant le verbe et pas juste après : ne parlez pas.",
-                "de": "Ne steht vor dem Verb, pas direkt danach: ne parlez pas."
-              },
-              "itemId": "ex-basic-typing-5"
             }
           ]
         }
@@ -1354,98 +1019,6 @@
               "itemId": "ex-elision-choice-4"
             }
           ]
-        },
-        {
-          "pageId": "ex-elision-choice-5",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-n-elision"
-              ],
-              "before": "Elle",
-              "after": "a pas de voiture.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "ne"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "pas"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "non"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "n’"
-                }
-              ],
-              "answerChoiceId": "c-4",
-              "hint": null,
-              "answerExplanation": {
-                "en": "a starts with a vowel, so ne becomes n’: n’a pas.",
-                "fr": "a commence par une voyelle : ne devient n’ : n’a pas.",
-                "de": "a beginnt mit einem Vokal, also wird ne zu n’: n’a pas."
-              },
-              "itemId": "ex-elision-choice-5"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-elision-choice-6",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-n-elision"
-              ],
-              "before": "Vous",
-              "after": "êtes pas en retard.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "ne"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "non"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "pas"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "n’"
-                }
-              ],
-              "answerChoiceId": "c-4",
-              "hint": null,
-              "answerExplanation": {
-                "en": "êtes starts with a vowel, so ne becomes n’: n’êtes pas.",
-                "fr": "êtes commence par une voyelle : ne devient n’ : n’êtes pas.",
-                "de": "êtes beginnt mit einem Vokal, also wird ne zu n’: n’êtes pas."
-              },
-              "itemId": "ex-elision-choice-6"
-            }
-          ]
         }
       ]
     },
@@ -1600,42 +1173,6 @@
                 "de": "avons beginnt mit einem Vokal, also wird ne zu n’: n’avons pas."
               },
               "itemId": "ex-elision-typing-4"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-elision-typing-5",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-n-elision"
-              ],
-              "before": "Vous écoutez la radio. → Vous",
-              "after": "la radio.",
-              "accepted": {
-                "answers": [
-                  "n’écoutez pas"
-                ]
-              },
-              "hint": {
-                "en": "negative",
-                "fr": "négation",
-                "de": "Verneinung"
-              },
-              "answerExplanation": {
-                "en": "écoutez starts with a vowel, so ne becomes n’: n’écoutez pas.",
-                "fr": "écoutez commence par une voyelle : ne devient n’ : n’écoutez pas.",
-                "de": "écoutez beginnt mit einem Vokal, also wird ne zu n’: n’écoutez pas."
-              },
-              "itemId": "ex-elision-typing-5"
             }
           ]
         }
@@ -1908,8 +1445,8 @@
       "pages": [
         {
           "pageId": "exam-order",
-          "estimatedDurationS": 100,
-          "timeLimitS": 150,
+          "estimatedDurationS": 75,
+          "timeLimitS": 120,
           "instructions": {
             "en": "Put the words in the right order.",
             "fr": "Mettez les mots dans le bon ordre.",
@@ -2049,56 +1586,13 @@
                 "de": "Ne steht vor dem Verb, pas direkt danach: ne sommes pas."
               },
               "itemId": "exam-order-3"
-            },
-            {
-              "type": "grammar_word_order",
-              "ruleIds": [
-                "rule-n-elision"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-2",
-                  "text": "n’habites"
-                },
-                {
-                  "tokenId": "t-4",
-                  "text": "ici"
-                },
-                {
-                  "tokenId": "t-3",
-                  "text": "pas"
-                },
-                {
-                  "tokenId": "t-5",
-                  "text": "?"
-                },
-                {
-                  "tokenId": "t-1",
-                  "text": "Tu"
-                }
-              ],
-              "acceptedOrders": [
-                [
-                  "t-1",
-                  "t-2",
-                  "t-3",
-                  "t-4",
-                  "t-5"
-                ]
-              ],
-              "answerExplanation": {
-                "en": "habites starts with a silent h, so ne becomes n’: n’habites pas.",
-                "fr": "habites commence par un h muet : ne devient n’ : n’habites pas.",
-                "de": "habites beginnt mit stummem h, also wird ne zu n’: n’habites pas."
-              },
-              "itemId": "exam-order-4"
             }
           ]
         },
         {
           "pageId": "exam-ne-pas",
-          "estimatedDurationS": 90,
-          "timeLimitS": 140,
+          "estimatedDurationS": 45,
+          "timeLimitS": 70,
           "instructions": {
             "en": "Type the missing words.",
             "fr": "Écrivez les mots manquants.",
@@ -2164,73 +1658,13 @@
                 "de": "Ne steht vor dem Verb, pas direkt danach: ne regarde pas."
               },
               "itemId": "exam-ne-pas-3"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-ne-pas-structure"
-              ],
-              "before": "Nous jouons au foot. → Nous",
-              "after": "au foot.",
-              "accepted": {
-                "answers": [
-                  "ne jouons pas"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "Ne goes before the verb and pas right after it: ne jouons pas.",
-                "fr": "Ne se place avant le verbe et pas juste après : ne jouons pas.",
-                "de": "Ne steht vor dem Verb, pas direkt danach: ne jouons pas."
-              },
-              "itemId": "exam-ne-pas-4"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-ne-pas-structure"
-              ],
-              "before": "Vous travaillez ici. → Vous",
-              "after": "ici.",
-              "accepted": {
-                "answers": [
-                  "ne travaillez pas"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "Ne goes before the verb and pas right after it: ne travaillez pas.",
-                "fr": "Ne se place avant le verbe et pas juste après : ne travaillez pas.",
-                "de": "Ne steht vor dem Verb, pas direkt danach: ne travaillez pas."
-              },
-              "itemId": "exam-ne-pas-5"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-ne-pas-structure"
-              ],
-              "before": "Ils sont contents. → Ils",
-              "after": "contents.",
-              "accepted": {
-                "answers": [
-                  "ne sont pas"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "Ne goes before the verb and pas right after it: ne sont pas.",
-                "fr": "Ne se place avant le verbe et pas juste après : ne sont pas.",
-                "de": "Ne steht vor dem Verb, pas direkt danach: ne sont pas."
-              },
-              "itemId": "exam-ne-pas-6"
             }
           ]
         },
         {
           "pageId": "exam-elision",
-          "estimatedDurationS": 90,
-          "timeLimitS": 140,
+          "estimatedDurationS": 60,
+          "timeLimitS": 90,
           "instructions": {
             "en": "Type the missing words.",
             "fr": "Écrivez les mots manquants.",
@@ -2316,46 +1750,6 @@
                 "de": "écoutons beginnt mit einem Vokal, also wird ne zu n’: n’écoutons pas."
               },
               "itemId": "exam-elision-4"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-n-elision"
-              ],
-              "before": "Vous êtes là. → Vous",
-              "after": "là.",
-              "accepted": {
-                "answers": [
-                  "n’êtes pas"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "êtes starts with a vowel, so ne becomes n’: n’êtes pas.",
-                "fr": "êtes commence par une voyelle : ne devient n’ : n’êtes pas.",
-                "de": "êtes beginnt mit einem Vokal, also wird ne zu n’: n’êtes pas."
-              },
-              "itemId": "exam-elision-5"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-n-elision"
-              ],
-              "before": "Elles aiment la pluie. → Elles",
-              "after": "la pluie.",
-              "accepted": {
-                "answers": [
-                  "n’aiment pas"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "aiment starts with a vowel, so ne becomes n’: n’aiment pas.",
-                "fr": "aiment commence par une voyelle : ne devient n’ : n’aiment pas.",
-                "de": "aiment beginnt mit einem Vokal, also wird ne zu n’: n’aiment pas."
-              },
-              "itemId": "exam-elision-6"
             }
           ]
         }
@@ -2366,10 +1760,10 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "content-v4",
-    "generatedAt": "2026-10-13T23:32:34.272Z",
+    "generatedAt": "2026-10-14T16:27:38.093Z",
     "inputHashes": {
       "outline": "078446959aa285cbf75f09d67558dd26db4d3f7725b45d2e27e09f93693ea261",
-      "brief": "314c6fb3068815634a0e1dfb83bc4eef789eae1fbb9010464f4faecf9233e7b1"
+      "brief": "eace67b4ececa775118d4749210f73b9e0dfbba04c1c6282ecfcdc80ebac2de0"
     }
   }
 }

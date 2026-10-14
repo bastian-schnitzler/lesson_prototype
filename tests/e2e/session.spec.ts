@@ -82,11 +82,14 @@ async function answerListening(page: Page, right = true) {
   for (const option of await page.locator('fieldset.choices label').all()) {
     if (((await option.locator('span[lang]').textContent())!.trim() === word) === right) { await option.click(); break; }
   }
-  await proceed(page); // listening choices are confirmed with Check (P4-05 review)
+  // Choosing submits the page at once (P6-02).
   if (!right) {
     await expect(page.locator('.choice.is-wrong')).toHaveCount(1);
     await proceed(page);
-  } else await expect(page.locator('.task-card.is-celebrating')).toHaveCount(0);
+  } else {
+    await expect(page.locator('.task-card.is-celebrating')).toHaveCount(1);
+    await expect(page.locator('.task-card.is-celebrating')).toHaveCount(0);
+  }
 }
 
 /** Confirms the info page that precedes the final exam. */
@@ -106,6 +109,7 @@ async function chooseAll(page: Page) {
 }
 
 test('plays a lesson with Continue lock/confirm, resumes after reload and shows the results menu', async ({ page }) => {
+  test.slow(); // the whole lesson, with every success animation
   await page.goto('./#/lesson/fr-classroom-objects/play');
   await expect(page.getByRole('heading', { level: 1, name: 'Les objets de la classe' })).toBeVisible();
   await expect(page.getByRole('link', { name: 'Lesson overview' })).toBeVisible();
@@ -174,7 +178,8 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   // An info page lists the exam pages, their countdowns and the number of words before the exam starts.
   await expect(page.getByRole('heading', { name: 'Your final exam' })).toBeVisible();
   await expect(page.locator('.exam-intro')).toContainText('4 words are tested');
-  await expect(page.locator('.exam-intro li').first()).toContainText(/Translation into French · \d+ tasks/);
+  await expect(page.locator('.exam-intro li').first()).toContainText(/Translation into French · \d+ questions/);
+  await expect(page.locator('.exam-intro li').first().locator('.time-limit')).toHaveText(/^\d\d:\d\d$/);
   await expect(page.getByRole('timer')).toHaveCount(0);
   await proceed(page);
   await expect(page.getByRole('timer')).toBeVisible();
@@ -219,7 +224,7 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   // The card shows the selected part (heading and score), the lesson title and the lesson total only.
   await expect(page.locator('.summary-card h1')).toHaveText('Practice');
   await expect(page.locator('.summary-card')).toContainText('Les objets de la classe');
-  await expect(page.locator('.summary-card')).toContainText(/Lesson total: [\d.]+ \/ 100/);
+  await expect(page.locator('.lesson-nav .results-final')).toContainText(/Final score[\d.]+ \/ 100/);
   await expect(page.locator('.summary-card')).not.toContainText(/contributes|Practice:/);
   await expect(page.locator('.results-footer .button-primary')).toHaveText('Lesson overview');
   await expect(page.locator('.results-footer .button-outline')).toHaveText('Repeat lesson');
@@ -377,6 +382,7 @@ async function reachListeningPractice(page: Page) {
 }
 
 test('plays French listening choice and dictation with a suitable voice', async ({ page }) => {
+  test.slow(); // practice and exam with every listening task
   await mockFrenchVoice(page, true);
   await reachListeningPractice(page);
   await expect(page.getByRole('button', { name: 'Listen', exact: true })).toBeVisible();
@@ -391,14 +397,12 @@ test('plays French listening choice and dictation with a suitable voice', async 
   };
   await choose(false);
   await expect(page.locator('fieldset.choices .choice-gender')).toHaveCount(0); // fr-classroom-instructions has no nouns
-  await proceed(page); // listening choices are confirmed with Check (P4-05 review)
-  // A wrong choice: the chosen option red, the correct one green, no feedback card.
+  // Choosing submits the page at once (P6-02). A wrong choice: the chosen option red, the correct one green, no feedback card.
   await expect(page.locator('.choice.is-wrong')).toHaveCount(1);
   await expect(page.locator('.choice.is-right')).toHaveCount(1);
   await expect(page.locator('.feedback')).toHaveCount(0);
   await proceed(page);
   await choose(true);
-  await proceed(page);
   await expect(page.locator('.task-card.is-celebrating .choice:has(input:checked)')).toHaveCount(1);
   await expect(page.locator('.feedback')).toHaveCount(0);
   await expect(page.locator('.task-card.is-celebrating')).toHaveCount(0);

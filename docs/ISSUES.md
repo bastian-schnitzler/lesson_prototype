@@ -1069,33 +1069,30 @@ Source: the feedback page [docs/feedback.html](feedback.html), published with th
 
 This issue includes **implementation and integration into the maintained specification, [docs/SPEC.md](SPEC.md)**.
 
-Scope: every item in the section **Not implemented yet** on the feedback page. At the time of writing these are:
+Scope: every item in the sections **Clarification needed** and **Not implemented yet** on the feedback page. Open items (status of 2026-10-14):
 
-| Item | Area | Feedback |
-| --- | --- | --- |
-| #1 | Main points | Lessons must be shorter (vocabulary and grammar; Anais and Victor). |
-| #2 | Main points | Multiple choices are not intuitive: make single versus multiple selection explicit. |
-| #4 | Main points | The front end must be improved. |
-| #6 | Side bar mockup | Exam in progress: exam screen as in the mockup. |
-| #7 | Side bar mockup | Exam results: answer layout as in the mockup. |
-| #8 | Side bar mockup | Grammar: visual, point-by-point theory (pronoun chips, New verbs table, short rules, bilingual examples). |
-| #10 | Vocabulary 2 | Accent question in the native language, sentence on top and clear, Enter to validate, balance of typed and click exercises. |
-| #11 | Vocabulary 3 | The names exercise must show `Jean-Paul` when it asks for the sign between Jean and Paul. |
-| #12 | Vocabulary 4 | Speaker icon instead of the word "Listen" in the listening exercise. |
-| #13 | Vocabulary 5 | Exam intro: time limits shown more clearly, no "tasks". |
-| #14 | Grammar 1 | Theory more visual and point by point (with #8). |
-| #16 | Grammar 3 | Error-spotter correction feedback without raw bracket markup or a duplicate panel. |
-| #17 | Grammar 4 | The solution must match the selected word. |
-| #18 | Grammar 5 | Decide whether vocabulary gets the pre-exam feedback step. |
-| #24 | All lessons | Victor: a speaker to listen to full example sentences in every lesson (grammar explanations and examples, vocabulary introduction). |
-| #25 | Vocabulary | Victor: skipping the listening exercise by choice, or an equivalent exercise without audio for the same word, so it can still be scored. |
+| Item | Section | Area | Feedback |
+| --- | --- | --- | --- |
+| #2 | Clarification needed | Main points | Multiple choices are not intuitive: make single versus multiple selection explicit. |
+| #4 | Clarification needed | Main points | The front end must be improved. |
+| #8 | Clarification needed | Side bar mockup | Grammar: visual, point-by-point theory (pronoun chips, New verbs table, short rules, bilingual examples). |
+| #10 | Clarification needed | Vocabulary 2 | Accent question in the native language, sentence on top and clear, Enter to validate, balance of typed and click exercises. |
+| #7 | Not implemented yet | Side bar mockup | Exam results: answer layout as in the mockup. |
+| #12 | Not implemented yet | Vocabulary 4 | Speaker icon instead of the word "Listen" in the listening exercise. |
+| #14 | Not implemented yet | Grammar 1 | Theory more visual and point by point (with #8). |
+| #16 | Not implemented yet | Grammar 3 | Error-spotter correction feedback without raw bracket markup or a duplicate panel. |
+| #18 | Not implemented yet | Grammar 5 | Decide whether vocabulary gets the pre-exam feedback step. |
+| #24 | Not implemented yet | All lessons | Victor: a speaker to listen to full example sentences in every lesson (grammar explanations and examples, vocabulary introduction). |
+| #25 | Not implemented yet | Vocabulary | Victor: skipping the listening exercise by choice, or an equivalent exercise without audio for the same word, so it can still be scored. |
+
+Delivered in the first P6-02 pull request (branch `P06-00`): #1 shorter lessons (at most 15 minutes; vocabulary 8–9 words, grammar fewer items, functions 4 expressions), #6 exam countdown box, #13 exam time limits as stopwatch chips and "questions" instead of "tasks", #26 numbered exam task cards (split from #6), plus listening choices submitting on selection, plain typing fields, focus on the first field, the final score in the results sidebar and a favicon. Discarded: #11 (the name Jean-Paul is meant) and #17 (the wrong error was selected).
 
 Implementation / acceptance:
-- [ ] Each item above is implemented, or decided against with the product owner. Open design questions ("to think about") are decided and recorded before implementation.
+- [ ] Each open item is clarified with the product owner where it is in **Clarification needed**, then implemented or decided against.
 - [ ] When an item is done, it moves on the feedback page to **Already implemented** (or **Discarded**) with its number unchanged and a Bastian comment naming what changed; the section counts and the sidebar follow.
-- [ ] Items may be delivered in several pull requests; each one names the item numbers it covers.
+- [ ] Items may be delivered in several pull requests; each one names the item numbers it covers and does not close this issue until the last one.
 - [ ] Changed rules are integrated into the affected SPEC sections and the decision/revision logs; tests cover the changed behaviour.
-- [ ] The issue is complete when **Not implemented yet** on the feedback page is empty.
+- [ ] The issue is complete when **Clarification needed** and **Not implemented yet** on the feedback page are empty.
 
 Dependencies: P6-01 (sidebar).
 

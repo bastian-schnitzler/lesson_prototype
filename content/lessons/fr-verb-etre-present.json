@@ -14,15 +14,15 @@
     "fr": "Conjuguer le verbe irrégulier être au présent avec tous les pronoms sujets pour exprimer la nationalité, la profession et l'état.",
     "de": "Das unregelmäßige Verb être im Präsens mit allen Subjektpronomen konjugieren, um Nationalität, Beruf und Zustand auszudrücken."
   },
-  "estimatedMinutes": 18,
+  "estimatedMinutes": 15,
   "provenance": {
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "content-v4",
-    "generatedAt": "2026-10-13T23:32:35.997Z",
+    "generatedAt": "2026-10-14T16:27:38.534Z",
     "inputHashes": {
       "outline": "37f20906353e39b156b85e7597e3a6ecc18c349368249261ec098196b3e8c0b3",
-      "brief": "505e00a7b765414378520efe0c46573cf73751ecbc8cf5d301b505e7be72f301"
+      "brief": "1a3905b09e283d811dfb9fe823255cf5dbb60f45bb11d2c2059f282c07671ebd"
     }
   },
   "kind": "grammar",
@@ -263,144 +263,6 @@
               "itemId": "ex-sg-choice-3"
             }
           ]
-        },
-        {
-          "pageId": "ex-sg-choice-4",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-singular-forms"
-              ],
-              "before": "Marc",
-              "after": "médecin.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "suis"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "êtes"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "est"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "es"
-                }
-              ],
-              "answerChoiceId": "c-3",
-              "hint": null,
-              "answerExplanation": {
-                "en": "Marc is 3rd person singular (like il), so être is est.",
-                "fr": "Marc est à la 3e personne du singulier (comme il) : être devient est.",
-                "de": "Marc ist 3. Person Singular (wie il), also heißt être est."
-              },
-              "itemId": "ex-sg-choice-4"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-sg-choice-5",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-singular-forms"
-              ],
-              "before": "On",
-              "after": "en retard.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "suis"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "es"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "est"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "sommes"
-                }
-              ],
-              "answerChoiceId": "c-3",
-              "hint": null,
-              "answerExplanation": {
-                "en": "On is grammatically 3rd person singular, so être is est, even when it means \"we\".",
-                "fr": "On est à la 3e personne du singulier : être devient est, même quand on veut dire « nous ».",
-                "de": "On ist grammatisch 3. Person Singular, also est – auch wenn es „wir“ bedeutet."
-              },
-              "itemId": "ex-sg-choice-5"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-sg-choice-6",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-singular-forms"
-              ],
-              "before": "Ma sœur",
-              "after": "professeure.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "es"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "sont"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "suis"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "est"
-                }
-              ],
-              "answerChoiceId": "c-4",
-              "hint": null,
-              "answerExplanation": {
-                "en": "Ma sœur is 3rd person singular (like il), so être is est.",
-                "fr": "Ma sœur est à la 3e personne du singulier (comme il) : être devient est.",
-                "de": "Ma sœur ist 3. Person Singular (wie il), also heißt être est."
-              },
-              "itemId": "ex-sg-choice-6"
-            }
-          ]
         }
       ]
     },
@@ -519,114 +381,6 @@
                 "de": "Zu tu gehört die Form es."
               },
               "itemId": "ex-sg-typing-3"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-sg-typing-4",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-singular-forms"
-              ],
-              "before": "Le professeur",
-              "after": "sympathique.",
-              "accepted": {
-                "answers": [
-                  "est"
-                ]
-              },
-              "hint": {
-                "en": "être",
-                "fr": "être",
-                "de": "être"
-              },
-              "answerExplanation": {
-                "en": "Le professeur is 3rd person singular (like il), so être is est.",
-                "fr": "Le professeur est à la 3e personne du singulier (comme il) : être devient est.",
-                "de": "Le professeur ist 3. Person Singular (wie il), also heißt être est."
-              },
-              "itemId": "ex-sg-typing-4"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-sg-typing-5",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-singular-forms"
-              ],
-              "before": "Aujourd’hui, je",
-              "after": "à la maison.",
-              "accepted": {
-                "answers": [
-                  "suis"
-                ]
-              },
-              "hint": {
-                "en": "être",
-                "fr": "être",
-                "de": "être"
-              },
-              "answerExplanation": {
-                "en": "With je, être is suis.",
-                "fr": "Avec je, être devient suis.",
-                "de": "Zu je gehört die Form suis."
-              },
-              "itemId": "ex-sg-typing-5"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-sg-typing-6",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-singular-forms"
-              ],
-              "before": "Anna",
-              "after": "italienne.",
-              "accepted": {
-                "answers": [
-                  "est"
-                ]
-              },
-              "hint": {
-                "en": "être",
-                "fr": "être",
-                "de": "être"
-              },
-              "answerExplanation": {
-                "en": "Anna is 3rd person singular (like il), so être is est.",
-                "fr": "Anna est à la 3e personne du singulier (comme il) : être devient est.",
-                "de": "Anna ist 3. Person Singular (wie il), also heißt être est."
-              },
-              "itemId": "ex-sg-typing-6"
             }
           ]
         }
@@ -839,62 +593,6 @@
                 "de": "Paul ist 3. Person Singular (wie il), also heißt être est."
               },
               "itemId": "ex-sg-spot-4"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-sg-spot-5",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Find the wrong word and correct it.",
-            "fr": "Trouvez le mot faux et corrigez-le.",
-            "de": "Finde das falsche Wort und korrigiere es."
-          },
-          "items": [
-            {
-              "type": "grammar_error_spotter",
-              "ruleIds": [
-                "rule-singular-forms"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-1",
-                  "text": "On"
-                },
-                {
-                  "tokenId": "t-2",
-                  "text": "sommes"
-                },
-                {
-                  "tokenId": "t-3",
-                  "text": "en"
-                },
-                {
-                  "tokenId": "t-4",
-                  "text": "classe"
-                }
-              ],
-              "faultyTokenId": "t-2",
-              "correction": {
-                "mode": "select",
-                "accepted": {
-                  "answers": [
-                    "est"
-                  ]
-                },
-                "choices": [
-                  "est",
-                  "sommes",
-                  "es"
-                ]
-              },
-              "answerExplanation": {
-                "en": "On always takes the 3rd person singular form est, even when it means \"we\".",
-                "fr": "On prend toujours la forme est (3e personne du singulier), même au sens de « nous ».",
-                "de": "On steht immer mit est (3. Person Singular), auch wenn es „wir“ bedeutet."
-              },
-              "itemId": "ex-sg-spot-5"
             }
           ]
         }
@@ -1421,98 +1119,6 @@
               "itemId": "ex-pl-choice-4"
             }
           ]
-        },
-        {
-          "pageId": "ex-pl-choice-5",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-plural-forms"
-              ],
-              "before": "Toi et moi, nous",
-              "after": "amis.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "suis"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "sont"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "sommes"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "êtes"
-                }
-              ],
-              "answerChoiceId": "c-3",
-              "hint": null,
-              "answerExplanation": {
-                "en": "Toi et moi is 1st person plural (like nous), so être is sommes.",
-                "fr": "Toi et moi est à la 1re personne du pluriel (comme nous) : être devient sommes.",
-                "de": "Toi et moi ist 1. Person Plural (wie nous), also heißt être sommes."
-              },
-              "itemId": "ex-pl-choice-5"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-pl-choice-6",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-liaison-pronunciation"
-              ],
-              "before": "Elles",
-              "after": "en vacances.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "ont"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "est"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "êtes"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "sont"
-                }
-              ],
-              "answerChoiceId": "c-4",
-              "hint": null,
-              "answerExplanation": {
-                "en": "Elles sont en vacances: ils sont (être, [s]) – ils ont belongs to avoir.",
-                "fr": "Elles sont en vacances : ils sont (être, [s]) – ils ont appartient à avoir.",
-                "de": "Elles sont en vacances: ils sont (être, [s]) – ils ont gehört zu avoir."
-              },
-              "itemId": "ex-pl-choice-6"
-            }
-          ]
         }
       ]
     },
@@ -1667,42 +1273,6 @@
                 "de": "Les étudiants ist 3. Person Plural (wie ils), also heißt être sont."
               },
               "itemId": "ex-pl-gap-4"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-pl-gap-5",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-plural-forms"
-              ],
-              "before": "Marie et moi, nous",
-              "after": "sœurs.",
-              "accepted": {
-                "answers": [
-                  "sommes"
-                ]
-              },
-              "hint": {
-                "en": "être",
-                "fr": "être",
-                "de": "être"
-              },
-              "answerExplanation": {
-                "en": "Marie et moi is 1st person plural (like nous), so être is sommes.",
-                "fr": "Marie et moi est à la 1re personne du pluriel (comme nous) : être devient sommes.",
-                "de": "Marie et moi ist 1. Person Plural (wie nous), also heißt être sommes."
-              },
-              "itemId": "ex-pl-gap-5"
             }
           ]
         }
@@ -1863,8 +1433,8 @@
         },
         {
           "pageId": "exam-singular",
-          "estimatedDurationS": 75,
-          "timeLimitS": 120,
+          "estimatedDurationS": 45,
+          "timeLimitS": 70,
           "instructions": {
             "en": "Type the missing words.",
             "fr": "Écrivez les mots manquants.",
@@ -1930,53 +1500,13 @@
                 "de": "Mon frère ist 3. Person Singular (wie il), also heißt être est."
               },
               "itemId": "exam-singular-3"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-singular-forms"
-              ],
-              "before": "Elle",
-              "after": "contente.",
-              "accepted": {
-                "answers": [
-                  "est"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "Elle is 3rd person singular (like il), so être is est.",
-                "fr": "Elle est à la 3e personne du singulier (comme il) : être devient est.",
-                "de": "Elle ist 3. Person Singular (wie il), also heißt être est."
-              },
-              "itemId": "exam-singular-4"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-singular-forms"
-              ],
-              "before": "On",
-              "after": "au café.",
-              "accepted": {
-                "answers": [
-                  "est"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "On is 3rd person singular (like il), so être is est.",
-                "fr": "On est à la 3e personne du singulier (comme il) : être devient est.",
-                "de": "On ist 3. Person Singular (wie il), also heißt être est."
-              },
-              "itemId": "exam-singular-5"
             }
           ]
         },
         {
           "pageId": "exam-plural",
-          "estimatedDurationS": 75,
-          "timeLimitS": 120,
+          "estimatedDurationS": 45,
+          "timeLimitS": 70,
           "instructions": {
             "en": "Type the missing words.",
             "fr": "Écrivez les mots manquants.",
@@ -2043,46 +1573,6 @@
                 "de": "Ils sont au travail: ils sont (être, [s]) – ils ont gehört zu avoir."
               },
               "itemId": "exam-plural-3"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-plural-forms"
-              ],
-              "before": "Léa et Tom",
-              "after": "cousins.",
-              "accepted": {
-                "answers": [
-                  "sont"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "Léa et Tom is 3rd person plural (like ils), so être is sont.",
-                "fr": "Léa et Tom est à la 3e personne du pluriel (comme ils) : être devient sont.",
-                "de": "Léa et Tom ist 3. Person Plural (wie ils), also heißt être sont."
-              },
-              "itemId": "exam-plural-4"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-plural-forms"
-              ],
-              "before": "Vous",
-              "after": "monsieur Martin ?",
-              "accepted": {
-                "answers": [
-                  "êtes"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "With vous, être is êtes, with an accent circonflexe on the first e.",
-                "fr": "Avec vous, être devient êtes, avec un accent circonflexe sur le premier e.",
-                "de": "Zu vous gehört êtes, mit Accent circonflexe auf dem ersten e."
-              },
-              "itemId": "exam-plural-5"
             }
           ]
         }

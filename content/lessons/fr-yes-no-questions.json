@@ -14,7 +14,7 @@
     "fr": "Apprendre à poser des questions fermées simples avec l'intonation ou 'est-ce que' et y répondre par 'oui' ou 'non'.",
     "de": "Lerne, einfache Ja/Nein-Fragen mit Intonation oder 'est-ce que' zu stellen und mit 'oui' oder 'non' zu antworten."
   },
-  "estimatedMinutes": 20,
+  "estimatedMinutes": 15,
   "kind": "grammar",
   "topic": "syntax_and_sentence_structure",
   "steps": [
@@ -239,144 +239,6 @@
               "itemId": "ex-intonation-choice-3"
             }
           ]
-        },
-        {
-          "pageId": "ex-intonation-choice-4",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-answering-oui-non"
-              ],
-              "before": "— Tu habites à Paris ? —",
-              "after": ", j’habite à Lyon.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "Non"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "Est-ce que"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "Oui"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "Si"
-                }
-              ],
-              "answerChoiceId": "c-1",
-              "hint": null,
-              "answerExplanation": {
-                "en": "The answer says something different (j’habite à Lyon), so it starts with non.",
-                "fr": "La réponse dit autre chose (j’habite à Lyon) : elle commence par non.",
-                "de": "Die Antwort sagt etwas anderes (j’habite à Lyon), also beginnt sie mit non."
-              },
-              "itemId": "ex-intonation-choice-4"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-intonation-choice-5",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-answering-oui-non"
-              ],
-              "before": "— Vous êtes étudiant ? —",
-              "after": ", je suis étudiant.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "Si"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "Non"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "Oui"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "Est-ce que"
-                }
-              ],
-              "answerChoiceId": "c-3",
-              "hint": null,
-              "answerExplanation": {
-                "en": "The answer confirms the question (je suis étudiant), so it starts with oui.",
-                "fr": "La réponse confirme la question (je suis étudiant) : elle commence par oui.",
-                "de": "Die Antwort bestätigt die Frage (je suis étudiant), also beginnt sie mit oui."
-              },
-              "itemId": "ex-intonation-choice-5"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-intonation-choice-6",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-answering-oui-non"
-              ],
-              "before": "— Il est médecin ? —",
-              "after": ", il est professeur.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "Si"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "Oui"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "Non"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "Est-ce qu’"
-                }
-              ],
-              "answerChoiceId": "c-3",
-              "hint": null,
-              "answerExplanation": {
-                "en": "The answer says something different (il est professeur), so it starts with non.",
-                "fr": "La réponse dit autre chose (il est professeur) : elle commence par non.",
-                "de": "Die Antwort sagt etwas anderes (il est professeur), also beginnt sie mit non."
-              },
-              "itemId": "ex-intonation-choice-6"
-            }
-          ]
         }
       ]
     },
@@ -486,72 +348,6 @@
                 "de": "Die Antwort bestätigt die Frage (elle habite ici), also beginnt sie mit oui."
               },
               "itemId": "ex-intonation-typing-3"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-intonation-typing-4",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-answering-oui-non"
-              ],
-              "before": "— Tu as dix ans ? —",
-              "after": ", j’ai onze ans.",
-              "accepted": {
-                "answers": [
-                  "Non",
-                  "non"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "The answer says something different (j’ai onze ans), so it starts with non.",
-                "fr": "La réponse dit autre chose (j’ai onze ans) : elle commence par non.",
-                "de": "Die Antwort sagt etwas anderes (j’ai onze ans), also beginnt sie mit non."
-              },
-              "itemId": "ex-intonation-typing-4"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-intonation-typing-5",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-answering-oui-non"
-              ],
-              "before": "— Ils sont frères ? —",
-              "after": ", ils sont frères.",
-              "accepted": {
-                "answers": [
-                  "Oui",
-                  "oui"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "The answer confirms the question (ils sont frères), so it starts with oui.",
-                "fr": "La réponse confirme la question (ils sont frères) : elle commence par oui.",
-                "de": "Die Antwort bestätigt die Frage (ils sont frères), also beginnt sie mit oui."
-              },
-              "itemId": "ex-intonation-typing-5"
             }
           ]
         }
@@ -719,116 +515,6 @@
                 "de": "Eine Ja/Nein-Frage kann die Satzstellung des Aussagesatzes behalten; schriftlich endet sie mit Fragezeichen, gesprochen steigt die Stimme."
               },
               "itemId": "ex-intonation-order-3"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-intonation-order-4",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Put the words in the right order.",
-            "fr": "Mettez les mots dans le bon ordre.",
-            "de": "Bring die Wörter in die richtige Reihenfolge."
-          },
-          "items": [
-            {
-              "type": "grammar_word_order",
-              "ruleIds": [
-                "rule-intonation-question"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-5",
-                  "text": "?"
-                },
-                {
-                  "tokenId": "t-2",
-                  "text": "a"
-                },
-                {
-                  "tokenId": "t-1",
-                  "text": "Elle"
-                },
-                {
-                  "tokenId": "t-3",
-                  "text": "un"
-                },
-                {
-                  "tokenId": "t-4",
-                  "text": "chat"
-                }
-              ],
-              "acceptedOrders": [
-                [
-                  "t-1",
-                  "t-2",
-                  "t-3",
-                  "t-4",
-                  "t-5"
-                ]
-              ],
-              "answerExplanation": {
-                "en": "A yes/no question can keep the statement word order; in writing it ends with a question mark, in speech the voice rises.",
-                "fr": "Une question fermée peut garder l’ordre de la phrase affirmative ; à l’écrit, elle finit par un point d’interrogation, à l’oral la voix monte.",
-                "de": "Eine Ja/Nein-Frage kann die Satzstellung des Aussagesatzes behalten; schriftlich endet sie mit Fragezeichen, gesprochen steigt die Stimme."
-              },
-              "itemId": "ex-intonation-order-4"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-intonation-order-5",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Put the words in the right order.",
-            "fr": "Mettez les mots dans le bon ordre.",
-            "de": "Bring die Wörter in die richtige Reihenfolge."
-          },
-          "items": [
-            {
-              "type": "grammar_word_order",
-              "ruleIds": [
-                "rule-intonation-question"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-4",
-                  "text": "musique"
-                },
-                {
-                  "tokenId": "t-5",
-                  "text": "?"
-                },
-                {
-                  "tokenId": "t-1",
-                  "text": "Tu"
-                },
-                {
-                  "tokenId": "t-3",
-                  "text": "la"
-                },
-                {
-                  "tokenId": "t-2",
-                  "text": "aimes"
-                }
-              ],
-              "acceptedOrders": [
-                [
-                  "t-1",
-                  "t-2",
-                  "t-3",
-                  "t-4",
-                  "t-5"
-                ]
-              ],
-              "answerExplanation": {
-                "en": "A yes/no question can keep the statement word order; in writing it ends with a question mark, in speech the voice rises.",
-                "fr": "Une question fermée peut garder l’ordre de la phrase affirmative ; à l’écrit, elle finit par un point d’interrogation, à l’oral la voix monte.",
-                "de": "Eine Ja/Nein-Frage kann die Satzstellung des Aussagesatzes behalten; schriftlich endet sie mit Fragezeichen, gesprochen steigt die Stimme."
-              },
-              "itemId": "ex-intonation-order-5"
             }
           ]
         }
@@ -1039,144 +725,6 @@
               "itemId": "ex-est-ce-que-choice-3"
             }
           ]
-        },
-        {
-          "pageId": "ex-est-ce-que-choice-4",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-est-ce-que"
-              ],
-              "before": "",
-              "after": "elle aime le sport ?",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "Est-ce que"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "Est-ce qu’"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "Est-ce"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "Qu’est-ce qu’"
-                }
-              ],
-              "answerChoiceId": "c-2",
-              "hint": null,
-              "answerExplanation": {
-                "en": "Before a vowel (elle) est-ce que becomes est-ce qu’.",
-                "fr": "Devant une voyelle (elle), est-ce que devient est-ce qu’.",
-                "de": "Vor einem Vokal (elle) wird est-ce que zu est-ce qu’."
-              },
-              "itemId": "ex-est-ce-que-choice-4"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-est-ce-que-choice-5",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-est-ce-que"
-              ],
-              "before": "",
-              "after": "Marie travaille aujourd’hui ?",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "Est-ce qu’"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "Est-ce"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "Qu’est-ce que"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "Est-ce que"
-                }
-              ],
-              "answerChoiceId": "c-4",
-              "hint": null,
-              "answerExplanation": {
-                "en": "Est-ce que goes in front of a statement to make a yes/no question: est-ce que + subject + verb.",
-                "fr": "Est-ce que se place devant la phrase affirmative pour poser une question fermée : est-ce que + sujet + verbe.",
-                "de": "Est-ce que vor einen Aussagesatz gestellt ergibt eine Ja/Nein-Frage: est-ce que + Subjekt + Verb."
-              },
-              "itemId": "ex-est-ce-que-choice-5"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-est-ce-que-choice-6",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-est-ce-que"
-              ],
-              "before": "",
-              "after": "ils ont une voiture ?",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "Est-ce qu’"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "Qu’est-ce qu’"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "Est-ce que"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "Est-ce"
-                }
-              ],
-              "answerChoiceId": "c-1",
-              "hint": null,
-              "answerExplanation": {
-                "en": "Before a vowel (ils) est-ce que becomes est-ce qu’.",
-                "fr": "Devant une voyelle (ils), est-ce que devient est-ce qu’.",
-                "de": "Vor einem Vokal (ils) wird est-ce que zu est-ce qu’."
-              },
-              "itemId": "ex-est-ce-que-choice-6"
-            }
-          ]
         }
       ]
     },
@@ -1286,72 +834,6 @@
                 "de": "Est-ce que vor einen Aussagesatz gestellt ergibt eine Ja/Nein-Frage: est-ce que + Subjekt + Verb."
               },
               "itemId": "ex-est-ce-que-typing-3"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-est-ce-que-typing-4",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-est-ce-que"
-              ],
-              "before": "",
-              "after": "il aime le chocolat ?",
-              "accepted": {
-                "answers": [
-                  "Est-ce qu’",
-                  "est-ce qu’"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "Before a vowel (il) est-ce que becomes est-ce qu’.",
-                "fr": "Devant une voyelle (il), est-ce que devient est-ce qu’.",
-                "de": "Vor einem Vokal (il) wird est-ce que zu est-ce qu’."
-              },
-              "itemId": "ex-est-ce-que-typing-4"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-est-ce-que-typing-5",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-est-ce-que"
-              ],
-              "before": "",
-              "after": "Paul habite à Nice ?",
-              "accepted": {
-                "answers": [
-                  "Est-ce que",
-                  "est-ce que"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "Est-ce que goes in front of a statement to make a yes/no question: est-ce que + subject + verb.",
-                "fr": "Est-ce que se place devant la phrase affirmative pour poser une question fermée : est-ce que + sujet + verbe.",
-                "de": "Est-ce que vor einen Aussagesatz gestellt ergibt eine Ja/Nein-Frage: est-ce que + Subjekt + Verb."
-              },
-              "itemId": "ex-est-ce-que-typing-5"
             }
           ]
         }
@@ -1529,66 +1011,6 @@
                 "de": "Die Wortstellung bleibt wie im Aussagesatz; est-ce que kommt nur davor."
               },
               "itemId": "ex-est-ce-que-order-3"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-est-ce-que-order-4",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Put the words in the right order.",
-            "fr": "Mettez les mots dans le bon ordre.",
-            "de": "Bring die Wörter in die richtige Reihenfolge."
-          },
-          "items": [
-            {
-              "type": "grammar_word_order",
-              "ruleIds": [
-                "rule-est-ce-que"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-2",
-                  "text": "elle"
-                },
-                {
-                  "tokenId": "t-5",
-                  "text": "vélo"
-                },
-                {
-                  "tokenId": "t-4",
-                  "text": "un"
-                },
-                {
-                  "tokenId": "t-3",
-                  "text": "a"
-                },
-                {
-                  "tokenId": "t-1",
-                  "text": "Est-ce qu’"
-                },
-                {
-                  "tokenId": "t-6",
-                  "text": "?"
-                }
-              ],
-              "acceptedOrders": [
-                [
-                  "t-1",
-                  "t-2",
-                  "t-3",
-                  "t-4",
-                  "t-5",
-                  "t-6"
-                ]
-              ],
-              "answerExplanation": {
-                "en": "Before a vowel (elle) est-ce que becomes est-ce qu’.",
-                "fr": "Devant une voyelle (elle), est-ce que devient est-ce qu’.",
-                "de": "Vor einem Vokal (elle) wird est-ce que zu est-ce qu’."
-              },
-              "itemId": "ex-est-ce-que-order-4"
             }
           ]
         }
@@ -1886,8 +1308,8 @@
       "pages": [
         {
           "pageId": "exam-order",
-          "estimatedDurationS": 100,
-          "timeLimitS": 150,
+          "estimatedDurationS": 75,
+          "timeLimitS": 120,
           "instructions": {
             "en": "Put the words in the right order.",
             "fr": "Mettez les mots dans le bon ordre.",
@@ -2022,51 +1444,13 @@
                 "de": "Vor einem Vokal (elle) wird est-ce que zu est-ce qu’."
               },
               "itemId": "exam-order-3"
-            },
-            {
-              "type": "grammar_word_order",
-              "ruleIds": [
-                "rule-intonation-question"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-4",
-                  "text": "?"
-                },
-                {
-                  "tokenId": "t-1",
-                  "text": "Il"
-                },
-                {
-                  "tokenId": "t-3",
-                  "text": "content"
-                },
-                {
-                  "tokenId": "t-2",
-                  "text": "est"
-                }
-              ],
-              "acceptedOrders": [
-                [
-                  "t-1",
-                  "t-2",
-                  "t-3",
-                  "t-4"
-                ]
-              ],
-              "answerExplanation": {
-                "en": "A yes/no question can keep the statement word order; in writing it ends with a question mark, in speech the voice rises.",
-                "fr": "Une question fermée peut garder l’ordre de la phrase affirmative ; à l’écrit, elle finit par un point d’interrogation, à l’oral la voix monte.",
-                "de": "Eine Ja/Nein-Frage kann die Satzstellung des Aussagesatzes behalten; schriftlich endet sie mit Fragezeichen, gesprochen steigt die Stimme."
-              },
-              "itemId": "exam-order-4"
             }
           ]
         },
         {
           "pageId": "exam-est-ce-que",
-          "estimatedDurationS": 90,
-          "timeLimitS": 140,
+          "estimatedDurationS": 45,
+          "timeLimitS": 70,
           "instructions": {
             "en": "Type the missing words.",
             "fr": "Écrivez les mots manquants.",
@@ -2135,76 +1519,13 @@
                 "de": "Est-ce que vor einen Aussagesatz gestellt ergibt eine Ja/Nein-Frage: est-ce que + Subjekt + Verb."
               },
               "itemId": "exam-est-ce-que-3"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-est-ce-que"
-              ],
-              "before": "",
-              "after": "elle a faim ?",
-              "accepted": {
-                "answers": [
-                  "Est-ce qu’",
-                  "est-ce qu’"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "Before a vowel (elle) est-ce que becomes est-ce qu’.",
-                "fr": "Devant une voyelle (elle), est-ce que devient est-ce qu’.",
-                "de": "Vor einem Vokal (elle) wird est-ce que zu est-ce qu’."
-              },
-              "itemId": "exam-est-ce-que-4"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-est-ce-que"
-              ],
-              "before": "",
-              "after": "nous travaillons demain ?",
-              "accepted": {
-                "answers": [
-                  "Est-ce que",
-                  "est-ce que"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "Est-ce que goes in front of a statement to make a yes/no question: est-ce que + subject + verb.",
-                "fr": "Est-ce que se place devant la phrase affirmative pour poser une question fermée : est-ce que + sujet + verbe.",
-                "de": "Est-ce que vor einen Aussagesatz gestellt ergibt eine Ja/Nein-Frage: est-ce que + Subjekt + Verb."
-              },
-              "itemId": "exam-est-ce-que-5"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-est-ce-que"
-              ],
-              "before": "",
-              "after": "on regarde un film ?",
-              "accepted": {
-                "answers": [
-                  "Est-ce qu’",
-                  "est-ce qu’"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "Before a vowel (on) est-ce que becomes est-ce qu’.",
-                "fr": "Devant une voyelle (on), est-ce que devient est-ce qu’.",
-                "de": "Vor einem Vokal (on) wird est-ce que zu est-ce qu’."
-              },
-              "itemId": "exam-est-ce-que-6"
             }
           ]
         },
         {
           "pageId": "exam-answers",
-          "estimatedDurationS": 90,
-          "timeLimitS": 140,
+          "estimatedDurationS": 60,
+          "timeLimitS": 90,
           "instructions": {
             "en": "Type the missing words.",
             "fr": "Écrivez les mots manquants.",
@@ -2294,47 +1615,6 @@
                 "de": "Die Antwort sagt etwas anderes (j’aime le jazz), also beginnt sie mit non."
               },
               "itemId": "exam-answers-4"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-answering-oui-non"
-              ],
-              "before": "— Ils sont là ? —",
-              "after": ", ils sont là.",
-              "accepted": {
-                "answers": [
-                  "Oui",
-                  "oui"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "The answer confirms the question (ils sont là), so it starts with oui.",
-                "fr": "La réponse confirme la question (ils sont là) : elle commence par oui.",
-                "de": "Die Antwort bestätigt die Frage (ils sont là), also beginnt sie mit oui."
-              },
-              "itemId": "exam-answers-5"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-intonation-question"
-              ],
-              "before": "Tu parles italien",
-              "after": "",
-              "accepted": {
-                "answers": [
-                  "?"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "A yes/no question can keep the statement word order; in writing it ends with a question mark, in speech the voice rises.",
-                "fr": "Une question fermée peut garder l’ordre de la phrase affirmative ; à l’écrit, elle finit par un point d’interrogation, à l’oral la voix monte.",
-                "de": "Eine Ja/Nein-Frage kann die Satzstellung des Aussagesatzes behalten; schriftlich endet sie mit Fragezeichen, gesprochen steigt die Stimme."
-              },
-              "itemId": "exam-answers-6"
             }
           ]
         }
@@ -2345,10 +1625,10 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "content-v4",
-    "generatedAt": "2026-10-13T23:32:36.407Z",
+    "generatedAt": "2026-10-14T16:27:38.640Z",
     "inputHashes": {
       "outline": "3c12786bc37e360e4fe392d664b19a6b0785f2775510b6f39fdc04fb475a22ec",
-      "brief": "f38ff38f90053afc29484ad0ec101482493e581d55fc876275ea18a24c50b1dd"
+      "brief": "40989360c749d2bafed8daf68bdd3c79a1fbb375d47336a4f65b7abbf45c36fa"
     }
   }
 }

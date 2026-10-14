@@ -14,7 +14,7 @@
     "fr": "Conjuguer les verbes en -er (parler, habiter, aimer) au présent avec tous les pronoms et prononcer les terminaisons muettes.",
     "de": "Konjugieren Sie regelmäßige Verben auf -er (parler, habiter, aimer) im Präsens mit allen Pronomen und sprechen Sie stumme Endungen korrekt aus."
   },
-  "estimatedMinutes": 17,
+  "estimatedMinutes": 15,
   "kind": "grammar",
   "topic": "verbs_morphology",
   "steps": [
@@ -381,156 +381,6 @@
               "itemId": "ex-singular-choice-3"
             }
           ]
-        },
-        {
-          "pageId": "ex-singular-choice-4",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-er-singular"
-              ],
-              "before": "J’",
-              "after": "le chocolat.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "aimez"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "aimons"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "aimes"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "aime"
-                }
-              ],
-              "answerChoiceId": "c-4",
-              "hint": {
-                "en": "Verb: aimer",
-                "fr": "Verbe : aimer",
-                "de": "Verb: aimer"
-              },
-              "answerExplanation": {
-                "en": "aimer: drop -er and add -e for je: aime. Je becomes j’ before a vowel or a silent h.",
-                "fr": "aimer : on enlève -er et on ajoute -e pour je : aime. Je devient j’ devant une voyelle ou un h muet.",
-                "de": "aimer: -er weg, für je die Endung -e: aime. Vor Vokal oder stummem h wird je zu j’."
-              },
-              "itemId": "ex-singular-choice-4"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-singular-choice-5",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-silent-endings"
-              ],
-              "before": "Tu",
-              "after": "la radio ?",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "écoute"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "écoutez"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "écoutent"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "écoutes"
-                }
-              ],
-              "answerChoiceId": "c-4",
-              "hint": {
-                "en": "Verb: écouter",
-                "fr": "Verbe : écouter",
-                "de": "Verb: écouter"
-              },
-              "answerExplanation": {
-                "en": "tu écoutes: the ending -es is silent, but it must be written for tu.",
-                "fr": "tu écoutes : la terminaison -es ne se prononce pas, mais on l’écrit avec tu.",
-                "de": "tu écoutes: Die Endung -es ist stumm, wird aber bei tu geschrieben."
-              },
-              "itemId": "ex-singular-choice-5"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-singular-choice-6",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-er-singular"
-              ],
-              "before": "On",
-              "after": "ce soir.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "danses"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "dansons"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "danse"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "dansez"
-                }
-              ],
-              "answerChoiceId": "c-3",
-              "hint": {
-                "en": "Verb: danser",
-                "fr": "Verbe : danser",
-                "de": "Verb: danser"
-              },
-              "answerExplanation": {
-                "en": "On takes the il form: on danse.",
-                "fr": "On prend la forme de il : on danse.",
-                "de": "On steht mit der il-Form: on danse."
-              },
-              "itemId": "ex-singular-choice-6"
-            }
-          ]
         }
       ]
     },
@@ -649,78 +499,6 @@
                 "de": "regarder: -er weg, für il, elle, on die Endung -e: regarde."
               },
               "itemId": "ex-singular-typing-3"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-singular-typing-4",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-er-singular"
-              ],
-              "before": "J’",
-              "after": "de la musique.",
-              "accepted": {
-                "answers": [
-                  "écoute"
-                ]
-              },
-              "hint": {
-                "en": "Verb: écouter",
-                "fr": "Verbe : écouter",
-                "de": "Verb: écouter"
-              },
-              "answerExplanation": {
-                "en": "écouter: drop -er and add -e for je: écoute. Je becomes j’ before a vowel or a silent h.",
-                "fr": "écouter : on enlève -er et on ajoute -e pour je : écoute. Je devient j’ devant une voyelle ou un h muet.",
-                "de": "écouter: -er weg, für je die Endung -e: écoute. Vor Vokal oder stummem h wird je zu j’."
-              },
-              "itemId": "ex-singular-typing-4"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-singular-typing-5",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Type the missing words.",
-            "fr": "Écrivez les mots manquants.",
-            "de": "Schreib die fehlenden Wörter."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-er-singular"
-              ],
-              "before": "Elle",
-              "after": "le cinéma.",
-              "accepted": {
-                "answers": [
-                  "aime"
-                ]
-              },
-              "hint": {
-                "en": "Verb: aimer",
-                "fr": "Verbe : aimer",
-                "de": "Verb: aimer"
-              },
-              "answerExplanation": {
-                "en": "aimer: drop -er and add -e for Elle (like il): aime.",
-                "fr": "aimer : on enlève -er et on ajoute -e pour Elle (comme il) : aime.",
-                "de": "aimer: -er weg, für Elle (wie il) die Endung -e: aime."
-              },
-              "itemId": "ex-singular-typing-5"
             }
           ]
         }
@@ -885,66 +663,6 @@
                 "de": "habiter: -er weg, für il, elle, on die Endung -e: habite."
               },
               "itemId": "ex-singular-spot-3"
-            }
-          ]
-        },
-        {
-          "pageId": "ex-singular-spot-4",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Find the wrong word and correct it.",
-            "fr": "Trouvez le mot faux et corrigez-le.",
-            "de": "Finde das falsche Wort und korrigiere es."
-          },
-          "items": [
-            {
-              "type": "grammar_error_spotter",
-              "ruleIds": [
-                "rule-silent-endings"
-              ],
-              "tokens": [
-                {
-                  "tokenId": "t-1",
-                  "text": "Tu"
-                },
-                {
-                  "tokenId": "t-2",
-                  "text": "aime"
-                },
-                {
-                  "tokenId": "t-3",
-                  "text": "le"
-                },
-                {
-                  "tokenId": "t-4",
-                  "text": "thé"
-                },
-                {
-                  "tokenId": "t-5",
-                  "text": "?"
-                }
-              ],
-              "faultyTokenId": "t-2",
-              "correction": {
-                "mode": "select",
-                "accepted": {
-                  "answers": [
-                    "aimes"
-                  ]
-                },
-                "choices": [
-                  "aimes",
-                  "aime",
-                  "aimez"
-                ]
-              },
-              "answerExplanation": {
-                "en": "tu aimes: the ending -es is silent, but it must be written for tu.",
-                "fr": "tu aimes : la terminaison -es ne se prononce pas, mais on l’écrit avec tu.",
-                "de": "tu aimes: Die Endung -es ist stumm, wird aber bei tu geschrieben."
-              },
-              "itemId": "ex-singular-spot-4"
             }
           ]
         }
@@ -1479,56 +1197,6 @@
               "itemId": "ex-plural-choice-4"
             }
           ]
-        },
-        {
-          "pageId": "ex-plural-choice-5",
-          "estimatedDurationS": 10,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the word that completes the sentence.",
-            "fr": "Choisissez le mot qui complète la phrase.",
-            "de": "Wähle das Wort, das den Satz ergänzt."
-          },
-          "items": [
-            {
-              "type": "grammar_gap_choice",
-              "ruleIds": [
-                "rule-er-plural"
-              ],
-              "before": "Nous",
-              "after": "le guide.",
-              "choices": [
-                {
-                  "choiceId": "c-1",
-                  "text": "écoutez"
-                },
-                {
-                  "choiceId": "c-2",
-                  "text": "écoutent"
-                },
-                {
-                  "choiceId": "c-3",
-                  "text": "écoute"
-                },
-                {
-                  "choiceId": "c-4",
-                  "text": "écoutons"
-                }
-              ],
-              "answerChoiceId": "c-4",
-              "hint": {
-                "en": "Verb: écouter",
-                "fr": "Verbe : écouter",
-                "de": "Verb: écouter"
-              },
-              "answerExplanation": {
-                "en": "écouter: drop -er and add -ons for nous: écoutons.",
-                "fr": "écouter : on enlève -er et on ajoute -ons pour nous : écoutons.",
-                "de": "écouter: -er weg, für nous die Endung -ons: écoutons."
-              },
-              "itemId": "ex-plural-choice-5"
-            }
-          ]
         }
       ]
     },
@@ -1843,8 +1511,8 @@
         },
         {
           "pageId": "exam-singular",
-          "estimatedDurationS": 75,
-          "timeLimitS": 120,
+          "estimatedDurationS": 45,
+          "timeLimitS": 70,
           "instructions": {
             "en": "Type the missing words.",
             "fr": "Écrivez les mots manquants.",
@@ -1910,53 +1578,13 @@
                 "de": "habiter: -er weg, für Elle (wie il) die Endung -e: habite."
               },
               "itemId": "exam-singular-3"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-er-singular"
-              ],
-              "before": "J’",
-              "after": "les chats.",
-              "accepted": {
-                "answers": [
-                  "aime"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "aimer: drop -er and add -e for je: aime. Je becomes j’ before a vowel or a silent h.",
-                "fr": "aimer : on enlève -er et on ajoute -e pour je : aime. Je devient j’ devant une voyelle ou un h muet.",
-                "de": "aimer: -er weg, für je die Endung -e: aime. Vor Vokal oder stummem h wird je zu j’."
-              },
-              "itemId": "exam-singular-4"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-er-singular"
-              ],
-              "before": "On",
-              "after": "français ici.",
-              "accepted": {
-                "answers": [
-                  "parle"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "On takes the il form: on parle.",
-                "fr": "On prend la forme de il : on parle.",
-                "de": "On steht mit der il-Form: on parle."
-              },
-              "itemId": "exam-singular-5"
             }
           ]
         },
         {
           "pageId": "exam-plural",
-          "estimatedDurationS": 75,
-          "timeLimitS": 120,
+          "estimatedDurationS": 45,
+          "timeLimitS": 70,
           "instructions": {
             "en": "Type the missing words.",
             "fr": "Écrivez les mots manquants.",
@@ -2022,46 +1650,6 @@
                 "de": "parler: -er weg, für ils, elles die Endung -ent: parlent."
               },
               "itemId": "exam-plural-3"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-er-plural"
-              ],
-              "before": "Nous",
-              "after": "la radio.",
-              "accepted": {
-                "answers": [
-                  "écoutons"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "écouter: drop -er and add -ons for nous: écoutons.",
-                "fr": "écouter : on enlève -er et on ajoute -ons pour nous : écoutons.",
-                "de": "écouter: -er weg, für nous die Endung -ons: écoutons."
-              },
-              "itemId": "exam-plural-4"
-            },
-            {
-              "type": "grammar_gap_typing",
-              "ruleIds": [
-                "rule-er-plural"
-              ],
-              "before": "Vous",
-              "after": "le match ?",
-              "accepted": {
-                "answers": [
-                  "regardez"
-                ]
-              },
-              "hint": null,
-              "answerExplanation": {
-                "en": "regarder: drop -er and add -ez for vous: regardez.",
-                "fr": "regarder : on enlève -er et on ajoute -ez pour vous : regardez.",
-                "de": "regarder: -er weg, für vous die Endung -ez: regardez."
-              },
-              "itemId": "exam-plural-5"
             }
           ]
         }
@@ -2072,10 +1660,10 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "content-v4",
-    "generatedAt": "2026-10-13T23:32:32.970Z",
+    "generatedAt": "2026-10-14T16:27:37.715Z",
     "inputHashes": {
       "outline": "4bae78ce67d7f31114d89dc0592f67d49937b48f4040d52ddbd1eed5560181b1",
-      "brief": "0dab6ea74932605067503de2ca71acd6b870789de46caeee0747d57e87414cab"
+      "brief": "68c39b7ed99df9c856b45a91a2b13b9c3bad2c810c7a1f42768a8ffcc9391e51"
     }
   }
 }

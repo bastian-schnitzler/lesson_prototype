@@ -14,15 +14,15 @@
     "fr": "Saluer quelqu’un à tout moment de la journée, demander comment il va, répondre et dire au revoir.",
     "de": "Jemanden zu jeder Tageszeit begrüßen, fragen, wie es ihm geht, antworten und sich verabschieden."
   },
-  "estimatedMinutes": 25,
+  "estimatedMinutes": 16,
   "provenance": {
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "functions-v1",
-    "generatedAt": "2026-10-13T23:42:16.894Z",
+    "generatedAt": "2026-10-14T16:31:08.897Z",
     "inputHashes": {
       "outline": "f1cf3bd5f3576695f7d488bf31426ea858fb5591979dadab6f74241a3e4bde2e",
-      "brief": "21deff521dbb91b84858492b8c8de479a389fbb7e5bb0de5ab63be8c4ecb1ffa"
+      "brief": "fa8186ce272dc025d41939a7a19a5f6f9cbc8eb8e71ab57b4ed92307de3e857e"
     }
   },
   "kind": "functions",
@@ -63,7 +63,7 @@
         },
         {
           "pageId": "cards-expressions",
-          "estimatedDurationS": 96,
+          "estimatedDurationS": 48,
           "timeLimitS": null,
           "instructions": {
             "en": "Recall each expression, then turn the card to check it.",
@@ -77,13 +77,9 @@
               "side": "expressions",
               "ids": [
                 "bonjour",
-                "bonsoir",
-                "salut",
                 "ca-va",
                 "ca-va-bien",
-                "et-toi",
-                "au-revoir",
-                "a-bientot"
+                "au-revoir"
               ]
             }
           ]
@@ -145,7 +141,6 @@
                     "de": "Freunde sagen oft salut; Ça va ? fragt, wie es ihr geht."
                   },
                   "expressionIds": [
-                    "salut",
                     "ca-va"
                   ]
                 },
@@ -164,8 +159,7 @@
                   },
                   "expressionIds": [
                     "ca-va",
-                    "ca-va-bien",
-                    "et-toi"
+                    "ca-va-bien"
                   ]
                 },
                 {
@@ -226,9 +220,7 @@
                     "fr": "À bientôt : ils vont bientôt se revoir.",
                     "de": "À bientôt: Sie sehen sich bald wieder."
                   },
-                  "expressionIds": [
-                    "a-bientot"
-                  ]
+                  "expressionIds": []
                 },
                 {
                   "lineId": "line-8",
@@ -260,9 +252,7 @@
                     "fr": "Le même jour, le soir : maintenant Léa dit bonsoir.",
                     "de": "Am selben Tag, am Abend: Jetzt sagt Léa bonsoir."
                   },
-                  "expressionIds": [
-                    "bonsoir"
-                  ]
+                  "expressionIds": []
                 },
                 {
                   "lineId": "line-10",
@@ -319,48 +309,13 @@
                   }
                 },
                 {
-                  "id": "bonsoir",
-                  "answerExplanation": {
-                    "en": "The greeting in the evening, from about six o’clock.",
-                    "fr": "La salutation du soir, à partir de six heures environ.",
-                    "de": "Der Gruß am Abend, etwa ab sechs Uhr."
-                  }
-                },
-                {
-                  "id": "salut",
-                  "answerExplanation": {
-                    "en": "Informal: for friends and family. It also means bye.",
-                    "fr": "Familier : entre amis et en famille. Il veut aussi dire au revoir.",
-                    "de": "Umgangssprachlich: unter Freunden und in der Familie. Es heißt auch tschüss."
-                  }
-                },
-                {
                   "id": "ca-va",
                   "answerExplanation": {
                     "en": "Asks how someone is; informal and very common.",
                     "fr": "Demande comment va quelqu’un ; familier et très courant.",
                     "de": "Fragt, wie es jemandem geht; locker und sehr häufig."
                   }
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "pageId": "match-expressions-2",
-          "estimatedDurationS": 48,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Match each expression with its translation.",
-            "fr": "Associez chaque expression à sa traduction.",
-            "de": "Ordne jedem Ausdruck seine Übersetzung zu."
-          },
-          "items": [
-            {
-              "type": "function_matching",
-              "itemId": "match-expressions-2",
-              "side": "expressions",
-              "pairs": [
+                },
                 {
                   "id": "ca-va-bien",
                   "answerExplanation": {
@@ -370,27 +325,11 @@
                   }
                 },
                 {
-                  "id": "et-toi",
-                  "answerExplanation": {
-                    "en": "Asks the same question back to a friend (tu).",
-                    "fr": "Retourne la question à un ami (tu).",
-                    "de": "Gibt die Frage an einen Freund zurück (tu)."
-                  }
-                },
-                {
                   "id": "au-revoir",
                   "answerExplanation": {
                     "en": "The usual way to say goodbye, for everyone.",
                     "fr": "La façon habituelle de dire au revoir, pour tout le monde.",
                     "de": "Die übliche Verabschiedung, für alle."
-                  }
-                },
-                {
-                  "id": "a-bientot",
-                  "answerExplanation": {
-                    "en": "Goodbye when you will see the person again soon.",
-                    "fr": "Au revoir quand on va revoir la personne bientôt.",
-                    "de": "Abschied, wenn man sich bald wiedersieht."
                   }
                 }
               ]
@@ -517,9 +456,9 @@
               "after": "Ça va, Hugo ?",
               "choiceExpressionIds": [
                 "bonjour",
-                "et-toi",
-                "au-revoir",
-                "ca-va-bien"
+                "ca-va",
+                "ca-va-bien",
+                "au-revoir"
               ],
               "answerExplanation": {
                 "en": "Hugo greets her with bonjour, so she greets him back the same way.",
@@ -542,24 +481,24 @@
             {
               "type": "function_dialogue_gap_choice",
               "itemId": "gap-2",
-              "expressionId": "bonsoir",
+              "expressionId": "ca-va",
               "context": {
                 "roleId": "lea",
-                "text": "Bonsoir, Hugo ! Tu rentres du travail ?"
+                "text": "Salut, Hugo !"
               },
               "roleId": "hugo",
-              "before": "",
-              "after": "Oui, je rentre.",
+              "before": "Salut, Léa !",
+              "after": "",
               "choiceExpressionIds": [
-                "bonsoir",
-                "bonjour",
                 "ca-va",
-                "a-bientot"
+                "bonjour",
+                "ca-va-bien",
+                "au-revoir"
               ],
               "answerExplanation": {
-                "en": "It is evening: Hugo answers with bonsoir, not bonjour.",
-                "fr": "C’est le soir : Hugo répond bonsoir, pas bonjour.",
-                "de": "Es ist Abend: Hugo antwortet mit bonsoir, nicht bonjour."
+                "en": "After the greeting he asks how she is: Ça va ?",
+                "fr": "Après la salutation, il demande comment elle va : Ça va ?",
+                "de": "Nach dem Gruß fragt er, wie es ihr geht: Ça va ?"
               }
             }
           ]
@@ -577,24 +516,24 @@
             {
               "type": "function_dialogue_gap_choice",
               "itemId": "gap-3",
-              "expressionId": "salut",
+              "expressionId": "ca-va-bien",
               "context": {
                 "roleId": "hugo",
-                "text": "Salut, Léa !"
+                "text": "Ça va, Léa ?"
               },
               "roleId": "lea",
               "before": "",
-              "after": "Tu vas bien ?",
+              "after": "Et toi, Hugo ?",
               "choiceExpressionIds": [
-                "salut",
-                "et-toi",
-                "au-revoir",
-                "ca-va-bien"
+                "ca-va-bien",
+                "bonjour",
+                "ca-va",
+                "au-revoir"
               ],
               "answerExplanation": {
-                "en": "Between friends: salut answers salut.",
-                "fr": "Entre amis : on répond salut à salut.",
-                "de": "Unter Freunden: Auf salut antwortet man mit salut."
+                "en": "She answers the question Ça va ?",
+                "fr": "Elle répond à la question Ça va ?",
+                "de": "Sie beantwortet die Frage Ça va ?"
               }
             }
           ]
@@ -612,111 +551,6 @@
             {
               "type": "function_dialogue_gap_choice",
               "itemId": "gap-4",
-              "expressionId": "ca-va",
-              "context": {
-                "roleId": "lea",
-                "text": "Salut, Hugo !"
-              },
-              "roleId": "hugo",
-              "before": "Salut, Léa !",
-              "after": "",
-              "choiceExpressionIds": [
-                "ca-va",
-                "et-toi",
-                "a-bientot",
-                "ca-va-bien"
-              ],
-              "answerExplanation": {
-                "en": "After the greeting he asks how she is: Ça va ?",
-                "fr": "Après la salutation, il demande comment elle va : Ça va ?",
-                "de": "Nach dem Gruß fragt er, wie es ihr geht: Ça va ?"
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "gap-5",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the expression that fits the gap.",
-            "fr": "Choisissez l’expression qui complète la réplique.",
-            "de": "Wähle den Ausdruck, der in die Lücke passt."
-          },
-          "items": [
-            {
-              "type": "function_dialogue_gap_choice",
-              "itemId": "gap-5",
-              "expressionId": "ca-va-bien",
-              "context": {
-                "roleId": "hugo",
-                "text": "Ça va, Léa ?"
-              },
-              "roleId": "lea",
-              "before": "",
-              "after": "Et toi, Hugo ?",
-              "choiceExpressionIds": [
-                "ca-va-bien",
-                "bonsoir",
-                "au-revoir",
-                "salut"
-              ],
-              "answerExplanation": {
-                "en": "She answers the question Ça va ?",
-                "fr": "Elle répond à la question Ça va ?",
-                "de": "Sie beantwortet die Frage Ça va ?"
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "gap-6",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the expression that fits the gap.",
-            "fr": "Choisissez l’expression qui complète la réplique.",
-            "de": "Wähle den Ausdruck, der in die Lücke passt."
-          },
-          "items": [
-            {
-              "type": "function_dialogue_gap_choice",
-              "itemId": "gap-6",
-              "expressionId": "et-toi",
-              "context": {
-                "roleId": "lea",
-                "text": "Ça va, Hugo ?"
-              },
-              "roleId": "hugo",
-              "before": "Ça va bien, merci.",
-              "after": "",
-              "choiceExpressionIds": [
-                "et-toi",
-                "bonjour",
-                "bonsoir",
-                "a-bientot"
-              ],
-              "answerExplanation": {
-                "en": "He answers, then asks the question back: Et toi ?",
-                "fr": "Il répond, puis retourne la question : Et toi ?",
-                "de": "Er antwortet und fragt dann zurück: Et toi ?"
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "gap-7",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the expression that fits the gap.",
-            "fr": "Choisissez l’expression qui complète la réplique.",
-            "de": "Wähle den Ausdruck, der in die Lücke passt."
-          },
-          "items": [
-            {
-              "type": "function_dialogue_gap_choice",
-              "itemId": "gap-7",
               "expressionId": "au-revoir",
               "context": {
                 "roleId": "lea",
@@ -727,49 +561,14 @@
               "after": "Bonne journée !",
               "choiceExpressionIds": [
                 "au-revoir",
-                "bonsoir",
-                "ca-va",
-                "et-toi"
-              ],
-              "answerExplanation": {
-                "en": "Léa says goodbye, so Hugo says goodbye too.",
-                "fr": "Léa dit au revoir, donc Hugo dit aussi au revoir.",
-                "de": "Léa verabschiedet sich, also verabschiedet sich auch Hugo."
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "gap-8",
-          "estimatedDurationS": 15,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Choose the expression that fits the gap.",
-            "fr": "Choisissez l’expression qui complète la réplique.",
-            "de": "Wähle den Ausdruck, der in die Lücke passt."
-          },
-          "items": [
-            {
-              "type": "function_dialogue_gap_choice",
-              "itemId": "gap-8",
-              "expressionId": "a-bientot",
-              "context": {
-                "roleId": "hugo",
-                "text": "Je pars. Au revoir, Léa !"
-              },
-              "roleId": "lea",
-              "before": "Au revoir, Hugo.",
-              "after": "",
-              "choiceExpressionIds": [
-                "a-bientot",
                 "bonjour",
                 "ca-va",
                 "ca-va-bien"
               ],
               "answerExplanation": {
-                "en": "She adds that they will see each other soon.",
-                "fr": "Elle ajoute qu’ils vont bientôt se revoir.",
-                "de": "Sie fügt hinzu, dass sie sich bald wiedersehen."
+                "en": "Léa says goodbye, so Hugo says goodbye too.",
+                "fr": "Léa dit au revoir, donc Hugo dit aussi au revoir.",
+                "de": "Léa verabschiedet sich, also verabschiedet sich auch Hugo."
               }
             }
           ]
@@ -850,108 +649,6 @@
             {
               "type": "function_word_order",
               "itemId": "order-2",
-              "expressionId": "bonsoir",
-              "context": null,
-              "roleId": null,
-              "tokens": [
-                {
-                  "tokenId": "t1",
-                  "text": "Bonsoir,"
-                },
-                {
-                  "tokenId": "t2",
-                  "text": "tout"
-                },
-                {
-                  "tokenId": "t3",
-                  "text": "le monde"
-                },
-                {
-                  "tokenId": "t4",
-                  "text": "!"
-                }
-              ],
-              "distractorTokenIds": [],
-              "acceptedOrders": [
-                [
-                  "t1",
-                  "t2",
-                  "t3",
-                  "t4"
-                ]
-              ],
-              "answerExplanation": {
-                "en": "Bonsoir + tout le monde greets a group in the evening.",
-                "fr": "Bonsoir + tout le monde salue un groupe le soir.",
-                "de": "Bonsoir + tout le monde grüßt abends eine Gruppe."
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "order-3",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Put the words in order.",
-            "fr": "Mettez les mots dans l’ordre.",
-            "de": "Bring die Wörter in die richtige Reihenfolge."
-          },
-          "items": [
-            {
-              "type": "function_word_order",
-              "itemId": "order-3",
-              "expressionId": "salut",
-              "context": null,
-              "roleId": null,
-              "tokens": [
-                {
-                  "tokenId": "t1",
-                  "text": "Salut,"
-                },
-                {
-                  "tokenId": "t2",
-                  "text": "les"
-                },
-                {
-                  "tokenId": "t3",
-                  "text": "amis"
-                },
-                {
-                  "tokenId": "t4",
-                  "text": "!"
-                }
-              ],
-              "distractorTokenIds": [],
-              "acceptedOrders": [
-                [
-                  "t1",
-                  "t2",
-                  "t3",
-                  "t4"
-                ]
-              ],
-              "answerExplanation": {
-                "en": "Salut is for friends: Salut, les amis !",
-                "fr": "Salut est pour les amis : Salut, les amis !",
-                "de": "Salut ist für Freunde: Salut, les amis !"
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "order-4",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Put the words in order.",
-            "fr": "Mettez les mots dans l’ordre.",
-            "de": "Bring die Wörter in die richtige Reihenfolge."
-          },
-          "items": [
-            {
-              "type": "function_word_order",
-              "itemId": "order-4",
               "expressionId": "ca-va",
               "context": null,
               "roleId": null,
@@ -991,7 +688,7 @@
           ]
         },
         {
-          "pageId": "order-5",
+          "pageId": "order-3",
           "estimatedDurationS": 25,
           "timeLimitS": null,
           "instructions": {
@@ -1002,7 +699,7 @@
           "items": [
             {
               "type": "function_word_order",
-              "itemId": "order-5",
+              "itemId": "order-3",
               "expressionId": "ca-va-bien",
               "context": null,
               "roleId": null,
@@ -1037,7 +734,7 @@
           ]
         },
         {
-          "pageId": "order-6",
+          "pageId": "order-4",
           "estimatedDurationS": 25,
           "timeLimitS": null,
           "instructions": {
@@ -1048,58 +745,7 @@
           "items": [
             {
               "type": "function_word_order",
-              "itemId": "order-6",
-              "expressionId": "et-toi",
-              "context": null,
-              "roleId": null,
-              "tokens": [
-                {
-                  "tokenId": "t1",
-                  "text": "Très bien."
-                },
-                {
-                  "tokenId": "t2",
-                  "text": "Et"
-                },
-                {
-                  "tokenId": "t3",
-                  "text": "toi"
-                },
-                {
-                  "tokenId": "t4",
-                  "text": "?"
-                }
-              ],
-              "distractorTokenIds": [],
-              "acceptedOrders": [
-                [
-                  "t1",
-                  "t2",
-                  "t3",
-                  "t4"
-                ]
-              ],
-              "answerExplanation": {
-                "en": "Answer first, then ask back: Et toi ?",
-                "fr": "D’abord la réponse, puis la question en retour : Et toi ?",
-                "de": "Erst antworten, dann zurückfragen: Et toi ?"
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "order-7",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Put the words in order.",
-            "fr": "Mettez les mots dans l’ordre.",
-            "de": "Bring die Wörter in die richtige Reihenfolge."
-          },
-          "items": [
-            {
-              "type": "function_word_order",
-              "itemId": "order-7",
+              "itemId": "order-4",
               "expressionId": "au-revoir",
               "context": null,
               "roleId": null,
@@ -1134,57 +780,6 @@
                 "en": "Au revoir and merci are joined by et.",
                 "fr": "Au revoir et merci sont reliés par et.",
                 "de": "Au revoir und merci werden mit et verbunden."
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "order-8",
-          "estimatedDurationS": 25,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Put the words in order.",
-            "fr": "Mettez les mots dans l’ordre.",
-            "de": "Bring die Wörter in die richtige Reihenfolge."
-          },
-          "items": [
-            {
-              "type": "function_word_order",
-              "itemId": "order-8",
-              "expressionId": "a-bientot",
-              "context": null,
-              "roleId": null,
-              "tokens": [
-                {
-                  "tokenId": "t1",
-                  "text": "Merci,"
-                },
-                {
-                  "tokenId": "t2",
-                  "text": "Léa,"
-                },
-                {
-                  "tokenId": "t3",
-                  "text": "et"
-                },
-                {
-                  "tokenId": "t4",
-                  "text": "à bientôt !"
-                }
-              ],
-              "distractorTokenIds": [],
-              "acceptedOrders": [
-                [
-                  "t1",
-                  "t2",
-                  "t3",
-                  "t4"
-                ]
-              ],
-              "answerExplanation": {
-                "en": "Thank her, then add et à bientôt !",
-                "fr": "On la remercie, puis on ajoute et à bientôt !",
-                "de": "Erst danken, dann et à bientôt ! anfügen."
               }
             }
           ]
@@ -1260,98 +855,6 @@
             {
               "type": "function_listening_choice",
               "itemId": "listening-2",
-              "expressionId": "bonsoir",
-              "context": {
-                "roleId": "hugo",
-                "text": "Bonsoir, Léa ! Ça va ?"
-              },
-              "roleId": "lea",
-              "options": [
-                {
-                  "optionId": "o1",
-                  "text": "Bonsoir, Hugo ! Ça va bien, merci."
-                },
-                {
-                  "optionId": "o2",
-                  "text": "Bonjour, Hugo ! Ça va bien, merci."
-                },
-                {
-                  "optionId": "o3",
-                  "text": "Au revoir, Hugo !"
-                },
-                {
-                  "optionId": "o4",
-                  "text": "À bientôt !"
-                }
-              ],
-              "answerOptionId": "o1",
-              "answerExplanation": {
-                "en": "It is evening: bonsoir, not bonjour.",
-                "fr": "C’est le soir : bonsoir, pas bonjour.",
-                "de": "Es ist Abend: bonsoir, nicht bonjour."
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "listening-3",
-          "estimatedDurationS": 30,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Listen, then choose the reply that fits.",
-            "fr": "Écoutez, puis choisissez la réponse qui convient.",
-            "de": "Hör zu und wähle dann die passende Antwort."
-          },
-          "items": [
-            {
-              "type": "function_listening_choice",
-              "itemId": "listening-3",
-              "expressionId": "salut",
-              "context": {
-                "roleId": "lea",
-                "text": "Salut, Hugo !"
-              },
-              "roleId": "hugo",
-              "options": [
-                {
-                  "optionId": "o1",
-                  "text": "Salut, Léa !"
-                },
-                {
-                  "optionId": "o2",
-                  "text": "Au revoir, Léa !"
-                },
-                {
-                  "optionId": "o3",
-                  "text": "Et toi ?"
-                },
-                {
-                  "optionId": "o4",
-                  "text": "Ça va bien, merci."
-                }
-              ],
-              "answerOptionId": "o1",
-              "answerExplanation": {
-                "en": "Between friends, salut answers salut.",
-                "fr": "Entre amis, on répond salut à salut.",
-                "de": "Unter Freunden antwortet man auf salut mit salut."
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "listening-4",
-          "estimatedDurationS": 30,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Listen, then choose the reply that fits.",
-            "fr": "Écoutez, puis choisissez la réponse qui convient.",
-            "de": "Hör zu und wähle dann die passende Antwort."
-          },
-          "items": [
-            {
-              "type": "function_listening_choice",
-              "itemId": "listening-4",
               "expressionId": "ca-va",
               "context": {
                 "roleId": "lea",
@@ -1386,7 +889,7 @@
           ]
         },
         {
-          "pageId": "listening-5",
+          "pageId": "listening-3",
           "estimatedDurationS": 30,
           "timeLimitS": null,
           "instructions": {
@@ -1397,7 +900,7 @@
           "items": [
             {
               "type": "function_listening_choice",
-              "itemId": "listening-5",
+              "itemId": "listening-3",
               "expressionId": "ca-va-bien",
               "context": {
                 "roleId": "hugo",
@@ -1432,7 +935,7 @@
           ]
         },
         {
-          "pageId": "listening-6",
+          "pageId": "listening-4",
           "estimatedDurationS": 30,
           "timeLimitS": null,
           "instructions": {
@@ -1443,53 +946,7 @@
           "items": [
             {
               "type": "function_listening_choice",
-              "itemId": "listening-6",
-              "expressionId": "et-toi",
-              "context": {
-                "roleId": "hugo",
-                "text": "Salut, Léa ! Ça va ?"
-              },
-              "roleId": "lea",
-              "options": [
-                {
-                  "optionId": "o1",
-                  "text": "Très bien, merci. Et toi ?"
-                },
-                {
-                  "optionId": "o2",
-                  "text": "Au revoir !"
-                },
-                {
-                  "optionId": "o3",
-                  "text": "Bonsoir !"
-                },
-                {
-                  "optionId": "o4",
-                  "text": "À bientôt !"
-                }
-              ],
-              "answerOptionId": "o1",
-              "answerExplanation": {
-                "en": "She answers, then asks back with Et toi ?",
-                "fr": "Elle répond, puis retourne la question avec Et toi ?",
-                "de": "Sie antwortet und fragt mit Et toi ? zurück."
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "listening-7",
-          "estimatedDurationS": 30,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Listen, then choose the reply that fits.",
-            "fr": "Écoutez, puis choisissez la réponse qui convient.",
-            "de": "Hör zu und wähle dann die passende Antwort."
-          },
-          "items": [
-            {
-              "type": "function_listening_choice",
-              "itemId": "listening-7",
+              "itemId": "listening-4",
               "expressionId": "au-revoir",
               "context": {
                 "roleId": "hugo",
@@ -1519,52 +976,6 @@
                 "en": "Hugo leaves, so she says goodbye too.",
                 "fr": "Hugo part, donc elle dit aussi au revoir.",
                 "de": "Hugo geht, also verabschiedet sie sich auch."
-              }
-            }
-          ]
-        },
-        {
-          "pageId": "listening-8",
-          "estimatedDurationS": 30,
-          "timeLimitS": null,
-          "instructions": {
-            "en": "Listen, then choose the reply that fits.",
-            "fr": "Écoutez, puis choisissez la réponse qui convient.",
-            "de": "Hör zu und wähle dann die passende Antwort."
-          },
-          "items": [
-            {
-              "type": "function_listening_choice",
-              "itemId": "listening-8",
-              "expressionId": "a-bientot",
-              "context": {
-                "roleId": "lea",
-                "text": "Au revoir, Hugo !"
-              },
-              "roleId": "hugo",
-              "options": [
-                {
-                  "optionId": "o1",
-                  "text": "Au revoir, Léa. À bientôt !"
-                },
-                {
-                  "optionId": "o2",
-                  "text": "Bonjour, Léa !"
-                },
-                {
-                  "optionId": "o3",
-                  "text": "Ça va ?"
-                },
-                {
-                  "optionId": "o4",
-                  "text": "Et toi ?"
-                }
-              ],
-              "answerOptionId": "o1",
-              "answerExplanation": {
-                "en": "He says goodbye and that they will see each other soon.",
-                "fr": "Il dit au revoir et qu’ils vont bientôt se revoir.",
-                "de": "Er verabschiedet sich und sagt, dass sie sich bald sehen."
               }
             }
           ]
@@ -1730,112 +1141,6 @@
             {
               "type": "function_word_order",
               "itemId": "reply-2",
-              "expressionId": "bonsoir",
-              "context": {
-                "roleId": "hugo",
-                "text": "Bonsoir, Léa ! Tu rentres ?"
-              },
-              "roleId": "lea",
-              "tokens": [
-                {
-                  "tokenId": "t1",
-                  "text": "Bonsoir,"
-                },
-                {
-                  "tokenId": "t2",
-                  "text": "Hugo."
-                },
-                {
-                  "tokenId": "t3",
-                  "text": "Oui,"
-                },
-                {
-                  "tokenId": "t4",
-                  "text": "je"
-                },
-                {
-                  "tokenId": "t5",
-                  "text": "rentre"
-                },
-                {
-                  "tokenId": "t6",
-                  "text": "Bonjour"
-                }
-              ],
-              "distractorTokenIds": [
-                "t6"
-              ],
-              "acceptedOrders": [
-                [
-                  "t1",
-                  "t2",
-                  "t3",
-                  "t4",
-                  "t5"
-                ]
-              ],
-              "answerExplanation": {
-                "en": "It is evening, so bonsoir, not bonjour.",
-                "fr": "C’est le soir, donc bonsoir, pas bonjour.",
-                "de": "Es ist Abend, also bonsoir, nicht bonjour."
-              }
-            },
-            {
-              "type": "function_word_order",
-              "itemId": "reply-3",
-              "expressionId": "salut",
-              "context": {
-                "roleId": "lea",
-                "text": "Salut, Hugo !"
-              },
-              "roleId": "hugo",
-              "tokens": [
-                {
-                  "tokenId": "t1",
-                  "text": "Salut,"
-                },
-                {
-                  "tokenId": "t2",
-                  "text": "Léa,"
-                },
-                {
-                  "tokenId": "t3",
-                  "text": "tu"
-                },
-                {
-                  "tokenId": "t4",
-                  "text": "vas bien"
-                },
-                {
-                  "tokenId": "t5",
-                  "text": "?"
-                },
-                {
-                  "tokenId": "t6",
-                  "text": "vais"
-                }
-              ],
-              "distractorTokenIds": [
-                "t6"
-              ],
-              "acceptedOrders": [
-                [
-                  "t1",
-                  "t2",
-                  "t3",
-                  "t4",
-                  "t5"
-                ]
-              ],
-              "answerExplanation": {
-                "en": "Salut between friends; with tu the verb is vas.",
-                "fr": "Salut entre amis ; avec tu, le verbe est vas.",
-                "de": "Salut unter Freunden; mit tu heißt das Verb vas."
-              }
-            },
-            {
-              "type": "function_word_order",
-              "itemId": "reply-4",
               "expressionId": "ca-va",
               "context": {
                 "roleId": "lea",
@@ -1880,22 +1185,10 @@
                 "fr": "Ça s’écrit avec une cédille sur le c, pas sa.",
                 "de": "Ça schreibt man mit cédille am c, nicht sa."
               }
-            }
-          ]
-        },
-        {
-          "pageId": "exam-replies-2",
-          "estimatedDurationS": 120,
-          "timeLimitS": 180,
-          "instructions": {
-            "en": "Build the answer. Not every word fits.",
-            "fr": "Construisez la réponse. Tous les mots ne servent pas.",
-            "de": "Bilde die Antwort. Nicht jedes Wort passt."
-          },
-          "items": [
+            },
             {
               "type": "function_word_order",
-              "itemId": "reply-5",
+              "itemId": "reply-3",
               "expressionId": "ca-va-bien",
               "context": {
                 "roleId": "hugo",
@@ -1938,55 +1231,7 @@
             },
             {
               "type": "function_word_order",
-              "itemId": "reply-6",
-              "expressionId": "et-toi",
-              "context": {
-                "roleId": "hugo",
-                "text": "Salut, Léa ! Ça va ?"
-              },
-              "roleId": "lea",
-              "tokens": [
-                {
-                  "tokenId": "t1",
-                  "text": "Pas mal."
-                },
-                {
-                  "tokenId": "t2",
-                  "text": "Et"
-                },
-                {
-                  "tokenId": "t3",
-                  "text": "toi"
-                },
-                {
-                  "tokenId": "t4",
-                  "text": "?"
-                },
-                {
-                  "tokenId": "t5",
-                  "text": "tu"
-                }
-              ],
-              "distractorTokenIds": [
-                "t5"
-              ],
-              "acceptedOrders": [
-                [
-                  "t1",
-                  "t2",
-                  "t3",
-                  "t4"
-                ]
-              ],
-              "answerExplanation": {
-                "en": "After et the pronoun is toi, not tu.",
-                "fr": "Après et, le pronom est toi, pas tu.",
-                "de": "Nach et steht toi, nicht tu."
-              }
-            },
-            {
-              "type": "function_word_order",
-              "itemId": "reply-7",
+              "itemId": "reply-4",
               "expressionId": "au-revoir",
               "context": {
                 "roleId": "hugo",
@@ -2036,66 +1281,13 @@
                 "fr": "Au revoir, puis et et le souhait bonne journée.",
                 "de": "Au revoir, dann et und der Wunsch bonne journée."
               }
-            },
-            {
-              "type": "function_word_order",
-              "itemId": "reply-8",
-              "expressionId": "a-bientot",
-              "context": {
-                "roleId": "lea",
-                "text": "Au revoir, Hugo !"
-              },
-              "roleId": "hugo",
-              "tokens": [
-                {
-                  "tokenId": "t1",
-                  "text": "Au revoir,"
-                },
-                {
-                  "tokenId": "t2",
-                  "text": "Léa,"
-                },
-                {
-                  "tokenId": "t3",
-                  "text": "et"
-                },
-                {
-                  "tokenId": "t4",
-                  "text": "à bientôt"
-                },
-                {
-                  "tokenId": "t5",
-                  "text": "!"
-                },
-                {
-                  "tokenId": "t6",
-                  "text": "tôt"
-                }
-              ],
-              "distractorTokenIds": [
-                "t6"
-              ],
-              "acceptedOrders": [
-                [
-                  "t1",
-                  "t2",
-                  "t3",
-                  "t4",
-                  "t5"
-                ]
-              ],
-              "answerExplanation": {
-                "en": "À bientôt is said as one expression.",
-                "fr": "À bientôt se dit comme une seule expression.",
-                "de": "À bientôt sagt man als einen Ausdruck."
-              }
             }
           ]
         },
         {
           "pageId": "exam-dialogue",
-          "estimatedDurationS": 204,
-          "timeLimitS": 306,
+          "estimatedDurationS": 124,
+          "timeLimitS": 186,
           "instructions": {
             "en": "Fill each gap with an expression from this lesson.",
             "fr": "Complétez chaque trou avec une expression de la leçon.",
@@ -2109,52 +1301,24 @@
                 {
                   "lineId": "exam-line-1",
                   "roleId": "hugo",
-                  "before": "Il est tard !",
+                  "before": "Il est tard ! Bonsoir, Léa !",
                   "translation": {
                     "en": "It’s late! Good evening, Léa!",
                     "de": "Es ist spät! Guten Abend, Léa!"
                   },
-                  "gap": {
-                    "gapId": "gap-1",
-                    "expressionId": "bonsoir",
-                    "accepted": {
-                      "answers": [
-                        "Bonsoir",
-                        "Salut"
-                      ]
-                    },
-                    "answerExplanation": {
-                      "en": "It is late, so bonsoir (or salut between friends).",
-                      "fr": "Il est tard, donc bonsoir (ou salut entre amis).",
-                      "de": "Es ist spät, also bonsoir (oder salut unter Freunden)."
-                    }
-                  },
-                  "after": ", Léa !"
+                  "gap": null,
+                  "after": ""
                 },
                 {
                   "lineId": "exam-line-2",
                   "roleId": "lea",
-                  "before": "",
+                  "before": "Salut, Hugo !",
                   "translation": {
                     "en": "Hi, Hugo!",
                     "de": "Hallo, Hugo!"
                   },
-                  "gap": {
-                    "gapId": "gap-2",
-                    "expressionId": "salut",
-                    "accepted": {
-                      "answers": [
-                        "Salut",
-                        "Bonsoir"
-                      ]
-                    },
-                    "answerExplanation": {
-                      "en": "She greets her friend back: salut (or bonsoir).",
-                      "fr": "Elle salue son ami : salut (ou bonsoir).",
-                      "de": "Sie grüßt ihren Freund zurück: salut (oder bonsoir)."
-                    }
-                  },
-                  "after": ", Hugo !"
+                  "gap": null,
+                  "after": ""
                 },
                 {
                   "lineId": "exam-line-3",
@@ -2183,26 +1347,13 @@
                 {
                   "lineId": "exam-line-4",
                   "roleId": "lea",
-                  "before": "Oui, ça va bien, merci.",
+                  "before": "Oui, ça va bien, merci. Et toi ?",
                   "translation": {
                     "en": "Yes, I’m fine, thanks. And you?",
                     "de": "Ja, mir geht’s gut, danke. Und dir?"
                   },
-                  "gap": {
-                    "gapId": "gap-4",
-                    "expressionId": "et-toi",
-                    "accepted": {
-                      "answers": [
-                        "Et toi"
-                      ]
-                    },
-                    "answerExplanation": {
-                      "en": "She answers and asks back: Et toi ?",
-                      "fr": "Elle répond et retourne la question : Et toi ?",
-                      "de": "Sie antwortet und fragt zurück: Et toi ?"
-                    }
-                  },
-                  "after": "?"
+                  "gap": null,
+                  "after": ""
                 },
                 {
                   "lineId": "exam-line-5",
@@ -2268,27 +1419,13 @@
                 {
                   "lineId": "exam-line-8",
                   "roleId": "lea",
-                  "before": "",
+                  "before": "À bientôt, Hugo !",
                   "translation": {
                     "en": "See you soon, Hugo!",
                     "de": "Bis bald, Hugo!"
                   },
-                  "gap": {
-                    "gapId": "gap-8",
-                    "expressionId": "a-bientot",
-                    "accepted": {
-                      "answers": [
-                        "À bientôt",
-                        "Au revoir"
-                      ]
-                    },
-                    "answerExplanation": {
-                      "en": "She says goodbye and that they will meet again soon: à bientôt.",
-                      "fr": "Elle dit au revoir et qu’ils vont bientôt se revoir : à bientôt.",
-                      "de": "Sie verabschiedet sich und sagt, dass sie sich bald sehen: à bientôt."
-                    }
-                  },
-                  "after": ", Hugo !"
+                  "gap": null,
+                  "after": ""
                 }
               ]
             }

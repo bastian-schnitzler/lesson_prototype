@@ -80,7 +80,7 @@ describe('navigation views (P6-01)', () => {
     const nav = screen.getByRole('complementary');
     const pages = GRAM.pages.filter((p) => p.role === 'exam');
     expect(nav.querySelectorAll('.exam-page')).toHaveLength(pages.length);
-    expect(nav.querySelector('.exam-page.is-current')).toHaveTextContent(`${pages[0].units.length} tasks`);
+    expect(nav.querySelector('.exam-page.is-current')).toHaveTextContent(`${pages[0].units.length} questions`);
     expect(nav.querySelector('.exam-page.is-current')).toHaveTextContent('in progress');
     expect(within(nav).queryAllByRole('button')).toHaveLength(0);
   });

@@ -9,7 +9,7 @@ import { briefSchema, contentSchema } from '../../src/schemas/artifacts.ts';
 import type { RendererProps } from '../../src/session/controls.tsx';
 import { DialogueGapChoiceRenderer, DialogueRenderer, ExamDialogueRenderer, FunctionFlashcardsRenderer, FunctionWordOrderRenderer, ListeningReplyRenderer } from '../../src/session/functionsRenderers.tsx';
 import { MatchingRenderer } from '../../src/session/vocabularyRenderers.tsx';
-import { correctSentences, entryAudio, isAutoSubmitPage, resultTone, ResultsView, SessionView, StartView } from '../../src/session/views.tsx';
+import { correctSentences, entryAudio, examCards, isAutoSubmitPage, resultTone, ResultsView, SessionView, StartView } from '../../src/session/views.tsx';
 import { gapSentence, pronounWithForm } from '../../src/session/autoplay.ts';
 
 /** P4-04: function flashcards, model dialogue and matching (SPEC section 8). */
@@ -35,7 +35,7 @@ function renderItem(Renderer: (props: RendererProps) => unknown, pg: PlanPage, e
 describe('function flashcards', () => {
   it('shows the translation on the front and expression, explanation and example on the back, as in vocabulary', () => {
     const { onReveal } = renderItem(FunctionFlashcardsRenderer, page('cards-expressions'));
-    const card = screen.getByRole('article', { name: 'Card 2 of 8' });
+    const card = screen.getByRole('article', { name: 'Card 2 of 4' });
     const [front, back] = card.querySelectorAll('.flashcard-face');
     expect(front).toHaveTextContent('Ich hätte gern');
     expect(front).not.toHaveTextContent('Je voudrais');
@@ -159,9 +159,9 @@ describe('function practice, exam and results (P4-05)', () => {
   it('shows the start page with situation, counts and a three-section outline', () => {
     render(wrap(<StartView plan={plan} level="A1" onStart={() => undefined} onResume={() => undefined} />));
     expect(screen.getByText('A customer orders at a café counter; the waiter serves her.')).toBeInTheDocument();
-    expect(screen.getByText(/8 expressions · 4 words/)).toBeInTheDocument();
+    expect(screen.getByText(/4 expressions · 4 words/)).toBeInTheDocument();
     const rows = [...document.querySelectorAll('.flow-section .flow-head')];
-    expect(rows.map((r) => r.textContent)).toEqual([expect.stringMatching(/^AFlashcards · Dialogue/), expect.stringMatching(/^BMatching · Gender and overview · Dialogue gaps · Word order · Listening/), expect.stringMatching(/^CFinal exam.*20 items on 4 timed pages/)]);
+    expect(rows.map((r) => r.textContent)).toEqual([expect.stringMatching(/^AFlashcards · Dialogue/), expect.stringMatching(/^BMatching · Gender and overview · Dialogue gaps · Word order · Listening/), expect.stringMatching(/^CFinal exam.*12 questions on 3 timed pages/)]);
   });
 
   it('shows practice word order with tokens only', () => {
@@ -222,7 +222,7 @@ describe('function practice, exam and results (P4-05)', () => {
     }
     const view = render(wrap(<LastTryProvider><ResultsView plan={plan} record={r} dispatch={() => undefined} /></LastTryProvider>));
     const nav = document.querySelector('.lesson-nav')!;
-    expect([...nav.querySelectorAll('.results-part')].map((b) => b.textContent)).toEqual(['Translation4 of 4', 'Replies0 of 8', 'Dialogue8 of 8']);
+    expect([...nav.querySelectorAll('.results-part')].map((b) => b.textContent)).toEqual(['Translation4 of 4', 'Replies0 of 4', 'Dialogue4 of 4']);
     // Result entries (all categories): selected purple; others green (all right), red (all wrong) or red stripes (mixed).
     const entries = [...nav.querySelectorAll('.results-entry:not(.results-part)')];
     expect(entries[0]).toHaveAttribute('aria-pressed', 'true');
@@ -303,11 +303,15 @@ it('colours result-menu parts by their outcome; half credit is not fully right',
 
 it('submits multiple-choice practice pages on selection, but not matching, gender or word order (P4-05 review)', () => {
   expect(isAutoSubmitPage(page('gap-1'))).toBe(true);
-  expect(isAutoSubmitPage(page('listening-1'))).toBe(false); // confirmed with Check
+  expect(isAutoSubmitPage(page('listening-1'))).toBe(false); // replies are only heard: confirmed with Check
   expect(isAutoSubmitPage(page('match-expressions-1'))).toBe(false);
   expect(isAutoSubmitPage(page('gender'))).toBe(false);
   expect(isAutoSubmitPage(page('order-1'))).toBe(false);
   expect(isAutoSubmitPage(page('exam-replies-1'))).toBe(false);
+});
+
+it('keeps the exam dialogue out of the numbered exam cards (P6-02, feedback #26)', () => {
+  expect(examCards(page('exam-dialogue'))).toBe(false);
 });
 
 describe('autoplay (P4-05 review)', () => {

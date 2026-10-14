@@ -27,8 +27,6 @@ export default {
           gc(SG, 'C’est', 'un', ['une', 'des', 'la'], 'stylo.', g('stylo', 'm')),
           gc(SG, 'C’est', 'une', ['un', 'des', 'le'], 'chaise.', g('chaise', 'f')),
           gc(SG, 'Voici', 'un', ['une', 'des', 'la'], 'cahier.', g('cahier', 'm')),
-          gc(SG, 'C’est', 'une', ['un', 'des', 'le'], 'maison.', g('maison', 'f')),
-          gc(SG, 'Voici', 'un', ['une', 'des', 'la'], 'ordinateur.', g('ordinateur', 'm')),
         ] },
         { id: 'ex-singular-typing', type: 'grammar_gap_typing', items: [
           gt(SG, 'C’est', 'un', 'sac.', g('sac', 'm')),
@@ -36,7 +34,6 @@ export default {
           gt(SG, 'Voici', 'un', 'vélo.', g('vélo', 'm')),
           gt(SG, 'Voici', 'une', 'clé.', g('clé', 'f')),
           gt(SG, 'C’est', 'un', 'chat.', g('chat', 'm')),
-          gt(SG, 'C’est', 'une', 'pomme.', g('pomme', 'f')),
         ] },
         { id: 'ex-singular-spot', type: 'grammar_error_spotter', items: [
           sp(SG, ['Voici', 'un', 'livre'], 1, 'une', unWrong('livre', 'm'), ['un', 'une', 'des']),
@@ -56,8 +53,6 @@ export default {
           gc(PL, 'Voici', 'des', ['un', 'une', 'le'], 'stylos.', d('stylos')),
           gc(PL, 'Ce sont', 'des', ['une', 'un', 'le'], 'chaises.', d('chaises')),
           gc(PL, 'Voici', 'des', ['un', 'une', 'la'], 'amis.', d('amis')),
-          gc(PL, 'Ce sont', 'des', ['une', 'un', 'le'], 'photos.', d('photos')),
-          gc(PL, 'Voici', 'des', ['un', 'une', 'la'], 'oranges.', d('oranges')),
         ] },
         { id: 'ex-plural-typing', type: 'grammar_gap_typing', items: [
           gt(PL, 'Voici', 'des', 'clés.', d('clés')),
@@ -81,22 +76,18 @@ export default {
       gt(SG, 'C’est', 'une', 'lampe.', g('lampe', 'f')),
       gt(SG, 'Voici', 'un', 'journal.', g('journal', 'm')),
       gt(SG, 'C’est', 'une', 'photo.', g('photo', 'f')),
-      gt(SG, 'Voici', 'un', 'arbre.', g('arbre', 'm')),
-      gt(SG, 'C’est', 'une', 'banane.', g('banane', 'f')),
     ] },
     { pageId: 'exam-plural', type: 'grammar_gap_typing', items: [
       gt(PL, 'Voici', 'des', 'gâteaux.', d('gâteaux')),
       gt(PL, 'Ce sont', 'des', 'lampes.', d('lampes')),
       gt(PL, 'Voici', 'des', 'journaux.', d('journaux')),
       gt(PL, 'Ce sont', 'des', 'assiettes.', d('assiettes')),
-      gt(PL, 'Voici', 'des', 'arbres.', d('arbres')),
     ] },
     { pageId: 'exam-mixed', type: 'grammar_gap_typing', items: [
       gt(SG, 'Voici', 'un', 'sandwich.', g('sandwich', 'm')),
       gt(PL, 'Voici', 'des', 'sandwichs.', d('sandwichs')),
       gt(SG, 'C’est', 'une', 'fleur.', g('fleur', 'f')),
       gt(PL, 'Ce sont', 'des', 'sacs.', d('sacs')),
-      gt(SG, 'C’est', 'un', 'film.', g('film', 'm')),
     ] },
   ],
 } satisfies LessonDefinition;

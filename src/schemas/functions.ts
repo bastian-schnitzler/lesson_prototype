@@ -25,11 +25,12 @@ import { GenderSchema, WORD_CLASSES } from './vocabulary.ts';
 
 /** Counts of section 8 ("Brief and lesson content"). */
 export const FUNCTIONS_LIMITS = {
-  expressions: [6, 10],
+  /** At least four expressions: lessons of at most 15 minutes (P6-02, feedback #1). */
+  expressions: [4, 10],
   words: [0, 6],
   dialogueLines: [8, 14],
-  examReplies: [6, 8],
-  examGaps: [6, 10],
+  examReplies: [4, 8],
+  examGaps: [3, 10],
   distractors: [0, 3],
 } as const;
 
