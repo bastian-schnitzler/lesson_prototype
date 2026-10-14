@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef, useState, type CSSProperties } from 'react';
+import { Fragment, useEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 
 import { useI18n, useLastTry, usePreferences } from '../app/context.tsx';
 import { formatScore, roundHalfUp1 } from '../domain/format.ts';
@@ -63,7 +63,8 @@ function LessonFlow({ plan }: { plan: LessonPlan }) {
                   {section.kind === 'exam' && <small className="flow-detail">{t('activity.exam', { count: exam.reduce((k, p) => k + p.units.length, 0), pages: exam.length })}</small>}
                   {group && <small className="flow-detail">{t('session.vocabularyCount', { count: group.targetIds.length })}</small>}
                 </span>
-                <small className="flow-minutes">{t('session.flowMinutes', { minutes: Math.max(1, Math.round(seconds(section.pages) / 60)) })}</small>
+                {/* Whole minutes with the stopwatch of the exam time limits (P6-02). */}
+                <Clock className="flow-minutes">{t('session.flowMinutes', { minutes: Math.max(1, Math.round(seconds(section.pages) / 60)) })}</Clock>
               </div>
               {section.points.length > 0 && (
                 <ol className="flow-points">
@@ -419,16 +420,25 @@ function ExamIntro({ plan, page }: { plan: LessonPlan; page: PlanPage }) {
   );
 }
 
+/** A duration in a stopwatch chip (P6-02): exam time limits and the minutes of the lesson outline. */
+function Clock({ className = '', label, children }: { className?: string; label?: string; children: ReactNode }) {
+  return (
+    <span className={`time-limit ${className}`.trim()} aria-label={label}>
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="14" r="7.5" /><path d="M12 14V10.5M10 2.5h4M18.2 7.3l1.3-1.3" />
+      </svg>
+      <span aria-hidden={label ? true : undefined}>{children}</span>
+    </span>
+  );
+}
+
 /** The time limit of an exam page as a stopwatch chip, "⏱ 01:20" (P6-02, feedback #13). */
 function TimeLimit({ seconds }: { seconds: number }) {
   const { t } = useI18n();
   return (
-    <span className="time-limit" aria-label={t('examIntro.limit', { time: durationText(seconds, t) })}>
-      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="14" r="7.5" /><path d="M12 14V10.5M10 2.5h4M18.2 7.3l1.3-1.3" />
-      </svg>
-      <span aria-hidden="true">{String(Math.floor(seconds / 60)).padStart(2, '0')}:{String(seconds % 60).padStart(2, '0')}</span>
-    </span>
+    <Clock label={t('examIntro.limit', { time: durationText(seconds, t) })}>
+      {String(Math.floor(seconds / 60)).padStart(2, '0')}:{String(seconds % 60).padStart(2, '0')}
+    </Clock>
   );
 }
 
