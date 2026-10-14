@@ -190,7 +190,7 @@ test('half credit for a capitalised exam answer, then Repeat lesson starts a fre
   await expect(page.locator('.summary-card .total-score')).toHaveText(`${data.examUnits - 0.5} / ${data.examUnits}`);
   await page.getByRole('button', { name: 'Repeat lesson' }).click();
   await expect(page.locator('.task-card .label-muted').first()).toHaveText('Introduction');
-  await expect(page.locator('.session-score')).toHaveText('0 / 100');
+  await expect(page.locator('.session-score')).toHaveCount(0); // no numeric score on theory pages (P6-03)
 });
 
 test('a lesson without nouns has no gender page, no gender tags and non-clickable reference words', async ({ page }) => {

@@ -111,10 +111,13 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   await expect(page.getByRole('link', { name: 'Lesson overview' })).toBeVisible();
   await proceed(page); // start
   await expect(page.getByRole('link', { name: 'Cancel lesson' })).toBeVisible();
+  await expect(page.locator('.session-score')).toHaveCount(0); // no numeric score on introduction and theory pages (P6-03)
   await proceed(page); // introduction
+  await expect(page.locator('.session-score')).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Continue' })).toBeDisabled(); // flashcards not yet revealed
   await revealCards(page);
   await proceed(page); // flashcards
+  await expect(page.locator('.session-score')).toBeVisible(); // the score returns with the exercises
   await expect(page.getByRole('button', { name: 'Check' })).toBeDisabled(); // practice pages are checked first
   await matchAll(page);
   await proceed(page);
@@ -174,7 +177,7 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   // An info page lists the exam pages, their countdowns and the number of words before the exam starts.
   await expect(page.getByRole('heading', { name: 'Your final exam' })).toBeVisible();
   await expect(page.locator('.exam-intro')).toContainText('4 words are tested');
-  await expect(page.locator('.exam-intro li').first()).toContainText(/Translation into French · \d+ tasks/);
+  await expect(page.locator('.exam-intro li').first()).toContainText(/Translation into French · \d+ questions/); // questions, not tasks (P6-03)
   await expect(page.getByRole('timer')).toHaveCount(0);
   await proceed(page);
   await expect(page.getByRole('timer')).toBeVisible();
@@ -190,6 +193,10 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   await page.getByRole('textbox').first().fill('un livre');
   await expect(page.locator('.article-badge').first()).not.toHaveClass(/is-alert/);
   await expect(page.locator('.info-box')).toBeVisible(); // stays until Continue is pressed again
+  // Several fields: Enter moves on to the next field and never submits the page from a field that is not the last (P6-03).
+  await page.getByRole('textbox').first().press('Enter');
+  await expect(page.getByRole('textbox').nth(1)).toBeFocused();
+  await expect(page.getByRole('timer')).toBeVisible();
   const score = await page.locator('.session-score').textContent();
   await proceed(page);
   await expect(page.locator('.session-score')).toHaveText(score!); // no exam feedback during the exam

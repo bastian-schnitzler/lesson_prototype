@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef, useState, type CSSProperties } from 'react';
+import { Fragment, useEffect, useRef, useState, type CSSProperties, type KeyboardEvent } from 'react';
 
 import { useI18n, useLastTry, usePreferences } from '../app/context.tsx';
 import { formatScore, roundHalfUp1 } from '../domain/format.ts';
@@ -192,6 +192,10 @@ export function SessionHeader({ plan, record }: { plan: LessonPlan; record: Sess
   const { t, locale } = useI18n();
   const pct = progress(plan, record);
   const score = headerScore(plan, record);
+  // No numeric score on introduction and theory pages (P6-03): the progress bar stays, the score returns with the exercises.
+  const shown = plan.pages[record.pageIndex];
+  // Theory pages only: the exam information page and the pre-exam placeholder keep the score.
+  const showScore = !(shown?.role === 'presentation' && !shown.special && !shown.items.some((it) => it.type === 'production_feedback_placeholder'));
   return (
     <div className="session-header">
       <p className="session-title" lang={plan.lang}>{plan.title}</p>
@@ -202,7 +206,7 @@ export function SessionHeader({ plan, record }: { plan: LessonPlan; record: Sess
         {/* Phones: the learning points as markers take the place of the progress bar (P6-01 review). */}
         <PointStrip plan={plan} record={record} />
         <span className="muted">{formatScore(pct, locale).replace(/[.,]0%$/, '%')}</span>
-        <span className="session-score" aria-label={t('session.scoreLabel')}>{t('session.score', { score: roundHalfUp1(score).toLocaleString(locale), total: 100 })}</span>
+        {showScore && <span className="session-score" aria-label={t('session.scoreLabel')}>{t('session.score', { score: roundHalfUp1(score).toLocaleString(locale), total: 100 })}</span>}
       </div>
     </div>
   );
@@ -283,6 +287,18 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
     const pause = page.items.some((it) => isMatchingItem(it.type)) ? MATCH_SLIDE_MS + 1000 : 900;
     window.setTimeout(() => { setCelebrating(false); dispatch({ type: 'continue' }); }, pause);
   };
+
+  // Enter in a typed answer acts like the primary button once it is enabled (P6-03). With several fields it moves on
+  // to the next one and only the last field submits the page; never while composing text, never twice.
+  const onEnter = (e: KeyboardEvent<HTMLElement>) => {
+    const target = e.target as HTMLElement;
+    if (e.key !== 'Enter' || e.nativeEvent.isComposing || e.shiftKey || e.repeat || !(target instanceof HTMLInputElement) || target.type !== 'text' || target.readOnly) return;
+    e.preventDefault();
+    const fields = [...e.currentTarget.querySelectorAll<HTMLInputElement>('input.text-input:not([readonly]):not([disabled])')];
+    const at = fields.indexOf(target);
+    if (at >= 0 && at < fields.length - 1) fields[at + 1].focus();
+    else if (ready && !celebrating) onContinue();
+  };
   // Multiple choice (P4-05 review): choosing an option submits the page at once; a right answer plays the
   // success animation and moves on, a wrong one is marked in place and waits for Continue.
   const autoSubmit = page.role === 'practice' && record.phase === 'answering' && isAutoSubmitPage(page);
@@ -307,7 +323,7 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
           <button type="button" className="button button-primary" onClick={() => dispatch({ type: 'skip_no_voice' })}>{t('session.voiceSkip')}</button>
         </section>
       ) : (
-      <section className={`task-card${celebrating ? ' is-celebrating' : ''}`} aria-labelledby="task-heading">
+      <section className={`task-card${celebrating ? ' is-celebrating' : ''}`} aria-labelledby="task-heading" onKeyDown={onEnter}>
         {celebrating && <span className="visually-hidden" role="status">{t('session.allCorrect')}</span>}
         <p className="label-muted">{page.stepLabel[locale]}{page.role === 'exam' && page.stepLabel[locale] !== t('session.examPage') ? ` · ${t('session.examPage')}` : ''}</p>
         <h1 id="task-heading" ref={heading} tabIndex={-1} className="task-heading">{page.special === 'examIntro' ? t('examIntro.title') : instructionsFor(page, locale, t)}</h1>
