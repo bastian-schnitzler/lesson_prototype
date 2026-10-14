@@ -768,6 +768,8 @@ Acceptance:
 - Mixed exam scores aggregate once and appear correctly in final results, with earlier grammar exercises available through the menu.
 - Tests cover placeholder sequencing, unscored progression, mixed-type timed exams, half credit, expiry, and deferred answer review.
 
+Outcome (2026-10-14): the placeholder, the timed mixed exam and the final review already ran on the shared session host, scorer and P6-01 results sidebar; `tests/unit/grammar-exam.test.tsx` now checks them against this issue's acceptance criteria (placeholder position and fixed text in en/fr/de, no score and no answer needed, no hint, mark or correction on exam pages and an unchanged header score, one countdown per exam page from the brief, results with half credit, timeout notes, unanswered units and the exercise entries in the sidebar), and a grammar e2e journey in `tests/e2e/session.spec.ts` plays from practice through the placeholder and a half-credit, expired exam page to the results. The placeholder keeps the plain Continue (SPEC reworded). New validation: exam sentences must not repeat an explanation example or a practice sentence; two exam items of `fr-regular-noun-plurals` that did were replaced (`un lieu`, `un rideau`).
+
 Dependencies: P3-02, P3-03, P3-04.
 
 ### P3-06: Complete all grammar lessons and end-to-end course validation
