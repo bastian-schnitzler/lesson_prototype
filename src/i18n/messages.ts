@@ -7,6 +7,7 @@ import type { Locale, Theme, Topic } from '../schemas/common.ts';
  */
 const en = {
   'app.brand': 'Lesson prototype',
+  'index.feedback': 'UX feedback',
   'app.skipToContent': 'Skip to content',
 
   'prefs.motherTongue': 'Mother tongue',
@@ -340,7 +341,7 @@ const en = {
   'activity.introduction': "Explore the topic and learning goal",
   'activity.flashcards': "Recall {count} words with audio",
   'activity.matching': "Pair translations in groups of {size}",
-  'activity.genderOverview': "Choose noun genders, then review all words",
+  'activity.genderOverview': "Choose the gender of each noun",
   'activity.overview': "Review all words",
   'activity.typedGaps': "Complete {count} contextual sentences",
   'activity.listening': "Recognise {count} spoken words",
@@ -385,6 +386,7 @@ export type Messages = Record<MessageKey, string>;
 
 const fr: Messages = {
   'app.brand': 'Prototype de leçons',
+  'index.feedback': 'Retours UX',
   'app.skipToContent': 'Aller au contenu',
 
   'prefs.motherTongue': 'Langue maternelle',
@@ -718,7 +720,7 @@ const fr: Messages = {
   'activity.introduction': "Découvrir le thème et l’objectif",
   'activity.flashcards': "Mémoriser {count} mots avec audio",
   'activity.matching': "Associer les traductions par groupes de {size}",
-  'activity.genderOverview': "Choisir le genre des noms, puis revoir tous les mots",
+  'activity.genderOverview': "Choisir le genre de chaque nom",
   'activity.overview': "Revoir tous les mots",
   'activity.typedGaps': "Compléter {count} phrases en contexte",
   'activity.listening': "Reconnaître {count} mots à l’oral",
@@ -760,6 +762,7 @@ const fr: Messages = {
 
 const de: Messages = {
   'app.brand': 'Lektionsprototyp',
+  'index.feedback': 'UX-Feedback',
   'app.skipToContent': 'Zum Inhalt springen',
 
   'prefs.motherTongue': 'Muttersprache',
@@ -1093,7 +1096,7 @@ const de: Messages = {
   'activity.introduction': "Thema und Lernziel kennenlernen",
   'activity.flashcards': "{count} Wörter mit Audio einprägen",
   'activity.matching': "Übersetzungen in Gruppen zu {size} zuordnen",
-  'activity.genderOverview': "Genus der Nomen wählen, dann alle Wörter wiederholen",
+  'activity.genderOverview': "Das Genus jedes Nomens wählen",
   'activity.overview': "Alle Wörter wiederholen",
   'activity.typedGaps': "{count} Sätze im Kontext ergänzen",
   'activity.listening': "{count} gesprochene Wörter erkennen",

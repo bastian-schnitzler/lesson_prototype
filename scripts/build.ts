@@ -76,6 +76,9 @@ if (import.meta.main) {
     copyFileSync(join(contentDir, url.slice('content/'.length)), target);
   }
   writeFileSync(join(outDir, 'content', 'manifest.json'), `${JSON.stringify(catalog.manifest, null, 2)}\n`);
+  // The UX feedback page is published next to the app at the same relative path as in the repository (P06-00).
+  mkdirSync(join(outDir, 'docs'), { recursive: true });
+  copyFileSync(join(ROOT, 'docs', 'feedback.html'), join(outDir, 'docs', 'feedback.html'));
   // Pages serves dist/ as-is; skip Jekyll processing.
   writeFileSync(join(outDir, '.nojekyll'), '');
 

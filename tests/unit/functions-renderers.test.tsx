@@ -228,11 +228,15 @@ describe('function practice, exam and results (P4-05)', () => {
     expect(entries[0]).toHaveAttribute('aria-pressed', 'true');
     expect(entries[0]).toHaveClass('is-mixed');
     expect(entries.slice(1).every((b) => b.classList.contains('is-all-right'))).toBe(true);
+    // Exam parts take the same colours, and the results card the colour of the selected entry (P06-00).
+    expect([...nav.querySelectorAll('.results-part')].map((b) => b.className.replace('results-entry results-part', '').trim())).toEqual(['is-all-right', 'is-all-wrong', 'is-all-right']);
+    expect(document.querySelector('.summary-card')).toHaveClass('is-mixed');
     // 'exam' shows the first part only; the replies part shows its context lines.
     expect(nav.querySelector('.results-part')).toHaveAttribute('aria-pressed', 'true');
     expect(screen.queryAllByText(/le serveur: Madame, vous désirez \?/)).toHaveLength(0);
     view.unmount();
     render(wrap(<LastTryProvider><ResultsView plan={plan} record={{ ...r, selection: 'exam:replies' }} dispatch={() => undefined} /></LastTryProvider>));
+    expect(document.querySelector('.summary-card')).toHaveClass('is-all-wrong');
     expect(screen.getAllByText(/le serveur: Madame, vous désirez \?/).length).toBeGreaterThan(0);
   });
 });

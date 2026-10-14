@@ -54,7 +54,11 @@ export function IndexPage({ manifest, selection, categories, announcement, onSel
         courseLang={selection.lang}
         announcement={announcement}
         title={<span className="brand">{t('app.brand')}</span>}
-        actions={<span className="label-muted">{courseName}</span>}
+        actions={<>
+          <span className="label-muted">{courseName}</span>
+          {/* The UX feedback page is a static page published next to the app (P06-00). */}
+          <a className="button button-outline button-small" href="docs/feedback.html">{t('index.feedback')}</a>
+        </>}
       />
       <main id="main" tabIndex={-1} className="page page-wide">
         <div className="filters" role="group" aria-label={t('index.filters')}>

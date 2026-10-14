@@ -109,3 +109,11 @@ test('shows one Draft teaching block at a time through keyboard-operable tabs', 
   await expect(page.getByRole('article', { name: /01/ })).toHaveCount(0);
   expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBeLessThanOrEqual(0);
 });
+
+test('links to the UX feedback page, which links back to the lessons (P06-00)', async ({ page }) => {
+  await page.getByRole('link', { name: 'UX feedback' }).click();
+  await expect(page).toHaveURL(/docs\/feedback\.html$/);
+  await expect(page.getByRole('heading', { name: 'Lessons and exercises: team feedback' })).toBeVisible();
+  await page.getByRole('link', { name: '← Back to the lessons' }).first().click();
+  await expect(page.locator('tbody tr')).toHaveCount(9);
+});

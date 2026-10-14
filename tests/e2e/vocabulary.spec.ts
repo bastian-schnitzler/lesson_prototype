@@ -144,7 +144,7 @@ test('plays a multi-group noun lesson perfectly: group-wise stages, exam info, 1
   await expect(page.locator('.summary-card .total-score')).toHaveText(`${data.examUnits} / ${data.examUnits}`);
   // Only scored parts are offered; each word group is one frame with its name shown once.
   const nav = await lessonNav(page);
-  await expect(nav.locator('.results-entry:not(.results-part) > span:first-child')).toHaveText(['Final exam', 'Matching', 'Gender and overview', 'Practice', 'Listening']);
+  await expect(nav.locator('.results-entry:not(.results-part) > span:first-child')).toHaveText(['Final exam', 'Matching', 'Gender', 'Practice', 'Listening']);
   await nav.getByRole('button', { name: /^Practice/ }).click();
   await expect(page.locator('.result-section.is-framed')).toHaveCount(data.brief.groups.length);
   await expect(page.locator('.result-section-title')).toHaveText(data.brief.groups.map((g: Json) => g.label.en));
@@ -190,7 +190,7 @@ test('half credit for a capitalised exam answer, then Repeat lesson starts a fre
   await expect(page.locator('.summary-card .total-score')).toHaveText(`${data.examUnits - 0.5} / ${data.examUnits}`);
   await page.getByRole('button', { name: 'Repeat lesson' }).click();
   await expect(page.locator('.task-card .label-muted').first()).toHaveText('Introduction');
-  await expect(page.locator('.session-score')).toHaveText('0 / 100');
+  await expect(page.locator('.session-score')).toHaveCount(0); // no score on the introduction (P06-00)
 });
 
 test('a lesson without nouns has no gender page, no gender tags and non-clickable reference words', async ({ page }) => {
@@ -213,5 +213,5 @@ test('a lesson without nouns has no gender page, no gender tags and non-clickabl
     await step(page, data, {});
   }
   expect([...stages]).toEqual(expect.arrayContaining(['Introduction', 'Flashcards', 'Matching', 'Overview']));
-  expect([...stages]).not.toContain('Gender and overview');
+  expect([...stages]).not.toContain('Gender');
 });

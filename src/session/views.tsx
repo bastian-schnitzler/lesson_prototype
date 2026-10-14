@@ -4,7 +4,7 @@ import { useI18n, useLastTry, usePreferences } from '../app/context.tsx';
 import { formatScore, roundHalfUp1 } from '../domain/format.ts';
 import { answerMarks } from '../domain/answers.ts';
 import { seededOrder, type LessonPlan, type PlanPage, type PlanUnit } from '../domain/session/plan.ts';
-import { headerScore, isAnswered, isListeningPage, isMatchingItem, nextDialogueLine, presentationComplete, scoreUnit, skipsFeedbackWhenCorrect, lessonResults, progress, type LockedUnit, type SessionRecord } from '../domain/session/session.ts';
+import { headerScore, isAnswered, isListeningPage, isMatchingItem, nextDialogueLine, presentationComplete, scoreUnit, skipsFeedbackWhenCorrect, lessonResults, pagesTally, progress, type LockedUnit, type SessionRecord } from '../domain/session/session.ts';
 import type { MessageKey } from '../i18n/messages.ts';
 import type { Locale } from '../schemas/common.ts';
 import { rendererRegistry, UnitFeedback } from './renderers.tsx';
@@ -192,6 +192,8 @@ export function SessionHeader({ plan, record }: { plan: LessonPlan; record: Sess
   const { t, locale } = useI18n();
   const pct = progress(plan, record);
   const score = headerScore(plan, record);
+  // No score on introduction, theory and other pages without answers (P06-00): 0 / 100 means nothing there.
+  const showScore = plan.pages[record.pageIndex]?.role !== 'presentation';
   return (
     <div className="session-header">
       <p className="session-title" lang={plan.lang}>{plan.title}</p>
@@ -202,7 +204,7 @@ export function SessionHeader({ plan, record }: { plan: LessonPlan; record: Sess
         {/* Phones: the learning points as markers take the place of the progress bar (P6-01 review). */}
         <PointStrip plan={plan} record={record} />
         <span className="muted">{formatScore(pct, locale).replace(/[.,]0%$/, '%')}</span>
-        <span className="session-score" aria-label={t('session.scoreLabel')}>{t('session.score', { score: roundHalfUp1(score).toLocaleString(locale), total: 100 })}</span>
+        {showScore && <span className="session-score" aria-label={t('session.scoreLabel')}>{t('session.score', { score: roundHalfUp1(score).toLocaleString(locale), total: 100 })}</span>}
       </div>
     </div>
   );
@@ -551,13 +553,16 @@ export function ResultsView({ plan, record, dispatch, footer }: { plan: LessonPl
   const units = pages.flatMap((p) => p.units);
   // The card shows the selected part first: its name as heading and its score, then the lesson total.
   const selectedTally = selectedStep ? results.steps.find((s) => s.stepId === selectedStep.stepId)?.tally : results.exam;
+  // The card takes the colour of the selected sidebar entry: an exam part, the whole exam or an exercise.
+  const selectedPartTally = !selectedStep && part && record.selection === `exam:${part.key}` ? pagesTally(part.pages, record) : undefined;
+  const cardTone = selectedStep?.role === 'presentation' ? '' : resultTone(selectedPartTally ?? selectedTally ?? { earned: 0, possible: 0 });
   const sectionScore = selectedStep?.role === 'presentation' || !selectedTally?.possible
     ? t('result.completedShort')
     : `${pts(selectedTally.earned)} / ${selectedTally.possible}`;
   return (
     <NavLayout plan={plan} record={record} dispatch={dispatch}>
     <section aria-labelledby="results-title">
-      <div className="summary-card">
+      <div className={`summary-card${cardTone}`}>
         <p className="label-muted">{t('index.courseLabel', { language: languageName(plan.lang), level: record.level })}</p>
         <h1 id="results-title">{selectedStep ? selectedStep.label[locale] : t('session.examPage')}</h1>
         <p className="total-score">{sectionScore}</p>

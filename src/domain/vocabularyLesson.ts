@@ -71,8 +71,9 @@ export function vocabularyLesson(brief: VocabularyBrief): VocabularyContent {
         pairs: ids.map((id) => ({ targetId: id, nativeLabel: targets.get(id)!.matchingLabel, answerExplanation: targets.get(id)!.explanation })),
       }]))),
     nouns.length
-      ? { ...step('overview', 'overview', COPY.gender[0], [page('overview', T.overviewBase + T.genderPerWord * all.length, COPY.gender[1], [{
-          type: 'vocabulary_gender_select', itemId: 'gender', targetIds: all, rows: nouns.map((t) => ({ targetId: t.id, answerExplanation: t.genderExplanation! })),
+      ? { ...step('overview', 'overview', COPY.gender[0], [page('overview', T.overviewBase + T.genderPerWord * nouns.length, COPY.gender[1], [{
+          // Only nouns: words without a gender are left out of the gender page (P06-00).
+          type: 'vocabulary_gender_select', itemId: 'gender', targetIds: nouns.map((t) => t.id), rows: nouns.map((t) => ({ targetId: t.id, answerExplanation: t.genderExplanation! })),
         }])]) }
       : step('overview', 'overview', COPY.overview[0], [page('overview', T.overviewBase + T.overviewPerWord * all.length, COPY.overview[1], [{ type: 'vocabulary_overview', itemId: 'overview', targetIds: all }])]),
     // Stage 5 has two steps, so typed gaps and listening are reviewed separately in the results menu (P2-04 review).
