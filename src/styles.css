@@ -2428,9 +2428,9 @@ html {
   color: var(--muted);
 }
 
-.flow-minutes {
-  color: var(--muted);
-  white-space: nowrap;
+.flow-minutes.time-limit {
+  font-size: 15px;
+  padding: 0.2rem 0.6rem;
 }
 
 .flow-points {
