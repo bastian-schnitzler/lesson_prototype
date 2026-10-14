@@ -1,0 +1,756 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-reading-a-company-memo",
+  "lang": "fr",
+  "level": "B1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Lire une note de service",
+  "objective": {
+    "en": "Read a staff memo about a new organisation (remote work, summer hours) and say what changes, for whom and from when.",
+    "fr": "Lire une note de service sur une nouvelle organisation (télétravail, horaires d’été) et dire ce qui change, pour qui et à partir de quand.",
+    "de": "Eine Dienstmitteilung über eine neue Organisation (Homeoffice, Sommerarbeitszeiten) lesen und sagen, was sich ändert, für wen und ab wann."
+  },
+  "estimatedMinutes": 12,
+  "provenance": {
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "reading-content-v2",
+    "generatedAt": "2026-10-14T09:14:04.398Z",
+    "inputHashes": {
+      "outline": "2079de38cae25debf0a4b207531ad7bcd312067cb19f6af34ea8fde85b4f8db2",
+      "brief": "7b4c35dcd988bd32b2a256070d26b0f5749cd54e150831a17ecaae9b105763f4"
+    }
+  },
+  "kind": "reading",
+  "theme": "daily_life",
+  "genre": "letter",
+  "documents": [
+    {
+      "documentId": "main",
+      "genre": "letter",
+      "title": "NOTE DE SERVICE",
+      "meta": [
+        "De : Direction des ressources humaines",
+        "À : tout le personnel",
+        "Lyon, le 15 mai"
+      ],
+      "parts": [
+        {
+          "partId": "m-intro",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s1",
+              "text": "Objet : nouvelle organisation du travail",
+              "value": null
+            },
+            {
+              "segmentId": "m-s2",
+              "text": "Après la consultation de l’automne dernier, la direction a décidé deux changements.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-summer",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s3",
+              "text": "À partir du lundi 3 juillet et jusqu’au vendredi 25 août, les bureaux ouvriront à 7 h 30 et fermeront à 16 h.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s4",
+              "text": "Ces horaires d’été concernent tous les services, sauf l’accueil, qui reste ouvert jusqu’à 18 h.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s5",
+              "text": "Pendant cette période, la cantine fermera à 13 h 30.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-remote",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s6",
+              "text": "Le télétravail sera possible deux jours par semaine à partir du 1er septembre.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s7",
+              "text": "Le mercredi reste un jour de présence pour tous.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s8",
+              "text": "Il est réservé aux salariés en CDI qui ont au moins six mois d’ancienneté.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s9",
+              "text": "Les demandes sont à envoyer à votre responsable avant le 30 juin.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-meeting",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s10",
+              "text": "Une réunion d’information aura lieu le jeudi 1er juin à 12 h en salle B.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s11",
+              "text": "Vous pourrez y poser toutes vos questions.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-sign",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s12",
+              "text": "Merci de votre attention.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s13",
+              "text": "Hélène Martin, directrice des ressources humaines",
+              "value": null
+            }
+          ]
+        }
+      ],
+      "highlights": [
+        {
+          "keywordId": "direction",
+          "segmentId": "m-s2",
+          "text": "direction"
+        },
+        {
+          "keywordId": "a-partir-de",
+          "segmentId": "m-s3",
+          "text": "À partir du"
+        },
+        {
+          "keywordId": "horaires",
+          "segmentId": "m-s4",
+          "text": "horaires"
+        },
+        {
+          "keywordId": "teletravail",
+          "segmentId": "m-s6",
+          "text": "télétravail"
+        },
+        {
+          "keywordId": "cdi",
+          "segmentId": "m-s8",
+          "text": "CDI"
+        },
+        {
+          "keywordId": "anciennete",
+          "segmentId": "m-s8",
+          "text": "ancienneté"
+        }
+      ]
+    },
+    {
+      "documentId": "exam",
+      "genre": "letter",
+      "title": "NOTE DE SERVICE",
+      "meta": [
+        "À : tout le personnel",
+        "Lyon, le 2 octobre"
+      ],
+      "parts": [
+        {
+          "partId": "x-works",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s1",
+              "text": "Objet : travaux sur le parking",
+              "value": null
+            },
+            {
+              "segmentId": "x-s2",
+              "text": "Du lundi 9 au vendredi 20 octobre, le parking de l’entreprise sera fermé pour travaux.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "x-options",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s3",
+              "text": "Pendant cette période, vous pourrez utiliser le parking de la mairie, à cinq minutes à pied.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s4",
+              "text": "Une navette gratuite partira de la gare toutes les vingt minutes, de 7 h à 9 h.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "x-bikes",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s5",
+              "text": "Les vélos pourront rester dans la cour.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s6",
+              "text": "Merci de votre compréhension. La direction",
+              "value": null
+            }
+          ]
+        }
+      ],
+      "highlights": []
+    }
+  ],
+  "steps": [
+    {
+      "id": "keywords",
+      "stage": "keywords",
+      "role": "exercise",
+      "label": {
+        "en": "Key words",
+        "fr": "Mots clés",
+        "de": "Schlüsselwörter"
+      },
+      "pages": [
+        {
+          "pageId": "keywords",
+          "estimatedDurationS": 50,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the key words of the text and their meaning.",
+            "fr": "Lisez les mots clés du texte et leur sens.",
+            "de": "Lies die Schlüsselwörter des Textes und ihre Bedeutung."
+          },
+          "items": [
+            {
+              "type": "reading_keywords",
+              "itemId": "keywords",
+              "keywordIds": [
+                "direction",
+                "a-partir-de",
+                "horaires",
+                "teletravail",
+                "cdi",
+                "anciennete"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "keyword-matching",
+          "estimatedDurationS": 55,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each key word with its meaning.",
+            "fr": "Associez chaque mot clé à son sens.",
+            "de": "Ordne jedem Schlüsselwort seine Bedeutung zu."
+          },
+          "items": [
+            {
+              "type": "reading_keyword_matching",
+              "itemId": "keyword-matching",
+              "pairs": [
+                {
+                  "keywordId": "direction",
+                  "answerExplanation": {
+                    "en": "la direction = the management.",
+                    "fr": "la direction : ceux qui dirigent.",
+                    "de": "la direction = die Geschäftsleitung."
+                  }
+                },
+                {
+                  "keywordId": "a-partir-de",
+                  "answerExplanation": {
+                    "en": "à partir de = from (a date) on.",
+                    "fr": "à partir de : depuis une date.",
+                    "de": "à partir de = ab."
+                  }
+                },
+                {
+                  "keywordId": "horaires",
+                  "answerExplanation": {
+                    "en": "les horaires = the working or opening hours.",
+                    "fr": "les horaires : les heures d’ouverture.",
+                    "de": "les horaires = die Arbeitszeiten."
+                  }
+                },
+                {
+                  "keywordId": "teletravail",
+                  "answerExplanation": {
+                    "en": "le télétravail = working from home.",
+                    "fr": "le télétravail : travailler de chez soi.",
+                    "de": "le télétravail = Homeoffice."
+                  }
+                },
+                {
+                  "keywordId": "cdi",
+                  "answerExplanation": {
+                    "en": "un CDI = a permanent contract.",
+                    "fr": "un CDI : un contrat sans date de fin.",
+                    "de": "un CDI = unbefristeter Vertrag."
+                  }
+                },
+                {
+                  "keywordId": "anciennete",
+                  "answerExplanation": {
+                    "en": "l’ancienneté = length of service.",
+                    "fr": "l’ancienneté : le temps passé dans l’entreprise.",
+                    "de": "l’ancienneté = Betriebszugehörigkeit."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skim",
+      "stage": "skim",
+      "role": "exercise",
+      "label": {
+        "en": "Skim",
+        "fr": "Survol",
+        "de": "Überfliegen"
+      },
+      "pages": [
+        {
+          "pageId": "skim",
+          "estimatedDurationS": 100,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Look over the document quickly. It blurs when the time is up; then answer the question.",
+            "fr": "Parcourez rapidement le document. Il se floute à la fin du temps ; répondez ensuite à la question.",
+            "de": "Überfliege das Dokument. Wenn die Zeit um ist, wird es unscharf; beantworte dann die Frage."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-skim",
+              "documentId": "main",
+              "view": "skim",
+              "skimSeconds": 75
+            },
+            {
+              "type": "reading_skim_choice",
+              "itemId": "skim-purpose",
+              "focus": "purpose",
+              "question": "Pourquoi la direction écrit-elle cette note ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Pour annoncer des changements d’organisation"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Pour annoncer la fermeture de l’entreprise"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Pour recruter de nouveaux salariés"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Pour inviter le personnel à une fête"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Objet : nouvelle organisation du travail – la direction a décidé deux changements.",
+                "fr": "Objet : nouvelle organisation du travail – la direction a décidé deux changements.",
+                "de": "Objet : nouvelle organisation du travail – la direction a décidé deux changements."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "detail",
+      "stage": "detail",
+      "role": "exercise",
+      "label": {
+        "en": "Detail",
+        "fr": "Détails",
+        "de": "Details"
+      },
+      "pages": [
+        {
+          "pageId": "detail",
+          "estimatedDurationS": 220,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the document carefully and answer the questions.",
+            "fr": "Lisez le document attentivement et répondez aux questions.",
+            "de": "Lies das Dokument genau und beantworte die Fragen."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-detail",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_short_answer",
+              "itemId": "q-close",
+              "question": "À quelle heure les bureaux fermeront-ils cet été ?",
+              "accepted": {
+                "answers": [
+                  "16 h",
+                  "à 16 h",
+                  "16h",
+                  "à 16h",
+                  "16 heures",
+                  "à 16 heures",
+                  "seize heures"
+                ]
+              },
+              "evidenceSegmentIds": [
+                "m-s3"
+              ],
+              "answerExplanation": {
+                "en": "Les bureaux ouvriront à 7 h 30 et fermeront à 16 h. 18 h is only the reception.",
+                "fr": "Les bureaux ouvriront à 7 h 30 et fermeront à 16 h. 18 h, c’est seulement l’accueil.",
+                "de": "Les bureaux ouvriront à 7 h 30 et fermeront à 16 h. 18 Uhr gilt nur für den Empfang."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-who",
+              "question": "Qui peut demander le télétravail ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Seulement le personnel de l’accueil"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Les salariés en CDI depuis au moins six mois"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Les nouveaux salariés en contrat court"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Tous les salariés"
+                }
+              ],
+              "answerOptionId": "o2",
+              "evidenceSegmentIds": [
+                "m-s8"
+              ],
+              "answerExplanation": {
+                "en": "Il est réservé aux salariés en CDI qui ont au moins six mois d’ancienneté.",
+                "fr": "Il est réservé aux salariés en CDI qui ont au moins six mois d’ancienneté.",
+                "de": "Il est réservé aux salariés en CDI qui ont au moins six mois d’ancienneté."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "q-reception",
+              "statement": "L’accueil suit aussi les nouveaux horaires d’été.",
+              "allowNotStated": true,
+              "answer": "false",
+              "evidenceSegmentIds": [
+                "m-s4"
+              ],
+              "answerExplanation": {
+                "en": "False: tous les services, sauf l’accueil, which stays open until 18 h.",
+                "fr": "Faux : tous les services, sauf l’accueil, qui reste ouvert jusqu’à 18 h.",
+                "de": "Falsch: tous les services, sauf l’accueil, der bis 18 Uhr offen bleibt."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "q-wednesday",
+              "statement": "On pourra télétravailler le mercredi.",
+              "allowNotStated": true,
+              "answer": "false",
+              "evidenceSegmentIds": [
+                "m-s7"
+              ],
+              "answerExplanation": {
+                "en": "False: le mercredi reste un jour de présence pour tous, everyone comes to the office.",
+                "fr": "Faux : le mercredi reste un jour de présence pour tous, tout le monde vient au bureau.",
+                "de": "Falsch: le mercredi reste un jour de présence pour tous, alle kommen ins Büro."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "structure",
+      "stage": "structure",
+      "role": "exercise",
+      "label": {
+        "en": "Structure",
+        "fr": "Structure",
+        "de": "Aufbau"
+      },
+      "pages": [
+        {
+          "pageId": "structure",
+          "estimatedDurationS": 80,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Put these dates from the memo in chronological order, from the first to the last.",
+            "fr": "Remettez ces dates de la note dans l’ordre chronologique, de la première à la dernière.",
+            "de": "Bring diese Termine der Mitteilung in zeitliche Reihenfolge, vom ersten bis zum letzten."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-structure",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_order",
+              "itemId": "order-dates",
+              "mode": "information",
+              "pieces": [
+                {
+                  "pieceId": "p4",
+                  "text": "La fin des horaires d’été",
+                  "partId": null
+                },
+                {
+                  "pieceId": "p2",
+                  "text": "La date limite des demandes de télétravail",
+                  "partId": null
+                },
+                {
+                  "pieceId": "p1",
+                  "text": "La réunion d’information",
+                  "partId": null
+                },
+                {
+                  "pieceId": "p5",
+                  "text": "Le début du télétravail",
+                  "partId": null
+                },
+                {
+                  "pieceId": "p3",
+                  "text": "Le début des horaires d’été",
+                  "partId": null
+                }
+              ],
+              "acceptedOrders": [
+                [
+                  "p1",
+                  "p2",
+                  "p3",
+                  "p4",
+                  "p5"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "1 June meeting, 30 June deadline, 3 July and 25 August summer hours, 1 September remote work. The memo gives them in another order.",
+                "fr": "1er juin réunion, 30 juin date limite, 3 juillet et 25 août horaires d’été, 1er septembre télétravail. La note les donne dans un autre ordre.",
+                "de": "1. Juni Treffen, 30. Juni Frist, 3. Juli und 25. August Sommerzeiten, 1. September Homeoffice. Die Mitteilung nennt sie in anderer Reihenfolge."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Final exam",
+        "fr": "Examen final",
+        "de": "Abschlussprüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-1",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Read the new document and answer the questions. No help this time.",
+            "fr": "Lisez le nouveau document et répondez aux questions. Cette fois, sans aide.",
+            "de": "Lies das neue Dokument und beantworte die Fragen. Diesmal ohne Hilfe."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-exam",
+              "documentId": "exam",
+              "view": "exam",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-what",
+              "question": "Qu’est-ce qui sera fermé ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "La cour"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Le parking de l’entreprise"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "La gare"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "La mairie"
+                }
+              ],
+              "answerOptionId": "o2",
+              "evidenceSegmentIds": [
+                "x-s2"
+              ],
+              "answerExplanation": {
+                "en": "Le parking de l’entreprise sera fermé pour travaux.",
+                "fr": "Le parking de l’entreprise sera fermé pour travaux.",
+                "de": "Le parking de l’entreprise sera fermé pour travaux."
+              }
+            },
+            {
+              "type": "reading_short_answer",
+              "itemId": "x-end",
+              "question": "Jusqu’à quel jour dureront les travaux ?",
+              "accepted": {
+                "answers": [
+                  "vendredi 20 octobre",
+                  "le vendredi 20 octobre",
+                  "le 20 octobre",
+                  "20 octobre",
+                  "jusqu’au vendredi 20 octobre",
+                  "jusqu’au 20 octobre"
+                ]
+              },
+              "evidenceSegmentIds": [
+                "x-s2"
+              ],
+              "answerExplanation": {
+                "en": "Du lundi 9 au vendredi 20 octobre.",
+                "fr": "Du lundi 9 au vendredi 20 octobre.",
+                "de": "Du lundi 9 au vendredi 20 octobre."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "x-shuttle",
+              "statement": "La navette coûte deux euros.",
+              "allowNotStated": true,
+              "answer": "false",
+              "evidenceSegmentIds": [
+                "x-s4"
+              ],
+              "answerExplanation": {
+                "en": "False: une navette gratuite, it is free.",
+                "fr": "Faux : une navette gratuite.",
+                "de": "Falsch: une navette gratuite, sie ist kostenlos."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-2",
+          "estimatedDurationS": 80,
+          "timeLimitS": 120,
+          "instructions": {
+            "en": "Read the new document and answer the questions. No help this time.",
+            "fr": "Lisez le nouveau document et répondez aux questions. Cette fois, sans aide.",
+            "de": "Lies das neue Dokument und beantworte die Fragen. Diesmal ohne Hilfe."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-exam-2",
+              "documentId": "exam",
+              "view": "exam",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-bike",
+              "question": "Où peut-on laisser son vélo ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Devant la mairie"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Au parking de la mairie"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "À la gare"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Dans la cour"
+                }
+              ],
+              "answerOptionId": "o4",
+              "evidenceSegmentIds": [
+                "x-s5"
+              ],
+              "answerExplanation": {
+                "en": "Les vélos pourront rester dans la cour.",
+                "fr": "Les vélos pourront rester dans la cour.",
+                "de": "Les vélos pourront rester dans la cour."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "x-town-hall",
+              "statement": "La mairie est fermée le week-end.",
+              "allowNotStated": true,
+              "answer": "not_stated",
+              "evidenceSegmentIds": [],
+              "answerExplanation": {
+                "en": "Not stated: the memo only says the town hall car park is five minutes away.",
+                "fr": "Pas dans le texte : la note dit seulement que le parking de la mairie est à cinq minutes.",
+                "de": "Steht nicht im Text: Die Mitteilung sagt nur, dass der Rathausparkplatz fünf Minuten entfernt ist."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

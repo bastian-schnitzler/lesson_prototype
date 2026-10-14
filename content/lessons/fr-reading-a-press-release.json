@@ -1,0 +1,892 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-reading-a-press-release",
+  "lang": "fr",
+  "level": "C1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Lire un communiqué de presse",
+  "objective": {
+    "en": "Read a company’s press release about closing a factory and spot what its phrases (reorganisation, adaptation, job protection plan) avoid saying.",
+    "fr": "Lire le communiqué d’une entreprise qui ferme une usine et repérer ce que les formules (réorganisation, adaptation, plan de sauvegarde de l’emploi) évitent de dire.",
+    "de": "Die Pressemitteilung eines Unternehmens über eine Werksschließung lesen und erkennen, was die Formulierungen (Reorganisation, Anpassung, Sozialplan) verschweigen."
+  },
+  "estimatedMinutes": 15,
+  "provenance": {
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "reading-content-v2",
+    "generatedAt": "2026-10-14T09:21:47.288Z",
+    "inputHashes": {
+      "outline": "60e9a84da50b322844b0a340043c5c2e9ff00592ac308582f60437a224320457",
+      "brief": "a668d6e56f6fa813d3e92f64c4ec3ba3c127b625e6bac309886cef56eaa57302"
+    }
+  },
+  "kind": "reading",
+  "theme": "daily_life",
+  "genre": "article",
+  "documents": [
+    {
+      "documentId": "main",
+      "genre": "article",
+      "title": "Groupe Valmont : un nouveau plan stratégique pour préparer l’avenir",
+      "meta": [
+        "COMMUNIQUÉ DE PRESSE",
+        "Lyon, le 18 novembre"
+      ],
+      "parts": [
+        {
+          "partId": "m-announce",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s1",
+              "text": "Le Groupe Valmont, acteur européen de l’électroménager, annonce aujourd’hui le lancement de son plan stratégique « Horizon 2030 ».",
+              "value": null
+            },
+            {
+              "segmentId": "m-s2",
+              "text": "Ce plan vise à adapter l’organisation industrielle du Groupe à un marché en profonde mutation et à garantir sa compétitivité à long terme.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s3",
+              "text": "Il s’appuie sur trois priorités : l’innovation, la simplification et l’excellence opérationnelle.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-context",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s4",
+              "text": "Depuis trois ans, la demande de petit électroménager recule en Europe, tandis que les coûts de l’énergie et des matières premières ont fortement augmenté.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s5",
+              "text": "La concurrence des fabricants asiatiques, présents sur l’entrée de gamme, s’est également intensifiée.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s6",
+              "text": "Dans ce contexte exigeant, le Groupe a enregistré en 2024 une baisse de 12 % de son chiffre d’affaires.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s7",
+              "text": "Malgré ces vents contraires, Valmont reste une entreprise solide, dont les fondamentaux sont sains.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-measures",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s8",
+              "text": "Le plan prévoit une réorganisation de l’outil de production autour de deux sites de référence, à Lyon et à Poznań.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s9",
+              "text": "Le site de Montbard, qui fabrique depuis 1971 les robots de cuisine de la marque, ne sera plus en mesure de répondre aux exigences de compétitivité du Groupe.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s10",
+              "text": "Son activité sera progressivement transférée vers ces deux pôles d’ici à la fin de l’année prochaine.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s11",
+              "text": "Cette évolution concerne 340 postes.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s12",
+              "text": "Un plan de sauvegarde de l’emploi sera présenté aux instances représentatives du personnel dans les prochaines semaines.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s13",
+              "text": "Parallèlement, Valmont investira 45 millions d’euros dans la modernisation du site lyonnais et dans son centre de recherche.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-support",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s14",
+              "text": "Valmont s’engage à accompagner chaque collaborateur concerné avec la plus grande attention.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s15",
+              "text": "Des propositions de mobilité interne seront faites en priorité, notamment sur les sites de Lyon et de Poznań.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s16",
+              "text": "Une cellule de reclassement, des formations et des mesures de départ volontaire complèteront ce dispositif.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s17",
+              "text": "Les salariés seront reçus individuellement par la direction des ressources humaines.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s18",
+              "text": "Le Groupe étudiera par ailleurs toute solution de reprise du site de Montbard par un acteur industriel.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s19",
+              "text": "Un dialogue social constructif et responsable sera engagé dès la semaine prochaine.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-quote",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s20",
+              "text": "« Ces décisions ont été difficiles à prendre », déclare Claire Fontanel, présidente du directoire.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s21",
+              "text": "« Elles sont pourtant indispensables pour assurer la pérennité de Valmont et préserver l’emploi industriel en Europe. »",
+              "value": null
+            },
+            {
+              "segmentId": "m-s22",
+              "text": "« Nous mesurons pleinement l’impact de ce projet sur nos équipes et sur le territoire de Montbard. »",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-about",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s23",
+              "text": "À propos du Groupe Valmont",
+              "value": null
+            },
+            {
+              "segmentId": "m-s24",
+              "text": "Fondé en 1952, le Groupe Valmont conçoit et fabrique des appareils de cuisine et d’entretien vendus dans 30 pays.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s25",
+              "text": "Il emploie 4 200 personnes et a réalisé en 2024 un chiffre d’affaires de 780 millions d’euros.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s26",
+              "text": "Contact presse : Julien Masson – service de presse – 04 72 00 00 00",
+              "value": null
+            }
+          ]
+        }
+      ],
+      "highlights": [
+        {
+          "keywordId": "reorganisation",
+          "segmentId": "m-s8",
+          "text": "réorganisation"
+        },
+        {
+          "keywordId": "transferer",
+          "segmentId": "m-s10",
+          "text": "transférée"
+        },
+        {
+          "keywordId": "pse",
+          "segmentId": "m-s12",
+          "text": "plan de sauvegarde de l’emploi"
+        },
+        {
+          "keywordId": "reclassement",
+          "segmentId": "m-s16",
+          "text": "reclassement"
+        },
+        {
+          "keywordId": "reprise",
+          "segmentId": "m-s18",
+          "text": "reprise"
+        },
+        {
+          "keywordId": "perennite",
+          "segmentId": "m-s21",
+          "text": "pérennité"
+        }
+      ]
+    },
+    {
+      "documentId": "exam",
+      "genre": "article",
+      "title": "Crédit Alpin : un réseau d’agences adapté aux nouveaux usages",
+      "meta": [
+        "COMMUNIQUÉ DE PRESSE",
+        "Grenoble, le 3 février"
+      ],
+      "parts": [
+        {
+          "partId": "x-announce",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s1",
+              "text": "Le Crédit Alpin annonce l’évolution de son réseau afin de mieux répondre aux attentes de ses clients.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s2",
+              "text": "Aujourd’hui, huit opérations sur dix sont réalisées en ligne.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s3",
+              "text": "Cette transformation s’accompagne d’un renforcement des services à distance, disponibles six jours sur sept.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "x-measures",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s4",
+              "text": "Dans ce cadre, 14 agences rurales seront regroupées avec des agences voisines d’ici à l’été.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s5",
+              "text": "Les clients concernés conserveront leur conseiller et leur numéro de compte.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s6",
+              "text": "Des distributeurs automatiques resteront disponibles dans la plupart des communes.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s7",
+              "text": "Un conseiller mobile se rendra une fois par semaine dans les mairies des communes concernées, sur rendez-vous.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s8",
+              "text": "Pour les clients âgés, un accompagnement personnalisé aux outils numériques sera proposé gratuitement.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "x-staff",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s9",
+              "text": "Aucun départ contraint n’est envisagé : les 38 collaborateurs des agences regroupées rejoindront les agences voisines ou le nouveau centre de relation client de Grenoble.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s10",
+              "text": "Les horaires des agences d’accueil seront élargis le samedi matin.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "x-quote",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s11",
+              "text": "« Notre ambition est de rester une banque de proximité, présente partout où nos clients en ont besoin », souligne Paul Rivière, directeur général.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s12",
+              "text": "« La relation humaine reste au cœur de notre modèle. »",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "x-about",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s13",
+              "text": "Banque coopérative fondée en 1898, le Crédit Alpin compte 410 000 clients et 1 900 salariés.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s14",
+              "text": "Contact presse : service communication – 04 76 00 00 00",
+              "value": null
+            }
+          ]
+        }
+      ],
+      "highlights": []
+    }
+  ],
+  "steps": [
+    {
+      "id": "keywords",
+      "stage": "keywords",
+      "role": "exercise",
+      "label": {
+        "en": "Key words",
+        "fr": "Mots clés",
+        "de": "Schlüsselwörter"
+      },
+      "pages": [
+        {
+          "pageId": "keywords",
+          "estimatedDurationS": 50,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the key words of the text and their meaning.",
+            "fr": "Lisez les mots clés du texte et leur sens.",
+            "de": "Lies die Schlüsselwörter des Textes und ihre Bedeutung."
+          },
+          "items": [
+            {
+              "type": "reading_keywords",
+              "itemId": "keywords",
+              "keywordIds": [
+                "reorganisation",
+                "transferer",
+                "pse",
+                "reclassement",
+                "reprise",
+                "perennite"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "keyword-matching",
+          "estimatedDurationS": 55,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each key word with its meaning.",
+            "fr": "Associez chaque mot clé à son sens.",
+            "de": "Ordne jedem Schlüsselwort seine Bedeutung zu."
+          },
+          "items": [
+            {
+              "type": "reading_keyword_matching",
+              "itemId": "keyword-matching",
+              "pairs": [
+                {
+                  "keywordId": "reorganisation",
+                  "answerExplanation": {
+                    "en": "une réorganisation = a restructuring.",
+                    "fr": "une réorganisation : changer l’organisation.",
+                    "de": "une réorganisation = Umstrukturierung."
+                  }
+                },
+                {
+                  "keywordId": "transferer",
+                  "answerExplanation": {
+                    "en": "transférer = to move elsewhere.",
+                    "fr": "transférer : déplacer ailleurs.",
+                    "de": "transférer = verlagern."
+                  }
+                },
+                {
+                  "keywordId": "pse",
+                  "answerExplanation": {
+                    "en": "un plan de sauvegarde de l’emploi = a redundancy plan.",
+                    "fr": "un PSE : le plan qui accompagne des licenciements.",
+                    "de": "un plan de sauvegarde de l’emploi = Sozialplan."
+                  }
+                },
+                {
+                  "keywordId": "reclassement",
+                  "answerExplanation": {
+                    "en": "le reclassement = outplacement.",
+                    "fr": "le reclassement : aider à retrouver un emploi.",
+                    "de": "le reclassement = Vermittlung in neue Stellen."
+                  }
+                },
+                {
+                  "keywordId": "reprise",
+                  "answerExplanation": {
+                    "en": "la reprise = the takeover (of a site).",
+                    "fr": "la reprise : le rachat du site.",
+                    "de": "la reprise = Übernahme."
+                  }
+                },
+                {
+                  "keywordId": "perennite",
+                  "answerExplanation": {
+                    "en": "la pérennité = long-term survival.",
+                    "fr": "la pérennité : le fait de durer.",
+                    "de": "la pérennité = Fortbestand."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skim",
+      "stage": "skim",
+      "role": "exercise",
+      "label": {
+        "en": "Skim",
+        "fr": "Survol",
+        "de": "Überfliegen"
+      },
+      "pages": [
+        {
+          "pageId": "skim",
+          "estimatedDurationS": 150,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Look over the document quickly. It blurs when the time is up; then answer the question.",
+            "fr": "Parcourez rapidement le document. Il se floute à la fin du temps ; répondez ensuite à la question.",
+            "de": "Überfliege das Dokument. Wenn die Zeit um ist, wird es unscharf; beantworte dann die Frage."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-skim",
+              "documentId": "main",
+              "view": "skim",
+              "skimSeconds": 120
+            },
+            {
+              "type": "reading_skim_choice",
+              "itemId": "skim-author",
+              "focus": "author",
+              "question": "Qui a écrit ce texte ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Un journaliste qui enquête sur l’usine"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Les syndicats de Montbard"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Le maire de Montbard"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "L’entreprise elle-même, pour la presse"
+                }
+              ],
+              "answerOptionId": "o4",
+              "answerExplanation": {
+                "en": "COMMUNIQUÉ DE PRESSE, a quote from the chair, À propos du Groupe and a press contact: Valmont writes about itself.",
+                "fr": "COMMUNIQUÉ DE PRESSE, une citation de la présidente, À propos du Groupe et un contact presse : Valmont parle de lui-même.",
+                "de": "COMMUNIQUÉ DE PRESSE, ein Zitat der Vorsitzenden, À propos du Groupe und ein Pressekontakt: Valmont schreibt über sich selbst."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "detail",
+      "stage": "detail",
+      "role": "exercise",
+      "label": {
+        "en": "Detail",
+        "fr": "Détails",
+        "de": "Details"
+      },
+      "pages": [
+        {
+          "pageId": "detail",
+          "estimatedDurationS": 260,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the document carefully and answer the questions.",
+            "fr": "Lisez le document attentivement et répondez aux questions.",
+            "de": "Lies das Dokument genau und beantworte die Fragen."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-detail",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_short_answer",
+              "itemId": "q-jobs",
+              "question": "Combien d’emplois le plan concerne-t-il ?",
+              "accepted": {
+                "answers": [
+                  "340",
+                  "340 postes",
+                  "340 emplois",
+                  "trois cent quarante",
+                  "340 salariés"
+                ]
+              },
+              "evidenceSegmentIds": [
+                "m-s11"
+              ],
+              "answerExplanation": {
+                "en": "Cette évolution concerne 340 postes.",
+                "fr": "Cette évolution concerne 340 postes.",
+                "de": "Cette évolution concerne 340 postes."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-montbard",
+              "question": "Que va-t-il arriver au site de Montbard ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Il va être modernisé avec 45 millions d’euros."
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Il va embaucher 340 personnes."
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Il va fermer : sa production part à Lyon et à Poznań."
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Il va devenir un centre de recherche."
+                }
+              ],
+              "answerOptionId": "o3",
+              "evidenceSegmentIds": [
+                "m-s9",
+                "m-s10"
+              ],
+              "answerExplanation": {
+                "en": "Ne sera plus en mesure… and son activité sera transférée: the site loses its whole activity. The 45 million go to Lyon.",
+                "fr": "Ne sera plus en mesure… et son activité sera transférée : le site perd toute son activité. Les 45 millions vont à Lyon.",
+                "de": "Ne sera plus en mesure… und son activité sera transférée: Das Werk verliert seine ganze Tätigkeit. Die 45 Millionen gehen nach Lyon."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-euphemism",
+              "question": "Que veut dire en réalité « Cette évolution concerne 340 postes » ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "340 salariés vont changer de bureau."
+                },
+                {
+                  "optionId": "o2",
+                  "text": "340 personnes vont suivre une formation."
+                },
+                {
+                  "optionId": "o3",
+                  "text": "340 postes vont être créés."
+                },
+                {
+                  "optionId": "o4",
+                  "text": "340 emplois vont être supprimés."
+                }
+              ],
+              "answerOptionId": "o4",
+              "evidenceSegmentIds": [
+                "m-s11",
+                "m-s12"
+              ],
+              "answerExplanation": {
+                "en": "Évolution is a euphemism: the next sentence announces a plan de sauvegarde de l’emploi, the plan that goes with collective dismissals.",
+                "fr": "Évolution est un euphémisme : la phrase suivante annonce un plan de sauvegarde de l’emploi, qui accompagne des licenciements collectifs.",
+                "de": "Évolution ist ein Euphemismus: Der nächste Satz kündigt einen plan de sauvegarde de l’emploi an, der Massenentlassungen begleitet."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "q-closure",
+              "statement": "Le communiqué emploie le mot « fermeture ».",
+              "allowNotStated": true,
+              "answer": "false",
+              "evidenceSegmentIds": [
+                "m-s10"
+              ],
+              "answerExplanation": {
+                "en": "False: the release never says fermeture or licenciement; it says son activité sera transférée.",
+                "fr": "Faux : le communiqué ne dit jamais fermeture ni licenciement ; il dit son activité sera transférée.",
+                "de": "Falsch: Die Mitteilung sagt nie fermeture oder licenciement, sondern son activité sera transférée."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "structure",
+      "stage": "structure",
+      "role": "exercise",
+      "label": {
+        "en": "Structure",
+        "fr": "Structure",
+        "de": "Aufbau"
+      },
+      "pages": [
+        {
+          "pageId": "structure",
+          "estimatedDurationS": 105,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Without the text: put the parts of the press release back in order.",
+            "fr": "Sans le texte : remettez les parties du communiqué dans l’ordre.",
+            "de": "Ohne den Text: Bring die Teile der Pressemitteilung in die richtige Reihenfolge."
+          },
+          "items": [
+            {
+              "type": "reading_order",
+              "itemId": "release-parts",
+              "mode": "parts",
+              "pieces": [
+                {
+                  "pieceId": "p6",
+                  "text": "La présentation de l’entreprise et le contact",
+                  "partId": "m-about"
+                },
+                {
+                  "pieceId": "p5",
+                  "text": "La parole de la présidente",
+                  "partId": "m-quote"
+                },
+                {
+                  "pieceId": "p1",
+                  "text": "L’annonce d’un plan stratégique",
+                  "partId": "m-announce"
+                },
+                {
+                  "pieceId": "p4",
+                  "text": "L’accompagnement des salariés",
+                  "partId": "m-support"
+                },
+                {
+                  "pieceId": "p2",
+                  "text": "Un marché difficile",
+                  "partId": "m-context"
+                },
+                {
+                  "pieceId": "p3",
+                  "text": "Ce que le plan change concrètement",
+                  "partId": "m-measures"
+                }
+              ],
+              "acceptedOrders": [
+                [
+                  "p1",
+                  "p2",
+                  "p3",
+                  "p4",
+                  "p5",
+                  "p6"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "A press release opens with the positive announcement, justifies it with the context, gives the measures (the bad news in the middle), softens them with support, adds a quote and ends with the boilerplate.",
+                "fr": "Un communiqué ouvre sur l’annonce positive, la justifie par le contexte, donne les mesures (la mauvaise nouvelle au milieu), les adoucit par l’accompagnement, ajoute une citation et finit par la présentation.",
+                "de": "Eine Pressemitteilung beginnt mit der positiven Ankündigung, begründet sie mit dem Kontext, nennt die Maßnahmen (die schlechte Nachricht in der Mitte), mildert sie durch Begleitung, fügt ein Zitat an und endet mit dem Profil."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Final exam",
+        "fr": "Examen final",
+        "de": "Abschlussprüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-1",
+          "estimatedDurationS": 150,
+          "timeLimitS": 225,
+          "instructions": {
+            "en": "Read the new document and answer the questions. No help this time.",
+            "fr": "Lisez le nouveau document et répondez aux questions. Cette fois, sans aide.",
+            "de": "Lies das neue Dokument und beantworte die Fragen. Diesmal ohne Hilfe."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-exam",
+              "documentId": "exam",
+              "view": "exam",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-real",
+              "question": "Que signifie concrètement « 14 agences rurales seront regroupées » ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "14 agences vont changer de nom."
+                },
+                {
+                  "optionId": "o2",
+                  "text": "14 nouvelles agences vont ouvrir."
+                },
+                {
+                  "optionId": "o3",
+                  "text": "14 agences de village vont fermer."
+                },
+                {
+                  "optionId": "o4",
+                  "text": "14 agences vont ouvrir le samedi."
+                }
+              ],
+              "answerOptionId": "o3",
+              "evidenceSegmentIds": [
+                "x-s4"
+              ],
+              "answerExplanation": {
+                "en": "Regroupées avec des agences voisines: the village branches disappear into the neighbouring ones.",
+                "fr": "Regroupées avec des agences voisines : les agences de village disparaissent dans les agences voisines.",
+                "de": "Regroupées avec des agences voisines: Die Dorffilialen gehen in den Nachbarfilialen auf."
+              }
+            },
+            {
+              "type": "reading_short_answer",
+              "itemId": "x-staff",
+              "question": "Combien de collaborateurs travaillent dans les agences regroupées ?",
+              "accepted": {
+                "answers": [
+                  "38",
+                  "38 collaborateurs",
+                  "trente-huit",
+                  "38 salariés"
+                ]
+              },
+              "evidenceSegmentIds": [
+                "x-s9"
+              ],
+              "answerExplanation": {
+                "en": "Les 38 collaborateurs des agences regroupées.",
+                "fr": "Les 38 collaborateurs des agences regroupées.",
+                "de": "Les 38 collaborateurs des agences regroupées."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "x-account",
+              "statement": "Les clients concernés devront changer de numéro de compte.",
+              "allowNotStated": true,
+              "answer": "false",
+              "evidenceSegmentIds": [
+                "x-s5"
+              ],
+              "answerExplanation": {
+                "en": "False: ils conserveront leur conseiller et leur numéro de compte.",
+                "fr": "Faux : ils conserveront leur conseiller et leur numéro de compte.",
+                "de": "Falsch: ils conserveront leur conseiller et leur numéro de compte."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-2",
+          "estimatedDurationS": 100,
+          "timeLimitS": 150,
+          "instructions": {
+            "en": "Read the new document and answer the questions. No help this time.",
+            "fr": "Lisez le nouveau document et répondez aux questions. Cette fois, sans aide.",
+            "de": "Lies das neue Dokument und beantworte die Fragen. Diesmal ohne Hilfe."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-exam-2",
+              "documentId": "exam",
+              "view": "exam",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-mobile",
+              "question": "Que propose la banque dans les communes concernées ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Un bus bancaire tous les jours"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Une nouvelle agence"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Rien du tout"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Un conseiller mobile une fois par semaine en mairie"
+                }
+              ],
+              "answerOptionId": "o4",
+              "evidenceSegmentIds": [
+                "x-s7"
+              ],
+              "answerExplanation": {
+                "en": "Un conseiller mobile se rendra une fois par semaine dans les mairies, sur rendez-vous.",
+                "fr": "Un conseiller mobile se rendra une fois par semaine dans les mairies, sur rendez-vous.",
+                "de": "Un conseiller mobile se rendra une fois par semaine dans les mairies, sur rendez-vous."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "x-profit",
+              "statement": "Le communiqué indique le bénéfice annuel de la banque.",
+              "allowNotStated": true,
+              "answer": "not_stated",
+              "evidenceSegmentIds": [],
+              "answerExplanation": {
+                "en": "Not stated: it gives the number of customers and employees, not the profit.",
+                "fr": "Pas dans le texte : il donne le nombre de clients et de salariés, pas le bénéfice.",
+                "de": "Steht nicht im Text: Kunden- und Mitarbeiterzahl stehen da, der Gewinn nicht."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

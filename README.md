@@ -1,6 +1,6 @@
 # Lesson prototype
 
-React prototype for vocabulary and grammar lessons generated offline from the course outlines in `content/outlines/`. The specification is [docs/SPEC.md](docs/SPEC.md); the backlog is [docs/ISSUES.md](docs/ISSUES.md).
+React prototype for vocabulary, grammar and reading lessons generated offline from the course outlines in `content/outlines/`. The specification is [docs/SPEC.md](docs/SPEC.md); reading lessons are specified in [docs/reading-lessons.md](docs/reading-lessons.md); the backlog is [docs/ISSUES.md](docs/ISSUES.md).
 
 All workflow tasks run through `make`:
 
@@ -36,3 +36,5 @@ Requests use the [Gemini generateContent structured-output API](https://ai.googl
 Parallel calls for one ID share work within a process. A per-ID filesystem lock rejects a second process. If a process crashes, remove its `content/briefs/<id>.json.lock/` only after confirming no generator is running, then retry. Temporary files and locks are ignored by Git and never referenced by the build.
 
 The P1-08 review batch contains the first ten fr/A1 vocabulary lessons and first ten grammar lessons. The remaining eighteen lesson files were authored directly by Codex without running the offline generator or calling Gemini; the existing two samples are preserved. `make sample-lessons` validates this curated batch, including current outline/brief hashes, without model calls or file writes. Review each lesson’s Content section with independent mother-tongue and interface-language settings. It presents all pages and answers without starting an attempt or a countdown. Raw JSON remains available for every locale. Content approval is pending; do not expand the course until the sample review is accepted.
+
+Reading lessons (sixteen fr lessons, A1–C2) are hand-authored as compact definitions in `authoring/reading/<id>.ts`; `make author-reading ID=<id>` (or `ALL=1`, `DRY_RUN=1`) builds and validates their brief and content files without model calls. `make generate ID=<reading-id>` uses the reading prompts `reading-brief-v2` / `reading-content-v2`. The fr A2–C2 outlines were copied verbatim from ft_transcendence (`content/outlines/`).

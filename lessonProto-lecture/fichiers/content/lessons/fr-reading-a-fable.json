@@ -1,0 +1,1032 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-reading-a-fable",
+  "lang": "fr",
+  "level": "B2",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Lire une fable de La Fontaine",
+  "objective": {
+    "en": "Read a fable by La Fontaine, understand old words from the context, summarise the story and restate the moral in today’s French.",
+    "fr": "Lire une fable de La Fontaine, comprendre les mots anciens grâce au contexte, résumer l’histoire et reformuler la morale en français d’aujourd’hui.",
+    "de": "Eine Fabel von La Fontaine lesen, alte Wörter aus dem Zusammenhang verstehen, die Geschichte zusammenfassen und die Moral in heutigem Französisch ausdrücken."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "reading-content-v2",
+    "generatedAt": "2026-10-14T09:17:22.617Z",
+    "inputHashes": {
+      "outline": "fb69c147b447cce915888b336d5a6cfea825eed882b3873a90088064305bc925",
+      "brief": "ee2f8431561a4bf5d5af21161d6ebe7799e084a3a0951ca75d47da11b1f1e300"
+    }
+  },
+  "kind": "reading",
+  "theme": "free_time",
+  "genre": "poem",
+  "documents": [
+    {
+      "documentId": "main",
+      "genre": "poem",
+      "title": "Le Loup et le Chien",
+      "meta": [
+        "Jean de La Fontaine, Fables, livre I, 5 (1668)"
+      ],
+      "parts": [
+        {
+          "partId": "m-portrait",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s1",
+              "text": "Un Loup n’avait que les os et la peau,",
+              "value": null
+            },
+            {
+              "segmentId": "m-s2",
+              "text": "Tant les chiens faisaient bonne garde.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s3",
+              "text": "Ce Loup rencontre un Dogue aussi puissant que beau,",
+              "value": null
+            },
+            {
+              "segmentId": "m-s4",
+              "text": "Gras, poli, qui s’était fourvoyé par mégarde.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-caution",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s5",
+              "text": "L’attaquer, le mettre en quartiers,",
+              "value": null
+            },
+            {
+              "segmentId": "m-s6",
+              "text": "Sire Loup l’eût fait volontiers ;",
+              "value": null
+            },
+            {
+              "segmentId": "m-s7",
+              "text": "Mais il fallait livrer bataille,",
+              "value": null
+            },
+            {
+              "segmentId": "m-s8",
+              "text": "Et le Mâtin était de taille",
+              "value": null
+            },
+            {
+              "segmentId": "m-s9",
+              "text": "À se défendre hardiment.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s10",
+              "text": "Le Loup donc l’aborde humblement,",
+              "value": null
+            },
+            {
+              "segmentId": "m-s11",
+              "text": "Entre en propos, et lui fait compliment",
+              "value": null
+            },
+            {
+              "segmentId": "m-s12",
+              "text": "Sur son embonpoint, qu’il admire.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-offer",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s13",
+              "text": "« Il ne tiendra qu’à vous, beau sire,",
+              "value": null
+            },
+            {
+              "segmentId": "m-s14",
+              "text": "D’être aussi gras que moi, lui repartit le Chien.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s15",
+              "text": "Quittez les bois, vous ferez bien :",
+              "value": null
+            },
+            {
+              "segmentId": "m-s16",
+              "text": "Vos pareils y sont misérables,",
+              "value": null
+            },
+            {
+              "segmentId": "m-s17",
+              "text": "Cancres, hères, et pauvres diables,",
+              "value": null
+            },
+            {
+              "segmentId": "m-s18",
+              "text": "Dont la condition est de mourir de faim.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s19",
+              "text": "Car quoi ? rien d’assuré : point de franche lippée ;",
+              "value": null
+            },
+            {
+              "segmentId": "m-s20",
+              "text": "Tout à la pointe de l’épée.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s21",
+              "text": "Suivez-moi : vous aurez un bien meilleur destin. »",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-bargain",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s22",
+              "text": "Le Loup reprit : « Que me faudra-t-il faire ?",
+              "value": null
+            },
+            {
+              "segmentId": "m-s23",
+              "text": "— Presque rien, dit le Chien : donner la chasse aux gens",
+              "value": null
+            },
+            {
+              "segmentId": "m-s24",
+              "text": "Portants bâtons, et mendiants ;",
+              "value": null
+            },
+            {
+              "segmentId": "m-s25",
+              "text": "Flatter ceux du logis, à son maître complaire :",
+              "value": null
+            },
+            {
+              "segmentId": "m-s26",
+              "text": "Moyennant quoi votre salaire",
+              "value": null
+            },
+            {
+              "segmentId": "m-s27",
+              "text": "Sera force reliefs de toutes les façons,",
+              "value": null
+            },
+            {
+              "segmentId": "m-s28",
+              "text": "Os de poulets, os de pigeons,",
+              "value": null
+            },
+            {
+              "segmentId": "m-s29",
+              "text": "Sans parler de mainte caresse. »",
+              "value": null
+            },
+            {
+              "segmentId": "m-s30",
+              "text": "Le Loup déjà se forge une félicité",
+              "value": null
+            },
+            {
+              "segmentId": "m-s31",
+              "text": "Qui le fait pleurer de tendresse.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-collar",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s32",
+              "text": "Chemin faisant, il vit le col du Chien pelé.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s33",
+              "text": "« Qu’est-ce là ? lui dit-il. — Rien. — Quoi ? rien ? — Peu de chose.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s34",
+              "text": "— Mais encor ? — Le collier dont je suis attaché",
+              "value": null
+            },
+            {
+              "segmentId": "m-s35",
+              "text": "De ce que vous voyez est peut-être la cause.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s36",
+              "text": "— Attaché ? dit le Loup : vous ne courez donc pas",
+              "value": null
+            },
+            {
+              "segmentId": "m-s37",
+              "text": "Où vous voulez ? — Pas toujours ; mais qu’importe ?",
+              "value": null
+            },
+            {
+              "segmentId": "m-s38",
+              "text": "— Il importe si bien, que de tous vos repas",
+              "value": null
+            },
+            {
+              "segmentId": "m-s39",
+              "text": "Je ne veux en aucune sorte,",
+              "value": null
+            },
+            {
+              "segmentId": "m-s40",
+              "text": "Et ne voudrais pas même à ce prix un trésor. »",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-flight",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s41",
+              "text": "Cela dit, maître Loup s’enfuit, et court encor.",
+              "value": null
+            }
+          ]
+        }
+      ],
+      "highlights": [
+        {
+          "keywordId": "embonpoint",
+          "segmentId": "m-s12",
+          "text": "embonpoint"
+        },
+        {
+          "keywordId": "logis",
+          "segmentId": "m-s25",
+          "text": "logis"
+        },
+        {
+          "keywordId": "maitre",
+          "segmentId": "m-s41",
+          "text": "maître"
+        },
+        {
+          "keywordId": "col",
+          "segmentId": "m-s32",
+          "text": "col"
+        },
+        {
+          "keywordId": "collier",
+          "segmentId": "m-s34",
+          "text": "collier"
+        },
+        {
+          "keywordId": "s-enfuir",
+          "segmentId": "m-s41",
+          "text": "s’enfuit"
+        }
+      ]
+    },
+    {
+      "documentId": "exam",
+      "genre": "poem",
+      "title": "Le Corbeau et le Renard",
+      "meta": [
+        "Jean de La Fontaine, Fables, livre I, 2 (1668)"
+      ],
+      "parts": [
+        {
+          "partId": "x-scene",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s1",
+              "text": "Maître Corbeau, sur un arbre perché,",
+              "value": null
+            },
+            {
+              "segmentId": "x-s2",
+              "text": "Tenait en son bec un fromage.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s3",
+              "text": "Maître Renard, par l’odeur alléché,",
+              "value": null
+            },
+            {
+              "segmentId": "x-s4",
+              "text": "Lui tint à peu près ce langage :",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "x-flattery",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s5",
+              "text": "« Hé ! bonjour, Monsieur du Corbeau.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s6",
+              "text": "Que vous êtes joli ! que vous me semblez beau !",
+              "value": null
+            },
+            {
+              "segmentId": "x-s7",
+              "text": "Sans mentir, si votre ramage",
+              "value": null
+            },
+            {
+              "segmentId": "x-s8",
+              "text": "Se rapporte à votre plumage,",
+              "value": null
+            },
+            {
+              "segmentId": "x-s9",
+              "text": "Vous êtes le Phénix des hôtes de ces bois. »",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "x-fall",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s10",
+              "text": "À ces mots le Corbeau ne se sent pas de joie ;",
+              "value": null
+            },
+            {
+              "segmentId": "x-s11",
+              "text": "Et pour montrer sa belle voix,",
+              "value": null
+            },
+            {
+              "segmentId": "x-s12",
+              "text": "Il ouvre un large bec, laisse tomber sa proie.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "x-lesson",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s13",
+              "text": "Le Renard s’en saisit, et dit : « Mon bon Monsieur,",
+              "value": null
+            },
+            {
+              "segmentId": "x-s14",
+              "text": "Apprenez que tout flatteur",
+              "value": null
+            },
+            {
+              "segmentId": "x-s15",
+              "text": "Vit aux dépens de celui qui l’écoute :",
+              "value": null
+            },
+            {
+              "segmentId": "x-s16",
+              "text": "Cette leçon vaut bien un fromage, sans doute. »",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "x-shame",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s17",
+              "text": "Le Corbeau, honteux et confus,",
+              "value": null
+            },
+            {
+              "segmentId": "x-s18",
+              "text": "Jura, mais un peu tard, qu’on ne l’y prendrait plus.",
+              "value": null
+            }
+          ]
+        }
+      ],
+      "highlights": []
+    }
+  ],
+  "steps": [
+    {
+      "id": "keywords",
+      "stage": "keywords",
+      "role": "exercise",
+      "label": {
+        "en": "Key words",
+        "fr": "Mots clés",
+        "de": "Schlüsselwörter"
+      },
+      "pages": [
+        {
+          "pageId": "keywords",
+          "estimatedDurationS": 50,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the key words of the text and their meaning.",
+            "fr": "Lisez les mots clés du texte et leur sens.",
+            "de": "Lies die Schlüsselwörter des Textes und ihre Bedeutung."
+          },
+          "items": [
+            {
+              "type": "reading_keywords",
+              "itemId": "keywords",
+              "keywordIds": [
+                "embonpoint",
+                "logis",
+                "maitre",
+                "col",
+                "collier",
+                "s-enfuir"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "keyword-matching",
+          "estimatedDurationS": 55,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each key word with its meaning.",
+            "fr": "Associez chaque mot clé à son sens.",
+            "de": "Ordne jedem Schlüsselwort seine Bedeutung zu."
+          },
+          "items": [
+            {
+              "type": "reading_keyword_matching",
+              "itemId": "keyword-matching",
+              "pairs": [
+                {
+                  "keywordId": "embonpoint",
+                  "answerExplanation": {
+                    "en": "l’embonpoint = plumpness, being well fed.",
+                    "fr": "l’embonpoint : le fait d’être bien gras.",
+                    "de": "l’embonpoint = Wohlgenährtheit."
+                  }
+                },
+                {
+                  "keywordId": "logis",
+                  "answerExplanation": {
+                    "en": "le logis = the house (old word).",
+                    "fr": "le logis : la maison.",
+                    "de": "le logis = das Haus."
+                  }
+                },
+                {
+                  "keywordId": "maitre",
+                  "answerExplanation": {
+                    "en": "maître = master (owner, or a mock title).",
+                    "fr": "maître : le propriétaire, ou un titre pour rire.",
+                    "de": "maître = Herr (Besitzer oder Spaßtitel)."
+                  }
+                },
+                {
+                  "keywordId": "col",
+                  "answerExplanation": {
+                    "en": "le col = the neck (old word).",
+                    "fr": "le col : le cou.",
+                    "de": "le col = der Hals."
+                  }
+                },
+                {
+                  "keywordId": "collier",
+                  "answerExplanation": {
+                    "en": "le collier = the dog collar.",
+                    "fr": "le collier : il tient le chien attaché.",
+                    "de": "le collier = das Halsband."
+                  }
+                },
+                {
+                  "keywordId": "s-enfuir",
+                  "answerExplanation": {
+                    "en": "s’enfuir = to run away.",
+                    "fr": "s’enfuir : partir vite.",
+                    "de": "s’enfuir = fliehen."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skim",
+      "stage": "skim",
+      "role": "exercise",
+      "label": {
+        "en": "Skim",
+        "fr": "Survol",
+        "de": "Überfliegen"
+      },
+      "pages": [
+        {
+          "pageId": "skim",
+          "estimatedDurationS": 115,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Look over the document quickly. It blurs when the time is up; then answer the question.",
+            "fr": "Parcourez rapidement le document. Il se floute à la fin du temps ; répondez ensuite à la question.",
+            "de": "Überfliege das Dokument. Wenn die Zeit um ist, wird es unscharf; beantworte dann die Frage."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-skim",
+              "documentId": "main",
+              "view": "skim",
+              "skimSeconds": 90
+            },
+            {
+              "type": "reading_skim_choice",
+              "itemId": "skim-genre",
+              "focus": "genre",
+              "question": "Quel genre de texte est-ce ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Un article de journal"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Un conte pour enfants en prose"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Une fable en vers"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "La lettre d’un chasseur"
+                }
+              ],
+              "answerOptionId": "o3",
+              "answerExplanation": {
+                "en": "Short lines that rhyme, animals that speak, La Fontaine and Fables in the source: a fable in verse.",
+                "fr": "Des lignes courtes qui riment, des animaux qui parlent, La Fontaine et Fables dans la source : une fable en vers.",
+                "de": "Kurze Reimzeilen, sprechende Tiere, La Fontaine und Fables in der Quelle: eine Versfabel."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "detail",
+      "stage": "detail",
+      "role": "exercise",
+      "label": {
+        "en": "Detail",
+        "fr": "Détails",
+        "de": "Details"
+      },
+      "pages": [
+        {
+          "pageId": "detail",
+          "estimatedDurationS": 240,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the document carefully and answer the questions.",
+            "fr": "Lisez le document attentivement et répondez aux questions.",
+            "de": "Lies das Dokument genau und beantworte die Fragen."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-detail",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-attack",
+              "question": "Pourquoi le Loup n’attaque-t-il pas le Chien ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Le Chien est assez fort pour se défendre."
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Le Chien est son ami."
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Le Loup n’a pas faim."
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Le Loup a peur du maître."
+                }
+              ],
+              "answerOptionId": "o1",
+              "evidenceSegmentIds": [
+                "m-s7",
+                "m-s8",
+                "m-s9"
+              ],
+              "answerExplanation": {
+                "en": "Il fallait livrer bataille, et le Mâtin était de taille à se défendre: the dog (mâtin) was strong enough to fight back.",
+                "fr": "Il fallait livrer bataille, et le Mâtin était de taille à se défendre : le chien était assez fort.",
+                "de": "Il fallait livrer bataille, et le Mâtin était de taille à se défendre: Der Hund war stark genug."
+              }
+            },
+            {
+              "type": "reading_short_answer",
+              "itemId": "q-woods",
+              "question": "Que doit quitter le Loup pour vivre comme le Chien ?",
+              "accepted": {
+                "answers": [
+                  "les bois",
+                  "le bois",
+                  "la forêt",
+                  "les forêts"
+                ],
+                "accentSensitive": []
+              },
+              "evidenceSegmentIds": [
+                "m-s15"
+              ],
+              "answerExplanation": {
+                "en": "Quittez les bois, vous ferez bien: leave the woods.",
+                "fr": "Quittez les bois, vous ferez bien.",
+                "de": "Quittez les bois, vous ferez bien: den Wald verlassen."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "q-food",
+              "statement": "Le Chien promet au Loup les restes des repas de la maison.",
+              "allowNotStated": true,
+              "answer": "true",
+              "evidenceSegmentIds": [
+                "m-s27",
+                "m-s28"
+              ],
+              "answerExplanation": {
+                "en": "True: force reliefs de toutes les façons – lots of leftovers, os de poulets, os de pigeons.",
+                "fr": "Vrai : force reliefs de toutes les façons, c’est-à-dire beaucoup de restes : os de poulets, os de pigeons.",
+                "de": "Richtig: force reliefs de toutes les façons – viele Essensreste, os de poulets, os de pigeons."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-moral",
+              "question": "Quelle leçon peut-on tirer de la fable ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Les loups sont plus forts que les chiens."
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Il faut toujours obéir à son maître."
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Il ne faut jamais parler aux inconnus."
+                },
+                {
+                  "optionId": "o4",
+                  "text": "La liberté vaut plus que le confort."
+                }
+              ],
+              "answerOptionId": "o4",
+              "evidenceSegmentIds": [
+                "m-s38",
+                "m-s40",
+                "m-s41"
+              ],
+              "answerExplanation": {
+                "en": "The wolf refuses all the meals, and even a treasure, at the price of the chain, and runs away: freedom matters more than comfort. The fable never says it: you must infer it.",
+                "fr": "Le loup refuse tous les repas, et même un trésor, au prix du collier, et s’enfuit : la liberté compte plus que le confort. La fable ne le dit pas, il faut le déduire.",
+                "de": "Der Wolf lehnt alle Mahlzeiten, sogar einen Schatz, um den Preis des Halsbands ab und flieht: Freiheit zählt mehr als Komfort. Die Fabel sagt es nicht, man muss es erschließen."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "structure",
+      "stage": "structure",
+      "role": "exercise",
+      "label": {
+        "en": "Structure",
+        "fr": "Structure",
+        "de": "Aufbau"
+      },
+      "pages": [
+        {
+          "pageId": "structure",
+          "estimatedDurationS": 105,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "The fable is cut into six passages. Match a heading to each passage.",
+            "fr": "La fable est découpée en six passages. Associez un titre à chaque passage.",
+            "de": "Die Fabel ist in sechs Abschnitte geteilt. Ordne jedem Abschnitt eine Überschrift zu."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-structure",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_part_heading_matching",
+              "itemId": "fable-passages",
+              "headings": [
+                {
+                  "headingId": "h6",
+                  "text": "Le choix final du loup"
+                },
+                {
+                  "headingId": "h1",
+                  "text": "Un loup affamé rencontre un chien bien nourri"
+                },
+                {
+                  "headingId": "h2",
+                  "text": "Le loup préfère la politesse au combat"
+                },
+                {
+                  "headingId": "h5",
+                  "text": "La découverte du collier"
+                },
+                {
+                  "headingId": "h3",
+                  "text": "Le chien vante sa vie confortable"
+                },
+                {
+                  "headingId": "h4",
+                  "text": "Ce qu’il faut faire, ce qu’on reçoit"
+                }
+              ],
+              "pairs": [
+                {
+                  "partId": "m-portrait",
+                  "headingId": "h1",
+                  "answerExplanation": {
+                    "en": "Que les os et la peau against gras, poli: hunger meets plenty.",
+                    "fr": "Que les os et la peau contre gras, poli : la faim rencontre l’abondance.",
+                    "de": "Que les os et la peau gegen gras, poli: Hunger trifft Überfluss."
+                  }
+                },
+                {
+                  "partId": "m-caution",
+                  "headingId": "h2",
+                  "answerExplanation": {
+                    "en": "Instead of fighting, il l’aborde humblement et lui fait compliment.",
+                    "fr": "Au lieu de se battre, il l’aborde humblement et lui fait compliment.",
+                    "de": "Statt zu kämpfen, il l’aborde humblement et lui fait compliment."
+                  }
+                },
+                {
+                  "partId": "m-offer",
+                  "headingId": "h3",
+                  "answerExplanation": {
+                    "en": "Quittez les bois… vous aurez un bien meilleur destin.",
+                    "fr": "Quittez les bois… vous aurez un bien meilleur destin.",
+                    "de": "Quittez les bois… vous aurez un bien meilleur destin."
+                  }
+                },
+                {
+                  "partId": "m-bargain",
+                  "headingId": "h4",
+                  "answerExplanation": {
+                    "en": "Chase beggars and please the master; in return leftovers and caresses.",
+                    "fr": "Chasser les mendiants, plaire au maître ; en échange, des restes et des caresses.",
+                    "de": "Bettler verjagen, dem Herrn gefallen; dafür Reste und Streicheleinheiten."
+                  }
+                },
+                {
+                  "partId": "m-collar",
+                  "headingId": "h5",
+                  "answerExplanation": {
+                    "en": "Le col du Chien pelé leads to the collar and the chain.",
+                    "fr": "Le col du Chien pelé mène au collier et à l’attache.",
+                    "de": "Le col du Chien pelé führt zum Halsband und zur Kette."
+                  }
+                },
+                {
+                  "partId": "m-flight",
+                  "headingId": "h6",
+                  "answerExplanation": {
+                    "en": "Maître Loup s’enfuit, et court encor: he chooses freedom.",
+                    "fr": "Maître Loup s’enfuit, et court encor : il choisit la liberté.",
+                    "de": "Maître Loup s’enfuit, et court encor: Er wählt die Freiheit."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Final exam",
+        "fr": "Examen final",
+        "de": "Abschlussprüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-1",
+          "estimatedDurationS": 135,
+          "timeLimitS": 205,
+          "instructions": {
+            "en": "Read the new document and answer the questions. No help this time.",
+            "fr": "Lisez le nouveau document et répondez aux questions. Cette fois, sans aide.",
+            "de": "Lies das neue Dokument und beantworte die Fragen. Diesmal ohne Hilfe."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-exam",
+              "documentId": "exam",
+              "view": "exam",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-cheese",
+              "question": "Que tient le Corbeau dans son bec ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Un morceau de pain"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Un ver de terre"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Un fromage"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Un fruit"
+                }
+              ],
+              "answerOptionId": "o3",
+              "evidenceSegmentIds": [
+                "x-s2"
+              ],
+              "answerExplanation": {
+                "en": "Tenait en son bec un fromage; later sa proie means the same cheese.",
+                "fr": "Tenait en son bec un fromage ; plus loin, sa proie désigne ce fromage.",
+                "de": "Tenait en son bec un fromage; später meint sa proie denselben Käse."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-beak",
+              "question": "Pourquoi le Corbeau ouvre-t-il le bec ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Pour montrer sa belle voix"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Pour manger le fromage"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Pour dire non au Renard"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Pour appeler à l’aide"
+                }
+              ],
+              "answerOptionId": "o1",
+              "evidenceSegmentIds": [
+                "x-s11",
+                "x-s12"
+              ],
+              "answerExplanation": {
+                "en": "Et pour montrer sa belle voix, il ouvre un large bec: the flattery worked.",
+                "fr": "Et pour montrer sa belle voix, il ouvre un large bec : la flatterie a marché.",
+                "de": "Et pour montrer sa belle voix, il ouvre un large bec: Die Schmeichelei wirkt."
+              }
+            },
+            {
+              "type": "reading_short_answer",
+              "itemId": "x-taker",
+              "question": "Qui prend le fromage ?",
+              "accepted": {
+                "answers": [
+                  "le Renard",
+                  "Renard",
+                  "maître Renard",
+                  "le renard"
+                ],
+                "accentSensitive": []
+              },
+              "evidenceSegmentIds": [
+                "x-s13"
+              ],
+              "answerExplanation": {
+                "en": "Le Renard s’en saisit: s’en saisir = to grab it.",
+                "fr": "Le Renard s’en saisit : il l’attrape.",
+                "de": "Le Renard s’en saisit: Er schnappt ihn sich."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-2",
+          "estimatedDurationS": 90,
+          "timeLimitS": 135,
+          "instructions": {
+            "en": "Read the new document and answer the questions. No help this time.",
+            "fr": "Lisez le nouveau document et répondez aux questions. Cette fois, sans aide.",
+            "de": "Lies das neue Dokument und beantworte die Fragen. Diesmal ohne Hilfe."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-exam-2",
+              "documentId": "exam",
+              "view": "exam",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "x-revenge",
+              "statement": "À la fin, le Corbeau se met en colère et attaque le Renard.",
+              "allowNotStated": true,
+              "answer": "false",
+              "evidenceSegmentIds": [
+                "x-s17",
+                "x-s18"
+              ],
+              "answerExplanation": {
+                "en": "False: he is honteux et confus (ashamed) and only swears, too late, that he will not be fooled again.",
+                "fr": "Faux : il est honteux et confus et jure seulement, trop tard, qu’on ne l’y prendra plus.",
+                "de": "Falsch: Er ist honteux et confus (beschämt) und schwört nur, zu spät, dass man ihn nicht mehr hereinlegt."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "x-eat",
+              "statement": "Le Renard mange le fromage devant le Corbeau.",
+              "allowNotStated": true,
+              "answer": "not_stated",
+              "evidenceSegmentIds": [],
+              "answerExplanation": {
+                "en": "Not stated: the fox takes the cheese (s’en saisit) and gives his lesson; the fable never says he eats it in front of the crow.",
+                "fr": "Pas dans le texte : le renard prend le fromage (s’en saisit) et donne sa leçon ; la fable ne dit pas qu’il le mange devant le corbeau.",
+                "de": "Steht nicht im Text: Der Fuchs nimmt den Käse (s’en saisit) und erteilt seine Lehre; dass er ihn vor dem Raben frisst, steht nicht da."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

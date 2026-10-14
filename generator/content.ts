@@ -3,15 +3,17 @@ import { join, resolve } from 'node:path';
 import { sha256 } from '../scripts/catalog.ts';
 import { briefInputHash } from '../src/catalog/scan.ts';
 import { ARTIFACT_SCHEMA_VERSION } from '../src/schemas/artifactCommon.ts';
-import { isSupportedKind } from '../src/schemas/artifacts.ts';
+import { isGeneratedKind } from '../src/schemas/artifacts.ts';
 import type { GrammarBrief } from '../src/schemas/grammar.ts';
+import type { ReadingBrief } from '../src/schemas/reading.ts';
 import { validateBrief, validateContent, type Issue, type OutlineContext } from '../src/validation/artifacts.ts';
 import { catalogContexts, generateBrief, runBatch, type BriefOptions, type BriefOutcome } from './briefs.ts';
 import { CONTENT_PROMPT_VERSION, contentPrompt, grammarSections, normalizeLocalIds, type Section } from './contentPrompts.ts';
 import { GenerationError } from './gemini.ts';
 import { toStructuredSchema } from './prompts.ts';
 import { isCode, ModelUnit, withFileLock } from './units.ts';
-import { COPY, EXERCISE_INSTRUCTIONS } from '../src/domain/lessonCopy.ts';
+import { COPY, EXERCISE_INSTRUCTIONS, READING_COPY } from '../src/domain/lessonCopy.ts';
+import { READING_CONTENT_PROMPT_VERSION, readingSections } from './readingPrompts.ts';
 
 /** Splits a planned duration over n pages: whole seconds, at least 5 each, summing to the plan where possible. */
 export function splitDuration(total: number, n: number): number[] {
@@ -69,6 +71,43 @@ function assembleGrammar(brief: GrammarBrief, p: Payloads, issues: SectionIssues
   return issues.size ? undefined : { kind: 'grammar', topic: brief.topic, steps };
 }
 
+type ReadingLessonPayload = {
+  documents: Record<'main' | 'exam', Record<string, unknown>>;
+  keywordMatching: { keywordId: string; answerExplanation: unknown }[];
+  skim: Record<string, unknown>;
+  detail: Record<string, unknown>[];
+  structure: { instructions: unknown; task: Record<string, unknown> & { type: string; mode?: string } };
+  exam: { pageId: string; items: Record<string, unknown>[] }[];
+};
+
+/** Reading: the five stages around the model's documents and questions, with the brief's durations and limits. */
+function assembleReading(brief: ReadingBrief, p: Payloads, issues: SectionIssues) {
+  const lesson = p.lesson as ReadingLessonPayload;
+  const { keywords, skim, detail, structure } = brief.stages;
+  const doc = (itemId: string, documentId: 'main' | 'exam', view: 'skim' | 'open' | 'exam') => ({ type: 'reading_document', itemId, documentId, view, skimSeconds: view === 'skim' ? skim.skimSeconds : null });
+  const [listS, matchingS] = splitDuration(keywords.estimatedDurationS, 2);
+  const exam = new Map(lesson.exam.map((pg) => [pg.pageId, pg.items]));
+  for (const pg of brief.exam.pages) if (!exam.has(pg.pageId)) blame(issues, 'lesson', `missing exam page ${pg.pageId}`);
+  const task = { ...lesson.structure.task, itemId: 'structure-task' };
+  const parts = structure.task === 'order_parts';
+  const steps = [
+    { id: 'keywords', stage: 'keywords', role: 'exercise', label: READING_COPY.keywords[0], pages: [
+      { pageId: 'keywords', estimatedDurationS: listS, timeLimitS: null, instructions: READING_COPY.keywords[1], items: [{ type: 'reading_keywords', itemId: 'keywords', keywordIds: brief.keywords.map((k) => k.id) }] },
+      { pageId: 'keyword-matching', estimatedDurationS: matchingS, timeLimitS: null, instructions: READING_COPY.keywordMatching[1], items: [{ type: 'reading_keyword_matching', itemId: 'keyword-matching', pairs: lesson.keywordMatching }] },
+    ] },
+    { id: 'skim', stage: 'skim', role: 'exercise', label: READING_COPY.skim[0], pages: [{ pageId: 'skim', estimatedDurationS: skim.estimatedDurationS, timeLimitS: null, instructions: READING_COPY.skim[1], items: [doc('doc-skim', 'main', 'skim'), { type: 'reading_skim_choice', itemId: `skim-${skim.focus}`, focus: skim.focus, ...lesson.skim }] }] },
+    { id: 'detail', stage: 'detail', role: 'exercise', label: READING_COPY.detail[0], pages: [{ pageId: 'detail', estimatedDurationS: detail.estimatedDurationS, timeLimitS: null, instructions: READING_COPY.detail[1], items: [doc('doc-detail', 'main', 'open'), ...lesson.detail] }] },
+    // Putting the parts back in order hides the document; the other tasks keep it open.
+    { id: 'structure', stage: 'structure', role: 'exercise', label: READING_COPY.structure[0], pages: [{ pageId: 'structure', estimatedDurationS: structure.estimatedDurationS, timeLimitS: null, instructions: lesson.structure.instructions, items: parts ? [task] : [doc('doc-structure', 'main', 'open'), task] }] },
+    { id: 'exam', stage: 'exam', role: 'exam', label: READING_COPY.exam[0], pages: brief.exam.pages.map((pg, n) => ({
+      pageId: pg.pageId, estimatedDurationS: pg.estimatedDurationS, timeLimitS: pg.timeLimitS, instructions: READING_COPY.exam[1],
+      items: [doc(n ? `doc-exam-${n + 1}` : 'doc-exam', 'exam', 'exam'), ...(exam.get(pg.pageId) ?? []).map((item, i) => ({ ...item, itemId: `${pg.pageId}-${i + 1}` }))],
+    })) },
+  ];
+  const documents = (['main', 'exam'] as const).map((documentId) => ({ documentId, genre: brief.genre, ...lesson.documents[documentId] }));
+  return issues.size ? undefined : { kind: 'reading', theme: brief.theme, genre: brief.genre, documents, steps };
+}
+
 /** Maps a full-validation issue (steps.N…) to the section that produced that step. */
 function sectionOfStep(content: { steps: { role: string; blockId?: string | null; stage?: string }[] }, path: string): string | undefined {
   const m = /^steps\.(\d+)/.exec(path);
@@ -108,7 +147,7 @@ export function generateLesson(id: string, options: BriefOptions): Promise<Lesso
 
 async function generateContent(id: string, file: string, options: BriefOptions): Promise<LessonOutcome> {
   const ctx = catalogContexts(options.contentDir).find((c) => c.entry.id === id)!;
-  if (!isSupportedKind(ctx.entry.kind)) throw new GenerationError(`${ctx.entry.kind} generation is not implemented (phases 4/5).`);
+  if (!isGeneratedKind(ctx.entry.kind)) throw new GenerationError(`${ctx.entry.kind} generation is not implemented (phases 4/5).`);
   const briefText = await readFile(join(resolve(options.contentDir), 'briefs', `${id}.json`), 'utf8');
   const briefData: unknown = JSON.parse(briefText);
   const checked = validateBrief(briefData, ctx);
@@ -129,8 +168,9 @@ async function generateContent(id: string, file: string, options: BriefOptions):
       throw new GenerationError(`${id}: existing lesson is ${status}; review it, then run make generate ID=${id} REGENERATE=1.`);
     }
 
-    if (brief.kind !== 'grammar') throw new GenerationError(`${id}: vocabulary lessons have no content file.`);
-    const sectionList: Section[] = grammarSections(ctx.lang, brief);
+    if (brief.kind === 'vocabulary') throw new GenerationError(`${id}: vocabulary lessons have no content file.`);
+    if (brief.kind === 'functions') throw new GenerationError(`${id}: function lessons are written by hand (D51).`);
+    const sectionList: Section[] = brief.kind === 'reading' ? readingSections(ctx.lang, brief) : grammarSections(ctx.lang, brief);
     const adapter = options.adapter();
     const units = new Map(sectionList.map((section) => [section.key, new ModelUnit<unknown>(`${id}/${section.key}`, section.schema, toStructuredSchema(section.schema), (repair) => contentPrompt(ctx, brief, section, repair), {
       adapter, report: options.report, sleep: options.sleep, normalize: normalizeLocalIds,
@@ -140,7 +180,7 @@ async function generateContent(id: string, file: string, options: BriefOptions):
     for (;;) {
       for (const key of todo) payloads[key] = await units.get(key)!.request();
       const issues: SectionIssues = new Map();
-      const body = assembleGrammar(brief, payloads, issues);
+      const body = brief.kind === 'reading' ? assembleReading(brief, payloads, issues) : assembleGrammar(brief, payloads, issues);
       let content: Record<string, unknown> | undefined;
       if (body) {
         const pages = (body.steps as { pages: { estimatedDurationS: number }[] }[]).flatMap((s) => s.pages);
@@ -149,7 +189,7 @@ async function generateContent(id: string, file: string, options: BriefOptions):
           schemaVersion: ARTIFACT_SCHEMA_VERSION, id, lang: ctx.lang, level: ctx.level, locales: ['en', 'fr', 'de'],
           title: brief.title, objective: brief.objective,
           estimatedMinutes: Math.max(1, Math.round(pages.reduce((sum, pg) => sum + pg.estimatedDurationS, 0) / 60)),
-          provenance: { generator: 'lesson-prototype', model: models, promptVersion: CONTENT_PROMPT_VERSION, generatedAt: new Date().toISOString(), inputHashes: { outline: ctx.outlineHash, brief: briefHash } },
+          provenance: { generator: 'lesson-prototype', model: models, promptVersion: brief.kind === 'reading' ? READING_CONTENT_PROMPT_VERSION : CONTENT_PROMPT_VERSION, generatedAt: new Date().toISOString(), inputHashes: { outline: ctx.outlineHash, brief: briefHash } },
           ...body,
         };
         const result = validateContent(content, contentCtx);
@@ -158,7 +198,9 @@ async function generateContent(id: string, file: string, options: BriefOptions):
           await save(result.value);
           return { id, status: 'generated', message: `model ${models}` };
         }
-        attribute(result.issues, content as { steps: [] }, issues, id);
+        // Reading writes its whole lesson in one section, which repairs every issue.
+        if (brief.kind === 'reading') for (const issue of result.issues) blame(issues, 'lesson', `${issue.path}: ${issue.message}`);
+        else attribute(result.issues, content as { steps: [] }, issues, id);
       }
       for (const [key, messages] of issues) units.get(key)!.reject(messages);
       todo = [...issues.keys()];

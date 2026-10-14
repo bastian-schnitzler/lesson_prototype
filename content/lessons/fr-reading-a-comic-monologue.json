@@ -1,0 +1,985 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-reading-a-comic-monologue",
+  "lang": "fr",
+  "level": "C2",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Lire un sketch à jeux de mots",
+  "objective": {
+    "en": "Read a sketch written in the manner of Raymond Devos and explain how wordplay and absurd logic build the comedy.",
+    "fr": "Lire un sketch écrit à la manière de Raymond Devos et expliquer comment les jeux de mots et la logique absurde construisent le comique.",
+    "de": "Einen Sketch im Stil von Raymond Devos lesen und erklären, wie Wortspiele und absurde Logik die Komik erzeugen."
+  },
+  "estimatedMinutes": 17,
+  "provenance": {
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "reading-content-v2",
+    "generatedAt": "2026-10-14T09:26:27.570Z",
+    "inputHashes": {
+      "outline": "e6b33a19f002aae7cb383acf2a22a5b0af9b27fc40d38c0d70fbbec4b3cbfe8a",
+      "brief": "641b058adf4d0b250c9a0b639577ae6850710e6e1ec9a112a62348e9de2c926a"
+    }
+  },
+  "kind": "reading",
+  "theme": "free_time",
+  "genre": "speech",
+  "documents": [
+    {
+      "documentId": "main",
+      "genre": "speech",
+      "title": "J’attends mon tour",
+      "meta": [
+        "Monologue à la manière de Raymond Devos",
+        "Texte original écrit pour cette leçon"
+      ],
+      "parts": [
+        {
+          "partId": "m-setup",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s1",
+              "text": "Mesdames et Messieurs, l’autre jour, je passe devant la mairie, et je vois une file d’attente.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s2",
+              "text": "Une file magnifique, bien droite, des gens les uns derrière les autres, sages comme des images.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s3",
+              "text": "Moi, quand je vois une file, je me mets au bout.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s4",
+              "text": "C’est plus fort que moi.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s5",
+              "text": "J’ai horreur d’être devant : devant, on ne voit personne, on ne sait pas où on va.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s6",
+              "text": "Je ne sais pas ce qu’on attend, mais si tout le monde attend, c’est que ça vaut la peine d’attendre !",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-logic",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s7",
+              "text": "Je demande au monsieur devant moi : « Qu’est-ce qu’on attend ? »",
+              "value": null
+            },
+            {
+              "segmentId": "m-s8",
+              "text": "Il me dit : « Je ne sais pas, je suis derrière la dame. »",
+              "value": null
+            },
+            {
+              "segmentId": "m-s9",
+              "text": "La dame se retourne : « Moi, je suis là parce que le monsieur devant moi était là avant. »",
+              "value": null
+            },
+            {
+              "segmentId": "m-s10",
+              "text": "Et ainsi de suite jusqu’au premier, qui, lui, ne pouvait pas savoir, puisqu’il n’y avait personne devant lui !",
+              "value": null
+            },
+            {
+              "segmentId": "m-s11",
+              "text": "Le premier, Mesdames et Messieurs, c’est le plus malheureux de tous : il est le seul qui n’attend personne, et pourtant il attend comme les autres.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s12",
+              "text": "J’ai fait le calcul : dans une file de cent personnes, quatre-vingt-dix-neuf attendent quelqu’un, et une seule attend quelque chose.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s13",
+              "text": "Et encore, elle ne sait pas quoi !",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-turn",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s14",
+              "text": "Au bout d’une heure, un employé sort et crie : « Chacun son tour ! »",
+              "value": null
+            },
+            {
+              "segmentId": "m-s15",
+              "text": "Très bien. Mais mon tour, je ne l’avais jamais vu.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s16",
+              "text": "Je ne savais même pas que j’en avais un !",
+              "value": null
+            },
+            {
+              "segmentId": "m-s17",
+              "text": "Alors j’ai demandé : « Il est où, mon tour ? »",
+              "value": null
+            },
+            {
+              "segmentId": "m-s18",
+              "text": "L’employé m’a dit : « Il viendra. »",
+              "value": null
+            },
+            {
+              "segmentId": "m-s19",
+              "text": "Vous vous rendez compte ? Un tour qui vient tout seul !",
+              "value": null
+            },
+            {
+              "segmentId": "m-s20",
+              "text": "Un tour, ça se joue, ça se donne, ça se prend, ça se rate… mais ça ne vient pas ! Ou alors, c’est un mauvais tour.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s21",
+              "text": "Pour passer le temps, j’en ai fait un, de tour : le tour du pâté de maisons.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s22",
+              "text": "Quand je suis revenu, j’avais perdu ma place.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s23",
+              "text": "On m’a dit : « Monsieur, vous avez laissé passer votre tour. »",
+              "value": null
+            },
+            {
+              "segmentId": "m-s24",
+              "text": "Je n’ai rien laissé passer du tout : c’est moi qui étais passé, pendant que mon tour, lui, restait là à m’attendre !",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-everywhere",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s25",
+              "text": "Depuis, je me méfie : je fais la queue partout, par précaution.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s26",
+              "text": "Je fais la queue à la boulangerie quand il n’y a personne : je me mets derrière moi.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s27",
+              "text": "C’est très pratique, parce que je sais toujours qui est devant.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s28",
+              "text": "Le problème, c’est que je n’avance pas. Forcément : chaque fois que j’avance, celui qui est derrière avance aussi !",
+              "value": null
+            },
+            {
+              "segmentId": "m-s29",
+              "text": "Ma femme me dit : « Tu es fou, il n’y a personne derrière toi ! »",
+              "value": null
+            },
+            {
+              "segmentId": "m-s30",
+              "text": "Je lui réponds : « Justement : si je m’en vais, qui va garder ma place ? »",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-counter",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s31",
+              "text": "Hier, enfin, je suis arrivé au guichet.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s32",
+              "text": "L’employé m’a regardé et m’a dit : « Qu’est-ce que vous voulez ? »",
+              "value": null
+            },
+            {
+              "segmentId": "m-s33",
+              "text": "Je lui ai dit : « Rien. Je voulais seulement savoir ce qu’on attendait. »",
+              "value": null
+            },
+            {
+              "segmentId": "m-s34",
+              "text": "Il m’a répondu : « Mais Monsieur, on attend que vous partiez : c’est vous qui bloquez la file ! »",
+              "value": null
+            },
+            {
+              "segmentId": "m-s35",
+              "text": "Alors je suis parti… et je me suis remis au bout.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s36",
+              "text": "Parce qu’après tout, Mesdames et Messieurs, si je ne sais pas ce que j’attends, au moins, je sais que j’attends !",
+              "value": null
+            }
+          ]
+        }
+      ],
+      "highlights": [
+        {
+          "keywordId": "file-d-attente",
+          "segmentId": "m-s1",
+          "text": "file d’attente"
+        },
+        {
+          "keywordId": "chacun-son-tour",
+          "segmentId": "m-s14",
+          "text": "Chacun son tour"
+        },
+        {
+          "keywordId": "pate-de-maisons",
+          "segmentId": "m-s21",
+          "text": "pâté de maisons"
+        },
+        {
+          "keywordId": "laisser-passer",
+          "segmentId": "m-s23",
+          "text": "laissé passer votre tour"
+        },
+        {
+          "keywordId": "faire-la-queue",
+          "segmentId": "m-s25",
+          "text": "fais la queue"
+        },
+        {
+          "keywordId": "guichet",
+          "segmentId": "m-s31",
+          "text": "guichet"
+        }
+      ]
+    },
+    {
+      "documentId": "exam",
+      "genre": "speech",
+      "title": "En avance",
+      "meta": [
+        "Monologue à la manière de Raymond Devos",
+        "Texte original écrit pour cette leçon"
+      ],
+      "parts": [
+        {
+          "partId": "x-early",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s1",
+              "text": "Moi, Mesdames et Messieurs, je suis toujours en avance.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s2",
+              "text": "Pas de cinq minutes : de plusieurs jours.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s3",
+              "text": "Je suis arrivé à mon mariage le mardi ; il avait lieu le samedi.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s4",
+              "text": "Pendant quatre jours, j’ai été le seul invité.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s5",
+              "text": "J’ai beaucoup dansé.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "x-priest",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s6",
+              "text": "Le curé, lui, est arrivé à l’heure.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s7",
+              "text": "Il m’a demandé ce que je faisais là.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s8",
+              "text": "Je lui ai dit : « J’attends ma femme. »",
+              "value": null
+            },
+            {
+              "segmentId": "x-s9",
+              "text": "Il m’a dit : « Elle n’est pas encore votre femme ! »",
+              "value": null
+            },
+            {
+              "segmentId": "x-s10",
+              "text": "Je lui ai dit : « Justement, je suis en avance. »",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "x-time",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s11",
+              "text": "On me dit : « Vous êtes en avance sur votre temps ! »",
+              "value": null
+            },
+            {
+              "segmentId": "x-s12",
+              "text": "C’est vrai. Le problème, c’est que mon temps, lui, n’est pas pressé.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s13",
+              "text": "Quand j’arrive quelque part, mon temps arrive après moi, et il ne me reconnaît pas.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s14",
+              "text": "Hier, il m’a demandé l’heure !",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "x-watch",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s15",
+              "text": "J’ai voulu me mettre à l’heure : j’ai acheté une montre qui retarde.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s16",
+              "text": "L’horloger m’a dit qu’elle retardait de dix minutes ; moi, j’avais besoin de trois jours.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s17",
+              "text": "Maintenant, je suis à l’heure… mais je ne sais plus laquelle.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "x-doctor",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s18",
+              "text": "Mon médecin m’a dit : « Vous vivez trop vite ! »",
+              "value": null
+            },
+            {
+              "segmentId": "x-s19",
+              "text": "Je lui ai répondu : « Docteur, je ne vis pas trop vite, je vis en avance. »",
+              "value": null
+            },
+            {
+              "segmentId": "x-s20",
+              "text": "« Vite, on arrive fatigué ; en avance, on arrive tout seul. »",
+              "value": null
+            },
+            {
+              "segmentId": "x-s21",
+              "text": "Il m’a prescrit du repos.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s22",
+              "text": "J’ai commencé hier à me reposer pour la semaine prochaine.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s23",
+              "text": "Je suis déjà en pleine forme pour le mois de juin !",
+              "value": null
+            },
+            {
+              "segmentId": "x-s24",
+              "text": "Le seul ennui, c’est que je serai fatigué en mai.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s25",
+              "text": "Et c’est pour ça, ce soir, que je vous dis au revoir… avant de vous avoir dit bonsoir !",
+              "value": null
+            }
+          ]
+        }
+      ],
+      "highlights": []
+    }
+  ],
+  "steps": [
+    {
+      "id": "keywords",
+      "stage": "keywords",
+      "role": "exercise",
+      "label": {
+        "en": "Key words",
+        "fr": "Mots clés",
+        "de": "Schlüsselwörter"
+      },
+      "pages": [
+        {
+          "pageId": "keywords",
+          "estimatedDurationS": 55,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the key words of the text and their meaning.",
+            "fr": "Lisez les mots clés du texte et leur sens.",
+            "de": "Lies die Schlüsselwörter des Textes und ihre Bedeutung."
+          },
+          "items": [
+            {
+              "type": "reading_keywords",
+              "itemId": "keywords",
+              "keywordIds": [
+                "file-d-attente",
+                "chacun-son-tour",
+                "pate-de-maisons",
+                "laisser-passer",
+                "faire-la-queue",
+                "guichet"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "keyword-matching",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each key word with its meaning.",
+            "fr": "Associez chaque mot clé à son sens.",
+            "de": "Ordne jedem Schlüsselwort seine Bedeutung zu."
+          },
+          "items": [
+            {
+              "type": "reading_keyword_matching",
+              "itemId": "keyword-matching",
+              "pairs": [
+                {
+                  "keywordId": "file-d-attente",
+                  "answerExplanation": {
+                    "en": "une file d’attente = a queue.",
+                    "fr": "une file d’attente : des gens qui attendent en ligne.",
+                    "de": "une file d’attente = Warteschlange."
+                  }
+                },
+                {
+                  "keywordId": "chacun-son-tour",
+                  "answerExplanation": {
+                    "en": "chacun son tour = one at a time.",
+                    "fr": "chacun son tour : l’un après l’autre.",
+                    "de": "chacun son tour = einer nach dem anderen."
+                  }
+                },
+                {
+                  "keywordId": "pate-de-maisons",
+                  "answerExplanation": {
+                    "en": "le pâté de maisons = the block.",
+                    "fr": "le pâté de maisons : les maisons entre quatre rues.",
+                    "de": "le pâté de maisons = Häuserblock."
+                  }
+                },
+                {
+                  "keywordId": "laisser-passer",
+                  "answerExplanation": {
+                    "en": "laisser passer son tour = to miss one’s turn.",
+                    "fr": "laisser passer son tour : rater son moment.",
+                    "de": "laisser passer son tour = nicht drankommen."
+                  }
+                },
+                {
+                  "keywordId": "faire-la-queue",
+                  "answerExplanation": {
+                    "en": "faire la queue = to queue.",
+                    "fr": "faire la queue : attendre dans une file.",
+                    "de": "faire la queue = Schlange stehen."
+                  }
+                },
+                {
+                  "keywordId": "guichet",
+                  "answerExplanation": {
+                    "en": "le guichet = the counter.",
+                    "fr": "le guichet : là où on est servi.",
+                    "de": "le guichet = der Schalter."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skim",
+      "stage": "skim",
+      "role": "exercise",
+      "label": {
+        "en": "Skim",
+        "fr": "Survol",
+        "de": "Überfliegen"
+      },
+      "pages": [
+        {
+          "pageId": "skim",
+          "estimatedDurationS": 180,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Look over the document quickly. It blurs when the time is up; then answer the question.",
+            "fr": "Parcourez rapidement le document. Il se floute à la fin du temps ; répondez ensuite à la question.",
+            "de": "Überfliege das Dokument. Wenn die Zeit um ist, wird es unscharf; beantworte dann die Frage."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-skim",
+              "documentId": "main",
+              "view": "skim",
+              "skimSeconds": 150
+            },
+            {
+              "type": "reading_skim_choice",
+              "itemId": "skim-genre",
+              "focus": "genre",
+              "question": "Quel genre de texte est-ce ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Un sketch comique pour la scène"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Un article sur l’administration"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Une lettre de réclamation"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Un règlement affiché à la mairie"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Monologue in the source, Mesdames et Messieurs addressed to an audience, absurd situations and jokes: a comic sketch.",
+                "fr": "Monologue dans la source, Mesdames et Messieurs adressé au public, des situations absurdes et des jeux de mots : un sketch comique.",
+                "de": "Monologue in der Quelle, Mesdames et Messieurs ans Publikum, absurde Situationen und Wortspiele: ein komischer Sketch."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "detail",
+      "stage": "detail",
+      "role": "exercise",
+      "label": {
+        "en": "Detail",
+        "fr": "Détails",
+        "de": "Details"
+      },
+      "pages": [
+        {
+          "pageId": "detail",
+          "estimatedDurationS": 280,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the document carefully and answer the questions.",
+            "fr": "Lisez le document attentivement et répondez aux questions.",
+            "de": "Lies das Dokument genau und beantworte die Fragen."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-detail",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-first",
+              "question": "Pourquoi le premier de la file est-il « le plus malheureux de tous » ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "L’employé refuse de le recevoir."
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Il attend comme les autres sans même avoir quelqu’un devant lui."
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Il est le seul à connaître la réponse."
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Il attend depuis le plus longtemps."
+                }
+              ],
+              "answerOptionId": "o2",
+              "evidenceSegmentIds": [
+                "m-s11"
+              ],
+              "answerExplanation": {
+                "en": "Il est le seul qui n’attend personne, et pourtant il attend: the absurd logic plays on attendre quelqu’un / attendre quelque chose.",
+                "fr": "Il est le seul qui n’attend personne, et pourtant il attend : la logique absurde joue sur attendre quelqu’un / attendre quelque chose.",
+                "de": "Il est le seul qui n’attend personne, et pourtant il attend: Die absurde Logik spielt mit attendre quelqu’un / attendre quelque chose."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "q-lost-place",
+              "statement": "Le narrateur perd sa place parce qu’il est parti faire le tour du pâté de maisons.",
+              "allowNotStated": true,
+              "answer": "true",
+              "evidenceSegmentIds": [
+                "m-s21",
+                "m-s22"
+              ],
+              "answerExplanation": {
+                "en": "True: j’en ai fait un, de tour : le tour du pâté de maisons. Quand je suis revenu, j’avais perdu ma place.",
+                "fr": "Vrai : j’en ai fait un, de tour : le tour du pâté de maisons. Quand je suis revenu, j’avais perdu ma place.",
+                "de": "Richtig: j’en ai fait un, de tour : le tour du pâté de maisons. Quand je suis revenu, j’avais perdu ma place."
+              }
+            },
+            {
+              "type": "reading_short_answer",
+              "itemId": "q-bakery",
+              "question": "Où le narrateur fait-il la queue quand il n’y a personne ?",
+              "accepted": {
+                "answers": [
+                  "à la boulangerie",
+                  "la boulangerie",
+                  "boulangerie",
+                  "dans la boulangerie"
+                ]
+              },
+              "evidenceSegmentIds": [
+                "m-s26"
+              ],
+              "answerExplanation": {
+                "en": "Je fais la queue à la boulangerie quand il n’y a personne : je me mets derrière moi.",
+                "fr": "Je fais la queue à la boulangerie quand il n’y a personne : je me mets derrière moi.",
+                "de": "Je fais la queue à la boulangerie quand il n’y a personne : je me mets derrière moi."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-device",
+              "question": "Sur quoi repose surtout le comique après « Chacun son tour » ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Sur un accent régional"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Sur une erreur de prononciation"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Sur les différents sens du mot « tour »"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Sur une chanson connue"
+                }
+              ],
+              "answerOptionId": "o3",
+              "evidenceSegmentIds": [
+                "m-s15",
+                "m-s20",
+                "m-s21"
+              ],
+              "answerExplanation": {
+                "en": "Tour is taken literally and in all its senses: a turn you own, a trick (un mauvais tour), a walk round the block.",
+                "fr": "Le mot tour est pris au pied de la lettre et dans tous ses sens : un tour qu’on possède, une farce (un mauvais tour), le tour du pâté de maisons.",
+                "de": "Tour wird wörtlich und in allen Bedeutungen genommen: ein tour, den man besitzt, ein Streich (un mauvais tour), ein Gang um den Block."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "structure",
+      "stage": "structure",
+      "role": "exercise",
+      "label": {
+        "en": "Structure",
+        "fr": "Structure",
+        "de": "Aufbau"
+      },
+      "pages": [
+        {
+          "pageId": "structure",
+          "estimatedDurationS": 115,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Without the text: put the five movements of the sketch back in order.",
+            "fr": "Sans le texte : remettez les cinq mouvements du sketch dans l’ordre.",
+            "de": "Ohne den Text: Bring die fünf Teile des Sketches in die richtige Reihenfolge."
+          },
+          "items": [
+            {
+              "type": "reading_order",
+              "itemId": "sketch-moves",
+              "mode": "parts",
+              "pieces": [
+                {
+                  "pieceId": "p2",
+                  "text": "Personne ne sait ce qu’on attend, pas même le premier.",
+                  "partId": "m-logic"
+                },
+                {
+                  "pieceId": "p4",
+                  "text": "Il fait la queue même quand il est seul.",
+                  "partId": "m-everywhere"
+                },
+                {
+                  "pieceId": "p1",
+                  "text": "Il rejoint une file sans savoir pourquoi.",
+                  "partId": "m-setup"
+                },
+                {
+                  "pieceId": "p3",
+                  "text": "Le mot « tour » lui joue des tours.",
+                  "partId": "m-turn"
+                },
+                {
+                  "pieceId": "p5",
+                  "text": "Au guichet, il apprend que c’est lui qu’on attend.",
+                  "partId": "m-counter"
+                }
+              ],
+              "acceptedOrders": [
+                [
+                  "p1",
+                  "p2",
+                  "p3",
+                  "p4",
+                  "p5"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "The sketch builds up: a situation, its absurd logic, the wordplay, the escalation, then the punchline that loops back to the start (je me suis remis au bout).",
+                "fr": "Le sketch monte en puissance : une situation, sa logique absurde, le jeu de mots, la surenchère, puis la chute qui revient au début (je me suis remis au bout).",
+                "de": "Der Sketch steigert sich: eine Situation, ihre absurde Logik, das Wortspiel, die Übertreibung, dann die Pointe, die zum Anfang zurückführt (je me suis remis au bout)."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Final exam",
+        "fr": "Examen final",
+        "de": "Abschlussprüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-1",
+          "estimatedDurationS": 180,
+          "timeLimitS": 270,
+          "instructions": {
+            "en": "Read the new document and answer the questions. No help this time.",
+            "fr": "Lisez le nouveau document et répondez aux questions. Cette fois, sans aide.",
+            "de": "Lies das neue Dokument und beantworte die Fragen. Diesmal ohne Hilfe."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-exam",
+              "documentId": "exam",
+              "view": "exam",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_short_answer",
+              "itemId": "x-days",
+              "question": "Combien de jours le narrateur a-t-il été le seul invité de son mariage ?",
+              "accepted": {
+                "answers": [
+                  "quatre",
+                  "4",
+                  "quatre jours",
+                  "4 jours"
+                ]
+              },
+              "evidenceSegmentIds": [
+                "x-s4"
+              ],
+              "answerExplanation": {
+                "en": "Pendant quatre jours, j’ai été le seul invité (Tuesday to Saturday).",
+                "fr": "Pendant quatre jours, j’ai été le seul invité (du mardi au samedi).",
+                "de": "Pendant quatre jours, j’ai été le seul invité (Dienstag bis Samstag)."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-watch",
+              "question": "Pourquoi a-t-il acheté une montre qui retarde ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Parce qu’elle était moins chère"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Pour essayer d’être à l’heure"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Pour arriver encore plus tôt"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Pour l’offrir à son médecin"
+                }
+              ],
+              "answerOptionId": "o2",
+              "evidenceSegmentIds": [
+                "x-s15"
+              ],
+              "answerExplanation": {
+                "en": "J’ai voulu me mettre à l’heure : j’ai acheté une montre qui retarde.",
+                "fr": "J’ai voulu me mettre à l’heure : j’ai acheté une montre qui retarde.",
+                "de": "J’ai voulu me mettre à l’heure : j’ai acheté une montre qui retarde."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "x-alone",
+              "statement": "Le curé est arrivé en avance, lui aussi.",
+              "allowNotStated": true,
+              "answer": "false",
+              "evidenceSegmentIds": [
+                "x-s6"
+              ],
+              "answerExplanation": {
+                "en": "False: le curé, lui, est arrivé à l’heure.",
+                "fr": "Faux : le curé, lui, est arrivé à l’heure.",
+                "de": "Falsch: le curé, lui, est arrivé à l’heure."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-2",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Read the new document and answer the questions. No help this time.",
+            "fr": "Lisez le nouveau document et répondez aux questions. Cette fois, sans aide.",
+            "de": "Lies das neue Dokument und beantworte die Fragen. Diesmal ohne Hilfe."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-exam-2",
+              "documentId": "exam",
+              "view": "exam",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-joke",
+              "question": "Que montre la dernière phrase (« au revoir… avant de vous avoir dit bonsoir ») ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Il est en avance même pour quitter son public."
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Il est fatigué et veut partir."
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Il ne parle pas bien français."
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Il a oublié de saluer le public."
+                }
+              ],
+              "answerOptionId": "o1",
+              "evidenceSegmentIds": [
+                "x-s25"
+              ],
+              "answerExplanation": {
+                "en": "He says goodbye before hello: the punchline applies his being early to the show itself.",
+                "fr": "Il dit au revoir avant bonsoir : la chute applique son avance au spectacle lui-même.",
+                "de": "Er verabschiedet sich vor der Begrüßung: Die Pointe wendet sein Zu-früh-Sein auf die Vorstellung selbst an."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "x-wife",
+              "statement": "La femme du narrateur est, elle aussi, toujours en avance.",
+              "allowNotStated": true,
+              "answer": "not_stated",
+              "evidenceSegmentIds": [],
+              "answerExplanation": {
+                "en": "Not stated: we only learn that he waited for her; nothing says whether she is early.",
+                "fr": "Pas dans le texte : on apprend seulement qu’il l’attendait ; rien ne dit si elle est en avance.",
+                "de": "Steht nicht im Text: Wir erfahren nur, dass er auf sie wartete; ob sie früh dran ist, steht nicht da."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

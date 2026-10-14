@@ -418,8 +418,7 @@
               "accepted": {
                 "answers": [
                   "ici"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "here, where I am",
@@ -455,8 +454,7 @@
               "accepted": {
                 "answers": [
                   "là"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "there, away from me",
@@ -492,8 +490,7 @@
               "accepted": {
                 "answers": [
                   "ici"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "here, where I am",
@@ -529,8 +526,7 @@
               "accepted": {
                 "answers": [
                   "là"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "there, away from me",
@@ -566,8 +562,7 @@
               "accepted": {
                 "answers": [
                   "ici"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "here, where I am",
@@ -603,8 +598,7 @@
               "accepted": {
                 "answers": [
                   "là"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "there, away from me",
@@ -1232,8 +1226,7 @@
               "accepted": {
                 "answers": [
                   "aujourd’hui"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "today",
@@ -1269,8 +1262,7 @@
               "accepted": {
                 "answers": [
                   "demain"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "tomorrow",
@@ -1306,8 +1298,7 @@
               "accepted": {
                 "answers": [
                   "maintenant"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "now, at this moment",
@@ -1343,8 +1334,7 @@
               "accepted": {
                 "answers": [
                   "bientôt"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "soon, in a short while",
@@ -1380,8 +1370,7 @@
               "accepted": {
                 "answers": [
                   "tout de suite"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "right away",
@@ -1662,8 +1651,7 @@
                 "accepted": {
                   "answers": [
                     "demain"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": [
                   "demain",
@@ -1719,8 +1707,7 @@
                 "accepted": {
                   "answers": [
                     "maintenant"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": []
               },
@@ -1768,8 +1755,7 @@
                 "accepted": {
                   "answers": [
                     "bientôt"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": [
                   "bientôt",
@@ -1825,8 +1811,7 @@
                 "accepted": {
                   "answers": [
                     "aujourd’hui"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": []
               },
@@ -1899,8 +1884,7 @@
               "accepted": {
                 "answers": [
                   "ici"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1920,8 +1904,7 @@
               "accepted": {
                 "answers": [
                   "là"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1941,8 +1924,7 @@
               "accepted": {
                 "answers": [
                   "ici"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1962,8 +1944,7 @@
               "accepted": {
                 "answers": [
                   "là"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1983,8 +1964,7 @@
               "accepted": {
                 "answers": [
                   "ici"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2004,8 +1984,7 @@
               "accepted": {
                 "answers": [
                   "là"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2038,8 +2017,7 @@
                 "answers": [
                   "Aujourd’hui",
                   "aujourd’hui"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2059,8 +2037,7 @@
               "accepted": {
                 "answers": [
                   "maintenant"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2080,8 +2057,7 @@
               "accepted": {
                 "answers": [
                   "aujourd’hui"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2101,8 +2077,7 @@
               "accepted": {
                 "answers": [
                   "maintenant"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2122,8 +2097,7 @@
               "accepted": {
                 "answers": [
                   "aujourd’hui"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2156,8 +2130,7 @@
                 "answers": [
                   "Demain",
                   "demain"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2177,8 +2150,7 @@
               "accepted": {
                 "answers": [
                   "tout de suite"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2198,8 +2170,7 @@
               "accepted": {
                 "answers": [
                   "demain"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2219,8 +2190,7 @@
               "accepted": {
                 "answers": [
                   "bientôt"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2240,8 +2210,7 @@
               "accepted": {
                 "answers": [
                   "tout de suite"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2260,10 +2229,10 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "content-v4",
-    "generatedAt": "2026-10-08T00:17:18.710Z",
+    "generatedAt": "2026-10-13T23:32:33.404Z",
     "inputHashes": {
-      "outline": "92cbd313533ae674aea190fbe4d278bb77e4e70d103206ca3a35e8811142c679",
-      "brief": "500e8b553ffa3542345cc3376aaa554941d0b42de467345a93a26d1ab12561af"
+      "outline": "0c4fac30a03f1b75a15894cc0ab8190bcf7cc3661c04d68c6a668d5eb2ae7a55",
+      "brief": "d6b301335b642e4e4e7fa24cdb5c7f3edaba77dca3a78478ef0b2acd06e046e4"
     }
   }
 }

@@ -1,0 +1,244 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-reading-a-party-invitation",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Lire une invitation",
+  "objective": {
+    "en": "Read an invitation to a party and find the occasion, the date, the time, the place, what to bring and how to reply.",
+    "fr": "Lire une invitation à une fête et trouver l’occasion, la date, l’heure, le lieu, ce qu’il faut apporter et comment répondre.",
+    "de": "Eine Einladung zu einem Fest lesen und Anlass, Datum, Uhrzeit, Ort, Mitbringsel und Antwortweg finden."
+  },
+  "estimatedMinutes": 9,
+  "provenance": {
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "reading-brief-v2",
+    "generatedAt": "2026-10-14T09:08:21.027Z",
+    "inputHashes": {
+      "outline": "8fce45346297f7e28723884ab024c4e11d06c27e8092e2792377269f210479dd"
+    }
+  },
+  "kind": "reading",
+  "theme": "relations",
+  "genre": "other",
+  "situation": {
+    "en": "Inès invites her French class to her 30th birthday party with a printed card.",
+    "fr": "Inès invite sa classe de français à la fête de ses 30 ans avec une carte.",
+    "de": "Inès lädt ihren Französischkurs mit einer Karte zu ihrem 30. Geburtstag ein."
+  },
+  "readerTask": {
+    "en": "Find when and where the party is, what to bring and how and when to answer.",
+    "fr": "Trouver quand et où est la fête, ce qu’on apporte, et comment et quand répondre.",
+    "de": "Finden, wann und wo das Fest ist, was man mitbringt und wie und bis wann man antwortet."
+  },
+  "coverageNotes": {
+    "en": "Dates, times and an address, the imperative apportez, avant + day. Not covered: writing a reply.",
+    "fr": "Dates, heures et adresse, l’impératif apportez, avant + jour. Non traité : écrire la réponse.",
+    "de": "Daten, Uhrzeiten und eine Adresse, der Imperativ apportez, avant + Tag. Nicht behandelt: die Antwort schreiben."
+  },
+  "prerequisites": [
+    {
+      "en": "Numbers up to 60",
+      "fr": "Les nombres jusqu’à 60",
+      "de": "Die Zahlen bis 60"
+    },
+    {
+      "en": "Months and days",
+      "fr": "Les mois et les jours",
+      "de": "Monate und Wochentage"
+    }
+  ],
+  "keywords": [
+    {
+      "id": "fete",
+      "term": "une fête",
+      "translations": {
+        "en": [
+          "a party"
+        ],
+        "de": [
+          "ein Fest",
+          "eine Party"
+        ]
+      },
+      "explanation": {
+        "en": "A meeting of friends to celebrate. Je fais une fête = I am having a party.",
+        "fr": "Une réunion d’amis pour fêter quelque chose. Je fais une fête : j’organise une fête.",
+        "de": "Ein Treffen mit Freunden zum Feiern. Je fais une fête = Ich mache ein Fest."
+      }
+    },
+    {
+      "id": "etage",
+      "term": "l’étage",
+      "translations": {
+        "en": [
+          "the floor",
+          "the storey"
+        ],
+        "de": [
+          "der Stock",
+          "die Etage"
+        ]
+      },
+      "explanation": {
+        "en": "A level of a building: 2e étage = second floor.",
+        "fr": "Un niveau d’un immeuble : 2e étage.",
+        "de": "Eine Ebene im Haus: 2e étage = zweiter Stock."
+      }
+    },
+    {
+      "id": "apportez",
+      "term": "apportez",
+      "translations": {
+        "en": [
+          "bring"
+        ],
+        "de": [
+          "bringt mit",
+          "bringen Sie mit"
+        ]
+      },
+      "explanation": {
+        "en": "An instruction: bring something with you. From apporter.",
+        "fr": "Une consigne : venez avec quelque chose. Du verbe apporter.",
+        "de": "Eine Aufforderung: etwas mitbringen. Von apporter."
+      }
+    },
+    {
+      "id": "boisson",
+      "term": "une boisson",
+      "translations": {
+        "en": [
+          "a drink"
+        ],
+        "de": [
+          "ein Getränk"
+        ]
+      },
+      "explanation": {
+        "en": "Something you drink: water, juice, wine…",
+        "fr": "Quelque chose qu’on boit : de l’eau, un jus, du vin…",
+        "de": "Etwas zum Trinken: Wasser, Saft, Wein…"
+      }
+    },
+    {
+      "id": "reponse",
+      "term": "la réponse",
+      "translations": {
+        "en": [
+          "the reply",
+          "the answer"
+        ],
+        "de": [
+          "die Antwort"
+        ]
+      },
+      "explanation": {
+        "en": "What you send back. Réponse par SMS = reply by text message.",
+        "fr": "Ce qu’on envoie en retour. Réponse par SMS : on répond par SMS.",
+        "de": "Was man zurückschickt. Réponse par SMS = Antwort per SMS."
+      }
+    }
+  ],
+  "documents": {
+    "main": {
+      "targetWords": 64,
+      "partCount": 4,
+      "contents": {
+        "en": "Four parts: Inès turns 30 on 14 June and invites everyone; the party is on Saturday 14 June at 19 h at 8 rue des Fleurs, 2nd floor; bring a dessert or a drink, there is music; reply by text message before Thursday.",
+        "fr": "Quatre parties : Inès a 30 ans le 14 juin et invite tout le monde ; la fête est le samedi 14 juin à 19 h, 8 rue des Fleurs, 2e étage ; apportez un dessert ou une boisson, il y a de la musique ; réponse par SMS avant jeudi.",
+        "de": "Vier Teile: Inès wird am 14. Juni 30 und lädt alle ein; das Fest ist am Samstag, 14. Juni, um 19 h, 8 rue des Fleurs, 2. Stock; Dessert oder Getränk mitbringen, es gibt Musik; Antwort per SMS bis Donnerstag."
+      }
+    },
+    "exam": {
+      "targetWords": 27,
+      "partCount": 2,
+      "contents": {
+        "en": "A picnic for Tom’s 10th birthday on Sunday 22 June at noon in the park; bring a salad; reply to Léa before Friday.",
+        "fr": "Un pique-nique pour les 10 ans de Tom, le dimanche 22 juin à midi au parc ; apportez une salade ; réponse à Léa avant vendredi.",
+        "de": "Ein Picknick zu Toms 10. Geburtstag am Sonntag, 22. Juni, mittags im Park; Salat mitbringen; Antwort an Léa bis Freitag."
+      }
+    }
+  },
+  "stages": {
+    "keywords": {
+      "estimatedDurationS": 90
+    },
+    "skim": {
+      "focus": "purpose",
+      "skimSeconds": 45,
+      "estimatedDurationS": 65
+    },
+    "detail": {
+      "questions": [
+        {
+          "id": "q-time",
+          "type": "reading_short_answer",
+          "focus": {
+            "en": "The time of the party",
+            "fr": "L’heure de la fête",
+            "de": "Die Uhrzeit des Fests"
+          }
+        },
+        {
+          "id": "q-occasion",
+          "type": "reading_choice",
+          "focus": {
+            "en": "The occasion",
+            "fr": "L’occasion",
+            "de": "Der Anlass"
+          }
+        },
+        {
+          "id": "q-bring",
+          "type": "reading_choice",
+          "focus": {
+            "en": "What to bring",
+            "fr": "Ce qu’il faut apporter",
+            "de": "Was man mitbringt"
+          }
+        },
+        {
+          "id": "q-reply",
+          "type": "reading_true_false",
+          "focus": {
+            "en": "How and when to reply",
+            "fr": "Comment et quand répondre",
+            "de": "Wie und bis wann man antwortet"
+          }
+        }
+      ],
+      "estimatedDurationS": 150
+    },
+    "structure": {
+      "task": "order_parts",
+      "estimatedDurationS": 60
+    }
+  },
+  "exam": {
+    "pages": [
+      {
+        "pageId": "exam-1",
+        "types": [
+          "reading_choice",
+          "reading_short_answer",
+          "reading_true_false"
+        ],
+        "itemCount": 5,
+        "estimatedDurationS": 150,
+        "timeLimitS": 225
+      }
+    ]
+  },
+  "scoring": {
+    "practiceWeight": 30,
+    "examWeight": 70,
+    "orthographyCredit": 0.5
+  }
+}

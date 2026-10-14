@@ -134,8 +134,8 @@ describe('offline brief authoring', () => {
     expect(readdirSync(join(dir, 'briefs'))).toEqual([]);
   });
 
-  it.each(['../escape', 'fr-unknown', 'fr-fix-greetings', 'fr-fix-menu'])('rejects invalid, unknown and unsupported ID %s before adapter access', async (id) => {
-    const dir = setup([VOC, 'fr-fix-greetings', 'fr-fix-menu']);
+  it.each(['../escape', 'fr-unknown', 'fr-fix-greetings'])('rejects invalid, unknown and unsupported ID %s before adapter access', async (id) => {
+    const dir = setup([VOC, 'fr-fix-greetings']);
     const { opts, adapter } = options(dir);
     await expect(generateBrief(id, opts)).rejects.toThrow();
     expect(adapter).not.toHaveBeenCalled();
@@ -195,7 +195,7 @@ describe('offline brief authoring', () => {
   });
 
   it('uses serial outline order, skips unsupported categories and continues after failure', async () => {
-    const dir = setup(['fr-fix-greetings', VOC, GRAM, 'fr-fix-menu']);
+    const dir = setup(['fr-fix-greetings', VOC, GRAM]);
     let active = 0;
     const { opts, generate } = options(dir, async (request) => {
       expect(active++).toBe(0);
@@ -206,7 +206,7 @@ describe('offline brief authoring', () => {
     });
     const outcomes = await generateMissingBriefs(opts);
     expect(outcomes.map((r) => [r.id, r.status])).toEqual([
-      ['fr-fix-greetings', 'skipped'], [VOC, 'failed'], [GRAM, 'generated'], ['fr-fix-menu', 'skipped'],
+      ['fr-fix-greetings', 'skipped'], [VOC, 'failed'], [GRAM, 'generated'],
     ]);
     expect(generate).toHaveBeenCalledTimes(2);
   });
@@ -366,5 +366,5 @@ describe('Gemini boundary and CLI', () => {
     const example = readFileSync(join(ROOT, '.env.example'), 'utf8');
     expect(example).toContain('GEMINI_API_KEY=\n');
     expect(execFileSync('git', ['check-ignore', '.env'], { cwd: ROOT, encoding: 'utf8' }).trim()).toBe('.env');
-  });
+  }, 20_000); // spawns make and node processes; slow while the whole suite runs in parallel
 });

@@ -309,7 +309,7 @@ describe('error spotter (P3-07 review)', () => {
     expect(screen.getByText(`Replace “${unit.kind === 'spot' ? unit.tokens[0].text : ''}” with`)).toBeInTheDocument();
   });
 
-  it('offers guided choices only for the faulty word and refuses another word at once (D52)', () => {
+  it('offers guided choices only for the faulty word and refuses another word at once (D55)', () => {
     const plan = planOf();
     const page = plan.pages.find((p) => p.items[0]?.type === 'grammar_error_spotter')!;
     const base = page.units[0];

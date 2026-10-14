@@ -91,10 +91,10 @@ export function artifactState(artifacts: LessonArtifacts | undefined): ArtifactS
 
 /**
  * Categories whose renderers are implemented: P1-09 baseline renderers cover every
- * vocabulary and grammar item type (phases 2/3 refine them); functions/reading wait
- * for phases 4/5.
+ * vocabulary and grammar item type (phases 2/3 refine them), functions and reading have their own
+ * (docs/functions and docs/reading-lessons.md).
  */
-export const PLAYABLE_KINDS: ReadonlySet<LessonKind> = new Set<LessonKind>(['vocabulary', 'grammar']);
+export const PLAYABLE_KINDS: ReadonlySet<LessonKind> = new Set<LessonKind>(['vocabulary', 'grammar', 'functions', 'reading']);
 
 export type NotReadyReason = 'missingDraft' | 'missingContent' | ArtifactProblem | 'unsupported';
 

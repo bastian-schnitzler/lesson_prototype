@@ -1,6 +1,6 @@
 import type { Locale } from '../../schemas/common.ts';
 import { classifyAnswer, normalizeAnswer, type AnswerOutcome } from '../answers.ts';
-import type { LessonPlan, PlanPage, PlanUnit } from './plan.ts';
+import type { Item, LessonPlan, PlanPage, PlanUnit } from './plan.ts';
 
 /**
  * Session record and pure reducer (SPEC section 5). Time is passed in by the caller,
@@ -15,6 +15,8 @@ export interface LockedUnit {
   timedOut: boolean;
   /** Interface language when the answer was submitted. */
   interfaceLanguage: Locale;
+  /** Gender chosen after a "des" + plural answer (P4-05 review). */
+  gender?: string;
 }
 
 export interface SessionRecord {
@@ -48,7 +50,11 @@ export interface SessionRecord {
   viewIndex?: number;
 }
 
+/** Default weights of vocabulary and grammar lessons; a lesson's plan carries the weights of its brief (reading 30/70). */
 export const POLICY = { practiceWeight: 35, examWeight: 65, orthographyCredit: 0.5 } as const;
+
+/** Item types shown as a two-column matching board: checked in place, and a fully correct board skips its feedback. */
+export const MATCHING_TYPES: ReadonlySet<Item['type']> = new Set(['vocabulary_matching', 'grammar_person_matching', 'function_matching', 'reading_keyword_matching', 'reading_part_heading_matching']);
 
 /* ---------------------------------------------------------------- scoring */
 
@@ -57,18 +63,26 @@ export function isAnswered(unit: PlanUnit, response: UnitResponse | undefined | 
   switch (unit.kind) {
     case 'text': return typeof response === 'string' && normalizeAnswer(response) !== '';
     case 'choice': return typeof response === 'string' && response !== '';
-    case 'order': return Array.isArray(response) && response.length === unit.tokens.length;
+    // With distractors not every token is placed; otherwise the sentence uses every token.
+    case 'order': return Array.isArray(response) && (unit.distractors?.length ? response.length > 0 : response.length === unit.tokens.length);
     case 'spot': return typeof response === 'object' && !Array.isArray(response) && !!response.tokenId && normalizeAnswer(response.text) !== '';
   }
 }
 
+/** A typed answer that starts with "des" and a word: then the gender choice is shown (P4-05 review). */
+export function isPluralAnswer(response: UnitResponse | undefined | null): boolean {
+  return typeof response === 'string' && /^des\s+\S/iu.test(response.trim());
+}
+
 /** First-submission scoring of one answer unit: 1, 0.5 (orthography only, text) or 0 points. */
-export function scoreUnit(unit: PlanUnit, response: UnitResponse | undefined | null): { outcome: AnswerOutcome; points: number } {
+export function scoreUnit(unit: PlanUnit, response: UnitResponse | undefined | null, gender?: string): { outcome: AnswerOutcome; points: number } {
   if (!isAnswered(unit, response)) return { outcome: 'unanswered', points: 0 };
   const right = (ok: boolean) => (ok ? { outcome: 'fully_correct' as const, points: 1 } : { outcome: 'incorrect' as const, points: 0 });
   switch (unit.kind) {
     case 'text': {
       const c = classifyAnswer(response as string, unit.accepted);
+      // A plurale tantum answered with "des" counts only with the right gender (P4-05 review).
+      if (c.outcome !== 'incorrect' && unit.noun?.pluraleTantum && isPluralAnswer(response) && !(gender && unit.noun.genders.includes(gender))) return { outcome: 'incorrect', points: 0 };
       return { outcome: c.outcome, points: c.credit };
     }
     case 'choice': return right(unit.correct.includes(response as string));
@@ -133,14 +147,20 @@ function activate(plan: LessonPlan, r: SessionRecord, now: number): SessionRecor
 }
 
 /**
- * Practice pages whose correct answers need no confirmation view: matching, and every page whose
+ * Practice pages whose correct answers need no confirmation view: matching, typed pronoun forms (P4-05
+ * review: all right → green flash and on), and every page whose
  * items each ask for exactly one answer (typed gap, listening choice, multiple choice, one typed
  * word, word order, error spot). Pages with several answers per item (gender rows, conjugation
  * tables) keep their checked view.
  */
 export function skipsFeedbackWhenCorrect(page: PlanPage): boolean {
   return page.role === 'practice' && page.items.length > 0
-    && page.items.every((item) => item.type === 'vocabulary_matching' || item.type === 'grammar_person_matching' || page.units.filter((u) => u.itemId === item.itemId).length === 1);
+    && page.items.every((item) => isMatchingItem(item.type) || item.type === 'grammar_pronoun_form_typing' || page.units.filter((u) => u.itemId === item.itemId).length === 1);
+}
+
+/** Items shown on the matching board: vocabulary, person (P3-02 review), function (P4-04) and reading matching. */
+export function isMatchingItem(type: string): boolean {
+  return (MATCHING_TYPES as ReadonlySet<string>).has(type);
 }
 
 /** Such pages answered fully correctly go straight on (after a green flash); feedback would only repeat the answers. */
@@ -148,13 +168,38 @@ export function skipsFeedback(page: PlanPage, r: Pick<SessionRecord, 'locked'>):
   return skipsFeedbackWhenCorrect(page) && page.units.every((u) => r.locked[u.id]?.outcome === 'fully_correct');
 }
 
-/** Flashcard pages complete once every card was revealed (P2-02); other presentation pages at once. */
+/**
+ * Presentation keys a page needs before Continue: every flashcard turned once (P2-02, function cards
+ * P4-04) and every line of a function dialogue shown (the first line is shown from the start).
+ */
+export function requiredReveals(page: PlanPage): { itemKey: string; keys: string[] }[] {
+  return page.items.flatMap((item) => {
+    const itemKey = `${page.pageId}/${item.itemId}`;
+    if (item.type === 'vocabulary_flashcards') return [{ itemKey, keys: item.targetIds }];
+    if (item.type === 'function_flashcards') return [{ itemKey, keys: item.ids }];
+    if (item.type === 'function_dialogue') return [{ itemKey, keys: item.lines.slice(1).map((l) => l.lineId) }];
+    return [];
+  });
+}
+
+/** Flashcard and dialogue pages complete once everything was revealed; other presentation pages at once. */
 export function presentationComplete(page: PlanPage, r: Pick<SessionRecord, 'revealed'>): boolean {
-  return page.items.every((item) => item.type !== 'vocabulary_flashcards' || item.targetIds.every((id) => (r.revealed?.[`${page.pageId}/${item.itemId}`] ?? []).includes(id)));
+  return requiredReveals(page).every(({ itemKey, keys }) => keys.every((key) => (r.revealed?.[itemKey] ?? []).includes(key)));
+}
+
+/** The next hidden line of a function dialogue or exam dialogue (SPEC section 8): Next line reveals it. */
+export function nextDialogueLine(page: PlanPage, r: Pick<SessionRecord, 'revealed'>): { itemKey: string; key: string } | undefined {
+  for (const item of page.items) {
+    if (item.type !== 'function_dialogue' && item.type !== 'function_dialogue_gap_typing') continue;
+    const itemKey = `${page.pageId}/${item.itemId}`;
+    const line = item.lines.slice(1).find((l) => !(r.revealed?.[itemKey] ?? []).includes(l.lineId));
+    if (line) return { itemKey, key: line.lineId };
+  }
+  return undefined;
 }
 
 export function isListeningPage(page: PlanPage): boolean {
-  return page.units.length > 0 && page.units.every((u) => u.itemType === 'vocabulary_listening_choice' || u.itemType === 'vocabulary_listening_dictation');
+  return page.units.length > 0 && page.units.every((u) => u.itemType === 'vocabulary_listening_choice' || u.itemType === 'vocabulary_listening_dictation' || u.itemType === 'function_listening_choice');
 }
 
 function lockPage(page: PlanPage, r: SessionRecord, interfaceLanguage: Locale, timedOut: boolean): SessionRecord {
@@ -162,7 +207,8 @@ function lockPage(page: PlanPage, r: SessionRecord, interfaceLanguage: Locale, t
   for (const unit of page.units) {
     if (locked[unit.id]) continue;
     const response = r.drafts[unit.id] ?? null;
-    locked[unit.id] = { response, ...scoreUnit(unit, response), timedOut, interfaceLanguage };
+    const gender = unit.kind === 'text' && unit.noun && isPluralAnswer(response) ? (r.drafts[`${unit.id}#gender`] as string | undefined) : undefined;
+    locked[unit.id] = { response, ...scoreUnit(unit, response, gender), timedOut, interfaceLanguage, ...(gender ? { gender } : {}) };
   }
   return { ...r, locked };
 }
@@ -196,7 +242,13 @@ export function sessionReducer(plan: LessonPlan, r: SessionRecord, action: Sessi
   let next: SessionRecord;
   switch (action.type) {
     case 'draft': {
-      const unit = page.units.find((u) => u.id === action.unitId);
+      // The gender after a "des" + plural answer is a draft of its own (P4-05 review).
+      const unit = page.units.find((u) => u.id === action.unitId || (u.kind === 'text' && u.noun && `${u.id}#gender` === action.unitId));
+      if (unit && action.unitId !== unit.id) {
+        if (r.phase !== 'answering' || r.locked[unit.id] || expired) return r;
+        next = { ...r, drafts: { ...r.drafts, [action.unitId]: action.response } };
+        break;
+      }
       // Locked answers are immutable; input after an exam deadline is ignored.
       if (!unit || r.phase !== 'answering' || r.locked[unit.id] || expired) return r;
       next = { ...r, drafts: { ...r.drafts, [unit.id]: action.response } };
@@ -267,7 +319,7 @@ export const percent = (t: Tally) => (t.possible ? (100 * t.earned) / t.possible
 export function headerScore(plan: LessonPlan, r: SessionRecord): number {
   if (r.status === 'completed') return lessonResults(plan, r).total;
   const practice = tally(unitsWhere(plan, 'practice', r), r);
-  const p = practice.possible ? (POLICY.practiceWeight * practice.earned) / practice.possible : 0;
+  const p = practice.possible ? (plan.scoring.practiceWeight * practice.earned) / practice.possible : 0;
   return p; // Exam credit is sealed until completion, handled above.
 }
 
@@ -276,7 +328,7 @@ export interface LessonResults {
   exam: Tally;
   practiceScore: number;
   examScore: number;
-  /** 0.35 × practice score + 0.65 × exam score; a lesson without practice units weights the exam fully. */
+  /** practice weight × practice score + exam weight × exam score (0.35/0.65, reading 0.3/0.7); a lesson without practice units weights the exam fully. */
   total: number;
   steps: { stepId: string; role: 'practice' | 'exam' | 'presentation'; tally: Tally; completed: boolean }[];
 }
@@ -287,7 +339,7 @@ export function lessonResults(plan: LessonPlan, r: SessionRecord): LessonResults
   const practiceScore = percent(practice);
   const examScore = percent(exam);
   const total = practice.possible && exam.possible
-    ? (POLICY.practiceWeight * practiceScore + POLICY.examWeight * examScore) / 100
+    ? (plan.scoring.practiceWeight * practiceScore + plan.scoring.examWeight * examScore) / 100
     : practice.possible ? practiceScore : examScore;
   return {
     practice, exam, practiceScore, examScore, total,

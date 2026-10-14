@@ -1,0 +1,821 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-reading-an-editorial",
+  "lang": "fr",
+  "level": "B2",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Lire un éditorial",
+  "objective": {
+    "en": "Read a newspaper editorial, state its thesis in one sentence and spot the devices meant to convince (rhetorical questions, shock figures, il est temps que).",
+    "fr": "Lire l’éditorial d’un quotidien, formuler sa thèse en une phrase et repérer les procédés qui doivent convaincre (questions rhétoriques, chiffres choc, il est temps que).",
+    "de": "Den Leitartikel einer Tageszeitung lesen, seine These in einem Satz formulieren und die Überzeugungsmittel erkennen (rhetorische Fragen, Schockzahlen, il est temps que)."
+  },
+  "estimatedMinutes": 13,
+  "provenance": {
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "reading-content-v2",
+    "generatedAt": "2026-10-14T09:17:22.674Z",
+    "inputHashes": {
+      "outline": "a730c40e10217bda96a17b52811717c078f5f11dd3d6ccfbc915e85fe009bb8c",
+      "brief": "3e51dfb81c2810fec9b890321346c1d7a1a43d6a644855a22d64e5a014b5cafe"
+    }
+  },
+  "kind": "reading",
+  "theme": "services",
+  "genre": "article",
+  "documents": [
+    {
+      "documentId": "main",
+      "genre": "article",
+      "title": "Soigner les campagnes, une urgence nationale",
+      "meta": [
+        "Éditorial · Le Courrier du Centre",
+        "par Anne Delorme · mardi 4 mars"
+      ],
+      "parts": [
+        {
+          "partId": "m-fact",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s1",
+              "text": "Six heures.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s2",
+              "text": "C’est le temps qu’a attendu Josette, 82 ans, aux urgences de Châteauroux, la semaine dernière, faute de médecin dans son village.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s3",
+              "text": "Son histoire n’a rien d’exceptionnel.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s4",
+              "text": "Elle est devenue la règle.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s5",
+              "text": "Aujourd’hui, six millions de Français vivent dans un désert médical, et près d’un sur dix n’a plus de médecin traitant.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-causes",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s6",
+              "text": "Comment en est-on arrivé là ?",
+              "value": null
+            },
+            {
+              "segmentId": "m-s7",
+              "text": "Pendant trente ans, on a limité le nombre d’étudiants en médecine pour, disait-on, maîtriser les dépenses de santé.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s8",
+              "text": "Les médecins qui partent à la retraite ne sont pas remplacés, et les jeunes préfèrent les grandes villes, leurs hôpitaux et leurs écoles.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s9",
+              "text": "Peut-on vraiment le leur reprocher ?",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-objection",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s10",
+              "text": "On nous répond que la téléconsultation va régler le problème.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s11",
+              "text": "C’est oublier que beaucoup de personnes âgées n’ont ni ordinateur ni bonne connexion, et qu’on n’ausculte pas un patient à travers un écran.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s12",
+              "text": "La technologie peut aider ; elle ne remplace pas une présence.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-proposals",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s13",
+              "text": "Des solutions existent pourtant.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s14",
+              "text": "Certaines communes ouvrent des maisons de santé où plusieurs médecins partagent les frais et les gardes.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s15",
+              "text": "Elles attirent déjà de jeunes médecins dans l’Indre et la Creuse.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s16",
+              "text": "D’autres pays obligent les jeunes diplômés à exercer quelques années là où l’on manque de soignants.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s17",
+              "text": "Pourquoi la France refuserait-elle d’en débattre ?",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-call",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s18",
+              "text": "Il est temps que l’État prenne ses responsabilités.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s19",
+              "text": "La santé n’est pas un luxe réservé aux habitants des métropoles : c’est un droit, et ce droit ne doit pas dépendre de son code postal.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s20",
+              "text": "Josette, elle, n’a plus le temps d’attendre.",
+              "value": null
+            }
+          ]
+        }
+      ],
+      "highlights": [
+        {
+          "keywordId": "faute-de",
+          "segmentId": "m-s2",
+          "text": "faute de"
+        },
+        {
+          "keywordId": "desert-medical",
+          "segmentId": "m-s5",
+          "text": "désert médical"
+        },
+        {
+          "keywordId": "medecin-traitant",
+          "segmentId": "m-s5",
+          "text": "médecin traitant"
+        },
+        {
+          "keywordId": "teleconsultation",
+          "segmentId": "m-s10",
+          "text": "téléconsultation"
+        },
+        {
+          "keywordId": "maison-de-sante",
+          "segmentId": "m-s14",
+          "text": "maisons de santé"
+        },
+        {
+          "keywordId": "il-est-temps-que",
+          "segmentId": "m-s18",
+          "text": "Il est temps que"
+        }
+      ]
+    },
+    {
+      "documentId": "exam",
+      "genre": "article",
+      "title": "La poste du village, un service à défendre",
+      "meta": [
+        "Éditorial · La Gazette des Vosges",
+        "par Marc Weber"
+      ],
+      "parts": [
+        {
+          "partId": "x-question",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s1",
+              "text": "Faut-il vraiment fermer le bureau de poste de Saint-Dié-les-Prés ?",
+              "value": null
+            },
+            {
+              "segmentId": "x-s2",
+              "text": "La direction régionale l’affirme : il ne reçoit que quarante clients par jour.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s3",
+              "text": "Le bureau ouvre trois matinées par semaine.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "x-people",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s4",
+              "text": "Mais ces quarante clients, ce sont surtout des retraités qui viennent chercher leur pension, envoyer un colis ou simplement parler à quelqu’un.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s5",
+              "text": "Pour eux, le bureau le plus proche sera à vingt-cinq kilomètres, et il n’y a qu’un bus par jour.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "x-shop",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s6",
+              "text": "On nous propose un « point poste » dans l’épicerie.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s7",
+              "text": "L’idée n’est pas mauvaise, à condition que l’épicière soit formée et payée pour ce travail.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "x-call",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s8",
+              "text": "Un service public ne se mesure pas seulement en clients par jour.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s9",
+              "text": "Il est temps que nos élus défendent les villages avant qu’ils ne se vident.",
+              "value": null
+            }
+          ]
+        }
+      ],
+      "highlights": []
+    }
+  ],
+  "steps": [
+    {
+      "id": "keywords",
+      "stage": "keywords",
+      "role": "exercise",
+      "label": {
+        "en": "Key words",
+        "fr": "Mots clés",
+        "de": "Schlüsselwörter"
+      },
+      "pages": [
+        {
+          "pageId": "keywords",
+          "estimatedDurationS": 50,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the key words of the text and their meaning.",
+            "fr": "Lisez les mots clés du texte et leur sens.",
+            "de": "Lies die Schlüsselwörter des Textes und ihre Bedeutung."
+          },
+          "items": [
+            {
+              "type": "reading_keywords",
+              "itemId": "keywords",
+              "keywordIds": [
+                "faute-de",
+                "desert-medical",
+                "medecin-traitant",
+                "teleconsultation",
+                "maison-de-sante",
+                "il-est-temps-que"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "keyword-matching",
+          "estimatedDurationS": 55,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each key word with its meaning.",
+            "fr": "Associez chaque mot clé à son sens.",
+            "de": "Ordne jedem Schlüsselwort seine Bedeutung zu."
+          },
+          "items": [
+            {
+              "type": "reading_keyword_matching",
+              "itemId": "keyword-matching",
+              "pairs": [
+                {
+                  "keywordId": "faute-de",
+                  "answerExplanation": {
+                    "en": "faute de = for lack of.",
+                    "fr": "faute de : parce qu’il manque…",
+                    "de": "faute de = mangels."
+                  }
+                },
+                {
+                  "keywordId": "desert-medical",
+                  "answerExplanation": {
+                    "en": "un désert médical = an area with too few doctors.",
+                    "fr": "un désert médical : une zone sans assez de médecins.",
+                    "de": "un désert médical = unterversorgte Region."
+                  }
+                },
+                {
+                  "keywordId": "medecin-traitant",
+                  "answerExplanation": {
+                    "en": "le médecin traitant = the family doctor.",
+                    "fr": "le médecin traitant : son médecin habituel.",
+                    "de": "le médecin traitant = der Hausarzt."
+                  }
+                },
+                {
+                  "keywordId": "teleconsultation",
+                  "answerExplanation": {
+                    "en": "la téléconsultation = an online consultation.",
+                    "fr": "la téléconsultation : consulter par écran.",
+                    "de": "la téléconsultation = Videosprechstunde."
+                  }
+                },
+                {
+                  "keywordId": "maison-de-sante",
+                  "answerExplanation": {
+                    "en": "une maison de santé = a health centre.",
+                    "fr": "une maison de santé : des soignants réunis.",
+                    "de": "une maison de santé = Gesundheitszentrum."
+                  }
+                },
+                {
+                  "keywordId": "il-est-temps-que",
+                  "answerExplanation": {
+                    "en": "il est temps que = it is high time that.",
+                    "fr": "il est temps que : il faut agir maintenant.",
+                    "de": "il est temps que = es ist höchste Zeit, dass."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skim",
+      "stage": "skim",
+      "role": "exercise",
+      "label": {
+        "en": "Skim",
+        "fr": "Survol",
+        "de": "Überfliegen"
+      },
+      "pages": [
+        {
+          "pageId": "skim",
+          "estimatedDurationS": 115,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Look over the document quickly. It blurs when the time is up; then answer the question.",
+            "fr": "Parcourez rapidement le document. Il se floute à la fin du temps ; répondez ensuite à la question.",
+            "de": "Überfliege das Dokument. Wenn die Zeit um ist, wird es unscharf; beantworte dann die Frage."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-skim",
+              "documentId": "main",
+              "view": "skim",
+              "skimSeconds": 90
+            },
+            {
+              "type": "reading_skim_choice",
+              "itemId": "skim-purpose",
+              "focus": "purpose",
+              "question": "Quel est le but de ce texte ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Raconter la vie d’une infirmière"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Présenter un nouvel hôpital"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Expliquer comment utiliser la téléconsultation"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Convaincre l’État d’agir contre les déserts médicaux"
+                }
+              ],
+              "answerOptionId": "o4",
+              "answerExplanation": {
+                "en": "Éditorial, a title calling for action (une urgence nationale) and a last paragraph starting with Il est temps que l’État…: it wants to convince.",
+                "fr": "Éditorial, un titre qui appelle à agir (une urgence nationale) et un dernier paragraphe qui commence par Il est temps que l’État… : il veut convaincre.",
+                "de": "Éditorial, ein Titel mit Handlungsaufruf (une urgence nationale) und ein letzter Absatz mit Il est temps que l’État…: Der Text will überzeugen."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "detail",
+      "stage": "detail",
+      "role": "exercise",
+      "label": {
+        "en": "Detail",
+        "fr": "Détails",
+        "de": "Details"
+      },
+      "pages": [
+        {
+          "pageId": "detail",
+          "estimatedDurationS": 240,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the document carefully and answer the questions.",
+            "fr": "Lisez le document attentivement et répondez aux questions.",
+            "de": "Lies das Dokument genau und beantworte die Fragen."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-detail",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_short_answer",
+              "itemId": "q-wait",
+              "question": "Combien de temps Josette a-t-elle attendu aux urgences ?",
+              "accepted": {
+                "answers": [
+                  "six heures",
+                  "6 heures",
+                  "6 h",
+                  "6h",
+                  "six h"
+                ]
+              },
+              "evidenceSegmentIds": [
+                "m-s1",
+                "m-s2"
+              ],
+              "answerExplanation": {
+                "en": "Six heures. C’est le temps qu’a attendu Josette.",
+                "fr": "Six heures. C’est le temps qu’a attendu Josette.",
+                "de": "Six heures. C’est le temps qu’a attendu Josette."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-thesis",
+              "question": "Quelle phrase résume le mieux la thèse de l’éditorial ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "La téléconsultation suffit pour soigner les campagnes."
+                },
+                {
+                  "optionId": "o2",
+                  "text": "L’État doit garantir l’accès aux médecins partout."
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Les jeunes médecins sont égoïstes."
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Il faut fermer les petits hôpitaux."
+                }
+              ],
+              "answerOptionId": "o2",
+              "evidenceSegmentIds": [
+                "m-s18",
+                "m-s19"
+              ],
+              "answerExplanation": {
+                "en": "The thesis is in the call: Il est temps que l’État prenne ses responsabilités… ce droit ne doit pas dépendre de son code postal.",
+                "fr": "La thèse est dans l’appel final : Il est temps que l’État prenne ses responsabilités… ce droit ne doit pas dépendre de son code postal.",
+                "de": "Die These steckt im Appell: Il est temps que l’État prenne ses responsabilités… ce droit ne doit pas dépendre de son code postal."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "q-tele",
+              "statement": "L’auteure pense que la téléconsultation peut remplacer le médecin.",
+              "allowNotStated": true,
+              "answer": "false",
+              "evidenceSegmentIds": [
+                "m-s12"
+              ],
+              "answerExplanation": {
+                "en": "False: la technologie peut aider ; elle ne remplace pas une présence. The objection is rejected.",
+                "fr": "Faux : la technologie peut aider ; elle ne remplace pas une présence. L’objection est rejetée.",
+                "de": "Falsch: la technologie peut aider ; elle ne remplace pas une présence. Der Einwand wird zurückgewiesen."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-device",
+              "question": "Pourquoi l’éditorial commence-t-il par l’histoire de Josette ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Pour critiquer l’hôpital de Châteauroux"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Pour donner une statistique officielle"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Pour toucher le lecteur avec un cas concret"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Pour donner la parole à un médecin"
+                }
+              ],
+              "answerOptionId": "o3",
+              "evidenceSegmentIds": [
+                "m-s2",
+                "m-s3",
+                "m-s20"
+              ],
+              "answerExplanation": {
+                "en": "A real person and a shock figure (Six heures.) move the reader; the text comes back to her at the end: Josette n’a plus le temps d’attendre.",
+                "fr": "Une personne réelle et un chiffre choc (Six heures.) touchent le lecteur ; le texte revient à elle à la fin : Josette n’a plus le temps d’attendre.",
+                "de": "Eine echte Person und eine Schockzahl (Six heures.) berühren den Leser; am Ende kommt der Text auf sie zurück: Josette n’a plus le temps d’attendre."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "structure",
+      "stage": "structure",
+      "role": "exercise",
+      "label": {
+        "en": "Structure",
+        "fr": "Structure",
+        "de": "Aufbau"
+      },
+      "pages": [
+        {
+          "pageId": "structure",
+          "estimatedDurationS": 95,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Without the text: put the steps of the argument back in the order of the editorial.",
+            "fr": "Sans le texte : remettez les étapes de l’argumentation dans l’ordre de l’éditorial.",
+            "de": "Ohne den Text: Bring die Schritte der Argumentation in die Reihenfolge des Leitartikels."
+          },
+          "items": [
+            {
+              "type": "reading_order",
+              "itemId": "argument-steps",
+              "mode": "parts",
+              "pieces": [
+                {
+                  "pieceId": "p3",
+                  "text": "Une objection rejetée",
+                  "partId": "m-objection"
+                },
+                {
+                  "pieceId": "p2",
+                  "text": "Les causes du problème",
+                  "partId": "m-causes"
+                },
+                {
+                  "pieceId": "p1",
+                  "text": "Un cas frappant et un chiffre choc",
+                  "partId": "m-fact"
+                },
+                {
+                  "pieceId": "p5",
+                  "text": "L’appel final à l’État",
+                  "partId": "m-call"
+                },
+                {
+                  "pieceId": "p4",
+                  "text": "Des solutions possibles",
+                  "partId": "m-proposals"
+                }
+              ],
+              "acceptedOrders": [
+                [
+                  "p1",
+                  "p2",
+                  "p3",
+                  "p4",
+                  "p5"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "A classic editorial: a striking fact, the causes, an objection answered, proposals, then the call (Il est temps que…).",
+                "fr": "Un éditorial classique : un fait frappant, les causes, une objection réfutée, des propositions, puis l’appel (Il est temps que…).",
+                "de": "Ein klassischer Leitartikel: eine auffällige Tatsache, die Ursachen, ein widerlegter Einwand, Vorschläge, dann der Appell (Il est temps que…)."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Final exam",
+        "fr": "Examen final",
+        "de": "Abschlussprüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-1",
+          "estimatedDurationS": 135,
+          "timeLimitS": 205,
+          "instructions": {
+            "en": "Read the new document and answer the questions. No help this time.",
+            "fr": "Lisez le nouveau document et répondez aux questions. Cette fois, sans aide.",
+            "de": "Lies das neue Dokument und beantworte die Fragen. Diesmal ohne Hilfe."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-exam",
+              "documentId": "exam",
+              "view": "exam",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_short_answer",
+              "itemId": "x-clients",
+              "question": "Combien de clients le bureau reçoit-il par jour ?",
+              "accepted": {
+                "answers": [
+                  "quarante",
+                  "40",
+                  "quarante clients",
+                  "40 clients"
+                ]
+              },
+              "evidenceSegmentIds": [
+                "x-s2"
+              ],
+              "answerExplanation": {
+                "en": "Il ne reçoit que quarante clients par jour.",
+                "fr": "Il ne reçoit que quarante clients par jour.",
+                "de": "Il ne reçoit que quarante clients par jour."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-who",
+              "question": "Qui sont surtout les clients du bureau ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Des retraités"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Des étudiants"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Des touristes"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Des commerçants"
+                }
+              ],
+              "answerOptionId": "o1",
+              "evidenceSegmentIds": [
+                "x-s4"
+              ],
+              "answerExplanation": {
+                "en": "Ce sont surtout des retraités qui viennent chercher leur pension.",
+                "fr": "Ce sont surtout des retraités qui viennent chercher leur pension.",
+                "de": "Ce sont surtout des retraités qui viennent chercher leur pension."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "x-bus",
+              "statement": "Il y a plusieurs bus par jour vers le bureau le plus proche.",
+              "allowNotStated": true,
+              "answer": "false",
+              "evidenceSegmentIds": [
+                "x-s5"
+              ],
+              "answerExplanation": {
+                "en": "False: il n’y a qu’un bus par jour.",
+                "fr": "Faux : il n’y a qu’un bus par jour.",
+                "de": "Falsch: il n’y a qu’un bus par jour."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-2",
+          "estimatedDurationS": 90,
+          "timeLimitS": 135,
+          "instructions": {
+            "en": "Read the new document and answer the questions. No help this time.",
+            "fr": "Lisez le nouveau document et répondez aux questions. Cette fois, sans aide.",
+            "de": "Lies das neue Dokument und beantworte die Fragen. Diesmal ohne Hilfe."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-exam-2",
+              "documentId": "exam",
+              "view": "exam",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-shop",
+              "question": "Que pense l’auteur du « point poste » à l’épicerie ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Il ne donne pas son avis."
+                },
+                {
+                  "optionId": "o2",
+                  "text": "C’est une très mauvaise idée."
+                },
+                {
+                  "optionId": "o3",
+                  "text": "C’est acceptable si l’épicière est formée et payée."
+                },
+                {
+                  "optionId": "o4",
+                  "text": "C’est la meilleure solution possible."
+                }
+              ],
+              "answerOptionId": "o3",
+              "evidenceSegmentIds": [
+                "x-s7"
+              ],
+              "answerExplanation": {
+                "en": "L’idée n’est pas mauvaise, à condition que l’épicière soit formée et payée.",
+                "fr": "L’idée n’est pas mauvaise, à condition que l’épicière soit formée et payée.",
+                "de": "L’idée n’est pas mauvaise, à condition que l’épicière soit formée et payée."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "x-mayor",
+              "statement": "Le maire du village a écrit à la direction régionale.",
+              "allowNotStated": true,
+              "answer": "not_stated",
+              "evidenceSegmentIds": [],
+              "answerExplanation": {
+                "en": "Not stated: the editorial mentions nos élus, but no letter from the mayor.",
+                "fr": "Pas dans le texte : l’éditorial parle de nos élus, mais d’aucune lettre du maire.",
+                "de": "Steht nicht im Text: Der Leitartikel nennt nos élus, aber keinen Brief des Bürgermeisters."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

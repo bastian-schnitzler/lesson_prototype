@@ -41,7 +41,13 @@ These issue bodies were published to GitHub in P0-04 on 2026-10-06. Each GitHub 
 | P3-07 | [#67](https://github.com/bastian-schnitzler/lesson_prototype/issues/67) | Lengthen grammar lessons: length rules, new verbs and the ten samples rewritten |
 | P3-08 | [#32](https://github.com/bastian-schnitzler/lesson_prototype/issues/32) | Update grammar lesson mockups from the prototype |
 | P4-01 | [#33](https://github.com/bastian-schnitzler/lesson_prototype/issues/33) | Define functions requirements and implementation backlog |
-| P4-02 | [#34](https://github.com/bastian-schnitzler/lesson_prototype/issues/34) | Update function lesson mockups from the prototype |
+| P4-02 | [#75](https://github.com/bastian-schnitzler/lesson_prototype/issues/75) | Function brief and lesson content schemas and validation |
+| P4-03 | [#76](https://github.com/bastian-schnitzler/lesson_prototype/issues/76) | Write and review the three function test lessons |
+| P4-04 | [#77](https://github.com/bastian-schnitzler/lesson_prototype/issues/77) | Function flashcards, model dialogue and matching |
+| P4-05 | [#78](https://github.com/bastian-schnitzler/lesson_prototype/issues/78) | Function word order, dialogue gaps, exam and results |
+| P4-06 | [#79](https://github.com/bastian-schnitzler/lesson_prototype/issues/79) | Decide function generation and complete the remaining eleven lessons |
+| P4-07 | [#80](https://github.com/bastian-schnitzler/lesson_prototype/issues/80) | Function end-to-end validation and deployment |
+| P4-08 | [#34](https://github.com/bastian-schnitzler/lesson_prototype/issues/34) | Update function lesson mockups from the prototype |
 | P5-01 | [#35](https://github.com/bastian-schnitzler/lesson_prototype/issues/35) | Define reading requirements and implementation backlog |
 | P5-02 | [#36](https://github.com/bastian-schnitzler/lesson_prototype/issues/36) | Update reading lesson mockups from the prototype |
 | P6-01 | [#69](https://github.com/bastian-schnitzler/lesson_prototype/issues/69) | Sidebar — lesson navigation, exams and results |
@@ -60,7 +66,7 @@ Once these issues are published, every change to `docs/SPEC.md` or `docs/ISSUES.
 
 Use each issue heading below as its GitHub title, including the phase/issue prefix and colon: `P0-01: Create and refine the lesson prototype specification`, etc. The title prefix is the logical roadmap ID; GitHub assigns a separate repository issue number for links; branch names use the logical ID. Existing published issue numbers/URLs stay stable when their titles or scope change.
 
-Create or reuse milestones named exactly **Phase 0**, **Phase 1**, **Phase 2**, **Phase 3**, **Phase 4**, **Phase 5**, and **Phase 6**. Each phase's issues must be assigned to that milestone, with its description based on the corresponding SPEC deliverables and exit criteria. Check for existing milestones before creating them and verify every issue's assignment. Phase 4/5 review and closing tasks remain requirements-dependent; their detailed implementation backlog follows later.
+Create or reuse milestones named exactly **Phase 0**, **Phase 1**, **Phase 2**, **Phase 3**, **Phase 4**, and **Phase 5**. Each phase's issues must be assigned to that milestone, with its description based on the corresponding SPEC deliverables and exit criteria. Check for existing milestones before creating them and verify every issue's assignment. The phase 4 backlog was defined in P4-01; phase 5 review and closing tasks remain requirements-dependent, and its detailed implementation backlog follows later.
 
 Each implementation phase ends with a dedicated issue to improve its Salt mockups against the actual running prototype. That mockup-refresh issue is always the **last issue of its milestone**: it has the highest logical ID in its phase and depends, directly or transitively, on every other issue of that phase. When an issue is added to a phase, renumber so the mockup issue stays last; GitHub issue numbers do not change. Compare the real pages against the SPEC visual contract and supplied screenshot references R1–R5, update sources and their matching embedded PlantUML code fences, update the single mockup README and documentation links, and synchronize published GitHub issue assets. These closing issues are part of phase completion.
 
@@ -219,7 +225,7 @@ Acceptance:
 - Orthography correction explanations name the actual mark: French accent aigu/grave/circonflexe, cédille, or tréma as applicable. Avoid character-only wording such as “written with é”; future German feedback uses “written with umlaut ä/ö/ü.” Apply this consistently to practice, results, and artifact previews during prompt design and content review.
 - Vocabulary noun-gender selectors and reviewed overview are a scored stage-4 interaction with conditional applicability and preserved row results.
 - Content schemas model ordered payloads, six grammar interaction types, vocabulary interactions, and mixed exams; concrete pages have positive estimated durations, and each exam page has its brief-defined positive time limit.
-- Typed answer outcomes distinguish fully correct, accent/case-only (half credit), incorrect, and unanswered while preserving the original response. Ligature/umlaut digraph substitutes (`oe`/`œ`, `ae`/`æ`, `ae`/`ä`, `oe`/`ö`, `ue`/`ü`) are half credit; answers can mark accent-distinguished words (`à`, `où`, `là`, …) accent-sensitive, so those accent errors are incorrect.
+- Typed answer outcomes distinguish fully correct, accent/case-only (half credit), incorrect, and unanswered while preserving the original response. Ligature/umlaut digraph substitutes (`oe`/`œ`, `ae`/`æ`, `ae`/`ä`, `oe`/`ö`, `ue`/`ü`) are half credit; accent errors that make another word (`à`, `où`, `là`, …) are half credit too (D40, changed in P3-03).
 - Vocabulary contracts include `vocabulary_listening_choice` (practice) and `vocabulary_listening_dictation` (exam) with brief-planned coverage; noun exam forms use the indefinite article wherever grammatical, with explicit exception forms only where none exists.
 - Strict validation enforces outline metadata, unique IDs, reference integrity, answer validity, and category sequence.
 - Brief and content schemas require complete strict maps for every native translation (each mother tongue except the learning language) and every en/fr/de localized support field, with shared IDs/answers/durations/timing/scoring. Remove single nativeLanguage from artifact envelopes; store attempt language context in sessions. Bump schema version and reject stale English-only or partial-locale artifacts; locale correctness/equivalence is reviewed separately. Include shared LocalizedTextSchema and NativeTranslationsSchema fixtures.
@@ -290,10 +296,10 @@ Scope: generate the first ten grammar and first ten vocabulary briefs in outline
 Acceptance:
 
 - Add `make sample-briefs` for the named first-ten grammar/vocabulary set; use it for the phase 1 review batch and update help.
-- The exact twenty fr/A1 IDs in SPEC section 9 have valid individual brief files with en/fr/de support and translations. Review all locales for accuracy, aligned meanings and stable shared answers.
+- The exact twenty fr/A1 IDs in SPEC section 10 have valid individual brief files with en/fr/de support and translations. Review all locales for accuracy, aligned meanings and stable shared answers.
 - Vocabulary Draft renders objective/duration, target inventory with translations and applicable gender/articles, difficulty balance/count rationale, six-stage plan, and individual exam-page limits.
 - Grammar Draft renders objective/coverage, 2–4 teaching blocks with rules, examples, pitfalls and exercise plans, plus mixed-exam coverage and individual page limits.
-- Both use the same Outline component and header; complete arrays remain browsable. Review is usable in structured mode with the header raw JSON toggle, with category-specific mockups matching SPEC section 8.
+- Both use the same Outline component and header; complete arrays remain browsable. Review is usable in structured mode with the header raw JSON toggle, with category-specific mockups matching SPEC section 9.
 - Invalid/missing files have distinct states; rebuilding the manifest after offline generation updates Content labels and Start availability.
 - Present concrete samples to the user and record review changes and acceptance before content generation; check target counts, the ordinary average excluding exceptions, and the balance of easier/harder targets within each topic.
 
@@ -591,7 +597,7 @@ Milestone: **Phase 2**.
 
 Scope: the 38 fr/A1 vocabulary outline entries that still have no artifacts. For each, Claude in Claude Code writes the brief directly, as the P1-08 samples were written, instead of running the offline generator (`make generate`). Since P2-04 a vocabulary lesson is its brief (D47): there is no lesson content file, and the application derives the same six stages for every lesson.
 
-Phase 6 update (P6-02, D51, D54): write briefs with **10 words (at most 12)**, split larger topics over two lessons (the 38 entries may need splitting; check the outline counts), add `gap.question` (a mother-tongue question per locale) for accent, sign and letter clues, and let every clue show what it names. Prompt `brief-v8`; `make sample-lessons` prints audit lines for briefs above 12 words.
+Phase 6 update (P6-02, D54, D57): write briefs with **10 words (at most 12)**, split larger topics over two lessons (the 38 entries may need splitting; check the outline counts), add `gap.question` (a mother-tongue question per locale) for accent, sign and letter clues, and let every clue show what it names. Prompt `brief-v8`; `make sample-lessons` prints audit lines for briefs above 12 words.
 
 Acceptance:
 
@@ -624,7 +630,7 @@ Milestone: **Phase 2**.
 
 Scope: the 38 fr/A1 grammar outline entries that still have no artifacts. For each, Claude in Claude Code writes the brief first and then the lesson content directly, in the same way as P2-06, without the generator.
 
-Phase 6 update (P6-04, D52, D55): write lessons with at least 24 practice and 12 exam units (recommended at most 30 and 18), one named point per block, and error spotters with a single defect and a single fix, select mode for A1, distinct choices. Prompt `content-v5`; the audit lists the ten samples above the ceilings.
+Phase 6 update (P6-04, D55, D58): write lessons with at least 24 practice and 12 exam units (recommended at most 30 and 18), one named point per block, and error spotters with a single defect and a single fix, select mode for A1, distinct choices. Prompt `content-v5`; the audit lists the ten samples above the ceilings.
 
 Acceptance:
 
@@ -640,7 +646,7 @@ Acceptance:
 - Lessons follow the contracts:
   - formatted explanations (D46) with form tables
   - correct and natural A1 French
-  - accepted answers and accent-sensitive words
+  - accepted answers
   - error spotters with one faulty token and a valid correction mode
   - explanations that name the accent mark (D28)
   - unique labels for repeated exercise steps (the P1-12 follow-up)
@@ -723,7 +729,9 @@ Acceptance:
 - Four unique choices shuffle without changing answer identity.
 - Typed gaps support content-defined accepted answers and hints.
 - Common three-way text scorers/result records work in practice and exam roles; Continue confirmation and delayed exam feedback follow the shared host.
-- Checks cover accent-sensitive answers, blank responses, answer reveal policy, and scoring.
+- Checks cover accent errors (half credit, also on accent homographs, D40), blank responses, answer reveal policy, and scoring.
+
+Outcome (2026-10-14): both interactions already ran on the shared `UnitsRenderer` and scorer (P1-09, P3-01, P3-02 and P4-05 reviews); `tests/unit/gaps.test.tsx` now checks them against this issue's acceptance criteria. Review: D40 changed, a wrong accent that makes another word (`la` for `là`) is a spelling mistake worth half a point, so the `accentSensitive` field is removed from schemas, content, generator and artifact views. Dictation pages show their words in a random order fixed by the session seed.
 
 Dependencies: P3-01.
 
@@ -790,7 +798,7 @@ Milestone: **Phase 3**.
 
 Scope: grammar lessons are far too short compared with vocabulary lessons (the ten samples have 11–35 scored practice units and 6–12 exam units; a vocabulary lesson has about 70 and 36, and the estimates overstate the real time). Make them about two to three times longer (first three to four times, then cut to two thirds in the review), write the length and timing rules into SPEC section 7 so that generation and hand authoring produce longer lessons, show translations of newly introduced verbs, and rewrite the ten grammar samples by hand. Requested by the product owner on 2026-10-08.
 
-Phase 6 update (P6-04, D55): the minimums of this issue were lowered from 34 / 16 to 24 / 12 and ceilings of 30 / 18 added as audit lines; the ten samples (34–42 practice units) are shortened with the remaining authoring.
+Phase 6 update (P6-04, D58): the minimums of this issue were lowered from 34 / 16 to 24 / 12 and ceilings of 30 / 18 added as audit lines; the ten samples (34–42 practice units) are shortened with the remaining authoring.
 
 Acceptance:
 
@@ -824,7 +832,7 @@ Acceptance:
 
 Dependencies: P3-06, P3-07.
 
-## Phase 4 — functions (requirements pending)
+## Phase 4 — functions
 
 ### P4-01: Define functions requirements and implementation backlog
 
@@ -841,27 +849,140 @@ Acceptance:
 - Brief/content schemas and shared-host extensions are planned.
 - Create separate issues for generation, interaction implementation, reviewed content, and end-to-end validation only after this review.
 
+Outcome (2026-10-13): SPEC section 8 "Functions learning flow" (D50, D51) with eight function mockups under `docs/mockups/05-function-lesson/`. The brief holds 6–10 expressions and 0–6 words with example sentences; the generated lesson content holds flashcards, a model dialogue revealed line by line, matching, word order, dialogue gaps; the exam builds replies from tokens with distractors and fills a new dialogue's expression gaps by typing. Three test lessons are written by hand first; the generation decision follows their review. The mockup refresh moves from P4-02 to P4-08.
+
 Dependencies: function requirements from the user; P1 shared architecture. Category implementation begins after phase 3 under the requested roadmap.
 
-### P4-02: Update function lesson mockups from the prototype
+### P4-02: Function brief and lesson content schemas and validation
+
+GitHub: [#75](https://github.com/bastian-schnitzler/lesson_prototype/issues/75).
+
+Milestone: **Phase 4**.
+
+Scope: the executable function brief and lesson content contracts (SPEC section 8, D51): the brief holds the expressions and words with example sentences; the lesson content holds the dialogues, exercises and exam.
+
+Acceptance:
+
+- `FunctionsBriefSchema` in `src/schemas/functions.ts` covers situation, roles, expressions (text, `openEnd`, translations, explanation, example sentence) and words (vocabulary fields, example sentence), with the bounds of section 8.
+- `FunctionsLessonContentSchema` covers the steps and pages with the six function item types (flashcards, model dialogue, matching, word order with optional context line and distractors, dialogue gap choice, exam dialogue gap typing), page estimates and exam limits; both schemas are registered in the artifact factory and convert to JSON Schema.
+- Validation checks IDs, locale completeness, brief/content references, that every expression occurs in the model dialogue, the exercises and the exam, four distinct gap choices from the lesson's expressions, valid token orders, that no distractor appears in an accepted order, and the page rules with `estimatedMinutes`.
+- The session plan builder reads function content; the artifact page shows Outline, Draft and Content for function lessons. Start stays unavailable until P4-05 is done.
+- `make sample-lessons` and `make catalog` validate function briefs and lesson content; contract fixtures in `tests/fixtures/content/` and unit tests cover schemas and validation.
+
+Outcome (2026-10-13): `src/schemas/functions.ts` (brief and lesson content), page rules in `src/domain/functionsLesson.ts`, function checks in `src/validation/artifacts.ts`, plan units with distractor-aware scoring of exam replies, `FunctionsBriefView` and the function items in the Content preview, fixture `fr-ordering-at-a-cafe` and `tests/unit/functions.test.tsx`. The generator keeps rejecting functions (`GENERATED_KINDS`); renderers are baseline placeholders until P4-04/P4-05.
+
+Dependencies: P4-01.
+
+### P4-03: Write and review the three function test lessons
+
+GitHub: [#76](https://github.com/bastian-schnitzler/lesson_prototype/issues/76).
+
+Milestone: **Phase 4**.
+
+Scope: Claude writes the brief and lesson content of `fr-greetings-and-goodbyes`, `fr-ordering-at-a-cafe` and `fr-asking-the-way` by hand (no Gemini calls), with an authoring tool like the grammar one.
+
+Acceptance:
+
+- `authoring/functions/<id>.ts` definitions and `node scripts/author-functions.ts <id>` build brief and lesson content, derive page estimates and exam limits, validate and write both with current input hashes.
+- Each lesson meets section 8: 6–10 expressions, 0–6 words, natural A1 French, complete en/fr/de and translations, consistent register, and the content review criteria.
+- The product owner reviews the three lessons in the artifact view (Draft and Content); findings are resolved before the renderers are built. They are played through once P4-05 is done, before P4-06.
+
+Outcome (2026-10-13, reviewed and approved by the product owner on 2026-10-13): `scripts/author-functions.ts` with the definition format in `scripts/author-functions-definition.ts`; the three lessons in `authoring/functions/` and `content/` (8 expressions, 4 words, 28 practice and 15–16 exam units, about 20 minutes each); `make sample-lessons` and the contract tests (plan, scoring, a complete session reaching 100) include them. The product owner approved the three lessons without changes.
+
+Dependencies: P4-02. The lessons become playable with P4-05.
+
+### P4-04: Function flashcards, model dialogue and matching
+
+GitHub: [#77](https://github.com/bastian-schnitzler/lesson_prototype/issues/77).
+
+Milestone: **Phase 4**.
+
+Scope: the presentation and matching stages of a function lesson.
+
+Acceptance:
+
+- Expression flashcards show the French expression with a speaker button on the front and the translation with the explanation on the back; word flashcards keep the vocabulary order. Continue needs every card turned once; turned cards survive a resume.
+- The model dialogue shows its lines one after another as role cards with speaker and flip buttons; a turned line shows translation and note without changing size. Next line reveals the next line; after the last line the button becomes Continue. Revealed lines survive a resume.
+- Matching reuses the vocabulary matching board for expressions (pages of at most 6 pairs) and words; scoring, slide and green flash as in vocabulary.
+- Unit and component tests cover card orientation, line reveal and resume, and matching pages.
+
+Outcome (2026-10-13): `src/session/functionsRenderers.tsx` (`FunctionFlashcardsRenderer`, `DialogueRenderer`), `function_matching` on the shared `MatchingRenderer`, reveal gating (`requiredReveals`, `nextDialogueLine`) with the Next line footer button, `LessonPlan.functions` with roles, expressions and words; tests in `tests/unit/functions-renderers.test.tsx`. Start stays unavailable until P4-05.
+
+Dependencies: P4-03 (the renderers are built against the three test lessons).
+
+### P4-05: Function word order, dialogue gaps, exam and results
+
+GitHub: [#78](https://github.com/bastian-schnitzler/lesson_prototype/issues/78).
+
+Milestone: **Phase 4**.
+
+Scope: the remaining practice types, both exam parts and the function results.
+
+Acceptance:
+
+- Word order reuses the grammar interaction with tokens only (multiword chunks allowed).
+- Dialogue gaps show role A's line and role B's line with one gap and four expression choices, checked like a multiple-choice gap.
+- Exam part 1 builds each reply under role A's line from shuffled tokens with 0–3 distractors; only an accepted order with every distractor left in the bank is right.
+- Exam part 2 unrolls the exam dialogue line by line on one timed page with typed gaps; earlier gaps stay editable until Continue or the countdown submits the page; gaps use the shared classifier (1 / 0.5 / 0).
+- The exam info page, delayed exam feedback, the results with Replies and Dialogue accordions and the menu of previous exercises work as in section 8; function lessons can be started from the index.
+- Unit and component tests cover distractors, alternative orders, line reveal in the exam, timeout, half credit and the results rows.
+
+Outcome (2026-10-13): renderers `FunctionWordOrderRenderer`, `DialogueGapChoiceRenderer` and `ExamDialogueRenderer` in `src/session/functionsRenderers.tsx`; Next line also on the exam dialogue page; exam info rows, Replies/Dialogue result accordions and the function start page in `src/session/views.tsx`; `functions` in `PLAYABLE_KINDS`. The results menu has one Matching entry for expressions and words. Tests in `tests/unit/functions-renderers.test.tsx`; the café lesson was played through in the browser.
+
+Review (2026-10-13): flashcards as in vocabulary with the mother tongue first and the word cards before the expression cards; a gender and overview page for the words after matching (`function_gender_select`, the vocabulary gender page); every exam-dialogue line shows its mother-tongue translation; word-order tokens of the three lessons rewritten so exactly one order is valid (e.g. `à emporter ?` keeps its question mark), recorded as an authoring rule. Second review round: dialogue gaps before word order, then a new listening choice (`function_listening_choice`: role A and four replies only heard, text revealed after Check); function lessons now need a French voice.
+
+Dependencies: P4-04.
+
+### P4-06: Decide function generation and complete the remaining eleven lessons
+
+GitHub: [#79](https://github.com/bastian-schnitzler/lesson_prototype/issues/79).
+
+Milestone: **Phase 4**.
+
+Scope: after the test-lesson review, decide with the product owner whether the remaining eleven function lessons are generated offline with Gemini or written by hand, then produce them.
+
+Acceptance:
+
+- The decision is recorded in SPEC (D51) and here.
+- If generation is chosen: brief and content prompts and schemas for functions in the generator (brief first, then lesson content), `make brief`, `make generate ID=<id>` and `make generate-missing` include functions, and the generated artifacts pass validation and review.
+- All 14 function lessons have valid, reviewed, playable briefs and lesson content.
+
+Dependencies: P4-03, P4-05.
+
+### P4-07: Function end-to-end validation and deployment
+
+GitHub: [#80](https://github.com/bastian-schnitzler/lesson_prototype/issues/80).
+
+Milestone: **Phase 4**.
+
+Scope: complete function sessions verified end to end and deployed.
+
+Acceptance:
+
+- End-to-end tests play a function lesson through flashcards, dialogue, matching, word order, dialogue gaps and both exam parts, including resume, exam timeout, half credit and the results menu.
+- Audit all 14 function briefs and lesson contents for valid IDs, coverage, answers and current hashes; sampled pedagogical review resolves flagged content.
+- Rebuild and deploy the static content and verify representative Pages journeys.
+
+Dependencies: P4-06, P1-02.
+
+### P4-08: Update function lesson mockups from the prototype
 
 GitHub: [#34](https://github.com/bastian-schnitzler/lesson_prototype/issues/34).
 
 Milestone: **Phase 4**.
 
-Scope: improve the function lesson pages agreed during the requirements review Salt mockups using the pages actually created in the prototype at the end of this phase.
+Scope: improve the function lesson Salt mockups of P4-01 (start page, flashcards, model dialogue, matching, word order, dialogue gaps, both exam parts) and add the results page, using the pages actually created in the prototype at the end of this phase.
 
 Acceptance:
 
-- Inspect the running prototype's function lesson pages agreed during the requirements review, including relevant responsive layouts and representative ready, answer, feedback, or error states.
-- Update the applicable editable `.puml` sources to reflect the implemented layout, controls, content, and behavior while preserving the agreed shared dark design.
+- Inspect the running prototype's function lesson pages, including relevant responsive layouts and representative ready, answer, feedback, or error states.
+- Update the editable `.puml` sources under `docs/mockups/05-function-lesson/` to reflect the implemented layout, controls, content, and behavior while preserving the agreed shared dark design.
 - Run `make mockups-sync` and `make mockups-check` to refresh and verify matching Markdown PlantUML code. Inspect the automatic previews against the actual prototype; keep only .puml sources in the mockup folder.
 - Update the root mockup README, SPEC references, issue asset mappings, and all affected links; keep a single README for the mockup collection.
 - Record the prototype revision used for comparison. Resolve implementation/specification differences or record them as follow-up work; mockup updates must not silently change agreed behavior.
 - Refresh applicable published GitHub issues and their diagrams/PlantUML code and server-rendered preview URLs; verify source parity, links, and rendering. This issue is required to close the phase.
-- Keep this task deferred until category requirements and implementation are complete; add concrete screens and dependencies after the requirements review.
 
-Dependencies: P4-01 and the future function implementation/content/end-to-end issues.
+Dependencies: P4-07 (transitively every other phase 4 issue). Renumbered from P4-02 in P4-01; the GitHub issue number is unchanged.
 
 ## Phase 5 — reading (requirements pending)
 
@@ -912,7 +1033,7 @@ GitHub: [#69](https://github.com/bastian-schnitzler/lesson_prototype/issues/69).
 
 Milestone: **Phase 6**.
 
-Status 2026-10-13: implemented on branch P6-01-lesson-sidebar-navigation (not yet committed): V2 timeline sidebar (D50), `outline()` / `navigate` / `viewIndex` in the session engine, read-only revisit of completed theory pages, exam outline without navigation, results sidebar (Final exam, Translation, Dictation, exercises), compact mobile outline, SPEC section 5 "Lesson navigation", five mockups in `docs/mockups/05-lesson-navigation/`.
+Status 2026-10-13: implemented on branch P6-01-lesson-sidebar-navigation (not yet committed): V2 timeline sidebar (D53), `outline()` / `navigate` / `viewIndex` in the session engine, read-only revisit of completed theory pages, exam outline without navigation, results sidebar (Final exam, Translation, Dictation, exercises), compact mobile outline, SPEC section 5 "Lesson navigation", five mockups in `docs/mockups/06-lesson-navigation/`.
 
 Scope: show all learning points while a lesson runs, allow returning to earlier points, shorten the long results page and replace the result buttons at the top with a sidebar. HTML alternatives: V1 list with colour bars, V2 vertical timeline with completed ticks, V3 letter/accent tiles. The exam navigation lists six pages with question counts and time limits; the results navigation lists the exam's Translation/Dictation and the practice sections; the grammar navigation lists Introduction, New verbs, The four pronouns and Examples. The source sentence about navigation after completing exercises is truncated: define the policy explicitly rather than treating it as an agreed rule.
 
@@ -935,7 +1056,7 @@ GitHub: [#70](https://github.com/bastian-schnitzler/lesson_prototype/issues/70).
 
 Milestone: **Phase 6**.
 
-Status 2026-10-13: implemented: standard 10 / maximum 12 words with the inventory gate and audit (D51), mother-tongue `gap.question` for the accent and hyphen clues (D54, `brief-v8`), the Jean-Paul clue repaired. Open: split the briefs above 12 words (countries and nationalities, numbers 0–20) and add `question` to future briefs.
+Status 2026-10-13: implemented: standard 10 / maximum 12 words with the inventory gate and audit (D54), mother-tongue `gap.question` for the accent and hyphen clues (D57, `brief-v8`), the Jean-Paul clue repaired. Open: split the briefs above 12 words (countries and nationalities, numbers 0–20) and add `question` to future briefs.
 
 Scope: lessons must be shorter; gender exercises must exclude items that have no gender; accent questions should be in the learner's mother tongue, for example “What is the accent name in the word: café (é)?”; the names exercise asks about a sign between Jean and Paul but displays no sign; writing should be balanced with click-to-select exercises. Preserve useful answers/gender references, hints, pronunciation and partial credit for accent/case mistakes.
 
@@ -958,7 +1079,7 @@ GitHub: [#71](https://github.com/bastian-schnitzler/lesson_prototype/issues/71).
 
 Milestone: **Phase 6**.
 
-Status 2026-10-13: implemented: no score on theory pages, Enter submits, speaker icon, "Choose one answer", "questions" and time chips on the exam information page, sentence before the reference words, no vocabulary feedback step (D53). Open: refresh the vocabulary Salt mockups for the typed-gap layout.
+Status 2026-10-13: implemented: no score on theory pages, Enter submits, speaker icon, "Choose one answer", "questions" and time chips on the exam information page, sentence before the reference words, no vocabulary feedback step (D56). Open: refresh the vocabulary Salt mockups for the typed-gap layout.
 
 Scope: the typed-word screen “feels like an old website”; put the sentence clearly on top; preserve reference answers with gender and hints; consider Enter to validate and a speaker icon instead of “listen”; the final exam intro should present time limits more clearly and should not use “tasks”; results should be shorter, with a sidebar. Pronunciation, the listening interaction, partial credit and identifying a missing pronoun/article were reviewed positively. Grammar's pre-exam lesson-feedback step should also be considered for vocabulary. Shared concerns: multiple correct/selectable choices are unintuitive, and 0/100 during introduction/theory is meaningless.
 
@@ -983,7 +1104,7 @@ GitHub: [#72](https://github.com/bastian-schnitzler/lesson_prototype/issues/72).
 
 Milestone: **Phase 6**.
 
-Status 2026-10-13: implemented: error spotter contract (D52) with the authored `Tu suis à Paris` replaced and a distinct-choice validator, grammar length minimums 24 / 12 and audit ceilings 30 / 18 (D55, `content-v5`). Open: shorten the ten samples listed by `make sample-lessons` and name their points.
+Status 2026-10-13: implemented: error spotter contract (D55) with the authored `Tu suis à Paris` replaced and a distinct-choice validator, grammar length minimums 24 / 12 and audit ceilings 30 / 18 (D58, `content-v5`). Open: shorten the ten samples listed by `make sample-lessons` and name their points.
 
 Scope: lessons must be shorter; teach one point at a time rather than presenting the whole subject; error spotting is a good exercise but may be difficult depending on the learner's level; selecting a different word can produce a solution that does not match the selected error. HTML grammar example: Introduction → New verbs (être, parler, habiter with translations) → The four pronouns (je, tu, il, elle, including j' before a vowel or mute h) → Examples. The screenshot of “Tu suis à Paris” offers pronoun replacements even after “suis” is selected.
 
@@ -1061,7 +1182,11 @@ Use fenced Mermaid and applicable fenced PlantUML source directly in GitHub bodi
 | P3-03 | Grammar blocks, SPEC section 7; practice flow, section 5 | [Choice gap](mockups/04-grammar-lesson/02-03-exercise-gap-choice/gap-choice.puml), [typed gap](mockups/04-grammar-lesson/02-04-exercise-gap-typing/gap-typing.puml), [feedback](mockups/04-grammar-lesson/02-04-exercise-gap-typing/feedback.puml) |
 | P3-04 | Grammar blocks, SPEC section 7 | [Word order](mockups/04-grammar-lesson/02-05-exercise-word-order/word-order.puml), [error spotter](mockups/04-grammar-lesson/02-06-exercise-error-spotter/error-spotter.puml) |
 | P3-05, P3-06 | Grammar blocks, placeholder, exam/results, SPEC section 7 | [Placeholder](mockups/04-grammar-lesson/03-feedback-placeholder/feedback-placeholder.puml), [mixed exam](mockups/04-grammar-lesson/04-exam/mixed-exam.puml), [grammar results](mockups/04-grammar-lesson/05-results/exam-results.puml) |
+| P4-01, P4-02 | Functions flow, SPEC section 8 | [Start](mockups/05-function-lesson/01-startpage/lesson-start.puml), all function screens below |
+| P4-04 | Functions flow, SPEC section 8 | [Expression flashcards](mockups/05-function-lesson/02-flashcards/expression-flashcards.puml), [model dialogue](mockups/05-function-lesson/03-dialogue/dialogue.puml), [matching](mockups/05-function-lesson/04-matching/expression-matching.puml) |
+| P4-05 | Functions flow, SPEC section 8; shared session flow, section 5 | [Word order](mockups/05-function-lesson/06-word-order/word-order.puml), [dialogue gaps](mockups/05-function-lesson/05-dialogue-gap-choice/dialogue-gap-choice.puml), [exam replies](mockups/05-function-lesson/08-exam/reply-word-order.puml), [exam dialogue](mockups/05-function-lesson/08-exam/dialogue-gap-typing.puml), [listening choice](mockups/05-function-lesson/07-listening-choice/listening-choice.puml) |
+| P4-03, P4-06, P4-07, P4-08 | Functions flow, SPEC section 8 | [Start](mockups/05-function-lesson/01-startpage/lesson-start.puml), [model dialogue](mockups/05-function-lesson/03-dialogue/dialogue.puml), [exam replies](mockups/05-function-lesson/08-exam/reply-word-order.puml), [exam dialogue](mockups/05-function-lesson/08-exam/dialogue-gap-typing.puml) |
 
-The phase-closing issues P1-12, P2-08, and P3-08 include before/after source changes and PlantUML-enabled previews for their respective index/artifact, vocabulary, and grammar screens from the [root mockup guide](mockups/README.md). P4-02 and P5-02 receive category-specific assets when those pages exist. The Claude review issue P0-02 uses the specification's applicable flows and mockups as review inputs.
+The phase-closing issues P1-12, P2-08, P3-08, and P4-08 include before/after source changes and PlantUML-enabled previews for their respective index/artifact, vocabulary, and grammar screens from the [root mockup guide](mockups/README.md). P5-02 receives category-specific assets when those pages exist. The Claude review issue P0-02 uses the specification's applicable flows and mockups as review inputs.
 
 Browse sources and embedded SPEC previews using the [organized mockup guide](mockups/README.md). Keep applicable diagrams and rendered mockups in published issue bodies, not only in the linked specification.

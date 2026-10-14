@@ -1,0 +1,266 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-reading-dictionary-entries",
+  "lang": "fr",
+  "level": "C1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Lire des articles de dictionnaire",
+  "objective": {
+    "en": "Read entries of a French dictionary for close words and choose the right word thanks to the definitions, the usage labels (fam., litt., vieilli, péj.) and the examples.",
+    "fr": "Lire les articles d’un dictionnaire de langue pour des mots proches et choisir le mot juste grâce aux définitions, aux marques (fam., litt., vieilli, péj.) et aux exemples.",
+    "de": "Einträge eines einsprachigen Wörterbuchs zu ähnlichen Wörtern lesen und mithilfe von Definitionen, Markierungen (fam., litt., vieilli, péj.) und Beispielen das passende Wort wählen."
+  },
+  "estimatedMinutes": 15,
+  "provenance": {
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "reading-brief-v2",
+    "generatedAt": "2026-10-14T09:21:47.228Z",
+    "inputHashes": {
+      "outline": "fdcfcf8596291e9310779c1326f1574089c495a81378fe10bd689d84c75849b4"
+    }
+  },
+  "kind": "reading",
+  "theme": "language",
+  "genre": "dictionary_entry",
+  "situation": {
+    "en": "An extract of a monolingual dictionary: seven verbs that all mean talking, each with its own register.",
+    "fr": "Un extrait de dictionnaire unilingue : sept verbes qui veulent tous dire parler, chacun avec son registre.",
+    "de": "Ein Auszug aus einem einsprachigen Wörterbuch: sieben Verben, die alle „reden“ bedeuten, jedes mit eigenem Register."
+  },
+  "readerTask": {
+    "en": "Use definitions, labels and examples to tell the words apart and pick the right one for a situation.",
+    "fr": "Utiliser définitions, marques et exemples pour distinguer les mots et choisir celui qui convient à une situation.",
+    "de": "Mit Definitionen, Markierungen und Beispielen die Wörter unterscheiden und das passende für eine Situation wählen."
+  },
+  "coverageNotes": {
+    "en": "The layout of an entry (pronunciation, part of speech, numbered senses, examples, synonyms, derivatives), usage labels and connotation. Not covered: etymology.",
+    "fr": "La présentation d’un article (prononciation, catégorie, sens numérotés, exemples, synonymes, dérivés), les marques d’usage et la connotation. Non traité : l’étymologie.",
+    "de": "Aufbau eines Eintrags (Aussprache, Wortart, nummerierte Bedeutungen, Beispiele, Synonyme, Ableitungen), Gebrauchsmarkierungen und Konnotation. Nicht behandelt: Etymologie."
+  },
+  "prerequisites": [
+    {
+      "en": "Registers of French (familiar, standard, formal)",
+      "fr": "Les registres de langue (familier, courant, soutenu)",
+      "de": "Sprachregister (umgangssprachlich, standard, gehoben)"
+    }
+  ],
+  "keywords": [
+    {
+      "id": "synonyme",
+      "term": "un synonyme (syn.)",
+      "translations": {
+        "en": [
+          "a synonym"
+        ],
+        "de": [
+          "ein Synonym"
+        ]
+      },
+      "explanation": {
+        "en": "A word with the same or a close meaning; marked Syn. in the entry.",
+        "fr": "Un mot de sens identique ou proche ; noté Syn. dans l’article.",
+        "de": "Ein Wort mit gleicher oder ähnlicher Bedeutung; im Eintrag Syn."
+      }
+    },
+    {
+      "id": "familier",
+      "term": "familier (fam.)",
+      "translations": {
+        "en": [
+          "informal",
+          "colloquial"
+        ],
+        "de": [
+          "umgangssprachlich"
+        ]
+      },
+      "explanation": {
+        "en": "Used among friends, not in formal writing.",
+        "fr": "Employé entre proches, pas dans un écrit soutenu.",
+        "de": "Unter Bekannten gebraucht, nicht in formellen Texten."
+      }
+    },
+    {
+      "id": "derive",
+      "term": "un dérivé (dér.)",
+      "translations": {
+        "en": [
+          "a derivative",
+          "a related word"
+        ],
+        "de": [
+          "eine Ableitung"
+        ]
+      },
+      "explanation": {
+        "en": "A word built from the headword: papoter → papotage.",
+        "fr": "Un mot formé sur le mot de l’article : papoter → papotage.",
+        "de": "Ein vom Stichwort gebildetes Wort: papoter → papotage."
+      }
+    },
+    {
+      "id": "litteraire",
+      "term": "littéraire (litt.)",
+      "translations": {
+        "en": [
+          "literary"
+        ],
+        "de": [
+          "literarisch",
+          "gehoben"
+        ]
+      },
+      "explanation": {
+        "en": "Found in books and careful writing rather than in speech.",
+        "fr": "Qu’on trouve dans les livres et les textes soignés plutôt qu’à l’oral.",
+        "de": "Eher in Büchern und gepflegten Texten als im Gespräch."
+      }
+    },
+    {
+      "id": "vieilli",
+      "term": "vieilli",
+      "translations": {
+        "en": [
+          "dated",
+          "old-fashioned"
+        ],
+        "de": [
+          "veraltet"
+        ]
+      },
+      "explanation": {
+        "en": "Still understood, but sounds old today.",
+        "fr": "Encore compris, mais il sonne ancien aujourd’hui.",
+        "de": "Noch verstanden, klingt aber heute altmodisch."
+      }
+    },
+    {
+      "id": "pejoratif",
+      "term": "péjoratif (péj.)",
+      "translations": {
+        "en": [
+          "pejorative",
+          "disparaging"
+        ],
+        "de": [
+          "abwertend"
+        ]
+      },
+      "explanation": {
+        "en": "Expresses a negative judgement on what it names.",
+        "fr": "Exprime un jugement négatif sur ce qu’il désigne.",
+        "de": "Drückt eine negative Wertung aus."
+      }
+    }
+  ],
+  "documents": {
+    "main": {
+      "targetWords": 407,
+      "partCount": 7,
+      "contents": {
+        "en": "Seven entries written for this lesson: bavarder (neutral; also: to give away a secret), papoter (informal, affectionate), jacasser (the magpie’s cry; informal and pejorative for people), deviser (literary, dated: to converse pleasantly), palabrer (often pejorative: endless talk without decision), causer (informal; do not confuse with causer = to cause), débattre (formal: to discuss a serious question; also to haggle over a price). Each gives pronunciation, part of speech, senses, examples, notes, synonyms or derivatives.",
+        "fr": "Sept articles rédigés pour la leçon : bavarder (neutre ; aussi révéler un secret), papoter (familier, affectueux), jacasser (cri de la pie ; familier et péjoratif pour des personnes), deviser (littéraire, vieilli : converser agréablement), palabrer (souvent péjoratif : discuter sans fin ni décision), causer (familier ; ne pas confondre avec causer = provoquer), débattre (soigné : discuter d’une question sérieuse ; aussi discuter un prix). Chacun donne prononciation, catégorie, sens, exemples, remarques, synonymes ou dérivés.",
+        "de": "Sieben für die Lektion verfasste Einträge: bavarder (neutral; auch ein Geheimnis ausplaudern), papoter (umgangssprachlich, liebevoll), jacasser (Ruf der Elster; für Menschen umgangssprachlich und abwertend), deviser (literarisch, veraltet: angenehm plaudern), palabrer (oft abwertend: endlos reden ohne Entscheidung), causer (umgangssprachlich; nicht verwechseln mit causer = verursachen), débattre (gehoben: eine ernste Frage erörtern; auch um einen Preis feilschen). Jeder mit Aussprache, Wortart, Bedeutungen, Beispielen, Hinweisen, Synonymen oder Ableitungen."
+      }
+    },
+    "exam": {
+      "targetWords": 208,
+      "partCount": 6,
+      "contents": {
+        "en": "Six entries written for this lesson on words for a house: demeure (literary, a fine large house), baraque (a wooden shed; informal for a house, admiring or pejorative), bicoque (informal, pejorative: a small poor house in bad repair), logis (dated, survives in la fée du logis), pavillon (neutral: a detached house with a garden, frequent in property ads; a hunting lodge), chaumière (a thatched cottage, a positive image of simple life).",
+        "fr": "Six articles rédigés pour la leçon, sur les mots de la maison : demeure (littéraire, belle et grande maison), baraque (construction en planches ; familier pour une maison, admiratif ou péjoratif), bicoque (familier, péjoratif : petite maison pauvre en mauvais état), logis (vieilli, survit dans la fée du logis), pavillon (neutre : maison individuelle avec jardin, fréquent dans les annonces ; pavillon de chasse), chaumière (maison au toit de chaume, image positive d’une vie simple).",
+        "de": "Sechs für die Lektion verfasste Einträge zu Wörtern für „Haus“: demeure (literarisch, schönes großes Haus), baraque (Bretterbude; umgangssprachlich für ein Haus, bewundernd oder abwertend), bicoque (umgangssprachlich, abwertend: kleines, ärmliches, baufälliges Haus), logis (veraltet, lebt in la fée du logis weiter), pavillon (neutral: Einfamilienhaus mit Garten, häufig in Immobilienanzeigen; Jagdhaus), chaumière (strohgedecktes Häuschen, positives Bild eines einfachen Lebens)."
+      }
+    }
+  },
+  "stages": {
+    "keywords": {
+      "estimatedDurationS": 105
+    },
+    "skim": {
+      "focus": "genre",
+      "skimSeconds": 120,
+      "estimatedDurationS": 150
+    },
+    "detail": {
+      "questions": [
+        {
+          "id": "q-meeting",
+          "type": "reading_choice",
+          "focus": {
+            "en": "Choosing the critical word",
+            "fr": "Choisir le mot critique",
+            "de": "Das kritische Wort wählen"
+          }
+        },
+        {
+          "id": "q-compliment",
+          "type": "reading_true_false",
+          "focus": {
+            "en": "The connotation of jacasser",
+            "fr": "La connotation de jacasser",
+            "de": "Die Konnotation von jacasser"
+          }
+        },
+        {
+          "id": "q-secret",
+          "type": "reading_short_answer",
+          "focus": {
+            "en": "A second sense",
+            "fr": "Un deuxième sens",
+            "de": "Eine zweite Bedeutung"
+          }
+        },
+        {
+          "id": "q-origin",
+          "type": "reading_true_false",
+          "focus": {
+            "en": "What the entries do not give",
+            "fr": "Ce que les articles ne donnent pas",
+            "de": "Was die Einträge nicht angeben"
+          }
+        }
+      ],
+      "estimatedDurationS": 260
+    },
+    "structure": {
+      "task": "heading_matching",
+      "estimatedDurationS": 120
+    }
+  },
+  "exam": {
+    "pages": [
+      {
+        "pageId": "exam-1",
+        "types": [
+          "reading_choice",
+          "reading_true_false",
+          "reading_short_answer"
+        ],
+        "itemCount": 3,
+        "estimatedDurationS": 150,
+        "timeLimitS": 225
+      },
+      {
+        "pageId": "exam-2",
+        "types": [
+          "reading_choice",
+          "reading_true_false"
+        ],
+        "itemCount": 2,
+        "estimatedDurationS": 100,
+        "timeLimitS": 150
+      }
+    ]
+  },
+  "scoring": {
+    "practiceWeight": 30,
+    "examWeight": 70,
+    "orthographyCredit": 0.5
+  }
+}

@@ -84,7 +84,6 @@
       "examForms": [
         "écoutez"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "écoutez",
@@ -115,8 +114,7 @@
         "accepted": {
           "answers": [
             "écoutez"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "ecoutez",
@@ -156,7 +154,6 @@
       "examForms": [
         "lisez"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "lisez",
@@ -187,8 +184,7 @@
         "accepted": {
           "answers": [
             "lisez"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "ecoutez",
@@ -228,7 +224,6 @@
       "examForms": [
         "écrivez"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "écrivez",
@@ -259,8 +254,7 @@
         "accepted": {
           "answers": [
             "écrivez"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "ecoutez",
@@ -300,7 +294,6 @@
       "examForms": [
         "répétez"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "répétez",
@@ -331,8 +324,7 @@
         "accepted": {
           "answers": [
             "répétez"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "ecoutez",

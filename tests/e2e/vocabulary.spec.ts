@@ -102,7 +102,9 @@ async function step(page: Page, data: ReturnType<typeof lessonData>, opts: Optio
       const correct = data.exam.get(label) ?? (label === 'Write what you hear' ? await heard(page, unit) : undefined);
       if (correct !== undefined) await field.locator('input').fill(opts.exam ? opts.exam(correct) : correct);
     }
-    await primary(page).click();
+    // Multiple-choice pages submit themselves when an option is chosen (P4-05 review).
+    await page.waitForTimeout(100);
+    if (!(await page.locator('.task-card.is-celebrating, .choice.is-wrong').count())) await primary(page).click();
     // A correct practice page flashes green and moves on; otherwise confirm the shown feedback.
     await expect(page.locator('.task-card.is-celebrating')).toHaveCount(0, { timeout: 10_000 });
     if ((await page.locator('.feedback, .text-input.is-wrong, .text-input.is-almost, .choice.is-wrong, .matching.is-checked, .gender-page .match-summary:not(.is-reserved)').count()) && (await primary(page).count())) await primary(page).click();

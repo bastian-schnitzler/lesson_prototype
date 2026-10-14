@@ -15,7 +15,7 @@ NPM ?= npm
 
 .DEFAULT_GOAL := help
 .PHONY: help install run catalog typecheck test test-e2e test-all mockups-sync mockups-check issues-sync \
-	build preview check-dist smoke brief briefs-missing sample-briefs generate generate-missing sample-lessons
+	build preview check-dist smoke brief briefs-missing sample-briefs generate generate-missing sample-lessons author-reading
 
 help: ## Show available targets, arguments and configuration
 	@echo "Lesson prototype — make targets"
@@ -101,5 +101,9 @@ generate: export ID := $(ID)
 generate-missing: node_modules/.package-lock.json ## Generate missing supported briefs and lesson content in catalog order
 	$(NODE) generator/cli.ts generate-missing
 
-sample-lessons: node_modules/.package-lock.json ## Validate the twenty directly authored sample lessons for review (no model calls)
+sample-lessons: node_modules/.package-lock.json ## Validate the twenty sample lessons and the three function test lessons (no model calls)
 	$(NODE) scripts/sample-lessons.ts
+
+author-reading: node_modules/.package-lock.json ## Build reading lessons from authoring/reading/: ID=<lesson-id> or ALL=1 [DRY_RUN=1]
+	$(NODE) scripts/author-reading.ts $(if $(filter 1,$(ALL)),--all,"$$ID") $(if $(filter 1,$(DRY_RUN)),--dry-run,)
+author-reading: export ID := $(ID)

@@ -158,7 +158,7 @@ export function LessonPage({ manifest, lessonId, onReturnToOverview }: LessonPag
   } else if (mode === 'raw') {
     body = <RawView entry={entry} draft={draft} content={content} issues={validation} overrides={treeOverrides} onOverridesChange={setTreeOverrides} />;
   } else {
-    const pending = entry.kind === 'functions' || entry.kind === 'reading';
+    const pending = entry.kind === 'functions';
     body = (
       <>
         {pending && <StatusMessage>{t('detail.pendingCategory', { kind: t(`kind.${entry.kind}`) })}</StatusMessage>}

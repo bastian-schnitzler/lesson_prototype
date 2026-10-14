@@ -120,7 +120,6 @@
       "examForms": [
         "un médecin"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "med.sɛ̃",
@@ -155,8 +154,7 @@
         "accepted": {
           "answers": [
             "médecin"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-professeur",
@@ -199,7 +197,6 @@
       "examForms": [
         "un professeur"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "pʁɔ.fɛ.sœʁ",
@@ -234,8 +231,7 @@
         "accepted": {
           "answers": [
             "professeur"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-serveur",
@@ -276,7 +272,6 @@
       "examForms": [
         "un serveur"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
         "une serveuse"
@@ -316,8 +311,7 @@
         "accepted": {
           "answers": [
             "serveur"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-serveuse",
@@ -358,7 +352,6 @@
       "examForms": [
         "une serveuse"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
         "un serveur"
@@ -398,8 +391,7 @@
         "accepted": {
           "answers": [
             "serveuse"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-vendeur",
@@ -441,7 +433,6 @@
       "examForms": [
         "un vendeur"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
         "une vendeuse"
@@ -481,8 +472,7 @@
         "accepted": {
           "answers": [
             "vendeur"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-vendeuse",
@@ -524,7 +514,6 @@
       "examForms": [
         "une vendeuse"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
         "un vendeur"
@@ -564,8 +553,7 @@
         "accepted": {
           "answers": [
             "vendeuse"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-infirmier",
@@ -607,7 +595,6 @@
       "examForms": [
         "un infirmier"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
         "une infirmière"
@@ -647,8 +634,7 @@
         "accepted": {
           "answers": [
             "infirmier"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-infirmiere",
@@ -690,7 +676,6 @@
       "examForms": [
         "une infirmière"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
         "un infirmier"
@@ -730,8 +715,7 @@
         "accepted": {
           "answers": [
             "infirmière"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-etudiant",
@@ -773,7 +757,6 @@
       "examForms": [
         "un étudiant"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
         "une étudiante"
@@ -813,8 +796,7 @@
         "accepted": {
           "answers": [
             "étudiant"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-etudiante",
@@ -856,7 +838,6 @@
       "examForms": [
         "une étudiante"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
         "un étudiant"
@@ -896,8 +877,7 @@
         "accepted": {
           "answers": [
             "étudiante"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-avocat",
@@ -939,7 +919,6 @@
       "examForms": [
         "un avocat"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
         "une avocate"
@@ -979,8 +958,7 @@
         "accepted": {
           "answers": [
             "avocat"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-cuisinier",
@@ -1022,7 +1000,6 @@
       "examForms": [
         "un cuisinier"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
         "une cuisinière"
@@ -1062,8 +1039,7 @@
         "accepted": {
           "answers": [
             "cuisinier"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-medecin",

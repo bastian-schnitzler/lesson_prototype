@@ -401,8 +401,7 @@
                   "accepted": {
                     "answers": [
                       "ai"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "With je, avoir is ai, and je becomes j’ before the vowel: j’ai.",
@@ -416,8 +415,7 @@
                   "accepted": {
                     "answers": [
                       "as"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "With tu, avoir is as.",
@@ -431,8 +429,7 @@
                   "accepted": {
                     "answers": [
                       "a"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "With il, elle, on, avoir is a – without an accent; à with an accent grave is the preposition.",
@@ -467,8 +464,7 @@
                   "accepted": {
                     "answers": [
                       "avons"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "With nous, avoir is avons.",
@@ -482,8 +478,7 @@
                   "accepted": {
                     "answers": [
                       "avez"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "With vous, avoir is avez.",
@@ -497,8 +492,7 @@
                   "accepted": {
                     "answers": [
                       "ont"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "Elles ont: ils ont (avoir, liaison [z]) – ils sont belongs to être.",
@@ -1132,8 +1126,7 @@
               "accepted": {
                 "answers": [
                   "a"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "avoir",
@@ -1169,8 +1162,7 @@
               "accepted": {
                 "answers": [
                   "ai"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "avoir",
@@ -1206,8 +1198,7 @@
               "accepted": {
                 "answers": [
                   "avez"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "avoir",
@@ -1243,8 +1234,7 @@
               "accepted": {
                 "answers": [
                   "ont"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "avoir",
@@ -1280,8 +1270,7 @@
               "accepted": {
                 "answers": [
                   "avons"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": {
                 "en": "avoir",
@@ -1566,8 +1555,7 @@
                 "accepted": {
                   "answers": [
                     "J’ai"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": [
                   "J’ai",
@@ -1623,8 +1611,7 @@
                 "accepted": {
                   "answers": [
                     "a"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": []
               },
@@ -1676,8 +1663,7 @@
                 "accepted": {
                   "answers": [
                     "avons"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": []
               },
@@ -1729,8 +1715,7 @@
                 "accepted": {
                   "answers": [
                     "as"
-                  ],
-                  "accentSensitive": []
+                  ]
                 },
                 "choices": []
               },
@@ -1805,8 +1790,7 @@
                   "accepted": {
                     "answers": [
                       "ai"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "With je, avoir is ai, and je becomes j’ before the vowel: j’ai.",
@@ -1820,8 +1804,7 @@
                   "accepted": {
                     "answers": [
                       "as"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "With tu, avoir is as.",
@@ -1835,8 +1818,7 @@
                   "accepted": {
                     "answers": [
                       "a"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "With il, elle, on, avoir is a – without an accent; à with an accent grave is the preposition.",
@@ -1859,8 +1841,7 @@
                   "accepted": {
                     "answers": [
                       "avons"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "With nous, avoir is avons.",
@@ -1874,8 +1855,7 @@
                   "accepted": {
                     "answers": [
                       "avez"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "With vous, avoir is avez.",
@@ -1889,8 +1869,7 @@
                   "accepted": {
                     "answers": [
                       "ont"
-                    ],
-                    "accentSensitive": []
+                    ]
                   },
                   "answerExplanation": {
                     "en": "Ils ont: ils ont (avoir, liaison [z]) – ils sont belongs to être.",
@@ -1923,8 +1902,7 @@
               "accepted": {
                 "answers": [
                   "as"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1944,8 +1922,7 @@
               "accepted": {
                 "answers": [
                   "a"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1965,8 +1942,7 @@
               "accepted": {
                 "answers": [
                   "avons"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -1986,8 +1962,7 @@
               "accepted": {
                 "answers": [
                   "avez"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2019,8 +1994,7 @@
               "accepted": {
                 "answers": [
                   "ai"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2040,8 +2014,7 @@
               "accepted": {
                 "answers": [
                   "a"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2061,8 +2034,7 @@
               "accepted": {
                 "answers": [
                   "as"
-                ],
-                "accentSensitive": []
+                ]
               },
               "hint": null,
               "answerExplanation": {
@@ -2217,10 +2189,10 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "content-v4",
-    "generatedAt": "2026-10-08T00:17:18.245Z",
+    "generatedAt": "2026-10-13T23:32:35.566Z",
     "inputHashes": {
       "outline": "6330aa315b82f91f79b5f684caf8264ae01a4b0148b010ab9324c3b67e0028be",
-      "brief": "b0ed6d5e4a91658afc20bc1f56224db508d4c029a5c52004074a6ceb08e31a37"
+      "brief": "56dc47ece789e3606ef62102b5fed9c3d59342ff59f4f571b08773819a09a781"
     }
   }
 }

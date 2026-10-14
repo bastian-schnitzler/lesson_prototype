@@ -4,7 +4,7 @@ import { join, resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { lessonOf } from './lessonFixture.ts';
 import { buildPlan, type LessonPlan, type PlanUnit } from '../../src/domain/session/plan.ts';
-import { isListeningPage, lessonResults, progress, scoreUnit, sessionReducer, startSession, type SessionRecord, type UnitResponse } from '../../src/domain/session/session.ts';
+import { isListeningPage, lessonResults, progress, requiredReveals, scoreUnit, sessionReducer, startSession, type SessionRecord, type UnitResponse } from '../../src/domain/session/session.ts';
 import { briefSchema, contentSchema } from '../../src/schemas/artifacts.ts';
 import { rendererRegistry } from '../../src/session/renderers.tsx';
 
@@ -16,17 +16,16 @@ const ROOT = resolve(import.meta.dirname, '../..');
 const IDS = readdirSync(join(ROOT, 'content/briefs')).map((f) => f.replace(/\.json$/, '')).sort();
 const read = (dir: string, id: string) => JSON.parse(readFileSync(join(ROOT, 'content', dir, `${id}.json`), 'utf8'));
 const planOf = (id: string, motherTongue: 'en' | 'de') => {
-  // Vocabulary lessons are derived from the brief (P2-04); grammar lessons are parsed from their content file.
+  // Vocabulary lessons are derived from the brief (P2-04); grammar and function lessons are parsed from their content file.
   const content = lessonOf(join(ROOT, 'content'), id), brief = read('briefs', id);
   return buildPlan(brief.kind === 'vocabulary' ? content : contentSchema(content.kind, 'fr').parse(content), briefSchema(brief.kind, 'fr').parse(brief), motherTongue);
 };
 const key = (u: PlanUnit): UnitResponse =>
   u.kind === 'text' ? u.accepted.answers[0] : u.kind === 'choice' ? u.correct[0] : u.kind === 'order' ? u.acceptedOrders[0] : { tokenId: u.faultyTokenId, text: u.correction.accepted.answers[0] };
 
-/** Reveals every flashcard of the active page, as a learner must before Continue (P2-02). */
+/** Reveals every flashcard and dialogue line of the active page, as a learner must before Continue (P2-02, P4-04). */
 function revealPage(plan: LessonPlan, r: SessionRecord): SessionRecord {
-  const page = plan.pages[r.pageIndex];
-  for (const item of page.items) if (item.type === 'vocabulary_flashcards') for (const key of item.targetIds) r = sessionReducer(plan, r, { type: 'reveal', itemKey: `${page.pageId}/${item.itemId}`, key, now: 0 });
+  for (const { itemKey, keys } of requiredReveals(plan.pages[r.pageIndex])) for (const key of keys) r = sessionReducer(plan, r, { type: 'reveal', itemKey, key, now: 0 });
   return r;
 }
 
@@ -54,9 +53,10 @@ function play(plan: LessonPlan, respond: (u: PlanUnit, role: string) => UnitResp
   return r;
 }
 
-it('reviews all twenty first-ten samples, both categories', () => {
-  expect(IDS).toHaveLength(20);
-  expect(new Set(IDS.map((id) => read('briefs', id).kind))).toEqual(new Set(['vocabulary', 'grammar']));
+it('reviews the twenty first-ten samples, the three function test lessons (P4-03) and the sixteen reading lessons', () => {
+  expect(IDS).toHaveLength(39);
+  expect(IDS.filter((id) => read('briefs', id).kind === 'functions')).toEqual(['fr-asking-the-way', 'fr-greetings-and-goodbyes', 'fr-ordering-at-a-cafe']);
+  expect(IDS.filter((id) => read('briefs', id).kind === 'reading')).toHaveLength(16);
 });
 
 describe.each(IDS)('%s', (id) => {

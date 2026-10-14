@@ -19,9 +19,9 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "brief-v7",
-    "generatedAt": "2026-10-08T00:17:03.004Z",
+    "generatedAt": "2026-10-13T23:32:35.997Z",
     "inputHashes": {
-      "outline": "5c2392d3863624855b6f75ffe68c23d6dd290c31c1f2f6004022fb2b42d34e34"
+      "outline": "37f20906353e39b156b85e7597e3a6ecc18c349368249261ec098196b3e8c0b3"
     }
   },
   "kind": "grammar",

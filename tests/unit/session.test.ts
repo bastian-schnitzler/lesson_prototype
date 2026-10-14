@@ -149,6 +149,7 @@ describe('progress, header score and exam timing', () => {
         { pageId: 'e', role: 'exam', units: Array.from({ length: 10 }, (_, i) => ({ id: `e${i}` })) },
       ],
       steps: [],
+      scoring: { practiceWeight: 35, examWeight: 65, orthographyCredit: 0.5 },
     } as unknown as LessonPlan;
     const locked = Object.fromEntries([
       ...[0, 1, 2, 3].map((i) => [`p${i}`, { points: 1 }]),
@@ -158,6 +159,9 @@ describe('progress, header score and exam timing', () => {
     expect(results.practiceScore).toBe(80);
     expect(results.examScore).toBe(60);
     expect(results.total).toBeCloseTo(67);
+    // Reading briefs weight the exam more (docs/reading-lessons.md): 0.3 × 80 + 0.7 × 60.
+    const reading = lessonResults({ ...plan, scoring: { practiceWeight: 30, examWeight: 70, orthographyCredit: 0.5 } }, { locked, completed: [] } as unknown as SessionRecord);
+    expect(reading.total).toBeCloseTo(66);
   });
 
   it('selects results without changing responses, scores or progress', () => {
@@ -305,7 +309,7 @@ describe('grammar renderer composition (P3-01)', () => {
     const match = { ...base, kind: 'choice' as const, itemType: 'grammar_pronoun_form_match' as const, options: tokens(['est', 'est', 'sont']), correct: ['t0', 't1'] };
     expect(scoreUnit(match, 't1').points).toBe(1);
     expect(scoreUnit(match, 't2').points).toBe(0);
-    const typing = { ...base, kind: 'text' as const, itemType: 'grammar_pronoun_form_typing' as const, accepted: { answers: ['payes', 'paies'], accentSensitive: [] } };
+    const typing = { ...base, kind: 'text' as const, itemType: 'grammar_pronoun_form_typing' as const, accepted: { answers: ['payes', 'paies'] } };
     expect(scoreUnit(typing, 'paies').points).toBe(1);
     // Repeated words have distinct tokens; either token order of the same sentence counts.
     const order = { ...base, kind: 'order' as const, itemType: 'grammar_word_order' as const, tokens: tokens(['nous', 'nous', 'lavons']), acceptedOrders: [['t0', 't2', 't1'], ['t1', 't0', 't2']] };

@@ -1,0 +1,879 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-reading-an-employment-contract",
+  "lang": "fr",
+  "level": "C1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Lire un contrat de travail",
+  "objective": {
+    "en": "Read an employment contract, spot the key clauses (probation, mobility, confidentiality, non-compete) and judge which deserve to be negotiated.",
+    "fr": "Lire un contrat de travail, repérer les clauses importantes (période d’essai, mobilité, confidentialité, non-concurrence) et dire lesquelles mériteraient d’être négociées.",
+    "de": "Einen Arbeitsvertrag lesen, die wichtigen Klauseln erkennen (Probezeit, Mobilität, Vertraulichkeit, Wettbewerbsverbot) und beurteilen, welche verhandelt werden sollten."
+  },
+  "estimatedMinutes": 15,
+  "provenance": {
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "reading-content-v2",
+    "generatedAt": "2026-10-14T09:01:59.836Z",
+    "inputHashes": {
+      "outline": "619ad0f65104f4755b300dd1c445e165480bffe65a7d1748eeca24786137b81f",
+      "brief": "1965239f46b02f06c2881621686f2a16caa4ff9116bd74f4c157091d7e52347c"
+    }
+  },
+  "kind": "reading",
+  "theme": "daily_life",
+  "genre": "contract",
+  "documents": [
+    {
+      "documentId": "main",
+      "genre": "contract",
+      "title": "Contrat de travail à durée indéterminée",
+      "meta": [
+        "Entre la société Verdane SAS, 14 rue de la République, 69002 Lyon, représentée par Mme Hélène Roux, directrice des ressources humaines,",
+        "et M. Karim Benali, ci-après « le salarié ».",
+        "Fait à Lyon, le 20 octobre 2026, en deux exemplaires originaux."
+      ],
+      "parts": [
+        {
+          "partId": "c-hire",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s1",
+              "text": "Le salarié est engagé à compter du 3 novembre 2026 en qualité de chef de projet numérique, statut cadre, au sein du service Innovation.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s2",
+              "text": "Ses fonctions, décrites en annexe, pourront évoluer en fonction des besoins de l’entreprise, sans que cette évolution constitue une modification du contrat.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s3",
+              "text": "Il exerce ses fonctions sous l’autorité du directeur de l’Innovation, auquel il rend compte de l’avancement de ses projets.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "c-trial",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s4",
+              "text": "Le présent contrat ne deviendra définitif qu’à l’issue d’une période d’essai de quatre mois, au cours de laquelle chacune des parties pourra y mettre fin en respectant le délai de prévenance prévu par la loi.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s5",
+              "text": "Cette période pourra être renouvelée une fois, pour une durée maximale de trois mois, par accord écrit des deux parties.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "c-pay",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s6",
+              "text": "En contrepartie de ses fonctions, le salarié percevra une rémunération annuelle brute de 52 000 euros, versée en douze mensualités.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s7",
+              "text": "S’y ajoutera une part variable, pouvant atteindre 10 % de ce montant, attribuée selon des objectifs fixés chaque année par la direction.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s8",
+              "text": "La rémunération sera réexaminée lors de l’entretien annuel, sans que cet examen entraîne une obligation d’augmentation.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "c-time",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s9",
+              "text": "Le salarié relève d’un forfait annuel de 218 jours travaillés ; aucune heure supplémentaire ne lui sera donc rémunérée.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s10",
+              "text": "Il bénéficie de vingt-cinq jours ouvrés de congés payés par an, dont les dates sont fixées en accord avec son responsable, en tenant compte des nécessités du service.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s11",
+              "text": "Les jours de repos liés au forfait sont pris en accord avec l’entreprise, au plus tard le 31 décembre de chaque année.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "c-mobility",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s12",
+              "text": "Compte tenu de la nature de ses fonctions, le salarié accepte par avance toute mutation dans l’un des établissements actuels ou futurs de la société, en France comme à l’étranger.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s13",
+              "text": "Un refus de sa part pourra constituer une cause réelle et sérieuse de licenciement.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "c-secret",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s14",
+              "text": "Le salarié s’engage à ne divulguer aucune information relative aux projets, aux clients et aux méthodes de la société, pendant toute la durée du contrat et après sa rupture.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s15",
+              "text": "Cette obligation s’applique quel que soit le support de l’information, y compris les réseaux sociaux.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s16",
+              "text": "Tout manquement à cette obligation pourra justifier une sanction disciplinaire, voire des poursuites judiciaires.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "c-compete",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s17",
+              "text": "Pendant deux ans après la fin du contrat, le salarié s’interdit de travailler pour une entreprise concurrente, sur l’ensemble du territoire européen.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s18",
+              "text": "En contrepartie, il percevra une indemnité mensuelle égale à 20 % de son dernier salaire mensuel brut.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s19",
+              "text": "La société pourra toutefois renoncer à cette clause de non-concurrence au moment de la rupture, ce qui la dispensera de verser l’indemnité.",
+              "value": null
+            }
+          ]
+        }
+      ],
+      "highlights": [
+        {
+          "keywordId": "periode-essai",
+          "segmentId": "m-s4",
+          "text": "période d’essai"
+        },
+        {
+          "keywordId": "mutation",
+          "segmentId": "m-s12",
+          "text": "mutation"
+        },
+        {
+          "keywordId": "licenciement",
+          "segmentId": "m-s13",
+          "text": "licenciement"
+        },
+        {
+          "keywordId": "divulguer",
+          "segmentId": "m-s14",
+          "text": "divulguer"
+        },
+        {
+          "keywordId": "non-concurrence",
+          "segmentId": "m-s19",
+          "text": "clause de non-concurrence"
+        },
+        {
+          "keywordId": "indemnite",
+          "segmentId": "m-s18",
+          "text": "indemnité"
+        }
+      ]
+    },
+    {
+      "documentId": "exam",
+      "genre": "contract",
+      "title": "Avenant n° 1 au contrat de travail : télétravail",
+      "meta": [
+        "Entre Verdane SAS et M. Karim Benali, salarié depuis le 3 novembre 2026.",
+        "Fait à Lyon, le 15 février 2027."
+      ],
+      "parts": [
+        {
+          "partId": "a-terms",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s1",
+              "text": "À compter du 1er mars 2027, le salarié exercera ses fonctions en télétravail deux jours par semaine, à son domicile déclaré.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s2",
+              "text": "Les jours de télétravail sont fixés par le responsable hiérarchique, après échange avec le salarié, et ne peuvent être reportés d’une semaine sur l’autre.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s3",
+              "text": "Le télétravail ne modifie ni la rémunération, ni la durée du travail, ni les objectifs fixés au salarié.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "a-tools",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s4",
+              "text": "La société fournit l’ordinateur portable et le téléphone nécessaires à l’activité, qui restent sa propriété.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s5",
+              "text": "Le salarié s’engage à utiliser ce matériel dans le respect des règles de sécurité informatique de l’entreprise.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s6",
+              "text": "Une indemnité forfaitaire de 30 euros par mois couvre les frais d’électricité, de chauffage et de connexion liés au travail à domicile.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "a-reach",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s7",
+              "text": "Pendant les jours de télétravail, le salarié doit pouvoir être joint de 9 h 30 à 12 h et de 14 h à 17 h.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s8",
+              "text": "En dehors de ces plages, il n’est pas tenu de répondre aux sollicitations, conformément à son droit à la déconnexion.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "a-end",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s9",
+              "text": "Chacune des parties peut mettre fin au télétravail à tout moment, à condition d’en informer l’autre par écrit avec un préavis d’un mois.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s10",
+              "text": "Le salarié retrouve alors un poste dans les locaux de l’entreprise, aux mêmes conditions qu’auparavant.",
+              "value": null
+            }
+          ]
+        }
+      ],
+      "highlights": []
+    }
+  ],
+  "steps": [
+    {
+      "id": "keywords",
+      "stage": "keywords",
+      "role": "exercise",
+      "label": {
+        "en": "Key words",
+        "fr": "Mots clés",
+        "de": "Schlüsselwörter"
+      },
+      "pages": [
+        {
+          "pageId": "keywords",
+          "estimatedDurationS": 50,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the key words of the text and their meaning.",
+            "fr": "Lisez les mots clés du texte et leur sens.",
+            "de": "Lies die Schlüsselwörter des Textes und ihre Bedeutung."
+          },
+          "items": [
+            {
+              "type": "reading_keywords",
+              "itemId": "keywords",
+              "keywordIds": [
+                "periode-essai",
+                "mutation",
+                "licenciement",
+                "divulguer",
+                "non-concurrence",
+                "indemnite"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "keyword-matching",
+          "estimatedDurationS": 55,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each key word with its meaning.",
+            "fr": "Associez chaque mot clé à son sens.",
+            "de": "Ordne jedem Schlüsselwort seine Bedeutung zu."
+          },
+          "items": [
+            {
+              "type": "reading_keyword_matching",
+              "itemId": "keyword-matching",
+              "pairs": [
+                {
+                  "keywordId": "periode-essai",
+                  "answerExplanation": {
+                    "en": "la période d’essai = probation period.",
+                    "fr": "la période d’essai : les premiers mois du contrat.",
+                    "de": "la période d’essai = Probezeit."
+                  }
+                },
+                {
+                  "keywordId": "mutation",
+                  "answerExplanation": {
+                    "en": "une mutation = a transfer to another site.",
+                    "fr": "une mutation : un changement de lieu de travail.",
+                    "de": "une mutation = Versetzung."
+                  }
+                },
+                {
+                  "keywordId": "licenciement",
+                  "answerExplanation": {
+                    "en": "le licenciement = dismissal by the employer.",
+                    "fr": "le licenciement : la rupture décidée par l’employeur.",
+                    "de": "le licenciement = Kündigung durch den Arbeitgeber."
+                  }
+                },
+                {
+                  "keywordId": "divulguer",
+                  "answerExplanation": {
+                    "en": "divulguer = to disclose.",
+                    "fr": "divulguer : rendre public.",
+                    "de": "divulguer = preisgeben."
+                  }
+                },
+                {
+                  "keywordId": "non-concurrence",
+                  "answerExplanation": {
+                    "en": "la clause de non-concurrence = non-compete clause.",
+                    "fr": "la clause de non-concurrence : interdit de travailler pour un concurrent.",
+                    "de": "la clause de non-concurrence = Wettbewerbsverbot."
+                  }
+                },
+                {
+                  "keywordId": "indemnite",
+                  "answerExplanation": {
+                    "en": "une indemnité = compensation.",
+                    "fr": "une indemnité : une somme qui compense.",
+                    "de": "une indemnité = Entschädigung."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skim",
+      "stage": "skim",
+      "role": "exercise",
+      "label": {
+        "en": "Skim",
+        "fr": "Survol",
+        "de": "Überfliegen"
+      },
+      "pages": [
+        {
+          "pageId": "skim",
+          "estimatedDurationS": 150,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Look over the document quickly. It blurs when the time is up; then answer the question.",
+            "fr": "Parcourez rapidement le document. Il se floute à la fin du temps ; répondez ensuite à la question.",
+            "de": "Überfliege das Dokument. Wenn die Zeit um ist, wird es unscharf; beantworte dann die Frage."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-skim",
+              "documentId": "main",
+              "view": "skim",
+              "skimSeconds": 120
+            },
+            {
+              "type": "reading_skim_choice",
+              "itemId": "skim-genre",
+              "focus": "genre",
+              "question": "De quel type de document s’agit-il ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Un contrat de travail"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Le règlement intérieur d’une entreprise"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Une lettre de démission"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Une offre d’emploi"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Two named parties, le salarié, numbered obligations and the title: an employment contract. An internal regulation applies to all staff, not to one person.",
+                "fr": "Deux parties nommées, le salarié, des obligations numérotées et le titre : un contrat de travail. Un règlement intérieur vaut pour tout le personnel, pas pour une personne.",
+                "de": "Zwei benannte Parteien, le salarié, nummerierte Pflichten und der Titel: ein Arbeitsvertrag. Eine Betriebsordnung gilt für alle, nicht für eine Person."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "detail",
+      "stage": "detail",
+      "role": "exercise",
+      "label": {
+        "en": "Detail",
+        "fr": "Détails",
+        "de": "Details"
+      },
+      "pages": [
+        {
+          "pageId": "detail",
+          "estimatedDurationS": 260,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the document carefully and answer the questions.",
+            "fr": "Lisez le document attentivement et répondez aux questions.",
+            "de": "Lies das Dokument genau und beantworte die Fragen."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-detail",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_short_answer",
+              "itemId": "q-trial",
+              "question": "Renouvellement compris, combien de temps la période d’essai peut-elle durer au maximum ?",
+              "accepted": {
+                "answers": [
+                  "sept mois",
+                  "7 mois",
+                  "7",
+                  "sept",
+                  "sept mois au maximum"
+                ],
+                "accentSensitive": []
+              },
+              "evidenceSegmentIds": [
+                "m-s4",
+                "m-s5"
+              ],
+              "answerExplanation": {
+                "en": "Four months, renewable once for at most three more: 4 + 3 = 7 months.",
+                "fr": "Quatre mois, renouvelables une fois pour trois mois au plus : 4 + 3 = 7 mois.",
+                "de": "Vier Monate, einmal um höchstens drei Monate verlängerbar: 4 + 3 = 7 Monate."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-mobility",
+              "question": "Pourquoi la clause de mobilité mérite-t-elle d’être négociée ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Elle n’a aucune limite géographique et un refus peut coûter l’emploi."
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Elle ne s’applique que pendant la période d’essai."
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Elle oblige le salarié à travailler le week-end."
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Elle réduit son salaire en cas de mutation."
+                }
+              ],
+              "answerOptionId": "o1",
+              "evidenceSegmentIds": [
+                "m-s12",
+                "m-s13"
+              ],
+              "answerExplanation": {
+                "en": "Any site, current or future, en France comme à l’étranger, and a refusal can be grounds for dismissal: a clause to limit (a region, a notice period).",
+                "fr": "Tout établissement, actuel ou futur, en France comme à l’étranger, et un refus peut justifier un licenciement : une clause à encadrer (une zone, un délai).",
+                "de": "Jeder Standort, heute oder künftig, en France comme à l’étranger, und eine Weigerung kann zur Kündigung führen: eine Klausel, die man begrenzen sollte (Gebiet, Frist)."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "q-compete",
+              "statement": "Après son départ, le salarié est sûr de toucher l’indemnité de non-concurrence.",
+              "allowNotStated": true,
+              "answer": "false",
+              "evidenceSegmentIds": [
+                "m-s19"
+              ],
+              "answerExplanation": {
+                "en": "False: the company may waive the clause when the contract ends, and then it pays nothing (la dispensera de verser l’indemnité).",
+                "fr": "Faux : la société peut renoncer à la clause au moment de la rupture et ne rien verser (la dispensera de verser l’indemnité).",
+                "de": "Falsch: Das Unternehmen kann bei Vertragsende auf die Klausel verzichten und zahlt dann nichts (la dispensera de verser l’indemnité)."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "q-remote",
+              "statement": "Le contrat permet au salarié de télétravailler deux jours par semaine.",
+              "allowNotStated": true,
+              "answer": "not_stated",
+              "evidenceSegmentIds": [],
+              "answerExplanation": {
+                "en": "Not stated: the contract says nothing about remote work (it comes later, in an amendment).",
+                "fr": "Pas dans le texte : le contrat ne dit rien du télétravail (il viendra plus tard, par avenant).",
+                "de": "Steht nicht im Text: Der Vertrag sagt nichts über Telearbeit (das kommt später per Nachtrag)."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "structure",
+      "stage": "structure",
+      "role": "exercise",
+      "label": {
+        "en": "Structure",
+        "fr": "Structure",
+        "de": "Aufbau"
+      },
+      "pages": [
+        {
+          "pageId": "structure",
+          "estimatedDurationS": 120,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "The clauses lost their titles. Match a title to each clause.",
+            "fr": "Les clauses ont perdu leurs titres. Associez un titre à chaque clause.",
+            "de": "Die Klauseln haben ihre Titel verloren. Ordne jeder Klausel einen Titel zu."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-structure",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_part_heading_matching",
+              "itemId": "clause-headings",
+              "headings": [
+                {
+                  "headingId": "h5",
+                  "text": "Mobilité"
+                },
+                {
+                  "headingId": "h4",
+                  "text": "Durée du travail et congés"
+                },
+                {
+                  "headingId": "h1",
+                  "text": "Engagement et fonctions"
+                },
+                {
+                  "headingId": "h3",
+                  "text": "Rémunération"
+                },
+                {
+                  "headingId": "h2",
+                  "text": "Période d’essai"
+                },
+                {
+                  "headingId": "h6",
+                  "text": "Confidentialité"
+                },
+                {
+                  "headingId": "h7",
+                  "text": "Non-concurrence"
+                }
+              ],
+              "pairs": [
+                {
+                  "partId": "c-hire",
+                  "headingId": "h1",
+                  "answerExplanation": {
+                    "en": "Start date, job title and duties.",
+                    "fr": "Date d’entrée, poste et fonctions.",
+                    "de": "Eintrittsdatum, Position und Aufgaben."
+                  }
+                },
+                {
+                  "partId": "c-trial",
+                  "headingId": "h2",
+                  "answerExplanation": {
+                    "en": "Ne deviendra définitif qu’à l’issue d’une période d’essai.",
+                    "fr": "Ne deviendra définitif qu’à l’issue d’une période d’essai.",
+                    "de": "Ne deviendra définitif qu’à l’issue d’une période d’essai."
+                  }
+                },
+                {
+                  "partId": "c-pay",
+                  "headingId": "h3",
+                  "answerExplanation": {
+                    "en": "Annual gross pay and variable part.",
+                    "fr": "Salaire annuel brut et part variable.",
+                    "de": "Jahresbruttogehalt und variabler Anteil."
+                  }
+                },
+                {
+                  "partId": "c-time",
+                  "headingId": "h4",
+                  "answerExplanation": {
+                    "en": "The 218-day package and paid leave.",
+                    "fr": "Le forfait de 218 jours et les congés payés.",
+                    "de": "Die 218-Tage-Pauschale und der bezahlte Urlaub."
+                  }
+                },
+                {
+                  "partId": "c-mobility",
+                  "headingId": "h5",
+                  "answerExplanation": {
+                    "en": "Accepting any mutation in any site.",
+                    "fr": "Accepter toute mutation dans tout établissement.",
+                    "de": "Jede mutation an jeden Standort akzeptieren."
+                  }
+                },
+                {
+                  "partId": "c-secret",
+                  "headingId": "h6",
+                  "answerExplanation": {
+                    "en": "Ne divulguer aucune information.",
+                    "fr": "Ne divulguer aucune information.",
+                    "de": "Ne divulguer aucune information."
+                  }
+                },
+                {
+                  "partId": "c-compete",
+                  "headingId": "h7",
+                  "answerExplanation": {
+                    "en": "No work for a competitor for two years.",
+                    "fr": "Pas de travail chez un concurrent pendant deux ans.",
+                    "de": "Zwei Jahre keine Arbeit für einen Konkurrenten."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Final exam",
+        "fr": "Examen final",
+        "de": "Abschlussprüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-1",
+          "estimatedDurationS": 150,
+          "timeLimitS": 225,
+          "instructions": {
+            "en": "Read the new document and answer the questions. No help this time.",
+            "fr": "Lisez le nouveau document et répondez aux questions. Cette fois, sans aide.",
+            "de": "Lies das neue Dokument und beantworte die Fragen. Diesmal ohne Hilfe."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-exam",
+              "documentId": "exam",
+              "view": "exam",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_short_answer",
+              "itemId": "x-days",
+              "question": "Combien de jours par semaine le salarié pourra-t-il télétravailler ?",
+              "accepted": {
+                "answers": [
+                  "deux",
+                  "2",
+                  "deux jours",
+                  "2 jours",
+                  "deux jours par semaine"
+                ],
+                "accentSensitive": []
+              },
+              "evidenceSegmentIds": [
+                "x-s1"
+              ],
+              "answerExplanation": {
+                "en": "En télétravail deux jours par semaine.",
+                "fr": "En télétravail deux jours par semaine.",
+                "de": "En télétravail deux jours par semaine."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-allowance",
+              "question": "À quoi sert l’indemnité de 30 euros ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "À rembourser les trajets jusqu’au bureau"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "À acheter un ordinateur portable"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "À payer les heures de travail du soir"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "À couvrir les frais du travail à domicile"
+                }
+              ],
+              "answerOptionId": "o4",
+              "evidenceSegmentIds": [
+                "x-s6"
+              ],
+              "answerExplanation": {
+                "en": "It covers electricity, heating and connection costs; the laptop is provided by the company.",
+                "fr": "Elle couvre l’électricité, le chauffage et la connexion ; l’ordinateur est fourni par la société.",
+                "de": "Sie deckt Strom, Heizung und Internet; den Laptop stellt die Firma."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "x-reach",
+              "statement": "Les jours de télétravail, le salarié doit répondre à toute heure.",
+              "allowNotStated": true,
+              "answer": "false",
+              "evidenceSegmentIds": [
+                "x-s7",
+                "x-s8"
+              ],
+              "answerExplanation": {
+                "en": "False: only 9:30–12:00 and 14:00–17:00; outside those hours he has a right to disconnect.",
+                "fr": "Faux : seulement de 9 h 30 à 12 h et de 14 h à 17 h ; en dehors, il a droit à la déconnexion.",
+                "de": "Falsch: nur 9.30–12 Uhr und 14–17 Uhr; außerhalb hat er ein Recht auf Nichterreichbarkeit."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-2",
+          "estimatedDurationS": 120,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Read the new document and answer the questions. No help this time.",
+            "fr": "Lisez le nouveau document et répondez aux questions. Cette fois, sans aide.",
+            "de": "Lies das neue Dokument und beantworte die Fragen. Diesmal ohne Hilfe."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-exam-2",
+              "documentId": "exam",
+              "view": "exam",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-end",
+              "question": "Que doit faire l’entreprise si elle veut arrêter le télétravail ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Lui verser une indemnité de départ"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Attendre la fin de l’année"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Prévenir le salarié par écrit un mois à l’avance"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Obtenir l’accord du salarié"
+                }
+              ],
+              "answerOptionId": "o3",
+              "evidenceSegmentIds": [
+                "x-s9"
+              ],
+              "answerExplanation": {
+                "en": "Either party can end it at any time, in writing, with one month’s notice; no agreement needed.",
+                "fr": "Chaque partie peut y mettre fin à tout moment, par écrit, avec un mois de préavis ; pas besoin d’accord.",
+                "de": "Jede Seite kann es jederzeit schriftlich mit einem Monat Frist beenden; keine Zustimmung nötig."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "x-choice",
+              "statement": "Le salarié choisit seul ses jours de télétravail.",
+              "allowNotStated": true,
+              "answer": "false",
+              "evidenceSegmentIds": [
+                "x-s2"
+              ],
+              "answerExplanation": {
+                "en": "False: the manager sets them, after talking with him (après échange avec le salarié).",
+                "fr": "Faux : le responsable les fixe, après échange avec le salarié.",
+                "de": "Falsch: Der Vorgesetzte legt sie fest, nach Absprache (après échange avec le salarié)."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

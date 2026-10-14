@@ -1,8 +1,12 @@
 import type { AcceptedAnswers, LocalizedText } from '../../schemas/artifactCommon.ts';
 import type { Brief, LessonContent } from '../../schemas/artifacts.ts';
 import type { Locale } from '../../schemas/common.ts';
+import type { FunctionsBrief, FunctionsItem } from '../../schemas/functions.ts';
 import type { GrammarItem } from '../../schemas/grammar.ts';
+import type { ReadingItem } from '../../schemas/reading.ts';
+import { functionsTerms } from '../functionsLesson.ts';
 import type { VocabularyItem, VocabularyTarget } from '../../schemas/vocabulary.ts';
+import { readingPlanData, readingUnits, type ReadingPlanData } from './readingPlan.ts';
 
 /**
  * The flattened learner plan of a lesson (SPEC section 5): concrete pages in order, each
@@ -10,7 +14,7 @@ import type { VocabularyItem, VocabularyTarget } from '../../schemas/vocabulary.
  * session itself only stores responses keyed by unit ID.
  */
 export type PageRole = 'presentation' | 'practice' | 'exam';
-export type Item = VocabularyItem | GrammarItem;
+export type Item = VocabularyItem | GrammarItem | FunctionsItem | ReadingItem;
 
 export interface Option {
   id: string;
@@ -35,11 +39,20 @@ interface UnitBase {
   speak?: string;
   /** Grammar rules the item assesses, for rule-level error records in results (SPEC section 7). */
   ruleIds?: string[];
+  /** Reading: the document segments that prove the answer, marked after Check and quoted in the results. */
+  evidence?: { segmentIds: string[]; quotes: string[] };
 }
+/**
+ * Nouns of a translation exam (P4-05 review): typing "des" + a word asks the gender, stored as the draft
+ * `${unitId}#gender`. Only a plurale tantum (taught with "des") is examined in the plural; its answer
+ * then counts only with the right gender. A plural answer for any other noun is wrong.
+ */
+export interface NounGender { genders: string[]; pluraleTantum: boolean }
 export type PlanUnit =
-  | (UnitBase & { kind: 'text'; accepted: AcceptedAnswers })
+  | (UnitBase & { kind: 'text'; accepted: AcceptedAnswers; noun?: NounGender })
   | (UnitBase & { kind: 'choice'; options: Option[]; correct: string[] })
-  | (UnitBase & { kind: 'order'; tokens: Option[]; acceptedOrders: string[][] })
+  /** `distractors`: tokens that belong to no accepted order and stay in the bank (function exam replies). */
+  | (UnitBase & { kind: 'order'; tokens: Option[]; acceptedOrders: string[][]; distractors?: string[] })
   | (UnitBase & { kind: 'spot'; tokens: Option[]; faultyTokenId: string; correction: { mode: 'type' | 'select'; accepted: AcceptedAnswers; choices: string[] } });
 
 export interface PlanPage {
@@ -77,6 +90,12 @@ export interface LessonPlan {
   groups: { id: string; label: LocalizedText; targetIds: string[] }[];
   /** Grammar: verbs the lesson introduces, with the mother-tongue translation (P3-07); empty otherwise. */
   newVerbs: { infinitive: string; translation: string }[];
+  /** Function lessons: situation, roles, expressions and words of the brief (P4-04); undefined otherwise. */
+  functions?: Pick<FunctionsBrief, 'situation' | 'roles' | 'expressions' | 'words'>;
+  /** Practice and exam weights of the lesson total, from the brief: 35/65, reading 30/70. */
+  scoring: Brief['scoring'];
+  /** Reading: the lesson's documents and key words; absent for other kinds. */
+  reading?: ReadingPlanData;
 }
 
 const GENDER_OPTIONS = ['masculine', 'feminine', 'neuter'] as const;
@@ -92,8 +111,15 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
   const native = (map: Partial<Record<Locale, string>> | null | undefined) => map?.[motherTongue] ?? Object.values(map ?? {})[0] ?? '';
   const translation = (id: string) => targets.get(id)?.translations[motherTongue]?.[0] ?? id;
   const form = (id: string) => targets.get(id)?.teachingForm ?? id;
+  const terms = brief.kind === 'functions' ? functionsTerms(brief) : new Map<string, never>();
+  const termText = (id: string) => terms.get(id)?.display ?? id;
+  const termNative = (id: string) => terms.get(id)?.translations[motherTongue]?.[0] ?? id;
+  const roleLabel = (id: string) => (brief.kind === 'functions' ? brief.roles.find((r) => r.id === id)?.label : undefined) ?? id;
   const steps = content.steps as { id: string; role: string; blockId?: string | null; label: LocalizedText; pages: { pageId: string; estimatedDurationS: number; timeLimitS: number | null; instructions: LocalizedText; items: Item[] }[] }[];
+  const reading = content.kind === 'reading' && brief.kind === 'reading' ? readingPlanData(content, brief) : undefined;
 
+  // A gap takes the expression itself, without the ellipsis of a sentence start.
+  const expressionText = (id: string) => (brief.kind === 'functions' ? brief.expressions.find((e) => e.id === id)?.text : undefined) ?? id;
   const unitsOf = (pageId: string, item: Item): PlanUnit[] => {
     const id = (suffix = '') => `${pageId}/${item.itemId}${suffix}`;
     switch (item.type) {
@@ -126,11 +152,14 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
           options: item.optionTargetIds.map((t) => ({ id: t, text: form(t), lang: 'learning' })), correct: [item.targetId],
           explanation: item.answerExplanation, answer: form(item.targetId), answerLang: 'learning',
         }];
-      case 'vocabulary_translation_exam':
+      case 'vocabulary_translation_exam': {
+        const target = targets.get(item.targetId);
+        const noun = target && target.wordClass === 'noun' && !target.articleException && target.genders.length ? { genders: [...target.genders], pluraleTantum: target.number === 'plural' } : undefined;
         return [{
           kind: 'text', id: id(), itemId: item.itemId, itemType: item.type, prompt: { native: native(item.prompt) },
-          accepted: item.accepted, explanation: item.answerExplanation, answer: item.accepted.answers[0], answerLang: 'learning',
+          accepted: item.accepted, explanation: item.answerExplanation, answer: item.accepted.answers[0], answerLang: 'learning', ...(noun ? { noun } : {}),
         }];
+      }
       case 'vocabulary_listening_dictation':
         return [{
           kind: 'text', id: id(), itemId: item.itemId, itemType: item.type, prompt: {}, speak: form(item.targetId),
@@ -171,25 +200,86 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
           accepted: item.accepted, explanation: item.answerExplanation, answer: item.accepted.answers[0], answerLang: 'learning',
         }];
       case 'grammar_word_order': {
-        // The full stop that ends every accepted sentence is not a token to place: it is left out and not
-        // shown (P3-02 review). Punctuation inside the sentence and a final ? or ! stay tokens.
-        const last = item.acceptedOrders[0].at(-1);
-        const stop = item.tokens.find((t) => t.tokenId === last && t.text === '.') && item.acceptedOrders.every((o) => o.at(-1) === last) ? last : undefined;
-        const tokens = item.tokens.filter((t) => t.tokenId !== stop).map((t) => ({ id: t.tokenId, text: t.text, lang: 'learning' as const }));
-        const acceptedOrders = item.acceptedOrders.map((o) => o.filter((tid) => tid !== stop));
-        const text = (order: string[]) => order.map((tid) => tokens.find((t) => t.id === tid)?.text ?? '').join(' ');
-        return [{ kind: 'order', id: id(), itemId: item.itemId, itemType: item.type, prompt: {}, tokens, acceptedOrders, explanation: item.answerExplanation, answer: text(acceptedOrders[0]), answerLang: 'learning' }];
+        const { tokens, acceptedOrders, answer } = wordOrder(item);
+        return [{ kind: 'order', id: id(), itemId: item.itemId, itemType: item.type, prompt: {}, tokens, acceptedOrders, explanation: item.answerExplanation, answer, answerLang: 'learning' }];
       }
+      case 'function_gender_select': {
+        // As vocabulary stage 4 (P4-05 review): one choice per noun; other words show no gender.
+        const words = brief.kind === 'functions' ? brief.words : [];
+        const options = GENDER_OPTIONS.filter((g) => g !== 'neuter' || content.lang === 'de').map((g) => ({ id: g, text: `gender.${g}`, lang: 'ui' as const }));
+        return item.ids.flatMap((wid) => {
+          const w = words.find((x) => x.id === wid);
+          if (!w || w.wordClass !== 'noun') return [];
+          return [{
+            kind: 'choice' as const, id: id(`/${wid}`), itemId: item.itemId, itemType: item.type, prompt: { learning: w.term },
+            options, correct: [...w.genders], explanation: w.explanation, answer: `gender.${w.genders[0] ?? 'masculine'}`, answerLang: 'ui' as const, form: w.teachingForm,
+          }];
+        });
+      }
+      case 'function_matching': {
+        const options = item.pairs.map((p) => ({ id: p.id, text: termNative(p.id), lang: 'native' as const }));
+        return item.pairs.map((p) => ({
+          kind: 'choice', id: id(`/${p.id}`), itemId: item.itemId, itemType: item.type, prompt: { learning: termText(p.id) },
+          options, correct: [p.id], explanation: p.answerExplanation, answer: termNative(p.id), answerLang: 'native',
+        }));
+      }
+      case 'function_word_order': {
+        // Exam replies keep their distractors in the bank; role A's line is the context (SPEC section 8).
+        const { tokens, acceptedOrders, answer } = wordOrder(item);
+        const prompt = item.context ? { learning: `${roleLabel(item.context.roleId)}: ${item.context.text}` } : {};
+        return [{ kind: 'order', id: id(), itemId: item.itemId, itemType: item.type, prompt, tokens, acceptedOrders, distractors: item.distractorTokenIds, explanation: item.answerExplanation, answer, answerLang: 'learning' }];
+      }
+      case 'function_translation_exam': {
+        // As the vocabulary translation exam (P4-05 review); a word taught with "des" is a plurale tantum.
+        const word = brief.kind === 'functions' ? brief.words.find((w) => w.id === item.wordId) : undefined;
+        const noun = word && word.wordClass === 'noun' && word.genders.length ? { genders: [...word.genders], pluraleTantum: /^des\s/iu.test(word.teachingForm) } : undefined;
+        return [{
+          kind: 'text', id: id(), itemId: item.itemId, itemType: item.type, prompt: { native: native(item.prompt) },
+          accepted: item.accepted, explanation: item.answerExplanation, answer: item.accepted.answers[0], answerLang: 'learning', ...(noun ? { noun } : {}),
+        }];
+      }
+      case 'function_listening_choice':
+        // Audio first (P4-05 review): role A's line is spoken, the four replies are heard, not read.
+        return [{
+          kind: 'choice', id: id(), itemId: item.itemId, itemType: item.type, prompt: { learning: `${roleLabel(item.context.roleId)}: ${item.context.text}` }, speak: item.context.text,
+          options: item.options.map((o) => ({ id: o.optionId, text: o.text, lang: 'learning' })), correct: [item.answerOptionId],
+          explanation: item.answerExplanation, answer: item.options.find((o) => o.optionId === item.answerOptionId)?.text ?? '', answerLang: 'learning',
+        }];
+      case 'function_dialogue_gap_choice':
+        return [{
+          kind: 'choice', id: id(), itemId: item.itemId, itemType: item.type,
+          prompt: { learning: `${roleLabel(item.context.roleId)}: ${item.context.text}`, before: item.before, after: item.after },
+          options: item.choiceExpressionIds.map((e) => ({ id: e, text: expressionText(e), lang: 'learning' })), correct: [item.expressionId],
+          explanation: item.answerExplanation, answer: expressionText(item.expressionId), answerLang: 'learning',
+        }];
+      case 'function_dialogue_gap_typing':
+        // One unit per gap of the exam dialogue; the lines unroll on one timed page.
+        return item.lines.flatMap((l) => (l.gap ? [{
+          kind: 'text' as const, id: id(`/${l.gap.gapId}`), itemId: item.itemId, itemType: item.type, prompt: { before: l.before, after: l.after },
+          accepted: l.gap.accepted, explanation: l.gap.answerExplanation, answer: l.gap.accepted.answers[0], answerLang: 'learning' as const,
+        }] : []));
       case 'grammar_error_spotter': {
         const tokens = item.tokens.map((t) => ({ id: t.tokenId, text: t.text, lang: 'learning' as const }));
         const sentence = tokens.map((t) => (t.id === item.faultyTokenId ? item.correction.accepted.answers[0] : t.text)).join(' ');
         return [{ kind: 'spot', id: id(), itemId: item.itemId, itemType: item.type, prompt: { learning: tokens.map((t) => t.text).join(' ') }, tokens, faultyTokenId: item.faultyTokenId, correction: item.correction, explanation: item.answerExplanation, answer: sentence, answerLang: 'learning' }];
       }
+      case 'reading_keyword_matching':
+      case 'reading_skim_choice':
+      case 'reading_choice':
+      case 'reading_true_false':
+      case 'reading_short_answer':
+      case 'reading_part_heading_matching':
+      case 'reading_order':
+        return reading ? readingUnits(pageId, item, reading, content.lang, motherTongue) : [];
       case 'vocabulary_introduction':
       case 'vocabulary_flashcards':
       case 'vocabulary_overview':
+      case 'reading_keywords':
+      case 'reading_document':
       case 'grammar_explanation':
       case 'production_feedback_placeholder':
+      case 'function_flashcards':
+      case 'function_dialogue':
         return []; // presentation only
       default: {
         // A new item type must decide here whether it is scored (compile-time exhaustiveness).
@@ -216,8 +306,24 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
     lessonId: content.id, lang: content.lang, title: content.title, objective: content.objective, estimatedMinutes: content.estimatedMinutes, pages, targets,
     kind: content.kind, groups: brief.kind === 'vocabulary' ? brief.groups.map((g) => ({ id: g.id, label: g.label, targetIds: g.targetIds })) : [],
     newVerbs: brief.kind === 'grammar' ? brief.newVerbs.map((v) => ({ infinitive: v.infinitive, translation: native(v.translations) })) : [],
+    scoring: brief.scoring, reading,
+    functions: brief.kind === 'functions' ? { situation: brief.situation, roles: brief.roles, expressions: brief.expressions, words: brief.words } : undefined,
     steps: steps.map((s) => ({ stepId: s.id, label: s.label, role: s.role === 'exam' ? 'exam' : pages.some((p) => p.stepId === s.id && p.role === 'practice') ? 'practice' : 'presentation' })),
   };
+}
+
+/**
+ * Tokens and accepted orders of a word-order item. The full stop that ends every accepted sentence
+ * is not a token to place: it is left out and not shown (P3-02 review). Punctuation inside the
+ * sentence and a final ? or ! stay tokens.
+ */
+function wordOrder(item: { tokens: { tokenId: string; text: string }[]; acceptedOrders: string[][] }) {
+  const last = item.acceptedOrders[0].at(-1);
+  const stop = item.tokens.find((t) => t.tokenId === last && t.text === '.') && item.acceptedOrders.every((o) => o.at(-1) === last) ? last : undefined;
+  const tokens = item.tokens.filter((t) => t.tokenId !== stop).map((t) => ({ id: t.tokenId, text: t.text, lang: 'learning' as const }));
+  const acceptedOrders = item.acceptedOrders.map((o) => o.filter((tid) => tid !== stop));
+  const answer = acceptedOrders[0].map((tid) => tokens.find((t) => t.id === tid)?.text ?? '').join(' ');
+  return { tokens, acceptedOrders, answer };
 }
 
 /**

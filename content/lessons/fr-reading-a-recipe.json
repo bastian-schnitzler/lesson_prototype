@@ -1,0 +1,770 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-reading-a-recipe",
+  "lang": "fr",
+  "level": "A2",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Lire une recette",
+  "objective": {
+    "en": "Read a simple recipe, find the ingredients, the quantities and the order of the steps, and understand instructions in the imperative.",
+    "fr": "Lire une recette simple, retrouver les ingrédients, les quantités et l’ordre des étapes, et comprendre les consignes à l’impératif.",
+    "de": "Ein einfaches Rezept lesen, Zutaten, Mengen und die Reihenfolge der Schritte finden und Anweisungen im Imperativ verstehen."
+  },
+  "estimatedMinutes": 10,
+  "provenance": {
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "reading-content-v2",
+    "generatedAt": "2026-10-14T09:11:19.537Z",
+    "inputHashes": {
+      "outline": "8d575b55c75798fb0c1ceeabe6714ff3d93c0ade2a49a1f9ddc0485ba48a317d",
+      "brief": "81a040a67a1f52d32ee344ca066e58972a912efff69ea35df6a648b5ae212d70"
+    }
+  },
+  "kind": "reading",
+  "theme": "food_and_drink",
+  "genre": "recipe",
+  "documents": [
+    {
+      "documentId": "main",
+      "genre": "recipe",
+      "title": "Gâteau au yaourt",
+      "meta": [
+        "Pour 6 personnes · Préparation : 10 min · Cuisson : 35 min"
+      ],
+      "parts": [
+        {
+          "partId": "m-ingredients",
+          "heading": "Ingrédients",
+          "segments": [
+            {
+              "segmentId": "m-s1",
+              "text": "yaourt nature",
+              "value": "1 pot"
+            },
+            {
+              "segmentId": "m-s2",
+              "text": "sucre",
+              "value": "2 pots"
+            },
+            {
+              "segmentId": "m-s3",
+              "text": "farine",
+              "value": "3 pots"
+            },
+            {
+              "segmentId": "m-s4",
+              "text": "œufs",
+              "value": "3"
+            },
+            {
+              "segmentId": "m-s5",
+              "text": "huile",
+              "value": "½ pot"
+            },
+            {
+              "segmentId": "m-s6",
+              "text": "levure chimique",
+              "value": "1 sachet"
+            }
+          ]
+        },
+        {
+          "partId": "m-steps",
+          "heading": "Préparation",
+          "segments": [
+            {
+              "segmentId": "m-s7",
+              "text": "Préchauffez le four à 180 °C.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s8",
+              "text": "Versez le yaourt dans un saladier et gardez le pot : il sert de mesure.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s9",
+              "text": "Ajoutez le sucre et les œufs, et mélangez bien.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s10",
+              "text": "Ajoutez ensuite la farine, la levure et l’huile.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s11",
+              "text": "Versez la pâte dans le moule, après l’avoir beurré.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s12",
+              "text": "Faites cuire 35 minutes, sans ouvrir le four.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s13",
+              "text": "Démoulez le gâteau quand il est froid.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-tip",
+          "heading": "Le conseil de Mamie",
+          "segments": [
+            {
+              "segmentId": "m-s14",
+              "text": "Pour un gâteau plus parfumé, ajoutez le zeste d’un citron.",
+              "value": null
+            }
+          ]
+        }
+      ],
+      "highlights": [
+        {
+          "keywordId": "four",
+          "segmentId": "m-s7",
+          "text": "four"
+        },
+        {
+          "keywordId": "saladier",
+          "segmentId": "m-s8",
+          "text": "saladier"
+        },
+        {
+          "keywordId": "melangez",
+          "segmentId": "m-s9",
+          "text": "mélangez"
+        },
+        {
+          "keywordId": "pate",
+          "segmentId": "m-s11",
+          "text": "pâte"
+        },
+        {
+          "keywordId": "moule",
+          "segmentId": "m-s11",
+          "text": "moule"
+        },
+        {
+          "keywordId": "demoulez",
+          "segmentId": "m-s13",
+          "text": "Démoulez"
+        }
+      ]
+    },
+    {
+      "documentId": "exam",
+      "genre": "recipe",
+      "title": "Pâte à crêpes",
+      "meta": [
+        "Pour 15 crêpes · Repos : 1 heure"
+      ],
+      "parts": [
+        {
+          "partId": "x-ingredients",
+          "heading": "Ingrédients",
+          "segments": [
+            {
+              "segmentId": "x-s1",
+              "text": "farine",
+              "value": "250 g"
+            },
+            {
+              "segmentId": "x-s2",
+              "text": "lait",
+              "value": "½ litre"
+            },
+            {
+              "segmentId": "x-s3",
+              "text": "œufs",
+              "value": "4"
+            },
+            {
+              "segmentId": "x-s4",
+              "text": "beurre fondu",
+              "value": "50 g"
+            },
+            {
+              "segmentId": "x-s5",
+              "text": "sel",
+              "value": "1 pincée"
+            }
+          ]
+        },
+        {
+          "partId": "x-steps",
+          "heading": "Préparation",
+          "segments": [
+            {
+              "segmentId": "x-s6",
+              "text": "Mettez la farine et le sel dans un saladier.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s7",
+              "text": "Ajoutez les œufs, puis le lait petit à petit.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s8",
+              "text": "Ajoutez le beurre fondu.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s9",
+              "text": "Laissez reposer la pâte une heure avant la cuisson.",
+              "value": null
+            }
+          ]
+        }
+      ],
+      "highlights": []
+    }
+  ],
+  "steps": [
+    {
+      "id": "keywords",
+      "stage": "keywords",
+      "role": "exercise",
+      "label": {
+        "en": "Key words",
+        "fr": "Mots clés",
+        "de": "Schlüsselwörter"
+      },
+      "pages": [
+        {
+          "pageId": "keywords",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the key words of the text and their meaning.",
+            "fr": "Lisez les mots clés du texte et leur sens.",
+            "de": "Lies die Schlüsselwörter des Textes und ihre Bedeutung."
+          },
+          "items": [
+            {
+              "type": "reading_keywords",
+              "itemId": "keywords",
+              "keywordIds": [
+                "four",
+                "saladier",
+                "melangez",
+                "pate",
+                "moule",
+                "demoulez"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "keyword-matching",
+          "estimatedDurationS": 50,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each key word with its meaning.",
+            "fr": "Associez chaque mot clé à son sens.",
+            "de": "Ordne jedem Schlüsselwort seine Bedeutung zu."
+          },
+          "items": [
+            {
+              "type": "reading_keyword_matching",
+              "itemId": "keyword-matching",
+              "pairs": [
+                {
+                  "keywordId": "four",
+                  "answerExplanation": {
+                    "en": "le four = the oven.",
+                    "fr": "le four : on y cuit le gâteau.",
+                    "de": "le four = der Backofen."
+                  }
+                },
+                {
+                  "keywordId": "saladier",
+                  "answerExplanation": {
+                    "en": "un saladier = a mixing bowl.",
+                    "fr": "un saladier : un grand bol.",
+                    "de": "un saladier = eine Rührschüssel."
+                  }
+                },
+                {
+                  "keywordId": "melangez",
+                  "answerExplanation": {
+                    "en": "mélangez = mix.",
+                    "fr": "mélangez : tournez ensemble.",
+                    "de": "mélangez = verrühren."
+                  }
+                },
+                {
+                  "keywordId": "pate",
+                  "answerExplanation": {
+                    "en": "la pâte = the batter.",
+                    "fr": "la pâte : le mélange avant la cuisson.",
+                    "de": "la pâte = der Teig."
+                  }
+                },
+                {
+                  "keywordId": "moule",
+                  "answerExplanation": {
+                    "en": "le moule = the cake tin.",
+                    "fr": "le moule : il donne la forme au gâteau.",
+                    "de": "le moule = die Backform."
+                  }
+                },
+                {
+                  "keywordId": "demoulez",
+                  "answerExplanation": {
+                    "en": "démoulez = take the cake out of the tin.",
+                    "fr": "démoulez : sortez le gâteau du moule.",
+                    "de": "démoulez = aus der Form lösen."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skim",
+      "stage": "skim",
+      "role": "exercise",
+      "label": {
+        "en": "Skim",
+        "fr": "Survol",
+        "de": "Überfliegen"
+      },
+      "pages": [
+        {
+          "pageId": "skim",
+          "estimatedDurationS": 80,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Look over the document quickly. It blurs when the time is up; then answer the question.",
+            "fr": "Parcourez rapidement le document. Il se floute à la fin du temps ; répondez ensuite à la question.",
+            "de": "Überfliege das Dokument. Wenn die Zeit um ist, wird es unscharf; beantworte dann die Frage."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-skim",
+              "documentId": "main",
+              "view": "skim",
+              "skimSeconds": 60
+            },
+            {
+              "type": "reading_skim_choice",
+              "itemId": "skim-genre",
+              "focus": "genre",
+              "question": "Qu’est-ce que c’est ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Une recette de gâteau"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Le menu d’un restaurant"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Une liste de courses"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Une publicité pour un four"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "A title with a dish, ingredients with quantities and steps in the imperative: a recipe.",
+                "fr": "Un titre avec un plat, des ingrédients avec des quantités et des étapes à l’impératif : c’est une recette.",
+                "de": "Ein Gericht als Titel, Zutaten mit Mengen und Schritte im Imperativ: ein Rezept."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "detail",
+      "stage": "detail",
+      "role": "exercise",
+      "label": {
+        "en": "Detail",
+        "fr": "Détails",
+        "de": "Details"
+      },
+      "pages": [
+        {
+          "pageId": "detail",
+          "estimatedDurationS": 180,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the document carefully and answer the questions.",
+            "fr": "Lisez le document attentivement et répondez aux questions.",
+            "de": "Lies das Dokument genau und beantworte die Fragen."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-detail",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_short_answer",
+              "itemId": "q-time",
+              "question": "Combien de temps le gâteau cuit-il ?",
+              "accepted": {
+                "answers": [
+                  "35 minutes",
+                  "35 min",
+                  "trente-cinq minutes",
+                  "35"
+                ]
+              },
+              "evidenceSegmentIds": [
+                "m-s12"
+              ],
+              "answerExplanation": {
+                "en": "Faites cuire 35 minutes. The 10 minutes are the preparation.",
+                "fr": "Faites cuire 35 minutes. Les 10 minutes, c’est la préparation.",
+                "de": "Faites cuire 35 minutes. Die 10 Minuten sind die Vorbereitung."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-measure",
+              "question": "À quoi sert le pot de yaourt vide ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "À faire cuire le gâteau"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "À garder le gâteau au froid"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "À décorer le gâteau"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "À mesurer les ingrédients"
+                }
+              ],
+              "answerOptionId": "o4",
+              "evidenceSegmentIds": [
+                "m-s8"
+              ],
+              "answerExplanation": {
+                "en": "Gardez le pot : il sert de mesure. The ingredients are counted in pots.",
+                "fr": "Gardez le pot : il sert de mesure. Les ingrédients se comptent en pots.",
+                "de": "Gardez le pot : il sert de mesure. Die Zutaten werden in Bechern gemessen."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "q-oven",
+              "statement": "On peut ouvrir le four pendant la cuisson.",
+              "allowNotStated": false,
+              "answer": "false",
+              "evidenceSegmentIds": [
+                "m-s12"
+              ],
+              "answerExplanation": {
+                "en": "False: faites cuire 35 minutes, sans ouvrir le four, without opening the oven.",
+                "fr": "Faux : faites cuire 35 minutes, sans ouvrir le four.",
+                "de": "Falsch: faites cuire 35 minutes, sans ouvrir le four, ohne den Ofen zu öffnen."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-flour",
+              "question": "Combien de pots de farine faut-il ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "1 pot"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "3 pots"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "½ pot"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "2 pots"
+                }
+              ],
+              "answerOptionId": "o2",
+              "evidenceSegmentIds": [
+                "m-s3"
+              ],
+              "answerExplanation": {
+                "en": "farine – 3 pots. Two pots are the sugar, half a pot the oil.",
+                "fr": "farine – 3 pots. Deux pots, c’est le sucre ; un demi-pot, l’huile.",
+                "de": "farine – 3 pots. Zwei Becher sind Zucker, ein halber Öl."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "structure",
+      "stage": "structure",
+      "role": "exercise",
+      "label": {
+        "en": "Structure",
+        "fr": "Structure",
+        "de": "Aufbau"
+      },
+      "pages": [
+        {
+          "pageId": "structure",
+          "estimatedDurationS": 70,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "In what order do you really do these things? Put them from first to last.",
+            "fr": "Dans quel ordre fait-on vraiment ces actions ? Remettez-les de la première à la dernière.",
+            "de": "In welcher Reihenfolge macht man das wirklich? Ordne vom Ersten bis zum Letzten."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-structure",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_order",
+              "itemId": "order-steps",
+              "mode": "information",
+              "pieces": [
+                {
+                  "pieceId": "p3",
+                  "text": "On fait cuire le gâteau 35 minutes.",
+                  "partId": null
+                },
+                {
+                  "pieceId": "p2",
+                  "text": "On verse la pâte dans le moule.",
+                  "partId": null
+                },
+                {
+                  "pieceId": "p5",
+                  "text": "On démoule le gâteau.",
+                  "partId": null
+                },
+                {
+                  "pieceId": "p1",
+                  "text": "On beurre le moule.",
+                  "partId": null
+                },
+                {
+                  "pieceId": "p4",
+                  "text": "On attend que le gâteau soit froid.",
+                  "partId": null
+                }
+              ],
+              "acceptedOrders": [
+                [
+                  "p1",
+                  "p2",
+                  "p3",
+                  "p4",
+                  "p5"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "Après l’avoir beurré: the tin is buttered before the batter goes in. Quand il est froid: the cake cools before you turn it out, although the sentence names démoulez first.",
+                "fr": "Après l’avoir beurré : on beurre le moule avant d’y verser la pâte. Quand il est froid : le gâteau refroidit avant d’être démoulé, même si la phrase commence par démoulez.",
+                "de": "Après l’avoir beurré: Die Form wird vor dem Teig gefettet. Quand il est froid: Der Kuchen kühlt ab, bevor man ihn stürzt, auch wenn der Satz mit démoulez beginnt."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Final exam",
+        "fr": "Examen final",
+        "de": "Abschlussprüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-1",
+          "estimatedDurationS": 175,
+          "timeLimitS": 265,
+          "instructions": {
+            "en": "Read the new document and answer the questions. No help this time.",
+            "fr": "Lisez le nouveau document et répondez aux questions. Cette fois, sans aide.",
+            "de": "Lies das neue Dokument und beantworte die Fragen. Diesmal ohne Hilfe."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-exam",
+              "documentId": "exam",
+              "view": "exam",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_short_answer",
+              "itemId": "x-milk",
+              "question": "Combien de lait faut-il ?",
+              "accepted": {
+                "answers": [
+                  "½ litre",
+                  "un demi-litre",
+                  "1/2 litre",
+                  "0,5 litre",
+                  "un demi litre",
+                  "50 cl"
+                ]
+              },
+              "evidenceSegmentIds": [
+                "x-s2"
+              ],
+              "answerExplanation": {
+                "en": "lait – ½ litre, half a litre.",
+                "fr": "lait – ½ litre, un demi-litre.",
+                "de": "lait – ½ litre, ein halber Liter."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-rest",
+              "question": "Combien de temps la pâte repose-t-elle ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "une heure"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "une nuit"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "deux heures"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "dix minutes"
+                }
+              ],
+              "answerOptionId": "o1",
+              "evidenceSegmentIds": [
+                "x-s9"
+              ],
+              "answerExplanation": {
+                "en": "Laissez reposer la pâte une heure; the card also says Repos : 1 heure.",
+                "fr": "Laissez reposer la pâte une heure ; la fiche dit aussi Repos : 1 heure.",
+                "de": "Laissez reposer la pâte une heure; oben steht auch Repos : 1 heure."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "x-butter",
+              "statement": "On met le beurre au début, avec la farine.",
+              "allowNotStated": false,
+              "answer": "false",
+              "evidenceSegmentIds": [
+                "x-s6",
+                "x-s8"
+              ],
+              "answerExplanation": {
+                "en": "False: first flour and salt; the melted butter comes after the eggs and the milk.",
+                "fr": "Faux : d’abord la farine et le sel ; le beurre fondu vient après les œufs et le lait.",
+                "de": "Falsch: Zuerst Mehl und Salz; die geschmolzene Butter kommt nach Eiern und Milch."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-first",
+              "question": "Qu’est-ce qu’on met d’abord dans le saladier ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Le beurre fondu"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Le lait"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Les œufs"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "La farine et le sel"
+                }
+              ],
+              "answerOptionId": "o4",
+              "evidenceSegmentIds": [
+                "x-s6"
+              ],
+              "answerExplanation": {
+                "en": "Mettez la farine et le sel dans un saladier is the first step.",
+                "fr": "Mettez la farine et le sel dans un saladier : c’est la première étape.",
+                "de": "Mettez la farine et le sel dans un saladier ist der erste Schritt."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-eggs",
+              "question": "Combien d’œufs faut-il ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "2"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "4"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "3"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "15"
+                }
+              ],
+              "answerOptionId": "o2",
+              "evidenceSegmentIds": [
+                "x-s3"
+              ],
+              "answerExplanation": {
+                "en": "œufs – 4. The 15 are the crêpes.",
+                "fr": "œufs – 4. 15, c’est le nombre de crêpes.",
+                "de": "œufs – 4. 15 ist die Zahl der Crêpes."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

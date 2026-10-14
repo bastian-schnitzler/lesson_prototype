@@ -1,0 +1,383 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-asking-the-way",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Demander son chemin",
+  "objective": {
+    "en": "Ask a passer-by the way and understand simple directions: straight on, left, right, near.",
+    "fr": "Demander son chemin à un passant et comprendre une indication simple : tout droit, à gauche, à droite, à côté.",
+    "de": "Einen Passanten nach dem Weg fragen und einfache Wegbeschreibungen verstehen: geradeaus, links, rechts, in der Nähe."
+  },
+  "estimatedMinutes": 26,
+  "provenance": {
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "functions-v1",
+    "generatedAt": "2026-10-13T23:42:16.504Z",
+    "inputHashes": {
+      "outline": "fcc9998d354910d96645252f5de2919381a31873ba3a5902dcdacecd8024bfc9"
+    }
+  },
+  "kind": "functions",
+  "theme": "places",
+  "situation": {
+    "en": "A tourist asks a passer-by in the street how to get somewhere.",
+    "fr": "Une touriste demande son chemin à un passant dans la rue.",
+    "de": "Eine Touristin fragt auf der Straße einen Passanten nach dem Weg."
+  },
+  "coverageNotes": {
+    "en": "Addressing a stranger (Excusez-moi), asking where a place is and whether it is far, the directions tout droit, à gauche, à droite, à côté, and thanking.",
+    "fr": "S’adresser à un inconnu (Excusez-moi), demander où est un lieu et si c’est loin, les indications tout droit, à gauche, à droite, à côté, et remercier.",
+    "de": "Einen Fremden ansprechen (Excusez-moi), fragen, wo ein Ort ist und ob er weit ist, die Richtungen tout droit, à gauche, à droite, à côté, und sich bedanken."
+  },
+  "prerequisites": [],
+  "roles": [
+    {
+      "id": "touriste",
+      "label": "la touriste",
+      "translation": {
+        "en": "the tourist",
+        "de": "die Touristin"
+      }
+    },
+    {
+      "id": "passant",
+      "label": "le passant",
+      "translation": {
+        "en": "the passer-by",
+        "de": "der Passant"
+      }
+    }
+  ],
+  "expressions": [
+    {
+      "id": "excusez-moi",
+      "text": "Excusez-moi",
+      "openEnd": false,
+      "translations": {
+        "en": [
+          "Excuse me"
+        ],
+        "de": [
+          "Entschuldigen Sie"
+        ]
+      },
+      "explanation": {
+        "en": "Polite way to address a stranger before you ask something (vous).",
+        "fr": "Façon polie d’aborder un inconnu avant de demander quelque chose (vous).",
+        "de": "Höfliche Art, einen Fremden vor einer Frage anzusprechen (vous)."
+      },
+      "example": {
+        "text": "Excusez-moi, madame.",
+        "translation": {
+          "en": "Excuse me, madam.",
+          "de": "Entschuldigen Sie."
+        }
+      }
+    },
+    {
+      "id": "ou-est",
+      "text": "Où est",
+      "openEnd": true,
+      "translations": {
+        "en": [
+          "Where is"
+        ],
+        "de": [
+          "Wo ist"
+        ]
+      },
+      "explanation": {
+        "en": "Asks for a place: Où est + the place? Où has an accent grave.",
+        "fr": "Pour demander un lieu : Où est + le lieu ? Où a un accent grave.",
+        "de": "Fragt nach einem Ort: Où est + Ort? Où hat einen accent grave."
+      },
+      "example": {
+        "text": "Où est la gare ?",
+        "translation": {
+          "en": "Where is the station?",
+          "de": "Wo ist der Bahnhof?"
+        }
+      }
+    },
+    {
+      "id": "cest-loin",
+      "text": "C’est loin ?",
+      "openEnd": false,
+      "translations": {
+        "en": [
+          "Is it far?"
+        ],
+        "de": [
+          "Ist es weit?"
+        ]
+      },
+      "explanation": {
+        "en": "Asks about the distance.",
+        "fr": "Pour demander la distance.",
+        "de": "Fragt nach der Entfernung."
+      },
+      "example": {
+        "text": "Le musée, c’est loin ?",
+        "translation": {
+          "en": "Is the museum far?",
+          "de": "Ist das Museum weit?"
+        }
+      }
+    },
+    {
+      "id": "tout-droit",
+      "text": "Vous allez tout droit.",
+      "openEnd": false,
+      "translations": {
+        "en": [
+          "You go straight on."
+        ],
+        "de": [
+          "Sie gehen geradeaus."
+        ]
+      },
+      "explanation": {
+        "en": "A direction: keep going straight on.",
+        "fr": "Une indication : continuer tout droit.",
+        "de": "Eine Richtung: immer geradeaus weitergehen."
+      },
+      "example": {
+        "text": "Vous allez tout droit, puis à gauche.",
+        "translation": {
+          "en": "You go straight on, then left.",
+          "de": "Sie gehen geradeaus, dann links."
+        }
+      }
+    },
+    {
+      "id": "a-gauche",
+      "text": "Tournez à gauche.",
+      "openEnd": false,
+      "translations": {
+        "en": [
+          "Turn left."
+        ],
+        "de": [
+          "Biegen Sie links ab."
+        ]
+      },
+      "explanation": {
+        "en": "A direction: turn to the left.",
+        "fr": "Une indication : tourner du côté gauche.",
+        "de": "Eine Richtung: nach links abbiegen."
+      },
+      "example": {
+        "text": "Après la banque, tournez à gauche.",
+        "translation": {
+          "en": "After the bank, turn left.",
+          "de": "Nach der Bank biegen Sie links ab."
+        }
+      }
+    },
+    {
+      "id": "a-droite",
+      "text": "Tournez à droite.",
+      "openEnd": false,
+      "translations": {
+        "en": [
+          "Turn right."
+        ],
+        "de": [
+          "Biegen Sie rechts ab."
+        ]
+      },
+      "explanation": {
+        "en": "A direction: turn to the right.",
+        "fr": "Une indication : tourner du côté droit.",
+        "de": "Eine Richtung: nach rechts abbiegen."
+      },
+      "example": {
+        "text": "Ici, tournez à droite.",
+        "translation": {
+          "en": "Turn right here.",
+          "de": "Hier biegen Sie rechts ab."
+        }
+      }
+    },
+    {
+      "id": "a-cote",
+      "text": "C’est à côté.",
+      "openEnd": false,
+      "translations": {
+        "en": [
+          "It’s close by."
+        ],
+        "de": [
+          "Das ist ganz in der Nähe."
+        ]
+      },
+      "explanation": {
+        "en": "Says that the place is very near.",
+        "fr": "Pour dire que le lieu est tout près.",
+        "de": "Sagt, dass der Ort sehr nah ist."
+      },
+      "example": {
+        "text": "La banque ? C’est à côté.",
+        "translation": {
+          "en": "The bank? It’s close by.",
+          "de": "Die Bank? Die ist ganz in der Nähe."
+        }
+      }
+    },
+    {
+      "id": "merci-beaucoup",
+      "text": "Merci beaucoup !",
+      "openEnd": false,
+      "translations": {
+        "en": [
+          "Thank you very much!"
+        ],
+        "de": [
+          "Vielen Dank!"
+        ]
+      },
+      "explanation": {
+        "en": "A warm thank you for the help.",
+        "fr": "Un merci chaleureux pour l’aide.",
+        "de": "Ein herzliches Danke für die Hilfe."
+      },
+      "example": {
+        "text": "Merci beaucoup, monsieur !",
+        "translation": {
+          "en": "Thank you very much, sir!",
+          "de": "Vielen Dank!"
+        }
+      }
+    }
+  ],
+  "words": [
+    {
+      "id": "gare",
+      "term": "gare",
+      "teachingForm": "une gare",
+      "translations": {
+        "en": [
+          "station"
+        ],
+        "de": [
+          "Bahnhof"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "explanation": {
+        "en": "Feminine noun: une gare.",
+        "fr": "Nom féminin : une gare.",
+        "de": "Feminines Nomen: une gare."
+      },
+      "example": {
+        "text": "La gare est loin.",
+        "translation": {
+          "en": "The station is far.",
+          "de": "Der Bahnhof ist weit weg."
+        }
+      }
+    },
+    {
+      "id": "rue",
+      "term": "rue",
+      "teachingForm": "une rue",
+      "translations": {
+        "en": [
+          "street"
+        ],
+        "de": [
+          "Straße"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "explanation": {
+        "en": "Feminine noun: une rue.",
+        "fr": "Nom féminin : une rue.",
+        "de": "Feminines Nomen: une rue."
+      },
+      "example": {
+        "text": "La rue est grande.",
+        "translation": {
+          "en": "The street is wide.",
+          "de": "Die Straße ist breit."
+        }
+      }
+    },
+    {
+      "id": "musee",
+      "term": "musée",
+      "teachingForm": "un musée",
+      "translations": {
+        "en": [
+          "museum"
+        ],
+        "de": [
+          "Museum"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "masculine"
+      ],
+      "explanation": {
+        "en": "Masculine noun despite the -ée ending: un musée.",
+        "fr": "Nom masculin malgré la fin en -ée : un musée.",
+        "de": "Maskulines Nomen trotz der Endung -ée: un musée."
+      },
+      "example": {
+        "text": "Le musée est à côté.",
+        "translation": {
+          "en": "The museum is close by.",
+          "de": "Das Museum ist ganz in der Nähe."
+        }
+      }
+    },
+    {
+      "id": "banque",
+      "term": "banque",
+      "teachingForm": "une banque",
+      "translations": {
+        "en": [
+          "bank"
+        ],
+        "de": [
+          "Bank"
+        ]
+      },
+      "wordClass": "noun",
+      "genders": [
+        "feminine"
+      ],
+      "explanation": {
+        "en": "Feminine noun: une banque.",
+        "fr": "Nom féminin : une banque.",
+        "de": "Feminines Nomen: une banque."
+      },
+      "example": {
+        "text": "La banque est fermée.",
+        "translation": {
+          "en": "The bank is closed.",
+          "de": "Die Bank ist geschlossen."
+        }
+      }
+    }
+  ],
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

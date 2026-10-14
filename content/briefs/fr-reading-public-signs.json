@@ -1,0 +1,242 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-reading-public-signs",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Lire les panneaux",
+  "objective": {
+    "en": "Understand short signs in a public place and know where to go and what is forbidden.",
+    "fr": "Comprendre des panneaux courts dans un lieu public et savoir où aller et ce qui est interdit.",
+    "de": "Kurze Schilder an einem öffentlichen Ort verstehen und wissen, wohin man geht und was verboten ist."
+  },
+  "estimatedMinutes": 9,
+  "provenance": {
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "reading-brief-v2",
+    "generatedAt": "2026-10-14T09:08:20.975Z",
+    "inputHashes": {
+      "outline": "c06b1abb08df70887303fcc41f414089016c6634030d3bd38d03802aa5b68a8c"
+    }
+  },
+  "kind": "reading",
+  "theme": "places",
+  "genre": "sign",
+  "situation": {
+    "en": "You arrive at a train station in Lyon and look at the signs in the hall.",
+    "fr": "Vous arrivez dans une gare à Lyon et vous regardez les panneaux dans le hall.",
+    "de": "Du kommst in einem Bahnhof in Lyon an und schaust dir die Schilder in der Halle an."
+  },
+  "readerTask": {
+    "en": "Find the way in and out, the opening days and what you must not do.",
+    "fr": "Trouver l’entrée et la sortie, les jours d’ouverture et ce qu’il ne faut pas faire.",
+    "de": "Eingang und Ausgang, die Öffnungstage und das, was man nicht tun darf, finden."
+  },
+  "coverageNotes": {
+    "en": "Sign words in capitals (ENTRÉE, SORTIE, FERMÉ, DÉFENSE DE…), days and opening hours, à gauche / à droite. Not covered: road signs.",
+    "fr": "Mots des panneaux en majuscules (ENTRÉE, SORTIE, FERMÉ, DÉFENSE DE…), jours et horaires, à gauche / à droite. Non traité : les panneaux de la route.",
+    "de": "Schilderwörter in Großbuchstaben (ENTRÉE, SORTIE, FERMÉ, DÉFENSE DE…), Tage und Öffnungszeiten, à gauche / à droite. Nicht behandelt: Verkehrsschilder."
+  },
+  "prerequisites": [
+    {
+      "en": "Days of the week",
+      "fr": "Les jours de la semaine",
+      "de": "Die Wochentage"
+    },
+    {
+      "en": "Telling the time (6 h, 21 h)",
+      "fr": "Dire l’heure (6 h, 21 h)",
+      "de": "Die Uhrzeit (6 h, 21 h)"
+    }
+  ],
+  "keywords": [
+    {
+      "id": "entree",
+      "term": "l’entrée",
+      "translations": {
+        "en": [
+          "the entrance",
+          "the way in"
+        ],
+        "de": [
+          "der Eingang"
+        ]
+      },
+      "explanation": {
+        "en": "Where you go in. On a sign it is written ENTRÉE.",
+        "fr": "L’endroit où on entre. Sur un panneau : ENTRÉE.",
+        "de": "Wo man hineingeht. Auf einem Schild steht ENTRÉE."
+      }
+    },
+    {
+      "id": "sortie",
+      "term": "la sortie",
+      "translations": {
+        "en": [
+          "the exit",
+          "the way out"
+        ],
+        "de": [
+          "der Ausgang"
+        ]
+      },
+      "explanation": {
+        "en": "Where you go out, the opposite of l’entrée.",
+        "fr": "L’endroit où on sort, le contraire de l’entrée.",
+        "de": "Wo man hinausgeht, das Gegenteil von l’entrée."
+      }
+    },
+    {
+      "id": "ferme",
+      "term": "fermé",
+      "translations": {
+        "en": [
+          "closed"
+        ],
+        "de": [
+          "geschlossen"
+        ]
+      },
+      "explanation": {
+        "en": "Not open. The opposite is ouvert.",
+        "fr": "Pas ouvert. Le contraire est ouvert.",
+        "de": "Nicht offen. Das Gegenteil ist ouvert."
+      }
+    },
+    {
+      "id": "defense",
+      "term": "défense de…",
+      "translations": {
+        "en": [
+          "… is forbidden",
+          "no …"
+        ],
+        "de": [
+          "… verboten"
+        ]
+      },
+      "explanation": {
+        "en": "On a sign, défense de + verb means you must not do it: défense de fumer = no smoking.",
+        "fr": "Sur un panneau, défense de + verbe veut dire : c’est interdit. Défense de fumer : on ne fume pas.",
+        "de": "Auf einem Schild heißt défense de + Verb: Das ist verboten. Défense de fumer = Rauchen verboten."
+      }
+    },
+    {
+      "id": "poussez",
+      "term": "poussez",
+      "translations": {
+        "en": [
+          "push"
+        ],
+        "de": [
+          "drücken"
+        ]
+      },
+      "explanation": {
+        "en": "On a door: push it to open it. The opposite is tirez (pull).",
+        "fr": "Sur une porte : on pousse pour ouvrir. Le contraire est tirez.",
+        "de": "An einer Tür: zum Öffnen drücken. Das Gegenteil ist tirez (ziehen)."
+      }
+    }
+  ],
+  "documents": {
+    "main": {
+      "targetWords": 46,
+      "partCount": 6,
+      "contents": {
+        "en": "Six signs in a station hall: entrance to the platforms; ticket offices closed on Sundays, open Monday to Saturday 6 h–21 h; no smoking; push, the automatic door is broken; exit with taxis and buses on the right; free toilets at the end of the corridor on the left.",
+        "fr": "Six panneaux dans le hall d’une gare : entrée vers les quais ; guichets fermés le dimanche, ouverts du lundi au samedi de 6 h à 21 h ; défense de fumer ; poussez, la porte automatique est en panne ; sortie avec taxis et bus à droite ; toilettes gratuites au fond du couloir à gauche.",
+        "de": "Sechs Schilder in einer Bahnhofshalle: Eingang zu den Gleisen; Schalter sonntags geschlossen, Montag bis Samstag 6–21 h offen; Rauchen verboten; drücken, die automatische Tür ist kaputt; Ausgang mit Taxis und Bussen rechts; kostenlose Toiletten hinten im Gang links."
+      }
+    },
+    "exam": {
+      "targetWords": 22,
+      "partCount": 5,
+      "contents": {
+        "en": "Five signs in a museum: free entrance on the first Sunday of the month; no photos; closed on Tuesdays; exit with the shop and café on the left; pull.",
+        "fr": "Cinq panneaux dans un musée : entrée gratuite le premier dimanche du mois ; photos interdites ; fermé le mardi ; sortie avec boutique et café à gauche ; tirez.",
+        "de": "Fünf Schilder in einem Museum: freier Eintritt am ersten Sonntag im Monat; Fotos verboten; dienstags geschlossen; Ausgang mit Laden und Café links; ziehen."
+      }
+    }
+  },
+  "stages": {
+    "keywords": {
+      "estimatedDurationS": 90
+    },
+    "skim": {
+      "focus": "genre",
+      "skimSeconds": 45,
+      "estimatedDurationS": 65
+    },
+    "detail": {
+      "questions": [
+        {
+          "id": "q-closed",
+          "type": "reading_choice",
+          "focus": {
+            "en": "The day the ticket offices are closed",
+            "fr": "Le jour de fermeture des guichets",
+            "de": "Der Ruhetag der Schalter"
+          }
+        },
+        {
+          "id": "q-smoke",
+          "type": "reading_true_false",
+          "focus": {
+            "en": "What is forbidden",
+            "fr": "Ce qui est interdit",
+            "de": "Was verboten ist"
+          }
+        },
+        {
+          "id": "q-taxi",
+          "type": "reading_short_answer",
+          "focus": {
+            "en": "Where the taxis are",
+            "fr": "Où sont les taxis",
+            "de": "Wo die Taxis sind"
+          }
+        },
+        {
+          "id": "q-door",
+          "type": "reading_choice",
+          "focus": {
+            "en": "Why you push the door",
+            "fr": "Pourquoi on pousse la porte",
+            "de": "Warum man die Tür drückt"
+          }
+        }
+      ],
+      "estimatedDurationS": 150
+    },
+    "structure": {
+      "task": "heading_matching",
+      "estimatedDurationS": 75
+    }
+  },
+  "exam": {
+    "pages": [
+      {
+        "pageId": "exam-1",
+        "types": [
+          "reading_choice",
+          "reading_true_false",
+          "reading_short_answer"
+        ],
+        "itemCount": 5,
+        "estimatedDurationS": 150,
+        "timeLimitS": 225
+      }
+    ]
+  },
+  "scoring": {
+    "practiceWeight": 30,
+    "examWeight": 70,
+    "orthographyCredit": 0.5
+  }
+}

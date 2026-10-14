@@ -5,6 +5,7 @@ import { RichText } from '../components/RichText.tsx';
 import { seededOrder, type LessonPlan, type PlanUnit } from '../domain/session/plan.ts';
 import type { Locale } from '../schemas/common.ts';
 import { ChoiceControl, Gap, TextControl, UnitRow, type RendererProps } from './controls.tsx';
+import { pronounWithForm, useAutoplay } from './autoplay.ts';
 
 /** Grammar renderers: presentation items, pronoun/form rows (P3-02); other scored items use the shared `UnitsRenderer`. */
 
@@ -90,6 +91,7 @@ export function PronounMatchRenderer(props: RendererProps) {
   const { t, locale } = useI18n();
   const { item, units, plan, mode } = props;
   const [selected, setSelected] = useState<{ kind: 'token'; id: string } | { kind: 'row'; id: string } | null>(null);
+  const say = useAutoplay(props.plan.lang);
   const [drag, setDrag] = useState<{ tokenId: string; from: string | null; x: number; y: number } | null>(null);
   const press = useRef<{ tokenId: string; from: string | null; x: number; y: number; moved: boolean } | null>(null);
   const suppressClick = useRef(false);
@@ -125,6 +127,8 @@ export function PronounMatchRenderer(props: RendererProps) {
     if (from && from !== rowId) props.onChange(from, '');
     props.onChange(rowId, tokenId);
     setSelected(null);
+    // Autoplay (P4-05 review): a pronoun joined with a form is spoken together (nous sommes).
+    say(pronounWithForm(rows.find((u) => u.id === rowId)?.prompt.learning ?? '', textOf(tokenId)));
   };
   const remove = (rowId: string) => { props.onChange(rowId, ''); setSelected(null); };
   const clickToken = (tokenId: string) => {

@@ -1,0 +1,34 @@
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xx</color> | {
+{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>██</color><color:#1E293B>░░░░░░░░░</color> | <color:#94A3B8>16.8%</color> }
+<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
+.
+<color:#94A3B8>SKIM</color>
+<size:23><color:#E2E8F0><b>Look over the document quickly. It blurs when the time is up;</b></color></size>
+<size:23><color:#E2E8F0><b>then answer the question.</b></color></size>
+.
+{ { <color:#94A3B8>Text blurs in</color>
+<size:26><color:#E2E8F0><b>0:45</b></color></size>
+<color:#635BFF>██████████</color> } | <color:#020617>xxxxxxxxxxxxxxxxxx</color> | [ <color:#E2E8F0>I’ve finished reading</color> ] }
+.
+{ <color:#020617>xxxxxx</color> | {
+<color:#E2E8F0><b>Léa</b></color>  <color:#94A3B8>Jeudi 18:42</color>
+<back:#334155><color:#E2E8F0> Salut Tom ! Tu es libre <u>samedi</u> après-midi ? </color></back>
+<back:#334155><color:#E2E8F0> … Mais <u>avant</u>, <u>on se voit</u> à 15 h au café de <u>la gare</u> ? </color></back>
+<back:#334155><color:#E2E8F0> Si tu ne peux pas, dis-le-moi avant vendredi. </color></back>
+} }
+.
+<color:#94A3B8><i>The question opens when the text blurs or when you have finished reading.</i></color>
+.
+{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#64748B>  Check  </color> ] }
+} | <color:#020617>xx</color> }
+.
+}
+@endsalt

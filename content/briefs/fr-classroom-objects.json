@@ -114,7 +114,6 @@
       "examForms": [
         "un livre"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/œ̃ livʁ/",
@@ -146,8 +145,7 @@
         "accepted": {
           "answers": [
             "livre"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "un-livre",
@@ -188,7 +186,6 @@
       "examForms": [
         "un cahier"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/œ̃ kaje/",
@@ -220,8 +217,7 @@
         "accepted": {
           "answers": [
             "cahier"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "un-cahier",
@@ -262,7 +258,6 @@
       "examForms": [
         "un stylo"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/œ̃ stilo/",
@@ -294,8 +289,7 @@
         "accepted": {
           "answers": [
             "stylo"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "un-stylo",
@@ -337,7 +331,6 @@
       "examForms": [
         "un tableau"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/œ̃ tablo/",
@@ -369,8 +362,7 @@
         "accepted": {
           "answers": [
             "tableau"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "un-tableau",
@@ -411,7 +403,6 @@
       "examForms": [
         "un crayon"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/œ̃ kʁɛjɔ̃/",
@@ -443,8 +434,7 @@
         "accepted": {
           "answers": [
             "crayon"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "un-crayon",
@@ -487,7 +477,6 @@
       "examForms": [
         "un sac"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/œ̃ sak/",
@@ -519,8 +508,7 @@
         "accepted": {
           "answers": [
             "sac"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "un-sac",
@@ -561,7 +549,6 @@
       "examForms": [
         "une table"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/yn tabl/",
@@ -593,8 +580,7 @@
         "accepted": {
           "answers": [
             "table"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "une-table",
@@ -635,7 +621,6 @@
       "examForms": [
         "une chaise"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/yn ʃɛz/",
@@ -667,8 +652,7 @@
         "accepted": {
           "answers": [
             "chaise"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "une-chaise",
@@ -710,7 +694,6 @@
       "examForms": [
         "une trousse"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/yn tʁus/",
@@ -742,8 +725,7 @@
         "accepted": {
           "answers": [
             "trousse"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "une-trousse",
@@ -784,7 +766,6 @@
       "examForms": [
         "une règle"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/yn ʁɛɡl/",
@@ -816,8 +797,7 @@
         "accepted": {
           "answers": [
             "règle"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "une-regle",
@@ -858,7 +838,6 @@
       "examForms": [
         "une gomme"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/yn ɡɔm/",
@@ -890,8 +869,7 @@
         "accepted": {
           "answers": [
             "gomme"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "une-gomme",
@@ -932,7 +910,6 @@
       "examForms": [
         "une carte"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/yn kaʁt/",
@@ -964,8 +941,7 @@
         "accepted": {
           "answers": [
             "carte"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "une-carte",

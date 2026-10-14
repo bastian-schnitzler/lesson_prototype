@@ -1,13 +1,15 @@
 import { Fragment, useId, useRef, useState, type CSSProperties } from 'react';
+import { functionsTerms } from '../domain/functionsLesson.ts';
 import { buildPlan, type PlanUnit } from '../domain/session/plan.ts';
 import { RichText } from '../components/RichText.tsx';
 import type { Brief, LessonContent } from '../schemas/artifacts.ts';
 import { useBriefText, Learn, SummaryLine, ScoringNote } from './briefParts.tsx';
+import { ReadingItemReview } from './ReadingItemReview.tsx';
 
 const COPY = {
-  en: { subject: 'Subject', form: 'Form', outline: 'Lesson outline', pages: 'Lesson pages', page: 'Page', answers: 'Accepted answers', options: 'Options', explanation: 'Answer explanation', units: 'Point units', references: 'Reference words', timer: 'Countdown limit', noTimer: 'No countdown', front: 'Front', back: 'Back', placeholder: 'Personalised production feedback is planned for a later phase.', rules: 'Rules', accents: 'Meaning-sensitive accents', type: 'Task type', correction: 'Correction' },
-  fr: { subject: 'Sujet', form: 'Forme', outline: 'Plan de la leçon', pages: 'Pages de la leçon', page: 'Page', answers: 'Réponses acceptées', options: 'Options', explanation: 'Explication de la réponse', units: 'Unités de points', references: 'Mots de référence', timer: 'Limite du compte à rebours', noTimer: 'Sans compte à rebours', front: 'Recto', back: 'Verso', placeholder: 'Le retour personnalisé sur la production est prévu pour une phase ultérieure.', rules: 'Règles', accents: 'Accents qui changent le sens', type: 'Type de tâche', correction: 'Correction' },
-  de: { subject: 'Subjekt', form: 'Form', outline: 'Lektionsübersicht', pages: 'Lektionsseiten', page: 'Seite', answers: 'Akzeptierte Antworten', options: 'Optionen', explanation: 'Erklärung der Antwort', units: 'Punkteinheiten', references: 'Referenzwörter', timer: 'Zeitlimit', noTimer: 'Kein Countdown', front: 'Vorderseite', back: 'Rückseite', placeholder: 'Persönliches Feedback zur Produktion ist für eine spätere Phase vorgesehen.', rules: 'Regeln', accents: 'Bedeutungsrelevante Akzente', type: 'Aufgabentyp', correction: 'Korrektur' },
+  en: { subject: 'Subject', form: 'Form', outline: 'Lesson outline', pages: 'Lesson pages', page: 'Page', answers: 'Accepted answers', options: 'Options', explanation: 'Answer explanation', units: 'Point units', references: 'Reference words', timer: 'Countdown limit', noTimer: 'No countdown', front: 'Front', back: 'Back', placeholder: 'Personalised production feedback is planned for a later phase.', rules: 'Rules', type: 'Task type', correction: 'Correction' , roleCol: 'Role', line: 'Line', note: 'Note', distractors: 'Distractors' },
+  fr: { subject: 'Sujet', form: 'Forme', outline: 'Plan de la leçon', pages: 'Pages de la leçon', page: 'Page', answers: 'Réponses acceptées', options: 'Options', explanation: 'Explication de la réponse', units: 'Unités de points', references: 'Mots de référence', timer: 'Limite du compte à rebours', noTimer: 'Sans compte à rebours', front: 'Recto', back: 'Verso', placeholder: 'Le retour personnalisé sur la production est prévu pour une phase ultérieure.', rules: 'Règles', type: 'Type de tâche', correction: 'Correction' , roleCol: 'Rôle', line: 'Réplique', note: 'Remarque', distractors: 'Distracteurs' },
+  de: { subject: 'Subjekt', form: 'Form', outline: 'Lektionsübersicht', pages: 'Lektionsseiten', page: 'Seite', answers: 'Akzeptierte Antworten', options: 'Optionen', explanation: 'Erklärung der Antwort', units: 'Punkteinheiten', references: 'Referenzwörter', timer: 'Zeitlimit', noTimer: 'Kein Countdown', front: 'Vorderseite', back: 'Rückseite', placeholder: 'Persönliches Feedback zur Produktion ist für eine spätere Phase vorgesehen.', rules: 'Regeln', type: 'Aufgabentyp', correction: 'Korrektur' , roleCol: 'Rolle', line: 'Zeile', note: 'Hinweis', distractors: 'Ablenker' },
 };
 
 /** Builds presentation data only. No session hook, timer, storage or answer controls. */
@@ -21,6 +23,8 @@ export function ContentReview({ content, brief }: { content: LessonContent; brie
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
   const color = (index: number) => ({ '--review-color': ['#a5b4fc', '#67e8f9', '#86efac', '#fcd34d', '#fda4af', '#d8b4fe'][index % 6] }) as CSSProperties;
   const learning = (s: string) => <Learn lang={content.lang}>{s}</Learn>;
+  const terms = brief.kind === 'functions' ? functionsTerms(brief) : undefined;
+  const role = (id: string) => (brief.kind === 'functions' ? brief.roles.find((r) => r.id === id)?.label : undefined) ?? id;
   const optionText = (s: string, lang: string) => lang === 'ui' && s.startsWith('gender.') ? text.t(s as 'gender.masculine') : s;
   const unitAnswer = (u: PlanUnit) => {
     if (u.kind === 'text') return u.accepted.answers.join(' / ');
@@ -82,12 +86,21 @@ export function ContentReview({ content, brief }: { content: LessonContent; brie
             <ul>{item.examples.map((e, i) => <li key={i}>{learning(e.text)} — <span lang={text.nativeLocale}>{text.native(e.translation)}</span></li>)}</ul>
           </>}
           {item.type === 'production_feedback_placeholder' && <p>{copy.placeholder}</p>}
+          {item.type.startsWith('reading_') && <ReadingItemReview item={item as Extract<typeof item, { type: `reading_${string}` }>} plan={plan} />}
           {(item.type === 'grammar_gap_typing' || item.type === 'grammar_gap_choice') && item.hint && <p>{text.ui(item.hint)}</p>}
           {item.type === 'vocabulary_introduction' && <RichText text={text.ui(item.text)} lang={content.lang} />}
           {'targetIds' in item && <div className="table-wrap"><table className="data-table"><thead><tr><th>{item.type === 'vocabulary_flashcards' ? copy.front : text.t('brief.col.target')}</th><th>{item.type === 'vocabulary_flashcards' ? copy.back : text.t('brief.col.translation', { locale: text.languageName(text.nativeLocale) })}</th><th>{text.t('brief.col.gender')}</th></tr></thead><tbody>{item.targetIds.map((id) => {
             const t = plan.targets.get(id)!;
             return <tr key={id}><td>{learning(t.teachingForm)}<br /><small>{t.pronunciation}</small></td><td lang={text.nativeLocale}>{text.native(t.translations)?.join(' / ')}</td><td>{t.genders.map((g) => text.t(`gender.${g}`)).join(' / ')}</td></tr>;
           })}</tbody></table></div>}
+          {item.type === 'function_flashcards' && terms && <div className="table-wrap"><table className="data-table"><thead><tr><th>{copy.front}</th><th>{copy.back}</th></tr></thead><tbody>{item.ids.map((id) => {
+            const term = terms.get(id), french = learning(term?.display ?? id), translation = <span lang={text.nativeLocale}>{text.native(term?.translations ?? {})?.join(' / ')}</span>;
+            return <tr key={id}><td>{item.side === 'expressions' ? french : translation}</td><td>{item.side === 'expressions' ? translation : french}</td></tr>;
+          })}</tbody></table></div>}
+          {(item.type === 'function_dialogue' || item.type === 'function_dialogue_gap_typing') && <div className="table-wrap"><table className="data-table"><thead><tr><th>{copy.roleCol}</th><th>{copy.line}</th>{item.type === 'function_dialogue' && <><th>{text.t('brief.col.translation', { locale: text.languageName(text.nativeLocale) })}</th><th>{copy.note}</th></>}</tr></thead><tbody>{item.type === 'function_dialogue'
+            ? item.lines.map((l) => <tr key={l.lineId}><td>{learning(role(l.roleId))}</td><td>{learning(l.text)}</td><td lang={text.nativeLocale}>{text.native(l.translation)}</td><td>{text.ui(l.note)}</td></tr>)
+            : item.lines.map((l) => <tr key={l.lineId}><td>{learning(role(l.roleId))}</td><td>{learning(l.gap ? [l.before, '___', l.after].filter(Boolean).join(' ') : l.before)}</td></tr>)}</tbody></table></div>}
+          {item.type === 'function_word_order' && item.distractorTokenIds.length > 0 && <p>{copy.distractors}: {learning(item.tokens.filter((tk) => item.distractorTokenIds.includes(tk.tokenId)).map((tk) => tk.text).join(' · '))}</p>}
           {item.type === 'vocabulary_typed_gap' && <p>{copy.references}: {item.referenceTargetIds.map((id) => plan.targets.get(id)!.term).join(' · ')}</p>}
           {pg.units.filter((u) => u.itemId === item.itemId).map((u) => <div className="content-answer" key={u.id}>
             <p><code>{u.id}</code> · {copy.units}: 1</p>
@@ -95,7 +108,6 @@ export function ContentReview({ content, brief }: { content: LessonContent; brie
             {u.speak && <p>{text.t('brief.pronunciation', { value: ('targetId' in item && plan.targets.get(item.targetId)?.pronunciation) || u.speak })}</p>}
             {(u.kind === 'choice' || u.kind === 'order' || u.kind === 'spot') && <p>{copy.options}: {(u.kind === 'choice' ? u.options : u.tokens).map((o, i) => <Fragment key={o.id}>{i > 0 && ' · '}<span lang={o.lang === 'native' ? text.nativeLocale : o.lang === 'learning' ? content.lang : text.locale}>{optionText(o.text, o.lang)}</span></Fragment>)}</p>}
             <p><strong>{copy.answers}: </strong><span lang={u.answerLang === 'native' ? text.nativeLocale : u.answerLang === 'learning' ? content.lang : text.locale}>{unitAnswer(u)}</span>{u.form && <> · {learning(u.form)}</>}</p>
-            {u.kind === 'text' && u.accepted.accentSensitive.length > 0 && <p>{copy.accents}: {u.accepted.accentSensitive.join(', ')}</p>}
             {u.kind === 'spot' && <p>{copy.correction}: {u.tokens.find((t) => t.id === u.faultyTokenId)?.text} → {u.correction.accepted.answers.join(' / ')} ({u.correction.mode}) {u.correction.choices.join(' / ')}</p>}
             <p><strong>{copy.explanation}: </strong>{text.ui(u.explanation)}</p>
           </div>)}

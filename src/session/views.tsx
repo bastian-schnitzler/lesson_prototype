@@ -2,17 +2,19 @@ import { Fragment, useEffect, useRef, useState, type CSSProperties, type Keyboar
 
 import { useI18n, useLastTry, usePreferences } from '../app/context.tsx';
 import { formatScore, roundHalfUp1 } from '../domain/format.ts';
-import type { LessonPlan, PlanPage, PlanUnit } from '../domain/session/plan.ts';
-import { canNavigate, viewedIndex, isAnswered, isListeningPage, presentationComplete, scoreUnit, skipsFeedbackWhenCorrect, lessonResults, progress, type LockedUnit, type SessionRecord } from '../domain/session/session.ts';
+import { answerMarks } from '../domain/answers.ts';
+import { seededOrder, type LessonPlan, type PlanPage, type PlanUnit } from '../domain/session/plan.ts';
+import { canNavigate, viewedIndex, isAnswered, isListeningPage, isMatchingItem, nextDialogueLine, presentationComplete, scoreUnit, skipsFeedbackWhenCorrect, lessonResults, progress, MATCHING_TYPES, type LockedUnit, type SessionRecord } from '../domain/session/session.ts';
 import type { MessageKey } from '../i18n/messages.ts';
 import type { Locale } from '../schemas/common.ts';
 import { rendererRegistry, UnitFeedback } from './renderers.tsx';
-import { answerText, SpotSummary } from './controls.tsx';
+import { answerText, Countdown, SpotSummary } from './controls.tsx';
 import { MATCH_SLIDE_MS } from './vocabularyRenderers.tsx';
 import { missingArticle } from '../domain/articleHint.ts';
 import type { SessionInput } from './useSession.ts';
 import { reviewColor } from '../artifacts/briefParts.tsx';
 import { useVoiceStatus, type VoiceStatus } from './speech.ts';
+import { gapSentence, pronounWithForm, useAutoplay } from './autoplay.ts';
 import { VoiceHelp } from './VoiceHelp.tsx';
 import { examKindKey } from '../domain/session/outline.ts';
 import { LessonSidebar, ResultsSidebar, type ResultsEntry } from './Sidebar.tsx';
@@ -23,7 +25,7 @@ import { NewVerbs } from './grammarRenderers.tsx';
 /**
  * The grammar lesson flow for the start page (P3-02 review): one part per teaching block (named by its
  * first step and listing its exercises; every block starts with an explanation, so it is not listed),
- * then the exam. The feedback screen is not listed.
+ * then the exam. The feedback screen is not listed. Reading lists its five stages the same way.
  */
 export function grammarFlow(plan: LessonPlan) {
   const parts: { key: string; label: PlanPage['stepLabel']; role: PlanPage['role']; types: string[]; seconds: number; pages: number; units: number }[] = [];
@@ -40,6 +42,40 @@ export function grammarFlow(plan: LessonPlan) {
   }
   return parts;
 }
+
+/**
+ * Function start page (SPEC section 8): the situation, the number of expressions and words, and the
+ * outline in three rows: flashcards and dialogue, the exercises, the final exam.
+ */
+function FunctionsStart({ plan }: { plan: LessonPlan }) {
+  const { t, locale } = useI18n();
+  const f = plan.functions!;
+  const parts = (['presentation', 'practice', 'exam'] as const).map((role) => {
+    const pages = plan.pages.filter((p) => p.role === role && !p.special);
+    const labels = [...new Set(pages.map((p) => p.stepLabel[locale]))];
+    return { role, labels, seconds: pages.reduce((n, p) => n + p.estimatedDurationS, 0), units: pages.reduce((n, p) => n + p.units.length, 0), pages: pages.length };
+  });
+  return (
+    <>
+      <p className="muted">{f.situation[locale]}</p>
+      <p className="muted">{t('session.expressionCount', { count: f.expressions.length })} · {t('session.vocabularyCount', { count: f.words.length })}</p>
+      <h2 className="small-heading">{t('session.lessonFlow')}</h2>
+      <ol className="group-list flow-list">
+        {parts.map((part, n) => (
+          <li key={part.role} style={reviewColor(n)}>
+            <span>{part.role === 'exam' ? t('session.examPage') : part.labels.join(' · ')}
+              {part.role === 'exam' && <small className="flow-detail">{t('activity.exam', { count: part.units, pages: part.pages })}</small>}
+            </span>
+            <small>{t('session.flowMinutes', { minutes: Math.max(1, Math.round(part.seconds / 60)) })}</small>
+          </li>
+        ))}
+      </ol>
+    </>
+  );
+}
+
+/** Item types that only present content; the start-page flow lists the exercises of a part. */
+const PRESENTATION_TYPES = new Set(['grammar_explanation', 'reading_keywords', 'reading_document']);
 
 interface StartViewProps {
   plan: LessonPlan;
@@ -80,8 +116,9 @@ export function StartView({ plan, level, resumable, notice, onStart, onResume }:
           </ol>
         </>
       )}
+      {plan.functions && <FunctionsStart plan={plan} />}
       {plan.kind === 'grammar' && <NewVerbs plan={plan} motherTongue={motherTongue} />}
-      {plan.kind === 'grammar' && (
+      {plan.kind !== 'vocabulary' && !plan.functions && (
         <>
           <h2 className="small-heading">{t('session.lessonFlow')}</h2>
           <ol className="group-list flow-list">
@@ -92,7 +129,7 @@ export function StartView({ plan, level, resumable, notice, onStart, onResume }:
                   <small className="flow-detail">
                     {part.role === 'exam'
                       ? t('activity.exam', { count: part.units, pages: part.pages })
-                      : part.types.filter((type) => type !== 'grammar_explanation').map((type) => t(`exercise.${type}` as MessageKey)).join(' · ')}
+                      : part.types.filter((type) => !PRESENTATION_TYPES.has(type)).map((type) => t(`exercise.${type}` as MessageKey)).join(' · ')}
                   </small>
                 </span>
                 <small>{t('session.flowMinutes', { minutes: Math.max(1, Math.round(part.seconds / 60)) })}</small>
@@ -124,10 +161,62 @@ export function StartView({ plan, level, resumable, notice, onStart, onResume }:
 
 /* ---------------------------------------------------------- session host */
 
+/**
+ * A dictation page shows its words in a random order fixed by the session seed, so the learner cannot
+ * tell from the lesson order which word is being read out; resume shows the same order.
+ */
+export function displayOrder(page: PlanPage, seed: number): PlanPage {
+  if (!page.items.length || !page.items.every((it) => it.type === 'vocabulary_listening_dictation')) return page;
+  const items = seededOrder(page.items, seed, page.pageId);
+  return { ...page, items, units: items.flatMap((it) => page.units.filter((u) => u.itemId === it.itemId)) };
+}
+
+/** Audio played when a page opens in autoplay mode (P4-05 review): the prompt that has to be heard. */
+export function entryAudio(page: PlanPage): string | undefined {
+  const item = page.items[0];
+  if (!item) return undefined;
+  // Dialogue gaps and listening choices play role A's line (P4-05 review).
+  if (item.type === 'function_dialogue_gap_choice' || item.type === 'function_listening_choice') return item.context.text;
+  if (item.type === 'vocabulary_listening_choice' || item.type === 'vocabulary_listening_dictation') return page.units[0]?.speak;
+  return undefined;
+}
+
+/**
+ * The correct answers of a practice page, spoken in autoplay mode as the page is checked, together with
+ * the green or red marking (P4-05 review): gaps and error spotters as whole sentences, word order as
+ * the sentence, listening choices as the right word or reply, pronoun rows as pronoun + form. Matching
+ * boards and gender pages, which have their own sounds, are left out.
+ */
+export function correctSentences(page: PlanPage): string | undefined {
+  const sentences = page.units.flatMap((u) => {
+    // Dialogue gaps play only role A's line, on entry (P4-05 review).
+    if (u.answerLang !== 'learning' || isMatchingItem(u.itemType) || u.itemType === 'function_dialogue_gap_choice') return [];
+    if (u.kind === 'spot' || u.kind === 'order') return [u.answer];
+    if (u.prompt.before !== undefined || u.prompt.after !== undefined) return [gapSentence(u.prompt.before, u.answer, u.prompt.after)];
+    if (u.itemType === 'grammar_pronoun_form_typing' || u.itemType === 'grammar_pronoun_form_match') return [`${pronounWithForm(u.prompt.learning ?? '', u.answer)}.`];
+    // The listening dialogue speaks only role A (on entry), never the chosen or right reply.
+    if (u.itemType === 'vocabulary_listening_choice') return [u.answer];
+    return [];
+  });
+  return sentences.length ? sentences.join(' ') : undefined;
+}
+
+/**
+ * Practice pages with one multiple-choice answer (P4-05 review): multiple-choice and dialogue gaps.
+ * Listening choices, matching boards and gender pages keep their Check button.
+ */
+export function isAutoSubmitPage(page: PlanPage): boolean {
+  const unit = page.units[0];
+  return page.role === 'practice' && page.units.length === 1 && unit.kind === 'choice' && !isMatchingItem(unit.itemType)
+    && unit.itemType !== 'vocabulary_gender_select' && unit.itemType !== 'function_gender_select' && page.items.length === 1
+    // Listening choices are confirmed with Check: the learner may listen to the options first.
+    && unit.itemType !== 'vocabulary_listening_choice' && unit.itemType !== 'function_listening_choice';
+}
+
 export function SessionHeader({ plan, record }: { plan: LessonPlan; record: SessionRecord }) {
   const { t, locale } = useI18n();
   const pct = progress(plan, record);
-  // The running lesson shows progress only; scores appear on the results page (D53, P6 review).
+  // The running lesson shows progress only; scores appear on the results page (D56, P6 review).
   return (
     <div className="session-header">
       <p className="session-title" lang={plan.lang}>{plan.title}</p>
@@ -137,19 +226,6 @@ export function SessionHeader({ plan, record }: { plan: LessonPlan; record: Sess
         </div>
         <span className="muted">{formatScore(pct, locale).replace(/[.,]0%$/, '%')}</span>
       </div>
-    </div>
-  );
-}
-
-function Countdown({ remainingMs, totalMs }: { remainingMs: number; totalMs: number }) {
-  const { t } = useI18n();
-  const total = Math.ceil(remainingMs / 1000);
-  const text = `${Math.floor(total / 60)}:${String(total % 60).padStart(2, '0')}`;
-  return (
-    <div className="timer-box">
-      <span className="timer-label" aria-hidden="true">{t('session.timeLeftLabel')}</span>
-      <p className={`countdown${total <= 10 ? ' countdown-low' : ''}`} role="timer" aria-label={t('session.timeLeft', { time: text })}>{text}</p>
-      {totalMs > 0 && <span className="timer-bar" aria-hidden="true"><span style={{ width: `${Math.min(100, (100 * remainingMs) / totalMs)}%` }} /></span>}
     </div>
   );
 }
@@ -166,7 +242,7 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
   const { t, locale } = useI18n();
   const shown = viewedIndex(record);
   const revisiting = shown !== record.pageIndex;
-  const page = plan.pages[shown];
+  const page = displayOrder(plan.pages[shown], record.seed);
   const listening = isListeningPage(page);
   const needsVoice = listening && record.phase === 'answering' && !revisiting;
   useEffect(() => {
@@ -174,10 +250,22 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
   }, [needsVoice, page.pageId, page.role, voiceStatus, dispatch]);
   const mode = page.role === 'exam' ? 'exam' : record.phase === 'feedback' ? 'feedback' : 'answering';
   const ready = revisiting || (page.role === 'presentation' ? presentationComplete(page, record) : page.role !== 'practice' || record.phase === 'feedback' || page.units.every((u) => isAnswered(u, record.drafts[u.id])));
+  // Dialogues unroll line by line: the model dialogue and the exam dialogue (until the page is submitted).
+  const nextLine = !revisiting && (page.role === 'presentation' || (page.role === 'exam' && record.phase === 'answering')) ? nextDialogueLine(page, record) : undefined;
   const heading = useRef<HTMLHeadingElement>(null);
-  // Typing pages put the cursor straight into the first answer field; other pages focus the heading.
+  // Autoplay (P4-05 review): entering a dictation, a listening choice or a dialogue gap plays its prompt;
+  // it waits for speech still in progress, e.g. the previous page's correct sentence.
+  const spokenPage = useRef(-1);
   useEffect(() => {
-    const field = document.querySelector<HTMLInputElement>('.task-card input.text-input:not([readonly]):not([disabled])');
+    if (spokenPage.current === record.pageIndex) return; // once per page (effects may run twice in development)
+    spokenPage.current = record.pageIndex;
+    if (record.phase === 'answering' && !(listening && voiceStatus !== 'available')) say(entryAudio(page), { queue: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [record.pageIndex]);
+  // Typing pages put the cursor straight into the first answer field; other pages focus the heading.
+  // A reading page starts at its heading, so the document is not scrolled away for a field below it.
+  useEffect(() => {
+    const field = document.querySelector('.task-card .reading-document') ? null : document.querySelector<HTMLInputElement>('.task-card input.text-input:not([readonly]):not([disabled])');
     (field ?? heading.current)?.focus();
   }, [shown]);
   // A fully correct single-answer page plays a short success animation, then skips its feedback (P2-02, P2-04).
@@ -187,11 +275,15 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
   useEffect(() => setArticleWarnings([]), [record.pageIndex]);
   // Single-answer practice pages mark the answer in place (red/green) instead of a feedback card (P2-04 review).
   const inline = page.role === 'practice' && skipsFeedbackWhenCorrect(page);
-  const almost = inline && record.phase === 'feedback' ? page.units.filter((u) => u.kind !== 'spot' && record.locked[u.id]?.outcome === 'orthography_only') : [];
+  // Typed pronoun rows explain themselves in their row, error spotters in their feedback card; other half-point answers go below the button.
+  const almost = inline && record.phase === 'feedback' ? page.units.filter((u) => u.kind !== 'spot' && record.locked[u.id]?.outcome === 'orthography_only' && u.itemType !== 'grammar_pronoun_form_typing') : [];
+  const say = useAutoplay(plan.lang);
   const onContinue = () => {
+    // Autoplay (P4-05 review): submitting a gap or error-spotting page speaks the correct sentence.
+    if (page.role === 'practice' && record.phase === 'answering') say(correctSentences(page));
     if (page.role === 'exam') {
       // Translation only: a dictation has no article hint (P2-04 review).
-      const missing = page.units.filter((u) => u.itemType === 'vocabulary_translation_exam'
+      const missing = page.units.filter((u) => (u.itemType === 'vocabulary_translation_exam' || u.itemType === 'function_translation_exam')
         && missingArticle((record.drafts[u.id] as string | undefined) ?? '', u.answer, plan.lang)).map((u) => u.id);
       if (missing.length && !articleWarnings.length) return setArticleWarnings(missing);
       setArticleWarnings([]);
@@ -201,9 +293,18 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
     if (!perfect) return dispatch({ type: 'continue' });
     setCelebrating(true);
     // Matching first slides every word level with its meaning, then flashes (0.9 s) like other pages.
-    const pause = page.items.some((it) => it.type === 'vocabulary_matching' || it.type === 'grammar_person_matching') ? MATCH_SLIDE_MS + 1000 : 900;
+    const pause = page.items.some((it) => MATCHING_TYPES.has(it.type)) ? MATCH_SLIDE_MS + 1000 : 900;
     window.setTimeout(() => { setCelebrating(false); dispatch({ type: 'continue' }); }, pause);
   };
+  // Multiple choice (P4-05 review): choosing an option submits the page at once; a right answer plays the
+  // success animation and moves on, a wrong one is marked in place and waits for Continue.
+  const autoSubmit = page.role === 'practice' && record.phase === 'answering' && isAutoSubmitPage(page);
+  const choice = autoSubmit ? record.drafts[page.units[0].id] : undefined;
+  useEffect(() => {
+    if (autoSubmit && choice && !celebrating) onContinue();
+    // onContinue reads the current record; it runs once per chosen answer.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoSubmit, choice]);
 
   // Theory pages are points to learn: "Theory · point 3 of 8", with a Previous button to the point before (P6-01 review).
   const theory = plan.pages.filter((p) => p.role === 'presentation' && p.special !== 'examIntro' && !(record.skippedNoVoice ?? []).includes(p.pageId));
@@ -266,7 +367,8 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
               mode={mode}
               drafts={record.drafts}
               locked={record.locked}
-              onChange={(unitId, response) => dispatch({ type: 'draft', unitId, response })}
+              // While the success animation plays the answer is fixed.
+              onChange={(unitId, response) => { if (!celebrating) dispatch({ type: 'draft', unitId, response }); }}
               seed={record.seed}
               motherTongue={record.motherTongue}
               pageId={page.pageId}
@@ -279,7 +381,7 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
           );
         })}
         <div className="task-footer">
-          {page.role === 'presentation' && !ready && <p className="muted">{t('session.revealAll')}</p>}
+          {page.role === 'presentation' && !ready && !nextLine && <p className="muted">{t('session.revealAll')}</p>}
           {page.role === 'exam' && page.units.length > 0 && (
             <p className="muted exam-answered" role="status">{t('session.answered', { n: page.units.filter((u) => isAnswered(u, record.drafts[u.id])).length, total: page.units.length })}</p>
           )}
@@ -287,10 +389,15 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
             <button type="button" className="button button-outline" onClick={() => dispatch({ type: 'navigate', pageIndex: previous })}>{t('sidebar.previous')}</button>
           )}
           <span className="continue-wrap">
-            <button type="button" className="button button-primary" disabled={!ready} aria-disabled={celebrating || undefined} onClick={() => !celebrating && onContinue()}>
+            {nextLine ? (
+              // A function dialogue unrolls line by line; after the last line the button continues (SPEC section 8).
+              <button type="button" className="button button-primary" onClick={() => dispatch({ type: 'reveal', ...nextLine })}>{t('session.nextLine')}</button>
+            ) : (
+            !(autoSubmit || (celebrating && isAutoSubmitPage(page))) && <button type="button" className="button button-primary" disabled={!ready} aria-disabled={celebrating || undefined} onClick={() => !celebrating && onContinue()}>
               {/* Practice pages are checked first ("Check"); afterwards the same button continues. */}
               {t(page.role === 'practice' && record.phase === 'answering' ? 'session.check' : 'session.continue')}
             </button>
+            )}
           </span>
           {/* Only a half-point answer explains itself, below the button so the button never moves. */}
           {almost.map((u) => (
@@ -332,7 +439,7 @@ function ExamIntro({ plan, page }: { plan: LessonPlan; page: PlanPage }) {
   }, []);
   return (
     <div className="exam-intro">
-      <p className="lead">{plan.targets.size > 0 ? t('examIntro.words', { count: words.size }) : t('examIntro.tasks', { tasks: 0 })}</p>
+      <p className="lead">{plan.targets.size > 0 ? t('examIntro.words', { count: words.size }) : plan.reading ? t('examIntro.document', { count: examPages.reduce((n, p) => n + p.units.length, 0) }) : t('examIntro.tasks', { tasks: 0 })}</p>
       <table className="exam-table">
         <thead><tr><th scope="col">{t('examIntro.colPart')}</th><th scope="col">{t('examIntro.colTime')}</th></tr></thead>
         <tbody>
@@ -362,7 +469,7 @@ export function promptParts(unit: PlanUnit, t: (key: MessageKey) => string): str
   // Only listening units fall back to "Write what you hear"; word order has no task text, only the sentence.
   const prompt = [unit.prompt.native, unit.prompt.learning, unit.prompt.before !== undefined ? `${unit.prompt.before ?? ''} ____${/^[,.]/.test(unit.prompt.after ?? '') ? '' : ' '}${unit.prompt.after ?? ''}`.trim() : undefined].find(Boolean) ?? (unit.speak ? t('session.typeWhatYouHear') : undefined);
   if (!prompt) return [];
-  if (unit.itemType === 'vocabulary_gender_select') return [`${prompt}:`];
+  if (unit.itemType === 'vocabulary_gender_select' || unit.itemType === 'function_gender_select') return [`${prompt}:`];
   return prompt.split(/\s*→\s*/).map((part) => part.trim());
 }
 
@@ -383,11 +490,12 @@ function PromptCells({ parts, columns, lang, arrows = true }: { parts: string[];
 function ResultItem({ unit, locked, lang, columns }: { unit: PlanUnit; locked: LockedUnit; lang: string; columns: number }) {
   const { t, locale } = useI18n();
   const parts = promptParts(unit, t);
-  const given = answerText(unit, locked.response, t);
+  // A "des" + plural answer shows the chosen gender after the word (P4-05 review).
+  const given = answerText(unit, locked.response, t) + (locked.gender ? ` (${t(`gender.${locked.gender}` as MessageKey)})` : '');
   const correct = unit.answerLang === 'ui' ? t(unit.answer as MessageKey) : unit.answer;
   const ok = locked.outcome === 'fully_correct';
   // Gender rows (P2-04 review): "word: chosen gender", and for a mistake the struck gender → the correct one.
-  if (unit.itemType === 'vocabulary_gender_select') {
+  if (unit.itemType === 'vocabulary_gender_select' || unit.itemType === 'function_gender_select') {
     return (
       <li className={`result-item outcome-${locked.outcome}`}>
         <span className="result-icon" aria-label={t(OUTCOME_LABEL[locked.outcome])}>{ok ? '✓' : '✕'}</span>
@@ -422,7 +530,7 @@ function ResultItem({ unit, locked, lang, columns }: { unit: PlanUnit; locked: L
               <span className="visually-hidden">{t('result.correctAnswer')}: </span><span lang={unit.answerLang === 'learning' ? lang : undefined}>{correct}</span>
               {unit.form && <span lang={lang}> · {unit.form}</span>}
             </strong>
-            {!ok && <span className="match-wrong"><span className="visually-hidden">{t('result.yourAnswer')}: </span><s lang={lang}>{given || t('result.noAnswer')}</s></span>}
+            {!ok && <span className="match-wrong"><span className="visually-hidden">{t('result.yourAnswer')}: </span><GivenAnswer unit={unit} given={given} lang={lang} /></span>}
           </span>
         </div>
         {(locked.outcome === 'orthography_only' || locked.timedOut) && (
@@ -433,8 +541,26 @@ function ResultItem({ unit, locked, lang, columns }: { unit: PlanUnit; locked: L
         )}
         {!ok && <SpotSummary unit={unit} response={locked.response} lang={lang} />}
         {!ok && <p className="muted">{unit.explanation[locale]}</p>}
+        {/* Reading: the sentence of the text that proves the answer. */}
+        {!ok && unit.evidence && <p className="muted result-evidence">{t('result.evidence')} {unit.evidence.quotes.map((q, n) => <q key={n} lang={lang}>{q}</q>)}</p>}
       </div>
     </li>
+  );
+}
+
+/**
+ * The learner's wrong answer in a result row (P4-05 review): struck through in red, or, when only the
+ * accents/capitals or only the article differ, with just those letters or the article in red.
+ */
+function GivenAnswer({ unit, given, lang }: { unit: PlanUnit; given: string; lang: string }) {
+  const { t } = useI18n();
+  if (!given) return <s>{t('result.noAnswer')}</s>;
+  const marks = unit.kind === 'text' ? answerMarks(given, unit.accepted.answers) : [{ text: given, wrong: true }];
+  if (marks.length === 1 && marks[0].wrong) return <s lang={lang}>{given}</s>;
+  return (
+    <span lang={lang} className="marked-answer">
+      {marks.map((m, n) => <span key={n} className={m.wrong ? 'mark-wrong' : 'mark-ok'}>{m.text}</span>)}
+    </span>
   );
 }
 
@@ -470,6 +596,15 @@ function resultSections(plan: LessonPlan, pages: PlanPage[]) {
   return sections;
 }
 
+/**
+ * Result-menu colour of a part (all categories): green when every answer is fully right, red when none
+ * earned a point, red stripes when at least one answer is not fully right. Half credit counts as not right.
+ */
+export function resultTone(tally: { earned: number; possible: number }): string {
+  if (!tally.possible) return '';
+  return tally.earned === tally.possible ? ' is-all-right' : tally.earned === 0 ? ' is-all-wrong' : ' is-mixed';
+}
+
 export function ResultsView({ plan, record, dispatch }: { plan: LessonPlan; record: SessionRecord; dispatch: (action: SessionInput) => void }) {
   const { t, locale, languageName } = useI18n();
   const results = lessonResults(plan, record);
@@ -502,12 +637,12 @@ export function ResultsView({ plan, record, dispatch }: { plan: LessonPlan; reco
   const score = (tally: { earned: number; possible: number }) => `${pts(tally.earned)} / ${tally.possible}`;
   const split = examPages.some(isDictation) && examPages.some((p) => !isDictation(p));
   const entries: ResultsEntry[] = [
-    { key: 'exam', label: t('session.examPage'), score: score(results.exam) },
+    { key: 'exam', label: t('session.examPage'), score: score(results.exam), tone: resultTone(results.exam) },
     ...(split ? [
-      { key: 'exam:translation', label: t('result.translation'), score: score(tallyOf(examPages.filter((p) => !isDictation(p)))), nested: true },
-      { key: 'exam:dictation', label: t('result.dictation'), score: score(tallyOf(examPages.filter(isDictation))), nested: true },
+      { key: 'exam:translation', label: t('result.translation'), score: score(tallyOf(examPages.filter((p) => !isDictation(p)))), nested: true, tone: resultTone(tallyOf(examPages.filter((p) => !isDictation(p)))) },
+      { key: 'exam:dictation', label: t('result.dictation'), score: score(tallyOf(examPages.filter(isDictation))), nested: true, tone: resultTone(tallyOf(examPages.filter(isDictation))) },
     ] : []),
-    ...exerciseSteps.map((s) => ({ key: s.stepId, label: plan.steps.find((p) => p.stepId === s.stepId)!.label[locale], score: score(s.tally) })),
+    ...exerciseSteps.map((s) => ({ key: s.stepId, label: plan.steps.find((p) => p.stepId === s.stepId)!.label[locale], score: score(s.tally), tone: resultTone(s.tally) })),
   ];
 
   return (
@@ -542,8 +677,18 @@ export function ResultsView({ plan, record, dispatch }: { plan: LessonPlan; reco
           ));
         };
         // The vocabulary exam is reviewed in two accordions: translation (open) and dictation (P2-04 review).
-        const parts = !selectedStep && !examPart && pages.some(isDictation) && pages.some((p) => !isDictation(p))
-          ? [{ key: 'translation', label: t('result.translation'), pages: pages.filter((p) => !isDictation(p)) }, { key: 'dictation', label: t('result.dictation'), pages: pages.filter(isDictation) }]
+        // Function exams: Replies (open) and Dialogue (SPEC section 8).
+        const isWordTranslation = (p: PlanPage) => p.units.length > 0 && p.units.every((u) => u.itemType === 'function_translation_exam');
+        const isExamDialogue = (p: PlanPage) => p.units.length > 0 && p.units.every((u) => u.itemType === 'function_dialogue_gap_typing');
+        const parts = selectedStep || examPart ? undefined
+          : pages.some(isDictation) && pages.some((p) => !isDictation(p))
+            ? [{ key: 'translation', label: t('result.translation'), pages: pages.filter((p) => !isDictation(p)) }, { key: 'dictation', label: t('result.dictation'), pages: pages.filter(isDictation) }]
+          : pages.some(isExamDialogue) && pages.some((p) => !isExamDialogue(p))
+            ? [
+              ...(pages.some(isWordTranslation) ? [{ key: 'translation', label: t('result.translation'), pages: pages.filter(isWordTranslation) }] : []),
+              { key: 'replies', label: t('result.replies'), pages: pages.filter((p) => !isExamDialogue(p) && !isWordTranslation(p)) },
+              { key: 'dialogue', label: t('result.dialogue'), pages: pages.filter(isExamDialogue) },
+            ]
           : undefined;
         return (
           <>

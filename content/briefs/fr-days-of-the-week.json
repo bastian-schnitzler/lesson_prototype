@@ -129,7 +129,6 @@
       "examForms": [
         "lundi"
       ],
-      "accentSensitive": [],
       "articleException": {
         "en": "Days of the week are usually referred to directly without an indefinite article.",
         "fr": "Les jours de la semaine sont généralement désignés directement sans article indéfini.",
@@ -168,8 +167,7 @@
         "accepted": {
           "answers": [
             "lundi"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "mardi",
@@ -210,7 +208,6 @@
       "examForms": [
         "mardi"
       ],
-      "accentSensitive": [],
       "articleException": {
         "en": "Days of the week are usually referred to directly without an indefinite article.",
         "fr": "Les jours de la semaine sont généralement désignés directement sans article indéfini.",
@@ -249,8 +246,7 @@
         "accepted": {
           "answers": [
             "mardi"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "mercredi",
@@ -291,7 +287,6 @@
       "examForms": [
         "mercredi"
       ],
-      "accentSensitive": [],
       "articleException": {
         "en": "Days of the week are usually referred to directly without an indefinite article.",
         "fr": "Les jours de la semaine sont généralement désignés directement sans article indéfini.",
@@ -330,8 +325,7 @@
         "accepted": {
           "answers": [
             "mercredi"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "jeudi",
@@ -372,7 +366,6 @@
       "examForms": [
         "jeudi"
       ],
-      "accentSensitive": [],
       "articleException": {
         "en": "Days of the week are usually referred to directly without an indefinite article.",
         "fr": "Les jours de la semaine sont généralement désignés directement sans article indéfini.",
@@ -411,8 +404,7 @@
         "accepted": {
           "answers": [
             "jeudi"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "vendredi",
@@ -453,7 +445,6 @@
       "examForms": [
         "vendredi"
       ],
-      "accentSensitive": [],
       "articleException": {
         "en": "Days of the week are usually referred to directly without an indefinite article.",
         "fr": "Les jours de la semaine sont généralement désignés directement sans article indéfini.",
@@ -492,8 +483,7 @@
         "accepted": {
           "answers": [
             "vendredi"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "samedi",
@@ -534,7 +524,6 @@
       "examForms": [
         "samedi"
       ],
-      "accentSensitive": [],
       "articleException": {
         "en": "Days of the week are usually referred to directly without an indefinite article.",
         "fr": "Les jours de la semaine sont généralement désignés directement sans article indéfini.",
@@ -573,8 +562,7 @@
         "accepted": {
           "answers": [
             "samedi"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "dimanche",
@@ -615,7 +603,6 @@
       "examForms": [
         "dimanche"
       ],
-      "accentSensitive": [],
       "articleException": {
         "en": "Days of the week are usually referred to directly without an indefinite article.",
         "fr": "Les jours de la semaine sont généralement désignés directement sans article indéfini.",
@@ -654,8 +641,7 @@
         "accepted": {
           "answers": [
             "dimanche"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "matin",
@@ -696,7 +682,6 @@
       "examForms": [
         "le matin"
       ],
-      "accentSensitive": [],
       "articleException": {
         "en": "Times of day are typically learned and used with the definite article.",
         "fr": "Les moments de la journée sont généralement appris et utilisés avec l'article défini.",
@@ -735,8 +720,7 @@
         "accepted": {
           "answers": [
             "matin"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "apres-midi",
@@ -777,7 +761,6 @@
       "examForms": [
         "l'après-midi"
       ],
-      "accentSensitive": [],
       "articleException": {
         "en": "Times of day are typically learned and used with the definite article.",
         "fr": "Les moments de la journée sont généralement appris et utilisés avec l'article défini.",
@@ -816,8 +799,7 @@
         "accepted": {
           "answers": [
             "après-midi"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "soir",
@@ -858,7 +840,6 @@
       "examForms": [
         "le soir"
       ],
-      "accentSensitive": [],
       "articleException": {
         "en": "Times of day are typically learned and used with the definite article.",
         "fr": "Les moments de la journée sont généralement appris et utilisés avec l'article défini.",
@@ -897,8 +878,7 @@
         "accepted": {
           "answers": [
             "soir"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "aujourd-hui",
@@ -937,7 +917,6 @@
       "examForms": [
         "aujourd'hui"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "oʒuʁdɥi",
@@ -968,8 +947,7 @@
         "accepted": {
           "answers": [
             "aujourd'hui"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "quel-jour",
@@ -1009,7 +987,6 @@
         "Quel jour sommes-nous ?",
         "C'est quel jour ?"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "kɛl ʒuʁ sɔm nu",
@@ -1040,8 +1017,7 @@
         "accepted": {
           "answers": [
             "Quel jour sommes-nous ?"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "lundi",

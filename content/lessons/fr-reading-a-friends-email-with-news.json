@@ -1,0 +1,738 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-reading-a-friends-email-with-news",
+  "lang": "fr",
+  "level": "A2",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Lire un mail plein de nouvelles",
+  "objective": {
+    "en": "Read a friend’s email about the last months (new job, move, meeting someone) and say what has changed in her life.",
+    "fr": "Lire le mail d’une amie qui raconte ses derniers mois (nouveau travail, déménagement, rencontre) et dire ce qui a changé dans sa vie.",
+    "de": "Die E-Mail einer Freundin über die letzten Monate lesen (neue Arbeit, Umzug, Kennenlernen) und sagen, was sich in ihrem Leben verändert hat."
+  },
+  "estimatedMinutes": 10,
+  "provenance": {
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "reading-content-v2",
+    "generatedAt": "2026-10-14T09:11:19.594Z",
+    "inputHashes": {
+      "outline": "d9a7a47657fb5f15e07649e2c8fcb91b23a905421880459c2bbe5275971375dc",
+      "brief": "00b8ca297a6639f1e76074273a3fa6985e7bb31f728a507addc1dcfc07ba3aff"
+    }
+  },
+  "kind": "reading",
+  "theme": "relations",
+  "genre": "letter",
+  "documents": [
+    {
+      "documentId": "main",
+      "genre": "letter",
+      "title": null,
+      "meta": [
+        "De : Chloé",
+        "À : Marion",
+        "Objet : Plein de nouvelles !",
+        "Envoyé le 12 juin"
+      ],
+      "parts": [
+        {
+          "partId": "m-hello",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s1",
+              "text": "Salut Marion,",
+              "value": null
+            },
+            {
+              "segmentId": "m-s2",
+              "text": "Désolée pour mon long silence !",
+              "value": null
+            },
+            {
+              "segmentId": "m-s3",
+              "text": "Il y a eu beaucoup de changements dans ma vie depuis janvier.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-flat",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s4",
+              "text": "Depuis avril, j’habite à Nantes, dans un petit appartement près de la Loire.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s5",
+              "text": "J’ai déménagé pour mon nouveau travail.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-job",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s6",
+              "text": "En mars, j’ai trouvé un poste de graphiste dans une agence.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s7",
+              "text": "Mes collègues sont très sympas.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s8",
+              "text": "C’est là que j’ai rencontré Hugo, le mois dernier !",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-plans",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s9",
+              "text": "On part ensemble en Bretagne en août.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s10",
+              "text": "Et toi, quoi de neuf ?",
+              "value": null
+            },
+            {
+              "segmentId": "m-s11",
+              "text": "Viens me voir quand tu veux !",
+              "value": null
+            },
+            {
+              "segmentId": "m-s12",
+              "text": "Bises, Chloé",
+              "value": null
+            }
+          ]
+        }
+      ],
+      "highlights": [
+        {
+          "keywordId": "demenager",
+          "segmentId": "m-s5",
+          "text": "déménagé"
+        },
+        {
+          "keywordId": "poste",
+          "segmentId": "m-s6",
+          "text": "poste"
+        },
+        {
+          "keywordId": "collegues",
+          "segmentId": "m-s7",
+          "text": "collègues"
+        },
+        {
+          "keywordId": "rencontrer",
+          "segmentId": "m-s8",
+          "text": "rencontré"
+        },
+        {
+          "keywordId": "quoi-de-neuf",
+          "segmentId": "m-s10",
+          "text": "quoi de neuf"
+        }
+      ]
+    },
+    {
+      "documentId": "exam",
+      "genre": "letter",
+      "title": null,
+      "meta": [
+        "De : Karim",
+        "Objet : Je suis papa !"
+      ],
+      "parts": [
+        {
+          "partId": "x-baby",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s1",
+              "text": "Salut Chloé !",
+              "value": null
+            },
+            {
+              "segmentId": "x-s2",
+              "text": "Grande nouvelle : notre fille Lina est née le 3 mai.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s3",
+              "text": "Elle va très bien, Sarah aussi.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "x-home",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s4",
+              "text": "Nous avons quitté Lille et nous habitons maintenant à la campagne, près de Rouen.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s5",
+              "text": "Je travaille à la maison trois jours par semaine.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "x-bye",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s6",
+              "text": "Tu viens voir Lina cet été ? Bises, Karim",
+              "value": null
+            }
+          ]
+        }
+      ],
+      "highlights": []
+    }
+  ],
+  "steps": [
+    {
+      "id": "keywords",
+      "stage": "keywords",
+      "role": "exercise",
+      "label": {
+        "en": "Key words",
+        "fr": "Mots clés",
+        "de": "Schlüsselwörter"
+      },
+      "pages": [
+        {
+          "pageId": "keywords",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the key words of the text and their meaning.",
+            "fr": "Lisez les mots clés du texte et leur sens.",
+            "de": "Lies die Schlüsselwörter des Textes und ihre Bedeutung."
+          },
+          "items": [
+            {
+              "type": "reading_keywords",
+              "itemId": "keywords",
+              "keywordIds": [
+                "demenager",
+                "poste",
+                "collegues",
+                "rencontrer",
+                "quoi-de-neuf"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "keyword-matching",
+          "estimatedDurationS": 50,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each key word with its meaning.",
+            "fr": "Associez chaque mot clé à son sens.",
+            "de": "Ordne jedem Schlüsselwort seine Bedeutung zu."
+          },
+          "items": [
+            {
+              "type": "reading_keyword_matching",
+              "itemId": "keyword-matching",
+              "pairs": [
+                {
+                  "keywordId": "demenager",
+                  "answerExplanation": {
+                    "en": "déménager = to move house.",
+                    "fr": "déménager : changer de logement.",
+                    "de": "déménager = umziehen."
+                  }
+                },
+                {
+                  "keywordId": "poste",
+                  "answerExplanation": {
+                    "en": "un poste = a job, a position.",
+                    "fr": "un poste : un emploi.",
+                    "de": "un poste = eine Stelle."
+                  }
+                },
+                {
+                  "keywordId": "collegues",
+                  "answerExplanation": {
+                    "en": "les collègues = colleagues.",
+                    "fr": "les collègues : les gens du travail.",
+                    "de": "les collègues = die Kollegen."
+                  }
+                },
+                {
+                  "keywordId": "rencontrer",
+                  "answerExplanation": {
+                    "en": "rencontrer = to meet for the first time.",
+                    "fr": "rencontrer : voir pour la première fois.",
+                    "de": "rencontrer = kennenlernen."
+                  }
+                },
+                {
+                  "keywordId": "quoi-de-neuf",
+                  "answerExplanation": {
+                    "en": "quoi de neuf ? = what’s new?",
+                    "fr": "quoi de neuf ? : qu’est-ce qui est nouveau ?",
+                    "de": "quoi de neuf ? = was gibt’s Neues?"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skim",
+      "stage": "skim",
+      "role": "exercise",
+      "label": {
+        "en": "Skim",
+        "fr": "Survol",
+        "de": "Überfliegen"
+      },
+      "pages": [
+        {
+          "pageId": "skim",
+          "estimatedDurationS": 80,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Look over the document quickly. It blurs when the time is up; then answer the question.",
+            "fr": "Parcourez rapidement le document. Il se floute à la fin du temps ; répondez ensuite à la question.",
+            "de": "Überfliege das Dokument. Wenn die Zeit um ist, wird es unscharf; beantworte dann die Frage."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-skim",
+              "documentId": "main",
+              "view": "skim",
+              "skimSeconds": 60
+            },
+            {
+              "type": "reading_skim_choice",
+              "itemId": "skim-author",
+              "focus": "author",
+              "question": "Qui écrit ce message ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Une agence qui propose un poste"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Un propriétaire qui loue un appartement"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Une collègue qui écrit pour le travail"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Une amie qui donne de ses nouvelles"
+                }
+              ],
+              "answerOptionId": "o4",
+              "answerExplanation": {
+                "en": "Salut Marion, désolée pour mon long silence, bises: a friend who sends her news.",
+                "fr": "Salut Marion, désolée pour mon long silence, bises : une amie qui donne de ses nouvelles.",
+                "de": "Salut Marion, désolée pour mon long silence, bises: eine Freundin mit Neuigkeiten."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "detail",
+      "stage": "detail",
+      "role": "exercise",
+      "label": {
+        "en": "Detail",
+        "fr": "Détails",
+        "de": "Details"
+      },
+      "pages": [
+        {
+          "pageId": "detail",
+          "estimatedDurationS": 180,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the document carefully and answer the questions.",
+            "fr": "Lisez le document attentivement et répondez aux questions.",
+            "de": "Lies das Dokument genau und beantworte die Fragen."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-detail",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-city",
+              "question": "Où habite Chloé maintenant ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "À Nantes"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "À Paris"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Chez Hugo"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "En Bretagne"
+                }
+              ],
+              "answerOptionId": "o1",
+              "evidenceSegmentIds": [
+                "m-s4"
+              ],
+              "answerExplanation": {
+                "en": "Depuis avril, j’habite à Nantes. Brittany is only the August holiday.",
+                "fr": "Depuis avril, j’habite à Nantes. La Bretagne, ce sont les vacances d’août.",
+                "de": "Depuis avril, j’habite à Nantes. Die Bretagne ist nur der Urlaub im August."
+              }
+            },
+            {
+              "type": "reading_short_answer",
+              "itemId": "q-job",
+              "question": "Quel est le nouveau métier de Chloé ?",
+              "accepted": {
+                "answers": [
+                  "graphiste",
+                  "elle est graphiste",
+                  "un poste de graphiste",
+                  "graphiste dans une agence"
+                ]
+              },
+              "evidenceSegmentIds": [
+                "m-s6"
+              ],
+              "answerExplanation": {
+                "en": "J’ai trouvé un poste de graphiste dans une agence.",
+                "fr": "J’ai trouvé un poste de graphiste dans une agence.",
+                "de": "J’ai trouvé un poste de graphiste dans une agence."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "q-hugo",
+              "statement": "Chloé a rencontré Hugo à son travail.",
+              "allowNotStated": false,
+              "answer": "true",
+              "evidenceSegmentIds": [
+                "m-s8"
+              ],
+              "answerExplanation": {
+                "en": "True: C’est là que j’ai rencontré Hugo – là is the agency of the sentence before.",
+                "fr": "Vrai : C’est là que j’ai rencontré Hugo – là, c’est l’agence de la phrase d’avant.",
+                "de": "Richtig: C’est là que j’ai rencontré Hugo – là ist die Agentur aus dem Satz davor."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-why",
+              "question": "Pourquoi Chloé a-t-elle déménagé ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Pour vivre avec Hugo"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Pour ses études"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Pour être près de Marion"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Pour son nouveau travail"
+                }
+              ],
+              "answerOptionId": "o4",
+              "evidenceSegmentIds": [
+                "m-s5"
+              ],
+              "answerExplanation": {
+                "en": "J’ai déménagé pour mon nouveau travail. She met Hugo later.",
+                "fr": "J’ai déménagé pour mon nouveau travail. Elle a rencontré Hugo plus tard.",
+                "de": "J’ai déménagé pour mon nouveau travail. Hugo hat sie erst später kennengelernt."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "structure",
+      "stage": "structure",
+      "role": "exercise",
+      "label": {
+        "en": "Structure",
+        "fr": "Structure",
+        "de": "Aufbau"
+      },
+      "pages": [
+        {
+          "pageId": "structure",
+          "estimatedDurationS": 70,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "In what order did these things happen? Put them from first to last.",
+            "fr": "Dans quel ordre ces événements sont-ils arrivés ? Remettez-les du premier au dernier.",
+            "de": "In welcher Reihenfolge ist das passiert? Ordne vom Ersten bis zum Letzten."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-structure",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_order",
+              "itemId": "order-events",
+              "mode": "information",
+              "pieces": [
+                {
+                  "pieceId": "p4",
+                  "text": "Chloé et Hugo partent en Bretagne.",
+                  "partId": null
+                },
+                {
+                  "pieceId": "p2",
+                  "text": "Chloé déménage à Nantes.",
+                  "partId": null
+                },
+                {
+                  "pieceId": "p1",
+                  "text": "Chloé trouve un poste de graphiste.",
+                  "partId": null
+                },
+                {
+                  "pieceId": "p3",
+                  "text": "Chloé rencontre Hugo.",
+                  "partId": null
+                }
+              ],
+              "acceptedOrders": [
+                [
+                  "p1",
+                  "p2",
+                  "p3",
+                  "p4"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "En mars the job, depuis avril Nantes, le mois dernier (May, the email is from June) Hugo, en août Brittany. The email talks about the flat before the job.",
+                "fr": "En mars le travail, depuis avril Nantes, le mois dernier (mai, le mail date de juin) Hugo, en août la Bretagne. Le mail parle de l’appartement avant le travail.",
+                "de": "En mars die Stelle, depuis avril Nantes, le mois dernier (Mai, die Mail ist vom Juni) Hugo, en août die Bretagne. Die Mail nennt die Wohnung vor der Arbeit."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Final exam",
+        "fr": "Examen final",
+        "de": "Abschlussprüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-1",
+          "estimatedDurationS": 175,
+          "timeLimitS": 265,
+          "instructions": {
+            "en": "Read the new document and answer the questions. No help this time.",
+            "fr": "Lisez le nouveau document et répondez aux questions. Cette fois, sans aide.",
+            "de": "Lies das neue Dokument und beantworte die Fragen. Diesmal ohne Hilfe."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-exam",
+              "documentId": "exam",
+              "view": "exam",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-news",
+              "question": "Quelle est la grande nouvelle de Karim ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Il a un nouveau travail."
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Il a eu une fille."
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Il se marie."
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Il part en vacances."
+                }
+              ],
+              "answerOptionId": "o2",
+              "evidenceSegmentIds": [
+                "x-s2"
+              ],
+              "answerExplanation": {
+                "en": "Notre fille Lina est née le 3 mai: Karim is a father (the subject: Je suis papa !).",
+                "fr": "Notre fille Lina est née le 3 mai : Karim est papa (Objet : Je suis papa !).",
+                "de": "Notre fille Lina est née le 3 mai: Karim ist Vater (Betreff: Je suis papa !)."
+              }
+            },
+            {
+              "type": "reading_short_answer",
+              "itemId": "x-date",
+              "question": "Quand Lina est-elle née ?",
+              "accepted": {
+                "answers": [
+                  "le 3 mai",
+                  "3 mai",
+                  "le trois mai",
+                  "en mai, le 3"
+                ]
+              },
+              "evidenceSegmentIds": [
+                "x-s2"
+              ],
+              "answerExplanation": {
+                "en": "Lina est née le 3 mai.",
+                "fr": "Lina est née le 3 mai.",
+                "de": "Lina est née le 3 mai."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "x-city",
+              "statement": "Karim habite toujours à Lille.",
+              "allowNotStated": false,
+              "answer": "false",
+              "evidenceSegmentIds": [
+                "x-s4"
+              ],
+              "answerExplanation": {
+                "en": "False: nous avons quitté Lille; they live in the countryside near Rouen.",
+                "fr": "Faux : nous avons quitté Lille ; ils habitent à la campagne près de Rouen.",
+                "de": "Falsch: nous avons quitté Lille; sie wohnen auf dem Land bei Rouen."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-work",
+              "question": "Combien de jours Karim travaille-t-il à la maison ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "un jour par semaine"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "cinq jours par semaine"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "tous les jours"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "trois jours par semaine"
+                }
+              ],
+              "answerOptionId": "o4",
+              "evidenceSegmentIds": [
+                "x-s5"
+              ],
+              "answerExplanation": {
+                "en": "Je travaille à la maison trois jours par semaine.",
+                "fr": "Je travaille à la maison trois jours par semaine.",
+                "de": "Je travaille à la maison trois jours par semaine."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-invite",
+              "question": "Que demande Karim à Chloé ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "De l’aider à déménager"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "De lui trouver un travail"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "De venir voir Lina cet été"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "De venir à Rouen en mai"
+                }
+              ],
+              "answerOptionId": "o3",
+              "evidenceSegmentIds": [
+                "x-s6"
+              ],
+              "answerExplanation": {
+                "en": "Tu viens voir Lina cet été ? is an invitation.",
+                "fr": "Tu viens voir Lina cet été ? est une invitation.",
+                "de": "Tu viens voir Lina cet été ? ist eine Einladung."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

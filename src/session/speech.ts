@@ -33,15 +33,36 @@ export function useVoiceStatus(lang: string): VoiceStatus {
   return status;
 }
 
-export function speak(text: string, lang: string): boolean {
+let waiting: number | undefined;
+
+/**
+ * Speaks a text. With `queue` it waits until speech in progress has finished (checked every 100 ms, at
+ * most 8 s) instead of interrupting it; a later call drops a text that is still waiting.
+ */
+export function speak(text: string, lang: string, { queue = false } = {}): boolean {
   const voice = findVoice(lang);
   const synth = typeof window === 'undefined' ? undefined : window.speechSynthesis;
   if (!voice || !synth || typeof SpeechSynthesisUtterance === 'undefined') return false;
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = voice.lang;
-  utterance.voice = voice;
-  synth.cancel();
-  synth.speak(utterance);
+  window.clearInterval(waiting);
+  waiting = undefined;
+  const say = () => {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = voice.lang;
+    utterance.voice = voice;
+    synth.cancel();
+    synth.speak(utterance);
+  };
+  if (!queue || !(synth.speaking || synth.pending)) {
+    say();
+    return true;
+  }
+  const started = Date.now();
+  waiting = window.setInterval(() => {
+    if ((synth.speaking || synth.pending) && Date.now() - started < 8000) return;
+    window.clearInterval(waiting);
+    waiting = undefined;
+    say();
+  }, 100);
   return true;
 }
 

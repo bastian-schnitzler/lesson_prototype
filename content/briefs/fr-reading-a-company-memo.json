@@ -1,0 +1,273 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-reading-a-company-memo",
+  "lang": "fr",
+  "level": "B1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Lire une note de service",
+  "objective": {
+    "en": "Read a staff memo about a new organisation (remote work, summer hours) and say what changes, for whom and from when.",
+    "fr": "Lire une note de service sur une nouvelle organisation (télétravail, horaires d’été) et dire ce qui change, pour qui et à partir de quand.",
+    "de": "Eine Dienstmitteilung über eine neue Organisation (Homeoffice, Sommerarbeitszeiten) lesen und sagen, was sich ändert, für wen und ab wann."
+  },
+  "estimatedMinutes": 12,
+  "provenance": {
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "reading-brief-v2",
+    "generatedAt": "2026-10-14T09:14:04.398Z",
+    "inputHashes": {
+      "outline": "2079de38cae25debf0a4b207531ad7bcd312067cb19f6af34ea8fde85b4f8db2"
+    }
+  },
+  "kind": "reading",
+  "theme": "daily_life",
+  "genre": "letter",
+  "situation": {
+    "en": "The HR department of a company in Lyon informs all staff about two changes.",
+    "fr": "La direction des ressources humaines d’une entreprise lyonnaise informe tout le personnel de deux changements.",
+    "de": "Die Personalabteilung einer Firma in Lyon informiert alle Mitarbeitenden über zwei Änderungen."
+  },
+  "readerTask": {
+    "en": "Find what changes, who is concerned, the exceptions and every date.",
+    "fr": "Trouver ce qui change, qui est concerné, les exceptions et toutes les dates.",
+    "de": "Finden, was sich ändert, wer betroffen ist, die Ausnahmen und alle Termine."
+  },
+  "coverageNotes": {
+    "en": "Formal register, the future tense, dates and periods (à partir de, jusqu’à, avant le), conditions and exceptions (réservé à, sauf). Not covered: employment law.",
+    "fr": "Registre formel, futur simple, dates et périodes (à partir de, jusqu’à, avant le), conditions et exceptions (réservé à, sauf). Non traité : le droit du travail.",
+    "de": "Formelles Register, Futur, Daten und Zeiträume (à partir de, jusqu’à, avant le), Bedingungen und Ausnahmen (réservé à, sauf). Nicht behandelt: Arbeitsrecht."
+  },
+  "prerequisites": [
+    {
+      "en": "The future tense",
+      "fr": "Le futur simple",
+      "de": "Das Futur"
+    },
+    {
+      "en": "Dates and times",
+      "fr": "Les dates et les heures",
+      "de": "Daten und Uhrzeiten"
+    }
+  ],
+  "keywords": [
+    {
+      "id": "direction",
+      "term": "la direction",
+      "translations": {
+        "en": [
+          "the management"
+        ],
+        "de": [
+          "die Geschäftsleitung",
+          "die Leitung"
+        ]
+      },
+      "explanation": {
+        "en": "The people who run the company and decide.",
+        "fr": "Les personnes qui dirigent l’entreprise et décident.",
+        "de": "Die Personen, die die Firma leiten und entscheiden."
+      }
+    },
+    {
+      "id": "a-partir-de",
+      "term": "à partir de",
+      "translations": {
+        "en": [
+          "from",
+          "starting on"
+        ],
+        "de": [
+          "ab"
+        ]
+      },
+      "explanation": {
+        "en": "From a date on: à partir du 1er septembre = from 1 September.",
+        "fr": "Depuis une date et après : à partir du 1er septembre.",
+        "de": "Ab einem Datum: à partir du 1er septembre = ab dem 1. September."
+      }
+    },
+    {
+      "id": "horaires",
+      "term": "les horaires",
+      "translations": {
+        "en": [
+          "the hours",
+          "the schedule"
+        ],
+        "de": [
+          "die Arbeitszeiten",
+          "die Öffnungszeiten"
+        ]
+      },
+      "explanation": {
+        "en": "The times when you start and stop work, or when a place is open.",
+        "fr": "Les heures de début et de fin du travail, ou d’ouverture d’un lieu.",
+        "de": "Die Zeiten, zu denen man anfängt und aufhört oder ein Ort offen ist."
+      }
+    },
+    {
+      "id": "teletravail",
+      "term": "le télétravail",
+      "translations": {
+        "en": [
+          "remote work",
+          "working from home"
+        ],
+        "de": [
+          "das Homeoffice",
+          "die Telearbeit"
+        ]
+      },
+      "explanation": {
+        "en": "Working from home with a computer instead of at the office.",
+        "fr": "Travailler de chez soi avec un ordinateur au lieu d’aller au bureau.",
+        "de": "Von zu Hause aus am Computer arbeiten statt im Büro."
+      }
+    },
+    {
+      "id": "cdi",
+      "term": "un CDI",
+      "translations": {
+        "en": [
+          "a permanent contract"
+        ],
+        "de": [
+          "ein unbefristeter Vertrag"
+        ]
+      },
+      "explanation": {
+        "en": "Contrat à durée indéterminée: a work contract with no end date.",
+        "fr": "Contrat à durée indéterminée : un contrat de travail sans date de fin.",
+        "de": "Contrat à durée indéterminée: ein Arbeitsvertrag ohne Enddatum."
+      }
+    },
+    {
+      "id": "anciennete",
+      "term": "l’ancienneté",
+      "translations": {
+        "en": [
+          "length of service",
+          "seniority"
+        ],
+        "de": [
+          "die Betriebszugehörigkeit"
+        ]
+      },
+      "explanation": {
+        "en": "How long you have worked in the company.",
+        "fr": "Le temps passé dans l’entreprise.",
+        "de": "Wie lange man schon in der Firma arbeitet."
+      }
+    }
+  ],
+  "documents": {
+    "main": {
+      "targetWords": 161,
+      "partCount": 5,
+      "contents": {
+        "en": "A memo of 15 May from HR to all staff on two changes decided after last autumn’s consultation: summer hours from Monday 3 July to Friday 25 August (offices 7 h 30–16 h, except reception, open until 18 h; the canteen closes at 13 h 30); remote work two days a week from 1 September, Wednesday stays an office day for all, only for permanent staff with six months’ service, requests to the manager before 30 June; an information meeting on Thursday 1 June at 12 h in room B.",
+        "fr": "Une note du 15 mai de la DRH à tout le personnel sur deux changements décidés après la consultation de l’automne : horaires d’été du lundi 3 juillet au vendredi 25 août (bureaux de 7 h 30 à 16 h, sauf l’accueil, ouvert jusqu’à 18 h ; la cantine ferme à 13 h 30) ; télétravail deux jours par semaine à partir du 1er septembre, le mercredi reste un jour de présence, réservé aux CDI avec six mois d’ancienneté, demandes au responsable avant le 30 juin ; réunion d’information le jeudi 1er juin à 12 h en salle B.",
+        "de": "Eine Mitteilung der Personalabteilung vom 15. Mai an alle über zwei Änderungen nach der Befragung im Herbst: Sommerarbeitszeiten von Montag, 3. Juli, bis Freitag, 25. August (Büros 7.30–16 Uhr, außer Empfang bis 18 Uhr; Kantine schließt 13.30 Uhr); Homeoffice zwei Tage pro Woche ab 1. September, Mittwoch bleibt Präsenztag, nur für Unbefristete mit sechs Monaten Betriebszugehörigkeit, Anträge an die Vorgesetzten bis 30. Juni; Infoveranstaltung am Donnerstag, 1. Juni, 12 Uhr, Raum B."
+      }
+    },
+    "exam": {
+      "targetWords": 77,
+      "partCount": 3,
+      "contents": {
+        "en": "A memo of 2 October: the company car park is closed for works from Monday 9 to Friday 20 October; staff can use the town hall car park five minutes away; a free shuttle leaves the station every twenty minutes from 7 h to 9 h; bicycles can stay in the courtyard.",
+        "fr": "Une note du 2 octobre : le parking de l’entreprise est fermé pour travaux du lundi 9 au vendredi 20 octobre ; on peut utiliser le parking de la mairie à cinq minutes à pied ; une navette gratuite part de la gare toutes les vingt minutes de 7 h à 9 h ; les vélos restent dans la cour.",
+        "de": "Eine Mitteilung vom 2. Oktober: Der Firmenparkplatz ist von Montag, 9., bis Freitag, 20. Oktober, wegen Bauarbeiten geschlossen; man kann den Parkplatz am Rathaus, fünf Minuten zu Fuß, nutzen; ein kostenloser Shuttle fährt von 7 bis 9 Uhr alle zwanzig Minuten ab dem Bahnhof; Fahrräder bleiben im Hof."
+      }
+    }
+  },
+  "stages": {
+    "keywords": {
+      "estimatedDurationS": 105
+    },
+    "skim": {
+      "focus": "purpose",
+      "skimSeconds": 75,
+      "estimatedDurationS": 100
+    },
+    "detail": {
+      "questions": [
+        {
+          "id": "q-close",
+          "type": "reading_short_answer",
+          "focus": {
+            "en": "Summer closing time",
+            "fr": "L’heure de fermeture en été",
+            "de": "Die Schließzeit im Sommer"
+          }
+        },
+        {
+          "id": "q-who",
+          "type": "reading_choice",
+          "focus": {
+            "en": "Who can work from home",
+            "fr": "Qui peut télétravailler",
+            "de": "Wer Homeoffice machen darf"
+          }
+        },
+        {
+          "id": "q-reception",
+          "type": "reading_true_false",
+          "focus": {
+            "en": "The exception to summer hours",
+            "fr": "L’exception aux horaires d’été",
+            "de": "Die Ausnahme bei den Sommerzeiten"
+          }
+        },
+        {
+          "id": "q-wednesday",
+          "type": "reading_true_false",
+          "focus": {
+            "en": "The office day",
+            "fr": "Le jour de présence",
+            "de": "Der Präsenztag"
+          }
+        }
+      ],
+      "estimatedDurationS": 220
+    },
+    "structure": {
+      "task": "order_information",
+      "estimatedDurationS": 80
+    }
+  },
+  "exam": {
+    "pages": [
+      {
+        "pageId": "exam-1",
+        "types": [
+          "reading_choice",
+          "reading_short_answer",
+          "reading_true_false"
+        ],
+        "itemCount": 3,
+        "estimatedDurationS": 120,
+        "timeLimitS": 180
+      },
+      {
+        "pageId": "exam-2",
+        "types": [
+          "reading_choice",
+          "reading_true_false"
+        ],
+        "itemCount": 2,
+        "estimatedDurationS": 80,
+        "timeLimitS": 120
+      }
+    ]
+  },
+  "scoring": {
+    "practiceWeight": 30,
+    "examWeight": 70,
+    "orthographyCredit": 0.5
+  }
+}

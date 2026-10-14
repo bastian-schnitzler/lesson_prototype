@@ -7,6 +7,7 @@ import { seededOrder, type LessonPlan, type PlanUnit } from '../domain/session/p
 import type { Locale } from '../schemas/common.ts';
 import type { VocabularyTarget } from '../schemas/vocabulary.ts';
 import { ListenButton, type RendererProps } from './controls.tsx';
+import { pronounWithForm, useAutoplay } from './autoplay.ts';
 
 /** Vocabulary presentation renderers; scored vocabulary items use the shared `UnitsRenderer`. */
 
@@ -87,7 +88,10 @@ function Flashcard({ id, index, total, plan, motherTongue, initiallyFlipped, onF
   const [flipped, setFlipped] = useState(initiallyFlipped);
   const target = plan.targets.get(id);
   const label = t('session.cardOf', { n: index + 1, total });
+  const say = useAutoplay(plan.lang);
   const flip = () => {
+    // Autoplay (P4-05 review): turning the card to French speaks the word at once, before anything else.
+    if (!flipped) say(target?.teachingForm);
     if (!flipped) onFlip();
     setFlipped(!flipped);
   };
@@ -121,7 +125,8 @@ function Flashcard({ id, index, total, plan, motherTongue, initiallyFlipped, onF
 /**
  * Matching (P2-02): mother-tongue meanings and French forms in two independently shuffled columns.
  * Person matching (grammar, P3-02 review) uses the same board: the persons stay in order on the left
- * (singular block, a gap, plural block) and the French boxes are shuffled on the right.
+ * (singular block, a gap, plural block) and the French boxes are shuffled on the right. Reading uses
+ * it for key word ↔ meaning and part ↔ heading; like person matching, its boxes show the unit prompt.
  * Select one item on either side, then its partner on the other; pairs stay editable until Continue,
  * which locks one point unit per French form; the page is then checked in place (P2-04 review).
  */
@@ -130,21 +135,25 @@ export function MatchingRenderer(props: RendererProps) {
   const { item, units, plan, seed, mode } = props;
   const [selected, setSelected] = useState<{ side: 'native' | 'learning'; id: string } | null>(null);
   const boxes = useRef(new Map<string, HTMLButtonElement>());
+  const say = useAutoplay(plan.lang);
   useEffect(() => {
     if (!selected) return;
     const cancel = (event: KeyboardEvent) => { if (event.key === 'Escape') setSelected(null); };
     window.addEventListener('keydown', cancel);
     return () => window.removeEventListener('keydown', cancel);
   }, [selected]);
-  if (item.type !== 'vocabulary_matching' && item.type !== 'grammar_person_matching') return null;
+  if (item.type !== 'vocabulary_matching' && item.type !== 'grammar_person_matching' && item.type !== 'function_matching' && item.type !== 'reading_keyword_matching' && item.type !== 'reading_part_heading_matching') return null;
   const persons = item.type === 'grammar_person_matching';
+  // Person and function boxes show the unit's French text; vocabulary boxes the target's teaching form.
+  const prompted = item.type !== 'vocabulary_matching';
+  const headings = item.type === 'reading_part_heading_matching'; // part labels are not read aloud
   const choiceUnits = units.filter((u): u is PlanUnit & { kind: 'choice' } => u.kind === 'choice');
   const options = choiceUnits[0]?.options ?? [];
   const pairOf = (unitId: string) => (props.locked[unitId]?.response ?? props.drafts[unitId]) as string | undefined;
   const nativeText = (optionId: string) => options.find((o) => o.id === optionId)?.text ?? '';
   const targetOf = (unitId: string) => plan.targets.get(choiceUnits.find((u) => u.id === unitId)?.correct[0] ?? '');
   const formLabel = (unitId: string) => {
-    if (persons) return choiceUnits.find((u) => u.id === unitId)?.prompt.learning ?? '';
+    if (prompted) return choiceUnits.find((u) => u.id === unitId)?.prompt.learning ?? '';
     const target = targetOf(unitId);
     return target?.genders.length ? `${target.teachingForm} (${genderLabel(target, t)})` : target?.teachingForm ?? '';
   };
@@ -165,9 +174,15 @@ export function MatchingRenderer(props: RendererProps) {
     for (const other of choiceUnits) if (other.id !== unitId && pairOf(other.id) === optionId) props.onChange(other.id, '');
     props.onChange(unitId, optionId);
     setSelected(null);
+    // Autoplay (P4-05 review): connecting a pair speaks its French side at once; a person board in forms
+    // mode speaks the pronoun with its form (nous sommes).
+    if (item.type === 'grammar_person_matching' && item.mode === 'forms') say(pronounWithForm(nativeText(optionId), formLabel(unitId)));
+    else if (!headings) say(prompted ? formLabel(unitId).replace(/ …$/u, '') : targetOf(unitId)?.teachingForm);
   };
   const pick = (side: 'native' | 'learning', id: string) => {
     if (checked) return;
+    // Autoplay (P4-05 review): clicking a French box speaks it (connecting a pair speaks in assign).
+    if (side === 'learning' && selected?.side !== 'native' && !headings) say(prompted ? formLabel(id).replace(/ …$/u, '') : targetOf(id)?.teachingForm);
     if (selected && selected.side !== side) {
       if (side === 'learning') assign(id, selected.id);
       else assign(selected.id, id);
@@ -182,13 +197,13 @@ export function MatchingRenderer(props: RendererProps) {
     .filter(([from, to]) => from !== selectedKey && to !== selectedKey);
   const right = choiceUnits.filter((u) => outcomeOf(u.id) === 'fully_correct').length;
   return (
-    <div className={`matching${checked ? ' is-checked' : ''}${gap ? ' has-gap' : ''}`}>
+    <div className={`matching${checked ? ' is-checked' : ''}${gap ? ' has-gap' : ''}${headings ? ' is-headings' : ''}`}>
       {checked && !props.celebrating
         ? <p className="match-summary" role="status"><strong>{t('session.matchSummary', { correct: right, total: choiceUnits.length })}</strong></p>
         : <p className="muted">{t('session.matchHint')}</p>}
       <MatchingCurves pairs={pairs} selected={selectedKey} boxes={boxes} arranged={checked} celebrating={!!props.celebrating}>
         <div className="matching-columns" style={(gap ? { gridTemplateRows: 'repeat(3, 1fr) var(--person-gap) repeat(3, 1fr)' } : { '--rows': choiceUnits.length }) as CSSProperties}>
-          <ul aria-label={options[0]?.lang === 'learning' ? t('session.subject') : t(`locale.${props.motherTongue}`)}>
+          <ul aria-label={headings ? t('reading.headings') : options[0]?.lang === 'learning' ? t('session.subject') : t(`locale.${props.motherTongue}`)}>
             {nativeOrder.map((o, row) => {
               const unit = unitForOption(o.id);
               const n = unit ? pairNumber.get(unit.id) : undefined;
@@ -205,7 +220,7 @@ export function MatchingRenderer(props: RendererProps) {
               );
             })}
           </ul>
-          <ul aria-label={t('session.frenchForms')}>
+          <ul aria-label={headings ? t('reading.parts') : t('session.frenchForms')}>
             {learningOrder.map((u, row) => {
               const n = pairNumber.get(u.id);
               const target = targetOf(u.id);
@@ -216,13 +231,13 @@ export function MatchingRenderer(props: RendererProps) {
                   <button type="button" ref={register(`learning:${u.id}`)} disabled={checked}
                     className={`match-item${n ? ' is-paired' : ''}${checked && !props.celebrating ? (isWrong(u.id) ? ' is-wrong' : ' is-right') : ''}`} lang={plan.lang} aria-pressed={selected?.side === 'learning' && selected.id === u.id}
                     aria-label={n ? t('session.pairedWith', { item: formLabel(u.id), partner: nativeText(pairOf(u.id)!) }) : formLabel(u.id)} onClick={() => pick('learning', u.id)}>
-                    {persons
+                    {prompted
                       ? <span>{u.prompt.learning}</span>
                       : <span>{target?.teachingForm}{target?.genders.length ? <small>{genderLabel(target, t)}</small> : null}</span>}
                     {n && <span className="pair-badge" aria-hidden="true">{n}</span>}
                   </button>
                   {/* A separate control (buttons cannot nest), drawn inside the box after the word. */}
-                  {formLabel(u.id) && <span className="match-audio"><ListenButton text={persons ? formLabel(u.id) : target!.teachingForm} lang={plan.lang} variant="icon" label={t('session.listenWord', { word: formLabel(u.id) })} /></span>}
+                  {formLabel(u.id) && !headings && <span className="match-audio"><ListenButton text={prompted ? formLabel(u.id).replace(/ …$/u, '') : target!.teachingForm} lang={plan.lang} variant="icon" label={t('session.listenWord', { word: formLabel(u.id) })} /></span>}
                 </li>
                 </Fragment>
               );
@@ -396,11 +411,14 @@ export function OverviewRenderer({ item, plan, motherTongue }: RendererProps) {
 export function GenderRenderer(props: RendererProps) {
   const { t } = useI18n();
   const { item, units, plan, mode, motherTongue } = props;
-  if (item.type !== 'vocabulary_gender_select') return null;
+  if (item.type !== 'vocabulary_gender_select' && item.type !== 'function_gender_select') return null;
+  // Function lessons (P4-05 review) show their words; vocabulary lessons their targets.
+  const ids = item.type === 'function_gender_select' ? item.ids : item.targetIds;
+  const targetOf = (id: string) => plan.targets.get(id) ?? plan.functions?.words.find((w) => w.id === id) as { term: string; teachingForm: string; translations: Partial<Record<Locale, string[]>> } | undefined;
   const unitOf = (id: string) => units.find((u): u is PlanUnit & { kind: 'choice' } => u.kind === 'choice' && u.correct.length > 0 && u.id.endsWith(`/${id}`));
   const value = (unitId: string) => (props.locked[unitId]?.response ?? props.drafts[unitId]) as string | undefined;
   const checked = mode === 'feedback';
-  const scored = item.targetIds.map(unitOf).filter((u): u is PlanUnit & { kind: 'choice' } => !!u);
+  const scored = ids.map(unitOf).filter((u): u is PlanUnit & { kind: 'choice' } => !!u);
   const right = scored.filter((u) => props.locked[u.id]?.outcome === 'fully_correct').length;
   const optionState = (unit: PlanUnit & { kind: 'choice' }, id: string) => {
     if (!checked) return '';
@@ -415,8 +433,8 @@ export function GenderRenderer(props: RendererProps) {
         <strong>{t('session.genderSummary', { correct: right, total: scored.length })}</strong>
       </p>
       <ul className="gender-grid">
-        {item.targetIds.map((id) => {
-          const target = plan.targets.get(id);
+        {ids.map((id) => {
+          const target = targetOf(id);
           const unit = unitOf(id);
           const wrong = checked && !!unit && props.locked[unit.id]?.outcome !== 'fully_correct';
           const shown = checked ? target?.teachingForm ?? id : target?.term ?? id;

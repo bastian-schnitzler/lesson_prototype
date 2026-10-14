@@ -49,7 +49,7 @@ export function SidebarShell({ toggleLabel, heading, children }: { toggleLabel: 
   );
 }
 
-export interface ResultsEntry { key: string; label: string; score: string; nested?: boolean }
+export interface ResultsEntry { key: string; label: string; score: string; nested?: boolean; /** ' is-all-right' | ' is-all-wrong' | ' is-mixed' (P4-05 colours) */ tone?: string }
 
 /** Results sidebar (P6-01): choosing an entry shows only that part; scores are never recomputed. */
 export function ResultsSidebar({ entries, selected, onSelect }: { entries: ResultsEntry[]; selected: string; onSelect: (key: string) => void }) {
@@ -60,7 +60,7 @@ export function ResultsSidebar({ entries, selected, onSelect }: { entries: Resul
         <ol className="sidebar-list">
           {entries.map((e) => (
             <li key={e.key} className={`sidebar-item${e.key === selected ? ' is-current' : ''}${e.nested ? ' is-nested' : ''}`}>
-              <button type="button" className="sidebar-link" aria-current={e.key === selected ? 'true' : undefined} onClick={() => { onSelect(e.key); close(); }}>
+              <button type="button" className={`sidebar-link${e.tone ?? ''}`} aria-current={e.key === selected ? 'true' : undefined} onClick={() => { onSelect(e.key); close(); }}>
                 <span className="sidebar-text results-row"><span className="sidebar-label">{e.label}</span><small>{e.score}</small></span>
               </button>
             </li>
@@ -74,7 +74,7 @@ export function ResultsSidebar({ entries, selected, onSelect }: { entries: Resul
 export function LessonSidebar({ plan, record, onNavigate }: { plan: LessonPlan; record: SessionRecord; onNavigate: (pageIndex: number) => void }) {
   const { t, locale } = useI18n();
   const all = outlineGroups(plan, record);
-  // While the exam runs the outline shows the exam pages only (D50): earlier parts are finished and locked.
+  // While the exam runs the outline shows the exam pages only (D53): earlier parts are finished and locked.
   const groups = record.status === 'active' && plan.pages[record.pageIndex]?.role === 'exam' ? all.filter((g) => g.role === 'exam') : all;
   const current = groups.findIndex((g) => g.state === 'current');
   const examRunning = record.status === 'active' && plan.pages[record.pageIndex]?.role === 'exam';

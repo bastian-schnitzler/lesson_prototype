@@ -129,7 +129,6 @@
       "examForms": [
         "un nom"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/nɔ̃/",
@@ -164,8 +163,7 @@
         "accepted": {
           "answers": [
             "nom"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-prenom",
@@ -207,7 +205,6 @@
       "examForms": [
         "un prénom"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/pʁenɔ̃/",
@@ -242,8 +239,7 @@
         "accepted": {
           "answers": [
             "prénom"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-adresse",
@@ -285,7 +281,6 @@
       "examForms": [
         "une adresse"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/adʁɛs/",
@@ -320,8 +315,7 @@
         "accepted": {
           "answers": [
             "adresse"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-date-de-naissance",
@@ -362,7 +356,6 @@
       "examForms": [
         "une date de naissance"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/dat də nɛsɑ̃s/",
@@ -397,8 +390,7 @@
         "accepted": {
           "answers": [
             "date de naissance"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-lieu-de-naissance",
@@ -439,7 +431,6 @@
       "examForms": [
         "un lieu de naissance"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/ljø də nɛsɑ̃s/",
@@ -474,8 +465,7 @@
         "accepted": {
           "answers": [
             "lieu de naissance"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-nationalite",
@@ -517,7 +507,6 @@
       "examForms": [
         "une nationalité"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/nasjɔnalite/",
@@ -552,8 +541,7 @@
         "accepted": {
           "answers": [
             "nationalité"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-profession",
@@ -595,7 +583,6 @@
       "examForms": [
         "une profession"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/pʁɔfesjɔ̃/",
@@ -630,8 +617,7 @@
         "accepted": {
           "answers": [
             "profession"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-celibataire",
@@ -671,7 +657,6 @@
       "examForms": [
         "célibataire"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [
         "célibataire"
@@ -707,8 +692,7 @@
         "accepted": {
           "answers": [
             "célibataire"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-marie",
@@ -747,9 +731,6 @@
       "examForms": [
         "marié"
       ],
-      "accentSensitive": [
-        "marié"
-      ],
       "articleException": null,
       "genderVariants": [
         "mariée"
@@ -785,8 +766,7 @@
         "accepted": {
           "answers": [
             "marié"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-signature",
@@ -827,7 +807,6 @@
       "examForms": [
         "une signature"
       ],
-      "accentSensitive": [],
       "articleException": null,
       "genderVariants": [],
       "pronunciation": "/siɲatyʁ/",
@@ -862,8 +841,7 @@
         "accepted": {
           "answers": [
             "signature"
-          ],
-          "accentSensitive": []
+          ]
         },
         "referenceTargetIds": [
           "target-nom",

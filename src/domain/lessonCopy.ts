@@ -27,3 +27,29 @@ export const EXERCISE_INSTRUCTIONS = {
   grammar_word_order: L('Put the words in the right order.', 'Mettez les mots dans le bon ordre.', 'Bring die Wörter in die richtige Reihenfolge.'),
   grammar_error_spotter: L('Find the wrong word and correct it.', 'Trouvez le mot faux et corrigez-le.', 'Finde das falsche Wort und korrigiere es.'),
 } as const;
+
+/** Step labels and page instructions of function lessons (SPEC section 8); application copy, not generated text. */
+export const FUNCTIONS_COPY = {
+  flashcards: [L('Flashcards', 'Cartes mémoire', 'Karteikarten'), L('Recall each expression, then turn the card to check it.', 'Rappelez-vous chaque expression, puis retournez la carte pour vérifier.', 'Erinnere dich an jeden Ausdruck und dreh dann die Karte um.')],
+  wordCards: L('Recall each word, then turn the card to check it.', 'Rappelez-vous chaque mot, puis retournez la carte pour vérifier.', 'Erinnere dich an jedes Wort und dreh dann die Karte um.'),
+  dialogue: [L('Dialogue', 'Dialogue', 'Dialog'), L('Read and listen. Turn a line to see its translation and a note.', 'Lisez et écoutez. Retournez une réplique pour voir sa traduction et une remarque.', 'Lies und hör zu. Dreh eine Zeile um, um Übersetzung und Hinweis zu sehen.')],
+  matching: [L('Matching', 'Association', 'Zuordnen'), L('Match each expression with its translation.', 'Associez chaque expression à sa traduction.', 'Ordne jedem Ausdruck seine Übersetzung zu.')],
+  wordMatching: L('Match each word with its translation.', 'Associez chaque mot à sa traduction.', 'Ordne jedem Wort seine Übersetzung zu.'),
+  gender: [L('Gender and overview', 'Genre et vue d’ensemble', 'Genus und Übersicht'), L('Choose the gender of each noun, then review all words.', 'Choisissez le genre de chaque nom, puis revoyez tous les mots.', 'Wähle das Genus jedes Nomens und sieh dir dann alle Wörter an.')],
+  wordOrder: [L('Word order', 'Ordre des mots', 'Wortstellung'), L('Put the words in order.', 'Mettez les mots dans l’ordre.', 'Bring die Wörter in die richtige Reihenfolge.')],
+  dialogueGaps: [L('Dialogue gaps', 'Dialogue à trous', 'Dialoglücken'), L('Choose the expression that fits the gap.', 'Choisissez l’expression qui complète la réplique.', 'Wähle den Ausdruck, der in die Lücke passt.')],
+  exam: [L('Final exam', 'Examen final', 'Abschlussprüfung'), L('Build the answer. Not every word fits.', 'Construisez la réponse. Tous les mots ne servent pas.', 'Bilde die Antwort. Nicht jedes Wort passt.')],
+  listening: [L('Listening', 'Écoute', 'Hören'), L('Listen, then choose the reply that fits.', 'Écoutez, puis choisissez la réponse qui convient.', 'Hör zu und wähle dann die passende Antwort.')],
+  examWords: L('Translate each word into French, with its article for nouns.', 'Traduisez chaque mot en français, avec l’article pour les noms.', 'Übersetze jedes Wort ins Französische, bei Nomen mit Artikel.'),
+  examDialogue: L('Fill each gap with an expression from this lesson.', 'Complétez chaque trou avec une expression de la leçon.', 'Fülle jede Lücke mit einem Ausdruck aus dieser Lektion.'),
+} as const;
+
+/** Reading step labels and the page instructions every reading lesson shares (docs/reading-lessons.md). */
+export const READING_COPY = {
+  keywords: [L('Key words', 'Mots clés', 'Schlüsselwörter'), L('Read the key words of the text and their meaning.', 'Lisez les mots clés du texte et leur sens.', 'Lies die Schlüsselwörter des Textes und ihre Bedeutung.')],
+  keywordMatching: [L('Key words', 'Mots clés', 'Schlüsselwörter'), L('Match each key word with its meaning.', 'Associez chaque mot clé à son sens.', 'Ordne jedem Schlüsselwort seine Bedeutung zu.')],
+  skim: [L('Skim', 'Survol', 'Überfliegen'), L('Look over the document quickly. It blurs when the time is up; then answer the question.', 'Parcourez rapidement le document. Il se floute à la fin du temps ; répondez ensuite à la question.', 'Überfliege das Dokument. Wenn die Zeit um ist, wird es unscharf; beantworte dann die Frage.')],
+  detail: [L('Detail', 'Détails', 'Details'), L('Read the document carefully and answer the questions.', 'Lisez le document attentivement et répondez aux questions.', 'Lies das Dokument genau und beantworte die Fragen.')],
+  structure: [L('Structure', 'Structure', 'Aufbau'), L('Put the parts of the document back in order.', 'Remettez les parties du document dans l’ordre.', 'Bring die Teile des Dokuments wieder in die richtige Reihenfolge.')],
+  exam: [L('Final exam', 'Examen final', 'Abschlussprüfung'), L('Read the new document and answer the questions. No help this time.', 'Lisez le nouveau document et répondez aux questions. Cette fois, sans aide.', 'Lies das neue Dokument und beantworte die Fragen. Diesmal ohne Hilfe.')],
+} as const;

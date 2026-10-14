@@ -99,7 +99,7 @@ Outline: ${JSON.stringify(ctx.entry)}
 Brief: ${JSON.stringify({ ...brief, provenance: undefined })}
 Follow the brief exactly: use only its target/rule IDs, keep its terms, teaching forms and exam forms, and stay within its scope.
 Write every support text (instructions, explanations, headings, hints) in en, fr and de with equivalent meaning. Native maps contain exactly ${nativeLocales(ctx.lang).join(', ')}. Learning-language sentences, forms and answers stay in ${ctx.lang} and are correct, natural ${ctx.level} language.
-Every answerExplanation says why the answer is right (meaning, gender/article, spelling or the grammar rule) instead of repeating it, in at most two sentences; name accents and marks (accent aigu, accent grave, accent circonflexe, cédille, tréma) instead of showing a bare character. Accepted answers list every fully correct variant; accentSensitive lists words of the answers whose accents mark a different word (à, où, là…), otherwise empty.
+Every answerExplanation says why the answer is right (meaning, gender/article, spelling or the grammar rule) instead of repeating it, in at most two sentences; name accents and marks (accent aigu, accent grave, accent circonflexe, cédille, tréma) instead of showing a bare character. Accepted answers list every fully correct variant, never accent-less or capitalised forms: the shared scorer grades those.
 Use stable lowercase kebab-case IDs (letters, digits, hyphens).
 Section "${section.key}": ${section.task}
 ${repair ? `\nRepair the previous attempt. Validation errors:\n${repair}\nReturn the complete corrected section.` : ''}`;

@@ -24,11 +24,15 @@ export interface OutlineEntry {
   timeLimitS: number | null;
 }
 
-/** Message key naming what an exam page asks: translation, dictation or mixed questions. */
-export function examKindKey(page: { units: { itemType: string }[] }): MessageKey {
+/** Message key naming what an exam page asks: translation, dictation, questions on a document or mixed questions. */
+export function examKindKey(page: { units: { itemType: string }[]; items?: { type: string }[] }): MessageKey {
   const types = new Set(page.units.map((u) => u.itemType));
   if (types.size === 1 && types.has('vocabulary_translation_exam')) return 'examIntro.translation';
   if (types.size === 1 && types.has('vocabulary_listening_dictation')) return 'examIntro.dictation';
+  if (page.items?.some((item) => item.type === 'reading_document')) return 'examIntro.reading';
+  if (types.size === 1 && types.has('function_translation_exam')) return 'examIntro.translation';
+  if (types.size === 1 && types.has('function_word_order')) return 'examIntro.replies';
+  if (types.size === 1 && types.has('function_dialogue_gap_typing')) return 'examIntro.dialogue';
   return 'examIntro.mixed';
 }
 
@@ -50,7 +54,7 @@ export function outline(plan: LessonPlan, r: SessionRecord): OutlineEntry[] {
 /**
  * Compact outline shown in the sidebar: every theory page is its own point; consecutive pages of one
  * exercise step collapse into one entry (twelve typed gaps are one "Practice" row), and the final exam is
- * one row until it starts, then lists its pages with question counts and limits (D50).
+ * one row until it starts, then lists its pages with question counts and limits (D53).
  */
 export interface OutlineGroup extends OutlineEntry {
   /** Pages the entry stands for. */

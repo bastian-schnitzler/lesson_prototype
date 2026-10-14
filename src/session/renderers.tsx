@@ -3,6 +3,8 @@ import type { ComponentType } from 'react';
 import type { Item } from '../domain/session/plan.ts';
 import { UnitsRenderer, type RendererProps } from './controls.tsx';
 import { ExplanationRenderer, PlaceholderRenderer, PronounMatchRenderer, PronounTypingRenderer } from './grammarRenderers.tsx';
+import { DialogueGapChoiceRenderer, DialogueRenderer, ExamDialogueRenderer, FunctionFlashcardsRenderer, FunctionWordOrderRenderer, ListeningReplyRenderer } from './functionsRenderers.tsx';
+import { DocumentRenderer, KeywordsRenderer, OrderRenderer, QuestionRenderer } from './readingRenderers.tsx';
 import { FlashcardsRenderer, GenderRenderer, IntroductionRenderer, MatchingRenderer, OverviewRenderer } from './vocabularyRenderers.tsx';
 
 export { UnitFeedback, type RendererProps } from './controls.tsx';
@@ -31,4 +33,23 @@ export const rendererRegistry: Record<Item['type'], ComponentType<RendererProps>
   grammar_gap_typing: UnitsRenderer,
   grammar_word_order: UnitsRenderer,
   grammar_error_spotter: UnitsRenderer,
+  reading_keywords: KeywordsRenderer,
+  reading_keyword_matching: MatchingRenderer,
+  reading_document: DocumentRenderer,
+  reading_skim_choice: QuestionRenderer,
+  reading_choice: QuestionRenderer,
+  reading_true_false: QuestionRenderer,
+  reading_short_answer: QuestionRenderer,
+  reading_part_heading_matching: MatchingRenderer,
+  reading_order: OrderRenderer,
+  // Function lessons (P4-04, P4-05).
+  function_flashcards: FunctionFlashcardsRenderer,
+  function_dialogue: DialogueRenderer,
+  function_matching: MatchingRenderer,
+  function_gender_select: GenderRenderer,
+  function_word_order: FunctionWordOrderRenderer,
+  function_dialogue_gap_choice: DialogueGapChoiceRenderer,
+  function_listening_choice: ListeningReplyRenderer,
+  function_dialogue_gap_typing: ExamDialogueRenderer,
+  function_translation_exam: UnitsRenderer,
 };

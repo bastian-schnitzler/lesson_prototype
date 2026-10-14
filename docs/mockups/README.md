@@ -1,6 +1,6 @@
 # Lesson prototype mockups
 
-One guide for all 37 PlantUML Salt screens. Each screen folder contains only its editable `.puml` source; the matching source is embedded in [SPEC.md](../SPEC.md) as a `plantuml` code fence. PNG/SVG copies are not stored here. See the [issue asset mapping](../ISSUES.md#assets-to-include-when-publishing-applicable-issues).
+One guide for all 55 PlantUML Salt screens. Each screen folder contains only its editable `.puml` source; the matching source is embedded in [SPEC.md](../SPEC.md) as a `plantuml` code fence. PNG/SVG copies are not stored here. See the [issue asset mapping](../ISSUES.md#assets-to-include-when-publishing-applicable-issues).
 
 ## Make PlantUML rendering work in VS Code
 
@@ -26,13 +26,15 @@ Whenever a `.puml` changes, update its corresponding code fence in SPEC.md and a
 
 All pages follow the [supplied screenshot reference register and visual contract](../SPEC.md#screenshot-reference-register): dark slate surfaces, light primary actions, outlined secondary controls, wide choice cards, indigo progress, and green/red/amber correctness colors. Original screenshot references belong in docs/design-references/, outside this source-only folder. Salt approximates widget styling and shows the exam timer as a ring symbol with seconds; the React visual contract defines final fills, radii, and centered countdown digits. Practice locks/shows feedback and then confirms with Continue; exam pages withhold feedback until the complete exam ends. Accent corrections name the actual mark. Artifact previews are read-only. All headers show independent mother-tongue and interface-language controls; these examples select en/en. Mother tongue is editable only on the index/starting page, where the option equal to the course's learning language (fr for French courses) is disabled; other pages show its option group read-only (muted unselected choices). Interface language remains editable during the whole session. The index displays discovered language/level groups (currently fr/A1 only), followed by multiselect categories. The artifact header toggles Raw JSON / Structured view; the shared tree opens its root, 0–3-child containers and only children, while other larger objects/arrays start collapsed.
 
-Vocabulary folders include the start page, so folders 02–07 represent learning stages 1–6; `06-listening` and `06-typed-gaps` both belong to practice stage 5, and `07-exam` also holds the listening-dictation page. Grammar's 02-00 explanation and 02-01 through 02-06 exercise folders are a component gallery; actual lessons use 2–4 suitable teaching blocks. Keep this root file as the only mockup README.
+Vocabulary folders include the start page, so folders 02–07 represent learning stages 1–6; `06-listening` and `06-typed-gaps` both belong to practice stage 5, and `07-exam` also holds the listening-dictation page. Grammar's 02-00 explanation and 02-01 through 02-06 exercise folders are a component gallery; actual lessons use 2–4 suitable teaching blocks. Function folders `01-startpage` to `07-listening-choice` follow the lesson order; `08-exam` holds both exam parts (P4-01, reordered in the P4-05 review). Keep this root file as the only mockup README.
 
 - [01 — Lesson overview](#lesson-overview)
 - [02 — Artifact view](#artifact-view)
 - [03 — Vocabulary lesson](#vocabulary-lesson)
 - [04 — Grammar lesson](#grammar-lesson)
-- [05 — Lesson navigation](#lesson-navigation)
+- [05 — Function lesson](#function-lesson)
+- [06 — Lesson navigation](#lesson-navigation)
+- [07 — Reading lesson](#reading-lesson)
 
 <a id="lesson-overview"></a>
 
@@ -50,6 +52,7 @@ Vocabulary folders include the start page, so folders 02–07 represent learning
 | --- | --- | --- |
 | `02-artifact-view/grammar` | lesson detail | [Salt source](02-artifact-view/grammar/lesson-detail.puml) · [SPEC preview](../SPEC.md#mockup-02-artifact-view-grammar-lesson-detail) |
 | `02-artifact-view/raw-json` | initial JSON tree | [Salt source](02-artifact-view/raw-json/json-tree.puml) · [SPEC preview](../SPEC.md#mockup-02-artifact-view-raw-json-json-tree) |
+| `02-artifact-view/reading` | lesson detail | [Salt source](02-artifact-view/reading/lesson-detail.puml) · [SPEC preview](../SPEC.md#mockup-02-artifact-view-reading-lesson-detail) |
 | `02-artifact-view/raw-json` | expanded JSON tree | [Salt source](02-artifact-view/raw-json/json-tree-expanded.puml) · [SPEC preview](../SPEC.md#mockup-02-artifact-view-raw-json-json-tree-expanded) |
 | `02-artifact-view/vocabulary` | lesson detail | [Salt source](02-artifact-view/vocabulary/lesson-detail.puml) · [SPEC preview](../SPEC.md#mockup-02-artifact-view-vocabulary-lesson-detail) |
 
@@ -114,17 +117,17 @@ Differences found:
 
 <a id="lesson-navigation"></a>
 
-## 05 — Lesson navigation
+## 06 — Lesson navigation
 
-Phase 6 (P6-01, D50): the V2 timeline sidebar in the theory, exam and results journeys, and the compact mobile outline.
+Phase 6 (P6-01, D53): the V2 timeline sidebar in the theory, exam and results journeys, and the compact mobile outline.
 
 | Screen folder | Screen | Source and embedded preview |
 | --- | --- | --- |
-| `05-lesson-navigation/01-theory` | theory sidebar | [Salt source](05-lesson-navigation/01-theory/theory-sidebar.puml) · [SPEC preview](../SPEC.md#mockup-05-lesson-navigation-01-theory-theory-sidebar) |
-| `05-lesson-navigation/02-exam` | exam sidebar | [Salt source](05-lesson-navigation/02-exam/exam-sidebar.puml) · [SPEC preview](../SPEC.md#mockup-05-lesson-navigation-02-exam-exam-sidebar) |
-| `05-lesson-navigation/03-results` | results sidebar | [Salt source](05-lesson-navigation/03-results/results-sidebar.puml) · [SPEC preview](../SPEC.md#mockup-05-lesson-navigation-03-results-results-sidebar) |
-| `05-lesson-navigation/04-mobile` | mobile outline closed | [Salt source](05-lesson-navigation/04-mobile/mobile-closed.puml) · [SPEC preview](../SPEC.md#mockup-05-lesson-navigation-04-mobile-mobile-closed) |
-| `05-lesson-navigation/04-mobile` | mobile outline open | [Salt source](05-lesson-navigation/04-mobile/mobile-open.puml) · [SPEC preview](../SPEC.md#mockup-05-lesson-navigation-04-mobile-mobile-open) |
+| `06-lesson-navigation/01-theory` | theory sidebar | [Salt source](06-lesson-navigation/01-theory/theory-sidebar.puml) · [SPEC preview](../SPEC.md#mockup-06-lesson-navigation-01-theory-theory-sidebar) |
+| `06-lesson-navigation/02-exam` | exam sidebar | [Salt source](06-lesson-navigation/02-exam/exam-sidebar.puml) · [SPEC preview](../SPEC.md#mockup-06-lesson-navigation-02-exam-exam-sidebar) |
+| `06-lesson-navigation/03-results` | results sidebar | [Salt source](06-lesson-navigation/03-results/results-sidebar.puml) · [SPEC preview](../SPEC.md#mockup-06-lesson-navigation-03-results-results-sidebar) |
+| `06-lesson-navigation/04-mobile` | mobile outline closed | [Salt source](06-lesson-navigation/04-mobile/mobile-closed.puml) · [SPEC preview](../SPEC.md#mockup-06-lesson-navigation-04-mobile-mobile-closed) |
+| `06-lesson-navigation/04-mobile` | mobile outline open | [Salt source](06-lesson-navigation/04-mobile/mobile-open.puml) · [SPEC preview](../SPEC.md#mockup-06-lesson-navigation-04-mobile-mobile-open) |
 
 ### Phase 6 comparison (P6-06)
 
@@ -133,3 +136,41 @@ Compared on 2026-10-13 against the working tree of branch `P6-01-lesson-sidebar-
 - **Matches:** timeline design (V2) with a mark and a word per state, exam pages with question counts and limits, results selection by sidebar, compact mobile outline with focus return, no score on theory pages.
 - **Salt limits:** the mobile open state shows rows inline; the real outline scrolls inside 60 % of the viewport height and rows are 44 px high.
 - **Not yet compared:** the vocabulary and grammar practice mockups keep their phase 3 layout (typed gap now shows the sentence before the reference words; error spotter labels the correction with the selected word); refresh them with the remaining authoring in P2-06/P2-07.
+<a id="function-lesson"></a>
+
+## 05 — Function lesson
+
+Example lesson `fr-ordering-at-a-cafe`, designed in P4-01 before implementation; P4-08 refreshes these screens from the running prototype.
+
+| Screen folder | Screen | Source and embedded preview |
+| --- | --- | --- |
+| `05-function-lesson/01-startpage` | lesson start | [Salt source](05-function-lesson/01-startpage/lesson-start.puml) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-01-startpage-lesson-start) |
+| `05-function-lesson/02-flashcards` | expression flashcards | [Salt source](05-function-lesson/02-flashcards/expression-flashcards.puml) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-02-flashcards-expression-flashcards) |
+| `05-function-lesson/03-dialogue` | dialogue | [Salt source](05-function-lesson/03-dialogue/dialogue.puml) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-03-dialogue-dialogue) |
+| `05-function-lesson/04-matching` | expression matching | [Salt source](05-function-lesson/04-matching/expression-matching.puml) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-04-matching-expression-matching) |
+| `05-function-lesson/05-dialogue-gap-choice` | dialogue gap choice | [Salt source](05-function-lesson/05-dialogue-gap-choice/dialogue-gap-choice.puml) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-05-dialogue-gap-choice-dialogue-gap-choice) |
+| `05-function-lesson/06-word-order` | word order | [Salt source](05-function-lesson/06-word-order/word-order.puml) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-06-word-order-word-order) |
+| `05-function-lesson/07-listening-choice` | listening choice | [Salt source](05-function-lesson/07-listening-choice/listening-choice.puml) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-07-listening-choice-listening-choice) |
+| `05-function-lesson/08-exam` | dialogue gap typing | [Salt source](05-function-lesson/08-exam/dialogue-gap-typing.puml) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-08-exam-dialogue-gap-typing) |
+| `05-function-lesson/08-exam` | reply word order | [Salt source](05-function-lesson/08-exam/reply-word-order.puml) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-08-exam-reply-word-order) |
+
+<a id="reading-lesson"></a>
+
+## 07 — Reading lesson
+
+Phase 5 ([reading-lessons.md](../reading-lessons.md)): the five reading stages on the shared session host. The key word matching, the exam information page, the results and the sidebar are the shared vocabulary/grammar screens; only the document, its genre skins and the skim countdown are reading-specific.
+
+| Screen folder | Screen | Source and embedded preview |
+| --- | --- | --- |
+| `07-reading-lesson/01-startpage` | lesson start | [Salt source](07-reading-lesson/01-startpage/lesson-start.puml) · [SPEC preview](../SPEC.md#mockup-07-reading-lesson-01-startpage-lesson-start) |
+| `07-reading-lesson/02-keywords` | key words | [Salt source](07-reading-lesson/02-keywords/keywords.puml) · [SPEC preview](../SPEC.md#mockup-07-reading-lesson-02-keywords-keywords) |
+| `07-reading-lesson/03-skim` | skim | [Salt source](07-reading-lesson/03-skim/skim.puml) · [SPEC preview](../SPEC.md#mockup-07-reading-lesson-03-skim-skim) |
+| `07-reading-lesson/03-skim` | skim question after the blur | [Salt source](07-reading-lesson/03-skim/skim-blurred.puml) · [SPEC preview](../SPEC.md#mockup-07-reading-lesson-03-skim-skim-blurred) |
+| `07-reading-lesson/04-detail` | detail with evidence | [Salt source](07-reading-lesson/04-detail/detail-feedback.puml) · [SPEC preview](../SPEC.md#mockup-07-reading-lesson-04-detail-detail-feedback) |
+| `07-reading-lesson/05-structure` | structure: heading matching | [Salt source](07-reading-lesson/05-structure/heading-matching.puml) · [SPEC preview](../SPEC.md#mockup-07-reading-lesson-05-structure-heading-matching) |
+| `07-reading-lesson/06-exam` | exam page | [Salt source](07-reading-lesson/06-exam/exam-page.puml) · [SPEC preview](../SPEC.md#mockup-07-reading-lesson-06-exam-exam-page) |
+| `07-reading-lesson/07-results` | exam results | [Salt source](07-reading-lesson/07-results/exam-results.puml) · [SPEC preview](../SPEC.md#mockup-07-reading-lesson-07-results-exam-results) |
+
+### Reading comparison (2026-10-14)
+
+Drawn from the running prototype after the port, desktop 1280 px and portrait 375 px. Salt limits: the wide-screen document stays sticky beside the questions from 1100 px only (stacked below that and on phones); the blur is drawn as a shaded block; matching curves are shown as `~~~`.

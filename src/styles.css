@@ -1,4 +1,4 @@
-/* Shared visual contract (SPEC section 8, R1–R5). */
+/* Shared visual contract (SPEC section 9, R1–R5). */
 :root {
   --bg: #020617;
   --surface: #0f172a;
@@ -311,6 +311,13 @@ select {
   min-height: 36px;
 }
 
+/* Index Content buttons share one width whatever their label (Outline, Draft, Content; fr, de: Gliederung). */
+.artifact-button {
+  min-width: 8.5em;
+  justify-content: center;
+  text-align: center;
+}
+
 .button[aria-pressed='true'] {
   border-color: var(--indigo);
 }
@@ -365,9 +372,32 @@ select {
 .filter-group {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0 1.5rem;
+  gap: 0.6rem;
+  padding: 0 1rem;
   border-left: 1px solid var(--border-strong);
+}
+
+/* Wide screens (P4-05 review): language, level and categories on one line with compact options. */
+@media (min-width: 1340px) {
+  .filters {
+    flex-wrap: nowrap;
+    padding: 0.85rem 1rem;
+  }
+
+  .filters .option-row {
+    flex-wrap: nowrap;
+    gap: 0.35rem;
+  }
+
+  .filters .option span {
+    min-width: 2.4rem;
+    padding: 0.35rem 0.6rem;
+    font-size: 15px;
+  }
+
+  .filters .label-muted {
+    white-space: nowrap;
+  }
 }
 
 .filter-group:first-child {
@@ -1422,7 +1452,8 @@ select {
 .task-card.is-celebrating .token-placed,
 .task-card.is-celebrating .token[aria-pressed='true'],
 .task-card.is-celebrating select,
-.task-card.is-celebrating .units:not(:has(.reference-list)) .text-input {
+.task-card.is-celebrating .units:not(:has(.reference-list)) .text-input,
+.task-card.is-celebrating .form-rows .text-input {
   animation: success-flash 0.9s ease-out both;
 }
 
@@ -1457,7 +1488,8 @@ select {
   .task-card.is-celebrating .token-placed,
   .task-card.is-celebrating .token[aria-pressed='true'],
   .task-card.is-celebrating select,
-  .task-card.is-celebrating .units:not(:has(.reference-list)) .text-input {
+  .task-card.is-celebrating .units:not(:has(.reference-list)) .text-input,
+  .task-card.is-celebrating .form-rows .text-input {
     animation: none;
     border-color: var(--correct);
     background-color: rgb(0 230 118 / 0.15);
@@ -2019,15 +2051,29 @@ select {
   margin-bottom: 1rem;
 }
 
-/* Results: the final exam button stands out; Repeat lesson sits left of the primary overview link. */
-.button-exam {
+/*
+ * Results menu (all categories, P4-05 review): the selected part has a purple background and border.
+ * Other parts show their outcome: red when every answer is wrong, red stripes when at least one answer
+ * is not fully right; parts with every answer right keep the plain look, the final exam its purple border.
+ */
+.result-menu .button.button-exam {
   border-color: var(--progress);
-  color: #ddd6fe;
-  font-weight: 600;
 }
 
-.button-exam[aria-pressed='true'] {
+.result-menu .button.is-all-wrong {
+  background: #7f1d1d;
+  border-color: #b91c1c;
+}
+
+.result-menu .button.is-mixed {
+  background: repeating-linear-gradient(135deg, #7f1d1d 0 7px, #0f172a 7px 14px);
+  border-color: #b91c1c;
+  text-shadow: 0 1px 2px #000, 0 0 4px #000;
+}
+
+.result-menu .button[aria-pressed='true'] {
   background: #1e1b4b;
+  border-color: var(--progress);
 }
 
 .results-lesson {
@@ -2459,3 +2505,302 @@ button.sidebar-link:hover { background: var(--border); }
 /* The outline starts exactly level with the task card; it only sticks once the page scrolls */
 .sidebar { position: relative; top: auto; }
 @media (min-width: 900px) { .sidebar { position: sticky; top: 1rem; } }
+
+/* Function lessons (P4-04): the model dialogue as alternating line cards (SPEC section 8). */
+.dialogue {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.dialogue-lines {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dialogue-line {
+  width: min(100%, 36rem);
+}
+
+.dialogue-line.is-second {
+  justify-self: end;
+}
+
+.dialogue-card .flashcard-face {
+  gap: 0.35rem;
+  padding: 0.9rem 3.5rem 0.9rem 1.1rem;
+}
+
+.dialogue-line.is-second .flashcard-face {
+  background: var(--surface);
+}
+
+.dialogue-role {
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.dialogue-text {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 19px;
+}
+
+.expression-mark {
+  color: #c7d2fe;
+}
+
+/* Function tasks (P4-05): role A's line, then the role and task of role B, close together. */
+.dialogue-task {
+  display: grid;
+  gap: 0.35rem;
+  padding-bottom: 0.75rem;
+}
+
+.dialogue-task + .dialogue-task {
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.dialogue-context {
+  display: grid;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.dialogue-task .gap-sentence {
+  margin: 0 0 0.75rem;
+}
+
+.dialogue-task .unit {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.exam-line {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-card);
+  background: var(--bg);
+}
+
+.exam-line .gap-sentence {
+  margin: 0;
+  font-size: 19px;
+}
+
+/* Listening choice (P4-05 review): replies are heard; the label names the reply until Check reveals its text. */
+.listening-speaker {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  color: var(--text);
+}
+
+/* The selected reply has a purple border until Check marks it green or red. */
+.listening-option.is-selected:not(.is-right):not(.is-wrong) {
+  border-color: var(--progress);
+  box-shadow: inset 0 0 0 1px var(--progress);
+}
+
+/* Autoplay switch (P4-05 review): the last header control on the right. */
+.autoplay-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.autoplay-switch input {
+  appearance: none;
+  position: relative;
+  width: 38px;
+  height: 22px;
+  margin: 0;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.autoplay-switch input::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--muted);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.autoplay-switch input:checked {
+  background: var(--indigo);
+  border-color: var(--progress);
+}
+
+.autoplay-switch input:checked::after {
+  transform: translateX(16px);
+  background: #fff;
+}
+
+.autoplay-switch input:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Word order (P4-05 review): placed tokens can be dragged along the line; a marker shows where. */
+.order-answer .token-placed,
+.order-bank .token {
+  touch-action: none;
+  cursor: grab;
+}
+
+.order.is-dragging .order-answer .token-placed {
+  cursor: grabbing;
+}
+
+.order .token.is-dragged {
+  opacity: 0.35;
+}
+
+.order-marker {
+  display: inline-block;
+  width: 3px;
+  height: 1.8rem;
+  margin: 0 0.15rem;
+  vertical-align: middle;
+  border-radius: 2px;
+  background: var(--progress);
+}
+
+/* Results (P4-05 review): only the wrong letters or the wrong article of an answer are red. */
+.marked-answer .mark-ok {
+  color: var(--muted);
+}
+
+.marked-answer .mark-wrong {
+  color: var(--incorrect);
+  font-weight: 700;
+}
+
+/* Results sidebar keeps the P4-05 colours: red when every answer is wrong, red stripes when some are not fully right, purple when selected */
+.sidebar-link.is-all-wrong { background: #7f1d1d; border-color: #b91c1c; }
+.sidebar-link.is-mixed { background: repeating-linear-gradient(135deg, #7f1d1d 0 7px, #0f172a 7px 14px); border-color: #b91c1c; text-shadow: 0 1px 2px #000, 0 0 4px #000; }
+.sidebar-link[aria-current="true"].is-all-wrong, .sidebar-link[aria-current="true"].is-mixed, .sidebar-link[aria-current="true"] { border-color: var(--progress); }
+.sidebar-link[aria-current="true"] { background: #1e1b4b; }
+
+/* ------------------------------------------------------------ reading (docs/reading-lessons.md) */
+
+/* The document: a page on the dark card, in its genre skin. */
+.reading-document { padding: 1.25rem 1.5rem; border: 1px solid var(--border-strong); border-radius: var(--radius-card); background: var(--bg); line-height: 1.6; overflow-wrap: anywhere; transition: filter 0.4s; }
+.reading-document.is-blurred { filter: blur(7px); user-select: none; }
+.reading-document p { margin: 0.35rem 0; }
+.reading-title { margin: 0 0 0.25rem; font-size: 22px; font-weight: 600; line-height: 1.3; }
+.reading-meta { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; margin: 0 0 0.75rem; color: var(--muted); font-size: 15px; }
+.reading-part { position: relative; }
+.reading-part + .reading-part { margin-top: 0.75rem; }
+.reading-heading { margin: 0.25rem 0; font-size: 18px; font-weight: 600; }
+.reading-part:has(> .reading-part-number) { padding-left: 2.25rem; }
+.reading-part-number { position: absolute; top: 0.15rem; left: 0; display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; border: 1px solid var(--border-strong); border-radius: 50%; color: var(--muted); font-size: 13px; }
+.reading-keyword { padding: 0 0.1em; border-bottom: 2px solid var(--progress); border-radius: 3px; background: rgb(99 91 255 / 0.25); color: inherit; }
+.reading-segment.is-evidence { border-radius: 3px; background: rgb(0 230 118 / 0.14); outline: 1px dashed var(--correct); box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+.reading-rows { display: grid; gap: 0.3rem; margin: 0.25rem 0 0; padding: 0; list-style: none; }
+.reading-rows .reading-segment { display: flex; align-items: baseline; }
+.reading-leader { flex: 1 1 1.5rem; margin: 0 0.5rem; border-bottom: 2px dotted var(--subtle); }
+.reading-value { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.reading-lines .reading-segment { display: block; }
+
+/* Text message: a phone thread. */
+.skin-message { max-width: 26rem; margin-inline: auto; border-radius: 24px; }
+.skin-message .reading-meta { justify-content: center; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); }
+.skin-message .reading-meta strong { width: 100%; color: var(--text); text-align: center; }
+.reading-bubbles { display: grid; gap: 0.5rem; margin: 0; padding: 0; list-style: none; }
+.reading-bubble { justify-self: start; max-width: 88%; padding: 0.5rem 0.9rem; border-radius: 18px 18px 18px 4px; background: var(--border-strong); }
+.reading-bubble + .reading-bubble { margin-top: 0; }
+.reading-sender { display: block; color: var(--muted); font-size: 13px; }
+
+/* Menu: centred title, sections, prices aligned on the right. */
+.skin-menu { max-width: 34rem; margin-inline: auto; }
+.skin-menu .reading-title, .skin-menu .reading-meta { justify-content: center; text-align: center; }
+.skin-menu .reading-title { letter-spacing: 0.08em; text-transform: uppercase; }
+.skin-menu .reading-heading { padding-bottom: 0.2rem; border-bottom: 1px solid var(--border-strong); color: var(--muted); font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* Article: headline, byline, paragraphs. */
+.skin-article .reading-title { font-size: 24px; line-height: 1.25; }
+
+/* Contract: centred title, numbered clauses. */
+.skin-contract { font-size: 16px; }
+.skin-contract .reading-title { font-size: 18px; letter-spacing: 0.06em; text-align: center; text-transform: uppercase; }
+.skin-contract .reading-meta { flex-direction: column; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); }
+.skin-contract .reading-heading { font-size: 16px; }
+
+/* Signs: each part is a plate with short centred lines. */
+.skin-sign .reading-part { display: grid; justify-items: center; padding: 0.6rem 1rem; border: 2px solid var(--border-strong); border-radius: var(--radius); text-align: center; }
+.skin-sign .reading-part:has(> .reading-part-number) { padding-left: 2.25rem; }
+.skin-sign .reading-part-number { top: 0.5rem; left: 0.5rem; }
+.skin-sign .reading-lines { margin: 0; }
+.skin-sign .reading-lines .reading-segment:first-child { font-size: 19px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* Dictionary: a bold headword, then one line per sense, label or example. */
+.skin-dictionary .reading-heading { font-size: 19px; }
+.skin-dictionary .reading-lines .reading-segment + .reading-segment { margin-top: 0.2rem; }
+.skin-dictionary .reading-lines .reading-segment:first-child { font-size: 19px; font-weight: 700; }
+.skin-dictionary .reading-part + .reading-part { padding-top: 0.75rem; border-top: 1px solid var(--border); }
+
+/* Poem: one line per verse, stanzas apart, the moral set off. */
+.skin-poem { font-size: 17px; }
+.skin-poem .reading-title { font-style: italic; }
+.skin-poem .reading-part + .reading-part { margin-top: 1.1rem; }
+
+/* Recipe: quantities aligned on the right, numbered steps. */
+.skin-recipe .reading-heading { color: var(--muted); font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; }
+.skin-recipe .reading-lines { counter-reset: step; }
+.skin-recipe .reading-lines:has(> .reading-segment + .reading-segment) .reading-segment { position: relative; padding-left: 1.75rem; counter-increment: step; }
+.skin-recipe .reading-lines:has(> .reading-segment + .reading-segment) .reading-segment::before { content: counter(step) "."; position: absolute; left: 0; color: var(--muted); font-variant-numeric: tabular-nums; }
+.skin-recipe .reading-lines .reading-segment + .reading-segment { margin-top: 0.2rem; }
+
+/* Key words: cards with the word, its meaning and a short note. */
+.keyword-cards { grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); }
+.keyword-cards li { gap: 0.25rem; }
+.keyword-term { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; width: 100%; font-size: 1.2rem; }
+
+/* Skim: the countdown and "I’ve finished reading" above the document. */
+.reading-skim-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.75rem; }
+.reading-note { margin: 0 0 0.75rem; padding: 0.5rem 0.8rem; border-left: 3px solid var(--progress); border-radius: var(--radius); background: rgb(99 91 255 / 0.12); font-size: 15px; }
+.reading-locked { font-style: italic; }
+
+/* Questions and structure tasks: the question above its answer, which keeps the full width next to the document. */
+.reading-question > span:first-child { font-weight: 600; }
+@media (min-width: 720px) { .units .field.reading-question { grid-template-columns: minmax(0, 1fr); align-items: start; gap: 0.4rem; } }
+.reading-question .choices { margin-top: 0; }
+.reading-order .order-answer, .reading-order .order-bank { display: grid; gap: 0.4rem; }
+.reading-order .token { margin: 0; text-align: left; }
+.matching.is-headings .match-item { min-height: 3.5rem; }
+.result-evidence q, .content-item q { font-style: italic; }
+.reading-review-documents { display: grid; gap: 1rem; margin-bottom: 1.5rem; }
+@media (min-width: 900px) { .reading-review-documents { grid-template-columns: 1fr 1fr; align-items: start; } }
+
+/* Wide screens: the document stays in view on the left while the questions scroll on the right. */
+@media (min-width: 1100px) {
+  .task-card:has(> .reading-doc-slot.is-side):not(:has(> .matching)) { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); column-gap: 2rem; align-items: start; }
+  .task-card:has(> .reading-doc-slot.is-side):not(:has(> .matching)) > * { grid-column: 1 / -1; }
+  .task-card > .reading-doc-slot.is-side:not(:has(~ .matching)) { position: sticky; top: 1rem; grid-row: span 12; grid-column: 1; max-height: calc(100vh - 2rem); overflow: auto; }
+  .task-card:has(> .reading-doc-slot.is-side) > .units { grid-column: 2; }
+  .task-card:has(> .reading-doc-slot.is-side) > .units + .units { margin-top: 1.25rem; }
+}
+.reading-doc-slot + .units, .reading-doc-slot + .matching, .reading-doc-slot + .reading-locked { margin-top: 1.25rem; }
+@media (min-width: 1100px) { .task-card:has(> .reading-doc-slot.is-side):not(:has(> .matching)) > .reading-doc-slot + .units { margin-top: 0; } }
+@media (max-width: 600px) { .reading-document { padding: 1rem; } }

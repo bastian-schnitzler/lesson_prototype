@@ -1,0 +1,34 @@
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xx</color> | {
+<color:#94A3B8>SKIM</color>
+<size:23><color:#E2E8F0><b>Look over the document quickly. It blurs when the time is up;</b></color></size>
+<size:23><color:#E2E8F0><b>then answer the question.</b></color></size>
+.
+<back:#1E1B4B><color:#E2E8F0> ▌ The text is blurred now. Answer from what you remember. </color></back>
+{ <color:#020617>xxxxxx</color> | {
+<back:#1E293B><color:#475569> ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ </color></back>
+<back:#1E293B><color:#475569> ░░░░░░░░░░░ blurred document ░░░░░░░░░░ </color></back>
+<back:#1E293B><color:#475569> ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ </color></back>
+} }
+.
+<color:#E2E8F0><b>Pourquoi Léa écrit-elle à Tom ?</b></color>
+<color:#94A3B8>Choose one answer</color>
+<back:#0F172A><color:#E2E8F0>  ◉  Pour proposer de se voir samedi                  </color></back>
+<back:#0F172A><color:#E2E8F0>  ○  Pour annuler un rendez-vous                      </color></back>
+<back:#0F172A><color:#E2E8F0>  ○  Pour dire merci pour un cadeau                   </color></back>
+<back:#0F172A><color:#E2E8F0>  ○  Pour demander l’heure du train                   </color></back>
+.
+{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#020617>  Check  </color> ] }
+.
+<color:#94A3B8>After Check the document is readable again and a correction card follows (always, even when right).</color>
+} | <color:#020617>xx</color> }
+.
+}
+@endsalt

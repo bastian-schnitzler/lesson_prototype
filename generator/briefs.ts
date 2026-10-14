@@ -3,11 +3,12 @@ import { join, resolve } from 'node:path';
 import { scanContentDir, sha256 } from '../scripts/catalog.ts';
 import { outlineEntryHash } from '../src/catalog/scan.ts';
 import { ARTIFACT_SCHEMA_VERSION } from '../src/schemas/artifactCommon.ts';
-import { isSupportedKind } from '../src/schemas/artifacts.ts';
+import { isGeneratedKind } from '../src/schemas/artifacts.ts';
 import { LessonIdSchema } from '../src/schemas/outline.ts';
 import { grammarBriefLengthIssues, validateBrief, type OutlineContext } from '../src/validation/artifacts.ts';
 import { GenerationError, type BriefAdapter } from './gemini.ts';
 import { briefPrompt, payloadSchema, PROMPT_VERSION, structuredSchema } from './prompts.ts';
+import { READING_BRIEF_PROMPT_VERSION } from './readingPrompts.ts';
 import { isCode, ModelUnit, withFileLock } from './units.ts';
 import { generateVocabularyBrief } from './vocabulary.ts';
 
@@ -53,7 +54,7 @@ export function generateBrief(id: string, options: BriefOptions): Promise<BriefO
 async function generate(id: string, file: string, options: BriefOptions): Promise<BriefOutcome> {
   const ctx = catalogContexts(options.contentDir).find((ctx) => ctx.entry.id === id);
   if (!ctx) throw new GenerationError(`Unknown lesson ID: ${id}.`);
-  if (!isSupportedKind(ctx.entry.kind)) throw new GenerationError(`${ctx.entry.kind} generation is not implemented (phases 4/5).`);
+  if (!isGeneratedKind(ctx.entry.kind)) throw new GenerationError(`${ctx.entry.kind} generation is not implemented (phase 4).`);
   const kind = ctx.entry.kind;
   await mkdir(join(resolve(options.contentDir), 'briefs'), { recursive: true });
   return withFileLock(file, id, 'brief', async (save) => {
@@ -83,7 +84,7 @@ async function generate(id: string, file: string, options: BriefOptions): Promis
       const brief = {
         ...(payload as object),
         schemaVersion: ARTIFACT_SCHEMA_VERSION, id, lang: ctx.lang, level: ctx.level, locales: ['en', 'fr', 'de'],
-        provenance: { generator: 'lesson-prototype', model: unit.model, promptVersion: PROMPT_VERSION, generatedAt: new Date().toISOString(), inputHashes: { outline: ctx.outlineHash } },
+        provenance: { generator: 'lesson-prototype', model: unit.model, promptVersion: kind === 'reading' ? READING_BRIEF_PROMPT_VERSION : PROMPT_VERSION, generatedAt: new Date().toISOString(), inputHashes: { outline: ctx.outlineHash } },
       };
       const result = validateBrief(brief, ctx);
       // Grammar briefs must also meet the lesson length rules (P3-07) before they are saved.
@@ -138,7 +139,7 @@ export async function runBatch<O extends BriefOutcome>(contexts: OutlineContext[
       const index = next++;
       const ctx = contexts[index];
       let result: BriefOutcome;
-      if (!isSupportedKind(ctx.entry.kind)) result = { id: ctx.entry.id, status: 'skipped', message: `${ctx.entry.kind} is not implemented` };
+      if (!isGeneratedKind(ctx.entry.kind)) result = { id: ctx.entry.id, status: 'skipped', message: `${ctx.entry.kind} is not implemented` };
       else {
         try { result = await run(ctx.entry.id, options); }
         catch (error) { result = { id: ctx.entry.id, status: 'failed', message: error instanceof GenerationError ? error.message : 'Brief file operation failed.' }; }

@@ -1,0 +1,1071 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-reading-dictionary-entries",
+  "lang": "fr",
+  "level": "C1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Lire des articles de dictionnaire",
+  "objective": {
+    "en": "Read entries of a French dictionary for close words and choose the right word thanks to the definitions, the usage labels (fam., litt., vieilli, péj.) and the examples.",
+    "fr": "Lire les articles d’un dictionnaire de langue pour des mots proches et choisir le mot juste grâce aux définitions, aux marques (fam., litt., vieilli, péj.) et aux exemples.",
+    "de": "Einträge eines einsprachigen Wörterbuchs zu ähnlichen Wörtern lesen und mithilfe von Definitionen, Markierungen (fam., litt., vieilli, péj.) und Beispielen das passende Wort wählen."
+  },
+  "estimatedMinutes": 15,
+  "provenance": {
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "reading-content-v2",
+    "generatedAt": "2026-10-14T09:21:47.228Z",
+    "inputHashes": {
+      "outline": "fdcfcf8596291e9310779c1326f1574089c495a81378fe10bd689d84c75849b4",
+      "brief": "4acfacc5c2e49ea5b3616ebcd1918ca6398605d288fc6f21043d7e25c8e70d93"
+    }
+  },
+  "kind": "reading",
+  "theme": "language",
+  "genre": "dictionary_entry",
+  "documents": [
+    {
+      "documentId": "main",
+      "genre": "dictionary_entry",
+      "title": "Dictionnaire du français vivant",
+      "meta": [
+        "Extrait : verbes de la conversation",
+        "Abréviations : fam. familier · litt. littéraire · vieilli · péj. péjoratif"
+      ],
+      "parts": [
+        {
+          "partId": "m-bavarder",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s1",
+              "text": "bavarder [ba-var-dé] v. intr.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s2",
+              "text": "1. Parler longuement et librement de choses sans grande importance, souvent pour le plaisir.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s3",
+              "text": "Les deux voisines bavardent sur le palier depuis une heure.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s4",
+              "text": "2. Parler trop et révéler ce qui devait rester secret.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s5",
+              "text": "Quelqu’un a bavardé : toute l’école connaît la nouvelle.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s6",
+              "text": "Syn. : causer, discuter (sens 1) ; jaser (sens 2).",
+              "value": null
+            },
+            {
+              "segmentId": "m-s7",
+              "text": "Dér. : bavardage n. m. ; bavard, e adj.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-papoter",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s8",
+              "text": "papoter [pa-po-té] v. intr. fam.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s9",
+              "text": "Bavarder de façon légère et amicale, en échangeant des petites nouvelles.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s10",
+              "text": "On a papoté autour d’un café avant la réunion.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s11",
+              "text": "Les enfants papotent dans la cour en attendant la cloche.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s12",
+              "text": "Le mot est familier mais affectueux : il ne critique pas ceux qui parlent.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s13",
+              "text": "Dér. : papotage n. m.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-jacasser",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s14",
+              "text": "jacasser [ja-ka-sé] v. intr.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s15",
+              "text": "1. En parlant de la pie : pousser son cri.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s16",
+              "text": "2. fam. et péj. Parler sans arrêt, d’une voix forte, de choses inutiles.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s17",
+              "text": "Arrêtez de jacasser au fond de la classe !",
+              "value": null
+            },
+            {
+              "segmentId": "m-s18",
+              "text": "Employé pour des personnes, le mot est vexant : il les compare à des oiseaux bruyants.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s19",
+              "text": "Dér. : jacassement n. m. ; jacasseur, euse adj. et n.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-deviser",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s20",
+              "text": "deviser [de-vi-zé] v. intr. litt.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s21",
+              "text": "S’entretenir tranquillement et agréablement avec quelqu’un, sur des sujets variés.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s22",
+              "text": "Les promeneurs devisaient sous les tilleuls en attendant le soir.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s23",
+              "text": "Le vieux marquis aimait deviser de philosophie avec ses invités.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s24",
+              "text": "Vieilli à l’oral ; on le trouve surtout dans les romans et les textes soutenus.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s25",
+              "text": "Ne pas confondre avec deviner.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-palabrer",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s26",
+              "text": "palabrer [pa-la-bré] v. intr.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s27",
+              "text": "Discuter longuement et de façon inutile, sans arriver à une décision.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s28",
+              "text": "Le conseil municipal a palabré trois heures sans rien voter.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s29",
+              "text": "Assez palabré : il faut décider maintenant.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s30",
+              "text": "Souvent péj. : celui qui l’emploie trouve la discussion trop longue.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s31",
+              "text": "Dér. : palabre n. f. (souvent au pluriel : d’interminables palabres).",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-causer",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s32",
+              "text": "causer [ko-zé] v. tr. ind. et intr.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s33",
+              "text": "1. Parler familièrement avec quelqu’un : causer avec ses voisins, causer de tout et de rien.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s34",
+              "text": "Nous avons causé de nos vacances jusqu’à minuit.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s35",
+              "text": "2. vieilli ou régional. Parler à quelqu’un (sans préposition : causer quelqu’un est une faute).",
+              "value": null
+            },
+            {
+              "segmentId": "m-s36",
+              "text": "Attention : causer + nom (causer un accident) veut dire « provoquer » ; c’est un autre verbe.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "m-debattre",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "m-s37",
+              "text": "débattre [dé-batr] v. tr. ind.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s38",
+              "text": "Examiner une question à plusieurs, en confrontant des arguments opposés.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s39",
+              "text": "Les candidats débattront de l’avenir de l’hôpital jeudi soir à la télévision.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s40",
+              "text": "Registre soigné : on débat d’un problème sérieux, jamais de la pluie et du beau temps.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s41",
+              "text": "On peut aussi débattre d’un prix : le discuter pour le faire baisser.",
+              "value": null
+            },
+            {
+              "segmentId": "m-s42",
+              "text": "Dér. : débat n. m.",
+              "value": null
+            }
+          ]
+        }
+      ],
+      "highlights": [
+        {
+          "keywordId": "synonyme",
+          "segmentId": "m-s6",
+          "text": "Syn."
+        },
+        {
+          "keywordId": "familier",
+          "segmentId": "m-s8",
+          "text": "fam."
+        },
+        {
+          "keywordId": "derive",
+          "segmentId": "m-s13",
+          "text": "Dér."
+        },
+        {
+          "keywordId": "litteraire",
+          "segmentId": "m-s20",
+          "text": "litt."
+        },
+        {
+          "keywordId": "vieilli",
+          "segmentId": "m-s24",
+          "text": "Vieilli"
+        },
+        {
+          "keywordId": "pejoratif",
+          "segmentId": "m-s30",
+          "text": "péj."
+        }
+      ]
+    },
+    {
+      "documentId": "exam",
+      "genre": "dictionary_entry",
+      "title": "Dictionnaire du français vivant",
+      "meta": [
+        "Extrait : noms du logement"
+      ],
+      "parts": [
+        {
+          "partId": "x-demeure",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s1",
+              "text": "demeure [de-meur] n. f. litt.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s2",
+              "text": "Maison, surtout belle et grande, où l’on habite.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s3",
+              "text": "Une demeure du XVIIIe siècle entourée d’un parc.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s4",
+              "text": "Dans la langue courante, on dit plutôt maison ou propriété.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "x-baraque",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s5",
+              "text": "baraque [ba-rak] n. f.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s6",
+              "text": "1. Construction légère en planches.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s7",
+              "text": "2. fam. Maison, en général grande ou mal construite.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s8",
+              "text": "Ils ont acheté une grosse baraque au bord du lac.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s9",
+              "text": "Selon le contexte, le mot est admiratif ou péjoratif.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "x-bicoque",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s10",
+              "text": "bicoque [bi-kok] n. f. fam. et péj.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s11",
+              "text": "Petite maison pauvre et en mauvais état.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s12",
+              "text": "Ils vivent dans une bicoque au toit percé.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "x-logis",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s13",
+              "text": "logis [lo-ji] n. m. vieilli",
+              "value": null
+            },
+            {
+              "segmentId": "x-s14",
+              "text": "Endroit où l’on habite.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s15",
+              "text": "Rentrer au logis.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s16",
+              "text": "Survit dans des expressions : la fée du logis (la personne qui s’occupe de la maison).",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "x-pavillon",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s17",
+              "text": "pavillon [pa-vi-yon] n. m.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s18",
+              "text": "Maison individuelle, souvent avec un petit jardin, en ville ou en banlieue.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s19",
+              "text": "Ils ont quitté leur appartement pour un pavillon à Créteil.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s20",
+              "text": "Mot neutre, très courant dans les annonces immobilières.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s21",
+              "text": "Un pavillon de chasse est une petite maison au milieu des bois.",
+              "value": null
+            }
+          ]
+        },
+        {
+          "partId": "x-chaumiere",
+          "heading": null,
+          "segments": [
+            {
+              "segmentId": "x-s22",
+              "text": "chaumière [cho-mièr] n. f.",
+              "value": null
+            },
+            {
+              "segmentId": "x-s23",
+              "text": "Petite maison de campagne au toit de paille (de chaume).",
+              "value": null
+            },
+            {
+              "segmentId": "x-s24",
+              "text": "Au figuré, image d’une vie simple et heureuse : « une chaumière et un cœur ».",
+              "value": null
+            },
+            {
+              "segmentId": "x-s25",
+              "text": "Ce n’est pas une maison pauvre : le mot reste positif.",
+              "value": null
+            }
+          ]
+        }
+      ],
+      "highlights": []
+    }
+  ],
+  "steps": [
+    {
+      "id": "keywords",
+      "stage": "keywords",
+      "role": "exercise",
+      "label": {
+        "en": "Key words",
+        "fr": "Mots clés",
+        "de": "Schlüsselwörter"
+      },
+      "pages": [
+        {
+          "pageId": "keywords",
+          "estimatedDurationS": 50,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the key words of the text and their meaning.",
+            "fr": "Lisez les mots clés du texte et leur sens.",
+            "de": "Lies die Schlüsselwörter des Textes und ihre Bedeutung."
+          },
+          "items": [
+            {
+              "type": "reading_keywords",
+              "itemId": "keywords",
+              "keywordIds": [
+                "synonyme",
+                "familier",
+                "derive",
+                "litteraire",
+                "vieilli",
+                "pejoratif"
+              ]
+            }
+          ]
+        },
+        {
+          "pageId": "keyword-matching",
+          "estimatedDurationS": 55,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each key word with its meaning.",
+            "fr": "Associez chaque mot clé à son sens.",
+            "de": "Ordne jedem Schlüsselwort seine Bedeutung zu."
+          },
+          "items": [
+            {
+              "type": "reading_keyword_matching",
+              "itemId": "keyword-matching",
+              "pairs": [
+                {
+                  "keywordId": "synonyme",
+                  "answerExplanation": {
+                    "en": "Syn. = synonym.",
+                    "fr": "Syn. : un mot de même sens.",
+                    "de": "Syn. = Synonym."
+                  }
+                },
+                {
+                  "keywordId": "familier",
+                  "answerExplanation": {
+                    "en": "fam. = informal.",
+                    "fr": "fam. : entre proches.",
+                    "de": "fam. = umgangssprachlich."
+                  }
+                },
+                {
+                  "keywordId": "derive",
+                  "answerExplanation": {
+                    "en": "Dér. = derivative, a word built on it.",
+                    "fr": "Dér. : un mot formé dessus.",
+                    "de": "Dér. = Ableitung."
+                  }
+                },
+                {
+                  "keywordId": "litteraire",
+                  "answerExplanation": {
+                    "en": "litt. = literary.",
+                    "fr": "litt. : de la langue écrite soignée.",
+                    "de": "litt. = literarisch."
+                  }
+                },
+                {
+                  "keywordId": "vieilli",
+                  "answerExplanation": {
+                    "en": "vieilli = dated.",
+                    "fr": "vieilli : qui sonne ancien.",
+                    "de": "vieilli = veraltet."
+                  }
+                },
+                {
+                  "keywordId": "pejoratif",
+                  "answerExplanation": {
+                    "en": "péj. = pejorative.",
+                    "fr": "péj. : avec un jugement négatif.",
+                    "de": "péj. = abwertend."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skim",
+      "stage": "skim",
+      "role": "exercise",
+      "label": {
+        "en": "Skim",
+        "fr": "Survol",
+        "de": "Überfliegen"
+      },
+      "pages": [
+        {
+          "pageId": "skim",
+          "estimatedDurationS": 150,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Look over the document quickly. It blurs when the time is up; then answer the question.",
+            "fr": "Parcourez rapidement le document. Il se floute à la fin du temps ; répondez ensuite à la question.",
+            "de": "Überfliege das Dokument. Wenn die Zeit um ist, wird es unscharf; beantworte dann die Frage."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-skim",
+              "documentId": "main",
+              "view": "skim",
+              "skimSeconds": 120
+            },
+            {
+              "type": "reading_skim_choice",
+              "itemId": "skim-genre",
+              "focus": "genre",
+              "question": "Quel type de document est-ce ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Un article de journal sur la conversation"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Des articles de dictionnaire"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "La liste de vocabulaire d’un manuel"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Un glossaire juridique"
+                }
+              ],
+              "answerOptionId": "o2",
+              "answerExplanation": {
+                "en": "Headwords in bold with pronunciation and v. intr., numbered senses, examples and abbreviations (Syn., Dér., fam.): dictionary entries.",
+                "fr": "Des mots en gras avec prononciation et v. intr., des sens numérotés, des exemples et des abréviations (Syn., Dér., fam.) : ce sont des articles de dictionnaire.",
+                "de": "Fett gedruckte Stichwörter mit Aussprache und v. intr., nummerierte Bedeutungen, Beispiele und Abkürzungen (Syn., Dér., fam.): Wörterbucheinträge."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "detail",
+      "stage": "detail",
+      "role": "exercise",
+      "label": {
+        "en": "Detail",
+        "fr": "Détails",
+        "de": "Details"
+      },
+      "pages": [
+        {
+          "pageId": "detail",
+          "estimatedDurationS": 260,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the document carefully and answer the questions.",
+            "fr": "Lisez le document attentivement et répondez aux questions.",
+            "de": "Lies das Dokument genau und beantworte die Fragen."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-detail",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-meeting",
+              "question": "Un collègue trouve que la réunion a duré trois heures sans aucune décision. Quel verbe exprime le mieux son agacement ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "causer"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "palabrer"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "deviser"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "papoter"
+                }
+              ],
+              "answerOptionId": "o2",
+              "evidenceSegmentIds": [
+                "m-s27",
+                "m-s30"
+              ],
+              "answerExplanation": {
+                "en": "Palabrer: discuter longuement… sans arriver à une décision; souvent péj., the speaker finds it too long. Deviser and papoter are pleasant.",
+                "fr": "Palabrer : discuter longuement… sans arriver à une décision ; souvent péj., celui qui l’emploie trouve la discussion trop longue. Deviser et papoter sont agréables.",
+                "de": "Palabrer: discuter longuement… sans arriver à une décision; oft péj., der Sprecher findet es zu lang. Deviser und papoter sind angenehm."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "q-compliment",
+              "statement": "Dire de quelqu’un qu’il jacasse est un compliment.",
+              "allowNotStated": true,
+              "answer": "false",
+              "evidenceSegmentIds": [
+                "m-s16",
+                "m-s18"
+              ],
+              "answerExplanation": {
+                "en": "False: fam. et péj.; le mot est vexant, it compares people to noisy birds.",
+                "fr": "Faux : fam. et péj. ; le mot est vexant, il compare les gens à des oiseaux bruyants.",
+                "de": "Falsch: fam. et péj.; le mot est vexant, er vergleicht Menschen mit lauten Vögeln."
+              }
+            },
+            {
+              "type": "reading_short_answer",
+              "itemId": "q-secret",
+              "question": "Quel verbe de l’extrait signifie aussi « révéler un secret » ?",
+              "accepted": {
+                "answers": [
+                  "bavarder",
+                  "jaser"
+                ]
+              },
+              "evidenceSegmentIds": [
+                "m-s4",
+                "m-s6"
+              ],
+              "answerExplanation": {
+                "en": "Bavarder, sense 2: révéler ce qui devait rester secret (synonym jaser).",
+                "fr": "Bavarder, sens 2 : révéler ce qui devait rester secret (synonyme jaser).",
+                "de": "Bavarder, Bedeutung 2: révéler ce qui devait rester secret (Synonym jaser)."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "q-origin",
+              "statement": "L’article causer donne l’origine latine du verbe.",
+              "allowNotStated": true,
+              "answer": "not_stated",
+              "evidenceSegmentIds": [],
+              "answerExplanation": {
+                "en": "Not stated: the entries give no etymology at all.",
+                "fr": "Pas dans le texte : les articles ne donnent aucune étymologie.",
+                "de": "Steht nicht im Text: Die Einträge nennen keine Herkunft."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "structure",
+      "stage": "structure",
+      "role": "exercise",
+      "label": {
+        "en": "Structure",
+        "fr": "Structure",
+        "de": "Aufbau"
+      },
+      "pages": [
+        {
+          "pageId": "structure",
+          "estimatedDurationS": 120,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "What sets each word apart? Match a description to each entry.",
+            "fr": "Qu’est-ce qui distingue chaque mot ? Associez une description à chaque article.",
+            "de": "Was unterscheidet jedes Wort? Ordne jedem Eintrag eine Beschreibung zu."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-structure",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_part_heading_matching",
+              "itemId": "entry-registers",
+              "headings": [
+                {
+                  "headingId": "h2",
+                  "text": "Le mot familier et affectueux"
+                },
+                {
+                  "headingId": "h7",
+                  "text": "Le mot soigné des discussions sérieuses"
+                },
+                {
+                  "headingId": "h4",
+                  "text": "Le mot littéraire et vieilli"
+                },
+                {
+                  "headingId": "h1",
+                  "text": "Le mot neutre, qui peut aussi vouloir dire « trahir un secret »"
+                },
+                {
+                  "headingId": "h6",
+                  "text": "Le mot familier qui a un homonyme"
+                },
+                {
+                  "headingId": "h3",
+                  "text": "Le mot vexant qui compare à un oiseau"
+                },
+                {
+                  "headingId": "h5",
+                  "text": "Le mot qui critique une discussion trop longue"
+                }
+              ],
+              "pairs": [
+                {
+                  "partId": "m-bavarder",
+                  "headingId": "h1",
+                  "answerExplanation": {
+                    "en": "No label, and sense 2: révéler ce qui devait rester secret.",
+                    "fr": "Aucune marque, et le sens 2 : révéler ce qui devait rester secret.",
+                    "de": "Keine Markierung, und Bedeutung 2: révéler ce qui devait rester secret."
+                  }
+                },
+                {
+                  "partId": "m-papoter",
+                  "headingId": "h2",
+                  "answerExplanation": {
+                    "en": "fam., but le mot est familier mais affectueux.",
+                    "fr": "fam., mais le mot est familier mais affectueux.",
+                    "de": "fam., aber le mot est familier mais affectueux."
+                  }
+                },
+                {
+                  "partId": "m-jacasser",
+                  "headingId": "h3",
+                  "answerExplanation": {
+                    "en": "The magpie’s cry; for people fam. et péj., vexant.",
+                    "fr": "Le cri de la pie ; pour des personnes fam. et péj., vexant.",
+                    "de": "Der Ruf der Elster; für Menschen fam. et péj., vexant."
+                  }
+                },
+                {
+                  "partId": "m-deviser",
+                  "headingId": "h4",
+                  "answerExplanation": {
+                    "en": "litt. and vieilli à l’oral; found in novels.",
+                    "fr": "litt. et vieilli à l’oral ; on le trouve dans les romans.",
+                    "de": "litt. und vieilli à l’oral; in Romanen zu finden."
+                  }
+                },
+                {
+                  "partId": "m-palabrer",
+                  "headingId": "h5",
+                  "answerExplanation": {
+                    "en": "Souvent péj. : celui qui l’emploie trouve la discussion trop longue.",
+                    "fr": "Souvent péj. : celui qui l’emploie trouve la discussion trop longue.",
+                    "de": "Souvent péj. : celui qui l’emploie trouve la discussion trop longue."
+                  }
+                },
+                {
+                  "partId": "m-causer",
+                  "headingId": "h6",
+                  "answerExplanation": {
+                    "en": "causer + nom veut dire « provoquer » ; c’est un autre verbe.",
+                    "fr": "causer + nom veut dire « provoquer » ; c’est un autre verbe.",
+                    "de": "causer + nom veut dire « provoquer » ; c’est un autre verbe."
+                  }
+                },
+                {
+                  "partId": "m-debattre",
+                  "headingId": "h7",
+                  "answerExplanation": {
+                    "en": "Registre soigné : on débat d’un problème sérieux.",
+                    "fr": "Registre soigné : on débat d’un problème sérieux.",
+                    "de": "Registre soigné : on débat d’un problème sérieux."
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Final exam",
+        "fr": "Examen final",
+        "de": "Abschlussprüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam-1",
+          "estimatedDurationS": 150,
+          "timeLimitS": 225,
+          "instructions": {
+            "en": "Read the new document and answer the questions. No help this time.",
+            "fr": "Lisez le nouveau document et répondez aux questions. Cette fois, sans aide.",
+            "de": "Lies das neue Dokument und beantworte die Fragen. Diesmal ohne Hilfe."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-exam",
+              "documentId": "exam",
+              "view": "exam",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-ruin",
+              "question": "Pour parler d’une petite maison pauvre et en mauvais état, quel mot convient ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "un pavillon"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "une bicoque"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "une demeure"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "une chaumière"
+                }
+              ],
+              "answerOptionId": "o2",
+              "evidenceSegmentIds": [
+                "x-s11"
+              ],
+              "answerExplanation": {
+                "en": "Bicoque: petite maison pauvre et en mauvais état (fam. et péj.). A chaumière is not poor.",
+                "fr": "Bicoque : petite maison pauvre et en mauvais état (fam. et péj.). Une chaumière n’est pas pauvre.",
+                "de": "Bicoque: petite maison pauvre et en mauvais état (fam. et péj.). Eine chaumière ist nicht ärmlich."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "x-baraque",
+              "statement": "Le mot baraque est toujours péjoratif.",
+              "allowNotStated": true,
+              "answer": "false",
+              "evidenceSegmentIds": [
+                "x-s9"
+              ],
+              "answerExplanation": {
+                "en": "False: selon le contexte, le mot est admiratif ou péjoratif.",
+                "fr": "Faux : selon le contexte, le mot est admiratif ou péjoratif.",
+                "de": "Falsch: selon le contexte, le mot est admiratif ou péjoratif."
+              }
+            },
+            {
+              "type": "reading_short_answer",
+              "itemId": "x-suburb",
+              "question": "Quel mot désigne une maison individuelle avec un petit jardin, en banlieue ?",
+              "accepted": {
+                "answers": [
+                  "pavillon",
+                  "un pavillon",
+                  "le pavillon"
+                ]
+              },
+              "evidenceSegmentIds": [
+                "x-s18"
+              ],
+              "answerExplanation": {
+                "en": "Pavillon: maison individuelle, souvent avec un petit jardin, en ville ou en banlieue.",
+                "fr": "Pavillon : maison individuelle, souvent avec un petit jardin, en ville ou en banlieue.",
+                "de": "Pavillon: maison individuelle, souvent avec un petit jardin, en ville ou en banlieue."
+              }
+            }
+          ]
+        },
+        {
+          "pageId": "exam-2",
+          "estimatedDurationS": 100,
+          "timeLimitS": 150,
+          "instructions": {
+            "en": "Read the new document and answer the questions. No help this time.",
+            "fr": "Lisez le nouveau document et répondez aux questions. Cette fois, sans aide.",
+            "de": "Lies das neue Dokument und beantworte die Fragen. Diesmal ohne Hilfe."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "doc-exam-2",
+              "documentId": "exam",
+              "view": "exam",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-novel",
+              "question": "Dans un roman, quel mot désigne une belle et grande maison ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "une demeure"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "un logis"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "une baraque"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "une bicoque"
+                }
+              ],
+              "answerOptionId": "o1",
+              "evidenceSegmentIds": [
+                "x-s1",
+                "x-s2"
+              ],
+              "answerExplanation": {
+                "en": "Demeure is litt.: maison, surtout belle et grande.",
+                "fr": "Demeure est litt. : maison, surtout belle et grande.",
+                "de": "Demeure ist litt.: maison, surtout belle et grande."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "x-price",
+              "statement": "Le dictionnaire indique le prix moyen d’un pavillon.",
+              "allowNotStated": true,
+              "answer": "not_stated",
+              "evidenceSegmentIds": [],
+              "answerExplanation": {
+                "en": "Not stated: it says the word is frequent in property ads, but gives no price.",
+                "fr": "Pas dans le texte : il dit que le mot est courant dans les annonces, mais ne donne aucun prix.",
+                "de": "Steht nicht im Text: Das Wort sei in Anzeigen häufig, ein Preis steht nicht da."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

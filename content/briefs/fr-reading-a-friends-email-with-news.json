@@ -1,0 +1,242 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-reading-a-friends-email-with-news",
+  "lang": "fr",
+  "level": "A2",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Lire un mail plein de nouvelles",
+  "objective": {
+    "en": "Read a friend’s email about the last months (new job, move, meeting someone) and say what has changed in her life.",
+    "fr": "Lire le mail d’une amie qui raconte ses derniers mois (nouveau travail, déménagement, rencontre) et dire ce qui a changé dans sa vie.",
+    "de": "Die E-Mail einer Freundin über die letzten Monate lesen (neue Arbeit, Umzug, Kennenlernen) und sagen, was sich in ihrem Leben verändert hat."
+  },
+  "estimatedMinutes": 10,
+  "provenance": {
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "reading-brief-v2",
+    "generatedAt": "2026-10-14T09:11:19.594Z",
+    "inputHashes": {
+      "outline": "d9a7a47657fb5f15e07649e2c8fcb91b23a905421880459c2bbe5275971375dc"
+    }
+  },
+  "kind": "reading",
+  "theme": "relations",
+  "genre": "letter",
+  "situation": {
+    "en": "In June, Chloé writes to her old friend Marion after a long silence.",
+    "fr": "En juin, Chloé écrit à son amie Marion après un long silence.",
+    "de": "Im Juni schreibt Chloé ihrer alten Freundin Marion nach langer Funkstille."
+  },
+  "readerTask": {
+    "en": "Find what has changed (job, city, partner) and put the events in the order they happened.",
+    "fr": "Trouver ce qui a changé (travail, ville, amoureux) et remettre les événements dans l’ordre où ils sont arrivés.",
+    "de": "Finden, was sich verändert hat (Arbeit, Stadt, Partner), und die Ereignisse in ihre zeitliche Reihenfolge bringen."
+  },
+  "coverageNotes": {
+    "en": "Past events with the passé composé, time markers (en mars, depuis avril, le mois dernier), plans with partir. Not covered: writing an answer.",
+    "fr": "Événements passés au passé composé, repères de temps (en mars, depuis avril, le mois dernier), projets avec partir. Non traité : écrire la réponse.",
+    "de": "Vergangenes im passé composé, Zeitangaben (en mars, depuis avril, le mois dernier), Pläne mit partir. Nicht behandelt: die Antwort schreiben."
+  },
+  "prerequisites": [
+    {
+      "en": "The passé composé",
+      "fr": "Le passé composé",
+      "de": "Das passé composé"
+    },
+    {
+      "en": "Months of the year",
+      "fr": "Les mois de l’année",
+      "de": "Die Monate"
+    }
+  ],
+  "keywords": [
+    {
+      "id": "demenager",
+      "term": "déménager",
+      "translations": {
+        "en": [
+          "to move (house)"
+        ],
+        "de": [
+          "umziehen"
+        ]
+      },
+      "explanation": {
+        "en": "To leave your home and live somewhere else. J’ai déménagé = I moved.",
+        "fr": "Quitter son logement pour habiter ailleurs. J’ai déménagé : je n’habite plus au même endroit.",
+        "de": "Die Wohnung wechseln. J’ai déménagé = Ich bin umgezogen."
+      }
+    },
+    {
+      "id": "poste",
+      "term": "un poste",
+      "translations": {
+        "en": [
+          "a job",
+          "a position"
+        ],
+        "de": [
+          "eine Stelle",
+          "ein Posten"
+        ]
+      },
+      "explanation": {
+        "en": "A job in a company: un poste de graphiste.",
+        "fr": "Un emploi dans une entreprise : un poste de graphiste.",
+        "de": "Eine Arbeitsstelle: un poste de graphiste."
+      }
+    },
+    {
+      "id": "collegues",
+      "term": "les collègues",
+      "translations": {
+        "en": [
+          "colleagues",
+          "workmates"
+        ],
+        "de": [
+          "die Kollegen"
+        ]
+      },
+      "explanation": {
+        "en": "The people you work with.",
+        "fr": "Les personnes avec qui on travaille.",
+        "de": "Die Leute, mit denen man arbeitet."
+      }
+    },
+    {
+      "id": "rencontrer",
+      "term": "rencontrer",
+      "translations": {
+        "en": [
+          "to meet (for the first time)"
+        ],
+        "de": [
+          "kennenlernen"
+        ]
+      },
+      "explanation": {
+        "en": "To meet someone for the first time. J’ai rencontré Hugo = I met Hugo.",
+        "fr": "Voir quelqu’un pour la première fois. J’ai rencontré Hugo.",
+        "de": "Jemanden zum ersten Mal treffen. J’ai rencontré Hugo = Ich habe Hugo kennengelernt."
+      }
+    },
+    {
+      "id": "quoi-de-neuf",
+      "term": "quoi de neuf ?",
+      "translations": {
+        "en": [
+          "what’s new?"
+        ],
+        "de": [
+          "was gibt’s Neues?"
+        ]
+      },
+      "explanation": {
+        "en": "A friendly question to ask for news.",
+        "fr": "Une question amicale pour demander des nouvelles.",
+        "de": "Eine freundliche Frage nach Neuigkeiten."
+      }
+    }
+  ],
+  "documents": {
+    "main": {
+      "targetWords": 95,
+      "partCount": 4,
+      "contents": {
+        "en": "An email of 12 June from Chloé to Marion: sorry for the silence, many changes since January; since April she lives in Nantes near the Loire, she moved for her new job; in March she found a job as a graphic designer in an agency, where she met Hugo last month; in August they go to Brittany together; what’s new with you?",
+        "fr": "Un mail du 12 juin de Chloé à Marion : désolée pour le silence, beaucoup de changements depuis janvier ; depuis avril elle habite à Nantes près de la Loire, elle a déménagé pour son nouveau travail ; en mars elle a trouvé un poste de graphiste dans une agence, où elle a rencontré Hugo le mois dernier ; en août ils partent ensemble en Bretagne ; et toi, quoi de neuf ?",
+        "de": "Eine E-Mail vom 12. Juni von Chloé an Marion: Entschuldigung für die Funkstille, viele Veränderungen seit Januar; seit April wohnt sie in Nantes an der Loire, umgezogen für ihre neue Arbeit; im März hat sie eine Stelle als Grafikerin in einer Agentur gefunden, wo sie letzten Monat Hugo kennengelernt hat; im August fahren sie zusammen in die Bretagne; was gibt’s Neues bei dir?"
+      }
+    },
+    "exam": {
+      "targetWords": 55,
+      "partCount": 3,
+      "contents": {
+        "en": "Karim writes to Chloé: his daughter Lina was born on 3 May, mother and baby are well; they left Lille and now live in the countryside near Rouen; he works from home three days a week; will she come and see Lina this summer?",
+        "fr": "Karim écrit à Chloé : sa fille Lina est née le 3 mai, tout le monde va bien ; ils ont quitté Lille et habitent à la campagne près de Rouen ; il travaille à la maison trois jours par semaine ; vient-elle voir Lina cet été ?",
+        "de": "Karim schreibt Chloé: Seine Tochter Lina wurde am 3. Mai geboren, allen geht es gut; sie haben Lille verlassen und wohnen auf dem Land bei Rouen; er arbeitet drei Tage pro Woche zu Hause; kommt sie im Sommer Lina besuchen?"
+      }
+    }
+  },
+  "stages": {
+    "keywords": {
+      "estimatedDurationS": 95
+    },
+    "skim": {
+      "focus": "author",
+      "skimSeconds": 60,
+      "estimatedDurationS": 80
+    },
+    "detail": {
+      "questions": [
+        {
+          "id": "q-city",
+          "type": "reading_choice",
+          "focus": {
+            "en": "Her new city",
+            "fr": "Sa nouvelle ville",
+            "de": "Ihre neue Stadt"
+          }
+        },
+        {
+          "id": "q-job",
+          "type": "reading_short_answer",
+          "focus": {
+            "en": "Her new job",
+            "fr": "Son nouveau travail",
+            "de": "Ihre neue Arbeit"
+          }
+        },
+        {
+          "id": "q-hugo",
+          "type": "reading_true_false",
+          "focus": {
+            "en": "Where she met Hugo",
+            "fr": "Où elle a rencontré Hugo",
+            "de": "Wo sie Hugo kennengelernt hat"
+          }
+        },
+        {
+          "id": "q-why",
+          "type": "reading_choice",
+          "focus": {
+            "en": "The reason for the move",
+            "fr": "La raison du déménagement",
+            "de": "Der Grund für den Umzug"
+          }
+        }
+      ],
+      "estimatedDurationS": 180
+    },
+    "structure": {
+      "task": "order_information",
+      "estimatedDurationS": 70
+    }
+  },
+  "exam": {
+    "pages": [
+      {
+        "pageId": "exam-1",
+        "types": [
+          "reading_choice",
+          "reading_short_answer",
+          "reading_true_false"
+        ],
+        "itemCount": 5,
+        "estimatedDurationS": 175,
+        "timeLimitS": 265
+      }
+    ]
+  },
+  "scoring": {
+    "practiceWeight": 30,
+    "examWeight": 70,
+    "orthographyCredit": 0.5
+  }
+}

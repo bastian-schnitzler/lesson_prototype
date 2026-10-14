@@ -61,7 +61,7 @@ export function vocabularyLesson(brief: VocabularyBrief): VocabularyContent {
     ({ pageId, estimatedDurationS, timeLimitS, instructions, items });
   const step = (id: string, role: Step['role'], label: LocalizedText, pages: Page[], stage = id as Step['stage']): Step => ({ id, stage, role, label, pages });
   const examChunks = brief.groups.flatMap((g) => chunk(g.targetIds, T.examPageSize).map((ids, n) => ({ key: `${g.id}-${n + 1}`, ids })));
-  const answers = (id: string, prompt?: LocalizedText | Partial<LocalizedText>) => ({ answers: vocabularyExamAnswers(targets.get(id)!, brief.lang, prompt), accentSensitive: targets.get(id)!.accentSensitive });
+  const answers = (id: string, prompt?: LocalizedText | Partial<LocalizedText>) => ({ answers: vocabularyExamAnswers(targets.get(id)!, brief.lang, prompt) });
   const prompt = (id: string) => {
     const t = targets.get(id)!;
     return (t.examPrompt ?? Object.fromEntries(Object.entries(t.translations).map(([locale, list]) => [locale, list[0]]))) as LocalizedText;
