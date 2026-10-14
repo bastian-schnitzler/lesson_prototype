@@ -1063,7 +1063,7 @@ GitHub: [#90](https://github.com/bastian-schnitzler/lesson_prototype/issues/90).
 
 Milestone: **Phase 6**.
 
-Source: the feedback page [docs/feedback.html](feedback.html), published with the app at `docs/feedback.html` (link **UX feedback** in the index header). It splits the 2026-10-09 product-owner feedback (by Anais) into numbered items, each with a comment by Bastian, in three sections: **Not implemented yet**, **Already implemented** and **Discarded**. Item numbers never change when an item moves to another section.
+Source: the feedback page [docs/feedback.html](feedback.html), published with the app at `docs/feedback.html` (link **UX feedback** in the index header). It splits the 2026-10-09 product-owner feedback (by Anais) and the 2026-10-14 feedback by Victor into numbered items, each with a comment by Bastian, in three sections: **Not implemented yet**, **Already implemented** and **Discarded**. Item numbers never change when an item moves to another section.
 
 This issue includes **implementation and integration into the maintained specification, [docs/SPEC.md](SPEC.md)**.
 
@@ -1071,7 +1071,7 @@ Scope: every item in the section **Not implemented yet** on the feedback page. A
 
 | Item | Area | Feedback |
 | --- | --- | --- |
-| #1 | Main points | Lessons must be shorter (vocabulary and grammar). |
+| #1 | Main points | Lessons must be shorter (vocabulary and grammar; Anais and Victor). |
 | #2 | Main points | Multiple choices are not intuitive: make single versus multiple selection explicit. |
 | #4 | Main points | The front end must be improved. |
 | #6 | Side bar mockup | Exam in progress: exam screen as in the mockup. |
@@ -1085,6 +1085,8 @@ Scope: every item in the section **Not implemented yet** on the feedback page. A
 | #16 | Grammar 3 | Error-spotter correction feedback without raw bracket markup or a duplicate panel. |
 | #17 | Grammar 4 | The solution must match the selected word. |
 | #18 | Grammar 5 | Decide whether vocabulary gets the pre-exam feedback step. |
+| #24 | All lessons | Victor: a speaker to listen to full example sentences in every lesson (grammar explanations and examples, vocabulary introduction). |
+| #25 | Vocabulary | Victor: skipping the listening exercise by choice, or an equivalent exercise without audio for the same word, so it can still be scored. |
 
 Implementation / acceptance:
 - [ ] Each item above is implemented, or decided against with the product owner. Open design questions ("to think about") are decided and recorded before implementation.

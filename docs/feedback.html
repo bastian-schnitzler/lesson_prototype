@@ -29,6 +29,11 @@ body>div:first-of-type{padding-left:316px!important}
 #side-nav a:hover{background:#172036;color:#f8fafc}
 #side-nav a[aria-current="true"]{background:#1e1b4b;color:#f8fafc;box-shadow:inset 3px 0 0 #a5b4fc}
 #side-nav .side-area{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#a5b4fc;padding:10px 10px 4px}
+#side-nav .side-text{flex:1 1 auto}
+#side-nav .side-people{display:flex;gap:4px;flex:0 0 auto;align-self:center}
+#side-nav .side-who{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;box-sizing:border-box;border-radius:6px;font-size:12px;font-weight:800;line-height:1}
+#side-nav .who-a{background:#f9a8d4;color:#500724}
+#side-nav .who-v{background:#7dd3fc;color:#082f49}
 #side-nav .side-num{flex:0 0 32px;color:#94a3b8;font-weight:700;font-size:13px}
 article{scroll-margin-top:16px}
 </style>
@@ -41,18 +46,18 @@ article{scroll-margin-top:16px}
 <a class="back-link" href="../" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; box-sizing: border-box; padding: 0 18px; background: #f8fafc; color: #020617; border-radius: 10px; font-size: 16px; font-weight: 600">← Back to the lessons</a>
 <div style="font-size: 17px; color: #94a3b8">UX review · French course</div>
 <h1 style="margin: 0; font-size: 44px; line-height: 1.1; font-weight: 700">Lessons and exercises: team feedback</h1>
-<p style="margin: 0; font-size: 20px; line-height: 1.55; color: #cbd5e1; max-width: 760px">Notes collected on the current screens, grouped as <strong style="color: #fca5a5">to review</strong>, <strong style="color: #86efac">good points</strong> and <strong style="color: #fcd34d">to think about</strong>. Each item is one piece of feedback by Anais with a comment by Bastian and a number that identifies it on the whole page. The items are in three sections: not implemented yet, already implemented in <code>main</code> (status of 2026-10-14), and discarded.</p>
+<p style="margin: 0; font-size: 20px; line-height: 1.55; color: #cbd5e1; max-width: 760px">Notes collected on the current screens, grouped as <strong style="color: #fca5a5">to review</strong>, <strong style="color: #86efac">good points</strong> and <strong style="color: #fcd34d">to think about</strong>. Each item is one piece of feedback by Anais or Victor with a comment by Bastian and a number that identifies it on the whole page. The items are in three sections: not implemented yet, already implemented in <code>main</code> (status of 2026-10-14), and discarded.</p>
 </header>
 
 <nav class="top-nav" aria-label="Sections" style="position: sticky; top: 0; z-index: 10; display: flex; flex-wrap: wrap; gap: 10px; margin: -16px -8px 0; padding: 16px 8px; background: #020617; border-bottom: 1px solid #1e293b">
-<a href="#not-implemented" style="display: inline-flex; align-items: center; gap: 10px; min-height: 44px; box-sizing: border-box; padding: 0 18px; background: #0f172a; color: #f1f5f9; border: 1px solid #334155; border-left: 4px solid #f87171; border-radius: 10px; font-size: 16px; font-weight: 600">1. Not implemented yet <span style="color: #94a3b8; font-weight: 400">14</span></a>
+<a href="#not-implemented" style="display: inline-flex; align-items: center; gap: 10px; min-height: 44px; box-sizing: border-box; padding: 0 18px; background: #0f172a; color: #f1f5f9; border: 1px solid #334155; border-left: 4px solid #f87171; border-radius: 10px; font-size: 16px; font-weight: 600">1. Not implemented yet <span style="color: #94a3b8; font-weight: 400">16</span></a>
 <a href="#implemented" style="display: inline-flex; align-items: center; gap: 10px; min-height: 44px; box-sizing: border-box; padding: 0 18px; background: #0f172a; color: #f1f5f9; border: 1px solid #334155; border-left: 4px solid #4ade80; border-radius: 10px; font-size: 16px; font-weight: 600">2. Already implemented <span style="color: #94a3b8; font-weight: 400">6</span></a>
 <a href="#discarded" style="display: inline-flex; align-items: center; gap: 10px; min-height: 44px; box-sizing: border-box; padding: 0 18px; background: #0f172a; color: #f1f5f9; border: 1px solid #334155; border-left: 4px solid #94a3b8; border-radius: 10px; font-size: 16px; font-weight: 600">3. Discarded <span style="color: #94a3b8; font-weight: 400">3</span></a>
 </nav>
 
 <section id="not-implemented" style="display: flex; flex-direction: column; gap: 40px; scroll-margin-top: 16px; box-sizing: border-box; background: rgba(248,113,113,0.07); border: 1px solid #f8717155; border-top: 4px solid #f87171; border-radius: 20px; padding: 28px 24px 32px">
 <div>
-<h2 style="margin: 0 0 8px; font-size: 32px; font-weight: 700">1. Not implemented yet <span style="color: #94a3b8; font-weight: 400">(14)</span></h2>
+<h2 style="margin: 0 0 8px; font-size: 32px; font-weight: 700">1. Not implemented yet <span style="color: #94a3b8; font-weight: 400">(16)</span></h2>
 <p style="margin: 0; font-size: 18px; line-height: 1.5; color: #94a3b8">Not in <code>main</code> yet, or only partly. The comment names the Phase 6 issue that covers it.</p>
 </div>
 
@@ -61,10 +66,10 @@ article{scroll-margin-top:16px}
 <span style="display: inline-flex; align-items: center; justify-content: center; min-width: 44px; height: 30px; padding: 0 10px; box-sizing: border-box; border-radius: 999px; background: #f87171; color: #020617; font-size: 15px; font-weight: 800">#1</span>
 <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #94a3b8">MAIN POINTS</span>
 <span style="font-size: 20px; font-weight: 600; color: #f8fafc">Lessons must be shorter</span>
-<span style="margin-left: auto; font-size: 14px; color: #94a3b8">Feedback by <strong style="color: #f1f5f9">Anais</strong></span>
+<span style="margin-left: auto; font-size: 14px; color: #94a3b8">Feedback by <strong style="color: #f1f5f9">Anais</strong> and <strong style="color: #f1f5f9">Victor</strong></span>
 </div>
 <div style="padding: 22px 24px">
-<div style="font-size: 19px; line-height: 1.6; color: #e2e8f0">Lessons must be shorter.</div>
+<div style="display: flex; flex-direction: column; gap: 10px"><div style="font-size: 19px; line-height: 1.6; color: #e2e8f0"><strong style="color: #94a3b8; font-weight: 600">Anais:</strong> Lessons must be shorter.</div><div style="font-size: 19px; line-height: 1.6; color: #e2e8f0"><strong style="color: #94a3b8; font-weight: 600">Victor:</strong> Lesson too long.</div></div>
 </div>
 <div style="margin: 0 24px 24px; box-sizing: border-box; border: 2px solid #ffffff; border-radius: 12px; padding: 14px 18px; background: #020617">
 <div style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #ffffff; margin-bottom: 6px">COMMENT BASTIAN</div>
@@ -803,6 +808,38 @@ Read the explanation and the examples, then continue.
 <div style="font-size: 16px; line-height: 1.5; color: #e2e8f0">Open: decision on a pre-exam feedback step for vocabulary in P6-02.</div>
 </div>
 </article>
+
+<article id="vic-1" style="box-sizing: border-box; background: #0b1222; border: 1px solid #334155; border-radius: 18px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.45)">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; padding: 14px 24px; background: #111a2e; border-bottom: 1px solid #1e293b">
+<span style="display: inline-flex; align-items: center; justify-content: center; min-width: 44px; height: 30px; padding: 0 10px; box-sizing: border-box; border-radius: 999px; background: #f87171; color: #020617; font-size: 15px; font-weight: 800">#24</span>
+<span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #94a3b8">ALL LESSONS</span>
+<span style="font-size: 20px; font-weight: 600; color: #f8fafc">Listen to the sentences with a speaker</span>
+<span style="margin-left: auto; font-size: 14px; color: #94a3b8">Feedback by <strong style="color: #f1f5f9">Victor</strong></span>
+</div>
+<div style="padding: 22px 24px">
+<div style="font-size: 19px; line-height: 1.6; color: #e2e8f0">I would add maybe option to listen the sentenses by clicking on speaker in all lessons, it helps to understand the pronounciation of the sentenses, espetially when you in A1 and already in very first lessons you get examples of full sentences in french.</div>
+</div>
+<div style="margin: 0 24px 24px; box-sizing: border-box; border: 2px solid #ffffff; border-radius: 12px; padding: 14px 18px; background: #020617">
+<div style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #ffffff; margin-bottom: 6px">COMMENT BASTIAN</div>
+<div style="font-size: 16px; line-height: 1.5; color: #e2e8f0">Partly: vocabulary flashcards and function lessons already have a speaker for their example sentences. Grammar explanations and examples, and the vocabulary introduction, have no audio yet. P6-02.</div>
+</div>
+</article>
+
+<article id="vic-2" style="box-sizing: border-box; background: #0b1222; border: 1px solid #334155; border-radius: 18px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.45)">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; padding: 14px 24px; background: #111a2e; border-bottom: 1px solid #1e293b">
+<span style="display: inline-flex; align-items: center; justify-content: center; min-width: 44px; height: 30px; padding: 0 10px; box-sizing: border-box; border-radius: 999px; background: #f87171; color: #020617; font-size: 15px; font-weight: 800">#25</span>
+<span style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #94a3b8">VOCABULARY</span>
+<span style="font-size: 20px; font-weight: 600; color: #f8fafc">Listening: skip or replace when the learner cannot listen</span>
+<span style="margin-left: auto; font-size: 14px; color: #94a3b8">Feedback by <strong style="color: #f1f5f9">Victor</strong></span>
+</div>
+<div style="padding: 22px 24px">
+<div style="font-size: 19px; line-height: 1.6; color: #e2e8f0">In “Listen and choose the word you hear.” I would give some option not to listen when user cannot afford it. Maybe just skip it with “skip” button. Maybe to replace it with equivalent excercise that doesn't require listening but uses the same word, so that we still can eval it.</div>
+</div>
+<div style="margin: 0 24px 24px; box-sizing: border-box; border: 2px solid #ffffff; border-radius: 12px; padding: 14px 18px; background: #020617">
+<div style="font-size: 13px; font-weight: 700; letter-spacing: 0.06em; color: #ffffff; margin-bottom: 6px">COMMENT BASTIAN</div>
+<div style="font-size: 16px; line-height: 1.5; color: #e2e8f0">Partly: a “Skip listening task” button exists only when no French voice is installed, and a skipped task is left out of the score. Skipping by choice, or an equivalent exercise without audio for the same word, is open in P6-02.</div>
+</div>
+</article>
 </section>
 
 <section id="implemented" style="display: flex; flex-direction: column; gap: 40px; scroll-margin-top: 16px; box-sizing: border-box; background: rgba(74,222,128,0.07); border: 1px solid #4ade8055; border-top: 4px solid #4ade80; border-radius: 20px; padding: 28px 24px 32px">
@@ -1430,52 +1467,56 @@ Read the explanation and the examples, then continue.
 <aside id="side-nav" aria-label="Sections and items">
 <a class="back-link" href="../" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; box-sizing: border-box; padding: 0 18px; background: #f8fafc; color: #020617; border-radius: 10px; font-size: 16px; font-weight: 600">← Back to the lessons</a>
 <div class="side-block" data-section="not-implemented">
-<a class="side-section" href="#not-implemented" style="border-left-color: #f87171"><span>1. Not implemented yet</span><span class="side-count">14</span></a>
+<a class="side-section" href="#not-implemented" style="border-left-color: #f87171"><span>1. Not implemented yet</span><span class="side-count">16</span></a>
 <ol>
 <li class="side-area">Main points</li>
-<li><a href="#main-1" data-item="main-1"><span class="side-num">#1</span><span>Lessons must be shorter</span></a></li>
-<li><a href="#main-2" data-item="main-2"><span class="side-num">#2</span><span>Multiple choices are not intuitive</span></a></li>
-<li><a href="#main-4" data-item="main-4"><span class="side-num">#4</span><span>The front end must be improved</span></a></li>
+<li><a href="#main-1" data-item="main-1"><span class="side-num">#1</span><span class="side-text">Lessons must be shorter</span><span class="side-people"><span class="side-who who-a" title="Feedback by Anais" aria-label="Feedback by Anais">A</span><span class="side-who who-v" title="Feedback by Victor" aria-label="Feedback by Victor">V</span></span></a></li>
+<li><a href="#main-2" data-item="main-2"><span class="side-num">#2</span><span class="side-text">Multiple choices are not intuitive</span><span class="side-people"><span class="side-who who-a" title="Feedback by Anais" aria-label="Feedback by Anais">A</span></span></a></li>
+<li><a href="#main-4" data-item="main-4"><span class="side-num">#4</span><span class="side-text">The front end must be improved</span><span class="side-people"><span class="side-who who-a" title="Feedback by Anais" aria-label="Feedback by Anais">A</span></span></a></li>
 <li class="side-area">Side bar mockup</li>
-<li><a href="#mock-exam" data-item="mock-exam"><span class="side-num">#6</span><span>Exam in progress</span></a></li>
-<li><a href="#mock-results" data-item="mock-results"><span class="side-num">#7</span><span>Exam results</span></a></li>
-<li><a href="#mock-grammar" data-item="mock-grammar"><span class="side-num">#8</span><span>Grammar: Singular Subject Pronouns</span></a></li>
+<li><a href="#mock-exam" data-item="mock-exam"><span class="side-num">#6</span><span class="side-text">Exam in progress</span><span class="side-people"><span class="side-who who-a" title="Feedback by Anais" aria-label="Feedback by Anais">A</span></span></a></li>
+<li><a href="#mock-results" data-item="mock-results"><span class="side-num">#7</span><span class="side-text">Exam results</span><span class="side-people"><span class="side-who who-a" title="Feedback by Anais" aria-label="Feedback by Anais">A</span></span></a></li>
+<li><a href="#mock-grammar" data-item="mock-grammar"><span class="side-num">#8</span><span class="side-text">Grammar: Singular Subject Pronouns</span><span class="side-people"><span class="side-who who-a" title="Feedback by Anais" aria-label="Feedback by Anais">A</span></span></a></li>
 <li class="side-area">Vocabulary</li>
-<li><a href="#voc-2" data-item="voc-2"><span class="side-num">#10</span><span>Screen 2 · Type the right word (accent)</span></a></li>
-<li><a href="#voc-3" data-item="voc-3"><span class="side-num">#11</span><span>Screen 3 · Type the right word (names)</span></a></li>
-<li><a href="#voc-4" data-item="voc-4"><span class="side-num">#12</span><span>Screen 4 · Listening</span></a></li>
-<li><a href="#voc-5" data-item="voc-5"><span class="side-num">#13</span><span>Screen 5 · Final exam: intro</span></a></li>
+<li><a href="#voc-2" data-item="voc-2"><span class="side-num">#10</span><span class="side-text">Screen 2 · Type the right word (accent)</span><span class="side-people"><span class="side-who who-a" title="Feedback by Anais" aria-label="Feedback by Anais">A</span></span></a></li>
+<li><a href="#voc-3" data-item="voc-3"><span class="side-num">#11</span><span class="side-text">Screen 3 · Type the right word (names)</span><span class="side-people"><span class="side-who who-a" title="Feedback by Anais" aria-label="Feedback by Anais">A</span></span></a></li>
+<li><a href="#voc-4" data-item="voc-4"><span class="side-num">#12</span><span class="side-text">Screen 4 · Listening</span><span class="side-people"><span class="side-who who-a" title="Feedback by Anais" aria-label="Feedback by Anais">A</span></span></a></li>
+<li><a href="#voc-5" data-item="voc-5"><span class="side-num">#13</span><span class="side-text">Screen 5 · Final exam: intro</span><span class="side-people"><span class="side-who who-a" title="Feedback by Anais" aria-label="Feedback by Anais">A</span></span></a></li>
 <li class="side-area">Grammar</li>
-<li><a href="#gr-1" data-item="gr-1"><span class="side-num">#14</span><span>Screen 1 · Singular Subject Pronouns</span></a></li>
-<li><a href="#gr-3" data-item="gr-3"><span class="side-num">#16</span><span>Screen 3 · Error spotting: feedback</span></a></li>
-<li><a href="#gr-4" data-item="gr-4"><span class="side-num">#17</span><span>Screen 4 · Error spotting</span></a></li>
-<li><a href="#gr-5" data-item="gr-5"><span class="side-num">#18</span><span>Screen 5 · Lesson feedback</span></a></li>
+<li><a href="#gr-1" data-item="gr-1"><span class="side-num">#14</span><span class="side-text">Screen 1 · Singular Subject Pronouns</span><span class="side-people"><span class="side-who who-a" title="Feedback by Anais" aria-label="Feedback by Anais">A</span></span></a></li>
+<li><a href="#gr-3" data-item="gr-3"><span class="side-num">#16</span><span class="side-text">Screen 3 · Error spotting: feedback</span><span class="side-people"><span class="side-who who-a" title="Feedback by Anais" aria-label="Feedback by Anais">A</span></span></a></li>
+<li><a href="#gr-4" data-item="gr-4"><span class="side-num">#17</span><span class="side-text">Screen 4 · Error spotting</span><span class="side-people"><span class="side-who who-a" title="Feedback by Anais" aria-label="Feedback by Anais">A</span></span></a></li>
+<li><a href="#gr-5" data-item="gr-5"><span class="side-num">#18</span><span class="side-text">Screen 5 · Lesson feedback</span><span class="side-people"><span class="side-who who-a" title="Feedback by Anais" aria-label="Feedback by Anais">A</span></span></a></li>
+<li class="side-area">All lessons</li>
+<li><a href="#vic-1" data-item="vic-1"><span class="side-num">#24</span><span class="side-text">Listen to the sentences with a speaker</span><span class="side-people"><span class="side-who who-v" title="Feedback by Victor" aria-label="Feedback by Victor">V</span></span></a></li>
+<li class="side-area">Vocabulary</li>
+<li><a href="#vic-2" data-item="vic-2"><span class="side-num">#25</span><span class="side-text">Listening: skip or replace when the learner cannot listen</span><span class="side-people"><span class="side-who who-v" title="Feedback by Victor" aria-label="Feedback by Victor">V</span></span></a></li>
 </ol>
 </div>
 <div class="side-block" data-section="implemented">
 <a class="side-section" href="#implemented" style="border-left-color: #4ade80"><span>2. Already implemented</span><span class="side-count">6</span></a>
 <ol hidden>
 <li class="side-area">Main points</li>
-<li><a href="#main-3" data-item="main-3"><span class="side-num">#3</span><span>0/100 during introduction and theory</span></a></li>
+<li><a href="#main-3" data-item="main-3"><span class="side-num">#3</span><span class="side-text">0/100 during introduction and theory</span><span class="side-people"><span class="side-who who-a" title="Feedback by Anais" aria-label="Feedback by Anais">A</span></span></a></li>
 <li class="side-area">Side bar mockup</li>
-<li><a href="#mock-v2" data-item="mock-v2"><span class="side-num">#5</span><span>V2 · Vertical timeline</span></a></li>
+<li><a href="#mock-v2" data-item="mock-v2"><span class="side-num">#5</span><span class="side-text">V2 · Vertical timeline</span><span class="side-people"><span class="side-who who-a" title="Feedback by Anais" aria-label="Feedback by Anais">A</span></span></a></li>
 <li class="side-area">Vocabulary</li>
-<li><a href="#voc-1" data-item="voc-1"><span class="side-num">#9</span><span>Screen 1 · Gender choice</span></a></li>
+<li><a href="#voc-1" data-item="voc-1"><span class="side-num">#9</span><span class="side-text">Screen 1 · Gender choice</span><span class="side-people"><span class="side-who who-a" title="Feedback by Anais" aria-label="Feedback by Anais">A</span></span></a></li>
 <li class="side-area">Suggestion</li>
-<li><a href="#sidebar" data-item="sidebar"><span class="side-num">#19</span><span>Side bar with the learning points</span></a></li>
+<li><a href="#sidebar" data-item="sidebar"><span class="side-num">#19</span><span class="side-text">Side bar with the learning points</span><span class="side-people"><span class="side-who who-a" title="Feedback by Anais" aria-label="Feedback by Anais">A</span></span></a></li>
 <li class="side-area">Vocabulary</li>
-<li><a href="#voc-6" data-item="voc-6"><span class="side-num">#20</span><span>Screen 6 · Final exam: translation</span></a></li>
-<li><a href="#voc-7" data-item="voc-7"><span class="side-num">#21</span><span>Screen 7 · Final exam: results</span></a></li>
+<li><a href="#voc-6" data-item="voc-6"><span class="side-num">#20</span><span class="side-text">Screen 6 · Final exam: translation</span><span class="side-people"><span class="side-who who-a" title="Feedback by Anais" aria-label="Feedback by Anais">A</span></span></a></li>
+<li><a href="#voc-7" data-item="voc-7"><span class="side-num">#21</span><span class="side-text">Screen 7 · Final exam: results</span><span class="side-people"><span class="side-who who-a" title="Feedback by Anais" aria-label="Feedback by Anais">A</span></span></a></li>
 </ol>
 </div>
 <div class="side-block" data-section="discarded">
 <a class="side-section" href="#discarded" style="border-left-color: #94a3b8"><span>3. Discarded</span><span class="side-count">3</span></a>
 <ol hidden>
 <li class="side-area">Grammar</li>
-<li><a href="#gr-2" data-item="gr-2"><span class="side-num">#15</span><span>Screen 2 · Error spotting</span></a></li>
+<li><a href="#gr-2" data-item="gr-2"><span class="side-num">#15</span><span class="side-text">Screen 2 · Error spotting</span><span class="side-people"><span class="side-who who-a" title="Feedback by Anais" aria-label="Feedback by Anais">A</span></span></a></li>
 <li class="side-area">Side bar mockup</li>
-<li><a href="#mock-v1" data-item="mock-v1"><span class="side-num">#22</span><span>V1 · List with colour bars</span></a></li>
-<li><a href="#mock-v3" data-item="mock-v3"><span class="side-num">#23</span><span>V3 · Tiles with the accents</span></a></li>
+<li><a href="#mock-v1" data-item="mock-v1"><span class="side-num">#22</span><span class="side-text">V1 · List with colour bars</span><span class="side-people"><span class="side-who who-a" title="Feedback by Anais" aria-label="Feedback by Anais">A</span></span></a></li>
+<li><a href="#mock-v3" data-item="mock-v3"><span class="side-num">#23</span><span class="side-text">V3 · Tiles with the accents</span><span class="side-people"><span class="side-who who-a" title="Feedback by Anais" aria-label="Feedback by Anais">A</span></span></a></li>
 </ol>
 </div>
 </aside>
