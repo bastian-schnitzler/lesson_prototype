@@ -235,6 +235,32 @@ test('renders the formatted introduction text with a list and French forms (D46)
   expect(await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBeLessThanOrEqual(0);
 });
 
+test('builds a word-order sentence with the keyboard only (P3-04)', async ({ page }) => {
+  await page.goto('./#/lesson/fr-negation-ne-pas/play');
+  const bank = page.getByRole('group', { name: 'Available words' });
+  const line = page.getByRole('group', { name: 'Your sentence' });
+  while (!(await bank.isVisible())) await proceed(page);
+  const words = await bank.getByRole('button').count();
+  // Enter places the focused bank word; focus stays in the bank until it is empty.
+  await bank.getByRole('button').first().focus();
+  for (let n = 0; n < words; n++) await page.keyboard.press('Enter');
+  await expect(bank.getByRole('button')).toHaveCount(0);
+  await expect(line.getByRole('button')).toHaveCount(words);
+  // Arrow keys and Home move a placed word; it keeps the focus.
+  const last = line.getByRole('button').last();
+  const word = (await last.textContent())!;
+  await last.focus();
+  await page.keyboard.press('Home');
+  await expect(line.getByRole('button').first()).toHaveText(word);
+  await expect(line.getByRole('button').first()).toBeFocused();
+  await page.keyboard.press('ArrowRight');
+  await expect(line.getByRole('button').nth(1)).toHaveText(word);
+  await expect(line.getByRole('button').nth(1)).toHaveAccessibleName(new RegExp(`position 2 of ${words}`));
+  // Enter sends it back to the bank.
+  await page.keyboard.press('Enter');
+  await expect(bank.getByRole('button')).toHaveText([word]);
+});
+
 test('locks an exam page when its brief-defined countdown expires', async ({ page }) => {
   await page.clock.install();
   await page.goto('./#/lesson/fr-negation-ne-pas/play');

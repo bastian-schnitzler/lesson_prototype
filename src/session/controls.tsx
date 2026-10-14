@@ -1,4 +1,4 @@
-import { useId, useRef, useState, type PointerEvent as ReactPointerEvent, type ReactNode } from 'react';
+import { useEffect, useId, useRef, useState, type KeyboardEvent as ReactKeyboardEvent, type PointerEvent as ReactPointerEvent, type ReactNode } from 'react';
 
 import { useI18n } from '../app/context.tsx';
 import { isPluralAnswer, type LockedUnit, type UnitResponse } from '../domain/session/session.ts';
@@ -228,6 +228,8 @@ export function ChoiceControl({ unit, props, label, layout }: { unit: PlanUnit &
  * Word order: a click puts a bank token at the end of the line. Tokens can also be dragged with mouse,
  * pen or touch (P4-05 review): from the bank to any position on the line, and along the line to another
  * position; dropped off the line, a placed token returns to the bank, and a click on it does the same.
+ * With the keyboard (P3-04) the arrow keys move a focused placed token along the line, Home and End
+ * move it to either end; focus follows the token, and after placing or returning one it stays nearby.
  */
 export function OrderControl({ unit, props }: { unit: PlanUnit & { kind: 'order' }; props: RendererProps }) {
   const { t } = useI18n();
@@ -242,6 +244,18 @@ export function OrderControl({ unit, props }: { unit: PlanUnit & { kind: 'order'
   const [drag, setDrag] = useState<(Source & { x: number; y: number; target: number | null }) | null>(null);
   // The click that follows a drag must not also place or return the token.
   const suppressClick = useRef(false);
+  /** Token button to focus after the next render: placed and returned tokens leave their position. */
+  const focusNext = useRef<{ area: 'line' | 'bank'; index: number } | null>(null);
+  useEffect(() => {
+    const target = focusNext.current;
+    if (!target) return;
+    focusNext.current = null;
+    const buttons = (area: 'line' | 'bank') => [...(area === 'line' ? line.current : bankRef.current)?.querySelectorAll<HTMLButtonElement>('button.token') ?? []];
+    const other = target.area === 'line' ? 'bank' : 'line';
+    const own = buttons(target.area);
+    (own[Math.min(target.index, own.length - 1)] ?? buttons(other).at(target.area === 'line' ? 0 : -1))?.focus();
+  });
+  const bankRef = useRef<HTMLParagraphElement>(null);
 
   /** Insertion index on the line for a pointer position; null when the pointer is outside the line. */
   const targetAt = (x: number, y: number): number | null => {
@@ -300,25 +314,44 @@ export function OrderControl({ unit, props }: { unit: PlanUnit & { kind: 'order'
     suppressClick.current = false;
     return false;
   };
+  const place = (tokenId: string) => {
+    focusNext.current = { area: 'bank', index: bank.findIndex((tk) => tk.id === tokenId) };
+    props.onChange(unit.id, [...order, tokenId]);
+  };
+  const remove = (n: number) => {
+    focusNext.current = { area: 'line', index: Math.max(0, n - 1) };
+    props.onChange(unit.id, order.filter((_, m) => m !== n));
+  };
+  const onKeyDown = (n: number) => (e: ReactKeyboardEvent<HTMLButtonElement>) => {
+    const to = { ArrowLeft: n - 1, ArrowUp: n - 1, ArrowRight: n + 1, ArrowDown: n + 1, Home: 0, End: order.length - 1 }[e.key];
+    if (to === undefined) return;
+    e.preventDefault();
+    if (to < 0 || to >= order.length || to === n) return;
+    const next = order.filter((_, m) => m !== n);
+    next.splice(to, 0, order[n]);
+    focusNext.current = { area: 'line', index: to };
+    props.onChange(unit.id, next);
+  };
   const showMarker = drag && drag.target !== null && (drag.index === null || (drag.target !== drag.index && drag.target !== drag.index + 1));
   const placed = order.map((id, n) => (
     <button key={id} type="button" className={`token token-placed${drag?.index === n ? ' is-dragged' : ''}`} disabled={disabled}
-      {...handlers({ tokenId: id, index: n })}
-      onClick={() => { if (clicked()) props.onChange(unit.id, order.filter((_, m) => m !== n)); }}>
+      {...handlers({ tokenId: id, index: n })} onKeyDown={disabled ? undefined : onKeyDown(n)}
+      aria-label={t('session.orderMove', { word: text(id) ?? '', position: n + 1, total: order.length })}
+      onClick={() => { if (clicked()) remove(n); }}>
       {text(id)}
     </button>
   ));
   if (showMarker) placed.splice(drag!.target!, 0, <span key="marker" className="order-marker" aria-hidden="true" />);
   return (
     <div className={`order${drag ? ' is-dragging' : ''}`}>
-      <p ref={line} className="order-answer" lang={props.plan.lang} aria-live="polite">
+      <p ref={line} className="order-answer" lang={props.plan.lang} role="group" aria-label={t('session.orderLine')}>
         {placed.length ? placed : <span className="muted">{t('session.orderEmpty')}</span>}
       </p>
-      <p className="order-bank" lang={props.plan.lang}>
+      <p ref={bankRef} className="order-bank" lang={props.plan.lang} role="group" aria-label={t('session.orderBank')}>
         {bank.map((tk) => (
           <button key={tk.id} type="button" className={`token${drag?.tokenId === tk.id ? ' is-dragged' : ''}`} disabled={disabled}
             {...handlers({ tokenId: tk.id, index: null })}
-            onClick={() => { if (clicked()) props.onChange(unit.id, [...order, tk.id]); }}>
+            onClick={() => { if (clicked()) place(tk.id); }}>
             {tk.text}
           </button>
         ))}
@@ -334,7 +367,7 @@ export function SpotControl({ unit, props }: { unit: PlanUnit & { kind: 'spot' }
   const disabled = readOnly(props, unit);
   return (
     <div className="spot">
-      <p lang={props.plan.lang}>
+      <p lang={props.plan.lang} role="group" aria-label={t('session.spotSentence')}>
         {unit.tokens.map((tk) => (
           <button
             key={tk.id}

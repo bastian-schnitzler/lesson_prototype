@@ -297,6 +297,25 @@ describe('grammar renderer composition (P3-01)', () => {
     expect(results.examScore).toBe(100);
   });
 
+  it('traces wrong word-order and error-spotter answers to their assessed rule IDs (P3-04)', () => {
+    const plan = mixedExam();
+    let record = startSession(plan, { sessionId: 's', contentHash: 'h', level: 'A1', motherTongue: 'en', seed: 1, now: 0 });
+    const act = (action: SessionAction) => (record = sessionReducer(plan, record, action));
+    // Word order and error spotting are answered wrong, every other unit right.
+    const answer = (u: (typeof plan.pages)[number]['units'][number]) => (u.kind === 'order' ? [...u.acceptedOrders[0]].reverse() : u.kind === 'spot' ? { tokenId: u.faultyTokenId, text: 'xx' } : u.kind === 'text' ? u.accepted.answers[0] : u.correct[0]);
+    for (let guard = 0; record.phase !== 'results' && guard < 200; guard++) {
+      const page = plan.pages[record.pageIndex];
+      if (record.phase === 'answering') for (const u of page.units) act({ type: 'draft', unitId: u.id, response: answer(u) as never, now: 0 });
+      act({ type: 'continue', now: 0, interfaceLanguage: 'en' });
+    }
+    const units = plan.pages.flatMap((p) => p.units).filter((u) => u.kind === 'order' || u.kind === 'spot');
+    expect(new Set(units.map((u) => u.kind))).toEqual(new Set(['order', 'spot']));
+    for (const u of units) {
+      expect(record.locked[u.id]).toMatchObject({ outcome: 'incorrect', points: 0 });
+      expect(u.ruleIds).toEqual(['r-plural']);
+    }
+  });
+
   it('accepts duplicate form texts, alternative valid forms and alternative word orders', () => {
     const tokens = (texts: string[]) => texts.map((text, n) => ({ id: `t${n}`, text, lang: 'learning' as const }));
     const base = { id: 'u', itemId: 'i', prompt: {}, explanation: { en: 'e', fr: 'e', de: 'e' }, answer: '', answerLang: 'learning' as const };

@@ -740,6 +740,8 @@ Acceptance:
 - Whole-sentence scoring and rule-level error tags feed shared results.
 - Tests cover duplicate words, alternative order, detection without correct repair, and accessible operation.
 
+Outcome (2026-10-14): word order, error spotting and their whole-sentence scoring already ran on the shared `UnitsRenderer` and scorer (P3-01, P3-02, P3-07 and P4-05 reviews), with pointer and touch dragging and plan units that carry the assessed `ruleIds`. Added keyboard reordering: the arrow keys, Home and End move a placed token, focus follows it and stays nearby after placing or returning a token. The sentence line, the word bank and the error-spotter sentence are labelled groups, and placed tokens are announced with their position. Unit tests in `tests/unit/grammar-renderers.test.tsx` (keyboard moves, focus, repeated words, punctuation, detection without repair, select-mode corrections) and `tests/unit/session.test.ts` (wrong answers traced to their rule IDs); a keyboard-only e2e journey in `tests/e2e/session.spec.ts`.
+
 Dependencies: P3-01.
 
 ### P3-05: Implement production-feedback placeholder, timed mixed exams, and answer review
