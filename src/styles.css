@@ -1282,12 +1282,6 @@ select {
   font-variant-numeric: tabular-nums;
 }
 
-.result-menu {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
 @media (max-width: 600px) {
   .matching-columns {
     gap: 0.5rem;
@@ -2051,31 +2045,6 @@ select {
   margin-bottom: 1rem;
 }
 
-/*
- * Results menu (all categories, P4-05 review): the selected part has a purple background and border.
- * Other parts show their outcome: red when every answer is wrong, red stripes when at least one answer
- * is not fully right; parts with every answer right keep the plain look, the final exam its purple border.
- */
-.result-menu .button.button-exam {
-  border-color: var(--progress);
-}
-
-.result-menu .button.is-all-wrong {
-  background: #7f1d1d;
-  border-color: #b91c1c;
-}
-
-.result-menu .button.is-mixed {
-  background: repeating-linear-gradient(135deg, #7f1d1d 0 7px, #0f172a 7px 14px);
-  border-color: #b91c1c;
-  text-shadow: 0 1px 2px #000, 0 0 4px #000;
-}
-
-.result-menu .button[aria-pressed='true'] {
-  background: #1e1b4b;
-  border-color: var(--progress);
-}
-
 .results-lesson {
   margin: 0.25rem 0 0;
   font-size: 20px;
@@ -2151,30 +2120,6 @@ select {
 
 .result-gender .match-wrong {
   color: var(--incorrect);
-}
-
-/* Final exam results: translation and dictation accordions. */
-.result-accordion {
-  margin-top: 1rem;
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-card);
-}
-
-.result-accordion > summary {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.75rem 1rem;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.result-accordion[open] > summary {
-  border-bottom: 1px solid var(--border);
-}
-
-.result-accordion > .result-section {
-  margin: 0.75rem 1rem;
 }
 
 /* Matching after Check (P2-04 review): French words sit level with their correct meaning;
@@ -2336,11 +2281,80 @@ html {
   --person-gap: 0.75rem;
 }
 
-/* Grammar start page (P3-02 review): the lesson flow, one colour per part. */
-.flow-list .flow-detail {
+/*
+ * Start page lesson outline (P6-01 review): sections lettered A, B, C… in their colours, each with its
+ * learning points indented below, numbered as in the sidebar.
+ */
+.flow-sections {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.flow-section {
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--review-color);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.flow-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.flow-letter {
+  min-width: 1.5rem;
+  color: var(--review-color);
+  font-weight: 700;
+}
+
+.flow-title {
+  flex: 1;
+}
+
+.flow-detail {
   display: block;
   margin-top: 0.15rem;
-  white-space: normal;
+  color: var(--muted);
+}
+
+.flow-minutes {
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.flow-points {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0.45rem 0 0.1rem 2.25rem;
+  padding: 0;
+  list-style: none;
+  font-size: 16px;
+  color: var(--text);
+}
+
+.flow-points li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.flow-number {
+  flex: 0 0 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--review-color);
+  color: var(--review-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
 }
 
 /* New verbs of a grammar lesson (P3-07): start page and first explanation page. */
@@ -2541,4 +2555,408 @@ html {
 .marked-answer .mark-wrong {
   color: var(--incorrect);
   font-weight: 700;
+}
+
+/* ---------------------------------------------------- lesson navigation */
+
+/*
+ * Lesson navigation (P6-01): a sidebar left of the lesson on wide screens (design V2, a vertical
+ * timeline of the learning points; the exam pages during the exam; the result parts on the results
+ * page). Below 960px the sidebar gives way to a compact button that opens the same content in a drawer.
+ */
+.page-task.has-nav {
+  max-width: 1320px;
+}
+
+.nav-layout {
+  display: grid;
+  grid-template-columns: 290px minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.nav-main {
+  min-width: 0;
+}
+
+.lesson-nav {
+  position: sticky;
+  top: 1rem;
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  padding: 1.25rem 1.1rem 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+}
+
+.nav-kicker {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.nav-title {
+  margin: 0 0 1.1rem;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.nav-note {
+  font-size: 14px;
+  margin: 0.75rem 0 0.5rem;
+}
+
+/* Timeline: a numbered circle per point in its colour; done points are filled with a tick. */
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.timeline-point {
+  position: relative;
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 0.9rem;
+}
+
+.timeline-point:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 14px;
+  top: 32px;
+  bottom: 2px;
+  width: 2px;
+  background: var(--border);
+}
+
+.timeline-point.is-done:not(:last-child)::before {
+  background: var(--review-color);
+  opacity: 0.5;
+}
+
+.timeline-marker {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid var(--review-color);
+  color: var(--review-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.timeline-point.is-done .timeline-marker,
+.timeline-point.is-here .timeline-marker {
+  background: var(--review-color);
+  color: var(--bg);
+}
+
+.timeline-point.is-here .timeline-marker {
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--review-color) 20%, transparent);
+}
+
+.timeline-point.is-exam .timeline-marker {
+  border-color: var(--text);
+  color: var(--text);
+  background: none;
+}
+
+.timeline-link {
+  display: flex;
+  flex-direction: column;
+  min-height: 44px;
+  padding: 3px 0 1.1rem;
+  background: none;
+  border: 0;
+  color: var(--muted);
+  font: inherit;
+  font-size: 15px;
+  text-align: left;
+}
+
+.timeline-point.is-here .timeline-link {
+  color: #f8fafc;
+  font-weight: 600;
+}
+
+.timeline-point.is-exam .timeline-link {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.timeline-state {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.timeline-point.is-here .timeline-state {
+  color: var(--review-color);
+}
+
+/* Exam pages: number, kind, tasks and time limit; the current page is highlighted. */
+.exam-pages {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.exam-page {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 52px;
+  padding: 0.45rem 0.8rem;
+  background: #0b1222;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--review-color);
+  border-radius: 10px;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.exam-page.is-done {
+  color: var(--text);
+}
+
+.exam-page.is-current {
+  background: #172036;
+  border-color: var(--border-strong);
+  border-left-color: var(--review-color);
+  color: #f8fafc;
+  font-weight: 600;
+}
+
+.exam-page-number {
+  font-weight: 700;
+  color: var(--review-color);
+  min-width: 1.2rem;
+}
+
+.exam-page-text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.exam-page-text small {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.exam-page.is-current small {
+  color: var(--review-color);
+}
+
+.exam-page-done {
+  color: var(--correct);
+}
+
+/* Result parts (replace the former button menu): the exam first with its parts, then the exercises. */
+.results-nav {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.results-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 48px;
+  padding: 0.5rem 0.9rem;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+  font: inherit;
+  font-size: 16px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.results-entry-score {
+  font-size: 14px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.results-entry.is-exam {
+  border-color: var(--progress);
+  font-weight: 600;
+}
+
+.results-entry.is-all-wrong {
+  background: #7f1d1d;
+  border-color: #b91c1c;
+}
+
+.results-entry.is-mixed {
+  background: repeating-linear-gradient(135deg, #7f1d1d 0 7px, #0f172a 7px 14px);
+  border-color: #b91c1c;
+  text-shadow: 0 1px 2px #000, 0 0 4px #000;
+}
+
+.results-entry[aria-pressed='true'] {
+  background: #1e1b4b;
+  border-color: var(--progress);
+}
+
+.results-parts {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0 0 0.25rem 0.9rem;
+  padding-left: 0.9rem;
+  border-left: 2px solid var(--border);
+}
+
+.results-part {
+  min-height: 44px;
+  font-size: 15px;
+  border-color: transparent;
+}
+
+.results-part[aria-pressed='true'] {
+  background: #172036;
+  border-color: var(--border-strong);
+}
+
+/* Phones (P6-01 review): the learning points as round markers in the header, in place of the progress bar. */
+.point-strip {
+  display: none;
+  flex: 1;
+  min-width: 0;
+}
+
+/* The tooltip spans the header, so it stays readable on narrow phones. */
+.session-header {
+  position: relative;
+}
+
+.point-strip-list {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* The connecting line, filled up to the last done point: the progress bar of the strip. */
+.point-strip-list::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  top: 50%;
+  height: 4px;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  background: linear-gradient(to right, var(--progress) var(--strip-fill), var(--border) var(--strip-fill));
+}
+
+.strip-point {
+  position: relative;
+}
+
+.strip-marker {
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border-radius: 50%;
+  border: 2px solid var(--review-color);
+  background: var(--bg);
+  color: var(--review-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* An invisible frame enlarges the touch target without moving the markers apart. */
+.strip-marker::after {
+  content: '';
+  position: absolute;
+  inset: -9px -4px;
+}
+
+.strip-point.is-done .strip-marker,
+.strip-point.is-here .strip-marker {
+  background: var(--review-color);
+  color: var(--bg);
+}
+
+.strip-point.is-here .strip-marker {
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--review-color) 25%, transparent);
+}
+
+.strip-point.is-exam .strip-marker {
+  border-color: var(--text);
+  color: var(--text);
+  background: var(--bg);
+}
+
+.strip-marker[aria-expanded='true'] {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.strip-tip {
+  position: absolute;
+  z-index: 5;
+  top: calc(100% - 0.5rem);
+  left: 0;
+  right: 0;
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.6rem 0.8rem;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 50%);
+  font-size: 15px;
+}
+
+@media (max-width: 960px) {
+  .nav-layout {
+    display: block;
+  }
+
+  .lesson-nav {
+    display: none;
+  }
+
+  /* The results page keeps its parts, above the answers. */
+  .nav-layout.is-results .lesson-nav {
+    display: block;
+    position: static;
+    max-height: none;
+    margin-bottom: 1.25rem;
+  }
+
+  /* The strip takes the whole row; percentage and score follow on the next line. */
+  .session-meters {
+    flex-wrap: wrap;
+    row-gap: 0.6rem;
+  }
+
+  .point-strip {
+    display: block;
+    flex: 1 0 100%;
+  }
+
+  .session-meters .progress {
+    display: none;
+  }
 }
