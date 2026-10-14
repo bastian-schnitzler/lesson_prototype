@@ -110,7 +110,7 @@ export function PlayPage({ manifest, lessonId }: { manifest: Manifest; lessonId:
           </a>
         }
       />
-      <main id="main" tabIndex={-1} className="page page-task">
+      <main id="main" tabIndex={-1} className={`page page-task${active && plan ? ' has-nav' : ''}`}>
         {body}
       </main>
     </>
@@ -126,14 +126,13 @@ function ActiveSession({ plan, initial, onRestart, onPhase }: { plan: LessonPlan
     <>
       {saveFailed && <StatusMessage>{t('session.saveFailed')}</StatusMessage>}
       {record.phase === 'results' ? (
-        <>
-          <ResultsView plan={plan} record={record} dispatch={dispatch} />
-          {/* "Repeat lesson" (outline) left of the primary "Lesson overview" at the bottom right. */}
+        <ResultsView plan={plan} record={record} dispatch={dispatch} footer={
+          // "Repeat lesson" (outline) left of the primary "Lesson overview" at the bottom right.
           <div className="task-footer results-footer">
             <button type="button" className="button button-outline" onClick={onRestart}>{t('session.restart')}</button>
             <a className="button button-primary" href={href.index()}>{t('action.lessonOverview')}</a>
           </div>
-        </>
+        } />
       ) : (
         <SessionView plan={plan} record={record} dispatch={dispatch} remainingMs={remainingMs} voiceStatus={voiceStatus} />
       )}

@@ -191,17 +191,20 @@ describe('person matching (P3-02 review)', () => {
 });
 
 describe('grammar start page (P3-02 review)', () => {
-  it('outlines the lesson flow: one coloured part per teaching block with its exercises, then the exam', () => {
+  it('outlines the lesson as lettered sections (P6-01 review): each block with its numbered points, then the exam', () => {
     const plan = planOf();
     render(<PreferencesProvider initial={{ interfaceLanguage: 'en', motherTongue: 'en' }}><StartView plan={plan} level="A1" onStart={() => undefined} onResume={() => undefined} /></PreferencesProvider>);
-    const parts = within(screen.getByRole('list')).getAllByRole('listitem');
     expect(screen.getByRole('heading', { name: 'Lesson outline' })).toBeInTheDocument();
-    expect(parts).toHaveLength(3); // two blocks and the exam; no feedback row
-    expect(parts[0]).toHaveTextContent('Pronoun–form matching · Multiple-choice gaps · Person matching'); // no "Explanation"
-    expect(parts[0]).not.toHaveTextContent('Explanation');
-    expect(parts[1]).toHaveTextContent('Pronoun–form typing · Typed gaps · Error spotting');
-    expect(parts[2]).toHaveTextContent(/Final exam.*Answer 5 items on 2 timed pages/);
-    for (const part of parts) expect(part.getAttribute('style')).toMatch(/--review-color/);
+    const sections = [...document.querySelectorAll('.flow-section')];
+    expect(sections).toHaveLength(3); // two blocks and the exam; no feedback row
+    expect(sections.map((s) => s.querySelector('.flow-letter')!.textContent)).toEqual(['A', 'B', 'C']);
+    const points = (n: number) => [...sections[n].querySelectorAll('.flow-points li')].map((li) => li.textContent);
+    expect(points(0)[0]).toMatch(/^1/);
+    expect(points(0).slice(1)).toEqual(['2Match forms to pronouns', '3Choose the missing form', '4Singular forms']);
+    expect(points(1)[0]).toMatch(/^5/);
+    expect(sections[2]).toHaveTextContent(/Final exam.*Answer 5 items on 2 timed pages/);
+    expect(sections[2].querySelector('.flow-points')).toBeNull();
+    for (const section of sections) expect(section.getAttribute('style')).toMatch(/--review-color/);
   });
 });
 

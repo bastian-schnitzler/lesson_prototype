@@ -1,4 +1,5 @@
 import { expect, test, type Locator, type Page } from '@playwright/test';
+import { lessonNav } from './nav.ts';
 
 test.beforeEach(async ({ page }) => {
   // Every vocabulary lesson has listening tasks (P2-04) and needs a French voice to start.
@@ -76,7 +77,7 @@ async function answerGap(page: Page, word: string, check?: () => Promise<void>) 
 async function answerListening(page: Page, right = true) {
   // Wait until the previous page has moved on, so the spoken word belongs to this page.
   await expect(page.locator('.task-card.is-celebrating')).toHaveCount(0);
-  await page.getByRole('button', { name: 'Listen' }).click();
+  await page.getByRole('button', { name: 'Listen', exact: true }).click();
   const word = await page.evaluate(() => (window as unknown as { __spoken: string[] }).__spoken.at(-1)!);
   for (const option of await page.locator('fieldset.choices label').all()) {
     if (((await option.locator('span[lang]').textContent())!.trim() === word) === right) { await option.click(); break; }
@@ -137,7 +138,7 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
 
   await page.reload();
   await page.getByRole('button', { name: 'Resume lesson' }).click();
-  await expect(page.getByText('Gender and overview')).toBeVisible();
+  await expect(page.locator('.task-card').getByText('Gender and overview')).toBeVisible();
   await expect(page.locator('.task-card select')).toHaveCount(0);
   await chooseGenders(page);
   // Check reveals the teaching form, translation and summary without moving or resizing anything.
@@ -197,23 +198,24 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   await expect(page.getByRole('heading', { name: 'Your exam answers' })).toBeVisible();
   await expect(page.locator('.result-note-almost')).toHaveCount(0);
   for (const list of await page.locator('.result-list').all()) await expect(list).not.toContainText(/\d \/ 1/); // no point fractions in the review
-  await page.getByRole('button', { name: /^Practice/ }).click();
+  await (await lessonNav(page)).getByRole('button', { name: /^Practice/ }).click();
   // The capitalised "Chaise" is an "almost" with half a point.
   await expect(page.locator('.result-note-almost')).toBeVisible();
   await expect(page.locator('.match-summary')).toContainText(/of 4 correct\./);
   await expect(page.locator('.result-item')).toHaveCount(4); // every answer is listed, correct ones too
-  const menu = await page.locator('.result-menu button').allTextContents();
+  const nav = await lessonNav(page);
+  const menu = (await nav.locator('.results-entry:not(.results-part) > span:first-child').allTextContents());
   // The highlighted final exam comes first, then the exercises in the order they were presented.
   expect(menu[0]).toBe('Final exam');
-  await expect(page.locator('.result-menu .button-exam')).toHaveText('Final exam');
+  await expect(nav.locator('.results-entry.is-exam > span:first-child')).toHaveText('Final exam');
   expect(menu[1]).toBe('Matching'); // unscored parts (introduction, flashcards) are not offered
   expect(menu.join()).not.toMatch(/Introduction|Flashcards/);
   expect(menu.slice(-1)).toEqual(['Listening']); // listening has its own results (P2-04 review)
   // Gender results name the word once: "word: chosen gender", a mistake struck through → the correct gender.
-  await page.getByRole('button', { name: 'Gender and overview' }).click();
+  await nav.getByRole('button', { name: /^Gender and overview/ }).click();
   await expect(page.locator('.result-gender').first()).toHaveText(/^(livre|chaise|stylo|table):\s*(Your answer: )?(Masculine|Feminine)/);
   await expect(page.locator('.result-gender').first()).not.toContainText(/\b(un|une) /);
-  await page.getByRole('button', { name: /^Practice/ }).click();
+  await nav.getByRole('button', { name: /^Practice/ }).click();
   // The card shows the selected part (heading and score), the lesson title and the lesson total only.
   await expect(page.locator('.summary-card h1')).toHaveText('Practice');
   await expect(page.locator('.summary-card')).toContainText('Les objets de la classe');
@@ -330,12 +332,12 @@ async function reachListeningPractice(page: Page) {
 test('plays French listening choice and dictation with a suitable voice', async ({ page }) => {
   await mockFrenchVoice(page, true);
   await reachListeningPractice(page);
-  await expect(page.getByRole('button', { name: 'Listen' })).toBeVisible();
-  await page.getByRole('button', { name: 'Listen' }).click();
+  await expect(page.getByRole('button', { name: 'Listen', exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Listen', exact: true }).click();
   expect(await page.evaluate(() => (window as unknown as { __spoken: string[] }).__spoken)).toContain('écoutez');
   // A wrong choice shows the correction; a right one lights up green and moves on by itself.
   const choose = async (right: boolean) => {
-    await page.getByRole('button', { name: 'Listen' }).click();
+    await page.getByRole('button', { name: 'Listen', exact: true }).click();
     const word = await page.evaluate(() => (window as unknown as { __spoken: string[] }).__spoken.at(-1)!);
     const options = page.locator('fieldset.choices label');
     for (const option of await options.all()) if (((await option.locator('span[lang]').textContent())!.trim() === word) === right) return option.click();
@@ -358,10 +360,10 @@ test('plays French listening choice and dictation with a suitable voice', async 
   await expect(page.getByRole('timer')).toBeVisible();
   for (const input of await page.getByRole('textbox').all()) await input.fill('écoutez');
   await proceed(page);
-  await expect(page.getByRole('button', { name: 'Listen' }).first()).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Listen', exact: true }).first()).toBeVisible();
   await expect(page.getByRole('timer')).toHaveText('2:00'); // derived: 30 s per word
   // Type back what the voice said: the first answer in capitals (half credit), the others exactly.
-  const listen = page.getByRole('button', { name: 'Listen' });
+  const listen = page.getByRole('button', { name: 'Listen', exact: true });
   const heard = async (index: number) => {
     await listen.nth(index).click();
     return page.evaluate(() => (window as unknown as { __spoken: string[] }).__spoken.at(-1)!);
@@ -372,9 +374,10 @@ test('plays French listening choice and dictation with a suitable voice', async 
   for (let n = 1; n < 4; n++) await page.getByRole('textbox').nth(n).fill(await heard(n));
   await proceed(page);
   await expect(page.getByRole('heading', { name: 'Your exam answers' })).toBeVisible();
-  // Translation (open) and dictation are separate accordions.
-  await expect(page.locator('.result-accordion > summary')).toHaveText([/^Translation/, /^Dictation/]);
-  await page.locator('.result-accordion > summary').filter({ hasText: 'Dictation' }).click();
+  // Translation (selected first) and dictation are separate parts of the exam in the navigation (P6-01).
+  const nav = await lessonNav(page);
+  await expect(nav.locator('.results-part > span:first-child')).toHaveText(['Translation', 'Dictation']);
+  await nav.getByRole('button', { name: /^Dictation/ }).click();
   // The capitalised dictation answer is listed as "almost" (half a point).
   await expect(page.locator('.result-list > li.outcome-orthography_only')).toHaveCount(1);
   await expect(page.locator('.result-note-almost')).toBeVisible();
@@ -402,7 +405,7 @@ test('replaces a revealed flashcard Listen button with Install language, which o
   // The voice disappears during the lesson, e.g. after a browser update.
   await page.evaluate(() => (window as unknown as { __setVoice: (on: boolean) => void }).__setVoice(false));
   await page.getByRole('button', { name: 'Flip card to French' }).first().click();
-  await expect(page.getByRole('button', { name: 'Listen' })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Listen', exact: true })).toHaveCount(0);
   await page.getByRole('button', { name: 'Install language' }).first().click();
   const dialog = page.getByRole('dialog', { name: 'French voice not installed' });
   await expect(dialog).toBeVisible();
@@ -502,7 +505,7 @@ test('matching pairs by keyboard, lets a pair be reassigned and locks it with fe
   await expect(page.locator('.task-card.is-celebrating .matching')).toBeAttached();
   await expect(french.and(page.locator('.is-right'))).toHaveCount(0);
   if (page.viewportSize()!.width >= 720) await expect(page.locator('.match-curve.is-thin')).toHaveCount(4); // thin purple curves
-  await expect(page.getByText('Gender and overview')).toBeVisible();
+  await expect(page.locator('.task-card').getByText('Gender and overview')).toBeVisible();
 });
 
 test('pronoun/form matching by drag and drop and by clicks, with per-row checks (P3-02)', async ({ page }) => {

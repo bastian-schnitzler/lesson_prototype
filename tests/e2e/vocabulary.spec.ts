@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { expect, test, type Page } from '@playwright/test';
+import { lessonNav } from './nav.ts';
 
 /**
  * P2-04: complete vocabulary sessions in the browser. A small solver reads the fixture brief and
@@ -44,7 +45,7 @@ async function mockFrenchVoice(page: Page) {
 
 /** Plays a unit's audio and returns the spoken text (mocked voice). */
 async function heard(page: Page, unit: ReturnType<Page['locator']>) {
-  await unit.getByRole('button', { name: 'Listen' }).click();
+  await unit.getByRole('button', { name: 'Listen', exact: true }).click();
   return page.evaluate(() => (window as unknown as { __spoken: string[] }).__spoken.at(-1)!);
 }
 
@@ -123,7 +124,7 @@ test.beforeEach(async ({ page }) => {
 test('plays a multi-group noun lesson perfectly: group-wise stages, exam info, 100 points, transient last-try score', async ({ page }) => {
   const data = lessonData('fr-family-members');
   await page.goto('./#/lesson/fr-family-members/play');
-  await expect(page.locator('.group-list li')).toHaveCount(data.brief.groups.length, { timeout: 20_000 }); // start page lists the word groups
+  await expect(page.locator('.flow-section')).toHaveCount(data.brief.groups.length + 2, { timeout: 20_000 }); // start page lists the word groups
   await primary(page).click();
   // Each group's introduction is followed by its flashcards.
   const order: string[] = [];
@@ -142,8 +143,9 @@ test('plays a multi-group noun lesson perfectly: group-wise stages, exam info, 1
   await expect(page.locator('.summary-card .results-total')).toHaveText('Lesson total: 100 / 100');
   await expect(page.locator('.summary-card .total-score')).toHaveText(`${data.examUnits} / ${data.examUnits}`);
   // Only scored parts are offered; each word group is one frame with its name shown once.
-  await expect(page.locator('.result-menu button')).toHaveText(['Final exam', 'Matching', 'Gender and overview', 'Practice', 'Listening']);
-  await page.getByRole('button', { name: 'Practice' }).click();
+  const nav = await lessonNav(page);
+  await expect(nav.locator('.results-entry:not(.results-part) > span:first-child')).toHaveText(['Final exam', 'Matching', 'Gender and overview', 'Practice', 'Listening']);
+  await nav.getByRole('button', { name: /^Practice/ }).click();
   await expect(page.locator('.result-section.is-framed')).toHaveCount(data.brief.groups.length);
   await expect(page.locator('.result-section-title')).toHaveText(data.brief.groups.map((g: Json) => g.label.en));
   // Prompts, arrows and answers line up in columns across each list on wide screens (P3-02 review).
