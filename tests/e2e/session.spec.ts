@@ -138,7 +138,7 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
 
   await page.reload();
   await page.getByRole('button', { name: 'Resume lesson' }).click();
-  await expect(page.locator('.task-card').getByText('Gender and overview')).toBeVisible();
+  await expect(page.locator('.task-card').getByText('Gender', { exact: true })).toBeVisible();
   await expect(page.locator('.task-card select')).toHaveCount(0);
   await chooseGenders(page);
   // Check reveals the teaching form, translation and summary without moving or resizing anything.
@@ -212,7 +212,7 @@ test('plays a lesson with Continue lock/confirm, resumes after reload and shows 
   expect(menu.join()).not.toMatch(/Introduction|Flashcards/);
   expect(menu.slice(-1)).toEqual(['Listening']); // listening has its own results (P2-04 review)
   // Gender results name the word once: "word: chosen gender", a mistake struck through → the correct gender.
-  await nav.getByRole('button', { name: /^Gender and overview/ }).click();
+  await nav.getByRole('button', { name: /^Gender / }).click();
   await expect(page.locator('.result-gender').first()).toHaveText(/^(livre|chaise|stylo|table):\s*(Your answer: )?(Masculine|Feminine)/);
   await expect(page.locator('.result-gender').first()).not.toContainText(/\b(un|une) /);
   await nav.getByRole('button', { name: /^Practice/ }).click();
@@ -280,9 +280,10 @@ test('grammar: placeholder, timed mixed exam and deferred answer review (P3-05)'
     await submit(page);
   }
   const score = page.locator('.session-score');
-  const practiceScore = (await score.textContent())!;
+  await expect(score).toHaveCount(0); // the placeholder shows no score (P06-00)
   await proceed(page); // the placeholder adds no score and needs no answer
   await passExamIntro(page);
+  const practiceScore = (await score.textContent())!;
   // Exam page 1: word order, no marks after Continue.
   await expect(page.getByRole('timer')).toHaveText('1:00');
   for (const word of ['Nous', 'ne', 'mangeons', 'pas', 'de', 'viande']) await page.getByRole('group', { name: 'Available words' }).getByRole('button', { name: word, exact: true }).click();
@@ -551,7 +552,7 @@ test('matching pairs by keyboard, lets a pair be reassigned and locks it with fe
   await expect(page.locator('.task-card.is-celebrating .matching')).toBeAttached();
   await expect(french.and(page.locator('.is-right'))).toHaveCount(0);
   if (page.viewportSize()!.width >= 720) await expect(page.locator('.match-curve.is-thin')).toHaveCount(4); // thin purple curves
-  await expect(page.locator('.task-card').getByText('Gender and overview')).toBeVisible();
+  await expect(page.locator('.task-card').getByText('Gender', { exact: true })).toBeVisible();
 });
 
 test('pronoun/form matching by drag and drop and by clicks, with per-row checks (P3-02)', async ({ page }) => {

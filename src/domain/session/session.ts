@@ -273,6 +273,8 @@ const tally = (units: PlanUnit[], r: SessionRecord): Tally => ({
   earned: units.reduce((s, u) => s + (r.locked[u.id]?.points ?? 0), 0),
   possible: units.length,
 });
+/** Points earned on the given pages, e.g. one exam part in the results sidebar. */
+export const pagesTally = (pages: PlanPage[], r: SessionRecord): Tally => tally(pages.flatMap((p) => p.units), r);
 const unitsWhere = (plan: LessonPlan, role: 'practice' | 'exam', r: SessionRecord) => plan.pages.filter((p) => p.role === role && !(r.skippedNoVoice ?? []).includes(p.pageId)).flatMap((p) => p.units);
 export const percent = (t: Tally) => (t.possible ? (100 * t.earned) / t.possible : 0);
 

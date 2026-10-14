@@ -2805,6 +2805,25 @@ html {
   text-shadow: 0 1px 2px #000, 0 0 4px #000;
 }
 
+/* The results card takes the colour of the selected part (P06-00). */
+.summary-card.is-all-wrong {
+  background: #7f1d1d;
+  border-color: #b91c1c;
+}
+
+.summary-card.is-mixed {
+  background: repeating-linear-gradient(135deg, #7f1d1d 0 14px, #0f172a 14px 28px);
+  border-color: #b91c1c;
+  text-shadow: 0 1px 2px #000, 0 0 4px #000;
+}
+
+.summary-card.is-all-wrong .label-muted,
+.summary-card.is-all-wrong .results-total,
+.summary-card.is-mixed .label-muted,
+.summary-card.is-mixed .results-total {
+  color: #e2e8f0;
+}
+
 .results-entry[aria-pressed='true'] {
   background: #1e1b4b;
   border-color: var(--progress);

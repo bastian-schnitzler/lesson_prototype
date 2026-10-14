@@ -7,7 +7,7 @@ export const COPY = {
   introduction: [L('Introduction', 'Introduction', 'Einführung'), L('Read the introduction and listen to the new words.', 'Lisez l’introduction et écoutez les nouveaux mots.', 'Lies die Einführung und hör dir die neuen Wörter an.')],
   flashcards: [L('Flashcards', 'Cartes mémoire', 'Karteikarten'), L('Recall each word, then turn the card to check it.', 'Rappelez-vous chaque mot, puis retournez la carte pour vérifier.', 'Erinnere dich an jedes Wort und dreh dann die Karte um.')],
   matching: [L('Matching', 'Association', 'Zuordnen'), L('Match each word with its translation.', 'Associez chaque mot à sa traduction.', 'Ordne jedem Wort seine Übersetzung zu.')],
-  gender: [L('Gender and overview', 'Genre et vue d’ensemble', 'Genus und Übersicht'), L('Choose the gender of each noun, then review all words.', 'Choisissez le genre de chaque nom, puis revoyez tous les mots.', 'Wähle das Genus jedes Nomens und sieh dir dann alle Wörter an.')],
+  gender: [L('Gender', 'Genre', 'Genus'), L('Choose the gender of each noun.', 'Choisissez le genre de chaque nom.', 'Wähle das Genus jedes Nomens.')],
   overview: [L('Overview', 'Vue d’ensemble', 'Übersicht'), L('Review all words of this lesson.', 'Revoyez tous les mots de cette leçon.', 'Sieh dir alle Wörter dieser Lektion an.')],
   practice: [L('Practice', 'Entraînement', 'Übung'), L('Choose the right word and type it.', 'Choisissez le bon mot et écrivez-le.', 'Wähle das richtige Wort und schreibe es.')],
   listening: [L('Listening', 'Écoute', 'Hören'), L('Listen and choose the word you hear.', 'Écoutez et choisissez le mot entendu.', 'Hör zu und wähle das Wort, das du hörst.')],

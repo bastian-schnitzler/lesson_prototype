@@ -3,7 +3,7 @@
  *
  *   node scripts/smoke.ts https://bastian-schnitzler.github.io/lesson_prototype/
  *
- * Fetches index.html, every script/stylesheet it references, the manifest,
+ * Fetches index.html, every script/stylesheet it references, the manifest, the feedback page,
  * each course outline and one artifact, and a refreshed hash route. Hash
  * routes never reach the server, so a refresh must return the same index.html.
  */
@@ -59,6 +59,9 @@ export async function smoke(base: string): Promise<SmokeResult> {
 
   const refreshed = await get(`${root}#/lesson/${manifest.data.courses[0]?.lessonIds[0] ?? 'x'}`);
   check(refreshed.status === 200 && refreshed.text === index.text, 'refreshed hash route returns index.html');
+
+  const feedback = await get(new URL('docs/feedback.html', root).href);
+  check(feedback.status === 200 && feedback.text.includes('href="../"'), `docs/feedback.html ${feedback.status}`);
 
   const env = await get(new URL('.env', root).href);
   check(env.status === 404, `.env not served (${env.status})`);

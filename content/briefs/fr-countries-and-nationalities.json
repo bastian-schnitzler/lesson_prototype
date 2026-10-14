@@ -14,7 +14,7 @@
     "fr": "Apprendre sept noms de pays et leurs adjectifs de nationalité correspondants au masculin et au féminin.",
     "de": "Lerne sieben Ländernamen und die dazugehörigen männlichen und weiblichen Nationalitätsadjektive auf Französisch."
   },
-  "estimatedMinutes": 24,
+  "estimatedMinutes": 23,
   "provenance": {
     "generator": "lesson-prototype",
     "model": "gemini-3.6-flash",

@@ -4,7 +4,7 @@ import { useI18n } from '../app/context.tsx';
 import { reviewColor } from '../artifacts/briefParts.tsx';
 import { inExam, lessonOutline, numberedPoints, pointState, type NumberedPoint } from '../domain/session/outline.ts';
 import type { LessonPlan, PlanPage } from '../domain/session/plan.ts';
-import { lessonResults, type SessionRecord } from '../domain/session/session.ts';
+import { lessonResults, pagesTally, type SessionRecord } from '../domain/session/session.ts';
 import type { MessageKey } from '../i18n/messages.ts';
 import type { SessionInput } from './useSession.ts';
 
@@ -170,7 +170,7 @@ function ResultsNav({ plan, record, dispatch }: { plan: LessonPlan; record: Sess
         {parts && (
           <div className="results-parts">
             {parts.map((part) => (
-              <button key={part.key} type="button" className="results-entry results-part" aria-pressed={examSelected && selectedPart === part.key} onClick={() => select(`exam:${part.key}`)}>
+              <button key={part.key} type="button" className={`results-entry results-part${resultTone(pagesTally(part.pages, record))}`} aria-pressed={examSelected && selectedPart === part.key} onClick={() => select(`exam:${part.key}`)}>
                 <span>{part.label}</span>
                 <span className="results-entry-score">{t('nav.partScore', count(part.pages))}</span>
               </button>

@@ -144,7 +144,7 @@ const vocabularyItemSchema = (lang: string) =>
     z.strictObject({
       type: z.literal('vocabulary_gender_select'),
       itemId: NestedIdSchema,
-      /** Every target of the lesson; nouns also have a row. */
+      /** The nouns of the lesson, each with a row (P06-00: words without a gender are left out). */
       targetIds: z.array(NestedIdSchema).min(1),
       rows: z.array(z.strictObject({ targetId: NestedIdSchema, ...unit })).min(1),
     }),
