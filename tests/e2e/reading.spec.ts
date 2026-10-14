@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs';
+import { lessonNav } from './nav.ts';
 import { expect, test, type Page } from '@playwright/test';
 
 /** Reading lesson (docs/reading-lessons.md) on the fixture fr-fix-menu: the A1 menu lesson. */
@@ -40,7 +41,7 @@ async function answer(page: Page, wrong = false) {
 test('plays a reading lesson: key words, skim with blur, detail with evidence, structure, timed exam, results and resume', async ({ page }) => {
   await page.goto('./#/lesson/fr-fix-menu/play');
   await expect(page.locator('.kind-badge')).toHaveText('Reading');
-  await expect(page.locator('.flow-list li')).toHaveCount(5);
+  await expect(page.locator('.flow-section')).toHaveCount(5); // the five stages as lettered sections
   await page.locator('.start-card .button-primary').click();
 
   // 1. Key words, then the matching board.
@@ -105,9 +106,7 @@ test('plays a reading lesson: key words, skim with blur, detail with evidence, s
   await expect(page.locator('.total-score')).toHaveText('5 / 5');
   const practice = (brief.keywords.length + 1 + task.pairs.length) / (brief.keywords.length + 1 + 4 + task.pairs.length);
   await expect(page.locator('.results-total')).toHaveText(`Lesson total: ${(Math.round((30 * practice + 70) * 10) / 10).toLocaleString('en')} / 100`);
-  const toggle = page.locator('.sidebar-toggle');
-  if (await toggle.isVisible()) await toggle.click();
-  await page.locator('.sidebar-link', { has: page.locator('.sidebar-label', { hasText: 'Detail' }) }).click();
+  await (await lessonNav(page)).getByRole('button', { name: /^Detail/ }).click();
   const firstWrong = items.find((i) => i.itemId === lesson.steps[2].pages[0].items[1].itemId);
   await expect(page.locator('.result-evidence').first()).toContainText(segment(firstWrong.evidenceSegmentIds[0]).text);
 });

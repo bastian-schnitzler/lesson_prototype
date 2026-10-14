@@ -1,15 +1,16 @@
 import { readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
+import { useState } from 'react';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { PreferencesProvider } from '../../src/app/context.tsx';
 import { lessonOf } from './lessonFixture.ts';
 import { buildPlan, type PlanPage, type PlanUnit } from '../../src/domain/session/plan.ts';
-import { scoreUnit, type LockedUnit } from '../../src/domain/session/session.ts';
+import { scoreUnit, type LockedUnit, type UnitResponse } from '../../src/domain/session/session.ts';
 import { ExplanationRenderer, PronounMatchRenderer, PronounTypingRenderer } from '../../src/session/grammarRenderers.tsx';
 import { checkedOrder, MatchingRenderer } from '../../src/session/vocabularyRenderers.tsx';
 import { promptParts, StartView } from '../../src/session/views.tsx';
-import { answerText, SpotSummary, UnitsRenderer } from '../../src/session/controls.tsx';
+import { UnitsRenderer } from '../../src/session/controls.tsx';
 import { skipsFeedbackWhenCorrect } from '../../src/domain/session/session.ts';
 import type { RendererProps } from '../../src/session/controls.tsx';
 
@@ -190,17 +191,20 @@ describe('person matching (P3-02 review)', () => {
 });
 
 describe('grammar start page (P3-02 review)', () => {
-  it('outlines the lesson flow: one coloured part per teaching block with its exercises, then the exam', () => {
+  it('outlines the lesson as lettered sections (P6-01 review): each block with its numbered points, then the exam', () => {
     const plan = planOf();
     render(<PreferencesProvider initial={{ interfaceLanguage: 'en', motherTongue: 'en' }}><StartView plan={plan} level="A1" onStart={() => undefined} onResume={() => undefined} /></PreferencesProvider>);
-    const parts = within(screen.getByRole('list')).getAllByRole('listitem');
     expect(screen.getByRole('heading', { name: 'Lesson outline' })).toBeInTheDocument();
-    expect(parts).toHaveLength(3); // two blocks and the exam; no feedback row
-    expect(parts[0]).toHaveTextContent('Pronoun–form matching · Multiple-choice gaps · Person matching'); // no "Explanation"
-    expect(parts[0]).not.toHaveTextContent('Explanation');
-    expect(parts[1]).toHaveTextContent('Pronoun–form typing · Typed gaps · Error spotting');
-    expect(parts[2]).toHaveTextContent(/Final exam.*Answer 5 items on 2 timed pages/);
-    for (const part of parts) expect(part.getAttribute('style')).toMatch(/--review-color/);
+    const sections = [...document.querySelectorAll('.flow-section')];
+    expect(sections).toHaveLength(3); // two blocks and the exam; no feedback row
+    expect(sections.map((s) => s.querySelector('.flow-letter')!.textContent)).toEqual(['A', 'B', 'C']);
+    const points = (n: number) => [...sections[n].querySelectorAll('.flow-points li')].map((li) => li.textContent);
+    expect(points(0)[0]).toMatch(/^1/);
+    expect(points(0).slice(1)).toEqual(['2Match forms to pronouns', '3Choose the missing form', '4Singular forms']);
+    expect(points(1)[0]).toMatch(/^5/);
+    expect(sections[2]).toHaveTextContent(/Final exam.*Answer 5 items on 2 timed pages/);
+    expect(sections[2].querySelector('.flow-points')).toBeNull();
+    for (const section of sections) expect(section.getAttribute('style')).toMatch(/--review-color/);
   });
 });
 
@@ -301,40 +305,112 @@ describe('error spotter (P3-07 review)', () => {
     const page = plan.pages.find((p) => p.items[0]?.type === 'grammar_error_spotter')!;
     const unit = page.units[0];
     renderPage(UnitsRenderer, plan, page);
-    expect(screen.queryByText(/^Replace/)).toBeNull();
+    expect(screen.queryByText('Correction')).toBeNull();
     expect(screen.queryByRole('textbox')).toBeNull();
     cleanup();
     renderPage(UnitsRenderer, plan, page, { drafts: { [unit.id]: { tokenId: unit.kind === 'spot' ? unit.tokens[0].id : '', text: '' } } });
-    // The control names the selected word, so a correction is never offered for an unnamed word (P6-05).
-    expect(screen.getByText(`Replace “${unit.kind === 'spot' ? unit.tokens[0].text : ''}” with`)).toBeInTheDocument();
+    expect(screen.getByText('Correction')).toBeInTheDocument();
+  });
+});
+
+describe('word order and error spotter (P3-04)', () => {
+  /** The être fixture with a practice word-order page: a repeated word and punctuation are tokens. */
+  const orderPlan = () => planOf((c) => {
+    if (c.kind !== 'grammar') return;
+    const step = c.steps[1]; // the first exercise step
+    step.pages.unshift({
+      pageId: 'order', estimatedDurationS: 25, timeLimitS: null, instructions: step.pages[0].instructions,
+      items: [{
+        type: 'grammar_word_order', itemId: 'order-1', ruleIds: ['r-plural'], answerExplanation: { en: 'e', fr: 'e', de: 'e' },
+        tokens: [{ tokenId: 'e', text: 'ensuite' }, { tokenId: 'c', text: ',' }, { tokenId: 'n1', text: 'nous' }, { tokenId: 'n2', text: 'nous' }, { tokenId: 'v', text: 'lavons' }],
+        acceptedOrders: [['e', 'c', 'n1', 'n2', 'v']],
+      }],
+    });
+  });
+  const plan = orderPlan();
+  const page = plan.pages.find((p) => p.pageId === 'order')!;
+  const unit = page.units[0] as PlanUnit & { kind: 'order' };
+
+  /** UnitsRenderer whose answers are kept in state, so focus can be followed across renders. */
+  function Stateful({ initial }: { initial: Record<string, UnitResponse> }) {
+    const [drafts, setDrafts] = useState(initial);
+    const props: RendererProps = {
+      item: page.items[0], units: page.units, plan, mode: 'answering', drafts, locked: {}, seed: 1, motherTongue: 'en',
+      onChange: (id, response) => setDrafts((d) => ({ ...d, [id]: response })), pageId: page.pageId, revealed: {}, onReveal: () => undefined,
+    };
+    return <><UnitsRenderer {...props} /><output data-testid="order">{JSON.stringify(drafts[unit.id] ?? [])}</output></>;
+  }
+  const renderStateful = (order: string[] = []) => render(
+    <PreferencesProvider initial={{ interfaceLanguage: 'en', motherTongue: 'en' }}><Stateful initial={{ [unit.id]: order }} /></PreferencesProvider>,
+  );
+  const current = () => JSON.parse(screen.getByTestId('order').textContent ?? '[]') as string[];
+  const line = () => within(screen.getByRole('group', { name: 'Your sentence' }));
+  const bank = () => within(screen.getByRole('group', { name: 'Available words' }));
+
+  it('labels the sentence line and the word bank, and names each placed word with its position', () => {
+    renderStateful(['e', 'c']);
+    expect(line().getByRole('button', { name: /^ensuite, position 1 of 2\./ })).toBeInTheDocument();
+    expect(bank().getAllByRole('button').map((b) => b.textContent).sort()).toEqual(['lavons', 'nous', 'nous']);
   });
 
-  it('offers guided choices only for the faulty word and refuses another word at once (D55)', () => {
-    const plan = planOf();
-    const page = plan.pages.find((p) => p.items[0]?.type === 'grammar_error_spotter')!;
-    const base = page.units[0];
-    if (base.kind !== 'spot') throw new Error('no spotter');
-    const unit = { ...base, correction: { ...base.correction, mode: 'select' as const, choices: [...base.correction.accepted.answers, 'zz'] } };
-    const other = unit.tokens.find((tk) => tk.id !== unit.faultyTokenId)!;
-    const view = (tokenId: string) => renderPage(UnitsRenderer, plan, { ...page, units: [unit] }, { units: [unit], drafts: { [unit.id]: { tokenId, text: '' } } });
-    view(other.id);
-    expect(screen.getByText(`“${other.text}” is not the mistake in this sentence. Choose another word.`)).toBeInTheDocument();
-    expect(screen.queryAllByRole('radio')).toHaveLength(0); // no replacement is offered for a word that is not the mistake
-    cleanup();
-    view(unit.faultyTokenId);
-    expect(screen.getAllByRole('radio')).toHaveLength(unit.correction.choices.length);
+  it('moves a placed word with the arrow keys, Home and End, and keeps it focused', () => {
+    renderStateful(['e', 'c', 'n1', 'n2', 'v']);
+    const lavons = () => line().getByRole('button', { name: /^lavons,/ });
+    lavons().focus();
+    fireEvent.keyDown(lavons(), { key: 'ArrowLeft' });
+    expect(current()).toEqual(['e', 'c', 'n1', 'v', 'n2']);
+    expect(document.activeElement).toBe(lavons());
+    fireEvent.keyDown(lavons(), { key: 'Home' });
+    expect(current()).toEqual(['v', 'e', 'c', 'n1', 'n2']);
+    expect(document.activeElement).toBe(lavons());
+    fireEvent.keyDown(lavons(), { key: 'ArrowLeft' }); // already first: nothing changes
+    expect(current()).toEqual(['v', 'e', 'c', 'n1', 'n2']);
+    fireEvent.keyDown(lavons(), { key: 'End' });
+    expect(current()).toEqual(['e', 'c', 'n1', 'n2', 'v']);
+    expect(lavons()).toHaveAccessibleName(/position 5 of 5/);
   });
 
-  it('shows the corrected sentence without bracket markup and names the selected word', () => {
-    const plan = planOf();
-    const unit = plan.pages.flatMap((p) => p.units).find((u) => u.kind === 'spot')!;
-    if (unit.kind !== 'spot') throw new Error('no spotter');
-    const wrong = unit.tokens.find((tk) => tk.id !== unit.faultyTokenId)!;
-    const text = (response: { tokenId: string; text: string }) => answerText(unit, response, (k) => k);
-    expect(text({ tokenId: unit.faultyTokenId, text: 'XX' })).not.toMatch(/[\[\]]/);
-    expect(text({ tokenId: unit.faultyTokenId, text: 'XX' })).toContain('XX');
-    render(<PreferencesProvider initial={{ interfaceLanguage: 'en', motherTongue: 'en' }}><SpotSummary unit={unit} response={{ tokenId: wrong.id, text: 'zz' }} lang="fr" /></PreferencesProvider>);
-    expect(screen.getByText(`“${wrong.text}” is not the mistake in this sentence.`)).toBeInTheDocument();
-    expect(screen.getByText('Your correction: zz')).toBeInTheDocument();
+  it('keeps focus near a word that is placed or sent back', () => {
+    renderStateful();
+    bank().getAllByRole('button')[0].focus();
+    const first = bank().getAllByRole('button')[0];
+    fireEvent.click(first);
+    expect(current()).toHaveLength(1);
+    expect(document.activeElement).toBe(bank().getAllByRole('button')[0]); // the next word in the bank
+    const placed = line().getAllByRole('button')[0];
+    fireEvent.click(placed);
+    expect(current()).toEqual([]);
+    expect(document.activeElement?.closest('.order-bank')).not.toBeNull(); // the line is empty: back to the bank
+  });
+
+  it('places repeated words as separate tokens and accepts them in either token order', () => {
+    renderStateful(['e', 'c']);
+    for (const b of bank().getAllByRole('button', { name: 'nous' })) fireEvent.click(b);
+    expect(current().slice(2).sort()).toEqual(['n1', 'n2']);
+    expect(bank().queryByRole('button', { name: 'nous' })).toBeNull();
+    expect(scoreUnit(unit, ['e', 'c', 'n2', 'n1', 'v']).points).toBe(1);
+    expect(scoreUnit(unit, ['c', 'e', 'n1', 'n2', 'v']).points).toBe(0); // punctuation is placed like a word
+  });
+
+  describe('error spotter', () => {
+    const spotPage = pageOf(planOf(), 'grammar_error_spotter');
+    const spot = spotPage.units[0] as PlanUnit & { kind: 'spot' };
+    const selectSpot = { ...spot, correction: { mode: 'select' as const, accepted: { answers: ['êtes'] }, choices: ['es', 'êtes', 'sont', 'est'] } };
+
+    it('offers the sentence words as a labelled group of toggle buttons', () => {
+      renderPage(UnitsRenderer, planOf(), spotPage);
+      const words = within(screen.getByRole('group', { name: 'Select the wrong word' })).getAllByRole('button');
+      expect(words.map((b) => b.textContent)).toEqual(['Vous', 'est', 'prêts.']);
+      for (const w of words) expect(w).toHaveAttribute('aria-pressed', 'false');
+    });
+
+    it('needs both the detection and the repair', () => {
+      expect(scoreUnit(spot, { tokenId: 'w2', text: 'êtes' })).toEqual({ outcome: 'fully_correct', points: 1 });
+      expect(scoreUnit(spot, { tokenId: 'w2', text: 'etes' })).toMatchObject({ points: 0.5 }); // typed: accent slip is half credit
+      expect(scoreUnit(spot, { tokenId: 'w2', text: 'sont' })).toEqual({ outcome: 'incorrect', points: 0 }); // detected, not repaired
+      expect(scoreUnit(spot, { tokenId: 'w1', text: 'êtes' })).toEqual({ outcome: 'incorrect', points: 0 }); // repair on the wrong word
+      expect(scoreUnit(selectSpot, { tokenId: 'w2', text: 'êtes' }).points).toBe(1);
+      expect(scoreUnit(selectSpot, { tokenId: 'w2', text: 'es' }).points).toBe(0);
+    });
   });
 });

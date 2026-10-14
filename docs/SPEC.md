@@ -1,6 +1,6 @@
 # Lesson exercise prototype specification
 
-Status: **Draft 0.62 — phase 6 UX review, reading lessons ported (phase 5)**. Date: 2026-10-14.
+Status: **Draft 0.64 — phase 6 lesson navigation (P6-01), shorter lessons and clearer content, reading lessons (phase 5)**. Date: 2026-10-14.
 
 This document specifies the prototype and its phased implementation. It is the maintained requirements document: no separate requirements file exists. It does not authorize starting implementation before the specification review. The backlog is in [ISSUES.md](ISSUES.md) and published as GitHub issues in `bastian-schnitzler/lesson_prototype`.
 
@@ -48,7 +48,7 @@ Confirmed decisions are identified below. Other defaults make the draft concrete
 | D16 | Lesson header and exams | **Confirmed:** duration-weighted progress percentage and current earned score against total possible; timed exam pages only, with results after the complete exam. **Confirmed (P0-02):** keep the practice contribution visible and unchanged during exams to avoid leaking correctness, with no pending label. |
 | D17 | Orthography-only points | **Confirmed:** 50% credit when letters are correct but accents or case differ. Full correctness earns 100%; other incorrect answers earn zero. |
 | D18 | Exam countdown limits | **Confirmed:** each lesson brief specifies a time limit for every exam page, based on its task. Content generation preserves those limits. |
-| D19 | Final results | **Confirmed:** final results show exam answers by default; a button menu selects any previous exercise result, with score aggregates always visible. |
+| D19 | Final results | **Confirmed:** final results show exam answers by default; the results sidebar (P6-01, D53; formerly a button menu) selects any previous exercise result, with score aggregates always visible. |
 | D20 | Correction explanations | **Confirmed:** whenever practice shows the right answer after an error, also show a short pre-generated explanation from lesson content. |
 | D21 | Vocabulary noun gender | **Confirmed:** stage 4 integrates a scored gender select-box exercise for nouns and then shows the reviewed overview with right/wrong indicators. All vocabulary is on one page; non-nouns have no gender input. |
 | D22 | Structured artifact viewer | **Confirmed:** render artifact objects as React/HTML cards, tables, and exercise previews. Outline rendering is shared across categories; Draft and Content rendering are category-specific. Raw JSON is a header-toggle tree view with the root expanded and small containers expanded by default. |
@@ -82,12 +82,10 @@ Confirmed decisions are identified below. Other defaults make the draft concrete
 | D50 | Function lesson flow | **Confirmed (P4-01):** a function lesson is built on 6–10 expressions (about 8; phrases and sentence starts such as `Je voudrais …`) and 0–6 additional words (about 4). Sequence: flashcards (expressions French on the front, words as in vocabulary), a model dialogue revealed line by line with flippable lines (translation and note), matching of expressions and of words, word order of one example sentence per expression with only the tokens as prompt, dialogue gaps with four expression choices; exam part 1 builds replies to role A from tokens with 0–3 distractors and only the dialogue as context, exam part 2 is a new dialogue unrolled line by line whose expression gaps are typed. Details in section 8. **Revised in the P4-05 review:** word flashcards first, then expression flashcards, both with the mother tongue on the front; a gender and overview page for the words after matching; every exam-dialogue line shows its mother-tongue translation; word-order tokens admit exactly one order. **Revised again in the P4-05 review:** dialogue gaps come before word order, followed by a listening choice (role A heard, four replies heard, choose the fitting one). |
 | D51 | Function artifacts and authoring | **Confirmed (P4-01):** a function lesson has a brief and lesson content, like grammar. The brief holds the situation, the two roles and the expressions and words with example sentences; the model dialogue, all exercises and the exam are generated in the lesson content. Claude first writes three test lessons by hand (`fr-greetings-and-goodbyes`, `fr-ordering-at-a-cafe`, `fr-asking-the-way`); the product owner decides on generation of the remaining eleven after their review. |
 | D52 | Autoplay mode | **Confirmed (P4-05 review):** a header switch **Autoplay**, the last control on the right, on by default and stored with the preferences (D45). When on, learning-language audio plays by itself: turning a flashcard to French; each line of a function model dialogue as it appears; connecting a matching pair or clicking a French box (person boards in forms mode: pronoun + form, e.g. `nous sommes`, `j'ai`); placing a form in a pronoun row; entering a dialogue gap, a listening choice or a dictation (the prompt; dialogue gaps play nothing when checked); and, as a practice page is checked, together with the green or red marking, the correct answer (gap sentences except dialogue gaps, error-spotter sentences, word-order sentences, the right word of a vocabulary listening choice, pronoun + form of pronoun rows; the function listening choice plays only role A). Prompts on entering a page wait for speech in progress. Exam answers are never spoken. Section 5, "Autoplay". |
-| D53 | Lesson navigation sidebar | **Confirmed (P6-01, product-owner review of 2026-10-09):** alternative V2 (vertical timeline with ticks) is the one sidebar design; V1 relies on colour bars and V3 on letters that do not generalize to grammar. Every learner page is an outline entry named by its step label (a learning point, a block title or an exam page; repeated labels are numbered n/m). State is a mark plus a word, never colour alone: current (●), done (✓), next (○), locked (–). **Policy after completion:** completed theory pages (introduction, flashcards, grammar explanations) can be read again until the exam starts; the revisit is read-only and awards nothing. Completed practice pages are not reopened (their locked answers and feedback are reviewed on the results page), and no exam page is ever navigable. Results selection uses the same sidebar. Below 900 px the sidebar becomes an on-demand outline (section 5, "Lesson navigation"). |
-| D54 | Vocabulary lesson length | **Confirmed (P6-02), revises D14:** the standard vocabulary lesson has **10 words and at most 12**; a larger topic is split over two lessons (the audit reports `fr-countries-and-nationalities` with 14 and `fr-numbers-zero-to-twenty` with 21 words). D47 is kept: every word still takes part in every exercise and in both exam parts (translation and dictation), so no required coverage is dropped; the lesson becomes shorter because it has fewer words (about 15–20 minutes instead of 30 for 18 words), not because the estimates changed. The length is a quality gate for generation and audit, not a playability condition. |
-| D55 | Error spotter correction contract | **Confirmed (P6-04/P6-05):** scoring is first the selected word, then its correction; a wrong word scores zero whatever the correction. **Guided choices belong to the faulty word only:** in select mode a practice item answers any other selected word at once (“… is not the mistake in this sentence. Choose another word.”) and offers no replacement for it, selecting another word clears the correction, and Check stays disabled until the faulty word is chosen; typed corrections accept any word and score zero for a wrong one. The correction control always names the selected word (“Replace “suis” with”), so no replacement is offered for an unnamed word. A sentence must have **one defect and one fix**: when a pronoun and a verb form disagree, the context (a name, a gender) must show which is meant; the authored `Tu suis à Paris` (correct with *je*, or with *es*) was replaced by `Voici Paul : je est canadien`. Select-mode choices are distinct replacements for the faulty word. Feedback lists the selected word, says so when it was not the mistake, shows the submitted correction and the correct sentence once, with the explanation, and never shows bracket markup; practice feedback appears once per item. |
-| D56 | Presentation and input rules | **Confirmed (P6-03/P6-05):** no numeric score in the header of the running lesson (progress stays; scores appear on the results page); Enter in a typed answer acts like the primary button (once it is enabled, never while composing text, never twice); audio controls next to answers are speaker icons with an accessible “Listen” label; choice lists say “Choose one answer” (every choice unit takes exactly one answer); the exam information page lists the two exam categories (translation, dictation) as rows with their page count and time, plus a total, and shows no question counts; typed gaps show the sentence first and the reference words after it. **Vocabulary gets no pre-exam feedback step:** a placeholder would suggest individual feedback that does not exist, and vocabulary already has the exam information page. |
-| D57 | Mother-tongue metalinguistic questions | **Confirmed (P6-02), exception to the language contract:** questions about signs, accents or letters (“What is the name of the accent in the word café (é)?”) are written in the learner's mother tongue (`gap.question`, per locale) with the word and the marked character visible; the answer stays in the learning language. Other gaps keep their learning-language sentence. A clue must show what it names (a hyphen question writes Jean-Paul, never “between Jean and Paul”). |
-| D58 | Grammar lesson length, phase 6 | **Confirmed (P6-04), revises D49:** at least **24** scored practice units (recommended at most 30) and an exam with at least **12** scored units (recommended at most 18), 2–4 blocks; each block teaches **one named point** with a short explanation, and the title is the sidebar label. The minimums are the quality gate; the ceilings are reported by `make sample-lessons` as audit lines because the ten authored samples (34–42 practice units) predate them and are shortened with the remaining authoring in P2-07. |
+| D53 | Lesson navigation | **Confirmed (P6-01):** a sidebar shows the lesson's learning points as a vertical timeline (design V2): one numbered circle per point in its start-page section colour, filled when done (the number stays), ringed when current; the exam last with a flag. The start page lists the same points under lettered sections (A, B, C…). Navigation only shows the way: no point can be reopened. During the exam the sidebar lists the exam pages with tasks and time limits; on the results page it selects the part shown. Phones show the points as a horizontal row of numbered markers combined with the progress bar, with a tooltip per marker. |
+| D54 | Vocabulary lesson length | **Confirmed (P6-02), revises D14:** the standard vocabulary lesson has **10 words and at most 12**; a larger topic is split over two lessons (the audit reports `fr-countries-and-nationalities` with 14 and `fr-numbers-zero-to-twenty` with 21 words). D47 is kept: every word still takes part in every exercise and in both exam parts, so no required coverage is dropped; the lesson becomes shorter because it has fewer words, not because the estimates changed. The length is a quality gate for generation and audit, not a playability condition. |
+| D55 | Mother-tongue metalinguistic questions | **Confirmed (P6-02), exception to the language contract:** questions about signs, accents or letters (“What is the name of the accent in the word café (é)?”) are written in the learner's mother tongue (`gap.question`, per locale) with the word and the marked character visible; the answer stays in the learning language. A clue must show what it names (a hyphen question writes Jean-Paul, never “between Jean and Paul”). The gender page lists the nouns only. |
+| D56 | Grammar lesson length, phase 6 | **Confirmed (P6-04), revises D49:** at least **24** scored practice units (recommended at most 30) and an exam with at least **12** scored units (recommended at most 18), 2–4 blocks, one named point per block. The minimums are the quality gate; the ceilings are audit lines in `make sample-lessons` because the ten authored samples predate them. The error spotter keeps one defect with one fix per sentence, distinct select-mode choices (validated) and feedback without bracket markup. |
 
 ## 2. Runtime and delivery architecture
 
@@ -578,7 +576,7 @@ flowchart TD
     J -->|No| K[Final results: scores and exam answers by default]
     C --> L[Next learner page]
     G --> L
-    K --> M[Select previous exercise in results button menu]
+    K --> M[Select previous exercise in the results sidebar]
     M --> K
 ```
 
@@ -597,9 +595,21 @@ The header switch **Autoplay** (on by default, stored with the preferences) lets
 
 Exam answers are never spoken; matching and gender pages speak nothing extra on Check.
 
+### Lesson navigation (P6-01, D53)
+
+Every lesson page from the first learner page to the results has a **sidebar** left of the content on screens wider than 960 px (the page widens to about 1320 px). Its content depends on the phase:
+
+- **Learning:** "Your lesson", "x of n points done" and a vertical timeline (design V2 of the 2026-10-09 feedback). The points come from the plan (`src/domain/session/outline.ts`): every theory page is a point (vocabulary introduction or flashcards of a group, grammar explanation named by its heading, function flashcards or dialogue); consecutive practice pages of one step form one point; the exam is the last point. The points are numbered 1, 2, 3… through the lesson; each circle has the colour of its start-page section and keeps its number when done (filled, no tick). The current point is ringed and says "You are here"; others say "Done" or "Not yet open"; the exam shows its flag and its number of tasks. The production-feedback placeholder and the exam info page belong to the exam point.
+- **Exam:** "Final exam", "p pages · t tasks" and one row per exam page with its kind (translation, dictation, mixed…), its number of tasks and time limit; done pages are ticked ("Answered"), the current page says "in progress"; below, "Each page has its own countdown. You see your results only after the whole exam."
+- **Results:** "Your results" replaces the former button menu: **Final exam** with its score first, its parts nested below with "x of y" (vocabulary: Translation, Dictation; functions: Translation, Replies, Dialogue), then every scored exercise with its score, coloured by outcome as before. Only the selected part is shown; selecting **Final exam** shows its first part.
+
+Navigation only shows the way (product-owner decision): no learning point can be reopened, neither from the sidebar nor from the phone strip, and there is no Previous button. Locks, drafts, countdowns and deadlines are never touched by navigation; it is derived from the saved session, so it survives a reload, a resume and a change of interface language.
+
+**Phones (960 px and narrower):** there is no sidebar and no drawer. The session header shows the learning points as a horizontal row of numbered round markers in place of the progress bar: done markers are filled, the current one is ringed, the exam has its flag, and the connecting line fills up to the last done point. The percentage and the score follow on the next line. Pressing a marker shows a tooltip below the header with the point's number, title and state; Esc or a press elsewhere closes it, and so does moving to the next page. Each marker is a button with a full accessible name ("2. Multiple-choice gaps 1: You are here"). On the results page the result parts stand above the answers.
+
 ### Duration-weighted progress and live score header
 
-All active lesson pages use a consistent header: lesson title and a progress bar with percentage (the earlier “current score / 100” was removed in phase 6). Exam pages add their countdown in the task area. Keep the header visually separate from the centered task card. The running lesson shows **no numeric score on any page** (D56, revised in the P6 review): the header has the lesson title, the progress bar and its percentage; scores appear on the final results page only.
+All active lesson pages use a consistent header: lesson title, a progress bar with percentage, and **current score / total possible lesson score**. Exam pages add their countdown in the task area. Keep the header visually separate from the centered task card.
 
 Progress follows the **estimated length of completed learner pages**, not their count, answer correctness, or elapsed wall time:
 
@@ -617,9 +627,9 @@ visible practice contribution = 35 × earned practice units / all possible pract
 final exam contribution       = 65 × earned exam units / all possible exam units
 ```
 
-`headerScore` still computes the earned practice contribution out of 100, but the running lesson no longer displays it (D56). Pending units have earned no points; the denominator includes the full lesson's possible points from the start. This is accumulated credit, not accuracy on attempted answers. After the exam, add its contribution and show the final score out of 100.
+During practice, show earned practice contribution out of 100. Pending units have earned no points; the denominator includes the full lesson's possible points from the start. This is accumulated credit, not accuracy on attempted answers. After the exam, add its contribution and show the final score out of 100.
 
-To preserve delayed exam feedback, the header shows no score at all during the exam (D16, D56): a frozen practice number looked like a bug, and updating it after individual exam answers would reveal correctness. Progress and countdown may update normally. Publish the complete exam contribution on the final results page, which also shows exercise scores and raw points in its menu/review.
+To preserve delayed exam feedback, keep the header's earned score at the practice contribution throughout the exam, with no “pending” label or other exam-score indicator (D16). Do not update the header after individual exam answers: changes would reveal correctness. Progress and countdown may update normally. Publish the complete exam contribution on the final results page, which also shows exercise scores and raw points in its menu/review.
 
 ### Per-page exam countdown
 
@@ -676,26 +686,9 @@ The final results page shows the weighted total, practice/exam aggregates and we
 
 Use the supplied results screenshot as the layout reference: a dark page with flat answer rows, a correctness icon aligned to each prompt, muted “Your answer” / “Correct answer” labels, and thin slate dividers. Incorrect answers use red; accepted correct answers use green. Accent/case-only answers use an amber icon/text, explicitly show 0.5 credit, and show the fully correct spelling in green. Always include text classification and points so color is supplementary. A fully correct answer identical to the accepted answer can appear once in green; do not repeat an identical correction line. When an accepted variant differs from the displayed teaching answer, show both. Show short pre-generated explanations for corrections, plus timeout/unanswered markers when applicable. Keep the weighted score summary and exercise-result menu above the answer list; use the same row component for exam and previous practice results. This layout does not change grading or release exam feedback early.
 
-The results sidebar (D53) selects **Final exam** or any earlier exercise result by step/block label, and shows only the selected part. For vocabulary with nouns this includes Matching, Gender, and Typed gaps. Repeated grammar exercise types have unique block labels. Completion-only exercises such as flashcards can show their completion record instead of an invented correctness score. Keep aggregate scores visible while the selected result changes. Non-noun lessons have no Gender menu entry. Each review uses stored locked responses and explanations, with the original accent/case visible; changing menu selection does not rescore, alter progress, restart timers, or edit answers. There is no separate mandatory exam-feedback-to-summary transition. Lesson overview and Restart lesson are the final page's navigation actions.
+The results sidebar (P6-01) selects **Final exam** (or one of its parts) or any earlier exercise result by step/block label. For vocabulary with nouns this includes Matching, Gender, and Typed gaps. Repeated grammar exercise types have unique block labels. Completion-only exercises such as flashcards can show their completion record instead of an invented correctness score. Keep aggregate scores visible while the selected result changes. Non-noun lessons have no Gender menu entry. Each review uses stored locked responses and explanations, with the original accent/case visible; changing menu selection does not rescore, alter progress, restart timers, or edit answers. There is no separate mandatory exam-feedback-to-summary transition. Lesson overview and Restart lesson are the final page's navigation actions.
 
 No pass/fail gate is required. A pass label and threshold remain optional future decisions.
-
-### Lesson navigation (P6-01, D53)
-
-The session page has a **lesson outline** next to the task: `outline(plan, record)` in `src/domain/session/outline.ts` derives one entry per learner page (skipped listening pages are left out) from the plan and the record, so it survives reload and interface-language changes.
-
-| Aspect | Contract |
-| --- | --- |
-| Entries | One per learner page, named by its step label (learning point, grammar block title, exam page); labels repeated within a step are numbered `n/m`. Exam entries show their time limit (no question counts). |
-| States | `current` (●, “Current page”), `done` (✓, “Done”), `available` (○, “Next”: the active page while a theory page is being revisited), `locked` (–, “Locked”). The state is always text as well as a mark; the marks are `aria-hidden`. |
-| Revisiting | `navigate` is allowed only to a **completed presentation page** (introduction, flashcards, grammar explanation) or back to the active page, and only while the active page is not an exam page and the lesson is not finished. The revisit is stored as `viewIndex` in the session record, is read-only, never awards points, never changes drafts, locks, `completed`, progress or deadlines, and survives reload. While revisiting, the only action is Continue: it moves to the next revisitable theory page, and after the last one back to the active page. Completed practice pages are not reopened (D53). |
-| Exam | The outline lists the exam pages with their time limits and marks the current page; **no entry is navigable**, so navigation cannot skip a page, reveal an answer, reset a countdown or extend a persisted deadline. Nothing in the outline shows correctness; results open only after the complete exam. |
-| Results | The same sidebar selects the part to show: **Final exam** (all exam answers; for a vocabulary exam it has the sub-entries Translation and Dictation) and each scored exercise, every entry with its `earned / possible` score. Selection values: `exam`, `exam:translation`, `exam:dictation`, or a step ID. Only the selected part is listed; scores, correction explanations, timeout notes and the read-only locked answers are unchanged, and a selection never rescores or restarts anything. |
-| Wide screens (≥ 900 px) | A sticky 16 rem column left of the task card, always open. |
-| Small screens (< 900 px) | The column is replaced by a full-width **Outline n/m** button above the content (results: **Outline**); the outline opens in the flow below it (at most 60 % of the viewport height, scrolling inside), so the task stays readable without a permanent sidebar. Entries are at least 44 px high. Choosing an entry or pressing Esc closes it, and Esc returns the focus to the button. The button has `aria-expanded` and `aria-controls`. Verified at 375 px portrait and on touch. |
-| Accessibility | The outline is a `nav` landmark labelled “Lesson outline”; entries are buttons (Tab, Enter, Space); the current entry carries `aria-current` (`step` in the lesson, `true` in the results); locked and current entries are not buttons. |
-
-Lesson navigation mockups (desktop theory, running exam, results and the two mobile states): [theory](mockups/06-lesson-navigation/01-theory/theory-sidebar.puml), [exam](mockups/06-lesson-navigation/02-exam/exam-sidebar.puml), [results](mockups/06-lesson-navigation/03-results/results-sidebar.puml), [mobile closed](mockups/06-lesson-navigation/04-mobile/mobile-closed.puml) and [mobile open](mockups/06-lesson-navigation/04-mobile/mobile-open.puml); see section 9.
 
 ### Phase 1 implementation (P1-09)
 
@@ -712,7 +705,7 @@ Keep six stages, integrating noun-gender practice into the overview stage and li
 3. **Matching:** connect native/French targets in manageable groups. The two columns are shuffled independently from the session seed; the learner selects an item on either side and then its partner on the other (pointer, touch or keyboard: every item is a button). Each French form has a small speaker button inside its box. On wide screens (from 720 px) the columns stand apart and a Bézier curve starts at the inner middle of the selected box and follows the pointer; over a box of the other column it stops at that box's inner border, and a click docks it onto the partner; every pair stays joined by its curve. On phones pairs are numbered instead. Paired boxes have a purple border; pairs stay editable until Continue, and choosing a taken partner moves it. Applicable French forms show gender. Continue (enabled once every pair is assigned) locks one unit per French form. Continue stays greyed out (no extra hint) until every pair is assigned. There is no separate correction view (P2-04 review round 3): after Check every French box glides (1.2 s, frame by frame, starting slowly, speeding up and settling) into the row of its correct meaning; the slide also plays when the system asks for reduced motion, because it shows where each word belongs (Windows reports reduced motion whenever its animation effects are off), and the curves are redrawn every frame so they move with the boxes. When every pair is correct, the content area then flashes green as before (background and border, 0.9 s; boxes and curves keep their colours, the purple curves are drawn thin) and the next page follows. Otherwise a summary ("4 of 6 pairs correct") replaces the hint, correctly matched French boxes turn green and wrongly matched ones red (each level with its correct meaning), only the wrong pairs keep their curve, now red and dashed (phones: numbered badges on the wrong pairs only), the other curves disappear, and the page waits for Continue. Matching shows no explanations.
 4. **Gender exercise and reviewed overview:** show **all vocabulary on one page**. Nouns have a select box with an initially unanswered state and appropriate gender options; other word classes have no gender input. While answering, show noun lemmas without articles, gender tags, or audio that supplies an article. This temporarily overrides the earlier stages' gender-display rule so the answer is not exposed. Preserve explicit gender/context policies for nouns that accept more than one gender. Continue locks all noun choices and scores one unit per noun. The same page then becomes the overview, showing the learner's selected gender, correct gender and teaching form, right/wrong indicators, translations, audio, and pre-generated explanations for mistakes. Continue acknowledges the overview and proceeds to gaps. Retain the locked row results for final-results review. Lessons without applicable nouns use a plain, unscored overview and skip the gender exercise. Layout (P2-03): the page stays the same before and after checking. Every word sits in a compact grid (two columns on wide screens) with a speaker button left of the word; while answering, nouns show their bare `term` (never with an article; validated) with masculine/feminine choice pills and the speaker reads only that bare term, and words of other classes show "no gender". Practice pages show **Check** while answering and **Continue** afterwards. After Check a summary ("7 of 12 genders correct") appears, each word shows its teaching form (spoken by the speaker) and translation, a correct choice gets a green border, a wrong choice a red border and the correct gender a green border as well (P2-04 review round 6); there is no explanation on the gender page (P2-04 review round 3). Nothing moves when checked (P2-04 review rounds 2 and 5): the bare term and the teaching form with translation occupy the same space (the hidden one keeps its size), the choice pills always stand on their own row below the word, every state keeps a 1 px border (emphasis via an inset shadow), the summary line is reserved invisibly before Check, and the page always reserves the scrollbar gutter.
 5. **Typed context gaps and listening choice:** typed gaps use the application instruction "Choose the right word and type it." and follow reference R4: the four noninteractive reference choices as centred, padded cards one under another (applicable gender beside the word, no label) above a large sentence with the answer field; the cursor starts in the field, and once checked (also during the green success flash) the correct card lights up green; type the missing word without article. Show applicable gender alongside reference forms. Listening-choice pages play a target with browser speech and the learner selects it from four written learning-language options (choices are interactive here), each with its gender as small extra information where applicable (P2-04 review). A fully correct typed gap or listening choice lights up only the correct reference card or the chosen option green and moves on without a feedback view (section 5, rule 4). A wrong typed gap turns the field red while the correct reference card above lights up green (the answer is not repeated after the field); a wrong listening choice turns the chosen option red and the correct one green; a half-point gap turns the field amber and explains itself below the Continue button. Other practice feedback (word order, error spotting, rows) carries no point counts: "Correct", or "Almost – check the accents and capitals (half a point)" / "Incorrect" with the correct answer in green and the learner's answer struck through in red directly below, then the explanation.
-6. **Exam info page and timed translation and listening exam:** an application info page precedes the first exam page (learner sessions only): which exam parts follow (translation, dictation or mixed questions) as one row per kind with its page count and time, the total time, and how many words are tested (vocabulary), and that results follow the whole exam; it has no countdown and adds no score. translation pages show a native prompt and require the French answer including the indefinite article where applicable; no gender/audio/answer hints. **Plurals and gender (P4-05 review):** a noun that is not a plurale tantum must be answered in the singular; a plural answer is wrong. A plurale tantum (taught and examined with `des`) must be answered in the plural; a singular is wrong. As soon as a field of a noun holds `des` and a word, a masculine/feminine choice appears after it (for every noun, so it reveals nothing), because `des` does not show the gender; a plurale tantum then counts only with the right gender (accent or capital slips earn half a point as usual). The results show the chosen gender after the answer. Each translation prompt carries a small "with article" / "without article" badge derived from the expected answer. While an answer has exactly one word fewer than an article-bearing solution and does not start with an article, the badge turns red; no info box appears while typing. If Continue is pressed while that rule is violated, the page is not submitted: a red info box under each affected field says to type the article before the word, and it stays until Continue is pressed again, which then submits the page as it is (translation pages only, never dictation; a timeout submits without it). The info names the article family of the expected answer: "the indefinite article (un, une or des)" for nouns, and "the article (le, la, l' or les)" for the few targets with an `articleException` (countries); it reveals nothing beyond the badge. Listening-dictation pages show their words in a random order fixed by the session seed (P3-03 review), so the lesson order does not reveal which word is read out; resume shows the same order. Each field plays its target (replayable until lock) and the learner writes it in the teaching form, article included where applicable, scored by the shared free-text classifier. Each page uses its brief-defined countdown. Answer feedback is deferred until the full exam is complete.
+6. **Exam info page and timed translation and listening exam:** an application info page precedes the first exam page (learner sessions only): which exam pages follow (translation, dictation or mixed tasks) with their number of tasks and countdown, how many words (vocabulary) or tasks are tested, and that results follow the whole exam; it has no countdown and adds no score. translation pages show a native prompt and require the French answer including the indefinite article where applicable; no gender/audio/answer hints. **Plurals and gender (P4-05 review):** a noun that is not a plurale tantum must be answered in the singular; a plural answer is wrong. A plurale tantum (taught and examined with `des`) must be answered in the plural; a singular is wrong. As soon as a field of a noun holds `des` and a word, a masculine/feminine choice appears after it (for every noun, so it reveals nothing), because `des` does not show the gender; a plurale tantum then counts only with the right gender (accent or capital slips earn half a point as usual). The results show the chosen gender after the answer. Each translation prompt carries a small "with article" / "without article" badge derived from the expected answer. While an answer has exactly one word fewer than an article-bearing solution and does not start with an article, the badge turns red; no info box appears while typing. If Continue is pressed while that rule is violated, the page is not submitted: a red info box under each affected field says to type the article before the word, and it stays until Continue is pressed again, which then submits the page as it is (translation pages only, never dictation; a timeout submits without it). The info names the article family of the expected answer: "the indefinite article (un, une or des)" for nouns, and "the article (le, la, l' or les)" for the few targets with an `articleException` (countries); it reveals nothing beyond the badge. Listening-dictation pages show their words in a random order fixed by the session seed (P3-03 review), so the lesson order does not reveal which word is read out; resume shows the same order. Each field plays its target (replayable until lock) and the learner writes it in the teaching form, article included where applicable, scored by the shared free-text classifier. Each page uses its brief-defined countdown. Answer feedback is deferred until the full exam is complete.
 
 ### Derived vocabulary lesson
 
@@ -727,13 +720,13 @@ Since P2-04 (D47) the application builds every vocabulary lesson from its brief 
 | 5 Practice | step `practice`: one typed gap per word; step `listening`: one listening choice per word | 20 s per gap, 15 s per listening page | – |
 | 6 Exam | translation pages per word group (at most 6 words), then dictation pages with the same words | 15 s / 20 s per word | 20 s / 30 s per word |
 
-**Length (P6-02, D54):** the standard inventory is 10 words, at most 12 (`VOCABULARY_LENGTH`); `vocabularyBriefLengthIssues` is a quality gate for the generator and an audit line in `make sample-lessons`. **Native-language questions (D57):** a gap may carry `gap.question`, a question per mother tongue shown above the sentence (“What is the name of the accent in the word café (é)?”); the five accent targets and the hyphen of `fr-alphabet-and-accents` use it, and the Jean-Paul sentence now reads “Le signe dans Jean-Paul est un ___”. **Gender** questions exist only for nouns: the gender page lists the nouns only (verbs, adjectives, pronouns and numerals have no “no gender” row; lessons without nouns have the plain overview). **Typing and clicking:** typed gaps and the translation and dictation exams are typed; matching, gender, listening choice and the grammar choices are clicked; Enter submits a typed answer (D56).
+**Length (P6-02, D54):** the standard inventory is 10 words, at most 12 (`VOCABULARY_LENGTH`); `vocabularyBriefLengthIssues` is a quality gate for the generator and an audit line in `make sample-lessons`. **Native-language questions (D55):** a gap may carry `gap.question`, a question per mother tongue shown above the sentence (“What is the name of the accent in the word café (é)?”); the five accent targets and the hyphen of `fr-alphabet-and-accents` use it, and the Jean-Paul sentence now reads “Le signe dans Jean-Paul est un ___”. **Gender** questions exist only for nouns: the gender page lists the nouns only (verbs, adjectives, pronouns and numerals have no “no gender” row; lessons without nouns have the plain overview). **Typing and clicking:** typed gaps and the translation and dictation exams are typed; matching, gender, listening choice and the grammar choices are clicked; 
 
 Translation prompts use `examPrompt` or the first translation; accepted answers in translation and dictation are the exam forms (plus gender variants when the prompt does not disambiguate). Matching corrections, listening choices, translation and dictation show the word's `explanation`; typed gaps show the gap explanation; gender rows show `genderExplanation`. The artifact page shows this derived lesson as a preview below the vocabulary Draft and has no separate Content section; the index labels a vocabulary lesson's artifact button "Draft".
 
-**Lesson start page (P2-02):** course label, the lesson category as a badge in the card's top-right corner (Vocabulary, Grammar), title, objective and estimated minutes. Vocabulary lessons add the total number of words and the brief's word groups as numbered, colour-coded rows with each group's word count on the right. Grammar lessons add the **New verbs** table when the brief lists any (P3-07) and a **lesson outline** (P3-02 review) in the same numbered, colour-coded rows: one row per teaching block (named like its explanation step and listing its exercises, e.g. "Person matching · Multiple-choice gaps"; the explanation that starts every block is not listed), then the final exam ("Answer 10 items on 2 timed pages"), each with its estimated minutes on the right. The feedback screen is not listed. Otherwise the start page does **not** list the lesson steps, the number of scored steps or the scoring weights and exam time limits; the weights appear on the results page.
+**Lesson start page (P2-02):** course label, the lesson category as a badge in the card's top-right corner (Vocabulary, Grammar), title, objective and estimated minutes. Vocabulary lessons add the total number of words; grammar lessons add the **New verbs** table when the brief lists any (P3-07). Every lesson then shows its **lesson outline** (P6-01 review, congruent with the sidebar): colour-coded sections lettered A, B, C…, each with its estimated minutes on the right and its learning points indented below, numbered as in the sidebar. Vocabulary: one section per word group (with its word count; points Introduction and Flashcards), then Exercises, then the final exam. Grammar: one section per teaching block (named like its explanation step; its explanations, an explanation named like the block shown as "Explanation", then its exercises), then the final exam. Functions: Flashcards · Dialogue, the exercises, the final exam. The exam section has no points and says "Answer 10 items on 2 timed pages". The feedback screen is not listed. Otherwise the start page does **not** list the lesson steps, the number of scored steps or the scoring weights and exam time limits; the weights appear on the results page.
 
-After the exam, the final results page defaults to exam answers and offers a button menu for prior exercise results. The results card shows the selected part first: its name as heading ("Final exam" or the exercise, e.g. "Typed gaps") and its score large ("9 / 12"), then the lesson title and "Lesson total: x / 100"; it does not explain the weighting and shows no practice/exam statistics. The menu starts with the highlighted **Final exam** button, followed by the scored exercises in the order they were presented. The selected entry has a purple background and border; every other entry shows its outcome (all categories, P4-05 review): red when every answer is wrong, red diagonal stripes when at least one answer is not fully right (half credit counts as not right), and the plain look when every answer is right, the **Final exam** entry then with its purple border; parts without a score (introduction, flashcards, unscored overview) are not offered (P2-04 review). The exam is selected by default. Listening has its own menu entry after the typed gaps (P2-04 review round 2: stage 5 is two steps, `practice` and `listening`). The vocabulary exam results are split into two accordions, **Translation** (open) and **Dictation** (closed), each with its own "x of y correct" in the summary. The review list (reference R5) shows every answer in its original order with ✓, ! or ✕ as task → correct answer in green; for mistakes the learner's answer is struck through in red directly below the correct answer (P4-05 review: when only accents or capitals differ, only those letters are red; when only the article differs, only the article is red; the rest stays muted), with an "almost (half a point)" or "time ran out" note and the explanation. On wide screens (above 600 px) each list is laid out in text columns (P3-02 review): a task with arrows ("un stylo → des ____") is split at them, and every task part, arrow and answer lines up vertically with the same column in the other rows of the list; a row with fewer parts lets its first part span the missing columns. Phones keep the stacked layout. Only listening tasks show "Write what you hear" as their task; word-order rows have no task text and show the sentence as the answer. Gender rows name the word once: "word: chosen gender" in green, or for a mistake "word: ~~chosen gender~~ → correct gender" with the explanation; the teaching form is not repeated. Answers are grouped by vocabulary group across pages (grammar: by page with several answers, "Part n"; consecutive single-answer pages share one group) after a summary line ("9 of 12 correct."). With more than one group, each group is one frame in its group colour with its name shown once at the top, not repeated per answer; no point fractions appear in the list. At the bottom right, **Lesson overview** (primary, light) follows **Repeat lesson** (outline) on its left. Introduction/flashcards/plain review remain completion-only. Matching, applicable noun-gender answers, typed gaps, listening choice, and the exam are scored. All scored practice types share the existing 35% practice contribution by possible units; the exam remains 65%. The gender overview answers and confirmation are one learner page for progress, using an estimate that includes both answering and review.
+After the exam, the final results page defaults to exam answers and offers the results sidebar (section 5, "Lesson navigation") for prior exercise results. The results card shows the selected part first: its name as heading ("Final exam" or the exercise, e.g. "Typed gaps") and its score large ("9 / 12"), then the lesson title and "Lesson total: x / 100"; it does not explain the weighting and shows no practice/exam statistics. The sidebar starts with the highlighted **Final exam** entry and its parts, followed by the scored exercises in the order they were presented. The selected entry has a purple background and border; every other entry shows its outcome (all categories, P4-05 review): red when every answer is wrong, red diagonal stripes when at least one answer is not fully right (half credit counts as not right), and the plain look when every answer is right, the **Final exam** entry then with its purple border; parts without a score (introduction, flashcards, unscored overview) are not offered (P2-04 review). The exam is selected by default. Listening has its own menu entry after the typed gaps (P2-04 review round 2: stage 5 is two steps, `practice` and `listening`). The vocabulary exam results are split into the parts **Translation** (selected first) and **Dictation**, each with its own "x of y" in the sidebar; only the selected part is shown (P6-01). The review list (reference R5) shows every answer in its original order with ✓, ! or ✕ as task → correct answer in green; for mistakes the learner's answer is struck through in red directly below the correct answer (P4-05 review: when only accents or capitals differ, only those letters are red; when only the article differs, only the article is red; the rest stays muted), with an "almost (half a point)" or "time ran out" note and the explanation. On wide screens (above 600 px) each list is laid out in text columns (P3-02 review): a task with arrows ("un stylo → des ____") is split at them, and every task part, arrow and answer lines up vertically with the same column in the other rows of the list; a row with fewer parts lets its first part span the missing columns. Phones keep the stacked layout. Only listening tasks show "Write what you hear" as their task; word-order rows have no task text and show the sentence as the answer. Gender rows name the word once: "word: chosen gender" in green, or for a mistake "word: ~~chosen gender~~ → correct gender" with the explanation; the teaching form is not repeated. Answers are grouped by vocabulary group across pages (grammar: by page with several answers, "Part n"; consecutive single-answer pages share one group) after a summary line ("9 of 12 correct."). With more than one group, each group is one frame in its group colour with its name shown once at the top, not repeated per answer; no point fractions appear in the list. At the bottom right, **Lesson overview** (primary, light) follows **Repeat lesson** (outline) on its left. Introduction/flashcards/plain review remain completion-only. Matching, applicable noun-gender answers, typed gaps, listening choice, and the exam are scored. All scored practice types share the existing 35% practice contribution by possible units; the exam remains 65%. The gender overview answers and confirmation are one learner page for progress, using an estimate that includes both answering and review.
 
 ```mermaid
 flowchart TD
@@ -785,7 +778,7 @@ flowchart TD
 
 ### Lesson length
 
-Grammar lessons need enough practice (D49, P3-07). The first ten samples had 11–35 scored practice units and 6–12 exam units and could be clicked through in two minutes; a first rewrite with 50–68 practice and 24 exam units (24–27 minutes) proved too long, so the rules aim at about two thirds of it. Phase 6 (D58, P6-04) shortened them again: one named point per block, at least 24 practice and 12 exam units. Rules for briefs, content and generation:
+Grammar lessons need enough practice (D49, P3-07). The first ten samples had 11–35 scored practice units and 6–12 exam units and could be clicked through in two minutes; a first rewrite with 50–68 practice and 24 exam units (24–27 minutes) proved too long, so the rules aim at about two thirds of it. Phase 6 (D56, P6-04) shortened them again: one named point per block, at least 24 practice and 12 exam units. Rules for briefs, content and generation:
 
 | Rule | Value | Checked |
 | --- | --- | --- |
@@ -819,8 +812,8 @@ Each teaching block is one **named point** (its title is the sidebar label). The
 | Pronoun/form typing | Type an accepted form in each pronoun row; handle multiple linguistically valid forms through answer keys. **Implemented (P3-02):** one labelled field per generated row; answers are normalized and classified by the shared scorer (surrounding spaces ignored; accent or case differences earn half a point). After Check in practice every field is marked in place (green, amber for half a point, red) and wrong or amber rows show the correct form in green and the row's explanation; exam pages show no marks until the results, and a blank row scores zero. |
 | Multiple-choice gaps | Exactly four choices per gap; one accepted choice; shuffle without changing answer identity. An optional localized `hint` (P3-02 review) stands on its own line above the sentence ("Hint: plural, definite article"), like the typed-gap hint; cues never go into parentheses inside the sentence (validated). **Implemented (P3-03):** the shared `UnitsRenderer` shows the sentence with `____` and the four choices as radio cards in the session seed's order; scoring compares the choice ID, so the order never changes the answer. In practice choosing submits the page at once (section 5, rule 4). |
 | Exact-typing phrase gaps | Type the missing text; optional brief-specified hint in practice, subject to exam policy. **Implemented (P3-03):** one field inside the sentence; every content-defined accepted answer counts in full, and the shared scorer gives half a point for accent or case errors, also on accent homographs such as `la` for `là` (D40). The hint stands above the sentence in practice; exam gaps have none (validated). Check needs an answer in practice; a blank exam gap scores zero. A checked practice field turns red or amber with the correct form after it; exam pages show no marks until the results. |
-| Word order | Move tokens into a sentence; support moving back/reordering, repeated words, punctuation, and valid alternative sequences. Tokens can be dragged with mouse, pen or touch (all categories, P4-05 review): from the bank to any position on the line, and along the line to another position; dropped outside the line, or clicked, a placed token returns to the bank, and a click on a bank token puts it at the end of the line. The full stop that ends the sentence is not a token (P3-02 review): content omits it, and a final `.` token that ends every accepted order is left out by the application and never shown. Punctuation inside the sentence and a final `?` or `!` stay tokens. |
-| Error spotter | Select the faulty token, then type or select its correction as specified by the item. Give targeted practice feedback. **Contract (D55, P6-04/P6-05):** the correction control is labelled with the selected word (“Replace “suis” with”) and select mode says “Choose one answer”; a wrong word scores zero; the sentence has one defect with one fix (context shows which of a pronoun and a verb is meant); choices are distinct replacements for the faulty word; typed corrections suit A1 only when short, and level A1 prefers select mode. Feedback shows once per item: the selected word, “… is not the mistake in this sentence” when applicable, the submitted correction, the correct sentence in green with the learner's corrected sentence struck through (no bracket markup) and the explanation. Orthography-only corrections earn half a point as usual. |
+| Word order | Move tokens into a sentence; support moving back/reordering, repeated words, punctuation, and valid alternative sequences. Tokens can be dragged with mouse, pen or touch (all categories, P4-05 review): from the bank to any position on the line, and along the line to another position; dropped outside the line, or clicked, a placed token returns to the bank, and a click on a bank token puts it at the end of the line. The full stop that ends the sentence is not a token (P3-02 review): content omits it, and a final `.` token that ends every accepted order is left out by the application and never shown. Punctuation inside the sentence and a final `?` or `!` stay tokens. With the keyboard (P3-04), Enter or Space places a focused bank token or returns a placed one, the arrow keys move a placed token one position, and Home/End move it to either end; focus follows the moved token and stays nearby after placing or returning one. The line and the bank are labelled groups, and each placed token is announced with its position. |
+| Error spotter | Select the faulty token, then type or select its correction as specified by the item. Give targeted practice feedback. The sentence is a labelled group of toggle buttons (P3-04). |
 
 ### Personalized feedback and exam
 
@@ -832,9 +825,9 @@ After the final teaching block and before the exam, display the fixed message fo
 | fr | Un retour personnalisé serait affiché ici en production. |
 | de | Hier würde in der Produktivversion individuelles Feedback angezeigt. |
 
-This screen is unscored and has a Continue to final exam action. It appears for every grammar session regardless of the learner's answers. The prototype performs no individual feedback analysis and makes no runtime Gemini request. Keep ordinary exercise results and answer-checking feedback; production feedback is future scope.
+This screen is unscored and needs no answer; its **Continue** leads to the exam info page and then the final exam (P3-05: the plain Continue of every page, as in the mockup). It appears for every grammar session regardless of the learner's answers. The prototype performs no individual feedback analysis and makes no runtime Gemini request. Keep ordinary exercise results and answer-checking feedback; production feedback is future scope.
 
-Every exam page uses its brief-defined countdown and defers answer feedback until the final results page. The final exam covers the taught rule IDs with fresh examples, selected during lesson generation. It may mix `grammar_gap_typing`, `grammar_pronoun_form_typing`, and `grammar_word_order` across its pages; each page has one item type, one instruction and its own countdown, and every unit is graded by the one shared scorer. Use word order for syntax/structure. Do not force conjugation exercises onto article, adverb, or question lessons: `grammar_person_matching`, `grammar_pronoun_form_match` and `grammar_pronoun_form_typing` are allowed only for the topics `pronouns`, `verbs_morphology` and `verb_usage`, in practice and exam alike (validated, P3-01). Every lesson with the topic `pronouns` or `verbs_morphology` includes at least one `grammar_person_matching` exercise (D48), except the imperative lesson `fr-imperative-mood` (only tu, nous and vous); such a board may also review rules of earlier blocks, so a lesson that teaches the singular and the plural in separate blocks gets one six-row board. The practice bank has seven types; the exam uses the subset appropriate to the objective.
+Every exam page uses its brief-defined countdown and defers answer feedback until the final results page. The final exam covers the taught rule IDs with fresh examples, selected during lesson generation: no exam sentence (gap with its answer, word order, error-spotter sentence) may repeat an explanation example or a practice sentence (validated, P3-05). It may mix `grammar_gap_typing`, `grammar_pronoun_form_typing`, and `grammar_word_order` across its pages; each page has one item type, one instruction and its own countdown, and every unit is graded by the one shared scorer. Use word order for syntax/structure. Do not force conjugation exercises onto article, adverb, or question lessons: `grammar_person_matching`, `grammar_pronoun_form_match` and `grammar_pronoun_form_typing` are allowed only for the topics `pronouns`, `verbs_morphology` and `verb_usage`, in practice and exam alike (validated, P3-01). Every lesson with the topic `pronouns` or `verbs_morphology` includes at least one `grammar_person_matching` exercise (D48), except the imperative lesson `fr-imperative-mood` (only tu, nous and vous); such a board may also review rules of earlier blocks, so a lesson that teaches the singular and the plural in separate blocks gets one six-row board. The practice bank has seven types; the exam uses the subset appropriate to the objective.
 
 **Rule coverage (P3-01):** the brief teaches every rule in a block and examines every rule in the exam. In the content, the items of each exercise step and exam page assess exactly the rules the brief plans for that exercise or page, and together they assess all of them; explanation items cite only rules of their block. Every scored item (every row of the pronoun types) has its own answer explanation. See the [P3-01 review record](reviews/2026-10-08-p3-01-grammar-review.md).
 
@@ -2053,241 +2046,8 @@ The folder organization follows the lesson flow. Vocabulary uses `01-startpage/`
 | [Lesson overview](mockups/README.md#lesson-overview) | Ordered lesson index. |
 | [Artifact view](mockups/README.md#artifact-view) | Shared Outline layout, with category-specific vocabulary/grammar Draft and Content views. |
 | [Vocabulary lesson](mockups/README.md#vocabulary-lesson) | Start; [01 introduction](mockups/03-vocabulary-lesson/02-introduction/introduction.puml); [02 flashcards](mockups/03-vocabulary-lesson/03-flashcards/front.puml) and [reveal](mockups/03-vocabulary-lesson/03-flashcards/revealed.puml); [03 matching](mockups/03-vocabulary-lesson/04-matching/matching.puml); 04 gender + reviewed overview; 05 typed gaps + feedback, [listening choice](mockups/03-vocabulary-lesson/06-listening/listening-choice.puml) and [no-voice help](mockups/03-vocabulary-lesson/06-listening/no-voice-help.puml); 06 exam and [listening dictation](mockups/03-vocabulary-lesson/07-exam/listening-dictation.puml); results. |
-| [Lesson navigation](mockups/README.md#lesson-navigation) | Phase 6: [theory](mockups/06-lesson-navigation/01-theory/theory-sidebar.puml), [exam](mockups/06-lesson-navigation/02-exam/exam-sidebar.puml) and [results](mockups/06-lesson-navigation/03-results/results-sidebar.puml) with the sidebar; mobile outline [closed](mockups/06-lesson-navigation/04-mobile/mobile-closed.puml) and [open](mockups/06-lesson-navigation/04-mobile/mobile-open.puml). |
 | [Grammar lesson](mockups/README.md#grammar-lesson) | [Start](mockups/04-grammar-lesson/01-startpage/lesson-start.puml); [explanation](mockups/04-grammar-lesson/02-00-explanation/singular-forms.puml); [pronoun matching](mockups/04-grammar-lesson/02-01-exercise-pronoun-match/pronoun-match.puml); [pronoun typing](mockups/04-grammar-lesson/02-02-exercise-pronoun-typing/pronoun-typing.puml); [choice gap](mockups/04-grammar-lesson/02-03-exercise-gap-choice/gap-choice.puml); [typed gap](mockups/04-grammar-lesson/02-04-exercise-gap-typing/gap-typing.puml) and [feedback](mockups/04-grammar-lesson/02-04-exercise-gap-typing/feedback.puml); [word order](mockups/04-grammar-lesson/02-05-exercise-word-order/word-order.puml); [error spotter](mockups/04-grammar-lesson/02-06-exercise-error-spotter/error-spotter.puml); [placeholder](mockups/04-grammar-lesson/03-feedback-placeholder/feedback-placeholder.puml); [exam](mockups/04-grammar-lesson/04-exam/mixed-exam.puml); [results](mockups/04-grammar-lesson/05-results/exam-results.puml). |
 | [Function lesson](mockups/README.md#function-lesson) | [lesson start](mockups/05-function-lesson/01-startpage/lesson-start.puml); [expression flashcards](mockups/05-function-lesson/02-flashcards/expression-flashcards.puml); [model dialogue](mockups/05-function-lesson/03-dialogue/dialogue.puml); [expression matching](mockups/05-function-lesson/04-matching/expression-matching.puml); [dialogue gaps](mockups/05-function-lesson/05-dialogue-gap-choice/dialogue-gap-choice.puml); [word order](mockups/05-function-lesson/06-word-order/word-order.puml); [listening choice](mockups/05-function-lesson/07-listening-choice/listening-choice.puml); [exam replies](mockups/05-function-lesson/08-exam/reply-word-order.puml); [exam dialogue](mockups/05-function-lesson/08-exam/dialogue-gap-typing.puml); results use the shared results layout. |
-
-### Lesson navigation sidebar (P6-01)
-
-Phase 6 adds the lesson outline (section 5, "Lesson navigation"; D53). The mockups show the V2 timeline design in the four situations of the review: theory with ticks (no score before practice), a running exam (six pages with question counts and limits, none navigable), results with the sidebar instead of the buttons at the top, and the compact mobile outline closed and open.
-
-#### Navigation: theory with the outline
-
-<a id="mockup-06-lesson-navigation-01-theory-theory-sidebar"></a>
-
-[Salt source](mockups/06-lesson-navigation/01-theory/theory-sidebar.puml)
-
-<!-- mockup:begin mockups/06-lesson-navigation/01-theory/theory-sidebar.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-{ <color:#E2E8F0><b>L'alphabet et les accents</b></color> | <color:#020617>xxx</color> | <color:#94A3B8>Progress 25%</color> | <color:#635BFF>███</color><color:#1E293B>░░░░░░░░░</color> }
-<color:#94A3B8>No numeric score on theory pages; it appears with the first practice page.</color>
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-{ {
-<color:#94A3B8>LESSON OUTLINE</color>
-<color:#00E676>✓</color> <color:#E2E8F0>The French alphabet</color>
-<color:#94A3B8>    Done</color>
-<color:#00E676>✓</color> <color:#E2E8F0>Saying the letters</color>
-<color:#94A3B8>    Done</color>
-<color:#635BFF>●</color> <color:#E2E8F0><b>The acute accent</b></color>
-<color:#94A3B8>    Current page</color>
-<color:#94A3B8>○ Matching</color>
-<color:#94A3B8>    Next</color>
-<color:#64748B>– Typed gaps</color>
-<color:#64748B>    Locked</color>
-<color:#64748B>– Final exam</color>
-<color:#64748B>    Locked</color>
-} | <color:#020617>xx</color> | {
-<color:#94A3B8>Theory  ·  point 3 of 8</color>
-.
-<size:23><color:#E2E8F0><b>The acute accent</b></color></size>
-.
-<color:#E2E8F0>The acute accent (accent aigu) is used on one letter only: é.</color>
-.
-{ <color:#E2E8F0>café</color> | <color:#94A3B8>coffee</color> | <color:#020617>xx</color> | <color:#E2E8F0>été</color> | <color:#94A3B8>summer</color> }
-.
-{ [ <color:#4338CA>   Previous   </color> ] | <color:#020617>xx</color> | [ <color:#020617>   Continue   </color> ] }
-} }
-.
-<color:#94A3B8>Done theory points are links (read again, no points); Matching and later pages open only in order.</color>
-} | <color:#020617>xx</color> }
-.
-}
-@endsalt
-```
-<!-- mockup:end mockups/06-lesson-navigation/01-theory/theory-sidebar.puml -->
-
-#### Navigation: running exam
-
-<a id="mockup-06-lesson-navigation-02-exam-exam-sidebar"></a>
-
-[Salt source](mockups/06-lesson-navigation/02-exam/exam-sidebar.puml)
-
-<!-- mockup:begin mockups/06-lesson-navigation/02-exam/exam-sidebar.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xx</color> | {
-{ <color:#E2E8F0><b>L'alphabet et les accents</b></color> | <color:#020617>xxx</color> | <color:#94A3B8>Progress 78%</color> | <color:#635BFF><size:32>◯</size></color><color:#E2E8F0><size:21> 42s</size></color> }
-<color:#94A3B8>Exam scores stay sealed until the whole exam is done.</color>
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-{ {
-<color:#94A3B8>FINAL EXAM  ·  6 pages</color>
-<color:#00E676>✓</color> <color:#E2E8F0>Translation into French 1/3</color>
-<color:#94A3B8>    1 min 20 s</color>
-<color:#635BFF>●</color> <color:#E2E8F0><b>Translation into French 2/3</b></color>
-<color:#94A3B8>    1 min · current page</color>
-<color:#64748B>– Translation into French 3/3</color>
-<color:#64748B>    1 min 40 s · locked</color>
-<color:#64748B>– Dictation 1/3</color>
-<color:#64748B>    2 min · locked</color>
-<color:#64748B>– Dictation 2/3, Dictation 3/3</color>
-<color:#94A3B8>No page can be opened out of order.</color>
-} | <color:#020617>xx</color> | {
-<color:#94A3B8>FINAL EXAM  /  Page 2 of 6</color>
-<size:23><color:#E2E8F0><b>Translate into French</b></color></size>
-.
-<color:#E2E8F0>coffee</color>
-"<color:#E2E8F0>un café</color>                                    "
-<color:#E2E8F0>summer</color>
-"<color:#E2E8F0>                                               "
-.
-[ <color:#020617>   Continue   </color> ]
-} }
-.
-<color:#94A3B8>Each page has its own countdown. Results appear only after the whole exam.</color>
-} | <color:#020617>xx</color> }
-.
-}
-@endsalt
-```
-<!-- mockup:end mockups/06-lesson-navigation/02-exam/exam-sidebar.puml -->
-
-#### Navigation: results
-
-<a id="mockup-06-lesson-navigation-03-results-results-sidebar"></a>
-
-[Salt source](mockups/06-lesson-navigation/03-results/results-sidebar.puml)
-
-<!-- mockup:begin mockups/06-lesson-navigation/03-results/results-sidebar.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xx</color> | {
-{ <size:30><color:#E2E8F0><b>Your result</b></color></size> | <color:#020617>xxxxxx</color> | [ <color:#020617>   Lesson overview   </color> ] }
-<color:#94A3B8>L'alphabet et les accents</color>
-{ <back:#0F172A><size:36><color:#E2E8F0><b>  5 / 24  </b></color></size></back> | <color:#020617>xx</color> | <color:#94A3B8>Lesson total 38.2 / 100</color> }
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-{ {
-<color:#94A3B8>RESULTS</color>
-<color:#635BFF>●</color> <color:#E2E8F0><b>Final exam   5 / 24</b></color>
-<color:#94A3B8>    Translation   5 / 12</color>
-<color:#94A3B8>    Dictation   0 / 12</color>
-<color:#94A3B8>○ Matching   8 / 12</color>
-<color:#94A3B8>○ Gender and overview   9 / 12</color>
-<color:#94A3B8>○ Practice   8 / 12</color>
-<color:#94A3B8>○ Listening   12 / 12</color>
-} | <color:#020617>xx</color> | {
-<size:23><color:#E2E8F0><b>Final exam</b></color></size>
-<color:#E2E8F0>5 of 24 correct.</color>
-.
-{ <size:24><color:#FBBF24>!</color></size> | <color:#020617>xx</color> | {
-<size:20><color:#E2E8F0>to spell → épeler</color></size>
-{ <color:#94A3B8>Your answer</color> | <color:#020617>xx</color> | <color:#FBBF24>epeler</color> }
-<color:#FBBF24>Almost: check the accents (0.5 / 1)</color>
-<color:#94A3B8>Time expired; the saved answer was locked.</color>
-} }
-.
-<color:#94A3B8>Only the selected part is listed; scores and explanations are never recomputed.</color>
-} }
-} | <color:#020617>xx</color> }
-.
-}
-@endsalt
-```
-<!-- mockup:end mockups/06-lesson-navigation/03-results/results-sidebar.puml -->
-
-#### Navigation: mobile outline closed
-
-<a id="mockup-06-lesson-navigation-04-mobile-mobile-closed"></a>
-
-[Salt source](mockups/06-lesson-navigation/04-mobile/mobile-closed.puml)
-
-<!-- mockup:begin mockups/06-lesson-navigation/04-mobile/mobile-closed.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#E2E8F0><b>L'alphabet et les accents</b></color>
-<color:#94A3B8>Progress 25%</color>
-[ <color:#4338CA>Outline 3/14   ▾</color> ]
-<color:#1E293B>─────────────────────────</color>
-<color:#94A3B8>Theory  ·  point 3 of 8</color>
-<size:21><color:#E2E8F0><b>The acute accent</b></color></size>
-<color:#E2E8F0>The acute accent (accent aigu) is used on one letter only: é.</color>
-{ <color:#E2E8F0>café</color> | <color:#94A3B8>coffee</color> }
-.
-[ <color:#020617>        Continue        </color> ]
-.
-<color:#94A3B8>375 px portrait: the outline is closed; content uses the full width.</color>
-}
-@endsalt
-```
-<!-- mockup:end mockups/06-lesson-navigation/04-mobile/mobile-closed.puml -->
-
-#### Navigation: mobile outline open
-
-<a id="mockup-06-lesson-navigation-04-mobile-mobile-open"></a>
-
-[Salt source](mockups/06-lesson-navigation/04-mobile/mobile-open.puml)
-
-<!-- mockup:begin mockups/06-lesson-navigation/04-mobile/mobile-open.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#E2E8F0><b>L'alphabet et les accents</b></color>
-<color:#94A3B8>Progress 25%</color>
-[ <color:#4338CA>Outline 3/14   ▴</color> ]
-{
-<color:#00E676>✓</color> <color:#E2E8F0>The French alphabet</color> <color:#94A3B8>· Done</color>
-<color:#00E676>✓</color> <color:#E2E8F0>Saying the letters</color> <color:#94A3B8>· Done</color>
-<color:#635BFF>●</color> <color:#E2E8F0><b>The acute accent</b></color> <color:#94A3B8>· Current page</color>
-<color:#94A3B8>○ Matching · Next</color>
-<color:#64748B>– Typed gaps · Locked</color>
-<color:#64748B>– Final exam · Locked</color>
-}
-.
-<color:#94A3B8>Opened on demand: each row is at least 44 px high; Esc or choosing a row closes it and returns focus to the Outline button.</color>
-}
-@endsalt
-```
-<!-- mockup:end mockups/06-lesson-navigation/04-mobile/mobile-open.puml -->
 
 ### Additional lesson screens
 
@@ -4116,11 +3876,11 @@ scale 1.3
 
 #### Reading: Lesson start
 
-<a id="mockup-07-reading-lesson-01-startpage-lesson-start"></a>
+<a id="mockup-06-reading-lesson-01-startpage-lesson-start"></a>
 
-[Salt source](mockups/07-reading-lesson/01-startpage/lesson-start.puml)
+[Salt source](mockups/06-reading-lesson/01-startpage/lesson-start.puml)
 
-<!-- mockup:begin mockups/07-reading-lesson/01-startpage/lesson-start.puml -->
+<!-- mockup:begin mockups/06-reading-lesson/01-startpage/lesson-start.puml -->
 ```plantuml
 @startsalt
 skinparam backgroundColor #020617
@@ -4154,15 +3914,15 @@ scale 1.3
 }
 @endsalt
 ```
-<!-- mockup:end mockups/07-reading-lesson/01-startpage/lesson-start.puml -->
+<!-- mockup:end mockups/06-reading-lesson/01-startpage/lesson-start.puml -->
 
 #### Reading: Key words
 
-<a id="mockup-07-reading-lesson-02-keywords-keywords"></a>
+<a id="mockup-06-reading-lesson-02-keywords-keywords"></a>
 
-[Salt source](mockups/07-reading-lesson/02-keywords/keywords.puml)
+[Salt source](mockups/06-reading-lesson/02-keywords/keywords.puml)
 
-<!-- mockup:begin mockups/07-reading-lesson/02-keywords/keywords.puml -->
+<!-- mockup:begin mockups/06-reading-lesson/02-keywords/keywords.puml -->
 ```plantuml
 @startsalt
 skinparam backgroundColor #020617
@@ -4206,15 +3966,15 @@ scale 1.3
 }
 @endsalt
 ```
-<!-- mockup:end mockups/07-reading-lesson/02-keywords/keywords.puml -->
+<!-- mockup:end mockups/06-reading-lesson/02-keywords/keywords.puml -->
 
 #### Reading: Skim
 
-<a id="mockup-07-reading-lesson-03-skim-skim"></a>
+<a id="mockup-06-reading-lesson-03-skim-skim"></a>
 
-[Salt source](mockups/07-reading-lesson/03-skim/skim.puml)
+[Salt source](mockups/06-reading-lesson/03-skim/skim.puml)
 
-<!-- mockup:begin mockups/07-reading-lesson/03-skim/skim.puml -->
+<!-- mockup:begin mockups/06-reading-lesson/03-skim/skim.puml -->
 ```plantuml
 @startsalt
 skinparam backgroundColor #020617
@@ -4251,15 +4011,15 @@ scale 1.3
 }
 @endsalt
 ```
-<!-- mockup:end mockups/07-reading-lesson/03-skim/skim.puml -->
+<!-- mockup:end mockups/06-reading-lesson/03-skim/skim.puml -->
 
 #### Reading: Skim question after the blur
 
-<a id="mockup-07-reading-lesson-03-skim-skim-blurred"></a>
+<a id="mockup-06-reading-lesson-03-skim-skim-blurred"></a>
 
-[Salt source](mockups/07-reading-lesson/03-skim/skim-blurred.puml)
+[Salt source](mockups/06-reading-lesson/03-skim/skim-blurred.puml)
 
-<!-- mockup:begin mockups/07-reading-lesson/03-skim/skim-blurred.puml -->
+<!-- mockup:begin mockups/06-reading-lesson/03-skim/skim-blurred.puml -->
 ```plantuml
 @startsalt
 skinparam backgroundColor #020617
@@ -4296,15 +4056,15 @@ scale 1.3
 }
 @endsalt
 ```
-<!-- mockup:end mockups/07-reading-lesson/03-skim/skim-blurred.puml -->
+<!-- mockup:end mockups/06-reading-lesson/03-skim/skim-blurred.puml -->
 
 #### Reading: Detail with evidence
 
-<a id="mockup-07-reading-lesson-04-detail-detail-feedback"></a>
+<a id="mockup-06-reading-lesson-04-detail-detail-feedback"></a>
 
-[Salt source](mockups/07-reading-lesson/04-detail/detail-feedback.puml)
+[Salt source](mockups/06-reading-lesson/04-detail/detail-feedback.puml)
 
-<!-- mockup:begin mockups/07-reading-lesson/04-detail/detail-feedback.puml -->
+<!-- mockup:begin mockups/06-reading-lesson/04-detail/detail-feedback.puml -->
 ```plantuml
 @startsalt
 skinparam backgroundColor #020617
@@ -4349,15 +4109,15 @@ scale 1.3
 }
 @endsalt
 ```
-<!-- mockup:end mockups/07-reading-lesson/04-detail/detail-feedback.puml -->
+<!-- mockup:end mockups/06-reading-lesson/04-detail/detail-feedback.puml -->
 
 #### Reading: Structure (heading matching)
 
-<a id="mockup-07-reading-lesson-05-structure-heading-matching"></a>
+<a id="mockup-06-reading-lesson-05-structure-heading-matching"></a>
 
-[Salt source](mockups/07-reading-lesson/05-structure/heading-matching.puml)
+[Salt source](mockups/06-reading-lesson/05-structure/heading-matching.puml)
 
-<!-- mockup:begin mockups/07-reading-lesson/05-structure/heading-matching.puml -->
+<!-- mockup:begin mockups/06-reading-lesson/05-structure/heading-matching.puml -->
 ```plantuml
 @startsalt
 skinparam backgroundColor #020617
@@ -4391,15 +4151,15 @@ scale 1.3
 }
 @endsalt
 ```
-<!-- mockup:end mockups/07-reading-lesson/05-structure/heading-matching.puml -->
+<!-- mockup:end mockups/06-reading-lesson/05-structure/heading-matching.puml -->
 
 #### Reading: Exam page
 
-<a id="mockup-07-reading-lesson-06-exam-exam-page"></a>
+<a id="mockup-06-reading-lesson-06-exam-exam-page"></a>
 
-[Salt source](mockups/07-reading-lesson/06-exam/exam-page.puml)
+[Salt source](mockups/06-reading-lesson/06-exam/exam-page.puml)
 
-<!-- mockup:begin mockups/07-reading-lesson/06-exam/exam-page.puml -->
+<!-- mockup:begin mockups/06-reading-lesson/06-exam/exam-page.puml -->
 ```plantuml
 @startsalt
 skinparam backgroundColor #020617
@@ -4443,15 +4203,15 @@ scale 1.3
 }
 @endsalt
 ```
-<!-- mockup:end mockups/07-reading-lesson/06-exam/exam-page.puml -->
+<!-- mockup:end mockups/06-reading-lesson/06-exam/exam-page.puml -->
 
 #### Reading: Exam results
 
-<a id="mockup-07-reading-lesson-07-results-exam-results"></a>
+<a id="mockup-06-reading-lesson-07-results-exam-results"></a>
 
-[Salt source](mockups/07-reading-lesson/07-results/exam-results.puml)
+[Salt source](mockups/06-reading-lesson/07-results/exam-results.puml)
 
-<!-- mockup:begin mockups/07-reading-lesson/07-results/exam-results.puml -->
+<!-- mockup:begin mockups/06-reading-lesson/07-results/exam-results.puml -->
 ```plantuml
 @startsalt
 skinparam backgroundColor #020617
@@ -4492,7 +4252,7 @@ scale 1.3
 }
 @endsalt
 ```
-<!-- mockup:end mockups/07-reading-lesson/07-results/exam-results.puml -->
+<!-- mockup:end mockups/06-reading-lesson/07-results/exam-results.puml -->
 
 ## 10. Sample generation and review gates
 
@@ -4521,13 +4281,13 @@ Detailed implementation issue bodies and dependencies are in [ISSUES.md](ISSUES.
 
 | Phase | Deliverable | Exit criteria |
 | --- | --- | --- |
-| 0 | Specification and issues | Refine the spec, review it with Claude, retire the superseded requirements summary, then publish the dependency-linked backlog under Phase 0–Phase 5 milestones. |
+| 0 | Specification and issues | Refine the spec, review it with Claude, retire the superseded requirements summary, then publish the dependency-linked backlog under Phase 0–Phase 6 milestones. |
 | 1 | Skeleton and shared contracts | Catalog discovery of all outlines, listening exercise contract/renderers with no-voice help page, learning-language/level/category selection, independent en/fr/de mother-tongue/interface controls, multilingual brief/content contracts, structured artifact viewers and header-toggle JSON tree, `dist` deployment verified on Pages, category schemas, Makefile workflow with help/run/build/generation/test/mockup targets, offline generation, environment example, approved 20 briefs/20 lessons, start/session/exercise host, shared tests, vocabulary/grammar architecture review, retirement of legacy prompt/schema files after schema migration, and final index/artifact mockup update from the prototype. |
 | 2 | Vocabulary | Introduction/audio, flashcards, matching, integrated noun-gender/reviewed overview, typed reference gaps, timed translation exam, immediate confirmed practice feedback, final results with exam/practice answer review menu, weighted progress/score header, listening choice/dictation with the no-voice help page, all 48 vocabulary lessons generatable/playable (D44), and complete journeys/tests. Close with vocabulary mockups updated from actual pages. |
 | 3 | Grammar | Seven practice interactions, 2–4 block flow, production-feedback placeholder, timed mixed exams, final results with exam/practice answer review menu and scores, all 48 grammar lessons generatable/playable, end-to-end tests, and final grammar mockup updates from actual pages. |
 | 4 | Functions | Requirements agreed in P4-01 (section 8). Brief and lesson content schemas, flashcard/dialogue/matching and word-order/dialogue-gap/exam renderers, three hand-written test lessons, the generation decision with the remaining eleven lessons, end-to-end validation, and function mockups refreshed from actual pages. |
 | 5 | Reading | Requirements and schema review first; then define generation, interaction, scoring, content, and acceptance issues. Finish implementation with mockups refreshed from actual pages. |
-| 6 | UX review of the lessons | Lesson sidebar with learning points, exam pages and results navigation, plus a dedicated mobile navigation; shorter vocabulary and grammar lessons built from named learning points; gender questions only for nouns; mother-tongue accent questions; consistent error-spotter correction contract; reworked typed/choice practice, Enter handling, speaker icon, exam intro and phase-aware score display (no score on theory pages); point-by-point visual grammar theory. Content rules are published before further bulk authoring (P2-06/P2-07). Close with desktop and mobile mockups refreshed from actual pages (P6-06). Exit criteria: D53–D58 recorded, the outline works on desktop and mobile in the theory, exam and results journeys without bypassing sequential submission, the length gates and audits exist, and the mockups match the running prototype. |
+| 6 | Lesson UX review | Implement the 2026-10-09 HTML lesson UX feedback: sidebar with a separately specified and implemented mobile navigation solution, vocabulary content/UI and grammar content/UI. Each issue includes implementation and integration into docs/SPEC.md. | Close Phase 6 with the separate P6-06 issue updating desktop/mobile mockups, embedded sources and the synchronized GitHub backlog. |
 
 Phase 1 viewers can inspect grammar/vocabulary content before exercise renderers are complete. The session host is tested with fixtures and only starts lessons whose renderers are available; it must not pretend unimplemented exercises are playable.
 
@@ -4676,6 +4436,8 @@ When publishing the agreed backlog, include relevant Mermaid flows as fenced `me
 | 0.57 | 2026-10-13 | P4-05 review: in translation exams a noun may be answered as `des` + plural with the right gender (choice appears after `des` + word); function exams start with a word-translation page (lessons now 25–26 minutes, 19–20 exam units); word-order tokens can be dragged from the bank to a position; dialogue gaps play only role A's line on entry, not the answer. |
 | 0.58 | 2026-10-13 | P4-05 review: plural answers count only for pluralia tantum, which then need the right gender; singular answers for pluralia tantum are wrong. The index shows learning language, level and categories on one line on wide screens (from 1340 px). Added outlines for de/en/fr A1–C2 and revised fr/A1 intents (sample input hashes refreshed, lesson content unchanged). |
 | 0.59 | 2026-10-14 | P3-03: multiple-choice and typed grammar gaps confirmed against the acceptance criteria with tests. D40 changed: a wrong accent that makes another word (`la` for `là`, `a` for `à`) is a spelling mistake worth half a point; the `accentSensitive` field is removed from schemas, content, generator prompts (`brief-v8`, `content-v5`) and artifact views. Dictation pages show their words in a seeded random order. |
-| 0.60 | 2026-10-10 | Added phase 6 (UX review of the lessons, product-owner feedback of 2026-10-09) with P6-01 Sidebar — lesson navigation, exams and results (#69), P6-02 Vocab lessons content — shorter lessons and unambiguous prompts (#70), P6-03 Vocab lessons UI — clear prompts, modern exercises and exam presentation (#71), P6-04 Grammar lessons content — point-based teaching and valid corrections (#72), P6-05 Grammar lessons UI — visual theory and coherent feedback (#73) and the closing mockup refresh P6-06 (#74); milestone Phase 6, section 10 phase row and issue order. The design decisions the issues require (“TO THINK ABOUT”) are still open; no behavior changed yet. |
-| 0.61 | 2026-10-13 | Phase 6 implemented. P6-01: lesson outline sidebar (D53, section 5 "Lesson navigation"): `outline()` and `navigate` in the session engine, read-only revisit of completed theory pages (`viewIndex`), exam pages never navigable, results sidebar with Final exam, Translation, Dictation and the scored exercises showing only the selected part, compact mobile outline; five Salt mockups in `docs/mockups/06-lesson-navigation/`. P6-02: vocabulary standard of 10 words and at most 12 (D54, revises D14, keeps D47), mother-tongue gap questions (D57, `gap.question`, prompt `brief-v8`), the Jean-Paul clue repaired, audit of the briefs above 12 words. P6-03: no score on theory pages, Enter submits, speaker icon, "Choose one answer", "questions" instead of "tasks" with time chips, sentence before reference words, no vocabulary feedback step (D56). P6-04: error spotter contract (D55), `Tu suis à Paris` replaced, distinct-choice validation, grammar length minimums 24 / 12 with audit ceilings 30 / 18 (D58, prompt `content-v5`). P6-05: point-by-point visual grammar theory (chips, form cards, bilingual example cards), spotter feedback without brackets or duplicates. P6-06: mockups added; comparison with the running prototype recorded in the mockup README. |
-| 0.62 | 2026-10-14 | Reading (phase 5) ported from the separate reading prototype onto the shared host: `reading` is a supported, playable kind with its own schema (`src/schemas/reading.ts`), validation, plan units, renderers on the shared controls, Draft/Content views, 30/70 scoring read from the brief (vocabulary and grammar keep 35/65), the generator prompts `reading-brief-v2` / `reading-content-v2` and the authoring tool `scripts/author-reading.ts`. Sixteen fr reading lessons A1–C2; the fr A2–C2 outlines were added verbatim from ft_transcendence. Spec: [reading-lessons.md](reading-lessons.md); nine Salt mockups in `docs/mockups/07-reading-lesson/` and `02-artifact-view/reading/`. |
+| 0.60 | 2026-10-14 | P6-01: lesson navigation (D53, section 5 "Lesson navigation"): a sidebar with the numbered learning points as a vertical timeline in their section colours, the exam pages during the exam and the result parts on the results page (replacing the button menu and the exam accordions); phones show the points as numbered markers combined with the progress bar, with tooltips; the start page lists the same points under lettered sections. Navigation never goes back. Phase 6 added to the backlog. |
+| 0.61 | 2026-10-14 | P3-04: word order and error spotter confirmed against the acceptance criteria with tests. Word order can be operated with the keyboard alone (arrow keys, Home and End move a placed token, focus follows it); the sentence line, word bank and error-spotter sentence are labelled groups. |
+| 0.62 | 2026-10-14 | P3-05: production-feedback placeholder, timed mixed grammar exam and final answer review confirmed against the acceptance criteria with tests. The placeholder keeps the plain Continue (it leads to the exam info page). Exam sentences must not repeat an explanation example or a practice sentence (validated); two repeated exam items of `fr-regular-noun-plurals` replaced (`un lieu`, `un rideau`). |
+| 0.63 | 2026-10-14 | Phase 6 beyond the navigation (P6-02, P6-04, P6-05): vocabulary inventory of 10 words, at most 12, with a quality gate and audit lines (D54, revises D14, keeps D47); mother-tongue `gap.question` for accent and sign clues, the Jean-Paul clue repaired and a gender page that lists nouns only (D55, `gap.question`, prompt `brief-v8`); grammar length minimums 24 / 12 with audit ceilings 30 / 18 (D56, revises D49, prompt `content-v5`), distinct select-mode choices validated, error spotter feedback without bracket markup, `Tu suis à Paris` replaced by an unambiguous sentence; visual introductions (lead line, form cards, alphabet tiles) and visual grammar theory (chips, form cards, bilingual example cards); thin scrollbars. |
+| 0.64 | 2026-10-14 | Reading (phase 5) ported from the separate reading prototype onto the shared host: `reading` is a supported, playable kind with its own schema (`src/schemas/reading.ts`), validation, plan units, renderers on the shared controls, Draft/Content views, 30/70 scoring read from the brief (vocabulary and grammar keep 35/65), generator prompts `reading-brief-v2` / `reading-content-v2`, sixteen authored fr lessons A1–C2 (`make author-reading`), five lettered start-page sections and the lesson navigation as for other kinds; eight Salt mockups in `docs/mockups/06-reading-lesson/`. Specification: [reading-lessons.md](reading-lessons.md). |

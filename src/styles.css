@@ -1282,12 +1282,6 @@ select {
   font-variant-numeric: tabular-nums;
 }
 
-.result-menu {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
 @media (max-width: 600px) {
   .matching-columns {
     gap: 0.5rem;
@@ -1393,7 +1387,6 @@ select {
   margin: 0.5rem 0;
   padding-left: 1.2rem;
 }
-
 
 /* ------------------------------------------------------------ P2-02 details */
 
@@ -1561,7 +1554,6 @@ select {
 .match-right {
   color: var(--correct);
 }
-
 
 /* ------------------------------------------------------------ P2-03 gender, gaps, exam */
 
@@ -2000,7 +1992,6 @@ select {
   cursor: default;
 }
 
-
 /* P2-04 review: the word line and the choice row keep their size before and after Check. */
 .gender-word {
   flex-basis: 100%;
@@ -2022,7 +2013,6 @@ select {
 .gender-label > .is-hidden {
   visibility: hidden;
 }
-
 
 /* Typed gaps: the reference words sit above the sentence, centred and narrower, with more padding. */
 .units:has(.reference-list) .references {
@@ -2049,31 +2039,6 @@ select {
 
 .exam-intro .lead {
   margin-bottom: 1rem;
-}
-
-/*
- * Results menu (all categories, P4-05 review): the selected part has a purple background and border.
- * Other parts show their outcome: red when every answer is wrong, red stripes when at least one answer
- * is not fully right; parts with every answer right keep the plain look, the final exam its purple border.
- */
-.result-menu .button.button-exam {
-  border-color: var(--progress);
-}
-
-.result-menu .button.is-all-wrong {
-  background: #7f1d1d;
-  border-color: #b91c1c;
-}
-
-.result-menu .button.is-mixed {
-  background: repeating-linear-gradient(135deg, #7f1d1d 0 7px, #0f172a 7px 14px);
-  border-color: #b91c1c;
-  text-shadow: 0 1px 2px #000, 0 0 4px #000;
-}
-
-.result-menu .button[aria-pressed='true'] {
-  background: #1e1b4b;
-  border-color: var(--progress);
 }
 
 .results-lesson {
@@ -2151,30 +2116,6 @@ select {
 
 .result-gender .match-wrong {
   color: var(--incorrect);
-}
-
-/* Final exam results: translation and dictation accordions. */
-.result-accordion {
-  margin-top: 1rem;
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-card);
-}
-
-.result-accordion > summary {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.75rem 1rem;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.result-accordion[open] > summary {
-  border-bottom: 1px solid var(--border);
-}
-
-.result-accordion > .result-section {
-  margin: 0.75rem 1rem;
 }
 
 /* Matching after Check (P2-04 review): French words sit level with their correct meaning;
@@ -2336,11 +2277,80 @@ html {
   --person-gap: 0.75rem;
 }
 
-/* Grammar start page (P3-02 review): the lesson flow, one colour per part. */
-.flow-list .flow-detail {
+/*
+ * Start page lesson outline (P6-01 review): sections lettered A, B, C… in their colours, each with its
+ * learning points indented below, numbered as in the sidebar.
+ */
+.flow-sections {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.flow-section {
+  padding: 0.55rem 0.75rem;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--review-color);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.flow-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.flow-letter {
+  min-width: 1.5rem;
+  color: var(--review-color);
+  font-weight: 700;
+}
+
+.flow-title {
+  flex: 1;
+}
+
+.flow-detail {
   display: block;
   margin-top: 0.15rem;
-  white-space: normal;
+  color: var(--muted);
+}
+
+.flow-minutes {
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.flow-points {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0.45rem 0 0.1rem 2.25rem;
+  padding: 0;
+  list-style: none;
+  font-size: 16px;
+  color: var(--text);
+}
+
+.flow-points li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.flow-number {
+  flex: 0 0 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--review-color);
+  color: var(--review-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
 }
 
 /* New verbs of a grammar lesson (P3-07): start page and first explanation page. */
@@ -2353,158 +2363,91 @@ html {
   min-width: 18rem;
 }
 
-/* Lesson sidebar (P6-01, V2 timeline) */
-.session-layout { display: block; margin-top: 1rem; }
-.session-main { min-width: 0; }
-.sidebar { margin-bottom: 1rem; }
-.sidebar-toggle { width: 100%; justify-content: flex-start; text-align: left; }
-.sidebar-panel { display: none; margin-top: 0.5rem; padding: 0.75rem; border: 1px solid var(--border); border-radius: var(--radius-card); background: var(--surface); }
-.sidebar-panel.is-open { display: block; max-height: 60vh; overflow-y: auto; }
-.sidebar-title { margin: 0 0 0.5rem; }
-.sidebar-list { list-style: none; margin: 0; padding: 0; }
-.sidebar-item { border-left: 2px solid var(--border-strong); margin-left: 0.6rem; }
-.sidebar-item.is-current { border-left-color: var(--focus); }
-.sidebar-link { display: flex; gap: 0.6rem; align-items: flex-start; width: 100%; min-height: 44px; padding: 0.5rem 0.6rem; border: 0; background: none; color: inherit; font: inherit; text-align: left; }
-button.sidebar-link { cursor: pointer; }
-button.sidebar-link:hover { background: var(--border); }
-.sidebar-item.is-locked .sidebar-link { color: var(--muted); }
-.sidebar-item.is-current .sidebar-label { font-weight: 700; }
-.sidebar-mark { flex: none; width: 1.2rem; text-align: center; }
-.sidebar-text { display: flex; flex-direction: column; min-width: 0; }
-.sidebar-text small { color: var(--muted); }
-.sidebar-note { margin: 0.5rem 0 0; font-size: 0.875rem; }
-@media (min-width: 900px) {
-  .session-layout { display: grid; grid-template-columns: 16rem minmax(0, 1fr); gap: 1.5rem; align-items: start; }
-  .sidebar { position: sticky; top: 1rem; margin-bottom: 0; }
-  .sidebar-toggle { display: none; }
-  .sidebar-panel { display: block; margin-top: 0; max-height: calc(100vh - 2rem); overflow-y: auto; }
-}
-.sidebar-item.is-nested { margin-left: 1.6rem; }
-.sidebar-link[aria-current="true"] .sidebar-label { font-weight: 700; }
-
 .choose-hint { color: var(--muted); }
-.time-chip { padding: 0.15rem 0.6rem; border: 1px solid var(--border-strong); border-radius: 999px; font-weight: 600; }
+
 .gap-question { margin: 0 0 0.5rem; font-size: 1.25rem; font-weight: 600; }
+
 .references { margin-top: 1rem; }
+
 .spot-summary { margin: 0.5rem 0 0; padding-left: 1.2rem; color: var(--muted); }
 
 /* Visual grammar theory (P6-05) */
+
 .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0 0 1rem; }
+
 .chip { display: inline-block; padding: 0.25rem 0.8rem; border: 1px solid var(--focus); border-radius: 999px; font-size: 1.15rem; font-weight: 600; }
+
 .rule-cards, .example-cards { display: grid; gap: 0.5rem; margin: 0 0 1.25rem; padding: 0; list-style: none; }
+
 .rule-cards { grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+
 .rule-cards li, .example-cards li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.2rem 0.75rem; padding: 0.7rem 0.9rem; border: 1px solid var(--border-strong); border-left: 3px solid var(--focus); border-radius: var(--radius); background: var(--surface); }
+
 .rule-form { font-size: 1.15rem; }
+
 .rule-example { flex-basis: 100%; color: var(--muted); }
+
 .example-cards li { flex-direction: column; align-items: flex-start; gap: 0.1rem; }
 
-/* Compact outline (P6-01 review): small rows, a ring mark per state, results as a plain list */
-.sidebar-title { margin: 0 0 0.5rem; font-weight: 700; }
-.sidebar-sub { margin: -0.25rem 0 0.5rem; color: var(--muted); font-size: 0.8rem; }
-.sidebar-list { display: grid; gap: 0.3rem; }
-.sidebar-item, .sidebar-item.is-current, .sidebar-item.is-nested { border-left: 0; margin-left: 0; }
-.sidebar-link { align-items: center; min-height: 2.5rem; padding: 0.4rem 0.6rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); font-size: 0.85rem; }
-.sidebar-item.is-current .sidebar-link, .sidebar-link[aria-current="true"] { border-color: var(--focus); background: var(--surface); }
-.sidebar-mark { display: inline-grid; place-items: center; width: 1.4rem; height: 1.4rem; border: 1px solid var(--border-strong); border-radius: 50%; font-size: 0.7rem; }
-.sidebar-item.is-done .sidebar-mark { border-color: var(--correct); color: var(--correct); }
-.sidebar-item.is-current .sidebar-mark { border-color: var(--progress); background: var(--progress); color: #fff; }
-.sidebar-text small { font-size: 0.75rem; }
-.results-row { flex-direction: row; justify-content: space-between; gap: 0.5rem; width: 100%; }
-.sidebar-item.is-nested { margin-left: 1rem; }
-.sidebar-item.is-nested .sidebar-link { min-height: 2rem; font-size: 0.8rem; }
-@media (max-width: 899px) { .sidebar-link { min-height: 44px; } }
-.task-eyebrow { display: flex; align-items: center; gap: 0.6rem; }
 .form-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 0.5rem; margin: 0; padding: 0; list-style: none; }
+
 .form-cards li { display: flex; align-items: baseline; gap: 0.75rem; padding: 0.6rem 0.8rem; border: 1px solid var(--border-strong); border-left: 3px solid var(--focus); border-radius: var(--radius); background: var(--surface); }
+
 .learning-chip { flex: none; font-size: 1.05rem; }
-.task-eyebrow { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem; }
-.task-eyebrow .label-muted { margin: 0; }
-.point-badge { padding: 0.15rem 0.7rem; border: 1px solid var(--border-strong); border-radius: 999px; color: var(--muted); font-size: 0.8rem; }
+
 .chip.learning-form { background: none; }
 
-/* Alignment (P6-01 review): the outline and the task card start on one line; theory heads breathe evenly */
-.session-layout .task-card, .session-layout .summary-card { margin-top: 0; }
-.session-layout .results-footer { margin-top: 1.5rem; }
-.task-eyebrow { margin-bottom: 0.5rem; }
-.task-eyebrow .point-badge { margin-left: auto; }
-.task-card .task-heading { margin: 0 0 0.5rem; }
-.task-card .lead { margin: 0 0 1.25rem; color: var(--muted); }
-.task-card .explanation-text { margin-top: 0; }
-@media (min-width: 900px) { .sidebar { margin-top: 0; } .session-layout { margin-top: 1.5rem; } }
-@media (max-width: 899px) { .session-layout .task-card { margin-top: 0.5rem; } }
 .rich-text .form-cards, .explanation-text .form-cards { padding: 0; margin: 0; }
+
 .rich-text .form-cards li, .explanation-text .form-cards li { margin: 0; align-items: center; }
 
-/* Exam presentation (P6-03 review) */
-.task-title-row { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
-.task-title-row .task-heading { margin: 0; flex: 1 1 14rem; }
 .timer-box { display: grid; gap: 0.25rem; min-width: 7.5rem; padding: 0.5rem 0.9rem; border: 1px solid var(--border-strong); border-radius: var(--radius); background: var(--bg); }
-.timer-label { color: var(--muted); font-size: 0.75rem; }
-.timer-box .countdown { margin: 0; padding: 0; border: 0; border-radius: 0; font-size: 1.6rem; font-weight: 700; line-height: 1.1; }
-.timer-bar { display: block; height: 4px; border-radius: 999px; background: var(--border); overflow: hidden; }
-.timer-bar > span { display: block; height: 100%; background: var(--progress); transition: width 0.25s linear; }
-.exam-table { width: 100%; margin: 0 0 1rem; border-collapse: collapse; }
-.exam-table th, .exam-table td { padding: 0.65rem 0.75rem; border-bottom: 1px solid var(--border); text-align: left; font-weight: 400; }
-.exam-table thead th { color: var(--muted); font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
-.exam-table tbody th { font-weight: 600; }
-.exam-table td:nth-child(2), .exam-table th:nth-child(2) { text-align: right; }
-.exam-table td:last-child, .exam-table th:last-child { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
-.exam-table tfoot th, .exam-table tfoot td { border-bottom: 0; font-weight: 700; }
-.exam-n { display: inline-grid; place-items: center; width: 1.5rem; height: 1.5rem; margin-right: 0.6rem; border: 1px solid var(--border-strong); border-radius: 50%; color: var(--muted); font-size: 0.75rem; }
-.exam-answered { margin: 0 auto 0 0; }
-.task-card:has(.timer-box) { counter-reset: question; }
-.task-card:has(.timer-box) .unit { counter-increment: question; padding: 0.6rem 0.9rem; border-left: 3px solid var(--focus); border-bottom: 1px solid var(--border); }
-.task-card:has(.timer-box) .unit .field > span:first-child::before { content: counter(question) ". "; color: var(--muted); font-weight: 600; margin-right: 0.35rem; }
 
-.exam-table th small { margin-left: 0.6rem; color: var(--muted); font-weight: 400; }
-.exam-table td:last-child, .exam-table th:last-child { font-weight: 600; }
+.timer-label { color: var(--muted); font-size: 0.75rem; }
+
+.timer-box .countdown { margin: 0; padding: 0; border: 0; border-radius: 0; font-size: 1.6rem; font-weight: 700; line-height: 1.1; }
+
+.timer-bar { display: block; height: 4px; border-radius: 999px; background: var(--border); overflow: hidden; }
+
+.timer-bar > span { display: block; height: 100%; background: var(--progress); transition: width 0.25s linear; }
+
 .form-cards { grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); }
+
 .rich-text .form-cards li, .explanation-text .form-cards li { flex-direction: column; align-items: flex-start; gap: 0.35rem; }
 
 /* Introductions: a lead line, then cards with the form to learn large and its note small (P6 review) */
+
 .rich-text .rt-lead { font-size: 1.2rem; line-height: 1.5; color: var(--text); }
+
 .form-cards .learning-chip { font-size: 1.35rem; padding: 0.2rem 0.9rem; font-weight: 700; }
+
 .form-note { font-size: 0.95rem; line-height: 1.5; color: #cbd5e1; }
+
 .form-note .learning-form { font-weight: 600; }
+
 .letter-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(4.2rem, 1fr)); gap: 0.4rem; margin: 0.75rem 0 0; padding: 0; list-style: none; }
+
 .letter-grid li { display: grid; justify-items: center; padding: 0.4rem 0.2rem; border: 1px solid var(--border-strong); border-radius: var(--radius); background: var(--bg); }
+
 .letter-grid strong { font-size: 1.5rem; line-height: 1.2; }
+
 .letter-grid small { color: var(--muted); font-size: 0.75rem; }
+
 .rich-text .letter-grid, .explanation-text .letter-grid { padding: 0; margin: 0.75rem 0 1rem; }
+
 .rich-text .letter-grid li, .explanation-text .letter-grid li { margin: 0; }
 
-/* Retractable outline on wide screens */
-.sidebar { position: relative; }
-.sidebar-collapse { display: none; }
-@media (min-width: 900px) {
-  .sidebar-collapse { position: absolute; top: 0.6rem; right: 0.6rem; z-index: 1; display: inline-grid; place-items: center; width: 1.8rem; height: 1.8rem; padding: 0; border: 1px solid var(--border-strong); border-radius: var(--radius); background: var(--bg); color: var(--text); font-size: 1.1rem; line-height: 1; cursor: pointer; }
-  .sidebar-collapse:hover { background: var(--border); }
-  .sidebar-title { padding-right: 2.2rem; }
-  .session-layout:has(.sidebar.is-collapsed) { grid-template-columns: 2.6rem minmax(0, 1fr); }
-  .sidebar.is-collapsed .sidebar-panel { display: none; }
-  .sidebar.is-collapsed .sidebar-collapse { position: static; }
-}
-
 /* Scrollbars: thin and dark everywhere; the outline scrolls without a visible bar */
-* { scrollbar-width: thin; scrollbar-color: var(--border-strong) transparent; }
-*::-webkit-scrollbar { width: 8px; height: 8px; }
-*::-webkit-scrollbar-track { background: transparent; }
-*::-webkit-scrollbar-thumb { border-radius: 999px; background: var(--border-strong); }
-*::-webkit-scrollbar-thumb:hover { background: var(--subtle); }
-.sidebar-panel { scrollbar-width: none; }
-.sidebar-panel::-webkit-scrollbar { display: none; }
 
-/* The heading and the retract button stay fixed; only the list scrolls */
-.sidebar-panel.is-open { display: flex; flex-direction: column; overflow: hidden; }
-.sidebar-scroll { min-height: 0; overflow-y: auto; scrollbar-width: none; }
-.sidebar-scroll::-webkit-scrollbar { display: none; }
-@media (min-width: 900px) {
-  .sidebar-panel { display: flex; flex-direction: column; overflow: hidden; }
-  .sidebar.is-collapsed .sidebar-panel { display: none; }
-}
-/* The outline starts exactly level with the task card; it only sticks once the page scrolls */
-.sidebar { position: relative; top: auto; }
-@media (min-width: 900px) { .sidebar { position: sticky; top: 1rem; } }
+* { scrollbar-width: thin; scrollbar-color: var(--border-strong) transparent; }
+
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+
+*::-webkit-scrollbar-track { background: transparent; }
+
+*::-webkit-scrollbar-thumb { border-radius: 999px; background: var(--border-strong); }
+
+*::-webkit-scrollbar-thumb:hover { background: var(--subtle); }
 
 /* Function lessons (P4-04): the model dialogue as alternating line cards (SPEC section 8). */
 .dialogue {
@@ -2696,111 +2639,406 @@ button.sidebar-link:hover { background: var(--border); }
   font-weight: 700;
 }
 
-/* Results sidebar keeps the P4-05 colours: red when every answer is wrong, red stripes when some are not fully right, purple when selected */
-.sidebar-link.is-all-wrong { background: #7f1d1d; border-color: #b91c1c; }
-.sidebar-link.is-mixed { background: repeating-linear-gradient(135deg, #7f1d1d 0 7px, #0f172a 7px 14px); border-color: #b91c1c; text-shadow: 0 1px 2px #000, 0 0 4px #000; }
-.sidebar-link[aria-current="true"].is-all-wrong, .sidebar-link[aria-current="true"].is-mixed, .sidebar-link[aria-current="true"] { border-color: var(--progress); }
-.sidebar-link[aria-current="true"] { background: #1e1b4b; }
+/* ---------------------------------------------------- lesson navigation */
 
-/* ------------------------------------------------------------ reading (docs/reading-lessons.md) */
-
-/* The document: a page on the dark card, in its genre skin. */
-.reading-document { padding: 1.25rem 1.5rem; border: 1px solid var(--border-strong); border-radius: var(--radius-card); background: var(--bg); line-height: 1.6; overflow-wrap: anywhere; transition: filter 0.4s; }
-.reading-document.is-blurred { filter: blur(7px); user-select: none; }
-.reading-document p { margin: 0.35rem 0; }
-.reading-title { margin: 0 0 0.25rem; font-size: 22px; font-weight: 600; line-height: 1.3; }
-.reading-meta { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; margin: 0 0 0.75rem; color: var(--muted); font-size: 15px; }
-.reading-part { position: relative; }
-.reading-part + .reading-part { margin-top: 0.75rem; }
-.reading-heading { margin: 0.25rem 0; font-size: 18px; font-weight: 600; }
-.reading-part:has(> .reading-part-number) { padding-left: 2.25rem; }
-.reading-part-number { position: absolute; top: 0.15rem; left: 0; display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; border: 1px solid var(--border-strong); border-radius: 50%; color: var(--muted); font-size: 13px; }
-.reading-keyword { padding: 0 0.1em; border-bottom: 2px solid var(--progress); border-radius: 3px; background: rgb(99 91 255 / 0.25); color: inherit; }
-.reading-segment.is-evidence { border-radius: 3px; background: rgb(0 230 118 / 0.14); outline: 1px dashed var(--correct); box-decoration-break: clone; -webkit-box-decoration-break: clone; }
-.reading-rows { display: grid; gap: 0.3rem; margin: 0.25rem 0 0; padding: 0; list-style: none; }
-.reading-rows .reading-segment { display: flex; align-items: baseline; }
-.reading-leader { flex: 1 1 1.5rem; margin: 0 0.5rem; border-bottom: 2px dotted var(--subtle); }
-.reading-value { font-variant-numeric: tabular-nums; white-space: nowrap; }
-.reading-lines .reading-segment { display: block; }
-
-/* Text message: a phone thread. */
-.skin-message { max-width: 26rem; margin-inline: auto; border-radius: 24px; }
-.skin-message .reading-meta { justify-content: center; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); }
-.skin-message .reading-meta strong { width: 100%; color: var(--text); text-align: center; }
-.reading-bubbles { display: grid; gap: 0.5rem; margin: 0; padding: 0; list-style: none; }
-.reading-bubble { justify-self: start; max-width: 88%; padding: 0.5rem 0.9rem; border-radius: 18px 18px 18px 4px; background: var(--border-strong); }
-.reading-bubble + .reading-bubble { margin-top: 0; }
-.reading-sender { display: block; color: var(--muted); font-size: 13px; }
-
-/* Menu: centred title, sections, prices aligned on the right. */
-.skin-menu { max-width: 34rem; margin-inline: auto; }
-.skin-menu .reading-title, .skin-menu .reading-meta { justify-content: center; text-align: center; }
-.skin-menu .reading-title { letter-spacing: 0.08em; text-transform: uppercase; }
-.skin-menu .reading-heading { padding-bottom: 0.2rem; border-bottom: 1px solid var(--border-strong); color: var(--muted); font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; }
-
-/* Article: headline, byline, paragraphs. */
-.skin-article .reading-title { font-size: 24px; line-height: 1.25; }
-
-/* Contract: centred title, numbered clauses. */
-.skin-contract { font-size: 16px; }
-.skin-contract .reading-title { font-size: 18px; letter-spacing: 0.06em; text-align: center; text-transform: uppercase; }
-.skin-contract .reading-meta { flex-direction: column; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); }
-.skin-contract .reading-heading { font-size: 16px; }
-
-/* Signs: each part is a plate with short centred lines. */
-.skin-sign .reading-part { display: grid; justify-items: center; padding: 0.6rem 1rem; border: 2px solid var(--border-strong); border-radius: var(--radius); text-align: center; }
-.skin-sign .reading-part:has(> .reading-part-number) { padding-left: 2.25rem; }
-.skin-sign .reading-part-number { top: 0.5rem; left: 0.5rem; }
-.skin-sign .reading-lines { margin: 0; }
-.skin-sign .reading-lines .reading-segment:first-child { font-size: 19px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
-
-/* Dictionary: a bold headword, then one line per sense, label or example. */
-.skin-dictionary .reading-heading { font-size: 19px; }
-.skin-dictionary .reading-lines .reading-segment + .reading-segment { margin-top: 0.2rem; }
-.skin-dictionary .reading-lines .reading-segment:first-child { font-size: 19px; font-weight: 700; }
-.skin-dictionary .reading-part + .reading-part { padding-top: 0.75rem; border-top: 1px solid var(--border); }
-
-/* Poem: one line per verse, stanzas apart, the moral set off. */
-.skin-poem { font-size: 17px; }
-.skin-poem .reading-title { font-style: italic; }
-.skin-poem .reading-part + .reading-part { margin-top: 1.1rem; }
-
-/* Recipe: quantities aligned on the right, numbered steps. */
-.skin-recipe .reading-heading { color: var(--muted); font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; }
-.skin-recipe .reading-lines { counter-reset: step; }
-.skin-recipe .reading-lines:has(> .reading-segment + .reading-segment) .reading-segment { position: relative; padding-left: 1.75rem; counter-increment: step; }
-.skin-recipe .reading-lines:has(> .reading-segment + .reading-segment) .reading-segment::before { content: counter(step) "."; position: absolute; left: 0; color: var(--muted); font-variant-numeric: tabular-nums; }
-.skin-recipe .reading-lines .reading-segment + .reading-segment { margin-top: 0.2rem; }
-
-/* Key words: cards with the word, its meaning and a short note. */
-.keyword-cards { grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); }
-.keyword-cards li { gap: 0.25rem; }
-.keyword-term { display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; width: 100%; font-size: 1.2rem; }
-
-/* Skim: the countdown and "I’ve finished reading" above the document. */
-.reading-skim-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.75rem; }
-.reading-note { margin: 0 0 0.75rem; padding: 0.5rem 0.8rem; border-left: 3px solid var(--progress); border-radius: var(--radius); background: rgb(99 91 255 / 0.12); font-size: 15px; }
-.reading-locked { font-style: italic; }
-
-/* Questions and structure tasks: the question above its answer, which keeps the full width next to the document. */
-.reading-question > span:first-child { font-weight: 600; }
-@media (min-width: 720px) { .units .field.reading-question { grid-template-columns: minmax(0, 1fr); align-items: start; gap: 0.4rem; } }
-.reading-question .choices { margin-top: 0; }
-.reading-order .order-answer, .reading-order .order-bank { display: grid; gap: 0.4rem; }
-.reading-order .token { margin: 0; text-align: left; }
-.matching.is-headings .match-item { min-height: 3.5rem; }
-.result-evidence q, .content-item q { font-style: italic; }
-.reading-review-documents { display: grid; gap: 1rem; margin-bottom: 1.5rem; }
-@media (min-width: 900px) { .reading-review-documents { grid-template-columns: 1fr 1fr; align-items: start; } }
-
-/* Wide screens: the document stays in view on the left while the questions scroll on the right. */
-@media (min-width: 1100px) {
-  .task-card:has(> .reading-doc-slot.is-side):not(:has(> .matching)) { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); column-gap: 2rem; align-items: start; }
-  .task-card:has(> .reading-doc-slot.is-side):not(:has(> .matching)) > * { grid-column: 1 / -1; }
-  .task-card > .reading-doc-slot.is-side:not(:has(~ .matching)) { position: sticky; top: 1rem; grid-row: span 12; grid-column: 1; max-height: calc(100vh - 2rem); overflow: auto; }
-  .task-card:has(> .reading-doc-slot.is-side) > .units { grid-column: 2; }
-  .task-card:has(> .reading-doc-slot.is-side) > .units + .units { margin-top: 1.25rem; }
+/*
+ * Lesson navigation (P6-01): a sidebar left of the lesson on wide screens (design V2, a vertical
+ * timeline of the learning points; the exam pages during the exam; the result parts on the results
+ * page). Below 960px the sidebar gives way to a compact button that opens the same content in a drawer.
+ */
+.page-task.has-nav {
+  max-width: 1320px;
 }
-.reading-doc-slot + .units, .reading-doc-slot + .matching, .reading-doc-slot + .reading-locked { margin-top: 1.25rem; }
-@media (min-width: 1100px) { .task-card:has(> .reading-doc-slot.is-side):not(:has(> .matching)) > .reading-doc-slot + .units { margin-top: 0; } }
-@media (max-width: 600px) { .reading-document { padding: 1rem; } }
+
+.nav-layout {
+  display: grid;
+  grid-template-columns: 290px minmax(0, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.nav-main {
+  min-width: 0;
+}
+
+.lesson-nav {
+  position: sticky;
+  top: 1rem;
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  padding: 1.25rem 1.1rem 0.75rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+}
+
+.nav-kicker {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.nav-title {
+  margin: 0 0 1.1rem;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.nav-note {
+  font-size: 14px;
+  margin: 0.75rem 0 0.5rem;
+}
+
+/* Timeline: a numbered circle per point in its colour; done points are filled with a tick. */
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.timeline-point {
+  position: relative;
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  gap: 0.9rem;
+}
+
+.timeline-point:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 14px;
+  top: 32px;
+  bottom: 2px;
+  width: 2px;
+  background: var(--border);
+}
+
+.timeline-point.is-done:not(:last-child)::before {
+  background: var(--review-color);
+  opacity: 0.5;
+}
+
+.timeline-marker {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid var(--review-color);
+  color: var(--review-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.timeline-point.is-done .timeline-marker,
+.timeline-point.is-here .timeline-marker {
+  background: var(--review-color);
+  color: var(--bg);
+}
+
+.timeline-point.is-here .timeline-marker {
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--review-color) 20%, transparent);
+}
+
+.timeline-point.is-exam .timeline-marker {
+  border-color: var(--text);
+  color: var(--text);
+  background: none;
+}
+
+.timeline-link {
+  display: flex;
+  flex-direction: column;
+  min-height: 44px;
+  padding: 3px 0 1.1rem;
+  background: none;
+  border: 0;
+  color: var(--muted);
+  font: inherit;
+  font-size: 15px;
+  text-align: left;
+}
+
+.timeline-point.is-here .timeline-link {
+  color: #f8fafc;
+  font-weight: 600;
+}
+
+.timeline-point.is-exam .timeline-link {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.timeline-state {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.timeline-point.is-here .timeline-state {
+  color: var(--review-color);
+}
+
+/* Exam pages: number, kind, tasks and time limit; the current page is highlighted. */
+.exam-pages {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.exam-page {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 52px;
+  padding: 0.45rem 0.8rem;
+  background: #0b1222;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--review-color);
+  border-radius: 10px;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+.exam-page.is-done {
+  color: var(--text);
+}
+
+.exam-page.is-current {
+  background: #172036;
+  border-color: var(--border-strong);
+  border-left-color: var(--review-color);
+  color: #f8fafc;
+  font-weight: 600;
+}
+
+.exam-page-number {
+  font-weight: 700;
+  color: var(--review-color);
+  min-width: 1.2rem;
+}
+
+.exam-page-text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.exam-page-text small {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--muted);
+}
+
+.exam-page.is-current small {
+  color: var(--review-color);
+}
+
+.exam-page-done {
+  color: var(--correct);
+}
+
+/* Result parts (replace the former button menu): the exam first with its parts, then the exercises. */
+.results-nav {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.results-entry {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 48px;
+  padding: 0.5rem 0.9rem;
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border-strong);
+  border-radius: 12px;
+  font: inherit;
+  font-size: 16px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.results-entry-score {
+  font-size: 14px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.results-entry.is-exam {
+  border-color: var(--progress);
+  font-weight: 600;
+}
+
+.results-entry.is-all-wrong {
+  background: #7f1d1d;
+  border-color: #b91c1c;
+}
+
+.results-entry.is-mixed {
+  background: repeating-linear-gradient(135deg, #7f1d1d 0 7px, #0f172a 7px 14px);
+  border-color: #b91c1c;
+  text-shadow: 0 1px 2px #000, 0 0 4px #000;
+}
+
+.results-entry[aria-pressed='true'] {
+  background: #1e1b4b;
+  border-color: var(--progress);
+}
+
+.results-parts {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0 0 0.25rem 0.9rem;
+  padding-left: 0.9rem;
+  border-left: 2px solid var(--border);
+}
+
+.results-part {
+  min-height: 44px;
+  font-size: 15px;
+  border-color: transparent;
+}
+
+.results-part[aria-pressed='true'] {
+  background: #172036;
+  border-color: var(--border-strong);
+}
+
+/* Phones (P6-01 review): the learning points as round markers in the header, in place of the progress bar. */
+.point-strip {
+  display: none;
+  flex: 1;
+  min-width: 0;
+}
+
+/* The tooltip spans the header, so it stays readable on narrow phones. */
+.session-header {
+  position: relative;
+}
+
+.point-strip-list {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* The connecting line, filled up to the last done point: the progress bar of the strip. */
+.point-strip-list::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  top: 50%;
+  height: 4px;
+  transform: translateY(-50%);
+  border-radius: 999px;
+  background: linear-gradient(to right, var(--progress) var(--strip-fill), var(--border) var(--strip-fill));
+}
+
+.strip-point {
+  position: relative;
+}
+
+.strip-marker {
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border-radius: 50%;
+  border: 2px solid var(--review-color);
+  background: var(--bg);
+  color: var(--review-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* An invisible frame enlarges the touch target without moving the markers apart. */
+.strip-marker::after {
+  content: '';
+  position: absolute;
+  inset: -9px -4px;
+}
+
+.strip-point.is-done .strip-marker,
+.strip-point.is-here .strip-marker {
+  background: var(--review-color);
+  color: var(--bg);
+}
+
+.strip-point.is-here .strip-marker {
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--review-color) 25%, transparent);
+}
+
+.strip-point.is-exam .strip-marker {
+  border-color: var(--text);
+  color: var(--text);
+  background: var(--bg);
+}
+
+.strip-marker[aria-expanded='true'] {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.strip-tip {
+  position: absolute;
+  z-index: 5;
+  top: calc(100% - 0.5rem);
+  left: 0;
+  right: 0;
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.6rem 0.8rem;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 50%);
+  font-size: 15px;
+}
+
+@media (max-width: 960px) {
+  .nav-layout {
+    display: block;
+  }
+
+  .lesson-nav {
+    display: none;
+  }
+
+  /* The results page keeps its parts, above the answers. */
+  .nav-layout.is-results .lesson-nav {
+    display: block;
+    position: static;
+    max-height: none;
+    margin-bottom: 1.25rem;
+  }
+
+  /* The strip takes the whole row; percentage and score follow on the next line. */
+  .session-meters {
+    flex-wrap: wrap;
+    row-gap: 0.6rem;
+  }
+
+  .point-strip {
+    display: block;
+    flex: 1 0 100%;
+  }
+
+  .session-meters .progress {
+    display: none;
+  }
+}

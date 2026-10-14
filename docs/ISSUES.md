@@ -66,7 +66,7 @@ Once these issues are published, every change to `docs/SPEC.md` or `docs/ISSUES.
 
 Use each issue heading below as its GitHub title, including the phase/issue prefix and colon: `P0-01: Create and refine the lesson prototype specification`, etc. The title prefix is the logical roadmap ID; GitHub assigns a separate repository issue number for links; branch names use the logical ID. Existing published issue numbers/URLs stay stable when their titles or scope change.
 
-Create or reuse milestones named exactly **Phase 0**, **Phase 1**, **Phase 2**, **Phase 3**, **Phase 4**, and **Phase 5**. Each phase's issues must be assigned to that milestone, with its description based on the corresponding SPEC deliverables and exit criteria. Check for existing milestones before creating them and verify every issue's assignment. The phase 4 backlog was defined in P4-01; phase 5 review and closing tasks remain requirements-dependent, and its detailed implementation backlog follows later.
+Create or reuse milestones named exactly **Phase 0**, **Phase 1**, **Phase 2**, **Phase 3**, **Phase 4**, **Phase 5**, and **Phase 6**. Each phase's issues must be assigned to that milestone, with its description based on the corresponding SPEC deliverables and exit criteria. Check for existing milestones before creating them and verify every issue's assignment. The phase 4 backlog was defined in P4-01; phase 5 review and closing tasks remain requirements-dependent, and its detailed implementation backlog follows later.
 
 Each implementation phase ends with a dedicated issue to improve its Salt mockups against the actual running prototype. That mockup-refresh issue is always the **last issue of its milestone**: it has the highest logical ID in its phase and depends, directly or transitively, on every other issue of that phase. When an issue is added to a phase, renumber so the mockup issue stays last; GitHub issue numbers do not change. Compare the real pages against the SPEC visual contract and supplied screenshot references R1–R5, update sources and their matching embedded PlantUML code fences, update the single mockup README and documentation links, and synchronize published GitHub issue assets. These closing issues are part of phase completion.
 
@@ -597,7 +597,7 @@ Milestone: **Phase 2**.
 
 Scope: the 38 fr/A1 vocabulary outline entries that still have no artifacts. For each, Claude in Claude Code writes the brief directly, as the P1-08 samples were written, instead of running the offline generator (`make generate`). Since P2-04 a vocabulary lesson is its brief (D47): there is no lesson content file, and the application derives the same six stages for every lesson.
 
-Phase 6 update (P6-02, D54, D57): write briefs with **10 words (at most 12)**, split larger topics over two lessons (the 38 entries may need splitting; check the outline counts), add `gap.question` (a mother-tongue question per locale) for accent, sign and letter clues, and let every clue show what it names. Prompt `brief-v8`; `make sample-lessons` prints audit lines for briefs above 12 words.
+Phase 6 update (P6-02, D54, D55): write briefs with **10 words (at most 12)**, split larger topics over two lessons (the 38 entries may need splitting; check the outline counts), add `gap.question` (a mother-tongue question per locale) for accent, sign and letter clues, and let every clue show what it names. Prompt `brief-v8`; `make sample-lessons` prints audit lines for briefs above 12 words.
 
 Acceptance:
 
@@ -630,7 +630,7 @@ Milestone: **Phase 2**.
 
 Scope: the 38 fr/A1 grammar outline entries that still have no artifacts. For each, Claude in Claude Code writes the brief first and then the lesson content directly, in the same way as P2-06, without the generator.
 
-Phase 6 update (P6-04, D55, D58): write lessons with at least 24 practice and 12 exam units (recommended at most 30 and 18), one named point per block, and error spotters with a single defect and a single fix, select mode for A1, distinct choices. Prompt `content-v5`; the audit lists the ten samples above the ceilings.
+Phase 6 update (P6-04, D56): write lessons with at least 24 practice and 12 exam units (recommended at most 30 and 18), one named point per block, and error spotters with a single defect and a single fix and distinct select-mode choices. Prompt `content-v5`; the audit lists the ten samples above the ceilings.
 
 Acceptance:
 
@@ -750,6 +750,8 @@ Acceptance:
 - Whole-sentence scoring and rule-level error tags feed shared results.
 - Tests cover duplicate words, alternative order, detection without correct repair, and accessible operation.
 
+Outcome (2026-10-14): word order, error spotting and their whole-sentence scoring already ran on the shared `UnitsRenderer` and scorer (P3-01, P3-02, P3-07 and P4-05 reviews), with pointer and touch dragging and plan units that carry the assessed `ruleIds`. Added keyboard reordering: the arrow keys, Home and End move a placed token, focus follows it and stays nearby after placing or returning a token. The sentence line, the word bank and the error-spotter sentence are labelled groups, and placed tokens are announced with their position. Unit tests in `tests/unit/grammar-renderers.test.tsx` (keyboard moves, focus, repeated words, punctuation, detection without repair, select-mode corrections) and `tests/unit/session.test.ts` (wrong answers traced to their rule IDs); a keyboard-only e2e journey in `tests/e2e/session.spec.ts`.
+
 Dependencies: P3-01.
 
 ### P3-05: Implement production-feedback placeholder, timed mixed exams, and answer review
@@ -769,6 +771,8 @@ Acceptance:
 - After the complete exam, show every task, original learner answer, correct answer, correctness/half-credit class, and timeout markers on final results, selected by default with a button menu for previous exercise results.
 - Mixed exam scores aggregate once and appear correctly in final results, with earlier grammar exercises available through the menu.
 - Tests cover placeholder sequencing, unscored progression, mixed-type timed exams, half credit, expiry, and deferred answer review.
+
+Outcome (2026-10-14): the placeholder, the timed mixed exam and the final review already ran on the shared session host, scorer and P6-01 results sidebar; `tests/unit/grammar-exam.test.tsx` now checks them against this issue's acceptance criteria (placeholder position and fixed text in en/fr/de, no score and no answer needed, no hint, mark or correction on exam pages and an unchanged header score, one countdown per exam page from the brief, results with half credit, timeout notes, unanswered units and the exercise entries in the sidebar), and a grammar e2e journey in `tests/e2e/session.spec.ts` plays from practice through the placeholder and a half-credit, expired exam page to the results. The placeholder keeps the plain Continue (SPEC reworded). New validation: exam sentences must not repeat an explanation example or a practice sentence; two exam items of `fr-regular-noun-plurals` that did were replaced (`un lieu`, `un rideau`).
 
 Dependencies: P3-02, P3-03, P3-04.
 
@@ -798,7 +802,7 @@ Milestone: **Phase 3**.
 
 Scope: grammar lessons are far too short compared with vocabulary lessons (the ten samples have 11–35 scored practice units and 6–12 exam units; a vocabulary lesson has about 70 and 36, and the estimates overstate the real time). Make them about two to three times longer (first three to four times, then cut to two thirds in the review), write the length and timing rules into SPEC section 7 so that generation and hand authoring produce longer lessons, show translations of newly introduced verbs, and rewrite the ten grammar samples by hand. Requested by the product owner on 2026-10-08.
 
-Phase 6 update (P6-04, D58): the minimums of this issue were lowered from 34 / 16 to 24 / 12 and ceilings of 30 / 18 added as audit lines; the ten samples (34–42 practice units) are shortened with the remaining authoring.
+Phase 6 update (P6-04, D56): the minimums of this issue were lowered from 34 / 16 to 24 / 12 and ceilings of 30 / 18 added as audit lines; the ten samples (34–42 practice units) are shortened with the remaining authoring.
 
 Acceptance:
 
@@ -1023,9 +1027,9 @@ Acceptance:
 
 Dependencies: P5-01 and the future reading implementation/content/end-to-end issues.
 
-## Phase 6 — UX review of the lessons
+## Phase 6 — lesson UX review (2026-10-09 feedback)
 
-Source for every phase 6 issue: product-owner feedback supplied on 2026-10-09 in the HTML document “Lessons and exercises: team feedback” / “UX review of the lessons”. Each issue transcribes the relevant feedback and mockup details, so it is understandable without the local attachment. Suggestions marked “TO THINK ABOUT” require a recorded design decision before implementation; the HTML mockups are alternatives, not separate designs to implement. Each issue includes its implementation and its integration into docs/SPEC.md. The content rules of P6-02 and P6-04 must be published before further bulk authoring in P2-06 and P2-07.
+Phase 6 implements the product owner's HTML feedback “Lessons and exercises: team feedback” / “UX review of the lessons” of 2026-10-09. Its issues were published on GitHub directly and are mapped here since P6-01.
 
 ### P6-01: Sidebar — lesson navigation, exams and results
 
@@ -1033,22 +1037,34 @@ GitHub: [#69](https://github.com/bastian-schnitzler/lesson_prototype/issues/69).
 
 Milestone: **Phase 6**.
 
-Status 2026-10-13: implemented on branch P6-01-lesson-sidebar-navigation (not yet committed): V2 timeline sidebar (D53), `outline()` / `navigate` / `viewIndex` in the session engine, read-only revisit of completed theory pages, exam outline without navigation, results sidebar (Final exam, Translation, Dictation, exercises), compact mobile outline, SPEC section 5 "Lesson navigation", five mockups in `docs/mockups/06-lesson-navigation/`.
+Source: product-owner feedback supplied on 2026-10-09 in the HTML document **“Lessons and exercises: team feedback” / “UX review of the lessons”**. The relevant feedback and mockup details are transcribed below so this issue is understandable without the local attachment. Suggestions marked “TO THINK ABOUT” require a recorded design decision before implementation; the mockups are alternatives, not five separate designs to implement.
 
-Scope: show all learning points while a lesson runs, allow returning to earlier points, shorten the long results page and replace the result buttons at the top with a sidebar. HTML alternatives: V1 list with colour bars, V2 vertical timeline with completed ticks, V3 letter/accent tiles. The exam navigation lists six pages with question counts and time limits; the results navigation lists the exam's Translation/Dictation and the practice sections; the grammar navigation lists Introduction, New verbs, The four pronouns and Examples. The source sentence about navigation after completing exercises is truncated: define the policy explicitly rather than treating it as an agreed rule.
+This issue includes **implementation and integration into the maintained specification, [docs/SPEC.md](SPEC.md)** (the requested `doc/spec.md` refers to this existing file).
 
-Acceptance:
+Feedback: show all learning points while doing a lesson, allow returning to earlier points, shorten the long results page, and replace top result tabs with a sidebar. HTML alternatives: V1 list with colour bars, V2 vertical timeline with completed ticks, V3 letter/accent tiles; exam navigation lists six pages with question counts/time limits; results navigation lists exam Translation/Dictation and practice sections; grammar navigation lists Introduction, New verbs, The four pronouns and Examples. The source sentence about navigation after completing exercises is truncated; define the policy explicitly rather than treating it as an agreed rule.
 
-- Choose and document one sidebar design from the three theory alternatives. List meaningful learning points for vocabulary and grammar, identify the current point and show completed/available/locked states without relying on colour alone.
-- Support returning to available theory points. Define whether and how completed practice can be revisited; locked submissions and awarded scores remain immutable, and reading a completed point never awards points again. Coordinate point metadata with P6-02 and P6-04.
-- Show the exam pages, the current page, question counts and page time limits. Sidebar navigation never bypasses sequential submission, exposes answers early, resets a countdown or extends a persisted deadline; results appear only after the complete exam.
-- Use the sidebar for results selection, including the exam's Translation/Dictation and the scored practice parts. Display only the selected part rather than a single excessively long answer list; preserve scores, correction explanations, timeout notes and read-only results.
-- Specify and implement a dedicated navigation solution for mobile devices; a large desktop sidebar is unsuitable on a phone. Document the mobile layout and interaction contract (for example a compact lesson outline opened on demand), breakpoints, opening/closing and focus behavior, and access to learning points, exam pages and results. Keep the active content readable without a permanently wide sidebar; verify small portrait screens and touch interaction. Merely shrinking the desktop sidebar does not satisfy this requirement.
-- Provide keyboard navigation, accessible state labels and focus behavior for desktop and mobile navigation. Preserve the current location, drafts, locks and timers across interface-language changes and reload/resume.
-- Integrate the navigation and state rules into SPEC sections 5–8 and phase 6 into section 10; update the decision and revision logs and this file with all six phase 6 mappings and dependencies. Reconcile diagrams with the navigation rules and synchronize GitHub as required by SPEC.
-- Verify representative vocabulary/grammar theory, practice, running exam, resumed exam and results journeys. Refresh the sidebar mockups and their embedded source fences; the final cross-area mockup comparison belongs to P6-06.
+Implementation / acceptance:
+- [ ] Choose and document one sidebar design using the three theory alternatives; list meaningful learning points for vocabulary and grammar, identify the current point and show completed/available/locked states without relying on colour alone.
+- [ ] Support returning to available theory points. Define whether/how completed practice can be revisited; locked submissions and awarded scores remain immutable and reading a completed point never awards points again. Coordinate point metadata with P6-02 and P6-04.
+- [ ] Show exam pages, current page, question counts and page time limits. Sidebar navigation never bypasses sequential submission, exposes answers early, resets a countdown or extends a persisted deadline; show results only after the complete exam.
+- [ ] Use the sidebar for results selection, including exam Translation/Dictation and scored practice parts. Display only the selected part rather than a single excessively long answer list; preserve scores, correction explanations, timeout notes and read-only results.
+- [ ] **Specify and implement a dedicated navigation solution for mobile devices. A large desktop sidebar is unsuitable on a phone.** Document the mobile layout and interaction contract (for example a compact lesson outline opened on demand), breakpoints, opening/closing and focus behavior, and access to learning points, exam pages and results. Keep the active content readable without a permanently wide sidebar; verify small portrait screens and touch interaction. Merely shrinking the desktop sidebar does not satisfy this requirement.
+- [ ] Provide keyboard navigation, accessible state labels and focus behavior for both desktop and mobile navigation; preserve current location, drafts, locks and timers across interface-language changes and reload/resume.
+- [ ] Integrate navigation/state rules into SPEC sections 5–8 and phase 6 into section 10; update the decision/revision logs and `docs/ISSUES.md` with all six Phase 6 mappings and dependencies. Reconcile diagrams with navigation rules and synchronize GitHub as required by SPEC.
+- [ ] Verify representative vocabulary/grammar theory, practice, running exam, resumed exam and results journeys. Refresh sidebar mockups and their embedded source fences; final cross-area mockup comparison is handled by P6-06.
 
-Dependencies: P1-09 (existing shared session/navigation implementation). Consumes the point structure from P6-02 and P6-04; those content issues can proceed in parallel with the sidebar contract.
+Decisions (2026-10-14, product owner):
+
+- Design V2, the vertical timeline: one numbered circle per learning point in the colour of its start-page section. A point keeps its number when done (filled circle, no tick); the current point is ringed and says "You are here"; the exam has a flag and its task count.
+- The sidebar is congruent with the start page: the start page lists the sections lettered A, B, C… (word groups, grammar blocks, function stages, the exercises, the exam), each with its learning points indented below and numbered as in the sidebar.
+- Navigation only shows the way: there is no way back to earlier points, neither from the sidebar nor from the phone strip, and no Previous button. Locked submissions and scores are untouched by navigation.
+- During the exam the sidebar lists the exam pages with their tasks and time limits, marks the current page and links nowhere.
+- Phones: no drawer. The learning points form a horizontal row of numbered round markers in the session header, combined with the progress bar (the connecting line fills up as points are done); percentage and score follow on the next line. Pressing a marker shows its number, title and state in a tooltip; Esc or a press elsewhere closes it.
+- Results: the sidebar replaces the button menu; the final exam comes first with its parts (Translation/Dictation, or Translation/Replies/Dialogue) nested below, then the scored exercises. Only the selected part is shown. On phones the result parts stand above the answers.
+
+Outcome (2026-10-14): `src/domain/session/outline.ts` derives the sections and numbered points from the plan; `src/session/LessonNav.tsx` renders the sidebar (timeline, exam pages, result parts) and the phone strip; the start page uses the same outline. Tests in `tests/unit/lesson-nav.test.tsx`; e2e journeys use the sidebar for results. Mockups follow in P6-06.
+
+Dependencies: existing shared session/navigation implementation (P1-09). Consumes point structure from P6-02/P6-04; those content issues can proceed in parallel with the sidebar contract.
 
 ### P6-02: Vocab lessons content — shorter lessons and unambiguous prompts
 
@@ -1056,22 +1072,23 @@ GitHub: [#70](https://github.com/bastian-schnitzler/lesson_prototype/issues/70).
 
 Milestone: **Phase 6**.
 
-Status 2026-10-13: implemented: standard 10 / maximum 12 words with the inventory gate and audit (D54), mother-tongue `gap.question` for the accent and hyphen clues (D57, `brief-v8`), the Jean-Paul clue repaired. Open: split the briefs above 12 words (countries and nationalities, numbers 0–20) and add `question` to future briefs.
+Source: product-owner feedback supplied on 2026-10-09 in the HTML document **“Lessons and exercises: team feedback” / “UX review of the lessons”**. The relevant feedback and mockup details are transcribed below so this issue is understandable without the local attachment. Suggestions marked “TO THINK ABOUT” require a recorded design decision before implementation; the mockups are alternatives, not five separate designs to implement.
 
-Scope: lessons must be shorter; gender exercises must exclude items that have no gender; accent questions should be in the learner's mother tongue, for example “What is the accent name in the word: café (é)?”; the names exercise asks about a sign between Jean and Paul but displays no sign; writing should be balanced with click-to-select exercises. Preserve useful answers/gender references, hints, pronunciation and partial credit for accent/case mistakes.
+This issue includes **implementation and integration into the maintained specification, [docs/SPEC.md](SPEC.md)** (the requested `doc/spec.md` refers to this existing file).
 
-Acceptance:
+Feedback: lessons must be shorter; gender exercises must exclude items that have no gender; accent questions should be in the learner’s native language, e.g. “What is the accent name in the word: café (é)?”; the names exercise asks about a sign between Jean and Paul but displays no sign; writing should be balanced with click-to-select exercises. Preserve useful answers/gender references, hints, pronunciation and partial credit for accent/case mistakes.
 
-- Review vocabulary length and repetition; define a shorter, pedagogically complete lesson structure and a realistic duration. Explicitly reconcile the current 18-word standard (D14) and the D47 rule that every word appears in every exercise, including listening and dictation; do not merely change displayed estimates or silently drop required topic or exam coverage.
-- Provide named learning points/groups consumed by P6-01 and concise content appropriate to the level. Audit existing briefs and update authoring/generator prompts, schemas/validators and derived-plan logic wherever the revised contract requires it.
-- Gender questions apply only to nouns with an applicable gender; exclude verbs, pronouns and other non-gender items and skip an empty gender stage. Keep applicable gender information on noun references.
-- Write accent/metalinguistic questions in the captured mother tongue (en/fr/de), with the target word and marked character visible. Distinguish these native-language questions from general interface-language instructions and target-language exercises; record the exception to the existing language contract.
-- Repair the compound-name example so it actually displays Jean-Paul when asking for the hyphen (trait d'union); review similar prompts so that clue, expected answer and explanation agree.
-- Decide and document the balance of typed recall and click-to-select practice, and resolve ambiguously worded questions with several plausible answers through clear context/answer contracts. Coordinate new interaction metadata with P6-03; preserve the existing accent/case partial-credit rules unless an explicit revision is recorded.
-- Integrate duration, inventory/coverage, point structure, language rules, gender applicability and exercise balance into SPEC sections 4–6 and 9–10 and the decision and revision logs; update the backlog scopes affected by the new content policy and synchronize GitHub.
-- Validate representative alphabet/accents, compound-name, noun-only, mixed and non-noun briefs, all required locales and the derived exam coverage; audit the remaining vocabulary inventory for the same problems.
+Implementation / acceptance:
+- [ ] Review vocabulary length and repetition; define a shorter, pedagogically complete lesson structure and realistic duration. Explicitly reconcile the current 18-word standard and D47 rule that every word appears in every exercise, including listening/dictation; do not merely change displayed estimates or silently drop required topic/exam coverage.
+- [ ] Provide named learning points/groups consumed by P6-01 and concise content appropriate to the level. Audit existing briefs and update authoring/generator prompts, schemas/validators and derived-plan logic wherever the revised contract requires it.
+- [ ] Gender questions apply only to nouns with an applicable gender; exclude verbs, pronouns and other non-gender items and skip an empty gender stage. Keep applicable gender information on noun references.
+- [ ] Write accent/metalinguistic questions in the captured mother tongue (en/fr/de), with the target word and marked character visible. Distinguish these native-language questions from general interface-language instructions and target-language exercises; record the exception to the existing language contract.
+- [ ] Repair the compound-name example to actually display `Jean-Paul` when asking for the hyphen (`trait d’union`); review similar prompts so the clue, expected answer and explanation agree.
+- [ ] Decide and document the balance of typed recall and click-to-select practice, and resolve ambiguously worded questions with multiple plausible answers through clear context/answer contracts. Coordinate new interaction metadata with P6-03; preserve existing accent/case partial-credit rules unless an explicit revision is recorded.
+- [ ] Integrate duration, inventory/coverage, point structure, language rules, gender applicability and exercise balance into SPEC sections 4–6/9–10 and the decision/revision logs; update backlog scopes affected by the new content policy and synchronize GitHub.
+- [ ] Validate representative alphabet/accents, compound-name, noun-only, mixed and non-noun briefs, all required locales and derived exam coverage; audit the remaining vocabulary inventory for the same problems.
 
-Dependencies: P2-04 (vocabulary derived-lesson contract). Coordinate authoring with P2-06; publish the revised rules before further bulk authoring.
+Dependencies: vocabulary derived-lesson contract P2-04. Coordinate authoring with P2-06; publish the revised rules before further bulk authoring.
 
 ### P6-03: Vocab lessons UI — clear prompts, modern exercises and exam presentation
 
@@ -1079,24 +1096,25 @@ GitHub: [#71](https://github.com/bastian-schnitzler/lesson_prototype/issues/71).
 
 Milestone: **Phase 6**.
 
-Status 2026-10-13: implemented: no score on theory pages, Enter submits, speaker icon, "Choose one answer", "questions" and time chips on the exam information page, sentence before the reference words, no vocabulary feedback step (D56). Open: refresh the vocabulary Salt mockups for the typed-gap layout.
+Source: product-owner feedback supplied on 2026-10-09 in the HTML document **“Lessons and exercises: team feedback” / “UX review of the lessons”**. The relevant feedback and mockup details are transcribed below so this issue is understandable without the local attachment. Suggestions marked “TO THINK ABOUT” require a recorded design decision before implementation; the mockups are alternatives, not five separate designs to implement.
 
-Scope: the typed-word screen “feels like an old website”; put the sentence clearly on top; preserve reference answers with gender and hints; consider Enter to validate and a speaker icon instead of “listen”; the final exam intro should present time limits more clearly and should not use “tasks”; results should be shorter, with a sidebar. Pronunciation, the listening interaction, partial credit and identifying a missing pronoun/article were reviewed positively. Grammar's pre-exam lesson-feedback step should also be considered for vocabulary. Shared concerns: multiple correct/selectable choices are unintuitive, and 0/100 during introduction/theory is meaningless.
+This issue includes **implementation and integration into the maintained specification, [docs/SPEC.md](SPEC.md)** (the requested `doc/spec.md` refers to this existing file).
 
-Acceptance:
+Feedback: typed-word screen “feels like an old website”; put the sentence clearly on top; preserve reference answers with gender and hints; consider Enter to validate, and a speaker icon instead of “listen”; final exam intro should present time limits more clearly and should not use “tasks”; results should be shorter with a sidebar. Pronunciation, listening interaction, partial credit and identifying a missing pronoun/article were positively reviewed. Grammar’s pre-exam lesson-feedback step should also be considered for vocabulary. Shared concern: multiple correct/selectable choices are unintuitive and `0/100` during introduction/theory is meaningless.
 
-- Redesign typed/click-choice practice with the prominent question/sentence above the reference choices and the answer field; improve spacing, typography, hierarchy and responsive layout while retaining hints and applicable gender.
-- Render the native-language accent prompt supplied by P6-02 without changing the answer language. Implement the agreed typed/click exercise balance and make single versus multiple selection explicit in wording and controls where applicable.
-- Decide and document Enter behavior for validation/Continue; implement accessible keyboard handling without double submission, accidental navigation or input-method composition bugs.
-- Consider a speaker-icon audio control with an accessible localized label; retain pronunciation, replay and no-voice help behavior.
-- Present the exam intro page's time limits in a scannable way, with question counts and learner-friendly localized “questions”/“words” rather than “tasks”; maintain per-page timing semantics and the exam-only countdown.
-- Hide the numeric score on introduction/theory pages; define the shared phase-aware score display with P6-05. Preserve meaningful progress and final results, and keep exam scores sealed during the exam. The header in the illustrative HTML mockups still shows a score; the explicit feedback takes precedence.
-- Integrate vocabulary results with the P6-01 sidebar, preserve article/pronoun diagnostics and partial-credit feedback, and avoid excessive answer-list length.
-- Decide and document whether to add the grammar-style pre-exam lesson-feedback/production-placeholder step to vocabulary; implement the selected behavior and specify whether it is unscored. Do not imply that individualized production feedback exists.
-- Integrate these presentation/interaction rules into SPEC sections 5–6, 8 and 10, including the language, Enter, score visibility and feedback-step decisions; refresh the vocabulary Salt mockups and their embedded sources and synchronize the affected GitHub issues.
-- Verify keyboard/mobile journeys, score visibility, audio, hints, native-language prompts, single/multiple selection clarity, partial credit, the feedback step and exam/results navigation.
+Implementation / acceptance:
+- [ ] Redesign typed/click-choice practice with the prominent question/sentence above reference choices and the answer field; improve spacing, typography, hierarchy and responsive layout while retaining hints and applicable gender.
+- [ ] Render the native-language accent prompt supplied by P6-02 without changing the answer language. Implement the agreed typed/click exercise balance and make single versus multiple selection explicit in wording and controls when applicable.
+- [ ] Decide and document Enter behavior for validation/Continue; implement accessible keyboard handling without double submission, accidental navigation or input-method composition bugs.
+- [ ] Consider a speaker-icon audio control with an accessible localized label; retain pronunciation, replay and no-voice help behavior.
+- [ ] Present exam intro page time limits in a scannable way with question counts and learner-friendly localized “questions”/“words” rather than “tasks”; maintain per-page timing semantics and the exam-only countdown.
+- [ ] Hide the numeric score on introduction/theory pages; define the shared phase-aware score display with P6-05. Preserve meaningful progress and final results, and keep exam scores sealed during the exam. The header in the illustrative HTML mockups still shows a score; the explicit feedback takes precedence.
+- [ ] Integrate vocabulary results with P6-01’s sidebar, preserve article/pronoun diagnostics and partial-credit feedback, and avoid excessive answer-list length.
+- [ ] Decide and document whether to add the grammar-style pre-exam lesson-feedback/production-placeholder step to vocabulary; implement the selected behavior and specify whether it is unscored. Do not imply that individualized production feedback exists.
+- [ ] Integrate these presentation/interaction rules into SPEC sections 5–6/8/10, including language, Enter, score visibility and feedback-step decisions; refresh vocabulary Salt mockups/embedded sources and synchronize affected GitHub issues.
+- [ ] Verify keyboard/mobile journeys, score visibility, audio, hints, native-language prompts, single/multiple selection clarity, partial credit, feedback step and exam/results navigation.
 
-Dependencies: P6-01 (sidebar integration), P6-02 (revised content/interaction contracts); coordinate the shared header semantics with P6-05.
+Dependencies: P6-01 for sidebar integration, P6-02 for revised content/interaction contracts; coordinate shared header semantics with P6-05.
 
 ### P6-04: Grammar lessons content — point-based teaching and valid corrections
 
@@ -1104,21 +1122,22 @@ GitHub: [#72](https://github.com/bastian-schnitzler/lesson_prototype/issues/72).
 
 Milestone: **Phase 6**.
 
-Status 2026-10-13: implemented: error spotter contract (D55) with the authored `Tu suis à Paris` replaced and a distinct-choice validator, grammar length minimums 24 / 12 and audit ceilings 30 / 18 (D58, `content-v5`). Open: shorten the ten samples listed by `make sample-lessons` and name their points.
+Source: product-owner feedback supplied on 2026-10-09 in the HTML document **“Lessons and exercises: team feedback” / “UX review of the lessons”**. The relevant feedback and mockup details are transcribed below so this issue is understandable without the local attachment. Suggestions marked “TO THINK ABOUT” require a recorded design decision before implementation; the mockups are alternatives, not five separate designs to implement.
 
-Scope: lessons must be shorter; teach one point at a time rather than presenting the whole subject; error spotting is a good exercise but may be difficult depending on the learner's level; selecting a different word can produce a solution that does not match the selected error. HTML grammar example: Introduction → New verbs (être, parler, habiter with translations) → The four pronouns (je, tu, il, elle, including j' before a vowel or mute h) → Examples. The screenshot of “Tu suis à Paris” offers pronoun replacements even after “suis” is selected.
+This issue includes **implementation and integration into the maintained specification, [docs/SPEC.md](SPEC.md)** (the requested `doc/spec.md` refers to this existing file).
 
-Acceptance:
+Feedback: lessons must be shorter; teach one point at a time rather than presenting the whole subject; error spotting is a good exercise but may be difficult depending on the learner’s level; selecting a different word can produce a solution that does not match the selected error. HTML grammar example: Introduction → New verbs (`être`, `parler`, `habiter` with translations) → The four pronouns (`je`, `tu`, `il`, `elle`, including `j’` before a vowel/mute h) → Examples. Screenshot `Tu suis à Paris` offers pronoun replacements even after `suis` is selected.
 
-- Define smaller named learning points with concise explanations, translated new verbs and examples; represent them in briefs/content and supply navigation metadata for P6-01. Preserve grammatical accuracy and teaching/exam coverage.
-- Review actual duration and repetition and agree shorter grammar units/lessons with realistic estimates. Explicitly reconcile P3-07, whose current contract requires at least 34 practice and 16 exam units and whose samples take 17–20 minutes; update the minimums, prompts, validators and samples together if the revised policy changes them.
-- Keep error spotting but scaffold it for A1, choose a suitable difficulty and balance guided-choice versus typed correction. Review instructions and examples where several corrections would be grammatically plausible.
-- Make selectable erroneous tokens, valid correction choices, accepted responses, corrected sentences and explanations consistent. For “Tu suis à Paris”, either target “Tu” with the correction “Je”, target “suis” with the correction “es”, or disambiguate the intended learning goal; never attach pronoun-only answers to a selected verb.
-- Decide the accepted behavior for a wrong token selection and for several valid corrections; define a deterministic answer/scoring contract, validate generated/authored examples and align the renderer with P6-05.
-- Integrate the learning-point structure, length/coverage rules, level-sensitive scaffolding and correction contracts into SPEC sections 4–5, 7 and 9–10, including the decision and revision logs; update the affected P3-07/P2-07 backlog scopes and synchronize GitHub.
-- Review and update representative pronoun, verb-form and other grammar samples and audit the remaining authored lessons; validate all locales, new-verb translations, selected-token alignment and exam coverage.
+Implementation / acceptance:
+- [ ] Define smaller named learning points with concise explanation, translated new verbs and examples; represent them in briefs/content and supply navigation metadata for P6-01. Preserve grammatical accuracy and teaching/exam coverage.
+- [ ] Review actual duration and repetition and agree shorter grammar units/lessons with realistic estimates. Explicitly reconcile P3-07, whose current contract requires at least 34 practice/16 exam units and whose samples take 17–20 minutes; update the minimums, prompts, validators and samples together if the revised policy changes them.
+- [ ] Keep error spotting but scaffold it for A1, choose suitable difficulty and balance guided-choice versus typed correction. Review instructions and examples where several corrections would be grammatically plausible.
+- [ ] Make selectable erroneous tokens, valid correction choices, accepted responses, corrected sentences and explanations consistent. For `Tu suis à Paris`, either target `Tu` with correction `Je`, target `suis` with correction `es`, or disambiguate the intended learning goal; never attach pronoun-only answers to a selected verb.
+- [ ] Decide the accepted behavior for a wrong token selection and multiple valid corrections; define a deterministic answer/scoring contract, validate generated/authored examples and align the renderer with P6-05.
+- [ ] Integrate learning-point structure, length/coverage rules, level-sensitive scaffolding and correction contracts into SPEC sections 4–5/7/9–10, including decision/revision logs; update affected P3-07/P2-07 backlog scopes and synchronize GitHub.
+- [ ] Review/update representative pronoun, verb-form and other grammar samples and audit remaining authored lessons; validate all locales, new-verb translations, selected-token alignment and exam coverage.
 
-Dependencies: P3-01, P3-04, P3-07 (existing grammar contracts). Coordinate with the remaining grammar authoring in P2-07; the revised length rules must precede further bulk authoring.
+Dependencies: existing grammar contracts P3-01, P3-04, P3-07. Coordinate with remaining grammar authoring P2-07; revised length rules must precede further bulk authoring.
 
 ### P6-05: Grammar lessons UI — visual theory and coherent feedback
 
@@ -1126,21 +1145,22 @@ GitHub: [#73](https://github.com/bastian-schnitzler/lesson_prototype/issues/73).
 
 Milestone: **Phase 6**.
 
-Status 2026-10-13: implemented: point-by-point visual theory (chips, form cards, bilingual example cards), spotter feedback naming the selected word and the correction without bracket markup or duplicates. Open: refresh the grammar Salt mockups.
+Source: product-owner feedback supplied on 2026-10-09 in the HTML document **“Lessons and exercises: team feedback” / “UX review of the lessons”**. The relevant feedback and mockup details are transcribed below so this issue is understandable without the local attachment. Suggestions marked “TO THINK ABOUT” require a recorded design decision before implementation; the mockups are alternatives, not five separate designs to implement.
 
-Scope: the grammar introduction could be more visual and should proceed point by point; the typed error-spotter correction has a weird output; selecting the wrong word displays an unrelated solution. The screenshot of “Voici Marc : elle est grand” corrected with “Il” shows the feedback twice, including raw-looking `[Il]` markup in a struck-through sentence. Preserve the good error-spotting exercise. Shared concerns: unclear multiple-choice behavior and a meaningless 0/100 during theory. The HTML visual introduction uses pronoun chips, a New verbs table, short rule entries, bilingual examples and point navigation.
+This issue includes **implementation and integration into the maintained specification, [docs/SPEC.md](SPEC.md)** (the requested `doc/spec.md` refers to this existing file).
 
-Acceptance:
+Feedback: grammar introduction could be more visual and should proceed point by point; typed error-spotter correction has a weird output; selecting the wrong word displays an unrelated solution. Screenshot `Voici Marc : elle est grand` corrected with `Il` shows the feedback twice, including raw-looking `[Il]` markup in a struck-through sentence. Preserve the good error-spotting exercise. Shared concerns: unclear multiple-choice behavior and meaningless `0/100` during theory. HTML visual intro uses pronoun chips, a New verbs table, short rule entries, bilingual examples and point navigation.
 
-- Implement point-by-point visual theory with a clear hierarchy, pronoun/rule cards or chips, the translated New verbs table and bilingual examples; integrate the P6-04 point metadata and the P6-01 navigation.
-- Render error-spotter choices and typing according to the selected-token answer contract. Feedback clearly identifies the selected word, the submitted correction, the correct word/sentence and the localized explanation, without raw bracket markup or duplicated feedback panels.
-- Handle wrong-token selection and legitimate alternative corrections coherently; keep selection and correction controls aligned, preserve the agreed scoring/half-credit rules and suppress feedback during exams.
-- Make single/multiple selection requirements explicit and accessible wherever applicable; keep the level-appropriate guided interactions from P6-04.
-- Apply the phase-aware score visibility agreed with P6-03: no numeric 0/100 on introduction/theory, meaningful progress retained, exam score sealed, final results intact. Keep the pre-exam production-feedback placeholder and its Continue flow unless an explicit revised contract changes it.
-- Integrate visual teaching, correction/feedback rendering, input state and score visibility into SPEC sections 5, 7–8 and 10 and the decision and revision logs; synchronize the affected GitHub issues.
-- Verify visual/mobile/keyboard states, selected correct/wrong tokens, correct/incorrect/accent-case-only corrections, no duplicate or raw-markup feedback, theory score visibility and timed-exam/result behavior.
+Implementation / acceptance:
+- [ ] Implement point-by-point visual theory with clear hierarchy, pronoun/rule cards or chips, the translated New verbs table and bilingual examples; integrate P6-04 point metadata and P6-01 navigation.
+- [ ] Render error-spotter choices/typing according to the selected-token answer contract. Show feedback that clearly identifies the selected word, submitted correction, correct word/sentence and localized explanation without raw bracket markup or duplicated feedback panels.
+- [ ] Handle wrong-token selection and legitimate alternative corrections coherently; keep selection and correction controls aligned, preserve the agreed scoring/half-credit rules and suppress feedback during exams.
+- [ ] Make single/multiple selection requirements explicit and accessible wherever applicable; keep the level-appropriate guided interactions from P6-04.
+- [ ] Apply the phase-aware score visibility agreed with P6-03: no numeric `0/100` on introduction/theory, meaningful progress retained, exam score sealed, final results intact. Keep the pre-exam production-feedback placeholder and its Continue flow unless an explicit revised contract changes it.
+- [ ] Integrate visual teaching, correction/feedback rendering, input state and score visibility into SPEC sections 5/7–8/10 and decision/revision logs; synchronize the affected GitHub issues.
+- [ ] Verify visual/mobile/keyboard states, selected correct/wrong token, correct/incorrect/accent-case-only correction, no duplicate/raw-markup feedback, theory score visibility and timed-exam/result behavior.
 
-Dependencies: P6-01, P6-04 (grammar integration). The final phase 6 mockup refresh is P6-06, which follows P6-01 through P6-05.
+Dependencies: P6-01 and P6-04 for grammar integration. The final Phase 6 mockup refresh is a separate issue, P6-06, and follows P6-01 through P6-05.
 
 ### P6-06: Update Phase 6 desktop and mobile mockups from the prototype
 
@@ -1148,19 +1168,18 @@ GitHub: [#74](https://github.com/bastian-schnitzler/lesson_prototype/issues/74).
 
 Milestone: **Phase 6**.
 
-Status 2026-10-13: the five lesson navigation mockups exist and the comparison is recorded in the mockup README; the remaining refresh of the practice mockups follows the last authoring issues.
+Source: product-owner HTML feedback “Lessons and exercises: team feedback” / “UX review of the lessons”, supplied on 2026-10-09. The product owner requested a separate mockup-refresh issue and a dedicated mobile navigation solution.
 
-Scope: close phase 6 by updating the mockups against the actual running prototype after all five implementation areas are complete. The product owner requested a separate mockup-refresh issue and a dedicated mobile navigation solution. This issue includes the mockup updates and their integration into docs/SPEC.md.
+Scope: close Phase 6 by updating the mockups against the actual running prototype after all five implementation areas are complete. This issue includes the mockup updates and integration into the maintained [docs/SPEC.md](SPEC.md).
 
-Acceptance:
-
-- Compare representative running desktop and mobile pages with the HTML feedback and the agreed specification; record the prototype revision used and resolve or document discrepancies.
-- Refresh the affected shared/sidebar, vocabulary and grammar Salt sources, including point-based theory, exercise inputs/feedback, phase-aware score visibility, exam introduction/countdown and results navigation.
-- Include dedicated mobile navigation mockups that demonstrate the specified and implemented alternative to a large desktop sidebar: compact portrait layout, navigation open/closed, active learning point, exam page and results selection, touch targets and focus behavior.
-- Update the matching embedded PlantUML source fences, specification links and the single root mockup README; retain editable source assets and the source-only mockup policy.
-- Integrate the completed designs and desktop/mobile behavior into SPEC sections 5–8 and the phase 6 exit criteria in section 10; update the decision and revision logs and this file with all six phase 6 mappings and dependencies.
-- Run the source/Markdown parity and relevant mockup checks through Make targets; verify the mockups against the running implementation and refresh the published GitHub issue diagrams, previews and source links.
-- This issue stays the last logical issue of phase 6 (D30). Phase 6 is complete only after the five implementation issues and this mockup refresh are complete.
+Implementation / acceptance:
+- [ ] Compare representative running desktop and mobile pages with the HTML feedback and the agreed specification; record the prototype revision used and resolve or document discrepancies.
+- [ ] Refresh affected shared/sidebar, vocabulary and grammar Salt sources, including point-based theory, exercise inputs/feedback, phase-aware score visibility, exam introduction/countdown and results navigation.
+- [ ] Include dedicated mobile navigation mockups that demonstrate the specified and implemented alternative to a large desktop sidebar: compact portrait layout, navigation open/closed, active learning point, exam page and results selection, touch targets and focus behavior.
+- [ ] Update matching embedded PlantUML source fences, specification links and the single root mockup README; retain editable source assets and the existing source-only mockup policy.
+- [ ] Integrate the completed designs and desktop/mobile behavior into SPEC sections 5–8 and Phase 6 exit criteria in section 10; update decision/revision logs and `docs/ISSUES.md` with all six Phase 6 mappings and dependencies.
+- [ ] Run the existing source/Markdown parity and relevant mockup checks using Make targets; verify mockups against the running implementation and refresh published GitHub issue diagrams, previews and source links.
+- [ ] Keep this issue as the last logical issue in Phase 6. Phase 6 is complete only after the five implementation issues and this mockup-refresh issue are complete.
 
 Dependencies: P6-01, P6-02, P6-03, P6-04, P6-05.
 

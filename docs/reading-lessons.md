@@ -270,7 +270,7 @@ Behaviour that differs from the other kinds, on purpose:
 
 ## 6. Mockups
 
-Nine PlantUML Salt screens, drawn from the running prototype, live in `docs/mockups/07-reading-lesson/`
+Nine PlantUML Salt screens, drawn from the running prototype, live in `docs/mockups/06-reading-lesson/`
 and `docs/mockups/02-artifact-view/reading/`; they are embedded in [SPEC.md](SPEC.md#reading-lesson)
 and listed in the [mockup README](mockups/README.md#reading-lesson): lesson start, key words, skim,
 skim question after the blur, detail with evidence, structure (heading matching), exam page, exam

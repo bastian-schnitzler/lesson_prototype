@@ -1,94 +1,123 @@
-import type { MessageKey } from '../../i18n/messages.ts';
 import type { LocalizedText } from '../../schemas/artifactCommon.ts';
-import type { LessonPlan, PageRole } from './plan.ts';
-import { canNavigate, viewedIndex, type SessionRecord } from './session.ts';
+import type { LessonPlan, PlanPage } from './plan.ts';
+import type { SessionRecord } from './session.ts';
 
 /**
- * Sidebar outline (SPEC section 5, P6-01): one entry per learner page with a state that never relies
- * on colour alone. Derived from the plan and the record, so it survives reload and language changes.
+ * The lesson outline of the sidebar (P6-01, SPEC section 5 "Lesson navigation"), congruent with the start
+ * page: numbered sections in the start page's order and colours, each with its learning points.
+ * Grammar: one section per teaching block (its explanations, then its exercises), then the exam.
+ * Functions: flashcards and dialogue, the exercises, the exam. Vocabulary: one section per word group
+ * (introduction and flashcards), the exercises, the exam. Every theory page is a point of its own;
+ * consecutive practice pages of one step form one point. The production-feedback placeholder and the
+ * exam info page belong to the exam section, which has no sub-points.
  */
-export type OutlineState = 'current' | 'done' | 'available' | 'locked';
-
-export interface OutlineEntry {
-  pageIndex: number;
-  pageId: string;
-  stepId: string;
-  label: LocalizedText;
-  role: PageRole;
-  state: OutlineState;
-  /** True when the sidebar may jump here; exam pages are never navigable. */
-  navigable: boolean;
-  /** Answer units on the page (exam pages show question counts). */
-  questionCount: number;
-  /** Exam countdown length; null on pages without one. */
-  timeLimitS: number | null;
+export interface OutlinePoint {
+  key: string;
+  kind: 'theory' | 'practice' | 'exam';
+  /** Indexes into `plan.pages`, in order. */
+  pages: number[];
+  title: LocalizedText;
 }
 
-/** Message key naming what an exam page asks: translation, dictation, questions on a document or mixed questions. */
-export function examKindKey(page: { units: { itemType: string }[]; items?: { type: string }[] }): MessageKey {
-  const types = new Set(page.units.map((u) => u.itemType));
-  if (types.size === 1 && types.has('vocabulary_translation_exam')) return 'examIntro.translation';
-  if (types.size === 1 && types.has('vocabulary_listening_dictation')) return 'examIntro.dictation';
-  if (page.items?.some((item) => item.type === 'reading_document')) return 'examIntro.reading';
-  if (types.size === 1 && types.has('function_translation_exam')) return 'examIntro.translation';
-  if (types.size === 1 && types.has('function_word_order')) return 'examIntro.replies';
-  if (types.size === 1 && types.has('function_dialogue_gap_typing')) return 'examIntro.dialogue';
-  return 'examIntro.mixed';
+export interface OutlineSection {
+  key: string;
+  kind: 'lesson' | 'exam';
+  /** Shown title; `titleKey` (an interface message) when the section has no content label. */
+  title?: LocalizedText;
+  titleKey?: 'nav.exercises';
+  /** Start-page colour slot. */
+  colour: number;
+  points: OutlinePoint[];
+  pages: number[];
 }
 
-export function outline(plan: LessonPlan, r: SessionRecord): OutlineEntry[] {
-  const viewed = viewedIndex(r);
-  return plan.pages
-    .filter((p) => !(r.skippedNoVoice ?? []).includes(p.pageId))
-    .map((p) => {
-      const done = r.completed.includes(p.pageId);
-      const state: OutlineState = r.status === 'completed' ? 'done' : p.index === viewed ? 'current' : done ? 'done' : p.index === r.pageIndex && r.status === 'active' ? 'available' : 'locked';
-      return {
-        pageIndex: p.index, pageId: p.pageId, stepId: p.stepId, label: p.stepLabel, role: p.role, state,
-        navigable: p.index !== viewed && canNavigate(plan, r, p.index),
-        questionCount: p.units.length, timeLimitS: p.timeLimitS,
-      };
-    });
+export type PointState = 'done' | 'current' | 'upcoming';
+
+const isTheory = (page: PlanPage) => page.role === 'presentation' && !page.special && !page.items.some((it) => it.type === 'production_feedback_placeholder');
+const belongsToExam = (page: PlanPage) => page.role === 'exam' || page.special === 'examIntro' || page.items.some((it) => it.type === 'production_feedback_placeholder');
+
+const joinLabels = (labels: LocalizedText[]): LocalizedText => {
+  const locales = Object.keys(labels[0] ?? {}) as (keyof LocalizedText)[];
+  return Object.fromEntries(locales.map((l) => [l, [...new Set(labels.map((x) => x[l]))].join(' · ')])) as LocalizedText;
+};
+
+/** The outline is derived once per plan; the sidebar and the phone strip read it on every render. */
+const outlines = new WeakMap<LessonPlan, OutlineSection[]>();
+
+export function lessonOutline(plan: LessonPlan): OutlineSection[] {
+  let sections = outlines.get(plan);
+  if (!sections) outlines.set(plan, (sections = buildOutline(plan)));
+  return sections;
 }
 
-/**
- * Compact outline shown in the sidebar: every theory page is its own point; consecutive pages of one
- * exercise step collapse into one entry (twelve typed gaps are one "Practice" row), and the final exam is
- * one row until it starts, then lists its pages with question counts and limits (D53).
- */
-export interface OutlineGroup extends OutlineEntry {
-  /** Pages the entry stands for. */
-  pageCount: number;
-  /** Sum of the page limits of a collapsed exam; the page limit for a single exam page. */
-  timeLimitS: number | null;
-}
-
-export function outlineGroups(plan: LessonPlan, r: SessionRecord): OutlineGroup[] {
-  const entries = outline(plan, r);
-  const viewed = viewedIndex(r);
-  const examRunning = r.status === 'active' && plan.pages[r.pageIndex]?.role === 'exam';
-  const groups: OutlineGroup[] = [];
-  // The exam information page belongs to the exam row, not to the points to learn.
-  let intro: OutlineEntry | undefined;
-  for (const e of entries) {
-    if (plan.pages[e.pageIndex].special === 'examIntro') { intro = e; continue; }
-    const collapse = e.role === 'practice' || (e.role === 'exam' && !examRunning);
-    const last = groups[groups.length - 1];
-    if (collapse && last && last.stepId === e.stepId && last.role === e.role) {
-      last.pageCount += 1;
-      last.questionCount += e.questionCount;
-      last.timeLimitS = last.timeLimitS === null && e.timeLimitS === null ? null : (last.timeLimitS ?? 0) + (e.timeLimitS ?? 0);
-      // The group is current when it holds the viewed page; done only when every page is.
-      const states = [last.state, e.state];
-      last.state = states.includes('current') ? 'current' : states.every((s) => s === 'done') ? 'done' : states.includes('available') ? 'available' : states.includes('done') ? 'available' : 'locked';
-      last.navigable = last.navigable || e.navigable;
-      continue;
+function buildOutline(plan: LessonPlan): OutlineSection[] {
+  const sections: OutlineSection[] = [];
+  const groupOf = (page: PlanPage) => {
+    const item = page.items[0];
+    const targetIds = item && 'targetIds' in item ? item.targetIds : [];
+    return plan.groups.find((g) => g.targetIds.includes(targetIds[0]));
+  };
+  const sectionKey = (page: PlanPage) => {
+    if (belongsToExam(page)) return 'exam';
+    if (plan.kind === 'grammar') return page.blockId ?? page.stepId;
+    if (plan.kind === 'reading') return page.stepId; // the five stages: key words, skim, detail, structure, exam
+    if (plan.kind === 'functions') return page.role;
+    return (isTheory(page) && groupOf(page)?.id) || 'exercises';
+  };
+  plan.pages.forEach((page, index) => {
+    const key = sectionKey(page);
+    let section = sections.find((s) => s.key === key);
+    if (!section) {
+      const group = plan.kind === 'vocabulary' ? groupOf(page) : undefined;
+      section = { key, kind: key === 'exam' ? 'exam' : 'lesson', colour: sections.length, points: [], pages: [],
+        ...(key === 'exam' ? {} : group && key === group.id ? { title: group.label } : plan.kind === 'grammar' || plan.kind === 'reading' ? { title: page.stepLabel } : plan.kind === 'functions' ? {} : { titleKey: 'nav.exercises' as const }) };
+      sections.push(section);
     }
-    groups.push({ ...e, pageCount: 1, state: intro?.state === 'current' && e.role === 'exam' && !examRunning ? 'current' : e.state });
-  }
-  // A group is only navigable when it is a single theory page, or holds the active page while a theory page is revisited.
-  return groups.map((g) => {
-    const holdsActive = viewed !== r.pageIndex && entries.some((e) => e.stepId === g.stepId && e.role === g.role && e.pageIndex === r.pageIndex) && g.role !== 'presentation' && g.state !== 'current';
-    return { ...g, navigable: g.pageCount === 1 ? g.navigable : holdsActive && canNavigate(plan, r, r.pageIndex), pageIndex: holdsActive ? r.pageIndex : g.pageIndex };
+    section.pages.push(index);
+    if (key === 'exam') {
+      if (page.role === 'exam' && !section.title) section.title = page.stepLabel;
+      return;
+    }
+    if (isTheory(page)) {
+      const item = page.items[0];
+      section.points.push({ key: page.pageId, kind: 'theory', pages: [index], title: item?.type === 'grammar_explanation' ? item.heading : page.stepLabel });
+      return;
+    }
+    const last = section.points.at(-1);
+    if (last?.kind === 'practice' && plan.pages[last.pages[0]].stepId === page.stepId) last.pages.push(index);
+    else section.points.push({ key: sections.some((x) => x.points.some((pt) => pt.key === page.stepId)) ? `${page.stepId}/practice` : page.stepId, kind: 'practice', pages: [index], title: page.stepLabel }); // a reading step can hold a theory page and a matching page under one ID
   });
+  // Function sections are named by their steps, as on the start page.
+  for (const section of sections) if (!section.title && !section.titleKey) section.title = joinLabels(section.points.map((p) => p.title));
+  return sections;
+}
+
+/** A sidebar entry: a learning point numbered through the lesson (the exam has no number), in its section's colour. */
+export interface NumberedPoint extends OutlinePoint {
+  number: number | null;
+  colour: number;
+  sectionIndex: number;
+}
+
+/**
+ * The flat timeline of the sidebar and the phone strip (P6-01 review): every learning point numbered
+ * 1, 2, 3… through the lesson, as listed below the lettered sections on the start page; the exam last.
+ */
+export function numberedPoints(sections: OutlineSection[]): NumberedPoint[] {
+  let n = 0;
+  return sections.flatMap((section, sectionIndex): NumberedPoint[] => section.kind === 'exam'
+    ? [{ key: section.key, kind: 'exam' as const, pages: section.pages, title: section.title ?? { en: '', fr: '', de: '' }, number: null, colour: section.colour, sectionIndex }]
+    : section.points.map((point) => ({ ...point, number: ++n, colour: section.colour, sectionIndex })));
+}
+
+export function pointState(point: Pick<OutlinePoint, 'pages'>, record: Pick<SessionRecord, 'pageIndex' | 'phase'>): PointState {
+  if (record.phase === 'results') return 'done';
+  if (point.pages.includes(record.pageIndex)) return 'current';
+  return point.pages[0] < record.pageIndex ? 'done' : 'upcoming';
+}
+
+/** The exam is running (or its info page or the placeholder before it is shown): the sidebar only shows. */
+export function inExam(plan: LessonPlan, record: Pick<SessionRecord, 'pageIndex' | 'phase'>): boolean {
+  const page = plan.pages[record.pageIndex];
+  return record.phase !== 'results' && !!page && belongsToExam(page);
 }

@@ -156,12 +156,12 @@ describe('function practice, exam and results (P4-05)', () => {
   const record = (pageIndex: number, extra: Partial<SessionRecord> = {}): SessionRecord => ({ ...startSession(plan, { sessionId: 's', contentHash: 'h', level: 'A1', motherTongue: 'de', seed: 1, now: 0 }), pageIndex, ...extra });
   const wrap = (node: React.ReactNode) => <PreferencesProvider initial={{ interfaceLanguage: 'en', motherTongue: 'de' }}>{node}</PreferencesProvider>;
 
-  it('shows the start page with situation, counts and a three-row outline', () => {
+  it('shows the start page with situation, counts and a three-section outline', () => {
     render(wrap(<StartView plan={plan} level="A1" onStart={() => undefined} onResume={() => undefined} />));
     expect(screen.getByText('A customer orders at a café counter; the waiter serves her.')).toBeInTheDocument();
     expect(screen.getByText(/8 expressions · 4 words/)).toBeInTheDocument();
-    const rows = [...document.querySelectorAll('.flow-list li')];
-    expect(rows.map((r) => r.textContent)).toEqual([expect.stringMatching(/^Flashcards · Dialogue/), expect.stringMatching(/^Matching · Gender and overview · Dialogue gaps · Word order · Listening/), expect.stringMatching(/^Final exam.*20 items on 4 timed pages/)]);
+    const rows = [...document.querySelectorAll('.flow-section .flow-head')];
+    expect(rows.map((r) => r.textContent)).toEqual([expect.stringMatching(/^AFlashcards · Dialogue/), expect.stringMatching(/^BMatching · Gender and overview · Dialogue gaps · Word order · Listening/), expect.stringMatching(/^CFinal exam.*20 items on 4 timed pages/)]);
   });
 
   it('shows practice word order with tokens only', () => {
@@ -208,7 +208,7 @@ describe('function practice, exam and results (P4-05)', () => {
     expect(screen.getByRole('button', { name: 'Continue' })).toBeEnabled();
   });
 
-  it('reviews the exam in Replies and Dialogue accordions', () => {
+  it('reviews the exam parts Translation, Replies and Dialogue one at a time from the sidebar (P6-01)', () => {
     let r = record(0);
     for (let guard = 0; r.status !== 'completed' && guard < 200; guard++) {
       const pg = plan.pages[r.pageIndex];
@@ -220,14 +220,19 @@ describe('function practice, exam and results (P4-05)', () => {
       for (const { itemKey, keys } of requiredReveals(pg)) for (const key of keys) r = sessionReducer(plan, r, { type: 'reveal', itemKey, key, now: 0 });
       r = sessionReducer(plan, r, { type: 'continue', now: 1, interfaceLanguage: 'en' });
     }
-    render(wrap(<LastTryProvider><ResultsView plan={plan} record={r} dispatch={() => undefined} /></LastTryProvider>));
-    const summaries = [...document.querySelectorAll('.result-accordion summary')].map((s) => s.textContent);
-    expect(summaries).toEqual(['Translation', 'Replies', 'Dialogue']); // names only: the sidebar carries the scores (P6 review)
-    // Results sidebar (all categories): selected purple; others plain (all right), red (all wrong) or red stripes (mixed).
-    const menu = [...document.querySelectorAll('.sidebar-link')];
-    expect(menu[0]).toHaveAttribute('aria-current', 'true');
-    expect(menu[0]).toHaveClass('is-mixed');
-    expect(menu.slice(1).every((b) => b.classList.contains('is-all-right'))).toBe(true);
+    const view = render(wrap(<LastTryProvider><ResultsView plan={plan} record={r} dispatch={() => undefined} /></LastTryProvider>));
+    const nav = document.querySelector('.lesson-nav')!;
+    expect([...nav.querySelectorAll('.results-part')].map((b) => b.textContent)).toEqual(['Translation4 of 4', 'Replies0 of 8', 'Dialogue8 of 8']);
+    // Result entries (all categories): selected purple; others green (all right), red (all wrong) or red stripes (mixed).
+    const entries = [...nav.querySelectorAll('.results-entry:not(.results-part)')];
+    expect(entries[0]).toHaveAttribute('aria-pressed', 'true');
+    expect(entries[0]).toHaveClass('is-mixed');
+    expect(entries.slice(1).every((b) => b.classList.contains('is-all-right'))).toBe(true);
+    // 'exam' shows the first part only; the replies part shows its context lines.
+    expect(nav.querySelector('.results-part')).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.queryAllByText(/le serveur: Madame, vous désirez \?/)).toHaveLength(0);
+    view.unmount();
+    render(wrap(<LastTryProvider><ResultsView plan={plan} record={{ ...r, selection: 'exam:replies' }} dispatch={() => undefined} /></LastTryProvider>));
     expect(screen.getAllByText(/le serveur: Madame, vous désirez \?/).length).toBeGreaterThan(0);
   });
 });

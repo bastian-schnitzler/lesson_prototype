@@ -1858,18 +1858,18 @@
               "ruleIds": [
                 "rule-plural-x"
               ],
-              "before": "un jeu → des",
+              "before": "un lieu → des",
               "after": "",
               "accepted": {
                 "answers": [
-                  "jeux"
+                  "lieux"
                 ]
               },
               "hint": null,
               "answerExplanation": {
-                "en": "Nouns in -eau and -eu take -x in the plural: un jeu → des jeux.",
-                "fr": "Les noms en -eau et en -eu prennent un -x au pluriel : un jeu → des jeux.",
-                "de": "Nomen auf -eau und -eu bekommen im Plural ein -x: un jeu → des jeux."
+                "en": "Nouns in -eau and -eu take -x in the plural: un lieu → des lieux.",
+                "fr": "Les noms en -eau et en -eu prennent un -x au pluriel : un lieu → des lieux.",
+                "de": "Nomen auf -eau und -eu bekommen im Plural ein -x: un lieu → des lieux."
               },
               "itemId": "exam-x-2"
             },
@@ -1918,18 +1918,18 @@
               "ruleIds": [
                 "rule-plural-x"
               ],
-              "before": "un bateau → des",
+              "before": "un rideau → des",
               "after": "",
               "accepted": {
                 "answers": [
-                  "bateaux"
+                  "rideaux"
                 ]
               },
               "hint": null,
               "answerExplanation": {
-                "en": "Nouns in -eau and -eu take -x in the plural: un bateau → des bateaux.",
-                "fr": "Les noms en -eau et en -eu prennent un -x au pluriel : un bateau → des bateaux.",
-                "de": "Nomen auf -eau und -eu bekommen im Plural ein -x: un bateau → des bateaux."
+                "en": "Nouns in -eau and -eu take -x in the plural: un rideau → des rideaux.",
+                "fr": "Les noms en -eau et en -eu prennent un -x au pluriel : un rideau → des rideaux.",
+                "de": "Nomen auf -eau und -eu bekommen im Plural ein -x: un rideau → des rideaux."
               },
               "itemId": "exam-x-5"
             }
