@@ -1,0 +1,53 @@
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xx</color> | {
+{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>████</color><color:#1E293B>░░░░░░░░</color> | <color:#94A3B8>35%</color> | <color:#E2E8F0><b>28.6 / 100</b></color> }
+<color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
+.
+{ {
+<color:#94A3B8>Your lesson</color>
+<color:#E2E8F0><b>3 of 5 points done</b></color>
+.
+{ <color:#A5B4FC><b>1</b></color> | <color:#E2E8F0>Flashcards</color> | <color:#94A3B8>Done</color> }
+{ <color:#A5B4FC><b>2</b></color> | <color:#E2E8F0>Matching</color> | <color:#94A3B8>Done</color> }
+{ <color:#67E8F9><b>3</b></color> | <color:#E2E8F0>Skim</color> | <color:#94A3B8>Done</color> }
+{ <color:#67E8F9><b>(4)</b></color> | <color:#E2E8F0><b>Detail</b></color> | <color:#67E8F9>You are here</color> }
+{ <color:#64748B>5</color> | <color:#94A3B8>Structure</color> | <color:#64748B>Not yet open</color> }
+.
+{ <color:#FDA4AF><b>⚑</b></color> | <color:#E2E8F0>Final exam</color> | <color:#94A3B8>5 questions</color> }
+} | <color:#020617>xxx</color> | {
+<color:#94A3B8>Detail · point 4 of 5</color>
+<size:24><color:#E2E8F0><b>Read the document carefully and answer the questions.</b></color></size>
+.
+{ {
+<color:#E2E8F0><b>Léa</b></color>  <color:#94A3B8>Jeudi 18:42</color>
+<color:#E2E8F0>Salut Tom ! Tu es libre <back:#312E81><u>samedi</u></back> après-midi ?</color>
+<color:#E2E8F0>Samedi soir, on mange chez moi avec Paul. On fait des crêpes !</color>
+<color:#E2E8F0>Mais <back:#312E81><u>avant</u></back>, <back:#312E81><u>on se voit</u></back> à 15 h au café de <back:#312E81><u>la gare</u></back> ?</color>
+<color:#E2E8F0><back:#312E81><u>Après</u></back> le café, on va au cinéma à 17 h.</color>
+<color:#E2E8F0>Si tu ne peux pas, dis-le-moi <back:#312E81><u>avant</u></back> vendredi. Bisous, Léa</color>
+} | <color:#020617>xxx</color> | {
+<color:#E2E8F0><b>Quel jour Léa propose-t-elle de se voir ?</b></color>
+{ <color:#FF5252>✕ dimanche</color> | <color:#00E676>✓ samedi</color> }
+<color:#94A3B8>Léa asks: Tu es libre samedi après-midi ? Jeudi is the day she writes.</color>
+<color:#E2E8F0><b>À quelle heure est le rendez-vous au café ?</b></color>
+{ <color:#00E676>✓ 15 h</color> }
+<color:#E2E8F0><b>Où Tom et Léa se retrouvent-ils à 15 h ?</b></color>
+{ <color:#00E676>✓ Au café de la gare</color> }
+<color:#E2E8F0><b>Samedi soir, Tom, Léa et Paul mangent au restaurant.</b></color>
+{ <color:#00E676>✓ Faux</color> }
+} }
+.
+{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#020617>  Continue  </color> ] }
+<color:#94A3B8>Marked in place; the page waits for Continue even when every answer is right.</color>
+} }
+} | <color:#020617>xx</color> }
+.
+}
+@endsalt

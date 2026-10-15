@@ -1,0 +1,51 @@
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xx</color> | {
+{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>███</color><color:#1E293B>░░░░░░░░░</color> | <color:#94A3B8>21%</color> | <color:#E2E8F0><b>15.9 / 100</b></color> }
+<color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
+.
+{ {
+<color:#94A3B8>Your lesson</color>
+<color:#E2E8F0><b>2 of 5 points done</b></color>
+.
+{ <color:#A5B4FC><b>1</b></color> | <color:#E2E8F0>Flashcards</color> | <color:#94A3B8>Done</color> }
+{ <color:#A5B4FC><b>2</b></color> | <color:#E2E8F0>Matching</color> | <color:#94A3B8>Done</color> }
+{ <color:#67E8F9><b>(3)</b></color> | <color:#E2E8F0><b>Skim</b></color> | <color:#67E8F9>You are here</color> }
+{ <color:#64748B>4</color> | <color:#94A3B8>Detail</color> | <color:#64748B>Not yet open</color> }
+{ <color:#64748B>5</color> | <color:#94A3B8>Structure</color> | <color:#64748B>Not yet open</color> }
+.
+{ <color:#FDA4AF><b>⚑</b></color> | <color:#E2E8F0>Final exam</color> | <color:#94A3B8>5 questions</color> }
+} | <color:#020617>xxx</color> | {
+<color:#94A3B8>Skim · point 3 of 5</color>
+<size:24><color:#E2E8F0><b>Answer from memory</b></color></size>
+.
+{ {
+<color:#E2E8F0><b>Léa</b></color>  <color:#94A3B8>Jeudi 18:42</color>
+<color:#E2E8F0>Salut Tom ! Tu es libre samedi après-midi ?</color>
+<color:#E2E8F0>Samedi soir, on mange chez moi avec Paul. On fait des crêpes !</color>
+<color:#E2E8F0>Mais avant, on se voit à 15 h au café de la gare ?</color>
+<color:#E2E8F0>Après le café, on va au cinéma à 17 h.</color>
+<color:#E2E8F0>Si tu ne peux pas, dis-le-moi avant vendredi. Bisous, Léa</color>
+} | <color:#020617>xxx</color> | {
+<color:#E2E8F0><b>Pourquoi Léa écrit-elle à Tom ?</b></color>
+<back:#0F172A><color:#E2E8F0>   Pour annuler un rendez-vous             </color></back>
+<back:#14532D><color:#00E676> ✓ Pour proposer de se voir samedi       </color></back>
+<back:#7F1D1D><color:#FF5252> ✕ Pour dire merci pour un cadeau         </color></back>
+<back:#0F172A><color:#E2E8F0>   Pour demander l’heure du train          </color></back>
+<color:#94A3B8>Tu es libre samedi ? and on se voit… ? are invitations:</color>
+<color:#94A3B8>Léa suggests meeting.</color>
+} }
+.
+{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#020617>  Continue  </color> ] }
+<color:#94A3B8>After Check the document comes back; the page waits for Continue, also when the answer is right.</color>
+} }
+} | <color:#020617>xx</color> }
+.
+}
+@endsalt
