@@ -1042,6 +1042,8 @@ Acceptance:
 - `make sample-lessons` and the contract tests (plan, scoring, a complete session reaching 100 and 0) include the ten lessons.
 - The product owner reviews the ten lessons in the artifact view; findings are resolved before or with P5-04.
 
+Outcome (2026-10-15): the ten lessons in `content/briefs` and `content/lessons` (texts of the public signs, menu and party invitation taken from the reference prototype; the six others new), each with 5 key words, a main document of 46–65 and an exam document of 22–39 words, 4 detail questions, one ordering task, 5 exam questions and 8 minutes; `make sample-lessons` and the contract tests (plan, totals of 100 and 0) include them. Awaiting the product-owner review.
+
 Dependencies: P5-02. The lessons become playable with P5-04.
 
 ### P5-04: Reading document view, skim, questions and session
