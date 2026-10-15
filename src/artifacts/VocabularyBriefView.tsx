@@ -14,15 +14,17 @@ export function VocabularyBriefView({ data }: ArtifactViewProps) {
   const demanding = brief.targets.filter((target) => target.difficulty === 'demanding').length;
   // Stages, durations and exam pages are derived from the brief (P2-04); every word takes part in every exercise.
   const lesson = vocabularyLesson(brief);
-  const [introduction, flashcards, matching, overview, practice, listening, exam] = lesson.steps;
+  const byStep = (id: string) => lesson.steps.find((s) => s.id === id);
+  const [introduction, flashcards, matching, practice, listening, exam] = ['introduction', 'flashcards', 'matching', 'practice', 'listening', 'exam'].map((id) => byStep(id)!);
+  // A lesson without nouns has no gender step (P06-00).
+  const gender = byStep('overview');
   const total = (pages: { estimatedDurationS: number }[]) => pages.reduce((sum, page) => sum + page.estimatedDurationS, 0);
-  const hasNouns = brief.targets.some((target) => target.wordClass === 'noun');
   type Stage = 'introduction' | 'flashcards' | 'matching' | 'genderOverview' | 'typedGaps' | 'listening';
   const stages: { stage: Stage; activity: string; durationS: number; scored: boolean }[] = [
     { stage: 'introduction', activity: t('activity.introduction'), durationS: total(introduction.pages), scored: false },
     { stage: 'flashcards', activity: t('activity.flashcards', { count: brief.targets.length }), durationS: total(flashcards.pages), scored: false },
     { stage: 'matching', activity: t('activity.matching', { size: VOCABULARY_TIMING.matchingGroupSize }), durationS: total(matching.pages), scored: true },
-    { stage: 'genderOverview', activity: t(hasNouns ? 'activity.genderOverview' : 'activity.overview'), durationS: total(overview.pages), scored: hasNouns },
+    ...(gender ? [{ stage: 'genderOverview' as const, activity: t('activity.genderOverview'), durationS: total(gender.pages), scored: true }] : []),
     { stage: 'typedGaps', activity: t('activity.typedGaps', { count: brief.targets.length }), durationS: total(practice.pages), scored: true },
     { stage: 'listening', activity: t('activity.listening', { count: brief.targets.length }), durationS: total(listening.pages), scored: true },
   ];

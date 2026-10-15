@@ -195,7 +195,7 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
         return [{ kind: 'order', id: id(), itemId: item.itemId, itemType: item.type, prompt: {}, tokens, acceptedOrders, explanation: item.answerExplanation, answer, answerLang: 'learning' }];
       }
       case 'function_gender_select': {
-        // As vocabulary stage 4 (P4-05 review): one choice per noun; other words show no gender.
+        // As vocabulary stage 4 (P4-05 review): one choice per noun; the page lists nouns only (P06-00).
         const words = brief.kind === 'functions' ? brief.words : [];
         const options = GENDER_OPTIONS.filter((g) => g !== 'neuter' || content.lang === 'de').map((g) => ({ id: g, text: `gender.${g}`, lang: 'ui' as const }));
         return item.ids.flatMap((wid) => {
@@ -256,7 +256,6 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
       }
       case 'vocabulary_introduction':
       case 'vocabulary_flashcards':
-      case 'vocabulary_overview':
       case 'grammar_explanation':
       case 'production_feedback_placeholder':
       case 'function_flashcards':

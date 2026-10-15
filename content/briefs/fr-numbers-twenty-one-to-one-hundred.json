@@ -14,7 +14,7 @@
     "fr": "Apprendre à compter de 21 à 100 en français, comprendre un prix en euros et maîtriser les nombres composés comme 70, 80 et 90.",
     "de": "Lernen Sie auf Französisch von 21 bis 100 zu zählen, Preise in Euro zu verstehen und zusammengesetzte Zahlen wie 70, 80 und 90 zu meistern."
   },
-  "estimatedMinutes": 14,
+  "estimatedMinutes": 13,
   "provenance": {
     "generator": "lesson-prototype",
     "model": "gemini-3.6-flash",

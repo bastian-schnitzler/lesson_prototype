@@ -158,8 +158,8 @@ export const functionsItemSchema = (lang: string) =>
     }),
     z.strictObject({
       /**
-       * Gender page (P4-05 review): every word of the lesson on one page as in vocabulary stage 4; nouns get
-       * a masculine/feminine choice (one unit each), other words show "no gender".
+       * Gender page (P4-05 review): every noun of the lesson on one page as in vocabulary stage 4, each with
+       * a masculine/feminine choice (one unit each); words without a gender are left out (P06-00).
        */
       type: z.literal('function_gender_select'),
       itemId: NestedIdSchema,

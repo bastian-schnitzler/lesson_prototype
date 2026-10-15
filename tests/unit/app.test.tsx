@@ -158,7 +158,7 @@ describe('lesson artifact page', () => {
     expect(screen.getByRole('rowheader', { name: /07 Final exam/ })).toBeInTheDocument();
     expect(screen.getByRole('cell', { name: 'Answer 8 questions on 2 timed pages' })).toBeInTheDocument(); // translation + dictation per word
     expect(screen.getByRole('rowheader', { name: /06 Listening/ })).toBeInTheDocument();
-    expect(screen.getByRole('rowheader', { name: /04 Gender \+ overview/ })).toBeInTheDocument();
+    expect(screen.getByRole('rowheader', { name: /04 Gender/ })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Lesson preview' })).toBeInTheDocument();
     await user.selectOptions(screen.getByRole('combobox', { name: 'Interface language' }), 'fr');
     expect(await screen.findByRole('heading', { name: 'Inventaire des mots cibles' })).toBeInTheDocument();
