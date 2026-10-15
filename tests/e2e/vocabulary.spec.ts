@@ -193,7 +193,7 @@ test('half credit for a capitalised exam answer, then Repeat lesson starts a fre
   await expect(page.locator('.session-score')).toHaveCount(0); // no score on the introduction (P06-00)
 });
 
-test('a lesson without nouns has no gender page, no gender tags and non-clickable reference words', async ({ page }) => {
+test('a lesson without nouns skips the gender step: no gender page, no gender tags and non-clickable reference words', async ({ page }) => {
   const data = lessonData('fr-classroom-instructions');
   await page.goto('./#/lesson/fr-classroom-instructions/play');
   await primary(page).click();
@@ -212,6 +212,8 @@ test('a lesson without nouns has no gender page, no gender tags and non-clickabl
     }
     await step(page, data, {});
   }
-  expect([...stages]).toEqual(expect.arrayContaining(['Introduction', 'Flashcards', 'Matching', 'Overview']));
+  expect([...stages]).toEqual(expect.arrayContaining(['Introduction', 'Flashcards', 'Matching']));
+  // No gender step and no replacement overview without nouns (P06-00), as in function lessons.
+  expect([...stages].filter((s) => s === 'Gender' || s === 'Overview')).toEqual([]);
   expect([...stages]).not.toContain('Gender');
 });

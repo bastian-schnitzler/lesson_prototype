@@ -64,6 +64,12 @@ describe('fixture artifacts', () => {
     expect(messages(validateContent(lesson, { ...ctx('fr-classroom-objects'), brief }))).toMatch(/vocabulary lessons have no content file/);
   });
 
+  it('leaves out the gender step of a vocabulary lesson without nouns, as in function lessons (P06-00)', () => {
+    const lesson = vocabularyLesson(load('fr-classroom-instructions', 'brief'));
+    expect(lesson.steps.map((st) => st.id)).toEqual(['introduction', 'flashcards', 'matching', 'practice', 'listening', 'exam']);
+    expect(() => contentSchema('vocabulary', 'fr').parse(lesson)).not.toThrow();
+  });
+
   it('covers nouns, non-nouns, conjugation and non-conjugation grammar', () => {
     expect(load('fr-classroom-objects', 'brief').targets.every((t: Json) => t.wordClass === 'noun')).toBe(true);
     expect(load('fr-classroom-instructions', 'brief').targets.every((t: Json) => t.wordClass !== 'noun')).toBe(true);
@@ -117,9 +123,10 @@ describe('brief validation', () => {
     const ids = brief.targets.map((t: Json) => t.id).sort();
     const of = (type: string) => lesson.steps.flatMap((st) => st.pages.flatMap((pg) => pg.items)).filter((it) => it.type === type).map((it) => ('targetId' in it ? it.targetId : '')).sort();
     for (const type of ['vocabulary_typed_gap', 'vocabulary_listening_choice', 'vocabulary_translation_exam', 'vocabulary_listening_dictation']) expect(of(type), type).toEqual(ids);
-    const practice = [...lesson.steps[4].pages, ...lesson.steps[5].pages];
+    const step = (id: string) => lesson.steps.find((st) => st.id === id)!;
+    const practice = [...step('practice').pages, ...step('listening').pages];
     expect(practice.every((pg) => pg.items.length === 1)).toBe(true);
-    expect(lesson.steps[6].pages.every((pg) => pg.timeLimitS !== null && pg.items.length <= 6)).toBe(true);
+    expect(step('exam').pages.every((pg) => pg.timeLimitS !== null && pg.items.length <= 6)).toBe(true);
   });
 
   it('enforces the French noun article policy in exam forms, teaching forms and exceptions (D39)', () => {

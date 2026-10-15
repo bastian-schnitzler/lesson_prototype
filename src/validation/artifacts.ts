@@ -474,14 +474,15 @@ function checkFunctionsBrief(b: FunctionsBrief, ctx: OutlineContext, issues: Iss
 function checkFunctionsContent(c: FunctionsContent, b: FunctionsBrief, issues: Issues) {
   const L = FUNCTIONS_LIMITS, R = FUNCTIONS_PAGE_RULES;
   const expressionIds = b.expressions.map((e) => e.id), wordIds = b.words.map((w) => w.id);
+  const nounIds = b.words.filter((w) => w.wordClass === 'noun').map((w) => w.id);
   const expressions = new Map(b.expressions.map((e) => [e.id, e]));
   const roles = new Set(b.roles.map((r) => r.id));
   const role = (id: string, path: string) => issues.check(roles.has(id), path, `unknown role ${id}`);
   const expression = (id: string, path: string) => issues.check(expressions.has(id), path, `unknown expression ${id}`);
   const step = new Map(c.steps.map((s) => [s.stage, s]));
   const before = issues.list.length;
-  // The gender step exists exactly when the lesson has words (P4-05 review).
-  const stages = FUNCTIONS_STAGES.filter((s) => s !== 'gender' || wordIds.length > 0);
+  // The gender step exists exactly when the lesson has nouns (P4-05 review; nouns only since P06-00).
+  const stages = FUNCTIONS_STAGES.filter((s) => s !== 'gender' || nounIds.length > 0);
   issues.check(c.steps.length === stages.length, 'steps', `expected ${stages.length} steps: ${stages.join(', ')}`);
   c.steps.forEach((s, i) => {
     issues.check(s.stage === stages[i], `steps.${i}.stage`, `expected the ${stages[i]} step here (section 8)`);
@@ -502,10 +503,10 @@ function checkFunctionsContent(c: FunctionsContent, b: FunctionsBrief, issues: I
   issues.check(cards.length === deck.length && pageSizes('flashcards').every((n) => n === 1)
     && deck.every(([side, ids], n) => cards[n].side === side && sameSet(cards[n].ids, ids)), 'steps.flashcards', 'one page with every word (when the lesson has words), then one page with every expression');
 
-  // Gender page (P4-05 review): every word on one page, as in vocabulary stage 4.
-  if (wordIds.length) {
+  // Gender page (P4-05 review): every noun on one page, as in vocabulary stage 4; other words are left out (P06-00).
+  if (nounIds.length) {
     const gender = only('gender', 'function_gender_select');
-    issues.check(gender.length === 1 && pageSizes('gender').length === 1 && gender[0].ids.join() === wordIds.join(), 'steps.gender', 'one gender page with every word in brief order');
+    issues.check(gender.length === 1 && pageSizes('gender').length === 1 && gender[0].ids.join() === nounIds.join(), 'steps.gender', 'one gender page with every noun in brief order');
   }
 
   // Model dialogue: one page, alternating roles, every expression used.

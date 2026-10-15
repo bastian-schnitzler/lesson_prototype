@@ -16,37 +16,6 @@ function genderLabel(target: VocabularyTarget, t: ReturnType<typeof useI18n>['t'
   return target.genders.map((g) => t(`gender.${g}`)).join(' / ');
 }
 
-function TargetTable({ ids, plan, motherTongue, showGender = true }: { ids: string[]; plan: LessonPlan; motherTongue: Locale; showGender?: boolean }) {
-  const { t } = useI18n();
-  return (
-    <div className="table-wrap">
-      <table className="data-table">
-        <thead>
-          <tr>
-            <th scope="col">{t('brief.col.target')}</th>
-            <th scope="col">{t('brief.col.translation', { locale: t(`locale.${motherTongue}`) })}</th>
-            {showGender && <th scope="col">{t('brief.col.gender')}</th>}
-            <th scope="col">{t('session.audio')}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {ids.map((id) => {
-            const target = plan.targets.get(id);
-            return (
-              <tr key={id}>
-                <th scope="row" lang={plan.lang}>{target?.teachingForm ?? id}</th>
-                <td>{target?.translations[motherTongue]?.join(' / ')}</td>
-                {showGender && <td>{(target && genderLabel(target, t)) || '–'}</td>}
-                <td>{target && <ListenButton text={target.teachingForm} lang={plan.lang} />}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-    </div>
-  );
-}
-
 /** Introduction: the formatted group text only; the words themselves follow on the flashcards. */
 export function IntroductionRenderer({ item, plan }: RendererProps) {
   const { locale } = useI18n();
@@ -393,15 +362,11 @@ function MatchingCurves({ pairs, selected, boxes, arranged = false, celebrating 
   );
 }
 
-export function OverviewRenderer({ item, plan, motherTongue }: RendererProps) {
-  if (item.type !== 'vocabulary_overview') return null;
-  return <TargetTable ids={item.targetIds} plan={plan} motherTongue={motherTongue} showGender={false} />;
-}
-
 /**
- * Stage 4 gender page (P2-03): every word of the lesson on one page, which stays the same after
- * "Check". While answering, nouns show their bare term with masculine/feminine choices and a speaker
- * that reads only the bare term (no article or gender clue); other words show no input. After Check
+ * Stage 4 gender page (P2-03): every noun of the lesson on one page, which stays the same after
+ * "Check"; words without a gender are left out (P06-00). While answering, each noun shows its bare term
+ * with masculine/feminine choices and a speaker that reads only the bare term (no article or gender
+ * clue). Function lessons use the same page for their nouns. After Check
  * the choices are marked in place: a correct choice has a green border, a wrong choice a red border
  * and the correct gender is highlighted in green; the word shows its teaching form and translation,
  * without explanations. The button then reads Continue.
@@ -410,7 +375,7 @@ export function GenderRenderer(props: RendererProps) {
   const { t } = useI18n();
   const { item, units, plan, mode, motherTongue } = props;
   if (item.type !== 'vocabulary_gender_select' && item.type !== 'function_gender_select') return null;
-  // Function lessons (P4-05 review) show their words; vocabulary lessons their targets.
+  // Function lessons (P4-05 review) show their nouns; vocabulary lessons their noun targets.
   const ids = item.type === 'function_gender_select' ? item.ids : item.targetIds;
   const targetOf = (id: string) => plan.targets.get(id) ?? plan.functions?.words.find((w) => w.id === id) as { term: string; teachingForm: string; translations: Partial<Record<Locale, string[]>> } | undefined;
   const unitOf = (id: string) => units.find((u): u is PlanUnit & { kind: 'choice' } => u.kind === 'choice' && u.correct.length > 0 && u.id.endsWith(`/${id}`));
@@ -451,7 +416,7 @@ export function GenderRenderer(props: RendererProps) {
                   </span>
                 </span>
               </div>
-              {unit ? (
+              {unit && (
                 <fieldset className="gender-options" disabled={checked || !!props.locked[unit.id]}>
                   <legend className="visually-hidden">{t('session.genderOf', { word: target?.term ?? id })}</legend>
                   {unit.options.map((o) => (
@@ -461,8 +426,6 @@ export function GenderRenderer(props: RendererProps) {
                     </label>
                   ))}
                 </fieldset>
-              ) : (
-                <span className="muted">{t('session.noGender')}</span>
               )}
             </li>
           );
