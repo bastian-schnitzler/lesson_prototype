@@ -49,12 +49,12 @@ These issue bodies were published to GitHub in P0-04 on 2026-10-06. Each GitHub 
 | P4-07 | [#80](https://github.com/bastian-schnitzler/lesson_prototype/issues/80) | Function end-to-end validation and deployment |
 | P4-08 | [#34](https://github.com/bastian-schnitzler/lesson_prototype/issues/34) | Update function lesson mockups from the prototype |
 | P5-01 | [#35](https://github.com/bastian-schnitzler/lesson_prototype/issues/35) | Define reading requirements and implementation backlog |
-| P5-02 | – (to be created) | Reading brief and lesson content schemas and validation |
-| P5-03 | – (to be created) | Write and review the ten fr/A1 reading test lessons |
-| P5-04 | – (to be created) | Reading document view, skim, questions and session |
-| P5-05 | – (to be created) | Tune reading lengths, skim speed, exam limits and evidence after play tests |
-| P5-06 | – (to be created) | Reading layout on wide screens with the lesson sidebar |
-| P5-07 | – (to be created) | Decide reading generation and complete the reading lessons |
+| P5-02 | [#100](https://github.com/bastian-schnitzler/lesson_prototype/issues/100) | Reading brief and lesson content schemas and validation |
+| P5-03 | [#101](https://github.com/bastian-schnitzler/lesson_prototype/issues/101) | Write and review the ten fr/A1 reading test lessons |
+| P5-04 | [#102](https://github.com/bastian-schnitzler/lesson_prototype/issues/102) | Reading document view, skim, questions and session |
+| P5-05 | [#103](https://github.com/bastian-schnitzler/lesson_prototype/issues/103) | Tune reading lengths, skim speed, exam limits and evidence after play tests |
+| P5-06 | [#104](https://github.com/bastian-schnitzler/lesson_prototype/issues/104) | Reading layout on wide screens with the lesson sidebar |
+| P5-07 | [#105](https://github.com/bastian-schnitzler/lesson_prototype/issues/105) | Decide reading generation and complete the reading lessons |
 | P5-08 | [#36](https://github.com/bastian-schnitzler/lesson_prototype/issues/36) | Update reading lesson mockups from the prototype |
 | P6-01 | [#69](https://github.com/bastian-schnitzler/lesson_prototype/issues/69) | Sidebar — lesson navigation, exams and results |
 | P6-02 | [#90](https://github.com/bastian-schnitzler/lesson_prototype/issues/90) | Implement the feedback according to the feedback page |
@@ -1008,6 +1008,8 @@ Dependencies: reading requirements from the user; P1 shared architecture.
 
 ### P5-02: Reading brief and lesson content schemas and validation
 
+GitHub: [#100](https://github.com/bastian-schnitzler/lesson_prototype/issues/100).
+
 Milestone: **Phase 5**.
 
 Scope: the executable reading brief and lesson content contracts (SPEC section 9, D54), their validation, plan units and artifact views.
@@ -1026,6 +1028,8 @@ Dependencies: P5-01.
 
 ### P5-03: Write and review the ten fr/A1 reading test lessons
 
+GitHub: [#101](https://github.com/bastian-schnitzler/lesson_prototype/issues/101).
+
 Milestone: **Phase 5**.
 
 Scope: Claude writes the brief and lesson content of the ten fr/A1 reading entries by hand with the P5-02 tool (no Gemini calls): `fr-reading-an-online-profile`, `fr-reading-public-signs`, `fr-reading-a-text-message` (already the P5-02 fixture), `fr-reading-a-restaurant-menu`, `fr-reading-a-flat-ad`, `fr-reading-a-holiday-postcard`, `fr-reading-an-event-programme`, `fr-reading-a-party-invitation`, `fr-reading-a-train-timetable`, `fr-reading-written-directions`.
@@ -1039,6 +1043,8 @@ Acceptance:
 Dependencies: P5-02. The lessons become playable with P5-04.
 
 ### P5-04: Reading document view, skim, questions and session
+
+GitHub: [#102](https://github.com/bastian-schnitzler/lesson_prototype/issues/102).
 
 Milestone: **Phase 5**.
 
@@ -1057,6 +1063,8 @@ Dependencies: P5-03.
 
 ### P5-05: Tune reading lengths, skim speed, exam limits and evidence after play tests
 
+GitHub: [#103](https://github.com/bastian-schnitzler/lesson_prototype/issues/103).
+
 Milestone: **Phase 5**.
 
 Scope: the values section 9 marks as starting values, and the features it leaves out for now (P5-01 review).
@@ -1070,6 +1078,8 @@ Dependencies: P5-04.
 
 ### P5-06: Reading layout on wide screens with the lesson sidebar
 
+GitHub: [#104](https://github.com/bastian-schnitzler/lesson_prototype/issues/104).
+
 Milestone: **Phase 5**.
 
 Scope: with the lesson sidebar the task area is about 720 px wide, so the document stands beside the questions only from 1100 px (P5-01 review: decide while implementing).
@@ -1082,6 +1092,8 @@ Acceptance:
 Dependencies: P5-04.
 
 ### P5-07: Decide reading generation and complete the reading lessons
+
+GitHub: [#105](https://github.com/bastian-schnitzler/lesson_prototype/issues/105).
 
 Milestone: **Phase 5**.
 
