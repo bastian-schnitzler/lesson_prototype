@@ -10,7 +10,7 @@ import { scoreUnit, type LockedUnit, type UnitResponse } from '../../src/domain/
 import { ExplanationRenderer, PronounMatchRenderer, PronounTypingRenderer } from '../../src/session/grammarRenderers.tsx';
 import { checkedOrder, MatchingRenderer } from '../../src/session/vocabularyRenderers.tsx';
 import { promptParts, StartView } from '../../src/session/views.tsx';
-import { UnitsRenderer } from '../../src/session/controls.tsx';
+import { answerText, SpotSummary, UnitsRenderer } from '../../src/session/controls.tsx';
 import { skipsFeedbackWhenCorrect } from '../../src/domain/session/session.ts';
 import type { RendererProps } from '../../src/session/controls.tsx';
 
@@ -310,6 +310,26 @@ describe('error spotter (P3-07 review)', () => {
     cleanup();
     renderPage(UnitsRenderer, plan, page, { drafts: { [unit.id]: { tokenId: unit.kind === 'spot' ? unit.tokens[0].id : '', text: '' } } });
     expect(screen.getByText('Correction')).toBeInTheDocument();
+  });
+});
+
+describe('error spotter feedback (feedback #16)', () => {
+  const plan = planOf();
+  const unit = plan.pages.flatMap((p) => p.units).find((u) => u.kind === 'spot')!;
+  if (unit.kind !== 'spot') throw new Error('no error spotter in the fixture');
+  const wrong = unit.tokens.find((tk) => tk.id !== unit.faultyTokenId)!;
+
+  it('shows the corrected sentence without bracket markup', () => {
+    const text = answerText(unit, { tokenId: unit.faultyTokenId, text: 'XX' }, (k) => k);
+    expect(text).not.toMatch(/[[\]]/);
+    expect(text).toContain('XX');
+  });
+
+  it('names the selected word, says when it was not the mistake and repeats the correction', () => {
+    render(<PreferencesProvider initial={{ interfaceLanguage: 'en', motherTongue: 'en' }}><SpotSummary unit={unit} response={{ tokenId: wrong.id, text: 'zz' }} lang="fr" /></PreferencesProvider>);
+    expect(screen.getByText(`Selected word: ${wrong.text}`)).toBeInTheDocument();
+    expect(screen.getByText(`“${wrong.text}” is not the mistake in this sentence.`)).toBeInTheDocument();
+    expect(screen.getByText('Your correction: zz')).toBeInTheDocument();
   });
 });
 

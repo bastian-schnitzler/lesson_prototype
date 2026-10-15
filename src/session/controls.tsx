@@ -108,7 +108,8 @@ export function answerText(unit: PlanUnit, response: UnitResponse | null, t: (k:
     case 'order': return (response as string[]).map((id) => unit.tokens.find((tk) => tk.id === id)?.text).join(' ');
     case 'spot': {
       const r = response as { tokenId: string; text: string };
-      return unit.tokens.map((tk) => (tk.id === r.tokenId ? `[${r.text}]` : tk.text)).join(' ');
+      // The sentence as the learner corrected it, without bracket markup (feedback #16): the selected word replaced by the correction.
+      return unit.tokens.map((tk) => (tk.id === r.tokenId && r.text.trim() ? r.text.trim() : tk.text)).join(' ');
     }
   }
 }
@@ -137,8 +138,26 @@ export function UnitFeedback({ unit, locked, lang }: { unit: PlanUnit; locked: L
         </strong>
         <span className="match-wrong"><span className="visually-hidden">{t('result.yourAnswer')}: </span><s lang={unit.kind !== 'choice' || unit.options[0]?.lang === 'learning' ? lang : undefined}>{given || t('session.noAnswer')}</s></span>
       </div>
+      <SpotSummary unit={unit} response={locked.response} lang={lang} />
       <p className="explanation">{unit.explanation[locale]}</p>
     </div>
+  );
+}
+
+/**
+ * Error spotter feedback (feedback #16): names the selected word and the submitted correction, and says so
+ * when the selected word was not the mistake. The correct sentence is shown by the caller, once.
+ */
+export function SpotSummary({ unit, response, lang }: { unit: PlanUnit; response: UnitResponse | null; lang: string }) {
+  const { t } = useI18n();
+  if (unit.kind !== 'spot' || !response || typeof response !== 'object' || Array.isArray(response) || !response.tokenId) return null;
+  const word = unit.tokens.find((tk) => tk.id === response.tokenId)?.text ?? '';
+  return (
+    <ul className="spot-summary">
+      <li>{t('feedback.selectedWord', { word })}</li>
+      {response.tokenId !== unit.faultyTokenId && <li>{t('feedback.wrongWord', { word })}</li>}
+      {response.text.trim() && <li lang={lang}>{t('feedback.yourCorrection', { text: response.text.trim() })}</li>}
+    </ul>
   );
 }
 
