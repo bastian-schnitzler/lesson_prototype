@@ -19,10 +19,10 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "functions-v1",
-    "generatedAt": "2026-10-14T16:31:08.712Z",
+    "generatedAt": "2026-10-15T18:58:54.143Z",
     "inputHashes": {
       "outline": "3d44c42aa9721069c041b103732801561e34e993b5fde9e51f14c06cb8768c78",
-      "brief": "ccc4da22bf0b97c07ffec61f8541bfee665877354703612a0ce7a62e1509e95a"
+      "brief": "3c88b74670263c5c40cbfc254831e7040193ab4fa9ec39256fbeeb0a2376870b"
     }
   },
   "kind": "functions",
@@ -393,9 +393,9 @@
       "stage": "gender",
       "role": "exercise",
       "label": {
-        "en": "Gender and overview",
-        "fr": "Genre et vue d’ensemble",
-        "de": "Genus und Übersicht"
+        "en": "Gender",
+        "fr": "Genre",
+        "de": "Genus"
       },
       "pages": [
         {
@@ -403,9 +403,9 @@
           "estimatedDurationS": 40,
           "timeLimitS": null,
           "instructions": {
-            "en": "Choose the gender of each noun, then review all words.",
-            "fr": "Choisissez le genre de chaque nom, puis revoyez tous les mots.",
-            "de": "Wähle das Genus jedes Nomens und sieh dir dann alle Wörter an."
+            "en": "Choose the gender of each noun.",
+            "fr": "Choisissez le genre de chaque nom.",
+            "de": "Wähle das Genus jedes Nomens."
           },
           "items": [
             {

@@ -35,7 +35,7 @@ export const FUNCTIONS_COPY = {
   dialogue: [L('Dialogue', 'Dialogue', 'Dialog'), L('Read and listen. Turn a line to see its translation and a note.', 'Lisez et écoutez. Retournez une réplique pour voir sa traduction et une remarque.', 'Lies und hör zu. Dreh eine Zeile um, um Übersetzung und Hinweis zu sehen.')],
   matching: [L('Matching', 'Association', 'Zuordnen'), L('Match each expression with its translation.', 'Associez chaque expression à sa traduction.', 'Ordne jedem Ausdruck seine Übersetzung zu.')],
   wordMatching: L('Match each word with its translation.', 'Associez chaque mot à sa traduction.', 'Ordne jedem Wort seine Übersetzung zu.'),
-  gender: [L('Gender and overview', 'Genre et vue d’ensemble', 'Genus und Übersicht'), L('Choose the gender of each noun, then review all words.', 'Choisissez le genre de chaque nom, puis revoyez tous les mots.', 'Wähle das Genus jedes Nomens und sieh dir dann alle Wörter an.')],
+  gender: [L('Gender', 'Genre', 'Genus'), L('Choose the gender of each noun.', 'Choisissez le genre de chaque nom.', 'Wähle das Genus jedes Nomens.')],
   wordOrder: [L('Word order', 'Ordre des mots', 'Wortstellung'), L('Put the words in order.', 'Mettez les mots dans l’ordre.', 'Bring die Wörter in die richtige Reihenfolge.')],
   dialogueGaps: [L('Dialogue gaps', 'Dialogue à trous', 'Dialoglücken'), L('Choose the expression that fits the gap.', 'Choisissez l’expression qui complète la réplique.', 'Wähle den Ausdruck, der in die Lücke passt.')],
   exam: [L('Final exam', 'Examen final', 'Abschlussprüfung'), L('Build the answer. Not every word fits.', 'Construisez la réponse. Tous les mots ne servent pas.', 'Bilde die Antwort. Nicht jedes Wort passt.')],

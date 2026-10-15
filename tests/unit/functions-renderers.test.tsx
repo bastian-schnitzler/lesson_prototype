@@ -161,7 +161,7 @@ describe('function practice, exam and results (P4-05)', () => {
     expect(screen.getByText('A customer orders at a café counter; the waiter serves her.')).toBeInTheDocument();
     expect(screen.getByText(/4 expressions · 4 words/)).toBeInTheDocument();
     const rows = [...document.querySelectorAll('.flow-section .flow-head')];
-    expect(rows.map((r) => r.textContent)).toEqual([expect.stringMatching(/^AFlashcards · Dialogue/), expect.stringMatching(/^BMatching · Gender and overview · Dialogue gaps · Word order · Listening/), expect.stringMatching(/^CFinal exam.*12 questions on 3 timed pages/)]);
+    expect(rows.map((r) => r.textContent)).toEqual([expect.stringMatching(/^AFlashcards · Dialogue/), expect.stringMatching(/^BMatching · Gender · Dialogue gaps · Word order · Listening/), expect.stringMatching(/^CFinal exam.*12 questions on 3 timed pages/)]);
   });
 
   it('shows practice word order with tokens only', () => {

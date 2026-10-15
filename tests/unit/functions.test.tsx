@@ -81,6 +81,16 @@ describe('function artifacts', () => {
     expect(messages(checkContent(mutate))).toMatch(pattern);
   });
 
+  it('asks the gender of nouns only; other words are left out of the gender page (P06-00, feedback #9)', () => {
+    const other = (dir: 'briefs' | 'lessons'): Json => JSON.parse(readFileSync(join(ROOT, 'content', dir, 'fr-greetings-and-goodbyes.json'), 'utf8'));
+    const otherCtx = { entry: outline.entries.find((e) => e.id === 'fr-greetings-and-goodbyes')!, lang: 'fr', level: 'A1', brief: other('briefs') };
+    const content = other('lessons');
+    expect(step(content, 'gender').pages[0].items[0].ids).toEqual(['matin', 'soir']);
+    expect(messages(validateContent(content, otherCtx))).toBe('');
+    step(content, 'gender').pages[0].items[0].ids.push('tres-bien', 'pas-mal');
+    expect(messages(validateContent(content, otherCtx))).toMatch(/one gender page with every noun in brief order/);
+  });
+
   it('derives page estimates and exam limits from the page rules (section 8)', () => {
     const content = load('lessons') as FunctionsContent;
     const exam = content.steps.at(-1)!.pages;
