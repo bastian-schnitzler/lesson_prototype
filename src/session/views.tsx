@@ -8,7 +8,7 @@ import { headerScore, isAnswered, isListeningPage, isMatchingItem, nextDialogueL
 import type { MessageKey } from '../i18n/messages.ts';
 import type { Locale } from '../schemas/common.ts';
 import { rendererRegistry, UnitFeedback } from './renderers.tsx';
-import { answerText } from './controls.tsx';
+import { answerText, SpotSummary } from './controls.tsx';
 import { MATCH_SLIDE_MS } from './vocabularyRenderers.tsx';
 import { missingArticle } from '../domain/articleHint.ts';
 import type { SessionInput } from './useSession.ts';
@@ -269,7 +269,7 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
   // Single-answer practice pages mark the answer in place (red/green) instead of a feedback card (P2-04 review).
   const inline = page.role === 'practice' && skipsFeedbackWhenCorrect(page);
   // Typed pronoun rows explain themselves in their row; other half-point answers below the button.
-  const almost = inline && record.phase === 'feedback' ? page.units.filter((u) => record.locked[u.id]?.outcome === 'orthography_only' && u.itemType !== 'grammar_pronoun_form_typing') : [];
+  const almost = inline && record.phase === 'feedback' ? page.units.filter((u) => record.locked[u.id]?.outcome === 'orthography_only' && u.itemType !== 'grammar_pronoun_form_typing' && u.kind !== 'spot') : []; // an error spotter explains itself in its card (feedback #16)
   const say = useAutoplay(plan.lang);
   const onContinue = () => {
     // Autoplay (P4-05 review): submitting a gap or error-spotting page speaks the correct sentence.
@@ -524,6 +524,7 @@ function ResultItem({ unit, locked, lang, columns }: { unit: PlanUnit; locked: L
             {locked.timedOut && <span className="result-note">{t('result.timedOut')}</span>}
           </p>
         )}
+        {!ok && <SpotSummary unit={unit} response={locked.response} lang={lang} />}
         {!ok && <p className="muted">{unit.explanation[locale]}</p>}
       </div>
     </li>

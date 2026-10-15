@@ -3100,3 +3100,6 @@ html {
     display: none;
   }
 }
+
+/* Error spotter feedback (feedback #16): the selected word and the submitted correction, once. */
+.spot-summary { margin: 0.5rem 0 0; padding-left: 1.2rem; color: var(--muted); }
