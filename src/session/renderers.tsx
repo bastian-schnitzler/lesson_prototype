@@ -41,4 +41,12 @@ export const rendererRegistry: Record<Item['type'], ComponentType<RendererProps>
   function_listening_choice: ListeningReplyRenderer,
   function_dialogue_gap_typing: ExamDialogueRenderer,
   function_translation_exam: UnitsRenderer,
+  // Reading lessons: baseline renderers until P5-04 (reading cannot start before then).
+  reading_flashcards: UnitsRenderer,
+  reading_keyword_matching: UnitsRenderer,
+  reading_document: UnitsRenderer,
+  reading_skim_choice: UnitsRenderer,
+  reading_choice: UnitsRenderer,
+  reading_true_false: UnitsRenderer,
+  reading_order: UnitsRenderer,
 };
