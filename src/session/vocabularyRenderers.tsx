@@ -51,7 +51,15 @@ function TargetTable({ ids, plan, motherTongue, showGender = true }: { ids: stri
 export function IntroductionRenderer({ item, plan }: RendererProps) {
   const { locale } = useI18n();
   if (item.type !== 'vocabulary_introduction') return null;
-  return <RichText text={item.text[locale]} lang={plan.lang} className="rich-text explanation-text" />;
+  // Same presentation as the grammar theory (feedback #14): one title, the word group as an underlined
+  // sub-heading when the lesson has several groups, a lead line and learning-form lists as cards.
+  const group = plan.groups.length > 1 ? plan.groups.find((g) => item.targetIds.every((id) => g.targetIds.includes(id))) : undefined;
+  return (
+    <div className="theory">
+      {group && <h3 className="theory-subhead">{group.label[locale]}</h3>}
+      <RichText text={item.text[locale]} lang={plan.lang} className="rich-text explanation-text" cards />
+    </div>
+  );
 }
 
 /**

@@ -15,7 +15,7 @@ export function NewVerbs({ plan, motherTongue }: { plan: LessonPlan; motherTongu
   if (!plan.newVerbs.length) return null;
   return (
     <div className="new-verbs">
-      <h2 className="small-heading">{t('session.newVerbs')}</h2>
+      <h2 className="small-heading theory-subhead">{t('session.newVerbs')}</h2>
       <div className="table-wrap">
         <table className="data-table">
           <thead><tr><th scope="col">{t('session.verb')}</th><th scope="col">{t(`locale.${motherTongue}`)}</th></tr></thead>
@@ -36,40 +36,40 @@ export function ExplanationRenderer({ item, plan, motherTongue, pageId }: Render
   // The first explanation page opens with the lesson's new verbs (P3-07).
   const first = plan.pages.find((p) => p.items.some((it) => it.type === 'grammar_explanation'))?.pageId === pageId;
   return (
-    <>
+    // One container with one vertical rhythm: the same space between every block of the explanation.
+    <div className="theory">
       {first && <NewVerbs plan={plan} motherTongue={motherTongue} />}
-      <h3>{item.heading[locale]}</h3>
-      <RichText text={item.text[locale]} lang={plan.lang} className="rich-text explanation-text" />
+      {/* The point title is the page title; a heading that only repeats it is left out. */}
+      {item.heading[locale] !== plan.pages.find((p) => p.pageId === pageId)?.stepLabel[locale] && <h3 className="theory-subhead">{item.heading[locale]}</h3>}
+      {/* Visual theory, point by point (feedback #14): the subjects as chips, the short rule, the forms as cards, bilingual examples. */}
       {item.formTable.length > 0 && (
-        <div className="table-wrap">
-          <table className="data-table">
-            <thead>
-              <tr>
-                <th scope="col">{t('session.subject')}</th>
-                <th scope="col">{t('session.form')}</th>
-                <th scope="col">{t('brief.col.example')}</th>
-              </tr>
-            </thead>
-            <tbody lang={plan.lang}>
-              {item.formTable.map((row, n) => (
-                <tr key={n}>
-                  <th scope="row">{row.subject}</th>
-                  <td>{row.form}</td>
-                  <td>{row.example ?? ''}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <p className="chips" aria-hidden="true" lang={plan.lang}>
+          {[...new Set(item.formTable.map((row) => row.subject))].map((subject) => <span key={subject} className="chip">{subject}</span>)}
+        </p>
       )}
-      <ul className="brief-list examples">
-        {item.examples.map((ex, n) => (
-          <li key={n}>
-            <strong lang={plan.lang}>{ex.text}</strong> <span className="muted">– {ex.translation[motherTongue]}</span>
-          </li>
-        ))}
-      </ul>
-    </>
+      <RichText text={item.text[locale]} lang={plan.lang} className="rich-text explanation-text" cards tipLabel={t('session.goodToKnow')} />
+      {item.formTable.length > 0 && (
+        <ul className="rule-cards" lang={plan.lang}>
+          {item.formTable.map((row, n) => (
+            <li key={n}>
+              <span className="visually-hidden">{t('session.subject')}: </span><strong className="chip">{row.subject}</strong>
+              <span className="visually-hidden"> {t('session.form')}: </span><span className="rule-form">{row.form}</span>
+              {row.example && <><span className="visually-hidden"> {t('brief.col.example')}: </span><small className="rule-example">{row.example}</small></>}
+            </li>
+          ))}
+        </ul>
+      )}
+      {item.examples.length > 0 && (
+        <ul className="example-cards">
+          {item.examples.map((ex, n) => (
+            <li key={n}>
+              <strong lang={plan.lang}>{ex.text}</strong>
+              <span className="muted" lang={motherTongue}>{ex.translation[motherTongue]}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 }
 

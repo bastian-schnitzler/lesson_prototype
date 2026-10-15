@@ -1,3 +1,4 @@
+import { RichText } from '../../src/components/RichText.tsx';
 import { readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
@@ -291,6 +292,28 @@ describe('new verbs (P3-07)', () => {
     cleanup();
     renderPage(ExplanationRenderer, plan, explanations[1]);
     expect(screen.queryByRole('heading', { name: 'New verbs' })).toBeNull();
+  });
+
+  it('shows the theory visually: subject chips, form cards and bilingual example cards (feedback #14)', () => {
+    const plan = buildPlan(lessonOf(FIXTURES, GRAM), brief, 'en');
+    const page = plan.pages.find((p) => p.items[0]?.type === 'grammar_explanation' && p.items[0].formTable.length > 0)!;
+    const item = page.items[0];
+    if (item.type !== 'grammar_explanation') throw new Error('expected an explanation');
+    const { container } = renderPage(ExplanationRenderer, plan, page);
+    expect(container.querySelectorAll('.rule-cards li')).toHaveLength(item.formTable.length);
+    expect(container.querySelectorAll('.chips .chip')).toHaveLength(new Set(item.formTable.map((r) => r.subject)).size);
+    expect(container.querySelectorAll('.example-cards li')).toHaveLength(item.examples.length);
+    expect(container.querySelector('.example-cards li')).toHaveTextContent(item.examples[0].translation.en!);
+    expect(screen.queryByRole('columnheader', { name: 'Form' })).toBeNull(); // the form table became cards (the New verbs table stays)
+  });
+
+  it('puts the paragraphs after the last list in a Good to know box (feedback #14)', () => {
+    const text = 'The **plural** pronouns:\n\n- `nous` – we\n- `ils` – they\n\nIn conversation, `on` often means "we".';
+    const { container, rerender } = render(<RichText text={text} lang="fr" cards tipLabel="Good to know" />);
+    expect(container.querySelector('.rt-tip')).toHaveTextContent('Good to knowIn conversation, on often means "we".');
+    expect(container.querySelectorAll('.form-cards li')).toHaveLength(2);
+    rerender(<RichText text={'Use `être`:\n\n- `je suis`\n- `tu es`'} lang="fr" cards tipLabel="Good to know" />);
+    expect(container.querySelector('.rt-tip')).toBeNull(); // nothing follows the list
   });
 
   it('shows the translation in the chosen mother tongue', () => {
