@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-reading-written-directions",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Lire un itinéraire",
+  "objective": {
+    "en": "Read a short message that explains the way from one place to another and find the destination.",
+    "fr": "Lire un court message qui explique le chemin d’un lieu à un autre et trouver la destination.",
+    "de": "Eine kurze Nachricht mit einer Wegbeschreibung lesen und das Ziel finden."
+  },
+  "estimatedMinutes": 8,
+  "provenance": {
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "reading-v1",
+    "generatedAt": "2026-10-15T19:30:27.909Z",
+    "inputHashes": {
+      "outline": "773e6e0bf4a1b39e122de5e0a0f103b5d224a32c04efda035216d1fee834159a"
+    }
+  },
+  "kind": "reading",
+  "theme": "places",
+  "genre": "text_message",
+  "situation": {
+    "en": "Sophie invites Marc to her home and explains the way from the metro by text message.",
+    "fr": "Sophie invite Marc chez elle et lui explique le chemin depuis le métro par SMS.",
+    "de": "Sophie lädt Marc zu sich ein und beschreibt ihm per SMS den Weg von der Metro."
+  },
+  "readerTask": {
+    "en": "Follow the way step by step and find where Sophie lives.",
+    "fr": "Suivre le chemin étape par étape et trouver où habite Sophie.",
+    "de": "Dem Weg Schritt für Schritt folgen und herausfinden, wo Sophie wohnt."
+  },
+  "keywords": [
+    {
+      "id": "sortir",
+      "term": "sortir",
+      "translations": {
+        "en": [
+          "to get out",
+          "to go out"
+        ],
+        "de": [
+          "aussteigen",
+          "hinausgehen"
+        ]
+      },
+      "explanation": {
+        "en": "To leave a place: sors du métro = get out of the metro (tu form).",
+        "fr": "Quitter un lieu : sors du métro (forme avec tu).",
+        "de": "Einen Ort verlassen: sors du métro = steig aus der Metro aus (Form mit tu)."
+      }
+    },
+    {
+      "id": "a-gauche",
+      "term": "à gauche",
+      "translations": {
+        "en": [
+          "on the left"
+        ],
+        "de": [
+          "links"
+        ]
+      },
+      "explanation": {
+        "en": "The opposite of à droite: la deuxième rue à gauche.",
+        "fr": "Le contraire de à droite : la deuxième rue à gauche.",
+        "de": "Das Gegenteil von à droite: la deuxième rue à gauche = die zweite Straße links."
+      }
+    },
+    {
+      "id": "tout-droit",
+      "term": "tout droit",
+      "translations": {
+        "en": [
+          "straight on"
+        ],
+        "de": [
+          "geradeaus"
+        ]
+      },
+      "explanation": {
+        "en": "Without turning: va tout droit = go straight on.",
+        "fr": "Sans tourner : va tout droit.",
+        "de": "Ohne abzubiegen: va tout droit = geh geradeaus."
+      }
+    },
+    {
+      "id": "en-face-de",
+      "term": "en face de",
+      "translations": {
+        "en": [
+          "opposite"
+        ],
+        "de": [
+          "gegenüber von"
+        ]
+      },
+      "explanation": {
+        "en": "On the other side, looking at it: en face de la poste.",
+        "fr": "De l’autre côté, devant : en face de la poste.",
+        "de": "Auf der anderen Seite: en face de la poste = gegenüber der Post."
+      }
+    },
+    {
+      "id": "la-poste",
+      "term": "la poste",
+      "translations": {
+        "en": [
+          "the post office"
+        ],
+        "de": [
+          "die Post"
+        ]
+      },
+      "explanation": {
+        "en": "Where you send letters and parcels.",
+        "fr": "Là où on envoie des lettres et des colis.",
+        "de": "Dort schickt man Briefe und Pakete."
+      }
+    }
+  ],
+  "documents": {
+    "main": {
+      "targetWords": 60,
+      "contents": {
+        "en": "Sophie’s text message to Marc: the metro station, the street to take, the way to the post office, her building opposite it, the door code and the floor.",
+        "fr": "Le SMS de Sophie à Marc : la station de métro, la rue à prendre, le chemin jusqu’à la poste, son immeuble en face, le code de la porte et l’étage.",
+        "de": "Sophies SMS an Marc: die Metrostation, die Straße, der Weg bis zur Post, ihr Haus gegenüber, der Türcode und das Stockwerk."
+      }
+    },
+    "exam": {
+      "targetWords": 33,
+      "contents": {
+        "en": "Hugo’s message: the way from the school to the swimming pool, which is next to the bakery.",
+        "fr": "Le message de Hugo : le chemin de l’école à la piscine, qui est à côté de la boulangerie.",
+        "de": "Hugos Nachricht: der Weg von der Schule zum Schwimmbad, das neben der Bäckerei liegt."
+      }
+    }
+  },
+  "skim": {
+    "focus": "purpose"
+  },
+  "detailQuestions": [
+    {
+      "id": "q-station",
+      "type": "reading_choice",
+      "focus": {
+        "en": "The metro station",
+        "fr": "La station de métro",
+        "de": "Die Metrostation"
+      }
+    },
+    {
+      "id": "q-street",
+      "type": "reading_choice",
+      "focus": {
+        "en": "The street to take",
+        "fr": "La rue à prendre",
+        "de": "Die Straße, die man nimmt"
+      }
+    },
+    {
+      "id": "q-building",
+      "type": "reading_choice",
+      "focus": {
+        "en": "Where Sophie’s building is",
+        "fr": "Où est l’immeuble de Sophie",
+        "de": "Wo Sophies Haus ist"
+      }
+    },
+    {
+      "id": "q-floor",
+      "type": "reading_true_false",
+      "focus": {
+        "en": "The floor of the flat",
+        "fr": "L’étage de l’appartement",
+        "de": "Das Stockwerk der Wohnung"
+      }
+    }
+  ],
+  "exam": {
+    "types": [
+      "reading_choice",
+      "reading_true_false"
+    ]
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

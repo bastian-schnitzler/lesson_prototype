@@ -1,0 +1,550 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-reading-a-holiday-postcard",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Lire une carte postale",
+  "objective": {
+    "en": "Read a holiday postcard, spot its beginning and end, and find where the writer is, with whom and what the weather is like.",
+    "fr": "Lire une carte postale de vacances, repérer le début et la fin, et trouver où est l’auteur, avec qui et le temps qu’il fait.",
+    "de": "Eine Urlaubspostkarte lesen, Anfang und Schluss erkennen und herausfinden, wo die Schreiberin ist, mit wem und wie das Wetter ist."
+  },
+  "estimatedMinutes": 8,
+  "provenance": {
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "reading-v1",
+    "generatedAt": "2026-10-15T19:30:27.430Z",
+    "inputHashes": {
+      "outline": "16f81f7d28c99a46a60216ec2cccc6785ba965be5840e8aabf1cc36589768fb7",
+      "brief": "f6ed790597710c6ade99a40db8cc1bdc0136c4f3b71c4dc1cdd46ba4e80ea4b7"
+    }
+  },
+  "kind": "reading",
+  "theme": "weather",
+  "genre": "postcard",
+  "documents": [
+    {
+      "documentId": "main",
+      "title": null,
+      "meta": [
+        "Nice, le 12 juillet"
+      ],
+      "paragraphs": [
+        "Chère Léa,",
+        "Je suis à Nice avec ma sœur pour une semaine. Il fait beau et très chaud : 32 degrés !",
+        "Le matin, on va à la plage. L’après-midi, on visite la vieille ville. Le soir, il y a du vent.",
+        "Demain, il pleut, alors on va au musée.",
+        "Grosses bises et à bientôt,\nClara"
+      ],
+      "highlights": [
+        {
+          "keywordId": "il-fait-beau",
+          "text": "Il fait beau"
+        },
+        {
+          "keywordId": "chaud",
+          "text": "chaud"
+        },
+        {
+          "keywordId": "la-plage",
+          "text": "la plage"
+        },
+        {
+          "keywordId": "du-vent",
+          "text": "il y a du vent"
+        },
+        {
+          "keywordId": "il-pleut",
+          "text": "il pleut"
+        }
+      ]
+    },
+    {
+      "documentId": "exam",
+      "title": null,
+      "meta": [
+        "Chamonix, le 3 février"
+      ],
+      "paragraphs": [
+        "Salut Paul !",
+        "Je suis à la montagne avec mes parents. Il fait froid, mais il y a du soleil.",
+        "On fait du ski tous les jours. À bientôt !\nMaxime"
+      ],
+      "highlights": []
+    }
+  ],
+  "steps": [
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "flashcards",
+          "estimatedDurationS": 50,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Turn each card to learn the key words of the text.",
+            "fr": "Retournez chaque carte pour découvrir les mots clés du texte.",
+            "de": "Dreh jede Karte um und lerne die Schlüsselwörter des Textes."
+          },
+          "items": [
+            {
+              "type": "reading_flashcards",
+              "itemId": "cards",
+              "keywordIds": [
+                "il-fait-beau",
+                "chaud",
+                "la-plage",
+                "du-vent",
+                "il-pleut"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "matching",
+          "estimatedDurationS": 50,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each key word with its meaning.",
+            "fr": "Associez chaque mot clé à son sens.",
+            "de": "Ordne jedem Schlüsselwort seine Bedeutung zu."
+          },
+          "items": [
+            {
+              "type": "reading_keyword_matching",
+              "itemId": "matching",
+              "keywordIds": [
+                "il-fait-beau",
+                "chaud",
+                "la-plage",
+                "du-vent",
+                "il-pleut"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skim",
+      "stage": "skim",
+      "role": "exercise",
+      "label": {
+        "en": "Skim",
+        "fr": "Survol",
+        "de": "Überfliegen"
+      },
+      "pages": [
+        {
+          "pageId": "skim",
+          "estimatedDurationS": 70,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Look over the document quickly. When the time is up it is put away; then answer the question.",
+            "fr": "Parcourez rapidement le document. À la fin du temps, il disparaît ; répondez ensuite à la question.",
+            "de": "Überfliege das Dokument. Wenn die Zeit um ist, verschwindet es; beantworte dann die Frage."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "skim-document",
+              "documentId": "main",
+              "view": "skim",
+              "skimSeconds": 50
+            },
+            {
+              "type": "reading_skim_choice",
+              "itemId": "skim-question",
+              "focus": "author",
+              "question": "Qui écrit cette carte ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Clara, en vacances à Nice"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Léa, en vacances à Nice"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "La sœur de Léa"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Un hôtel de Nice"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "The card begins Chère Léa (Léa receives it) and ends Grosses bises… Clara: Clara writes it.",
+                "fr": "La carte commence par Chère Léa (Léa la reçoit) et finit par Grosses bises… Clara : c’est Clara qui écrit.",
+                "de": "Die Karte beginnt mit Chère Léa (Léa bekommt sie) und endet mit Grosses bises… Clara: Clara schreibt sie."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "detail",
+      "stage": "detail",
+      "role": "exercise",
+      "label": {
+        "en": "Detail",
+        "fr": "Détails",
+        "de": "Details"
+      },
+      "pages": [
+        {
+          "pageId": "detail",
+          "estimatedDurationS": 120,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the document carefully and answer the questions.",
+            "fr": "Lisez le document attentivement et répondez aux questions.",
+            "de": "Lies das Dokument genau und beantworte die Fragen."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "detail-document",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-where",
+              "question": "Où est Clara ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "À Nice"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "À Paris"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "À la montagne"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Chez Léa"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Je suis à Nice, and the card is dated Nice, le 12 juillet.",
+                "fr": "Je suis à Nice, et la carte est datée Nice, le 12 juillet.",
+                "de": "Je suis à Nice, und die Karte ist mit Nice, le 12 juillet datiert."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-with",
+              "question": "Avec qui est Clara ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Avec sa sœur"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Avec Léa"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Avec ses parents"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Avec une amie"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Je suis à Nice avec ma sœur. Léa is the friend who receives the card.",
+                "fr": "Je suis à Nice avec ma sœur. Léa est l’amie qui reçoit la carte.",
+                "de": "Je suis à Nice avec ma sœur. Léa ist die Freundin, die die Karte bekommt."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-weather",
+              "question": "Quel temps fait-il à Nice ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Il fait beau et chaud."
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Il pleut tous les jours."
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Il fait froid."
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Il neige."
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Il fait beau et très chaud : 32 degrés. Only tomorrow it rains.",
+                "fr": "Il fait beau et très chaud : 32 degrés. Il pleut seulement demain.",
+                "de": "Il fait beau et très chaud : 32 degrés. Nur morgen regnet es."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "q-tomorrow",
+              "statement": "Demain, Clara va à la plage.",
+              "answer": "false",
+              "answerExplanation": {
+                "en": "False: Demain, il pleut, alors on va au musée: tomorrow they go to the museum.",
+                "fr": "Faux : Demain, il pleut, alors on va au musée.",
+                "de": "Falsch: Demain, il pleut, alors on va au musée: Morgen gehen sie ins Museum."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "structure",
+      "stage": "structure",
+      "role": "exercise",
+      "label": {
+        "en": "Structure",
+        "fr": "Structure",
+        "de": "Aufbau"
+      },
+      "pages": [
+        {
+          "pageId": "structure",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "What happens during Clara’s day and the next day? Put it in order.",
+            "fr": "Que se passe-t-il pendant la journée de Clara, puis le lendemain ? Remettez dans l’ordre.",
+            "de": "Was passiert an Claras Tag und am nächsten Tag? Bring es in die richtige Reihenfolge."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "structure-document",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_order",
+              "itemId": "order",
+              "pieces": [
+                {
+                  "pieceId": "p3",
+                  "text": "Il y a du vent."
+                },
+                {
+                  "pieceId": "p1",
+                  "text": "Clara va à la plage."
+                },
+                {
+                  "pieceId": "p4",
+                  "text": "Elle va au musée."
+                },
+                {
+                  "pieceId": "p2",
+                  "text": "Elle visite la vieille ville."
+                }
+              ],
+              "acceptedOrders": [
+                [
+                  "p1",
+                  "p2",
+                  "p3",
+                  "p4"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "Le matin the beach, L’après-midi the old town, Le soir the wind, and Demain the museum.",
+                "fr": "Le matin la plage, l’après-midi la vieille ville, le soir le vent, et demain le musée.",
+                "de": "Le matin der Strand, L’après-midi die Altstadt, Le soir der Wind und Demain das Museum."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Final exam",
+        "fr": "Examen final",
+        "de": "Abschlussprüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam",
+          "estimatedDurationS": 126,
+          "timeLimitS": 190,
+          "instructions": {
+            "en": "Read the new document and answer the questions. No help this time.",
+            "fr": "Lisez le nouveau document et répondez aux questions. Cette fois, sans aide.",
+            "de": "Lies das neue Dokument und beantworte die Fragen. Diesmal ohne Hilfe."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "exam-document",
+              "documentId": "exam",
+              "view": "exam",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-where",
+              "question": "Où est Maxime ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "À la montagne"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "À la plage"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "À Nice"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "À Paris"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Je suis à la montagne, in Chamonix.",
+                "fr": "Je suis à la montagne, à Chamonix.",
+                "de": "Je suis à la montagne, in Chamonix."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-with",
+              "question": "Avec qui est Maxime ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Avec ses parents"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Avec Paul"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Avec sa sœur"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Avec des amis"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Je suis à la montagne avec mes parents. Paul receives the card.",
+                "fr": "Je suis à la montagne avec mes parents. Paul reçoit la carte.",
+                "de": "Je suis à la montagne avec mes parents. Paul bekommt die Karte."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "x-cold",
+              "statement": "Il fait chaud à Chamonix.",
+              "answer": "false",
+              "answerExplanation": {
+                "en": "False: Il fait froid, it is cold.",
+                "fr": "Faux : Il fait froid.",
+                "de": "Falsch: Il fait froid, es ist kalt."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "x-sun",
+              "statement": "Il y a du soleil.",
+              "answer": "true",
+              "answerExplanation": {
+                "en": "True: Il fait froid, mais il y a du soleil.",
+                "fr": "Vrai : Il fait froid, mais il y a du soleil.",
+                "de": "Richtig: Il fait froid, mais il y a du soleil."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-ski",
+              "question": "Qu’est-ce que Maxime fait tous les jours ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Du ski"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "De la natation"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Une visite au musée"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Du vélo"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "On fait du ski tous les jours.",
+                "fr": "On fait du ski tous les jours.",
+                "de": "On fait du ski tous les jours: jeden Tag Ski."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

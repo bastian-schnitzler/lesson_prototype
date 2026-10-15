@@ -1,0 +1,201 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-reading-a-flat-ad",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Lire une annonce de logement",
+  "objective": {
+    "en": "Read a small rental ad and find the kind of flat, the area, the rent and how to contact the owner.",
+    "fr": "Lire une petite annonce de location et trouver le logement, le quartier, le loyer et comment contacter le propriétaire.",
+    "de": "Eine kleine Mietanzeige lesen und Art der Wohnung, Viertel, Miete und den Kontakt zum Vermieter finden."
+  },
+  "estimatedMinutes": 8,
+  "provenance": {
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "reading-v1",
+    "generatedAt": "2026-10-15T19:30:27.371Z",
+    "inputHashes": {
+      "outline": "4e96254c6412dafc7d7fe43b5cb72f8d448c7460e8f07c4d6603fb324c02dacc"
+    }
+  },
+  "kind": "reading",
+  "theme": "house_and_home",
+  "genre": "classified_ad",
+  "situation": {
+    "en": "Mr Durand rents out a small flat in the centre of Lyon and publishes an ad.",
+    "fr": "M. Durand loue un petit logement au centre de Lyon et publie une annonce.",
+    "de": "Herr Durand vermietet eine kleine Wohnung im Zentrum von Lyon und veröffentlicht eine Anzeige."
+  },
+  "readerTask": {
+    "en": "Find what kind of flat it is, where it is, how much it costs and how to contact the owner.",
+    "fr": "Trouver quel logement c’est, où il est, combien il coûte et comment contacter le propriétaire.",
+    "de": "Herausfinden, was für eine Wohnung es ist, wo sie liegt, was sie kostet und wie man den Vermieter erreicht."
+  },
+  "keywords": [
+    {
+      "id": "etage",
+      "term": "un étage",
+      "translations": {
+        "en": [
+          "floor"
+        ],
+        "de": [
+          "Stockwerk",
+          "Etage"
+        ]
+      },
+      "explanation": {
+        "en": "A level of a building: au 3e étage = on the third floor.",
+        "fr": "Un niveau d’un immeuble : au 3e étage.",
+        "de": "Eine Ebene eines Gebäudes: au 3e étage = im dritten Stock."
+      }
+    },
+    {
+      "id": "meuble",
+      "term": "meublé",
+      "translations": {
+        "en": [
+          "furnished"
+        ],
+        "de": [
+          "möbliert"
+        ]
+      },
+      "explanation": {
+        "en": "With furniture: a bed, a table, chairs are already there.",
+        "fr": "Avec des meubles : il y a déjà un lit, une table et des chaises.",
+        "de": "Mit Möbeln: Bett, Tisch und Stühle sind schon da."
+      }
+    },
+    {
+      "id": "loyer",
+      "term": "le loyer",
+      "translations": {
+        "en": [
+          "rent"
+        ],
+        "de": [
+          "Miete"
+        ]
+      },
+      "explanation": {
+        "en": "The money you pay every month to live in a flat.",
+        "fr": "L’argent qu’on paie chaque mois pour habiter dans un logement.",
+        "de": "Das Geld, das man jeden Monat für eine Wohnung bezahlt."
+      }
+    },
+    {
+      "id": "charges",
+      "term": "les charges",
+      "translations": {
+        "en": [
+          "utility costs",
+          "service charges"
+        ],
+        "de": [
+          "Nebenkosten"
+        ]
+      },
+      "explanation": {
+        "en": "Costs added to the rent (water, heating). Charges comprises = they are included.",
+        "fr": "Les frais en plus du loyer (eau, chauffage). Charges comprises = elles sont incluses.",
+        "de": "Kosten zusätzlich zur Miete (Wasser, Heizung). Charges comprises = sie sind inbegriffen."
+      }
+    },
+    {
+      "id": "libre",
+      "term": "libre",
+      "translations": {
+        "en": [
+          "available",
+          "free"
+        ],
+        "de": [
+          "frei",
+          "verfügbar"
+        ]
+      },
+      "explanation": {
+        "en": "Here: nobody lives there, you can move in from that date.",
+        "fr": "Ici : personne n’habite là, on peut entrer à partir de cette date.",
+        "de": "Hier: Niemand wohnt dort, man kann ab diesem Datum einziehen."
+      }
+    }
+  ],
+  "documents": {
+    "main": {
+      "targetWords": 60,
+      "contents": {
+        "en": "An ad for a furnished studio in the city centre: size, floor and street, rooms, rent with charges, date and pets, and the owner’s phone number.",
+        "fr": "Une annonce pour un studio meublé au centre-ville : taille, étage et rue, pièces, loyer avec charges, date et animaux, et le téléphone du propriétaire.",
+        "de": "Eine Anzeige für ein möbliertes Studio im Zentrum: Größe, Stockwerk und Straße, Räume, Miete mit Nebenkosten, Einzugsdatum und Haustiere, Telefonnummer des Vermieters."
+      }
+    },
+    "exam": {
+      "targetWords": 39,
+      "contents": {
+        "en": "A second ad: a two-room flat near the station, with the rent, extra charges, the date and an e-mail contact.",
+        "fr": "Une deuxième annonce : un deux pièces près de la gare, avec le loyer, les charges en plus, la date et un contact par e-mail.",
+        "de": "Eine zweite Anzeige: eine Zweizimmerwohnung am Bahnhof, mit Miete, Nebenkosten extra, Einzugsdatum und Kontakt per E-Mail."
+      }
+    }
+  },
+  "skim": {
+    "focus": "purpose"
+  },
+  "detailQuestions": [
+    {
+      "id": "q-what",
+      "type": "reading_choice",
+      "focus": {
+        "en": "The kind of flat",
+        "fr": "Le type de logement",
+        "de": "Die Art der Wohnung"
+      }
+    },
+    {
+      "id": "q-rent",
+      "type": "reading_choice",
+      "focus": {
+        "en": "The rent",
+        "fr": "Le loyer",
+        "de": "Die Miete"
+      }
+    },
+    {
+      "id": "q-contact",
+      "type": "reading_choice",
+      "focus": {
+        "en": "How to contact the owner",
+        "fr": "Comment contacter le propriétaire",
+        "de": "Wie man den Vermieter erreicht"
+      }
+    },
+    {
+      "id": "q-pets",
+      "type": "reading_true_false",
+      "focus": {
+        "en": "Pets",
+        "fr": "Les animaux",
+        "de": "Haustiere"
+      }
+    }
+  ],
+  "exam": {
+    "types": [
+      "reading_choice",
+      "reading_true_false"
+    ]
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}
