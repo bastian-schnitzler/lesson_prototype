@@ -49,7 +49,13 @@ These issue bodies were published to GitHub in P0-04 on 2026-10-06. Each GitHub 
 | P4-07 | [#80](https://github.com/bastian-schnitzler/lesson_prototype/issues/80) | Function end-to-end validation and deployment |
 | P4-08 | [#34](https://github.com/bastian-schnitzler/lesson_prototype/issues/34) | Update function lesson mockups from the prototype |
 | P5-01 | [#35](https://github.com/bastian-schnitzler/lesson_prototype/issues/35) | Define reading requirements and implementation backlog |
-| P5-02 | [#36](https://github.com/bastian-schnitzler/lesson_prototype/issues/36) | Update reading lesson mockups from the prototype |
+| P5-02 | – (to be created) | Reading brief and lesson content schemas and validation |
+| P5-03 | – (to be created) | Write and review the ten fr/A1 reading test lessons |
+| P5-04 | – (to be created) | Reading document view, skim, questions and session |
+| P5-05 | – (to be created) | Tune reading lengths, skim speed, exam limits and evidence after play tests |
+| P5-06 | – (to be created) | Reading layout on wide screens with the lesson sidebar |
+| P5-07 | – (to be created) | Decide reading generation and complete the reading lessons |
+| P5-08 | [#36](https://github.com/bastian-schnitzler/lesson_prototype/issues/36) | Update reading lesson mockups from the prototype |
 | P6-01 | [#69](https://github.com/bastian-schnitzler/lesson_prototype/issues/69) | Sidebar — lesson navigation, exams and results |
 | P6-02 | [#90](https://github.com/bastian-schnitzler/lesson_prototype/issues/90) | Implement the feedback according to the feedback page |
 | P6-06 | [#74](https://github.com/bastian-schnitzler/lesson_prototype/issues/74) | Update Phase 6 desktop and mobile mockups from the prototype |
@@ -63,7 +69,7 @@ Once these issues are published, every change to `docs/SPEC.md` or `docs/ISSUES.
 
 Use each issue heading below as its GitHub title, including the phase/issue prefix and colon: `P0-01: Create and refine the lesson prototype specification`, etc. The title prefix is the logical roadmap ID; GitHub assigns a separate repository issue number for links; branch names use the logical ID. Existing published issue numbers/URLs stay stable when their titles or scope change.
 
-Create or reuse milestones named exactly **Phase 0**, **Phase 1**, **Phase 2**, **Phase 3**, **Phase 4**, **Phase 5**, and **Phase 6**. Each phase's issues must be assigned to that milestone, with its description based on the corresponding SPEC deliverables and exit criteria. Check for existing milestones before creating them and verify every issue's assignment. The phase 4 backlog was defined in P4-01; phase 5 review and closing tasks remain requirements-dependent, and its detailed implementation backlog follows later.
+Create or reuse milestones named exactly **Phase 0**, **Phase 1**, **Phase 2**, **Phase 3**, **Phase 4**, **Phase 5**, and **Phase 6**. Each phase's issues must be assigned to that milestone, with its description based on the corresponding SPEC deliverables and exit criteria. Check for existing milestones before creating them and verify every issue's assignment. The phase 4 backlog was defined in P4-01 and the phase 5 backlog in P5-01.
 
 Each implementation phase ends with a dedicated issue to improve its Salt mockups against the actual running prototype. That mockup-refresh issue is always the **last issue of its milestone**: it has the highest logical ID in its phase and depends, directly or transitively, on every other issue of that phase. When an issue is added to a phase, renumber so the mockup issue stays last; GitHub issue numbers do not change. Compare the real pages against the SPEC visual contract and supplied screenshot references R1–R5, update sources and their matching embedded PlantUML code fences, update the single mockup README and documentation links, and synchronize published GitHub issue assets. These closing issues are part of phase completion.
 
@@ -293,10 +299,10 @@ Scope: generate the first ten grammar and first ten vocabulary briefs in outline
 Acceptance:
 
 - Add `make sample-briefs` for the named first-ten grammar/vocabulary set; use it for the phase 1 review batch and update help.
-- The exact twenty fr/A1 IDs in SPEC section 10 have valid individual brief files with en/fr/de support and translations. Review all locales for accuracy, aligned meanings and stable shared answers.
+- The exact twenty fr/A1 IDs in SPEC section 11 have valid individual brief files with en/fr/de support and translations. Review all locales for accuracy, aligned meanings and stable shared answers.
 - Vocabulary Draft renders objective/duration, target inventory with translations and applicable gender/articles, difficulty balance/count rationale, six-stage plan, and individual exam-page limits.
 - Grammar Draft renders objective/coverage, 2–4 teaching blocks with rules, examples, pitfalls and exercise plans, plus mixed-exam coverage and individual page limits.
-- Both use the same Outline component and header; complete arrays remain browsable. Review is usable in structured mode with the header raw JSON toggle, with category-specific mockups matching SPEC section 9.
+- Both use the same Outline component and header; complete arrays remain browsable. Review is usable in structured mode with the header raw JSON toggle, with category-specific mockups matching SPEC section 10.
 - Invalid/missing files have distinct states; rebuilding the manifest after offline generation updates Content labels and Start availability.
 - Present concrete samples to the user and record review changes and acceptance before content generation; check target counts, the ordinary average excluding exceptions, and the balance of easier/harder targets within each topic.
 
@@ -979,7 +985,7 @@ Acceptance:
 
 Dependencies: P4-07 (transitively every other phase 4 issue). Renumbered from P4-02 in P4-01; the GitHub issue number is unchanged.
 
-## Phase 5 — reading (requirements pending)
+## Phase 5 — reading
 
 ### P5-01: Define reading requirements and implementation backlog
 
@@ -996,27 +1002,117 @@ Acceptance:
 - Brief/content schemas and shared-host extensions are planned.
 - Create separate generation, renderer, reviewed content, and end-to-end issues after review.
 
-Dependencies: reading requirements from the user; P1 shared architecture. Phase 5 follows phase 4 under the proposed allocation.
+Outcome (2026-10-15, after the product-owner review of PR #95): SPEC section 9 "Reading learning flow" (D54), moved directly after the functions flow, with fourteen reading mockups under `docs/mockups/06-reading-lesson/` and `docs/mockups/02-artifact-view/reading/`. Flashcards and matching of 4–6 key words, a skim with a countdown after which the document is put away and one question is answered from memory, 3–4 detail questions beside the open document, one ordering task, and an exam of 5 questions on one timed page about a second document of the same genre; one document layout, multiple choice and true / false, the shared 35 / 65 weights, skim time from the actual word count. The open points (lengths, evidence, layout, generation) have their own issues below; the mockup refresh moves from P5-02 to P5-08.
 
-### P5-02: Update reading lesson mockups from the prototype
+Dependencies: reading requirements from the user; P1 shared architecture.
+
+### P5-02: Reading brief and lesson content schemas and validation
+
+Milestone: **Phase 5**.
+
+Scope: the executable reading brief and lesson content contracts (SPEC section 9, D54), their validation, plan units and artifact views.
+
+Acceptance:
+
+- `src/schemas/reading.ts` defines the brief (genre, situation, reader task, 4–6 key words with translations and explanations, document plans, skim focus, 3–4 planned detail questions, exam question types) and the lesson content (two documents, five steps with the seven reading item types), with the word ranges and skim speeds per level; both schemas are registered in the artifact factory and convert to JSON Schema.
+- The page rules of section 9 live in `src/domain/readingLesson.ts` and are used by validation and authoring.
+- `src/validation/reading.ts`, called from `src/validation/artifacts.ts`, checks every rule of section 9 "Validation": key-word uniqueness, word counts, highlights, stage order and document views, coverage of the key words, the planned questions, options, piece orders, the exam page, page estimates, `skimSeconds` bounds and the derived exam limit.
+- `src/domain/session/readingPlan.ts` turns the reading items into the shared plan units (choice and order units; documents and flashcards unscored).
+- `ReadingBriefView` and the reading Content view (both documents above the shared Content review) render on the artifact page.
+- `node scripts/author-reading.ts <id>` (or `--all`, `--dry-run`) derives page estimates, `skimSeconds`, the exam limit, minutes, step labels, page instructions and input hashes for briefs and lessons written as JSON, validates both and writes them; no separate definition files.
+- The lesson `fr-reading-a-text-message` (written with the tool) is the contract fixture; unit tests cover schemas, validation, page rules, plan units and the views. Start stays unavailable until P5-04; `make brief` / `make generate` keep rejecting reading.
+
+Dependencies: P5-01.
+
+### P5-03: Write and review the ten fr/A1 reading test lessons
+
+Milestone: **Phase 5**.
+
+Scope: Claude writes the brief and lesson content of the ten fr/A1 reading entries by hand with the P5-02 tool (no Gemini calls): `fr-reading-an-online-profile`, `fr-reading-public-signs`, `fr-reading-a-text-message` (already the P5-02 fixture), `fr-reading-a-restaurant-menu`, `fr-reading-a-flat-ad`, `fr-reading-a-holiday-postcard`, `fr-reading-an-event-programme`, `fr-reading-a-party-invitation`, `fr-reading-a-train-timetable`, `fr-reading-written-directions`.
+
+Acceptance:
+
+- Each lesson meets section 9: word counts of its level, natural A1 French, complete en/fr/de explanations and translations, and the content review criteria.
+- `make sample-lessons` and the contract tests (plan, scoring, a complete session reaching 100 and 0) include the ten lessons.
+- The product owner reviews the ten lessons in the artifact view; findings are resolved before or with P5-04.
+
+Dependencies: P5-02. The lessons become playable with P5-04.
+
+### P5-04: Reading document view, skim, questions and session
+
+Milestone: **Phase 5**.
+
+Scope: everything a learner sees in a reading lesson, built from the shared controls (SPEC section 9, "Pages reused and new").
+
+Acceptance:
+
+- Flashcards and matching reuse the vocabulary pages for the key words, with audio and autoplay as in vocabulary.
+- The document view (`src/components/ReadingDocument.tsx`) shows title, meta line and paragraphs with line breaks, key words highlighted in the skim and detail views, never in the exam.
+- The skim page runs its countdown (**Time to skim**), offers **I've finished reading**, then puts the document away and opens the question under **Answer from memory**; the countdown restarts after a reload, a document put away stays away until Check; after Check the document returns with the correction.
+- Detail and structure pages show the document beside the questions or the word-order control (stacked below 1100 px); document pages keep their checked view and wait for Continue; no field takes the cursor on a document page.
+- The exam info page row "Questions on the document", the exam page with its countdown and "n of 5 answered", the results sidebar without exam parts, the start page (situation, key words, sections A–C) and the navigation points (D53) work as in section 9; `reading` is in `PLAYABLE_KINDS`.
+- Component tests cover the skim phases and resume, true / false order, the correction view and the results rows; an end-to-end journey plays a reading lesson to its results. Anaïs and Luca confirm the navigation points (D53 without exception).
+
+Dependencies: P5-03.
+
+### P5-05: Tune reading lengths, skim speed, exam limits and evidence after play tests
+
+Milestone: **Phase 5**.
+
+Scope: the values section 9 marks as starting values, and the features it leaves out for now (P5-01 review).
+
+Acceptance:
+
+- Play tests of the ten test lessons record skim and answer times per page.
+- The team decides the lesson length per level (whether B2–C2 may exceed 15 minutes), the word ranges, the skim speeds, the page estimates and the exam limits (D18 exception), and whether evidence marks, short typed answers or *not stated* come back; SPEC section 9, `src/schemas/reading.ts` and the test lessons are updated accordingly.
+
+Dependencies: P5-04.
+
+### P5-06: Reading layout on wide screens with the lesson sidebar
+
+Milestone: **Phase 5**.
+
+Scope: with the lesson sidebar the task area is about 720 px wide, so the document stands beside the questions only from 1100 px (P5-01 review: decide while implementing).
+
+Acceptance:
+
+- Compare the side-by-side and stacked layouts with the sidebar at common desktop widths; decide whether reading pages collapse or narrow the sidebar, or keep the stacked layout up to a larger width.
+- Implement the decision on the skim, detail, structure and exam pages without changing the navigation rules (D53); record it in SPEC sections 5 and 9.
+
+Dependencies: P5-04.
+
+### P5-07: Decide reading generation and complete the reading lessons
+
+Milestone: **Phase 5**.
+
+Scope: after the review of the ten test lessons, decide with the product owner how further reading lessons are produced in the prototype (offline Gemini generation or hand authoring), then produce them.
+
+Acceptance:
+
+- The decision is recorded in SPEC section 9 and here.
+- If generation is chosen: brief and content prompts for reading in the generator (brief first, then lesson content; `skimSeconds`, estimates and limits assembled locally from the page rules), `make brief`, `make generate ID=<id>` and `make generate-missing` include reading, fake-model tests cover it, and the generated artifacts pass validation and review.
+- Every reading lesson in scope has a valid, reviewed, playable brief and lesson content; representative journeys are verified on Pages.
+
+Dependencies: P5-03, P5-04.
+
+### P5-08: Update reading lesson mockups from the prototype
 
 GitHub: [#36](https://github.com/bastian-schnitzler/lesson_prototype/issues/36).
 
 Milestone: **Phase 5**.
 
-Scope: improve the reading lesson pages agreed during the requirements review Salt mockups using the pages actually created in the prototype at the end of this phase.
+Scope: improve the fourteen reading Salt mockups of P5-01 (start page, flashcards, matching, skim with its question and result, detail, structure, exam info, exam page, results and the artifact view) using the pages actually created in the prototype at the end of this phase.
 
 Acceptance:
 
-- Inspect the running prototype's reading lesson pages agreed during the requirements review, including relevant responsive layouts and representative ready, answer, feedback, or error states.
-- Update the applicable editable `.puml` sources to reflect the implemented layout, controls, content, and behavior while preserving the agreed shared dark design.
+- Inspect the running prototype's reading lesson pages, including relevant responsive layouts and representative ready, answer, feedback, or error states.
+- Update the editable `.puml` sources under `docs/mockups/06-reading-lesson/` and `docs/mockups/02-artifact-view/reading/` to reflect the implemented layout, controls, content, and behavior while preserving the agreed shared dark design.
 - Run `make mockups-sync` and `make mockups-check` to refresh and verify matching Markdown PlantUML code. Inspect the automatic previews against the actual prototype; keep only .puml sources in the mockup folder.
 - Update the root mockup README, SPEC references, issue asset mappings, and all affected links; keep a single README for the mockup collection.
 - Record the prototype revision used for comparison. Resolve implementation/specification differences or record them as follow-up work; mockup updates must not silently change agreed behavior.
 - Refresh applicable published GitHub issues and their diagrams/PlantUML code and server-rendered preview URLs; verify source parity, links, and rendering. This issue is required to close the phase.
-- Keep this task deferred until category requirements and implementation are complete; add concrete screens and dependencies after the requirements review.
 
-Dependencies: P5-01 and the future reading implementation/content/end-to-end issues.
+Dependencies: P5-05, P5-06, P5-07 (transitively every other phase 5 issue). Renumbered from P5-02 in P5-01; the GitHub issue number is unchanged.
 
 ## Phase 6 — lesson UX review (2026-10-09 feedback)
 
@@ -1041,7 +1137,7 @@ Implementation / acceptance:
 - [ ] Use the sidebar for results selection, including exam Translation/Dictation and scored practice parts. Display only the selected part rather than a single excessively long answer list; preserve scores, correction explanations, timeout notes and read-only results.
 - [ ] **Specify and implement a dedicated navigation solution for mobile devices. A large desktop sidebar is unsuitable on a phone.** Document the mobile layout and interaction contract (for example a compact lesson outline opened on demand), breakpoints, opening/closing and focus behavior, and access to learning points, exam pages and results. Keep the active content readable without a permanently wide sidebar; verify small portrait screens and touch interaction. Merely shrinking the desktop sidebar does not satisfy this requirement.
 - [ ] Provide keyboard navigation, accessible state labels and focus behavior for both desktop and mobile navigation; preserve current location, drafts, locks and timers across interface-language changes and reload/resume.
-- [ ] Integrate navigation/state rules into SPEC sections 5–8 and phase 6 into section 10; update the decision/revision logs and `docs/ISSUES.md` with all Phase 6 mappings and dependencies. Reconcile diagrams with navigation rules and synchronize GitHub as required by SPEC.
+- [ ] Integrate navigation/state rules into SPEC sections 5–9 and phase 6 into section 12; update the decision/revision logs and `docs/ISSUES.md` with all Phase 6 mappings and dependencies. Reconcile diagrams with navigation rules and synchronize GitHub as required by SPEC.
 - [ ] Verify representative vocabulary/grammar theory, practice, running exam, resumed exam and results journeys. Refresh sidebar mockups and their embedded source fences; final cross-area mockup comparison is handled by P6-06.
 
 Decisions (2026-10-14, product owner):
@@ -1111,7 +1207,7 @@ Implementation / acceptance:
 - [ ] Refresh affected shared/sidebar, vocabulary and grammar Salt sources, including point-based theory, exercise inputs/feedback, phase-aware score visibility, exam introduction/countdown and results navigation.
 - [ ] Include dedicated mobile navigation mockups that demonstrate the specified and implemented alternative to a large desktop sidebar: compact portrait layout, navigation open/closed, active learning point, exam page and results selection, touch targets and focus behavior.
 - [ ] Update matching embedded PlantUML source fences, specification links and the single root mockup README; retain editable source assets and the existing source-only mockup policy.
-- [ ] Integrate the completed designs and desktop/mobile behavior into SPEC sections 5–8 and Phase 6 exit criteria in section 10; update decision/revision logs and `docs/ISSUES.md` with all Phase 6 mappings and dependencies.
+- [ ] Integrate the completed designs and desktop/mobile behavior into SPEC sections 5–9 and Phase 6 exit criteria in section 12; update decision/revision logs and `docs/ISSUES.md` with all Phase 6 mappings and dependencies.
 - [ ] Run the existing source/Markdown parity and relevant mockup checks using Make targets; verify mockups against the running implementation and refresh published GitHub issue diagrams, previews and source links.
 - [ ] Keep this issue as the last logical issue in Phase 6. Phase 6 is complete only after P6-01, P6-02 and this mockup-refresh issue are complete.
 
@@ -1139,7 +1235,10 @@ Use fenced Mermaid and applicable fenced PlantUML source directly in GitHub bodi
 | P4-04 | Functions flow, SPEC section 8 | [Expression flashcards](mockups/05-function-lesson/02-flashcards/expression-flashcards.puml), [model dialogue](mockups/05-function-lesson/03-dialogue/dialogue.puml), [matching](mockups/05-function-lesson/04-matching/expression-matching.puml) |
 | P4-05 | Functions flow, SPEC section 8; shared session flow, section 5 | [Word order](mockups/05-function-lesson/06-word-order/word-order.puml), [dialogue gaps](mockups/05-function-lesson/05-dialogue-gap-choice/dialogue-gap-choice.puml), [exam replies](mockups/05-function-lesson/08-exam/reply-word-order.puml), [exam dialogue](mockups/05-function-lesson/08-exam/dialogue-gap-typing.puml), [listening choice](mockups/05-function-lesson/07-listening-choice/listening-choice.puml) |
 | P4-03, P4-06, P4-07, P4-08 | Functions flow, SPEC section 8 | [Start](mockups/05-function-lesson/01-startpage/lesson-start.puml), [model dialogue](mockups/05-function-lesson/03-dialogue/dialogue.puml), [exam replies](mockups/05-function-lesson/08-exam/reply-word-order.puml), [exam dialogue](mockups/05-function-lesson/08-exam/dialogue-gap-typing.puml) |
+| P5-01, P5-02, P5-03 | Reading flow, SPEC section 9 | [Reading artifacts](mockups/02-artifact-view/reading/lesson-detail.puml), [start](mockups/06-reading-lesson/01-startpage/lesson-start.puml), all reading screens below |
+| P5-04, P5-06 | Reading flow, SPEC section 9; shared session flow, section 5 | [Flashcards](mockups/06-reading-lesson/02-flashcards/flashcards.puml), [matching](mockups/06-reading-lesson/02-flashcards/matching.puml), [skim](mockups/06-reading-lesson/03-skim/skim.puml), [skim question](mockups/06-reading-lesson/03-skim/skim-question.puml), [skim result](mockups/06-reading-lesson/03-skim/skim-feedback.puml), [detail](mockups/06-reading-lesson/04-detail/detail.puml), [detail after Check](mockups/06-reading-lesson/04-detail/detail-feedback.puml), [ordering](mockups/06-reading-lesson/05-structure/ordering.puml), [ordering result](mockups/06-reading-lesson/05-structure/ordering-feedback.puml), [exam info](mockups/06-reading-lesson/06-exam/exam-info.puml), [exam page](mockups/06-reading-lesson/06-exam/exam-page.puml), [results](mockups/06-reading-lesson/07-results/exam-results.puml) |
+| P5-05, P5-07, P5-08 | Reading flow, SPEC section 9 | [Start](mockups/06-reading-lesson/01-startpage/lesson-start.puml), [skim](mockups/06-reading-lesson/03-skim/skim.puml), [exam page](mockups/06-reading-lesson/06-exam/exam-page.puml), [results](mockups/06-reading-lesson/07-results/exam-results.puml) |
 
-The phase-closing issues P1-12, P2-08, P3-08, and P4-08 include before/after source changes and PlantUML-enabled previews for their respective index/artifact, vocabulary, and grammar screens from the [root mockup guide](mockups/README.md). P5-02 receives category-specific assets when those pages exist. The Claude review issue P0-02 uses the specification's applicable flows and mockups as review inputs.
+The phase-closing issues P1-12, P2-08, P3-08, P4-08 and P5-08 include before/after source changes and PlantUML-enabled previews for their respective index/artifact, vocabulary, and grammar screens from the [root mockup guide](mockups/README.md). The Claude review issue P0-02 uses the specification's applicable flows and mockups as review inputs.
 
 Browse sources and embedded SPEC previews using the [organized mockup guide](mockups/README.md). Keep applicable diagrams and rendered mockups in published issue bodies, not only in the linked specification.

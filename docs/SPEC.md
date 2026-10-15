@@ -1,6 +1,6 @@
 # Lesson exercise prototype specification
 
-Status: **Draft 0.68 — P5-01: reading requirements and mockups (proposal for review)**. Date: 2026-10-15.
+Status: **Draft 0.68 — P5-01: reading requirements and mockups, revised after the product-owner review**. Date: 2026-10-15.
 
 This document specifies the prototype and its phased implementation. It is the maintained requirements document: no separate requirements file exists. It does not authorize starting implementation before the specification review. The backlog is in [ISSUES.md](ISSUES.md) and published as GitHub issues in `bastian-schnitzler/lesson_prototype`.
 
@@ -20,7 +20,7 @@ The requested roadmap names phases 0–5. This specification follows those six p
 | [src/schemas/artifacts.ts](../src/schemas/artifacts.ts), [vocabulary.ts](../src/schemas/vocabulary.ts), [grammar.ts](../src/schemas/grammar.ts), [artifactCommon.ts](../src/schemas/artifactCommon.ts) | Executable multilingual brief/content schemas from P1-03 | Category factories and shared payload validation; these are the active schema contracts. |
 | [src/validation/artifacts.ts](../src/validation/artifacts.ts) | Current artifact and cross-reference validation | Checks metadata, locale coverage, IDs, hashes, coverage and brief/content consistency. |
 
-The existing French A1 outline has **48 grammar, 48 vocabulary, 14 functions, and 10 reading** entries. Display all 120 entries when fr/A1 is selected; discover additional courses from all outline files without hard-coded filenames. Functions and reading remain visible but cannot start until their requirements and renderers exist (functions requirements: section 8).
+The existing French A1 outline has **48 grammar, 48 vocabulary, 14 functions, and 10 reading** entries. Display all 120 entries when fr/A1 is selected; discover additional courses from all outline files without hard-coded filenames. A category remains visible but cannot start until its requirements and renderers exist (functions: section 8; reading: section 9).
 
 Prototype scope excludes accounts, placement tests, daily goals, streaks, inferred CEFR progression, live tutoring, and learner synchronization. Those features are outside the prototype requirements.
 
@@ -42,12 +42,12 @@ Confirmed decisions are identified below. Other defaults make the draft concrete
 | D10 | Personalized grammar feedback | **Confirmed:** show the fixed localized production-feedback placeholder before the final exam; its en text is “Individual feedback would be here on production.” Individual feedback analysis is deferred to production. |
 | D11 | Session persistence | **Confirmed:** browser storage supports session reload/resume. **Confirmed:** the index last-try score is in memory only and clears on a full page reload; never restore it from stored attempts. |
 | D12 | Broad vocabulary outlines | **Confirmed:** allow the number of targets necessary for the outline, with grouped presentation. Such lessons may exceed 10–15 minutes. Do not truncate an inventory at 15 or 32 or change its existing lesson ID. |
-| D13 | Phase 4/5 allocation | Phase 4 functions, phase 5 reading, each blocked on its requirements review. **Functions requirements agreed in P4-01** (D50, D51, section 8); reading remains pending. |
+| D13 | Phase 4/5 allocation | Phase 4 functions, phase 5 reading, each blocked on its requirements review. **Functions requirements agreed in P4-01** (D50, D51, section 8); **reading requirements agreed in P5-01** (D54, section 9), implemented from P5-02 on. |
 | D14 | Vocabulary target count | **Changed (P6-02, feedback #1):** every lesson takes at most 15 minutes, so the standard is **8 targets** per vocabulary lesson (9 when few are nouns); fewer only for an unusually demanding load, explained in the brief's count rationale. Large finite inventories (numbers, the alphabet) are no longer taught completely: the brief chooses the most useful targets, and the outlines stay unchanged. (P2-04 had 18 targets.) Mix easier and harder targets where the topic allows it, without forcing a mix. |
 | D15 | Index and detail navigation | **Confirmed:** one Content button labeled only Outline, Draft, or Content (highest available artifact) opens the combined detail page. Actions contains only Start lesson, available for complete, valid, supported lessons. Detail header has Lesson overview, Raw JSON / Structured view, and Start lesson when available, in that order directly under the page title, plus shared language preferences. On the same row, right-aligned, **Outline**, **Draft** and **Content** buttons scroll to the matching section. |
 | D16 | Lesson header and exams | **Confirmed:** duration-weighted progress percentage and current earned score against total possible; timed exam pages only, with results after the complete exam. **Confirmed (P0-02):** keep the practice contribution visible and unchanged during exams to avoid leaking correctness, with no pending label. |
 | D17 | Orthography-only points | **Confirmed:** 50% credit when letters are correct but accents or case differ. Full correctness earns 100%; other incorrect answers earn zero. |
-| D18 | Exam countdown limits | **Confirmed:** each lesson brief specifies a time limit for every exam page, based on its task. Content generation preserves those limits. |
+| D18 | Exam countdown limits | **Confirmed:** each lesson brief specifies a time limit for every exam page, based on its task. Content generation preserves those limits. **Exception (P5-01 review):** reading derives its exam limit (1.5 × the page estimate, section 9) until the team re-evaluates the limits (P5-05). |
 | D19 | Final results | **Confirmed:** final results show exam answers by default; the results sidebar (P6-01, D53; formerly a button menu) selects any previous exercise result, with score aggregates always visible. |
 | D20 | Correction explanations | **Confirmed:** whenever practice shows the right answer after an error, also show a short pre-generated explanation from lesson content. |
 | D21 | Vocabulary noun gender | **Confirmed:** stage 4 integrates a scored gender select-box exercise for nouns and then shows the reviewed overview with right/wrong indicators. All vocabulary is on one page; non-nouns have no gender input. **Changed (P06-00):** the gender page shows only the nouns; words without a gender are left out. |
@@ -83,7 +83,7 @@ Confirmed decisions are identified below. Other defaults make the draft concrete
 | D51 | Function artifacts and authoring | **Confirmed (P4-01):** a function lesson has a brief and lesson content, like grammar. The brief holds the situation, the two roles and the expressions and words with example sentences; the model dialogue, all exercises and the exam are generated in the lesson content. Claude first writes three test lessons by hand (`fr-greetings-and-goodbyes`, `fr-ordering-at-a-cafe`, `fr-asking-the-way`); the product owner decides on generation of the remaining eleven after their review. |
 | D52 | Autoplay mode | **Confirmed (P4-05 review):** a header switch **Autoplay**, the last control on the right, on by default and stored with the preferences (D45). When on, learning-language audio plays by itself: turning a flashcard to French; each line of a function model dialogue as it appears; connecting a matching pair or clicking a French box (person boards in forms mode: pronoun + form, e.g. `nous sommes`, `j'ai`); placing a form in a pronoun row; entering a dialogue gap, a listening choice or a dictation (the prompt; dialogue gaps play nothing when checked); and, as a practice page is checked, together with the green or red marking, the correct answer (gap sentences except dialogue gaps, error-spotter sentences, word-order sentences, pronoun + form of pronoun rows; listening choices play nothing when checked, since the word or role A's line was just heard (P6-02)). Prompts on entering a page wait for speech in progress. Exam answers are never spoken. Section 5, "Autoplay". |
 | D53 | Lesson navigation | **Confirmed (P6-01):** a sidebar shows the lesson's learning points as a vertical timeline (design V2): one numbered circle per point in its start-page section colour, filled when done (the number stays), ringed when current; the exam last with a flag. The start page lists the same points under lettered sections (A, B, C…). Navigation only shows the way: no point can be reopened. During the exam the sidebar lists the exam pages with tasks and time limits; on the results page it selects the part shown. Phones show the points as a horizontal row of numbered markers combined with the progress bar, with a tooltip per marker. |
-| D54 | Reading lesson flow | **Proposed (P5-01), pending review:** five fixed stages (key words, skim, detail, structure, exam on a second document of the same genre), three question types, evidence segments, genre skins, level-based text lengths and skim times and a 30 / 70 score read from the brief (section 12). The open questions of section 12 are answered by the product owner before the implementation issues are created. |
+| D54 | Reading lesson flow | **Confirmed (P5-01 review, 2026-10-15):** "prepare, then read": five fixed stages (flashcards and matching of 4–6 key words, a skim of the main document with a countdown after which the document is put away, 3–4 detail questions beside the open document, one ordering task, and an exam of 5 questions on one timed page about a second document of the same genre); one document layout for every genre; multiple choice and true / false only, no evidence marks; the shared 35 / 65 weights (D6); key-word meanings by mother tongue, interface text localized, documents and questions in the course language; skim time from the actual word count; ten hand-written fr/A1 test lessons. Exceptions to section 5 and D18 and the open points with their issues: section 9. |
 
 ## 2. Runtime and delivery architecture
 
@@ -270,6 +270,8 @@ Resolve Draft and Content components through a registry keyed by the artifact's 
 | `GrammarBriefView` | Objective/duration and coverage; 2–4 teaching blocks as numbered tabs (one block card shown at a time) with rules, worked examples, common pitfalls, and proposed exercise types; mixed-exam coverage, answer-unit plan, and each page's time limit. |
 | `VocabularyContentView` | Numbered stage outline and grouped page tabs; selected-page cards with introduction text, front/reveal flashcard previews, matching pairs, noun-gender/overview table, contextual typed gaps and reference words, and translation-exam pages. Show the actual prompts, teaching forms, accepted answers, point units, generated explanations, durations, and timers where applicable. |
 | `GrammarContentView` | Numbered step outline and grouped page tabs; selected explanation/block cards with form tables and examples; read-only previews for each defined exercise type, including pronoun rows, choice/typed gaps, word tokens, and error spotting. Include the production-feedback placeholder and mixed exam pages, accepted answers, point units, explanations, durations, and countdown limits. |
+| `ReadingBriefView` | Objective, duration, genre, situation and reader task; the key words with their selected-mother-tongue translation and explanation; the planned documents with their target words and allowed range; the skim focus, the planned detail questions and the exam question types (section 9). |
+| `ReadingContentView` | Both documents in the reading layout with their word counts, key words highlighted in the main document; then the shared page outline and page tabs with every question, option, answer, explanation, ordering task, `skimSeconds`, page estimate and the exam limit. |
 
 Shared presentation helpers can render section cards, metadata, target rows, form tables, answer keys, and timing badges. Categories compose those helpers around their own schemas. Render generated strings as text within React components; layout comes from the application. Speech controls play supported learning-language examples (French in these samples). Native disclosure/expansion controls can shorten long arrays, but **every** target, block, exercise item, answer variant, and explanation must remain accessible. Raw JSON is available through the header mode toggle described below; structured presentation remains the default.
 
@@ -277,7 +279,7 @@ Structured Content begins with a numbered outline of the lesson steps, including
 
 The artifact header’s Start lesson action uses the same height, font size and padding as Lesson overview and Raw JSON / Structured view. It may retain its primary color treatment, but must not use the taller primary-button sizing.
 
-Artifact exercise previews are **read-only content inspection**: they show answer keys for review, create no attempt, award no score, start no countdown, and do not reuse an active learner session. A displayed exam time limit is metadata. Provide these previews in phase 1 for sample review without waiting for phase 2/3 playable interactions; reuse presentational components where appropriate once the interactive renderers exist. Function Draft/Content views exist since P4-02; reading Draft/Content renderers are deferred until its schemas are agreed in phase 5, while its common Outline view remains available.
+Artifact exercise previews are **read-only content inspection**: they show answer keys for review, create no attempt, award no score, start no countdown, and do not reuse an active learner session. A displayed exam time limit is metadata. Provide these previews in phase 1 for sample review without waiting for phase 2/3 playable interactions; reuse presentational components where appropriate once the interactive renderers exist. Function Draft/Content views exist since P4-02; reading Draft/Content views arrive with the reading schemas (P5-02), while its common Outline view remains available.
 
 ### Raw JSON tree view
 
@@ -451,8 +453,12 @@ Each step has `id`, role, label, relevant brief/rule/target references, and a ty
 | `grammar_gap_typing` | Sentence segments, gap answer(s), optional hint | One per gap |
 | `grammar_word_order` | Stable token IDs, accepted token sequences | One per sentence |
 | `grammar_error_spotter` | Tokenized sentence, faulty token ID, correction mode and answers | One per sentence; detection and correction must both be right |
+| `reading_keyword_matching` | Key-word IDs; meanings, terms and explanations from the brief | One per key word |
+| `reading_skim_choice`, `reading_choice` | Course-language question, 3–4 options, answer ID | One per question |
+| `reading_true_false` | Course-language statement, answer `true` / `false` | One per statement |
+| `reading_order` | Pieces of information, 1–2 accepted orders | One per task |
 
-Introduction, grammar explanations, and plain vocabulary review use unscored payloads. Stage 4 is scored when noun-gender selectors are present, followed by an unscored reviewed display on the same page; count its noun answers once, with no extra score for acknowledging review. The exam is a **container of scored items**, potentially mixing supported types; it is not a seventh universal exercise interaction. Phase 1 must model this before phase 2 begins.
+Introduction, grammar explanations, plain vocabulary review, reading flashcards and reading documents (`reading_flashcards`, `reading_document`) use unscored payloads; the reading items are specified in section 9. Stage 4 is scored when noun-gender selectors are present, followed by an unscored reviewed display on the same page; count its noun answers once, with no extra score for acknowledging review. The exam is a **container of scored items**, potentially mixing supported types; it is not a seventh universal exercise interaction. Phase 1 must model this before phase 2 begins.
 
 Reference validation rejects missing targets/rules, duplicate nested IDs, unknown exercise types, empty exams, incomplete brief coverage, invalid answer keys, and incorrect category sequences. Duplicate displayed form text is allowed when distinct tokens/forms are needed; score assignments by grammatical validity, not arbitrary token identity.
 
@@ -555,7 +561,7 @@ Practice pages have one primary footer button: it reads **Check** while answerin
 1. While answering, Continue locks the current page's response(s), records first-submission points, and shows immediate visual feedback **on that page**, without navigating away.
 2. Fully correct answers receive a clear success state. Orthography-only errors receive a distinct partial-correct state and the correctly accented/capitalized answer. Incorrect answers receive an error state and the correct answer. Both correction states also show the short pre-generated explanation of why that answer is right, including row-level corrections in grouped tasks. Include text/icons so color is not the only signal.
 3. Inputs become read-only. Continue remains the only primary action; pressing it again acknowledges the feedback and advances. It does not rescore or require retyping the correction.
-4. **Single-answer pages (P2-04 review):** on every practice page whose items each ask for exactly one answer (typed gap, listening choice, multiple choice, one typed word, word order, error spot) and on matching pages, a fully correct answer skips the feedback view: only the chosen answer (the selected option, the paired boxes and their curves, the placed tokens, the typed field, or for typed gaps the correct reference card) briefly lights up green; the rest of the content area stays unchanged, and the next page follows. Pages with several answers per item (gender rows, conjugation tables) always keep their checked view. Exam pages never use it. A wrong answer on such a page shows no feedback card (P2-04 review round 2): a typed field turns red and the correct answer follows it in green (typed gaps: the green reference card above instead); among choices (listening choice, multiple choice) the chosen wrong option turns red and the correct option green; the page waits for Continue. Only a half-point answer (accents or capitals) turns the field amber and shows an explanation ("Almost – …" and the generated explanation) **below** the Continue button, so the button keeps its place. Word order and error spotting keep their feedback card. **Multiple choice (P4-05 review):** on practice pages with one multiple-choice answer (multiple-choice gaps, dialogue gaps) choosing an option submits the page at once, without a Check button; since P6-02 this includes vocabulary listening choices, whose options are written (dialogue listening choices keep Check, because their replies are only heard); a right answer then plays the green animation and moves on, a wrong one is marked in place and waits for Continue. The answer cannot be changed while the animation plays. **Typed pronoun rows (P4-05 review):** a pronoun-typing page with every row right also plays the green animation and moves on without Continue; with a mistake the rows are marked in place and the page waits for Continue.
+4. **Single-answer pages (P2-04 review):** on every practice page whose items each ask for exactly one answer (typed gap, listening choice, multiple choice, one typed word, word order, error spot) and on matching pages, a fully correct answer skips the feedback view: only the chosen answer (the selected option, the paired boxes and their curves, the placed tokens, the typed field, or for typed gaps the correct reference card) briefly lights up green; the rest of the content area stays unchanged, and the next page follows. Pages with several answers per item (gender rows, conjugation tables) always keep their checked view. Exam pages never use it. A wrong answer on such a page shows no feedback card (P2-04 review round 2): a typed field turns red and the correct answer follows it in green (typed gaps: the green reference card above instead); among choices (listening choice, multiple choice) the chosen wrong option turns red and the correct option green; the page waits for Continue. Only a half-point answer (accents or capitals) turns the field amber and shows an explanation ("Almost – …" and the generated explanation) **below** the Continue button, so the button keeps its place. Word order and error spotting keep their feedback card. **Multiple choice (P4-05 review):** on practice pages with one multiple-choice answer (multiple-choice gaps, dialogue gaps) choosing an option submits the page at once, without a Check button; since P6-02 this includes vocabulary listening choices, whose options are written (dialogue listening choices keep Check, because their replies are only heard); a right answer then plays the green animation and moves on, a wrong one is marked in place and waits for Continue. The answer cannot be changed while the animation plays. **Reading (P5-01 review):** pages that show a document (skim, detail, structure) always keep their checked view and wait for Continue, also when every answer is right, and the skim question is confirmed with Check; the reading key-word matching follows this rule like vocabulary matching. **Typed pronoun rows (P4-05 review):** a pronoun-typing page with every row right also plays the green animation and moves on without Continue; with a mistake the rows are marked in place and the page waits for Continue.
 
 Unscored presentation/review pages use Continue once to advance when their review requirements are met. Empty required answers disable Continue in practice. An exam page may submit a blank answer, recorded as unanswered for zero credit.
 
@@ -599,9 +605,9 @@ Exam answers are never spoken; matching and gender pages speak nothing extra on 
 
 Every lesson page from the first learner page to the results has a **sidebar** left of the content on screens wider than 960 px (the page widens to about 1320 px). Its content depends on the phase:
 
-- **Learning:** "Your lesson", "x of n points done" and a vertical timeline (design V2 of the 2026-10-09 feedback). The points come from the plan (`src/domain/session/outline.ts`): every theory page is a point (vocabulary introduction or flashcards of a group, grammar explanation named by its heading, function flashcards or dialogue); consecutive practice pages of one step form one point; the exam is the last point. The points are numbered 1, 2, 3… through the lesson; each circle has the colour of its start-page section and keeps its number when done (filled, no tick). The current point is ringed and says "You are here"; others say "Done" or "Not yet open"; the exam shows its flag and its number of tasks. The production-feedback placeholder and the exam info page belong to the exam point.
+- **Learning:** "Your lesson", "x of n points done" and a vertical timeline (design V2 of the 2026-10-09 feedback). The points come from the plan (`src/domain/session/outline.ts`): every theory page is a point (vocabulary introduction or flashcards of a group, grammar explanation named by its heading, function flashcards or dialogue, reading flashcards); consecutive practice pages of one step form one point; the exam is the last point. The points are numbered 1, 2, 3… through the lesson; each circle has the colour of its start-page section and keeps its number when done (filled, no tick). The current point is ringed and says "You are here"; others say "Done" or "Not yet open"; the exam shows its flag and its number of tasks. The production-feedback placeholder and the exam info page belong to the exam point.
 - **Exam:** "Final exam", "p pages · t questions" and one row per exam page with its kind (translation, dictation, mixed…), its number of questions and time limit (the learner-facing copy says "questions", never "tasks", P6-02); done pages are ticked ("Answered"), the current page says "in progress"; below, "Each page has its own countdown. You see your results only after the whole exam."
-- **Results:** "Your results" replaces the former button menu: **Final exam** with its score first, its parts nested below with "x of y" (vocabulary: Translation, Dictation; functions: Translation, Replies, Dialogue), then every scored exercise with its score, coloured by outcome as before. Only the selected part is shown; selecting **Final exam** shows its first part.
+- **Results:** "Your results" replaces the former button menu: **Final exam** with its score first, its parts nested below with "x of y" (vocabulary: Translation, Dictation; functions: Translation, Replies, Dialogue; reading has one exam page and no parts), then every scored exercise with its score, coloured by outcome as before. Only the selected part is shown; selecting **Final exam** shows its first part.
 
 Navigation only shows the way (product-owner decision): no learning point can be reopened, neither from the sidebar nor from the phone strip, and there is no Previous button. Locks, drafts, countdowns and deadlines are never touched by navigation; it is derived from the saved session, so it survives a reload, a resume and a change of interface language.
 
@@ -633,7 +639,7 @@ To preserve delayed exam feedback, keep the header's earned score at the practic
 
 ### Per-page exam countdown
 
-**Practice has no countdown. Every exam page has one**, with its `timeLimitS` specified by the lesson brief for that task and copied into the lesson content (grammar). Vocabulary exam limits follow the derived per-word rule of section 6 (D47).
+**Practice has no countdown. Every exam page has one**, with its `timeLimitS` specified by the lesson brief for that task and copied into the lesson content (grammar). Vocabulary exam limits follow the derived per-word rule of section 6 (D47). **Exception (P5-01 review):** the reading skim page is a practice page with a countdown (section 9); it has no absolute deadline and restarts after a reload, and reading derives its exam limit from the page rules (D18 exception).
 
 Start the countdown when the exam page becomes active. Display remaining minutes/seconds in a box to the right of the page heading (P6-02, feedback #6): the label "Time left", the time in large digits and a bar of the remaining share of the page limit; in the last 10 seconds the box, digits and bar turn red. On exam pages with more than one typed answer (vocabulary translation and dictation, grammar typed gaps, function translation; not the function exam dialogue) every task is a numbered card, the task on the left and its field on the right, stacked on phones (P6-02, feedback #26). Continue submits before expiry; expiry automatically locks the page's current draft answers and advances through the same transition. Valid drafted answers are graded normally; unanswered units earn zero. Mark timed-out pages in the feedback review.
 
@@ -722,7 +728,7 @@ Since P2-04 (D47) the application builds every vocabulary lesson from its brief 
 
 Translation prompts use `examPrompt` or the first translation; accepted answers in translation and dictation are the exam forms (plus gender variants when the prompt does not disambiguate). Matching corrections, listening choices, translation and dictation show the word's `explanation`; typed gaps show the gap explanation; gender rows show `genderExplanation`. The artifact page shows this derived lesson as a preview below the vocabulary Draft and has no separate Content section; the index labels a vocabulary lesson's artifact button "Draft".
 
-**Lesson start page (P2-02):** course label, the lesson category as a badge in the card's top-right corner (Vocabulary, Grammar), title, objective and estimated minutes. Vocabulary lessons add the total number of words; grammar lessons add the **New verbs** table when the brief lists any (P3-07). Every lesson then shows its **lesson outline** (P6-01 review, congruent with the sidebar): colour-coded sections lettered A, B, C…, each with its estimated minutes on the right as a stopwatch chip in whole minutes ("⏱ 4 min", like the exam time limits, P6-02) and its learning points indented below, numbered as in the sidebar. Vocabulary: one section per word group (with its word count; points Introduction and Flashcards), then Exercises, then the final exam. Grammar: one section per teaching block (named like its explanation step; its explanations, an explanation named like the block shown as "Explanation", then its exercises), then the final exam. Functions: Flashcards · Dialogue, the exercises, the final exam. The exam section has no points and says "Answer 10 questions on 2 timed pages". The feedback screen is not listed. Otherwise the start page does **not** list the lesson steps, the number of scored steps or the scoring weights and exam time limits; the weights appear on the results page.
+**Lesson start page (P2-02):** course label, the lesson category as a badge in the card's top-right corner (Vocabulary, Grammar), title, objective and estimated minutes. Vocabulary lessons add the total number of words; grammar lessons add the **New verbs** table when the brief lists any (P3-07). Every lesson then shows its **lesson outline** (P6-01 review, congruent with the sidebar): colour-coded sections lettered A, B, C…, each with its estimated minutes on the right as a stopwatch chip in whole minutes ("⏱ 4 min", like the exam time limits, P6-02) and its learning points indented below, numbered as in the sidebar. Vocabulary: one section per word group (with its word count; points Introduction and Flashcards), then Exercises, then the final exam. Grammar: one section per teaching block (named like its explanation step; its explanations, an explanation named like the block shown as "Explanation", then its exercises), then the final exam. Functions: Flashcards · Dialogue, the exercises, the final exam. Reading: Key words (Flashcards, Matching), The document (Skim, Detail, Structure), the final exam (section 9). The exam section has no points and says "Answer 10 questions on 2 timed pages". The feedback screen is not listed. Otherwise the start page does **not** list the lesson steps, the number of scored steps or the scoring weights and exam time limits; the weights appear on the results page.
 
 After the exam, the final results page defaults to exam answers and offers the results sidebar (section 5, "Lesson navigation") for prior exercise results. The results card shows the selected part first: its name as heading ("Final exam" or the exercise, e.g. "Typed gaps") and its score large ("9 / 12"), then the lesson title; the lesson's **Final score x / 100** stands at the top of the results sidebar above the **Final exam** entry, on phones above the result parts (P6-02); the card does not explain the weighting and shows no practice/exam statistics. The sidebar starts with the highlighted **Final exam** entry and its parts, followed by the scored exercises in the order they were presented. The selected entry has a purple background and border; every other entry shows its outcome (all categories, P4-05 review): red when every answer is wrong, red diagonal stripes when at least one answer is not fully right (half credit counts as not right), and the plain look when every answer is right, the **Final exam** entry then with its purple border. The exam parts (Translation/Dictation, Translation/Replies/Dialogue) take the same outcome colours, and the results card takes the colour of the selected entry: red, red stripes or its plain background (P06-00); parts without a score (introduction, flashcards, unscored overview) are not offered (P2-04 review). The exam is selected by default. Listening has its own menu entry after the typed gaps (P2-04 review round 2: stage 5 is two steps, `practice` and `listening`). The vocabulary exam results are split into the parts **Translation** (selected first) and **Dictation**, each with its own "x of y" in the sidebar; only the selected part is shown (P6-01). The review list (reference R5) shows every answer in its original order with ✓, ! or ✕ as task → correct answer in green; for mistakes the learner's answer is struck through in red directly below the correct answer (P4-05 review: when only accents or capitals differ, only those letters are red; when only the article differs, only the article is red; the rest stays muted), with an "almost (half a point)" or "time ran out" note and the explanation. On wide screens (above 600 px) each list is laid out in text columns (P3-02 review): a task with arrows ("un stylo → des ____") is split at them, and every task part, arrow and answer lines up vertically with the same column in the other rows of the list; a row with fewer parts lets its first part span the missing columns. Phones keep the stacked layout. Only listening tasks show "Write what you hear" as their task; word-order rows have no task text and show the sentence as the answer. Gender rows name the word once: "word: chosen gender" in green, or for a mistake "word: ~~chosen gender~~ → correct gender" with the explanation; the teaching form is not repeated. Answers are grouped by vocabulary group across pages (grammar: by page with several answers, "Part n"; consecutive single-answer pages share one group) after a summary line ("9 of 12 correct."). With more than one group, each group is one frame in its group colour with its name shown once at the top, not repeated per answer; no point fractions appear in the list. At the bottom right, **Lesson overview** (primary, light) follows **Repeat lesson** (outline) on its left. Introduction/flashcards/plain review remain completion-only. Matching, applicable noun-gender answers, typed gaps, listening choice, and the exam are scored. All scored practice types share the existing 35% practice contribution by possible units; the exam remains 65%. The gender overview answers and confirmation are one learner page for progress, using an estimate that includes both answering and review.
 
@@ -931,7 +937,206 @@ The three test lessons and every later function lesson are reviewed for: full co
 - **Authoring:** `authoring/functions/<id>.ts` with `node scripts/author-functions.ts <id>` (like grammar, section 7), building brief and lesson content, deriving page estimates and exam limits from the page rules, validating both and writing them with current input hashes.
 - **Makefile:** `make sample-lessons` and `make catalog` validate function briefs and lesson content; `make test` and `make test-e2e` cover the new renderers and a function journey; `make mockups-sync` / `make mockups-check` include `docs/mockups/05-function-lesson/`. `make generate` / `make generate-missing` stay disabled for functions until the generation decision.
 
-## 9. UI design and PlantUML Salt mockups
+## 9. Reading learning flow
+
+A reading lesson follows the design **prepare, then read** (D54): it teaches a few key words, lets the learner skim a real-looking document, then read it for detail and structure, and ends with a short exam on a second document of the same kind. Each lesson is data shown by the shared session host: every document uses one layout, and every exercise reuses a control of vocabulary, grammar or functions. Reading adds two pieces of its own, the document view and the skim phase. Sources: the reading requirement in ft_transcendence [#115](https://github.com/VictorBro/ft_transcendence/issues/115) and its playable reference prototype in the repository `VYAntares/lessonProto` (branch `main`). The requirements were reviewed by the product owner in the P5-01 pull request (#95) on 2026-10-15; the points still open are listed at the end of this section with the issue that decides them.
+
+```mermaid
+flowchart TD
+    S[Start page: situation, key words, lettered outline] --> A[Flashcards: the key words]
+    A --> B[Matching: key word and meaning]
+    B --> C[Skim: document with key words and a countdown]
+    C --> D[Document put away: one global question, answered from memory]
+    D --> E[Detail: 3-4 questions beside the open document]
+    E --> F[Structure: put pieces of information in the order of the text]
+    F --> G[Exam info page]
+    G --> H[Exam: second document of the same genre, 5 questions on one timed page]
+    H --> R[Final results: exam selected by default]
+    R --> M[Results sidebar: previous exercise results]
+    M --> R
+```
+
+### Stages
+
+Every reading lesson has the same five stages, from A1 to C2.
+
+| # | Stage | Pages | What the learner does | Counts for |
+| --- | --- | --- | --- | --- |
+| 1 | Flashcards | 2 | 4–6 key words of the text on the vocabulary flashcards (mother-tongue meaning on the front; the word with its speaker button and a short explanation on the back), then the vocabulary matching board (key word ↔ meaning). | flashcards: completion only; matching: practice |
+| 2 | Skim | 1 | The main document with its key words highlighted and a countdown. When the time is up, or earlier when the learner presses **I've finished reading**, the document is put away (no blur, nothing of it stays on screen) and one global question opens under the heading **Answer from memory**: what kind of document it is, who wrote it, or why. | practice |
+| 3 | Detail | 1 | 3–4 questions (multiple choice or true / false) with the document open beside them (stacked on phones). | practice |
+| 4 | Structure | 1 | 3–6 pieces of information to put in the order the text gives them, with the word-order control (phrases instead of words); the document stays open. | practice |
+| 5 | Exam | 1 | The exam info page, then a **second, shorter document of the same genre** with 5 questions on one page and its countdown. No highlighting, no help, no feedback until the results. | exam |
+
+The skim is **one page with two phases** (document, then question); it is one learner page for progress and navigation. The main document is stored once and shown on the skim, detail and structure pages; the exam document is shown on the exam page only.
+
+### Fixed and varying parts
+
+| Fixed in every lesson | Varies from lesson to lesson |
+| --- | --- |
+| The five stages, their order and roles | The genre (it steers the text the author or generator writes, not the layout) |
+| 4–6 key words: flashcards, then matching | The key words |
+| One skim question about the whole document | Its focus: `genre`, `author` or `purpose` |
+| 3–4 detail questions | Their types (multiple choice, true / false) and order |
+| One structure task: pieces of information in order | The pieces |
+| 5 exam questions on one timed page, on a second document of the same genre | Their types |
+| One final score from 0 to 100, practice 35 % / exam 65 % (D6) | Text lengths and skim time, which follow the level and the actual word count |
+
+**Question types** (skim, detail and exam):
+
+- **Multiple choice:** 3–4 options, exactly one right; options are shuffled from the session seed like every choice.
+- **True / false:** a statement that the text confirms or contradicts; the options **Vrai** and **Faux** (in the course language, like every answer option) keep their order.
+
+Short typed answers and a third answer *not stated* are left out: short answers need spelling and variant rules, and *not stated* needs statements that are plausible yet really absent from the text. Evidence marks (the sentences that prove an answer, marked after Check) are left out as well; explanations quote the words of the text instead. P5-05 decides whether to bring them back.
+
+### Pages reused and new
+
+| Page | Reused from | New for reading |
+| --- | --- | --- |
+| Start page | The shared start page with its lettered outline (section 6, "Lesson start page"); situation line as in functions | – |
+| Flashcards | The vocabulary flashcard page (section 6, stage 2), its turn gate and stored `revealed` | – |
+| Matching | The vocabulary matching board (section 6, stage 3), including Check, slide, green flash and rule 4 | – |
+| Skim | The exam countdown box (section 5, label **Time to skim**), the choice cards of multiple-choice gaps | The document view; the skim phase (countdown on a practice page, document put away) |
+| Detail | The choice cards (multiple-choice gaps, section 7), true / false as two choice cards in fixed order, the shared in-place feedback | The document view beside the questions |
+| Structure | The word-order control (section 7) with pieces of information as tokens, its feedback card | The document view beside the task |
+| Exam info | The shared exam info page (section 6, stage 6) with the row **Questions on the document** | – |
+| Exam | The shared exam page: countdown box, numbered questions, delayed feedback | The document view (without highlights) |
+| Results | The shared results page and results sidebar (section 5, D53) | – |
+| Draft and Content views | The shared Outline, brief parts and page-by-page Content review (section 3) | `ReadingBriefView`; the two documents above the Content review |
+
+### Page rules
+
+The application derives every estimate from these rules; authoring and validation use the same functions. Words are whitespace-separated tokens that contain at least one letter or digit, over everything a document shows (title, meta lines, paragraphs): `l'heure` is one word, `15` is one, `€` and `?` are none.
+
+| Level | Main document (words) | Exam document (words) | Skim speed (words per minute) |
+| --- | --- | --- | --- |
+| A1 | 40–80 | 20–40 | 75 |
+| A2 | 80–150 | 40–75 | 90 |
+| B1 | 150–250 | 75–125 | 110 |
+| B2 | 250–400 | 125–200 | 130 |
+| C1 | 400–550 | 200–275 | 150 |
+| C2 | 550–700 | 275–350 | 170 |
+
+| Stage | Pages | Estimate | Exam limit |
+| --- | --- | --- | --- |
+| 1 Flashcards | one page with every key word | 10 s per key word | – |
+| 1 Matching | one board with every key word | 10 s per key word | – |
+| 2 Skim | one page | `skimSeconds` + 20 s | – |
+| 3 Detail | one page | 30 s per question | – |
+| 4 Structure | one page | 15 s per piece | – |
+| Exam info | application page, not stored in the lesson content | 20 s | – |
+| 5 Exam | one page | reading time of the exam document at the skim speed + 20 s per question | 1.5 × estimate, rounded up to 5 s |
+
+**Skim time (P5-01 review):** `skimSeconds` follows the actual word count of the main document at the skim speed of its level, rounded up to 5 s and at least 15 s (55 words at A1: 45 s). It is set in the lesson content when the lesson is written or generated and may be changed by hand in the file afterwards; validation only checks its bounds (15–300 s) and that the skim page estimate follows it. A document outside its word range is invalid. The ranges and speeds are starting values; P5-05 tunes them after play tests.
+
+**Duration:** with these rules an A1 lesson takes about 8 minutes and a C2 lesson about 14, so every level stays within the 15-minute limit of P6-02 (feedback #1). Whether higher levels may take longer is decided in the team (P5-05).
+
+### Brief and lesson content
+
+A reading lesson has a brief and lesson content, like grammar and functions; both use the shared envelope (section 4) with `kind: "reading"` and a `theme`, never a `topic`.
+
+**Brief** (`content/briefs/<id>.json`):
+
+| Field | Rule |
+| --- | --- |
+| `genre` | `text_message`, `email`, `letter`, `postcard`, `invitation`, `sign`, `notice`, `menu`, `recipe`, `classified_ad`, `profile`, `programme`, `timetable`, `article`, `forum_post`, `review`, `dictionary_entry`, `contract`, `speech`, `poem` or `other`. It steers the text, not the layout: a memo or building rules are a `notice`, a press release or an editorial an `article`. |
+| `situation`, `readerTask` | Localized: who writes to whom and why; what the learner must find (from the outline intent). |
+| `keywords[4–6]` | `{ id, term, translations, explanation }`: `term` in the course language as it is taught; `translations` for every mother tongue (the front of the flashcard; the first one is the matching label and unique in the lesson per locale); `explanation` localized (the back of the flashcard and the correction text of the matching). |
+| `documents.main`, `documents.exam` | `{ targetWords, contents }`: `targetWords` within the level range; `contents` (localized) says what the text contains, so the content step writes the planned text. The exam document has the same genre, about half the length, and facts the main document does not give. |
+| `skim` | `{ focus }`: `genre`, `author` or `purpose`. |
+| `detailQuestions[3–4]` | `{ id, type, focus }`: `type` is `reading_choice` or `reading_true_false`; `focus` (localized) names the fact the question checks. |
+| `exam` | `{ types[1–2] }`: the question types of the five exam questions. |
+| `scoring` | The shared policy (35 / 65, half credit 0.5), as in every brief. |
+| `estimatedMinutes` | Equals the lesson content's minutes. |
+
+**Lesson content** (`content/lessons/<id>.json`):
+
+```text
+genre                                                   // equals the brief
+documents[2]: { documentId: "main" | "exam", title | null, meta[0–4],
+                paragraphs[1–12]: text,                 // a line break inside starts a new line (menu line, verse, timetable row)
+                highlights[]: { keywordId, text } }     // main document: every key word; exam document: none
+steps[6]: flashcards, matching, skim, detail, structure, exam — { id, stage, role, label, pages[1]: { pageId,
+          estimatedDurationS, timeLimitS | null, instructions, items[] } }   // stage 1 is two steps, so its two pages are two points (D53)
+```
+
+| Item | Payload essentials | Scored units |
+| --- | --- | --- |
+| `reading_flashcards` | Key-word IDs | Completion only |
+| `reading_keyword_matching` | Key-word IDs; labels and explanations come from the brief | One per key word |
+| `reading_document` | `documentId`, `view` (`skim`, `open`, `exam`), `skimSeconds` (skim view only) | None |
+| `reading_skim_choice` | Focus, question, 3–4 options, answer ID, localized `answerExplanation` | One |
+| `reading_choice` | Question, 3–4 options, answer ID, localized `answerExplanation` | One |
+| `reading_true_false` | Statement, answer `true` / `false`, localized `answerExplanation` | One |
+| `reading_order` | 3–6 pieces, 1–2 accepted orders, localized `answerExplanation` | One per task |
+
+A paragraph is a paragraph of prose, a message bubble, a menu section, a sign, a stanza or a clause. A timetable or a programme writes one row per line, its columns separated by ` · `; there is no table layout. Each highlight `text` is copied word for word from the main document (it may be an inflected form) and is marked wherever it occurs; the exam document lists no highlights, although its text may use key words. A document has no headings of its own besides its title.
+
+**Validation** (a failure makes the file invalid): the envelope and locale rules of section 4; 4–6 key words with unique IDs, terms and first translations per locale; both documents with the brief's genre and word counts in range; every highlight found in the main document, every key word highlighted, no highlight in the exam document; the five steps in order with their page rules and `estimatedMinutes`; the main document on the skim, detail and structure pages and the exam document on the exam page, first on its page, in the view of its stage; flashcards and matching covering every key word; the skim question with the brief's focus; the detail questions of the brief in its order and types; options unique with exactly one right; pieces unique and every accepted order using every piece once; the exam page with exactly 5 questions of the planned types and the derived limit; only the exam page has a countdown limit.
+
+### Exercise behavior
+
+| Stage | Required interaction |
+| --- | --- |
+| Flashcards | The vocabulary flashcard page: the mother-tongue meaning in front; the key word with a speaker button and its explanation behind. Continue needs every card turned once. |
+| Matching | The vocabulary matching board, mother-tongue meaning on the left and the key word with its speaker on the right. Checked exactly like vocabulary matching (rule 4 applies: a fully correct board flashes green and moves on; no explanations). |
+| Skim | The document under a countdown box **Time to skim** with an outlined **I've finished reading** button; the question is not shown yet. When the time is up or the button is pressed, the document is put away and the question opens as choice cards under **Answer from memory**. The choice is confirmed with **Check** (rule 4's submit-on-choice does not apply). After Check the document comes back, the chosen option is marked green or red with the correct one green, the explanation follows, and the page waits for **Continue** even when the answer is right (P5-01 review). |
+| Detail | The open document beside the questions (side by side from 1100 px, stacked below; the document stays in view). Every question is answered before **Check**; the questions are then marked in place with the correct option green and their explanations, and the page waits for Continue even when every answer is right (P5-01 review: the learner wants to see which facts were right). |
+| Structure | The document beside the word-order control: the pieces are shuffled from the session seed and placed by click, keyboard or drag as in grammar word order. Check marks the order; the feedback card shows the correct order (pieces joined by → ) and the explanation; the page waits for Continue. |
+| Exam | The shared exam page: the countdown box, the exam document beside the five numbered questions, "n of 5 answered" next to Continue. Continue or the countdown submits the page; unanswered questions earn zero. |
+
+On a page with a document the cursor is not put into a field and the page is not scrolled, so the document stays in view.
+
+### Session, scoring, audio and results (exceptions to section 5)
+
+- **Scoring:** the shared weights (D6): practice 35 % (matching, skim, detail and structure units), exam 65 %. Reading has no typed answers, so no half credit occurs.
+- **Countdown in practice (P5-01 review):** the skim page is the only practice page with a countdown. It has no absolute deadline: a reload or resume before the time is up restarts it; a document that was put away stays away until the question is checked (stored in the session's `revealed`).
+- **Correction view (P5-01 review):** document pages (skim, detail, structure) always keep their checked view and wait for Continue; rule 4 still applies to the matching board.
+- **Exam limit (D18 exception):** the exam limit is derived (1.5 × the estimate) instead of set in the brief; the team re-evaluates the limits (P5-05).
+- **Audio and autoplay (D52):** flashcards and matching speak the key word as in vocabulary (turning a card to the word, clicking a key-word box, connecting a pair). Documents, questions and answers are not read aloud, and Check speaks nothing. A reading lesson has no listening task, so it starts without a French voice (D42 does not apply); without a voice the speaker buttons become **Install language** buttons as everywhere.
+- **Navigation (D53, no exception):** the points follow the shared rules: 1 Flashcards (theory), 2 Matching, 3 Skim, 4 Detail, 5 Structure, then the exam with its flag. The start page shows them under **A Key words** (Flashcards, Matching), **B The document** (Skim, Detail, Structure) and **C Final exam** ("Answer 5 questions on 1 timed page"), each with its minutes as a stopwatch chip.
+- **Start page:** course label, the **Reading** badge, title, objective, minutes, the situation and the number of key words. The genre is not shown, since the skim question may ask for it.
+- **Results:** the exam is selected by default; it has one page, so the **Final exam** entry has no nested parts. The sidebar then offers Matching, Skim, Detail and Structure in the order presented; flashcards are not offered. Rows show the question or statement as the task and the chosen option; the structure row shows the order placed and the correct order.
+- **Saving:** as section 5 ("save after meaningful transitions"); the skim countdown is not saved.
+
+### Language rules (P5-01 review)
+
+The principles of the other categories apply:
+
+| Text | Language |
+| --- | --- |
+| Key-word meanings on the flashcard fronts and matching labels | Translations by mother tongue |
+| Instructions, stage labels, situation, objective, explanations, correction texts and every other interface text | Interface language (localized en/fr/de) |
+| Documents, key words, questions, statements, options (including Vrai / Faux), pieces to order | Course language only; translating them would give the answers away |
+
+### Content review criteria
+
+The test lessons and every later reading lesson are reviewed for: full coverage of the outline intent; a document that looks authentic for its genre and natural French of the lesson's level; key words that occur in the main document and help understand it; questions answerable only from the text (not from general knowledge); distractors that are plausible but clearly wrong according to the text; true / false statements the text really confirms or contradicts; exam facts that are not in the main document; one unambiguous order of the pieces; explanations that quote the words of the text; correct translations for every mother tongue and explanations in en/fr/de.
+
+### Test lessons
+
+Claude writes the brief and lesson content of the **ten fr/A1 reading entries** by hand (P5-01 review: "generate 10 sample lessons"; the generation method is decided later, P5-07): `fr-reading-an-online-profile`, `fr-reading-public-signs`, `fr-reading-a-text-message`, `fr-reading-a-restaurant-menu`, `fr-reading-a-flat-ad`, `fr-reading-a-holiday-postcard`, `fr-reading-an-event-programme`, `fr-reading-a-party-invitation`, `fr-reading-a-train-timetable` and `fr-reading-written-directions`. Four of them reuse the texts of the reference prototype. The briefs and lessons are written directly as JSON (a new lesson may start as a short draft with only its documents and questions); `node scripts/author-reading.ts <id>` (or `--all`, `--dry-run`) derives the envelope, the six steps with their labels, page IDs and instructions, the flashcard, matching and document items, `skimSeconds` (kept when already set), the page estimates, the exam limit, the minutes, the brief's target words and exam types and the input hashes, validates both files and writes them. There are no separate definition files: the reference prototype's `authoring/reading/` definitions are not taken over.
+
+### Open points and their issues
+
+| Point | Decision so far | Issue |
+| --- | --- | --- |
+| Lesson length per level | Every level within 15 minutes with the page rules above; longer lessons for B2–C2 discussed in the team | P5-05 |
+| Word ranges, skim speed, exam limits | Starting values above; tuned after play tests | P5-05 |
+| Evidence marks, short answers, *not stated* | Left out; brought back only if play tests show the need | P5-05 |
+| Navigation points | D53 applied without exception (proposed by Endrit; Anaïs and Luca to confirm) | P5-04 review |
+| Wide layout with the lesson sidebar | Side by side from 1100 px, stacked below; collapsing the sidebar on reading pages is decided while implementing | P5-06 |
+| Genres | The list above, chosen by the reading owner to cover the outlines (P5-01 review: owner's decision) | – |
+| Generation | Ten hand-written test lessons first; offline generation in the prototype decided after their review | P5-07 |
+
+### Implementation plan
+
+- **Schemas and validation (P5-02):** `src/schemas/reading.ts` (brief, content, limits, word ranges), the page rules and skim speeds in `src/domain/readingLesson.ts`, checks in `src/validation/reading.ts` called from `src/validation/artifacts.ts`, `reading` in the artifact factory, plan units in `src/domain/session/readingPlan.ts`, the Draft and Content views, the authoring tool `scripts/author-reading.ts`, and `fr-reading-a-text-message` as the contract fixture. Start stays unavailable.
+- **Test lessons (P5-03):** the nine other fr/A1 lessons; `make sample-lessons` and the contract tests include all ten.
+- **Renderers and session (P5-04):** the document view (`src/components/ReadingDocument.tsx`) and `src/session/readingRenderers.tsx` (document with the skim phase, questions); flashcards, matching, word order, exam info, countdown and results are the shared ones; the correction-view and countdown exceptions in the session; the start page and outline; `reading` in `PLAYABLE_KINDS`; component tests and an end-to-end journey.
+- **Makefile:** no new target; `make sample-lessons`, `make catalog`, `make test` and `make test-e2e` cover reading; `make mockups-sync` / `make mockups-check` include `docs/mockups/06-reading-lesson/`. `make brief` / `make generate` keep failing explicitly for reading until P5-07.
+
+## 10. UI design and PlantUML Salt mockups
 
 ### Visual direction and layout
 
@@ -3818,9 +4023,9 @@ scale 1.3
 ```
 <!-- mockup:end mockups/05-function-lesson/08-exam/dialogue-gap-typing.puml -->
 
-### Reading lesson (proposed, P5-01)
+### Reading lesson screens
 
-Proposed screens of the reading flow (section 12), drawn from the reference prototype on the shared session host. The key-word matching, the exam information page, the results and the lesson navigation are the shared screens of the other categories; the document, its genre skins and the skim countdown are reading-specific. Salt limits: the blur is a shaded block, matching curves are `~~~`, and the wide layout (document beside the questions) applies from 1100 px only.
+Every page of one reading lesson (section 9), drawn with the fr/A1 lesson `fr-reading-a-text-message`. Flashcards, matching, the exam info page, the countdown, the results and the lesson navigation are the shared screens of the other categories; the document view and the skim phase are reading's own. Salt limits: matching curves are `~~~`, and the document stands beside the questions from 1100 px only.
 
 #### Reading: combined artifact view
 
@@ -3839,28 +4044,28 @@ scale 1.3
 {
 .
 { <color:#020617>xx</color> | {
-{ [ <color:#E2E8F0>Lesson overview</color> ] | [ <color:#E2E8F0>Raw JSON</color> ] | [ <color:#020617>Start lesson</color> ] | <color:#020617>xxxxxx</color> | [ <color:#E2E8F0>Outline</color> ] | [ <color:#E2E8F0>Draft</color> ] | [ <color:#E2E8F0>Content</color> ] }
+{ [ <color:#020617>Lesson overview</color> ] | [ <color:#020617>Raw JSON</color> ] | [ <color:#020617>Start lesson</color> ] | <color:#020617>xxxxxx</color> | [ <color:#020617>Outline</color> ] | [ <color:#020617>Draft</color> ] | [ <color:#020617>Content</color> ] }
 <size:26><color:#E2E8F0><b>Lire un SMS</b></color></size>
 .
 <color:#94A3B8>DRAFT</color>  <color:#E2E8F0><b>Lesson plan</b></color>
-<color:#94A3B8>5 key words   /   Genre: text message   /   About 9 minutes   /   Translations: English   /   Explanations: English</color>
+<color:#94A3B8>5 key words   /   Genre: text message   /   About 8 minutes   /   Translations: English   /   Explanations: English</color>
 { <color:#E2E8F0><b>Situation</b></color> | <color:#020617>xxxx</color> | <color:#E2E8F0><b>What the learner looks for</b></color> }
+{ <color:#94A3B8>Léa sends her friend Tom a text message …</color> | <color:#020617>xxxx</color> | <color:#94A3B8>The day, the time and the place of the meeting …</color> }
 <color:#E2E8F0><b>Key words</b></color>
-{ <color:#E2E8F0><b>Key word</b></color> | <color:#E2E8F0><b>Translation (English)</b></color> | <color:#E2E8F0><b>Explanation</b></color> }
-{ <color:#E2E8F0>samedi</color> | <color:#E2E8F0>Saturday</color> | <color:#94A3B8>A day of the week …</color> }
+{ <color:#E2E8F0><b>Key word</b></color> | <color:#E2E8F0><b>Translation (English)</b></color> | <color:#E2E8F0><b>Explanation</b></color>
+<color:#E2E8F0>samedi</color> | <color:#E2E8F0>Saturday</color> | <color:#94A3B8>A day of the week …</color>
+<color:#E2E8F0>on se voit</color> | <color:#E2E8F0>we meet</color> | <color:#94A3B8>Friendly way to suggest meeting …</color> }
 <color:#E2E8F0><b>Documents</b></color>
-{ <color:#E2E8F0>Main document</color> <color:#94A3B8>· 55 words (allowed 40–80) · 3 parts</color> | <color:#020617>xx</color> | <color:#E2E8F0>Exam document</color> <color:#94A3B8>· 31 words (allowed 20–40) · 2 parts</color> }
-<color:#E2E8F0><b>Lesson plan</b></color>
-{ <color:#94A3B8>01</color> Key words | Learn 5 key words, then match them | 1 min 30 s | Practice score }
-{ <color:#94A3B8>02</color> Skim | Skim the document for 45 s, then 1 global question | 1 min 5 s | Practice score }
-{ <color:#94A3B8>03</color> Detail | Answer 4 questions on the open document | 2 min 30 s | Practice score }
-{ <color:#94A3B8>04</color> Structure | Put the pieces of information in the order of the text | 1 min | Practice score }
-{ <color:#94A3B8>05</color> Final exam | Read a second, shorter text message, 5 questions | 2 min 30 s | Exam score }
-<color:#94A3B8>Scoring: practice 30%, exam 70%; answers wrong only in accents or capitals earn 50% credit.</color>
+{ <color:#E2E8F0>Main document</color> <color:#94A3B8>· about 55 words (allowed 40–80)</color> | <color:#020617>xx</color> | <color:#E2E8F0>Exam document</color> <color:#94A3B8>· about 31 words (allowed 20–40)</color> }
+<color:#E2E8F0><b>Questions</b></color>
+{ <color:#94A3B8>Skim</color> | <color:#E2E8F0>Purpose of the document</color>
+<color:#94A3B8>Detail</color> | <color:#E2E8F0>4 questions: the day, the time, the place (multiple choice); dinner (true / false)</color>
+<color:#94A3B8>Exam</color> | <color:#E2E8F0>5 questions: multiple choice, true / false</color> }
 .
 <color:#94A3B8>CONTENT</color>  <color:#E2E8F0><b>Lesson content</b></color>
 { <color:#E2E8F0>Main document · 55 words</color> | <color:#020617>xx</color> | <color:#E2E8F0>Exam document · 31 words</color> }
-<color:#94A3B8>both documents in their genre skin, then the shared page-by-page review (evidence quoted per question)</color>
+<color:#94A3B8>Both documents in the one reading layout, then the shared lesson outline and page tabs:</color>
+<color:#94A3B8>Flashcards, Matching, Skim (45 s), Detail, Structure, Final exam (⏱ 03:10), with answers and explanations.</color>
 } | <color:#020617>xx</color> }
 .
 }
@@ -3886,19 +4091,26 @@ scale 1.3
 .
 { <color:#020617>xx</color> | {
 { <color:#020617>xxxxxxxxxx</color> | {
-<color:#94A3B8>FRENCH / A1</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxx</color> | [ <color:#E2E8F0>Reading</color> ]
+{ <color:#94A3B8>FRENCH / A1</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxx</color> | <color:#94A3B8>( Reading )</color> }
 <size:28><color:#E2E8F0><b>Lire un SMS</b></color></size>
 <color:#94A3B8>Read a short text message from a friend and find the day, the time and the place of the meeting.</color>
-<color:#94A3B8>About 9 minutes · 5 key words</color>
+<color:#94A3B8>Situation: Léa sends her friend Tom a text message on Thursday evening to plan Saturday.</color>
+<color:#94A3B8>5 key words  ·  About 8 minutes</color>
 .
 <color:#E2E8F0><b>Lesson outline</b></color>
-{ <color:#A5B4FC><b>A</b></color> | <color:#E2E8F0><b>Key words</b></color> | <color:#94A3B8>1. Key words  2. Matching</color> | <color:#94A3B8>2 min</color> }
-{ <color:#67E8F9><b>B</b></color> | <color:#E2E8F0><b>Skim</b></color> | <color:#94A3B8>3. One global question</color> | <color:#94A3B8>1 min</color> }
-{ <color:#86EFAC><b>C</b></color> | <color:#E2E8F0><b>Detail</b></color> | <color:#94A3B8>4. Multiple choice · short answer · true / false</color> | <color:#94A3B8>3 min</color> }
-{ <color:#FDE047><b>D</b></color> | <color:#E2E8F0><b>Structure</b></color> | <color:#94A3B8>5. Order the information</color> | <color:#94A3B8>1 min</color> }
-{ <color:#FDA4AF><b>E</b></color> | <color:#E2E8F0><b>Final exam</b></color> | <color:#94A3B8>5 questions on 1 timed page</color> | <color:#94A3B8>3 min</color> }
+{ <color:#A5B4FC><b>A</b></color> | <color:#E2E8F0><b>Key words</b></color> | <color:#020617>xxxxxxxxxxxxxxxx</color> | <color:#94A3B8>⏱ 2 min</color> }
+{ <color:#020617>xx</color> | <color:#94A3B8>1  Flashcards</color> }
+{ <color:#020617>xx</color> | <color:#94A3B8>2  Matching</color> }
+{ <color:#67E8F9><b>B</b></color> | <color:#E2E8F0><b>The document</b></color> | <color:#020617>xxxxxxxxxxxxxxxx</color> | <color:#94A3B8>⏱ 4 min</color> }
+{ <color:#020617>xx</color> | <color:#94A3B8>3  Skim</color> }
+{ <color:#020617>xx</color> | <color:#94A3B8>4  Detail</color> }
+{ <color:#020617>xx</color> | <color:#94A3B8>5  Structure</color> }
+{ <color:#FDA4AF><b>C</b></color> | <color:#E2E8F0><b>Final exam</b></color> | <color:#020617>xxxxxxxxxxxxxxxx</color> | <color:#94A3B8>⏱ 2 min</color> }
+{ <color:#020617>xx</color> | <color:#94A3B8>Answer 5 questions on 1 timed page</color> }
 .
-[ <color:#020617>                        Continue                        </color> ]
+<color:#94A3B8>The genre is not shown: the skim question may ask for it.</color>
+.
+[ <color:#020617>                        Start                        </color> ]
 } | <color:#020617>xxxxxxxxxx</color> }
 } | <color:#020617>xx</color> }
 .
@@ -3907,13 +4119,13 @@ scale 1.3
 ```
 <!-- mockup:end mockups/06-reading-lesson/01-startpage/lesson-start.puml -->
 
-#### Reading: Key words and matching
+#### Reading: Flashcards
 
-<a id="mockup-06-reading-lesson-02-keywords-keywords"></a>
+<a id="mockup-06-reading-lesson-02-flashcards-flashcards"></a>
 
-[Salt source](mockups/06-reading-lesson/02-keywords/keywords.puml)
+[Salt source](mockups/06-reading-lesson/02-flashcards/flashcards.puml)
 
-<!-- mockup:begin mockups/06-reading-lesson/02-keywords/keywords.puml -->
+<!-- mockup:begin mockups/06-reading-lesson/02-flashcards/flashcards.puml -->
 ```plantuml
 @startsalt
 skinparam backgroundColor #020617
@@ -3931,33 +4143,89 @@ scale 1.3
 <color:#94A3B8>Your lesson</color>
 <color:#E2E8F0><b>0 of 5 points done</b></color>
 .
-{ <color:#A5B4FC><b>1.</b></color> | <color:#E2E8F0><b>Key words</b></color> | <color:#67E8F9>you are here</color> }
-{ <color:#67E8F9><b>2.</b></color> | <color:#94A3B8>Key words · matching</color> | <color:#94A3B8>·</color> }
-{ <color:#86EFAC><b>3.</b></color> | <color:#94A3B8>Skim</color> | <color:#94A3B8>·</color> }
-{ <color:#FDE047><b>4.</b></color> | <color:#94A3B8>Detail</color> | <color:#94A3B8>·</color> }
-{ <color:#FDA4AF><b>5.</b></color> | <color:#94A3B8>Structure</color> | <color:#94A3B8>·</color> }
+{ <color:#A5B4FC><b>(1)</b></color> | <color:#E2E8F0><b>Flashcards</b></color> | <color:#67E8F9>You are here</color> }
+{ <color:#64748B>2</color> | <color:#94A3B8>Matching</color> | <color:#64748B>Not yet open</color> }
+{ <color:#64748B>3</color> | <color:#94A3B8>Skim</color> | <color:#64748B>Not yet open</color> }
+{ <color:#64748B>4</color> | <color:#94A3B8>Detail</color> | <color:#64748B>Not yet open</color> }
+{ <color:#64748B>5</color> | <color:#94A3B8>Structure</color> | <color:#64748B>Not yet open</color> }
 .
-{ <color:#E2E8F0><b>⚑</b></color> | <color:#E2E8F0><b>Final exam</b></color> | <color:#94A3B8>3 min 45 s</color> }
+{ <color:#FDA4AF><b>⚑</b></color> | <color:#E2E8F0>Final exam</color> | <color:#94A3B8>5 questions</color> }
 } | <color:#020617>xxx</color> | {
-<color:#94A3B8>Key words · point 1 of 5</color>
-<size:24><color:#E2E8F0><b>Read the key words of the text</b></color></size>
-<color:#94A3B8>Listen to each word and read its meaning. A matching board follows.</color>
+<color:#94A3B8>Flashcards · point 1 of 5</color>
+<size:24><color:#E2E8F0><b>Turn each card to learn the key words of the text.</b></color></size>
+<color:#94A3B8>2 of 5 cards turned</color>
 .
-{ <size:20><color:#E2E8F0><b>samedi</b></color></size> [ <color:#4338CA>🔊</color> ] | <color:#020617>xx</color> | <size:20><color:#E2E8F0><b>on se voit</b></color></size> [ <color:#4338CA>🔊</color> ] }
-{ <color:#94A3B8>Saturday</color> | <color:#020617>xx</color> | <color:#94A3B8>we meet / shall we meet</color> }
-{ <color:#94A3B8>A day of the week; no capital letter.</color> | <color:#020617>xx</color> | <color:#94A3B8>On means nous in everyday French.</color> }
+{ <back:#0F172A><color:#E2E8F0>          Saturday                 ⟲ </color></back> | <color:#020617>xx</color> | <back:#1E1B4B><color:#E2E8F0>     <b>on se voit</b>   🔊          ⟲ </color></back> }
+{ <back:#0F172A><color:#0F172A>                                    </color></back> | <color:#020617>xx</color> | <back:#1E1B4B><color:#94A3B8> on means nous in everyday French. </color></back> }
 .
-{ <size:20><color:#E2E8F0><b>la gare</b></color></size> [ <color:#4338CA>🔊</color> ] | <color:#020617>xx</color> | <size:20><color:#E2E8F0><b>avant</b></color></size> [ <color:#4338CA>🔊</color> ] }
-{ <color:#94A3B8>the train station</color> | <color:#020617>xx</color> | <color:#94A3B8>before</color> }
+{ <back:#1E1B4B><color:#E2E8F0>     <b>la gare</b>   🔊             ⟲ </color></back> | <color:#020617>xx</color> | <back:#0F172A><color:#E2E8F0>          before                   ⟲ </color></back> }
+{ <back:#1E1B4B><color:#94A3B8> Where trains stop.                 </color></back> | <color:#020617>xx</color> | <back:#0F172A><color:#0F172A>                                    </color></back> }
 .
-{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#020617>  Continue  </color> ] }
+{ <back:#0F172A><color:#E2E8F0>          after                    ⟲ </color></back> | <color:#020617>xx</color> | <color:#020617>xx</color> }
+.
+{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#64748B>  Continue  </color> ] }
+<color:#94A3B8>The vocabulary flashcard page: meaning in the mother tongue in front; the key word, its speaker and its explanation behind.</color>
+<color:#94A3B8>Continue opens once every card was turned.</color>
 } }
 } | <color:#020617>xx</color> }
 .
 }
 @endsalt
 ```
-<!-- mockup:end mockups/06-reading-lesson/02-keywords/keywords.puml -->
+<!-- mockup:end mockups/06-reading-lesson/02-flashcards/flashcards.puml -->
+
+#### Reading: Matching
+
+<a id="mockup-06-reading-lesson-02-flashcards-matching"></a>
+
+[Salt source](mockups/06-reading-lesson/02-flashcards/matching.puml)
+
+<!-- mockup:begin mockups/06-reading-lesson/02-flashcards/matching.puml -->
+```plantuml
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xx</color> | {
+{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>█</color><color:#1E293B>░░░░░░░░░░░</color> | <color:#94A3B8>11%</color> }
+<color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
+.
+{ {
+<color:#94A3B8>Your lesson</color>
+<color:#E2E8F0><b>1 of 5 points done</b></color>
+.
+{ <color:#A5B4FC><b>1</b></color> | <color:#E2E8F0>Flashcards</color> | <color:#94A3B8>Done</color> }
+{ <color:#A5B4FC><b>(2)</b></color> | <color:#E2E8F0><b>Matching</b></color> | <color:#67E8F9>You are here</color> }
+{ <color:#64748B>3</color> | <color:#94A3B8>Skim</color> | <color:#64748B>Not yet open</color> }
+{ <color:#64748B>4</color> | <color:#94A3B8>Detail</color> | <color:#64748B>Not yet open</color> }
+{ <color:#64748B>5</color> | <color:#94A3B8>Structure</color> | <color:#64748B>Not yet open</color> }
+.
+{ <color:#FDA4AF><b>⚑</b></color> | <color:#E2E8F0>Final exam</color> | <color:#94A3B8>5 questions</color> }
+} | <color:#020617>xxx</color> | {
+<color:#94A3B8>Matching · point 2 of 5</color>
+<size:24><color:#E2E8F0><b>Match each key word with its meaning.</b></color></size>
+.
+{ <color:#94A3B8><b>English</b></color> | <color:#020617>xxxxxxxxxxxx</color> | <color:#94A3B8><b>French</b></color>
+[ <color:#020617>Saturday</color> ] | <color:#A78BFA>~~~~~~~~~~~~</color> | [ <color:#020617>samedi  🔊</color> ]
+[ <color:#020617>before</color> ] | <color:#020617>xxxxxxxxxxxx</color> | [ <color:#020617>après  🔊</color> ]
+[ <color:#020617>we meet</color> ] | <color:#A78BFA>~~~~~~~~~~~~</color> | [ <color:#020617>on se voit  🔊</color> ]
+[ <color:#020617>the train station</color> ] | <color:#020617>xxxxxxxxxxxx</color> | [ <color:#020617>avant  🔊</color> ]
+[ <color:#020617>after</color> ] | <color:#020617>xxxxxxxxxxxx</color> | [ <color:#020617>la gare  🔊</color> ] }
+.
+<color:#94A3B8>2 of 5 pairs assigned</color>
+{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#64748B>  Check  </color> ] }
+<color:#94A3B8>The vocabulary matching board: curves, Check, slide to the right row, green flash when every pair is right.</color>
+} }
+} | <color:#020617>xx</color> }
+.
+}
+@endsalt
+```
+<!-- mockup:end mockups/06-reading-lesson/02-flashcards/matching.puml -->
 
 #### Reading: Skim
 
@@ -3976,35 +4244,37 @@ scale 1.3
 {
 .
 { <color:#020617>xx</color> | {
-{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>██</color><color:#1E293B>░░░░░░░░░░</color> | <color:#94A3B8>16.8%</color> | <color:#E2E8F0><b>9.4 / 100</b></color> }
+{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>███</color><color:#1E293B>░░░░░░░░░</color> | <color:#94A3B8>21%</color> | <color:#E2E8F0><b>15.9 / 100</b></color> }
 <color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
 .
 { {
 <color:#94A3B8>Your lesson</color>
 <color:#E2E8F0><b>2 of 5 points done</b></color>
 .
-{ <color:#A5B4FC><b>1.</b></color> | <color:#E2E8F0>Key words</color> | <color:#00E676>✓</color> }
-{ <color:#67E8F9><b>2.</b></color> | <color:#E2E8F0>Key words · matching</color> | <color:#00E676>✓</color> }
-{ <color:#86EFAC><b>3.</b></color> | <color:#E2E8F0><b>Skim</b></color> | <color:#67E8F9>you are here</color> }
-{ <color:#FDE047><b>4.</b></color> | <color:#94A3B8>Detail</color> | <color:#94A3B8>·</color> }
-{ <color:#FDA4AF><b>5.</b></color> | <color:#94A3B8>Structure</color> | <color:#94A3B8>·</color> }
+{ <color:#A5B4FC><b>1</b></color> | <color:#E2E8F0>Flashcards</color> | <color:#94A3B8>Done</color> }
+{ <color:#A5B4FC><b>2</b></color> | <color:#E2E8F0>Matching</color> | <color:#94A3B8>Done</color> }
+{ <color:#67E8F9><b>(3)</b></color> | <color:#E2E8F0><b>Skim</b></color> | <color:#67E8F9>You are here</color> }
+{ <color:#64748B>4</color> | <color:#94A3B8>Detail</color> | <color:#64748B>Not yet open</color> }
+{ <color:#64748B>5</color> | <color:#94A3B8>Structure</color> | <color:#64748B>Not yet open</color> }
 .
-{ <color:#E2E8F0><b>⚑</b></color> | <color:#E2E8F0><b>Final exam</b></color> | <color:#94A3B8>3 min 45 s</color> }
+{ <color:#FDA4AF><b>⚑</b></color> | <color:#E2E8F0>Final exam</color> | <color:#94A3B8>5 questions</color> }
 } | <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Skim · point 3 of 5</color> | <color:#020617>xxxxxxxxxxxxxxxxxx</color> | { <color:#94A3B8>Text blurs in</color>
+{ <color:#94A3B8>Skim · point 3 of 5</color> | <color:#020617>xxxxxxxxxxxxxxxx</color> | { <color:#94A3B8>Time to skim</color>
 <size:24><color:#E2E8F0><b>0:45</b></color></size>
-<color:#67E8F9>██████████</color> } }
-<size:24><color:#E2E8F0><b>Look over the document quickly</b></color></size>
-<color:#94A3B8>It blurs when the time is up; then answer the question.</color>
+<color:#635BFF>██████████</color> } }
+<size:24><color:#E2E8F0><b>Look over the document quickly.</b></color></size>
+<color:#94A3B8>When the time is up it is put away; then answer the question.</color>
 .
-{ <color:#020617>xxxxxx</color> | {
+{
 <color:#E2E8F0><b>Léa</b></color>  <color:#94A3B8>Jeudi 18:42</color>
-<back:#334155><color:#E2E8F0> Salut Tom ! Tu es libre <back:#312E81><u>samedi</u></back> après-midi ? </color></back>
-<back:#334155><color:#E2E8F0> … Mais <back:#312E81><u>avant</u></back>, <back:#312E81><u>on se voit</u></back> à 15 h au café de <back:#312E81><u>la gare</u></back> ? </color></back>
-<back:#334155><color:#E2E8F0> Si tu ne peux pas, dis-le-moi avant vendredi. </color></back>
-} }
+<color:#E2E8F0>Salut Tom ! Tu es libre <back:#312E81><u>samedi</u></back> après-midi ?</color>
+<color:#E2E8F0>Samedi soir, on mange chez moi avec Paul. On fait des crêpes !</color>
+<color:#E2E8F0>Mais <back:#312E81><u>avant</u></back>, <back:#312E81><u>on se voit</u></back> à 15 h au café de <back:#312E81><u>la gare</u></back> ?</color>
+<color:#E2E8F0><back:#312E81><u>Après</u></back> le café, on va au cinéma à 17 h.</color>
+<color:#E2E8F0>Si tu ne peux pas, dis-le-moi <back:#312E81><u>avant</u></back> vendredi. Bisous, Léa</color>
+}
 .
-{ [ <color:#E2E8F0>I’ve finished reading</color> ] | <color:#020617>xxxxxxxxxxxxxx</color> | <color:#94A3B8>The question opens when the text blurs.</color> }
+{ [ <color:#020617>I’ve finished reading</color> ] | <color:#020617>xxxxxxxxxxxxxx</color> | <color:#94A3B8>The question opens when the time is up.</color> }
 } }
 } | <color:#020617>xx</color> }
 .
@@ -4013,13 +4283,13 @@ scale 1.3
 ```
 <!-- mockup:end mockups/06-reading-lesson/03-skim/skim.puml -->
 
-#### Reading: Skim question after the blur
+#### Reading: Skim question, answered from memory
 
-<a id="mockup-06-reading-lesson-03-skim-skim-blurred"></a>
+<a id="mockup-06-reading-lesson-03-skim-skim-question"></a>
 
-[Salt source](mockups/06-reading-lesson/03-skim/skim-blurred.puml)
+[Salt source](mockups/06-reading-lesson/03-skim/skim-question.puml)
 
-<!-- mockup:begin mockups/06-reading-lesson/03-skim/skim-blurred.puml -->
+<!-- mockup:begin mockups/06-reading-lesson/03-skim/skim-question.puml -->
 ```plantuml
 @startsalt
 skinparam backgroundColor #020617
@@ -4030,45 +4300,168 @@ scale 1.3
 {
 .
 { <color:#020617>xx</color> | {
-{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>██</color><color:#1E293B>░░░░░░░░░░</color> | <color:#94A3B8>16.8%</color> | <color:#E2E8F0><b>9.4 / 100</b></color> }
+{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>███</color><color:#1E293B>░░░░░░░░░</color> | <color:#94A3B8>21%</color> | <color:#E2E8F0><b>15.9 / 100</b></color> }
 <color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
 .
 { {
 <color:#94A3B8>Your lesson</color>
 <color:#E2E8F0><b>2 of 5 points done</b></color>
 .
-{ <color:#A5B4FC><b>1.</b></color> | <color:#E2E8F0>Key words</color> | <color:#00E676>✓</color> }
-{ <color:#67E8F9><b>2.</b></color> | <color:#E2E8F0>Key words · matching</color> | <color:#00E676>✓</color> }
-{ <color:#86EFAC><b>3.</b></color> | <color:#E2E8F0><b>Skim</b></color> | <color:#67E8F9>you are here</color> }
-{ <color:#FDE047><b>4.</b></color> | <color:#94A3B8>Detail</color> | <color:#94A3B8>·</color> }
-{ <color:#FDA4AF><b>5.</b></color> | <color:#94A3B8>Structure</color> | <color:#94A3B8>·</color> }
+{ <color:#A5B4FC><b>1</b></color> | <color:#E2E8F0>Flashcards</color> | <color:#94A3B8>Done</color> }
+{ <color:#A5B4FC><b>2</b></color> | <color:#E2E8F0>Matching</color> | <color:#94A3B8>Done</color> }
+{ <color:#67E8F9><b>(3)</b></color> | <color:#E2E8F0><b>Skim</b></color> | <color:#67E8F9>You are here</color> }
+{ <color:#64748B>4</color> | <color:#94A3B8>Detail</color> | <color:#64748B>Not yet open</color> }
+{ <color:#64748B>5</color> | <color:#94A3B8>Structure</color> | <color:#64748B>Not yet open</color> }
 .
-{ <color:#E2E8F0><b>⚑</b></color> | <color:#E2E8F0><b>Final exam</b></color> | <color:#94A3B8>3 min 45 s</color> }
+{ <color:#FDA4AF><b>⚑</b></color> | <color:#E2E8F0>Final exam</color> | <color:#94A3B8>5 questions</color> }
 } | <color:#020617>xxx</color> | {
 <color:#94A3B8>Skim · point 3 of 5</color>
-<size:24><color:#E2E8F0><b>Why does Léa write to Tom?</b></color></size>
-<back:#1E1B4B><color:#E2E8F0> The text is blurred now. Answer from what you remember. </color></back>
-.
-{ <color:#020617>xxxxxx</color> | <color:#334155>░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░</color> }
-{ <color:#020617>xxxxxx</color> | <color:#334155>░░░░░░░░░░░░░ blurred document ░░░░░░</color> }
+<size:24><color:#E2E8F0><b>Answer from memory</b></color></size>
+<color:#94A3B8>The document is put away. Choose one answer.</color>
 .
 <color:#E2E8F0><b>Pourquoi Léa écrit-elle à Tom ?</b></color>
-<color:#94A3B8>Choose one answer</color>
-(X) <color:#E2E8F0>Pour proposer de se voir samedi</color>
-() <color:#E2E8F0>Pour annuler un rendez-vous</color>
-() <color:#E2E8F0>Pour dire merci pour un cadeau</color>
-() <color:#E2E8F0>Pour demander l’heure du train</color>
+<back:#0F172A><color:#E2E8F0>   Pour annuler un rendez-vous                          </color></back>
+<back:#1E1B4B><color:#E2E8F0>   Pour proposer de se voir samedi       (selected)     </color></back>
+<back:#0F172A><color:#E2E8F0>   Pour dire merci pour un cadeau                       </color></back>
+<back:#0F172A><color:#E2E8F0>   Pour demander l’heure du train                       </color></back>
 .
 { <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#020617>  Check  </color> ] }
+<color:#94A3B8>Nothing of the document stays on screen (no blur). Check confirms the choice.</color>
 } }
 } | <color:#020617>xx</color> }
 .
 }
 @endsalt
 ```
-<!-- mockup:end mockups/06-reading-lesson/03-skim/skim-blurred.puml -->
+<!-- mockup:end mockups/06-reading-lesson/03-skim/skim-question.puml -->
 
-#### Reading: Detail with evidence after Check
+#### Reading: Skim result after Check
+
+<a id="mockup-06-reading-lesson-03-skim-skim-feedback"></a>
+
+[Salt source](mockups/06-reading-lesson/03-skim/skim-feedback.puml)
+
+<!-- mockup:begin mockups/06-reading-lesson/03-skim/skim-feedback.puml -->
+```plantuml
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xx</color> | {
+{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>███</color><color:#1E293B>░░░░░░░░░</color> | <color:#94A3B8>21%</color> | <color:#E2E8F0><b>15.9 / 100</b></color> }
+<color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
+.
+{ {
+<color:#94A3B8>Your lesson</color>
+<color:#E2E8F0><b>2 of 5 points done</b></color>
+.
+{ <color:#A5B4FC><b>1</b></color> | <color:#E2E8F0>Flashcards</color> | <color:#94A3B8>Done</color> }
+{ <color:#A5B4FC><b>2</b></color> | <color:#E2E8F0>Matching</color> | <color:#94A3B8>Done</color> }
+{ <color:#67E8F9><b>(3)</b></color> | <color:#E2E8F0><b>Skim</b></color> | <color:#67E8F9>You are here</color> }
+{ <color:#64748B>4</color> | <color:#94A3B8>Detail</color> | <color:#64748B>Not yet open</color> }
+{ <color:#64748B>5</color> | <color:#94A3B8>Structure</color> | <color:#64748B>Not yet open</color> }
+.
+{ <color:#FDA4AF><b>⚑</b></color> | <color:#E2E8F0>Final exam</color> | <color:#94A3B8>5 questions</color> }
+} | <color:#020617>xxx</color> | {
+<color:#94A3B8>Skim · point 3 of 5</color>
+<size:24><color:#E2E8F0><b>Answer from memory</b></color></size>
+.
+{ {
+<color:#E2E8F0><b>Léa</b></color>  <color:#94A3B8>Jeudi 18:42</color>
+<color:#E2E8F0>Salut Tom ! Tu es libre samedi après-midi ?</color>
+<color:#E2E8F0>Samedi soir, on mange chez moi avec Paul. On fait des crêpes !</color>
+<color:#E2E8F0>Mais avant, on se voit à 15 h au café de la gare ?</color>
+<color:#E2E8F0>Après le café, on va au cinéma à 17 h.</color>
+<color:#E2E8F0>Si tu ne peux pas, dis-le-moi avant vendredi. Bisous, Léa</color>
+} | <color:#020617>xxx</color> | {
+<color:#E2E8F0><b>Pourquoi Léa écrit-elle à Tom ?</b></color>
+<back:#0F172A><color:#E2E8F0>   Pour annuler un rendez-vous             </color></back>
+<back:#14532D><color:#00E676> ✓ Pour proposer de se voir samedi       </color></back>
+<back:#7F1D1D><color:#FF5252> ✕ Pour dire merci pour un cadeau         </color></back>
+<back:#0F172A><color:#E2E8F0>   Pour demander l’heure du train          </color></back>
+<color:#94A3B8>Tu es libre samedi ? and on se voit… ? are invitations:</color>
+<color:#94A3B8>Léa suggests meeting.</color>
+} }
+.
+{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#020617>  Continue  </color> ] }
+<color:#94A3B8>After Check the document comes back; the page waits for Continue, also when the answer is right.</color>
+} }
+} | <color:#020617>xx</color> }
+.
+}
+@endsalt
+```
+<!-- mockup:end mockups/06-reading-lesson/03-skim/skim-feedback.puml -->
+
+#### Reading: Detail questions
+
+<a id="mockup-06-reading-lesson-04-detail-detail"></a>
+
+[Salt source](mockups/06-reading-lesson/04-detail/detail.puml)
+
+<!-- mockup:begin mockups/06-reading-lesson/04-detail/detail.puml -->
+```plantuml
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xx</color> | {
+{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>████</color><color:#1E293B>░░░░░░░░</color> | <color:#94A3B8>35%</color> | <color:#E2E8F0><b>19.1 / 100</b></color> }
+<color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
+.
+{ {
+<color:#94A3B8>Your lesson</color>
+<color:#E2E8F0><b>3 of 5 points done</b></color>
+.
+{ <color:#A5B4FC><b>1</b></color> | <color:#E2E8F0>Flashcards</color> | <color:#94A3B8>Done</color> }
+{ <color:#A5B4FC><b>2</b></color> | <color:#E2E8F0>Matching</color> | <color:#94A3B8>Done</color> }
+{ <color:#67E8F9><b>3</b></color> | <color:#E2E8F0>Skim</color> | <color:#94A3B8>Done</color> }
+{ <color:#67E8F9><b>(4)</b></color> | <color:#E2E8F0><b>Detail</b></color> | <color:#67E8F9>You are here</color> }
+{ <color:#64748B>5</color> | <color:#94A3B8>Structure</color> | <color:#64748B>Not yet open</color> }
+.
+{ <color:#FDA4AF><b>⚑</b></color> | <color:#E2E8F0>Final exam</color> | <color:#94A3B8>5 questions</color> }
+} | <color:#020617>xxx</color> | {
+<color:#94A3B8>Detail · point 4 of 5</color>
+<size:24><color:#E2E8F0><b>Read the document carefully and answer the questions.</b></color></size>
+.
+{ {
+<color:#E2E8F0><b>Léa</b></color>  <color:#94A3B8>Jeudi 18:42</color>
+<color:#E2E8F0>Salut Tom ! Tu es libre <back:#312E81><u>samedi</u></back> après-midi ?</color>
+<color:#E2E8F0>Samedi soir, on mange chez moi avec Paul. On fait des crêpes !</color>
+<color:#E2E8F0>Mais <back:#312E81><u>avant</u></back>, <back:#312E81><u>on se voit</u></back> à 15 h au café de <back:#312E81><u>la gare</u></back> ?</color>
+<color:#E2E8F0><back:#312E81><u>Après</u></back> le café, on va au cinéma à 17 h.</color>
+<color:#E2E8F0>Si tu ne peux pas, dis-le-moi <back:#312E81><u>avant</u></back> vendredi. Bisous, Léa</color>
+} | <color:#020617>xxx</color> | {
+<color:#E2E8F0><b>Quel jour Léa propose-t-elle de se voir ?</b></color>
+{ () <color:#E2E8F0>jeudi</color> | (X) <color:#E2E8F0>samedi</color> | () <color:#E2E8F0>dimanche</color> | () <color:#E2E8F0>vendredi</color> }
+<color:#E2E8F0><b>À quelle heure est le rendez-vous au café ?</b></color>
+{ () <color:#E2E8F0>17 h</color> | () <color:#E2E8F0>15 h</color> | () <color:#E2E8F0>12 h</color> | () <color:#E2E8F0>18 h 42</color> }
+<color:#E2E8F0><b>Où Tom et Léa se retrouvent-ils à 15 h ?</b></color>
+{ () <color:#E2E8F0>Au café de la gare</color> | () <color:#E2E8F0>Au cinéma</color> }
+{ () <color:#E2E8F0>Chez Paul</color> | () <color:#E2E8F0>Chez Léa</color> }
+<color:#E2E8F0><b>Samedi soir, Tom, Léa et Paul mangent au restaurant.</b></color>
+{ () <color:#E2E8F0>Vrai</color> | () <color:#E2E8F0>Faux</color> }
+} }
+.
+{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#64748B>  Check  </color> ] }
+<color:#94A3B8>Side by side from 1100 px, stacked below; Check opens once every question is answered.</color>
+} }
+} | <color:#020617>xx</color> }
+.
+}
+@endsalt
+```
+<!-- mockup:end mockups/06-reading-lesson/04-detail/detail.puml -->
+
+#### Reading: Detail after Check
 
 <a id="mockup-06-reading-lesson-04-detail-detail-feedback"></a>
 
@@ -4085,44 +4478,45 @@ scale 1.3
 {
 .
 { <color:#020617>xx</color> | {
-{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>█████</color><color:#1E293B>░░░░░░░</color> | <color:#94A3B8>41%</color> | <color:#E2E8F0><b>15.8 / 100</b></color> }
+{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>████</color><color:#1E293B>░░░░░░░░</color> | <color:#94A3B8>35%</color> | <color:#E2E8F0><b>28.6 / 100</b></color> }
 <color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
 .
 { {
 <color:#94A3B8>Your lesson</color>
 <color:#E2E8F0><b>3 of 5 points done</b></color>
 .
-{ <color:#A5B4FC><b>1.</b></color> | <color:#E2E8F0>Key words</color> | <color:#00E676>✓</color> }
-{ <color:#67E8F9><b>2.</b></color> | <color:#E2E8F0>Key words · matching</color> | <color:#00E676>✓</color> }
-{ <color:#86EFAC><b>3.</b></color> | <color:#E2E8F0>Skim</color> | <color:#00E676>✓</color> }
-{ <color:#FDE047><b>4.</b></color> | <color:#E2E8F0><b>Detail</b></color> | <color:#67E8F9>you are here</color> }
-{ <color:#FDA4AF><b>5.</b></color> | <color:#94A3B8>Structure</color> | <color:#94A3B8>·</color> }
+{ <color:#A5B4FC><b>1</b></color> | <color:#E2E8F0>Flashcards</color> | <color:#94A3B8>Done</color> }
+{ <color:#A5B4FC><b>2</b></color> | <color:#E2E8F0>Matching</color> | <color:#94A3B8>Done</color> }
+{ <color:#67E8F9><b>3</b></color> | <color:#E2E8F0>Skim</color> | <color:#94A3B8>Done</color> }
+{ <color:#67E8F9><b>(4)</b></color> | <color:#E2E8F0><b>Detail</b></color> | <color:#67E8F9>You are here</color> }
+{ <color:#64748B>5</color> | <color:#94A3B8>Structure</color> | <color:#64748B>Not yet open</color> }
 .
-{ <color:#E2E8F0><b>⚑</b></color> | <color:#E2E8F0><b>Final exam</b></color> | <color:#94A3B8>3 min 45 s</color> }
+{ <color:#FDA4AF><b>⚑</b></color> | <color:#E2E8F0>Final exam</color> | <color:#94A3B8>5 questions</color> }
 } | <color:#020617>xxx</color> | {
 <color:#94A3B8>Detail · point 4 of 5</color>
-<size:24><color:#E2E8F0><b>Read the document carefully and answer the questions</b></color></size>
+<size:24><color:#E2E8F0><b>Read the document carefully and answer the questions.</b></color></size>
 .
 { {
 <color:#E2E8F0><b>Léa</b></color>  <color:#94A3B8>Jeudi 18:42</color>
-<back:#14532D><color:#E2E8F0> Salut Tom ! Tu es libre samedi après-midi ? </color></back>
-<back:#334155><color:#E2E8F0> Samedi soir, on mange chez moi avec Paul. </color></back>
-<back:#14532D><color:#E2E8F0> Mais avant, on se voit à 15 h au café de la gare ? </color></back>
-<color:#00E676>▮</color> <color:#94A3B8>proof of the answers, after Check</color>
+<color:#E2E8F0>Salut Tom ! Tu es libre <back:#312E81><u>samedi</u></back> après-midi ?</color>
+<color:#E2E8F0>Samedi soir, on mange chez moi avec Paul. On fait des crêpes !</color>
+<color:#E2E8F0>Mais <back:#312E81><u>avant</u></back>, <back:#312E81><u>on se voit</u></back> à 15 h au café de <back:#312E81><u>la gare</u></back> ?</color>
+<color:#E2E8F0><back:#312E81><u>Après</u></back> le café, on va au cinéma à 17 h.</color>
+<color:#E2E8F0>Si tu ne peux pas, dis-le-moi <back:#312E81><u>avant</u></back> vendredi. Bisous, Léa</color>
 } | <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>1. Quel jour Léa propose-t-elle de se voir ?</b></color>
-{ <color:#FF5252>✕</color> | <color:#00E676><b>samedi</b></color> }
-{ <color:#020617>x</color> | <color:#FF5252><s>dimanche</s></color> }
-<color:#94A3B8>In the text: “Tu es libre samedi après-midi ?”</color>
-.
-<color:#E2E8F0><b>2. À quelle heure est le rendez-vous au café ?</b></color>
-{ <color:#00E676>✓</color> | <color:#00E676><b>15 h</b></color> }
-.
-<color:#E2E8F0><b>3. Samedi soir, ils mangent au restaurant.</b></color>
-{ <color:#00E676>✓</color> | <color:#00E676><b>Faux</b></color> }
+<color:#E2E8F0><b>Quel jour Léa propose-t-elle de se voir ?</b></color>
+{ <color:#FF5252>✕ dimanche</color> | <color:#00E676>✓ samedi</color> }
+<color:#94A3B8>Léa asks: Tu es libre samedi après-midi ? Jeudi is the day she writes.</color>
+<color:#E2E8F0><b>À quelle heure est le rendez-vous au café ?</b></color>
+{ <color:#00E676>✓ 15 h</color> }
+<color:#E2E8F0><b>Où Tom et Léa se retrouvent-ils à 15 h ?</b></color>
+{ <color:#00E676>✓ Au café de la gare</color> }
+<color:#E2E8F0><b>Samedi soir, Tom, Léa et Paul mangent au restaurant.</b></color>
+{ <color:#00E676>✓ Faux</color> }
 } }
 .
 { <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#020617>  Continue  </color> ] }
+<color:#94A3B8>Marked in place; the page waits for Continue even when every answer is right.</color>
 } }
 } | <color:#020617>xx</color> }
 .
@@ -4131,13 +4525,13 @@ scale 1.3
 ```
 <!-- mockup:end mockups/06-reading-lesson/04-detail/detail-feedback.puml -->
 
-#### Reading: Structure, heading matching
+#### Reading: Structure, ordering
 
-<a id="mockup-06-reading-lesson-05-structure-heading-matching"></a>
+<a id="mockup-06-reading-lesson-05-structure-ordering"></a>
 
-[Salt source](mockups/06-reading-lesson/05-structure/heading-matching.puml)
+[Salt source](mockups/06-reading-lesson/05-structure/ordering.puml)
 
-<!-- mockup:begin mockups/06-reading-lesson/05-structure/heading-matching.puml -->
+<!-- mockup:begin mockups/06-reading-lesson/05-structure/ordering.puml -->
 ```plantuml
 @startsalt
 skinparam backgroundColor #020617
@@ -4148,43 +4542,157 @@ scale 1.3
 {
 .
 { <color:#020617>xx</color> | {
-{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>███████</color><color:#1E293B>░░░░░</color> | <color:#94A3B8>58%</color> | <color:#E2E8F0><b>21.0 / 100</b></color> }
+{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>███████</color><color:#1E293B>░░░░░</color> | <color:#94A3B8>60%</color> | <color:#E2E8F0><b>28.6 / 100</b></color> }
 <color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
 .
 { {
 <color:#94A3B8>Your lesson</color>
 <color:#E2E8F0><b>4 of 5 points done</b></color>
 .
-{ <color:#A5B4FC><b>1.</b></color> | <color:#E2E8F0>Key words</color> | <color:#00E676>✓</color> }
-{ <color:#67E8F9><b>2.</b></color> | <color:#E2E8F0>Key words · matching</color> | <color:#00E676>✓</color> }
-{ <color:#86EFAC><b>3.</b></color> | <color:#E2E8F0>Skim</color> | <color:#00E676>✓</color> }
-{ <color:#FDE047><b>4.</b></color> | <color:#E2E8F0>Detail</color> | <color:#00E676>✓</color> }
-{ <color:#FDA4AF><b>5.</b></color> | <color:#E2E8F0><b>Structure</b></color> | <color:#67E8F9>you are here</color> }
+{ <color:#A5B4FC><b>1</b></color> | <color:#E2E8F0>Flashcards</color> | <color:#94A3B8>Done</color> }
+{ <color:#A5B4FC><b>2</b></color> | <color:#E2E8F0>Matching</color> | <color:#94A3B8>Done</color> }
+{ <color:#67E8F9><b>3</b></color> | <color:#E2E8F0>Skim</color> | <color:#94A3B8>Done</color> }
+{ <color:#67E8F9><b>4</b></color> | <color:#E2E8F0>Detail</color> | <color:#94A3B8>Done</color> }
+{ <color:#67E8F9><b>(5)</b></color> | <color:#E2E8F0><b>Structure</b></color> | <color:#67E8F9>You are here</color> }
 .
-{ <color:#E2E8F0><b>⚑</b></color> | <color:#E2E8F0><b>Final exam</b></color> | <color:#94A3B8>3 min 45 s</color> }
+{ <color:#FDA4AF><b>⚑</b></color> | <color:#E2E8F0>Final exam</color> | <color:#94A3B8>5 questions</color> }
 } | <color:#020617>xxx</color> | {
 <color:#94A3B8>Structure · point 5 of 5</color>
-<size:24><color:#E2E8F0><b>The article lost its subheadings</b></color></size>
-<color:#94A3B8>Match one heading to each paragraph.</color>
+<size:24><color:#E2E8F0><b>What happens on Saturday? Put it in order, from first to last.</b></color></size>
 .
-{ <color:#94A3B8>①</color> | <color:#E2E8F0>En France, on se dit souvent bonjour avec la bise …</color> }
-{ <color:#94A3B8>②</color> | <color:#E2E8F0>En général, on fait la bise à la famille et aux amis …</color> }
-{ <color:#94A3B8>③</color> | <color:#E2E8F0>Le nombre de bises change selon la région …</color> }
-{ <color:#94A3B8>④</color> | <color:#E2E8F0>Depuis l’épidémie de Covid, on hésite parfois …</color> }
+{ {
+<color:#E2E8F0><b>Léa</b></color>  <color:#94A3B8>Jeudi 18:42</color>
+<color:#E2E8F0>Salut Tom ! Tu es libre <back:#312E81><u>samedi</u></back> après-midi ?</color>
+<color:#E2E8F0>Samedi soir, on mange chez moi avec Paul. On fait des crêpes !</color>
+<color:#E2E8F0>Mais <back:#312E81><u>avant</u></back>, <back:#312E81><u>on se voit</u></back> à 15 h au café de <back:#312E81><u>la gare</u></back> ?</color>
+<color:#E2E8F0><back:#312E81><u>Après</u></back> le café, on va au cinéma à 17 h.</color>
+<color:#E2E8F0>Si tu ne peux pas, dis-le-moi <back:#312E81><u>avant</u></back> vendredi. Bisous, Léa</color>
+} | <color:#020617>xxx</color> | {
+<color:#E2E8F0><b>Your order</b></color>
+[ <color:#4338CA>Tom et Léa se voient au café de la gare.</color> ]
+[ <color:#4338CA>Ils vont au cinéma.</color> ]
+<color:#94A3B8>____</color>
 .
-{ [ <color:#E2E8F0>Une affaire de région</color> ] | <color:#635BFF>~~~~~~</color> | [ <color:#E2E8F0>③ Le nombre de bises …</color> ] }
-{ [ <color:#E2E8F0>Un geste qui intrigue</color> ] | <color:#635BFF>~~~~~~</color> | [ <color:#E2E8F0>① En France, on se dit …</color> ] }
-{ [ <color:#E2E8F0>À qui faire la bise ?</color> ] | <color:#020617>xxxxxx</color> | [ <color:#E2E8F0>② En général, on fait …</color> ] }
-{ [ <color:#E2E8F0>Et aujourd’hui ?</color> ] | <color:#020617>xxxxxx</color> | [ <color:#E2E8F0>④ Depuis l’épidémie …</color> ] }
+<color:#E2E8F0><b>Pieces</b></color>
+[ <color:#4338CA>Ils mangent des crêpes chez Léa avec Paul.</color> ]
+} }
 .
 { <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#64748B>  Check  </color> ] }
+<color:#94A3B8>The word-order control of grammar and functions, with pieces of information instead of words.</color>
 } }
 } | <color:#020617>xx</color> }
 .
 }
 @endsalt
 ```
-<!-- mockup:end mockups/06-reading-lesson/05-structure/heading-matching.puml -->
+<!-- mockup:end mockups/06-reading-lesson/05-structure/ordering.puml -->
+
+#### Reading: Structure result after Check
+
+<a id="mockup-06-reading-lesson-05-structure-ordering-feedback"></a>
+
+[Salt source](mockups/06-reading-lesson/05-structure/ordering-feedback.puml)
+
+<!-- mockup:begin mockups/06-reading-lesson/05-structure/ordering-feedback.puml -->
+```plantuml
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xx</color> | {
+{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>███████</color><color:#1E293B>░░░░░</color> | <color:#94A3B8>60%</color> | <color:#E2E8F0><b>28.6 / 100</b></color> }
+<color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
+.
+{ {
+<color:#94A3B8>Your lesson</color>
+<color:#E2E8F0><b>4 of 5 points done</b></color>
+.
+{ <color:#A5B4FC><b>1</b></color> | <color:#E2E8F0>Flashcards</color> | <color:#94A3B8>Done</color> }
+{ <color:#A5B4FC><b>2</b></color> | <color:#E2E8F0>Matching</color> | <color:#94A3B8>Done</color> }
+{ <color:#67E8F9><b>3</b></color> | <color:#E2E8F0>Skim</color> | <color:#94A3B8>Done</color> }
+{ <color:#67E8F9><b>4</b></color> | <color:#E2E8F0>Detail</color> | <color:#94A3B8>Done</color> }
+{ <color:#67E8F9><b>(5)</b></color> | <color:#E2E8F0><b>Structure</b></color> | <color:#67E8F9>You are here</color> }
+.
+{ <color:#FDA4AF><b>⚑</b></color> | <color:#E2E8F0>Final exam</color> | <color:#94A3B8>5 questions</color> }
+} | <color:#020617>xxx</color> | {
+<color:#94A3B8>Structure · point 5 of 5</color>
+<size:24><color:#E2E8F0><b>What happens on Saturday? Put it in order, from first to last.</b></color></size>
+.
+{ {
+<color:#E2E8F0><b>Léa</b></color>  <color:#94A3B8>Jeudi 18:42</color>
+<color:#E2E8F0>Salut Tom ! Tu es libre <back:#312E81><u>samedi</u></back> après-midi ?</color>
+<color:#E2E8F0>Samedi soir, on mange chez moi avec Paul. On fait des crêpes !</color>
+<color:#E2E8F0>Mais <back:#312E81><u>avant</u></back>, <back:#312E81><u>on se voit</u></back> à 15 h au café de <back:#312E81><u>la gare</u></back> ?</color>
+<color:#E2E8F0><back:#312E81><u>Après</u></back> le café, on va au cinéma à 17 h.</color>
+<color:#E2E8F0>Si tu ne peux pas, dis-le-moi <back:#312E81><u>avant</u></back> vendredi. Bisous, Léa</color>
+} | <color:#020617>xxx</color> | {
+<back:#7F1D1D><color:#E2E8F0> ✕  Incorrect                                        </color></back>
+<color:#00E676>Tom et Léa se voient au café de la gare. → Ils vont au cinéma.</color>
+<color:#00E676>→ Ils mangent des crêpes chez Léa avec Paul.</color>
+<color:#FF5252><s>Ils mangent des crêpes chez Léa avec Paul. → Tom et Léa se voient</s></color>
+<color:#FF5252><s>au café de la gare. → Ils vont au cinéma.</s></color>
+<color:#94A3B8>Café at 15 h (Mais avant…), then cinema at 17 h (Après le café…), then dinner</color>
+<color:#94A3B8>in the evening (Samedi soir). The message gives the evening first.</color>
+} }
+.
+{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#020617>  Continue  </color> ] }
+} }
+} | <color:#020617>xx</color> }
+.
+}
+@endsalt
+```
+<!-- mockup:end mockups/06-reading-lesson/05-structure/ordering-feedback.puml -->
+
+#### Reading: Exam info page
+
+<a id="mockup-06-reading-lesson-06-exam-exam-info"></a>
+
+[Salt source](mockups/06-reading-lesson/06-exam/exam-info.puml)
+
+<!-- mockup:begin mockups/06-reading-lesson/06-exam/exam-info.puml -->
+```plantuml
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xx</color> | {
+{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>████████</color><color:#1E293B>░░░░</color> | <color:#94A3B8>69%</color> | <color:#E2E8F0><b>28.6 / 100</b></color> }
+<color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
+.
+{ {
+<color:#94A3B8>Final exam</color>
+<color:#E2E8F0><b>1 page · 5 questions</b></color>
+.
+{ <color:#FDA4AF><b>1</b></color> | <color:#E2E8F0>Questions on the document</color> | <color:#94A3B8>5 questions</color> }
+.
+<color:#94A3B8>Each page has its own countdown.</color>
+<color:#94A3B8>You see your results only after the whole exam.</color>
+} | <color:#020617>xxx</color> | {
+<size:24><color:#E2E8F0><b>Your final exam</b></color></size>
+<color:#94A3B8>A new document of the same kind, with 5 questions.</color>
+.
+{ <color:#94A3B8><b>PART</b></color> | <color:#020617>xxxxxxxxxxxxxxxxxxxx</color> | <color:#94A3B8><b>TIME</b></color>
+<color:#E2E8F0>Questions on the document · 5 questions</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxx</color> | <color:#E2E8F0>⏱ 03:10</color> }
+.
+<color:#94A3B8>The page has a countdown. You see your results only after the whole exam.</color>
+.
+{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#020617>  Continue  </color> ] }
+} }
+} | <color:#020617>xx</color> }
+.
+}
+@endsalt
+```
+<!-- mockup:end mockups/06-reading-lesson/06-exam/exam-info.puml -->
 
 #### Reading: Exam page
 
@@ -4203,42 +4711,39 @@ scale 1.3
 {
 .
 { <color:#020617>xx</color> | {
-{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>█████████</color><color:#1E293B>░░░</color> | <color:#94A3B8>72%</color> | <color:#E2E8F0><b>25.4 / 100</b></color> }
+{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>█████████</color><color:#1E293B>░░░</color> | <color:#94A3B8>74%</color> | <color:#E2E8F0><b>28.6 / 100</b></color> }
 <color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
 .
 { {
 <color:#94A3B8>Final exam</color>
 <color:#E2E8F0><b>1 page · 5 questions</b></color>
-<color:#94A3B8>A new text message.</color>
 .
-{ <color:#67E8F9><b>1.</b></color> | <color:#E2E8F0><b>Questions on the document</b></color> | <color:#020617>x</color> }
-{ <color:#020617>xx</color> | <color:#67E8F9>5 questions · 3 min 45 s · in progress</color> | <color:#020617>x</color> }
+{ <color:#FDA4AF><b>1</b></color> | <color:#E2E8F0><b>Questions on the document</b></color> | <color:#67E8F9>in progress</color> }
 .
 <color:#94A3B8>Each page has its own countdown.</color>
 <color:#94A3B8>You see your results only after the whole exam.</color>
 } | <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Final exam · page 1 of 1</color> | <color:#020617>xxxxxxxxxxxxxxxxxx</color> | { <color:#94A3B8>Time left</color>
-<size:24><color:#E2E8F0><b>3:12</b></color></size>
-<color:#67E8F9>████████</color><color:#1E293B>░░</color> } }
-<size:24><color:#E2E8F0><b>Questions on the document</b></color></size>
-<color:#94A3B8>Read the new document and answer the questions. No help this time.</color>
+{ <color:#94A3B8>Final exam · page 1 of 1</color> | <color:#020617>xxxxxxxxxxxxxxxx</color> | { <color:#94A3B8>Time left</color>
+<size:24><color:#E2E8F0><b>2:41</b></color></size>
+<color:#635BFF>████████</color><color:#1E293B>░░</color> } }
+<size:24><color:#E2E8F0><b>Read the new document and answer the questions. No help this time.</b></color></size>
 .
 { {
 <color:#E2E8F0><b>Paul</b></color>  <color:#94A3B8>Vendredi 9:15</color>
-<back:#334155><color:#E2E8F0> Dimanche matin, on joue au foot au parc Monceau ? </color></back>
-<back:#334155><color:#E2E8F0> Rendez-vous à 10 h devant l’entrée. </color></back>
-<back:#334155><color:#E2E8F0> Apporte de l’eau, j’ai les sandwichs. </color></back>
+<color:#E2E8F0>Salut Tom ! Dimanche matin, on joue au foot au parc Monceau ?</color>
+<color:#E2E8F0>Rendez-vous à 10 h devant l’entrée.</color>
+<color:#E2E8F0>Après le match, pique-nique ! Apporte de l’eau, j’ai les sandwichs. Paul</color>
 } | <color:#020617>xxx</color> | {
-{ <color:#67E8F9><b>1.</b></color> | <color:#E2E8F0><b>Quel jour est le match ?</b></color> }
-{ <color:#020617>x</color> | () <color:#E2E8F0>samedi</color>  (X) <color:#E2E8F0>dimanche</color>  () <color:#E2E8F0>lundi</color> }
-{ <color:#67E8F9><b>2.</b></color> | <color:#E2E8F0><b>À quelle heure est le rendez-vous ?</b></color> }
-{ <color:#020617>x</color> | "Type in French        " }
-{ <color:#67E8F9><b>3.</b></color> | <color:#E2E8F0><b>Tom apporte les sandwichs.</b></color> }
+{ <color:#FDA4AF><b>1</b></color> | <color:#E2E8F0><b>Quel jour est le match ?</b></color> }
+{ <color:#020617>x</color> | () <color:#E2E8F0>samedi</color>  (X) <color:#E2E8F0>dimanche</color>  () <color:#E2E8F0>lundi</color>  () <color:#E2E8F0>vendredi</color> }
+{ <color:#FDA4AF><b>2</b></color> | <color:#E2E8F0><b>À quelle heure est le rendez-vous ?</b></color> }
+{ <color:#020617>x</color> | () <color:#E2E8F0>12 h</color>  () <color:#E2E8F0>10 h</color>  () <color:#E2E8F0>15 h</color>  () <color:#E2E8F0>9 h 15</color> }
+{ <color:#FDA4AF><b>4</b></color> | <color:#E2E8F0><b>Tom apporte les sandwichs.</b></color> }
 { <color:#020617>x</color> | () <color:#E2E8F0>Vrai</color>  () <color:#E2E8F0>Faux</color> }
-<color:#94A3B8>Questions 4 and 5 below …</color>
+<color:#94A3B8>Questions 3 and 5 …</color>
 } }
 .
-{ <color:#94A3B8>Question 1 of 5 answered</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#020617>  Continue  </color> ] }
+{ <color:#94A3B8>1 of 5 answered</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#020617>  Continue  </color> ] }
 } }
 } | <color:#020617>xx</color> }
 .
@@ -4264,33 +4769,34 @@ scale 1.3
 {
 .
 { <color:#020617>xx</color> | {
-{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxxxxxxxxxxxxxxxxxxx</color> | [ <color:#E2E8F0>Repeat lesson</color> ] | [ <color:#020617>Lesson overview</color> ] }
+{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxxxxxxxxxxxxxxxxxxx</color> | [ <color:#020617>Repeat lesson</color> ] | [ <color:#020617>Lesson overview</color> ] }
 <color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
 .
 { {
 <color:#94A3B8>Your results</color>
+<color:#E2E8F0><b>Final score 54.6 / 100</b></color>
 .
 { <back:#1E1B4B><color:#E2E8F0><b> Final exam </b></color></back> | <color:#020617>xxxxxx</color> | <color:#A5B4FC><b>2 / 5</b></color> }
-{ <back:#7F1D1D><color:#E2E8F0> Key words </color></back> | <color:#020617>xxxxxx</color> | <color:#E2E8F0>4 / 5</color> }
-{ <back:#7F1D1D><color:#E2E8F0> Skim </color></back> | <color:#020617>xxxxxx</color> | <color:#E2E8F0>0 / 1</color> }
-{ <back:#7F1D1D><color:#E2E8F0> Detail </color></back> | <color:#020617>xxxxxx</color> | <color:#E2E8F0>1 / 4</color> }
-{ <color:#E2E8F0> Structure </color> | <color:#020617>xxxxxx</color> | <color:#E2E8F0>1 / 1</color> }
+{ <color:#E2E8F0> Matching </color> | <color:#020617>xxxxxx</color> | <color:#E2E8F0>5 / 5</color> }
+{ <color:#E2E8F0> Skim </color> | <color:#020617>xxxxxx</color> | <color:#E2E8F0>1 / 1</color> }
+{ <back:#7F1D1D><color:#E2E8F0> Detail ⧄ </color></back> | <color:#020617>xxxxxx</color> | <color:#E2E8F0>3 / 4</color> }
+{ <back:#7F1D1D><color:#E2E8F0> Structure </color></back> | <color:#020617>xxxxxx</color> | <color:#E2E8F0>0 / 1</color> }
 } | <color:#020617>xxx</color> | {
 <color:#94A3B8>FRENCH / A1</color>
 <size:24><color:#E2E8F0><b>Final exam</b></color></size>
 <size:30><color:#E2E8F0><b>2 / 5</b></color></size>
-<color:#94A3B8>Lesson total: 33.5 / 100</color>
+<color:#94A3B8>Lire un SMS</color>
+<color:#94A3B8>2 of 5 correct.</color>
 <color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
 { <color:#FF5252>✕</color> | <color:#E2E8F0>Quel jour est le match ?</color> | <color:#94A3B8>→</color> | <color:#00E676><b>dimanche</b></color> }
-{ <color:#020617>x</color> | <color:#020617>x</color> | <color:#020617>x</color> | <color:#FF5252><s>lundi</s></color> }
-{ <color:#020617>x</color> | <color:#94A3B8>In the text: “Dimanche matin, on joue au foot au parc Monceau ?”</color> }
-{ <color:#020617>x</color> | <color:#94A3B8>Vendredi is the day Paul writes; the match is on Sunday.</color> }
+{ <color:#020617>x</color> | <color:#020617>x</color> | <color:#020617>x</color> | <color:#FF5252><s>samedi</s></color> }
+{ <color:#020617>x</color> | <color:#94A3B8>Dimanche matin, on joue au foot. Vendredi is the day Paul writes.</color> }
 <color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
 { <color:#00E676>✓</color> | <color:#E2E8F0>À quelle heure est le rendez-vous ?</color> | <color:#94A3B8>→</color> | <color:#00E676><b>10 h</b></color> }
 <color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
-{ <color:#FBBF24>!</color> | <color:#E2E8F0>Où est le rendez-vous ?</color> | <color:#94A3B8>→</color> | <color:#00E676><b>devant l’entrée</b></color> }
-{ <color:#020617>x</color> | <color:#020617>x</color> | <color:#020617>x</color> | <color:#FBBF24><s>devant l'entree</s></color> }
-{ <color:#020617>x</color> | <color:#FBBF24>Almost – check the accents and capitals (half a point)</color> }
+{ <color:#FF5252>✕</color> | <color:#E2E8F0>Tom apporte les sandwichs.</color> | <color:#94A3B8>→</color> | <color:#00E676><b>Faux</b></color> }
+{ <color:#020617>x</color> | <color:#020617>x</color> | <color:#020617>x</color> | <color:#FF5252><s>Vrai</s></color> }
+{ <color:#020617>x</color> | <color:#94A3B8>False: Tom brings water (de l’eau); Paul has the sandwiches (j’ai les sandwichs).</color> }
 } }
 } | <color:#020617>xx</color> }
 .
@@ -4299,7 +4805,7 @@ scale 1.3
 ```
 <!-- mockup:end mockups/06-reading-lesson/07-results/exam-results.puml -->
 
-## 10. Sample generation and review gates
+## 11. Sample generation and review gates
 
 “First ten” refers specifically to `content/outlines/fr-a1.json`: filter that outline by kind, preserve its order, then take ten; it does not mean the first twenty overall entries.
 
@@ -4320,7 +4826,7 @@ Phase 1 creates **20 brief files and 20 lesson files**. Briefs must be reviewed 
 
 Review checks: correct language pair, appropriate A1 vocabulary, full outline-intent coverage, article/gender applicability, mixed target difficulty where the topic allows (not forced), the standard of 18 targets with explained exceptions (D14), manageable duration (allowing longer large-inventory lessons), correct examples/answer keys, sensible exercise selection (grammar), pitfalls, and exam coverage. Schema validity is necessary but does not replace this teaching-content review.
 
-## 11. Phases and acceptance criteria
+## 12. Phases and acceptance criteria
 
 Detailed implementation issue bodies and dependencies are in [ISSUES.md](ISSUES.md). The backlog is published on GitHub; [ISSUES.md](ISSUES.md#published-issue-mapping) maps each logical ID to its issue.
 
@@ -4331,7 +4837,7 @@ Detailed implementation issue bodies and dependencies are in [ISSUES.md](ISSUES.
 | 2 | Vocabulary | Introduction/audio, flashcards, matching, integrated noun-gender/reviewed overview, typed reference gaps, timed translation exam, immediate confirmed practice feedback, final results with exam/practice answer review menu, weighted progress/score header, listening choice/dictation with the no-voice help page, all 48 vocabulary lessons generatable/playable (D44), and complete journeys/tests. Close with vocabulary mockups updated from actual pages. |
 | 3 | Grammar | Seven practice interactions, 2–4 block flow, production-feedback placeholder, timed mixed exams, final results with exam/practice answer review menu and scores, all 48 grammar lessons generatable/playable, end-to-end tests, and final grammar mockup updates from actual pages. |
 | 4 | Functions | Requirements agreed in P4-01 (section 8). Brief and lesson content schemas, flashcard/dialogue/matching and word-order/dialogue-gap/exam renderers, three hand-written test lessons, the generation decision with the remaining eleven lessons, end-to-end validation, and function mockups refreshed from actual pages. |
-| 5 | Reading | Requirements and schema review first; then define generation, interaction, scoring, content, and acceptance issues. Finish implementation with mockups refreshed from actual pages. |
+| 5 | Reading | Requirements agreed in P5-01 (section 9). Brief and lesson content schemas with validation and artifact views, ten hand-written fr/A1 test lessons, the document view, skim phase and question renderers on the shared host, the decisions on lengths, layout and generation, and reading mockups refreshed from actual pages. |
 | 6 | Lesson UX review | Implement the 2026-10-09 HTML lesson UX feedback: P6-01 sidebar with a separately specified and implemented mobile navigation solution; P6-02 every item still open on the feedback page `docs/feedback.html` (sections **Clarification needed** and **Not implemented yet**; delivered in several pull requests). Each issue includes implementation and integration into docs/SPEC.md. | Close Phase 6 with the separate P6-06 issue updating desktop/mobile mockups, embedded sources and the synchronized GitHub backlog. |
 
 Phase 1 viewers can inspect grammar/vocabulary content before exercise renderers are complete. The session host is tested with fixtures and only starts lessons whose renderers are available; it must not pretend unimplemented exercises are playable.
@@ -4359,7 +4865,8 @@ Use the following review, cleanup, and mockup gates in the issue plan. Full issu
 | [P3-08](https://github.com/bastian-schnitzler/lesson_prototype/issues/32) | Improve grammar lesson mockups from the running prototype | Final phase 3 issue, after complete grammar integration. |
 | [P4-03](https://github.com/bastian-schnitzler/lesson_prototype/issues/76) | Write and review the three function test lessons | Directly after the P4-02 schemas, before the renderers; the P4-06 generation decision follows their review. |
 | [P4-08](https://github.com/bastian-schnitzler/lesson_prototype/issues/34) | Improve function lesson mockups from the running prototype | Final phase 4 issue (renumbered from P4-02 in P4-01), after end-to-end validation. |
-| [P5-02](https://github.com/bastian-schnitzler/lesson_prototype/issues/36) | Improve reading lesson mockups from the running prototype | Final phase 5 task; deferred until requirements and future implementation issues are complete. |
+| P5-03 | Write and review the ten fr/A1 reading test lessons | Directly after the P5-02 schemas, before the renderers, like P4-03. |
+| [P5-08](https://github.com/bastian-schnitzler/lesson_prototype/issues/36) | Improve reading lesson mockups from the running prototype | Final phase 5 issue (renumbered from P5-02 in P5-01), after every other phase 5 issue. |
 
 Each phase-closing mockup issue is the **last issue of its milestone** (D30): it carries the highest logical ID in its phase (P1-12, P2-08, P3-08, P4-08, P5-02) and depends, directly or transitively, on every other issue of that phase. When work is added to a phase, the new issue takes the mockup issue's place in the numbering and the mockup issue moves to the end; existing GitHub issue numbers stay unchanged.
 
@@ -4378,6 +4885,10 @@ After the initial backlog is published, **every change to `docs/SPEC.md` or `doc
 Update affected issue titles and bodies, scope, acceptance criteria, dependencies, and applicable Mermaid diagrams, embedded PlantUML source, and server-rendered mockup/source links. Keep issue title prefixes and phase milestone assignments current. Refresh specification version/commit references across the published backlog so they point to the latest specification. Preserve existing issue numbers and URLs; create issues for newly agreed work and record their mappings in `ISSUES.md`. Explicitly mark superseded scope and identify follow-up work when a change affects completed implementation.
 
 Verify the updated issues on GitHub, including dependency links and rendered assets, before reporting the documentation change complete. If GitHub access prevents synchronization, report which updates remain pending and complete them when access is restored; do not describe the backlog as synchronized while remote changes remain unapplied. This requirement applies from the P0-04 publication onward.
+
+### GitHub issue diagrams and mockups
+
+When publishing the agreed backlog, include relevant Mermaid flows as fenced `mermaid` blocks and applicable Salt sources as fenced `plantuml` blocks. Include server-rendered mockup image URLs derived from the current source for GitHub display, since GitHub does not render PlantUML fences natively. Link each editable `.puml` at the specification commit and verify diagram/image rendering. Never commit PNG/SVG copies in the mockup folder. Keep each issue's examples focused on its scope and refresh its copied PlantUML source and image URL whenever the corresponding source changes. Include specification/dependency links as well. The backlog was published in P0-04; keep these assets current under the synchronization rule.
 
 ### Branch naming
 
@@ -4403,183 +4914,6 @@ Keep the ID exactly as in ISSUES.md (uppercase `P`, two-digit issue number) and 
 - Build/deployment checks: no secret in generated output, base-path-safe assets/content, missing content behavior, Pages URL availability, and refreshed routes.
 
 CI does not call Gemini. Live generation and pedagogical review are separate authoring checks using the configured `.env` credentials.
-
-## 12. Reading learning flow (proposed, P5-01)
-
-**Status: proposal for review (P5-01, D54).** Sources: the reading requirement in ft_transcendence [#115](https://github.com/VictorBro/ft_transcendence/issues/115) and a reference prototype of this flow on the shared session host (branch `reading-proto`, playable, not meant to be merged as is). Every rule below is proposed; the product owner reviews it and answers the open questions at the end before the implementation issues are created (P5-01 acceptance).
-
-Design: **prepare, then read.** A reading lesson teaches a few key words, lets the learner skim a real-looking document, then read it for detail and structure, and ends with a short exam on a second document of the same kind. The ten fr/A1 reading intents of the outline are the generation inputs; the reference prototype also holds sixteen hand-written lessons from A1 to C2 (text message, public signs, party invitation, menu, recipe, email, parents' forum, company memo, article, editorial, La Fontaine fable, dictionary entries, contract, press release, courtroom plea, comic monologue).
-
-```mermaid
-flowchart TD
-    S[Start page: objective, minutes, the five stages] --> K[Key words: cards, then word-meaning matching]
-    K --> M[Skim: document with key words and a countdown]
-    M --> Q[Document blurs: one global question]
-    Q --> D[Detail: 3-4 questions beside the open document]
-    D --> T[Structure: headings to parts, or order parts, or order information]
-    T --> I[Exam info page]
-    I --> E[Exam: second document, 5 questions on 1-2 timed pages]
-    E --> R[Final results: exam selected; proof sentence for every wrong answer]
-```
-
-### Stages
-
-Every reading lesson has the same five stages, from A1 to C2. The document is always shown in its **genre skin** (below).
-
-| # | Stage | ≈ Time (A1) | What the learner does | Counts for |
-|---|---|---|---|---|
-| 1 | Key words | 1 min 30 | 4–6 key words from the text as cards: the word (course language, with audio), its meaning and a one-line explanation. Then the shared word–meaning matching board. | practice |
-| 2 | Skim | 1 min | The document with the key words highlighted and a countdown (45 s at A1). It blurs when the time is up, or earlier when the learner presses *I've finished reading*; only then does **one global question** open: what kind of document, who wrote it, or why. | practice |
-| 3 | Detail | 2 min 30 | 3–4 questions beside the open document (stacked on phones). After Check, the sentences that prove each answer are marked in the document. | practice |
-| 4 | Structure | 1 min | **One** task: match a heading to each part, **or** put the parts back in order without seeing the document, **or** (texts without paragraphs) put pieces of information in the order the text gives them. | practice |
-| 5 | Exam | 3 min 30 | The shared exam information page, then a **second, shorter document of the same genre** and 5 questions on 1–2 pages, each with its own countdown. No highlighting, no help, no feedback until the end. | exam |
-
-The shared results page then shows the selected part and its score, the lesson total out of 100 and the results navigation (Final exam, Key words, Skim, Detail, Structure). A wrong answer shows the right answer, the explanation and **the sentence of the text that proves it** ("In the text: …"). Progress is saved after every action; on resume an unfinished skim countdown restarts, and a blurred document stays blurred until its question is checked.
-
-### Fixed and varying parts
-
-| Fixed in every lesson | Varies from lesson to lesson |
-|---|---|
-| The five stages, their order and roles | The genre and its skin |
-| 4–6 key words: one list, then one matching | The key words |
-| One skim question about the whole document | Its focus: `genre`, `author` or `purpose` |
-| 3–4 detail questions | Their types and order |
-| One structure task | `heading_matching`, `order_parts` or `order_information` |
-| 5 exam questions on a second document of the same genre | Their types and the split over 1 or 2 pages |
-| One final score from 0 to 100 | Text lengths and skim time, which follow the level |
-
-**Question types** (detail stage and exam):
-
-- **Multiple choice:** 3–4 options, exactly one right.
-- **True / false:** from B1 a third answer, **not stated**, is added; a not-stated statement must be plausible and really absent from the text. The labels come from the application in the course language (`Vrai`, `Faux`, `Pas dans le texte`) and are never translated.
-- **Short answer:** a fact of 1–4 words typed from the text (a day, a time, a price); several spellings are accepted, and an answer wrong only in accents or capitals earns half a point (D40 as revised in 0.59).
-
-### Exam
-
-- A new document of the same genre, about half as long as the main one, on facts the main document does not give.
-- 5 questions in any mix of the three types, on 1 or 2 pages (A1–A2 one page; B1 and above 3 + 2).
-- The shared exam information page comes first and lists the pages and their time limits.
-- Each page has a countdown of about 1.5 × its estimated time; when it runs out the page is locked as it stands and the next page opens (section 5).
-- Results appear only after the last page.
-
-### Scoring
-
-One score from 0 to 100, as for every category: `30 × practice % + 70 × exam %`, read from the brief (`scoring: { practiceWeight: 30, examWeight: 70, orthographyCredit: 0.5 }`). Vocabulary, grammar and functions keep 35 / 65; the session reads the weights from the plan, so their totals do not change.
-
-### Language rules
-
-| Text | Language |
-|---|---|
-| Documents, questions, statements, options, accepted answers, headings to match, pieces to order, key words | Course language only (translating them would give the answers away) |
-| True / false / not stated labels | Course language, from the application |
-| Instructions, stage labels, answer explanations, key-word explanations, objective, situation | Localized `{ en, fr, de }`, shown in the interface language |
-| Key-word meanings | Translations by mother tongue |
-
-This mirrors the other categories and deviates from #115 ("the whole lesson is in the course language"); see open question 1.
-
-### Text length and skim time
-
-Words of a document are whitespace-separated tokens with at least one letter or digit, over everything it shows (title, meta lines, headings, texts, values): `l'heure` is one word, `15` is one, `€` and `?` are none. A document outside its range is invalid. The values are starting values, to be tuned after play tests.
-
-| Level | Main document | Exam document (≈ ½) | Skim time |
-|---|---|---|---|
-| A1 | 40–80 | 20–40 | 45 s |
-| A2 | 80–150 | 40–75 | 60 s |
-| B1 | 150–250 | 75–125 | 75 s |
-| B2 | 250–400 | 125–200 | 90 s |
-| C1 | 400–550 | 200–275 | 120 s |
-| C2 | 500–700 | 250–350 | 150 s |
-
-### Brief and lesson content
-
-Same envelope as every artifact (section 4). Reading has a brief and lesson content, like grammar and functions.
-
-**Brief** (`content/briefs/<id>.json`):
-
-| Field | Rule |
-|---|---|
-| `kind`, `theme` | `"reading"`; `theme` equals the outline entry, never a `topic` |
-| `genre` | `text_message`, `sign`, `menu`, `classified_ad`, `postcard`, `profile`, `programme`, `article`, `letter`, `forum_post`, `dictionary_entry`, `contract`, `recipe`, `speech`, `poem` or `other` |
-| `situation`, `readerTask` | localized: who writes to whom and why; what the learner must find (from the outline intent) |
-| `keywords[4–6]` | `{ id, term, translations, explanation }`; `term` in the course language; the first translation per mother tongue is the matching label and unique in the lesson |
-| `documents.main`, `documents.exam` | `{ targetWords, partCount, contents }`; `targetWords` within the level range; `contents` says what the text contains |
-| `stages` | key words; skim `{ focus, skimSeconds }` from the table; detail questions `[3–4] { id, type, focus }`; structure task; estimated durations |
-| `exam.pages[1–2]` | `{ pageId, types, itemCount, estimatedDurationS, timeLimitS }`; item counts add up to exactly 5 |
-| `scoring`, `estimatedMinutes` | 30 / 70 / 0.5; the rounded sum of every stage and exam page |
-
-**Lesson content** (`content/lessons/<id>.json`):
-
-```text
-documents[2]: { documentId: "main" | "exam", genre, title | null, meta[0–4],
-                parts[1–12]: { partId, heading | null,
-                               segments[1–20]: { segmentId, text, value | null } },
-                highlights[]: { keywordId, segmentId, text } }      // main document only
-steps[5]: keywords, skim, detail, structure, exam — pages with items:
-  reading_keywords, reading_keyword_matching, reading_document (view: skim | open | exam),
-  reading_skim_choice, reading_choice, reading_true_false, reading_short_answer,
-  reading_part_heading_matching, reading_order (mode: parts | information)
-```
-
-A **segment** is a sentence, a line, a verse or a menu line; questions point at segments (`evidenceSegmentIds`), so the text is cut where each fact sits. `value` is a right-aligned value (a price, a quantity). Both documents are stored once per lesson; pages only place them. Key-word lists and documents are presentation; every question, matching pair, heading pair and ordering task scores one unit (heading matching one per part).
-
-**Validation** (a failure makes the file invalid): both documents have the brief's genre and part count and word counts in range; every highlight is found word for word in its segment, every key word is highlighted in the main document and the exam document has none; options are unique with exactly one right; evidence points at the document of its stage and is required except for a not-stated answer; `allowNotStated` is false at A1–A2 and true from B1; heading matching pairs every part once and the main document then shows no part headings; `order_parts` hides the document; the exam has exactly 5 questions on the planned pages with the planned limits, and only exam pages have a countdown; stage durations equal the brief's.
-
-### Genre skins
-
-A skin is added only where the generic page renders the genre badly.
-
-| Skin | Genres | Look |
-|---|---|---|
-| message | text_message | phone thread: sender and time centred, bubbles |
-| menu | menu | centred uppercase title, sections, prices right-aligned with dotted leaders |
-| article | article | headline, byline, paragraphs |
-| contract | contract | centred title, parties, numbered clauses |
-| sign | sign | each part a plate; the first line in capitals |
-| dictionary | dictionary_entry | bold headword, one line per sense, label or example |
-| poem | poem | one verse per line, stanzas apart |
-| recipe | recipe | quantities right-aligned, numbered steps |
-| generic | all others | title, meta line, numbered paragraphs |
-
-Parts without headings are numbered so structure tasks can name them; key words are highlighted during the skim and detail stages; evidence segments are framed after Check.
-
-### Shared host and deliberate differences
-
-Reading reuses the shared session host, lesson navigation (D53: the five stages are the learning points, the exam lists its pages), start page, progress, exam information page, countdown, matching board, answer controls and results. Two deliberate differences:
-
-- A page that shows a document keeps its correction view after Check even when every answer is right, so the evidence can be read.
-- On a page with a document the cursor is not put into the first answer field, so the document is not scrolled away.
-
-### Open questions for the product owner
-
-1. **Language:** the whole lesson in the course language (#115), or localized instructions and explanations and translated key words like the other categories (proposed)?
-2. **Duration:** the estimates run from 9 minutes (A1) to 17 (C2). Cap the text length so every level fits about 10 minutes, or let higher levels run longer?
-3. **Lengths and skim times:** are the starting values right? Should the skim time follow the actual word count rather than the level?
-4. **Evidence:** keep the proof marks and quotes? They require segment IDs in the text and on every question.
-5. **Scoring:** a fixed 30 / 70 for reading, or the shared 35 / 65?
-6. **Correction view:** keep the correction view on all-correct document pages?
-7. **Wide layout:** with the lesson sidebar the task area is about 720 px wide; document and questions sit side by side only from 1100 px. Collapse the sidebar on reading pages?
-8. **Genres:** keep `recipe`, `speech` and `poem` in the genre list?
-9. **Generation:** generate reading lessons in the prototype (offline Gemini, like vocabulary and grammar), or only hand-written test lessons here and generation in production (ft_transcendence #83)?
-
-### Implementation plan (proposed issues)
-
-After the review, separate issues, each one pull request with its tests; the mockup refresh stays the last issue of phase 5 (D30), so the current P5-02 moves to the end.
-
-| Proposed issue | Scope | Depends on |
-|---|---|---|
-| Reading schema and validation | brief and content schemas, cross-checks, `reading` as a supported category, one fixture lesson, unit tests | P5-01 |
-| Reading plan and scoring | plan units with evidence, weights read from the brief, session integration, unit tests | schema |
-| Reading renderers and skins | key words, document with skim blur and evidence, questions, structure tasks, genre skins, start page and navigation entries, end-to-end test | plan |
-| Reading artifact views | Draft and Content views of the artifact page | schema |
-| Reading test lessons | hand authoring tool (`make author-reading`) and reviewed lessons from the fr outlines | renderers |
-| Reading generation (if open question 9 says so) | brief and content prompts, assembly, fake-model tests; then enable the existing generation targets for reading | test lessons |
-| Update reading lesson mockups (current P5-02) | mockups refreshed from the running prototype | all of the above |
-
-Makefile: an `author-reading` target with the test lessons; the existing `brief`, `generate` and `sample-lessons` targets cover reading only after the generation issue. Mockup synchronization, build and end-to-end targets need no change.
-
-### GitHub issue diagrams and mockups
-
-When publishing the agreed backlog, include relevant Mermaid flows as fenced `mermaid` blocks and applicable Salt sources as fenced `plantuml` blocks. Include server-rendered mockup image URLs derived from the current source for GitHub display, since GitHub does not render PlantUML fences natively. Link each editable `.puml` at the specification commit and verify diagram/image rendering. Never commit PNG/SVG copies in the mockup folder. Keep each issue's examples focused on its scope and refresh its copied PlantUML source and image URL whenever the corresponding source changes. Include specification/dependency links as well. The backlog was published in P0-04; keep these assets current under the synchronization rule.
 
 ## 13. Revision log
 
@@ -4651,4 +4985,4 @@ When publishing the agreed backlog, include relevant Mermaid flows as fenced `me
 | 0.65 | 2026-10-14 | P06-00: `docs/feedback.html` (UX feedback by item, with comments and implementation status) is deployed with the app; the index header has a **UX feedback** button and the page a **Back to the lessons** link. |
 | 0.66 | 2026-10-14 | P06-00: Phase 6 backlog reduced to P6-01, P6-02 and P6-06. The former P6-02 to P6-05 (#70–#73) are replaced by one issue, P6-02 "Implement the feedback according to the feedback page", whose scope is the section **Not implemented yet** of `docs/feedback.html`. |
 | 0.67 | 2026-10-14 | P06-00 (P6-02): a practice page with a vocabulary listening choice submits as soon as a written option is chosen, without a Check button (section 5, rule 4); dialogue listening choices, whose replies are only heard, keep Check. The feedback page gets a first section **Clarification needed**. Listening choices speak nothing when checked. Typed fields: no autocompletion, capitalisation, autocorrection or spell-check; the first field takes the cursor. The final score x / 100 moves from the results card to the top of the results sidebar. Exam countdown box with label and bar (#6); numbered task cards on exam pages with several typed answers (#26). Flask favicon. Start page outline: section minutes as stopwatch chips. Exam info page: time limits as stopwatch chips (#13); the learner copy says "questions" instead of "tasks". Shorter lessons (#1, D14, D49, D50): vocabulary 8–9 words (14–15 min), grammar at least 22 practice and 10 exam units (15 min), functions 4 expressions with every exercise type (16–17 min); outlines unchanged; generator prompts set to at most 15 minutes. |
-| 0.68 | 2026-10-15 | P5-01 (proposal for review): section 12 becomes "Reading learning flow": the five stages (key words, skim, detail, structure, exam on a second document of the same genre), fixed and varying parts, question types, exam, 30 / 70 scoring, language rules, text lengths and skim times per level, brief and content, validation, genre skins, the shared host and its two deliberate differences, open questions for the product owner and a proposed issue split; decision D54 proposed; nine reading Salt mockups in section 9 and `docs/mockups/06-reading-lesson/`. Sources: ft_transcendence #115 and the reference prototype on branch `reading-proto`. |
+| 0.68 | 2026-10-15 | P5-01: reading requirements (D54), revised after the product-owner review of #95. The reading flow becomes section 9, directly after the functions flow; the later sections are renumbered (UI and mockups 10, samples and review gates 11, phases 12) and the misplaced subsection "GitHub issue diagrams and mockups" moves to section 12. The design follows the simplified version of ft_transcendence #115: flashcards and matching on the vocabulary pages (the stage formerly called key words), a skim without blur whose question is answered from memory, multiple choice and true / false only, one ordering task on the word-order control, one exam page of 5 questions, one document layout instead of genre skins, no evidence marks. Review answers: shared 35 / 65 weights; skim countdown and correction view as exceptions to section 5; D18 exception for the exam limit; D53 applied without exception; skim time from the actual word count at a skim speed per level, stored in the lesson content; non-overlapping C1/C2 word ranges; genres extended to cover the outlines; language rules of the other categories; reused and new pages, page rules, item rows, audio, start page, results, saving and content review criteria specified; the ten fr/A1 reading entries as hand-written test lessons without separate definition files. Fourteen reading Salt mockups (every page of a lesson). Phase 5 backlog P5-02 to P5-07 added; the mockup refresh becomes P5-08 (#36). |

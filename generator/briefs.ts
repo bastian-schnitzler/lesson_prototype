@@ -103,7 +103,7 @@ export function generateMissingBriefs(options: BriefOptions): Promise<BriefOutco
   return generateBriefs(catalogContexts(options.contentDir), options);
 }
 
-/** SPEC section 9: the first ten grammar and first ten vocabulary entries of fr/A1, in outline order. */
+/** SPEC section 11: the first ten grammar and first ten vocabulary entries of fr/A1, in outline order. */
 export const SAMPLE_COURSE = { lang: 'fr', level: 'A1', perKind: 10 } as const;
 
 export function sampleContexts(contentDir: string): OutlineContext[] {

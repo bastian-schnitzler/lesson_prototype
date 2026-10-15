@@ -8,19 +8,26 @@ scale 1.3
 .
 { <color:#020617>xx</color> | {
 { <color:#020617>xxxxxxxxxx</color> | {
-<color:#94A3B8>FRENCH / A1</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxx</color> | [ <color:#E2E8F0>Reading</color> ]
+{ <color:#94A3B8>FRENCH / A1</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxx</color> | <color:#94A3B8>( Reading )</color> }
 <size:28><color:#E2E8F0><b>Lire un SMS</b></color></size>
 <color:#94A3B8>Read a short text message from a friend and find the day, the time and the place of the meeting.</color>
-<color:#94A3B8>About 9 minutes · 5 key words</color>
+<color:#94A3B8>Situation: Léa sends her friend Tom a text message on Thursday evening to plan Saturday.</color>
+<color:#94A3B8>5 key words  ·  About 8 minutes</color>
 .
 <color:#E2E8F0><b>Lesson outline</b></color>
-{ <color:#A5B4FC><b>A</b></color> | <color:#E2E8F0><b>Key words</b></color> | <color:#94A3B8>1. Key words  2. Matching</color> | <color:#94A3B8>2 min</color> }
-{ <color:#67E8F9><b>B</b></color> | <color:#E2E8F0><b>Skim</b></color> | <color:#94A3B8>3. One global question</color> | <color:#94A3B8>1 min</color> }
-{ <color:#86EFAC><b>C</b></color> | <color:#E2E8F0><b>Detail</b></color> | <color:#94A3B8>4. Multiple choice · short answer · true / false</color> | <color:#94A3B8>3 min</color> }
-{ <color:#FDE047><b>D</b></color> | <color:#E2E8F0><b>Structure</b></color> | <color:#94A3B8>5. Order the information</color> | <color:#94A3B8>1 min</color> }
-{ <color:#FDA4AF><b>E</b></color> | <color:#E2E8F0><b>Final exam</b></color> | <color:#94A3B8>5 questions on 1 timed page</color> | <color:#94A3B8>3 min</color> }
+{ <color:#A5B4FC><b>A</b></color> | <color:#E2E8F0><b>Key words</b></color> | <color:#020617>xxxxxxxxxxxxxxxx</color> | <color:#94A3B8>⏱ 2 min</color> }
+{ <color:#020617>xx</color> | <color:#94A3B8>1  Flashcards</color> }
+{ <color:#020617>xx</color> | <color:#94A3B8>2  Matching</color> }
+{ <color:#67E8F9><b>B</b></color> | <color:#E2E8F0><b>The document</b></color> | <color:#020617>xxxxxxxxxxxxxxxx</color> | <color:#94A3B8>⏱ 4 min</color> }
+{ <color:#020617>xx</color> | <color:#94A3B8>3  Skim</color> }
+{ <color:#020617>xx</color> | <color:#94A3B8>4  Detail</color> }
+{ <color:#020617>xx</color> | <color:#94A3B8>5  Structure</color> }
+{ <color:#FDA4AF><b>C</b></color> | <color:#E2E8F0><b>Final exam</b></color> | <color:#020617>xxxxxxxxxxxxxxxx</color> | <color:#94A3B8>⏱ 2 min</color> }
+{ <color:#020617>xx</color> | <color:#94A3B8>Answer 5 questions on 1 timed page</color> }
 .
-[ <color:#020617>                        Continue                        </color> ]
+<color:#94A3B8>The genre is not shown: the skim question may ask for it.</color>
+.
+[ <color:#020617>                        Start                        </color> ]
 } | <color:#020617>xxxxxxxxxx</color> }
 } | <color:#020617>xx</color> }
 .
