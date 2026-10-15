@@ -1,6 +1,6 @@
 # Lesson prototype mockups
 
-One guide for all 41 PlantUML Salt screens. Each screen folder contains only its editable `.puml` source; the matching source is embedded in [SPEC.md](../SPEC.md) as a `plantuml` code fence. PNG/SVG copies are not stored here. See the [issue asset mapping](../ISSUES.md#assets-to-include-when-publishing-applicable-issues).
+One guide for all 50 PlantUML Salt screens. Each screen folder contains only its editable `.puml` source; the matching source is embedded in [SPEC.md](../SPEC.md) as a `plantuml` code fence. PNG/SVG copies are not stored here. See the [issue asset mapping](../ISSUES.md#assets-to-include-when-publishing-applicable-issues).
 
 ## Make PlantUML rendering work in VS Code
 
@@ -33,6 +33,7 @@ Vocabulary folders include the start page, so folders 02–07 represent learning
 - [03 — Vocabulary lesson](#vocabulary-lesson)
 - [04 — Grammar lesson](#grammar-lesson)
 - [05 — Function lesson](#function-lesson)
+- [06 — Reading lesson (proposed)](#reading-lesson)
 
 <a id="lesson-overview"></a>
 
@@ -50,6 +51,7 @@ Vocabulary folders include the start page, so folders 02–07 represent learning
 | --- | --- | --- |
 | `02-artifact-view/grammar` | lesson detail | [Salt source](02-artifact-view/grammar/lesson-detail.puml) · [SPEC preview](../SPEC.md#mockup-02-artifact-view-grammar-lesson-detail) |
 | `02-artifact-view/raw-json` | initial JSON tree | [Salt source](02-artifact-view/raw-json/json-tree.puml) · [SPEC preview](../SPEC.md#mockup-02-artifact-view-raw-json-json-tree) |
+| `02-artifact-view/reading` | lesson detail (proposed) | [Salt source](02-artifact-view/reading/lesson-detail.puml) · [SPEC preview](../SPEC.md#mockup-02-artifact-view-reading-lesson-detail) |
 | `02-artifact-view/raw-json` | expanded JSON tree | [Salt source](02-artifact-view/raw-json/json-tree-expanded.puml) · [SPEC preview](../SPEC.md#mockup-02-artifact-view-raw-json-json-tree-expanded) |
 | `02-artifact-view/vocabulary` | lesson detail | [Salt source](02-artifact-view/vocabulary/lesson-detail.puml) · [SPEC preview](../SPEC.md#mockup-02-artifact-view-vocabulary-lesson-detail) |
 
@@ -129,3 +131,20 @@ Example lesson `fr-ordering-at-a-cafe`, designed in P4-01 before implementation;
 | `05-function-lesson/07-listening-choice` | listening choice | [Salt source](05-function-lesson/07-listening-choice/listening-choice.puml) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-07-listening-choice-listening-choice) |
 | `05-function-lesson/08-exam` | dialogue gap typing | [Salt source](05-function-lesson/08-exam/dialogue-gap-typing.puml) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-08-exam-dialogue-gap-typing) |
 | `05-function-lesson/08-exam` | reply word order | [Salt source](05-function-lesson/08-exam/reply-word-order.puml) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-08-exam-reply-word-order) |
+
+<a id="reading-lesson"></a>
+
+## 06 — Reading lesson (proposed)
+
+Proposal for review (P5-01, [SPEC section 12](../SPEC.md#12-reading-learning-flow-proposed-p5-01)): the five reading stages on the shared session host. The key-word matching, the exam information page, the results and the lesson navigation are the shared screens; only the document, its genre skins and the skim countdown are reading-specific. Drawn from the reference prototype (branch `reading-proto`); P5-02 refreshes them from the implemented pages.
+
+| Screen folder | Screen | Source and embedded preview |
+| --- | --- | --- |
+| `06-reading-lesson/01-startpage` | lesson start | [Salt source](06-reading-lesson/01-startpage/lesson-start.puml) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-01-startpage-lesson-start) |
+| `06-reading-lesson/02-keywords` | key words and matching | [Salt source](06-reading-lesson/02-keywords/keywords.puml) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-02-keywords-keywords) |
+| `06-reading-lesson/03-skim` | skim | [Salt source](06-reading-lesson/03-skim/skim.puml) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-03-skim-skim) |
+| `06-reading-lesson/03-skim` | skim question after the blur | [Salt source](06-reading-lesson/03-skim/skim-blurred.puml) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-03-skim-skim-blurred) |
+| `06-reading-lesson/04-detail` | detail with evidence | [Salt source](06-reading-lesson/04-detail/detail-feedback.puml) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-04-detail-detail-feedback) |
+| `06-reading-lesson/05-structure` | structure: heading matching | [Salt source](06-reading-lesson/05-structure/heading-matching.puml) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-05-structure-heading-matching) |
+| `06-reading-lesson/06-exam` | exam page | [Salt source](06-reading-lesson/06-exam/exam-page.puml) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-06-exam-exam-page) |
+| `06-reading-lesson/07-results` | exam results | [Salt source](06-reading-lesson/07-results/exam-results.puml) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-07-results-exam-results) |

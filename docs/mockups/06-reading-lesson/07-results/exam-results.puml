@@ -1,0 +1,41 @@
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xx</color> | {
+{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxxxxxxxxxxxxxxxxxxx</color> | [ <color:#E2E8F0>Repeat lesson</color> ] | [ <color:#020617>Lesson overview</color> ] }
+<color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
+.
+{ {
+<color:#94A3B8>Your results</color>
+.
+{ <back:#1E1B4B><color:#E2E8F0><b> Final exam </b></color></back> | <color:#020617>xxxxxx</color> | <color:#A5B4FC><b>2 / 5</b></color> }
+{ <back:#7F1D1D><color:#E2E8F0> Key words </color></back> | <color:#020617>xxxxxx</color> | <color:#E2E8F0>4 / 5</color> }
+{ <back:#7F1D1D><color:#E2E8F0> Skim </color></back> | <color:#020617>xxxxxx</color> | <color:#E2E8F0>0 / 1</color> }
+{ <back:#7F1D1D><color:#E2E8F0> Detail </color></back> | <color:#020617>xxxxxx</color> | <color:#E2E8F0>1 / 4</color> }
+{ <color:#E2E8F0> Structure </color> | <color:#020617>xxxxxx</color> | <color:#E2E8F0>1 / 1</color> }
+} | <color:#020617>xxx</color> | {
+<color:#94A3B8>FRENCH / A1</color>
+<size:24><color:#E2E8F0><b>Final exam</b></color></size>
+<size:30><color:#E2E8F0><b>2 / 5</b></color></size>
+<color:#94A3B8>Lesson total: 33.5 / 100</color>
+<color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
+{ <color:#FF5252>✕</color> | <color:#E2E8F0>Quel jour est le match ?</color> | <color:#94A3B8>→</color> | <color:#00E676><b>dimanche</b></color> }
+{ <color:#020617>x</color> | <color:#020617>x</color> | <color:#020617>x</color> | <color:#FF5252><s>lundi</s></color> }
+{ <color:#020617>x</color> | <color:#94A3B8>In the text: “Dimanche matin, on joue au foot au parc Monceau ?”</color> }
+{ <color:#020617>x</color> | <color:#94A3B8>Vendredi is the day Paul writes; the match is on Sunday.</color> }
+<color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
+{ <color:#00E676>✓</color> | <color:#E2E8F0>À quelle heure est le rendez-vous ?</color> | <color:#94A3B8>→</color> | <color:#00E676><b>10 h</b></color> }
+<color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
+{ <color:#FBBF24>!</color> | <color:#E2E8F0>Où est le rendez-vous ?</color> | <color:#94A3B8>→</color> | <color:#00E676><b>devant l’entrée</b></color> }
+{ <color:#020617>x</color> | <color:#020617>x</color> | <color:#020617>x</color> | <color:#FBBF24><s>devant l'entree</s></color> }
+{ <color:#020617>x</color> | <color:#FBBF24>Almost – check the accents and capitals (half a point)</color> }
+} }
+} | <color:#020617>xx</color> }
+.
+}
+@endsalt

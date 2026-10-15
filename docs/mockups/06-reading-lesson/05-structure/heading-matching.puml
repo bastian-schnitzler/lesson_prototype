@@ -1,0 +1,44 @@
+@startsalt
+skinparam backgroundColor #020617
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 15
+skinparam defaultFontColor #E2E8F0
+scale 1.3
+{
+.
+{ <color:#020617>xx</color> | {
+{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>███████</color><color:#1E293B>░░░░░</color> | <color:#94A3B8>58%</color> | <color:#E2E8F0><b>21.0 / 100</b></color> }
+<color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
+.
+{ {
+<color:#94A3B8>Your lesson</color>
+<color:#E2E8F0><b>4 of 5 points done</b></color>
+.
+{ <color:#A5B4FC><b>1.</b></color> | <color:#E2E8F0>Key words</color> | <color:#00E676>✓</color> }
+{ <color:#67E8F9><b>2.</b></color> | <color:#E2E8F0>Key words · matching</color> | <color:#00E676>✓</color> }
+{ <color:#86EFAC><b>3.</b></color> | <color:#E2E8F0>Skim</color> | <color:#00E676>✓</color> }
+{ <color:#FDE047><b>4.</b></color> | <color:#E2E8F0>Detail</color> | <color:#00E676>✓</color> }
+{ <color:#FDA4AF><b>5.</b></color> | <color:#E2E8F0><b>Structure</b></color> | <color:#67E8F9>you are here</color> }
+.
+{ <color:#E2E8F0><b>⚑</b></color> | <color:#E2E8F0><b>Final exam</b></color> | <color:#94A3B8>3 min 45 s</color> }
+} | <color:#020617>xxx</color> | {
+<color:#94A3B8>Structure · point 5 of 5</color>
+<size:24><color:#E2E8F0><b>The article lost its subheadings</b></color></size>
+<color:#94A3B8>Match one heading to each paragraph.</color>
+.
+{ <color:#94A3B8>①</color> | <color:#E2E8F0>En France, on se dit souvent bonjour avec la bise …</color> }
+{ <color:#94A3B8>②</color> | <color:#E2E8F0>En général, on fait la bise à la famille et aux amis …</color> }
+{ <color:#94A3B8>③</color> | <color:#E2E8F0>Le nombre de bises change selon la région …</color> }
+{ <color:#94A3B8>④</color> | <color:#E2E8F0>Depuis l’épidémie de Covid, on hésite parfois …</color> }
+.
+{ [ <color:#E2E8F0>Une affaire de région</color> ] | <color:#635BFF>~~~~~~</color> | [ <color:#E2E8F0>③ Le nombre de bises …</color> ] }
+{ [ <color:#E2E8F0>Un geste qui intrigue</color> ] | <color:#635BFF>~~~~~~</color> | [ <color:#E2E8F0>① En France, on se dit …</color> ] }
+{ [ <color:#E2E8F0>À qui faire la bise ?</color> ] | <color:#020617>xxxxxx</color> | [ <color:#E2E8F0>② En général, on fait …</color> ] }
+{ [ <color:#E2E8F0>Et aujourd’hui ?</color> ] | <color:#020617>xxxxxx</color> | [ <color:#E2E8F0>④ Depuis l’épidémie …</color> ] }
+.
+{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#64748B>  Check  </color> ] }
+} }
+} | <color:#020617>xx</color> }
+.
+}
+@endsalt
