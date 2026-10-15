@@ -4,7 +4,7 @@ import type { Item } from '../domain/session/plan.ts';
 import { UnitsRenderer, type RendererProps } from './controls.tsx';
 import { ExplanationRenderer, PlaceholderRenderer, PronounMatchRenderer, PronounTypingRenderer } from './grammarRenderers.tsx';
 import { DialogueGapChoiceRenderer, DialogueRenderer, ExamDialogueRenderer, FunctionFlashcardsRenderer, FunctionWordOrderRenderer, ListeningReplyRenderer } from './functionsRenderers.tsx';
-import { FlashcardsRenderer, GenderRenderer, IntroductionRenderer, MatchingRenderer, OverviewRenderer } from './vocabularyRenderers.tsx';
+import { FlashcardsRenderer, GenderRenderer, IntroductionRenderer, MatchingRenderer } from './vocabularyRenderers.tsx';
 
 export { UnitFeedback, type RendererProps } from './controls.tsx';
 
@@ -16,7 +16,6 @@ export { UnitFeedback, type RendererProps } from './controls.tsx';
 export const rendererRegistry: Record<Item['type'], ComponentType<RendererProps>> = {
   vocabulary_introduction: IntroductionRenderer,
   vocabulary_flashcards: FlashcardsRenderer,
-  vocabulary_overview: OverviewRenderer,
   vocabulary_matching: MatchingRenderer,
   vocabulary_gender_select: GenderRenderer,
   vocabulary_typed_gap: UnitsRenderer,

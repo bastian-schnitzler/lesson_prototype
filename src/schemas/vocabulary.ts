@@ -148,7 +148,6 @@ const vocabularyItemSchema = (lang: string) =>
       targetIds: z.array(NestedIdSchema).min(1),
       rows: z.array(z.strictObject({ targetId: NestedIdSchema, ...unit })).min(1),
     }),
-    z.strictObject({ type: z.literal('vocabulary_overview'), itemId: NestedIdSchema, targetIds: z.array(NestedIdSchema).min(1) }),
     z.strictObject({
       type: z.literal('vocabulary_typed_gap'),
       itemId: NestedIdSchema,
@@ -213,7 +212,9 @@ export const vocabularyContentSchema = (lang: string) =>
           pages: z.array(pageSchema(lang)).min(1).max(60),
         }),
       )
-      // Six stages in seven steps: stage 5 is split into typed gaps and listening (P2-04).
-      .length(VOCABULARY_STAGES.length + 1),
+      // Six stages in seven steps: stage 5 is split into typed gaps and listening (P2-04); a lesson without
+      // nouns has no gender stage (P06-00).
+      .min(VOCABULARY_STAGES.length)
+      .max(VOCABULARY_STAGES.length + 1),
   });
 export type VocabularyContent = z.infer<ReturnType<typeof vocabularyContentSchema>>;

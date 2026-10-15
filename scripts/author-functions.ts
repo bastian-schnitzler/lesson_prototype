@@ -81,6 +81,8 @@ export function buildFunctionsLesson(def: FunctionsDefinition, root = resolve(im
     return { pageId, estimatedDurationS: estimate, timeLimitS: exam ? functionsTimeLimit(estimate) : null, instructions, items };
   };
   const expressionIds = def.expressions.map((e) => e.id), wordIds = def.words.map((w) => w.id);
+  // Only nouns: words without a gender are left out of the gender page (P06-00, feedback #9).
+  const nounIds = def.words.filter((w) => (w.wordClass ?? 'noun') === 'noun').map((w) => w.id);
   const matching = (side: 'expressions' | 'words', ids: string[], n: number): FunctionsItem => ({
     type: 'function_matching', itemId: `match-${side}-${n}`, side,
     pairs: ids.map((id) => ({ id, answerExplanation: side === 'expressions' ? expression(id).explanation : def.words.find((w) => w.id === id)!.explanation })),
@@ -103,8 +105,8 @@ export function buildFunctionsLesson(def: FunctionsDefinition, root = resolve(im
       ...chunk(expressionIds, FUNCTIONS_PAGE_RULES.matchingPageSize).map((ids, n) => page(`match-expressions-${n + 1}`, FUNCTIONS_COPY.matching[1], [matching('expressions', ids, n + 1)])),
       ...(wordIds.length ? [page('match-words-1', FUNCTIONS_COPY.wordMatching, [matching('words', wordIds, 1)])] : []),
     ] },
-    ...(wordIds.length ? [{ id: 'gender', stage: 'gender' as const, role: 'exercise' as const, label: FUNCTIONS_COPY.gender[0], pages: [
-      page('gender', FUNCTIONS_COPY.gender[1], [{ type: 'function_gender_select', itemId: 'gender', ids: wordIds }]),
+    ...(nounIds.length ? [{ id: 'gender', stage: 'gender' as const, role: 'exercise' as const, label: FUNCTIONS_COPY.gender[0], pages: [
+      page('gender', FUNCTIONS_COPY.gender[1], [{ type: 'function_gender_select', itemId: 'gender', ids: nounIds }]),
     ] }] : []),
     { id: 'dialogue-gaps', stage: 'dialogue_gaps', role: 'exercise', label: FUNCTIONS_COPY.dialogueGaps[0], pages: def.gaps.map((g, n) => {
       const { before, after } = splitGap(g.line, /___/);

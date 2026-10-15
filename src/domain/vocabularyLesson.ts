@@ -17,8 +17,7 @@ export const VOCABULARY_TIMING = {
   matchingPerWord: 10,
   /** Matching pages hold at most this many pairs (balanced, in group order). */
   matchingGroupSize: 6,
-  overviewBase: 20,
-  overviewPerWord: 3,
+  genderBase: 20,
   genderPerWord: 5,
   gapPage: 20,
   listeningPage: 15,
@@ -48,7 +47,6 @@ export function matchingPages(brief: Pick<VocabularyBrief, 'groups'>): string[][
 export function vocabularyLesson(brief: VocabularyBrief): VocabularyContent {
   const T = VOCABULARY_TIMING;
   const targets = new Map(brief.targets.map((t) => [t.id, t]));
-  const all = brief.targets.map((t) => t.id);
   const nouns = brief.targets.filter((t) => t.wordClass === 'noun');
   const page = (pageId: string, estimatedDurationS: number, instructions: LocalizedText, items: Page['items'], timeLimitS: number | null = null): Page =>
     ({ pageId, estimatedDurationS, timeLimitS, instructions, items });
@@ -70,12 +68,10 @@ export function vocabularyLesson(brief: VocabularyBrief): VocabularyContent {
         type: 'vocabulary_matching', itemId: `match-${n + 1}`,
         pairs: ids.map((id) => ({ targetId: id, nativeLabel: targets.get(id)!.matchingLabel, answerExplanation: targets.get(id)!.explanation })),
       }]))),
-    nouns.length
-      ? { ...step('overview', 'overview', COPY.gender[0], [page('overview', T.overviewBase + T.genderPerWord * nouns.length, COPY.gender[1], [{
-          // Only nouns: words without a gender are left out of the gender page (P06-00).
-          type: 'vocabulary_gender_select', itemId: 'gender', targetIds: nouns.map((t) => t.id), rows: nouns.map((t) => ({ targetId: t.id, answerExplanation: t.genderExplanation! })),
-        }])]) }
-      : step('overview', 'overview', COPY.overview[0], [page('overview', T.overviewBase + T.overviewPerWord * all.length, COPY.overview[1], [{ type: 'vocabulary_overview', itemId: 'overview', targetIds: all }])]),
+    // Only nouns: words without a gender are left out, and a lesson without nouns has no gender step (P06-00), as in function lessons.
+    ...(nouns.length ? [step('overview', 'overview', COPY.gender[0], [page('overview', T.genderBase + T.genderPerWord * nouns.length, COPY.gender[1], [{
+      type: 'vocabulary_gender_select', itemId: 'gender', targetIds: nouns.map((t) => t.id), rows: nouns.map((t) => ({ targetId: t.id, answerExplanation: t.genderExplanation! })),
+    }])])] : []),
     // Stage 5 has two steps, so typed gaps and listening are reviewed separately in the results menu (P2-04 review).
     step('practice', 'exercise', COPY.practice[0], [
       ...brief.targets.map((t) => page(`gap-${t.id}`, T.gapPage, COPY.practice[1], [{

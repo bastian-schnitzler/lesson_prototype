@@ -375,7 +375,7 @@ async function reachListeningPractice(page: Page) {
   await matchAll(page); // matching
   await proceed(page);
   await proceed(page); // matching feedback
-  await proceed(page); // overview
+  // No gender step: the lesson has no nouns (P06-00).
   for (const word of ['écoutez', 'lisez', 'écrivez', 'répétez']) {
     await answerGap(page, word);
   }
