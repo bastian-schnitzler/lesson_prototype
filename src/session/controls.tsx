@@ -458,7 +458,8 @@ export function UnitsRenderer(props: RendererProps) {
         const prompt = unit.prompt.native ?? unit.prompt.learning ?? '';
         return (
           <UnitRow key={unit.id} unit={unit} props={props}>
-            {unit.speak && <ListenButton text={unit.speak} lang={lang} />}
+            {/* A speaker icon instead of the word "Listen" (feedback #12); its accessible name stays "Listen". */}
+            {unit.speak && <ListenButton text={unit.speak} lang={lang} variant="icon" size="large" />}
             {unit.kind === 'text' && (unit.prompt.before !== undefined || unit.prompt.after !== undefined) ? (
               <Gap before={unit.prompt.before} after={unit.prompt.after} lang={lang}>
                 <TextControl unit={unit} props={props} label={t('session.gapAnswer')} />

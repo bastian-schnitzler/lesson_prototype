@@ -1,6 +1,6 @@
 # Lesson exercise prototype specification
 
-Status: **Draft 0.67 — P6-02: shorter lessons, listening choice, typing fields, results score, exam countdown and task cards (P06-00)**. Date: 2026-10-14.
+Status: **Draft 0.68 — P6-02: speaker icon in the listening exercises (feedback #12)**. Date: 2026-10-15.
 
 This document specifies the prototype and its phased implementation. It is the maintained requirements document: no separate requirements file exists. It does not authorize starting implementation before the specification review. The backlog is in [ISSUES.md](ISSUES.md) and published as GitHub issues in `bastian-schnitzler/lesson_prototype`.
 
@@ -743,7 +743,7 @@ flowchart TD
     L --> K
 ```
 
-Audio is learner-triggered, except that a listening page offers an initial play control. Use the French speech language explicitly and a voice whose language matches it. An unavailable voice does not hide text or block progression: each Listen control is replaced by an **Install language** button that opens a modal dialog stating that no French voice (language pack) is installed, followed by the personalised installation steps below.
+Audio is learner-triggered, except that a listening page offers an initial play control. The play control of the listening choice and the dictation is a large **speaker icon** with the accessible name “Listen”, like the speaker buttons of flashcards and matching (feedback #12, P6-02). Use the French speech language explicitly and a voice whose language matches it. An unavailable voice does not hide text or block progression: each Listen control is replaced by an **Install language** button that opens a modal dialog stating that no French voice (language pack) is installed, followed by the personalised installation steps below.
 
 **Every vocabulary lesson has listening (P2-04, D47):** each word has a listening-choice page in practice and a dictation item in the exam, whatever the outline intent says. Audio speaks the target's teaching display form, so audio and accepted answer stay aligned (dictation accepts the exam forms, which include the teaching form); each listening-choice page holds one item, so the voice check and help page apply per page. Artifact previews show the target's pronunciation text (IPA) with the item.
 
@@ -4002,3 +4002,4 @@ When publishing the agreed backlog, include relevant Mermaid flows as fenced `me
 | 0.65 | 2026-10-14 | P06-00: `docs/feedback.html` (UX feedback by item, with comments and implementation status) is deployed with the app; the index header has a **UX feedback** button and the page a **Back to the lessons** link. |
 | 0.66 | 2026-10-14 | P06-00: Phase 6 backlog reduced to P6-01, P6-02 and P6-06. The former P6-02 to P6-05 (#70–#73) are replaced by one issue, P6-02 "Implement the feedback according to the feedback page", whose scope is the section **Not implemented yet** of `docs/feedback.html`. |
 | 0.67 | 2026-10-14 | P06-00 (P6-02): a practice page with a vocabulary listening choice submits as soon as a written option is chosen, without a Check button (section 5, rule 4); dialogue listening choices, whose replies are only heard, keep Check. The feedback page gets a first section **Clarification needed**. Listening choices speak nothing when checked. Typed fields: no autocompletion, capitalisation, autocorrection or spell-check; the first field takes the cursor. The final score x / 100 moves from the results card to the top of the results sidebar. Exam countdown box with label and bar (#6); numbered task cards on exam pages with several typed answers (#26). Flask favicon. Start page outline: section minutes as stopwatch chips. Exam info page: time limits as stopwatch chips (#13); the learner copy says "questions" instead of "tasks". Shorter lessons (#1, D14, D49, D50): vocabulary 8–9 words (14–15 min), grammar at least 22 practice and 10 exam units (15 min), functions 4 expressions with every exercise type (16–17 min); outlines unchanged; generator prompts set to at most 15 minutes. |
+| 0.68 | 2026-10-15 | P6-02, feedback #12: the listening choice and the dictation play their word with a large speaker icon (accessible name “Listen”) instead of a “Listen” text button, like flashcards and matching (section 6, audio). |
