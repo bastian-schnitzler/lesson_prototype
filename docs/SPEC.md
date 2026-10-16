@@ -1,8 +1,108 @@
 # Lesson exercise prototype specification
 
-Status: **Draft 0.70 — P3-06: grammar course validation of the ten sample lessons**. Date: 2026-10-16.
+Status: **Draft 0.72 — P06-00: lesson session architecture**. Date: 2026-10-16.
 
 This document specifies the prototype and its phased implementation. It is the maintained requirements document: no separate requirements file exists. It does not authorize starting implementation before the specification review. The backlog is in [ISSUES.md](ISSUES.md) and published as GitHub issues in `bastian-schnitzler/lesson_prototype`.
+
+## Lesson session architecture
+
+This overview covers only what happens from the moment a lesson starts: how the lesson is loaded and turned into an attempt, what the browser keeps while the learner works, and which parts every lesson category shares. Details are in sections 5 (session, scoring, timing) and 6–9 (category flows); offline generation and the catalog are in sections 2–4.
+
+### From Start lesson to the results
+
+```mermaid
+flowchart TD
+    A["Start lesson: route #/lesson/id/play"] --> B{"Ready? outline entry valid,<br/>brief and content valid and current,<br/>category playable"}
+    B -->|No| X[Unavailable page with reasons]
+    B -->|Yes| C["Fetch brief + lesson content<br/>(vocabulary: brief only)"]
+    C --> D["Validate both again in the browser;<br/>vocabulary: derive the content from the brief"]
+    D --> E["buildPlan(content, brief, mother tongue)<br/>→ LessonPlan: pages and scorable units"]
+    E --> F{"Saved attempt for this lesson<br/>with the same content hash?"}
+    F -->|Yes| G[Start page offers Resume lesson]
+    F -->|No| H[Start page offers Continue]
+    G --> I[Session host with the saved record]
+    H --> J["startSession: new record<br/>(session ID, seed, mother tongue, page 0)"]
+    J --> I
+    I --> K["Every learner action → sessionReducer → new record<br/>→ saved to browser storage"]
+    K -->|next page| I
+    K -->|last exam page locked| L["Results: scores computed from plan + record,<br/>results menu, last-try score on the index"]
+```
+
+1. **Readiness.** The play route looks up the lesson in the manifest (built from the outlines, briefs and lesson files, section 3). It starts only when the outline entry, the brief and (except for vocabulary) the lesson content are valid and current and the category is playable (vocabulary, grammar, functions; reading not yet). Otherwise it lists the reasons. Nothing is generated at this point.
+2. **Load and validate.** The browser fetches the published JSON files and validates them again with the same schemas and checks as the build. A vocabulary lesson has no content file: `vocabularyLesson(brief)` derives its stages from the brief (D47). Grammar and function lessons read `content/lessons/<id>.json`.
+3. **Plan.** `buildPlan` flattens the content into a **lesson plan**: the concrete pages in order (with the exam info page in front of the exam), each with its items and its **units**. A unit is one scorable answer (one gap, one matching pair, one pronoun row, one word order) in one of four kinds: `text`, `choice`, `order` or `spot`. The plan resolves the mother tongue, accepted answers, explanations and time limits. It is rebuilt from the files on every load and never stored.
+4. **Start or resume.** The start page shows the lesson outline. Continue creates a new **session record** (`startSession`): a random session ID and shuffle seed, the content hash, the mother tongue fixed for the attempt, page 0. A saved active record with the same content hash is offered as Resume lesson instead; a record for changed content cannot be resumed.
+5. **Run.** The session host renders the current page. Every action (typing a draft, Check/Continue, turning a card, a countdown expiry, choosing a results entry) goes through one pure `sessionReducer(plan, record, action)`; the new record is saved to browser storage at once, so a reload resumes on the same page with the same answers, shuffles and deadlines.
+6. **Results.** When the last exam page locks, the record turns `completed` and the results page shows the final score, the exam answers and a menu of the scored exercises. The last-try score appears on the index until a full reload (D11).
+
+### Data kept while a lesson runs
+
+Everything stays in the learner's browser; there is no server and no account. Scores, progress and results are **derived**, never stored: they are recomputed from the plan and the record whenever they are shown.
+
+| Where | Key / owner | Content | Lifetime |
+| --- | --- | --- | --- |
+| Browser storage | `lesson-prototype:session:<lessonId>` | The **session record** of the current attempt (one per lesson), see below. | Until the lesson is restarted or storage is cleared; a completed record stays but cannot be resumed. |
+| Browser storage | `lessonPrototype.preferences.v1` | Mother tongue, interface language, autoplay switch (D45). | Across lessons and reloads. |
+| Memory | Lesson plan | Pages, units, accepted answers, explanations, limits; built from the files. | Rebuilt on every load. |
+| Memory | Last-try scores | The final score of each lesson completed since the app was loaded (index column). | Lost on a full reload (D11). |
+| Memory | Remaining exam time, voice status | Computed from the stored deadline and the browser's speech voices. | Recomputed every 250 ms / on voice changes. |
+
+The **session record** (`SessionRecord`, `src/domain/session/session.ts`):
+
+| Field | Meaning |
+| --- | --- |
+| `sessionId`, `lessonId`, `contentHash`, `lang`, `level` | Identity of the attempt; the hash ties it to the exact lesson files. |
+| `motherTongue`, `seed` | Fixed at start: the mother tongue of all prompts, and the seed of every shuffle (matching columns, choices, token banks), so resume and results show the same order. |
+| `startedAt`, `updatedAt`, `status`, `pageIndex`, `phase` | Where the learner is: active or completed, the current page, and `answering`, `feedback` (practice page checked) or `results`. |
+| `drafts` | Unlocked answers per unit ID (typed text, chosen option, token order, selected word and correction). |
+| `locked` | Per unit: the submitted response, its outcome (`fully_correct`, `orthography_only`, `incorrect`, `unanswered`), points, whether time ran out, the interface language at submission, and the gender chosen after a `des` answer. Locked answers never change. |
+| `completed`, `revealed` | Pages already finished (for duration-weighted progress) and presentation progress that must survive a reload: turned flashcards, shown dialogue lines. |
+| `exam` | Per exam page: start time, absolute deadline and timeout flag, so a reload cannot extend the countdown (section 5). |
+| `skippedNoVoice` | Listening pages skipped without a French voice; they are left out of scores and progress. |
+| `selection` | The results entry shown (final exam, an exam part or an exercise). |
+
+### Shared and category-specific parts
+
+The session is one pipeline for every category. A category adds its **item types**: how its content becomes units (a case in `buildPlan`) and how each item is drawn (a renderer in the registry). Everything that works on units, pages and records is shared.
+
+```mermaid
+flowchart LR
+    subgraph Category["Implemented per category"]
+        S["Schemas and validation<br/>(brief, content)"]
+        V["Lesson source:<br/>vocabulary derived from the brief,<br/>grammar/functions content file"]
+        U["Item types → units<br/>(cases in buildPlan)"]
+        R["Renderers for its item types<br/>+ start-page section"]
+    end
+    subgraph Shared["Shared by all categories"]
+        P["Lesson plan: pages, units<br/>(text, choice, order, spot)"]
+        SC["Scorer: answer classification,<br/>half credit, outcomes"]
+        RD["Session reducer and storage:<br/>drafts, lock, Continue, resume"]
+        T["Exam countdown, progress,<br/>score header, lesson navigation"]
+        C["Answer controls, feedback,<br/>speech and autoplay"]
+        RS["Results: weights, exam review,<br/>results menu"]
+    end
+    S --> V --> U --> P
+    P --> SC --> RD --> T
+    R --> C
+    RD --> RS
+```
+
+| Layer | Shared by all categories | Vocabulary only | Grammar only | Functions only |
+| --- | --- | --- | --- | --- |
+| Loading and readiness | Manifest, readiness reasons, fetch, browser re-validation (`PlayPage`, `validateBrief`/`validateContent`) | No content file: `vocabularyLesson(brief)` derives the six stages | Content file | Content file |
+| Schemas and checks | Common envelope, localized texts, accepted answers, provenance and hashes (`artifactCommon`) | Targets, groups, genders, exam forms (`schemas/vocabulary.ts`) | Rules, blocks, length and exam-coverage checks (`schemas/grammar.ts`) | Situation, roles, expressions, words (`schemas/functions.ts`) |
+| Plan | `buildPlan`, page roles (presentation, practice, exam), exam info page, unit kinds `text` / `choice` / `order` / `spot`; noun gender data on translation exam units | Group interleaving (introduction then flashcards per group) | New verbs; teaching block per page | Expression and word terms (`functionsTerms`) |
+| Scoring | `scoreUnit`, `classifyAnswer` (accents/case half credit, apostrophes, spaces), the plural-noun gender rule of translation exams (`des` + gender), 35 % practice / 65 % exam, rounding | – | – | – |
+| Session flow | `sessionReducer`, one Continue (Check → feedback → Continue), auto-submit of single choices, success flash, storage and resume | Required reveals: flashcards | Production-feedback placeholder (an item with no units) | Required reveals: flashcards and dialogue lines (Next line) |
+| Timing and progress | Absolute exam deadlines, countdown box, duration-weighted progress, live score header, lesson navigation sidebar | Listening exam pages start their countdown when the voice is ready | – | – |
+| Answer controls | `UnitsRenderer` with `TextControl`, `ChoiceControl`, `OrderControl`, `SpotControl`, `Gap`, inline and card feedback; `MatchingRenderer`; `GenderRenderer` | Introduction, flashcards, listening choice and dictation | Explanation with form table, pronoun–form matching (token bank), pronoun–form typing, error spotter, placeholder | Expression flashcards, model dialogue, dialogue gap choice, reply word order, listening reply, exam dialogue |
+| Audio | Speech synthesis, voice check, no-voice help page, autoplay | Listening tasks need a voice to start | Pronoun + form spoken together | Dialogue lines and replies |
+| Start page and results | Start page frame and outline, results card, exam review, results menu | Colour-coded word groups | New verbs table | Situation, roles and expressions |
+| Copy | Interface messages (en/fr/de), exercise instructions (`lessonCopy`) | – | – | – |
+
+Reused across categories rather than duplicated: matching (vocabulary pairs, grammar person boards, function matching), the gender page (vocabulary and functions), typed gaps, multiple-choice gaps, word order and the translation exam fields. A few item-type checks still sit in shared code where a category needs special handling: which pages need reveals before Continue, listening pages, the article hint of translation exams, and the exam part names in the lesson navigation.
+
+**Adding a category** (for example reading, section 9) means: its brief and content schemas and checks; either a content file or a derivation from the brief; a `buildPlan` case per new item type mapping it to the four unit kinds; a renderer per new item type in `rendererRegistry` (reusing the shared controls where they fit); its start-page section; and enabling it in `PLAYABLE_KINDS`. Scoring, the reducer, storage and resume, timing, progress, navigation and results then work without change.
 
 ## 1. Goal, inputs, and scope
 
@@ -3165,5 +3265,6 @@ CI does not call Gemini. Live generation and pedagogical review are separate aut
 | 0.67 | 2026-10-14 | P06-00 (P6-02): a practice page with a vocabulary listening choice submits as soon as a written option is chosen, without a Check button (section 5, rule 4); dialogue listening choices, whose replies are only heard, keep Check. The feedback page gets a first section **Clarification needed**. Listening choices speak nothing when checked. Typed fields: no autocompletion, capitalisation, autocorrection or spell-check; the first field takes the cursor. The final score x / 100 moves from the results card to the top of the results sidebar. Exam countdown box with label and bar (#6); numbered task cards on exam pages with several typed answers (#26). Flask favicon. Start page outline: section minutes as stopwatch chips. Exam info page: time limits as stopwatch chips (#13); the learner copy says "questions" instead of "tasks". Shorter lessons (#1, D14, D49, D50): vocabulary 8–9 words (14–15 min), grammar at least 22 practice and 10 exam units (15 min), functions 4 expressions with every exercise type (16–17 min); outlines unchanged; generator prompts set to at most 15 minutes. |
 | 0.68 | 2026-10-15 | P06-00 (feedback #9): the function gender page, now labelled **Gender**, lists only the nouns, as the vocabulary gender page since 0.64; words without a gender are left out and a lesson without nouns has no gender step (D50, section 8). The page estimate counts nouns only. Feedback items on `docs/feedback.html` are anchored as `#issue-<n>` by their sidebar number (section 2). Section 6, stage 4 no longer mentions words without a gender on the page or explanations in its overview. The three function test lessons are rewritten; only `fr-greetings-and-goodbyes` loses two words (`très bien`, `pas mal`) from its gender page. Vocabulary lessons without nouns also lose stage 4: the plain unscored overview (`vocabulary_overview`) is removed, so both categories skip the gender step the same way (D21, section 6). |
 | 0.69 | 2026-10-15 | P5-01: reading requirements (D54), revised after the product-owner review of #95. The reading flow becomes section 9, directly after the functions flow; the later sections are renumbered (UI and mockups 10, samples and review gates 11, phases 12) and the misplaced subsection "GitHub issue diagrams and mockups" moves to section 12. The design follows the simplified version of ft_transcendence #115: flashcards and matching on the vocabulary pages (the stage formerly called key words), a skim without blur whose question is answered from memory, multiple choice and true / false only, one ordering task on the word-order control, one exam page of 5 questions, one document layout instead of genre skins, no evidence marks. Review answers: shared 35 / 65 weights; skim countdown and correction view as exceptions to section 5; D18 exception for the exam limit; D53 applied without exception; skim time from the actual word count at a skim speed per level, stored in the lesson content; non-overlapping C1/C2 word ranges; genres extended to cover the outlines; language rules of the other categories; reused and new pages, page rules, item rows, audio, start page, results, saving and content review criteria specified; the ten fr/A1 reading entries as hand-written test lessons without separate definition files. Fourteen reading Salt mockups (every page of a lesson). Phase 5 backlog P5-02 to P5-07 added; the mockup refresh becomes P5-08 (#36). |
-| 0.70 | 2026-10-16 | P06-00: the vocabulary, grammar and function Salt mockups are replaced by screens rendered from the prototype itself (D30, section 10): `make screens` captures 42 screens (16 vocabulary, 14 grammar, 12 functions; new: vocabulary and grammar exam info, grammar person matching, function gender, translation exam and results) as a PNG shown inline in SPEC and a self-contained HTML snapshot; the 39 `.puml` sources are deleted; `make mockups-check` checks the screen files, SPEC blocks and README links; published issues show the committed PNG. |
 | 0.70 | 2026-10-16 | P3-06: P2-07 was closed as not planned, so the course validation covers the ten fr/A1 grammar samples; producing the other 38 stays open and blocks the phase 3 exit (section 7). New review criterion: one answer per exam gap (section 7). Pedagogical review fixes: the -er verb exam gaps name their verb, ambiguous exam gaps in subject pronouns, noun plurals and here/there/now/tomorrow get a deciding context (or accept the other right answer), no right distractor in a subject-pronoun choice, `j’ai` without a space in the avoir explanations, full stops after two negation gaps. A course audit (`tests/unit/grammar-course.test.tsx`) and real-content journeys (`tests/e2e/grammar-course.spec.ts`, Playwright project `course`) check all ten lessons. |
+| 0.71 | 2026-10-16 | P06-00: the vocabulary, grammar and function Salt mockups are replaced by screens rendered from the prototype itself (D30, section 10): `make screens` captures 42 screens (16 vocabulary, 14 grammar, 12 functions; new: vocabulary and grammar exam info, grammar person matching, function gender, translation exam and results) as a PNG shown inline in SPEC and a self-contained HTML snapshot; the 39 `.puml` sources are deleted; `make mockups-check` checks the screen files, SPEC blocks and README links; published issues show the committed PNG. |
+| 0.72 | 2026-10-16 | P06-00: new front section **Lesson session architecture** (before section 1): the steps from Start lesson to the results, what the browser stores while a lesson runs (the saved attempt, the preferences) and what it only derives (plan, scores, progress, remaining time), and which layers all lesson categories share versus what each category implements. Main carried two 0.70 entries after the P3-06 and rendered-screens merges; the rendered-screens entry is now 0.71. |
