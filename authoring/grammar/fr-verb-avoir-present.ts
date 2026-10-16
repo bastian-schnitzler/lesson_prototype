@@ -20,8 +20,10 @@ const why = (p: P, subject?: string) => {
 };
 const aNoAccent = L('With il, elle, on, avoir is a – without an accent; à with an accent grave is the preposition.', 'Avec il, elle, on, avoir devient a, sans accent ; à avec un accent grave est la préposition.', 'Zu il, elle, on gehört a, ohne Akzent; à mit Accent grave ist die Präposition.');
 const ontNotSont = (s: string) => L(`${s}: ils ont (avoir, liaison [z]) – ils sont belongs to être.`, `${s} : ils ont (avoir, liaison [z]) – ils sont appartient à être.`, `${s}: ils ont (avoir, Bindung [z]) – ils sont gehört zu être.`);
-const age = (s: string, form: string) => L(`French gives age with avoir + number + ans: ${s} ${form} … ans. Être is wrong here.`, `En français, l’âge se dit avec avoir + nombre + ans : ${s} ${form} … ans. Être est faux ici.`, `Das Alter steht im Französischen mit avoir + Zahl + ans: ${s} ${form} … ans. Être ist hier falsch.`);
-const have = (s: string, form: string) => L(`Possession uses avoir: ${s} ${form} + noun.`, `La possession s’exprime avec avoir : ${s} ${form} + nom.`, `Besitz drückt man mit avoir aus: ${s} ${form} + Nomen.`);
+/** Subject and form as written: an elided pronoun takes no space (j’ai). */
+const join = (s: string, form: string) => (s.endsWith('’') ? `${s}${form}` : `${s} ${form}`);
+const age = (s: string, form: string) => L(`French gives age with avoir + number + ans: ${join(s, form)} … ans. Être is wrong here.`, `En français, l’âge se dit avec avoir + nombre + ans : ${join(s, form)} … ans. Être est faux ici.`, `Das Alter steht im Französischen mit avoir + Zahl + ans: ${join(s, form)} … ans. Être ist hier falsch.`);
+const have = (s: string, form: string) => L(`Possession uses avoir: ${join(s, form)} + noun.`, `La possession s’exprime avec avoir : ${join(s, form)} + nom.`, `Besitz drückt man mit avoir aus: ${join(s, form)} + Nomen.`);
 const hint = (en: string, fr: string, de: string) => L(en, fr, de);
 
 export default {

@@ -77,10 +77,10 @@ export default {
       gt(X, 'un neveu → des', 'neveux', '', x('un neveu', 'des neveux')),
     ] },
     { pageId: 'exam-sentences', type: 'grammar_gap_typing', items: [
-      gt(SILENT, 'Les', 'étudiants', 'sont en classe.', silent('étudiant', 'étudiants')),
-      gt(SILENT, 'J’ai trois', 'cousines', 'à Lyon.', silent('cousine', 'cousines')),
-      gt(X, 'Les', 'oiseaux', 'chantent.', x('un oiseau', 'des oiseaux')),
-      gt(SILENT, 'Voici les', 'clés', 'de la maison.', silent('clé', 'clés')),
+      gt(SILENT, 'J’ai un ordinateur au bureau et deux', 'ordinateurs', 'à la maison.', silent('ordinateur', 'ordinateurs')),
+      gt(SILENT, 'Il y a une fenêtre dans la cuisine et trois', 'fenêtres', 'dans le salon.', silent('fenêtre', 'fenêtres')),
+      gt(X, 'Il y a un oiseau dans l’arbre et deux', 'oiseaux', 'sur le toit.', x('un oiseau', 'des oiseaux')),
+      gt(SILENT, 'J’ai une clé et tu as deux', 'clés', '.', silent('clé', 'clés')),
     ] },
   ],
 } satisfies LessonDefinition;

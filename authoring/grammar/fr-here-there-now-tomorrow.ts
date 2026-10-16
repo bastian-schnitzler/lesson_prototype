@@ -78,22 +78,22 @@ export default {
   ],
   exam: [
     { pageId: 'exam-place', type: 'grammar_gap_typing', items: [
-      gt(PLACE, 'Viens', 'ici', ', à côté de moi !', ici),
+      gt(PLACE, 'Viens', ['ici', 'là'], ', à côté de moi !', ici),
       gt(PLACE, 'La poste ? Elle est', 'là', ', au bout de la rue.', la),
-      gt(PLACE, 'Nous habitons', 'ici', 'depuis deux ans.', ici),
+      gt(PLACE, 'Nous habitons', ['ici', 'là'], 'depuis deux ans.', ici),
       gt(PLACE, 'Ta veste est', 'là', ', sur la chaise dans l’entrée.', la),
     ] },
     { pageId: 'exam-present', type: 'grammar_gap_typing', items: [
       gt(NOW, 'Hier, c’était dimanche.', cap('aujourd’hui'), ', c’est lundi.', aujourdhui),
-      gt(NOW, 'Je ne peux pas venir', 'maintenant', ', je travaille.', maintenant),
-      gt(NOW, 'Il fait froid', 'aujourd’hui', '.', aujourdhui),
-      gt(NOW, 'Le cours commence', 'maintenant', '.', maintenant),
+      gt(NOW, 'Je ne peux pas venir', 'maintenant', ': je suis sous la douche !', maintenant),
+      gt(NOW, 'Hier, c’était le 1er mai ;', 'aujourd’hui', ', c’est le 2 mai.', aujourdhui),
+      gt(NOW, 'Il est neuf heures pile : le cours commence', 'maintenant', '.', maintenant),
     ] },
     { pageId: 'exam-future', type: 'grammar_gap_typing', items: [
       gt(LATER, 'Aujourd’hui, c’est lundi.', cap('demain'), ', c’est mardi.', demain),
-      gt(LATER, 'Attends-moi, je reviens', 'tout de suite', '!', toutDeSuite),
-      gt(LATER, 'À', 'demain', ', les enfants !', demain),
-      gt(LATER, 'Les vacances arrivent', 'bientôt', '.', bientot),
+      gt(LATER, 'Ne pars pas, je reviens', 'tout de suite', ', dans une seconde !', toutDeSuite),
+      gt(LATER, 'Bonne nuit et à', 'demain', 'matin !', demain),
+      gt(LATER, 'Les vacances arrivent', 'bientôt', ': dans une semaine !', bientot),
     ] },
   ],
 } satisfies LessonDefinition;

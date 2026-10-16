@@ -102,14 +102,14 @@ export default {
       pt(PL, [['nous (jouer)', 'jouons', why('nous', 'jouer')], ['vous (jouer)', 'jouez', why('vous', 'jouer')], ['elles (jouer)', 'jouent', why('ils', 'jouer', 'Elles')]]),
     ] },
     { pageId: 'exam-singular', type: 'grammar_gap_typing', items: [
-      gt(SG, 'Je', 'travaille', 'à la poste.', why('je', 'travailler')),
-      gt(SILENT, 'Tu', 'regardes', 'la carte ?', silent('tu regardes', 'tu')),
-      gt(SG, 'Elle', 'habite', 'à Montréal.', why('il', 'habiter', 'Elle')),
+      gt(SG, 'travailler → Je', 'travaille', 'à la poste.', why('je', 'travailler')),
+      gt(SILENT, 'regarder → Tu', 'regardes', 'la carte ?', silent('tu regardes', 'tu')),
+      gt(SG, 'habiter → Elle', 'habite', 'à Montréal.', why('il', 'habiter', 'Elle')),
     ] },
     { pageId: 'exam-plural', type: 'grammar_gap_typing', items: [
-      gt(PL, 'Nous', 'travaillons', 'ensemble.', why('nous', 'travailler')),
-      gt(PL, 'Vous', 'aimez', 'le café ?', why('vous', 'aimer')),
-      gt(PL, 'Ils', 'parlent', 'chinois.', why('ils', 'parler')),
+      gt(PL, 'travailler → Nous', 'travaillons', 'ensemble.', why('nous', 'travailler')),
+      gt(PL, 'aimer → Vous', 'aimez', 'le café ?', why('vous', 'aimer')),
+      gt(PL, 'parler → Ils', 'parlent', 'chinois.', why('ils', 'parler')),
     ] },
   ],
 } satisfies LessonDefinition;

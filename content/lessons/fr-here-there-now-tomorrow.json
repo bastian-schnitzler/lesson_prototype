@@ -1303,7 +1303,8 @@
               "after": ", à côté de moi !",
               "accepted": {
                 "answers": [
-                  "ici"
+                  "ici",
+                  "là"
                 ]
               },
               "hint": null,
@@ -1343,7 +1344,8 @@
               "after": "depuis deux ans.",
               "accepted": {
                 "answers": [
-                  "ici"
+                  "ici",
+                  "là"
                 ]
               },
               "hint": null,
@@ -1413,7 +1415,7 @@
                 "rule-time-adverbs-present"
               ],
               "before": "Je ne peux pas venir",
-              "after": ", je travaille.",
+              "after": ": je suis sous la douche !",
               "accepted": {
                 "answers": [
                   "maintenant"
@@ -1432,8 +1434,8 @@
               "ruleIds": [
                 "rule-time-adverbs-present"
               ],
-              "before": "Il fait froid",
-              "after": ".",
+              "before": "Hier, c’était le 1er mai ;",
+              "after": ", c’est le 2 mai.",
               "accepted": {
                 "answers": [
                   "aujourd’hui"
@@ -1452,7 +1454,7 @@
               "ruleIds": [
                 "rule-time-adverbs-present"
               ],
-              "before": "Le cours commence",
+              "before": "Il est neuf heures pile : le cours commence",
               "after": ".",
               "accepted": {
                 "answers": [
@@ -1505,8 +1507,8 @@
               "ruleIds": [
                 "rule-time-adverbs-future"
               ],
-              "before": "Attends-moi, je reviens",
-              "after": "!",
+              "before": "Ne pars pas, je reviens",
+              "after": ", dans une seconde !",
               "accepted": {
                 "answers": [
                   "tout de suite"
@@ -1525,8 +1527,8 @@
               "ruleIds": [
                 "rule-time-adverbs-future"
               ],
-              "before": "À",
-              "after": ", les enfants !",
+              "before": "Bonne nuit et à",
+              "after": "matin !",
               "accepted": {
                 "answers": [
                   "demain"
@@ -1546,7 +1548,7 @@
                 "rule-time-adverbs-future"
               ],
               "before": "Les vacances arrivent",
-              "after": ".",
+              "after": ": dans une semaine !",
               "accepted": {
                 "answers": [
                   "bientôt"
@@ -1569,10 +1571,10 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "content-v4",
-    "generatedAt": "2026-10-14T16:27:37.843Z",
+    "generatedAt": "2026-10-16T17:56:30.105Z",
     "inputHashes": {
       "outline": "0c4fac30a03f1b75a15894cc0ab8190bcf7cc3661c04d68c6a668d5eb2ae7a55",
-      "brief": "4c55b906ded5dbe333b7a4f9499c55e2ab8cef873be6ade83f1bcce5790e0150"
+      "brief": "42fe09ba66b636f058b419e0ee73dc4377f7c9521d255d6e7a206c095b996c66"
     }
   }
 }

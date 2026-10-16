@@ -1524,7 +1524,7 @@
               "ruleIds": [
                 "rule-er-singular"
               ],
-              "before": "Je",
+              "before": "travailler → Je",
               "after": "à la poste.",
               "accepted": {
                 "answers": [
@@ -1544,7 +1544,7 @@
               "ruleIds": [
                 "rule-silent-endings"
               ],
-              "before": "Tu",
+              "before": "regarder → Tu",
               "after": "la carte ?",
               "accepted": {
                 "answers": [
@@ -1564,7 +1564,7 @@
               "ruleIds": [
                 "rule-er-singular"
               ],
-              "before": "Elle",
+              "before": "habiter → Elle",
               "after": "à Montréal.",
               "accepted": {
                 "answers": [
@@ -1596,7 +1596,7 @@
               "ruleIds": [
                 "rule-er-plural"
               ],
-              "before": "Nous",
+              "before": "travailler → Nous",
               "after": "ensemble.",
               "accepted": {
                 "answers": [
@@ -1616,7 +1616,7 @@
               "ruleIds": [
                 "rule-er-plural"
               ],
-              "before": "Vous",
+              "before": "aimer → Vous",
               "after": "le café ?",
               "accepted": {
                 "answers": [
@@ -1636,7 +1636,7 @@
               "ruleIds": [
                 "rule-er-plural"
               ],
-              "before": "Ils",
+              "before": "parler → Ils",
               "after": "chinois.",
               "accepted": {
                 "answers": [
@@ -1660,10 +1660,10 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "content-v4",
-    "generatedAt": "2026-10-14T16:27:37.715Z",
+    "generatedAt": "2026-10-16T17:56:28.761Z",
     "inputHashes": {
       "outline": "4bae78ce67d7f31114d89dc0592f67d49937b48f4040d52ddbd1eed5560181b1",
-      "brief": "68c39b7ed99df9c856b45a91a2b13b9c3bad2c810c7a1f42768a8ffcc9391e51"
+      "brief": "0cd1aa32091aafad96bc29a0aa02115b6755f031e2c8fd2ba3303836a1f8a397"
     }
   }
 }

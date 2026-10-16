@@ -198,7 +198,7 @@ export function PronounMatchRenderer(props: RendererProps) {
           const outcome = checked ? props.locked[u.id]?.outcome : undefined;
           const state = outcome ? (outcome === 'fully_correct' ? ' is-right' : ' is-wrong') : '';
           return (
-            <li key={u.id} className={`form-row${state}`}>
+            <li key={u.id} className={`form-row${state}`} data-unit={u.id}>
               <span className="form-pronoun" lang={plan.lang}>{u.prompt.learning}</span>
               <button type="button" data-drop={u.id} className={`form-slot${tokenId ? ' is-filled' : ''}${state}`} disabled={!editable}
                 aria-pressed={selected?.kind === 'row' && selected.id === u.id}
@@ -241,7 +241,7 @@ export function PronounTypingRenderer(props: RendererProps) {
       {units.map((u) => {
         const outcome = mode === 'feedback' ? props.locked[u.id]?.outcome : undefined;
         return (
-          <li key={u.id} className="form-row">
+          <li key={u.id} className="form-row" data-unit={u.id}>
             <span className="form-pronoun" lang={plan.lang}>{u.prompt.learning}</span>
             <TextControl unit={u} props={rowProps} label={t('session.formFor', { pronoun: u.prompt.learning ?? '' })} />
             {outcome && outcome !== 'fully_correct' && <p className="row-explanation">{u.explanation[locale]}</p>}
