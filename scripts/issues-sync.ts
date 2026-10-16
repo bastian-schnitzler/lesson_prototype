@@ -115,7 +115,7 @@ export function parseAssets(md: string): Map<string, Assets> {
     for (const id of ids.match(/P\d-\d\d/g) ?? []) {
       const a = out.get(id) ?? { sections: [], mockups: [] };
       for (const [, s] of flows.matchAll(/section (\d+)/g)) if (!a.sections.includes(s)) a.sections.push(s);
-      for (const [, label, path] of mockups.matchAll(/\[([^\]]+)\]\((mockups\/[^)]+\.puml)\)/g)) {
+      for (const [, label, path] of mockups.matchAll(/\[([^\]]+)\]\((mockups\/[^)]+\.(?:puml|png))\)/g)) {
         if (!a.mockups.some(([, p]) => p === path)) a.mockups.push([label, path]);
       }
       out.set(id, a);
@@ -174,6 +174,12 @@ export function issueBody(issue: BacklogIssue, ctx: BodyContext): string {
     parts.push(`### Flow — [SPEC section ${s}](${blob}/docs/SPEC.md)`, '', '```mermaid', ctx.mermaid.get(s)!.trimEnd(), '```', '');
   }
   for (const [label, path] of a?.mockups ?? []) {
+    if (path.endsWith('.png')) {
+      // A rendered screen (scripts/screens.ts): the committed picture and its HTML snapshot.
+      const html = path.replace(/\.png$/, '.html');
+      parts.push(`### Screen — ${label}`, '', `![${label}](${blob}/docs/${path}?raw=true)`, '', `Rendered from the prototype: [PNG](${blob}/docs/${path}) · [HTML snapshot](${blob}/docs/${html})`, '');
+      continue;
+    }
     const src = ctx.readSource(path);
     parts.push(
       `### Mockup — ${label}`,
