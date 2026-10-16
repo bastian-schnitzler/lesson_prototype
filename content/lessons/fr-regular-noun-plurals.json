@@ -1610,18 +1610,18 @@
               "ruleIds": [
                 "rule-silent-plural"
               ],
-              "before": "Les",
-              "after": "sont en classe.",
+              "before": "J’ai un ordinateur au bureau et deux",
+              "after": "à la maison.",
               "accepted": {
                 "answers": [
-                  "étudiants"
+                  "ordinateurs"
                 ]
               },
               "hint": null,
               "answerExplanation": {
-                "en": "étudiant and étudiants sound the same: the plural -s is silent, so only the article (les, des) is heard – but the -s is written.",
-                "fr": "étudiant et étudiants se prononcent pareil : le -s du pluriel est muet, on entend seulement l’article (les, des) – mais on écrit le -s.",
-                "de": "étudiant und étudiants klingen gleich: Das Plural-s ist stumm, man hört nur den Artikel (les, des) – geschrieben wird das -s aber."
+                "en": "ordinateur and ordinateurs sound the same: the plural -s is silent, so only the article (les, des) is heard – but the -s is written.",
+                "fr": "ordinateur et ordinateurs se prononcent pareil : le -s du pluriel est muet, on entend seulement l’article (les, des) – mais on écrit le -s.",
+                "de": "ordinateur und ordinateurs klingen gleich: Das Plural-s ist stumm, man hört nur den Artikel (les, des) – geschrieben wird das -s aber."
               },
               "itemId": "exam-sentences-1"
             },
@@ -1630,18 +1630,18 @@
               "ruleIds": [
                 "rule-silent-plural"
               ],
-              "before": "J’ai trois",
-              "after": "à Lyon.",
+              "before": "Il y a une fenêtre dans la cuisine et trois",
+              "after": "dans le salon.",
               "accepted": {
                 "answers": [
-                  "cousines"
+                  "fenêtres"
                 ]
               },
               "hint": null,
               "answerExplanation": {
-                "en": "cousine and cousines sound the same: the plural -s is silent, so only the article (les, des) is heard – but the -s is written.",
-                "fr": "cousine et cousines se prononcent pareil : le -s du pluriel est muet, on entend seulement l’article (les, des) – mais on écrit le -s.",
-                "de": "cousine und cousines klingen gleich: Das Plural-s ist stumm, man hört nur den Artikel (les, des) – geschrieben wird das -s aber."
+                "en": "fenêtre and fenêtres sound the same: the plural -s is silent, so only the article (les, des) is heard – but the -s is written.",
+                "fr": "fenêtre et fenêtres se prononcent pareil : le -s du pluriel est muet, on entend seulement l’article (les, des) – mais on écrit le -s.",
+                "de": "fenêtre und fenêtres klingen gleich: Das Plural-s ist stumm, man hört nur den Artikel (les, des) – geschrieben wird das -s aber."
               },
               "itemId": "exam-sentences-2"
             },
@@ -1650,8 +1650,8 @@
               "ruleIds": [
                 "rule-plural-x"
               ],
-              "before": "Les",
-              "after": "chantent.",
+              "before": "Il y a un oiseau dans l’arbre et deux",
+              "after": "sur le toit.",
               "accepted": {
                 "answers": [
                   "oiseaux"
@@ -1670,8 +1670,8 @@
               "ruleIds": [
                 "rule-silent-plural"
               ],
-              "before": "Voici les",
-              "after": "de la maison.",
+              "before": "J’ai une clé et tu as deux",
+              "after": ".",
               "accepted": {
                 "answers": [
                   "clés"
@@ -1694,10 +1694,10 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "content-v4",
-    "generatedAt": "2026-10-14T16:28:14.824Z",
+    "generatedAt": "2026-10-16T17:56:29.661Z",
     "inputHashes": {
       "outline": "7ec06c9c9d6503a0efcef1e9c87425beb5aa2b4d82e78bb0e7fe958bbaa5f8d5",
-      "brief": "fa17fd1cec63ee6aec3077a39e727ea21822e1ad2bf3f4ce72e0e14daf02df9e"
+      "brief": "fa7d1931a3af00cbc08ceee76f9098b8f76f30aa00153683b41539ae6fd19016"
     }
   }
 }

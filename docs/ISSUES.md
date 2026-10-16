@@ -781,15 +781,17 @@ GitHub: [#31](https://github.com/bastian-schnitzler/lesson_prototype/issues/31).
 
 Milestone: **Phase 3**.
 
-Scope: integrate explanation/practice blocks, correction explanations, production placeholder, timed exam, and final-results menu; validate all 48 grammar lessons (the remaining 38 are authored in P2-07) with the full phase 3 interactions.
+Scope: integrate explanation/practice blocks, correction explanations, production placeholder, timed exam, and final-results menu; validate the grammar lessons with the full phase 3 interactions. P2-07, which was to write the remaining 38 lessons, was closed as not planned (2026-10-13), so this issue validates the ten fr/A1 grammar samples (product-owner decision, 2026-10-16); producing the other 38 stays open (SPEC section 7).
 
 Acceptance:
 
-- All 48 grammar lessons have valid playable content, appropriate 2–4 blocks, and complete exam coverage.
+- All ten grammar sample lessons have valid playable content, appropriate 2–4 blocks, and complete exam coverage.
 - Audit all artifacts for supported renderer types, valid IDs/references/answers, and current hashes.
 - Pedagogical review samples different topics and irregular forms; resolve flagged content issues.
 - End-to-end tests cover conjugation, article/gap, syntax/word-order, the production placeholder, practice confirmation, weighted progress, timed mixed exam, post-exam review, deadline persistence, and accurate final scores.
 - Rebuild/deploy the updated static content and verify representative Pages journeys.
+
+Outcome (2026-10-16): a course audit (`tests/unit/grammar-course.test.tsx`) checks that exactly the ten samples have content (valid, current hashes), 2–4 blocks with 2–4 exercises, registered renderers only, every rule in the exam, and plays each lesson through the session reducer and scorer: all right gives 100, all wrong 0, every listed answer counts in full, every page renders, and prompts and explanations exist for every mother tongue. Real-content journeys (`tests/e2e/grammar-course.spec.ts`, new Playwright project `course` serving `content/`) play every sample to the results with a solver that follows the saved session: avoir with all seven exercise types, weighted progress per page, the placeholder and the brief's countdown on each exam page (100 / 100); definite articles with practice confirmation, an exam deadline kept across a reload, half credit and an exact final score; yes/no questions with wrong exam word orders and the answer review; the other seven to 100 / 100. Unit rows carry `data-unit` for the solver. The pedagogical review fixed ambiguous exam gaps (new SPEC review criterion "one answer per exam gap"): the -er verb exam names its verbs, subject pronouns, noun plurals and here/there/now/tomorrow got deciding contexts (`là` also counts for `ici`), a right distractor (`Il habite`) was replaced, `j’ai` lost a stray space in the avoir explanations, two negation gaps got their full stop, and the être explanations no longer say "Il is … (like il)".
 
 Dependencies: P3-05, P1-02, P2-07.
 

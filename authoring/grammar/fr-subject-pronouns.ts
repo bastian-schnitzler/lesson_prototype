@@ -36,7 +36,7 @@ export default {
         { id: 'ex-singular-choice', type: 'grammar_gap_choice', items: [
           gc(SG, '', 'Je', ['Tu', 'Il', 'Nous'], 'suis étudiant.', x('Suis goes with je: je suis.', 'Suis va avec je : je suis.', 'Suis gehört zu je: je suis.')),
           gc(SG, '', 'Tu', ['Je', 'Elle', 'Vous'], 'es fatigué, Marc ?', x('Es goes with tu, and Marc is a friend: tu es.', 'Es va avec tu, et Marc est un ami : tu es.', 'Es gehört zu tu, und Marc ist ein Freund: tu es.')),
-          gc(SG, '', 'J’', ['Je', 'Tu', 'Il'], 'habite à Nice.', jElision),
+          gc(SG, '', 'J’', ['Je', 'Tu', 'Nous'], 'habite à Nice.', jElision),
         ] },
         { id: 'ex-singular-typing', type: 'grammar_gap_typing', items: [
           gt(SG, 'Thomas est mon ami.', cap('il'), 'est sympa.', il('Thomas')),
@@ -90,13 +90,13 @@ export default {
       gt(SG, 'Voici Nicolas.', cap('il'), 'est italien.', il('Nicolas')),
       gt(SG, 'Voici Claire.', cap('elle'), 'est infirmière.', elle('Claire')),
       gt(SG, '', cap('je'), 'suis fatigué.', je),
-      gt(SG, '', cap('j’'), 'habite à Marseille.', jElision),
+      gt(SG, 'Moi,', 'j’', 'habite à Marseille.', jElision),
     ] },
     { pageId: 'exam-plural', type: 'grammar_gap_typing', items: [
       gt(PL, 'Mes frères ?', cap('ils'), 'sont grands.', ils('Mes frères')),
       gt(PL, 'Mes sœurs ?', cap('elles'), 'sont petites.', elles('Mes sœurs')),
       gt(PL, 'Lui et moi,', 'nous', 'parlons japonais.', nous),
-      gt(ON, 'Le samedi,', 'on', 'est à la maison.', on),
+      gt(ON, 'Ma famille et moi,', 'on', 'est à la maison le samedi.', on),
     ] },
     { pageId: 'exam-tu-vous', type: 'grammar_gap_typing', items: [
       gt(TUVOUS, 'Bonjour madame,', 'vous', 'êtes française ?', vousPolite),

@@ -50,7 +50,7 @@ typecheck: node_modules/.package-lock.json ## Type-check the app, scripts and te
 test: node_modules/.package-lock.json typecheck catalog ## Run type checks, catalog validation, unit and component tests
 	$(NPM) exec -- vitest run
 
-test-e2e: node_modules/.package-lock.json ## Run browser tests against fixture content (optional E2E_WORKERS)
+test-e2e: node_modules/.package-lock.json ## Run browser tests against fixture content and the real course (project course; optional E2E_WORKERS)
 	$(NPM) exec -- playwright test $(if $(E2E_WORKERS),--workers $(E2E_WORKERS),)
 
 test-all: mockups-check test test-e2e ## Run mockup parity, unit/component and end-to-end tests

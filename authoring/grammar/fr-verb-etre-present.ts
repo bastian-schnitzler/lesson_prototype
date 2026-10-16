@@ -34,7 +34,7 @@ export default {
         ] },
         { id: 'ex-sg-typing', type: 'grammar_gap_typing', items: [
           gt(SG, 'Je', 'suis', 'canadienne.', why('je'), hintPerson('être, 1st person singular', 'être, 1re personne du singulier', 'être, 1. Person Singular')),
-          gt(SG, 'Il', 'est', 'cuisinier.', why('il', 'Il'), hintPerson('être, 3rd person singular', 'être, 3e personne du singulier', 'être, 3. Person Singular')),
+          gt(SG, 'Il', 'est', 'cuisinier.', why('il'), hintPerson('être, 3rd person singular', 'être, 3e personne du singulier', 'être, 3. Person Singular')),
           gt(SG, 'Tu', 'es', 'malade ?', why('tu'), hintPerson('être, 2nd person singular', 'être, 2e personne du singulier', 'être, 2. Person Singular')),
         ] },
         { id: 'ex-sg-spot', type: 'grammar_error_spotter', items: [
@@ -79,7 +79,7 @@ export default {
   ],
   exam: [
     { pageId: 'exam-forms', type: 'grammar_pronoun_form_typing', items: [
-      pt([...SG, ...PL], [['je', 'suis', why('je')], ['tu', 'es', why('tu')], ['il', 'est', why('il', 'Il')]]),
+      pt([...SG, ...PL], [['je', 'suis', why('je')], ['tu', 'es', why('tu')], ['il', 'est', why('il')]]),
       pt(PL, [['nous', 'sommes', why('nous')], ['vous', 'êtes', vousAccent], ['elles', 'sont', why('ils', 'Elles')]]),
     ] },
     { pageId: 'exam-singular', type: 'grammar_gap_typing', items: [
