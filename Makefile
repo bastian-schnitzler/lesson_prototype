@@ -14,7 +14,7 @@ NODE ?= node
 NPM ?= npm
 
 .DEFAULT_GOAL := help
-.PHONY: help install run catalog typecheck test test-e2e test-all mockups-sync mockups-check issues-sync \
+.PHONY: help install run catalog typecheck test test-e2e test-all mockups-sync mockups-check screens issues-sync \
 	build preview check-dist smoke brief briefs-missing sample-briefs generate generate-missing sample-lessons
 
 help: ## Show available targets, arguments and configuration
@@ -55,11 +55,14 @@ test-e2e: node_modules/.package-lock.json ## Run browser tests against fixture c
 
 test-all: mockups-check test test-e2e ## Run mockup parity, unit/component and end-to-end tests
 
-mockups-sync: node_modules/.package-lock.json ## Copy every docs/mockups .puml source into its SPEC.md code fence
+mockups-sync: node_modules/.package-lock.json ## Copy every docs/mockups .puml source into its SPEC.md code fence and refresh the rendered-screen blocks
 	$(NODE) scripts/mockups.ts sync
 
-mockups-check: node_modules/.package-lock.json ## Fail on stale, missing or orphaned SPEC mockup fences or non-source files
+mockups-check: node_modules/.package-lock.json ## Fail on stale, missing or orphaned SPEC mockup fences or screen blocks, missing screens or other files
 	$(NODE) scripts/mockups.ts check
+
+screens: node_modules/.package-lock.json ## Capture lesson screens from the running prototype as PNG + HTML under docs/mockups (ONLY=<path-prefix>)
+	$(NODE) scripts/screens.ts $(if $(ONLY),--only "$(ONLY)",)
 
 build: node_modules/.package-lock.json ## Validate outlines and build dist/ (index.html, assets, content, manifest) for Pages
 	$(NODE) scripts/build.ts
