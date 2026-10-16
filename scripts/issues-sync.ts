@@ -101,7 +101,8 @@ export function parseMermaid(spec: string): Map<string, string> {
   const out = new Map<string, string>();
   for (const m of spec.matchAll(/```mermaid\n([\s\S]*?)```/g)) {
     const sections = [...spec.slice(0, m.index).matchAll(/^## (\d+)\./gm)];
-    out.set(sections[sections.length - 1][1], m[1]);
+    // Diagrams before section 1 (the session architecture overview) belong to no issue section.
+    if (sections.length) out.set(sections[sections.length - 1][1], m[1]);
   }
   return out;
 }
