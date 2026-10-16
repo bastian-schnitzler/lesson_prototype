@@ -63,7 +63,18 @@ The **session record** (`SessionRecord`, `src/domain/session/session.ts`):
 
 ### Shared and category-specific parts
 
-The session is one pipeline for every category. A category adds its **item types**: how its content becomes units (a case in `buildPlan`) and how each item is drawn (a renderer in the registry). Everything that works on units, pages and records is shared.
+The session is one pipeline for every category. Item types are named per category (`vocabulary_…`, `grammar_…`, `function_…`) because their content schemas differ, but most of them map to **shared exercise renderers** in `rendererRegistry`: a category adds a `buildPlan` case per item type and points it at an existing renderer, and needs its own renderer only for an exercise no other category has. Everything that works on units, pages and records is shared.
+
+| Exercise renderer | Used by item types | Shared by |
+| --- | --- | --- |
+| `UnitsRenderer` (typed gap, multiple choice, word order, error spotter, translation field, with inline and card feedback) | `vocabulary_typed_gap`, `vocabulary_listening_choice`, `vocabulary_translation_exam`, `vocabulary_listening_dictation`, `grammar_gap_choice`, `grammar_gap_typing`, `grammar_word_order`, `grammar_error_spotter`, `function_translation_exam` | all three |
+| `UnitsRenderer` inside a dialogue context (the line or reply above the task) | `function_word_order`, `function_dialogue_gap_choice` | functions, on the shared controls |
+| `Gap` + `TextControl` inside dialogue lines | `function_dialogue_gap_typing` | functions, on the shared controls |
+| `MatchingRenderer` (two columns, pairs, curves, slide after Check) | `vocabulary_matching`, `grammar_person_matching`, `function_matching` | all three |
+| `GenderRenderer` (masculine/feminine per noun) | `vocabulary_gender_select`, `function_gender_select` | vocabulary, functions |
+| `IntroductionRenderer`, `FlashcardsRenderer` | `vocabulary_introduction`, `vocabulary_flashcards` | vocabulary only |
+| `ExplanationRenderer`, `PlaceholderRenderer`, `PronounMatchRenderer`, `PronounTypingRenderer` | `grammar_explanation`, `production_feedback_placeholder`, `grammar_pronoun_form_match`, `grammar_pronoun_form_typing` | grammar only |
+| `FunctionFlashcardsRenderer`, `DialogueRenderer`, `ListeningReplyRenderer` | `function_flashcards`, `function_dialogue`, `function_listening_choice` | functions only |
 
 ```mermaid
 flowchart LR
@@ -95,14 +106,14 @@ flowchart LR
 | Scoring | `scoreUnit`, `classifyAnswer` (accents/case half credit, apostrophes, spaces), the plural-noun gender rule of translation exams (`des` + gender), 35 % practice / 65 % exam, rounding | – | – | – |
 | Session flow | `sessionReducer`, one Continue (Check → feedback → Continue), auto-submit of single choices, success flash, storage and resume | Required reveals: flashcards | Production-feedback placeholder (an item with no units) | Required reveals: flashcards and dialogue lines (Next line) |
 | Timing and progress | Absolute exam deadlines, countdown box, duration-weighted progress, live score header, lesson navigation sidebar | Listening exam pages start their countdown when the voice is ready | – | – |
-| Answer controls | `UnitsRenderer` with `TextControl`, `ChoiceControl`, `OrderControl`, `SpotControl`, `Gap`, inline and card feedback; `MatchingRenderer`; `GenderRenderer` | Introduction, flashcards, listening choice and dictation | Explanation with form table, pronoun–form matching (token bank), pronoun–form typing, error spotter, placeholder | Expression flashcards, model dialogue, dialogue gap choice, reply word order, listening reply, exam dialogue |
+| Exercise renderers (table above) | `UnitsRenderer` with `TextControl`, `ChoiceControl`, `OrderControl`, `SpotControl`, `Gap`, inline and card feedback: typed and multiple-choice gaps, word order, error spotter, listening choice and dictation, translation exam; `MatchingRenderer`; `GenderRenderer` (not grammar) | Introduction, flashcards | Explanation with form table, pronoun–form matching (token bank), pronoun–form typing, placeholder | Expression flashcards, model dialogue, listening reply; dialogue context around shared controls |
 | Audio | Speech synthesis, voice check, no-voice help page, autoplay | Listening tasks need a voice to start | Pronoun + form spoken together | Dialogue lines and replies |
 | Start page and results | Start page frame and outline, results card, exam review, results menu | Colour-coded word groups | New verbs table | Situation, roles and expressions |
 | Copy | Interface messages (en/fr/de), exercise instructions (`lessonCopy`) | – | – | – |
 
-Reused across categories rather than duplicated: matching (vocabulary pairs, grammar person boards, function matching), the gender page (vocabulary and functions), typed gaps, multiple-choice gaps, word order and the translation exam fields. A few item-type checks still sit in shared code where a category needs special handling: which pages need reveals before Continue, listening pages, the article hint of translation exams, and the exam part names in the lesson navigation.
+A few item-type checks still sit in shared code where a category needs special handling: which pages need reveals before Continue, listening pages, the article hint of translation exams, and the exam part names in the lesson navigation.
 
-**Adding a category** (for example reading, section 9) means: its brief and content schemas and checks; either a content file or a derivation from the brief; a `buildPlan` case per new item type mapping it to the four unit kinds; a renderer per new item type in `rendererRegistry` (reusing the shared controls where they fit); its start-page section; and enabling it in `PLAYABLE_KINDS`. Scoring, the reducer, storage and resume, timing, progress, navigation and results then work without change.
+**Adding a category** (for example reading, section 9) means: its brief and content schemas and checks; either a content file or a derivation from the brief; a `buildPlan` case per new item type mapping it to the four unit kinds; a `rendererRegistry` entry per new item type, pointing at a shared renderer where the exercise exists already and at a new renderer only otherwise; its start-page section; and enabling it in `PLAYABLE_KINDS`. Scoring, the reducer, storage and resume, timing, progress, navigation and results then work without change.
 
 ## 1. Goal, inputs, and scope
 
