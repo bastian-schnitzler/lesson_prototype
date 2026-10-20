@@ -134,9 +134,9 @@ export function skipsFeedbackWhenCorrect(page: PlanPage): boolean {
     && page.items.every((item) => isMatchingItem(item.type) || item.type === 'grammar_pronoun_form_typing' || page.units.filter((u) => u.itemId === item.itemId).length === 1);
 }
 
-/** Items shown on the matching board: vocabulary, person (P3-02 review) and function matching (P4-04). */
+/** Items shown on the matching board: vocabulary, person (P3-02 review), function (P4-04) and reading key-word matching (P5-04). */
 export function isMatchingItem(type: string): boolean {
-  return type === 'vocabulary_matching' || type === 'grammar_person_matching' || type === 'function_matching';
+  return type === 'vocabulary_matching' || type === 'grammar_person_matching' || type === 'function_matching' || type === 'reading_keyword_matching';
 }
 
 /** Such pages answered fully correctly go straight on (after a green flash); feedback would only repeat the answers. */
@@ -146,13 +146,14 @@ export function skipsFeedback(page: PlanPage, r: Pick<SessionRecord, 'locked'>):
 
 /**
  * Presentation keys a page needs before Continue: every flashcard turned once (P2-02, function cards
- * P4-04) and every line of a function dialogue shown (the first line is shown from the start).
+ * P4-04, reading key words P5-04) and every line of a function dialogue shown (the first line is shown from the start).
  */
 export function requiredReveals(page: PlanPage): { itemKey: string; keys: string[] }[] {
   return page.items.flatMap((item) => {
     const itemKey = `${page.pageId}/${item.itemId}`;
     if (item.type === 'vocabulary_flashcards') return [{ itemKey, keys: item.targetIds }];
     if (item.type === 'function_flashcards') return [{ itemKey, keys: item.ids }];
+    if (item.type === 'reading_flashcards') return [{ itemKey, keys: item.keywordIds }];
     if (item.type === 'function_dialogue') return [{ itemKey, keys: item.lines.slice(1).map((l) => l.lineId) }];
     return [];
   });

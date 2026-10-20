@@ -4,6 +4,7 @@ import { useI18n } from '../app/context.tsx';
 import type { MessageKey } from '../i18n/messages.ts';
 import { RichText } from '../components/RichText.tsx';
 import { seededOrder, type LessonPlan, type PlanUnit } from '../domain/session/plan.ts';
+import { isMatchingItem } from '../domain/session/session.ts';
 import type { Locale } from '../schemas/common.ts';
 import type { VocabularyTarget } from '../schemas/vocabulary.ts';
 import { ListenButton, type RendererProps } from './controls.tsx';
@@ -28,19 +29,21 @@ export function IntroductionRenderer({ item, plan }: RendererProps) {
  * shows the mother-tongue meaning; the flip button turns it to the French side only (teaching form,
  * gender, audio, context) without changing its size, and back again. The first flip of each card
  * is stored in the session, so progress survives a resume; the page completes once every card was
- * turned at least once.
+ * turned at least once. Reading lessons show their key words on the same cards (P5-04): the meaning in
+ * front; the key word with its speaker and its explanation behind.
  */
 export function FlashcardsRenderer({ item, plan, motherTongue, pageId, revealed, onReveal }: RendererProps) {
   const { t } = useI18n();
-  if (item.type !== 'vocabulary_flashcards') return null;
+  if (item.type !== 'vocabulary_flashcards' && item.type !== 'reading_flashcards') return null;
   const itemKey = `${pageId}/${item.itemId}`;
   const seen = revealed[itemKey] ?? [];
-  const total = item.targetIds.length;
+  const ids = item.type === 'reading_flashcards' ? item.keywordIds : item.targetIds;
+  const total = ids.length;
   return (
     <div className="flashcard-deck">
-      <p className="label-muted" aria-live="polite">{t('session.cardsRevealed', { n: seen.filter((s) => item.targetIds.includes(s)).length, total })}</p>
+      <p className="label-muted" aria-live="polite">{t('session.cardsRevealed', { n: seen.filter((s) => ids.includes(s)).length, total })}</p>
       <ul className="flashcard-grid">
-        {item.targetIds.map((id, n) => (
+        {ids.map((id, n) => (
           <li key={id}>
             <Flashcard id={id} index={n} total={total} plan={plan} motherTongue={motherTongue} initiallyFlipped={seen.includes(id)} onFlip={() => onReveal(itemKey, id)} />
           </li>
@@ -53,14 +56,15 @@ export function FlashcardsRenderer({ item, plan, motherTongue, pageId, revealed,
 function Flashcard({ id, index, total, plan, motherTongue, initiallyFlipped, onFlip }: {
   id: string; index: number; total: number; plan: LessonPlan; motherTongue: Locale; initiallyFlipped: boolean; onFlip: () => void;
 }) {
-  const { t } = useI18n();
+  const { t, locale } = useI18n();
   const [flipped, setFlipped] = useState(initiallyFlipped);
   const target = plan.targets.get(id);
+  const keyword = plan.reading?.keywords.get(id);
   const label = t('session.cardOf', { n: index + 1, total });
   const say = useAutoplay(plan.lang);
   const flip = () => {
     // Autoplay (P4-05 review): turning the card to French speaks the word at once, before anything else.
-    if (!flipped) say(target?.teachingForm);
+    if (!flipped) say(target?.teachingForm ?? keyword?.term);
     if (!flipped) onFlip();
     setFlipped(!flipped);
   };
@@ -71,13 +75,22 @@ function Flashcard({ id, index, total, plan, motherTongue, initiallyFlipped, onF
       </button>
       <div className="flashcard-inner">
         <div className="flashcard-face flashcard-front" inert={flipped}>
-          <p className="flashcard-meaning">{target?.translations[motherTongue]?.join(' / ') ?? id}</p>
+          <p className="flashcard-meaning">{(target ?? keyword)?.translations[motherTongue]?.join(' / ') ?? id}</p>
         </div>
         <div className="flashcard-face flashcard-back" inert={!flipped}>
-          <div className="flashcard-form">
-            <span lang={plan.lang}>{target?.teachingForm}</span>
-            {target && <ListenButton text={target.teachingForm} lang={plan.lang} variant="icon" size="large" label={t('session.listenWord', { word: target.teachingForm })} />}
-          </div>
+          {keyword && (
+            <>
+              <div className="flashcard-form">
+                <span lang={plan.lang}>{keyword.term}</span>
+                <ListenButton text={keyword.term} lang={plan.lang} variant="icon" size="large" label={t('session.listenWord', { word: keyword.term })} />
+              </div>
+              <p className="muted">{keyword.explanation[locale]}</p>
+            </>
+          )}
+          {target && <div className="flashcard-form">
+            <span lang={plan.lang}>{target.teachingForm}</span>
+            <ListenButton text={target.teachingForm} lang={plan.lang} variant="icon" size="large" label={t('session.listenWord', { word: target.teachingForm })} />
+          </div>}
           {target && target.genders.length > 0 && <p className="muted">{genderLabel(target, t)}</p>}
           {target && (
             <div className="flashcard-example">
@@ -110,10 +123,10 @@ export function MatchingRenderer(props: RendererProps) {
     window.addEventListener('keydown', cancel);
     return () => window.removeEventListener('keydown', cancel);
   }, [selected]);
-  if (item.type !== 'vocabulary_matching' && item.type !== 'grammar_person_matching' && item.type !== 'function_matching') return null;
+  if (!isMatchingItem(item.type)) return null;
   const persons = item.type === 'grammar_person_matching';
-  // Person and function boxes show the unit's French text; vocabulary boxes the target's teaching form.
-  const prompted = persons || item.type === 'function_matching';
+  // Person, function and reading boxes show the unit's French text; vocabulary boxes the target's teaching form.
+  const prompted = persons || item.type === 'function_matching' || item.type === 'reading_keyword_matching';
   const choiceUnits = units.filter((u): u is PlanUnit & { kind: 'choice' } => u.kind === 'choice');
   const options = choiceUnits[0]?.options ?? [];
   const pairOf = (unitId: string) => (props.locked[unitId]?.response ?? props.drafts[unitId]) as string | undefined;

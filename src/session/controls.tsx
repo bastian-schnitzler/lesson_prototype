@@ -3,6 +3,7 @@ import { useEffect, useId, useRef, useState, type KeyboardEvent as ReactKeyboard
 import { useI18n } from '../app/context.tsx';
 import { isPluralAnswer, type LockedUnit, type UnitResponse } from '../domain/session/session.ts';
 import { seededOrder, type Item, type LessonPlan, type Option, type PlanUnit } from '../domain/session/plan.ts';
+import { ORDER_SEPARATOR } from '../domain/session/readingPlan.ts';
 import type { MessageKey } from '../i18n/messages.ts';
 import type { Locale } from '../schemas/common.ts';
 import { missingArticle, startsWithArticle } from '../domain/articleHint.ts';
@@ -105,7 +106,8 @@ export function answerText(unit: PlanUnit, response: UnitResponse | null, t: (k:
       const option = unit.options.find((o) => o.id === response);
       return option ? (option.lang === 'ui' ? t(option.text as MessageKey) : option.text) : '';
     }
-    case 'order': return (response as string[]).map((id) => unit.tokens.find((tk) => tk.id === id)?.text).join(' ');
+    // Reading pieces are whole sentences: their order reads first → last.
+    case 'order': return (response as string[]).map((id) => unit.tokens.find((tk) => tk.id === id)?.text).join(unit.itemType === 'reading_order' ? ORDER_SEPARATOR : ' ');
     case 'spot': {
       const r = response as { tokenId: string; text: string };
       return unit.tokens.map((tk) => (tk.id === r.tokenId ? `[${r.text}]` : tk.text)).join(' ');
@@ -138,6 +140,24 @@ export function UnitFeedback({ unit, locked, lang }: { unit: PlanUnit; locked: L
         <span className="match-wrong"><span className="visually-hidden">{t('result.yourAnswer')}: </span><s lang={unit.kind !== 'choice' || unit.options[0]?.lang === 'learning' ? lang : undefined}>{given || t('session.noAnswer')}</s></span>
       </div>
       <p className="explanation">{unit.explanation[locale]}</p>
+    </div>
+  );
+}
+
+/**
+ * The countdown box (P6-02, feedback #6): the exam page limit, and the skim time of a reading document
+ * (P5-04, label "Time to skim"). A bar shows the share of the time left; the last 10 seconds turn red.
+ */
+export function Countdown({ remainingMs, limitS, label }: { remainingMs: number; limitS?: number; label?: string }) {
+  const { t } = useI18n();
+  const total = Math.ceil(remainingMs / 1000);
+  const text = `${Math.floor(total / 60)}:${String(total % 60).padStart(2, '0')}`;
+  const share = limitS ? Math.max(0, Math.min(1, remainingMs / (limitS * 1000))) : undefined;
+  return (
+    <div className={`countdown${total <= 10 ? ' countdown-low' : ''}`}>
+      <span className="countdown-label" aria-hidden="true">{label ?? t('session.timeLeftLabel')}</span>
+      <span className="countdown-time" role="timer" aria-label={t('session.timeLeft', { time: text })}>{text}</span>
+      {share !== undefined && <span className="countdown-bar" aria-hidden="true"><span style={{ width: `${share * 100}%` }} /></span>}
     </div>
   );
 }
@@ -191,9 +211,10 @@ export function TextControl({ unit, props, label }: { unit: PlanUnit; props: Ren
   );
 }
 
-export function ChoiceControl({ unit, props, label, layout }: { unit: PlanUnit & { kind: 'choice' }; props: RendererProps; label: string; layout: 'select' | 'radio' }) {
+/** `ordered` keeps the options in their stored order (reading true / false) instead of the seeded shuffle. */
+export function ChoiceControl({ unit, props, label, layout, ordered = false }: { unit: PlanUnit & { kind: 'choice' }; props: RendererProps; label: string; layout: 'select' | 'radio'; ordered?: boolean }) {
   const { t } = useI18n();
-  const options = seededOrder(unit.options, props.seed, unit.id);
+  const options = ordered ? unit.options : seededOrder(unit.options, props.seed, unit.id);
   const current = (value(props, unit) as string | undefined) ?? '';
   const disabled = readOnly(props, unit);
   // Inline feedback: the chosen wrong option turns red, the correct option green (P2-04 review).
@@ -241,6 +262,8 @@ export function OrderControl({ unit, props }: { unit: PlanUnit & { kind: 'order'
   const disabled = readOnly(props, unit);
   const bank = seededOrder(unit.tokens, props.seed, unit.id).filter((tk) => !order.includes(tk.id));
   const text = (id: string) => unit.tokens.find((tk) => tk.id === id)?.text;
+  // Reading pieces are phrases of the text, not the words of one sentence (section 9).
+  const pieces = unit.itemType === 'reading_order';
   const line = useRef<HTMLParagraphElement>(null);
   /** The dragged token: its ID and, when it is on the line, its index there. */
   type Source = { tokenId: string; index: number | null };
@@ -348,10 +371,10 @@ export function OrderControl({ unit, props }: { unit: PlanUnit & { kind: 'order'
   if (showMarker) placed.splice(drag!.target!, 0, <span key="marker" className="order-marker" aria-hidden="true" />);
   return (
     <div className={`order${drag ? ' is-dragging' : ''}`}>
-      <p ref={line} className="order-answer" lang={props.plan.lang} role="group" aria-label={t('session.orderLine')}>
-        {placed.length ? placed : <span className="muted">{t('session.orderEmpty')}</span>}
+      <p ref={line} className="order-answer" lang={props.plan.lang} role="group" aria-label={t(pieces ? 'reading.orderLine' : 'session.orderLine')}>
+        {placed.length ? placed : <span className="muted">{t(pieces ? 'reading.orderEmpty' : 'session.orderEmpty')}</span>}
       </p>
-      <p ref={bankRef} className="order-bank" lang={props.plan.lang} role="group" aria-label={t('session.orderBank')}>
+      <p ref={bankRef} className="order-bank" lang={props.plan.lang} role="group" aria-label={t(pieces ? 'reading.orderBank' : 'session.orderBank')}>
         {bank.map((tk) => (
           <button key={tk.id} type="button" className={`token${drag?.tokenId === tk.id ? ' is-dragged' : ''}`} disabled={disabled}
             {...handlers({ tokenId: tk.id, index: null })}

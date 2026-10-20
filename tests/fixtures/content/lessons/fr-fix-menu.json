@@ -1,0 +1,541 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-fix-menu",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Lire la carte d'un restaurant",
+  "objective": {
+    "en": "Read the menu of a small restaurant and find the dishes, the drinks, the prices and what the set menu includes.",
+    "fr": "Lire la carte d’un petit restaurant et trouver les plats, les boissons, les prix et ce que comprend la formule.",
+    "de": "Die Karte eines kleinen Restaurants lesen und Gerichte, Getränke, Preise und den Inhalt des Tagesmenüs finden."
+  },
+  "estimatedMinutes": 8,
+  "provenance": {
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "reading-v1",
+    "generatedAt": "2026-10-15T19:36:35.367Z",
+    "inputHashes": {
+      "outline": "6006bd0d7a94e18802fbc167723287c61adb4cb18dc13b22685be7d1fda61944",
+      "brief": "0dc512933667ece6a03573877338e08d3aa99350f17d14635f6dfc2b67074946"
+    }
+  },
+  "kind": "reading",
+  "theme": "food_and_drink",
+  "genre": "menu",
+  "documents": [
+    {
+      "documentId": "main",
+      "title": "Le Petit Zinc",
+      "meta": [
+        "Menu du midi · du lundi au vendredi"
+      ],
+      "paragraphs": [
+        "Entrées\nSoupe de légumes – 6 €\nSalade de tomates – 5 €",
+        "Plats\nPoulet rôti et frites – 12 €\nPoisson du jour et riz – 14 €\nOmelette au fromage – 9 €",
+        "Desserts\nTarte aux pommes – 5 €\nMousse au chocolat – 5 €",
+        "Boissons\nEau minérale – 2 €\nJus d’orange – 3 €\nCafé – 2 €",
+        "Formule du jour\nEntrée + plat + dessert – 15 €\nCafé offert avec la formule"
+      ],
+      "highlights": [
+        {
+          "keywordId": "formule",
+          "text": "formule"
+        },
+        {
+          "keywordId": "entree",
+          "text": "Entrée"
+        },
+        {
+          "keywordId": "plat",
+          "text": "plat"
+        },
+        {
+          "keywordId": "offert",
+          "text": "offert"
+        },
+        {
+          "keywordId": "poisson",
+          "text": "Poisson"
+        }
+      ]
+    },
+    {
+      "documentId": "exam",
+      "title": "Crêperie Ty Breizh",
+      "meta": [
+        "Ouvert tous les jours"
+      ],
+      "paragraphs": [
+        "Crêpe jambon fromage – 8 €\nCrêpe au sucre – 4 €\nCrêpe chocolat banane – 6 €",
+        "Cidre (bouteille) – 9 €\nLimonade – 3 €\nMenu enfant : crêpe + boisson – 7 €"
+      ],
+      "highlights": []
+    }
+  ],
+  "steps": [
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "flashcards",
+          "estimatedDurationS": 50,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Turn each card to learn the key words of the text.",
+            "fr": "Retournez chaque carte pour découvrir les mots clés du texte.",
+            "de": "Dreh jede Karte um und lerne die Schlüsselwörter des Textes."
+          },
+          "items": [
+            {
+              "type": "reading_flashcards",
+              "itemId": "cards",
+              "keywordIds": [
+                "formule",
+                "entree",
+                "plat",
+                "offert",
+                "poisson"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "matching",
+          "estimatedDurationS": 50,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each key word with its meaning.",
+            "fr": "Associez chaque mot clé à son sens.",
+            "de": "Ordne jedem Schlüsselwort seine Bedeutung zu."
+          },
+          "items": [
+            {
+              "type": "reading_keyword_matching",
+              "itemId": "matching",
+              "keywordIds": [
+                "formule",
+                "entree",
+                "plat",
+                "offert",
+                "poisson"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skim",
+      "stage": "skim",
+      "role": "exercise",
+      "label": {
+        "en": "Skim",
+        "fr": "Survol",
+        "de": "Überfliegen"
+      },
+      "pages": [
+        {
+          "pageId": "skim",
+          "estimatedDurationS": 75,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Look over the document quickly. When the time is up it is put away; then answer the question.",
+            "fr": "Parcourez rapidement le document. À la fin du temps, il disparaît ; répondez ensuite à la question.",
+            "de": "Überfliege das Dokument. Wenn die Zeit um ist, verschwindet es; beantworte dann die Frage."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "skim-document",
+              "documentId": "main",
+              "view": "skim",
+              "skimSeconds": 55
+            },
+            {
+              "type": "reading_skim_choice",
+              "itemId": "skim-question",
+              "focus": "genre",
+              "question": "Qu’est-ce que c’est ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Une liste de courses"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Un ticket de caisse"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Une recette de cuisine"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "La carte d’un restaurant"
+                }
+              ],
+              "answerOptionId": "o4",
+              "answerExplanation": {
+                "en": "A name, dishes with prices and menu du midi: a restaurant menu.",
+                "fr": "Un nom, des plats avec des prix et menu du midi : la carte d’un restaurant.",
+                "de": "Ein Name, Gerichte mit Preisen und menu du midi: eine Restaurantkarte."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "detail",
+      "stage": "detail",
+      "role": "exercise",
+      "label": {
+        "en": "Detail",
+        "fr": "Détails",
+        "de": "Details"
+      },
+      "pages": [
+        {
+          "pageId": "detail",
+          "estimatedDurationS": 120,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the document carefully and answer the questions.",
+            "fr": "Lisez le document attentivement et répondez aux questions.",
+            "de": "Lies das Dokument genau und beantworte die Fragen."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "detail-document",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-set-price",
+              "question": "Combien coûte la formule ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "5 €"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "12 €"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "14 €"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "15 €"
+                }
+              ],
+              "answerOptionId": "o4",
+              "answerExplanation": {
+                "en": "Entrée + plat + dessert: 15 €. That is the formule.",
+                "fr": "Entrée + plat + dessert : 15 €. C’est la formule.",
+                "de": "Entrée + plat + dessert: 15 €. Das ist die formule."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-cheapest",
+              "question": "Quel est le plat le moins cher ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Le poulet rôti et frites"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "L’omelette au fromage"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Le poisson du jour et riz"
+                }
+              ],
+              "answerOptionId": "o2",
+              "answerExplanation": {
+                "en": "Omelette 9 €, chicken 12 €, fish 14 €.",
+                "fr": "Omelette 9 €, poulet 12 €, poisson 14 €.",
+                "de": "Omelette 9 €, Hähnchen 12 €, Fisch 14 €."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "q-coffee",
+              "statement": "Avec la formule, on ne paie pas le café.",
+              "answer": "true",
+              "answerExplanation": {
+                "en": "True: café offert avec la formule, the coffee is free.",
+                "fr": "Vrai : café offert avec la formule, le café est gratuit.",
+                "de": "Richtig: café offert avec la formule, der Kaffee ist gratis."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-juice",
+              "question": "Combien coûte un jus d’orange ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "3 €"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "5 €"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "6 €"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "2 €"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Jus d’orange: 3 €. Water and coffee cost 2 €.",
+                "fr": "Jus d’orange : 3 €. L’eau et le café coûtent 2 €.",
+                "de": "Jus d’orange: 3 €. Wasser und Kaffee kosten 2 €."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "structure",
+      "stage": "structure",
+      "role": "exercise",
+      "label": {
+        "en": "Structure",
+        "fr": "Structure",
+        "de": "Aufbau"
+      },
+      "pages": [
+        {
+          "pageId": "structure",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Marc takes the formule with a tomato salad, the omelette and the chocolate mousse. Put his lunch in order, from first to last.",
+            "fr": "Marc prend la formule avec une salade de tomates, l’omelette et la mousse au chocolat. Remettez son repas dans l’ordre, du début à la fin.",
+            "de": "Marc nimmt die formule mit Tomatensalat, Omelett und Schokoladenmousse. Bring sein Mittagessen in die Reihenfolge, vom Anfang bis zum Ende."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "structure-document",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_order",
+              "itemId": "order",
+              "pieces": [
+                {
+                  "pieceId": "p2",
+                  "text": "L’omelette au fromage"
+                },
+                {
+                  "pieceId": "p1",
+                  "text": "La salade de tomates"
+                },
+                {
+                  "pieceId": "p3",
+                  "text": "La mousse au chocolat"
+                },
+                {
+                  "pieceId": "p4",
+                  "text": "Le café offert"
+                }
+              ],
+              "acceptedOrders": [
+                [
+                  "p1",
+                  "p2",
+                  "p3",
+                  "p4"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "The formule is entrée + plat + dessert: the salad is a starter, the omelette a main, the mousse a dessert; the coffee comes at the end, free with the formule.",
+                "fr": "La formule, c’est entrée + plat + dessert : la salade est une entrée, l’omelette un plat, la mousse un dessert ; le café vient à la fin, offert avec la formule.",
+                "de": "Die formule ist entrée + plat + dessert: der Salat ist eine Vorspeise, das Omelett ein Hauptgericht, die Mousse ein Dessert; der Kaffee kommt am Ende, gratis zur formule."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Final exam",
+        "fr": "Examen final",
+        "de": "Abschlussprüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam",
+          "estimatedDurationS": 123,
+          "timeLimitS": 185,
+          "instructions": {
+            "en": "Read the new document and answer the questions. No help this time.",
+            "fr": "Lisez le nouveau document et répondez aux questions. Cette fois, sans aide.",
+            "de": "Lies das neue Dokument und beantworte die Fragen. Diesmal ohne Hilfe."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "exam-document",
+              "documentId": "exam",
+              "view": "exam",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-sugar",
+              "question": "Combien coûte la crêpe au sucre ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "6 €"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "4 €"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "3 €"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "8 €"
+                }
+              ],
+              "answerOptionId": "o2",
+              "answerExplanation": {
+                "en": "Crêpe au sucre: 4 €.",
+                "fr": "Crêpe au sucre : 4 €.",
+                "de": "Crêpe au sucre: 4 €."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-six",
+              "question": "Quelle crêpe coûte 6 € ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "La crêpe au sucre"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "La crêpe chocolat banane"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "La crêpe jambon fromage"
+                }
+              ],
+              "answerOptionId": "o2",
+              "answerExplanation": {
+                "en": "Crêpe chocolat banane: 6 €.",
+                "fr": "Crêpe chocolat banane : 6 €.",
+                "de": "Crêpe chocolat banane: 6 €."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-kids",
+              "question": "Qu’est-ce qu’il y a dans le menu enfant ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Une crêpe et une boisson"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Deux crêpes"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Une boisson seulement"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Une crêpe et un dessert"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Menu enfant: crêpe + boisson, a crêpe and a drink.",
+                "fr": "Menu enfant : crêpe + boisson.",
+                "de": "Menu enfant: crêpe + boisson, eine Crêpe und ein Getränk."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "x-compare",
+              "statement": "Une crêpe au sucre coûte plus cher qu’une limonade.",
+              "answer": "true",
+              "answerExplanation": {
+                "en": "True: crêpe au sucre 4 €, limonade 3 €.",
+                "fr": "Vrai : crêpe au sucre 4 €, limonade 3 €.",
+                "de": "Richtig: crêpe au sucre 4 €, limonade 3 €."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "x-cider",
+              "statement": "Le cidre est vendu en bouteille.",
+              "answer": "true",
+              "answerExplanation": {
+                "en": "True: Cidre (bouteille), 9 €.",
+                "fr": "Vrai : Cidre (bouteille), 9 €.",
+                "de": "Richtig: Cidre (bouteille), 9 €."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

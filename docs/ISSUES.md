@@ -1071,6 +1071,8 @@ Acceptance:
 - The exam info page row "Questions on the document", the exam page with its countdown and "n of 5 answered", the results sidebar without exam parts, the start page (situation, key words, sections A–C) and the navigation points (D53) work as in section 9; `reading` is in `PLAYABLE_KINDS`.
 - Component tests cover the skim phases and resume, true / false order, the correction view and the results rows; an end-to-end journey plays a reading lesson to its results. Anaïs and Luca confirm the navigation points (D53 without exception).
 
+Outcome (2026-10-15): `src/session/readingRenderers.tsx` (`DocumentRenderer` with the skim phase, `QuestionRenderer`), reading items on the vocabulary `FlashcardsRenderer` and `MatchingRenderer`, `reading_order` on the shared `UnitsRenderer`; reading reveals, sections and exam row in the session engine, outline and navigation; the start page; `reading` in `PLAYABLE_KINDS`; styles for the document and the side-by-side layout from 1100 px. Tests in `tests/unit/reading-renderers.test.tsx`, fixture `fr-fix-menu` and `tests/e2e/reading.spec.ts` (a perfect run to 100 on desktop and phone). Navigation points follow D53 without exception, to be confirmed by Anaïs and Luca.
+
 Dependencies: P5-03.
 
 ### P5-05: Tune reading lengths, skim speed, exam limits and evidence after play tests

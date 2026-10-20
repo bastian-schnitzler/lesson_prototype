@@ -27,6 +27,7 @@ export function examPageKind(p: PlanPage): MessageKey {
   if (types.size === 1 && types.has('function_translation_exam')) return 'examIntro.translation';
   if (types.size === 1 && types.has('function_word_order')) return 'examIntro.replies';
   if (types.size === 1 && types.has('function_dialogue_gap_typing')) return 'examIntro.dialogue';
+  if (p.items.some((it) => it.type === 'reading_document')) return 'examIntro.reading';
   return 'examIntro.mixed';
 }
 
