@@ -3,8 +3,10 @@ import type { Brief, LessonContent } from '../../schemas/artifacts.ts';
 import type { Locale } from '../../schemas/common.ts';
 import type { FunctionsBrief, FunctionsItem } from '../../schemas/functions.ts';
 import type { GrammarItem } from '../../schemas/grammar.ts';
+import type { ReadingItem } from '../../schemas/reading.ts';
 import { functionsTerms } from '../functionsLesson.ts';
 import type { VocabularyItem, VocabularyTarget } from '../../schemas/vocabulary.ts';
+import { readingPlanData, readingUnits, type ReadingPlanData } from './readingPlan.ts';
 
 /**
  * The flattened learner plan of a lesson (SPEC section 5): concrete pages in order, each
@@ -12,7 +14,7 @@ import type { VocabularyItem, VocabularyTarget } from '../../schemas/vocabulary.
  * session itself only stores responses keyed by unit ID.
  */
 export type PageRole = 'presentation' | 'practice' | 'exam';
-export type Item = VocabularyItem | GrammarItem | FunctionsItem;
+export type Item = VocabularyItem | GrammarItem | FunctionsItem | ReadingItem;
 
 export interface Option {
   id: string;
@@ -88,6 +90,8 @@ export interface LessonPlan {
   newVerbs: { infinitive: string; translation: string }[];
   /** Function lessons: situation, roles, expressions and words of the brief (P4-04); undefined otherwise. */
   functions?: Pick<FunctionsBrief, 'situation' | 'roles' | 'expressions' | 'words'>;
+  /** Reading lessons: documents, key words and situation (P5-02); undefined otherwise. */
+  reading?: ReadingPlanData;
 }
 
 const GENDER_OPTIONS = ['masculine', 'feminine', 'neuter'] as const;
@@ -107,6 +111,7 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
   const termText = (id: string) => terms.get(id)?.display ?? id;
   const termNative = (id: string) => terms.get(id)?.translations[motherTongue]?.[0] ?? id;
   const roleLabel = (id: string) => (brief.kind === 'functions' ? brief.roles.find((r) => r.id === id)?.label : undefined) ?? id;
+  const reading = content.kind === 'reading' && brief.kind === 'reading' ? readingPlanData(content, brief) : undefined;
   const steps = content.steps as { id: string; role: string; blockId?: string | null; label: LocalizedText; pages: { pageId: string; estimatedDurationS: number; timeLimitS: number | null; instructions: LocalizedText; items: Item[] }[] }[];
 
   // A gap takes the expression itself, without the ellipsis of a sentence start.
@@ -254,6 +259,14 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
         const sentence = tokens.map((t) => (t.id === item.faultyTokenId ? item.correction.accepted.answers[0] : t.text)).join(' ');
         return [{ kind: 'spot', id: id(), itemId: item.itemId, itemType: item.type, prompt: { learning: tokens.map((t) => t.text).join(' ') }, tokens, faultyTokenId: item.faultyTokenId, correction: item.correction, explanation: item.answerExplanation, answer: sentence, answerLang: 'learning' }];
       }
+      case 'reading_keyword_matching':
+      case 'reading_skim_choice':
+      case 'reading_choice':
+      case 'reading_true_false':
+      case 'reading_order':
+      case 'reading_flashcards':
+      case 'reading_document':
+        return reading ? readingUnits(pageId, item, reading, content.lang, motherTongue) : [];
       case 'vocabulary_introduction':
       case 'vocabulary_flashcards':
       case 'grammar_explanation':
@@ -287,6 +300,7 @@ export function buildPlan(content: LessonContent, brief: Brief, motherTongue: Lo
     kind: content.kind, groups: brief.kind === 'vocabulary' ? brief.groups.map((g) => ({ id: g.id, label: g.label, targetIds: g.targetIds })) : [],
     newVerbs: brief.kind === 'grammar' ? brief.newVerbs.map((v) => ({ infinitive: v.infinitive, translation: native(v.translations) })) : [],
     functions: brief.kind === 'functions' ? { situation: brief.situation, roles: brief.roles, expressions: brief.expressions, words: brief.words } : undefined,
+    reading,
     steps: steps.map((s) => ({ stepId: s.id, label: s.label, role: s.role === 'exam' ? 'exam' : pages.some((p) => p.stepId === s.id && p.role === 'practice') ? 'practice' : 'presentation' })),
   };
 }

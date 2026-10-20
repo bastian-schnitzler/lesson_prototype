@@ -9,6 +9,7 @@ import type { VocabularyBrief, VocabularyTarget } from '../schemas/vocabulary.ts
 import { chunk, matchingPages, vocabularyLesson } from '../domain/vocabularyLesson.ts';
 import { functionsPageEstimate, functionsTimeLimit } from '../domain/functionsLesson.ts';
 import { FUNCTIONS_LIMITS, FUNCTIONS_PAGE_RULES, FUNCTIONS_STAGES, type FunctionsBrief, type FunctionsContent, type FunctionsItem } from '../schemas/functions.ts';
+import { checkReadingBrief, checkReadingContent } from './reading.ts';
 
 /**
  * Cross-reference and pedagogical checks that JSON Schema cannot express
@@ -39,7 +40,7 @@ export interface OutlineContext {
   outlineHash?: string;
 }
 
-class Issues {
+export class Issues {
   list: Issue[] = [];
   add(path: string, message: string) {
     this.list.push({ path, message });
@@ -227,6 +228,7 @@ export function validateBrief(data: unknown, ctx: OutlineContext): ValidationRes
   checkEnvelope(brief, ctx, issues);
   if (brief.kind === 'vocabulary') checkVocabularyBrief(brief, ctx, issues);
   else if (brief.kind === 'grammar') checkGrammarBrief(brief, issues);
+  else if (brief.kind === 'reading') checkReadingBrief(brief, issues);
   else checkFunctionsBrief(brief, ctx, issues);
   const stale = ctx.outlineHash && brief.provenance.inputHashes.outline !== ctx.outlineHash ? ['the outline entry changed after this brief was generated'] : [];
   return finish(brief, issues, stale);
@@ -686,6 +688,7 @@ export function validateContent(data: unknown, ctx: ContentContext): ValidationR
 
   if (content.kind === 'grammar' && ctx.brief.kind === 'grammar') checkGrammarContent(content, ctx.brief, issues);
   if (content.kind === 'functions' && ctx.brief.kind === 'functions') checkFunctionsContent(content, ctx.brief, issues);
+  if (content.kind === 'reading' && ctx.brief.kind === 'reading') checkReadingContent(content, ctx.brief, issues);
 
   const stale: string[] = [];
   if (ctx.outlineHash && content.provenance.inputHashes.outline !== ctx.outlineHash) stale.push('the outline entry changed after this content was generated');

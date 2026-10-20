@@ -42,3 +42,13 @@ export const FUNCTIONS_COPY = {
   examWords: L('Translate each word into French, with its article for nouns.', 'Traduisez chaque mot en français, avec l’article pour les noms.', 'Übersetze jedes Wort ins Französische, bei Nomen mit Artikel.'),
   examDialogue: L('Fill each gap with an expression from this lesson.', 'Complétez chaque trou avec une expression de la leçon.', 'Fülle jede Lücke mit einem Ausdruck aus dieser Lektion.'),
 } as const;
+
+/** Step labels and page instructions of reading lessons (SPEC section 9); application copy, not generated text. */
+export const READING_COPY = {
+  flashcards: [L('Flashcards', 'Cartes mémoire', 'Karteikarten'), L('Turn each card to learn the key words of the text.', 'Retournez chaque carte pour découvrir les mots clés du texte.', 'Dreh jede Karte um und lerne die Schlüsselwörter des Textes.')],
+  matching: [L('Matching', 'Association', 'Zuordnen'), L('Match each key word with its meaning.', 'Associez chaque mot clé à son sens.', 'Ordne jedem Schlüsselwort seine Bedeutung zu.')],
+  skim: [L('Skim', 'Survol', 'Überfliegen'), L('Look over the document quickly. When the time is up it is put away; then answer the question.', 'Parcourez rapidement le document. À la fin du temps, il disparaît ; répondez ensuite à la question.', 'Überfliege das Dokument. Wenn die Zeit um ist, verschwindet es; beantworte dann die Frage.')],
+  detail: [L('Detail', 'Détails', 'Details'), L('Read the document carefully and answer the questions.', 'Lisez le document attentivement et répondez aux questions.', 'Lies das Dokument genau und beantworte die Fragen.')],
+  structure: [L('Structure', 'Structure', 'Aufbau'), L('Put the information in the order the text gives it.', 'Remettez les informations dans l’ordre du texte.', 'Bring die Informationen in die Reihenfolge des Textes.')],
+  exam: [L('Final exam', 'Examen final', 'Abschlussprüfung'), L('Read the new document and answer the questions. No help this time.', 'Lisez le nouveau document et répondez aux questions. Cette fois, sans aide.', 'Lies das neue Dokument und beantworte die Fragen. Diesmal ohne Hilfe.')],
+} as const;

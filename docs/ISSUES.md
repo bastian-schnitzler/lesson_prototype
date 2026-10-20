@@ -1032,6 +1032,8 @@ Acceptance:
 - `node scripts/author-reading.ts <id>` (or `--all`, `--dry-run`) derives page estimates, `skimSeconds`, the exam limit, minutes, step labels, page instructions and input hashes for briefs and lessons written as JSON, validates both and writes them; no separate definition files.
 - The lesson `fr-reading-a-text-message` (written with the tool) is the contract fixture; unit tests cover schemas, validation, page rules, plan units and the views. Start stays unavailable until P5-04; `make brief` / `make generate` keep rejecting reading.
 
+Outcome (2026-10-15): `src/schemas/reading.ts` (brief, content, word ranges), `src/domain/readingLesson.ts` (word count, skim speed, page rules, `skimSeconds`, exam limit), `src/validation/reading.ts`, plan units in `src/domain/session/readingPlan.ts`, `ReadingBriefView`, `ReadingContentView` and `src/components/ReadingDocument.tsx`, reading lines in the Content review, `scripts/author-reading.ts`, and `fr-reading-a-text-message` in `content/`; tests in `tests/unit/reading.test.tsx`. Baseline renderers keep the registry complete until P5-04.
+
 Dependencies: P5-01.
 
 ### P5-03: Write and review the ten fr/A1 reading test lessons
