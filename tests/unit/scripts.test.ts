@@ -4,7 +4,7 @@ import { inflateRawSync } from 'node:zlib';
 
 import { describe, expect, it } from 'vitest';
 
-import { issueBody, parseAssets, parseIssues, parseMapping, parseMermaid, plantumlUrl, selectIssues } from '../../scripts/issues-sync.ts';
+import { BODY_LIMIT, issueBody, parseAssets, parseIssues, parseMapping, parseMermaid, plantumlUrl, selectIssues } from '../../scripts/issues-sync.ts';
 import { analyze, load } from '../../scripts/mockups.ts';
 import { SCREENS, screenBlock } from '../../scripts/screens.ts';
 
@@ -117,4 +117,17 @@ it('limits an issue sync to one phase or one issue by logical ID prefix', () => 
   expect(selectIssues(issues)).toHaveLength(issues.length);
   expect(selectIssues(issues, 'P5').map((i) => i.id)).toEqual(['P5-01', 'P5-02', 'P5-03', 'P5-04', 'P5-05', 'P5-06', 'P5-07', 'P5-08']);
   expect(selectIssues(issues, 'P5-08').map((i) => i.id)).toEqual(['P5-08']);
+});
+
+it('links the Salt sources instead of copying them when an issue body would be too long', () => {
+  const md = readFileSync(resolve(docs, 'ISSUES.md'), 'utf8');
+  const issue = parseIssues(md).find((i) => i.id === 'P5-04')!;
+  const ctx = { sha: 'a'.repeat(40), specVersion: 'Draft 0', mapping: parseMapping(md), assets: parseAssets(md), mermaid: parseMermaid(readFileSync(resolve(docs, 'SPEC.md'), 'utf8')), readSource: (p: string) => readFileSync(resolve(docs, p), 'utf8') };
+  const full = issueBody(issue, ctx);
+  const linked = issueBody(issue, ctx, false);
+  expect(full).toContain('<summary>PlantUML source</summary>');
+  expect(linked).not.toContain('<summary>PlantUML source</summary>');
+  expect(linked.match(/Editable source: /g)?.length).toBe(full.match(/Editable source: /g)?.length);
+  expect(linked.match(/plantuml\.com\/plantuml\/svg\//g)?.length).toBe(full.match(/plantuml\.com\/plantuml\/svg\//g)?.length);
+  expect(linked.length).toBeLessThan(BODY_LIMIT);
 });
