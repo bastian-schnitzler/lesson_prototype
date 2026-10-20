@@ -3144,3 +3144,7 @@ html {
   .task-card:has(> .reading-doc-slot.is-side) > .units + .units { margin-top: 1.25rem; }
 }
 @media (max-width: 600px) { .reading-document { padding: 1rem; } }
+
+/* Play-test times below the results (P5-05), only with ?playtest. */
+.playtest { margin-top: 2rem; }
+.playtest .table-wrap { margin: 0.75rem 0; }

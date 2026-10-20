@@ -128,6 +128,16 @@ export function checkReadingContent(c: ReadingContent, b: ReadingBrief, issues: 
   const exam = items('exam').slice(1);
   issues.check(exam.length === READING_LIMITS.examQuestions && exam.every((q) => isQuestion(q) && b.exam.types.includes(q.type)), path('exam'), `the exam page holds the document and ${READING_LIMITS.examQuestions} questions of type ${b.exam.types.join(' / ')}`);
   exam.forEach((q, i) => q.type === 'reading_choice' && checkOptions(q, `${path('exam')}.items.${i + 1}`, issues));
+  // The exam tests a second document (P5-05): no question of the skim or detail page again, no paragraph of the main document.
+  const asked = (q: ReadingItem) => (q.type === 'reading_true_false' ? q.statement : 'question' in q ? q.question : undefined);
+  const key = (text: string) => text.toLocaleLowerCase('fr').replace(/[\s.?!…]+/gu, ' ').trim();
+  const practice = new Set([...skim, ...detail].map(asked).filter((t) => t !== undefined).map(key));
+  exam.forEach((q, i) => {
+    const text = asked(q);
+    issues.check(text === undefined || !practice.has(key(text)), `${path('exam')}.items.${i + 1}`, 'repeats a skim or detail question');
+  });
+  const main = documents.get('main')?.paragraphs ?? [];
+  issues.check(!(documents.get('exam')?.paragraphs ?? []).some((p) => main.includes(p)), 'documents', 'the exam document repeats a paragraph of the main document');
 
   // Page estimates and the exam limit follow the page rules; only the exam page has a countdown.
   c.steps.forEach((step, si) => {

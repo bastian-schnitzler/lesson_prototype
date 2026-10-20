@@ -20,6 +20,7 @@ import { NewVerbs } from './grammarRenderers.tsx';
 import { isSkimmed } from './readingRenderers.tsx';
 import { durationText, examPageKind, examParts, NavLayout, PointStrip, resultTone } from './LessonNav.tsx';
 import { lessonOutline, numberedPoints } from '../domain/session/outline.ts';
+import { pageTimeRows, pageTimesExport } from '../domain/session/pageTimes.ts';
 
 export { resultTone };
 
@@ -578,6 +579,46 @@ function resultSections(plan: LessonPlan, pages: PlanPage[]) {
   return sections;
 }
 
+/** The app was opened with `?playtest` (P5-05): the results show the times per page. */
+export const isPlayTest = () => typeof location !== 'undefined' && new URLSearchParams(location.search).has('playtest');
+
+/**
+ * Play-test times (P5-05, SPEC section 5): seconds per page next to the page estimate, the skim time
+ * used and the time to the first Check, with a JSON download for the team. Only shown with `?playtest`.
+ */
+export function PlayTestTimes({ plan, record }: { plan: LessonPlan; record: SessionRecord }) {
+  const { t, locale } = useI18n();
+  const rows = pageTimeRows(plan, record);
+  const label = (stepId: string) => plan.steps.find((s) => s.stepId === stepId)?.label[locale] ?? stepId;
+  const n = (v: number | undefined) => (v === undefined ? '–' : v.toLocaleString(locale));
+  const download = () => {
+    const url = URL.createObjectURL(new Blob([JSON.stringify(pageTimesExport(plan, record), null, 2)], { type: 'application/json' }));
+    const a = Object.assign(document.createElement('a'), { href: url, download: `${record.lessonId}-times.json` });
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+  return (
+    <section className="playtest" aria-labelledby="playtest-title">
+      <h2 id="playtest-title" className="small-heading">{t('playtest.title')}</h2>
+      <p className="muted">{t('playtest.note')}</p>
+      <div className="table-wrap">
+        <table className="data-table">
+          <thead><tr><th>{t('playtest.page')}</th><th>{t('playtest.estimate')}</th><th>{t('playtest.actual')}</th><th>{t('playtest.skim')}</th><th>{t('playtest.answer')}</th></tr></thead>
+          <tbody>
+            {rows.map((r) => (
+              <tr key={r.pageId}>
+                <td>{r.number}. {label(r.stepId)}</td><td>{n(r.estimatedS)}</td><td>{n(r.actualS)}</td>
+                <td>{r.skimSeconds !== undefined ? `${n(r.skimSeconds)} / ${n(r.skimUsedS)}` : '–'}</td><td>{n(r.answerS)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <button type="button" className="button button-outline" onClick={download}>{t('playtest.download')}</button>
+    </section>
+  );
+}
+
 export function ResultsView({ plan, record, dispatch, footer }: { plan: LessonPlan; record: SessionRecord; dispatch: (action: SessionInput) => void; footer?: React.ReactNode }) {
   const { t, locale, languageName } = useI18n();
   const results = lessonResults(plan, record);
@@ -646,6 +687,7 @@ export function ResultsView({ plan, record, dispatch, footer }: { plan: LessonPl
         <p className="muted">{t('result.completionOnly')}</p>
       )}
     </section>
+    {isPlayTest() && <PlayTestTimes plan={plan} record={record} />}
     {footer}
     </NavLayout>
   );

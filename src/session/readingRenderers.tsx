@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useI18n } from '../app/context.tsx';
 import { ReadingDocument } from '../components/ReadingDocument.tsx';
 import type { LessonPlan, PlanPage, PlanUnit } from '../domain/session/plan.ts';
+import { SKIMMED } from '../domain/session/readingPlan.ts';
 import { ChoiceControl, Countdown, UnitRow, type RendererProps } from './controls.tsx';
 
 /**
@@ -11,8 +12,7 @@ import { ChoiceControl, Countdown, UnitRow, type RendererProps } from './control
  * control, and the questions use the shared choice control.
  */
 
-/** Key under which a skimmed document is recorded in the session's `revealed`, like a turned flashcard. */
-export const SKIMMED = 'skimmed';
+export { SKIMMED };
 
 /** `${pageId}/${itemId}` of the page's skim-view document, if it has one. */
 function skimKey(page: Pick<PlanPage, 'pageId' | 'items'>): string | undefined {

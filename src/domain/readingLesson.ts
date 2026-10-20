@@ -90,5 +90,8 @@ export function readingPageEstimate(items: ReadingItem[], documents: Map<string,
   return seconds;
 }
 
+/** Lesson minutes: the sum of the page estimates, rounded to whole minutes, at least 1. */
+export const readingMinutes = (pageEstimatesS: number[]) => Math.max(1, Math.round(pageEstimatesS.reduce((n, s) => n + s, 0) / 60));
+
 /** Countdown of the exam page: 1.5 times its estimate, rounded up to 5 s (D18 exception). */
 export const readingTimeLimit = (estimateS: number) => roundUp(estimateS * READING_PAGE_RULES.timeLimitFactor);

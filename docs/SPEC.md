@@ -1,6 +1,6 @@
 # Lesson exercise prototype specification
 
-Status: **Draft 0.76 — P5-06: reading layout by the width of the task area**. Date: 2026-10-20.
+Status: **Draft 0.77 — P5-05: play-test times and exam rules for reading**. Date: 2026-10-20.
 
 This document specifies the prototype and its phased implementation. It is the maintained requirements document: no separate requirements file exists. It does not authorize starting implementation before the specification review. The backlog is in [ISSUES.md](ISSUES.md) and published as GitHub issues in `bastian-schnitzler/lesson_prototype`.
 
@@ -60,6 +60,7 @@ The **session record** (`SessionRecord`, `src/domain/session/session.ts`):
 | `exam` | Per exam page: start time, absolute deadline and timeout flag, so a reload cannot extend the countdown (section 5). |
 | `skippedNoVoice` | Listening pages skipped without a French voice; they are left out of scores and progress. |
 | `selection` | The results entry shown (final exam, an exam part or an exercise). |
+| `pageTimes` | Play-test times per page (P5-05): entered, first checked, skim document put away, left. Recorded for every category; never used for scores, progress or deadlines; absent in older records. |
 
 ### Shared and category-specific parts
 
@@ -1236,10 +1237,20 @@ Claude writes the brief and lesson content of the **ten fr/A1 reading entries** 
 
 **Wide layout (P5-06).** The detail, structure and exam pages put the document on the left (sticky, scrolling on its own when it is taller than the window) and the questions or the pieces on the right when the **task area** is at least 700 px wide, and stack them below. The switch is a container query on the task area, not a window breakpoint, because the lesson sidebar takes 290 px above 960 px: measured with the menu fixture, the task area is 635 px at a 1024 px window (stacked), 711 px at 1100 px (columns of 320 / 290 px), 891 px at 1280 px and at most 931 px from 1366 px on (columns of 435 / 395 px, the 1320 px page limit). Without the sidebar (960 px and narrower) a tablet in landscape (900–960 px, task area 828–888 px) now also shows both columns; 768 px and phones stay stacked. Collapsing or narrowing the sidebar was rejected: the columns are wide enough with it, and the navigation (D53) stays the same on every page. The skim page itself is always one column (the document above its countdown). `tests/e2e/reading.spec.ts` checks the layout at 1440, 1100, 1024, 900, 700 and 375 px.
 
+**Play tests (P5-05).** The values of this section are starting values until play tests confirm them. Measured with the page rules above, a reading lesson takes between 6 minutes (A1: 4 key words, 3 detail questions, 3 pieces, both documents at the bottom of their range) and 14 minutes (C2: 6 key words, 4 questions, 6 pieces, both documents at the top), so every level stays within 15 minutes; the ten fr/A1 test lessons take 8. The exam limit of the largest lessons goes from 200 s (A1) to 340 s (C2). Two rules make the exam a test of the second document: no exam question repeats a skim or detail question, and the exam document repeats no paragraph of the main document (validated).
+
+To record a play test, open the app with `?playtest` (for example `…/lesson_prototype/?playtest#/lesson/fr-reading-a-text-message/play`). The session records the times of every page (`pageTimes`, section "Lesson session architecture"); the results page then shows **Play-test times**, a table of every page with its estimate, the actual seconds, the skim time stored and used, and the seconds to the first Check, plus **Download times (JSON)**. Without `?playtest` nothing is shown. Play-test checklist:
+
+1. Each tester plays at least three of the ten fr/A1 lessons with `?playtest`, without help, in one sitting each, and sends the downloaded JSON files.
+2. Record for each lesson: the tester's level of French, the mother tongue, desktop or phone, and whether the skim time ran out or **I've finished reading** was pressed.
+3. Compare per page: actual against estimate (a page is off when it differs by more than a third), skim time used against stored (most testers press **I've finished reading** early → the skim speed is too slow; the time runs out → too fast), and whether the exam limit was reached.
+4. Note every question a tester could not answer from the text, every answer that was ambiguous, and whether evidence marks, short typed answers or *not stated* were missed.
+5. The team then decides the open points below and records the new values here, in `src/schemas/reading.ts` / `src/domain/readingLesson.ts`, and in the test lessons (`node scripts/author-reading.ts --all` recomputes estimates, skim times and limits).
+
 | Point | Decision so far | Issue |
 | --- | --- | --- |
 | Lesson length per level | Every level within 15 minutes with the page rules above; longer lessons for B2–C2 discussed in the team | P5-05 |
-| Word ranges, skim speed, exam limits | Starting values above; tuned after play tests | P5-05 |
+| Word ranges, skim speed, exam limits | Starting values above; tuned after play tests (times recorded with `?playtest`, see "Play tests") | P5-05 |
 | Evidence marks, short answers, *not stated* | Left out; brought back only if play tests show the need | P5-05 |
 | Navigation points | D53 applied without exception (proposed by Endrit; Anaïs and Luca to confirm) | P5-04 review |
 | Wide layout with the lesson sidebar | **Decided (P5-06):** the sidebar stays; document and questions stand side by side when the task area is at least 700 px wide (container query on the task area, not the window), stacked below | P5-06 |
@@ -3287,3 +3298,4 @@ CI does not call Gemini. Live generation and pedagogical review are separate aut
 | 0.74 | 2026-10-20 | P5-03 (rebased on main): the ten fr/A1 reading test lessons, written by hand as JSON and completed with `scripts/author-reading.ts`: online profile, public signs, text message, restaurant menu, flat ad, holiday postcard, cinema programme, party invitation, train timetable and written directions (5 key words, 4 detail questions, 8 minutes each). `make sample-lessons` and the contract tests include them. |
 | 0.75 | 2026-10-20 | P5-04 (rebased on main): reading lessons are playable. The document view and the skim phase (countdown box "Time to skim", I've finished reading, the document put away and the question answered from memory, the document back with the correction); questions on the shared choice cards with Vrai / Faux in fixed order; key words on the vocabulary flashcards and matching board; the ordering task on the word-order control; document pages keep their checked view with a correction card per question; the start page shows the situation, the key words and the sections Key words, The document and Final exam; the exam info row "Questions on the document"; results without exam parts. The countdown box moved to the shared controls. The artifact page shows the pending-category note only for kinds that cannot be played. |
 | 0.76 | 2026-10-20 | P5-06: reading pages keep the lesson sidebar; the document stands beside the questions when the task area is at least 700 px wide (a container query instead of the 1100 px window breakpoint), so tablets in landscape without the sidebar also get both columns (section 9 "Wide layout", section 5). Integration fixes found while rebasing the P5 stack on 0.72: key words are highlighted as whole words only ("Entrée" no longer inside "Entrées"; validation rejects a highlight found only inside a longer word), the ordering task names pieces of the text instead of words, and the session architecture section covers reading. |
+| 0.77 | 2026-10-20 | P5-05: the session records play-test times per page (`pageTimes`: entered, first checked, skim document put away, left; `src/domain/session/pageTimes.ts`); with `?playtest` the results show them with a JSON download. Validation: no exam question repeats a skim or detail question, the exam document repeats no paragraph of the main document. Lesson length per level measured from the page rules (6–14 minutes); play-test checklist in section 9. The starting values stay until play tests confirm them. |

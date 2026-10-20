@@ -20,7 +20,7 @@ import { join, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
 import { sha256 } from './catalog.ts';
 import { briefInputHash } from '../src/catalog/scan.ts';
-import { documentWords, readingPageEstimate, readingSkimSeconds, readingTimeLimit } from '../src/domain/readingLesson.ts';
+import { documentWords, readingMinutes, readingPageEstimate, readingSkimSeconds, readingTimeLimit } from '../src/domain/readingLesson.ts';
 import { READING_COPY } from '../src/domain/lessonCopy.ts';
 import type { Level } from '../src/schemas/common.ts';
 import { READING_STAGES, type ReadingBrief, type ReadingContent, type ReadingDocument, type ReadingItem, type ReadingStage } from '../src/schemas/reading.ts';
@@ -81,7 +81,7 @@ export function buildReadingLesson(id: string, root = resolve(import.meta.dirnam
       pages: [{ pageId: stage, estimatedDurationS: estimate, timeLimitS: stage === 'exam' ? readingTimeLimit(estimate) : null, instructions: stage === 'structure' && structureInstructions ? structureInstructions : instructions, items: items[stage] }],
     };
   });
-  const minutes = Math.max(1, Math.round(steps.reduce((n, s) => n + s.pages[0].estimatedDurationS, 0) / 60));
+  const minutes = readingMinutes(steps.map((s) => s.pages[0].estimatedDurationS));
 
   // Native maps hold every mother tongue except the learning language (D38), which the static type cannot express.
   const brief = {

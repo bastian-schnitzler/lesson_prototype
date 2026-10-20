@@ -1088,6 +1088,8 @@ Acceptance:
 - Play tests of the ten test lessons record skim and answer times per page.
 - The team decides the lesson length per level (whether B2–C2 may exceed 15 minutes), the word ranges, the skim speeds, the page estimates and the exam limits (D18 exception), and whether evidence marks, short typed answers or *not stated* come back; SPEC section 9, `src/schemas/reading.ts` and the test lessons are updated accordingly.
 
+Progress (2026-10-20, SPEC 0.77): the means for the first criterion are in place. The session records times per page (`pageTimes`); with `?playtest` the results show them with a JSON download (`tests/unit/page-times.test.tsx`). New validation: exam questions do not repeat skim or detail questions, and the exam document repeats no main-document paragraph. Lesson length measured from the page rules: 6–14 minutes from A1 to C2 (unit test: the largest lesson of every level is at most 15 minutes). SPEC section 9 has a play-test checklist. **Open:** the play tests themselves, and the team's decisions on the values; no value was changed without them.
+
 Dependencies: P5-04.
 
 ### P5-06: Reading layout on wide screens with the lesson sidebar
