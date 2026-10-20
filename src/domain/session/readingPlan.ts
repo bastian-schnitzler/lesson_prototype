@@ -23,6 +23,9 @@ export function readingPlanData(content: ReadingContent, brief: ReadingBrief): R
   };
 }
 
+/** Key under which a skimmed document is recorded in the session's `revealed`, like a turned flashcard. */
+export const SKIMMED = 'skimmed';
+
 /** Pieces of an ordering task are whole sentences: their order reads first → last. */
 export const ORDER_SEPARATOR = ' → ';
 

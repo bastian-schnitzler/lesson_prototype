@@ -31,7 +31,8 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('plays a reading lesson perfectly: key words, skim from memory, detail, structure, exam, 100 points', async ({ page }) => {
-  await page.goto('./#/lesson/fr-fix-menu/play');
+  // With ?playtest the results also list the times per page (P5-05).
+  await page.goto('./?playtest#/lesson/fr-fix-menu/play');
   await expect(page.locator('.flow-section')).toHaveCount(3, { timeout: 20_000 });
   await primary(page).click();
 
@@ -81,6 +82,12 @@ test('plays a reading lesson perfectly: key words, skim from memory, detail, str
   await expect(page.locator('.lesson-nav .results-final-score')).toHaveText('100 / 100');
   const nav = await lessonNav(page);
   await expect(nav.locator('.results-entry:not(.results-part) > span:first-child')).toHaveText(['Final exam', 'Matching', 'Skim', 'Detail', 'Structure']);
+
+  const times = page.getByRole('region', { name: 'Play-test times' });
+  await expect(times.getByRole('row')).toHaveCount(lesson.steps.length + 2); // header, the six steps and the exam info page
+  const download = page.waitForEvent('download');
+  await times.getByRole('button', { name: 'Download times (JSON)' }).click();
+  expect((await download).suggestedFilename()).toBe('fr-fix-menu-times.json');
 });
 
 test('places the document beside the questions by the width of the task area, with or without the sidebar (P5-06)', async ({ page }) => {
