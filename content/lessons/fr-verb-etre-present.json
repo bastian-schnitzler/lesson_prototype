@@ -19,10 +19,10 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "content-v4",
-    "generatedAt": "2026-10-14T16:27:38.534Z",
+    "generatedAt": "2026-10-16T17:56:28.329Z",
     "inputHashes": {
       "outline": "37f20906353e39b156b85e7597e3a6ecc18c349368249261ec098196b3e8c0b3",
-      "brief": "1a3905b09e283d811dfb9fe823255cf5dbb60f45bb11d2c2059f282c07671ebd"
+      "brief": "1afb8ed314c7e8fc24a5f7332c059b61282db1c6efa8f74691ce0fdb29b1be6f"
     }
   },
   "kind": "grammar",
@@ -340,9 +340,9 @@
                 "de": "être, 3. Person Singular"
               },
               "answerExplanation": {
-                "en": "Il is 3rd person singular (like il), so être is est.",
-                "fr": "Il est à la 3e personne du singulier (comme il) : être devient est.",
-                "de": "Il ist 3. Person Singular (wie il), also heißt être est."
+                "en": "With il, elle, on, être is est.",
+                "fr": "Avec il, elle, on, être devient est.",
+                "de": "Zu il, elle, on gehört die Form est."
               },
               "itemId": "ex-sg-typing-2"
             }
@@ -1370,9 +1370,9 @@
                     ]
                   },
                   "answerExplanation": {
-                    "en": "Il is 3rd person singular (like il), so être is est.",
-                    "fr": "Il est à la 3e personne du singulier (comme il) : être devient est.",
-                    "de": "Il ist 3. Person Singular (wie il), also heißt être est."
+                    "en": "With il, elle, on, être is est.",
+                    "fr": "Avec il, elle, on, être devient est.",
+                    "de": "Zu il, elle, on gehört die Form est."
                   }
                 }
               ],

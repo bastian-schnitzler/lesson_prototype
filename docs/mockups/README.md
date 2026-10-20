@@ -1,6 +1,6 @@
 # Lesson prototype mockups
 
-One guide for all 55 PlantUML Salt screens. Each screen folder contains only its editable `.puml` source; the matching source is embedded in [SPEC.md](../SPEC.md) as a `plantuml` code fence. PNG/SVG copies are not stored here. See the [issue asset mapping](../ISSUES.md#assets-to-include-when-publishing-applicable-issues).
+One guide for all mockups: 42 rendered screens of the vocabulary, grammar and function lessons and 19 PlantUML Salt screens (index, artifact view, reading). A rendered screen is a picture of the running prototype: a full-page PNG and a self-contained HTML snapshot (rendered DOM, inlined CSS, no scripts), captured by `make screens` (`scripts/screens.ts`) and shown in [SPEC.md](../SPEC.md) as the PNG linked to the snapshot. A Salt screen folder contains only its editable `.puml` source, embedded in SPEC as a `plantuml` code fence; PNG/SVG exports of Salt sources are not stored here. See the [issue asset mapping](../ISSUES.md#assets-to-include-when-publishing-applicable-issues).
 
 ## Make PlantUML rendering work in VS Code
 
@@ -22,7 +22,9 @@ GitHub's native Markdown renderer does not render PlantUML fences. Published iss
 
 ## Keep source and Markdown together
 
-Whenever a `.puml` changes, update its corresponding code fence in SPEC.md and any other Markdown/issue copies in the same change. The .puml is canonical. SPEC blocks have `mockup:begin` / `mockup:end` markers identifying their source path. After the Makefile is introduced in P1-01, use `make mockups-sync` and `make mockups-check`; test-all and CI check parity. Preview temporary exports outside this folder when needed.
+**Rendered screens:** run `make screens` (or `make screens ONLY=04-grammar-lesson`) after a change to these pages, then `make mockups-sync`, which writes each SPEC `screen:begin` / `screen:end` block from the screen list in `scripts/screens.ts`. Each screen's session state is built there with the app's plan and reducer and resumed in headless Chromium with a fixed seed, clock and test French voice, so a run reproduces the same pictures until the app or the content changes. `make mockups-check` fails on a missing PNG or HTML file, a missing or stale SPEC block or a missing README link.
+
+**Salt sources:** Whenever a `.puml` changes, update its corresponding code fence in SPEC.md and any other Markdown/issue copies in the same change. The .puml is canonical. SPEC blocks have `mockup:begin` / `mockup:end` markers identifying their source path. After the Makefile is introduced in P1-01, use `make mockups-sync` and `make mockups-check`; test-all and CI check parity. Preview temporary exports outside this folder when needed.
 
 All pages follow the [supplied screenshot reference register and visual contract](../SPEC.md#screenshot-reference-register): dark slate surfaces, light primary actions, outlined secondary controls, wide choice cards, indigo progress, and green/red/amber correctness colors. Original screenshot references belong in docs/design-references/, outside this source-only folder. Salt approximates widget styling and shows the exam timer as a ring symbol with seconds; the React visual contract defines final fills, radii, and centered countdown digits. Practice locks/shows feedback and then confirms with Continue; exam pages withhold feedback until the complete exam ends. Accent corrections name the actual mark. Artifact previews are read-only. All headers show independent mother-tongue and interface-language controls; these examples select en/en. Mother tongue is editable only on the index/starting page, where the option equal to the course's learning language (fr for French courses) is disabled; other pages show its option group read-only (muted unselected choices). Interface language remains editable during the whole session. The index displays discovered language/level groups (currently fr/A1 only), followed by multiselect categories. The artifact header toggles Raw JSON / Structured view; the shared tree opens its root, 0–3-child containers and only children, while other larger objects/arrays start collapsed.
 
@@ -77,60 +79,70 @@ Differences found:
 
 ## 03 — Vocabulary lesson
 
-| Screen folder | Screen | Source and embedded preview |
+Rendered from the prototype with the lesson `fr-classroom-objects` (`make screens`).
+
+| Screen folder | Screen | Rendered screen |
 | --- | --- | --- |
-| `03-vocabulary-lesson/01-startpage` | lesson start | [Salt source](03-vocabulary-lesson/01-startpage/lesson-start.puml) · [SPEC preview](../SPEC.md#mockup-03-vocabulary-lesson-01-startpage-lesson-start) |
-| `03-vocabulary-lesson/02-introduction` | introduction | [Salt source](03-vocabulary-lesson/02-introduction/introduction.puml) · [SPEC preview](../SPEC.md#mockup-03-vocabulary-lesson-02-introduction-introduction) |
-| `03-vocabulary-lesson/03-flashcards` | front | [Salt source](03-vocabulary-lesson/03-flashcards/front.puml) · [SPEC preview](../SPEC.md#mockup-03-vocabulary-lesson-03-flashcards-front) |
-| `03-vocabulary-lesson/03-flashcards` | revealed | [Salt source](03-vocabulary-lesson/03-flashcards/revealed.puml) · [SPEC preview](../SPEC.md#mockup-03-vocabulary-lesson-03-flashcards-revealed) |
-| `03-vocabulary-lesson/04-matching` | matching | [Salt source](03-vocabulary-lesson/04-matching/matching.puml) · [SPEC preview](../SPEC.md#mockup-03-vocabulary-lesson-04-matching-matching) |
-| `03-vocabulary-lesson/05-gender-overview` | gender select | [Salt source](03-vocabulary-lesson/05-gender-overview/gender-select.puml) · [SPEC preview](../SPEC.md#mockup-03-vocabulary-lesson-05-gender-overview-gender-select) |
-| `03-vocabulary-lesson/05-gender-overview` | reviewed overview | [Salt source](03-vocabulary-lesson/05-gender-overview/reviewed-overview.puml) · [SPEC preview](../SPEC.md#mockup-03-vocabulary-lesson-05-gender-overview-reviewed-overview) |
-| `03-vocabulary-lesson/06-typed-gaps` | answer | [Salt source](03-vocabulary-lesson/06-typed-gaps/answer.puml) · [SPEC preview](../SPEC.md#mockup-03-vocabulary-lesson-06-typed-gaps-answer) |
-| `03-vocabulary-lesson/06-typed-gaps` | feedback | [Salt source](03-vocabulary-lesson/06-typed-gaps/feedback.puml) · [SPEC preview](../SPEC.md#mockup-03-vocabulary-lesson-06-typed-gaps-feedback) |
-| `03-vocabulary-lesson/06-listening` | listening choice | [Salt source](03-vocabulary-lesson/06-listening/listening-choice.puml) · [SPEC preview](../SPEC.md#mockup-03-vocabulary-lesson-06-listening-listening-choice) |
-| `03-vocabulary-lesson/06-listening` | no-voice help | [Salt source](03-vocabulary-lesson/06-listening/no-voice-help.puml) · [SPEC preview](../SPEC.md#mockup-03-vocabulary-lesson-06-listening-no-voice-help) |
-| `03-vocabulary-lesson/07-exam` | exam page | [Salt source](03-vocabulary-lesson/07-exam/exam-page.puml) · [SPEC preview](../SPEC.md#mockup-03-vocabulary-lesson-07-exam-exam-page) |
-| `03-vocabulary-lesson/07-exam` | listening dictation | [Salt source](03-vocabulary-lesson/07-exam/listening-dictation.puml) · [SPEC preview](../SPEC.md#mockup-03-vocabulary-lesson-07-exam-listening-dictation) |
-| `03-vocabulary-lesson/08-results` | exam results | [Salt source](03-vocabulary-lesson/08-results/exam-results.puml) · [SPEC preview](../SPEC.md#mockup-03-vocabulary-lesson-08-results-exam-results) |
-| `03-vocabulary-lesson/08-results` | gender results | [Salt source](03-vocabulary-lesson/08-results/gender-results.puml) · [SPEC preview](../SPEC.md#mockup-03-vocabulary-lesson-08-results-gender-results) |
+| `03-vocabulary-lesson/01-startpage` | Lesson start | [PNG](03-vocabulary-lesson/01-startpage/lesson-start.png) · [HTML snapshot](03-vocabulary-lesson/01-startpage/lesson-start.html) · [SPEC preview](../SPEC.md#mockup-03-vocabulary-lesson-01-startpage-lesson-start) |
+| `03-vocabulary-lesson/02-introduction` | Introduction | [PNG](03-vocabulary-lesson/02-introduction/introduction.png) · [HTML snapshot](03-vocabulary-lesson/02-introduction/introduction.html) · [SPEC preview](../SPEC.md#mockup-03-vocabulary-lesson-02-introduction-introduction) |
+| `03-vocabulary-lesson/03-flashcards` | Flashcards | [PNG](03-vocabulary-lesson/03-flashcards/front.png) · [HTML snapshot](03-vocabulary-lesson/03-flashcards/front.html) · [SPEC preview](../SPEC.md#mockup-03-vocabulary-lesson-03-flashcards-front) |
+| `03-vocabulary-lesson/03-flashcards` | Flashcards turned | [PNG](03-vocabulary-lesson/03-flashcards/revealed.png) · [HTML snapshot](03-vocabulary-lesson/03-flashcards/revealed.html) · [SPEC preview](../SPEC.md#mockup-03-vocabulary-lesson-03-flashcards-revealed) |
+| `03-vocabulary-lesson/04-matching` | Matching | [PNG](03-vocabulary-lesson/04-matching/matching.png) · [HTML snapshot](03-vocabulary-lesson/04-matching/matching.html) · [SPEC preview](../SPEC.md#mockup-03-vocabulary-lesson-04-matching-matching) |
+| `03-vocabulary-lesson/05-gender-overview` | Gender | [PNG](03-vocabulary-lesson/05-gender-overview/gender-select.png) · [HTML snapshot](03-vocabulary-lesson/05-gender-overview/gender-select.html) · [SPEC preview](../SPEC.md#mockup-03-vocabulary-lesson-05-gender-overview-gender-select) |
+| `03-vocabulary-lesson/05-gender-overview` | Gender checked | [PNG](03-vocabulary-lesson/05-gender-overview/reviewed-overview.png) · [HTML snapshot](03-vocabulary-lesson/05-gender-overview/reviewed-overview.html) · [SPEC preview](../SPEC.md#mockup-03-vocabulary-lesson-05-gender-overview-reviewed-overview) |
+| `03-vocabulary-lesson/06-typed-gaps` | Typed gap | [PNG](03-vocabulary-lesson/06-typed-gaps/answer.png) · [HTML snapshot](03-vocabulary-lesson/06-typed-gaps/answer.html) · [SPEC preview](../SPEC.md#mockup-03-vocabulary-lesson-06-typed-gaps-answer) |
+| `03-vocabulary-lesson/06-typed-gaps` | Typed gap checked | [PNG](03-vocabulary-lesson/06-typed-gaps/feedback.png) · [HTML snapshot](03-vocabulary-lesson/06-typed-gaps/feedback.html) · [SPEC preview](../SPEC.md#mockup-03-vocabulary-lesson-06-typed-gaps-feedback) |
+| `03-vocabulary-lesson/06-listening` | Listening choice | [PNG](03-vocabulary-lesson/06-listening/listening-choice.png) · [HTML snapshot](03-vocabulary-lesson/06-listening/listening-choice.html) · [SPEC preview](../SPEC.md#mockup-03-vocabulary-lesson-06-listening-listening-choice) |
+| `03-vocabulary-lesson/06-listening` | No French voice | [PNG](03-vocabulary-lesson/06-listening/no-voice-help.png) · [HTML snapshot](03-vocabulary-lesson/06-listening/no-voice-help.html) · [SPEC preview](../SPEC.md#mockup-03-vocabulary-lesson-06-listening-no-voice-help) |
+| `03-vocabulary-lesson/07-exam` | Exam info | [PNG](03-vocabulary-lesson/07-exam/exam-info.png) · [HTML snapshot](03-vocabulary-lesson/07-exam/exam-info.html) · [SPEC preview](../SPEC.md#mockup-03-vocabulary-lesson-07-exam-exam-info) |
+| `03-vocabulary-lesson/07-exam` | Translation exam | [PNG](03-vocabulary-lesson/07-exam/exam-page.png) · [HTML snapshot](03-vocabulary-lesson/07-exam/exam-page.html) · [SPEC preview](../SPEC.md#mockup-03-vocabulary-lesson-07-exam-exam-page) |
+| `03-vocabulary-lesson/07-exam` | Listening dictation | [PNG](03-vocabulary-lesson/07-exam/listening-dictation.png) · [HTML snapshot](03-vocabulary-lesson/07-exam/listening-dictation.html) · [SPEC preview](../SPEC.md#mockup-03-vocabulary-lesson-07-exam-listening-dictation) |
+| `03-vocabulary-lesson/08-results` | Results | [PNG](03-vocabulary-lesson/08-results/exam-results.png) · [HTML snapshot](03-vocabulary-lesson/08-results/exam-results.html) · [SPEC preview](../SPEC.md#mockup-03-vocabulary-lesson-08-results-exam-results) |
+| `03-vocabulary-lesson/08-results` | Gender results | [PNG](03-vocabulary-lesson/08-results/gender-results.png) · [HTML snapshot](03-vocabulary-lesson/08-results/gender-results.html) · [SPEC preview](../SPEC.md#mockup-03-vocabulary-lesson-08-results-gender-results) |
 
 <a id="grammar-lesson"></a>
 
 ## 04 — Grammar lesson
 
-| Screen folder | Screen | Source and embedded preview |
+Rendered from the prototype with the lesson `fr-verb-avoir-present` (`make screens`).
+
+| Screen folder | Screen | Rendered screen |
 | --- | --- | --- |
-| `04-grammar-lesson/01-startpage` | lesson start | [Salt source](04-grammar-lesson/01-startpage/lesson-start.puml) · [SPEC preview](../SPEC.md#mockup-04-grammar-lesson-01-startpage-lesson-start) |
-| `04-grammar-lesson/02-00-explanation` | singular forms | [Salt source](04-grammar-lesson/02-00-explanation/singular-forms.puml) · [SPEC preview](../SPEC.md#mockup-04-grammar-lesson-02-00-explanation-singular-forms) |
-| `04-grammar-lesson/02-01-exercise-pronoun-match` | pronoun match | [Salt source](04-grammar-lesson/02-01-exercise-pronoun-match/pronoun-match.puml) · [SPEC preview](../SPEC.md#mockup-04-grammar-lesson-02-01-exercise-pronoun-match-pronoun-match) |
-| `04-grammar-lesson/02-02-exercise-pronoun-typing` | pronoun typing | [Salt source](04-grammar-lesson/02-02-exercise-pronoun-typing/pronoun-typing.puml) · [SPEC preview](../SPEC.md#mockup-04-grammar-lesson-02-02-exercise-pronoun-typing-pronoun-typing) |
-| `04-grammar-lesson/02-03-exercise-gap-choice` | gap choice | [Salt source](04-grammar-lesson/02-03-exercise-gap-choice/gap-choice.puml) · [SPEC preview](../SPEC.md#mockup-04-grammar-lesson-02-03-exercise-gap-choice-gap-choice) |
-| `04-grammar-lesson/02-04-exercise-gap-typing` | feedback | [Salt source](04-grammar-lesson/02-04-exercise-gap-typing/feedback.puml) · [SPEC preview](../SPEC.md#mockup-04-grammar-lesson-02-04-exercise-gap-typing-feedback) |
-| `04-grammar-lesson/02-04-exercise-gap-typing` | gap typing | [Salt source](04-grammar-lesson/02-04-exercise-gap-typing/gap-typing.puml) · [SPEC preview](../SPEC.md#mockup-04-grammar-lesson-02-04-exercise-gap-typing-gap-typing) |
-| `04-grammar-lesson/02-05-exercise-word-order` | word order | [Salt source](04-grammar-lesson/02-05-exercise-word-order/word-order.puml) · [SPEC preview](../SPEC.md#mockup-04-grammar-lesson-02-05-exercise-word-order-word-order) |
-| `04-grammar-lesson/02-06-exercise-error-spotter` | error spotter | [Salt source](04-grammar-lesson/02-06-exercise-error-spotter/error-spotter.puml) · [SPEC preview](../SPEC.md#mockup-04-grammar-lesson-02-06-exercise-error-spotter-error-spotter) |
-| `04-grammar-lesson/03-feedback-placeholder` | feedback placeholder | [Salt source](04-grammar-lesson/03-feedback-placeholder/feedback-placeholder.puml) · [SPEC preview](../SPEC.md#mockup-04-grammar-lesson-03-feedback-placeholder-feedback-placeholder) |
-| `04-grammar-lesson/04-exam` | mixed exam | [Salt source](04-grammar-lesson/04-exam/mixed-exam.puml) · [SPEC preview](../SPEC.md#mockup-04-grammar-lesson-04-exam-mixed-exam) |
-| `04-grammar-lesson/05-results` | exam results | [Salt source](04-grammar-lesson/05-results/exam-results.puml) · [SPEC preview](../SPEC.md#mockup-04-grammar-lesson-05-results-exam-results) |
+| `04-grammar-lesson/01-startpage` | Lesson start | [PNG](04-grammar-lesson/01-startpage/lesson-start.png) · [HTML snapshot](04-grammar-lesson/01-startpage/lesson-start.html) · [SPEC preview](../SPEC.md#mockup-04-grammar-lesson-01-startpage-lesson-start) |
+| `04-grammar-lesson/02-00-explanation` | Explanation | [PNG](04-grammar-lesson/02-00-explanation/explanation.png) · [HTML snapshot](04-grammar-lesson/02-00-explanation/explanation.html) · [SPEC preview](../SPEC.md#mockup-04-grammar-lesson-02-00-explanation-explanation) |
+| `04-grammar-lesson/02-07-exercise-person-matching` | Person matching | [PNG](04-grammar-lesson/02-07-exercise-person-matching/person-matching.png) · [HTML snapshot](04-grammar-lesson/02-07-exercise-person-matching/person-matching.html) · [SPEC preview](../SPEC.md#mockup-04-grammar-lesson-02-07-exercise-person-matching-person-matching) |
+| `04-grammar-lesson/02-01-exercise-pronoun-match` | Pronoun matching | [PNG](04-grammar-lesson/02-01-exercise-pronoun-match/pronoun-match.png) · [HTML snapshot](04-grammar-lesson/02-01-exercise-pronoun-match/pronoun-match.html) · [SPEC preview](../SPEC.md#mockup-04-grammar-lesson-02-01-exercise-pronoun-match-pronoun-match) |
+| `04-grammar-lesson/02-02-exercise-pronoun-typing` | Pronoun typing | [PNG](04-grammar-lesson/02-02-exercise-pronoun-typing/pronoun-typing.png) · [HTML snapshot](04-grammar-lesson/02-02-exercise-pronoun-typing/pronoun-typing.html) · [SPEC preview](../SPEC.md#mockup-04-grammar-lesson-02-02-exercise-pronoun-typing-pronoun-typing) |
+| `04-grammar-lesson/02-03-exercise-gap-choice` | Multiple-choice gap | [PNG](04-grammar-lesson/02-03-exercise-gap-choice/gap-choice.png) · [HTML snapshot](04-grammar-lesson/02-03-exercise-gap-choice/gap-choice.html) · [SPEC preview](../SPEC.md#mockup-04-grammar-lesson-02-03-exercise-gap-choice-gap-choice) |
+| `04-grammar-lesson/02-04-exercise-gap-typing` | Typed gap | [PNG](04-grammar-lesson/02-04-exercise-gap-typing/gap-typing.png) · [HTML snapshot](04-grammar-lesson/02-04-exercise-gap-typing/gap-typing.html) · [SPEC preview](../SPEC.md#mockup-04-grammar-lesson-02-04-exercise-gap-typing-gap-typing) |
+| `04-grammar-lesson/02-04-exercise-gap-typing` | Typed gap checked | [PNG](04-grammar-lesson/02-04-exercise-gap-typing/feedback.png) · [HTML snapshot](04-grammar-lesson/02-04-exercise-gap-typing/feedback.html) · [SPEC preview](../SPEC.md#mockup-04-grammar-lesson-02-04-exercise-gap-typing-feedback) |
+| `04-grammar-lesson/02-05-exercise-word-order` | Word order | [PNG](04-grammar-lesson/02-05-exercise-word-order/word-order.png) · [HTML snapshot](04-grammar-lesson/02-05-exercise-word-order/word-order.html) · [SPEC preview](../SPEC.md#mockup-04-grammar-lesson-02-05-exercise-word-order-word-order) |
+| `04-grammar-lesson/02-06-exercise-error-spotter` | Error spotter | [PNG](04-grammar-lesson/02-06-exercise-error-spotter/error-spotter.png) · [HTML snapshot](04-grammar-lesson/02-06-exercise-error-spotter/error-spotter.html) · [SPEC preview](../SPEC.md#mockup-04-grammar-lesson-02-06-exercise-error-spotter-error-spotter) |
+| `04-grammar-lesson/03-feedback-placeholder` | Feedback placeholder | [PNG](04-grammar-lesson/03-feedback-placeholder/feedback-placeholder.png) · [HTML snapshot](04-grammar-lesson/03-feedback-placeholder/feedback-placeholder.html) · [SPEC preview](../SPEC.md#mockup-04-grammar-lesson-03-feedback-placeholder-feedback-placeholder) |
+| `04-grammar-lesson/04-exam` | Exam info | [PNG](04-grammar-lesson/04-exam/exam-info.png) · [HTML snapshot](04-grammar-lesson/04-exam/exam-info.html) · [SPEC preview](../SPEC.md#mockup-04-grammar-lesson-04-exam-exam-info) |
+| `04-grammar-lesson/04-exam` | Exam page | [PNG](04-grammar-lesson/04-exam/mixed-exam.png) · [HTML snapshot](04-grammar-lesson/04-exam/mixed-exam.html) · [SPEC preview](../SPEC.md#mockup-04-grammar-lesson-04-exam-mixed-exam) |
+| `04-grammar-lesson/05-results` | Results | [PNG](04-grammar-lesson/05-results/exam-results.png) · [HTML snapshot](04-grammar-lesson/05-results/exam-results.html) · [SPEC preview](../SPEC.md#mockup-04-grammar-lesson-05-results-exam-results) |
 
 <a id="function-lesson"></a>
 
 ## 05 — Function lesson
 
-Example lesson `fr-ordering-at-a-cafe`, designed in P4-01 before implementation; P4-08 refreshes these screens from the running prototype.
+Rendered from the prototype with the lesson `fr-ordering-at-a-cafe` (`make screens`).
 
-| Screen folder | Screen | Source and embedded preview |
+| Screen folder | Screen | Rendered screen |
 | --- | --- | --- |
-| `05-function-lesson/01-startpage` | lesson start | [Salt source](05-function-lesson/01-startpage/lesson-start.puml) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-01-startpage-lesson-start) |
-| `05-function-lesson/02-flashcards` | expression flashcards | [Salt source](05-function-lesson/02-flashcards/expression-flashcards.puml) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-02-flashcards-expression-flashcards) |
-| `05-function-lesson/03-dialogue` | dialogue | [Salt source](05-function-lesson/03-dialogue/dialogue.puml) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-03-dialogue-dialogue) |
-| `05-function-lesson/04-matching` | expression matching | [Salt source](05-function-lesson/04-matching/expression-matching.puml) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-04-matching-expression-matching) |
-| `05-function-lesson/05-dialogue-gap-choice` | dialogue gap choice | [Salt source](05-function-lesson/05-dialogue-gap-choice/dialogue-gap-choice.puml) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-05-dialogue-gap-choice-dialogue-gap-choice) |
-| `05-function-lesson/06-word-order` | word order | [Salt source](05-function-lesson/06-word-order/word-order.puml) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-06-word-order-word-order) |
-| `05-function-lesson/07-listening-choice` | listening choice | [Salt source](05-function-lesson/07-listening-choice/listening-choice.puml) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-07-listening-choice-listening-choice) |
-| `05-function-lesson/08-exam` | dialogue gap typing | [Salt source](05-function-lesson/08-exam/dialogue-gap-typing.puml) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-08-exam-dialogue-gap-typing) |
-| `05-function-lesson/08-exam` | reply word order | [Salt source](05-function-lesson/08-exam/reply-word-order.puml) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-08-exam-reply-word-order) |
+| `05-function-lesson/01-startpage` | Lesson start | [PNG](05-function-lesson/01-startpage/lesson-start.png) · [HTML snapshot](05-function-lesson/01-startpage/lesson-start.html) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-01-startpage-lesson-start) |
+| `05-function-lesson/02-flashcards` | Expression flashcards | [PNG](05-function-lesson/02-flashcards/expression-flashcards.png) · [HTML snapshot](05-function-lesson/02-flashcards/expression-flashcards.html) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-02-flashcards-expression-flashcards) |
+| `05-function-lesson/03-dialogue` | Model dialogue | [PNG](05-function-lesson/03-dialogue/dialogue.png) · [HTML snapshot](05-function-lesson/03-dialogue/dialogue.html) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-03-dialogue-dialogue) |
+| `05-function-lesson/04-matching` | Expression matching | [PNG](05-function-lesson/04-matching/expression-matching.png) · [HTML snapshot](05-function-lesson/04-matching/expression-matching.html) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-04-matching-expression-matching) |
+| `05-function-lesson/04-matching` | Gender | [PNG](05-function-lesson/04-matching/gender.png) · [HTML snapshot](05-function-lesson/04-matching/gender.html) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-04-matching-gender) |
+| `05-function-lesson/05-dialogue-gap-choice` | Dialogue gap | [PNG](05-function-lesson/05-dialogue-gap-choice/dialogue-gap-choice.png) · [HTML snapshot](05-function-lesson/05-dialogue-gap-choice/dialogue-gap-choice.html) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-05-dialogue-gap-choice-dialogue-gap-choice) |
+| `05-function-lesson/06-word-order` | Word order | [PNG](05-function-lesson/06-word-order/word-order.png) · [HTML snapshot](05-function-lesson/06-word-order/word-order.html) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-06-word-order-word-order) |
+| `05-function-lesson/07-listening-choice` | Listening choice | [PNG](05-function-lesson/07-listening-choice/listening-choice.png) · [HTML snapshot](05-function-lesson/07-listening-choice/listening-choice.html) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-07-listening-choice-listening-choice) |
+| `05-function-lesson/08-exam` | Translation exam | [PNG](05-function-lesson/08-exam/translation-exam.png) · [HTML snapshot](05-function-lesson/08-exam/translation-exam.html) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-08-exam-translation-exam) |
+| `05-function-lesson/08-exam` | Exam replies | [PNG](05-function-lesson/08-exam/reply-word-order.png) · [HTML snapshot](05-function-lesson/08-exam/reply-word-order.html) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-08-exam-reply-word-order) |
+| `05-function-lesson/08-exam` | Exam dialogue | [PNG](05-function-lesson/08-exam/dialogue-gap-typing.png) · [HTML snapshot](05-function-lesson/08-exam/dialogue-gap-typing.html) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-08-exam-dialogue-gap-typing) |
+| `05-function-lesson/09-results` | Results | [PNG](05-function-lesson/09-results/exam-results.png) · [HTML snapshot](05-function-lesson/09-results/exam-results.html) · [SPEC preview](../SPEC.md#mockup-05-function-lesson-09-results-exam-results) |
 
 <a id="reading-lesson"></a>
 

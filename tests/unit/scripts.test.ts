@@ -6,6 +6,7 @@ import { describe, expect, it } from 'vitest';
 
 import { issueBody, parseAssets, parseIssues, parseMapping, parseMermaid, plantumlUrl } from '../../scripts/issues-sync.ts';
 import { analyze, load } from '../../scripts/mockups.ts';
+import { SCREENS, screenBlock } from '../../scripts/screens.ts';
 
 const docs = resolve(import.meta.dirname, '..', '..', 'docs');
 
@@ -15,7 +16,7 @@ describe('mockups check', () => {
 
   it('passes the repository mockups', () => {
     const { spec, sources, otherFiles, readme: realReadme } = load();
-    expect(analyze(spec, sources, otherFiles, realReadme).problems).toEqual([]);
+    expect(analyze(spec, sources, otherFiles, realReadme, SCREENS).problems).toEqual([]);
   });
 
   it('reports stale, missing, orphaned and duplicate blocks and stray files, and syncs stale ones', () => {
@@ -30,9 +31,24 @@ describe('mockups check', () => {
       'orphaned SPEC block: mockups/c.puml has no source file',
       'duplicate SPEC block: mockups/a.puml appears 2 times',
       'missing SPEC block: mockups/b.puml',
-      'non-source file in docs/mockups/: mockups/a.png (only .puml sources and README.md are allowed)',
+      'non-source file in docs/mockups/: mockups/a.png (only .puml sources, rendered screens of scripts/screens.ts and README.md are allowed)',
     ]);
     expect(report.synced).not.toContain('A1');
+  });
+
+  it('checks rendered screens: both files, the SPEC block and the README link, and syncs a stale block', () => {
+    const one = { path: 'x/one', title: 'One', lessonId: 'l1' };
+    const two = { path: 'x/two', title: 'Two', lessonId: 'l2' };
+    const screenSpec = `<!-- screen:begin mockups/x/one -->\nold\n<!-- screen:end mockups/x/one -->`;
+    const report = analyze(screenSpec, new Map(), ['mockups/x/one.png', 'mockups/x/one.html', 'mockups/x/two.png'], '(x/one.png)', [one, two]);
+    expect(report.problems).toEqual([
+      'missing screen file: mockups/x/two.html (run `make screens`)',
+      'stale SPEC screen block: mockups/x/one',
+      'missing SPEC screen block: mockups/x/two',
+      'mockups/README.md does not link x/two.png',
+    ]);
+    expect(report.synced).toContain(screenBlock(one));
+    expect(screenBlock(one)).toContain('[![One](mockups/x/one.png)](mockups/x/one.html)');
   });
 });
 
@@ -83,7 +99,15 @@ describe('issues sync', () => {
       readSource: (p) => readFileSync(resolve(docs, p), 'utf8'),
     });
     expect(withAssets).toContain('```mermaid');
-    expect(withAssets).toContain('```plantuml');
-    expect(withAssets).toContain('https://www.plantuml.com/plantuml/svg/');
+    // Vocabulary screens are rendered from the prototype: the committed PNG and its HTML snapshot.
+    expect(withAssets).toContain('/docs/mockups/03-vocabulary-lesson/02-introduction/introduction.png?raw=true');
+    expect(withAssets).toContain('introduction.html');
+    expect(withAssets).not.toContain('```plantuml');
+    const salt = issueBody(issues.find((i) => i.id === 'P5-05')!, {
+      sha: 'abc', specVersion: 'Draft 9.9', mapping, assets: parseAssets(issuesMd), mermaid: parseMermaid(spec),
+      readSource: (p) => readFileSync(resolve(docs, p), 'utf8'),
+    });
+    expect(salt).toContain('```plantuml');
+    expect(salt).toContain('https://www.plantuml.com/plantuml/svg/');
   });
 });

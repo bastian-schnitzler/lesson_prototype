@@ -147,7 +147,7 @@ export function UnitRow({ unit, props, children }: { unit: PlanUnit; props: Rend
   const lang = props.plan.lang;
   const locked = props.locked[unit.id];
   return (
-    <div className="unit">
+    <div className="unit" data-unit={unit.id}>
       {children}
       {props.mode === 'feedback' && locked && !(props.inlineFeedback && (unit.kind === 'text' || unit.kind === 'choice')) && <UnitFeedback unit={unit} locked={locked} lang={lang} />}
     </div>
