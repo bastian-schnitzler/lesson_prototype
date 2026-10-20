@@ -1144,6 +1144,8 @@ Acceptance:
 - Record the prototype revision used for comparison. Resolve implementation/specification differences or record them as follow-up work; mockup updates must not silently change agreed behavior.
 - Refresh applicable published GitHub issues and their diagrams/PlantUML code and server-rendered preview URLs; verify source parity, links, and rendering. This issue is required to close the phase.
 
+Progress (2026-10-20, SPEC 0.79): all fourteen reading Salt sources (thirteen lesson pages under `docs/mockups/06-reading-lesson/`, the artifact view under `docs/mockups/02-artifact-view/reading/`) are redrawn from captures of the running prototype at 1280 and 375 px (`P5-reading-integration` at `eb36f91` with this issue's fixes). Each source renders without a diagram error on the PlantUML server and was compared with its capture; `make mockups-sync` and `make mockups-check` pass; the single mockup README records the comparison. Differences resolved in the app: "n of 5 answered" on the exam page (section 9 and P5-04 acceptance, missing), and the singular for one exam page (start page, sidebar, countdown note). **Open:** the mockups follow the current starting values; if the play tests of P5-05 or the D55 confirmation of P5-07 change them, they are refreshed again before the phase closes.
+
 Dependencies: P5-05, P5-06, P5-07 (transitively every other phase 5 issue). Renumbered from P5-02 in P5-01; the GitHub issue number is unchanged.
 
 ## Phase 6 — lesson UX review (2026-10-09 feedback)

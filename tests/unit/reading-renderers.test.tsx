@@ -44,7 +44,7 @@ describe('reading start page and navigation', () => {
     expect(screen.getByText('Léa sends her friend Tom a text message on Thursday evening to plan Saturday.')).toBeInTheDocument();
     expect(screen.getByText('5 key words')).toBeInTheDocument();
     const rows = [...document.querySelectorAll('.flow-section .flow-head')].map((r) => r.textContent);
-    expect(rows).toEqual([expect.stringMatching(/^AKey words/), expect.stringMatching(/^BThe document/), expect.stringMatching(/^CFinal exam.*5 questions on 1 timed page/)]);
+    expect(rows).toEqual([expect.stringMatching(/^AKey words/), expect.stringMatching(/^BThe document/), expect.stringMatching(/^CFinal exam.*5 questions on 1 timed page(?!s)/)]);
     expect([...document.querySelectorAll('.flow-points li')].map((li) => li.textContent)).toEqual(['1Flashcards', '2Matching', '3Skim', '4Detail', '5Structure']);
     expect(document.body).not.toHaveTextContent('text_message');
   });
@@ -147,6 +147,19 @@ describe('detail, structure and exam', () => {
     cleanup();
     renderItem(QuestionRenderer, pg, 2, { mode: 'exam' });
     expect(document.querySelector('.reading-number')).toHaveTextContent('2.');
+  });
+
+  it('counts the answered exam questions next to Continue; one exam page is named in the singular', () => {
+    const exam = page('exam');
+    const [first, second] = exam.units;
+    const drafts = { [first.id]: first.kind === 'choice' ? first.correct[0] : '', [second.id]: second.kind === 'choice' ? second.correct[0] : '' };
+    render(wrap(<SessionView plan={plan} record={record(exam.index, { drafts })} dispatch={() => undefined} remainingMs={60_000} />));
+    expect(screen.getByRole('status')).toHaveTextContent('2 of 5 answered');
+    expect(document.querySelector('.lesson-nav .nav-title')).toHaveTextContent('1 page · 5 questions');
+    expect(document.querySelector('.lesson-nav .nav-note')).toHaveTextContent('The page has a countdown.');
+    cleanup();
+    render(wrap(<SessionView plan={plan} record={record(page('exam-intro').index)} dispatch={() => undefined} />));
+    expect(screen.getByText('The page has a countdown. You see your results only after the exam.')).toBeInTheDocument();
   });
 
   it('names the exam page on the info page and lists the results without exam parts', () => {

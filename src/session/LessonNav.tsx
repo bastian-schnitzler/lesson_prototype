@@ -116,7 +116,7 @@ function ExamPages({ plan, record }: { plan: LessonPlan; record: SessionRecord }
   return (
     <>
       <p className="nav-kicker">{pages[0]?.p.stepLabel[locale] ?? t('session.examPage')}</p>
-      <p className="nav-title">{t('nav.examSummary', { pages: pages.length, tasks })}</p>
+      <p className="nav-title">{t(pages.length === 1 ? 'nav.examSummaryOne' : 'nav.examSummary', { pages: pages.length, tasks })}</p>
       <ol className="exam-pages">
         {pages.map(({ p, index }, n) => {
           const state = index < record.pageIndex ? 'done' : index === record.pageIndex ? 'current' : 'upcoming';
@@ -132,7 +132,7 @@ function ExamPages({ plan, record }: { plan: LessonPlan; record: SessionRecord }
           );
         })}
       </ol>
-      <p className="muted nav-note">{t('examIntro.rules')}</p>
+      <p className="muted nav-note">{t(pages.length === 1 ? 'examIntro.rulesOne' : 'examIntro.rules')}</p>
     </>
   );
 }

@@ -74,7 +74,7 @@ function LessonFlow({ plan }: { plan: LessonPlan }) {
                 <span className="flow-letter" aria-hidden="true">{String.fromCharCode(65 + n)}</span>
                 <span className="flow-title">
                   {title(section)}
-                  {section.kind === 'exam' && <small className="flow-detail">{t('activity.exam', { count: exam.reduce((k, p) => k + p.units.length, 0), pages: exam.length })}</small>}
+                  {section.kind === 'exam' && <small className="flow-detail">{t(exam.length === 1 ? 'activity.examOnePage' : 'activity.exam', { count: exam.reduce((k, p) => k + p.units.length, 0), pages: exam.length })}</small>}
                   {group && <small className="flow-detail">{t('session.vocabularyCount', { count: group.targetIds.length })}</small>}
                 </span>
                 {/* Whole minutes with the stopwatch of the exam time limits (P6-02). */}
@@ -357,6 +357,8 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
         })}
         <div className="task-footer">
           {page.role === 'presentation' && !ready && !nextLine && <p className="muted">{t('session.revealAll')}</p>}
+          {/* Reading exam: how many of the questions are answered, next to Continue (section 9). */}
+          {page.role === 'exam' && plan.kind === 'reading' && <p className="muted" role="status">{t('reading.examAnswered', { count: page.units.filter((u) => isAnswered(u, record.drafts[u.id])).length, total: page.units.length })}</p>}
           <span className="continue-wrap">
             {nextLine ? (
               // A function dialogue unrolls line by line; after the last line the button continues (SPEC section 8).
@@ -416,7 +418,7 @@ function ExamIntro({ plan, page }: { plan: LessonPlan; page: PlanPage }) {
           </li>
         ))}
       </ol>
-      <p className="muted">{t('examIntro.rules')}</p>
+      <p className="muted">{t(examPages.length === 1 ? 'examIntro.rulesOne' : 'examIntro.rules')}</p>
     </div>
   );
 }
