@@ -75,7 +75,7 @@ export default {
       wo(NEPAS, ['Nous', 'ne', 'sommes', 'pas', 'à', 'Paris'], b('sommes')),
     ] },
     { pageId: 'exam-ne-pas', type: 'grammar_gap_typing', items: [
-      gt(NEPAS, 'Je danse. → Je', 'ne danse pas', '', b('danse')),
+      gt(NEPAS, 'Je danse. → Je', 'ne danse pas', '.', b('danse')),
       gt(NEPAS, 'Tu parles japonais. → Tu', 'ne parles pas', 'japonais.', b('parles')),
       gt(NEPAS, 'Il regarde le match. → Il', 'ne regarde pas', 'le match.', b('regarde')),
     ] },
@@ -83,7 +83,7 @@ export default {
       gt(ELISION, 'J’habite à Lyon. → Je', 'n’habite pas', 'à Lyon.', e('habite', true)),
       gt(ELISION, 'Tu aimes le chocolat. → Tu', 'n’aimes pas', 'le chocolat.', e('aimes')),
       gt(ELISION, 'Il a faim. → Il', 'n’a pas', 'faim.', e('a')),
-      gt(ELISION, 'Nous écoutons. → Nous', 'n’écoutons pas', '', e('écoutons')),
+      gt(ELISION, 'Nous écoutons. → Nous', 'n’écoutons pas', '.', e('écoutons')),
     ] },
   ],
 } satisfies LessonDefinition;
