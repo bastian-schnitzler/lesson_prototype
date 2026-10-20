@@ -161,7 +161,14 @@ export interface BodyContext {
   readSource: (path: string) => string;
 }
 
-export function issueBody(issue: BacklogIssue, ctx: BodyContext): string {
+/** Longest body published: GitHub rejects more than 65536 characters; the rest is a margin. */
+export const BODY_LIMIT = 65000;
+
+/**
+ * The published body of an issue. With `inlineSources: false` the Salt mockups keep their preview and the
+ * link to the editable source but leave out the copied PlantUML code (used when a body exceeds the limit).
+ */
+export function issueBody(issue: BacklogIssue, ctx: BodyContext, inlineSources = true): string {
   const blob = `https://github.com/${REPO}/blob/${ctx.sha}`;
   const text = issue.text
     .replace(/\]\(((?:SPEC|ISSUES)\.md[^)]*|mockups\/[^)]*)\)/g, (_, p: string) => `](${blob}/docs/${p})`)
@@ -195,6 +202,9 @@ export function issueBody(issue: BacklogIssue, ctx: BodyContext): string {
       '',
       `Editable source: [${path}](${blob}/docs/${path})`,
       '',
+    );
+    if (!inlineSources) continue;
+    parts.push(
       '<details><summary>PlantUML source</summary>',
       '',
       '```plantuml',
@@ -268,8 +278,13 @@ if (import.meta.main) {
   for (const issue of issues) {
     const number = mapping.get(issue.id);
     if (number === undefined) continue;
-    const body = issueBody(issue, ctx);
-    if (body.length > 65000) {
+    let body = issueBody(issue, ctx);
+    if (body.length > BODY_LIMIT) {
+      // Too long with every Salt source copied in: keep the previews and the links to the sources.
+      body = issueBody(issue, ctx, false);
+      console.log(`${issue.id}: PlantUML sources linked instead of copied (body too long)`);
+    }
+    if (body.length > BODY_LIMIT) {
       console.error(`error: ${issue.id} body is ${body.length} characters (GitHub limit 65536)`);
       failures++;
       continue;
