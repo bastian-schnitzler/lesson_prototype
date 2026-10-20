@@ -76,8 +76,8 @@ check-dist: build ## Build, then smoke-check dist/ under the Pages path with HTT
 smoke: node_modules/.package-lock.json ## HTTP smoke check of the published site (SITE_URL)
 	$(NODE) scripts/smoke.ts $(SITE_URL)
 
-issues-sync: node_modules/.package-lock.json ## Refresh GitHub milestones/issues from SPEC/ISSUES (DRY_RUN=1 to preview; needs gh)
-	$(NODE) scripts/issues-sync.ts $(if $(DRY_RUN),--dry-run,)
+issues-sync: node_modules/.package-lock.json ## Refresh GitHub milestones/issues from SPEC/ISSUES (DRY_RUN=1 to preview, ONLY=P5 for one phase; needs gh)
+	$(NODE) scripts/issues-sync.ts $(if $(DRY_RUN),--dry-run,) $(if $(ONLY),--only $(ONLY),)
 
 # ---- targets introduced by later issues: fail clearly until implemented ------
 

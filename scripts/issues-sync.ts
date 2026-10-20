@@ -2,13 +2,14 @@
  * Refreshes the published GitHub backlog from docs/ISSUES.md and docs/SPEC.md
  * (SPEC "Keep GitHub issues synchronized").
  *
- *   node scripts/issues-sync.ts [--dry-run]
+ *   node scripts/issues-sync.ts [--dry-run] [--only <ID prefix>]
  *
  * Updates milestone descriptions and every mapped issue's title, milestone and
  * body (scope, acceptance, dependency links, Mermaid flows, PlantUML sources
  * with server-rendered previews, screenshot links), pinned to the current
  * commit. Unmapped IDs get new issues; add the printed rows to the mapping
  * table in ISSUES.md. Requires `gh` access and a clean, pushed docs/ tree.
+ * `--only P5` limits the run to the issues whose logical ID starts with the prefix (no milestone updates).
  */
 import { execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
@@ -80,6 +81,11 @@ export function parseIssues(md: string): BacklogIssue[] {
     if (!milestone) throw new Error(`${m[1]} has no milestone line`);
     return { id: m[1], title: `${m[1]}: ${m[2]}`, milestone, text };
   });
+}
+
+/** The issues a run updates: all of them, or those whose logical ID starts with `only` (`P5`, `P5-08`). */
+export function selectIssues(issues: BacklogIssue[], only?: string): BacklogIssue[] {
+  return only ? issues.filter((issue) => issue.id.startsWith(only)) : issues;
 }
 
 export function parseMapping(md: string): Map<string, number> {
@@ -211,8 +217,9 @@ function sh(cmd: string, args: string[], input?: string): string {
 }
 
 if (import.meta.main) {
-  const { values } = parseArgs({ options: { 'dry-run': { type: 'boolean', default: false } } });
+  const { values } = parseArgs({ options: { 'dry-run': { type: 'boolean', default: false }, only: { type: 'string' } } });
   const dry = values['dry-run'];
+  const only = values.only;
   const issuesMd = readFileSync(resolve(ROOT, 'docs/ISSUES.md'), 'utf8');
   const spec = readFileSync(resolve(ROOT, 'docs/SPEC.md'), 'utf8');
 
@@ -226,7 +233,7 @@ if (import.meta.main) {
     process.exit(1);
   }
 
-  const issues = parseIssues(issuesMd);
+  const issues = selectIssues(parseIssues(issuesMd), only);
   const mapping = parseMapping(issuesMd);
   const ctx: BodyContext = {
     sha,
@@ -238,7 +245,7 @@ if (import.meta.main) {
   };
 
   const milestones = JSON.parse(sh('gh', ['api', `repos/${REPO}/milestones?state=all&per_page=100`])) as { title: string; number: number }[];
-  for (const [title, description] of parsePhases(spec)) {
+  for (const [title, description] of only ? [] : parsePhases(spec)) {
     const existing = milestones.find((m) => m.title === title);
     console.log(`${dry ? '[dry-run] ' : ''}milestone ${title}: ${existing ? 'update' : 'create'}`);
     if (dry) continue;

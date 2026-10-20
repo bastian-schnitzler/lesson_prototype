@@ -4,7 +4,7 @@ import { inflateRawSync } from 'node:zlib';
 
 import { describe, expect, it } from 'vitest';
 
-import { issueBody, parseAssets, parseIssues, parseMapping, parseMermaid, plantumlUrl } from '../../scripts/issues-sync.ts';
+import { issueBody, parseAssets, parseIssues, parseMapping, parseMermaid, plantumlUrl, selectIssues } from '../../scripts/issues-sync.ts';
 import { analyze, load } from '../../scripts/mockups.ts';
 import { SCREENS, screenBlock } from '../../scripts/screens.ts';
 
@@ -110,4 +110,11 @@ describe('issues sync', () => {
     expect(salt).toContain('```plantuml');
     expect(salt).toContain('https://www.plantuml.com/plantuml/svg/');
   });
+});
+
+it('limits an issue sync to one phase or one issue by logical ID prefix', () => {
+  const issues = parseIssues(readFileSync(resolve(import.meta.dirname, '../../docs/ISSUES.md'), 'utf8'));
+  expect(selectIssues(issues)).toHaveLength(issues.length);
+  expect(selectIssues(issues, 'P5').map((i) => i.id)).toEqual(['P5-01', 'P5-02', 'P5-03', 'P5-04', 'P5-05', 'P5-06', 'P5-07', 'P5-08']);
+  expect(selectIssues(issues, 'P5-08').map((i) => i.id)).toEqual(['P5-08']);
 });
