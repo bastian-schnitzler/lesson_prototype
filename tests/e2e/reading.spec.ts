@@ -82,3 +82,34 @@ test('plays a reading lesson perfectly: key words, skim from memory, detail, str
   const nav = await lessonNav(page);
   await expect(nav.locator('.results-entry:not(.results-part) > span:first-child')).toHaveText(['Final exam', 'Matching', 'Skim', 'Detail', 'Structure']);
 });
+
+test('places the document beside the questions by the width of the task area, with or without the sidebar (P5-06)', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto('./#/lesson/fr-fix-menu/play');
+  await expect(page.locator('.flow-section')).toHaveCount(3, { timeout: 20_000 });
+  await primary(page).click();
+  const flip = page.getByRole('button', { name: 'Flip card to French' });
+  while (await flip.count()) await flip.first().click();
+  await primary(page).click();
+  for (const k of brief.keywords) {
+    await page.locator('.matching-columns > ul').first().locator('.match-item').filter({ hasText: new RegExp(`^${escape(k.translations.en[0])}$`) }).click();
+    await page.locator('.matching-columns > ul').last().locator('.match-item').filter({ hasText: new RegExp(`^${escape(k.term)}`) }).click();
+  }
+  await primary(page).click();
+  await page.getByRole('button', { name: 'I’ve finished reading' }).click();
+  await answer(page, 'skim');
+  await primary(page).click();
+  await primary(page).click();
+  await expect(page.locator('.reading-question').first()).toBeVisible();
+
+  const doc = page.locator('.reading-doc-slot');
+  const questions = page.locator('.task-card > .units').first();
+  // [window width, sidebar shown, document beside the questions]
+  for (const [width, sidebar, beside] of [[1440, true, true], [1100, true, true], [1024, true, false], [900, false, true], [700, false, false], [375, false, false]] as const) {
+    await page.setViewportSize({ width, height: 800 });
+    await expect(page.locator('.lesson-nav')).toBeVisible({ visible: sidebar });
+    const [d, q] = [await doc.boundingBox(), await questions.boundingBox()];
+    expect(q!.x > d!.x + d!.width && Math.abs(q!.y - d!.y) < 40, `${width} px`).toBe(beside);
+    if (beside) expect(Math.min(d!.width, q!.width), `${width} px column width`).toBeGreaterThanOrEqual(280);
+  }
+});

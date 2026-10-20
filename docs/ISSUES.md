@@ -1103,6 +1103,8 @@ Acceptance:
 - Compare the side-by-side and stacked layouts with the sidebar at common desktop widths; decide whether reading pages collapse or narrow the sidebar, or keep the stacked layout up to a larger width.
 - Implement the decision on the skim, detail, structure and exam pages without changing the navigation rules (D53); record it in SPEC sections 5 and 9.
 
+Outcome (2026-10-20): measured with the menu fixture at 1024–1920 px, the task area beside the 290 px sidebar is 635 px at 1024 px, 711 px at 1100 px (columns of 320 / 290 px) and at most 931 px (435 / 395 px). Decision: the sidebar stays on reading pages (neither collapsed nor narrowed, D53 unchanged), and the document stands beside the questions or pieces when the task area is at least 700 px wide, by a container query instead of the 1100 px window breakpoint; with the sidebar this is unchanged from 1100 px, without it (900–960 px) both columns now appear. The skim page stays one column. Recorded in SPEC sections 5 and 9 (0.76); `tests/e2e/reading.spec.ts` checks 1440, 1100, 1024, 900, 700 and 375 px.
+
 Dependencies: P5-04.
 
 ### P5-07: Decide reading generation and complete the reading lessons

@@ -3128,8 +3128,14 @@ html {
 .reading-number { margin-right: 0.4rem; color: var(--muted); }
 .reading-doc-slot + .units, .reading-doc-slot + .reading-locked { margin-top: 1.25rem; }
 
-/* Wide screens: the document stays in view on the left while the questions or the pieces are on the right. */
-@media (min-width: 1100px) {
+/*
+ * Wide task areas: the document stays in view on the left while the questions or the pieces are on the
+ * right (P5-06). The switch depends on the width of the task area, not of the window: with the lesson
+ * sidebar (above 960 px) it is about 710 px wide at a 1100 px window, without it (960 px and below) the
+ * task area alone decides, so a tablet in landscape also shows both columns. Below 700 px they stack.
+ */
+.nav-main:has(> .task-card > .reading-doc-slot.is-side) { container: reading-task / inline-size; }
+@container reading-task (min-width: 700px) {
   .task-card:has(> .reading-doc-slot.is-side) { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); column-gap: 2rem; align-items: start; }
   .task-card:has(> .reading-doc-slot.is-side) > * { grid-column: 1 / -1; }
   .task-card > .reading-doc-slot.is-side { position: sticky; top: 1rem; grid-column: 1; grid-row: span 12; max-height: calc(100vh - 2rem); overflow: auto; }

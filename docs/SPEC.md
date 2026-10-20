@@ -1,6 +1,6 @@
 # Lesson exercise prototype specification
 
-Status: **Draft 0.75 — P5-04: reading document view, skim, questions and session**. Date: 2026-10-20.
+Status: **Draft 0.76 — P5-06: reading layout by the width of the task area**. Date: 2026-10-20.
 
 This document specifies the prototype and its phased implementation. It is the maintained requirements document: no separate requirements file exists. It does not authorize starting implementation before the specification review. The backlog is in [ISSUES.md](ISSUES.md) and published as GitHub issues in `bastian-schnitzler/lesson_prototype`.
 
@@ -717,7 +717,7 @@ Exam answers are never spoken; matching and gender pages speak nothing extra on 
 
 ### Lesson navigation (P6-01, D53)
 
-Every lesson page from the first learner page to the results has a **sidebar** left of the content on screens wider than 960 px (the page widens to about 1320 px). Its content depends on the phase:
+Every lesson page from the first learner page to the results has a **sidebar** left of the content on screens wider than 960 px (the page widens to about 1320 px). Reading pages keep it too (P5-06): the sidebar is neither collapsed nor narrowed for the document; reading lays its pages out by the width left to the task (section 9). Its content depends on the phase:
 
 - **Learning:** "Your lesson", "x of n points done" and a vertical timeline (design V2 of the 2026-10-09 feedback). The points come from the plan (`src/domain/session/outline.ts`): every theory page is a point (vocabulary introduction or flashcards of a group, grammar explanation named by its heading, function flashcards or dialogue, reading flashcards); consecutive practice pages of one step form one point; the exam is the last point. The points are numbered 1, 2, 3… through the lesson; each circle has the colour of its start-page section and keeps its number when done (filled, no tick). The current point is ringed and says "You are here"; others say "Done" or "Not yet open"; the exam shows its flag and its number of tasks. The production-feedback placeholder and the exam info page belong to the exam point.
 - **Exam:** "Final exam", "p pages · t questions" and one row per exam page with its kind (translation, dictation, mixed…), its number of questions and time limit (the learner-facing copy says "questions", never "tasks", P6-02); done pages are ticked ("Answered"), the current page says "in progress"; below, "Each page has its own countdown. You see your results only after the whole exam."
@@ -1196,7 +1196,7 @@ A paragraph is a paragraph of prose, a message bubble, a menu section, a sign, a
 | Flashcards | The vocabulary flashcard page: the mother-tongue meaning in front; the key word with a speaker button and its explanation behind. Continue needs every card turned once. |
 | Matching | The vocabulary matching board, mother-tongue meaning on the left and the key word with its speaker on the right. Checked exactly like vocabulary matching (rule 4 applies: a fully correct board flashes green and moves on; no explanations). |
 | Skim | The document under a countdown box **Time to skim** with an outlined **I've finished reading** button; the question is not shown yet. When the time is up or the button is pressed, the document is put away and the question opens as choice cards under **Answer from memory**. The choice is confirmed with **Check** (rule 4's submit-on-choice does not apply). After Check the document comes back with the correction card (Correct, or the right answer in green above the chosen one struck through in red, then the explanation), and the page waits for **Continue** even when the answer is right (P5-01 review). |
-| Detail | The open document beside the questions (side by side from 1100 px, stacked below; the document stays in view). Every question is answered before **Check**; each question then gets its correction card (as on the skim page), and the page waits for Continue even when every answer is right (P5-01 review: the learner wants to see which facts were right). |
+| Detail | The open document beside the questions (side by side when the task area is at least 700 px wide, stacked below; the document stays in view, see "Wide layout" below). Every question is answered before **Check**; each question then gets its correction card (as on the skim page), and the page waits for Continue even when every answer is right (P5-01 review: the learner wants to see which facts were right). |
 | Structure | The document beside the word-order control: the pieces are shuffled from the session seed and placed by click, keyboard or drag as in grammar word order. Check marks the order; the feedback card shows the correct order (pieces joined by → ) and the explanation; the page waits for Continue. |
 | Exam | The shared exam page: the countdown box, the exam document beside the five numbered questions, "n of 5 answered" next to Continue. Continue or the countdown submits the page; unanswered questions earn zero. |
 
@@ -1234,13 +1234,15 @@ Claude writes the brief and lesson content of the **ten fr/A1 reading entries** 
 
 ### Open points and their issues
 
+**Wide layout (P5-06).** The detail, structure and exam pages put the document on the left (sticky, scrolling on its own when it is taller than the window) and the questions or the pieces on the right when the **task area** is at least 700 px wide, and stack them below. The switch is a container query on the task area, not a window breakpoint, because the lesson sidebar takes 290 px above 960 px: measured with the menu fixture, the task area is 635 px at a 1024 px window (stacked), 711 px at 1100 px (columns of 320 / 290 px), 891 px at 1280 px and at most 931 px from 1366 px on (columns of 435 / 395 px, the 1320 px page limit). Without the sidebar (960 px and narrower) a tablet in landscape (900–960 px, task area 828–888 px) now also shows both columns; 768 px and phones stay stacked. Collapsing or narrowing the sidebar was rejected: the columns are wide enough with it, and the navigation (D53) stays the same on every page. The skim page itself is always one column (the document above its countdown). `tests/e2e/reading.spec.ts` checks the layout at 1440, 1100, 1024, 900, 700 and 375 px.
+
 | Point | Decision so far | Issue |
 | --- | --- | --- |
 | Lesson length per level | Every level within 15 minutes with the page rules above; longer lessons for B2–C2 discussed in the team | P5-05 |
 | Word ranges, skim speed, exam limits | Starting values above; tuned after play tests | P5-05 |
 | Evidence marks, short answers, *not stated* | Left out; brought back only if play tests show the need | P5-05 |
 | Navigation points | D53 applied without exception (proposed by Endrit; Anaïs and Luca to confirm) | P5-04 review |
-| Wide layout with the lesson sidebar | Side by side from 1100 px, stacked below; collapsing the sidebar on reading pages is decided while implementing | P5-06 |
+| Wide layout with the lesson sidebar | **Decided (P5-06):** the sidebar stays; document and questions stand side by side when the task area is at least 700 px wide (container query on the task area, not the window), stacked below | P5-06 |
 | Genres | The list above, chosen by the reading owner to cover the outlines (P5-01 review: owner's decision) | – |
 | Generation | Ten hand-written test lessons first; offline generation in the prototype decided after their review | P5-07 |
 
@@ -2316,7 +2318,7 @@ Rendered by the prototype (lesson `fr-ordering-at-a-cafe`): [HTML snapshot](mock
 
 ### Reading lesson screens
 
-Every page of one reading lesson (section 9), drawn with the fr/A1 lesson `fr-reading-a-text-message`. Flashcards, matching, the exam info page, the countdown, the results and the lesson navigation are the shared screens of the other categories; the document view and the skim phase are reading's own. Salt limits: matching curves are `~~~`, and the document stands beside the questions from 1100 px only.
+Every page of one reading lesson (section 9), drawn with the fr/A1 lesson `fr-reading-a-text-message`. Flashcards, matching, the exam info page, the countdown, the results and the lesson navigation are the shared screens of the other categories; the document view and the skim phase are reading's own. Salt limits: matching curves are `~~~`, and the document stands beside the questions from a 700 px task area only (1100 px with the sidebar, P5-06).
 
 #### Reading: combined artifact view
 
@@ -2743,7 +2745,7 @@ scale 1.3
 } }
 .
 { <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#64748B>  Check  </color> ] }
-<color:#94A3B8>Side by side from 1100 px, stacked below; Check opens once every question is answered.</color>
+<color:#94A3B8>Side by side from a 700 px task area (1100 px with the sidebar), stacked below; Check opens once every question is answered.</color>
 } }
 } | <color:#020617>xx</color> }
 .
@@ -3284,3 +3286,4 @@ CI does not call Gemini. Live generation and pedagogical review are separate aut
 | 0.73 | 2026-10-20 | P5-02 (rebased on 0.72): executable reading brief and lesson content schemas (`src/schemas/reading.ts`), page rules and skim speeds (`src/domain/readingLesson.ts`), the section 9 checks (`src/validation/reading.ts`), plan units on the shared 35 / 65 scoring, the reading Draft and Content views and the authoring tool `scripts/author-reading.ts`; `fr-reading-a-text-message` is the contract fixture. The content has six one-page steps (flashcards and matching are separate steps, so they are separate points under D53). Reading cannot start yet. |
 | 0.74 | 2026-10-20 | P5-03 (rebased on main): the ten fr/A1 reading test lessons, written by hand as JSON and completed with `scripts/author-reading.ts`: online profile, public signs, text message, restaurant menu, flat ad, holiday postcard, cinema programme, party invitation, train timetable and written directions (5 key words, 4 detail questions, 8 minutes each). `make sample-lessons` and the contract tests include them. |
 | 0.75 | 2026-10-20 | P5-04 (rebased on main): reading lessons are playable. The document view and the skim phase (countdown box "Time to skim", I've finished reading, the document put away and the question answered from memory, the document back with the correction); questions on the shared choice cards with Vrai / Faux in fixed order; key words on the vocabulary flashcards and matching board; the ordering task on the word-order control; document pages keep their checked view with a correction card per question; the start page shows the situation, the key words and the sections Key words, The document and Final exam; the exam info row "Questions on the document"; results without exam parts. The countdown box moved to the shared controls. The artifact page shows the pending-category note only for kinds that cannot be played. |
+| 0.76 | 2026-10-20 | P5-06: reading pages keep the lesson sidebar; the document stands beside the questions when the task area is at least 700 px wide (a container query instead of the 1100 px window breakpoint), so tablets in landscape without the sidebar also get both columns (section 9 "Wide layout", section 5). Integration fixes found while rebasing the P5 stack on 0.72: key words are highlighted as whole words only ("Entrée" no longer inside "Entrées"; validation rejects a highlight found only inside a longer word), the ordering task names pieces of the text instead of words, and the session architecture section covers reading. |
