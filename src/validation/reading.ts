@@ -1,7 +1,7 @@
 import { nativeLocales } from '../schemas/artifactCommon.ts';
 import type { Level } from '../schemas/common.ts';
 import { READING_LIMITS, READING_STAGES, READING_WORDS, type ReadingBrief, type ReadingContent, type ReadingItem } from '../schemas/reading.ts';
-import { documentWords, readingPageEstimate, readingTimeLimit } from '../domain/readingLesson.ts';
+import { documentWords, highlightRanges, readingPageEstimate, readingTimeLimit } from '../domain/readingLesson.ts';
 import type { Issues } from './artifacts.ts';
 
 /**
@@ -61,7 +61,7 @@ export function checkReadingContent(c: ReadingContent, b: ReadingBrief, issues: 
     if (doc.documentId === 'exam') issues.check(doc.highlights.length === 0, `${path}.highlights`, 'the exam document lists no highlights');
     doc.highlights.forEach((h, i) => {
       issues.check(keywordIds.includes(h.keywordId), `${path}.highlights.${i}`, `unknown key word ${h.keywordId}`);
-      issues.check(doc.paragraphs.some((p) => p.includes(h.text)), `${path}.highlights.${i}`, `"${h.text}" is not in the document`);
+      issues.check(doc.paragraphs.some((p) => highlightRanges(p, [h.text]).length > 0), `${path}.highlights.${i}`, `"${h.text}" is not in the document as a whole word`);
     });
     if (doc.documentId === 'main') for (const id of keywordIds) issues.check(doc.highlights.some((h) => h.keywordId === id), `${path}.highlights`, `key word ${id} is never highlighted`);
   });
