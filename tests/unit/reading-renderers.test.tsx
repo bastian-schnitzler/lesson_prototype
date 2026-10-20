@@ -7,7 +7,7 @@ import { lessonOutline, numberedPoints } from '../../src/domain/session/outline.
 import { buildPlan, type PlanPage, type PlanUnit } from '../../src/domain/session/plan.ts';
 import { requiredReveals, sessionReducer, skipsFeedbackWhenCorrect, startSession, type SessionRecord, type UnitResponse } from '../../src/domain/session/session.ts';
 import { briefSchema, contentSchema } from '../../src/schemas/artifacts.ts';
-import type { RendererProps } from '../../src/session/controls.tsx';
+import { UnitsRenderer, type RendererProps } from '../../src/session/controls.tsx';
 import { DocumentRenderer, isSkimmed, QuestionRenderer, SKIMMED } from '../../src/session/readingRenderers.tsx';
 import { FlashcardsRenderer } from '../../src/session/vocabularyRenderers.tsx';
 import { correctSentences, isAutoSubmitPage, ResultsView, SessionView, StartView } from '../../src/session/views.tsx';
@@ -125,6 +125,13 @@ describe('detail, structure and exam', () => {
     renderItem(DocumentRenderer, pg, 0);
     expect(document.querySelector('.reading-doc-slot')).toHaveClass('is-side');
     expect(screen.queryByRole('timer')).toBeNull();
+  });
+
+  it('names the ordering task by pieces of the text, not by the words of a sentence', () => {
+    const structure = page('structure');
+    renderItem(UnitsRenderer, structure, structure.items.findIndex((it) => it.type === 'reading_order'));
+    expect(screen.getByRole('group', { name: 'Available pieces' })).toBeInTheDocument();
+    expect(screen.getByRole('group', { name: 'Your order' })).toHaveTextContent('Select the pieces in the order of the text.');
   });
 
   it('keeps the checked view of a document page even when every answer is right, and speaks nothing on Check', () => {

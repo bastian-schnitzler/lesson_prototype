@@ -262,6 +262,8 @@ export function OrderControl({ unit, props }: { unit: PlanUnit & { kind: 'order'
   const disabled = readOnly(props, unit);
   const bank = seededOrder(unit.tokens, props.seed, unit.id).filter((tk) => !order.includes(tk.id));
   const text = (id: string) => unit.tokens.find((tk) => tk.id === id)?.text;
+  // Reading pieces are phrases of the text, not the words of one sentence (section 9).
+  const pieces = unit.itemType === 'reading_order';
   const line = useRef<HTMLParagraphElement>(null);
   /** The dragged token: its ID and, when it is on the line, its index there. */
   type Source = { tokenId: string; index: number | null };
@@ -369,10 +371,10 @@ export function OrderControl({ unit, props }: { unit: PlanUnit & { kind: 'order'
   if (showMarker) placed.splice(drag!.target!, 0, <span key="marker" className="order-marker" aria-hidden="true" />);
   return (
     <div className={`order${drag ? ' is-dragging' : ''}`}>
-      <p ref={line} className="order-answer" lang={props.plan.lang} role="group" aria-label={t('session.orderLine')}>
-        {placed.length ? placed : <span className="muted">{t('session.orderEmpty')}</span>}
+      <p ref={line} className="order-answer" lang={props.plan.lang} role="group" aria-label={t(pieces ? 'reading.orderLine' : 'session.orderLine')}>
+        {placed.length ? placed : <span className="muted">{t(pieces ? 'reading.orderEmpty' : 'session.orderEmpty')}</span>}
       </p>
-      <p ref={bankRef} className="order-bank" lang={props.plan.lang} role="group" aria-label={t('session.orderBank')}>
+      <p ref={bankRef} className="order-bank" lang={props.plan.lang} role="group" aria-label={t(pieces ? 'reading.orderBank' : 'session.orderBank')}>
         {bank.map((tk) => (
           <button key={tk.id} type="button" className={`token${drag?.tokenId === tk.id ? ' is-dragged' : ''}`} disabled={disabled}
             {...handlers({ tokenId: tk.id, index: null })}
