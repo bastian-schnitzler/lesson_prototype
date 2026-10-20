@@ -308,5 +308,5 @@ if (import.meta.main) {
     for (const row of created) console.log(row);
   }
   if (failures) process.exit(1);
-  console.log(dry ? '\ndry run complete; nothing was changed' : `\n${mapping.size} issues synchronized at ${sha.slice(0, 7)}`);
+  console.log(dry ? '\ndry run complete; nothing was changed' : `\n${issues.filter((issue) => mapping.has(issue.id)).length} issues synchronized at ${sha.slice(0, 7)}`);
 }
