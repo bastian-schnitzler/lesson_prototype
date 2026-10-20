@@ -1123,6 +1123,8 @@ Acceptance:
 - If generation is chosen: brief and content prompts for reading in the generator (brief first, then lesson content; `skimSeconds`, estimates and limits assembled locally from the page rules), `make brief`, `make generate ID=<id>` and `make generate-missing` include reading, fake-model tests cover it, and the generated artifacts pass validation and review.
 - Every reading lesson in scope has a valid, reviewed, playable brief and lesson content; representative journeys are verified on Pages.
 
+Progress (2026-10-20, SPEC 0.78): decision D55 is **proposed** and awaits the product owner's confirmation. Hand-written static lessons, completed by `scripts/author-reading.ts`; the prototype's scope is the ten fr/A1 test lessons; offline generation is deferred (the generation criterion therefore does not apply); the other 836 reading entries stay unavailable with their reasons. A course audit (`tests/unit/reading-course.test.tsx`) and browser journeys on the real content (`tests/e2e/reading-course.spec.ts`) play all ten lessons to 100 points; `make build` passes. **Open:** the product owner confirms D55; the review of the ten lessons (P5-03, #101); verification on Pages once deployment runs again (GitHub Actions is blocked by billing).
+
 Dependencies: P5-03, P5-04.
 
 ### P5-08: Update reading lesson mockups from the prototype
