@@ -1605,7 +1605,7 @@
                 "rule-ne-pas-structure"
               ],
               "before": "Je danse. → Je",
-              "after": "",
+              "after": ".",
               "accepted": {
                 "answers": [
                   "ne danse pas"
@@ -1737,7 +1737,7 @@
                 "rule-n-elision"
               ],
               "before": "Nous écoutons. → Nous",
-              "after": "",
+              "after": ".",
               "accepted": {
                 "answers": [
                   "n’écoutons pas"
@@ -1760,10 +1760,10 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "content-v4",
-    "generatedAt": "2026-10-14T16:27:38.093Z",
+    "generatedAt": "2026-10-16T17:56:30.556Z",
     "inputHashes": {
       "outline": "078446959aa285cbf75f09d67558dd26db4d3f7725b45d2e27e09f93693ea261",
-      "brief": "eace67b4ececa775118d4749210f73b9e0dfbba04c1c6282ecfcdc80ebac2de0"
+      "brief": "f71aaac2d1731f9e7d7d4acff90f66fe8ed4b1e6bb016321c3d83c9f4f473a23"
     }
   }
 }

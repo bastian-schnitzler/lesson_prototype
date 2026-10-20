@@ -198,7 +198,7 @@
               "choices": [
                 {
                   "choiceId": "c-1",
-                  "text": "Il"
+                  "text": "Nous"
                 },
                 {
                   "choiceId": "c-2",
@@ -1335,11 +1335,10 @@
               "ruleIds": [
                 "rule-singular-pronouns"
               ],
-              "before": "",
+              "before": "Moi,",
               "after": "habite à Marseille.",
               "accepted": {
                 "answers": [
-                  "J’",
                   "j’"
                 ]
               },
@@ -1430,8 +1429,8 @@
               "ruleIds": [
                 "rule-on-informal-we"
               ],
-              "before": "Le samedi,",
-              "after": "est à la maison.",
+              "before": "Ma famille et moi,",
+              "after": "est à la maison le samedi.",
               "accepted": {
                 "answers": [
                   "on"
@@ -1546,10 +1545,10 @@
     "generator": "claude-code-direct-authoring",
     "model": "claude-opus-5-5",
     "promptVersion": "content-v4",
-    "generatedAt": "2026-10-14T16:27:59.674Z",
+    "generatedAt": "2026-10-16T17:56:29.229Z",
     "inputHashes": {
       "outline": "0367546f1045976bcb4939d146c3b21f6c14226474b17a8ca564d616f4ff3afe",
-      "brief": "f8bbb69c7f9fdefaf2b60c59007b7f1241cf0fe6f3f596e834574eedd68355b0"
+      "brief": "21f0474ae108f97f418008360b0cda5b5185f056f45bacb31ccec9da6ef09692"
     }
   }
 }

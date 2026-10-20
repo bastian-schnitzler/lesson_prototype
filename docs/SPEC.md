@@ -1,8 +1,119 @@
 # Lesson exercise prototype specification
 
-Status: **Draft 0.72 — P5-04: reading lessons are playable**. Date: 2026-10-15.
+Status: **Draft 0.75 — P5-04: reading document view, skim, questions and session**. Date: 2026-10-20.
 
 This document specifies the prototype and its phased implementation. It is the maintained requirements document: no separate requirements file exists. It does not authorize starting implementation before the specification review. The backlog is in [ISSUES.md](ISSUES.md) and published as GitHub issues in `bastian-schnitzler/lesson_prototype`.
+
+## Lesson session architecture
+
+This overview covers only what happens from the moment a lesson starts: how the lesson is loaded and turned into an attempt, what the browser keeps while the learner works, and which parts every lesson category shares. Details are in sections 5 (session, scoring, timing) and 6–9 (category flows); offline generation and the catalog are in sections 2–4.
+
+### From Start lesson to the results
+
+```mermaid
+flowchart TD
+    A["Start lesson: route #/lesson/id/play"] --> B{"Ready? outline entry valid,<br/>brief and content valid and current,<br/>category playable"}
+    B -->|No| X[Unavailable page with reasons]
+    B -->|Yes| C["Fetch brief + lesson content<br/>(vocabulary: brief only)"]
+    C --> D["Validate both again in the browser;<br/>vocabulary: derive the content from the brief"]
+    D --> E["buildPlan(content, brief, mother tongue)<br/>→ LessonPlan: pages and scorable units"]
+    E --> F{"Saved attempt for this lesson<br/>with the same content hash?"}
+    F -->|Yes| G[Start page offers Resume lesson]
+    F -->|No| H[Start page offers Continue]
+    G --> I[Session host with the saved record]
+    H --> J["startSession: new record<br/>(session ID, seed, mother tongue, page 0)"]
+    J --> I
+    I --> K["Every learner action → sessionReducer → new record<br/>→ saved to browser storage"]
+    K -->|next page| I
+    K -->|last exam page locked| L["Results: scores computed from plan + record,<br/>results menu, last-try score on the index"]
+```
+
+1. **Readiness.** The play route looks up the lesson in the manifest (built from the outlines, briefs and lesson files, section 3). It starts only when the outline entry, the brief and (except for vocabulary) the lesson content are valid and current and the category is playable (vocabulary, grammar, functions; reading not yet). Otherwise it lists the reasons. Nothing is generated at this point.
+2. **Load and validate.** The browser fetches the published JSON files and validates them again with the same schemas and checks as the build. A vocabulary lesson has no content file: `vocabularyLesson(brief)` derives its stages from the brief (D47). Grammar and function lessons read `content/lessons/<id>.json`.
+3. **Plan.** `buildPlan` flattens the content into a **lesson plan**: the concrete pages in order (with the exam info page in front of the exam), each with its items and its **units**. A unit is one scorable answer (one gap, one matching pair, one pronoun row, one word order) in one of four kinds: `text`, `choice`, `order` or `spot`. The plan resolves the mother tongue, accepted answers, explanations and time limits. It is rebuilt from the files on every load and never stored.
+4. **Start or resume.** The start page shows the lesson outline. Continue creates a new **session record** (`startSession`): a random session ID and shuffle seed, the content hash, the mother tongue fixed for the attempt, page 0. A saved active record with the same content hash is offered as Resume lesson instead; a record for changed content cannot be resumed.
+5. **Run.** The session host renders the current page. Every action (typing a draft, Check/Continue, turning a card, a countdown expiry, choosing a results entry) goes through one pure `sessionReducer(plan, record, action)`; the new record is saved to browser storage at once, so a reload resumes on the same page with the same answers, shuffles and deadlines.
+6. **Results.** When the last exam page locks, the record turns `completed` and the results page shows the final score, the exam answers and a menu of the scored exercises. The last-try score appears on the index until a full reload (D11).
+
+### Data kept while a lesson runs
+
+Everything stays in the learner's browser; there is no server and no account. Scores, progress and results are **derived**, never stored: they are recomputed from the plan and the record whenever they are shown.
+
+| Where | Key / owner | Content | Lifetime |
+| --- | --- | --- | --- |
+| Browser storage | `lesson-prototype:session:<lessonId>` | The **session record** of the current attempt (one per lesson), see below. | Until the lesson is restarted or storage is cleared; a completed record stays but cannot be resumed. |
+| Browser storage | `lessonPrototype.preferences.v1` | Mother tongue, interface language, autoplay switch (D45). | Across lessons and reloads. |
+| Memory | Lesson plan | Pages, units, accepted answers, explanations, limits; built from the files. | Rebuilt on every load. |
+| Memory | Last-try scores | The final score of each lesson completed since the app was loaded (index column). | Lost on a full reload (D11). |
+| Memory | Remaining exam time, voice status | Computed from the stored deadline and the browser's speech voices. | Recomputed every 250 ms / on voice changes. |
+
+The **session record** (`SessionRecord`, `src/domain/session/session.ts`):
+
+| Field | Meaning |
+| --- | --- |
+| `sessionId`, `lessonId`, `contentHash`, `lang`, `level` | Identity of the attempt; the hash ties it to the exact lesson files. |
+| `motherTongue`, `seed` | Fixed at start: the mother tongue of all prompts, and the seed of every shuffle (matching columns, choices, token banks), so resume and results show the same order. |
+| `startedAt`, `updatedAt`, `status`, `pageIndex`, `phase` | Where the learner is: active or completed, the current page, and `answering`, `feedback` (practice page checked) or `results`. |
+| `drafts` | Unlocked answers per unit ID (typed text, chosen option, token order, selected word and correction). |
+| `locked` | Per unit: the submitted response, its outcome (`fully_correct`, `orthography_only`, `incorrect`, `unanswered`), points, whether time ran out, the interface language at submission, and the gender chosen after a `des` answer. Locked answers never change. |
+| `completed`, `revealed` | Pages already finished (for duration-weighted progress) and presentation progress that must survive a reload: turned flashcards, shown dialogue lines. |
+| `exam` | Per exam page: start time, absolute deadline and timeout flag, so a reload cannot extend the countdown (section 5). |
+| `skippedNoVoice` | Listening pages skipped without a French voice; they are left out of scores and progress. |
+| `selection` | The results entry shown (final exam, an exam part or an exercise). |
+
+### Shared and category-specific parts
+
+The session is one pipeline for every category. Item types are named per category (`vocabulary_…`, `grammar_…`, `function_…`) because their content schemas differ, but most of them map to **shared exercise renderers** in `rendererRegistry`: a category adds a `buildPlan` case per item type and points it at an existing renderer, and needs its own renderer only for an exercise no other category has. Everything that works on units, pages and records is shared.
+
+| Exercise renderer | Used by item types | Shared by |
+| --- | --- | --- |
+| `UnitsRenderer` (typed gap, multiple choice, word order, error spotter, translation field, with inline and card feedback) | `vocabulary_typed_gap`, `vocabulary_listening_choice`, `vocabulary_translation_exam`, `vocabulary_listening_dictation`, `grammar_gap_choice`, `grammar_gap_typing`, `grammar_word_order`, `grammar_error_spotter`, `function_translation_exam` | all three |
+| `UnitsRenderer` inside a dialogue context (the line or reply above the task) | `function_word_order`, `function_dialogue_gap_choice` | functions, on the shared controls |
+| `Gap` + `TextControl` inside dialogue lines | `function_dialogue_gap_typing` | functions, on the shared controls |
+| `MatchingRenderer` (two columns, pairs, curves, slide after Check) | `vocabulary_matching`, `grammar_person_matching`, `function_matching` | all three |
+| `GenderRenderer` (masculine/feminine per noun) | `vocabulary_gender_select`, `function_gender_select` | vocabulary, functions |
+| `IntroductionRenderer`, `FlashcardsRenderer` | `vocabulary_introduction`, `vocabulary_flashcards` | vocabulary only |
+| `ExplanationRenderer`, `PlaceholderRenderer`, `PronounMatchRenderer`, `PronounTypingRenderer` | `grammar_explanation`, `production_feedback_placeholder`, `grammar_pronoun_form_match`, `grammar_pronoun_form_typing` | grammar only |
+| `FunctionFlashcardsRenderer`, `DialogueRenderer`, `ListeningReplyRenderer` | `function_flashcards`, `function_dialogue`, `function_listening_choice` | functions only |
+
+```mermaid
+flowchart LR
+    subgraph Category["Implemented per category"]
+        S["Schemas and validation<br/>(brief, content)"]
+        V["Lesson source:<br/>vocabulary derived from the brief,<br/>grammar/functions content file"]
+        U["Item types → units<br/>(cases in buildPlan)"]
+        R["Renderers for its item types<br/>+ start-page section"]
+    end
+    subgraph Shared["Shared by all categories"]
+        P["Lesson plan: pages, units<br/>(text, choice, order, spot)"]
+        SC["Scorer: answer classification,<br/>half credit, outcomes"]
+        RD["Session reducer and storage:<br/>drafts, lock, Continue, resume"]
+        T["Exam countdown, progress,<br/>score header, lesson navigation"]
+        C["Answer controls, feedback,<br/>speech and autoplay"]
+        RS["Results: weights, exam review,<br/>results menu"]
+    end
+    S --> V --> U --> P
+    P --> SC --> RD --> T
+    R --> C
+    RD --> RS
+```
+
+| Layer | Shared by all categories | Vocabulary only | Grammar only | Functions only |
+| --- | --- | --- | --- | --- |
+| Loading and readiness | Manifest, readiness reasons, fetch, browser re-validation (`PlayPage`, `validateBrief`/`validateContent`) | No content file: `vocabularyLesson(brief)` derives the six stages | Content file | Content file |
+| Schemas and checks | Common envelope, localized texts, accepted answers, provenance and hashes (`artifactCommon`) | Targets, groups, genders, exam forms (`schemas/vocabulary.ts`) | Rules, blocks, length and exam-coverage checks (`schemas/grammar.ts`) | Situation, roles, expressions, words (`schemas/functions.ts`) |
+| Plan | `buildPlan`, page roles (presentation, practice, exam), exam info page, unit kinds `text` / `choice` / `order` / `spot`; noun gender data on translation exam units | Group interleaving (introduction then flashcards per group) | New verbs; teaching block per page | Expression and word terms (`functionsTerms`) |
+| Scoring | `scoreUnit`, `classifyAnswer` (accents/case half credit, apostrophes, spaces), the plural-noun gender rule of translation exams (`des` + gender), 35 % practice / 65 % exam, rounding | – | – | – |
+| Session flow | `sessionReducer`, one Continue (Check → feedback → Continue), auto-submit of single choices, success flash, storage and resume | Required reveals: flashcards | Production-feedback placeholder (an item with no units) | Required reveals: flashcards and dialogue lines (Next line) |
+| Timing and progress | Absolute exam deadlines, countdown box, duration-weighted progress, live score header, lesson navigation sidebar | Listening exam pages start their countdown when the voice is ready | – | – |
+| Exercise renderers (table above) | `UnitsRenderer` with `TextControl`, `ChoiceControl`, `OrderControl`, `SpotControl`, `Gap`, inline and card feedback: typed and multiple-choice gaps, word order, error spotter, listening choice and dictation, translation exam; `MatchingRenderer`; `GenderRenderer` (not grammar) | Introduction, flashcards | Explanation with form table, pronoun–form matching (token bank), pronoun–form typing, placeholder | Expression flashcards, model dialogue, listening reply; dialogue context around shared controls |
+| Audio | Speech synthesis, voice check, no-voice help page, autoplay | Listening tasks need a voice to start | Pronoun + form spoken together | Dialogue lines and replies |
+| Start page and results | Start page frame and outline, results card, exam review, results menu | Colour-coded word groups | New verbs table | Situation, roles and expressions |
+| Copy | Interface messages (en/fr/de), exercise instructions (`lessonCopy`) | – | – | – |
+
+A few item-type checks still sit in shared code where a category needs special handling: which pages need reveals before Continue, listening pages, the article hint of translation exams, and the exam part names in the lesson navigation.
+
+**Adding a category** (for example reading, section 9) means: its brief and content schemas and checks; either a content file or a derivation from the brief; a `buildPlan` case per new item type mapping it to the four unit kinds; a `rendererRegistry` entry per new item type, pointing at a shared renderer where the exercise exists already and at a new renderer only otherwise; its start-page section; and enabling it in `PLAYABLE_KINDS`. Scoring, the reducer, storage and resume, timing, progress, navigation and results then work without change.
 
 ## 1. Goal, inputs, and scope
 
@@ -59,7 +170,7 @@ Confirmed decisions are identified below. Other defaults make the draft concrete
 | D27 | Shared page design | **Confirmed:** apply the results page's dark design consistently to the lesson index, artifact views, start pages, explanations, all exercises, exams, feedback, and results. |
 | D28 | Accent correction wording | **Confirmed:** correction explanations name the accent or diacritic. French feedback uses terms such as accent aigu, accent grave, and accent circonflexe; German feedback says “written with umlaut ä/ö/ü” as applicable. |
 | D29 | Review and retirement gates | **Confirmed:** after initial spec refinement, review with Claude, then retire the superseded requirements source (done in P0-03). Executable brief/content schemas are maintained in src/schemas; P1-04 retires superseded definitions after schema/import/build checks. |
-| D30 | Mockups from implementation | **Confirmed:** each implementation phase ends with a dedicated issue to improve its mockups from the actual prototype pages; phases 4/5 remain requirements-dependent. **Confirmed:** that issue is always the last issue of its milestone, with the highest logical ID in the phase and dependencies covering every other issue of the phase; adding an issue to a phase renumbers it so the mockup issue stays last. |
+| D30 | Mockups from implementation | **Confirmed:** each implementation phase ends with a dedicated issue to improve its mockups from the actual prototype pages; phases 4/5 remain requirements-dependent. **Confirmed:** that issue is always the last issue of its milestone, with the highest logical ID in the phase and dependencies covering every other issue of the phase; adding an issue to a phase renumbers it so the mockup issue stays last. **Updated (P06-00):** vocabulary, grammar and function screens are rendered from the prototype itself (section 10, `make screens`); their mockup issues refresh and review those screens instead of editing Salt sources. |
 | D31 | GitHub issue titles/milestones | **Confirmed:** titles follow `P<phase>-<two-digit-issue>: <description>`, matching `P0-01: Create spec`. Group every issue under milestones named Phase 0–Phase 5. |
 | D32 | Workflow commands | **Confirmed:** create the Makefile in P1-01. Use Make targets for workflow tasks, extending it in subsequent issues. Generation, local browser run, build, tests, help, and mockup synchronization have documented targets. |
 | D33 | Screenshot references | **Confirmed:** use the supplied landing and corrected setup/start/exam/results screenshots as the design reference; supersede the English website link. Carry visual patterns across all prototype pages without adding the reference app's features. |
@@ -178,13 +289,14 @@ P1-01 owns the shared catalog scanner (outline validation, duplicate course/ID r
 | `make generate-missing` | Prepare missing briefs/content serially, one lesson after another across catalog courses, preserving each outline order. | P1-07; new category support in phases 4/5. |
 | `make sample-lessons` | Prepare the twenty approved-brief sample lessons for user review. | P1-08. |
 | `make test` | Run unit, component, schema, and fake-adapter integration checks appropriate to implemented features. | P1-01 test setup; extend across later issues. |
-| `make test-e2e` | Run browser end-to-end checks against fixture-backed local pages. | Test setup in P1-01; session coverage in P1-09; category journeys in phases 2/3. |
+| `make test-e2e` | Run browser end-to-end checks against fixture-backed local pages, and the real-content grammar journeys (Playwright project `course`, P3-06). | Test setup in P1-01; session coverage in P1-09; category journeys in phases 2/3. |
 | `make test-all` | Run mockup consistency checks, `make test`, and `make test-e2e`; fail if any required suite fails. | P1-01 test setup; extend across later issues. |
 | `make preview` | Build, then serve `dist/` under `/lesson_prototype/` exactly like Pages. | P1-02. |
 | `make check-dist` | Build, then check `dist/` under the Pages path with HTTP requests and a headless browser. | P1-02; CI. |
 | `make smoke` | HTTP smoke check of the published site (`SITE_URL`). | P1-02; CI deploy job. |
 | `make issues-sync` | Refresh the published backlog from SPEC/ISSUES, including milestone assignments, copied diagrams, and source-derived preview URLs; requires GitHub access and existing issue mappings. | P1-01 workflow interface after publication. |
-| `make mockups-sync` | Update embedded Markdown PlantUML source from the canonical `.puml` files. | P1-01. |
+| `make mockups-sync` | Update embedded Markdown PlantUML source from the canonical `.puml` files and the rendered-screen blocks from `scripts/screens.ts`. | P1-01; screens P06-00. |
+| `make screens` | Capture the vocabulary, grammar and function lesson screens from the running prototype as PNG and self-contained HTML snapshots under `docs/mockups/` (`ONLY=<path-prefix>` for a subset). | P06-00. |
 | `make mockups-check` | Reject stale, missing, or orphaned source/Markdown copies; check the source-only folder policy. | P1-01; CI and phase-closing mockup issues. |
 
 The generator scans the same outline catalog as the build; language and level come from the matching entry. Catalog ordering is deterministic by language code then CEFR level, retaining each file's entries order. Single-ID generation requires `ID`; missing or unknown IDs produce clear nonzero errors. Until function/reading generation is implemented, a request for either category fails explicitly. Batch generation skips those categories and reports the skipped entries. Enable them only after their reviewed schemas and generators are implemented in phases 4/5; then the same targets include them without new command conventions.
@@ -830,7 +942,9 @@ Every exam page uses its brief-defined countdown and defers answer feedback unti
 
 **Rule coverage (P3-01):** the brief teaches every rule in a block and examines every rule in the exam. In the content, the items of each exercise step and exam page assess exactly the rules the brief plans for that exercise or page, and together they assess all of them; explanation items cite only rules of their block. Every scored item (every row of the pronoun types) has its own answer explanation. See the [P3-01 review record](reviews/2026-10-08-p3-01-grammar-review.md).
 
-When phase 3 is complete, all **48 grammar** entries must be generatable and playable. The first-ten sample approval alone is insufficient for that phase's exit.
+**One answer per exam gap (P3-06 review):** exam gaps have no hint, so the sentence alone must allow only the accepted answers. A verb lesson names the verb in the sentence, as the exam rows name it after the pronoun (`travailler → Je ____ à la poste.`, like `je (chanter)`); a noun or adverb gap gets a context that fits one word (`J’ai une clé et tu as deux ____.`, `Bonne nuit et à ____ matin !`); where another answer is just as right, it is accepted too (`là` for `ici`, which block 1 of `fr-here-there-now-tomorrow` teaches). Multiple-choice distractors must be wrong in the sentence (`Il` is no distractor for `____ habite à Nice.`). This is a review criterion, not a validation.
+
+When phase 3 is complete, all **48 grammar** entries must be generatable and playable. The first-ten sample approval alone is insufficient for that phase's exit. **Updated (P3-06):** P2-07 (#58), which was to write the other 38 lessons, was closed as not planned on 2026-10-13. P3-06 therefore validates the ten sample lessons only; how the remaining 38 are produced (generated or written by hand, as P4-06 decides for functions) is still open and blocks the phase 3 exit.
 
 ## 8. Functions learning flow
 
@@ -1221,15 +1335,17 @@ These references define **visual style only**. Keep the requested independent mo
 
 Every typed answer field, on desktop and phone keyboards, has no autocompletion, autocapitalisation, autocorrection or spell-check marks (P6-02); every practice and exam page with a field puts the cursor into its first field, also after the voice check of a listening page, and the error-spotter correction field takes the cursor when it appears. The app has a flask favicon in the interface colours. Use semantic buttons/links, visible focus, labels, and live announcements for submitted answers and countdown expiry. Provide keyboard/touch alternatives for drag-and-drop. Feedback uses icons/text alongside color. Countdown digits do not animate. The learner interface contains no generation status or generation animation.
 
+**Rendered screens (P06-00):** the vocabulary, grammar and function lesson screens below are not drawn: each is a picture of the running prototype. `make screens` (`scripts/screens.ts`) starts the app on `content/`, builds each screen's session state with the app's own plan and session reducer (lessons `fr-classroom-objects`, `fr-verb-avoir-present` and `fr-ordering-at-a-cafe`, fixed seed and clock, a test French voice), resumes it in headless Chromium at 1280 px and saves a full-page PNG and a self-contained HTML snapshot (the rendered DOM with the app's CSS inlined, no scripts) next to each other under `docs/mockups/`. SPEC shows the PNG inline, linked to the HTML snapshot, in a block bounded by `screen:begin` / `screen:end` comments that `make mockups-sync` writes from the screen list. Refresh the screens whenever these pages change; the phase-closing mockup issues (D30) do so for their category. The index, artifact-view and reading screens stay PlantUML Salt sources.
+
 The **PlantUML Salt** wireframes below carry the reference layouts, wider controls, spacious sections, light primary labels, slate grouping, indigo progress, and shared feedback colors. Salt is a layout wireframe format: its native widget borders/fills and the ring-plus-number timer symbol do not reproduce CSS corner radii or a centered circular timer exactly. The visual contract above governs those details in the React prototype. Use the [official Salt documentation](https://plantuml.com/salt) for source syntax.
 
 ### Source-only mockups and Markdown synchronization
 
-Keep only the editable `.puml` sources and the root README in `docs/mockups/`; do not store PNG/SVG exports there. **Every mockup is embedded below in a `plantuml` code fence containing the exact contents of its `.puml` file. Whenever a `.puml` changes, update its corresponding Markdown code in the same change.** This applies to SPEC and any other Markdown copies, including published issue bodies. Each SPEC block is bounded by `mockup:begin` / `mockup:end` comments identifying its source path. The source files are the canonical editable inputs; their Markdown copies must stay identical, never edited independently.
+Keep only the editable `.puml` sources, the rendered screens of `scripts/screens.ts` (one PNG and one HTML snapshot each) and the root README in `docs/mockups/`; do not store PNG/SVG exports of Salt sources there. **Every mockup is embedded below in a `plantuml` code fence containing the exact contents of its `.puml` file. Whenever a `.puml` changes, update its corresponding Markdown code in the same change.** This applies to SPEC and any other Markdown copies, including published issue bodies. Each SPEC block is bounded by `mockup:begin` / `mockup:end` comments identifying its source path. The source files are the canonical editable inputs; their Markdown copies must stay identical, never edited independently.
 
 Use PlantUML-enabled Markdown preview for automatic rendering. The [root mockup README](mockups/README.md) documents the **PlantUML by jebbs** extension, user settings for the server renderer, and auto-updating preview. Browse all 32 source files and embedded previews through that guide. After the Makefile is introduced in P1-01, run `make mockups-sync` to refresh embedded source and `make mockups-check` to reject missing, stale, or orphaned blocks. Include this consistency check in `make test-all` and CI. Exported previews, when needed for inspection, are temporary outputs outside `docs/mockups/`.
 
-GitHub's native Markdown diagram support does not include PlantUML. Published issues therefore include the applicable `plantuml` source fences and server-rendered image URLs derived from that source, plus committed source links; verify their rendering. No local PNG/SVG copies are required. See [GitHub diagram support](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams) and the [extension documentation](https://github.com/qjebbs/vscode-plantuml).
+GitHub's native Markdown diagram support does not include PlantUML. Published issues show a rendered screen as its committed PNG with links to the PNG and the HTML snapshot. For Salt sources they include the applicable `plantuml` source fences and server-rendered image URLs derived from that source, plus committed source links; verify their rendering. No local PNG/SVG copies are required. See [GitHub diagram support](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams) and the [extension documentation](https://github.com/qjebbs/vscode-plantuml).
 
 ### Index
 
@@ -1644,56 +1760,11 @@ The duration shown here is the lesson estimate. Continue starts or resumes the s
 
 <a id="mockup-03-vocabulary-lesson-01-startpage-lesson-start"></a>
 
-[Salt source](mockups/03-vocabulary-lesson/01-startpage/lesson-start.puml)
+<!-- screen:begin mockups/03-vocabulary-lesson/01-startpage/lesson-start -->
+[![Vocabulary: Lesson start](mockups/03-vocabulary-lesson/01-startpage/lesson-start.png)](mockups/03-vocabulary-lesson/01-startpage/lesson-start.html)
 
-<!-- mockup:begin mockups/03-vocabulary-lesson/01-startpage/lesson-start.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-  .
-  { <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-  .
-  { [ <color:#4338CA>Lesson overview</color> ] | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | <color:#94A3B8>French / A1</color> }
-  .
-  <color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-  .
-  .
-  {
-    .
-    { <color:#020617>xxx</color> | {
-    { <color:#94A3B8>French / A1</color> | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | <color:#94A3B8>( Vocabulary )</color> }
-    <color:#E2E8F0><size:30><b>Les objets de la classe</b></size></color>
-    .
-    <color:#E2E8F0>Learn to name objects around you and use the right article.</color>
-    .
-    <color:#94A3B8>About 13 minutes   ·   12 words</color>
-    .
-    <color:#E2E8F0><b>Word groups</b></color>
-    { <color:#A5B4FC><b>1.</b></color>  <color:#E2E8F0>Masculine objects</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxx</color> | <color:#94A3B8>6 words</color> }
-    { <color:#67E8F9><b>2.</b></color>  <color:#E2E8F0>Feminine objects</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxxx</color> | <color:#94A3B8>6 words</color> }
-    .
-    <color:#94A3B8>No step list and no scoring weights here; weights appear on the results page.</color>
-    .
-    [ <color:#020617>                      Continue                      </color> ]
-    .
-     } | <color:#020617>xxx</color> }
-    .
-   }
-  .
-  .
-   } | <color:#020617>xxx</color> }
-  .
- }
-@endsalt
-```
-<!-- mockup:end mockups/03-vocabulary-lesson/01-startpage/lesson-start.puml -->
+Rendered by the prototype (lesson `fr-classroom-objects`): [HTML snapshot](mockups/03-vocabulary-lesson/01-startpage/lesson-start.html) · [PNG](mockups/03-vocabulary-lesson/01-startpage/lesson-start.png). Refresh with `make screens`.
+<!-- screen:end mockups/03-vocabulary-lesson/01-startpage/lesson-start -->
 
 
 ### Practice: enter an answer
@@ -1702,59 +1773,11 @@ The shared header shows estimated-duration progress and accumulated weighted poi
 
 <a id="mockup-03-vocabulary-lesson-06-typed-gaps-answer"></a>
 
-[Salt source](mockups/03-vocabulary-lesson/06-typed-gaps/answer.puml)
+<!-- screen:begin mockups/03-vocabulary-lesson/06-typed-gaps/answer -->
+[![Vocabulary: Typed gap](mockups/03-vocabulary-lesson/06-typed-gaps/answer.png)](mockups/03-vocabulary-lesson/06-typed-gaps/answer.html)
 
-<!-- mockup:begin mockups/03-vocabulary-lesson/06-typed-gaps/answer.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-  .
-  { <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-  .
-  { <color:#E2E8F0><b>Les objets de la classe</b></color> | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 21.4 / 100</b></color> }
-  { <color:#E2E8F0>Progress 52%</color> | <color:#020617>xxx</color> | <color:#635BFF>██████</color><color:#1E293B>░░░░░░</color> }
-  .
-  <color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-  .
-  .
-  {
-    .
-    { <color:#020617>xxx</color> | {
-    <color:#94A3B8>PRACTICE   /   Typed gaps   /   Item 5 of 12</color>
-    .
-    <color:#E2E8F0><size:23><b>Complete the sentence</b></size></color>
-    .
-    <color:#E2E8F0><size:19>Je lis un ____.</size></color>
-    .
-    <color:#94A3B8>Type the missing word without its article.</color>
-    .
-    <color:#E2E8F0><b>Reference words</b></color>
-    { <color:#E2E8F0>livre (m)</color> | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | <color:#E2E8F0>table (f)</color> | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | <color:#E2E8F0>chaise (f)</color> | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | <color:#E2E8F0>porte (f)</color> }
-    .
-    <color:#E2E8F0><b>Your answer</b></color>
-    "<color:#E2E8F0>table</color>                                                 "
-    .
-    .
-    [ <color:#020617>                      Continue                      </color> ]
-    .
-     } | <color:#020617>xxx</color> }
-    .
-   }
-  .
-  .
-   } | <color:#020617>xxx</color> }
-  .
- }
-@endsalt
-```
-<!-- mockup:end mockups/03-vocabulary-lesson/06-typed-gaps/answer.puml -->
+Rendered by the prototype (lesson `fr-classroom-objects`): [HTML snapshot](mockups/03-vocabulary-lesson/06-typed-gaps/answer.html) · [PNG](mockups/03-vocabulary-lesson/06-typed-gaps/answer.png). Refresh with `make screens`.
+<!-- screen:end mockups/03-vocabulary-lesson/06-typed-gaps/answer -->
 
 
 ### Practice: confirm feedback
@@ -1763,68 +1786,11 @@ An incorrect response displays the correct answer and a short pre-generated expl
 
 <a id="mockup-03-vocabulary-lesson-06-typed-gaps-feedback"></a>
 
-[Salt source](mockups/03-vocabulary-lesson/06-typed-gaps/feedback.puml)
+<!-- screen:begin mockups/03-vocabulary-lesson/06-typed-gaps/feedback -->
+[![Vocabulary: Typed gap checked](mockups/03-vocabulary-lesson/06-typed-gaps/feedback.png)](mockups/03-vocabulary-lesson/06-typed-gaps/feedback.html)
 
-<!-- mockup:begin mockups/03-vocabulary-lesson/06-typed-gaps/feedback.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-  .
-  { <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-  .
-  { <color:#E2E8F0><b>Les objets de la classe</b></color> | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 21.4 / 100</b></color> }
-  { <color:#E2E8F0>Progress 52%</color> | <color:#020617>xxx</color> | <color:#635BFF>██████</color><color:#1E293B>░░░░░░</color> }
-  .
-  <color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-  .
-  .
-  {
-    .
-    { <color:#020617>xxx</color> | {
-    <color:#94A3B8>PRACTICE   /   Typed gaps   /   Item 5 of 12</color>
-    .
-    <color:#E2E8F0><size:23><b>Complete the sentence</b></size></color>
-    .
-    <color:#E2E8F0><size:19>Je lis un ____.</size></color>
-    .
-    <color:#94A3B8>Your locked answer: </color><color:#FF5252><b>table</b></color>
-    .
-    {
-      .
-      { <color:#020617>xxx</color> | {
-      <color:#FF5252><b>Incorrect answer</b></color>
-      .
-      <color:#00E676>Correct answer: <b>livre</b></color>
-      <color:#E2E8F0>Je lis un livre.  /  I am reading a book.</color>
-      <color:#E2E8F0>Livre means book; un livre is what we read.</color>
-      .
-      <color:#94A3B8>This answer earned 0 / 1 point.</color>
-       } | <color:#020617>xxx</color> }
-      .
-     }
-    .
-    <color:#94A3B8>Read the correction, then continue to the next item.</color>
-    .
-    [ <color:#020617>                      Continue                      </color> ]
-    .
-     } | <color:#020617>xxx</color> }
-    .
-   }
-  .
-  .
-   } | <color:#020617>xxx</color> }
-  .
- }
-@endsalt
-```
-<!-- mockup:end mockups/03-vocabulary-lesson/06-typed-gaps/feedback.puml -->
+Rendered by the prototype (lesson `fr-classroom-objects`): [HTML snapshot](mockups/03-vocabulary-lesson/06-typed-gaps/feedback.html) · [PNG](mockups/03-vocabulary-lesson/06-typed-gaps/feedback.png). Refresh with `make screens`.
+<!-- screen:end mockups/03-vocabulary-lesson/06-typed-gaps/feedback -->
 
 
 ### Exam page
@@ -1833,57 +1799,21 @@ The displayed countdown is illustrative; its initial limit comes from the brief.
 
 <a id="mockup-03-vocabulary-lesson-07-exam-exam-page"></a>
 
-[Salt source](mockups/03-vocabulary-lesson/07-exam/exam-page.puml)
+<!-- screen:begin mockups/03-vocabulary-lesson/07-exam/exam-page -->
+[![Vocabulary: Translation exam](mockups/03-vocabulary-lesson/07-exam/exam-page.png)](mockups/03-vocabulary-lesson/07-exam/exam-page.html)
 
-<!-- mockup:begin mockups/03-vocabulary-lesson/07-exam/exam-page.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-  .
-  { <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-  .
-  { <color:#E2E8F0><b>Les objets de la classe</b></color> | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 26.3 / 100</b></color> }
-  { <color:#E2E8F0>Progress 78%</color> | <color:#020617>xxx</color> | <color:#635BFF>█████████</color><color:#1E293B>░░░</color> | <color:#020617>xxx</color> | <color:#635BFF><size:32>◯</size></color><color:#E2E8F0><size:21> 24s</size></color> }
-  .
-  <color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-  .
-  .
-  {
-    .
-    { <color:#020617>xxx</color> | {
-    { <color:#E2E8F0>FINAL EXAM   /   Page 2 of 12</color> | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | <color:#94A3B8>Timed page</color> }
-    .
-    <color:#E2E8F0><size:23><b>Translate into French</b></size></color>
-    .
-    <color:#E2E8F0><size:19>a ruler</size></color>
-    .
-    <color:#E2E8F0>Include the indefinite article where required.</color>
-    .
-    <color:#E2E8F0><b>Your answer</b></color>
-    "<color:#E2E8F0>une regle</color>                                             "
-    .
-    .
-    [ <color:#020617>                      Continue                      </color> ]
-    .
-     } | <color:#020617>xxx</color> }
-    .
-   }
-  .
-  <color:#E2E8F0>Results and corrections appear after the complete exam.</color>
-  .
-   } | <color:#020617>xxx</color> }
-  .
- }
-@endsalt
-```
-<!-- mockup:end mockups/03-vocabulary-lesson/07-exam/exam-page.puml -->
+Rendered by the prototype (lesson `fr-classroom-objects`): [HTML snapshot](mockups/03-vocabulary-lesson/07-exam/exam-page.html) · [PNG](mockups/03-vocabulary-lesson/07-exam/exam-page.png). Refresh with `make screens`.
+<!-- screen:end mockups/03-vocabulary-lesson/07-exam/exam-page -->
+
+#### Vocabulary: Exam info
+
+<a id="mockup-03-vocabulary-lesson-07-exam-exam-info"></a>
+
+<!-- screen:begin mockups/03-vocabulary-lesson/07-exam/exam-info -->
+[![Vocabulary: Exam info](mockups/03-vocabulary-lesson/07-exam/exam-info.png)](mockups/03-vocabulary-lesson/07-exam/exam-info.html)
+
+Rendered by the prototype (lesson `fr-classroom-objects`): [HTML snapshot](mockups/03-vocabulary-lesson/07-exam/exam-info.html) · [PNG](mockups/03-vocabulary-lesson/07-exam/exam-info.png). Refresh with `make screens`.
+<!-- screen:end mockups/03-vocabulary-lesson/07-exam/exam-info -->
 
 
 ### Final results: exam selected
@@ -1892,104 +1822,11 @@ Exam answers show by default as flat screenshot-style rows beneath the score agg
 
 <a id="mockup-03-vocabulary-lesson-08-results-exam-results"></a>
 
-[Salt source](mockups/03-vocabulary-lesson/08-results/exam-results.puml)
+<!-- screen:begin mockups/03-vocabulary-lesson/08-results/exam-results -->
+[![Vocabulary: Results](mockups/03-vocabulary-lesson/08-results/exam-results.png)](mockups/03-vocabulary-lesson/08-results/exam-results.html)
 
-<!-- mockup:begin mockups/03-vocabulary-lesson/08-results/exam-results.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-{ <size:30><color:#E2E8F0><b>Your result</b></color></size> | <color:#020617>xxxxxx</color> | [ <color:#020617>   Lesson overview   </color> ] }
-<color:#94A3B8>Les objets de la classe</color>
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#94A3B8>LESSON SCORE   /   FRENCH A1</color>
-.
-{ <back:#0F172A><size:42><color:#E2E8F0><b>  69.6 / 100  </b></color></size></back> | <color:#020617>xxx</color> | <color:#94A3B8>Progress 100%</color> }
-.
-.
-<color:#E2E8F0>Practice: 27 / 36 (75.0%)   ·   Final exam: 8 / 12 (66.7%)</color>
-<color:#94A3B8>Practice contributes 35%; the final exam contributes 65%.</color>
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#94A3B8>Choose results to review</color>
-{ [ <color:#4338CA><b>Final exam 8 / 12</b></color> ] | <color:#020617>xx</color> | [ <color:#4338CA>Flashcards completed</color> ] }
-.
-{ [ <color:#4338CA>Matching 10 / 12</color> ] | <color:#020617>xx</color> | [ <color:#4338CA>Gender 9 / 12</color> ] | <color:#020617>xx</color> | [ <color:#4338CA>Typed gaps 8 / 12</color> ] }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<size:23><color:#E2E8F0><b>Your latest exam result — A1</b></color></size>
-.
-{ <size:24><color:#00E676>✓</color></size> | <color:#020617>xx</color> | {
-<size:20><color:#E2E8F0>Translate a book into French, including its article.</color></size>
-.
-{ <color:#94A3B8>Your answer</color> | <color:#020617>xx</color> | <color:#00E676>un livre</color> }
-.
-<color:#00E676>Fully correct  ·  1 / 1</color>
-} }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-{ <size:24><color:#FBBF24>!</color></size> | <color:#020617>xx</color> | {
-<size:20><color:#E2E8F0>Translate a ruler into French, including its article.</color></size>
-.
-{ <color:#94A3B8>Your answer</color> | <color:#020617>xx</color> | <color:#FBBF24>une regle</color> }
-{ <color:#94A3B8>Correct answer</color> | <color:#020617>xx</color> | <color:#00E676>une règle</color> }
-.
-<color:#FBBF24>Accent / case correction  ·  0.5 / 1</color>
-.
-<color:#94A3B8>Règle uses an accent grave on e; its article is une.</color>
-} }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-{ <size:24><color:#FF5252>✕</color></size> | <color:#020617>xx</color> | {
-<size:20><color:#E2E8F0>Translate a chair into French, including its article.</color></size>
-.
-{ <color:#94A3B8>Your answer</color> | <color:#020617>xx</color> | <color:#FF5252>un table</color> }
-{ <color:#94A3B8>Correct answer</color> | <color:#020617>xx</color> | <color:#00E676>une chaise</color> }
-.
-<color:#FF5252>Incorrect  ·  0 / 1</color>
-.
-<color:#94A3B8>Chaise means chair and is feminine; use une chaise.</color>
-} }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-{ <size:24><color:#FF5252>✕</color></size> | <color:#020617>xx</color> | {
-<size:20><color:#E2E8F0>Translate a board into French, including its article.</color></size>
-.
-{ <color:#94A3B8>Your answer</color> | <color:#020617>xx</color> | <color:#FF5252>No answer</color> }
-{ <color:#94A3B8>Correct answer</color> | <color:#020617>xx</color> | <color:#00E676>un tableau</color> }
-.
-<color:#FF5252>Incorrect  ·  0 / 1</color>
-<color:#94A3B8>Time expired; the saved answer was blank.</color>
-.
-<color:#94A3B8>Tableau is masculine; its indefinite article is un.</color>
-} }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#94A3B8>Remaining answers continue below (excerpt shown).</color>
-.
-[ <color:#4338CA>                  Restart lesson                  </color> ]
-} | <color:#020617>xx</color> }
-.
-}
-@endsalt
-```
-<!-- mockup:end mockups/03-vocabulary-lesson/08-results/exam-results.puml -->
+Rendered by the prototype (lesson `fr-classroom-objects`): [HTML snapshot](mockups/03-vocabulary-lesson/08-results/exam-results.html) · [PNG](mockups/03-vocabulary-lesson/08-results/exam-results.png). Refresh with `make screens`.
+<!-- screen:end mockups/03-vocabulary-lesson/08-results/exam-results -->
 
 
 ### Final results: previous practice selected
@@ -1998,91 +1835,11 @@ Selecting a previous exercise keeps scores/menu visible and replaces the answer-
 
 <a id="mockup-03-vocabulary-lesson-08-results-gender-results"></a>
 
-[Salt source](mockups/03-vocabulary-lesson/08-results/gender-results.puml)
+<!-- screen:begin mockups/03-vocabulary-lesson/08-results/gender-results -->
+[![Vocabulary: Gender results](mockups/03-vocabulary-lesson/08-results/gender-results.png)](mockups/03-vocabulary-lesson/08-results/gender-results.html)
 
-<!-- mockup:begin mockups/03-vocabulary-lesson/08-results/gender-results.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-{ <size:30><color:#E2E8F0><b>Your result</b></color></size> | <color:#020617>xxxxxx</color> | [ <color:#020617>   Lesson overview   </color> ] }
-<color:#94A3B8>Les objets de la classe</color>
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#94A3B8>LESSON SCORE   /   FRENCH A1</color>
-.
-{ <back:#0F172A><size:42><color:#E2E8F0><b>  69.6 / 100  </b></color></size></back> | <color:#020617>xxx</color> | <color:#94A3B8>Progress 100%</color> }
-.
-.
-<color:#E2E8F0>Practice: 27 / 36 (75.0%)   ·   Final exam: 8 / 12 (66.7%)</color>
-<color:#94A3B8>Practice contributes 35%; the final exam contributes 65%.</color>
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#94A3B8>Choose results to review</color>
-{ [ <color:#4338CA>Final exam 8 / 12</color> ] | <color:#020617>xx</color> | [ <color:#4338CA>Flashcards completed</color> ] }
-.
-{ [ <color:#4338CA>Matching 10 / 12</color> ] | <color:#020617>xx</color> | [ <color:#4338CA><b>Gender 9 / 12</b></color> ] | <color:#020617>xx</color> | [ <color:#4338CA>Typed gaps 8 / 12</color> ] }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<size:20><color:#E2E8F0><b>Gender exercise answers</b></color></size>
-<color:#94A3B8>9 / 12 correct. Review your original choices below.</color>
-.
-{ <size:24><color:#00E676>✓</color></size> | <color:#020617>xx</color> | {
-<size:20><color:#E2E8F0>Choose the gender of livre.</color></size>
-.
-{ <color:#94A3B8>Your answer</color> | <color:#020617>xx</color> | <color:#00E676>Masculine</color> }
-{ <color:#94A3B8>French form</color> | <color:#020617>xx</color> | <color:#00E676>un livre</color> }
-.
-<color:#00E676>Fully correct  ·  1 / 1</color>
-} }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-{ <size:24><color:#FF5252>✕</color></size> | <color:#020617>xx</color> | {
-<size:20><color:#E2E8F0>Choose the gender of règle.</color></size>
-.
-{ <color:#94A3B8>Your answer</color> | <color:#020617>xx</color> | <color:#FF5252>Masculine</color> }
-{ <color:#94A3B8>Correct answer</color> | <color:#020617>xx</color> | <color:#00E676>Feminine</color> }
-{ <color:#94A3B8>French form</color> | <color:#020617>xx</color> | <color:#00E676>une règle</color> }
-.
-<color:#FF5252>Incorrect  ·  0 / 1</color>
-.
-<color:#94A3B8>Règle is feminine, so its indefinite article is une.</color>
-} }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-{ <size:24><color:#00E676>✓</color></size> | <color:#020617>xx</color> | {
-<size:20><color:#E2E8F0>Choose the gender of chaise.</color></size>
-.
-{ <color:#94A3B8>Your answer</color> | <color:#020617>xx</color> | <color:#00E676>Feminine</color> }
-{ <color:#94A3B8>French form</color> | <color:#020617>xx</color> | <color:#00E676>une chaise</color> }
-.
-<color:#00E676>Fully correct  ·  1 / 1</color>
-} }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#94A3B8>Remaining answers continue below (excerpt shown).</color>
-.
-[ <color:#4338CA>                  Restart lesson                  </color> ]
-} | <color:#020617>xx</color> }
-.
-}
-@endsalt
-```
-<!-- mockup:end mockups/03-vocabulary-lesson/08-results/gender-results.puml -->
+Rendered by the prototype (lesson `fr-classroom-objects`): [HTML snapshot](mockups/03-vocabulary-lesson/08-results/gender-results.html) · [PNG](mockups/03-vocabulary-lesson/08-results/gender-results.png). Refresh with `make screens`.
+<!-- screen:end mockups/03-vocabulary-lesson/08-results/gender-results -->
 
 
 ### Gender exercise inside the overview
@@ -2091,148 +1848,20 @@ All twelve sample targets are on one page. Gender clues are hidden while answeri
 
 <a id="mockup-03-vocabulary-lesson-05-gender-overview-gender-select"></a>
 
-[Salt source](mockups/03-vocabulary-lesson/05-gender-overview/gender-select.puml)
+<!-- screen:begin mockups/03-vocabulary-lesson/05-gender-overview/gender-select -->
+[![Vocabulary: Gender](mockups/03-vocabulary-lesson/05-gender-overview/gender-select.png)](mockups/03-vocabulary-lesson/05-gender-overview/gender-select.html)
 
-<!-- mockup:begin mockups/03-vocabulary-lesson/05-gender-overview/gender-select.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-  .
-  { <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-  .
-  { <color:#E2E8F0><b>Les objets de la classe</b></color> | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 9.7 / 100</b></color> }
-  { <color:#E2E8F0>Progress 36%</color> | <color:#020617>xxx</color> | <color:#635BFF>████</color><color:#1E293B>░░░░░░░░</color> }
-  .
-  <color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-  .
-  <color:#E2E8F0><size:30><b>Choose each noun's gender</b></size></color>
-  <color:#E2E8F0>All 12 vocabulary items are on this page.</color>
-  <color:#E2E8F0>Articles and gender labels return after you confirm your choices.</color>
-  .
-  {
-    <color:#E2E8F0><b>French word</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>English</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Your gender choice</b></color>
-    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
-    <color:#E2E8F0>livre</color> | <color:#020617>xxx</color> | <color:#E2E8F0>book</color> | <color:#020617>xxx</color> | ^<color:#4338CA>Choose gender</color>^
-    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
-    <color:#E2E8F0>cahier</color> | <color:#020617>xxx</color> | <color:#E2E8F0>notebook</color> | <color:#020617>xxx</color> | ^<color:#4338CA>Choose gender</color>^
-    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
-    <color:#E2E8F0>stylo</color> | <color:#020617>xxx</color> | <color:#E2E8F0>pen</color> | <color:#020617>xxx</color> | ^<color:#4338CA>Choose gender</color>^
-    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
-    <color:#E2E8F0>crayon</color> | <color:#020617>xxx</color> | <color:#E2E8F0>pencil</color> | <color:#020617>xxx</color> | ^<color:#4338CA>Choose gender</color>^
-    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
-    <color:#E2E8F0>gomme</color> | <color:#020617>xxx</color> | <color:#E2E8F0>eraser</color> | <color:#020617>xxx</color> | ^<color:#4338CA>Choose gender</color>^
-    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
-    <color:#E2E8F0>règle</color> | <color:#020617>xxx</color> | <color:#E2E8F0>ruler</color> | <color:#020617>xxx</color> | ^<color:#4338CA>Choose gender</color>^
-    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
-    <color:#E2E8F0>table</color> | <color:#020617>xxx</color> | <color:#E2E8F0>table</color> | <color:#020617>xxx</color> | ^<color:#4338CA>Choose gender</color>^
-    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
-    <color:#E2E8F0>chaise</color> | <color:#020617>xxx</color> | <color:#E2E8F0>chair</color> | <color:#020617>xxx</color> | ^<color:#4338CA>Choose gender</color>^
-    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
-    <color:#E2E8F0>tableau</color> | <color:#020617>xxx</color> | <color:#E2E8F0>board</color> | <color:#020617>xxx</color> | ^<color:#4338CA>Choose gender</color>^
-    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
-    <color:#E2E8F0>sac</color> | <color:#020617>xxx</color> | <color:#E2E8F0>bag</color> | <color:#020617>xxx</color> | ^<color:#4338CA>Choose gender</color>^
-    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
-    <color:#E2E8F0>porte</color> | <color:#020617>xxx</color> | <color:#E2E8F0>door</color> | <color:#020617>xxx</color> | ^<color:#4338CA>Choose gender</color>^
-    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
-    <color:#E2E8F0>fenêtre</color> | <color:#020617>xxx</color> | <color:#E2E8F0>window</color> | <color:#020617>xxx</color> | ^<color:#4338CA>Choose gender</color>^
-    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
-   }
-  .
-  [ <color:#020617>                      Continue                      </color> ]
-  .
-   } | <color:#020617>xxx</color> }
-  .
- }
-@endsalt
-```
-<!-- mockup:end mockups/03-vocabulary-lesson/05-gender-overview/gender-select.puml -->
+Rendered by the prototype (lesson `fr-classroom-objects`): [HTML snapshot](mockups/03-vocabulary-lesson/05-gender-overview/gender-select.html) · [PNG](mockups/03-vocabulary-lesson/05-gender-overview/gender-select.png). Refresh with `make screens`.
+<!-- screen:end mockups/03-vocabulary-lesson/05-gender-overview/gender-select -->
 
 
 <a id="mockup-03-vocabulary-lesson-05-gender-overview-reviewed-overview"></a>
 
-[Salt source](mockups/03-vocabulary-lesson/05-gender-overview/reviewed-overview.puml)
+<!-- screen:begin mockups/03-vocabulary-lesson/05-gender-overview/reviewed-overview -->
+[![Vocabulary: Gender checked](mockups/03-vocabulary-lesson/05-gender-overview/reviewed-overview.png)](mockups/03-vocabulary-lesson/05-gender-overview/reviewed-overview.html)
 
-<!-- mockup:begin mockups/03-vocabulary-lesson/05-gender-overview/reviewed-overview.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-  .
-  { <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-  .
-  { <color:#E2E8F0><b>Les objets de la classe</b></color> | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 18.5 / 100</b></color> }
-  { <color:#E2E8F0>Progress 36%</color> | <color:#020617>xxx</color> | <color:#635BFF>████</color><color:#1E293B>░░░░░░░░</color> }
-  .
-  <color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-  .
-  <color:#E2E8F0><size:30><b>Your vocabulary overview</b></size></color>
-  <color:#E2E8F0>Gender exercise: 9 / 12 correct. Review your choices before continuing.</color>
-  .
-  {
-    <color:#E2E8F0><b>Correct form</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>English</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Your choice</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Correct gender</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Result</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Audio</b></color>
-    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
-    <color:#E2E8F0>un livre</color> | <color:#020617>xxx</color> | <color:#E2E8F0>book</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine</color> | <color:#020617>xxx</color> | <color:#00E676>Right</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Listen</color> ]
-    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
-    <color:#E2E8F0>un cahier</color> | <color:#020617>xxx</color> | <color:#E2E8F0>notebook</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine</color> | <color:#020617>xxx</color> | <color:#00E676>Right</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Listen</color> ]
-    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
-    <color:#E2E8F0>un stylo</color> | <color:#020617>xxx</color> | <color:#E2E8F0>pen</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine</color> | <color:#020617>xxx</color> | <color:#00E676>Right</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Listen</color> ]
-    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
-    <color:#E2E8F0>un crayon</color> | <color:#020617>xxx</color> | <color:#E2E8F0>pencil</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine</color> | <color:#020617>xxx</color> | <color:#00E676>Right</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Listen</color> ]
-    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
-    <color:#E2E8F0>une gomme</color> | <color:#020617>xxx</color> | <color:#E2E8F0>eraser</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Feminine</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Feminine</color> | <color:#020617>xxx</color> | <color:#00E676>Right</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Listen</color> ]
-    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
-    <color:#E2E8F0>une règle</color> | <color:#020617>xxx</color> | <color:#E2E8F0>ruler</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Feminine</color> | <color:#020617>xxx</color> | <color:#FF5252>Wrong</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Listen</color> ]
-    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
-    <color:#E2E8F0>une table</color> | <color:#020617>xxx</color> | <color:#E2E8F0>table</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Feminine</color> | <color:#020617>xxx</color> | <color:#FF5252>Wrong</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Listen</color> ]
-    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
-    <color:#E2E8F0>une chaise</color> | <color:#020617>xxx</color> | <color:#E2E8F0>chair</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Feminine</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Feminine</color> | <color:#020617>xxx</color> | <color:#00E676>Right</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Listen</color> ]
-    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
-    <color:#E2E8F0>un tableau</color> | <color:#020617>xxx</color> | <color:#E2E8F0>board</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Feminine</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine</color> | <color:#020617>xxx</color> | <color:#FF5252>Wrong</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Listen</color> ]
-    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
-    <color:#E2E8F0>un sac</color> | <color:#020617>xxx</color> | <color:#E2E8F0>bag</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Masculine</color> | <color:#020617>xxx</color> | <color:#00E676>Right</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Listen</color> ]
-    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
-    <color:#E2E8F0>une porte</color> | <color:#020617>xxx</color> | <color:#E2E8F0>door</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Feminine</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Feminine</color> | <color:#020617>xxx</color> | <color:#00E676>Right</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Listen</color> ]
-    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
-    <color:#E2E8F0>une fenêtre</color> | <color:#020617>xxx</color> | <color:#E2E8F0>window</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Feminine</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Feminine</color> | <color:#020617>xxx</color> | <color:#00E676>Right</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Listen</color> ]
-    . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | .
-   }
-  .
-  {
-    .
-    { <color:#020617>xxx</color> | {
-    <color:#E2E8F0><b>Why these corrections are right</b></color>
-    .
-    <color:#E2E8F0>Règle is feminine: use une règle.</color>
-    <color:#E2E8F0>Table is feminine: use une table.</color>
-    <color:#E2E8F0>Tableau is masculine: use un tableau.</color>
-    .
-     } | <color:#020617>xxx</color> }
-    .
-   }
-  .
-  <color:#94A3B8>Review the corrections, then continue to typed gaps.</color>
-  .
-  [ <color:#020617>                      Continue                      </color> ]
-  .
-   } | <color:#020617>xxx</color> }
-  .
- }
-@endsalt
-```
-<!-- mockup:end mockups/03-vocabulary-lesson/05-gender-overview/reviewed-overview.puml -->
+Rendered by the prototype (lesson `fr-classroom-objects`): [HTML snapshot](mockups/03-vocabulary-lesson/05-gender-overview/reviewed-overview.html) · [PNG](mockups/03-vocabulary-lesson/05-gender-overview/reviewed-overview.png). Refresh with `make screens`.
+<!-- screen:end mockups/03-vocabulary-lesson/05-gender-overview/reviewed-overview -->
 
 
 ### Browse the lesson stages and grammar exercises
@@ -2243,9 +1872,9 @@ The folder organization follows the lesson flow. Vocabulary uses `01-startpage/`
 | --- | --- |
 | [Lesson overview](mockups/README.md#lesson-overview) | Ordered lesson index. |
 | [Artifact view](mockups/README.md#artifact-view) | Shared Outline layout, with category-specific vocabulary/grammar Draft and Content views. |
-| [Vocabulary lesson](mockups/README.md#vocabulary-lesson) | Start; [01 introduction](mockups/03-vocabulary-lesson/02-introduction/introduction.puml); [02 flashcards](mockups/03-vocabulary-lesson/03-flashcards/front.puml) and [reveal](mockups/03-vocabulary-lesson/03-flashcards/revealed.puml); [03 matching](mockups/03-vocabulary-lesson/04-matching/matching.puml); 04 gender + reviewed overview; 05 typed gaps + feedback, [listening choice](mockups/03-vocabulary-lesson/06-listening/listening-choice.puml) and [no-voice help](mockups/03-vocabulary-lesson/06-listening/no-voice-help.puml); 06 exam and [listening dictation](mockups/03-vocabulary-lesson/07-exam/listening-dictation.puml); results. |
-| [Grammar lesson](mockups/README.md#grammar-lesson) | [Start](mockups/04-grammar-lesson/01-startpage/lesson-start.puml); [explanation](mockups/04-grammar-lesson/02-00-explanation/singular-forms.puml); [pronoun matching](mockups/04-grammar-lesson/02-01-exercise-pronoun-match/pronoun-match.puml); [pronoun typing](mockups/04-grammar-lesson/02-02-exercise-pronoun-typing/pronoun-typing.puml); [choice gap](mockups/04-grammar-lesson/02-03-exercise-gap-choice/gap-choice.puml); [typed gap](mockups/04-grammar-lesson/02-04-exercise-gap-typing/gap-typing.puml) and [feedback](mockups/04-grammar-lesson/02-04-exercise-gap-typing/feedback.puml); [word order](mockups/04-grammar-lesson/02-05-exercise-word-order/word-order.puml); [error spotter](mockups/04-grammar-lesson/02-06-exercise-error-spotter/error-spotter.puml); [placeholder](mockups/04-grammar-lesson/03-feedback-placeholder/feedback-placeholder.puml); [exam](mockups/04-grammar-lesson/04-exam/mixed-exam.puml); [results](mockups/04-grammar-lesson/05-results/exam-results.puml). |
-| [Function lesson](mockups/README.md#function-lesson) | [lesson start](mockups/05-function-lesson/01-startpage/lesson-start.puml); [expression flashcards](mockups/05-function-lesson/02-flashcards/expression-flashcards.puml); [model dialogue](mockups/05-function-lesson/03-dialogue/dialogue.puml); [expression matching](mockups/05-function-lesson/04-matching/expression-matching.puml); [dialogue gaps](mockups/05-function-lesson/05-dialogue-gap-choice/dialogue-gap-choice.puml); [word order](mockups/05-function-lesson/06-word-order/word-order.puml); [listening choice](mockups/05-function-lesson/07-listening-choice/listening-choice.puml); [exam replies](mockups/05-function-lesson/08-exam/reply-word-order.puml); [exam dialogue](mockups/05-function-lesson/08-exam/dialogue-gap-typing.puml); results use the shared results layout. |
+| [Vocabulary lesson](mockups/README.md#vocabulary-lesson) | Start; [01 introduction](mockups/03-vocabulary-lesson/02-introduction/introduction.png); [02 flashcards](mockups/03-vocabulary-lesson/03-flashcards/front.png) and [reveal](mockups/03-vocabulary-lesson/03-flashcards/revealed.png); [03 matching](mockups/03-vocabulary-lesson/04-matching/matching.png); 04 gender + reviewed overview; 05 typed gaps + feedback, [listening choice](mockups/03-vocabulary-lesson/06-listening/listening-choice.png) and [no-voice help](mockups/03-vocabulary-lesson/06-listening/no-voice-help.png); 06 exam and [listening dictation](mockups/03-vocabulary-lesson/07-exam/listening-dictation.png); results. |
+| [Grammar lesson](mockups/README.md#grammar-lesson) | [Start](mockups/04-grammar-lesson/01-startpage/lesson-start.png); [explanation](mockups/04-grammar-lesson/02-00-explanation/explanation.png); [pronoun matching](mockups/04-grammar-lesson/02-01-exercise-pronoun-match/pronoun-match.png); [pronoun typing](mockups/04-grammar-lesson/02-02-exercise-pronoun-typing/pronoun-typing.png); [choice gap](mockups/04-grammar-lesson/02-03-exercise-gap-choice/gap-choice.png); [typed gap](mockups/04-grammar-lesson/02-04-exercise-gap-typing/gap-typing.png) and [feedback](mockups/04-grammar-lesson/02-04-exercise-gap-typing/feedback.png); [word order](mockups/04-grammar-lesson/02-05-exercise-word-order/word-order.png); [error spotter](mockups/04-grammar-lesson/02-06-exercise-error-spotter/error-spotter.png); [placeholder](mockups/04-grammar-lesson/03-feedback-placeholder/feedback-placeholder.png); [exam](mockups/04-grammar-lesson/04-exam/mixed-exam.png); [results](mockups/04-grammar-lesson/05-results/exam-results.png). |
+| [Function lesson](mockups/README.md#function-lesson) | [lesson start](mockups/05-function-lesson/01-startpage/lesson-start.png); [expression flashcards](mockups/05-function-lesson/02-flashcards/expression-flashcards.png); [model dialogue](mockups/05-function-lesson/03-dialogue/dialogue.png); [expression matching](mockups/05-function-lesson/04-matching/expression-matching.png); [dialogue gaps](mockups/05-function-lesson/05-dialogue-gap-choice/dialogue-gap-choice.png); [word order](mockups/05-function-lesson/06-word-order/word-order.png); [listening choice](mockups/05-function-lesson/07-listening-choice/listening-choice.png); [exam replies](mockups/05-function-lesson/08-exam/reply-word-order.png); [exam dialogue](mockups/05-function-lesson/08-exam/dialogue-gap-typing.png); results use the shared results layout. |
 
 ### Additional lesson screens
 
@@ -2355,316 +1984,51 @@ scale 1.3
 
 <a id="mockup-03-vocabulary-lesson-02-introduction-introduction"></a>
 
-[Salt source](mockups/03-vocabulary-lesson/02-introduction/introduction.puml)
+<!-- screen:begin mockups/03-vocabulary-lesson/02-introduction/introduction -->
+[![Vocabulary: Introduction](mockups/03-vocabulary-lesson/02-introduction/introduction.png)](mockups/03-vocabulary-lesson/02-introduction/introduction.html)
 
-<!-- mockup:begin mockups/03-vocabulary-lesson/02-introduction/introduction.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-{ <color:#E2E8F0><b>Les objets de la classe</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 0.0 / 100</b></color> }
-{ <color:#E2E8F0>Progress 3%</color> | <color:#020617>xxx</color> | <color:#1E293B>░░░░░░░░░░░░</color> }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#E2E8F0><size:30><b>01  Introduction</b></size></color>
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>VOCABULARY  /  01  Introduction</b></color>
-.
-<color:#E2E8F0><size:21><b>What is in your classroom?</b></size></color>
-.
-<color:#E2E8F0>Learn 12 useful object names and their articles.</color>
-<color:#94A3B8>English explanations support the French examples.</color>
-.
-<color:#E2E8F0><b>Vocabulary  /  12 objects</b></color>
-.
-{
-<color:#E2E8F0><b>French</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>English</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Audio</b></color>
-.
-<color:#E2E8F0>un livre (m)</color> | <color:#020617>xxx</color> | <color:#E2E8F0>book</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Listen: livre</color> ]
-.
-<color:#E2E8F0>un stylo (m)</color> | <color:#020617>xxx</color> | <color:#E2E8F0>pen</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Listen: stylo</color> ]
-.
-<color:#E2E8F0>une chaise (f)</color> | <color:#020617>xxx</color> | <color:#E2E8F0>chair</color> | <color:#020617>xxx</color> | [ <color:#4338CA>Listen: chaise</color> ]
- }
-.
-<color:#94A3B8>Remaining vocabulary cards continue below (excerpt shown).</color>
-
-.
-<color:#E2E8F0>By the end: name objects, recognize gender, and translate from English.</color>
-<color:#E2E8F0>Practice: 35%   /   Final exam: 65%</color>
-.
-[ <color:#020617>                      Continue                      </color> ]
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
- } | <color:#020617>xxx</color> }
-.
- }
-@endsalt
-```
-<!-- mockup:end mockups/03-vocabulary-lesson/02-introduction/introduction.puml -->
+Rendered by the prototype (lesson `fr-classroom-objects`): [HTML snapshot](mockups/03-vocabulary-lesson/02-introduction/introduction.html) · [PNG](mockups/03-vocabulary-lesson/02-introduction/introduction.png). Refresh with `make screens`.
+<!-- screen:end mockups/03-vocabulary-lesson/02-introduction/introduction -->
 
 #### Vocabulary: Front
 
 <a id="mockup-03-vocabulary-lesson-03-flashcards-front"></a>
 
-[Salt source](mockups/03-vocabulary-lesson/03-flashcards/front.puml)
+<!-- screen:begin mockups/03-vocabulary-lesson/03-flashcards/front -->
+[![Vocabulary: Flashcards](mockups/03-vocabulary-lesson/03-flashcards/front.png)](mockups/03-vocabulary-lesson/03-flashcards/front.html)
 
-<!-- mockup:begin mockups/03-vocabulary-lesson/03-flashcards/front.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-{ <color:#E2E8F0><b>Les objets de la classe</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 0.0 / 100</b></color> }
-{ <color:#E2E8F0>Progress 9%</color> | <color:#020617>xxx</color> | <color:#635BFF>█</color><color:#1E293B>░░░░░░░░░░░</color> }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#E2E8F0><size:30><b>02  Flashcards</b></size></color>
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>VOCABULARY  /  02  Flashcards</b></color>
-.
-<color:#94A3B8>Card 1 of 12</color>
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>ENGLISH</b></color>
-.
-<color:#E2E8F0><size:28><b>book</b></size></color>
-.
-<color:#E2E8F0>Try to recall the French word and its article.</color>
-.
-[ <color:#4338CA>Reveal translation</color> ]
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
-<color:#94A3B8>Recall cards are unscored. Reveal the card before continuing.</color>
-.
-[ <color:#020617>                      Continue                      </color> ]
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
- } | <color:#020617>xxx</color> }
-.
- }
-@endsalt
-```
-<!-- mockup:end mockups/03-vocabulary-lesson/03-flashcards/front.puml -->
+Rendered by the prototype (lesson `fr-classroom-objects`): [HTML snapshot](mockups/03-vocabulary-lesson/03-flashcards/front.html) · [PNG](mockups/03-vocabulary-lesson/03-flashcards/front.png). Refresh with `make screens`.
+<!-- screen:end mockups/03-vocabulary-lesson/03-flashcards/front -->
 
 #### Vocabulary: Revealed
 
 <a id="mockup-03-vocabulary-lesson-03-flashcards-revealed"></a>
 
-[Salt source](mockups/03-vocabulary-lesson/03-flashcards/revealed.puml)
+<!-- screen:begin mockups/03-vocabulary-lesson/03-flashcards/revealed -->
+[![Vocabulary: Flashcards turned](mockups/03-vocabulary-lesson/03-flashcards/revealed.png)](mockups/03-vocabulary-lesson/03-flashcards/revealed.html)
 
-<!-- mockup:begin mockups/03-vocabulary-lesson/03-flashcards/revealed.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-{ <color:#E2E8F0><b>Les objets de la classe</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 0.0 / 100</b></color> }
-{ <color:#E2E8F0>Progress 9%</color> | <color:#020617>xxx</color> | <color:#635BFF>█</color><color:#1E293B>░░░░░░░░░░░</color> }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#E2E8F0><size:30><b>02  Flashcards</b></size></color>
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>VOCABULARY  /  02  Flashcards</b></color>
-.
-<color:#94A3B8>Card 1 of 12   /   Revealed</color>
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>FRENCH</b></color>
-.
-<color:#E2E8F0><size:28><b>un livre</b></size></color>
-<color:#E2E8F0>book   /   Masculine</color>
-.
-[ <color:#4338CA>Listen in French</color> ]
-.
-<color:#E2E8F0>Je lis un livre.   /   I am reading a book.</color>
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
-<color:#E2E8F0>Remember the noun together with its article.</color>
-.
-[ <color:#020617>                      Continue                      </color> ]
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
- } | <color:#020617>xxx</color> }
-.
- }
-@endsalt
-```
-<!-- mockup:end mockups/03-vocabulary-lesson/03-flashcards/revealed.puml -->
+Rendered by the prototype (lesson `fr-classroom-objects`): [HTML snapshot](mockups/03-vocabulary-lesson/03-flashcards/revealed.html) · [PNG](mockups/03-vocabulary-lesson/03-flashcards/revealed.png). Refresh with `make screens`.
+<!-- screen:end mockups/03-vocabulary-lesson/03-flashcards/revealed -->
 
 #### Vocabulary: Matching
 
 <a id="mockup-03-vocabulary-lesson-04-matching-matching"></a>
 
-[Salt source](mockups/03-vocabulary-lesson/04-matching/matching.puml)
+<!-- screen:begin mockups/03-vocabulary-lesson/04-matching/matching -->
+[![Vocabulary: Matching](mockups/03-vocabulary-lesson/04-matching/matching.png)](mockups/03-vocabulary-lesson/04-matching/matching.html)
 
-<!-- mockup:begin mockups/03-vocabulary-lesson/04-matching/matching.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-{ <color:#E2E8F0><b>Les objets de la classe</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 0.0 / 100</b></color> }
-{ <color:#E2E8F0>Progress 25%</color> | <color:#020617>xxx</color> | <color:#635BFF>███</color><color:#1E293B>░░░░░░░░░</color> }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#E2E8F0><size:30><b>03  Match translations</b></size></color>
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>VOCABULARY  /  03  Match translations</b></color>
-.
-<color:#E2E8F0>All 12 targets on one exercise page; sample rows shown here.</color>
-<color:#E2E8F0>Tap or keyboard-select one English word and its French partner.</color>
-.
-{
-<color:#E2E8F0><b>English</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>French</b></color>
-.
-[ <color:#4338CA>book (selected)</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>une table (f)</color> ]
-.
-[ <color:#4338CA>chair</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>un livre (m) (selected)</color> ]
-.
-[ <color:#4338CA>table</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>une chaise (f)</color> ]
- }
-.
-<color:#94A3B8>Current pair: book — un livre (m)</color>
-<color:#E2E8F0>1 of 12 pairs assigned; assignments remain editable until Continue.</color>
-
-.
-<color:#94A3B8>12 possible practice points. Continue locks all pairs and shows feedback.</color>
-.
-[ <color:#020617>                      Continue                      </color> ]
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
- } | <color:#020617>xxx</color> }
-.
- }
-@endsalt
-```
-<!-- mockup:end mockups/03-vocabulary-lesson/04-matching/matching.puml -->
+Rendered by the prototype (lesson `fr-classroom-objects`): [HTML snapshot](mockups/03-vocabulary-lesson/04-matching/matching.html) · [PNG](mockups/03-vocabulary-lesson/04-matching/matching.png). Refresh with `make screens`.
+<!-- screen:end mockups/03-vocabulary-lesson/04-matching/matching -->
 
 #### Vocabulary: Listening choice
 
 <a id="mockup-03-vocabulary-lesson-06-listening-listening-choice"></a>
 
-[Salt source](mockups/03-vocabulary-lesson/06-listening/listening-choice.puml)
+<!-- screen:begin mockups/03-vocabulary-lesson/06-listening/listening-choice -->
+[![Vocabulary: Listening choice](mockups/03-vocabulary-lesson/06-listening/listening-choice.png)](mockups/03-vocabulary-lesson/06-listening/listening-choice.html)
 
-<!-- mockup:begin mockups/03-vocabulary-lesson/06-listening/listening-choice.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-{ <color:#E2E8F0><b>Les nombres de 0 à 20</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 18.0 / 100</b></color> }
-{ <color:#E2E8F0>Progress 58%</color> | <color:#020617>xxx</color> | <color:#635BFF>███████</color><color:#1E293B>░░░░░</color> }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#E2E8F0><size:30><b>Choose what you hear</b></size></color>
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#94A3B8>PRACTICE   /   Listening   /   Item 3 of 8</color>
-.
-{ [ <color:#4338CA>Play audio</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>Play again</color> ] }
-.
-<back:#0F172A><color:#E2E8F0><size:21>   six                                          </size></color></back>
-.
-<back:#0F172A><color:#E2E8F0><size:21>   dix                                          </size></color></back>
-.
-<back:#0F172A><color:#E2E8F0><size:21>   seize                                        </size></color></back>
-.
-<back:#0F172A><color:#E2E8F0><size:21>   treize                                       </size></color></back>
-.
-.
-<color:#94A3B8>Select the word you heard, then Continue to lock it.</color>
-<color:#94A3B8>Continue then shows the result and a short explanation.</color>
-.
-[ <color:#020617>                      Continue                      </color> ]
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
- } | <color:#020617>xxx</color> }
-.
- }
-@endsalt
-```
-<!-- mockup:end mockups/03-vocabulary-lesson/06-listening/listening-choice.puml -->
+Rendered by the prototype (lesson `fr-classroom-objects`): [HTML snapshot](mockups/03-vocabulary-lesson/06-listening/listening-choice.html) · [PNG](mockups/03-vocabulary-lesson/06-listening/listening-choice.png). Refresh with `make screens`.
+<!-- screen:end mockups/03-vocabulary-lesson/06-listening/listening-choice -->
 
 When no French voice exists, the listening page is replaced by this help page; Skip continues with the next exercise (D42).
 
@@ -2672,1355 +2036,281 @@ When no French voice exists, the listening page is replaced by this help page; S
 
 <a id="mockup-03-vocabulary-lesson-06-listening-no-voice-help"></a>
 
-[Salt source](mockups/03-vocabulary-lesson/06-listening/no-voice-help.puml)
+<!-- screen:begin mockups/03-vocabulary-lesson/06-listening/no-voice-help -->
+[![Vocabulary: No French voice](mockups/03-vocabulary-lesson/06-listening/no-voice-help.png)](mockups/03-vocabulary-lesson/06-listening/no-voice-help.html)
 
-<!-- mockup:begin mockups/03-vocabulary-lesson/06-listening/no-voice-help.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-{ <color:#E2E8F0><b>Les nombres de 0 à 20</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 18.0 / 100</b></color> }
-{ <color:#E2E8F0>Progress 58%</color> | <color:#020617>xxx</color> | <color:#635BFF>███████</color><color:#1E293B>░░░░░</color> }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#E2E8F0><size:30><b>French voice unavailable</b></size></color>
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#94A3B8>PRACTICE   /   Listening   /   Item 3 of 8</color>
-.
-<color:#E2E8F0>This exercise uses your browser's speech synthesis.</color>
-<color:#E2E8F0>No French voice was found, so the audio task cannot play.</color>
-.
-<color:#E2E8F0><b>Steps for Windows with Firefox:</b></color>
-<color:#94A3B8>1. Open Settings → Time & language → Language & region.</color>
-<color:#94A3B8>2. Add a language → French (France) → Next; tick Text-to-speech → Install.</color>
-<color:#94A3B8>3. Close every Firefox window and start Firefox again.</color>
-.
-<color:#94A3B8>French already listed? … → Language options → Download next to Text-to-speech.</color>
-<color:#94A3B8>Firefox uses these Windows voices from version 106 on.</color>
-.
-<color:#94A3B8>Only the steps for the detected system and browser are shown.</color>
-<color:#94A3B8>You can skip this listening task now; it is left out of your score.</color>
-.
-[ <color:#020617>                        Skip                        </color> ]
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
- } | <color:#020617>xxx</color> }
-.
- }
-@endsalt
-```
-<!-- mockup:end mockups/03-vocabulary-lesson/06-listening/no-voice-help.puml -->
+Rendered by the prototype (lesson `fr-classroom-objects`): [HTML snapshot](mockups/03-vocabulary-lesson/06-listening/no-voice-help.html) · [PNG](mockups/03-vocabulary-lesson/06-listening/no-voice-help.png). Refresh with `make screens`.
+<!-- screen:end mockups/03-vocabulary-lesson/06-listening/no-voice-help -->
 
 #### Vocabulary: Listening dictation exam
 
 <a id="mockup-03-vocabulary-lesson-07-exam-listening-dictation"></a>
 
-[Salt source](mockups/03-vocabulary-lesson/07-exam/listening-dictation.puml)
+<!-- screen:begin mockups/03-vocabulary-lesson/07-exam/listening-dictation -->
+[![Vocabulary: Listening dictation](mockups/03-vocabulary-lesson/07-exam/listening-dictation.png)](mockups/03-vocabulary-lesson/07-exam/listening-dictation.html)
 
-<!-- mockup:begin mockups/03-vocabulary-lesson/07-exam/listening-dictation.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-  .
-  { <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-  .
-  { <color:#E2E8F0><b>Les nombres de 0 à 20</b></color> | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 27.1 / 100</b></color> }
-  { <color:#E2E8F0>Progress 86%</color> | <color:#020617>xxx</color> | <color:#635BFF>██████████</color><color:#1E293B>░░</color> | <color:#020617>xxx</color> | <color:#635BFF><size:32>◯</size></color><color:#E2E8F0><size:21> 18s</size></color> }
-  .
-  <color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-  .
-  .
-  {
-    .
-    { <color:#020617>xxx</color> | {
-    { <color:#E2E8F0>FINAL EXAM   /   Page 18 of 25</color> | <color:#020617>xxx</color> | . | <color:#020617>xxx</color> | <color:#94A3B8>Timed page</color> }
-    .
-    <color:#E2E8F0><size:23><b>Write what you hear</b></size></color>
-    .
-    { [ <color:#4338CA>Play audio</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>Play again</color> ] }
-    .
-    <color:#E2E8F0>Write the French word. Accents count for full credit.</color>
-    .
-    <color:#E2E8F0><b>Your answer</b></color>
-    "<color:#E2E8F0>dix</color>                                                   "
-    .
-    .
-    [ <color:#020617>                      Continue                      </color> ]
-    .
-     } | <color:#020617>xxx</color> }
-    .
-   }
-  .
-  <color:#E2E8F0>Results and corrections appear after the complete exam.</color>
-  .
-   } | <color:#020617>xxx</color> }
-  .
- }
-@endsalt
-```
-<!-- mockup:end mockups/03-vocabulary-lesson/07-exam/listening-dictation.puml -->
+Rendered by the prototype (lesson `fr-classroom-objects`): [HTML snapshot](mockups/03-vocabulary-lesson/07-exam/listening-dictation.html) · [PNG](mockups/03-vocabulary-lesson/07-exam/listening-dictation.png). Refresh with `make screens`.
+<!-- screen:end mockups/03-vocabulary-lesson/07-exam/listening-dictation -->
 
 #### Grammar: Lesson start
 
 <a id="mockup-04-grammar-lesson-01-startpage-lesson-start"></a>
 
-[Salt source](mockups/04-grammar-lesson/01-startpage/lesson-start.puml)
+<!-- screen:begin mockups/04-grammar-lesson/01-startpage/lesson-start -->
+[![Grammar: Lesson start](mockups/04-grammar-lesson/01-startpage/lesson-start.png)](mockups/04-grammar-lesson/01-startpage/lesson-start.html)
 
-<!-- mockup:begin mockups/04-grammar-lesson/01-startpage/lesson-start.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-{ [ <color:#4338CA>Lesson overview</color> ] | <color:#020617>xxx</color> | <color:#94A3B8>French / A1</color> }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#E2E8F0><size:30><b>Le verbe être au présent</b></size></color>
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>YOUR LESSON</b></color>
-.
-<color:#E2E8F0><size:20><b>Say who someone is and how they are</b></size></color>
-.
-<color:#94A3B8>( Grammar )   ·   About 13 minutes</color>
-.
-<color:#94A3B8>No step list and no scoring weights here; weights appear on the results page.</color>
-.
-[ <color:#020617>                      Continue                      </color> ]
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
- } | <color:#020617>xxx</color> }
-.
- }
-@endsalt
-```
-<!-- mockup:end mockups/04-grammar-lesson/01-startpage/lesson-start.puml -->
+Rendered by the prototype (lesson `fr-verb-avoir-present`): [HTML snapshot](mockups/04-grammar-lesson/01-startpage/lesson-start.html) · [PNG](mockups/04-grammar-lesson/01-startpage/lesson-start.png). Refresh with `make screens`.
+<!-- screen:end mockups/04-grammar-lesson/01-startpage/lesson-start -->
 
 #### Grammar: Singular forms
 
-<a id="mockup-04-grammar-lesson-02-00-explanation-singular-forms"></a>
+<a id="mockup-04-grammar-lesson-02-00-explanation-explanation"></a>
 
-[Salt source](mockups/04-grammar-lesson/02-00-explanation/singular-forms.puml)
+<!-- screen:begin mockups/04-grammar-lesson/02-00-explanation/explanation -->
+[![Grammar: Explanation](mockups/04-grammar-lesson/02-00-explanation/explanation.png)](mockups/04-grammar-lesson/02-00-explanation/explanation.html)
 
-<!-- mockup:begin mockups/04-grammar-lesson/02-00-explanation/singular-forms.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-{ <color:#E2E8F0><b>Le verbe être au présent</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 0.0 / 100</b></color> }
-{ <color:#E2E8F0>Progress 8%</color> | <color:#020617>xxx</color> | <color:#635BFF>█</color><color:#1E293B>░░░░░░░░░░░</color> }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#E2E8F0><size:30><b>Singular forms</b></size></color>
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>GRAMMAR  /  Singular forms</b></color>
-.
-<color:#E2E8F0><size:21><b>Use the form that matches the subject</b></size></color>
-.
-{
-<color:#E2E8F0><b>Subject</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Form</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Example</b></color>
-.
-<color:#E2E8F0>je</color> | <color:#020617>xxx</color> | <color:#E2E8F0>suis</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Je suis étudiant.</color>
-.
-<color:#E2E8F0>tu</color> | <color:#020617>xxx</color> | <color:#E2E8F0>es</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Tu es étudiant.</color>
-.
-<color:#E2E8F0>il / elle</color> | <color:#020617>xxx</color> | <color:#E2E8F0>est</color> | <color:#020617>xxx</color> | <color:#E2E8F0>Elle est étudiante.</color>
- }
-.
-[ <color:#4338CA>Listen to examples</color> ]
-.
-<color:#E2E8F0>Es and est sound alike, but their subjects are different.</color>
-.
-[ <color:#020617>                      Continue                      </color> ]
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
- } | <color:#020617>xxx</color> }
-.
- }
-@endsalt
-```
-<!-- mockup:end mockups/04-grammar-lesson/02-00-explanation/singular-forms.puml -->
+Rendered by the prototype (lesson `fr-verb-avoir-present`): [HTML snapshot](mockups/04-grammar-lesson/02-00-explanation/explanation.html) · [PNG](mockups/04-grammar-lesson/02-00-explanation/explanation.png). Refresh with `make screens`.
+<!-- screen:end mockups/04-grammar-lesson/02-00-explanation/explanation -->
+
+#### Grammar: Person matching
+
+<a id="mockup-04-grammar-lesson-02-07-exercise-person-matching-person-matching"></a>
+
+<!-- screen:begin mockups/04-grammar-lesson/02-07-exercise-person-matching/person-matching -->
+[![Grammar: Person matching](mockups/04-grammar-lesson/02-07-exercise-person-matching/person-matching.png)](mockups/04-grammar-lesson/02-07-exercise-person-matching/person-matching.html)
+
+Rendered by the prototype (lesson `fr-verb-avoir-present`): [HTML snapshot](mockups/04-grammar-lesson/02-07-exercise-person-matching/person-matching.html) · [PNG](mockups/04-grammar-lesson/02-07-exercise-person-matching/person-matching.png). Refresh with `make screens`.
+<!-- screen:end mockups/04-grammar-lesson/02-07-exercise-person-matching/person-matching -->
 
 #### Grammar: Pronoun match
 
 <a id="mockup-04-grammar-lesson-02-01-exercise-pronoun-match-pronoun-match"></a>
 
-[Salt source](mockups/04-grammar-lesson/02-01-exercise-pronoun-match/pronoun-match.puml)
+<!-- screen:begin mockups/04-grammar-lesson/02-01-exercise-pronoun-match/pronoun-match -->
+[![Grammar: Pronoun matching](mockups/04-grammar-lesson/02-01-exercise-pronoun-match/pronoun-match.png)](mockups/04-grammar-lesson/02-01-exercise-pronoun-match/pronoun-match.html)
 
-<!-- mockup:begin mockups/04-grammar-lesson/02-01-exercise-pronoun-match/pronoun-match.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-{ <color:#E2E8F0><b>Le verbe être au présent</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 0.0 / 100</b></color> }
-{ <color:#E2E8F0>Progress 16%</color> | <color:#020617>xxx</color> | <color:#635BFF>██</color><color:#1E293B>░░░░░░░░░░</color> }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#E2E8F0><size:30><b>Match forms to pronouns</b></size></color>
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>GRAMMAR  /  Match forms to pronouns</b></color>
-.
-<color:#E2E8F0>Drag a form into each row, or choose it using the keyboard selector.</color>
-.
-{
-<color:#E2E8F0><b>Available forms</b></color> | <color:#020617>xxx</color> | [ <color:#4338CA>suis</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>es</color> ] | <color:#020617>xxx</color> | [ <color:#4338CA>est</color> ]
- }
-.
-{
-<color:#E2E8F0><b>Subject</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Drop target / keyboard choice</b></color>
-.
-<color:#E2E8F0>je</color> | <color:#020617>xxx</color> | ^<color:#4338CA>Choose a form                   </color>^
-.
-<color:#E2E8F0>tu</color> | <color:#020617>xxx</color> | ^<color:#4338CA>Choose a form                   </color>^
-.
-<color:#E2E8F0>il / elle</color> | <color:#020617>xxx</color> | ^<color:#4338CA>Choose a form                   </color>^
- }
-.
-<color:#94A3B8>Continue locks the whole page before showing feedback.</color>
-.
-[ <color:#020617>                      Continue                      </color> ]
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
- } | <color:#020617>xxx</color> }
-.
- }
-@endsalt
-```
-<!-- mockup:end mockups/04-grammar-lesson/02-01-exercise-pronoun-match/pronoun-match.puml -->
+Rendered by the prototype (lesson `fr-verb-avoir-present`): [HTML snapshot](mockups/04-grammar-lesson/02-01-exercise-pronoun-match/pronoun-match.html) · [PNG](mockups/04-grammar-lesson/02-01-exercise-pronoun-match/pronoun-match.png). Refresh with `make screens`.
+<!-- screen:end mockups/04-grammar-lesson/02-01-exercise-pronoun-match/pronoun-match -->
 
 #### Grammar: Pronoun typing
 
 <a id="mockup-04-grammar-lesson-02-02-exercise-pronoun-typing-pronoun-typing"></a>
 
-[Salt source](mockups/04-grammar-lesson/02-02-exercise-pronoun-typing/pronoun-typing.puml)
+<!-- screen:begin mockups/04-grammar-lesson/02-02-exercise-pronoun-typing/pronoun-typing -->
+[![Grammar: Pronoun typing](mockups/04-grammar-lesson/02-02-exercise-pronoun-typing/pronoun-typing.png)](mockups/04-grammar-lesson/02-02-exercise-pronoun-typing/pronoun-typing.html)
 
-<!-- mockup:begin mockups/04-grammar-lesson/02-02-exercise-pronoun-typing/pronoun-typing.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-{ <color:#E2E8F0><b>Le verbe être au présent</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 6.6 / 100</b></color> }
-{ <color:#E2E8F0>Progress 24%</color> | <color:#020617>xxx</color> | <color:#635BFF>███</color><color:#1E293B>░░░░░░░░░</color> }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#E2E8F0><size:30><b>Write forms for pronouns</b></size></color>
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>GRAMMAR  /  Write forms for pronouns</b></color>
-.
-<color:#94A3B8>Type the present-tense form of être.</color>
-.
-{
-<color:#E2E8F0><b>Subject</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Your answer</b></color>
-.
-<color:#E2E8F0>je</color> | <color:#020617>xxx</color> | "<color:#E2E8F0>suis</color>                  "
-.
-<color:#E2E8F0>tu</color> | <color:#020617>xxx</color> | "<color:#94A3B8>Type here</color>             "
-.
-<color:#E2E8F0>il / elle</color> | <color:#020617>xxx</color> | "<color:#94A3B8>Type here</color>             "
- }
-.
-<color:#94A3B8>Each row is one point. Accents and capitalization affect full correctness.</color>
-.
-[ <color:#020617>                      Continue                      </color> ]
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
- } | <color:#020617>xxx</color> }
-.
- }
-@endsalt
-```
-<!-- mockup:end mockups/04-grammar-lesson/02-02-exercise-pronoun-typing/pronoun-typing.puml -->
+Rendered by the prototype (lesson `fr-verb-avoir-present`): [HTML snapshot](mockups/04-grammar-lesson/02-02-exercise-pronoun-typing/pronoun-typing.html) · [PNG](mockups/04-grammar-lesson/02-02-exercise-pronoun-typing/pronoun-typing.png). Refresh with `make screens`.
+<!-- screen:end mockups/04-grammar-lesson/02-02-exercise-pronoun-typing/pronoun-typing -->
 
 #### Grammar: Gap choice
 
 <a id="mockup-04-grammar-lesson-02-03-exercise-gap-choice-gap-choice"></a>
 
-[Salt source](mockups/04-grammar-lesson/02-03-exercise-gap-choice/gap-choice.puml)
+<!-- screen:begin mockups/04-grammar-lesson/02-03-exercise-gap-choice/gap-choice -->
+[![Grammar: Multiple-choice gap](mockups/04-grammar-lesson/02-03-exercise-gap-choice/gap-choice.png)](mockups/04-grammar-lesson/02-03-exercise-gap-choice/gap-choice.html)
 
-<!-- mockup:begin mockups/04-grammar-lesson/02-03-exercise-gap-choice/gap-choice.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-{ <color:#E2E8F0><b>Le verbe être au présent</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 10.9 / 100</b></color> }
-{ <color:#E2E8F0>Progress 34%</color> | <color:#020617>xxx</color> | <color:#635BFF>████</color><color:#1E293B>░░░░░░░░</color> }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#E2E8F0><size:30><b>Choose the missing form</b></size></color>
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>GRAMMAR  /  Choose the missing form</b></color>
-.
-<color:#E2E8F0><size:21>Tu ___ étudiant.</size></color>
-.
-<back:#0F172A><color:#E2E8F0><size:21>   suis                                         </size></color></back>
-.
-<back:#0F172A><color:#E2E8F0><size:21>   es                                           </size></color></back>
-.
-<back:#0F172A><color:#E2E8F0><size:21>   est                                          </size></color></back>
-.
-<back:#0F172A><color:#E2E8F0><size:21>   sommes                                       </size></color></back>
-.
-.
-<color:#94A3B8>Select one answer, then Continue to lock it.</color>
-.
-[ <color:#020617>                      Continue                      </color> ]
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
- } | <color:#020617>xxx</color> }
-.
- }
-@endsalt
-```
-<!-- mockup:end mockups/04-grammar-lesson/02-03-exercise-gap-choice/gap-choice.puml -->
+Rendered by the prototype (lesson `fr-verb-avoir-present`): [HTML snapshot](mockups/04-grammar-lesson/02-03-exercise-gap-choice/gap-choice.html) · [PNG](mockups/04-grammar-lesson/02-03-exercise-gap-choice/gap-choice.png). Refresh with `make screens`.
+<!-- screen:end mockups/04-grammar-lesson/02-03-exercise-gap-choice/gap-choice -->
 
 #### Grammar: Feedback
 
 <a id="mockup-04-grammar-lesson-02-04-exercise-gap-typing-feedback"></a>
 
-[Salt source](mockups/04-grammar-lesson/02-04-exercise-gap-typing/feedback.puml)
+<!-- screen:begin mockups/04-grammar-lesson/02-04-exercise-gap-typing/feedback -->
+[![Grammar: Typed gap checked](mockups/04-grammar-lesson/02-04-exercise-gap-typing/feedback.png)](mockups/04-grammar-lesson/02-04-exercise-gap-typing/feedback.html)
 
-<!-- mockup:begin mockups/04-grammar-lesson/02-04-exercise-gap-typing/feedback.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-{ <color:#E2E8F0><b>Le verbe être au présent</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 14.2 / 100</b></color> }
-{ <color:#E2E8F0>Progress 42%</color> | <color:#020617>xxx</color> | <color:#635BFF>█████</color><color:#1E293B>░░░░░░░</color> }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#E2E8F0><size:30><b>Review your answer</b></size></color>
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>GRAMMAR  /  Review your answer</b></color>
-.
-<color:#FBBF24><b>Letters correct; accent needs attention   /   0.5 of 1 point</b></color>
-.
-<color:#E2E8F0>Task: Vous ___ prêts.</color>
-<color:#94A3B8>Your answer: etes</color>
-<color:#00E676>Correct answer: êtes</color>
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>WHY THIS ANSWER IS RIGHT</b></color>
-.
-<color:#E2E8F0>Vous takes êtes, with an accent circonflexe on e.</color>
-<color:#E2E8F0>Your letters match, so this answer earns half credit.</color>
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
-<color:#94A3B8>Continue confirms this feedback and advances.</color>
-.
-[ <color:#020617>                      Continue                      </color> ]
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
- } | <color:#020617>xxx</color> }
-.
- }
-@endsalt
-```
-<!-- mockup:end mockups/04-grammar-lesson/02-04-exercise-gap-typing/feedback.puml -->
+Rendered by the prototype (lesson `fr-verb-avoir-present`): [HTML snapshot](mockups/04-grammar-lesson/02-04-exercise-gap-typing/feedback.html) · [PNG](mockups/04-grammar-lesson/02-04-exercise-gap-typing/feedback.png). Refresh with `make screens`.
+<!-- screen:end mockups/04-grammar-lesson/02-04-exercise-gap-typing/feedback -->
 
 #### Grammar: Gap typing
 
 <a id="mockup-04-grammar-lesson-02-04-exercise-gap-typing-gap-typing"></a>
 
-[Salt source](mockups/04-grammar-lesson/02-04-exercise-gap-typing/gap-typing.puml)
+<!-- screen:begin mockups/04-grammar-lesson/02-04-exercise-gap-typing/gap-typing -->
+[![Grammar: Typed gap](mockups/04-grammar-lesson/02-04-exercise-gap-typing/gap-typing.png)](mockups/04-grammar-lesson/02-04-exercise-gap-typing/gap-typing.html)
 
-<!-- mockup:begin mockups/04-grammar-lesson/02-04-exercise-gap-typing/gap-typing.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-{ <color:#E2E8F0><b>Le verbe être au présent</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 13.1 / 100</b></color> }
-{ <color:#E2E8F0>Progress 42%</color> | <color:#020617>xxx</color> | <color:#635BFF>█████</color><color:#1E293B>░░░░░░░</color> }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#E2E8F0><size:30><b>Type the missing form</b></size></color>
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>GRAMMAR  /  Type the missing form</b></color>
-.
-<color:#E2E8F0><size:21>Vous ___ prêts.</size></color>
-.
-<color:#E2E8F0><b>Your answer</b></color>
-"<color:#E2E8F0>etes</color>                                                   "
-.
-<color:#94A3B8>Continue locks your answer. Full credit includes the correct accents.</color>
-.
-[ <color:#020617>                      Continue                      </color> ]
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
- } | <color:#020617>xxx</color> }
-.
- }
-@endsalt
-```
-<!-- mockup:end mockups/04-grammar-lesson/02-04-exercise-gap-typing/gap-typing.puml -->
+Rendered by the prototype (lesson `fr-verb-avoir-present`): [HTML snapshot](mockups/04-grammar-lesson/02-04-exercise-gap-typing/gap-typing.html) · [PNG](mockups/04-grammar-lesson/02-04-exercise-gap-typing/gap-typing.png). Refresh with `make screens`.
+<!-- screen:end mockups/04-grammar-lesson/02-04-exercise-gap-typing/gap-typing -->
 
 #### Grammar: Word order
 
 <a id="mockup-04-grammar-lesson-02-05-exercise-word-order-word-order"></a>
 
-[Salt source](mockups/04-grammar-lesson/02-05-exercise-word-order/word-order.puml)
+<!-- screen:begin mockups/04-grammar-lesson/02-05-exercise-word-order/word-order -->
+[![Grammar: Word order](mockups/04-grammar-lesson/02-05-exercise-word-order/word-order.png)](mockups/04-grammar-lesson/02-05-exercise-word-order/word-order.html)
 
-<!-- mockup:begin mockups/04-grammar-lesson/02-05-exercise-word-order/word-order.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-{ <color:#E2E8F0><b>Le verbe être au présent</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 18.6 / 100</b></color> }
-{ <color:#E2E8F0>Progress 53%</color> | <color:#020617>xxx</color> | <color:#635BFF>██████</color><color:#1E293B>░░░░░░</color> }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#E2E8F0><size:30><b>Put the words in order</b></size></color>
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>GRAMMAR  /  Put the words in order</b></color>
-.
-<color:#E2E8F0>Build a statement using every token once.</color>
-<color:#E2E8F0>Drag tokens or use their labeled move buttons.</color>
-.
-<color:#E2E8F0><b>Word bank</b></color>
-{ [ <color:#4338CA>étudiant.</color> ] | [ <color:#4338CA>suis</color> ] | [ <color:#4338CA>Je</color> ] }
-.
-<color:#E2E8F0><b>Your sentence</b></color>
-{ [ <color:#4338CA>Je</color> ] | [ <color:#4338CA>suis</color> ] | [ <color:#4338CA>étudiant.</color> ] }
-{ [ <color:#4338CA>Move selected left</color> ] | [ <color:#4338CA>Move selected right</color> ] }
-.
-<color:#94A3B8>Continue locks the sentence before showing its result.</color>
-.
-[ <color:#020617>                      Continue                      </color> ]
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
- } | <color:#020617>xxx</color> }
-.
- }
-@endsalt
-```
-<!-- mockup:end mockups/04-grammar-lesson/02-05-exercise-word-order/word-order.puml -->
+Rendered by the prototype (lesson `fr-verb-avoir-present`): [HTML snapshot](mockups/04-grammar-lesson/02-05-exercise-word-order/word-order.html) · [PNG](mockups/04-grammar-lesson/02-05-exercise-word-order/word-order.png). Refresh with `make screens`.
+<!-- screen:end mockups/04-grammar-lesson/02-05-exercise-word-order/word-order -->
 
 #### Grammar: Error spotter
 
 <a id="mockup-04-grammar-lesson-02-06-exercise-error-spotter-error-spotter"></a>
 
-[Salt source](mockups/04-grammar-lesson/02-06-exercise-error-spotter/error-spotter.puml)
+<!-- screen:begin mockups/04-grammar-lesson/02-06-exercise-error-spotter/error-spotter -->
+[![Grammar: Error spotter](mockups/04-grammar-lesson/02-06-exercise-error-spotter/error-spotter.png)](mockups/04-grammar-lesson/02-06-exercise-error-spotter/error-spotter.html)
 
-<!-- mockup:begin mockups/04-grammar-lesson/02-06-exercise-error-spotter/error-spotter.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-{ <color:#E2E8F0><b>Le verbe être au présent</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 21.9 / 100</b></color> }
-{ <color:#E2E8F0>Progress 63%</color> | <color:#020617>xxx</color> | <color:#635BFF>████████</color><color:#1E293B>░░░░</color> }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#E2E8F0><size:30><b>Find the grammar mistake</b></size></color>
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>GRAMMAR  /  Find the grammar mistake</b></color>
-.
-<color:#E2E8F0>Choose the incorrect word in this sentence.</color>
-.
-{ [ <color:#4338CA>Tu</color> ] | [ <color:#4338CA>est</color> ] | [ <color:#4338CA>étudiant.</color> ] }
-.
-<color:#E2E8F0>Selected word: est</color>
-.
-<color:#E2E8F0><b>Write its correction</b></color>
-"<color:#E2E8F0>es</color>                                                     "
-.
-<color:#94A3B8>Continue locks both your selected token and its correction.</color>
-<color:#E2E8F0>You then see the result and a short explanation.</color>
-.
-[ <color:#020617>                      Continue                      </color> ]
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
- } | <color:#020617>xxx</color> }
-.
- }
-@endsalt
-```
-<!-- mockup:end mockups/04-grammar-lesson/02-06-exercise-error-spotter/error-spotter.puml -->
+Rendered by the prototype (lesson `fr-verb-avoir-present`): [HTML snapshot](mockups/04-grammar-lesson/02-06-exercise-error-spotter/error-spotter.html) · [PNG](mockups/04-grammar-lesson/02-06-exercise-error-spotter/error-spotter.png). Refresh with `make screens`.
+<!-- screen:end mockups/04-grammar-lesson/02-06-exercise-error-spotter/error-spotter -->
 
 #### Grammar: Feedback placeholder
 
 <a id="mockup-04-grammar-lesson-03-feedback-placeholder-feedback-placeholder"></a>
 
-[Salt source](mockups/04-grammar-lesson/03-feedback-placeholder/feedback-placeholder.puml)
+<!-- screen:begin mockups/04-grammar-lesson/03-feedback-placeholder/feedback-placeholder -->
+[![Grammar: Feedback placeholder](mockups/04-grammar-lesson/03-feedback-placeholder/feedback-placeholder.png)](mockups/04-grammar-lesson/03-feedback-placeholder/feedback-placeholder.html)
 
-<!-- mockup:begin mockups/04-grammar-lesson/03-feedback-placeholder/feedback-placeholder.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-{ <color:#E2E8F0><b>Le verbe être au présent</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 26.3 / 100</b></color> }
-{ <color:#E2E8F0>Progress 72%</color> | <color:#020617>xxx</color> | <color:#635BFF>█████████</color><color:#1E293B>░░░</color> }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#E2E8F0><size:30><b>Before your final exam</b></size></color>
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>GRAMMAR  /  Before your final exam</b></color>
-.
-<color:#E2E8F0><size:20><b>Individual feedback would be here on production.</b></size></color>
-.
-<color:#94A3B8>The final exam starts next.</color>
-<color:#94A3B8>Each page shows a countdown. Answers lock on Continue or when time expires.</color>
-<color:#E2E8F0>Results appear only after the complete exam.</color>
-.
-[ <color:#020617>                      Continue                      </color> ]
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
- } | <color:#020617>xxx</color> }
-.
- }
-@endsalt
-```
-<!-- mockup:end mockups/04-grammar-lesson/03-feedback-placeholder/feedback-placeholder.puml -->
+Rendered by the prototype (lesson `fr-verb-avoir-present`): [HTML snapshot](mockups/04-grammar-lesson/03-feedback-placeholder/feedback-placeholder.html) · [PNG](mockups/04-grammar-lesson/03-feedback-placeholder/feedback-placeholder.png). Refresh with `make screens`.
+<!-- screen:end mockups/04-grammar-lesson/03-feedback-placeholder/feedback-placeholder -->
 
 #### Grammar: Mixed exam
 
 <a id="mockup-04-grammar-lesson-04-exam-mixed-exam"></a>
 
-[Salt source](mockups/04-grammar-lesson/04-exam/mixed-exam.puml)
+<!-- screen:begin mockups/04-grammar-lesson/04-exam/mixed-exam -->
+[![Grammar: Exam page](mockups/04-grammar-lesson/04-exam/mixed-exam.png)](mockups/04-grammar-lesson/04-exam/mixed-exam.html)
 
-<!-- mockup:begin mockups/04-grammar-lesson/04-exam/mixed-exam.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-{ <color:#E2E8F0><b>Le verbe être au présent</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 26.3 / 100</b></color> }
-{ <color:#E2E8F0>Progress 83%</color> | <color:#020617>xxx</color> | <color:#635BFF>██████████</color><color:#1E293B>░░</color> | <color:#020617>xxx</color> | <color:#635BFF><size:32>◯</size></color><color:#E2E8F0><size:21> 48s</size></color> }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#E2E8F0><size:30><b>Final exam  /  Page 2 of 5</b></size></color>
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>EXAM  /  Final exam  /  Page 2 of 5</b></color>
-.
-{ <color:#94A3B8>Timed page</color> | <color:#020617>xxx</color> | <color:#E2E8F0>3 answers on this page</color> }
-.
-<color:#94A3B8>Type the forms of être for these subjects.</color>
-.
-{
-<color:#E2E8F0><b>Subject</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Your answer</b></color>
-.
-<color:#E2E8F0>nous</color> | <color:#020617>xxx</color> | "<color:#E2E8F0>sommes</color>                "
-.
-<color:#E2E8F0>vous</color> | <color:#020617>xxx</color> | "<color:#94A3B8>Type here</color>             "
-.
-<color:#E2E8F0>ils / elles</color> | <color:#020617>xxx</color> | "<color:#94A3B8>Type here</color>             "
- }
-.
-<color:#94A3B8>This example page has a 60-second limit defined in the brief.</color>
-<color:#94A3B8>Continue or expiry locks the page; blank answers earn zero.</color>
-<color:#94A3B8>You will see corrections after the complete exam.</color>
-.
-[ <color:#020617>                      Continue                      </color> ]
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
- } | <color:#020617>xxx</color> }
-.
- }
-@endsalt
-```
-<!-- mockup:end mockups/04-grammar-lesson/04-exam/mixed-exam.puml -->
+Rendered by the prototype (lesson `fr-verb-avoir-present`): [HTML snapshot](mockups/04-grammar-lesson/04-exam/mixed-exam.html) · [PNG](mockups/04-grammar-lesson/04-exam/mixed-exam.png). Refresh with `make screens`.
+<!-- screen:end mockups/04-grammar-lesson/04-exam/mixed-exam -->
+
+#### Grammar: Exam info
+
+<a id="mockup-04-grammar-lesson-04-exam-exam-info"></a>
+
+<!-- screen:begin mockups/04-grammar-lesson/04-exam/exam-info -->
+[![Grammar: Exam info](mockups/04-grammar-lesson/04-exam/exam-info.png)](mockups/04-grammar-lesson/04-exam/exam-info.html)
+
+Rendered by the prototype (lesson `fr-verb-avoir-present`): [HTML snapshot](mockups/04-grammar-lesson/04-exam/exam-info.html) · [PNG](mockups/04-grammar-lesson/04-exam/exam-info.png). Refresh with `make screens`.
+<!-- screen:end mockups/04-grammar-lesson/04-exam/exam-info -->
 
 #### Grammar: Exam results
 
 <a id="mockup-04-grammar-lesson-05-results-exam-results"></a>
 
-[Salt source](mockups/04-grammar-lesson/05-results/exam-results.puml)
+<!-- screen:begin mockups/04-grammar-lesson/05-results/exam-results -->
+[![Grammar: Results](mockups/04-grammar-lesson/05-results/exam-results.png)](mockups/04-grammar-lesson/05-results/exam-results.html)
 
-<!-- mockup:begin mockups/04-grammar-lesson/05-results/exam-results.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-{ <size:30><color:#E2E8F0><b>Your result</b></color></size> | <color:#020617>xxxxxx</color> | [ <color:#020617>   Lesson overview   </color> ] }
-<color:#94A3B8>Le verbe être au présent</color>
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#94A3B8>LESSON SCORE   /   FRENCH A1</color>
-.
-{ <back:#0F172A><size:42><color:#E2E8F0><b>  78.3 / 100  </b></color></size></back> | <color:#020617>xxx</color> | <color:#94A3B8>Progress 100%</color> }
-.
-.
-<color:#E2E8F0>Practice: 12 / 16 (75.0%)   ·   Final exam: 8 / 10 (80.0%)</color>
-<color:#94A3B8>Practice contributes 35%; the final exam contributes 65%.</color>
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#94A3B8>Choose results to review</color>
-[ <color:#4338CA><b>Final exam 8 / 10</b></color> ]
-.
-{ [ <color:#4338CA>Pronoun matching 3 / 3</color> ] | <color:#020617>xx</color> | [ <color:#4338CA>Pronoun typing 2 / 3</color> ] }
-.
-{ [ <color:#4338CA>Choice gaps 3 / 4</color> ] | <color:#020617>xx</color> | [ <color:#4338CA>Typed gaps 1 / 2</color> ] }
-.
-{ [ <color:#4338CA>Word order 2 / 2</color> ] | <color:#020617>xx</color> | [ <color:#4338CA>Error spotter 1 / 2</color> ] }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<size:23><color:#E2E8F0><b>Your latest exam result — A1</b></color></size>
-.
-{ <size:24><color:#FF5252>✕</color></size> | <color:#020617>xx</color> | {
-<size:20><color:#E2E8F0>Tu ___ étudiant.</color></size>
-.
-{ <color:#94A3B8>Your answer</color> | <color:#020617>xx</color> | <color:#FF5252>est</color> }
-{ <color:#94A3B8>Correct answer</color> | <color:#020617>xx</color> | <color:#00E676>es</color> }
-.
-<color:#FF5252>Incorrect  ·  0 / 1</color>
-.
-<color:#94A3B8>Tu takes es. Est is the form for il or elle.</color>
-} }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-{ <size:24><color:#FBBF24>!</color></size> | <color:#020617>xx</color> | {
-<size:20><color:#E2E8F0>Vous ___ prêts.</color></size>
-.
-{ <color:#94A3B8>Your answer</color> | <color:#020617>xx</color> | <color:#FBBF24>etes</color> }
-{ <color:#94A3B8>Correct answer</color> | <color:#020617>xx</color> | <color:#00E676>êtes</color> }
-.
-<color:#FBBF24>Accent / case correction  ·  0.5 / 1</color>
-.
-<color:#94A3B8>Vous takes êtes, with an accent circonflexe on e.</color>
-} }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-{ <size:24><color:#00E676>✓</color></size> | <color:#020617>xx</color> | {
-<size:20><color:#E2E8F0>Nous ___ français.</color></size>
-.
-{ <color:#94A3B8>Your answer</color> | <color:#020617>xx</color> | <color:#00E676>sommes</color> }
-.
-<color:#00E676>Fully correct  ·  1 / 1</color>
-} }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#94A3B8>Remaining answers continue below (excerpt shown).</color>
-.
-[ <color:#4338CA>                  Restart lesson                  </color> ]
-} | <color:#020617>xx</color> }
-.
-}
-@endsalt
-```
-<!-- mockup:end mockups/04-grammar-lesson/05-results/exam-results.puml -->
+Rendered by the prototype (lesson `fr-verb-avoir-present`): [HTML snapshot](mockups/04-grammar-lesson/05-results/exam-results.html) · [PNG](mockups/04-grammar-lesson/05-results/exam-results.png). Refresh with `make screens`.
+<!-- screen:end mockups/04-grammar-lesson/05-results/exam-results -->
 
 #### Functions: Lesson start
 
 <a id="mockup-05-function-lesson-01-startpage-lesson-start"></a>
 
-[Salt source](mockups/05-function-lesson/01-startpage/lesson-start.puml)
+<!-- screen:begin mockups/05-function-lesson/01-startpage/lesson-start -->
+[![Functions: Lesson start](mockups/05-function-lesson/01-startpage/lesson-start.png)](mockups/05-function-lesson/01-startpage/lesson-start.html)
 
-<!-- mockup:begin mockups/05-function-lesson/01-startpage/lesson-start.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-{ [ <color:#4338CA>Lesson overview</color> ] | <color:#020617>xxx</color> | <color:#94A3B8>French / A1</color> }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#E2E8F0><size:30><b>Commander au café</b></size></color>
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-{ <color:#E2E8F0><b>YOUR LESSON</b></color> | <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxx</color> | <color:#94A3B8>( Functions )</color> }
-.
-<color:#E2E8F0><size:20><b>Order a drink, ask for the price and the bill</b></size></color>
-.
-<color:#94A3B8>Situation: a customer orders at a café; the waiter answers.</color>
-<color:#94A3B8>8 expressions  ·  4 words  ·  About 20 minutes</color>
-.
-<color:#E2E8F0><b>Lesson outline</b></color>
-{ <color:#635BFF>1</color> | <color:#E2E8F0>Flashcards · Dialogue</color> | <color:#020617>xxxxxxxx</color> | <color:#94A3B8>5 min</color> }
-{ <color:#22D3EE>2</color> | <color:#E2E8F0>Matching · Word order · Dialogue gaps</color> | <color:#020617>xxxxxxxx</color> | <color:#94A3B8>8 min</color> }
-{ <color:#F59E0B>3</color> | <color:#E2E8F0>Final exam: answer 16 items on 3 timed pages</color> | <color:#020617>xx</color> | <color:#94A3B8>8 min</color> }
-.
-[ <color:#020617>                       Start                       </color> ]
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
- } | <color:#020617>xxx</color> }
-.
- }
-@endsalt
-```
-<!-- mockup:end mockups/05-function-lesson/01-startpage/lesson-start.puml -->
+Rendered by the prototype (lesson `fr-ordering-at-a-cafe`): [HTML snapshot](mockups/05-function-lesson/01-startpage/lesson-start.html) · [PNG](mockups/05-function-lesson/01-startpage/lesson-start.png). Refresh with `make screens`.
+<!-- screen:end mockups/05-function-lesson/01-startpage/lesson-start -->
 
 #### Functions: Expression flashcards
 
 <a id="mockup-05-function-lesson-02-flashcards-expression-flashcards"></a>
 
-[Salt source](mockups/05-function-lesson/02-flashcards/expression-flashcards.puml)
+<!-- screen:begin mockups/05-function-lesson/02-flashcards/expression-flashcards -->
+[![Functions: Expression flashcards](mockups/05-function-lesson/02-flashcards/expression-flashcards.png)](mockups/05-function-lesson/02-flashcards/expression-flashcards.html)
 
-<!-- mockup:begin mockups/05-function-lesson/02-flashcards/expression-flashcards.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-{ <color:#E2E8F0><b>Commander au café</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 0.0 / 100</b></color> }
-{ <color:#E2E8F0>Progress 4%</color> | <color:#020617>xxx</color> | <color:#635BFF></color><color:#1E293B>░░░░░░░░░░░░</color> }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#E2E8F0><size:30><b>Expressions</b></size></color>
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>FUNCTIONS  /  Expressions</b></color>
-.
-<color:#94A3B8>Turn every card once. The words come first; front: English, back: French.</color>
-.
-{
-{ <color:#020617>x</color> | {
-{ <color:#94A3B8>ENGLISH</color> | <color:#020617>xxxxxxxxxxxxxxx</color> | [ <color:#4338CA>↻</color> ] }
-<color:#E2E8F0><size:22><b>What would you like?</b></size></color>
-} | <color:#020617>xx</color> | {
-{ <color:#94A3B8>FRENCH  /  turned</color> | <color:#020617>xxxxxxxx</color> | [ <color:#4338CA>↻</color> ] }
-<color:#E2E8F0><size:22><b>Je voudrais …</b></size></color>  [ <color:#4338CA>▶</color> ]
-<color:#94A3B8>Polite way to order or ask for something.</color>
-<color:#E2E8F0>Je voudrais un café.  /  I would like a coffee.</color>
-} }
-.
-{ <color:#020617>x</color> | {
-{ <color:#94A3B8>ENGLISH</color> | <color:#020617>xxxxxxxxxxxxxxx</color> | [ <color:#4338CA>↻</color> ] }
-<color:#E2E8F0><size:22><b>The bill, please.</b></size></color>
-} | <color:#020617>xx</color> | {
-{ <color:#94A3B8>ENGLISH</color> | <color:#020617>xxxxxxxxxxxxxxx</color> | [ <color:#4338CA>↻</color> ] }
-<color:#E2E8F0><size:22><b>How much is it?</b></size></color>
-} }
-}
-.
-<color:#94A3B8>2 of 8 cards turned. The 4 word cards came on the page before.</color>
-.
-[ <color:#64748B>                      Continue                      </color> ]
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
- } | <color:#020617>xxx</color> }
-.
- }
-@endsalt
-```
-<!-- mockup:end mockups/05-function-lesson/02-flashcards/expression-flashcards.puml -->
+Rendered by the prototype (lesson `fr-ordering-at-a-cafe`): [HTML snapshot](mockups/05-function-lesson/02-flashcards/expression-flashcards.html) · [PNG](mockups/05-function-lesson/02-flashcards/expression-flashcards.png). Refresh with `make screens`.
+<!-- screen:end mockups/05-function-lesson/02-flashcards/expression-flashcards -->
 
 #### Functions: Model dialogue
 
 <a id="mockup-05-function-lesson-03-dialogue-dialogue"></a>
 
-[Salt source](mockups/05-function-lesson/03-dialogue/dialogue.puml)
+<!-- screen:begin mockups/05-function-lesson/03-dialogue/dialogue -->
+[![Functions: Model dialogue](mockups/05-function-lesson/03-dialogue/dialogue.png)](mockups/05-function-lesson/03-dialogue/dialogue.html)
 
-<!-- mockup:begin mockups/05-function-lesson/03-dialogue/dialogue.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-{ <color:#E2E8F0><b>Commander au café</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 0.0 / 100</b></color> }
-{ <color:#E2E8F0>Progress 18%</color> | <color:#020617>xxx</color> | <color:#635BFF>██</color><color:#1E293B>░░░░░░░░░░</color> }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#E2E8F0><size:30><b>Dialogue</b></size></color>
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>FUNCTIONS  /  Dialogue at the café</b></color>
-.
-<color:#94A3B8>Read and listen. Turn a line to see its translation and a note.</color>
-.
-{ <color:#94A3B8>Le serveur</color> | <color:#E2E8F0>Bonjour, vous désirez ?</color> | [ <color:#4338CA>▶</color> ] | [ <color:#4338CA>↻</color> ] }
-.
-{ <color:#020617>xxxxxxxxxx</color> | <color:#94A3B8>Le client</color> | <color:#E2E8F0>Bonjour ! <b>Je voudrais</b> un café, s'il vous plaît.</color> | [ <color:#4338CA>▶</color> ] | [ <color:#4338CA>↻</color> ] }
-.
-{ <color:#94A3B8>Le serveur</color> | {
-<color:#E2E8F0>Un café, très bien. Et avec ceci ?</color>
-<color:#94A3B8>Turned: A coffee, very good. Anything else?</color>
-<color:#94A3B8>“Et avec ceci ?” is what staff say to ask if you want more.</color>
-} | [ <color:#4338CA>↻</color> ] }
-.
-<color:#94A3B8>Line 3 of 10</color>
-.
-[ <color:#020617>                     Next line                     </color> ]
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
- } | <color:#020617>xxx</color> }
-.
- }
-@endsalt
-```
-<!-- mockup:end mockups/05-function-lesson/03-dialogue/dialogue.puml -->
+Rendered by the prototype (lesson `fr-ordering-at-a-cafe`): [HTML snapshot](mockups/05-function-lesson/03-dialogue/dialogue.html) · [PNG](mockups/05-function-lesson/03-dialogue/dialogue.png). Refresh with `make screens`.
+<!-- screen:end mockups/05-function-lesson/03-dialogue/dialogue -->
 
 #### Functions: Expression matching
 
 <a id="mockup-05-function-lesson-04-matching-expression-matching"></a>
 
-[Salt source](mockups/05-function-lesson/04-matching/expression-matching.puml)
+<!-- screen:begin mockups/05-function-lesson/04-matching/expression-matching -->
+[![Functions: Expression matching](mockups/05-function-lesson/04-matching/expression-matching.png)](mockups/05-function-lesson/04-matching/expression-matching.html)
 
-<!-- mockup:begin mockups/05-function-lesson/04-matching/expression-matching.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-{ <color:#E2E8F0><b>Commander au café</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 4.1 / 100</b></color> }
-{ <color:#E2E8F0>Progress 34%</color> | <color:#020617>xxx</color> | <color:#635BFF>████</color><color:#1E293B>░░░░░░░░</color> }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#E2E8F0><size:30><b>Match the expressions</b></size></color>
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>FUNCTIONS  /  Match the expressions</b></color>
-.
-<color:#E2E8F0>Select an expression on one side, then its partner on the other.</color>
-.
-{
-<color:#E2E8F0><b>English</b></color> | <color:#020617>xxxxxxx</color> | <color:#E2E8F0><b>French</b></color>
-.
-[ <color:#4338CA>I would like …</color> ] | <color:#635BFF>───╮</color> | [ <color:#4338CA>C'est combien ? ▶</color> ]
-.
-[ <color:#4338CA>How much is it?</color> ] | <color:#635BFF>   ╰──</color> | [ <color:#4338CA>Je voudrais … ▶</color> ]
-.
-[ <color:#4338CA>The bill, please.</color> ] | <color:#020617>xxxxxxx</color> | [ <color:#4338CA>L'addition, s'il vous plaît. ▶</color> ]
-.
-[ <color:#4338CA>What would you like?</color> ] | <color:#020617>xxxxxxx</color> | [ <color:#4338CA>Vous désirez ? ▶</color> ]
- }
-.
-<color:#94A3B8>Expressions: 2 pages of 4 pairs; the 4 words follow on their own page.</color>
-.
-[ <color:#64748B>                        Check                        </color> ]
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
- } | <color:#020617>xxx</color> }
-.
- }
-@endsalt
-```
-<!-- mockup:end mockups/05-function-lesson/04-matching/expression-matching.puml -->
+Rendered by the prototype (lesson `fr-ordering-at-a-cafe`): [HTML snapshot](mockups/05-function-lesson/04-matching/expression-matching.html) · [PNG](mockups/05-function-lesson/04-matching/expression-matching.png). Refresh with `make screens`.
+<!-- screen:end mockups/05-function-lesson/04-matching/expression-matching -->
+
+#### Functions: Gender
+
+<a id="mockup-05-function-lesson-04-matching-gender"></a>
+
+<!-- screen:begin mockups/05-function-lesson/04-matching/gender -->
+[![Functions: Gender](mockups/05-function-lesson/04-matching/gender.png)](mockups/05-function-lesson/04-matching/gender.html)
+
+Rendered by the prototype (lesson `fr-ordering-at-a-cafe`): [HTML snapshot](mockups/05-function-lesson/04-matching/gender.html) · [PNG](mockups/05-function-lesson/04-matching/gender.png). Refresh with `make screens`.
+<!-- screen:end mockups/05-function-lesson/04-matching/gender -->
 
 #### Functions: Dialogue gaps
 
 <a id="mockup-05-function-lesson-05-dialogue-gap-choice-dialogue-gap-choice"></a>
 
-[Salt source](mockups/05-function-lesson/05-dialogue-gap-choice/dialogue-gap-choice.puml)
+<!-- screen:begin mockups/05-function-lesson/05-dialogue-gap-choice/dialogue-gap-choice -->
+[![Functions: Dialogue gap](mockups/05-function-lesson/05-dialogue-gap-choice/dialogue-gap-choice.png)](mockups/05-function-lesson/05-dialogue-gap-choice/dialogue-gap-choice.html)
 
-<!-- mockup:begin mockups/05-function-lesson/05-dialogue-gap-choice/dialogue-gap-choice.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-{ <color:#E2E8F0><b>Commander au café</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 18.9 / 100</b></color> }
-{ <color:#E2E8F0>Progress 66%</color> | <color:#020617>xxx</color> | <color:#635BFF>████████</color><color:#1E293B>░░░░</color> }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#E2E8F0><size:30><b>Complete the dialogue</b></size></color>
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>FUNCTIONS  /  Complete the dialogue</b></color>
-.
-{ <color:#94A3B8>Le serveur</color> | <color:#E2E8F0>Voilà votre thé, madame.</color> | [ <color:#4338CA>▶</color> ] }
-.
-{ <color:#94A3B8>La cliente</color> | <color:#E2E8F0><size:21>Merci ! ___ ?</size></color> }
-.
-<back:#0F172A><color:#E2E8F0><size:21>   C'est combien                                </size></color></back>
-.
-<back:#0F172A><color:#E2E8F0><size:21>   Je voudrais                                  </size></color></back>
-.
-<back:#0F172A><color:#E2E8F0><size:21>   Vous désirez                                 </size></color></back>
-.
-<back:#0F172A><color:#E2E8F0><size:21>   Et avec ceci                                 </size></color></back>
-.
-<color:#94A3B8>Choose the expression that fits the gap.</color>
-.
-[ <color:#64748B>                        Check                        </color> ]
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
- } | <color:#020617>xxx</color> }
-.
- }
-@endsalt
-```
-<!-- mockup:end mockups/05-function-lesson/05-dialogue-gap-choice/dialogue-gap-choice.puml -->
+Rendered by the prototype (lesson `fr-ordering-at-a-cafe`): [HTML snapshot](mockups/05-function-lesson/05-dialogue-gap-choice/dialogue-gap-choice.html) · [PNG](mockups/05-function-lesson/05-dialogue-gap-choice/dialogue-gap-choice.png). Refresh with `make screens`.
+<!-- screen:end mockups/05-function-lesson/05-dialogue-gap-choice/dialogue-gap-choice -->
 
 #### Functions: Word order
 
 <a id="mockup-05-function-lesson-06-word-order-word-order"></a>
 
-[Salt source](mockups/05-function-lesson/06-word-order/word-order.puml)
+<!-- screen:begin mockups/05-function-lesson/06-word-order/word-order -->
+[![Functions: Word order](mockups/05-function-lesson/06-word-order/word-order.png)](mockups/05-function-lesson/06-word-order/word-order.html)
 
-<!-- mockup:begin mockups/05-function-lesson/06-word-order/word-order.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-{ <color:#E2E8F0><b>Commander au café</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 12.8 / 100</b></color> }
-{ <color:#E2E8F0>Progress 52%</color> | <color:#020617>xxx</color> | <color:#635BFF>██████</color><color:#1E293B>░░░░░░</color> }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#E2E8F0><size:30><b>Build the sentence</b></size></color>
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>FUNCTIONS  /  Build the sentence</b></color>
-.
-<color:#E2E8F0>Put the words in order.</color>
-.
-<color:#E2E8F0><b>Your sentence</b></color>
-{ [ <color:#4338CA>Je</color> ] | [ <color:#4338CA>voudrais</color> ] | <color:#94A3B8>____</color> | <color:#94A3B8>____</color> | <color:#94A3B8>____</color> }
-.
-<color:#E2E8F0><b>Word bank</b></color>
-{ [ <color:#4338CA>thé,</color> ] | [ <color:#4338CA>s'il vous plaît</color> ] | [ <color:#4338CA>un</color> ] }
-.
-<color:#94A3B8>One sentence per page, one for each expression; every word is used.</color>
-.
-[ <color:#64748B>                        Check                        </color> ]
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
- } | <color:#020617>xxx</color> }
-.
- }
-@endsalt
-```
-<!-- mockup:end mockups/05-function-lesson/06-word-order/word-order.puml -->
+Rendered by the prototype (lesson `fr-ordering-at-a-cafe`): [HTML snapshot](mockups/05-function-lesson/06-word-order/word-order.html) · [PNG](mockups/05-function-lesson/06-word-order/word-order.png). Refresh with `make screens`.
+<!-- screen:end mockups/05-function-lesson/06-word-order/word-order -->
 
 #### Functions: Listening choice
 
 <a id="mockup-05-function-lesson-07-listening-choice-listening-choice"></a>
 
-[Salt source](mockups/05-function-lesson/07-listening-choice/listening-choice.puml)
+<!-- screen:begin mockups/05-function-lesson/07-listening-choice/listening-choice -->
+[![Functions: Listening choice](mockups/05-function-lesson/07-listening-choice/listening-choice.png)](mockups/05-function-lesson/07-listening-choice/listening-choice.html)
 
-<!-- mockup:begin mockups/05-function-lesson/07-listening-choice/listening-choice.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-{ <color:#E2E8F0><b>Commander au café</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 21.0 / 100</b></color> }
-{ <color:#E2E8F0>Progress 70%</color> | <color:#020617>xxx</color> | <color:#635BFF>████████</color><color:#1E293B>░░░░</color> }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#E2E8F0><size:30><b>Listening</b></size></color>
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>FUNCTIONS  /  Listen, then choose the reply that fits.</b></color>
-.
-<color:#94A3B8>LE SERVEUR</color>
-[ <color:#4338CA>▶ Listen</color> ]
-.
-<color:#94A3B8>LA CLIENTE</color>
-{ <color:#E2E8F0>○  Reply 1</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#4338CA>▶</color> ] }
-{ <color:#E2E8F0>○  Reply 2</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#4338CA>▶</color> ] }
-{ <color:#E2E8F0>○  Reply 3</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#4338CA>▶</color> ] }
-{ <color:#E2E8F0>○  Reply 4</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#4338CA>▶</color> ] }
-.
-<color:#94A3B8>Only audio until Check; then every line shows its text,</color>
-<color:#94A3B8>the chosen wrong reply turns red and the right one green.</color>
-.
-[ <color:#64748B>                        Check                        </color> ]
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
- } | <color:#020617>xxx</color> }
-.
- }
-@endsalt
-```
-<!-- mockup:end mockups/05-function-lesson/07-listening-choice/listening-choice.puml -->
+Rendered by the prototype (lesson `fr-ordering-at-a-cafe`): [HTML snapshot](mockups/05-function-lesson/07-listening-choice/listening-choice.html) · [PNG](mockups/05-function-lesson/07-listening-choice/listening-choice.png). Refresh with `make screens`.
+<!-- screen:end mockups/05-function-lesson/07-listening-choice/listening-choice -->
 
 #### Functions: Exam replies
 
 <a id="mockup-05-function-lesson-08-exam-reply-word-order"></a>
 
-[Salt source](mockups/05-function-lesson/08-exam/reply-word-order.puml)
+<!-- screen:begin mockups/05-function-lesson/08-exam/reply-word-order -->
+[![Functions: Exam replies](mockups/05-function-lesson/08-exam/reply-word-order.png)](mockups/05-function-lesson/08-exam/reply-word-order.html)
 
-<!-- mockup:begin mockups/05-function-lesson/08-exam/reply-word-order.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-{ <color:#E2E8F0><b>Commander au café</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 21.4 / 100</b></color> }
-{ <color:#E2E8F0>Progress 74%</color> | <color:#020617>xxx</color> | <color:#635BFF>█████████</color><color:#1E293B>░░░</color> | <color:#020617>xxx</color> | <color:#635BFF><size:32>◯</size></color><color:#E2E8F0><size:21> 52s</size></color> }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#E2E8F0><size:30><b>Final exam  /  Page 1 of 3</b></size></color>
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>EXAM  /  Final exam  /  Page 1 of 3</b></color>
-.
-<color:#94A3B8>Build the answer. Not every word fits.</color>
-.
-{ <color:#94A3B8>Le serveur</color> | <color:#E2E8F0>Vous désirez autre chose ?</color> | [ <color:#4338CA>▶</color> ] }
-{ <color:#94A3B8>Le client</color> | { [ <color:#4338CA>Non,</color> ] | [ <color:#4338CA>merci.</color> ] | <color:#94A3B8>____</color> | <color:#94A3B8>____</color> | <color:#94A3B8>____</color> } }
-{ <color:#020617>xxxxxxxx</color> | { [ <color:#4338CA>L'addition,</color> ] | [ <color:#4338CA>voudrais</color> ] | [ <color:#4338CA>s'il vous plaît</color> ] | [ <color:#4338CA>Le</color> ] | [ <color:#4338CA>désirez</color> ] } }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-{ <color:#94A3B8>La serveuse</color> | <color:#E2E8F0>Bonjour, madame. Vous désirez ?</color> | [ <color:#4338CA>▶</color> ] }
-{ <color:#94A3B8>La cliente</color> | { <color:#94A3B8>____</color> | <color:#94A3B8>____</color> | <color:#94A3B8>____</color> | <color:#94A3B8>____</color> } }
-{ <color:#020617>xxxxxxxx</color> | { [ <color:#4338CA>Bonjour !</color> ] | [ <color:#4338CA>voudrais</color> ] | [ <color:#4338CA>Je</color> ] | [ <color:#4338CA>un chocolat.</color> ] | [ <color:#4338CA>désire</color> ] } }
-.
-<color:#94A3B8>Answers are shown after the complete exam.</color>
-.
-[ <color:#020617>                      Continue                      </color> ]
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
- } | <color:#020617>xxx</color> }
-.
- }
-@endsalt
-```
-<!-- mockup:end mockups/05-function-lesson/08-exam/reply-word-order.puml -->
+Rendered by the prototype (lesson `fr-ordering-at-a-cafe`): [HTML snapshot](mockups/05-function-lesson/08-exam/reply-word-order.html) · [PNG](mockups/05-function-lesson/08-exam/reply-word-order.png). Refresh with `make screens`.
+<!-- screen:end mockups/05-function-lesson/08-exam/reply-word-order -->
+
+#### Functions: Translation exam
+
+<a id="mockup-05-function-lesson-08-exam-translation-exam"></a>
+
+<!-- screen:begin mockups/05-function-lesson/08-exam/translation-exam -->
+[![Functions: Translation exam](mockups/05-function-lesson/08-exam/translation-exam.png)](mockups/05-function-lesson/08-exam/translation-exam.html)
+
+Rendered by the prototype (lesson `fr-ordering-at-a-cafe`): [HTML snapshot](mockups/05-function-lesson/08-exam/translation-exam.html) · [PNG](mockups/05-function-lesson/08-exam/translation-exam.png). Refresh with `make screens`.
+<!-- screen:end mockups/05-function-lesson/08-exam/translation-exam -->
 
 #### Functions: Exam dialogue
 
 <a id="mockup-05-function-lesson-08-exam-dialogue-gap-typing"></a>
 
-[Salt source](mockups/05-function-lesson/08-exam/dialogue-gap-typing.puml)
+<!-- screen:begin mockups/05-function-lesson/08-exam/dialogue-gap-typing -->
+[![Functions: Exam dialogue](mockups/05-function-lesson/08-exam/dialogue-gap-typing.png)](mockups/05-function-lesson/08-exam/dialogue-gap-typing.html)
 
-<!-- mockup:begin mockups/05-function-lesson/08-exam/dialogue-gap-typing.puml -->
-```plantuml
-@startsalt
-skinparam backgroundColor #020617
-skinparam defaultFontName SansSerif
-skinparam defaultFontSize 15
-skinparam defaultFontColor #E2E8F0
-scale 1.3
-{
-.
-{ <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Mother tongue</color> | { <color:#E2E8F0>●  en</color> | <color:#64748B>○  fr</color> | <color:#64748B>○  de</color> } | <color:#020617>xxx</color> | <color:#94A3B8>Interface language</color> | ^<color:#020617>en</color>^ }
-.
-{ <color:#E2E8F0><b>Commander au café</b></color> | <color:#020617>xxx</color> | <color:#E2E8F0><b>Score 21.4 / 100</b></color> }
-{ <color:#E2E8F0>Progress 88%</color> | <color:#020617>xxx</color> | <color:#635BFF>██████████</color><color:#1E293B>░░</color> | <color:#020617>xxx</color> | <color:#635BFF><size:32>◯</size></color><color:#E2E8F0><size:21> 1:47</size></color> }
-.
-<color:#1E293B>──────────────────────────────────────────────────────────────────</color>
-.
-<color:#E2E8F0><size:30><b>Final exam  /  Page 3 of 3</b></size></color>
-.
-{
-.
-{ <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>EXAM  /  Final exam  /  Page 3 of 3</b></color>
-.
-<color:#94A3B8>Fill each gap with an expression from this lesson.</color>
-.
-{ <color:#94A3B8>Le serveur</color> | <color:#E2E8F0>Bonsoir, monsieur. Vous désirez ?</color> }
-{ <color:#020617>x</color> | <color:#94A3B8>Good evening, sir. What would you like?</color> }
-{ <color:#94A3B8>Le client</color> | { <color:#E2E8F0>Bonsoir.</color> | "<color:#E2E8F0>Je voudrais</color>       " | <color:#E2E8F0>une limonade.</color> } }
-{ <color:#020617>x</color> | <color:#94A3B8>Good evening. I would like a lemonade.</color> }
-{ <color:#94A3B8>Le serveur</color> | { <color:#E2E8F0>Une limonade.</color> | "<color:#94A3B8>Type here</color>         " | <color:#E2E8F0>?</color> } }
-{ <color:#020617>x</color> | <color:#94A3B8>A lemonade. Anything else?</color> }
-.
-<color:#94A3B8>Line 3 of 12  ·  each line shows its translation; earlier gaps stay editable</color>
-.
-{ [ <color:#4338CA>        Next line        </color> ] }
-.
-<color:#94A3B8>On the last line the button becomes Continue; time-out submits the page.</color>
-.
- } | <color:#020617>xxx</color> }
-.
- }
-.
- } | <color:#020617>xxx</color> }
-.
- }
-@endsalt
-```
-<!-- mockup:end mockups/05-function-lesson/08-exam/dialogue-gap-typing.puml -->
+Rendered by the prototype (lesson `fr-ordering-at-a-cafe`): [HTML snapshot](mockups/05-function-lesson/08-exam/dialogue-gap-typing.html) · [PNG](mockups/05-function-lesson/08-exam/dialogue-gap-typing.png). Refresh with `make screens`.
+<!-- screen:end mockups/05-function-lesson/08-exam/dialogue-gap-typing -->
+
+#### Functions: Results
+
+<a id="mockup-05-function-lesson-09-results-exam-results"></a>
+
+<!-- screen:begin mockups/05-function-lesson/09-results/exam-results -->
+[![Functions: Results](mockups/05-function-lesson/09-results/exam-results.png)](mockups/05-function-lesson/09-results/exam-results.html)
+
+Rendered by the prototype (lesson `fr-ordering-at-a-cafe`): [HTML snapshot](mockups/05-function-lesson/09-results/exam-results.html) · [PNG](mockups/05-function-lesson/09-results/exam-results.png). Refresh with `make screens`.
+<!-- screen:end mockups/05-function-lesson/09-results/exam-results -->
 
 ### Reading lesson screens
 
@@ -4858,7 +3148,7 @@ Use the following review, cleanup, and mockup gates in the issue plan. Full issu
 | [P1-12](https://github.com/bastian-schnitzler/lesson_prototype/issues/19) | Improve index and artifact-view mockups from the running prototype | Final phase 1 issue, after sample reviews, listening support, and shared-contract review. |
 | [P2-05](https://github.com/bastian-schnitzler/lesson_prototype/issues/52) | Deliver formatted introduction and explanation text from generation | After P2-04; brainstorm and record the format decision first, then migrate or regenerate existing briefs/lessons. Consider running it before the P2-04 bulk generation to avoid regenerating twice. |
 | [P2-06](https://github.com/bastian-schnitzler/lesson_prototype/issues/57) | Author briefs and lessons for the remaining vocabulary lessons | Briefs (the whole vocabulary lesson, D47) with 18 words as the standard, written by Claude without the generator; batches of about five with review checkpoints (D44). |
-| [P2-07](https://github.com/bastian-schnitzler/lesson_prototype/issues/58) | Author briefs and lessons for the remaining grammar lessons | Same procedure for the 38 grammar entries; P3-06 re-validates them with the phase 3 interactions. |
+| [P2-07](https://github.com/bastian-schnitzler/lesson_prototype/issues/58) | Author briefs and lessons for the remaining grammar lessons | Same procedure for the 38 grammar entries. Closed as not planned (2026-10-13); P3-06 validates the ten samples only (section 7). |
 | [P2-08](https://github.com/bastian-schnitzler/lesson_prototype/issues/25) | Improve vocabulary lesson mockups from the running prototype | Final phase 2 issue, after complete-session validation and formatted text. |
 | [P3-07](https://github.com/bastian-schnitzler/lesson_prototype/issues/67) | Lengthen grammar lessons: length rules, new verbs and the ten samples rewritten | Added 2026-10-08 at the product owner's request; P2-07 follows its rules. |
 | [P3-08](https://github.com/bastian-schnitzler/lesson_prototype/issues/32) | Improve grammar lesson mockups from the running prototype | Final phase 3 issue, after complete grammar integration. |
@@ -4986,6 +3276,9 @@ CI does not call Gemini. Live generation and pedagogical review are separate aut
 | 0.67 | 2026-10-14 | P06-00 (P6-02): a practice page with a vocabulary listening choice submits as soon as a written option is chosen, without a Check button (section 5, rule 4); dialogue listening choices, whose replies are only heard, keep Check. The feedback page gets a first section **Clarification needed**. Listening choices speak nothing when checked. Typed fields: no autocompletion, capitalisation, autocorrection or spell-check; the first field takes the cursor. The final score x / 100 moves from the results card to the top of the results sidebar. Exam countdown box with label and bar (#6); numbered task cards on exam pages with several typed answers (#26). Flask favicon. Start page outline: section minutes as stopwatch chips. Exam info page: time limits as stopwatch chips (#13); the learner copy says "questions" instead of "tasks". Shorter lessons (#1, D14, D49, D50): vocabulary 8–9 words (14–15 min), grammar at least 22 practice and 10 exam units (15 min), functions 4 expressions with every exercise type (16–17 min); outlines unchanged; generator prompts set to at most 15 minutes. |
 | 0.68 | 2026-10-15 | P06-00 (feedback #9): the function gender page, now labelled **Gender**, lists only the nouns, as the vocabulary gender page since 0.64; words without a gender are left out and a lesson without nouns has no gender step (D50, section 8). The page estimate counts nouns only. Feedback items on `docs/feedback.html` are anchored as `#issue-<n>` by their sidebar number (section 2). Section 6, stage 4 no longer mentions words without a gender on the page or explanations in its overview. The three function test lessons are rewritten; only `fr-greetings-and-goodbyes` loses two words (`très bien`, `pas mal`) from its gender page. Vocabulary lessons without nouns also lose stage 4: the plain unscored overview (`vocabulary_overview`) is removed, so both categories skip the gender step the same way (D21, section 6). |
 | 0.69 | 2026-10-15 | P5-01: reading requirements (D54), revised after the product-owner review of #95. The reading flow becomes section 9, directly after the functions flow; the later sections are renumbered (UI and mockups 10, samples and review gates 11, phases 12) and the misplaced subsection "GitHub issue diagrams and mockups" moves to section 12. The design follows the simplified version of ft_transcendence #115: flashcards and matching on the vocabulary pages (the stage formerly called key words), a skim without blur whose question is answered from memory, multiple choice and true / false only, one ordering task on the word-order control, one exam page of 5 questions, one document layout instead of genre skins, no evidence marks. Review answers: shared 35 / 65 weights; skim countdown and correction view as exceptions to section 5; D18 exception for the exam limit; D53 applied without exception; skim time from the actual word count at a skim speed per level, stored in the lesson content; non-overlapping C1/C2 word ranges; genres extended to cover the outlines; language rules of the other categories; reused and new pages, page rules, item rows, audio, start page, results, saving and content review criteria specified; the ten fr/A1 reading entries as hand-written test lessons without separate definition files. Fourteen reading Salt mockups (every page of a lesson). Phase 5 backlog P5-02 to P5-07 added; the mockup refresh becomes P5-08 (#36). |
-| 0.70 | 2026-10-15 | P5-02: executable reading brief and lesson content schemas (`src/schemas/reading.ts`), page rules and skim speeds (`src/domain/readingLesson.ts`), the section 9 checks (`src/validation/reading.ts`), plan units on the shared 35 / 65 scoring, the reading Draft and Content views and the authoring tool `scripts/author-reading.ts`; `fr-reading-a-text-message` is the contract fixture. The content has six one-page steps (flashcards and matching are separate steps, so they are separate points under D53). Reading cannot start yet. |
-| 0.71 | 2026-10-15 | P5-03: the ten fr/A1 reading test lessons, written by hand as JSON and completed with `scripts/author-reading.ts`: online profile, public signs, text message, restaurant menu, flat ad, holiday postcard, cinema programme, party invitation, train timetable and written directions (5 key words, 4 detail questions, 8 minutes each). `make sample-lessons` and the contract tests include them. |
-| 0.72 | 2026-10-15 | P5-04: reading lessons are playable. The document view and the skim phase (countdown box "Time to skim", I've finished reading, the document put away and the question answered from memory, the document back with the correction); questions on the shared choice cards with Vrai / Faux in fixed order; key words on the vocabulary flashcards and matching board; the ordering task on the word-order control; document pages keep their checked view with a correction card per question; the start page shows the situation, the key words and the sections Key words, The document and Final exam; the exam info row "Questions on the document"; results without exam parts. The countdown box moved to the shared controls. The artifact page shows the pending-category note only for kinds that cannot be played. |
+| 0.70 | 2026-10-16 | P3-06: P2-07 was closed as not planned, so the course validation covers the ten fr/A1 grammar samples; producing the other 38 stays open and blocks the phase 3 exit (section 7). New review criterion: one answer per exam gap (section 7). Pedagogical review fixes: the -er verb exam gaps name their verb, ambiguous exam gaps in subject pronouns, noun plurals and here/there/now/tomorrow get a deciding context (or accept the other right answer), no right distractor in a subject-pronoun choice, `j’ai` without a space in the avoir explanations, full stops after two negation gaps. A course audit (`tests/unit/grammar-course.test.tsx`) and real-content journeys (`tests/e2e/grammar-course.spec.ts`, Playwright project `course`) check all ten lessons. |
+| 0.71 | 2026-10-16 | P06-00: the vocabulary, grammar and function Salt mockups are replaced by screens rendered from the prototype itself (D30, section 10): `make screens` captures 42 screens (16 vocabulary, 14 grammar, 12 functions; new: vocabulary and grammar exam info, grammar person matching, function gender, translation exam and results) as a PNG shown inline in SPEC and a self-contained HTML snapshot; the 39 `.puml` sources are deleted; `make mockups-check` checks the screen files, SPEC blocks and README links; published issues show the committed PNG. |
+| 0.72 | 2026-10-16 | P06-00: new front section **Lesson session architecture** (before section 1): the steps from Start lesson to the results, what the browser stores while a lesson runs (the saved attempt, the preferences) and what it only derives (plan, scores, progress, remaining time), and which layers all lesson categories share versus what each category implements. Main carried two 0.70 entries after the P3-06 and rendered-screens merges; the rendered-screens entry is now 0.71. |
+| 0.73 | 2026-10-20 | P5-02 (rebased on 0.72): executable reading brief and lesson content schemas (`src/schemas/reading.ts`), page rules and skim speeds (`src/domain/readingLesson.ts`), the section 9 checks (`src/validation/reading.ts`), plan units on the shared 35 / 65 scoring, the reading Draft and Content views and the authoring tool `scripts/author-reading.ts`; `fr-reading-a-text-message` is the contract fixture. The content has six one-page steps (flashcards and matching are separate steps, so they are separate points under D53). Reading cannot start yet. |
+| 0.74 | 2026-10-20 | P5-03 (rebased on main): the ten fr/A1 reading test lessons, written by hand as JSON and completed with `scripts/author-reading.ts`: online profile, public signs, text message, restaurant menu, flat ad, holiday postcard, cinema programme, party invitation, train timetable and written directions (5 key words, 4 detail questions, 8 minutes each). `make sample-lessons` and the contract tests include them. |
+| 0.75 | 2026-10-20 | P5-04 (rebased on main): reading lessons are playable. The document view and the skim phase (countdown box "Time to skim", I've finished reading, the document put away and the question answered from memory, the document back with the correction); questions on the shared choice cards with Vrai / Faux in fixed order; key words on the vocabulary flashcards and matching board; the ordering task on the word-order control; document pages keep their checked view with a correction card per question; the start page shows the situation, the key words and the sections Key words, The document and Final exam; the exam info row "Questions on the document"; results without exam parts. The countdown box moved to the shared controls. The artifact page shows the pending-category note only for kinds that cannot be played. |
