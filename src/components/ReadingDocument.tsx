@@ -1,16 +1,13 @@
 import type { ReactNode } from 'react';
 
+import { highlightRanges } from '../domain/readingLesson.ts';
 import type { ReadingDocument as ReadingDocumentData } from '../schemas/reading.ts';
 
-/** Splits a paragraph at every occurrence of its highlighted key words. */
+/** Splits a paragraph at every whole-word occurrence of its highlighted key words. */
 function marked(text: string, words: string[]): ReactNode {
-  const found: { at: number; word: string }[] = [];
-  for (const word of words) for (let at = text.indexOf(word); at >= 0; at = text.indexOf(word, at + word.length)) found.push({ at, word });
-  found.sort((a, b) => a.at - b.at || b.word.length - a.word.length);
   const out: ReactNode[] = [];
   let from = 0;
-  for (const { at, word } of found) {
-    if (at < from) continue;
+  for (const { at, word } of highlightRanges(text, words)) {
     out.push(text.slice(from, at), <mark key={at} className="reading-keyword">{word}</mark>);
     from = at + word.length;
   }

@@ -7,7 +7,7 @@ import { z } from 'zod';
 import { PreferencesProvider } from '../../src/app/context.tsx';
 import { ReadingBriefView } from '../../src/artifacts/ReadingBriefView.tsx';
 import { ReadingContentView } from '../../src/artifacts/ReadingContentView.tsx';
-import { countWords, documentWords, readingPageEstimate, readingSkimSeconds, readingTimeLimit } from '../../src/domain/readingLesson.ts';
+import { countWords, documentWords, highlightRanges, readingPageEstimate, readingSkimSeconds, readingTimeLimit } from '../../src/domain/readingLesson.ts';
 import { buildPlan, type PlanUnit } from '../../src/domain/session/plan.ts';
 import { lessonResults, requiredReveals, scoreUnit, sessionReducer, startSession, type UnitResponse } from '../../src/domain/session/session.ts';
 import { briefSchema, contentSchema, isGeneratedKind, isSupportedKind } from '../../src/schemas/artifacts.ts';
@@ -62,6 +62,7 @@ describe('reading artifacts', () => {
 
   it.each([
     ['a highlight missing from the text', (c: Json) => (c.documents[0].highlights[0].text = 'dimanche'), /"dimanche" is not in the document/],
+    ['a highlight found only inside a longer word', (c: Json) => (c.documents[0].highlights[0].text = 'same'), /"same" is not in the document as a whole word/],
     ['a key word never highlighted', (c: Json) => c.documents[0].highlights.splice(0, 1), /key word samedi is never highlighted/],
     ['a highlight in the exam document', (c: Json) => c.documents[1].highlights.push({ keywordId: 'samedi', text: 'Salut' }), /exam document lists no highlights/],
     ['a main document of 200 words', (c: Json) => c.documents[0].paragraphs.push(Array(160).fill('mot').join(' ')), /the main document has \d+ words/],
@@ -93,6 +94,13 @@ describe('reading artifacts', () => {
     expect(readingPageEstimate(page(content, 'exam').items, documents, 'A1', true)).toBe(25 + 5 * 20);
     expect(readingTimeLimit(125)).toBe(190);
     expect(content.estimatedMinutes).toBe(8);
+  });
+
+  it('marks key words as whole words only, the longer one first at the same position', () => {
+    const at = (text: string, words: string[]) => highlightRanges(text, words).map((r) => `${r.at}:${r.word}`);
+    expect(at('Entrées\nEntrée + plat', ['Entrée'])).toEqual(['8:Entrée']);
+    expect(at("l’entrée, on se voit ? On se voit.", ['entrée', 'on se voit', 'on'])).toEqual(['2:entrée', '10:on se voit']);
+    expect(at('samedi', ['same'])).toEqual([]);
   });
 });
 
