@@ -28,6 +28,29 @@ export function countWords(text: string): number {
   return text.split(/\s+/).filter((token) => /[\p{L}\p{N}]/u.test(token)).length;
 }
 
+/** A letter or digit: a highlight must not start or end inside a longer word ("Entrée" not in "Entrées"). */
+const WORD_CHAR = /[\p{L}\p{N}]/u;
+
+/**
+ * Where the highlighted key words occur in a paragraph as whole words, left to right; at one position
+ * the longer highlight wins and overlapping occurrences are skipped.
+ */
+export function highlightRanges(text: string, words: string[]): { at: number; word: string }[] {
+  const found: { at: number; word: string }[] = [];
+  for (const word of words) {
+    for (let at = text.indexOf(word); at >= 0 && word; at = text.indexOf(word, at + 1)) {
+      if (!WORD_CHAR.test(text[at - 1] ?? '') && !WORD_CHAR.test(text[at + word.length] ?? '')) found.push({ at, word });
+    }
+  }
+  found.sort((a, b) => a.at - b.at || b.word.length - a.word.length);
+  const ranges: typeof found = [];
+  for (const range of found) {
+    const last = ranges.at(-1);
+    if (!last || range.at >= last.at + last.word.length) ranges.push(range);
+  }
+  return ranges;
+}
+
 /** Words of everything a document shows: title, meta lines and paragraphs. */
 export function documentWords(doc: Pick<ReadingDocument, 'title' | 'meta' | 'paragraphs'>): number {
   return [doc.title, ...doc.meta, ...doc.paragraphs].reduce((n, text) => n + (text ? countWords(text) : 0), 0);
