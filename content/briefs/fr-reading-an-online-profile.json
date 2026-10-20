@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-reading-an-online-profile",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Lire un profil en ligne",
+  "objective": {
+    "en": "Read a short profile on a language-exchange website and find the person’s name, age, city, job and languages.",
+    "fr": "Lire le court profil d’une personne sur un site d’échange linguistique et retrouver son nom, son âge, sa ville, son métier et ses langues.",
+    "de": "Ein kurzes Profil auf einer Sprachtausch-Website lesen und Name, Alter, Wohnort, Beruf und Sprachen der Person finden."
+  },
+  "estimatedMinutes": 8,
+  "provenance": {
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "reading-v1",
+    "generatedAt": "2026-10-15T19:30:27.790Z",
+    "inputHashes": {
+      "outline": "8b41567363f7ea5955cfea724de2b66b11b64030cdbefef36d253d3af7182a2a"
+    }
+  },
+  "kind": "reading",
+  "theme": "personal_identification",
+  "genre": "profile",
+  "situation": {
+    "en": "Ana, a Brazilian nurse who lives in Lyon, introduces herself on a language-exchange website.",
+    "fr": "Ana, une infirmière brésilienne qui habite à Lyon, se présente sur un site d’échange linguistique.",
+    "de": "Ana, eine brasilianische Krankenpflegerin aus Lyon, stellt sich auf einer Sprachtausch-Website vor."
+  },
+  "readerTask": {
+    "en": "Find Ana’s age, city, job and languages, and what she is looking for.",
+    "fr": "Retrouver l’âge, la ville, le métier et les langues d’Ana, et ce qu’elle cherche.",
+    "de": "Annas Alter, Wohnort, Beruf und Sprachen finden, und was sie sucht."
+  },
+  "keywords": [
+    {
+      "id": "je-mappelle",
+      "term": "je m’appelle",
+      "translations": {
+        "en": [
+          "my name is"
+        ],
+        "de": [
+          "ich heiße"
+        ]
+      },
+      "explanation": {
+        "en": "Used to give your name: Je m’appelle Ana = My name is Ana.",
+        "fr": "Pour dire son prénom : Je m’appelle Ana.",
+        "de": "So sagt man seinen Namen: Je m’appelle Ana = Ich heiße Ana."
+      }
+    },
+    {
+      "id": "jhabite",
+      "term": "j’habite",
+      "translations": {
+        "en": [
+          "I live"
+        ],
+        "de": [
+          "ich wohne"
+        ]
+      },
+      "explanation": {
+        "en": "From habiter: j’habite à Lyon = I live in Lyon. Before a city, French uses à.",
+        "fr": "Du verbe habiter : j’habite à Lyon. Devant une ville, on met à.",
+        "de": "Von habiter: j’habite à Lyon = ich wohne in Lyon. Vor einer Stadt steht à."
+      }
+    },
+    {
+      "id": "infirmiere",
+      "term": "infirmière",
+      "translations": {
+        "en": [
+          "nurse",
+          "nurse (woman)"
+        ],
+        "de": [
+          "Krankenpflegerin",
+          "Krankenschwester"
+        ]
+      },
+      "explanation": {
+        "en": "A job in a hospital. Infirmière is the feminine form; a man is infirmier.",
+        "fr": "Un métier à l’hôpital. Infirmière est la forme féminine ; un homme est infirmier.",
+        "de": "Ein Beruf im Krankenhaus. Infirmière ist die weibliche Form; ein Mann ist infirmier."
+      }
+    },
+    {
+      "id": "je-parle",
+      "term": "je parle",
+      "translations": {
+        "en": [
+          "I speak"
+        ],
+        "de": [
+          "ich spreche"
+        ]
+      },
+      "explanation": {
+        "en": "From parler: je parle anglais = I speak English. Languages take no capital letter in French.",
+        "fr": "Du verbe parler : je parle anglais. Les noms de langues s’écrivent sans majuscule.",
+        "de": "Von parler: je parle anglais = ich spreche Englisch. Sprachen schreibt man im Französischen klein."
+      }
+    },
+    {
+      "id": "japprends",
+      "term": "j’apprends",
+      "translations": {
+        "en": [
+          "I am learning"
+        ],
+        "de": [
+          "ich lerne"
+        ]
+      },
+      "explanation": {
+        "en": "From apprendre: j’apprends le français = I am learning French.",
+        "fr": "Du verbe apprendre : j’apprends le français.",
+        "de": "Von apprendre: j’apprends le français = ich lerne Französisch."
+      }
+    }
+  ],
+  "documents": {
+    "main": {
+      "targetWords": 59,
+      "contents": {
+        "en": "Ana’s profile: her name and age, her city, her nationality and job, the languages she speaks and learns, and the partner she is looking for.",
+        "fr": "Le profil d’Ana : son nom et son âge, sa ville, sa nationalité et son métier, les langues qu’elle parle et apprend, et le partenaire qu’elle cherche.",
+        "de": "Annas Profil: Name und Alter, Wohnort, Nationalität und Beruf, die Sprachen, die sie spricht und lernt, und welchen Partner sie sucht."
+      }
+    },
+    "exam": {
+      "targetWords": 35,
+      "contents": {
+        "en": "Karim’s profile on the same website: his age and city, his job, his languages and when he wants to practise Spanish.",
+        "fr": "Le profil de Karim sur le même site : son âge et sa ville, son métier, ses langues et quand il veut parler espagnol.",
+        "de": "Karims Profil auf derselben Website: Alter und Wohnort, Beruf, Sprachen und wann er Spanisch üben möchte."
+      }
+    }
+  },
+  "skim": {
+    "focus": "genre"
+  },
+  "detailQuestions": [
+    {
+      "id": "q-age",
+      "type": "reading_choice",
+      "focus": {
+        "en": "Ana’s age",
+        "fr": "L’âge d’Ana",
+        "de": "Annas Alter"
+      }
+    },
+    {
+      "id": "q-city",
+      "type": "reading_choice",
+      "focus": {
+        "en": "Where Ana lives",
+        "fr": "Où habite Ana",
+        "de": "Wo Ana wohnt"
+      }
+    },
+    {
+      "id": "q-job",
+      "type": "reading_choice",
+      "focus": {
+        "en": "Ana’s job",
+        "fr": "Le métier d’Ana",
+        "de": "Annas Beruf"
+      }
+    },
+    {
+      "id": "q-language",
+      "type": "reading_true_false",
+      "focus": {
+        "en": "The language Ana is learning",
+        "fr": "La langue qu’Ana apprend",
+        "de": "Die Sprache, die Ana lernt"
+      }
+    }
+  ],
+  "exam": {
+    "types": [
+      "reading_choice",
+      "reading_true_false"
+    ]
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

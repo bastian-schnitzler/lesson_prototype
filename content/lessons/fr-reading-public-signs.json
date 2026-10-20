@@ -1,0 +1,559 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-reading-public-signs",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Lire les panneaux",
+  "objective": {
+    "en": "Understand short signs in a public place and know where to go and what is forbidden.",
+    "fr": "Comprendre des panneaux courts dans un lieu public et savoir où aller et ce qui est interdit.",
+    "de": "Kurze Schilder an einem öffentlichen Ort verstehen und wissen, wohin man geht und was verboten ist."
+  },
+  "estimatedMinutes": 8,
+  "provenance": {
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "reading-v1",
+    "generatedAt": "2026-10-15T19:30:27.850Z",
+    "inputHashes": {
+      "outline": "c06b1abb08df70887303fcc41f414089016c6634030d3bd38d03802aa5b68a8c",
+      "brief": "87a50558dbf4c7fd486c3cc74f9286f70f397a4e009eb78df4ee89f2b3d971d2"
+    }
+  },
+  "kind": "reading",
+  "theme": "places",
+  "genre": "sign",
+  "documents": [
+    {
+      "documentId": "main",
+      "title": "Gare de Lyon-Perrache",
+      "meta": [],
+      "paragraphs": [
+        "ENTRÉE\nAccès aux quais",
+        "GUICHETS\nFermé le dimanche\nOuvert du lundi au samedi, 6 h – 21 h",
+        "DÉFENSE DE FUMER\nMerci de fumer dehors.",
+        "POUSSEZ\nPorte automatique en panne",
+        "SORTIE\nTaxis et bus à droite",
+        "TOILETTES\nAu fond du couloir, à gauche\nGratuit"
+      ],
+      "highlights": [
+        {
+          "keywordId": "entree",
+          "text": "ENTRÉE"
+        },
+        {
+          "keywordId": "ferme",
+          "text": "Fermé"
+        },
+        {
+          "keywordId": "defense",
+          "text": "DÉFENSE DE"
+        },
+        {
+          "keywordId": "poussez",
+          "text": "POUSSEZ"
+        },
+        {
+          "keywordId": "sortie",
+          "text": "SORTIE"
+        }
+      ]
+    },
+    {
+      "documentId": "exam",
+      "title": "Musée des Beaux-Arts",
+      "meta": [],
+      "paragraphs": [
+        "ENTRÉE GRATUITE\nLe premier dimanche du mois",
+        "PHOTOS INTERDITES",
+        "FERMÉ LE MARDI",
+        "SORTIE\nBoutique et café à gauche",
+        "TIREZ"
+      ],
+      "highlights": []
+    }
+  ],
+  "steps": [
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "flashcards",
+          "estimatedDurationS": 50,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Turn each card to learn the key words of the text.",
+            "fr": "Retournez chaque carte pour découvrir les mots clés du texte.",
+            "de": "Dreh jede Karte um und lerne die Schlüsselwörter des Textes."
+          },
+          "items": [
+            {
+              "type": "reading_flashcards",
+              "itemId": "cards",
+              "keywordIds": [
+                "entree",
+                "sortie",
+                "ferme",
+                "defense",
+                "poussez"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "matching",
+          "estimatedDurationS": 50,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each key word with its meaning.",
+            "fr": "Associez chaque mot clé à son sens.",
+            "de": "Ordne jedem Schlüsselwort seine Bedeutung zu."
+          },
+          "items": [
+            {
+              "type": "reading_keyword_matching",
+              "itemId": "matching",
+              "keywordIds": [
+                "entree",
+                "sortie",
+                "ferme",
+                "defense",
+                "poussez"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skim",
+      "stage": "skim",
+      "role": "exercise",
+      "label": {
+        "en": "Skim",
+        "fr": "Survol",
+        "de": "Überfliegen"
+      },
+      "pages": [
+        {
+          "pageId": "skim",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Look over the document quickly. When the time is up it is put away; then answer the question.",
+            "fr": "Parcourez rapidement le document. À la fin du temps, il disparaît ; répondez ensuite à la question.",
+            "de": "Überfliege das Dokument. Wenn die Zeit um ist, verschwindet es; beantworte dann die Frage."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "skim-document",
+              "documentId": "main",
+              "view": "skim",
+              "skimSeconds": 40
+            },
+            {
+              "type": "reading_skim_choice",
+              "itemId": "skim-question",
+              "focus": "genre",
+              "question": "Où voit-on ces panneaux ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Dans un hôpital"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Dans une gare"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Dans un restaurant"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Dans une école"
+                }
+              ],
+              "answerOptionId": "o2",
+              "answerExplanation": {
+                "en": "The title says Gare, and the signs talk about quais (platforms) and guichets (ticket offices).",
+                "fr": "Le titre dit Gare, et les panneaux parlent de quais et de guichets.",
+                "de": "Im Titel steht Gare, und die Schilder sprechen von quais (Gleisen) und guichets (Schaltern)."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "detail",
+      "stage": "detail",
+      "role": "exercise",
+      "label": {
+        "en": "Detail",
+        "fr": "Détails",
+        "de": "Details"
+      },
+      "pages": [
+        {
+          "pageId": "detail",
+          "estimatedDurationS": 120,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the document carefully and answer the questions.",
+            "fr": "Lisez le document attentivement et répondez aux questions.",
+            "de": "Lies das Dokument genau und beantworte die Fragen."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "detail-document",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-closed",
+              "question": "Quel jour les guichets sont-ils fermés ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "le lundi"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "le dimanche"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "le samedi"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "le mercredi"
+                }
+              ],
+              "answerOptionId": "o2",
+              "answerExplanation": {
+                "en": "GUICHETS – Fermé le dimanche. They are open from Monday to Saturday.",
+                "fr": "GUICHETS – Fermé le dimanche. Ils sont ouverts du lundi au samedi.",
+                "de": "GUICHETS – Fermé le dimanche. Von Montag bis Samstag sind sie offen."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "q-smoke",
+              "statement": "On peut fumer dans la gare.",
+              "answer": "false",
+              "answerExplanation": {
+                "en": "False: DÉFENSE DE FUMER means no smoking; you smoke outside (dehors).",
+                "fr": "Faux : DÉFENSE DE FUMER veut dire qu’on ne fume pas ; on fume dehors.",
+                "de": "Falsch: DÉFENSE DE FUMER heißt Rauchen verboten; man raucht draußen (dehors)."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-taxi",
+              "question": "Les taxis sont à gauche ou à droite ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "À droite"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "À gauche"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Devant l’entrée"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Au fond du couloir"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "SORTIE – Taxis et bus à droite. The toilets are on the left.",
+                "fr": "SORTIE – Taxis et bus à droite. Les toilettes sont à gauche.",
+                "de": "SORTIE – Taxis et bus à droite. Die Toiletten sind links."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-door",
+              "question": "Pourquoi faut-il pousser la porte ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "La porte automatique ne marche pas."
+                },
+                {
+                  "optionId": "o2",
+                  "text": "C’est la sortie des taxis."
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Il est interdit d’entrer."
+                },
+                {
+                  "optionId": "o4",
+                  "text": "La porte est fermée le dimanche."
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Porte automatique en panne: the automatic door is broken, so you push it yourself.",
+                "fr": "Porte automatique en panne : elle ne marche pas, alors on pousse soi-même.",
+                "de": "Porte automatique en panne: Die automatische Tür ist kaputt, also drückt man selbst."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "structure",
+      "stage": "structure",
+      "role": "exercise",
+      "label": {
+        "en": "Structure",
+        "fr": "Structure",
+        "de": "Aufbau"
+      },
+      "pages": [
+        {
+          "pageId": "structure",
+          "estimatedDurationS": 90,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "What does each sign say? Put the meanings in the order of the signs, from top to bottom.",
+            "fr": "Que dit chaque panneau ? Remettez les sens dans l’ordre des panneaux, de haut en bas.",
+            "de": "Was sagt jedes Schild? Bring die Bedeutungen in die Reihenfolge der Schilder, von oben nach unten."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "structure-document",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_order",
+              "itemId": "order",
+              "pieces": [
+                {
+                  "pieceId": "p6",
+                  "text": "On va aux toilettes."
+                },
+                {
+                  "pieceId": "p3",
+                  "text": "On ne fume pas ici."
+                },
+                {
+                  "pieceId": "p2",
+                  "text": "On achète un billet."
+                },
+                {
+                  "pieceId": "p5",
+                  "text": "On prend un taxi."
+                },
+                {
+                  "pieceId": "p4",
+                  "text": "La porte ne s’ouvre pas seule."
+                },
+                {
+                  "pieceId": "p1",
+                  "text": "On va vers les trains."
+                }
+              ],
+              "acceptedOrders": [
+                [
+                  "p1",
+                  "p2",
+                  "p3",
+                  "p4",
+                  "p5",
+                  "p6"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "From top to bottom: ENTRÉE – Accès aux quais (the trains), GUICHETS (tickets), DÉFENSE DE FUMER (no smoking), POUSSEZ – porte automatique en panne, SORTIE – Taxis et bus à droite, TOILETTES.",
+                "fr": "De haut en bas : ENTRÉE – Accès aux quais (les trains), GUICHETS (les billets), DÉFENSE DE FUMER, POUSSEZ – porte automatique en panne, SORTIE – Taxis et bus à droite, TOILETTES.",
+                "de": "Von oben nach unten: ENTRÉE – Accès aux quais (die Züge), GUICHETS (Fahrkarten), DÉFENSE DE FUMER (Rauchverbot), POUSSEZ – porte automatique en panne, SORTIE – Taxis et bus à droite, TOILETTES."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Final exam",
+        "fr": "Examen final",
+        "de": "Abschlussprüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam",
+          "estimatedDurationS": 118,
+          "timeLimitS": 180,
+          "instructions": {
+            "en": "Read the new document and answer the questions. No help this time.",
+            "fr": "Lisez le nouveau document et répondez aux questions. Cette fois, sans aide.",
+            "de": "Lies das neue Dokument und beantworte die Fragen. Diesmal ohne Hilfe."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "exam-document",
+              "documentId": "exam",
+              "view": "exam",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-closed",
+              "question": "Quel jour le musée est-il fermé ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "le lundi"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "le mardi"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "le samedi"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "le dimanche"
+                }
+              ],
+              "answerOptionId": "o2",
+              "answerExplanation": {
+                "en": "FERMÉ LE MARDI: closed on Tuesdays. Sunday is the free day.",
+                "fr": "FERMÉ LE MARDI : fermé le mardi. Le dimanche, c’est gratuit.",
+                "de": "FERMÉ LE MARDI: dienstags geschlossen. Sonntag ist der freie Eintritt."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "x-photo",
+              "statement": "On peut prendre des photos dans le musée.",
+              "answer": "false",
+              "answerExplanation": {
+                "en": "False: PHOTOS INTERDITES means photos are forbidden.",
+                "fr": "Faux : PHOTOS INTERDITES, les photos sont interdites.",
+                "de": "Falsch: PHOTOS INTERDITES heißt Fotos verboten."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-cafe",
+              "question": "Le café est à gauche ou à droite ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Devant l’entrée"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Au premier étage"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "À droite"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "À gauche"
+                }
+              ],
+              "answerOptionId": "o4",
+              "answerExplanation": {
+                "en": "Boutique et café à gauche: on the left, near the exit.",
+                "fr": "Boutique et café à gauche, près de la sortie.",
+                "de": "Boutique et café à gauche: links, beim Ausgang."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-free",
+              "question": "Quand l’entrée est-elle gratuite ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Tous les jours"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Le mardi"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Le dernier samedi du mois"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Le premier dimanche du mois"
+                }
+              ],
+              "answerOptionId": "o4",
+              "answerExplanation": {
+                "en": "ENTRÉE GRATUITE – Le premier dimanche du mois.",
+                "fr": "ENTRÉE GRATUITE – Le premier dimanche du mois.",
+                "de": "ENTRÉE GRATUITE – Le premier dimanche du mois."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "x-door",
+              "statement": "Pour ouvrir la porte, on pousse.",
+              "answer": "false",
+              "answerExplanation": {
+                "en": "False: the sign says TIREZ, pull. Poussez would be push.",
+                "fr": "Faux : le panneau dit TIREZ. Poussez, c’est le contraire.",
+                "de": "Falsch: Auf dem Schild steht TIREZ, ziehen. Poussez wäre drücken."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

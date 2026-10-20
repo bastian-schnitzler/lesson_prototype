@@ -1,0 +1,546 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-reading-a-train-timetable",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Lire un horaire de train",
+  "objective": {
+    "en": "Read a departure board and find the departure and arrival times, the platform and the delays.",
+    "fr": "Lire un tableau des départs et trouver l’heure de départ, l’heure d’arrivée, la voie et les retards.",
+    "de": "Eine Abfahrtstafel lesen und Abfahrts- und Ankunftszeiten, Gleis und Verspätungen finden."
+  },
+  "estimatedMinutes": 8,
+  "provenance": {
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "reading-v1",
+    "generatedAt": "2026-10-15T19:30:27.673Z",
+    "inputHashes": {
+      "outline": "2603e7cab1d8d3b0652f3327d2b2a09c24c7285ac0663b48a8d625494fa370d1",
+      "brief": "5f881b525e46e54b0d6c562e67e8ce8638ebc7486ea8d422560300ad9a8e5588"
+    }
+  },
+  "kind": "reading",
+  "theme": "travel",
+  "genre": "timetable",
+  "documents": [
+    {
+      "documentId": "main",
+      "title": "Gare de Lille-Flandres",
+      "meta": [
+        "Départs",
+        "Lundi 9 mars"
+      ],
+      "paragraphs": [
+        "8 h 12 · TER pour Arras · voie B · à l’heure",
+        "8 h 30 · TGV pour Paris · voie 4 · retard 10 min",
+        "9 h 05 · TER pour Dunkerque · voie A · supprimé",
+        "Le TGV pour Paris arrive à 9 h 32.",
+        "Les voyageurs pour Dunkerque prennent le bus de 9 h 15, devant la gare."
+      ],
+      "highlights": [
+        {
+          "keywordId": "voie",
+          "text": "voie"
+        },
+        {
+          "keywordId": "a-lheure",
+          "text": "à l’heure"
+        },
+        {
+          "keywordId": "retard",
+          "text": "retard"
+        },
+        {
+          "keywordId": "supprime",
+          "text": "supprimé"
+        },
+        {
+          "keywordId": "arriver",
+          "text": "arrive"
+        }
+      ]
+    },
+    {
+      "documentId": "exam",
+      "title": "Gare de Nantes",
+      "meta": [
+        "Arrivées"
+      ],
+      "paragraphs": [
+        "10 h 05 · TGV de Paris · voie 2 · retard 15 min",
+        "10 h 20 · TER d’Angers · voie C · à l’heure",
+        "10 h 40 · TER de Rennes · voie 1 · supprimé"
+      ],
+      "highlights": []
+    }
+  ],
+  "steps": [
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "flashcards",
+          "estimatedDurationS": 50,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Turn each card to learn the key words of the text.",
+            "fr": "Retournez chaque carte pour découvrir les mots clés du texte.",
+            "de": "Dreh jede Karte um und lerne die Schlüsselwörter des Textes."
+          },
+          "items": [
+            {
+              "type": "reading_flashcards",
+              "itemId": "cards",
+              "keywordIds": [
+                "voie",
+                "a-lheure",
+                "retard",
+                "supprime",
+                "arriver"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "matching",
+          "estimatedDurationS": 50,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each key word with its meaning.",
+            "fr": "Associez chaque mot clé à son sens.",
+            "de": "Ordne jedem Schlüsselwort seine Bedeutung zu."
+          },
+          "items": [
+            {
+              "type": "reading_keyword_matching",
+              "itemId": "matching",
+              "keywordIds": [
+                "voie",
+                "a-lheure",
+                "retard",
+                "supprime",
+                "arriver"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skim",
+      "stage": "skim",
+      "role": "exercise",
+      "label": {
+        "en": "Skim",
+        "fr": "Survol",
+        "de": "Überfliegen"
+      },
+      "pages": [
+        {
+          "pageId": "skim",
+          "estimatedDurationS": 70,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Look over the document quickly. When the time is up it is put away; then answer the question.",
+            "fr": "Parcourez rapidement le document. À la fin du temps, il disparaît ; répondez ensuite à la question.",
+            "de": "Überfliege das Dokument. Wenn die Zeit um ist, verschwindet es; beantworte dann die Frage."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "skim-document",
+              "documentId": "main",
+              "view": "skim",
+              "skimSeconds": 50
+            },
+            {
+              "type": "reading_skim_choice",
+              "itemId": "skim-question",
+              "focus": "genre",
+              "question": "Qu’est-ce que c’est ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Le tableau des départs d’une gare"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Un billet de train"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Le plan d’une ville"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Le programme d’un cinéma"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Gare de Lille-Flandres, Départs: one line per train with its time, platform (voie) and status.",
+                "fr": "Gare de Lille-Flandres, Départs : une ligne par train avec l’heure, la voie et l’état.",
+                "de": "Gare de Lille-Flandres, Départs: eine Zeile pro Zug mit Uhrzeit, Gleis (voie) und Status."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "detail",
+      "stage": "detail",
+      "role": "exercise",
+      "label": {
+        "en": "Detail",
+        "fr": "Détails",
+        "de": "Details"
+      },
+      "pages": [
+        {
+          "pageId": "detail",
+          "estimatedDurationS": 120,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the document carefully and answer the questions.",
+            "fr": "Lisez le document attentivement et répondez aux questions.",
+            "de": "Lies das Dokument genau und beantworte die Fragen."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "detail-document",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-arras",
+              "question": "À quelle heure part le train pour Arras ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "À 8 h 12"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "À 8 h 30"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "À 9 h 05"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "À 9 h 15"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "8 h 12 · TER pour Arras · voie B · à l’heure.",
+                "fr": "8 h 12 · TER pour Arras · voie B · à l’heure.",
+                "de": "8 h 12 · TER pour Arras · voie B · à l’heure: um 8.12 Uhr."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-platform",
+              "question": "Sur quelle voie part le TGV pour Paris ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Voie 4"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Voie A"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Voie B"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Voie 10"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "TGV pour Paris · voie 4. The 10 in the line is the delay (retard 10 min).",
+                "fr": "TGV pour Paris · voie 4. Le 10 de la ligne, c’est le retard (retard 10 min).",
+                "de": "TGV pour Paris · voie 4. Die 10 in der Zeile ist die Verspätung (retard 10 min)."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "q-delay",
+              "statement": "Le TGV pour Paris a 10 minutes de retard.",
+              "answer": "true",
+              "answerExplanation": {
+                "en": "True: TGV pour Paris · voie 4 · retard 10 min.",
+                "fr": "Vrai : TGV pour Paris · voie 4 · retard 10 min.",
+                "de": "Richtig: TGV pour Paris · voie 4 · retard 10 min."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-dunkerque",
+              "question": "Comment les voyageurs vont-ils à Dunkerque ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "En bus, à 9 h 15"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "En TER, à 9 h 05"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "En TGV, à 8 h 30"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "En taxi, devant la gare"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "The TER at 9 h 05 is supprimé, so the travellers take le bus de 9 h 15.",
+                "fr": "Le TER de 9 h 05 est supprimé, alors les voyageurs prennent le bus de 9 h 15.",
+                "de": "Der TER um 9.05 Uhr ist supprimé, deshalb nehmen die Reisenden le bus de 9 h 15."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "structure",
+      "stage": "structure",
+      "role": "exercise",
+      "label": {
+        "en": "Structure",
+        "fr": "Structure",
+        "de": "Aufbau"
+      },
+      "pages": [
+        {
+          "pageId": "structure",
+          "estimatedDurationS": 45,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Put the departures in order, from first to last.",
+            "fr": "Remettez les départs dans l’ordre, du premier au dernier.",
+            "de": "Bring die Abfahrten in die richtige Reihenfolge, von der ersten bis zur letzten."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "structure-document",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_order",
+              "itemId": "order",
+              "pieces": [
+                {
+                  "pieceId": "p3",
+                  "text": "Le bus pour Dunkerque part."
+                },
+                {
+                  "pieceId": "p1",
+                  "text": "Le train pour Arras part."
+                },
+                {
+                  "pieceId": "p2",
+                  "text": "Le TGV pour Paris part."
+                }
+              ],
+              "acceptedOrders": [
+                [
+                  "p1",
+                  "p2",
+                  "p3"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "8 h 12 the train to Arras, 8 h 30 (plus 10 minutes) the TGV to Paris, then the bus at 9 h 15 for Dunkerque.",
+                "fr": "8 h 12 le train pour Arras, 8 h 30 (plus 10 minutes de retard) le TGV pour Paris, puis le bus de 9 h 15 pour Dunkerque.",
+                "de": "8 h 12 der Zug nach Arras, 8 h 30 (plus 10 Minuten) der TGV nach Paris, dann der Bus um 9.15 Uhr nach Dunkerque."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Final exam",
+        "fr": "Examen final",
+        "de": "Abschlussprüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam",
+          "estimatedDurationS": 126,
+          "timeLimitS": 190,
+          "instructions": {
+            "en": "Read the new document and answer the questions. No help this time.",
+            "fr": "Lisez le nouveau document et répondez aux questions. Cette fois, sans aide.",
+            "de": "Lies das neue Dokument und beantworte die Fragen. Diesmal ohne Hilfe."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "exam-document",
+              "documentId": "exam",
+              "view": "exam",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-delay",
+              "question": "Combien de minutes de retard a le TGV de Paris ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "15 minutes"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "5 minutes"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "10 minutes"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "20 minutes"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "TGV de Paris · voie 2 · retard 15 min.",
+                "fr": "TGV de Paris · voie 2 · retard 15 min.",
+                "de": "TGV de Paris · voie 2 · retard 15 min."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-angers",
+              "question": "Sur quelle voie arrive le train d’Angers ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Voie C"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Voie 1"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Voie 2"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Voie A"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "TER d’Angers · voie C.",
+                "fr": "TER d’Angers · voie C.",
+                "de": "TER d’Angers · voie C."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "x-ontime",
+              "statement": "Le train d’Angers est à l’heure.",
+              "answer": "true",
+              "answerExplanation": {
+                "en": "True: TER d’Angers · voie C · à l’heure.",
+                "fr": "Vrai : TER d’Angers · voie C · à l’heure.",
+                "de": "Richtig: TER d’Angers · voie C · à l’heure."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-cancelled",
+              "question": "Quel train est supprimé ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Le TER de Rennes"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Le TGV de Paris"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Le TER d’Angers"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Le TGV de Lille"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "10 h 40 · TER de Rennes · voie 1 · supprimé.",
+                "fr": "10 h 40 · TER de Rennes · voie 1 · supprimé.",
+                "de": "10 h 40 · TER de Rennes · voie 1 · supprimé."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "x-board",
+              "statement": "Ce tableau montre les départs de la gare.",
+              "answer": "false",
+              "answerExplanation": {
+                "en": "False: the board says Arrivées; it shows the trains that arrive in Nantes.",
+                "fr": "Faux : le tableau dit Arrivées ; il montre les trains qui arrivent à Nantes.",
+                "de": "Falsch: Auf der Tafel steht Arrivées; sie zeigt die Züge, die in Nantes ankommen."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

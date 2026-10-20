@@ -1,0 +1,564 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-reading-a-party-invitation",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Lire une invitation",
+  "objective": {
+    "en": "Read an invitation to a party and find the occasion, the date, the time, the place, what to bring and how to reply.",
+    "fr": "Lire une invitation à une fête et trouver l’occasion, la date, l’heure, le lieu, ce qu’il faut apporter et comment répondre.",
+    "de": "Eine Einladung zu einem Fest lesen und Anlass, Datum, Uhrzeit, Ort, Mitbringsel und Antwortweg finden."
+  },
+  "estimatedMinutes": 8,
+  "provenance": {
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "reading-v1",
+    "generatedAt": "2026-10-15T19:30:27.488Z",
+    "inputHashes": {
+      "outline": "f8eb43534de3f0a15d600c8c946e0eddd23cd3c31b31b1dff44ae9c4ad0e84b9",
+      "brief": "1d5d3c1464ad254274a60c9231e38ceb89891fc8909a55a3a100c7ca090c23e7"
+    }
+  },
+  "kind": "reading",
+  "theme": "relations",
+  "genre": "invitation",
+  "documents": [
+    {
+      "documentId": "main",
+      "title": "Grande fête chez Inès !",
+      "meta": [
+        "Invitation"
+      ],
+      "paragraphs": [
+        "Le 14 juin, j’ai 30 ans ! Je fais une fête et je vous invite.",
+        "Rendez-vous le samedi 14 juin à 19 h, au 8, rue des Fleurs, 2e étage.",
+        "Apportez un dessert ou une boisson, s’il vous plaît. Il y a de la musique : on danse !",
+        "Réponse par SMS avant jeudi : 06 12 34 56 78. À samedi ! Inès"
+      ],
+      "highlights": [
+        {
+          "keywordId": "fete",
+          "text": "fête"
+        },
+        {
+          "keywordId": "etage",
+          "text": "étage"
+        },
+        {
+          "keywordId": "apportez",
+          "text": "Apportez"
+        },
+        {
+          "keywordId": "boisson",
+          "text": "boisson"
+        },
+        {
+          "keywordId": "reponse",
+          "text": "Réponse"
+        }
+      ]
+    },
+    {
+      "documentId": "exam",
+      "title": "Pique-nique !",
+      "meta": [],
+      "paragraphs": [
+        "Dimanche 22 juin, pique-nique pour les 10 ans de Tom, au parc de la Tête d’Or, à midi.",
+        "Apportez une salade. Réponse à Léa avant vendredi."
+      ],
+      "highlights": []
+    }
+  ],
+  "steps": [
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "flashcards",
+          "estimatedDurationS": 50,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Turn each card to learn the key words of the text.",
+            "fr": "Retournez chaque carte pour découvrir les mots clés du texte.",
+            "de": "Dreh jede Karte um und lerne die Schlüsselwörter des Textes."
+          },
+          "items": [
+            {
+              "type": "reading_flashcards",
+              "itemId": "cards",
+              "keywordIds": [
+                "fete",
+                "etage",
+                "apportez",
+                "boisson",
+                "reponse"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "matching",
+          "estimatedDurationS": 50,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each key word with its meaning.",
+            "fr": "Associez chaque mot clé à son sens.",
+            "de": "Ordne jedem Schlüsselwort seine Bedeutung zu."
+          },
+          "items": [
+            {
+              "type": "reading_keyword_matching",
+              "itemId": "matching",
+              "keywordIds": [
+                "fete",
+                "etage",
+                "apportez",
+                "boisson",
+                "reponse"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skim",
+      "stage": "skim",
+      "role": "exercise",
+      "label": {
+        "en": "Skim",
+        "fr": "Survol",
+        "de": "Überfliegen"
+      },
+      "pages": [
+        {
+          "pageId": "skim",
+          "estimatedDurationS": 75,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Look over the document quickly. When the time is up it is put away; then answer the question.",
+            "fr": "Parcourez rapidement le document. À la fin du temps, il disparaît ; répondez ensuite à la question.",
+            "de": "Überfliege das Dokument. Wenn die Zeit um ist, verschwindet es; beantworte dann die Frage."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "skim-document",
+              "documentId": "main",
+              "view": "skim",
+              "skimSeconds": 55
+            },
+            {
+              "type": "reading_skim_choice",
+              "itemId": "skim-question",
+              "focus": "purpose",
+              "question": "Pourquoi Inès écrit-elle cette carte ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Pour vendre un appartement"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Pour annuler une fête"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Pour commander un dessert"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Pour inviter à sa fête d’anniversaire"
+                }
+              ],
+              "answerOptionId": "o4",
+              "answerExplanation": {
+                "en": "Grande fête, j’ai 30 ans, je vous invite: it is a birthday invitation.",
+                "fr": "Grande fête, j’ai 30 ans, je vous invite : c’est une invitation d’anniversaire.",
+                "de": "Grande fête, j’ai 30 ans, je vous invite: eine Geburtstagseinladung."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "detail",
+      "stage": "detail",
+      "role": "exercise",
+      "label": {
+        "en": "Detail",
+        "fr": "Détails",
+        "de": "Details"
+      },
+      "pages": [
+        {
+          "pageId": "detail",
+          "estimatedDurationS": 120,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the document carefully and answer the questions.",
+            "fr": "Lisez le document attentivement et répondez aux questions.",
+            "de": "Lies das Dokument genau und beantworte die Fragen."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "detail-document",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-time",
+              "question": "À quelle heure commence la fête ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "8 h"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "14 h"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "19 h"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "20 h"
+                }
+              ],
+              "answerOptionId": "o3",
+              "answerExplanation": {
+                "en": "Rendez-vous le samedi 14 juin à 19 h.",
+                "fr": "Rendez-vous le samedi 14 juin à 19 h.",
+                "de": "Rendez-vous le samedi 14 juin à 19 h."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-occasion",
+              "question": "Quelle est l’occasion de la fête ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Un nouvel appartement"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "L’anniversaire d’Inès"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "La fin des cours"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Le mariage d’Inès"
+                }
+              ],
+              "answerOptionId": "o2",
+              "answerExplanation": {
+                "en": "J’ai 30 ans: Inès is turning 30, it is her birthday.",
+                "fr": "J’ai 30 ans : c’est l’anniversaire d’Inès.",
+                "de": "J’ai 30 ans: Inès wird 30, es ist ihr Geburtstag."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-bring",
+              "question": "Qu’est-ce qu’on apporte ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Des fleurs"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Un dessert ou une boisson"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Un cadeau"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "De la musique"
+                }
+              ],
+              "answerOptionId": "o2",
+              "answerExplanation": {
+                "en": "Apportez un dessert ou une boisson. The music is already there.",
+                "fr": "Apportez un dessert ou une boisson. La musique, Inès l’a déjà.",
+                "de": "Apportez un dessert ou une boisson. Musik gibt es schon."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "q-reply",
+              "statement": "On répond à Inès par téléphone après la fête.",
+              "answer": "false",
+              "answerExplanation": {
+                "en": "False: the reply is par SMS (by text message) and avant jeudi, before Thursday.",
+                "fr": "Faux : la réponse est par SMS et avant jeudi.",
+                "de": "Falsch: Die Antwort kommt par SMS und avant jeudi, vor Donnerstag."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "structure",
+      "stage": "structure",
+      "role": "exercise",
+      "label": {
+        "en": "Structure",
+        "fr": "Structure",
+        "de": "Aufbau"
+      },
+      "pages": [
+        {
+          "pageId": "structure",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "What does the card say first? Put the information in the order of the invitation.",
+            "fr": "Que dit la carte en premier ? Remettez les informations dans l’ordre de l’invitation.",
+            "de": "Was steht zuerst auf der Karte? Bring die Informationen in die Reihenfolge der Einladung."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "structure-document",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_order",
+              "itemId": "order",
+              "pieces": [
+                {
+                  "pieceId": "p2",
+                  "text": "La fête est le samedi 14 juin à 19 h."
+                },
+                {
+                  "pieceId": "p1",
+                  "text": "Inès a 30 ans et fait une fête."
+                },
+                {
+                  "pieceId": "p3",
+                  "text": "Il faut apporter un dessert ou une boisson."
+                },
+                {
+                  "pieceId": "p4",
+                  "text": "Il faut répondre par SMS avant jeudi."
+                }
+              ],
+              "acceptedOrders": [
+                [
+                  "p1",
+                  "p2",
+                  "p3",
+                  "p4"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "An invitation says why first (j’ai 30 ans), then when and where (samedi 14 juin à 19 h), then what to bring (Apportez…), and ends with how to reply (Réponse par SMS avant jeudi).",
+                "fr": "Une invitation dit d’abord pourquoi (j’ai 30 ans), puis quand et où (samedi 14 juin à 19 h), puis quoi apporter (Apportez…), et finit par la réponse (Réponse par SMS avant jeudi).",
+                "de": "Eine Einladung sagt zuerst warum (j’ai 30 ans), dann wann und wo (samedi 14 juin à 19 h), dann was man mitbringt (Apportez…), und am Ende, wie man antwortet (Réponse par SMS avant jeudi)."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Final exam",
+        "fr": "Examen final",
+        "de": "Abschlussprüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam",
+          "estimatedDurationS": 122,
+          "timeLimitS": 185,
+          "instructions": {
+            "en": "Read the new document and answer the questions. No help this time.",
+            "fr": "Lisez le nouveau document et répondez aux questions. Cette fois, sans aide.",
+            "de": "Lies das neue Dokument und beantworte die Fragen. Diesmal ohne Hilfe."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "exam-document",
+              "documentId": "exam",
+              "view": "exam",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-occasion",
+              "question": "C’est l’anniversaire de qui ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "De la classe"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "D’Inès"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "De Tom"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "De Léa"
+                }
+              ],
+              "answerOptionId": "o3",
+              "answerExplanation": {
+                "en": "Pique-nique pour les 10 ans de Tom: Tom turns 10. Léa receives the replies.",
+                "fr": "Pique-nique pour les 10 ans de Tom. Léa reçoit les réponses.",
+                "de": "Pique-nique pour les 10 ans de Tom: Tom wird 10. Léa bekommt die Antworten."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-time",
+              "question": "À quelle heure est le pique-nique ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "À 19 h"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Le soir"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "À 10 h"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "À midi"
+                }
+              ],
+              "answerOptionId": "o4",
+              "answerExplanation": {
+                "en": "À midi: at noon.",
+                "fr": "À midi.",
+                "de": "À midi: mittags."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-place",
+              "question": "Où est le pique-nique ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Au restaurant"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Chez Tom"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Chez Léa"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Au parc"
+                }
+              ],
+              "answerOptionId": "o4",
+              "answerExplanation": {
+                "en": "Au parc de la Tête d’Or, a park in Lyon.",
+                "fr": "Au parc de la Tête d’Or.",
+                "de": "Au parc de la Tête d’Or, ein Park in Lyon."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "x-bring",
+              "statement": "On apporte une boisson.",
+              "answer": "false",
+              "answerExplanation": {
+                "en": "False: apportez une salade, bring a salad.",
+                "fr": "Faux : apportez une salade.",
+                "de": "Falsch: apportez une salade, einen Salat mitbringen."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-reply",
+              "question": "On répond avant quel jour ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "dimanche"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "samedi"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "vendredi"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "jeudi"
+                }
+              ],
+              "answerOptionId": "o3",
+              "answerExplanation": {
+                "en": "Réponse à Léa avant vendredi. Sunday is the picnic.",
+                "fr": "Réponse à Léa avant vendredi. Le dimanche, c’est le pique-nique.",
+                "de": "Réponse à Léa avant vendredi. Sonntag ist das Picknick."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

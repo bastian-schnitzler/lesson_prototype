@@ -1,0 +1,546 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-reading-an-event-programme",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Lire le programme d’un cinéma",
+  "objective": {
+    "en": "Read a cinema programme and find a film’s title, the day and time of the showing, the screen and the ticket price.",
+    "fr": "Lire le programme d’un cinéma et trouver le titre du film, le jour et l’heure de la séance, la salle et le prix du billet.",
+    "de": "Ein Kinoprogramm lesen und Filmtitel, Tag und Uhrzeit der Vorstellung, den Saal und den Eintrittspreis finden."
+  },
+  "estimatedMinutes": 8,
+  "provenance": {
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "reading-v1",
+    "generatedAt": "2026-10-15T19:30:27.732Z",
+    "inputHashes": {
+      "outline": "f6101e6f2c43b36be1cc5634e0dcd1822fea689141443feb76ab2baf4c065806",
+      "brief": "7da123206b01a23367dbea207ed12726e14c441d13b12653afca876338e8b043"
+    }
+  },
+  "kind": "reading",
+  "theme": "free_time",
+  "genre": "programme",
+  "documents": [
+    {
+      "documentId": "main",
+      "title": "Cinéma Le Rex",
+      "meta": [
+        "Programme de la semaine"
+      ],
+      "paragraphs": [
+        "Le Voyage de Léo\nFilm d’animation, 1 h 30\nMardi et samedi : 14 h, salle 1",
+        "Nuit à Paris\nComédie, 1 h 45\nMardi : 20 h 15, salle 3\nVendredi : 18 h, salle 3",
+        "Prix du billet : 9 €\nTarif réduit (étudiants, moins de 14 ans) : 6 €",
+        "Fermé le lundi."
+      ],
+      "highlights": [
+        {
+          "keywordId": "salle",
+          "text": "salle"
+        },
+        {
+          "keywordId": "billet",
+          "text": "billet"
+        },
+        {
+          "keywordId": "tarif-reduit",
+          "text": "Tarif réduit"
+        },
+        {
+          "keywordId": "ferme",
+          "text": "Fermé"
+        },
+        {
+          "keywordId": "comedie",
+          "text": "Comédie"
+        }
+      ]
+    },
+    {
+      "documentId": "exam",
+      "title": "Cinéma Lumière",
+      "meta": [],
+      "paragraphs": [
+        "Le Grand Bleu\nDrame, 2 h\nJeudi : 21 h, salle 2\nDimanche : 16 h 30, salle 2",
+        "Billet : 8 €, moins de 14 ans : 5 €\nOuvert tous les jours."
+      ],
+      "highlights": []
+    }
+  ],
+  "steps": [
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "flashcards",
+          "estimatedDurationS": 50,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Turn each card to learn the key words of the text.",
+            "fr": "Retournez chaque carte pour découvrir les mots clés du texte.",
+            "de": "Dreh jede Karte um und lerne die Schlüsselwörter des Textes."
+          },
+          "items": [
+            {
+              "type": "reading_flashcards",
+              "itemId": "cards",
+              "keywordIds": [
+                "salle",
+                "billet",
+                "tarif-reduit",
+                "ferme",
+                "comedie"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "matching",
+          "estimatedDurationS": 50,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each key word with its meaning.",
+            "fr": "Associez chaque mot clé à son sens.",
+            "de": "Ordne jedem Schlüsselwort seine Bedeutung zu."
+          },
+          "items": [
+            {
+              "type": "reading_keyword_matching",
+              "itemId": "matching",
+              "keywordIds": [
+                "salle",
+                "billet",
+                "tarif-reduit",
+                "ferme",
+                "comedie"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skim",
+      "stage": "skim",
+      "role": "exercise",
+      "label": {
+        "en": "Skim",
+        "fr": "Survol",
+        "de": "Überfliegen"
+      },
+      "pages": [
+        {
+          "pageId": "skim",
+          "estimatedDurationS": 65,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Look over the document quickly. When the time is up it is put away; then answer the question.",
+            "fr": "Parcourez rapidement le document. À la fin du temps, il disparaît ; répondez ensuite à la question.",
+            "de": "Überfliege das Dokument. Wenn die Zeit um ist, verschwindet es; beantworte dann die Frage."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "skim-document",
+              "documentId": "main",
+              "view": "skim",
+              "skimSeconds": 45
+            },
+            {
+              "type": "reading_skim_choice",
+              "itemId": "skim-question",
+              "focus": "genre",
+              "question": "Qu’est-ce que c’est ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Le programme d’un cinéma"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Un ticket de cinéma"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "La carte d’un restaurant"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Un horaire de train"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Cinéma Le Rex, Programme de la semaine: films with their days, times and screens.",
+                "fr": "Cinéma Le Rex, Programme de la semaine : des films avec leurs jours, leurs heures et leurs salles.",
+                "de": "Cinéma Le Rex, Programme de la semaine: Filme mit Tagen, Uhrzeiten und Sälen."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "detail",
+      "stage": "detail",
+      "role": "exercise",
+      "label": {
+        "en": "Detail",
+        "fr": "Détails",
+        "de": "Details"
+      },
+      "pages": [
+        {
+          "pageId": "detail",
+          "estimatedDurationS": 120,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the document carefully and answer the questions.",
+            "fr": "Lisez le document attentivement et répondez aux questions.",
+            "de": "Lies das Dokument genau und beantworte die Fragen."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "detail-document",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-comedy",
+              "question": "Quel film est une comédie ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Nuit à Paris"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Le Voyage de Léo"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Le Rex"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Le Grand Bleu"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Nuit à Paris – Comédie, 1 h 45. Le Voyage de Léo is an animated film (film d’animation).",
+                "fr": "Nuit à Paris – Comédie, 1 h 45. Le Voyage de Léo est un film d’animation.",
+                "de": "Nuit à Paris – Comédie, 1 h 45. Le Voyage de Léo ist ein Animationsfilm (film d’animation)."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-time",
+              "question": "À quelle heure passe Nuit à Paris le mardi ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "À 20 h 15"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "À 14 h"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "À 18 h"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "À 15 h 20"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Mardi : 20 h 15, salle 3. 18 h is the showing on Friday (Vendredi).",
+                "fr": "Mardi : 20 h 15, salle 3. 18 h, c’est la séance du vendredi.",
+                "de": "Mardi : 20 h 15, salle 3. 18 h ist die Vorstellung am Freitag (Vendredi)."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-room",
+              "question": "Dans quelle salle passe Nuit à Paris ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Salle 3"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Salle 1"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Salle 2"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Salle 14"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Both showings of Nuit à Paris are in salle 3; salle 1 is for Le Voyage de Léo.",
+                "fr": "Les deux séances de Nuit à Paris sont en salle 3 ; la salle 1 est pour Le Voyage de Léo.",
+                "de": "Beide Vorstellungen von Nuit à Paris sind in salle 3; salle 1 ist für Le Voyage de Léo."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "q-price",
+              "statement": "Pour un étudiant, le billet coûte 9 €.",
+              "answer": "false",
+              "answerExplanation": {
+                "en": "False: students pay the Tarif réduit (étudiants, moins de 14 ans) : 6 €.",
+                "fr": "Faux : les étudiants paient le tarif réduit, 6 €.",
+                "de": "Falsch: Studierende zahlen den Tarif réduit (étudiants, moins de 14 ans) : 6 €."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "structure",
+      "stage": "structure",
+      "role": "exercise",
+      "label": {
+        "en": "Structure",
+        "fr": "Structure",
+        "de": "Aufbau"
+      },
+      "pages": [
+        {
+          "pageId": "structure",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "In what order does the programme give this information?",
+            "fr": "Dans quel ordre le programme donne-t-il ces informations ?",
+            "de": "In welcher Reihenfolge nennt das Programm diese Informationen?"
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "structure-document",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_order",
+              "itemId": "order",
+              "pieces": [
+                {
+                  "pieceId": "p1",
+                  "text": "Un film d’animation"
+                },
+                {
+                  "pieceId": "p4",
+                  "text": "Le jour de fermeture"
+                },
+                {
+                  "pieceId": "p3",
+                  "text": "Les prix des billets"
+                },
+                {
+                  "pieceId": "p2",
+                  "text": "Une comédie"
+                }
+              ],
+              "acceptedOrders": [
+                [
+                  "p1",
+                  "p2",
+                  "p3",
+                  "p4"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "First Le Voyage de Léo (film d’animation), then the comedy Nuit à Paris, then Prix du billet, and at the end Fermé le lundi.",
+                "fr": "D’abord Le Voyage de Léo (film d’animation), puis la comédie Nuit à Paris, puis le prix du billet, et à la fin Fermé le lundi.",
+                "de": "Zuerst Le Voyage de Léo (film d’animation), dann die Komödie Nuit à Paris, dann Prix du billet und am Ende Fermé le lundi."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Final exam",
+        "fr": "Examen final",
+        "de": "Abschlussprüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam",
+          "estimatedDurationS": 124,
+          "timeLimitS": 190,
+          "instructions": {
+            "en": "Read the new document and answer the questions. No help this time.",
+            "fr": "Lisez le nouveau document et répondez aux questions. Cette fois, sans aide.",
+            "de": "Lies das neue Dokument und beantworte die Fragen. Diesmal ohne Hilfe."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "exam-document",
+              "documentId": "exam",
+              "view": "exam",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-genre",
+              "question": "Quel genre de film est Le Grand Bleu ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Un drame"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Une comédie"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Un film d’animation"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Un documentaire"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Le Grand Bleu – Drame, 2 h.",
+                "fr": "Le Grand Bleu – Drame, 2 h.",
+                "de": "Le Grand Bleu – Drame, 2 h: ein Drama."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-sunday",
+              "question": "À quelle heure est la séance du dimanche ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "À 16 h 30"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "À 21 h"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "À 14 h"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "À 20 h 15"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Dimanche : 16 h 30. 21 h is on Thursday (Jeudi).",
+                "fr": "Dimanche : 16 h 30. 21 h, c’est le jeudi.",
+                "de": "Dimanche : 16 h 30. 21 h ist am Donnerstag (Jeudi)."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-room",
+              "question": "Dans quelle salle passe le film ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Salle 2"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Salle 1"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Salle 3"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Salle 5"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Both showings are in salle 2.",
+                "fr": "Les deux séances sont en salle 2.",
+                "de": "Beide Vorstellungen sind in salle 2."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "x-child",
+              "statement": "Pour un enfant de 10 ans, le billet coûte 5 €.",
+              "answer": "true",
+              "answerExplanation": {
+                "en": "True: moins de 14 ans : 5 €.",
+                "fr": "Vrai : moins de 14 ans : 5 €.",
+                "de": "Richtig: moins de 14 ans : 5 €."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "x-open",
+              "statement": "Le cinéma est fermé le lundi.",
+              "answer": "false",
+              "answerExplanation": {
+                "en": "False: this cinema is Ouvert tous les jours, open every day. Fermé le lundi was the Rex.",
+                "fr": "Faux : ce cinéma est ouvert tous les jours. Fermé le lundi, c’était le Rex.",
+                "de": "Falsch: Dieses Kino ist Ouvert tous les jours, täglich geöffnet. Fermé le lundi war das Rex."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-/** Validate the directly authored P1-08 review batch and the P4-03 function test lessons without model calls or writes. */
+/** Validate the directly authored P1-08 review batch, the P4-03 function and the P5-03 reading test lessons without model calls or writes. */
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { DEFAULT_CONTENT_DIR, scanContentDir } from './catalog.ts';
@@ -9,6 +9,9 @@ import { grammarBriefLengthIssues, grammarContentLengthIssues } from '../src/val
 /** Function test lessons written by hand before the generation decision (P4-03, D51). */
 export const FUNCTION_TEST_LESSONS = ['fr-greetings-and-goodbyes', 'fr-ordering-at-a-cafe', 'fr-asking-the-way'] as const;
 
+/** Reading test lessons: the ten fr/A1 reading entries, written by hand (P5-03, SPEC section 9). */
+const READING_TEST_COUNT = 10;
+
 export function checkSampleLessons(result: CatalogResult, contentDir = DEFAULT_CONTENT_DIR): string[] {
   const outline = result.outlines.get('fr-a1');
   if (!outline) return ['Missing fr/A1 outline.'];
@@ -17,7 +20,9 @@ export function checkSampleLessons(result: CatalogResult, contentDir = DEFAULT_C
   if (samples.length !== 20) problems.push('Expected ten grammar and ten vocabulary sample entries.');
   const functions = outline.entries.filter((e) => (FUNCTION_TEST_LESSONS as readonly string[]).includes(e.id));
   if (functions.length !== FUNCTION_TEST_LESSONS.length) problems.push(`Expected the function test lessons ${FUNCTION_TEST_LESSONS.join(', ')}.`);
-  for (const { id, kind } of [...samples, ...functions]) {
+  const reading = outline.entries.filter((e) => e.kind === 'reading');
+  if (reading.length !== READING_TEST_COUNT) problems.push(`Expected ${READING_TEST_COUNT} fr/A1 reading entries.`);
+  for (const { id, kind } of [...samples, ...functions, ...reading]) {
     const artifacts = result.manifest.artifacts[id];
     // Vocabulary lessons consist of the brief only (P2-04).
     for (const slot of hasContentFile(kind) ? (['draft', 'content'] as const) : (['draft'] as const)) {
@@ -45,5 +50,5 @@ if (import.meta.main) {
   if (problems.length) {
     problems.forEach((problem) => console.error(problem));
     process.exitCode = 1;
-  } else console.log('All twenty sample lessons (ten vocabulary briefs, ten grammar briefs with content) and the three function test lessons are valid with current input hashes; grammar lessons follow the length rules. No generator calls.');
+  } else console.log('All twenty sample lessons (ten vocabulary briefs, ten grammar briefs with content), the three function test lessons and the ten reading test lessons are valid with current input hashes; grammar lessons follow the length rules. No generator calls.');
 }

@@ -1,0 +1,198 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-reading-a-train-timetable",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Lire un horaire de train",
+  "objective": {
+    "en": "Read a departure board and find the departure and arrival times, the platform and the delays.",
+    "fr": "Lire un tableau des départs et trouver l’heure de départ, l’heure d’arrivée, la voie et les retards.",
+    "de": "Eine Abfahrtstafel lesen und Abfahrts- und Ankunftszeiten, Gleis und Verspätungen finden."
+  },
+  "estimatedMinutes": 8,
+  "provenance": {
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "reading-v1",
+    "generatedAt": "2026-10-15T19:30:27.673Z",
+    "inputHashes": {
+      "outline": "2603e7cab1d8d3b0652f3327d2b2a09c24c7285ac0663b48a8d625494fa370d1"
+    }
+  },
+  "kind": "reading",
+  "theme": "travel",
+  "genre": "timetable",
+  "situation": {
+    "en": "A traveller looks at the departure board in Lille station on a Monday morning.",
+    "fr": "Un voyageur regarde le tableau des départs à la gare de Lille un lundi matin.",
+    "de": "Ein Reisender schaut an einem Montagmorgen auf die Abfahrtstafel im Bahnhof Lille."
+  },
+  "readerTask": {
+    "en": "Find when and from which platform the trains leave, which one is late and which one is cancelled.",
+    "fr": "Trouver quand et de quelle voie partent les trains, lequel est en retard et lequel est supprimé.",
+    "de": "Herausfinden, wann und von welchem Gleis die Züge fahren, welcher Verspätung hat und welcher ausfällt."
+  },
+  "keywords": [
+    {
+      "id": "voie",
+      "term": "la voie",
+      "translations": {
+        "en": [
+          "platform"
+        ],
+        "de": [
+          "Gleis"
+        ]
+      },
+      "explanation": {
+        "en": "Where the train stops in the station: voie B, voie 4.",
+        "fr": "L’endroit où le train s’arrête dans la gare : voie B, voie 4.",
+        "de": "Wo der Zug im Bahnhof hält: voie B, voie 4."
+      }
+    },
+    {
+      "id": "a-lheure",
+      "term": "à l’heure",
+      "translations": {
+        "en": [
+          "on time"
+        ],
+        "de": [
+          "pünktlich"
+        ]
+      },
+      "explanation": {
+        "en": "Not late: the train leaves at the planned time.",
+        "fr": "Pas en retard : le train part à l’heure prévue.",
+        "de": "Nicht verspätet: Der Zug fährt zur geplanten Zeit."
+      }
+    },
+    {
+      "id": "retard",
+      "term": "un retard",
+      "translations": {
+        "en": [
+          "delay"
+        ],
+        "de": [
+          "Verspätung"
+        ]
+      },
+      "explanation": {
+        "en": "The train is late: retard 10 min = ten minutes late.",
+        "fr": "Le train arrive ou part plus tard : retard 10 min.",
+        "de": "Der Zug ist später: retard 10 min = zehn Minuten Verspätung."
+      }
+    },
+    {
+      "id": "supprime",
+      "term": "supprimé",
+      "translations": {
+        "en": [
+          "cancelled"
+        ],
+        "de": [
+          "gestrichen",
+          "fällt aus"
+        ]
+      },
+      "explanation": {
+        "en": "The train does not run at all today.",
+        "fr": "Le train ne part pas du tout aujourd’hui.",
+        "de": "Der Zug fährt heute gar nicht."
+      }
+    },
+    {
+      "id": "arriver",
+      "term": "arriver",
+      "translations": {
+        "en": [
+          "to arrive"
+        ],
+        "de": [
+          "ankommen"
+        ]
+      },
+      "explanation": {
+        "en": "To get to the end of the trip: le TGV arrive à 9 h 32.",
+        "fr": "Être à la fin du voyage : le TGV arrive à 9 h 32.",
+        "de": "Am Ziel sein: le TGV arrive à 9 h 32 = kommt um 9.32 Uhr an."
+      }
+    }
+  ],
+  "documents": {
+    "main": {
+      "targetWords": 60,
+      "contents": {
+        "en": "A departure board in Lille: three trains with time, destination, platform and status (on time, delayed, cancelled), the arrival time of the TGV and a replacement bus.",
+        "fr": "Un tableau des départs à Lille : trois trains avec heure, destination, voie et état (à l’heure, en retard, supprimé), l’heure d’arrivée du TGV et un bus de remplacement.",
+        "de": "Eine Abfahrtstafel in Lille: drei Züge mit Uhrzeit, Ziel, Gleis und Status (pünktlich, verspätet, gestrichen), die Ankunftszeit des TGV und ein Ersatzbus."
+      }
+    },
+    "exam": {
+      "targetWords": 33,
+      "contents": {
+        "en": "An arrival board in Nantes: three trains with time, origin, platform and status.",
+        "fr": "Un tableau des arrivées à Nantes : trois trains avec heure, provenance, voie et état.",
+        "de": "Eine Ankunftstafel in Nantes: drei Züge mit Uhrzeit, Herkunft, Gleis und Status."
+      }
+    }
+  },
+  "skim": {
+    "focus": "genre"
+  },
+  "detailQuestions": [
+    {
+      "id": "q-arras",
+      "type": "reading_choice",
+      "focus": {
+        "en": "The departure time of the train to Arras",
+        "fr": "L’heure de départ du train pour Arras",
+        "de": "Die Abfahrtszeit des Zugs nach Arras"
+      }
+    },
+    {
+      "id": "q-platform",
+      "type": "reading_choice",
+      "focus": {
+        "en": "The platform of the TGV",
+        "fr": "La voie du TGV",
+        "de": "Das Gleis des TGV"
+      }
+    },
+    {
+      "id": "q-delay",
+      "type": "reading_true_false",
+      "focus": {
+        "en": "The delay of the TGV",
+        "fr": "Le retard du TGV",
+        "de": "Die Verspätung des TGV"
+      }
+    },
+    {
+      "id": "q-dunkerque",
+      "type": "reading_choice",
+      "focus": {
+        "en": "How to get to Dunkerque",
+        "fr": "Comment aller à Dunkerque",
+        "de": "Wie man nach Dunkerque kommt"
+      }
+    }
+  ],
+  "exam": {
+    "types": [
+      "reading_choice",
+      "reading_true_false"
+    ]
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-reading-a-holiday-postcard",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Lire une carte postale",
+  "objective": {
+    "en": "Read a holiday postcard, spot its beginning and end, and find where the writer is, with whom and what the weather is like.",
+    "fr": "Lire une carte postale de vacances, repérer le début et la fin, et trouver où est l’auteur, avec qui et le temps qu’il fait.",
+    "de": "Eine Urlaubspostkarte lesen, Anfang und Schluss erkennen und herausfinden, wo die Schreiberin ist, mit wem und wie das Wetter ist."
+  },
+  "estimatedMinutes": 8,
+  "provenance": {
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "reading-v1",
+    "generatedAt": "2026-10-15T19:30:27.430Z",
+    "inputHashes": {
+      "outline": "16f81f7d28c99a46a60216ec2cccc6785ba965be5840e8aabf1cc36589768fb7"
+    }
+  },
+  "kind": "reading",
+  "theme": "weather",
+  "genre": "postcard",
+  "situation": {
+    "en": "Clara is on holiday in Nice and sends a postcard to her friend Léa.",
+    "fr": "Clara est en vacances à Nice et envoie une carte postale à son amie Léa.",
+    "de": "Clara macht Urlaub in Nizza und schickt ihrer Freundin Léa eine Postkarte."
+  },
+  "readerTask": {
+    "en": "Find who writes, where she is, with whom, and what the weather is like today and tomorrow.",
+    "fr": "Trouver qui écrit, où elle est, avec qui, et le temps qu’il fait aujourd’hui et demain.",
+    "de": "Herausfinden, wer schreibt, wo sie ist, mit wem und wie das Wetter heute und morgen ist."
+  },
+  "keywords": [
+    {
+      "id": "il-fait-beau",
+      "term": "il fait beau",
+      "translations": {
+        "en": [
+          "the weather is nice"
+        ],
+        "de": [
+          "es ist schön",
+          "schönes Wetter"
+        ]
+      },
+      "explanation": {
+        "en": "Used for good weather: sun, no rain.",
+        "fr": "Pour dire qu’il y a du soleil et pas de pluie.",
+        "de": "So sagt man, dass das Wetter schön ist: Sonne, kein Regen."
+      }
+    },
+    {
+      "id": "chaud",
+      "term": "chaud",
+      "translations": {
+        "en": [
+          "hot"
+        ],
+        "de": [
+          "heiß"
+        ]
+      },
+      "explanation": {
+        "en": "A high temperature: 32 degrés is very hot. The opposite is froid.",
+        "fr": "Une température haute : 32 degrés, c’est très chaud. Le contraire est froid.",
+        "de": "Eine hohe Temperatur: 32 degrés ist sehr heiß. Das Gegenteil ist froid."
+      }
+    },
+    {
+      "id": "la-plage",
+      "term": "la plage",
+      "translations": {
+        "en": [
+          "the beach"
+        ],
+        "de": [
+          "der Strand"
+        ]
+      },
+      "explanation": {
+        "en": "The sand by the sea, where people swim in summer.",
+        "fr": "Le sable au bord de la mer, où on se baigne en été.",
+        "de": "Der Sand am Meer, wo man im Sommer badet."
+      }
+    },
+    {
+      "id": "du-vent",
+      "term": "il y a du vent",
+      "translations": {
+        "en": [
+          "it is windy"
+        ],
+        "de": [
+          "es ist windig"
+        ]
+      },
+      "explanation": {
+        "en": "Used when the air moves strongly. Il y a du… is common for weather: il y a du soleil.",
+        "fr": "Quand l’air bouge fort. On dit souvent il y a du… pour la météo : il y a du soleil.",
+        "de": "Wenn die Luft sich stark bewegt. Il y a du… ist beim Wetter häufig: il y a du soleil."
+      }
+    },
+    {
+      "id": "il-pleut",
+      "term": "il pleut",
+      "translations": {
+        "en": [
+          "it is raining"
+        ],
+        "de": [
+          "es regnet"
+        ]
+      },
+      "explanation": {
+        "en": "Rain is falling. Demain, il pleut = tomorrow it will rain.",
+        "fr": "De l’eau tombe du ciel. Demain, il pleut = il y aura de la pluie demain.",
+        "de": "Es fällt Regen. Demain, il pleut = morgen regnet es."
+      }
+    }
+  ],
+  "documents": {
+    "main": {
+      "targetWords": 58,
+      "contents": {
+        "en": "A postcard from Clara to Léa: where she is and with whom, the hot weather, her day (beach, old town, wind in the evening) and tomorrow’s rain and museum, then the closing.",
+        "fr": "Une carte de Clara à Léa : où elle est et avec qui, le temps chaud, sa journée (plage, vieille ville, vent le soir), la pluie et le musée de demain, puis la formule de fin.",
+        "de": "Eine Karte von Clara an Léa: wo sie ist und mit wem, das heiße Wetter, ihr Tag (Strand, Altstadt, Wind am Abend), Regen und Museum am nächsten Tag, dann der Gruß."
+      }
+    },
+    "exam": {
+      "targetWords": 33,
+      "contents": {
+        "en": "A postcard from Maxime to Paul from the mountains: with his parents, cold but sunny, skiing every day.",
+        "fr": "Une carte de Maxime à Paul depuis la montagne : avec ses parents, froid mais du soleil, du ski tous les jours.",
+        "de": "Eine Karte von Maxime an Paul aus den Bergen: mit den Eltern, kalt, aber sonnig, jeden Tag Ski."
+      }
+    }
+  },
+  "skim": {
+    "focus": "author"
+  },
+  "detailQuestions": [
+    {
+      "id": "q-where",
+      "type": "reading_choice",
+      "focus": {
+        "en": "Where Clara is",
+        "fr": "Où est Clara",
+        "de": "Wo Clara ist"
+      }
+    },
+    {
+      "id": "q-with",
+      "type": "reading_choice",
+      "focus": {
+        "en": "Who Clara is with",
+        "fr": "Avec qui est Clara",
+        "de": "Mit wem Clara dort ist"
+      }
+    },
+    {
+      "id": "q-weather",
+      "type": "reading_choice",
+      "focus": {
+        "en": "The weather today",
+        "fr": "Le temps aujourd’hui",
+        "de": "Das Wetter heute"
+      }
+    },
+    {
+      "id": "q-tomorrow",
+      "type": "reading_true_false",
+      "focus": {
+        "en": "The plan for tomorrow",
+        "fr": "Le programme de demain",
+        "de": "Der Plan für morgen"
+      }
+    }
+  ],
+  "exam": {
+    "types": [
+      "reading_choice",
+      "reading_true_false"
+    ]
+  },
+  "scoring": {
+    "practiceWeight": 35,
+    "examWeight": 65,
+    "orthographyCredit": 0.5
+  }
+}
