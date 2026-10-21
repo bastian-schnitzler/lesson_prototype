@@ -613,6 +613,8 @@ test('person matching: persons in order, checked in place like vocabulary matchi
   await proceed(page); // feedback
   for (const answer of ['es', 'suis']) {
     await page.locator('fieldset.choices label').filter({ hasText: new RegExp(`^${answer}$`) }).click(); // submits the page
+    // Wait for the green animation to start, then end: waiting only for its end passes before it starts.
+    await expect(page.locator('.task-card.is-celebrating')).toHaveCount(1);
     await expect(page.locator('.task-card.is-celebrating')).toHaveCount(0);
   }
   // The board: je, tu, il / elle on the left in person order, the forms shuffled on the right.

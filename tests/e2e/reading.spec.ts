@@ -111,8 +111,9 @@ test('places the document beside the questions by the width of the task area, wi
 
   const doc = page.locator('.reading-doc-slot');
   const questions = page.locator('.task-card > .units').first();
-  // [window width, sidebar shown, document beside the questions]
-  for (const [width, sidebar, beside] of [[1440, true, true], [1100, true, true], [1024, true, false], [900, false, true], [700, false, false], [375, false, false]] as const) {
+  // [window width, sidebar shown, document beside the questions]. Every width keeps at least 20 px from the 700 px
+  // switch even when a classic scrollbar takes about 15 px (Linux CI, Windows): 1100 px is only 11 px above it.
+  for (const [width, sidebar, beside] of [[1440, true, true], [1140, true, true], [1024, true, false], [900, false, true], [700, false, false], [375, false, false]] as const) {
     await page.setViewportSize({ width, height: 800 });
     await expect(page.locator('.lesson-nav')).toBeVisible({ visible: sidebar });
     const [d, q] = [await doc.boundingBox(), await questions.boundingBox()];
