@@ -1,6 +1,6 @@
 # Lesson exercise prototype specification
 
-Status: **Draft 0.72 — P06-00: lesson session architecture**. Date: 2026-10-16.
+Status: **Draft 0.81 — P5-06: wide layout with classic scrollbars**. Date: 2026-10-21.
 
 This document specifies the prototype and its phased implementation. It is the maintained requirements document: no separate requirements file exists. It does not authorize starting implementation before the specification review. The backlog is in [ISSUES.md](ISSUES.md) and published as GitHub issues in `bastian-schnitzler/lesson_prototype`.
 
@@ -28,8 +28,8 @@ flowchart TD
     K -->|last exam page locked| L["Results: scores computed from plan + record,<br/>results menu, last-try score on the index"]
 ```
 
-1. **Readiness.** The play route looks up the lesson in the manifest (built from the outlines, briefs and lesson files, section 3). It starts only when the outline entry, the brief and (except for vocabulary) the lesson content are valid and current and the category is playable (vocabulary, grammar, functions; reading not yet). Otherwise it lists the reasons. Nothing is generated at this point.
-2. **Load and validate.** The browser fetches the published JSON files and validates them again with the same schemas and checks as the build. A vocabulary lesson has no content file: `vocabularyLesson(brief)` derives its stages from the brief (D47). Grammar and function lessons read `content/lessons/<id>.json`.
+1. **Readiness.** The play route looks up the lesson in the manifest (built from the outlines, briefs and lesson files, section 3). It starts only when the outline entry, the brief and (except for vocabulary) the lesson content are valid and current and the category is playable (vocabulary, grammar, functions, reading). Otherwise it lists the reasons. Nothing is generated at this point.
+2. **Load and validate.** The browser fetches the published JSON files and validates them again with the same schemas and checks as the build. A vocabulary lesson has no content file: `vocabularyLesson(brief)` derives its stages from the brief (D47). Grammar, function and reading lessons read `content/lessons/<id>.json`.
 3. **Plan.** `buildPlan` flattens the content into a **lesson plan**: the concrete pages in order (with the exam info page in front of the exam), each with its items and its **units**. A unit is one scorable answer (one gap, one matching pair, one pronoun row, one word order) in one of four kinds: `text`, `choice`, `order` or `spot`. The plan resolves the mother tongue, accepted answers, explanations and time limits. It is rebuilt from the files on every load and never stored.
 4. **Start or resume.** The start page shows the lesson outline. Continue creates a new **session record** (`startSession`): a random session ID and shuffle seed, the content hash, the mother tongue fixed for the attempt, page 0. A saved active record with the same content hash is offered as Resume lesson instead; a record for changed content cannot be resumed.
 5. **Run.** The session host renders the current page. Every action (typing a draft, Check/Continue, turning a card, a countdown expiry, choosing a results entry) goes through one pure `sessionReducer(plan, record, action)`; the new record is saved to browser storage at once, so a reload resumes on the same page with the same answers, shuffles and deadlines.
@@ -56,25 +56,28 @@ The **session record** (`SessionRecord`, `src/domain/session/session.ts`):
 | `startedAt`, `updatedAt`, `status`, `pageIndex`, `phase` | Where the learner is: active or completed, the current page, and `answering`, `feedback` (practice page checked) or `results`. |
 | `drafts` | Unlocked answers per unit ID (typed text, chosen option, token order, selected word and correction). |
 | `locked` | Per unit: the submitted response, its outcome (`fully_correct`, `orthography_only`, `incorrect`, `unanswered`), points, whether time ran out, the interface language at submission, and the gender chosen after a `des` answer. Locked answers never change. |
-| `completed`, `revealed` | Pages already finished (for duration-weighted progress) and presentation progress that must survive a reload: turned flashcards, shown dialogue lines. |
+| `completed`, `revealed` | Pages already finished (for duration-weighted progress) and presentation progress that must survive a reload: turned flashcards, shown dialogue lines, a reading document put away after its skim (`skimmed`; the skim countdown itself has no saved deadline and restarts after a reload, section 9). |
 | `exam` | Per exam page: start time, absolute deadline and timeout flag, so a reload cannot extend the countdown (section 5). |
 | `skippedNoVoice` | Listening pages skipped without a French voice; they are left out of scores and progress. |
 | `selection` | The results entry shown (final exam, an exam part or an exercise). |
+| `pageTimes` | Play-test times per page (P5-05): entered, first checked, skim document put away, left. Recorded for every category; never used for scores, progress or deadlines; absent in older records. |
 
 ### Shared and category-specific parts
 
-The session is one pipeline for every category. Item types are named per category (`vocabulary_…`, `grammar_…`, `function_…`) because their content schemas differ, but most of them map to **shared exercise renderers** in `rendererRegistry`: a category adds a `buildPlan` case per item type and points it at an existing renderer, and needs its own renderer only for an exercise no other category has. Everything that works on units, pages and records is shared.
+The session is one pipeline for every category. Item types are named per category (`vocabulary_…`, `grammar_…`, `function_…`, `reading_…`) because their content schemas differ, but most of them map to **shared exercise renderers** in `rendererRegistry`: a category adds a `buildPlan` case per item type and points it at an existing renderer, and needs its own renderer only for an exercise no other category has. Everything that works on units, pages and records is shared.
 
 | Exercise renderer | Used by item types | Shared by |
 | --- | --- | --- |
-| `UnitsRenderer` (typed gap, multiple choice, word order, error spotter, translation field, with inline and card feedback) | `vocabulary_typed_gap`, `vocabulary_listening_choice`, `vocabulary_translation_exam`, `vocabulary_listening_dictation`, `grammar_gap_choice`, `grammar_gap_typing`, `grammar_word_order`, `grammar_error_spotter`, `function_translation_exam` | all three |
+| `UnitsRenderer` (typed gap, multiple choice, word order, error spotter, translation field, with inline and card feedback) | `vocabulary_typed_gap`, `vocabulary_listening_choice`, `vocabulary_translation_exam`, `vocabulary_listening_dictation`, `grammar_gap_choice`, `grammar_gap_typing`, `grammar_word_order`, `grammar_error_spotter`, `function_translation_exam`, `reading_order` (pieces as tokens) | all four |
 | `UnitsRenderer` inside a dialogue context (the line or reply above the task) | `function_word_order`, `function_dialogue_gap_choice` | functions, on the shared controls |
 | `Gap` + `TextControl` inside dialogue lines | `function_dialogue_gap_typing` | functions, on the shared controls |
-| `MatchingRenderer` (two columns, pairs, curves, slide after Check) | `vocabulary_matching`, `grammar_person_matching`, `function_matching` | all three |
+| `MatchingRenderer` (two columns, pairs, curves, slide after Check) | `vocabulary_matching`, `grammar_person_matching`, `function_matching`, `reading_keyword_matching` | all four |
 | `GenderRenderer` (masculine/feminine per noun) | `vocabulary_gender_select`, `function_gender_select` | vocabulary, functions |
-| `IntroductionRenderer`, `FlashcardsRenderer` | `vocabulary_introduction`, `vocabulary_flashcards` | vocabulary only |
+| `FlashcardsRenderer` | `vocabulary_flashcards`, `reading_flashcards` (the key words) | vocabulary, reading |
+| `IntroductionRenderer` | `vocabulary_introduction` | vocabulary only |
 | `ExplanationRenderer`, `PlaceholderRenderer`, `PronounMatchRenderer`, `PronounTypingRenderer` | `grammar_explanation`, `production_feedback_placeholder`, `grammar_pronoun_form_match`, `grammar_pronoun_form_typing` | grammar only |
 | `FunctionFlashcardsRenderer`, `DialogueRenderer`, `ListeningReplyRenderer` | `function_flashcards`, `function_dialogue`, `function_listening_choice` | functions only |
+| `DocumentRenderer` (document view, skim countdown **Time to skim**), `QuestionRenderer` (questions on the shared `ChoiceControl`; true / false in fixed order) | `reading_document`, `reading_skim_choice`, `reading_choice`, `reading_true_false` | reading only |
 
 ```mermaid
 flowchart LR
@@ -98,22 +101,22 @@ flowchart LR
     RD --> RS
 ```
 
-| Layer | Shared by all categories | Vocabulary only | Grammar only | Functions only |
-| --- | --- | --- | --- | --- |
-| Loading and readiness | Manifest, readiness reasons, fetch, browser re-validation (`PlayPage`, `validateBrief`/`validateContent`) | No content file: `vocabularyLesson(brief)` derives the six stages | Content file | Content file |
-| Schemas and checks | Common envelope, localized texts, accepted answers, provenance and hashes (`artifactCommon`) | Targets, groups, genders, exam forms (`schemas/vocabulary.ts`) | Rules, blocks, length and exam-coverage checks (`schemas/grammar.ts`) | Situation, roles, expressions, words (`schemas/functions.ts`) |
-| Plan | `buildPlan`, page roles (presentation, practice, exam), exam info page, unit kinds `text` / `choice` / `order` / `spot`; noun gender data on translation exam units | Group interleaving (introduction then flashcards per group) | New verbs; teaching block per page | Expression and word terms (`functionsTerms`) |
-| Scoring | `scoreUnit`, `classifyAnswer` (accents/case half credit, apostrophes, spaces), the plural-noun gender rule of translation exams (`des` + gender), 35 % practice / 65 % exam, rounding | – | – | – |
-| Session flow | `sessionReducer`, one Continue (Check → feedback → Continue), auto-submit of single choices, success flash, storage and resume | Required reveals: flashcards | Production-feedback placeholder (an item with no units) | Required reveals: flashcards and dialogue lines (Next line) |
-| Timing and progress | Absolute exam deadlines, countdown box, duration-weighted progress, live score header, lesson navigation sidebar | Listening exam pages start their countdown when the voice is ready | – | – |
-| Exercise renderers (table above) | `UnitsRenderer` with `TextControl`, `ChoiceControl`, `OrderControl`, `SpotControl`, `Gap`, inline and card feedback: typed and multiple-choice gaps, word order, error spotter, listening choice and dictation, translation exam; `MatchingRenderer`; `GenderRenderer` (not grammar) | Introduction, flashcards | Explanation with form table, pronoun–form matching (token bank), pronoun–form typing, placeholder | Expression flashcards, model dialogue, listening reply; dialogue context around shared controls |
-| Audio | Speech synthesis, voice check, no-voice help page, autoplay | Listening tasks need a voice to start | Pronoun + form spoken together | Dialogue lines and replies |
-| Start page and results | Start page frame and outline, results card, exam review, results menu | Colour-coded word groups | New verbs table | Situation, roles and expressions |
-| Copy | Interface messages (en/fr/de), exercise instructions (`lessonCopy`) | – | – | – |
+| Layer | Shared by all categories | Vocabulary only | Grammar only | Functions only | Reading only |
+| --- | --- | --- | --- | --- | --- |
+| Loading and readiness | Manifest, readiness reasons, fetch, browser re-validation (`PlayPage`, `validateBrief`/`validateContent`) | No content file: `vocabularyLesson(brief)` derives the six stages | Content file | Content file | Content file |
+| Schemas and checks | Common envelope, localized texts, accepted answers, provenance and hashes (`artifactCommon`) | Targets, groups, genders, exam forms (`schemas/vocabulary.ts`) | Rules, blocks, length and exam-coverage checks (`schemas/grammar.ts`) | Situation, roles, expressions, words (`schemas/functions.ts`) | Genre, situation, key words, two documents, word ranges and skim speeds per level (`schemas/reading.ts`, `domain/readingLesson.ts`, `validation/reading.ts`) |
+| Plan | `buildPlan`, page roles (presentation, practice, exam), exam info page, unit kinds `text` / `choice` / `order` / `spot`; noun gender data on translation exam units | Group interleaving (introduction then flashcards per group) | New verbs; teaching block per page | Expression and word terms (`functionsTerms`) | Documents and key words (`readingPlanData`); items → units in `readingUnits` |
+| Scoring | `scoreUnit`, `classifyAnswer` (accents/case half credit, apostrophes, spaces), the plural-noun gender rule of translation exams (`des` + gender), 35 % practice / 65 % exam, rounding | – | – | – | – |
+| Session flow | `sessionReducer`, one Continue (Check → feedback → Continue), auto-submit of single choices, success flash, storage and resume | Required reveals: flashcards | Production-feedback placeholder (an item with no units) | Required reveals: flashcards and dialogue lines (Next line) | Required reveals: key-word flashcards; the skim phase (document put away, `skimmed`) |
+| Timing and progress | Absolute exam deadlines, countdown box, duration-weighted progress, live score header, lesson navigation sidebar | Listening exam pages start their countdown when the voice is ready | – | – | Skim countdown on a practice page (no saved deadline) |
+| Exercise renderers (table above) | `UnitsRenderer` with `TextControl`, `ChoiceControl`, `OrderControl`, `SpotControl`, `Gap`, inline and card feedback: typed and multiple-choice gaps, word order, error spotter, listening choice and dictation, translation exam; `MatchingRenderer`; `GenderRenderer` (vocabulary and functions) | Introduction, flashcards | Explanation with form table, pronoun–form matching (token bank), pronoun–form typing, placeholder | Expression flashcards, model dialogue, listening reply; dialogue context around shared controls | Document view, skim and questions; flashcards, matching board and word-order control reused |
+| Audio | Speech synthesis, voice check, no-voice help page, autoplay | Listening tasks need a voice to start | Pronoun + form spoken together | Dialogue lines and replies | Key words spoken on the flashcards; checks speak nothing |
+| Start page and results | Start page frame and outline, results card, exam review, results menu | Colour-coded word groups | New verbs table | Situation, roles and expressions | Situation and key-word count; sections Key words, The document, Final exam |
+| Copy | Interface messages (en/fr/de), exercise instructions (`lessonCopy`) | – | – | – | Reading messages (`reading.*`) |
 
-A few item-type checks still sit in shared code where a category needs special handling: which pages need reveals before Continue, listening pages, the article hint of translation exams, and the exam part names in the lesson navigation.
+A few item-type checks still sit in shared code where a category needs special handling: which pages need reveals before Continue, listening pages, the article hint of translation exams, the exam part names in the lesson navigation, and for reading the skim heading **Answer from memory**, the piece separator of ordering answers, the fixed order of true / false options and silent checks.
 
-**Adding a category** (for example reading, section 9) means: its brief and content schemas and checks; either a content file or a derivation from the brief; a `buildPlan` case per new item type mapping it to the four unit kinds; a `rendererRegistry` entry per new item type, pointing at a shared renderer where the exercise exists already and at a new renderer only otherwise; its start-page section; and enabling it in `PLAYABLE_KINDS`. Scoring, the reducer, storage and resume, timing, progress, navigation and results then work without change.
+**Adding a category** (reading, section 9, was added this way) means: its brief and content schemas and checks; either a content file or a derivation from the brief; a `buildPlan` case per new item type mapping it to the four unit kinds; a `rendererRegistry` entry per new item type, pointing at a shared renderer where the exercise exists already and at a new renderer only otherwise; its start-page section; and enabling it in `PLAYABLE_KINDS`. Scoring, the reducer, storage and resume, timing, progress, navigation and results then work without change.
 
 ## 1. Goal, inputs, and scope
 
@@ -195,6 +198,7 @@ Confirmed decisions are identified below. Other defaults make the draft concrete
 | D52 | Autoplay mode | **Confirmed (P4-05 review):** a header switch **Autoplay**, the last control on the right, on by default and stored with the preferences (D45). When on, learning-language audio plays by itself: turning a flashcard to French; each line of a function model dialogue as it appears; connecting a matching pair or clicking a French box (person boards in forms mode: pronoun + form, e.g. `nous sommes`, `j'ai`); placing a form in a pronoun row; entering a dialogue gap, a listening choice or a dictation (the prompt; dialogue gaps play nothing when checked); and, as a practice page is checked, together with the green or red marking, the correct answer (gap sentences except dialogue gaps, error-spotter sentences, word-order sentences, pronoun + form of pronoun rows; listening choices play nothing when checked, since the word or role A's line was just heard (P6-02)). Prompts on entering a page wait for speech in progress. Exam answers are never spoken. Section 5, "Autoplay". |
 | D53 | Lesson navigation | **Confirmed (P6-01):** a sidebar shows the lesson's learning points as a vertical timeline (design V2): one numbered circle per point in its start-page section colour, filled when done (the number stays), ringed when current; the exam last with a flag. The start page lists the same points under lettered sections (A, B, C…). Navigation only shows the way: no point can be reopened. During the exam the sidebar lists the exam pages with tasks and time limits; on the results page it selects the part shown. Phones show the points as a horizontal row of numbered markers combined with the progress bar, with a tooltip per marker. |
 | D54 | Reading lesson flow | **Confirmed (P5-01 review, 2026-10-15):** "prepare, then read": five fixed stages (flashcards and matching of 4–6 key words, a skim of the main document with a countdown after which the document is put away, 3–4 detail questions beside the open document, one ordering task, and an exam of 5 questions on one timed page about a second document of the same genre); one document layout for every genre; multiple choice and true / false only, no evidence marks; the shared 35 / 65 weights (D6); key-word meanings by mother tongue, interface text localized, documents and questions in the course language; skim time from the actual word count; ten hand-written fr/A1 test lessons. Exceptions to section 5 and D18 and the open points with their issues: section 9. |
+| D55 | Reading lesson production | **Proposed (P5-07, 2026-10-20; product-owner confirmation pending on #115):** reading lessons are **static files written by hand** with `scripts/author-reading.ts`, which derives the page estimates, `skimSeconds`, the exam limit, minutes, labels, instructions and input hashes and validates both files; nothing is generated in the browser. The prototype's reading scope is the **ten fr/A1 test lessons**; the other 836 reading entries of the outlines (fr, en, de, A1–C2) keep no artifacts and show the unavailable page with its reasons, as the 38 grammar entries since P2-07. Offline Gemini generation for reading is **deferred**: it would need reading prompts, a paid key and a review of every generated lesson, which only pays off when the course is extended beyond the samples; `make brief` / `make generate` keep rejecting reading until then. A new hand-written reading lesson goes through the same validation, course audit and review as the ten. |
 
 ## 2. Runtime and delivery architecture
 
@@ -294,7 +298,7 @@ P1-01 owns the shared catalog scanner (outline validation, duplicate course/ID r
 | `make preview` | Build, then serve `dist/` under `/lesson_prototype/` exactly like Pages. | P1-02. |
 | `make check-dist` | Build, then check `dist/` under the Pages path with HTTP requests and a headless browser. | P1-02; CI. |
 | `make smoke` | HTTP smoke check of the published site (`SITE_URL`). | P1-02; CI deploy job. |
-| `make issues-sync` | Refresh the published backlog from SPEC/ISSUES, including milestone assignments, copied diagrams, and source-derived preview URLs; requires GitHub access and existing issue mappings. | P1-01 workflow interface after publication. |
+| `make issues-sync` | Refresh the published backlog from SPEC/ISSUES, including milestone assignments, copied diagrams, and source-derived preview URLs; `ONLY=P5` (a logical ID prefix) limits it to those issues without touching milestones; a body that would exceed GitHub's size limit keeps the mockup previews and links their sources instead of copying the PlantUML code; requires GitHub access and existing issue mappings. | P1-01 workflow interface after publication. |
 | `make mockups-sync` | Update embedded Markdown PlantUML source from the canonical `.puml` files and the rendered-screen blocks from `scripts/screens.ts`. | P1-01; screens P06-00. |
 | `make screens` | Capture the vocabulary, grammar and function lesson screens from the running prototype as PNG and self-contained HTML snapshots under `docs/mockups/` (`ONLY=<path-prefix>` for a subset). | P06-00. |
 | `make mockups-check` | Reject stale, missing, or orphaned source/Markdown copies; check the source-only folder policy. | P1-01; CI and phase-closing mockup issues. |
@@ -715,7 +719,7 @@ Exam answers are never spoken; matching and gender pages speak nothing extra on 
 
 ### Lesson navigation (P6-01, D53)
 
-Every lesson page from the first learner page to the results has a **sidebar** left of the content on screens wider than 960 px (the page widens to about 1320 px). Its content depends on the phase:
+Every lesson page from the first learner page to the results has a **sidebar** left of the content on screens wider than 960 px (the page widens to about 1320 px). Reading pages keep it too (P5-06): the sidebar is neither collapsed nor narrowed for the document; reading lays its pages out by the width left to the task (section 9). Its content depends on the phase:
 
 - **Learning:** "Your lesson", "x of n points done" and a vertical timeline (design V2 of the 2026-10-09 feedback). The points come from the plan (`src/domain/session/outline.ts`): every theory page is a point (vocabulary introduction or flashcards of a group, grammar explanation named by its heading, function flashcards or dialogue, reading flashcards); consecutive practice pages of one step form one point; the exam is the last point. The points are numbered 1, 2, 3… through the lesson; each circle has the colour of its start-page section and keeps its number when done (filled, no tick). The current point is ringed and says "You are here"; others say "Done" or "Not yet open"; the exam shows its flag and its number of tasks. The production-feedback placeholder and the exam info page belong to the exam point.
 - **Exam:** "Final exam", "p pages · t questions" and one row per exam page with its kind (translation, dictation, mixed…), its number of questions and time limit (the learner-facing copy says "questions", never "tasks", P6-02); done pages are ticked ("Answered"), the current page says "in progress"; below, "Each page has its own countdown. You see your results only after the whole exam."
@@ -1193,10 +1197,10 @@ A paragraph is a paragraph of prose, a message bubble, a menu section, a sign, a
 | --- | --- |
 | Flashcards | The vocabulary flashcard page: the mother-tongue meaning in front; the key word with a speaker button and its explanation behind. Continue needs every card turned once. |
 | Matching | The vocabulary matching board, mother-tongue meaning on the left and the key word with its speaker on the right. Checked exactly like vocabulary matching (rule 4 applies: a fully correct board flashes green and moves on; no explanations). |
-| Skim | The document under a countdown box **Time to skim** with an outlined **I've finished reading** button; the question is not shown yet. When the time is up or the button is pressed, the document is put away and the question opens as choice cards under **Answer from memory**. The choice is confirmed with **Check** (rule 4's submit-on-choice does not apply). After Check the document comes back, the chosen option is marked green or red with the correct one green, the explanation follows, and the page waits for **Continue** even when the answer is right (P5-01 review). |
-| Detail | The open document beside the questions (side by side from 1100 px, stacked below; the document stays in view). Every question is answered before **Check**; the questions are then marked in place with the correct option green and their explanations, and the page waits for Continue even when every answer is right (P5-01 review: the learner wants to see which facts were right). |
+| Skim | The document under a countdown box **Time to skim** with an outlined **I've finished reading** button; the question is not shown yet. When the time is up or the button is pressed, the document is put away and the question opens as choice cards under **Answer from memory**. The choice is confirmed with **Check** (rule 4's submit-on-choice does not apply). After Check the document comes back with the correction card (Correct, or the right answer in green above the chosen one struck through in red, then the explanation), and the page waits for **Continue** even when the answer is right (P5-01 review). |
+| Detail | The open document beside the questions (side by side when the task area is at least 700 px wide, stacked below; the document stays in view, see "Wide layout" below). Every question is answered before **Check**; each question then gets its correction card (as on the skim page), and the page waits for Continue even when every answer is right (P5-01 review: the learner wants to see which facts were right). |
 | Structure | The document beside the word-order control: the pieces are shuffled from the session seed and placed by click, keyboard or drag as in grammar word order. Check marks the order; the feedback card shows the correct order (pieces joined by → ) and the explanation; the page waits for Continue. |
-| Exam | The shared exam page: the countdown box, the exam document beside the five numbered questions, "n of 5 answered" next to Continue. Continue or the countdown submits the page; unanswered questions earn zero. |
+| Exam | The shared exam page: the countdown box, the exam document beside the five numbered questions, "n of 5 answered" next to Continue (implemented in P5-08; the sidebar and the info page name the single page in the singular). Continue or the countdown submits the page; unanswered questions earn zero. |
 
 On a page with a document the cursor is not put into a field and the page is not scrolled, so the document stays in view.
 
@@ -1232,15 +1236,29 @@ Claude writes the brief and lesson content of the **ten fr/A1 reading entries** 
 
 ### Open points and their issues
 
+**Wide layout (P5-06).** The detail, structure and exam pages put the document on the left (sticky, scrolling on its own when it is taller than the window) and the questions or the pieces on the right when the **task area** is at least 700 px wide, and stack them below. The switch is a container query on the task area, not a window breakpoint, because the lesson sidebar takes 290 px above 960 px: measured with the menu fixture, the task area is 635 px at a 1024 px window (stacked), 711 px at 1100 px (columns of 320 / 290 px), 891 px at 1280 px and at most 931 px from 1366 px on (columns of 435 / 395 px, the 1320 px page limit). Without the sidebar (960 px and narrower) a tablet in landscape (900–960 px, task area 828–888 px) now also shows both columns; 768 px and phones stay stacked. Collapsing or narrowing the sidebar was rejected: the columns are wide enough with it, and the navigation (D53) stays the same on every page. The skim page itself is always one column (the document above its countdown). These widths are measured with overlay scrollbars (macOS). A classic scrollbar (about 15 px on Linux and Windows, reserved by `scrollbar-gutter: stable`) makes the task area that much narrower: about 696 px at 1100 px, so those windows switch to columns from about 1115 px. The 700 px switch stays, because a 768 px tablet without a scrollbar has the same 696 px and must stay stacked. `tests/e2e/reading.spec.ts` checks the layout at 1440, 1140, 1024, 900, 700 and 375 px, each at least 20 px from the switch with either kind of scrollbar.
+
+**Production of reading lessons (P5-07, D55).** From source to results, a reading lesson goes: brief and lesson content written as JSON → `node scripts/author-reading.ts <id>` (derived fields, input hashes, both files validated before writing) → `make catalog` / `make build` (outline, brief and content validated again; the manifest marks them valid and current) → the play route (readiness, fetch, validation in the browser, `buildPlan`) → start page, flashcards, matching, skim and the question from memory, detail, structure, exam info, the timed exam on the second document, results. A file that fails validation, an outdated hash or a missing file makes the lesson unavailable with its reasons; nothing falls back to other content. `make sample-lessons` checks the ten without model calls; `tests/unit/reading-course.test.tsx` audits every reading lesson with content (current hashes, renderers, whole-word highlights, 100 and 0 points, every mother tongue, every page rendered) and checks that no other reading entry has artifacts; `tests/e2e/reading-course.spec.ts` (Playwright project `course`, real content) plays each of the ten to 100 points in the browser and opens an entry without artifacts. Out of scope for the prototype: generation of reading lessons, lessons for other languages and levels, and content chosen at run time.
+
+**Play tests (P5-05).** The values of this section are starting values until play tests confirm them. Measured with the page rules above, a reading lesson takes between 6 minutes (A1: 4 key words, 3 detail questions, 3 pieces, both documents at the bottom of their range) and 14 minutes (C2: 6 key words, 4 questions, 6 pieces, both documents at the top), so every level stays within 15 minutes; the ten fr/A1 test lessons take 8. The exam limit of the largest lessons goes from 200 s (A1) to 340 s (C2). Two rules make the exam a test of the second document: no exam question repeats a skim or detail question, and the exam document repeats no paragraph of the main document (validated).
+
+To record a play test, open the app with `?playtest` (for example `…/lesson_prototype/?playtest#/lesson/fr-reading-a-text-message/play`). The session records the times of every page (`pageTimes`, section "Lesson session architecture"); the results page then shows **Play-test times**, a table of every page with its estimate, the actual seconds, the skim time stored and used, and the seconds to the first Check, plus **Download times (JSON)**. Without `?playtest` nothing is shown. Play-test checklist:
+
+1. Each tester plays at least three of the ten fr/A1 lessons with `?playtest`, without help, in one sitting each, and sends the downloaded JSON files.
+2. Record for each lesson: the tester's level of French, the mother tongue, desktop or phone, and whether the skim time ran out or **I've finished reading** was pressed.
+3. Compare per page: actual against estimate (a page is off when it differs by more than a third), skim time used against stored (most testers press **I've finished reading** early → the skim speed is too slow; the time runs out → too fast), and whether the exam limit was reached.
+4. Note every question a tester could not answer from the text, every answer that was ambiguous, and whether evidence marks, short typed answers or *not stated* were missed.
+5. The team then decides the open points below and records the new values here, in `src/schemas/reading.ts` / `src/domain/readingLesson.ts`, and in the test lessons (`node scripts/author-reading.ts --all` recomputes estimates, skim times and limits).
+
 | Point | Decision so far | Issue |
 | --- | --- | --- |
 | Lesson length per level | Every level within 15 minutes with the page rules above; longer lessons for B2–C2 discussed in the team | P5-05 |
-| Word ranges, skim speed, exam limits | Starting values above; tuned after play tests | P5-05 |
+| Word ranges, skim speed, exam limits | Starting values above; tuned after play tests (times recorded with `?playtest`, see "Play tests") | P5-05 |
 | Evidence marks, short answers, *not stated* | Left out; brought back only if play tests show the need | P5-05 |
 | Navigation points | D53 applied without exception (proposed by Endrit; Anaïs and Luca to confirm) | P5-04 review |
-| Wide layout with the lesson sidebar | Side by side from 1100 px, stacked below; collapsing the sidebar on reading pages is decided while implementing | P5-06 |
+| Wide layout with the lesson sidebar | **Decided (P5-06):** the sidebar stays; document and questions stand side by side when the task area is at least 700 px wide (container query on the task area, not the window), stacked below | P5-06 |
 | Genres | The list above, chosen by the reading owner to cover the outlines (P5-01 review: owner's decision) | – |
-| Generation | Ten hand-written test lessons first; offline generation in the prototype decided after their review | P5-07 |
+| Generation | **Proposed (P5-07, D55):** hand-written static lessons; the prototype's scope is the ten fr/A1 test lessons; offline generation deferred | P5-07 |
 
 ### Implementation plan
 
@@ -2314,7 +2332,7 @@ Rendered by the prototype (lesson `fr-ordering-at-a-cafe`): [HTML snapshot](mock
 
 ### Reading lesson screens
 
-Every page of one reading lesson (section 9), drawn with the fr/A1 lesson `fr-reading-a-text-message`. Flashcards, matching, the exam info page, the countdown, the results and the lesson navigation are the shared screens of the other categories; the document view and the skim phase are reading's own. Salt limits: matching curves are `~~~`, and the document stands beside the questions from 1100 px only.
+Every page of one reading lesson (section 9), drawn with the fr/A1 lesson `fr-reading-a-text-message` and redrawn in P5-08 from the running prototype (`P5-reading-integration` at `eb36f91` with the P5-08 fixes; the comparison is recorded in `docs/mockups/README.md`). Flashcards, matching, the exam info page, the countdown, the results and the lesson navigation are the shared screens of the other categories; the document view and the skim phase are reading's own. Salt limits: matching curves are `~~~`, and the document stands beside the questions from a 700 px task area only (1100 px with the sidebar, P5-06).
 
 #### Reading: combined artifact view
 
@@ -2333,28 +2351,60 @@ scale 1.3
 {
 .
 { <color:#020617>xx</color> | {
-{ [ <color:#020617>Lesson overview</color> ] | [ <color:#020617>Raw JSON</color> ] | [ <color:#020617>Start lesson</color> ] | <color:#020617>xxxxxx</color> | [ <color:#020617>Outline</color> ] | [ <color:#020617>Draft</color> ] | [ <color:#020617>Content</color> ] }
+{ <color:#E2E8F0><b>LESSON PROTOTYPE</b></color> | <color:#020617>xxxxxxxxxxxx</color> | <color:#94A3B8>Mother tongue</color> | [ <color:#020617>en</color> ] | <color:#475569>fr   de</color> | <color:#94A3B8>Interface language</color> | ^ en ^ | <color:#635BFF>●</color> <color:#94A3B8>Autoplay</color> }
+{ [ <color:#020617>Lesson overview</color> ] | [ <color:#020617>Raw JSON</color> ] | [ <color:#020617>Start lesson</color> ] | <color:#020617>xxxxxxxxxxxxxxxxxxxx</color> | [ <color:#020617>Outline</color> ] | [ <color:#020617>Draft</color> ] | [ <color:#020617>Content</color> ] }
 <size:26><color:#E2E8F0><b>Lire un SMS</b></color></size>
+.
+<color:#94A3B8>OUTLINE</color>  <color:#E2E8F0><b>Lesson outline</b></color>
+{ <color:#94A3B8>Lesson 54</color> | <color:#94A3B8>( Reading )</color> | <color:#E2E8F0>French / A1</color> | <color:#94A3B8>Theme</color> <color:#E2E8F0>Daily life</color> }
+<color:#94A3B8>ID</color>  <color:#94A3B8>fr-reading-a-text-message</color>
+<color:#94A3B8>Outline intent</color>
+<color:#E2E8F0>Lire un court SMS d’un ami qui propose de se voir (On se voit samedi ? 15 h au café de la gare ?)</color>
+<color:#E2E8F0>et retrouver le jour, l’heure et le lieu du rendez-vous.</color>
 .
 <color:#94A3B8>DRAFT</color>  <color:#E2E8F0><b>Lesson plan</b></color>
 <color:#94A3B8>5 key words   /   Genre: text message   /   About 8 minutes   /   Translations: English   /   Explanations: English</color>
-{ <color:#E2E8F0><b>Situation</b></color> | <color:#020617>xxxx</color> | <color:#E2E8F0><b>What the learner looks for</b></color> }
-{ <color:#94A3B8>Léa sends her friend Tom a text message …</color> | <color:#020617>xxxx</color> | <color:#94A3B8>The day, the time and the place of the meeting …</color> }
-<color:#E2E8F0><b>Key words</b></color>
-{ <color:#E2E8F0><b>Key word</b></color> | <color:#E2E8F0><b>Translation (English)</b></color> | <color:#E2E8F0><b>Explanation</b></color>
-<color:#E2E8F0>samedi</color> | <color:#E2E8F0>Saturday</color> | <color:#94A3B8>A day of the week …</color>
-<color:#E2E8F0>on se voit</color> | <color:#E2E8F0>we meet</color> | <color:#94A3B8>Friendly way to suggest meeting …</color> }
+<color:#E2E8F0><b>Learning objective</b></color>
+<color:#E2E8F0>Read a short text message from a friend and find the day, the time and the place of the meeting, and what happens first.</color>
+{ <color:#E2E8F0><b>Situation</b></color> | <color:#020617>xxxx</color> | <color:#E2E8F0><b>What the learner looks for</b></color>
+<color:#94A3B8>Léa sends her friend Tom a text message on Thursday</color> | <color:#020617>xxxx</color> | <color:#94A3B8>Find the day, the time and the place of the meeting,</color>
+<color:#94A3B8>evening to plan Saturday.</color> | <color:#020617>xxxx</color> | <color:#94A3B8>and put Saturday’s plans in order.</color> }
+<color:#E2E8F0><b>Key words (5)</b></color>
+{ <color:#94A3B8>Key word</color> | <color:#94A3B8>Translation (English)</color> | <color:#94A3B8>Explanation</color>
+<color:#E2E8F0><b>samedi</b></color> | <color:#E2E8F0>Saturday</color> | <color:#E2E8F0>A day of the week. Days take no capital letter in French.</color>
+<color:#E2E8F0><b>on se voit</b></color> | <color:#E2E8F0>we meet / shall we meet</color> | <color:#E2E8F0>Friendly way to suggest meeting: on means nous in everyday French.</color>
+<color:#E2E8F0><b>la gare</b></color> | <color:#E2E8F0>the train station</color> | <color:#E2E8F0>Where trains stop. Le café de la gare is the café at the station.</color>
+<color:#E2E8F0><b>avant</b></color> | <color:#E2E8F0>before</color> | <color:#E2E8F0>Earlier in time. Watch it: it tells you what comes first.</color>
+<color:#E2E8F0><b>après</b></color> | <color:#E2E8F0>after / afterwards</color> | <color:#E2E8F0>Later in time, the opposite of avant.</color> }
 <color:#E2E8F0><b>Documents</b></color>
-{ <color:#E2E8F0>Main document</color> <color:#94A3B8>· about 55 words (allowed 40–80)</color> | <color:#020617>xx</color> | <color:#E2E8F0>Exam document</color> <color:#94A3B8>· about 31 words (allowed 20–40)</color> }
+{ <color:#E2E8F0><b>Main document</b></color> <color:#94A3B8>55 words (allowed 40–80)</color> | <color:#020617>xx</color> | <color:#E2E8F0><b>Exam document</b></color> <color:#94A3B8>31 words (allowed 20–40)</color>
+<color:#E2E8F0>Three bubbles from Léa: hello and are you free on Saturday</color> | <color:#020617>xx</color> | <color:#E2E8F0>Paul suggests football in the park on Sunday at 10 h</color>
+<color:#E2E8F0>afternoon; the plan (dinner at hers in the evening, but first the</color> | <color:#020617>xx</color> | <color:#E2E8F0>at the entrance, then a picnic; Tom brings water.</color>
+<color:#E2E8F0>station café at 15 h, then the cinema at 17 h); answer before Friday.</color> | <color:#020617>xx</color> | <color:#020617>xx</color> }
 <color:#E2E8F0><b>Questions</b></color>
-{ <color:#94A3B8>Skim</color> | <color:#E2E8F0>Purpose of the document</color>
-<color:#94A3B8>Detail</color> | <color:#E2E8F0>4 questions: the day, the time, the place (multiple choice); dinner (true / false)</color>
-<color:#94A3B8>Exam</color> | <color:#E2E8F0>5 questions: multiple choice, true / false</color> }
+{ <color:#E2E8F0><b>Skim</b></color> | <color:#E2E8F0>why it was written</color>
+<color:#E2E8F0><b>Detail</b></color> | <color:#E2E8F0>The day of the meeting</color> <color:#94A3B8>(multiple choice)</color>
+<color:#020617>xx</color> | <color:#E2E8F0>The time of the meeting</color> <color:#94A3B8>(multiple choice)</color>
+<color:#020617>xx</color> | <color:#E2E8F0>The meeting place</color> <color:#94A3B8>(multiple choice)</color>
+<color:#020617>xx</color> | <color:#E2E8F0>Where they eat in the evening</color> <color:#94A3B8>(true / false)</color>
+<color:#E2E8F0><b>Final exam</b></color> | <color:#E2E8F0>5 questions: multiple choice, true / false</color> }
+<color:#94A3B8>Scoring: practice 35%, exam 65%; answers wrong only in accents or capitals earn 50% credit.</color>
 .
 <color:#94A3B8>CONTENT</color>  <color:#E2E8F0><b>Lesson content</b></color>
-{ <color:#E2E8F0>Main document · 55 words</color> | <color:#020617>xx</color> | <color:#E2E8F0>Exam document · 31 words</color> }
-<color:#94A3B8>Both documents in the one reading layout, then the shared lesson outline and page tabs:</color>
-<color:#94A3B8>Flashcards, Matching, Skim (45 s), Detail, Structure, Final exam (⏱ 03:10), with answers and explanations.</color>
+{ <color:#E2E8F0><b>Main document</b></color> <color:#94A3B8>55 words</color> | <color:#020617>xx</color> | <color:#E2E8F0><b>Exam document</b></color> <color:#94A3B8>31 words</color>
+<color:#94A3B8>Léa   Jeudi 18:42</color> | <color:#020617>xx</color> | <color:#94A3B8>Paul   Vendredi 9:15</color>
+<color:#E2E8F0>Salut Tom ! Tu es libre <back:#312E81><u>samedi</u></back> après-midi ?</color> | <color:#020617>xx</color> | <color:#E2E8F0>Salut Tom ! Dimanche matin, on joue au foot</color>
+<color:#E2E8F0>… <back:#312E81><u>avant</u></back>, <back:#312E81><u>on se voit</u></back> à 15 h au café de <back:#312E81><u>la gare</u></back> ? <back:#312E81><u>Après</u></back> le café …</color> | <color:#020617>xx</color> | <color:#E2E8F0>au parc Monceau ? … Paul</color> }
+<color:#94A3B8>About 8 minutes   /   Translations: English   /   Explanations: English</color>
+<color:#E2E8F0><b>Lesson outline</b></color>
+{ [ <color:#020617>1. Flashcards · Page 1</color> ] | [ <color:#020617>2. Matching · Page 2</color> ] | [ <color:#020617>3. Skim · Page 3</color> ] | [ <color:#020617>4. Detail · Page 4</color> ] }
+{ [ <color:#020617>5. Structure · Page 5</color> ] | [ <color:#020617>6. Final exam · Page 6</color> ] }
+<color:#E2E8F0><b>1. Flashcards</b></color>  <color:#94A3B8>Page 1 (flashcards) · 50 s · No countdown · Point units: 0</color>
+{ <color:#94A3B8>Front</color> | <color:#94A3B8>Back</color>
+<color:#E2E8F0>Saturday</color> | <color:#E2E8F0>samedi — A day of the week. Days take no capital letter in French.</color>
+<color:#E2E8F0>we meet / shall we meet</color> | <color:#E2E8F0>on se voit — Friendly way to suggest meeting …</color> }
+<color:#94A3B8>Every page read-only in its tab: the skim page with its skim time (45 s), the questions with answers and</color>
+<color:#94A3B8>explanations, the ordering task with its accepted order, the final exam with its countdown limit (3 min 10 s).</color>
 } | <color:#020617>xx</color> }
 .
 }
@@ -2379,27 +2429,34 @@ scale 1.3
 {
 .
 { <color:#020617>xx</color> | {
+{ <color:#E2E8F0><b>LESSON PROTOTYPE</b></color> | <color:#020617>xxxxxxxxxxxx</color> | <color:#94A3B8>Mother tongue</color> | [ <color:#020617>en</color> ] | <color:#475569>fr   de</color> | <color:#94A3B8>Interface language</color> | ^ en ^ | <color:#635BFF>●</color> <color:#94A3B8>Autoplay</color> }
+[ <color:#020617>Lesson overview</color> ]
+<color:#1E293B>──────────────────────────────────────────────────────────────────────────────</color>
+.
 { <color:#020617>xxxxxxxxxx</color> | {
-{ <color:#94A3B8>FRENCH / A1</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxx</color> | <color:#94A3B8>( Reading )</color> }
+{ <color:#94A3B8>French / A1</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | <color:#94A3B8>( Reading )</color> }
 <size:28><color:#E2E8F0><b>Lire un SMS</b></color></size>
-<color:#94A3B8>Read a short text message from a friend and find the day, the time and the place of the meeting.</color>
-<color:#94A3B8>Situation: Léa sends her friend Tom a text message on Thursday evening to plan Saturday.</color>
-<color:#94A3B8>5 key words  ·  About 8 minutes</color>
+<color:#E2E8F0>Read a short text message from a friend and find the day, the time and the place of the meeting,</color>
+<color:#E2E8F0>and what happens first.</color>
+.
+<color:#94A3B8>About 8 minutes</color>
+<color:#94A3B8>Léa sends her friend Tom a text message on Thursday evening to plan Saturday.</color>
+<color:#94A3B8>5 key words</color>
 .
 <color:#E2E8F0><b>Lesson outline</b></color>
-{ <color:#A5B4FC><b>A</b></color> | <color:#E2E8F0><b>Key words</b></color> | <color:#020617>xxxxxxxxxxxxxxxx</color> | <color:#94A3B8>⏱ 2 min</color> }
-{ <color:#020617>xx</color> | <color:#94A3B8>1  Flashcards</color> }
-{ <color:#020617>xx</color> | <color:#94A3B8>2  Matching</color> }
-{ <color:#67E8F9><b>B</b></color> | <color:#E2E8F0><b>The document</b></color> | <color:#020617>xxxxxxxxxxxxxxxx</color> | <color:#94A3B8>⏱ 4 min</color> }
-{ <color:#020617>xx</color> | <color:#94A3B8>3  Skim</color> }
-{ <color:#020617>xx</color> | <color:#94A3B8>4  Detail</color> }
-{ <color:#020617>xx</color> | <color:#94A3B8>5  Structure</color> }
-{ <color:#FDA4AF><b>C</b></color> | <color:#E2E8F0><b>Final exam</b></color> | <color:#020617>xxxxxxxxxxxxxxxx</color> | <color:#94A3B8>⏱ 2 min</color> }
+{ <color:#A5B4FC><b>A</b></color> | <color:#E2E8F0>Key words</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxx</color> | <color:#E2E8F0>[ 2 min ]</color> }
+{ <color:#020617>xx</color> | <color:#A5B4FC>(1)</color> <color:#E2E8F0>Flashcards</color> }
+{ <color:#020617>xx</color> | <color:#A5B4FC>(2)</color> <color:#E2E8F0>Matching</color> }
+{ <color:#67E8F9><b>B</b></color> | <color:#E2E8F0>The document</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxxxxx</color> | <color:#E2E8F0>[ 4 min ]</color> }
+{ <color:#020617>xx</color> | <color:#67E8F9>(3)</color> <color:#E2E8F0>Skim</color> }
+{ <color:#020617>xx</color> | <color:#67E8F9>(4)</color> <color:#E2E8F0>Detail</color> }
+{ <color:#020617>xx</color> | <color:#67E8F9>(5)</color> <color:#E2E8F0>Structure</color> }
+{ <color:#86EFAC><b>C</b></color> | <color:#E2E8F0>Final exam</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxx</color> | <color:#E2E8F0>[ 2 min ]</color> }
 { <color:#020617>xx</color> | <color:#94A3B8>Answer 5 questions on 1 timed page</color> }
 .
 <color:#94A3B8>The genre is not shown: the skim question may ask for it.</color>
 .
-[ <color:#020617>                        Start                        </color> ]
+[ <color:#020617>                              Continue                              </color> ]
 } | <color:#020617>xxxxxxxxxx</color> }
 } | <color:#020617>xx</color> }
 .
@@ -2425,36 +2482,41 @@ scale 1.3
 {
 .
 { <color:#020617>xx</color> | {
-{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF></color><color:#1E293B>░░░░░░░░░░░░</color> | <color:#94A3B8>0%</color> }
-<color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
+{ <color:#E2E8F0><b>LESSON PROTOTYPE</b></color> | <color:#020617>xxxxxxxxxxxx</color> | <color:#94A3B8>Mother tongue</color> | [ <color:#020617>en</color> ] | <color:#475569>fr   de</color> | <color:#94A3B8>Interface language</color> | ^ en ^ | <color:#635BFF>●</color> <color:#94A3B8>Autoplay</color> }
+[ <color:#020617>Cancel lesson</color> ]
+<color:#1E293B>──────────────────────────────────────────────────────────────────────────────</color>
+.
+{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#1E293B>░░░░░░░░░░░░░░░░░░░░</color> | <color:#94A3B8>0%</color> }
+<color:#1E293B>────────────────────────────────────────────────────────────</color>
 .
 { {
 <color:#94A3B8>Your lesson</color>
 <color:#E2E8F0><b>0 of 5 points done</b></color>
 .
-{ <color:#A5B4FC><b>(1)</b></color> | <color:#E2E8F0><b>Flashcards</b></color> | <color:#67E8F9>You are here</color> }
-{ <color:#64748B>2</color> | <color:#94A3B8>Matching</color> | <color:#64748B>Not yet open</color> }
-{ <color:#64748B>3</color> | <color:#94A3B8>Skim</color> | <color:#64748B>Not yet open</color> }
-{ <color:#64748B>4</color> | <color:#94A3B8>Detail</color> | <color:#64748B>Not yet open</color> }
-{ <color:#64748B>5</color> | <color:#94A3B8>Structure</color> | <color:#64748B>Not yet open</color> }
-.
-{ <color:#FDA4AF><b>⚑</b></color> | <color:#E2E8F0>Final exam</color> | <color:#94A3B8>5 questions</color> }
+{ <back:#A5B4FC><color:#020617><b> 1 </b></color></back> | <color:#E2E8F0><b>Flashcards</b></color> | <color:#A5B4FC>You are here</color> }
+{ <color:#A5B4FC>(2)</color> | <color:#94A3B8>Matching</color> | <color:#64748B>Not yet open</color> }
+{ <color:#67E8F9>(3)</color> | <color:#94A3B8>Skim</color> | <color:#64748B>Not yet open</color> }
+{ <color:#67E8F9>(4)</color> | <color:#94A3B8>Detail</color> | <color:#64748B>Not yet open</color> }
+{ <color:#67E8F9>(5)</color> | <color:#94A3B8>Structure</color> | <color:#64748B>Not yet open</color> }
+{ <color:#E2E8F0><b>⚑</b></color> | <color:#E2E8F0><b>Final exam</b></color> | <color:#94A3B8>5 questions</color> }
 } | <color:#020617>xxx</color> | {
-<color:#94A3B8>Flashcards · point 1 of 5</color>
-<size:24><color:#E2E8F0><b>Turn each card to learn the key words of the text.</b></color></size>
-<color:#94A3B8>2 of 5 cards turned</color>
+<color:#94A3B8>Flashcards</color>
+<size:22><color:#E2E8F0><b>Turn each card to learn the key words of the text.</b></color></size>
 .
-{ <back:#0F172A><color:#E2E8F0>          Saturday                 ⟲ </color></back> | <color:#020617>xx</color> | <back:#1E1B4B><color:#E2E8F0>     <b>on se voit</b>   🔊          ⟲ </color></back> }
-{ <back:#0F172A><color:#0F172A>                                    </color></back> | <color:#020617>xx</color> | <back:#1E1B4B><color:#94A3B8> on means nous in everyday French. </color></back> }
+<color:#94A3B8>1 of 5 cards turned</color>
 .
-{ <back:#1E1B4B><color:#E2E8F0>     <b>la gare</b>   🔊             ⟲ </color></back> | <color:#020617>xx</color> | <back:#0F172A><color:#E2E8F0>          before                   ⟲ </color></back> }
-{ <back:#1E1B4B><color:#94A3B8> Where trains stop.                 </color></back> | <color:#020617>xx</color> | <back:#0F172A><color:#0F172A>                                    </color></back> }
+{ <back:#020617><color:#A5B4FC><b>  samedi</b></color>  <color:#E2E8F0>◂)</color>  <color:#94A3B8>⟲</color></back> | <color:#020617>xx</color> | <back:#020617><color:#E2E8F0><b>  we meet / shall we meet  </b></color>  <color:#94A3B8>⟲</color></back> }
+{ <back:#020617><color:#94A3B8>  A day of the week. Days take no</color></back> | <color:#020617>xx</color> | <color:#020617>xx</color> }
+{ <back:#020617><color:#94A3B8>  capital letter in French.</color></back> | <color:#020617>xx</color> | <color:#020617>xx</color> }
 .
-{ <back:#0F172A><color:#E2E8F0>          after                    ⟲ </color></back> | <color:#020617>xx</color> | <color:#020617>xx</color> }
+{ <back:#020617><color:#E2E8F0><b>  the train station  </b></color>  <color:#94A3B8>⟲</color></back> | <color:#020617>xx</color> | <back:#020617><color:#E2E8F0><b>  before  </b></color>  <color:#94A3B8>⟲</color></back> }
 .
-{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#64748B>  Continue  </color> ] }
-<color:#94A3B8>The vocabulary flashcard page: meaning in the mother tongue in front; the key word, its speaker and its explanation behind.</color>
-<color:#94A3B8>Continue opens once every card was turned.</color>
+{ <back:#020617><color:#E2E8F0><b>  after / afterwards  </b></color>  <color:#94A3B8>⟲</color></back> | <color:#020617>xx</color> | <color:#020617>xx</color> }
+.
+{ <color:#94A3B8>Flip every card to continue.</color> | <color:#020617>xxxxxx</color> | [ <color:#64748B>  Continue  </color> ] }
+.
+<color:#94A3B8>The vocabulary flashcards: the meaning in the mother tongue in front; the key word with its speaker</color>
+<color:#94A3B8>and its explanation behind. Every card must be turned once; the page shows no score.</color>
 } }
 } | <color:#020617>xx</color> }
 .
@@ -2480,34 +2542,43 @@ scale 1.3
 {
 .
 { <color:#020617>xx</color> | {
-{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>█</color><color:#1E293B>░░░░░░░░░░░</color> | <color:#94A3B8>11%</color> }
-<color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
+{ <color:#E2E8F0><b>LESSON PROTOTYPE</b></color> | <color:#020617>xxxxxxxxxxxx</color> | <color:#94A3B8>Mother tongue</color> | [ <color:#020617>en</color> ] | <color:#475569>fr   de</color> | <color:#94A3B8>Interface language</color> | ^ en ^ | <color:#635BFF>●</color> <color:#94A3B8>Autoplay</color> }
+[ <color:#020617>Cancel lesson</color> ]
+<color:#1E293B>──────────────────────────────────────────────────────────────────────────────</color>
+.
+{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>██</color><color:#1E293B>░░░░░░░░░░░░░░░░░░</color> | <color:#94A3B8>10.5%</color> | <color:#E2E8F0><b>0 / 100</b></color> }
+<color:#1E293B>────────────────────────────────────────────────────────────</color>
 .
 { {
 <color:#94A3B8>Your lesson</color>
 <color:#E2E8F0><b>1 of 5 points done</b></color>
 .
-{ <color:#A5B4FC><b>1</b></color> | <color:#E2E8F0>Flashcards</color> | <color:#94A3B8>Done</color> }
-{ <color:#A5B4FC><b>(2)</b></color> | <color:#E2E8F0><b>Matching</b></color> | <color:#67E8F9>You are here</color> }
-{ <color:#64748B>3</color> | <color:#94A3B8>Skim</color> | <color:#64748B>Not yet open</color> }
-{ <color:#64748B>4</color> | <color:#94A3B8>Detail</color> | <color:#64748B>Not yet open</color> }
-{ <color:#64748B>5</color> | <color:#94A3B8>Structure</color> | <color:#64748B>Not yet open</color> }
-.
-{ <color:#FDA4AF><b>⚑</b></color> | <color:#E2E8F0>Final exam</color> | <color:#94A3B8>5 questions</color> }
+{ <back:#A5B4FC><color:#020617> 1 </color></back> | <color:#94A3B8>Flashcards</color> | <color:#94A3B8>Done</color> }
+{ <back:#A5B4FC><color:#020617><b> 2 </b></color></back> | <color:#E2E8F0><b>Matching</b></color> | <color:#A5B4FC>You are here</color> }
+{ <color:#67E8F9>(3)</color> | <color:#94A3B8>Skim</color> | <color:#64748B>Not yet open</color> }
+{ <color:#67E8F9>(4)</color> | <color:#94A3B8>Detail</color> | <color:#64748B>Not yet open</color> }
+{ <color:#67E8F9>(5)</color> | <color:#94A3B8>Structure</color> | <color:#64748B>Not yet open</color> }
+{ <color:#E2E8F0><b>⚑</b></color> | <color:#E2E8F0><b>Final exam</b></color> | <color:#94A3B8>5 questions</color> }
 } | <color:#020617>xxx</color> | {
-<color:#94A3B8>Matching · point 2 of 5</color>
-<size:24><color:#E2E8F0><b>Match each key word with its meaning.</b></color></size>
+<color:#94A3B8>Matching</color>
+<size:22><color:#E2E8F0><b>Match each key word with its meaning.</b></color></size>
 .
-{ <color:#94A3B8><b>English</b></color> | <color:#020617>xxxxxxxxxxxx</color> | <color:#94A3B8><b>French</b></color>
-[ <color:#020617>Saturday</color> ] | <color:#A78BFA>~~~~~~~~~~~~</color> | [ <color:#020617>samedi  🔊</color> ]
-[ <color:#020617>before</color> ] | <color:#020617>xxxxxxxxxxxx</color> | [ <color:#020617>après  🔊</color> ]
-[ <color:#020617>we meet</color> ] | <color:#A78BFA>~~~~~~~~~~~~</color> | [ <color:#020617>on se voit  🔊</color> ]
-[ <color:#020617>the train station</color> ] | <color:#020617>xxxxxxxxxxxx</color> | [ <color:#020617>avant  🔊</color> ]
-[ <color:#020617>after</color> ] | <color:#020617>xxxxxxxxxxxx</color> | [ <color:#020617>la gare  🔊</color> ] }
+<color:#94A3B8>Select a word on one side, then its partner on the other. Pairs stay editable until Continue.</color>
 .
-<color:#94A3B8>2 of 5 pairs assigned</color>
-{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#64748B>  Check  </color> ] }
-<color:#94A3B8>The vocabulary matching board: curves, Check, slide to the right row, green flash when every pair is right.</color>
+{
+[ <color:#020617>after</color> ] | <color:#020617>xxxxxxxxxxxx</color> | [ <color:#020617>après  ◂)</color> ]
+[ <color:#020617>before</color> ] | <color:#020617>xxxxxxxxxxxx</color> | [ <color:#020617>on se voit  ◂)</color> ]
+[ <color:#020617>we meet</color> ] | <color:#A78BFA>~~~~~~~~~~~~</color> | [ <color:#020617>avant  ◂)</color> ]
+[ <color:#020617>the train station</color> ] | <color:#020617>xxxxxxxxxxxx</color> | [ <color:#020617>samedi  ◂)</color> ]
+[ <color:#020617>Saturday</color> ] | <color:#A78BFA>~~~~~~~~~~~~</color> | [ <color:#020617>la gare  ◂)</color> ]
+}
+.
+<color:#94A3B8>2 of 5 pairs assigned.</color>
+.
+{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | <color:#020617>xxxxxx</color> | [ <color:#64748B>  Check  </color> ] }
+.
+<color:#94A3B8>The vocabulary matching board: meanings on the left, key words with their speaker on the right;</color>
+<color:#94A3B8>curves join the pairs. A fully correct board goes straight on after a green flash.</color>
 } }
 } | <color:#020617>xx</color> }
 .
@@ -2533,37 +2604,47 @@ scale 1.3
 {
 .
 { <color:#020617>xx</color> | {
-{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>███</color><color:#1E293B>░░░░░░░░░</color> | <color:#94A3B8>21%</color> | <color:#E2E8F0><b>15.9 / 100</b></color> }
-<color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
+{ <color:#E2E8F0><b>LESSON PROTOTYPE</b></color> | <color:#020617>xxxxxxxxxxxx</color> | <color:#94A3B8>Mother tongue</color> | [ <color:#020617>en</color> ] | <color:#475569>fr   de</color> | <color:#94A3B8>Interface language</color> | ^ en ^ | <color:#635BFF>●</color> <color:#94A3B8>Autoplay</color> }
+[ <color:#020617>Cancel lesson</color> ]
+<color:#1E293B>──────────────────────────────────────────────────────────────────────────────</color>
+.
+{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>████</color><color:#1E293B>░░░░░░░░░░░░░░░░</color> | <color:#94A3B8>21.1%</color> | <color:#E2E8F0><b>15.9 / 100</b></color> }
+<color:#1E293B>────────────────────────────────────────────────────────────</color>
 .
 { {
 <color:#94A3B8>Your lesson</color>
 <color:#E2E8F0><b>2 of 5 points done</b></color>
 .
-{ <color:#A5B4FC><b>1</b></color> | <color:#E2E8F0>Flashcards</color> | <color:#94A3B8>Done</color> }
-{ <color:#A5B4FC><b>2</b></color> | <color:#E2E8F0>Matching</color> | <color:#94A3B8>Done</color> }
-{ <color:#67E8F9><b>(3)</b></color> | <color:#E2E8F0><b>Skim</b></color> | <color:#67E8F9>You are here</color> }
-{ <color:#64748B>4</color> | <color:#94A3B8>Detail</color> | <color:#64748B>Not yet open</color> }
-{ <color:#64748B>5</color> | <color:#94A3B8>Structure</color> | <color:#64748B>Not yet open</color> }
-.
-{ <color:#FDA4AF><b>⚑</b></color> | <color:#E2E8F0>Final exam</color> | <color:#94A3B8>5 questions</color> }
+{ <back:#A5B4FC><color:#020617> 1 </color></back> | <color:#94A3B8>Flashcards</color> | <color:#94A3B8>Done</color> }
+{ <back:#A5B4FC><color:#020617> 2 </color></back> | <color:#94A3B8>Matching</color> | <color:#94A3B8>Done</color> }
+{ <back:#67E8F9><color:#020617><b> 3 </b></color></back> | <color:#E2E8F0><b>Skim</b></color> | <color:#67E8F9>You are here</color> }
+{ <color:#67E8F9>(4)</color> | <color:#94A3B8>Detail</color> | <color:#64748B>Not yet open</color> }
+{ <color:#67E8F9>(5)</color> | <color:#94A3B8>Structure</color> | <color:#64748B>Not yet open</color> }
+{ <color:#E2E8F0><b>⚑</b></color> | <color:#E2E8F0><b>Final exam</b></color> | <color:#94A3B8>5 questions</color> }
 } | <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Skim · point 3 of 5</color> | <color:#020617>xxxxxxxxxxxxxxxx</color> | { <color:#94A3B8>Time to skim</color>
-<size:24><color:#E2E8F0><b>0:45</b></color></size>
-<color:#635BFF>██████████</color> } }
-<size:24><color:#E2E8F0><b>Look over the document quickly.</b></color></size>
-<color:#94A3B8>When the time is up it is put away; then answer the question.</color>
+<color:#94A3B8>Skim</color>
+<size:22><color:#E2E8F0><b>Look over the document quickly. When the time is up</b></color></size>
+<size:22><color:#E2E8F0><b>it is put away; then answer the question.</b></color></size>
 .
-{
-<color:#E2E8F0><b>Léa</b></color>  <color:#94A3B8>Jeudi 18:42</color>
+{ <back:#020617><color:#94A3B8>Time to skim</color></back> | <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#020617>I’ve finished reading</color> ] }
+<back:#020617><size:22><color:#E2E8F0><b>0:42</b></color></size></back>
+<back:#020617><color:#67E8F9>██████████████</color><color:#1E293B>░</color></back>
+.
+<color:#94A3B8>Léa</color>   <color:#94A3B8>Jeudi 18:42</color>
 <color:#E2E8F0>Salut Tom ! Tu es libre <back:#312E81><u>samedi</u></back> après-midi ?</color>
+.
 <color:#E2E8F0>Samedi soir, on mange chez moi avec Paul. On fait des crêpes !</color>
 <color:#E2E8F0>Mais <back:#312E81><u>avant</u></back>, <back:#312E81><u>on se voit</u></back> à 15 h au café de <back:#312E81><u>la gare</u></back> ?</color>
 <color:#E2E8F0><back:#312E81><u>Après</u></back> le café, on va au cinéma à 17 h.</color>
-<color:#E2E8F0>Si tu ne peux pas, dis-le-moi <back:#312E81><u>avant</u></back> vendredi. Bisous, Léa</color>
-}
 .
-{ [ <color:#020617>I’ve finished reading</color> ] | <color:#020617>xxxxxxxxxxxxxx</color> | <color:#94A3B8>The question opens when the time is up.</color> }
+<color:#E2E8F0>Si tu ne peux pas, dis-le-moi <back:#312E81><u>avant</u></back> vendredi. Bisous, Léa</color>
+.
+<color:#94A3B8><i>The question opens when the time is up or when you have finished reading.</i></color>
+.
+{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | <color:#020617>xxxxxx</color> | [ <color:#64748B>  Check  </color> ] }
+.
+<color:#94A3B8>Skim time from the word count at the skim speed of the level: 45 s for these 55 words at A1. It restarts after</color>
+<color:#94A3B8>a reload; a document put away stays away until Check. No blur: nothing of the document stays on screen.</color>
 } }
 } | <color:#020617>xx</color> }
 .
@@ -2589,33 +2670,37 @@ scale 1.3
 {
 .
 { <color:#020617>xx</color> | {
-{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>███</color><color:#1E293B>░░░░░░░░░</color> | <color:#94A3B8>21%</color> | <color:#E2E8F0><b>15.9 / 100</b></color> }
-<color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
+{ <color:#E2E8F0><b>LESSON PROTOTYPE</b></color> | <color:#020617>xxxxxxxxxxxx</color> | <color:#94A3B8>Mother tongue</color> | [ <color:#020617>en</color> ] | <color:#475569>fr   de</color> | <color:#94A3B8>Interface language</color> | ^ en ^ | <color:#635BFF>●</color> <color:#94A3B8>Autoplay</color> }
+[ <color:#020617>Cancel lesson</color> ]
+<color:#1E293B>──────────────────────────────────────────────────────────────────────────────</color>
+.
+{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>████</color><color:#1E293B>░░░░░░░░░░░░░░░░</color> | <color:#94A3B8>21.1%</color> | <color:#E2E8F0><b>15.9 / 100</b></color> }
+<color:#1E293B>────────────────────────────────────────────────────────────</color>
 .
 { {
 <color:#94A3B8>Your lesson</color>
 <color:#E2E8F0><b>2 of 5 points done</b></color>
 .
-{ <color:#A5B4FC><b>1</b></color> | <color:#E2E8F0>Flashcards</color> | <color:#94A3B8>Done</color> }
-{ <color:#A5B4FC><b>2</b></color> | <color:#E2E8F0>Matching</color> | <color:#94A3B8>Done</color> }
-{ <color:#67E8F9><b>(3)</b></color> | <color:#E2E8F0><b>Skim</b></color> | <color:#67E8F9>You are here</color> }
-{ <color:#64748B>4</color> | <color:#94A3B8>Detail</color> | <color:#64748B>Not yet open</color> }
-{ <color:#64748B>5</color> | <color:#94A3B8>Structure</color> | <color:#64748B>Not yet open</color> }
-.
-{ <color:#FDA4AF><b>⚑</b></color> | <color:#E2E8F0>Final exam</color> | <color:#94A3B8>5 questions</color> }
+{ <back:#A5B4FC><color:#020617> 1 </color></back> | <color:#94A3B8>Flashcards</color> | <color:#94A3B8>Done</color> }
+{ <back:#A5B4FC><color:#020617> 2 </color></back> | <color:#94A3B8>Matching</color> | <color:#94A3B8>Done</color> }
+{ <back:#67E8F9><color:#020617><b> 3 </b></color></back> | <color:#E2E8F0><b>Skim</b></color> | <color:#67E8F9>You are here</color> }
+{ <color:#67E8F9>(4)</color> | <color:#94A3B8>Detail</color> | <color:#64748B>Not yet open</color> }
+{ <color:#67E8F9>(5)</color> | <color:#94A3B8>Structure</color> | <color:#64748B>Not yet open</color> }
+{ <color:#E2E8F0><b>⚑</b></color> | <color:#E2E8F0><b>Final exam</b></color> | <color:#94A3B8>5 questions</color> }
 } | <color:#020617>xxx</color> | {
-<color:#94A3B8>Skim · point 3 of 5</color>
-<size:24><color:#E2E8F0><b>Answer from memory</b></color></size>
-<color:#94A3B8>The document is put away. Choose one answer.</color>
+<color:#94A3B8>Skim</color>
+<size:22><color:#E2E8F0><b>Answer from memory</b></color></size>
 .
 <color:#E2E8F0><b>Pourquoi Léa écrit-elle à Tom ?</b></color>
-<back:#0F172A><color:#E2E8F0>   Pour annuler un rendez-vous                          </color></back>
-<back:#1E1B4B><color:#E2E8F0>   Pour proposer de se voir samedi       (selected)     </color></back>
-<back:#0F172A><color:#E2E8F0>   Pour dire merci pour un cadeau                       </color></back>
-<back:#0F172A><color:#E2E8F0>   Pour demander l’heure du train                       </color></back>
+() <color:#E2E8F0>Pour dire merci pour un cadeau</color>
+(X) <color:#E2E8F0>Pour proposer de se voir samedi</color>
+() <color:#E2E8F0>Pour annuler un rendez-vous</color>
+() <color:#E2E8F0>Pour demander l’heure du train</color>
 .
-{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#020617>  Check  </color> ] }
-<color:#94A3B8>Nothing of the document stays on screen (no blur). Check confirms the choice.</color>
+{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | <color:#020617>xxxxxx</color> | [ <color:#020617>  Check  </color> ] }
+.
+<color:#94A3B8>When the time is up or I’ve finished reading is pressed, the document is put away and the one global</color>
+<color:#94A3B8>question opens (here: why it was written). It is confirmed with Check; nothing is submitted on choice.</color>
 } }
 } | <color:#020617>xx</color> }
 .
@@ -2641,43 +2726,47 @@ scale 1.3
 {
 .
 { <color:#020617>xx</color> | {
-{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>███</color><color:#1E293B>░░░░░░░░░</color> | <color:#94A3B8>21%</color> | <color:#E2E8F0><b>15.9 / 100</b></color> }
-<color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
+{ <color:#E2E8F0><b>LESSON PROTOTYPE</b></color> | <color:#020617>xxxxxxxxxxxx</color> | <color:#94A3B8>Mother tongue</color> | [ <color:#020617>en</color> ] | <color:#475569>fr   de</color> | <color:#94A3B8>Interface language</color> | ^ en ^ | <color:#635BFF>●</color> <color:#94A3B8>Autoplay</color> }
+[ <color:#020617>Cancel lesson</color> ]
+<color:#1E293B>──────────────────────────────────────────────────────────────────────────────</color>
+.
+{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>████</color><color:#1E293B>░░░░░░░░░░░░░░░░</color> | <color:#94A3B8>21.1%</color> | <color:#E2E8F0><b>19.1 / 100</b></color> }
+<color:#1E293B>────────────────────────────────────────────────────────────</color>
 .
 { {
 <color:#94A3B8>Your lesson</color>
 <color:#E2E8F0><b>2 of 5 points done</b></color>
 .
-{ <color:#A5B4FC><b>1</b></color> | <color:#E2E8F0>Flashcards</color> | <color:#94A3B8>Done</color> }
-{ <color:#A5B4FC><b>2</b></color> | <color:#E2E8F0>Matching</color> | <color:#94A3B8>Done</color> }
-{ <color:#67E8F9><b>(3)</b></color> | <color:#E2E8F0><b>Skim</b></color> | <color:#67E8F9>You are here</color> }
-{ <color:#64748B>4</color> | <color:#94A3B8>Detail</color> | <color:#64748B>Not yet open</color> }
-{ <color:#64748B>5</color> | <color:#94A3B8>Structure</color> | <color:#64748B>Not yet open</color> }
-.
-{ <color:#FDA4AF><b>⚑</b></color> | <color:#E2E8F0>Final exam</color> | <color:#94A3B8>5 questions</color> }
+{ <back:#A5B4FC><color:#020617> 1 </color></back> | <color:#94A3B8>Flashcards</color> | <color:#94A3B8>Done</color> }
+{ <back:#A5B4FC><color:#020617> 2 </color></back> | <color:#94A3B8>Matching</color> | <color:#94A3B8>Done</color> }
+{ <back:#67E8F9><color:#020617><b> 3 </b></color></back> | <color:#E2E8F0><b>Skim</b></color> | <color:#67E8F9>You are here</color> }
+{ <color:#67E8F9>(4)</color> | <color:#94A3B8>Detail</color> | <color:#64748B>Not yet open</color> }
+{ <color:#67E8F9>(5)</color> | <color:#94A3B8>Structure</color> | <color:#64748B>Not yet open</color> }
+{ <color:#E2E8F0><b>⚑</b></color> | <color:#E2E8F0><b>Final exam</b></color> | <color:#94A3B8>5 questions</color> }
 } | <color:#020617>xxx</color> | {
-<color:#94A3B8>Skim · point 3 of 5</color>
-<size:24><color:#E2E8F0><b>Answer from memory</b></color></size>
+<color:#94A3B8>Skim</color>
+<size:22><color:#E2E8F0><b>Answer from memory</b></color></size>
 .
-{ {
-<color:#E2E8F0><b>Léa</b></color>  <color:#94A3B8>Jeudi 18:42</color>
-<color:#E2E8F0>Salut Tom ! Tu es libre samedi après-midi ?</color>
+<color:#94A3B8>Léa</color>   <color:#94A3B8>Jeudi 18:42</color>
+<color:#E2E8F0>Salut Tom ! Tu es libre <back:#312E81><u>samedi</u></back> après-midi ?</color>
+.
 <color:#E2E8F0>Samedi soir, on mange chez moi avec Paul. On fait des crêpes !</color>
-<color:#E2E8F0>Mais avant, on se voit à 15 h au café de la gare ?</color>
-<color:#E2E8F0>Après le café, on va au cinéma à 17 h.</color>
-<color:#E2E8F0>Si tu ne peux pas, dis-le-moi avant vendredi. Bisous, Léa</color>
-} | <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>Pourquoi Léa écrit-elle à Tom ?</b></color>
-<back:#0F172A><color:#E2E8F0>   Pour annuler un rendez-vous             </color></back>
-<back:#14532D><color:#00E676> ✓ Pour proposer de se voir samedi       </color></back>
-<back:#7F1D1D><color:#FF5252> ✕ Pour dire merci pour un cadeau         </color></back>
-<back:#0F172A><color:#E2E8F0>   Pour demander l’heure du train          </color></back>
-<color:#94A3B8>Tu es libre samedi ? and on se voit… ? are invitations:</color>
-<color:#94A3B8>Léa suggests meeting.</color>
-} }
+<color:#E2E8F0>Mais <back:#312E81><u>avant</u></back>, <back:#312E81><u>on se voit</u></back> à 15 h au café de <back:#312E81><u>la gare</u></back> ?</color>
+<color:#E2E8F0><back:#312E81><u>Après</u></back> le café, on va au cinéma à 17 h.</color>
 .
-{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#020617>  Continue  </color> ] }
-<color:#94A3B8>After Check the document comes back; the page waits for Continue, also when the answer is right.</color>
+<color:#E2E8F0>Si tu ne peux pas, dis-le-moi <back:#312E81><u>avant</u></back> vendredi. Bisous, Léa</color>
+.
+<color:#E2E8F0><b>Pourquoi Léa écrit-elle à Tom ?</b></color>
+() <color:#E2E8F0>Pour dire merci pour un cadeau</color>
+(X) <color:#E2E8F0>Pour proposer de se voir samedi</color>
+() <color:#E2E8F0>Pour annuler un rendez-vous</color>
+() <color:#E2E8F0>Pour demander l’heure du train</color>
+<back:#020617><color:#00E676>▌</color> <color:#E2E8F0>✓ Correct</color>       </back>
+.
+{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | <color:#020617>xxxxxx</color> | [ <color:#020617>  Continue  </color> ] }
+.
+<color:#94A3B8>After Check the document comes back with the correction card; a wrong answer shows the right one</color>
+<color:#94A3B8>in green above the chosen one struck through, then the explanation. The page waits for Continue.</color>
 } }
 } | <color:#020617>xx</color> }
 .
@@ -2703,45 +2792,65 @@ scale 1.3
 {
 .
 { <color:#020617>xx</color> | {
-{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>████</color><color:#1E293B>░░░░░░░░</color> | <color:#94A3B8>35%</color> | <color:#E2E8F0><b>19.1 / 100</b></color> }
-<color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
+{ <color:#E2E8F0><b>LESSON PROTOTYPE</b></color> | <color:#020617>xxxxxxxxxxxx</color> | <color:#94A3B8>Mother tongue</color> | [ <color:#020617>en</color> ] | <color:#475569>fr   de</color> | <color:#94A3B8>Interface language</color> | ^ en ^ | <color:#635BFF>●</color> <color:#94A3B8>Autoplay</color> }
+[ <color:#020617>Cancel lesson</color> ]
+<color:#1E293B>──────────────────────────────────────────────────────────────────────────────</color>
+.
+{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>███████</color><color:#1E293B>░░░░░░░░░░░░░</color> | <color:#94A3B8>34.7%</color> | <color:#E2E8F0><b>19.1 / 100</b></color> }
+<color:#1E293B>────────────────────────────────────────────────────────────</color>
 .
 { {
 <color:#94A3B8>Your lesson</color>
 <color:#E2E8F0><b>3 of 5 points done</b></color>
 .
-{ <color:#A5B4FC><b>1</b></color> | <color:#E2E8F0>Flashcards</color> | <color:#94A3B8>Done</color> }
-{ <color:#A5B4FC><b>2</b></color> | <color:#E2E8F0>Matching</color> | <color:#94A3B8>Done</color> }
-{ <color:#67E8F9><b>3</b></color> | <color:#E2E8F0>Skim</color> | <color:#94A3B8>Done</color> }
-{ <color:#67E8F9><b>(4)</b></color> | <color:#E2E8F0><b>Detail</b></color> | <color:#67E8F9>You are here</color> }
-{ <color:#64748B>5</color> | <color:#94A3B8>Structure</color> | <color:#64748B>Not yet open</color> }
-.
-{ <color:#FDA4AF><b>⚑</b></color> | <color:#E2E8F0>Final exam</color> | <color:#94A3B8>5 questions</color> }
+{ <back:#A5B4FC><color:#020617> 1 </color></back> | <color:#94A3B8>Flashcards</color> | <color:#94A3B8>Done</color> }
+{ <back:#A5B4FC><color:#020617> 2 </color></back> | <color:#94A3B8>Matching</color> | <color:#94A3B8>Done</color> }
+{ <back:#67E8F9><color:#020617> 3 </color></back> | <color:#94A3B8>Skim</color> | <color:#94A3B8>Done</color> }
+{ <back:#67E8F9><color:#020617><b> 4 </b></color></back> | <color:#E2E8F0><b>Detail</b></color> | <color:#67E8F9>You are here</color> }
+{ <color:#67E8F9>(5)</color> | <color:#94A3B8>Structure</color> | <color:#64748B>Not yet open</color> }
+{ <color:#E2E8F0><b>⚑</b></color> | <color:#E2E8F0><b>Final exam</b></color> | <color:#94A3B8>5 questions</color> }
 } | <color:#020617>xxx</color> | {
-<color:#94A3B8>Detail · point 4 of 5</color>
-<size:24><color:#E2E8F0><b>Read the document carefully and answer the questions.</b></color></size>
+<color:#94A3B8>Detail</color>
+<size:22><color:#E2E8F0><b>Read the document carefully and answer the</b></color></size>
+<size:22><color:#E2E8F0><b>questions.</b></color></size>
 .
 { {
-<color:#E2E8F0><b>Léa</b></color>  <color:#94A3B8>Jeudi 18:42</color>
+<color:#94A3B8>Léa</color>   <color:#94A3B8>Jeudi 18:42</color>
 <color:#E2E8F0>Salut Tom ! Tu es libre <back:#312E81><u>samedi</u></back> après-midi ?</color>
+.
 <color:#E2E8F0>Samedi soir, on mange chez moi avec Paul. On fait des crêpes !</color>
 <color:#E2E8F0>Mais <back:#312E81><u>avant</u></back>, <back:#312E81><u>on se voit</u></back> à 15 h au café de <back:#312E81><u>la gare</u></back> ?</color>
 <color:#E2E8F0><back:#312E81><u>Après</u></back> le café, on va au cinéma à 17 h.</color>
+.
 <color:#E2E8F0>Si tu ne peux pas, dis-le-moi <back:#312E81><u>avant</u></back> vendredi. Bisous, Léa</color>
 } | <color:#020617>xxx</color> | {
 <color:#E2E8F0><b>Quel jour Léa propose-t-elle de se voir ?</b></color>
-{ () <color:#E2E8F0>jeudi</color> | (X) <color:#E2E8F0>samedi</color> | () <color:#E2E8F0>dimanche</color> | () <color:#E2E8F0>vendredi</color> }
+() <color:#E2E8F0>dimanche</color>
+(X) <color:#E2E8F0>samedi</color>
+() <color:#E2E8F0>vendredi</color>
+() <color:#E2E8F0>jeudi</color>
+.
 <color:#E2E8F0><b>À quelle heure est le rendez-vous au café ?</b></color>
-{ () <color:#E2E8F0>17 h</color> | () <color:#E2E8F0>15 h</color> | () <color:#E2E8F0>12 h</color> | () <color:#E2E8F0>18 h 42</color> }
+() <color:#E2E8F0>18 h 42</color>
+() <color:#E2E8F0>15 h</color>
+(X) <color:#E2E8F0>17 h</color>
+() <color:#E2E8F0>12 h</color>
+.
 <color:#E2E8F0><b>Où Tom et Léa se retrouvent-ils à 15 h ?</b></color>
-{ () <color:#E2E8F0>Au café de la gare</color> | () <color:#E2E8F0>Au cinéma</color> }
-{ () <color:#E2E8F0>Chez Paul</color> | () <color:#E2E8F0>Chez Léa</color> }
+() <color:#E2E8F0>Au cinéma</color>
+() <color:#E2E8F0>Chez Paul</color>
+(X) <color:#E2E8F0>Au café de la gare</color>
+() <color:#E2E8F0>Chez Léa</color>
+.
 <color:#E2E8F0><b>Samedi soir, Tom, Léa et Paul mangent au restaurant.</b></color>
-{ () <color:#E2E8F0>Vrai</color> | () <color:#E2E8F0>Faux</color> }
+() <color:#E2E8F0>Vrai</color>
+(X) <color:#E2E8F0>Faux</color>
 } }
 .
-{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#64748B>  Check  </color> ] }
-<color:#94A3B8>Side by side from 1100 px, stacked below; Check opens once every question is answered.</color>
+{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | <color:#020617>xxxxxx</color> | [ <color:#020617>  Check  </color> ] }
+.
+<color:#94A3B8>Side by side from a 700 px task area (1100 px with the sidebar), stacked below. Check opens once every question is answered.</color>
+<color:#94A3B8>Multiple choice options are shuffled; Vrai / Faux keep their order. No field takes the cursor.</color>
 } }
 } | <color:#020617>xx</color> }
 .
@@ -2767,45 +2876,73 @@ scale 1.3
 {
 .
 { <color:#020617>xx</color> | {
-{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>████</color><color:#1E293B>░░░░░░░░</color> | <color:#94A3B8>35%</color> | <color:#E2E8F0><b>28.6 / 100</b></color> }
-<color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
+{ <color:#E2E8F0><b>LESSON PROTOTYPE</b></color> | <color:#020617>xxxxxxxxxxxx</color> | <color:#94A3B8>Mother tongue</color> | [ <color:#020617>en</color> ] | <color:#475569>fr   de</color> | <color:#94A3B8>Interface language</color> | ^ en ^ | <color:#635BFF>●</color> <color:#94A3B8>Autoplay</color> }
+[ <color:#020617>Cancel lesson</color> ]
+<color:#1E293B>──────────────────────────────────────────────────────────────────────────────</color>
+.
+{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>███████</color><color:#1E293B>░░░░░░░░░░░░░</color> | <color:#94A3B8>34.7%</color> | <color:#E2E8F0><b>28.6 / 100</b></color> }
+<color:#1E293B>────────────────────────────────────────────────────────────</color>
 .
 { {
 <color:#94A3B8>Your lesson</color>
 <color:#E2E8F0><b>3 of 5 points done</b></color>
 .
-{ <color:#A5B4FC><b>1</b></color> | <color:#E2E8F0>Flashcards</color> | <color:#94A3B8>Done</color> }
-{ <color:#A5B4FC><b>2</b></color> | <color:#E2E8F0>Matching</color> | <color:#94A3B8>Done</color> }
-{ <color:#67E8F9><b>3</b></color> | <color:#E2E8F0>Skim</color> | <color:#94A3B8>Done</color> }
-{ <color:#67E8F9><b>(4)</b></color> | <color:#E2E8F0><b>Detail</b></color> | <color:#67E8F9>You are here</color> }
-{ <color:#64748B>5</color> | <color:#94A3B8>Structure</color> | <color:#64748B>Not yet open</color> }
-.
-{ <color:#FDA4AF><b>⚑</b></color> | <color:#E2E8F0>Final exam</color> | <color:#94A3B8>5 questions</color> }
+{ <back:#A5B4FC><color:#020617> 1 </color></back> | <color:#94A3B8>Flashcards</color> | <color:#94A3B8>Done</color> }
+{ <back:#A5B4FC><color:#020617> 2 </color></back> | <color:#94A3B8>Matching</color> | <color:#94A3B8>Done</color> }
+{ <back:#67E8F9><color:#020617> 3 </color></back> | <color:#94A3B8>Skim</color> | <color:#94A3B8>Done</color> }
+{ <back:#67E8F9><color:#020617><b> 4 </b></color></back> | <color:#E2E8F0><b>Detail</b></color> | <color:#67E8F9>You are here</color> }
+{ <color:#67E8F9>(5)</color> | <color:#94A3B8>Structure</color> | <color:#64748B>Not yet open</color> }
+{ <color:#E2E8F0><b>⚑</b></color> | <color:#E2E8F0><b>Final exam</b></color> | <color:#94A3B8>5 questions</color> }
 } | <color:#020617>xxx</color> | {
-<color:#94A3B8>Detail · point 4 of 5</color>
-<size:24><color:#E2E8F0><b>Read the document carefully and answer the questions.</b></color></size>
+<color:#94A3B8>Detail</color>
+<size:22><color:#E2E8F0><b>Read the document carefully and answer the</b></color></size>
+<size:22><color:#E2E8F0><b>questions.</b></color></size>
 .
 { {
-<color:#E2E8F0><b>Léa</b></color>  <color:#94A3B8>Jeudi 18:42</color>
+<color:#94A3B8>Léa</color>   <color:#94A3B8>Jeudi 18:42</color>
 <color:#E2E8F0>Salut Tom ! Tu es libre <back:#312E81><u>samedi</u></back> après-midi ?</color>
+.
 <color:#E2E8F0>Samedi soir, on mange chez moi avec Paul. On fait des crêpes !</color>
 <color:#E2E8F0>Mais <back:#312E81><u>avant</u></back>, <back:#312E81><u>on se voit</u></back> à 15 h au café de <back:#312E81><u>la gare</u></back> ?</color>
 <color:#E2E8F0><back:#312E81><u>Après</u></back> le café, on va au cinéma à 17 h.</color>
+.
 <color:#E2E8F0>Si tu ne peux pas, dis-le-moi <back:#312E81><u>avant</u></back> vendredi. Bisous, Léa</color>
 } | <color:#020617>xxx</color> | {
 <color:#E2E8F0><b>Quel jour Léa propose-t-elle de se voir ?</b></color>
-{ <color:#FF5252>✕ dimanche</color> | <color:#00E676>✓ samedi</color> }
-<color:#94A3B8>Léa asks: Tu es libre samedi après-midi ? Jeudi is the day she writes.</color>
+() <color:#E2E8F0>dimanche</color>
+(X) <color:#E2E8F0>samedi</color>
+() <color:#E2E8F0>vendredi</color>
+() <color:#E2E8F0>jeudi</color>
+<back:#020617><color:#00E676>▌</color> <color:#E2E8F0>✓ Correct</color>       </back>
+.
 <color:#E2E8F0><b>À quelle heure est le rendez-vous au café ?</b></color>
-{ <color:#00E676>✓ 15 h</color> }
+() <color:#E2E8F0>18 h 42</color>
+() <color:#E2E8F0>15 h</color>
+(X) <color:#E2E8F0>17 h</color>
+() <color:#E2E8F0>12 h</color>
+<back:#020617><color:#FF5252>▌</color> <color:#E2E8F0><b>✕ Incorrect</b></color></back>
+<back:#020617><color:#FF5252>▌</color> <color:#00E676><b>15 h</b></color></back>
+<back:#020617><color:#FF5252>▌</color> <color:#FF5252><s>17 h</s></color></back>
+<back:#020617><color:#FF5252>▌</color> <color:#94A3B8>On se voit à 15 h au café de la gare.</color></back>
+<back:#020617><color:#FF5252>▌</color> <color:#94A3B8>17 h is the cinema.</color></back>
+.
 <color:#E2E8F0><b>Où Tom et Léa se retrouvent-ils à 15 h ?</b></color>
-{ <color:#00E676>✓ Au café de la gare</color> }
+() <color:#E2E8F0>Au cinéma</color>
+() <color:#E2E8F0>Chez Paul</color>
+(X) <color:#E2E8F0>Au café de la gare</color>
+() <color:#E2E8F0>Chez Léa</color>
+<back:#020617><color:#00E676>▌</color> <color:#E2E8F0>✓ Correct</color>       </back>
+.
 <color:#E2E8F0><b>Samedi soir, Tom, Léa et Paul mangent au restaurant.</b></color>
-{ <color:#00E676>✓ Faux</color> }
+() <color:#E2E8F0>Vrai</color>
+(X) <color:#E2E8F0>Faux</color>
+<back:#020617><color:#00E676>▌</color> <color:#E2E8F0>✓ Correct</color>       </back>
 } }
 .
-{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#020617>  Continue  </color> ] }
-<color:#94A3B8>Marked in place; the page waits for Continue even when every answer is right.</color>
+{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | <color:#020617>xxxxxx</color> | [ <color:#020617>  Continue  </color> ] }
+.
+<color:#94A3B8>Each question gets its correction card; the page keeps its checked view and waits for Continue even when</color>
+<color:#94A3B8>every answer is right. The document stays in view (sticky) while the questions scroll.</color>
 } }
 } | <color:#020617>xx</color> }
 .
@@ -2831,43 +2968,51 @@ scale 1.3
 {
 .
 { <color:#020617>xx</color> | {
-{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>███████</color><color:#1E293B>░░░░░</color> | <color:#94A3B8>60%</color> | <color:#E2E8F0><b>28.6 / 100</b></color> }
-<color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
+{ <color:#E2E8F0><b>LESSON PROTOTYPE</b></color> | <color:#020617>xxxxxxxxxxxx</color> | <color:#94A3B8>Mother tongue</color> | [ <color:#020617>en</color> ] | <color:#475569>fr   de</color> | <color:#94A3B8>Interface language</color> | ^ en ^ | <color:#635BFF>●</color> <color:#94A3B8>Autoplay</color> }
+[ <color:#020617>Cancel lesson</color> ]
+<color:#1E293B>──────────────────────────────────────────────────────────────────────────────</color>
+.
+{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>████████████</color><color:#1E293B>░░░░░░░░</color> | <color:#94A3B8>60%</color> | <color:#E2E8F0><b>28.6 / 100</b></color> }
+<color:#1E293B>────────────────────────────────────────────────────────────</color>
 .
 { {
 <color:#94A3B8>Your lesson</color>
 <color:#E2E8F0><b>4 of 5 points done</b></color>
 .
-{ <color:#A5B4FC><b>1</b></color> | <color:#E2E8F0>Flashcards</color> | <color:#94A3B8>Done</color> }
-{ <color:#A5B4FC><b>2</b></color> | <color:#E2E8F0>Matching</color> | <color:#94A3B8>Done</color> }
-{ <color:#67E8F9><b>3</b></color> | <color:#E2E8F0>Skim</color> | <color:#94A3B8>Done</color> }
-{ <color:#67E8F9><b>4</b></color> | <color:#E2E8F0>Detail</color> | <color:#94A3B8>Done</color> }
-{ <color:#67E8F9><b>(5)</b></color> | <color:#E2E8F0><b>Structure</b></color> | <color:#67E8F9>You are here</color> }
-.
-{ <color:#FDA4AF><b>⚑</b></color> | <color:#E2E8F0>Final exam</color> | <color:#94A3B8>5 questions</color> }
+{ <back:#A5B4FC><color:#020617> 1 </color></back> | <color:#94A3B8>Flashcards</color> | <color:#94A3B8>Done</color> }
+{ <back:#A5B4FC><color:#020617> 2 </color></back> | <color:#94A3B8>Matching</color> | <color:#94A3B8>Done</color> }
+{ <back:#67E8F9><color:#020617> 3 </color></back> | <color:#94A3B8>Skim</color> | <color:#94A3B8>Done</color> }
+{ <back:#67E8F9><color:#020617> 4 </color></back> | <color:#94A3B8>Detail</color> | <color:#94A3B8>Done</color> }
+{ <back:#67E8F9><color:#020617><b> 5 </b></color></back> | <color:#E2E8F0><b>Structure</b></color> | <color:#67E8F9>You are here</color> }
+{ <color:#E2E8F0><b>⚑</b></color> | <color:#E2E8F0><b>Final exam</b></color> | <color:#94A3B8>5 questions</color> }
 } | <color:#020617>xxx</color> | {
-<color:#94A3B8>Structure · point 5 of 5</color>
-<size:24><color:#E2E8F0><b>What happens on Saturday? Put it in order, from first to last.</b></color></size>
+<color:#94A3B8>Structure</color>
+<size:22><color:#E2E8F0><b>What happens on Saturday? Put it in order, from</b></color></size>
+<size:22><color:#E2E8F0><b>first to last.</b></color></size>
 .
 { {
-<color:#E2E8F0><b>Léa</b></color>  <color:#94A3B8>Jeudi 18:42</color>
+<color:#94A3B8>Léa</color>   <color:#94A3B8>Jeudi 18:42</color>
 <color:#E2E8F0>Salut Tom ! Tu es libre <back:#312E81><u>samedi</u></back> après-midi ?</color>
+.
 <color:#E2E8F0>Samedi soir, on mange chez moi avec Paul. On fait des crêpes !</color>
 <color:#E2E8F0>Mais <back:#312E81><u>avant</u></back>, <back:#312E81><u>on se voit</u></back> à 15 h au café de <back:#312E81><u>la gare</u></back> ?</color>
 <color:#E2E8F0><back:#312E81><u>Après</u></back> le café, on va au cinéma à 17 h.</color>
+.
 <color:#E2E8F0>Si tu ne peux pas, dis-le-moi <back:#312E81><u>avant</u></back> vendredi. Bisous, Léa</color>
 } | <color:#020617>xxx</color> | {
-<color:#E2E8F0><b>Your order</b></color>
+<color:#94A3B8>Your order</color>
 [ <color:#4338CA>Tom et Léa se voient au café de la gare.</color> ]
-[ <color:#4338CA>Ils vont au cinéma.</color> ]
 <color:#94A3B8>____</color>
 .
-<color:#E2E8F0><b>Pieces</b></color>
-[ <color:#4338CA>Ils mangent des crêpes chez Léa avec Paul.</color> ]
+<color:#94A3B8>Available pieces</color>
+[ <color:#020617>Ils vont au cinéma.</color> ]
+[ <color:#020617>Ils mangent des crêpes chez Léa avec Paul.</color> ]
 } }
 .
-{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#64748B>  Check  </color> ] }
-<color:#94A3B8>The word-order control of grammar and functions, with pieces of information instead of words.</color>
+{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | <color:#020617>xxxxxx</color> | [ <color:#64748B>  Check  </color> ] }
+.
+<color:#94A3B8>The grammar word-order control with pieces of the text as tokens: a click places a piece at the end, a drag</color>
+<color:#94A3B8>moves it; Check opens once every piece is placed. Empty line: “Select the pieces in the order of the text.”</color>
 } }
 } | <color:#020617>xx</color> }
 .
@@ -2893,42 +3038,49 @@ scale 1.3
 {
 .
 { <color:#020617>xx</color> | {
-{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>███████</color><color:#1E293B>░░░░░</color> | <color:#94A3B8>60%</color> | <color:#E2E8F0><b>28.6 / 100</b></color> }
-<color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
+{ <color:#E2E8F0><b>LESSON PROTOTYPE</b></color> | <color:#020617>xxxxxxxxxxxx</color> | <color:#94A3B8>Mother tongue</color> | [ <color:#020617>en</color> ] | <color:#475569>fr   de</color> | <color:#94A3B8>Interface language</color> | ^ en ^ | <color:#635BFF>●</color> <color:#94A3B8>Autoplay</color> }
+[ <color:#020617>Cancel lesson</color> ]
+<color:#1E293B>──────────────────────────────────────────────────────────────────────────────</color>
+.
+{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>████████████</color><color:#1E293B>░░░░░░░░</color> | <color:#94A3B8>60%</color> | <color:#E2E8F0><b>31.8 / 100</b></color> }
+<color:#1E293B>────────────────────────────────────────────────────────────</color>
 .
 { {
 <color:#94A3B8>Your lesson</color>
 <color:#E2E8F0><b>4 of 5 points done</b></color>
 .
-{ <color:#A5B4FC><b>1</b></color> | <color:#E2E8F0>Flashcards</color> | <color:#94A3B8>Done</color> }
-{ <color:#A5B4FC><b>2</b></color> | <color:#E2E8F0>Matching</color> | <color:#94A3B8>Done</color> }
-{ <color:#67E8F9><b>3</b></color> | <color:#E2E8F0>Skim</color> | <color:#94A3B8>Done</color> }
-{ <color:#67E8F9><b>4</b></color> | <color:#E2E8F0>Detail</color> | <color:#94A3B8>Done</color> }
-{ <color:#67E8F9><b>(5)</b></color> | <color:#E2E8F0><b>Structure</b></color> | <color:#67E8F9>You are here</color> }
-.
-{ <color:#FDA4AF><b>⚑</b></color> | <color:#E2E8F0>Final exam</color> | <color:#94A3B8>5 questions</color> }
+{ <back:#A5B4FC><color:#020617> 1 </color></back> | <color:#94A3B8>Flashcards</color> | <color:#94A3B8>Done</color> }
+{ <back:#A5B4FC><color:#020617> 2 </color></back> | <color:#94A3B8>Matching</color> | <color:#94A3B8>Done</color> }
+{ <back:#67E8F9><color:#020617> 3 </color></back> | <color:#94A3B8>Skim</color> | <color:#94A3B8>Done</color> }
+{ <back:#67E8F9><color:#020617> 4 </color></back> | <color:#94A3B8>Detail</color> | <color:#94A3B8>Done</color> }
+{ <back:#67E8F9><color:#020617><b> 5 </b></color></back> | <color:#E2E8F0><b>Structure</b></color> | <color:#67E8F9>You are here</color> }
+{ <color:#E2E8F0><b>⚑</b></color> | <color:#E2E8F0><b>Final exam</b></color> | <color:#94A3B8>5 questions</color> }
 } | <color:#020617>xxx</color> | {
-<color:#94A3B8>Structure · point 5 of 5</color>
-<size:24><color:#E2E8F0><b>What happens on Saturday? Put it in order, from first to last.</b></color></size>
+<color:#94A3B8>Structure</color>
+<size:22><color:#E2E8F0><b>What happens on Saturday? Put it in order, from</b></color></size>
+<size:22><color:#E2E8F0><b>first to last.</b></color></size>
 .
 { {
-<color:#E2E8F0><b>Léa</b></color>  <color:#94A3B8>Jeudi 18:42</color>
+<color:#94A3B8>Léa</color>   <color:#94A3B8>Jeudi 18:42</color>
 <color:#E2E8F0>Salut Tom ! Tu es libre <back:#312E81><u>samedi</u></back> après-midi ?</color>
+.
 <color:#E2E8F0>Samedi soir, on mange chez moi avec Paul. On fait des crêpes !</color>
 <color:#E2E8F0>Mais <back:#312E81><u>avant</u></back>, <back:#312E81><u>on se voit</u></back> à 15 h au café de <back:#312E81><u>la gare</u></back> ?</color>
 <color:#E2E8F0><back:#312E81><u>Après</u></back> le café, on va au cinéma à 17 h.</color>
+.
 <color:#E2E8F0>Si tu ne peux pas, dis-le-moi <back:#312E81><u>avant</u></back> vendredi. Bisous, Léa</color>
 } | <color:#020617>xxx</color> | {
-<back:#7F1D1D><color:#E2E8F0> ✕  Incorrect                                        </color></back>
-<color:#00E676>Tom et Léa se voient au café de la gare. → Ils vont au cinéma.</color>
-<color:#00E676>→ Ils mangent des crêpes chez Léa avec Paul.</color>
-<color:#FF5252><s>Ils mangent des crêpes chez Léa avec Paul. → Tom et Léa se voient</s></color>
-<color:#FF5252><s>au café de la gare. → Ils vont au cinéma.</s></color>
-<color:#94A3B8>Café at 15 h (Mais avant…), then cinema at 17 h (Après le café…), then dinner</color>
-<color:#94A3B8>in the evening (Samedi soir). The message gives the evening first.</color>
+[ <color:#4338CA>Tom et Léa se voient au café de la gare.</color> ]
+[ <color:#4338CA>Ils vont au cinéma.</color> ]
+[ <color:#4338CA>Ils mangent des crêpes chez Léa avec Paul.</color> ]
+.
+<back:#020617><color:#00E676>▌</color> <color:#E2E8F0>✓ Correct</color>       </back>
 } }
 .
-{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#020617>  Continue  </color> ] }
+{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | <color:#020617>xxxxxx</color> | [ <color:#020617>  Continue  </color> ] }
+.
+<color:#94A3B8>After Check the order gets its correction card; a wrong order shows the right one, first → last, and the</color>
+<color:#94A3B8>explanation. The page waits for Continue.</color>
 } }
 } | <color:#020617>xx</color> }
 .
@@ -2954,27 +3106,37 @@ scale 1.3
 {
 .
 { <color:#020617>xx</color> | {
-{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>████████</color><color:#1E293B>░░░░</color> | <color:#94A3B8>69%</color> | <color:#E2E8F0><b>28.6 / 100</b></color> }
-<color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
+{ <color:#E2E8F0><b>LESSON PROTOTYPE</b></color> | <color:#020617>xxxxxxxxxxxx</color> | <color:#94A3B8>Mother tongue</color> | [ <color:#020617>en</color> ] | <color:#475569>fr   de</color> | <color:#94A3B8>Interface language</color> | ^ en ^ | <color:#635BFF>●</color> <color:#94A3B8>Autoplay</color> }
+[ <color:#020617>Cancel lesson</color> ]
+<color:#1E293B>──────────────────────────────────────────────────────────────────────────────</color>
+.
+{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>██████████████</color><color:#1E293B>░░░░░░</color> | <color:#94A3B8>69.5%</color> }
+<color:#1E293B>────────────────────────────────────────────────────────────</color>
 .
 { {
-<color:#94A3B8>Final exam</color>
-<color:#E2E8F0><b>1 page · 5 questions</b></color>
+<color:#94A3B8>Your lesson</color>
+<color:#E2E8F0><b>5 of 5 points done</b></color>
 .
-{ <color:#FDA4AF><b>1</b></color> | <color:#E2E8F0>Questions on the document</color> | <color:#94A3B8>5 questions</color> }
-.
-<color:#94A3B8>Each page has its own countdown.</color>
-<color:#94A3B8>You see your results only after the whole exam.</color>
+{ <back:#A5B4FC><color:#020617> 1 </color></back> | <color:#94A3B8>Flashcards</color> | <color:#94A3B8>Done</color> }
+{ <back:#A5B4FC><color:#020617> 2 </color></back> | <color:#94A3B8>Matching</color> | <color:#94A3B8>Done</color> }
+{ <back:#67E8F9><color:#020617> 3 </color></back> | <color:#94A3B8>Skim</color> | <color:#94A3B8>Done</color> }
+{ <back:#67E8F9><color:#020617> 4 </color></back> | <color:#94A3B8>Detail</color> | <color:#94A3B8>Done</color> }
+{ <back:#67E8F9><color:#020617> 5 </color></back> | <color:#94A3B8>Structure</color> | <color:#94A3B8>Done</color> }
+{ <color:#E2E8F0><b>⚑</b></color> | <color:#E2E8F0><b>Final exam</b></color> | <color:#86EFAC>5 questions</color> }
 } | <color:#020617>xxx</color> | {
-<size:24><color:#E2E8F0><b>Your final exam</b></color></size>
-<color:#94A3B8>A new document of the same kind, with 5 questions.</color>
+<color:#94A3B8>Final exam</color>
+<size:22><color:#E2E8F0><b>Your final exam</b></color></size>
 .
-{ <color:#94A3B8><b>PART</b></color> | <color:#020617>xxxxxxxxxxxxxxxxxxxx</color> | <color:#94A3B8><b>TIME</b></color>
-<color:#E2E8F0>Questions on the document · 5 questions</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxx</color> | <color:#E2E8F0>⏱ 03:10</color> }
+<color:#E2E8F0>5 questions on a new document of the same kind.</color>
 .
-<color:#94A3B8>The page has a countdown. You see your results only after the whole exam.</color>
+{ <color:#A5B4FC><b>1.</b></color> | <color:#E2E8F0>Questions on the document · 5 questions</color> | <color:#020617>xxxxxxxxxxxxxx</color> | [ <color:#020617>03:10</color> ] }
 .
-{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#020617>  Continue  </color> ] }
+<color:#94A3B8>The page has a countdown. You see your results only after the exam.</color>
+.
+{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | <color:#020617>xxxxxx</color> | [ <color:#020617>  Continue  </color> ] }
+.
+<color:#94A3B8>The shared exam info page. The limit is 1.5 times the page estimate, rounded up to 5 s (D18 exception):</color>
+<color:#94A3B8>125 s → 3 min 10 s here.</color>
 } }
 } | <color:#020617>xx</color> }
 .
@@ -3000,39 +3162,70 @@ scale 1.3
 {
 .
 { <color:#020617>xx</color> | {
-{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>█████████</color><color:#1E293B>░░░</color> | <color:#94A3B8>74%</color> | <color:#E2E8F0><b>28.6 / 100</b></color> }
-<color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
+{ <color:#E2E8F0><b>LESSON PROTOTYPE</b></color> | <color:#020617>xxxxxxxxxxxx</color> | <color:#94A3B8>Mother tongue</color> | [ <color:#020617>en</color> ] | <color:#475569>fr   de</color> | <color:#94A3B8>Interface language</color> | ^ en ^ | <color:#635BFF>●</color> <color:#94A3B8>Autoplay</color> }
+[ <color:#020617>Cancel lesson</color> ]
+<color:#1E293B>──────────────────────────────────────────────────────────────────────────────</color>
+.
+{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxx</color> | <color:#635BFF>███████████████</color><color:#1E293B>░░░░░</color> | <color:#94A3B8>73.7%</color> | <color:#E2E8F0><b>31.8 / 100</b></color> }
+<color:#1E293B>────────────────────────────────────────────────────────────</color>
 .
 { {
 <color:#94A3B8>Final exam</color>
 <color:#E2E8F0><b>1 page · 5 questions</b></color>
 .
-{ <color:#FDA4AF><b>1</b></color> | <color:#E2E8F0><b>Questions on the document</b></color> | <color:#67E8F9>in progress</color> }
+{ <color:#A5B4FC><b>1.</b></color> | <color:#E2E8F0><b>Questions on the document</b></color> }
+{ <color:#020617>xx</color> | <color:#A5B4FC>5 questions · 3 min 10 s · in progress</color> }
 .
-<color:#94A3B8>Each page has its own countdown.</color>
-<color:#94A3B8>You see your results only after the whole exam.</color>
+<color:#94A3B8>The page has a countdown. You see your results</color>
+<color:#94A3B8>only after the exam.</color>
 } | <color:#020617>xxx</color> | {
-{ <color:#94A3B8>Final exam · page 1 of 1</color> | <color:#020617>xxxxxxxxxxxxxxxx</color> | { <color:#94A3B8>Time left</color>
-<size:24><color:#E2E8F0><b>2:41</b></color></size>
-<color:#635BFF>████████</color><color:#1E293B>░░</color> } }
-<size:24><color:#E2E8F0><b>Read the new document and answer the questions. No help this time.</b></color></size>
+<color:#94A3B8>Final exam</color>
+<size:22><color:#E2E8F0><b>Read the new document and answer the questions. No</b></color></size>
+<size:22><color:#E2E8F0><b>help this time.</b></color></size>
+{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | <back:#020617><color:#94A3B8>Time left</color> <color:#E2E8F0><b>3:07</b></color></back> }
+{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | <back:#020617><color:#67E8F9>██████████████</color><color:#1E293B>░</color></back> }
 .
 { {
-<color:#E2E8F0><b>Paul</b></color>  <color:#94A3B8>Vendredi 9:15</color>
-<color:#E2E8F0>Salut Tom ! Dimanche matin, on joue au foot au parc Monceau ?</color>
-<color:#E2E8F0>Rendez-vous à 10 h devant l’entrée.</color>
-<color:#E2E8F0>Après le match, pique-nique ! Apporte de l’eau, j’ai les sandwichs. Paul</color>
+<color:#94A3B8>Paul</color>   <color:#94A3B8>Vendredi 9:15</color>
+<color:#E2E8F0>Salut Tom ! Dimanche matin, on joue au foot</color>
+<color:#E2E8F0>au parc Monceau ? Rendez-vous à 10 h devant l’entrée.</color>
+.
+<color:#E2E8F0>Après le match, pique-nique ! Apporte de l’eau,</color>
+<color:#E2E8F0>j’ai les sandwichs. Paul</color>
 } | <color:#020617>xxx</color> | {
-{ <color:#FDA4AF><b>1</b></color> | <color:#E2E8F0><b>Quel jour est le match ?</b></color> }
-{ <color:#020617>x</color> | () <color:#E2E8F0>samedi</color>  (X) <color:#E2E8F0>dimanche</color>  () <color:#E2E8F0>lundi</color>  () <color:#E2E8F0>vendredi</color> }
-{ <color:#FDA4AF><b>2</b></color> | <color:#E2E8F0><b>À quelle heure est le rendez-vous ?</b></color> }
-{ <color:#020617>x</color> | () <color:#E2E8F0>12 h</color>  () <color:#E2E8F0>10 h</color>  () <color:#E2E8F0>15 h</color>  () <color:#E2E8F0>9 h 15</color> }
-{ <color:#FDA4AF><b>4</b></color> | <color:#E2E8F0><b>Tom apporte les sandwichs.</b></color> }
-{ <color:#020617>x</color> | () <color:#E2E8F0>Vrai</color>  () <color:#E2E8F0>Faux</color> }
-<color:#94A3B8>Questions 3 and 5 …</color>
+<color:#64748B>1.</color> <color:#E2E8F0><b>Quel jour est le match ?</b></color>
+() <color:#E2E8F0>vendredi</color>
+() <color:#E2E8F0>lundi</color>
+(X) <color:#E2E8F0>dimanche</color>
+() <color:#E2E8F0>samedi</color>
+.
+<color:#64748B>2.</color> <color:#E2E8F0><b>À quelle heure est le rendez-vous ?</b></color>
+() <color:#E2E8F0>9 h 15</color>
+() <color:#E2E8F0>12 h</color>
+() <color:#E2E8F0>15 h</color>
+(X) <color:#E2E8F0>10 h</color>
+.
+<color:#64748B>3.</color> <color:#E2E8F0><b>Où est le rendez-vous ?</b></color>
+(X) <color:#E2E8F0>Chez Paul</color>
+() <color:#E2E8F0>Devant le cinéma</color>
+() <color:#E2E8F0>Devant l’entrée du parc</color>
+() <color:#E2E8F0>Au café de la gare</color>
+.
+<color:#64748B>4.</color> <color:#E2E8F0><b>Tom apporte les sandwichs.</b></color>
+() <color:#E2E8F0>Vrai</color>
+(X) <color:#E2E8F0>Faux</color>
+.
+<color:#64748B>5.</color> <color:#E2E8F0><b>Qu’est-ce qu’ils font après le match ?</b></color>
+() <color:#E2E8F0>Un pique-nique</color>
+() <color:#E2E8F0>Un café à la gare</color>
+() <color:#E2E8F0>Du cinéma</color>
+() <color:#E2E8F0>Des crêpes chez Léa</color>
 } }
 .
-{ <color:#94A3B8>1 of 5 answered</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#020617>  Continue  </color> ] }
+{ <color:#94A3B8>4 of 5 answered</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#020617>  Continue  </color> ] }
+.
+<color:#94A3B8>A second, shorter document of the same genre, without highlights; no feedback until the results.</color>
+<color:#94A3B8>Continue or the end of the countdown submits the page; unanswered questions earn zero.</color>
 } }
 } | <color:#020617>xx</color> }
 .
@@ -3058,34 +3251,41 @@ scale 1.3
 {
 .
 { <color:#020617>xx</color> | {
-{ <color:#E2E8F0><b>Lire un SMS</b></color> | <color:#020617>xxxxxxxxxxxxxxxxxxxx</color> | [ <color:#020617>Repeat lesson</color> ] | [ <color:#020617>Lesson overview</color> ] }
-<color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
+{ <color:#E2E8F0><b>LESSON PROTOTYPE</b></color> | <color:#020617>xxxxxxxxxxxx</color> | <color:#94A3B8>Mother tongue</color> | [ <color:#020617>en</color> ] | <color:#475569>fr   de</color> | <color:#94A3B8>Interface language</color> | ^ en ^ | <color:#635BFF>●</color> <color:#94A3B8>Autoplay</color> }
+[ <color:#020617>Lesson overview</color> ]
+<color:#1E293B>──────────────────────────────────────────────────────────────────────────────</color>
 .
 { {
 <color:#94A3B8>Your results</color>
-<color:#E2E8F0><b>Final score 54.6 / 100</b></color>
+<color:#94A3B8>Final score</color>
+<size:22><color:#E2E8F0><b>83.8 / 100</b></color></size>
 .
-{ <back:#1E1B4B><color:#E2E8F0><b> Final exam </b></color></back> | <color:#020617>xxxxxx</color> | <color:#A5B4FC><b>2 / 5</b></color> }
-{ <color:#E2E8F0> Matching </color> | <color:#020617>xxxxxx</color> | <color:#E2E8F0>5 / 5</color> }
-{ <color:#E2E8F0> Skim </color> | <color:#020617>xxxxxx</color> | <color:#E2E8F0>1 / 1</color> }
-{ <back:#7F1D1D><color:#E2E8F0> Detail ⧄ </color></back> | <color:#020617>xxxxxx</color> | <color:#E2E8F0>3 / 4</color> }
-{ <back:#7F1D1D><color:#E2E8F0> Structure </color></back> | <color:#020617>xxxxxx</color> | <color:#E2E8F0>0 / 1</color> }
+{ <back:#1E1B4B><color:#E2E8F0><b>Final exam</b></color></back> | <color:#020617>xxxxxx</color> | <color:#94A3B8>4 / 5</color> }
+{ <color:#E2E8F0>Matching</color> | <color:#020617>xxxxxx</color> | <color:#94A3B8>5 / 5</color> }
+{ <color:#E2E8F0>Skim</color> | <color:#020617>xxxxxx</color> | <color:#94A3B8>1 / 1</color> }
+{ <back:#7F1D1D><color:#E2E8F0>Detail</color></back> | <color:#020617>xxxxxx</color> | <color:#94A3B8>3 / 4</color> }
+{ <color:#E2E8F0>Structure</color> | <color:#020617>xxxxxx</color> | <color:#94A3B8>1 / 1</color> }
 } | <color:#020617>xxx</color> | {
-<color:#94A3B8>FRENCH / A1</color>
-<size:24><color:#E2E8F0><b>Final exam</b></color></size>
-<size:30><color:#E2E8F0><b>2 / 5</b></color></size>
-<color:#94A3B8>Lire un SMS</color>
-<color:#94A3B8>2 of 5 correct.</color>
-<color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
-{ <color:#FF5252>✕</color> | <color:#E2E8F0>Quel jour est le match ?</color> | <color:#94A3B8>→</color> | <color:#00E676><b>dimanche</b></color> }
-{ <color:#020617>x</color> | <color:#020617>x</color> | <color:#020617>x</color> | <color:#FF5252><s>samedi</s></color> }
-{ <color:#020617>x</color> | <color:#94A3B8>Dimanche matin, on joue au foot. Vendredi is the day Paul writes.</color> }
-<color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
+<back:#7F1D1D><color:#E2E8F0>French / A1</color></back>
+<back:#7F1D1D><size:22><color:#E2E8F0><b>Final exam</b></color></size></back>
+<back:#7F1D1D><size:28><color:#E2E8F0><b>4 / 5</b></color></size></back>
+<back:#7F1D1D><color:#E2E8F0>Lire un SMS</color></back>
+.
+<color:#E2E8F0><b>Your exam answers</b></color>
+<color:#E2E8F0><b>4 of 5 correct.</b></color>
+.
+{ <color:#00E676>✓</color> | <color:#E2E8F0>Quel jour est le match ?</color> | <color:#94A3B8>→</color> | <color:#00E676><b>dimanche</b></color> }
 { <color:#00E676>✓</color> | <color:#E2E8F0>À quelle heure est le rendez-vous ?</color> | <color:#94A3B8>→</color> | <color:#00E676><b>10 h</b></color> }
-<color:#1E293B>──────────────────────────────────────────────────────────────────────────</color>
-{ <color:#FF5252>✕</color> | <color:#E2E8F0>Tom apporte les sandwichs.</color> | <color:#94A3B8>→</color> | <color:#00E676><b>Faux</b></color> }
-{ <color:#020617>x</color> | <color:#020617>x</color> | <color:#020617>x</color> | <color:#FF5252><s>Vrai</s></color> }
-{ <color:#020617>x</color> | <color:#94A3B8>False: Tom brings water (de l’eau); Paul has the sandwiches (j’ai les sandwichs).</color> }
+{ <color:#FF5252>✕</color> | <color:#E2E8F0>Où est le rendez-vous ?</color> | <color:#94A3B8>→</color> | <color:#00E676><b>Devant l’entrée du parc</b></color> }
+{ <color:#020617>xx</color> | <color:#020617>xxxxxxxxxxxxxxxxxxxx</color> | <color:#020617>xx</color> | <color:#FF5252><s>Chez Paul</s></color> }
+<color:#94A3B8>They play au parc Monceau and meet devant l’entrée, in front of the entrance.</color>
+{ <color:#00E676>✓</color> | <color:#E2E8F0>Tom apporte les sandwichs.</color> | <color:#94A3B8>→</color> | <color:#00E676><b>Faux</b></color> }
+{ <color:#00E676>✓</color> | <color:#E2E8F0>Qu’est-ce qu’ils font après le match ?</color> | <color:#94A3B8>→</color> | <color:#00E676><b>Un pique-nique</b></color> }
+.
+{ <color:#020617>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</color> | [ <color:#020617>Repeat lesson</color> ] | [ <color:#020617>Lesson overview</color> ] }
+.
+<color:#94A3B8>The shared results: the exam is selected by default and has no parts (one page). An entry with a mistake has</color>
+<color:#94A3B8>red stripes (here Final exam and Detail); selecting a practice entry shows its answers instead.</color>
 } }
 } | <color:#020617>xx</color> }
 .
@@ -3157,7 +3357,7 @@ Use the following review, cleanup, and mockup gates in the issue plan. Full issu
 | P5-03 | Write and review the ten fr/A1 reading test lessons | Directly after the P5-02 schemas, before the renderers, like P4-03. |
 | [P5-08](https://github.com/bastian-schnitzler/lesson_prototype/issues/36) | Improve reading lesson mockups from the running prototype | Final phase 5 issue (renumbered from P5-02 in P5-01), after every other phase 5 issue. |
 
-Each phase-closing mockup issue is the **last issue of its milestone** (D30): it carries the highest logical ID in its phase (P1-12, P2-08, P3-08, P4-08, P5-02) and depends, directly or transitively, on every other issue of that phase. When work is added to a phase, the new issue takes the mockup issue's place in the numbering and the mockup issue moves to the end; existing GitHub issue numbers stay unchanged.
+Each phase-closing mockup issue is the **last issue of its milestone** (D30): it carries the highest logical ID in its phase (P1-12, P2-08, P3-08, P4-08, P5-08) and depends, directly or transitively, on every other issue of that phase. When work is added to a phase, the new issue takes the mockup issue's place in the numbering and the mockup issue moves to the end; existing GitHub issue numbers stay unchanged.
 
 Phase-closing mockup work compares actual pages and representative states with their editable Salt sources, refreshes the matching embedded PlantUML fences and checks source/Markdown parity, and updates the single root mockup README, SPEC links, and applicable published issue assets. Record the prototype revision used for comparison and resolve/document discrepancies with the agreed specification. Phase completion includes this mockup refresh. Phase 0 produces the specification rather than application pages, so its closing task is backlog publication.
 
@@ -3279,3 +3479,12 @@ CI does not call Gemini. Live generation and pedagogical review are separate aut
 | 0.70 | 2026-10-16 | P3-06: P2-07 was closed as not planned, so the course validation covers the ten fr/A1 grammar samples; producing the other 38 stays open and blocks the phase 3 exit (section 7). New review criterion: one answer per exam gap (section 7). Pedagogical review fixes: the -er verb exam gaps name their verb, ambiguous exam gaps in subject pronouns, noun plurals and here/there/now/tomorrow get a deciding context (or accept the other right answer), no right distractor in a subject-pronoun choice, `j’ai` without a space in the avoir explanations, full stops after two negation gaps. A course audit (`tests/unit/grammar-course.test.tsx`) and real-content journeys (`tests/e2e/grammar-course.spec.ts`, Playwright project `course`) check all ten lessons. |
 | 0.71 | 2026-10-16 | P06-00: the vocabulary, grammar and function Salt mockups are replaced by screens rendered from the prototype itself (D30, section 10): `make screens` captures 42 screens (16 vocabulary, 14 grammar, 12 functions; new: vocabulary and grammar exam info, grammar person matching, function gender, translation exam and results) as a PNG shown inline in SPEC and a self-contained HTML snapshot; the 39 `.puml` sources are deleted; `make mockups-check` checks the screen files, SPEC blocks and README links; published issues show the committed PNG. |
 | 0.72 | 2026-10-16 | P06-00: new front section **Lesson session architecture** (before section 1): the steps from Start lesson to the results, what the browser stores while a lesson runs (the saved attempt, the preferences) and what it only derives (plan, scores, progress, remaining time), and which layers all lesson categories share versus what each category implements. Main carried two 0.70 entries after the P3-06 and rendered-screens merges; the rendered-screens entry is now 0.71. |
+| 0.73 | 2026-10-20 | P5-02 (rebased on 0.72): executable reading brief and lesson content schemas (`src/schemas/reading.ts`), page rules and skim speeds (`src/domain/readingLesson.ts`), the section 9 checks (`src/validation/reading.ts`), plan units on the shared 35 / 65 scoring, the reading Draft and Content views and the authoring tool `scripts/author-reading.ts`; `fr-reading-a-text-message` is the contract fixture. The content has six one-page steps (flashcards and matching are separate steps, so they are separate points under D53). Reading cannot start yet. |
+| 0.74 | 2026-10-20 | P5-03 (rebased on main): the ten fr/A1 reading test lessons, written by hand as JSON and completed with `scripts/author-reading.ts`: online profile, public signs, text message, restaurant menu, flat ad, holiday postcard, cinema programme, party invitation, train timetable and written directions (5 key words, 4 detail questions, 8 minutes each). `make sample-lessons` and the contract tests include them. |
+| 0.75 | 2026-10-20 | P5-04 (rebased on main): reading lessons are playable. The document view and the skim phase (countdown box "Time to skim", I've finished reading, the document put away and the question answered from memory, the document back with the correction); questions on the shared choice cards with Vrai / Faux in fixed order; key words on the vocabulary flashcards and matching board; the ordering task on the word-order control; document pages keep their checked view with a correction card per question; the start page shows the situation, the key words and the sections Key words, The document and Final exam; the exam info row "Questions on the document"; results without exam parts. The countdown box moved to the shared controls. The artifact page shows the pending-category note only for kinds that cannot be played. |
+| 0.76 | 2026-10-20 | P5-06: reading pages keep the lesson sidebar; the document stands beside the questions when the task area is at least 700 px wide (a container query instead of the 1100 px window breakpoint), so tablets in landscape without the sidebar also get both columns (section 9 "Wide layout", section 5). Integration fixes found while rebasing the P5 stack on 0.72: key words are highlighted as whole words only ("Entrée" no longer inside "Entrées"; validation rejects a highlight found only inside a longer word), the ordering task names pieces of the text instead of words, and the session architecture section covers reading. |
+| 0.77 | 2026-10-20 | P5-05: the session records play-test times per page (`pageTimes`: entered, first checked, skim document put away, left; `src/domain/session/pageTimes.ts`); with `?playtest` the results show them with a JSON download. Validation: no exam question repeats a skim or detail question, the exam document repeats no paragraph of the main document. Lesson length per level measured from the page rules (6–14 minutes); play-test checklist in section 9. The starting values stay until play tests confirm them. |
+| 0.78 | 2026-10-20 | P5-07: D55 proposed (product-owner confirmation pending): reading lessons are hand-written static files completed by `scripts/author-reading.ts`; the prototype's scope is the ten fr/A1 test lessons, offline generation is deferred and the other reading entries stay unavailable. Section 9 describes the lifecycle from the JSON files to the results and its failure boundaries. New course audit (`tests/unit/reading-course.test.tsx`) and real-content journeys of all ten lessons (`tests/e2e/reading-course.spec.ts`, project `course`). |
+| 0.79 | 2026-10-20 | P5-08: the fourteen reading Salt mockups (thirteen lesson pages and the artifact view) redrawn from the running prototype (`P5-reading-integration` at `eb36f91`, captured at 1280 and 375 px). Differences found and fixed in the app: the exam page shows "n of 5 answered" next to Continue (section 9, missing until now); a single exam page is named in the singular on the start page ("1 timed page"), in the sidebar ("1 page · 5 questions") and in the countdown note. The old mockups showed inline green / red options after Check, a pink exam section and a Start button; the prototype, as section 9 says, uses correction cards, the green third section colour and Continue. |
+| 0.80 | 2026-10-20 | P5-08: P5-06 publishes only the reading pages with the document beside the questions (skim, detail, structure, exam page); `make issues-sync` links the PlantUML sources instead of copying them when a body would exceed GitHub's limit (P5-04 with its twelve mockups). |
+| 0.81 | 2026-10-21 | P5-06 (CI on Linux): with a classic scrollbar the task area at 1100 px is about 696 px, so the reading pages stack there. The 700 px switch stays (a 768 px tablet has the same width and stays stacked); section 9 notes the effect, and the e2e layout check uses 1140 px instead of 1100 px. The person-matching e2e journey waits for the green animation to start before waiting for its end. |

@@ -7,7 +7,8 @@ import type { SessionRecord } from './session.ts';
  * page: numbered sections in the start page's order and colours, each with its learning points.
  * Grammar: one section per teaching block (its explanations, then its exercises), then the exam.
  * Functions: flashcards and dialogue, the exercises, the exam. Vocabulary: one section per word group
- * (introduction and flashcards), the exercises, the exam. Every theory page is a point of its own;
+ * (introduction and flashcards), the exercises, the exam. Reading: the key words (flashcards, matching), the
+ * document (skim, detail, structure), the exam (SPEC section 9). Every theory page is a point of its own;
  * consecutive practice pages of one step form one point. The production-feedback placeholder and the
  * exam info page belong to the exam section, which has no sub-points.
  */
@@ -24,7 +25,7 @@ export interface OutlineSection {
   kind: 'lesson' | 'exam';
   /** Shown title; `titleKey` (an interface message) when the section has no content label. */
   title?: LocalizedText;
-  titleKey?: 'nav.exercises';
+  titleKey?: 'nav.exercises' | 'nav.keywords' | 'nav.document';
   /** Start-page colour slot. */
   colour: number;
   points: OutlinePoint[];
@@ -61,6 +62,7 @@ function buildOutline(plan: LessonPlan): OutlineSection[] {
     if (belongsToExam(page)) return 'exam';
     if (plan.kind === 'grammar') return page.blockId ?? page.stepId;
     if (plan.kind === 'functions') return page.role;
+    if (plan.kind === 'reading') return page.stepId === 'flashcards' || page.stepId === 'matching' ? 'keywords' : 'document';
     return (isTheory(page) && groupOf(page)?.id) || 'exercises';
   };
   plan.pages.forEach((page, index) => {
@@ -69,7 +71,7 @@ function buildOutline(plan: LessonPlan): OutlineSection[] {
     if (!section) {
       const group = plan.kind === 'vocabulary' ? groupOf(page) : undefined;
       section = { key, kind: key === 'exam' ? 'exam' : 'lesson', colour: sections.length, points: [], pages: [],
-        ...(key === 'exam' ? {} : group && key === group.id ? { title: group.label } : plan.kind === 'grammar' ? { title: page.stepLabel } : plan.kind === 'functions' ? {} : { titleKey: 'nav.exercises' as const }) };
+        ...(key === 'exam' ? {} : group && key === group.id ? { title: group.label } : plan.kind === 'grammar' ? { title: page.stepLabel } : plan.kind === 'functions' ? {} : plan.kind === 'reading' ? { titleKey: key === 'keywords' ? 'nav.keywords' as const : 'nav.document' as const } : { titleKey: 'nav.exercises' as const }) };
       sections.push(section);
     }
     section.pages.push(index);

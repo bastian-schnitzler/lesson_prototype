@@ -1,0 +1,550 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-reading-written-directions",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Lire un itinéraire",
+  "objective": {
+    "en": "Read a short message that explains the way from one place to another and find the destination.",
+    "fr": "Lire un court message qui explique le chemin d’un lieu à un autre et trouver la destination.",
+    "de": "Eine kurze Nachricht mit einer Wegbeschreibung lesen und das Ziel finden."
+  },
+  "estimatedMinutes": 8,
+  "provenance": {
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "reading-v1",
+    "generatedAt": "2026-10-15T19:30:27.909Z",
+    "inputHashes": {
+      "outline": "773e6e0bf4a1b39e122de5e0a0f103b5d224a32c04efda035216d1fee834159a",
+      "brief": "de9b35950aeeb3add4e36f632e92e2f9b62fec3d1b6b56a3362ffa7d67168232"
+    }
+  },
+  "kind": "reading",
+  "theme": "places",
+  "genre": "text_message",
+  "documents": [
+    {
+      "documentId": "main",
+      "title": null,
+      "meta": [
+        "Sophie",
+        "Samedi 10:05"
+      ],
+      "paragraphs": [
+        "Salut Marc ! Pour venir chez moi, c’est facile.",
+        "Sors du métro à la station Bastille. Prends la deuxième rue à gauche, la rue de la Roquette.",
+        "Va tout droit jusqu’à la poste. Mon immeuble est en face de la poste, au numéro 12.",
+        "Le code de la porte, c’est 4815. J’habite au 3e étage. À ce soir !"
+      ],
+      "highlights": [
+        {
+          "keywordId": "sortir",
+          "text": "Sors"
+        },
+        {
+          "keywordId": "a-gauche",
+          "text": "à gauche"
+        },
+        {
+          "keywordId": "tout-droit",
+          "text": "tout droit"
+        },
+        {
+          "keywordId": "en-face-de",
+          "text": "en face de"
+        },
+        {
+          "keywordId": "la-poste",
+          "text": "la poste"
+        }
+      ]
+    },
+    {
+      "documentId": "exam",
+      "title": null,
+      "meta": [
+        "Hugo",
+        "Mardi 17:40"
+      ],
+      "paragraphs": [
+        "Pour aller à la piscine : sors de l’école et prends la première rue à droite.",
+        "Va tout droit. La piscine est à côté de la boulangerie. À tout à l’heure !"
+      ],
+      "highlights": []
+    }
+  ],
+  "steps": [
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "flashcards",
+          "estimatedDurationS": 50,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Turn each card to learn the key words of the text.",
+            "fr": "Retournez chaque carte pour découvrir les mots clés du texte.",
+            "de": "Dreh jede Karte um und lerne die Schlüsselwörter des Textes."
+          },
+          "items": [
+            {
+              "type": "reading_flashcards",
+              "itemId": "cards",
+              "keywordIds": [
+                "sortir",
+                "a-gauche",
+                "tout-droit",
+                "en-face-de",
+                "la-poste"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "matching",
+          "estimatedDurationS": 50,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each key word with its meaning.",
+            "fr": "Associez chaque mot clé à son sens.",
+            "de": "Ordne jedem Schlüsselwort seine Bedeutung zu."
+          },
+          "items": [
+            {
+              "type": "reading_keyword_matching",
+              "itemId": "matching",
+              "keywordIds": [
+                "sortir",
+                "a-gauche",
+                "tout-droit",
+                "en-face-de",
+                "la-poste"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skim",
+      "stage": "skim",
+      "role": "exercise",
+      "label": {
+        "en": "Skim",
+        "fr": "Survol",
+        "de": "Überfliegen"
+      },
+      "pages": [
+        {
+          "pageId": "skim",
+          "estimatedDurationS": 70,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Look over the document quickly. When the time is up it is put away; then answer the question.",
+            "fr": "Parcourez rapidement le document. À la fin du temps, il disparaît ; répondez ensuite à la question.",
+            "de": "Überfliege das Dokument. Wenn die Zeit um ist, verschwindet es; beantworte dann die Frage."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "skim-document",
+              "documentId": "main",
+              "view": "skim",
+              "skimSeconds": 50
+            },
+            {
+              "type": "reading_skim_choice",
+              "itemId": "skim-question",
+              "focus": "purpose",
+              "question": "Pourquoi Sophie écrit-elle à Marc ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Pour expliquer le chemin jusqu’à chez elle"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Pour annuler la soirée"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Pour donner l’horaire du métro"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Pour demander l’adresse de la poste"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Pour venir chez moi, c’est facile, then Sors… Prends… Va…: Sophie explains the way to her home.",
+                "fr": "Pour venir chez moi, c’est facile, puis Sors… Prends… Va… : Sophie explique le chemin jusqu’à chez elle.",
+                "de": "Pour venir chez moi, c’est facile, dann Sors… Prends… Va…: Sophie beschreibt den Weg zu ihr."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "detail",
+      "stage": "detail",
+      "role": "exercise",
+      "label": {
+        "en": "Detail",
+        "fr": "Détails",
+        "de": "Details"
+      },
+      "pages": [
+        {
+          "pageId": "detail",
+          "estimatedDurationS": 120,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the document carefully and answer the questions.",
+            "fr": "Lisez le document attentivement et répondez aux questions.",
+            "de": "Lies das Dokument genau und beantworte die Fragen."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "detail-document",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-station",
+              "question": "À quelle station Marc sort-il du métro ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Bastille"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Roquette"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Nation"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "République"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Sors du métro à la station Bastille. La Roquette is the name of the street.",
+                "fr": "Sors du métro à la station Bastille. La Roquette, c’est le nom de la rue.",
+                "de": "Sors du métro à la station Bastille. La Roquette ist der Name der Straße."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-street",
+              "question": "Quelle rue Marc prend-il ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "La deuxième rue à gauche"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "La première rue à gauche"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "La deuxième rue à droite"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "La rue de la poste"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Prends la deuxième rue à gauche, la rue de la Roquette.",
+                "fr": "Prends la deuxième rue à gauche, la rue de la Roquette.",
+                "de": "Prends la deuxième rue à gauche: die zweite Straße links."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-building",
+              "question": "Où est l’immeuble de Sophie ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "En face de la poste"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "À côté du métro"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Derrière la poste"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Au bout de la rue"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Mon immeuble est en face de la poste, au numéro 12.",
+                "fr": "Mon immeuble est en face de la poste, au numéro 12.",
+                "de": "Mon immeuble est en face de la poste: gegenüber der Post."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "q-floor",
+              "statement": "Sophie habite au 12e étage.",
+              "answer": "false",
+              "answerExplanation": {
+                "en": "False: 12 is the number of the building (au numéro 12); Sophie lives au 3e étage.",
+                "fr": "Faux : 12, c’est le numéro de l’immeuble ; Sophie habite au 3e étage.",
+                "de": "Falsch: 12 ist die Hausnummer (au numéro 12); Sophie wohnt au 3e étage."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "structure",
+      "stage": "structure",
+      "role": "exercise",
+      "label": {
+        "en": "Structure",
+        "fr": "Structure",
+        "de": "Aufbau"
+      },
+      "pages": [
+        {
+          "pageId": "structure",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Marc follows Sophie’s directions. Put his way in order.",
+            "fr": "Marc suit les explications de Sophie. Remettez son chemin dans l’ordre.",
+            "de": "Marc folgt Sophies Wegbeschreibung. Bring seinen Weg in die richtige Reihenfolge."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "structure-document",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_order",
+              "itemId": "order",
+              "pieces": [
+                {
+                  "pieceId": "p4",
+                  "text": "Il entre avec le code 4815."
+                },
+                {
+                  "pieceId": "p2",
+                  "text": "Il prend la deuxième rue à gauche."
+                },
+                {
+                  "pieceId": "p3",
+                  "text": "Il va tout droit jusqu’à la poste."
+                },
+                {
+                  "pieceId": "p1",
+                  "text": "Marc sort du métro."
+                }
+              ],
+              "acceptedOrders": [
+                [
+                  "p1",
+                  "p2",
+                  "p3",
+                  "p4"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "Sors du métro, then Prends la deuxième rue à gauche, then Va tout droit jusqu’à la poste, and at the building Le code de la porte, c’est 4815.",
+                "fr": "Sors du métro, puis Prends la deuxième rue à gauche, puis Va tout droit jusqu’à la poste, et à l’immeuble Le code de la porte, c’est 4815.",
+                "de": "Sors du métro, dann Prends la deuxième rue à gauche, dann Va tout droit jusqu’à la poste, und am Haus Le code de la porte, c’est 4815."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Final exam",
+        "fr": "Examen final",
+        "de": "Abschlussprüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam",
+          "estimatedDurationS": 126,
+          "timeLimitS": 190,
+          "instructions": {
+            "en": "Read the new document and answer the questions. No help this time.",
+            "fr": "Lisez le nouveau document et répondez aux questions. Cette fois, sans aide.",
+            "de": "Lies das neue Dokument und beantworte die Fragen. Diesmal ohne Hilfe."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "exam-document",
+              "documentId": "exam",
+              "view": "exam",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-destination",
+              "question": "Où va-t-on ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "À la piscine"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "À l’école"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "À la boulangerie"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "À la poste"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Pour aller à la piscine: the swimming pool is the destination.",
+                "fr": "Pour aller à la piscine : la piscine est la destination.",
+                "de": "Pour aller à la piscine: Das Ziel ist das Schwimmbad."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-start",
+              "question": "D’où part-on ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "De l’école"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Du métro"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "De la piscine"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "De la boulangerie"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Sors de l’école: the way starts at the school.",
+                "fr": "Sors de l’école : le chemin commence à l’école.",
+                "de": "Sors de l’école: Der Weg beginnt an der Schule."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-street",
+              "question": "Quelle rue prend-on ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "La première rue à droite"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "La première rue à gauche"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "La deuxième rue à droite"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "La rue de la piscine"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Prends la première rue à droite.",
+                "fr": "Prends la première rue à droite.",
+                "de": "Prends la première rue à droite: die erste Straße rechts."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "x-straight",
+              "statement": "Après la rue, on va tout droit.",
+              "answer": "true",
+              "answerExplanation": {
+                "en": "True: after the street, Va tout droit.",
+                "fr": "Vrai : après la rue, Va tout droit.",
+                "de": "Richtig: Nach der Straße heißt es Va tout droit."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "x-next",
+              "statement": "La piscine est en face de la boulangerie.",
+              "answer": "false",
+              "answerExplanation": {
+                "en": "False: La piscine est à côté de la boulangerie, next to it, not opposite.",
+                "fr": "Faux : La piscine est à côté de la boulangerie, pas en face.",
+                "de": "Falsch: La piscine est à côté de la boulangerie, also daneben, nicht gegenüber."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

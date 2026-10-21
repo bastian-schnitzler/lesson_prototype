@@ -41,9 +41,9 @@ describe('lesson index', () => {
     expect(ordinals(table)).toEqual(['01', '02', '03', '04', '05', '06', '07', '08', '09']);
     const labels = within(table).getAllByRole('row').slice(1).map((r) => within(r).getAllByRole('link')[0].textContent);
     // Vocabulary lessons consist of the brief only, so their highest artifact is the Draft (P2-04).
-    expect(labels).toEqual(['Outline', 'Content ⚠', 'Draft', 'Content', 'Draft ⚠', 'Outline', 'Draft', 'Content', 'Draft']);
+    expect(labels).toEqual(['Outline', 'Content ⚠', 'Draft', 'Content', 'Draft ⚠', 'Content', 'Draft', 'Content', 'Draft']);
     expect(within(table).getAllByRole('link')[0]).toHaveAttribute('href', '#/lesson/fr-fix-greetings');
-    expect(screen.getAllByRole('link', { name: 'Start lesson' }).map((a) => a.getAttribute('href'))).toEqual(['#/lesson/fr-classroom-objects/play', '#/lesson/fr-verb-etre-present/play', '#/lesson/fr-classroom-instructions/play', '#/lesson/fr-negation-ne-pas/play', '#/lesson/fr-family-members/play']);
+    expect(screen.getAllByRole('link', { name: 'Start lesson' }).map((a) => a.getAttribute('href'))).toEqual(['#/lesson/fr-classroom-objects/play', '#/lesson/fr-verb-etre-present/play', '#/lesson/fr-fix-menu/play', '#/lesson/fr-classroom-instructions/play', '#/lesson/fr-negation-ne-pas/play', '#/lesson/fr-family-members/play']);
     expect(within(screen.getByRole('radiogroup', { name: 'Learning language' })).getByRole('radio', { name: 'fr', checked: true })).toBeInTheDocument();
     expect(screen.getByRole('radio', { name: 'A1', checked: true })).toBeInTheDocument();
   });
@@ -258,11 +258,14 @@ describe('lesson artifact page', () => {
     expect(screen.getByText('This file does not match the lesson contract:')).toBeInTheDocument();
   });
 
-  it('explains pending categories and returns to the lesson course', async () => {
+  it('shows a reading lesson with its documents and Start, and returns to the lesson course', async () => {
     const user = userEvent.setup();
     await renderIndex();
     go('#/lesson/fr-fix-menu');
-    expect(await screen.findByText(/Requirements for Reading lessons are still being defined/)).toBeInTheDocument();
+    // Reading is playable since P5-04: Draft and Content views, no pending-category message.
+    expect(await screen.findByRole('article', { name: 'Main document' })).toHaveTextContent('Le Petit Zinc');
+    expect(screen.getByRole('link', { name: 'Start lesson' })).toHaveAttribute('href', '#/lesson/fr-fix-menu/play');
+    expect(screen.queryByText(/still being defined/)).not.toBeInTheDocument();
     go('#/lesson/de-fix-wohnung');
     await screen.findByRole('heading', { level: 1, name: 'Die Wohnung' });
     await user.click(screen.getByRole('link', { name: 'Lesson overview' }));

@@ -8,7 +8,7 @@ import { Header } from '../components/Header.tsx';
 import { JsonTree } from '../components/JsonTree.tsx';
 import { ReasonList } from '../components/ReasonList.tsx';
 import { StatusMessage } from '../components/StatusMessage.tsx';
-import { courseOfLesson, readiness, type NotReadyReason } from '../domain/courses.ts';
+import { courseOfLesson, PLAYABLE_KINDS, readiness, type NotReadyReason } from '../domain/courses.ts';
 import type { JsonPath } from '../domain/jsonTree.ts';
 import { fetchArtifactText, useOutline, type ArtifactText } from '../data/load.ts';
 import type { ArtifactFile, Course, Manifest } from '../schemas/manifest.ts';
@@ -158,7 +158,7 @@ export function LessonPage({ manifest, lessonId, onReturnToOverview }: LessonPag
   } else if (mode === 'raw') {
     body = <RawView entry={entry} draft={draft} content={content} issues={validation} overrides={treeOverrides} onOverridesChange={setTreeOverrides} />;
   } else {
-    const pending = entry.kind === 'functions' || entry.kind === 'reading';
+    const pending = !PLAYABLE_KINDS.has(entry.kind);
     body = (
       <>
         {pending && <StatusMessage>{t('detail.pendingCategory', { kind: t(`kind.${entry.kind}`) })}</StatusMessage>}

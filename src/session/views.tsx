@@ -8,7 +8,7 @@ import { headerScore, isAnswered, isListeningPage, isMatchingItem, nextDialogueL
 import type { MessageKey } from '../i18n/messages.ts';
 import type { Locale } from '../schemas/common.ts';
 import { rendererRegistry, UnitFeedback } from './renderers.tsx';
-import { answerText } from './controls.tsx';
+import { answerText, Countdown } from './controls.tsx';
 import { MATCH_SLIDE_MS } from './vocabularyRenderers.tsx';
 import { missingArticle } from '../domain/articleHint.ts';
 import type { SessionInput } from './useSession.ts';
@@ -17,8 +17,10 @@ import { useVoiceStatus, type VoiceStatus } from './speech.ts';
 import { gapSentence, pronounWithForm, useAutoplay } from './autoplay.ts';
 import { VoiceHelp } from './VoiceHelp.tsx';
 import { NewVerbs } from './grammarRenderers.tsx';
+import { isSkimmed } from './readingRenderers.tsx';
 import { durationText, examPageKind, examParts, NavLayout, PointStrip, resultTone } from './LessonNav.tsx';
 import { lessonOutline, numberedPoints } from '../domain/session/outline.ts';
+import { pageTimeRows, pageTimesExport } from '../domain/session/pageTimes.ts';
 
 export { resultTone };
 
@@ -32,6 +34,18 @@ function FunctionsStart({ plan }: { plan: LessonPlan }) {
     <>
       <p className="muted">{f.situation[locale]}</p>
       <p className="muted">{t('session.expressionCount', { count: f.expressions.length })} · {t('session.vocabularyCount', { count: f.words.length })}</p>
+    </>
+  );
+}
+
+/** Reading start page (SPEC section 9): the situation and the number of key words; the genre is not shown. */
+function ReadingStart({ plan }: { plan: LessonPlan }) {
+  const { t, locale } = useI18n();
+  const r = plan.reading!;
+  return (
+    <>
+      <p className="muted">{r.situation[locale]}</p>
+      <p className="muted">{t('session.keywordCount', { count: r.keywords.size })}</p>
     </>
   );
 }
@@ -60,7 +74,7 @@ function LessonFlow({ plan }: { plan: LessonPlan }) {
                 <span className="flow-letter" aria-hidden="true">{String.fromCharCode(65 + n)}</span>
                 <span className="flow-title">
                   {title(section)}
-                  {section.kind === 'exam' && <small className="flow-detail">{t('activity.exam', { count: exam.reduce((k, p) => k + p.units.length, 0), pages: exam.length })}</small>}
+                  {section.kind === 'exam' && <small className="flow-detail">{t(exam.length === 1 ? 'activity.examOnePage' : 'activity.exam', { count: exam.reduce((k, p) => k + p.units.length, 0), pages: exam.length })}</small>}
                   {group && <small className="flow-detail">{t('session.vocabularyCount', { count: group.targetIds.length })}</small>}
                 </span>
                 {/* Whole minutes with the stopwatch of the exam time limits (P6-02). */}
@@ -112,6 +126,7 @@ export function StartView({ plan, level, resumable, notice, onStart, onResume }:
         {plan.targets.size > 0 && <> · {t('session.vocabularyCount', { count: plan.targets.size })}</>}
       </p>
       {plan.functions && <FunctionsStart plan={plan} />}
+      {plan.reading && <ReadingStart plan={plan} />}
       {plan.kind === 'grammar' && <NewVerbs plan={plan} motherTongue={motherTongue} />}
       <LessonFlow plan={plan} />
       {notice && <p className="note" role="note">{notice}</p>}
@@ -165,8 +180,8 @@ export function entryAudio(page: PlanPage): string | undefined {
  */
 export function correctSentences(page: PlanPage): string | undefined {
   const sentences = page.units.flatMap((u) => {
-    // Dialogue gaps play only role A's line, on entry (P4-05 review).
-    if (u.answerLang !== 'learning' || isMatchingItem(u.itemType) || u.itemType === 'function_dialogue_gap_choice') return [];
+    // Dialogue gaps play only role A's line, on entry (P4-05 review); reading checks speak nothing (section 9).
+    if (u.answerLang !== 'learning' || isMatchingItem(u.itemType) || u.itemType === 'function_dialogue_gap_choice' || u.itemType.startsWith('reading_')) return [];
     if (u.kind === 'spot' || u.kind === 'order') return [u.answer];
     if (u.prompt.before !== undefined || u.prompt.after !== undefined) return [gapSentence(u.prompt.before, u.answer, u.prompt.after)];
     if (u.itemType === 'grammar_pronoun_form_typing' || u.itemType === 'grammar_pronoun_form_match') return [`${pronounWithForm(u.prompt.learning ?? '', u.answer)}.`];
@@ -206,21 +221,6 @@ export function SessionHeader({ plan, record }: { plan: LessonPlan; record: Sess
         <span className="muted">{formatScore(pct, locale).replace(/[.,]0%$/, '%')}</span>
         {showScore && <span className="session-score" aria-label={t('session.scoreLabel')}>{t('session.score', { score: roundHalfUp1(score).toLocaleString(locale), total: 100 })}</span>}
       </div>
-    </div>
-  );
-}
-
-/** The countdown of an exam page (P6-02, feedback #6): a box beside the heading with a bar of the time left. */
-function Countdown({ remainingMs, limitS }: { remainingMs: number; limitS?: number }) {
-  const { t } = useI18n();
-  const total = Math.ceil(remainingMs / 1000);
-  const text = `${Math.floor(total / 60)}:${String(total % 60).padStart(2, '0')}`;
-  const share = limitS ? Math.max(0, Math.min(1, remainingMs / (limitS * 1000))) : undefined;
-  return (
-    <div className={`countdown${total <= 10 ? ' countdown-low' : ''}`}>
-      <span className="countdown-label" aria-hidden="true">{t('session.timeLeftLabel')}</span>
-      <span className="countdown-time" role="timer" aria-label={t('session.timeLeft', { time: text })}>{text}</span>
-      {share !== undefined && <span className="countdown-bar" aria-hidden="true"><span style={{ width: `${share * 100}%` }} /></span>}
     </div>
   );
 }
@@ -318,7 +318,8 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
         <div className="task-top">
           <div>
             <p className="label-muted">{page.stepLabel[locale]}{page.role === 'exam' && page.stepLabel[locale] !== t('session.examPage') ? ` · ${t('session.examPage')}` : ''}</p>
-            <h1 id="task-heading" ref={heading} tabIndex={-1} className="task-heading">{page.special === 'examIntro' ? t('examIntro.title') : instructionsFor(page, locale, t)}</h1>
+            {/* Once the skim document is put away, the question is answered from memory (section 9). */}
+            <h1 id="task-heading" ref={heading} tabIndex={-1} className="task-heading">{page.special === 'examIntro' ? t('examIntro.title') : isSkimmed(page, record.revealed ?? {}) ? t('reading.fromMemory') : instructionsFor(page, locale, t)}</h1>
           </div>
           {page.role === 'exam' && remainingMs !== undefined && <Countdown remainingMs={remainingMs} limitS={page.timeLimitS ?? undefined} />}
         </div>
@@ -356,6 +357,8 @@ export function SessionView({ plan, record, dispatch, remainingMs, voiceStatus =
         })}
         <div className="task-footer">
           {page.role === 'presentation' && !ready && !nextLine && <p className="muted">{t('session.revealAll')}</p>}
+          {/* Reading exam: how many of the questions are answered, next to Continue (section 9). */}
+          {page.role === 'exam' && plan.kind === 'reading' && <p className="muted" role="status">{t('reading.examAnswered', { count: page.units.filter((u) => isAnswered(u, record.drafts[u.id])).length, total: page.units.length })}</p>}
           <span className="continue-wrap">
             {nextLine ? (
               // A function dialogue unrolls line by line; after the last line the button continues (SPEC section 8).
@@ -406,7 +409,7 @@ function ExamIntro({ plan, page }: { plan: LessonPlan; page: PlanPage }) {
   const tasks = examPages.reduce((n, p) => n + p.units.length, 0);
   return (
     <div className="exam-intro">
-      <p className="lead">{plan.targets.size > 0 ? t('examIntro.words', { count: words.size, tasks }) : t('examIntro.tasks', { tasks })}</p>
+      <p className="lead">{plan.targets.size > 0 ? t('examIntro.words', { count: words.size, tasks }) : plan.reading ? t('examIntro.document', { tasks }) : t('examIntro.tasks', { tasks })}</p>
       <ol className="group-list">
         {examPages.map((p, n) => (
           <li key={p.pageId} style={reviewColor(n)}>
@@ -415,7 +418,7 @@ function ExamIntro({ plan, page }: { plan: LessonPlan; page: PlanPage }) {
           </li>
         ))}
       </ol>
-      <p className="muted">{t('examIntro.rules')}</p>
+      <p className="muted">{t(examPages.length === 1 ? 'examIntro.rulesOne' : 'examIntro.rules')}</p>
     </div>
   );
 }
@@ -578,6 +581,46 @@ function resultSections(plan: LessonPlan, pages: PlanPage[]) {
   return sections;
 }
 
+/** The app was opened with `?playtest` (P5-05): the results show the times per page. */
+export const isPlayTest = () => typeof location !== 'undefined' && new URLSearchParams(location.search).has('playtest');
+
+/**
+ * Play-test times (P5-05, SPEC section 5): seconds per page next to the page estimate, the skim time
+ * used and the time to the first Check, with a JSON download for the team. Only shown with `?playtest`.
+ */
+export function PlayTestTimes({ plan, record }: { plan: LessonPlan; record: SessionRecord }) {
+  const { t, locale } = useI18n();
+  const rows = pageTimeRows(plan, record);
+  const label = (stepId: string) => plan.steps.find((s) => s.stepId === stepId)?.label[locale] ?? stepId;
+  const n = (v: number | undefined) => (v === undefined ? '–' : v.toLocaleString(locale));
+  const download = () => {
+    const url = URL.createObjectURL(new Blob([JSON.stringify(pageTimesExport(plan, record), null, 2)], { type: 'application/json' }));
+    const a = Object.assign(document.createElement('a'), { href: url, download: `${record.lessonId}-times.json` });
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+  return (
+    <section className="playtest" aria-labelledby="playtest-title">
+      <h2 id="playtest-title" className="small-heading">{t('playtest.title')}</h2>
+      <p className="muted">{t('playtest.note')}</p>
+      <div className="table-wrap">
+        <table className="data-table">
+          <thead><tr><th>{t('playtest.page')}</th><th>{t('playtest.estimate')}</th><th>{t('playtest.actual')}</th><th>{t('playtest.skim')}</th><th>{t('playtest.answer')}</th></tr></thead>
+          <tbody>
+            {rows.map((r) => (
+              <tr key={r.pageId}>
+                <td>{r.number}. {label(r.stepId)}</td><td>{n(r.estimatedS)}</td><td>{n(r.actualS)}</td>
+                <td>{r.skimSeconds !== undefined ? `${n(r.skimSeconds)} / ${n(r.skimUsedS)}` : '–'}</td><td>{n(r.answerS)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <button type="button" className="button button-outline" onClick={download}>{t('playtest.download')}</button>
+    </section>
+  );
+}
+
 export function ResultsView({ plan, record, dispatch, footer }: { plan: LessonPlan; record: SessionRecord; dispatch: (action: SessionInput) => void; footer?: React.ReactNode }) {
   const { t, locale, languageName } = useI18n();
   const results = lessonResults(plan, record);
@@ -646,6 +689,7 @@ export function ResultsView({ plan, record, dispatch, footer }: { plan: LessonPl
         <p className="muted">{t('result.completionOnly')}</p>
       )}
     </section>
+    {isPlayTest() && <PlayTestTimes plan={plan} record={record} />}
     {footer}
     </NavLayout>
   );

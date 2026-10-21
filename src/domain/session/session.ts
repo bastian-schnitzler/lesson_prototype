@@ -1,6 +1,7 @@
 import type { Locale } from '../../schemas/common.ts';
 import { classifyAnswer, normalizeAnswer, type AnswerOutcome } from '../answers.ts';
 import type { LessonPlan, PlanPage, PlanUnit } from './plan.ts';
+import { trackPageTimes, type PageTime } from './pageTimes.ts';
 
 /**
  * Session record and pure reducer (SPEC section 5). Time is passed in by the caller,
@@ -46,6 +47,8 @@ export interface SessionRecord {
   exam: Record<string, { startedAt: number; deadline: number; timedOut: boolean }>;
   /** Results sidebar: 'exam', an exam part ('exam:translation', 'exam:dictation'…) or a step ID. */
   selection: string;
+  /** Play-test times per page ID (P5-05); absent in records saved before. */
+  pageTimes?: Record<string, PageTime>;
 }
 
 export const POLICY = { practiceWeight: 35, examWeight: 65, orthographyCredit: 0.5 } as const;
@@ -111,6 +114,7 @@ export function startSession(plan: LessonPlan, init: { sessionId: string; conten
     version: 1, sessionId: init.sessionId, lessonId: plan.lessonId, contentHash: init.contentHash, lang: plan.lang, level: init.level,
     motherTongue: init.motherTongue, seed: init.seed, startedAt: init.now, updatedAt: init.now, status: 'active',
     pageIndex: 0, phase: 'answering', completed: [], skippedNoVoice: [], revealed: {}, drafts: {}, locked: {}, exam: {}, selection: 'exam',
+    pageTimes: plan.pages[0] ? { [plan.pages[0].pageId]: { enteredAt: init.now } } : {},
   };
   return activate(plan, record, init.now);
 }
@@ -134,9 +138,9 @@ export function skipsFeedbackWhenCorrect(page: PlanPage): boolean {
     && page.items.every((item) => isMatchingItem(item.type) || item.type === 'grammar_pronoun_form_typing' || page.units.filter((u) => u.itemId === item.itemId).length === 1);
 }
 
-/** Items shown on the matching board: vocabulary, person (P3-02 review) and function matching (P4-04). */
+/** Items shown on the matching board: vocabulary, person (P3-02 review), function (P4-04) and reading key-word matching (P5-04). */
 export function isMatchingItem(type: string): boolean {
-  return type === 'vocabulary_matching' || type === 'grammar_person_matching' || type === 'function_matching';
+  return type === 'vocabulary_matching' || type === 'grammar_person_matching' || type === 'function_matching' || type === 'reading_keyword_matching';
 }
 
 /** Such pages answered fully correctly go straight on (after a green flash); feedback would only repeat the answers. */
@@ -146,13 +150,14 @@ export function skipsFeedback(page: PlanPage, r: Pick<SessionRecord, 'locked'>):
 
 /**
  * Presentation keys a page needs before Continue: every flashcard turned once (P2-02, function cards
- * P4-04) and every line of a function dialogue shown (the first line is shown from the start).
+ * P4-04, reading key words P5-04) and every line of a function dialogue shown (the first line is shown from the start).
  */
 export function requiredReveals(page: PlanPage): { itemKey: string; keys: string[] }[] {
   return page.items.flatMap((item) => {
     const itemKey = `${page.pageId}/${item.itemId}`;
     if (item.type === 'vocabulary_flashcards') return [{ itemKey, keys: item.targetIds }];
     if (item.type === 'function_flashcards') return [{ itemKey, keys: item.ids }];
+    if (item.type === 'reading_flashcards') return [{ itemKey, keys: item.keywordIds }];
     if (item.type === 'function_dialogue') return [{ itemKey, keys: item.lines.slice(1).map((l) => l.lineId) }];
     return [];
   });
@@ -254,7 +259,7 @@ export function sessionReducer(plan: LessonPlan, r: SessionRecord, action: Sessi
       } else next = advance(plan, r, now);
       break;
   }
-  return { ...next, updatedAt: now };
+  return trackPageTimes(plan, r, { ...next, updatedAt: now }, now);
 }
 
 /* ----------------------------------------------------------- aggregates */

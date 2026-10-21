@@ -1,0 +1,569 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-reading-a-flat-ad",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Lire une annonce de logement",
+  "objective": {
+    "en": "Read a small rental ad and find the kind of flat, the area, the rent and how to contact the owner.",
+    "fr": "Lire une petite annonce de location et trouver le logement, le quartier, le loyer et comment contacter le propriétaire.",
+    "de": "Eine kleine Mietanzeige lesen und Art der Wohnung, Viertel, Miete und den Kontakt zum Vermieter finden."
+  },
+  "estimatedMinutes": 8,
+  "provenance": {
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "reading-v1",
+    "generatedAt": "2026-10-15T19:30:27.371Z",
+    "inputHashes": {
+      "outline": "4e96254c6412dafc7d7fe43b5cb72f8d448c7460e8f07c4d6603fb324c02dacc",
+      "brief": "d7ab79f4bf926e1a0f4a8f2dd6646ac996eb061190e090740cec175cad3b1e8f"
+    }
+  },
+  "kind": "reading",
+  "theme": "house_and_home",
+  "genre": "classified_ad",
+  "documents": [
+    {
+      "documentId": "main",
+      "title": "À louer : studio au centre-ville",
+      "meta": [
+        "Petites annonces",
+        "Lyon 2e"
+      ],
+      "paragraphs": [
+        "Studio de 25 m² au 3e étage, avec ascenseur, dans une rue calme du centre-ville.",
+        "Une pièce, une petite cuisine et une salle de bains. Meublé.",
+        "Loyer : 650 € par mois, charges comprises.",
+        "Libre le 1er septembre. Pas d’animaux.",
+        "Contact : M. Durand, par téléphone le soir au 06 45 21 33 87."
+      ],
+      "highlights": [
+        {
+          "keywordId": "etage",
+          "text": "étage"
+        },
+        {
+          "keywordId": "meuble",
+          "text": "Meublé"
+        },
+        {
+          "keywordId": "loyer",
+          "text": "Loyer"
+        },
+        {
+          "keywordId": "charges",
+          "text": "charges"
+        },
+        {
+          "keywordId": "libre",
+          "text": "Libre"
+        }
+      ]
+    },
+    {
+      "documentId": "exam",
+      "title": "À louer : deux pièces",
+      "meta": [
+        "Petites annonces"
+      ],
+      "paragraphs": [
+        "Appartement de 45 m² au 1er étage, près de la gare. Deux pièces et un balcon.",
+        "Loyer : 780 € par mois, plus 50 € de charges. Libre en octobre.",
+        "Écrivez à Mme Martin par e-mail."
+      ],
+      "highlights": []
+    }
+  ],
+  "steps": [
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "flashcards",
+          "estimatedDurationS": 50,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Turn each card to learn the key words of the text.",
+            "fr": "Retournez chaque carte pour découvrir les mots clés du texte.",
+            "de": "Dreh jede Karte um und lerne die Schlüsselwörter des Textes."
+          },
+          "items": [
+            {
+              "type": "reading_flashcards",
+              "itemId": "cards",
+              "keywordIds": [
+                "etage",
+                "meuble",
+                "loyer",
+                "charges",
+                "libre"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "matching",
+          "estimatedDurationS": 50,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each key word with its meaning.",
+            "fr": "Associez chaque mot clé à son sens.",
+            "de": "Ordne jedem Schlüsselwort seine Bedeutung zu."
+          },
+          "items": [
+            {
+              "type": "reading_keyword_matching",
+              "itemId": "matching",
+              "keywordIds": [
+                "etage",
+                "meuble",
+                "loyer",
+                "charges",
+                "libre"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skim",
+      "stage": "skim",
+      "role": "exercise",
+      "label": {
+        "en": "Skim",
+        "fr": "Survol",
+        "de": "Überfliegen"
+      },
+      "pages": [
+        {
+          "pageId": "skim",
+          "estimatedDurationS": 70,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Look over the document quickly. When the time is up it is put away; then answer the question.",
+            "fr": "Parcourez rapidement le document. À la fin du temps, il disparaît ; répondez ensuite à la question.",
+            "de": "Überfliege das Dokument. Wenn die Zeit um ist, verschwindet es; beantworte dann die Frage."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "skim-document",
+              "documentId": "main",
+              "view": "skim",
+              "skimSeconds": 50
+            },
+            {
+              "type": "reading_skim_choice",
+              "itemId": "skim-question",
+              "focus": "purpose",
+              "question": "Pourquoi M. Durand a-t-il écrit cette annonce ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Pour louer un studio"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Pour vendre une voiture"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Pour acheter un appartement"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Pour inviter des amis"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "À louer, Loyer, Libre le 1er septembre: Mr Durand wants to rent out his studio.",
+                "fr": "À louer, Loyer, Libre le 1er septembre : M. Durand veut louer son studio.",
+                "de": "À louer, Loyer, Libre le 1er septembre: Herr Durand möchte sein Studio vermieten."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "detail",
+      "stage": "detail",
+      "role": "exercise",
+      "label": {
+        "en": "Detail",
+        "fr": "Détails",
+        "de": "Details"
+      },
+      "pages": [
+        {
+          "pageId": "detail",
+          "estimatedDurationS": 120,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the document carefully and answer the questions.",
+            "fr": "Lisez le document attentivement et répondez aux questions.",
+            "de": "Lies das Dokument genau und beantworte die Fragen."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "detail-document",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-what",
+              "question": "Quel logement est à louer ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Un studio de 25 m²"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Un deux pièces de 50 m²"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Une maison avec jardin"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Une chambre chez une famille"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Studio de 25 m²: one room (Une pièce), a small kitchen and a bathroom.",
+                "fr": "Studio de 25 m² : une pièce, une petite cuisine et une salle de bains.",
+                "de": "Studio de 25 m²: ein Zimmer (Une pièce), eine kleine Küche und ein Bad."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-rent",
+              "question": "Combien coûte le loyer par mois ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "650 €, charges comprises"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "650 € plus les charges"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "560 €, charges comprises"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "25 € par mois"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Loyer : 650 € par mois, charges comprises: the charges are included, nothing is added.",
+                "fr": "Loyer : 650 € par mois, charges comprises : les charges sont incluses.",
+                "de": "Loyer : 650 € par mois, charges comprises: Die Nebenkosten sind inbegriffen."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-contact",
+              "question": "Comment contacter M. Durand ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Par téléphone, le soir"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Par téléphone, le matin"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Par e-mail"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Au 3e étage"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Contact : M. Durand, par téléphone le soir.",
+                "fr": "Contact : M. Durand, par téléphone le soir.",
+                "de": "Contact : M. Durand, par téléphone le soir: abends per Telefon."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "q-pets",
+              "statement": "On peut habiter dans le studio avec un chat.",
+              "answer": "false",
+              "answerExplanation": {
+                "en": "False: the ad says Pas d’animaux, no pets.",
+                "fr": "Faux : l’annonce dit Pas d’animaux.",
+                "de": "Falsch: In der Anzeige steht Pas d’animaux, keine Haustiere."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "structure",
+      "stage": "structure",
+      "role": "exercise",
+      "label": {
+        "en": "Structure",
+        "fr": "Structure",
+        "de": "Aufbau"
+      },
+      "pages": [
+        {
+          "pageId": "structure",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Put the information of the ad in the order of the text.",
+            "fr": "Remettez les informations de l’annonce dans l’ordre du texte.",
+            "de": "Bring die Informationen der Anzeige in die Reihenfolge des Textes."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "structure-document",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_order",
+              "itemId": "order",
+              "pieces": [
+                {
+                  "pieceId": "p1",
+                  "text": "Le studio est dans une rue calme."
+                },
+                {
+                  "pieceId": "p3",
+                  "text": "Le loyer est de 650 € par mois."
+                },
+                {
+                  "pieceId": "p2",
+                  "text": "Il y a une cuisine et une salle de bains."
+                },
+                {
+                  "pieceId": "p4",
+                  "text": "On appelle M. Durand le soir."
+                }
+              ],
+              "acceptedOrders": [
+                [
+                  "p1",
+                  "p2",
+                  "p3",
+                  "p4"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "The ad first describes the studio and its street, then the rooms, then the rent, and it ends with the contact.",
+                "fr": "L’annonce décrit d’abord le studio et sa rue, puis les pièces, puis le loyer, et elle finit par le contact.",
+                "de": "Die Anzeige beschreibt zuerst das Studio und die Straße, dann die Räume, dann die Miete und endet mit dem Kontakt."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Final exam",
+        "fr": "Examen final",
+        "de": "Abschlussprüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam",
+          "estimatedDurationS": 131,
+          "timeLimitS": 200,
+          "instructions": {
+            "en": "Read the new document and answer the questions. No help this time.",
+            "fr": "Lisez le nouveau document et répondez aux questions. Cette fois, sans aide.",
+            "de": "Lies das neue Dokument und beantworte die Fragen. Diesmal ohne Hilfe."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "exam-document",
+              "documentId": "exam",
+              "view": "exam",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-rooms",
+              "question": "Combien de pièces a l’appartement ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Deux pièces"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Une pièce"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Trois pièces"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Quatre pièces"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "À louer : deux pièces, and again: Deux pièces et un balcon.",
+                "fr": "À louer : deux pièces, et encore : Deux pièces et un balcon.",
+                "de": "À louer : deux pièces, und noch einmal: Deux pièces et un balcon."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-where",
+              "question": "Où est l’appartement ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Près de la gare"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Au centre-ville"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Dans une rue calme"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Au 3e étage"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Au 1er étage, près de la gare: near the station.",
+                "fr": "Au 1er étage, près de la gare.",
+                "de": "Au 1er étage, près de la gare: in der Nähe des Bahnhofs."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "x-charges",
+              "statement": "Les charges sont comprises dans le loyer.",
+              "answer": "false",
+              "answerExplanation": {
+                "en": "False: the rent is 780 €, plus 50 € de charges; the charges are added.",
+                "fr": "Faux : le loyer est de 780 €, plus 50 € de charges.",
+                "de": "Falsch: Die Miete ist 780 €, plus 50 € de charges; die Nebenkosten kommen dazu."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-free",
+              "question": "Quand l’appartement est-il libre ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "En octobre"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Tout de suite"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Le 1er septembre"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "En juillet"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Libre en octobre. Le 1er septembre is the date of the studio in the first ad.",
+                "fr": "Libre en octobre. Le 1er septembre, c’est la date du studio de la première annonce.",
+                "de": "Libre en octobre. Le 1er septembre ist das Datum des Studios aus der ersten Anzeige."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-contact",
+              "question": "Comment contacter Mme Martin ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Par e-mail"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Par téléphone"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Par SMS"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "À la gare"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Écrivez à Mme Martin par e-mail.",
+                "fr": "Écrivez à Mme Martin par e-mail.",
+                "de": "Écrivez à Mme Martin par e-mail: per E-Mail."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

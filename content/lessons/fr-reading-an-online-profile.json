@@ -1,0 +1,568 @@
+{
+  "schemaVersion": 2,
+  "id": "fr-reading-an-online-profile",
+  "lang": "fr",
+  "level": "A1",
+  "locales": [
+    "en",
+    "fr",
+    "de"
+  ],
+  "title": "Lire un profil en ligne",
+  "objective": {
+    "en": "Read a short profile on a language-exchange website and find the person’s name, age, city, job and languages.",
+    "fr": "Lire le court profil d’une personne sur un site d’échange linguistique et retrouver son nom, son âge, sa ville, son métier et ses langues.",
+    "de": "Ein kurzes Profil auf einer Sprachtausch-Website lesen und Name, Alter, Wohnort, Beruf und Sprachen der Person finden."
+  },
+  "estimatedMinutes": 8,
+  "provenance": {
+    "generator": "claude-code-direct-authoring",
+    "model": "claude-opus-5-5",
+    "promptVersion": "reading-v1",
+    "generatedAt": "2026-10-15T19:30:27.790Z",
+    "inputHashes": {
+      "outline": "8b41567363f7ea5955cfea724de2b66b11b64030cdbefef36d253d3af7182a2a",
+      "brief": "c53162f865410148d54ef8f8df4558f7457e6fefa9b0670fd5c11c4f84d82b4d"
+    }
+  },
+  "kind": "reading",
+  "theme": "personal_identification",
+  "genre": "profile",
+  "documents": [
+    {
+      "documentId": "main",
+      "title": "Ana Ribeiro",
+      "meta": [
+        "Échange de langues",
+        "Membre depuis mars"
+      ],
+      "paragraphs": [
+        "Bonjour ! Je m’appelle Ana, j’ai 25 ans et j’habite à Lyon.",
+        "Je suis brésilienne. Je suis infirmière dans un grand hôpital.",
+        "Je parle portugais et anglais. J’apprends le français depuis un an.",
+        "Je cherche une personne pour parler français le samedi matin, dans un café. J’aime la musique et le cinéma."
+      ],
+      "highlights": [
+        {
+          "keywordId": "je-mappelle",
+          "text": "Je m’appelle"
+        },
+        {
+          "keywordId": "jhabite",
+          "text": "j’habite"
+        },
+        {
+          "keywordId": "infirmiere",
+          "text": "infirmière"
+        },
+        {
+          "keywordId": "je-parle",
+          "text": "Je parle"
+        },
+        {
+          "keywordId": "japprends",
+          "text": "J’apprends"
+        }
+      ]
+    },
+    {
+      "documentId": "exam",
+      "title": "Karim Benali",
+      "meta": [
+        "Échange de langues"
+      ],
+      "paragraphs": [
+        "Salut ! Je m’appelle Karim, j’ai 31 ans. J’habite à Marseille.",
+        "Je suis cuisinier. Je parle arabe et français. J’apprends l’espagnol.",
+        "Je cherche un partenaire pour parler espagnol le mardi soir."
+      ],
+      "highlights": []
+    }
+  ],
+  "steps": [
+    {
+      "id": "flashcards",
+      "stage": "flashcards",
+      "role": "exercise",
+      "label": {
+        "en": "Flashcards",
+        "fr": "Cartes mémoire",
+        "de": "Karteikarten"
+      },
+      "pages": [
+        {
+          "pageId": "flashcards",
+          "estimatedDurationS": 50,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Turn each card to learn the key words of the text.",
+            "fr": "Retournez chaque carte pour découvrir les mots clés du texte.",
+            "de": "Dreh jede Karte um und lerne die Schlüsselwörter des Textes."
+          },
+          "items": [
+            {
+              "type": "reading_flashcards",
+              "itemId": "cards",
+              "keywordIds": [
+                "je-mappelle",
+                "jhabite",
+                "infirmiere",
+                "je-parle",
+                "japprends"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "matching",
+      "stage": "matching",
+      "role": "exercise",
+      "label": {
+        "en": "Matching",
+        "fr": "Association",
+        "de": "Zuordnen"
+      },
+      "pages": [
+        {
+          "pageId": "matching",
+          "estimatedDurationS": 50,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Match each key word with its meaning.",
+            "fr": "Associez chaque mot clé à son sens.",
+            "de": "Ordne jedem Schlüsselwort seine Bedeutung zu."
+          },
+          "items": [
+            {
+              "type": "reading_keyword_matching",
+              "itemId": "matching",
+              "keywordIds": [
+                "je-mappelle",
+                "jhabite",
+                "infirmiere",
+                "je-parle",
+                "japprends"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "skim",
+      "stage": "skim",
+      "role": "exercise",
+      "label": {
+        "en": "Skim",
+        "fr": "Survol",
+        "de": "Überfliegen"
+      },
+      "pages": [
+        {
+          "pageId": "skim",
+          "estimatedDurationS": 70,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Look over the document quickly. When the time is up it is put away; then answer the question.",
+            "fr": "Parcourez rapidement le document. À la fin du temps, il disparaît ; répondez ensuite à la question.",
+            "de": "Überfliege das Dokument. Wenn die Zeit um ist, verschwindet es; beantworte dann die Frage."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "skim-document",
+              "documentId": "main",
+              "view": "skim",
+              "skimSeconds": 50
+            },
+            {
+              "type": "reading_skim_choice",
+              "itemId": "skim-question",
+              "focus": "genre",
+              "question": "Qu’est-ce que c’est ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Un profil sur un site d’échange de langues"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Une offre d’emploi dans un hôpital"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Une lettre à une amie"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Le programme d’un cinéma"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Ana gives her name, age, city and languages and looks for a partner to speak French: it is a profile (Échange de langues).",
+                "fr": "Ana donne son nom, son âge, sa ville et ses langues et cherche un partenaire pour parler français : c’est un profil (Échange de langues).",
+                "de": "Ana nennt Name, Alter, Wohnort und Sprachen und sucht jemanden zum Französischsprechen: Es ist ein Profil (Échange de langues)."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "detail",
+      "stage": "detail",
+      "role": "exercise",
+      "label": {
+        "en": "Detail",
+        "fr": "Détails",
+        "de": "Details"
+      },
+      "pages": [
+        {
+          "pageId": "detail",
+          "estimatedDurationS": 120,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "Read the document carefully and answer the questions.",
+            "fr": "Lisez le document attentivement et répondez aux questions.",
+            "de": "Lies das Dokument genau und beantworte die Fragen."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "detail-document",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-age",
+              "question": "Quel âge a Ana ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "25 ans"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "52 ans"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "15 ans"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "35 ans"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Ana writes: j’ai 25 ans.",
+                "fr": "Ana écrit : j’ai 25 ans.",
+                "de": "Ana schreibt: j’ai 25 ans."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-city",
+              "question": "Où habite Ana ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "À Lyon"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "À Paris"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Au Brésil"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "À Lisbonne"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "J’habite à Lyon. Ana is Brazilian (brésilienne), but she lives in Lyon.",
+                "fr": "J’habite à Lyon. Ana est brésilienne, mais elle habite à Lyon.",
+                "de": "J’habite à Lyon. Ana ist Brasilianerin (brésilienne), wohnt aber in Lyon."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "q-job",
+              "question": "Quel est le métier d’Ana ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Elle est infirmière."
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Elle est professeure."
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Elle est étudiante."
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Elle est musicienne."
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Je suis infirmière dans un grand hôpital. She likes music, but it is not her job.",
+                "fr": "Je suis infirmière dans un grand hôpital. Elle aime la musique, mais ce n’est pas son métier.",
+                "de": "Je suis infirmière dans un grand hôpital. Sie mag Musik, aber das ist nicht ihr Beruf."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "q-language",
+              "statement": "Ana apprend l’anglais.",
+              "answer": "false",
+              "answerExplanation": {
+                "en": "False: Ana already speaks English (Je parle portugais et anglais); she is learning French (J’apprends le français).",
+                "fr": "Faux : Ana parle déjà anglais (Je parle portugais et anglais) ; elle apprend le français (J’apprends le français).",
+                "de": "Falsch: Ana spricht schon Englisch (Je parle portugais et anglais); sie lernt Französisch (J’apprends le français)."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "structure",
+      "stage": "structure",
+      "role": "exercise",
+      "label": {
+        "en": "Structure",
+        "fr": "Structure",
+        "de": "Aufbau"
+      },
+      "pages": [
+        {
+          "pageId": "structure",
+          "estimatedDurationS": 60,
+          "timeLimitS": null,
+          "instructions": {
+            "en": "In what order does Ana present herself? Put the information in order.",
+            "fr": "Dans quel ordre Ana se présente-t-elle ? Remettez les informations dans l’ordre.",
+            "de": "In welcher Reihenfolge stellt sich Ana vor? Bring die Informationen in die richtige Reihenfolge."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "structure-document",
+              "documentId": "main",
+              "view": "open",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_order",
+              "itemId": "order",
+              "pieces": [
+                {
+                  "pieceId": "p4",
+                  "text": "Elle dit ce qu’elle cherche."
+                },
+                {
+                  "pieceId": "p1",
+                  "text": "Ana donne son nom et son âge."
+                },
+                {
+                  "pieceId": "p2",
+                  "text": "Elle dit sa nationalité et son métier."
+                },
+                {
+                  "pieceId": "p3",
+                  "text": "Elle parle de ses langues."
+                }
+              ],
+              "acceptedOrders": [
+                [
+                  "p1",
+                  "p2",
+                  "p3",
+                  "p4"
+                ]
+              ],
+              "answerExplanation": {
+                "en": "First her name and age (Je m’appelle Ana, j’ai 25 ans), then her nationality and job (brésilienne, infirmière), then her languages, and at the end what she is looking for (Je cherche…).",
+                "fr": "D’abord son nom et son âge (Je m’appelle Ana, j’ai 25 ans), puis sa nationalité et son métier (brésilienne, infirmière), puis ses langues, et à la fin ce qu’elle cherche (Je cherche…).",
+                "de": "Zuerst Name und Alter (Je m’appelle Ana, j’ai 25 ans), dann Nationalität und Beruf (brésilienne, infirmière), dann ihre Sprachen und am Ende, was sie sucht (Je cherche…)."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exam",
+      "stage": "exam",
+      "role": "exam",
+      "label": {
+        "en": "Final exam",
+        "fr": "Examen final",
+        "de": "Abschlussprüfung"
+      },
+      "pages": [
+        {
+          "pageId": "exam",
+          "estimatedDurationS": 128,
+          "timeLimitS": 195,
+          "instructions": {
+            "en": "Read the new document and answer the questions. No help this time.",
+            "fr": "Lisez le nouveau document et répondez aux questions. Cette fois, sans aide.",
+            "de": "Lies das neue Dokument und beantworte die Fragen. Diesmal ohne Hilfe."
+          },
+          "items": [
+            {
+              "type": "reading_document",
+              "itemId": "exam-document",
+              "documentId": "exam",
+              "view": "exam",
+              "skimSeconds": null
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-age",
+              "question": "Quel âge a Karim ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "31 ans"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "13 ans"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "21 ans"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "25 ans"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Karim writes: j’ai 31 ans.",
+                "fr": "Karim écrit : j’ai 31 ans.",
+                "de": "Karim schreibt: j’ai 31 ans."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-city",
+              "question": "Où habite Karim ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "À Marseille"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "À Lyon"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "En Espagne"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "À Alger"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "J’habite à Marseille. He is learning Spanish, but he lives in Marseille.",
+                "fr": "J’habite à Marseille. Il apprend l’espagnol, mais il habite à Marseille.",
+                "de": "J’habite à Marseille. Er lernt Spanisch, wohnt aber in Marseille."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-job",
+              "question": "Quel est le métier de Karim ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Il est cuisinier."
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Il est infirmier."
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Il est professeur."
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Il est serveur."
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Je suis cuisinier: Karim is a cook.",
+                "fr": "Je suis cuisinier : Karim fait la cuisine dans son travail.",
+                "de": "Je suis cuisinier: Karim ist Koch."
+              }
+            },
+            {
+              "type": "reading_true_false",
+              "itemId": "x-learn",
+              "statement": "Karim apprend le français.",
+              "answer": "false",
+              "answerExplanation": {
+                "en": "False: Karim already speaks French (Je parle arabe et français); he is learning Spanish (J’apprends l’espagnol).",
+                "fr": "Faux : Karim parle déjà français (Je parle arabe et français) ; il apprend l’espagnol.",
+                "de": "Falsch: Karim spricht schon Französisch (Je parle arabe et français); er lernt Spanisch (J’apprends l’espagnol)."
+              }
+            },
+            {
+              "type": "reading_choice",
+              "itemId": "x-when",
+              "question": "Quand Karim veut-il parler espagnol ?",
+              "options": [
+                {
+                  "optionId": "o1",
+                  "text": "Le mardi soir"
+                },
+                {
+                  "optionId": "o2",
+                  "text": "Le samedi matin"
+                },
+                {
+                  "optionId": "o3",
+                  "text": "Le mardi matin"
+                },
+                {
+                  "optionId": "o4",
+                  "text": "Le dimanche soir"
+                }
+              ],
+              "answerOptionId": "o1",
+              "answerExplanation": {
+                "en": "Je cherche un partenaire pour parler espagnol le mardi soir.",
+                "fr": "Je cherche un partenaire pour parler espagnol le mardi soir.",
+                "de": "Je cherche un partenaire pour parler espagnol le mardi soir: am Dienstagabend."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

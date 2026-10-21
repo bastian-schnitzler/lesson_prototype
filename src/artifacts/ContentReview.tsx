@@ -1,14 +1,15 @@
 import { Fragment, useId, useRef, useState, type CSSProperties } from 'react';
 import { functionsTerms } from '../domain/functionsLesson.ts';
 import { buildPlan, type PlanUnit } from '../domain/session/plan.ts';
+import { ORDER_SEPARATOR } from '../domain/session/readingPlan.ts';
 import { RichText } from '../components/RichText.tsx';
 import type { Brief, LessonContent } from '../schemas/artifacts.ts';
 import { useBriefText, Learn, SummaryLine, ScoringNote } from './briefParts.tsx';
 
 const COPY = {
-  en: { subject: 'Subject', form: 'Form', outline: 'Lesson outline', pages: 'Lesson pages', page: 'Page', answers: 'Accepted answers', options: 'Options', explanation: 'Answer explanation', units: 'Point units', references: 'Reference words', timer: 'Countdown limit', noTimer: 'No countdown', front: 'Front', back: 'Back', placeholder: 'Personalised production feedback is planned for a later phase.', rules: 'Rules', type: 'Task type', correction: 'Correction' , roleCol: 'Role', line: 'Line', note: 'Note', distractors: 'Distractors' },
-  fr: { subject: 'Sujet', form: 'Forme', outline: 'Plan de la leçon', pages: 'Pages de la leçon', page: 'Page', answers: 'Réponses acceptées', options: 'Options', explanation: 'Explication de la réponse', units: 'Unités de points', references: 'Mots de référence', timer: 'Limite du compte à rebours', noTimer: 'Sans compte à rebours', front: 'Recto', back: 'Verso', placeholder: 'Le retour personnalisé sur la production est prévu pour une phase ultérieure.', rules: 'Règles', type: 'Type de tâche', correction: 'Correction' , roleCol: 'Rôle', line: 'Réplique', note: 'Remarque', distractors: 'Distracteurs' },
-  de: { subject: 'Subjekt', form: 'Form', outline: 'Lektionsübersicht', pages: 'Lektionsseiten', page: 'Seite', answers: 'Akzeptierte Antworten', options: 'Optionen', explanation: 'Erklärung der Antwort', units: 'Punkteinheiten', references: 'Referenzwörter', timer: 'Zeitlimit', noTimer: 'Kein Countdown', front: 'Vorderseite', back: 'Rückseite', placeholder: 'Persönliches Feedback zur Produktion ist für eine spätere Phase vorgesehen.', rules: 'Regeln', type: 'Aufgabentyp', correction: 'Korrektur' , roleCol: 'Rolle', line: 'Zeile', note: 'Hinweis', distractors: 'Ablenker' },
+  en: { subject: 'Subject', form: 'Form', outline: 'Lesson outline', pages: 'Lesson pages', page: 'Page', answers: 'Accepted answers', options: 'Options', explanation: 'Answer explanation', units: 'Point units', references: 'Reference words', timer: 'Countdown limit', noTimer: 'No countdown', front: 'Front', back: 'Back', placeholder: 'Personalised production feedback is planned for a later phase.', rules: 'Rules', type: 'Task type', correction: 'Correction' , roleCol: 'Role', line: 'Line', note: 'Note', distractors: 'Distractors', document: 'Document', view: 'View', skim: 'Skim time' },
+  fr: { subject: 'Sujet', form: 'Forme', outline: 'Plan de la leçon', pages: 'Pages de la leçon', page: 'Page', answers: 'Réponses acceptées', options: 'Options', explanation: 'Explication de la réponse', units: 'Unités de points', references: 'Mots de référence', timer: 'Limite du compte à rebours', noTimer: 'Sans compte à rebours', front: 'Recto', back: 'Verso', placeholder: 'Le retour personnalisé sur la production est prévu pour une phase ultérieure.', rules: 'Règles', type: 'Type de tâche', correction: 'Correction' , roleCol: 'Rôle', line: 'Réplique', note: 'Remarque', distractors: 'Distracteurs', document: 'Document', view: 'Vue', skim: 'Temps de survol' },
+  de: { subject: 'Subjekt', form: 'Form', outline: 'Lektionsübersicht', pages: 'Lektionsseiten', page: 'Seite', answers: 'Akzeptierte Antworten', options: 'Optionen', explanation: 'Erklärung der Antwort', units: 'Punkteinheiten', references: 'Referenzwörter', timer: 'Zeitlimit', noTimer: 'Kein Countdown', front: 'Vorderseite', back: 'Rückseite', placeholder: 'Persönliches Feedback zur Produktion ist für eine spätere Phase vorgesehen.', rules: 'Regeln', type: 'Aufgabentyp', correction: 'Korrektur' , roleCol: 'Rolle', line: 'Zeile', note: 'Hinweis', distractors: 'Ablenker', document: 'Dokument', view: 'Ansicht', skim: 'Zeit zum Überfliegen' },
 };
 
 /** Builds presentation data only. No session hook, timer, storage or answer controls. */
@@ -27,7 +28,7 @@ export function ContentReview({ content, brief }: { content: LessonContent; brie
   const optionText = (s: string, lang: string) => lang === 'ui' && s.startsWith('gender.') ? text.t(s as 'gender.masculine') : s;
   const unitAnswer = (u: PlanUnit) => {
     if (u.kind === 'text') return u.accepted.answers.join(' / ');
-    if (u.kind === 'order') return u.acceptedOrders.map((order) => order.map((id) => u.tokens.find((t) => t.id === id)!.text).join(' ')).join(' / ');
+    if (u.kind === 'order') return u.acceptedOrders.map((order) => order.map((id) => u.tokens.find((t) => t.id === id)!.text).join(u.itemType === 'reading_order' ? ORDER_SEPARATOR : ' ')).join(' / ');
     if (u.kind === 'spot') return u.correction.accepted.answers.join(' / ');
     return u.correct.map((id) => { const o = u.options.find((o) => o.id === id)!; return optionText(o.text, o.lang); }).join(' / ');
   };
@@ -99,6 +100,11 @@ export function ContentReview({ content, brief }: { content: LessonContent; brie
             ? item.lines.map((l) => <tr key={l.lineId}><td>{learning(role(l.roleId))}</td><td>{learning(l.text)}</td><td lang={text.nativeLocale}>{text.native(l.translation)}</td><td>{text.ui(l.note)}</td></tr>)
             : item.lines.map((l) => <tr key={l.lineId}><td>{learning(role(l.roleId))}</td><td>{learning(l.gap ? [l.before, '___', l.after].filter(Boolean).join(' ') : l.before)}</td></tr>)}</tbody></table></div>}
           {item.type === 'function_word_order' && item.distractorTokenIds.length > 0 && <p>{copy.distractors}: {learning(item.tokens.filter((tk) => item.distractorTokenIds.includes(tk.tokenId)).map((tk) => tk.text).join(' · '))}</p>}
+          {item.type === 'reading_document' && <p>{copy.document}: <code>{item.documentId}</code> · {copy.view}: <code>{item.view}</code>{item.skimSeconds !== null && <> · {copy.skim}: {text.duration(item.skimSeconds)}</>}</p>}
+          {item.type === 'reading_flashcards' && plan.reading && <div className="table-wrap"><table className="data-table"><thead><tr><th>{copy.front}</th><th>{copy.back}</th></tr></thead><tbody>{item.keywordIds.map((id) => {
+            const k = plan.reading!.keywords.get(id)!;
+            return <tr key={id}><td lang={text.nativeLocale}>{text.native(k.translations)?.join(' / ')}</td><td>{learning(k.term)} — {text.ui(k.explanation)}</td></tr>;
+          })}</tbody></table></div>}
           {item.type === 'vocabulary_typed_gap' && <p>{copy.references}: {item.referenceTargetIds.map((id) => plan.targets.get(id)!.term).join(' · ')}</p>}
           {pg.units.filter((u) => u.itemId === item.itemId).map((u) => <div className="content-answer" key={u.id}>
             <p><code>{u.id}</code> · {copy.units}: 1</p>

@@ -93,7 +93,7 @@ export function VocabularyBriefView({ data }: ArtifactViewProps) {
                 <th scope="row">
                   <span className="step-number">{String(stages.length + 1).padStart(2, '0')}</span> {t('stage.exam')}
                 </th>
-                <td>{t('activity.exam', { count: examTargets, pages: exam.pages.length })}</td>
+                <td>{t(exam.pages.length === 1 ? 'activity.examOnePage' : 'activity.exam', { count: examTargets, pages: exam.pages.length })}</td>
                 <td>{duration(total(exam.pages))}</td>
                 <td>{t('assessment.exam')}</td>
               </tr>

@@ -1032,6 +1032,8 @@ Acceptance:
 - `node scripts/author-reading.ts <id>` (or `--all`, `--dry-run`) derives page estimates, `skimSeconds`, the exam limit, minutes, step labels, page instructions and input hashes for briefs and lessons written as JSON, validates both and writes them; no separate definition files.
 - The lesson `fr-reading-a-text-message` (written with the tool) is the contract fixture; unit tests cover schemas, validation, page rules, plan units and the views. Start stays unavailable until P5-04; `make brief` / `make generate` keep rejecting reading.
 
+Outcome (2026-10-15): `src/schemas/reading.ts` (brief, content, word ranges), `src/domain/readingLesson.ts` (word count, skim speed, page rules, `skimSeconds`, exam limit), `src/validation/reading.ts`, plan units in `src/domain/session/readingPlan.ts`, `ReadingBriefView`, `ReadingContentView` and `src/components/ReadingDocument.tsx`, reading lines in the Content review, `scripts/author-reading.ts`, and `fr-reading-a-text-message` in `content/`; tests in `tests/unit/reading.test.tsx`. Baseline renderers keep the registry complete until P5-04.
+
 Dependencies: P5-01.
 
 ### P5-03: Write and review the ten fr/A1 reading test lessons
@@ -1047,6 +1049,8 @@ Acceptance:
 - Each lesson meets section 9: word counts of its level, natural A1 French, complete en/fr/de explanations and translations, and the content review criteria.
 - `make sample-lessons` and the contract tests (plan, scoring, a complete session reaching 100 and 0) include the ten lessons.
 - The product owner reviews the ten lessons in the artifact view; findings are resolved before or with P5-04.
+
+Outcome (2026-10-15): the ten lessons in `content/briefs` and `content/lessons` (texts of the public signs, menu and party invitation taken from the reference prototype; the six others new), each with 5 key words, a main document of 46–65 and an exam document of 22–39 words, 4 detail questions, one ordering task, 5 exam questions and 8 minutes; `make sample-lessons` and the contract tests (plan, totals of 100 and 0) include them. Awaiting the product-owner review.
 
 Dependencies: P5-02. The lessons become playable with P5-04.
 
@@ -1067,6 +1071,8 @@ Acceptance:
 - The exam info page row "Questions on the document", the exam page with its countdown and "n of 5 answered", the results sidebar without exam parts, the start page (situation, key words, sections A–C) and the navigation points (D53) work as in section 9; `reading` is in `PLAYABLE_KINDS`.
 - Component tests cover the skim phases and resume, true / false order, the correction view and the results rows; an end-to-end journey plays a reading lesson to its results. Anaïs and Luca confirm the navigation points (D53 without exception).
 
+Outcome (2026-10-15): `src/session/readingRenderers.tsx` (`DocumentRenderer` with the skim phase, `QuestionRenderer`), reading items on the vocabulary `FlashcardsRenderer` and `MatchingRenderer`, `reading_order` on the shared `UnitsRenderer`; reading reveals, sections and exam row in the session engine, outline and navigation; the start page; `reading` in `PLAYABLE_KINDS`; styles for the document and the side-by-side layout from 1100 px. Tests in `tests/unit/reading-renderers.test.tsx`, fixture `fr-fix-menu` and `tests/e2e/reading.spec.ts` (a perfect run to 100 on desktop and phone). Navigation points follow D53 without exception, to be confirmed by Anaïs and Luca.
+
 Dependencies: P5-03.
 
 ### P5-05: Tune reading lengths, skim speed, exam limits and evidence after play tests
@@ -1081,6 +1087,8 @@ Acceptance:
 
 - Play tests of the ten test lessons record skim and answer times per page.
 - The team decides the lesson length per level (whether B2–C2 may exceed 15 minutes), the word ranges, the skim speeds, the page estimates and the exam limits (D18 exception), and whether evidence marks, short typed answers or *not stated* come back; SPEC section 9, `src/schemas/reading.ts` and the test lessons are updated accordingly.
+
+Progress (2026-10-20, SPEC 0.77): the means for the first criterion are in place. The session records times per page (`pageTimes`); with `?playtest` the results show them with a JSON download (`tests/unit/page-times.test.tsx`). New validation: exam questions do not repeat skim or detail questions, and the exam document repeats no main-document paragraph. Lesson length measured from the page rules: 6–14 minutes from A1 to C2 (unit test: the largest lesson of every level is at most 15 minutes). SPEC section 9 has a play-test checklist. **Open:** the play tests themselves, and the team's decisions on the values; no value was changed without them.
 
 Dependencies: P5-04.
 
@@ -1097,6 +1105,8 @@ Acceptance:
 - Compare the side-by-side and stacked layouts with the sidebar at common desktop widths; decide whether reading pages collapse or narrow the sidebar, or keep the stacked layout up to a larger width.
 - Implement the decision on the skim, detail, structure and exam pages without changing the navigation rules (D53); record it in SPEC sections 5 and 9.
 
+Outcome (2026-10-20): measured with the menu fixture at 1024–1920 px, the task area beside the 290 px sidebar is 635 px at 1024 px, 711 px at 1100 px (columns of 320 / 290 px) and at most 931 px (435 / 395 px). Decision: the sidebar stays on reading pages (neither collapsed nor narrowed, D53 unchanged), and the document stands beside the questions or pieces when the task area is at least 700 px wide, by a container query instead of the 1100 px window breakpoint; with the sidebar this is unchanged from 1100 px, without it (900–960 px) both columns now appear. The skim page stays one column. Recorded in SPEC sections 5 and 9 (0.76); `tests/e2e/reading.spec.ts` checks 1440, 1100, 1024, 900, 700 and 375 px.
+
 Dependencies: P5-04.
 
 ### P5-07: Decide reading generation and complete the reading lessons
@@ -1112,6 +1122,8 @@ Acceptance:
 - The decision is recorded in SPEC section 9 and here.
 - If generation is chosen: brief and content prompts for reading in the generator (brief first, then lesson content; `skimSeconds`, estimates and limits assembled locally from the page rules), `make brief`, `make generate ID=<id>` and `make generate-missing` include reading, fake-model tests cover it, and the generated artifacts pass validation and review.
 - Every reading lesson in scope has a valid, reviewed, playable brief and lesson content; representative journeys are verified on Pages.
+
+Progress (2026-10-20, SPEC 0.78): decision D55 is **proposed** and awaits the product owner's confirmation. Hand-written static lessons, completed by `scripts/author-reading.ts`; the prototype's scope is the ten fr/A1 test lessons; offline generation is deferred (the generation criterion therefore does not apply); the other 836 reading entries stay unavailable with their reasons. A course audit (`tests/unit/reading-course.test.tsx`) and browser journeys on the real content (`tests/e2e/reading-course.spec.ts`) play all ten lessons to 100 points; `make build` passes. **Open:** the product owner confirms D55; the review of the ten lessons (P5-03, #101); verification on Pages once deployment runs again (GitHub Actions is blocked by billing).
 
 Dependencies: P5-03, P5-04.
 
@@ -1131,6 +1143,8 @@ Acceptance:
 - Update the root mockup README, SPEC references, issue asset mappings, and all affected links; keep a single README for the mockup collection.
 - Record the prototype revision used for comparison. Resolve implementation/specification differences or record them as follow-up work; mockup updates must not silently change agreed behavior.
 - Refresh applicable published GitHub issues and their diagrams/PlantUML code and server-rendered preview URLs; verify source parity, links, and rendering. This issue is required to close the phase.
+
+Progress (2026-10-20, SPEC 0.79): all fourteen reading Salt sources (thirteen lesson pages under `docs/mockups/06-reading-lesson/`, the artifact view under `docs/mockups/02-artifact-view/reading/`) are redrawn from captures of the running prototype at 1280 and 375 px (`P5-reading-integration` at `eb36f91` with this issue's fixes). Each source renders without a diagram error on the PlantUML server and was compared with its capture; `make mockups-sync` and `make mockups-check` pass; the single mockup README records the comparison. Differences resolved in the app: "n of 5 answered" on the exam page (section 9 and P5-04 acceptance, missing), and the singular for one exam page (start page, sidebar, countdown note). **Open:** the mockups follow the current starting values; if the play tests of P5-05 or the D55 confirmation of P5-07 change them, they are refreshed again before the phase closes.
 
 Dependencies: P5-05, P5-06, P5-07 (transitively every other phase 5 issue). Renumbered from P5-02 in P5-01; the GitHub issue number is unchanged.
 
@@ -1256,7 +1270,8 @@ Use fenced Mermaid and applicable fenced PlantUML source directly in GitHub bodi
 | P4-05 | Functions flow, SPEC section 8; shared session flow, section 5 | [Word order](mockups/05-function-lesson/06-word-order/word-order.png), [dialogue gaps](mockups/05-function-lesson/05-dialogue-gap-choice/dialogue-gap-choice.png), [exam replies](mockups/05-function-lesson/08-exam/reply-word-order.png), [exam dialogue](mockups/05-function-lesson/08-exam/dialogue-gap-typing.png), [listening choice](mockups/05-function-lesson/07-listening-choice/listening-choice.png) |
 | P4-03, P4-06, P4-07, P4-08 | Functions flow, SPEC section 8 | [Start](mockups/05-function-lesson/01-startpage/lesson-start.png), [model dialogue](mockups/05-function-lesson/03-dialogue/dialogue.png), [exam replies](mockups/05-function-lesson/08-exam/reply-word-order.png), [exam dialogue](mockups/05-function-lesson/08-exam/dialogue-gap-typing.png) |
 | P5-01, P5-02, P5-03 | Reading flow, SPEC section 9 | [Reading artifacts](mockups/02-artifact-view/reading/lesson-detail.puml), [start](mockups/06-reading-lesson/01-startpage/lesson-start.puml), all reading screens below |
-| P5-04, P5-06 | Reading flow, SPEC section 9; shared session flow, section 5 | [Flashcards](mockups/06-reading-lesson/02-flashcards/flashcards.puml), [matching](mockups/06-reading-lesson/02-flashcards/matching.puml), [skim](mockups/06-reading-lesson/03-skim/skim.puml), [skim question](mockups/06-reading-lesson/03-skim/skim-question.puml), [skim result](mockups/06-reading-lesson/03-skim/skim-feedback.puml), [detail](mockups/06-reading-lesson/04-detail/detail.puml), [detail after Check](mockups/06-reading-lesson/04-detail/detail-feedback.puml), [ordering](mockups/06-reading-lesson/05-structure/ordering.puml), [ordering result](mockups/06-reading-lesson/05-structure/ordering-feedback.puml), [exam info](mockups/06-reading-lesson/06-exam/exam-info.puml), [exam page](mockups/06-reading-lesson/06-exam/exam-page.puml), [results](mockups/06-reading-lesson/07-results/exam-results.puml) |
+| P5-04 | Reading flow, SPEC section 9; shared session flow, section 5 | [Flashcards](mockups/06-reading-lesson/02-flashcards/flashcards.puml), [matching](mockups/06-reading-lesson/02-flashcards/matching.puml), [skim](mockups/06-reading-lesson/03-skim/skim.puml), [skim question](mockups/06-reading-lesson/03-skim/skim-question.puml), [skim result](mockups/06-reading-lesson/03-skim/skim-feedback.puml), [detail](mockups/06-reading-lesson/04-detail/detail.puml), [detail after Check](mockups/06-reading-lesson/04-detail/detail-feedback.puml), [ordering](mockups/06-reading-lesson/05-structure/ordering.puml), [ordering result](mockups/06-reading-lesson/05-structure/ordering-feedback.puml), [exam info](mockups/06-reading-lesson/06-exam/exam-info.puml), [exam page](mockups/06-reading-lesson/06-exam/exam-page.puml), [results](mockups/06-reading-lesson/07-results/exam-results.puml) |
+| P5-06 | Reading flow, SPEC section 9; shared session flow, section 5 | [skim](mockups/06-reading-lesson/03-skim/skim.puml), [detail](mockups/06-reading-lesson/04-detail/detail.puml), [detail after Check](mockups/06-reading-lesson/04-detail/detail-feedback.puml), [ordering](mockups/06-reading-lesson/05-structure/ordering.puml), [exam page](mockups/06-reading-lesson/06-exam/exam-page.puml) (the pages with the document beside the questions) |
 | P5-05, P5-07, P5-08 | Reading flow, SPEC section 9 | [Start](mockups/06-reading-lesson/01-startpage/lesson-start.puml), [skim](mockups/06-reading-lesson/03-skim/skim.puml), [exam page](mockups/06-reading-lesson/06-exam/exam-page.puml), [results](mockups/06-reading-lesson/07-results/exam-results.puml) |
 
 The phase-closing issues P1-12, P2-08, P3-08, P4-08 and P5-08 include before/after source changes and PlantUML-enabled previews for their respective index/artifact, vocabulary, and grammar screens from the [root mockup guide](mockups/README.md). The Claude review issue P0-02 uses the specification's applicable flows and mockups as review inputs.

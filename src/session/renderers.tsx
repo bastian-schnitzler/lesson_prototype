@@ -4,6 +4,7 @@ import type { Item } from '../domain/session/plan.ts';
 import { UnitsRenderer, type RendererProps } from './controls.tsx';
 import { ExplanationRenderer, PlaceholderRenderer, PronounMatchRenderer, PronounTypingRenderer } from './grammarRenderers.tsx';
 import { DialogueGapChoiceRenderer, DialogueRenderer, ExamDialogueRenderer, FunctionFlashcardsRenderer, FunctionWordOrderRenderer, ListeningReplyRenderer } from './functionsRenderers.tsx';
+import { DocumentRenderer, QuestionRenderer } from './readingRenderers.tsx';
 import { FlashcardsRenderer, GenderRenderer, IntroductionRenderer, MatchingRenderer } from './vocabularyRenderers.tsx';
 
 export { UnitFeedback, type RendererProps } from './controls.tsx';
@@ -41,4 +42,13 @@ export const rendererRegistry: Record<Item['type'], ComponentType<RendererProps>
   function_listening_choice: ListeningReplyRenderer,
   function_dialogue_gap_typing: ExamDialogueRenderer,
   function_translation_exam: UnitsRenderer,
+  // Reading lessons (P5-04): the vocabulary flashcards and matching board, the document view, the
+  // questions on the shared choice control and the word-order control for the ordering task.
+  reading_flashcards: FlashcardsRenderer,
+  reading_keyword_matching: MatchingRenderer,
+  reading_document: DocumentRenderer,
+  reading_skim_choice: QuestionRenderer,
+  reading_choice: QuestionRenderer,
+  reading_true_false: QuestionRenderer,
+  reading_order: UnitsRenderer,
 };
