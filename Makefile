@@ -55,13 +55,13 @@ test-e2e: node_modules/.package-lock.json ## Run browser tests against fixture c
 
 test-all: mockups-check test test-e2e ## Run mockup parity, unit/component and end-to-end tests
 
-mockups-sync: node_modules/.package-lock.json ## Copy every docs/mockups .puml source into its SPEC.md code fence and refresh the rendered-screen blocks
+mockups-sync: node_modules/.package-lock.json ## Rewrite the SPEC.md rendered-screen blocks from scripts/screens.ts
 	$(NODE) scripts/mockups.ts sync
 
-mockups-check: node_modules/.package-lock.json ## Fail on stale, missing or orphaned SPEC mockup fences or screen blocks, missing screens or other files
+mockups-check: node_modules/.package-lock.json ## Fail on stale, missing or orphaned SPEC screen blocks, missing screens or other files in docs/mockups
 	$(NODE) scripts/mockups.ts check
 
-screens: node_modules/.package-lock.json ## Capture lesson screens from the running prototype as PNG + HTML under docs/mockups (ONLY=<path-prefix>)
+screens: node_modules/.package-lock.json ## Capture index, artifact and lesson screens from the running prototype as PNG + HTML under docs/mockups (ONLY=<path-prefix>)
 	$(NODE) scripts/screens.ts $(if $(ONLY),--only "$(ONLY)",)
 
 build: node_modules/.package-lock.json ## Validate outlines and build dist/ (index.html, assets, content, manifest) for Pages

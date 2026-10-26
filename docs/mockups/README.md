@@ -1,32 +1,12 @@
 # Lesson prototype mockups
 
-One guide for all mockups: 42 rendered screens of the vocabulary, grammar and function lessons and 19 PlantUML Salt screens (index, artifact view, reading). A rendered screen is a picture of the running prototype: a full-page PNG and a self-contained HTML snapshot (rendered DOM, inlined CSS, no scripts), captured by `make screens` (`scripts/screens.ts`) and shown in [SPEC.md](../SPEC.md) as the PNG linked to the snapshot. A Salt screen folder contains only its editable `.puml` source, embedded in SPEC as a `plantuml` code fence; PNG/SVG exports of Salt sources are not stored here. See the [issue asset mapping](../ISSUES.md#assets-to-include-when-publishing-applicable-issues).
+One guide for all mockups: 61 screens rendered from the running prototype (index, artifact views and the vocabulary, grammar, function and reading lessons). Each screen is a full-page PNG and a self-contained HTML snapshot (rendered DOM, inlined CSS, no scripts), captured by `make screens` (`scripts/screens.ts`) and shown in [SPEC.md](../SPEC.md) as the PNG linked to the snapshot. This folder holds nothing else besides this README; the PlantUML Salt sources used until P06-00 are retired (their history is in git). See the [issue asset mapping](../ISSUES.md#assets-to-include-when-publishing-applicable-issues).
 
-## Make PlantUML rendering work in VS Code
+## Refresh the screens
 
-1. Install **PlantUML by jebbs** (`jebbs.plantuml`) from Extensions.
-2. Press **Ctrl+Shift+P** (German keyboard: **Strg+Shift+P**) and select **Preferences: Open User Settings (JSON)**.
-3. Add these entries to the existing settings object:
+Run `make screens` (or `make screens ONLY=04-grammar-lesson`) after a change to these pages, then `make mockups-sync`, which writes each SPEC `screen:begin` / `screen:end` block from the screen list in `scripts/screens.ts`. Index and artifact screens open their route; each lesson screen's session state is built with the app's plan and reducer and resumed in headless Chromium with a fixed seed, clock and test French voice, so a run reproduces the same pictures until the app or the content changes. To add or change a screen, edit its entry in `scripts/screens.ts`; never edit a PNG or HTML file by hand. `make mockups-check` fails on a missing PNG or HTML file, a missing or stale SPEC block, a missing README link or any other file in this folder.
 
-```json
-{
-  "plantuml.server": "https://www.plantuml.com/plantuml",
-  "plantuml.render": "PlantUMLServer",
-  "plantuml.previewAutoUpdate": true
-}
-```
-
-Open SPEC.md in Markdown preview (Ctrl+Shift+V) to render its `plantuml` blocks with the extension. For a source-focused preview, put the cursor inside the diagram and press **Alt+D**; the preview updates automatically when the source changes. The server setting selects the endpoint, while the render setting enables server rendering. See the [extension's setup and preview documentation](https://github.com/qjebbs/vscode-plantuml).
-
-GitHub's native Markdown renderer does not render PlantUML fences. Published issues include the source fence and a server-rendered image URL, verified during publication; this keeps the repository source-only. See [GitHub diagram support](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-diagrams).
-
-## Keep source and Markdown together
-
-**Rendered screens:** run `make screens` (or `make screens ONLY=04-grammar-lesson`) after a change to these pages, then `make mockups-sync`, which writes each SPEC `screen:begin` / `screen:end` block from the screen list in `scripts/screens.ts`. Each screen's session state is built there with the app's plan and reducer and resumed in headless Chromium with a fixed seed, clock and test French voice, so a run reproduces the same pictures until the app or the content changes. `make mockups-check` fails on a missing PNG or HTML file, a missing or stale SPEC block or a missing README link.
-
-**Salt sources:** Whenever a `.puml` changes, update its corresponding code fence in SPEC.md and any other Markdown/issue copies in the same change. The .puml is canonical. SPEC blocks have `mockup:begin` / `mockup:end` markers identifying their source path. After the Makefile is introduced in P1-01, use `make mockups-sync` and `make mockups-check`; test-all and CI check parity. Preview temporary exports outside this folder when needed.
-
-All pages follow the [supplied screenshot reference register and visual contract](../SPEC.md#screenshot-reference-register): dark slate surfaces, light primary actions, outlined secondary controls, wide choice cards, indigo progress, and green/red/amber correctness colors. Original screenshot references belong in docs/design-references/, outside this source-only folder. Salt approximates widget styling and shows the exam timer as a ring symbol with seconds; the React visual contract defines final fills, radii, and centered countdown digits. Practice locks/shows feedback and then confirms with Continue; exam pages withhold feedback until the complete exam ends. Accent corrections name the actual mark. Artifact previews are read-only. All headers show independent mother-tongue and interface-language controls; these examples select en/en. Mother tongue is editable only on the index/starting page, where the option equal to the course's learning language (fr for French courses) is disabled; other pages show its option group read-only (muted unselected choices). Interface language remains editable during the whole session. The index displays discovered language/level groups (currently fr/A1 only), followed by multiselect categories. The artifact header toggles Raw JSON / Structured view; the shared tree opens its root, 0–3-child containers and only children, while other larger objects/arrays start collapsed.
+All pages follow the [supplied screenshot reference register and visual contract](../SPEC.md#screenshot-reference-register): dark slate surfaces, light primary actions, outlined secondary controls, wide choice cards, indigo progress, and green/red/amber correctness colors. Original screenshot references belong in docs/design-references/, outside this folder. Practice locks/shows feedback and then confirms with Continue; exam pages withhold feedback until the complete exam ends. Accent corrections name the actual mark. Artifact previews are read-only. All headers show independent mother-tongue and interface-language controls; these examples select en/en. Mother tongue is editable only on the index/starting page, where the option equal to the course's learning language (fr for French courses) is disabled; other pages show its option group read-only (muted unselected choices). Interface language remains editable during the whole session. The index displays discovered language/level groups (currently fr/A1 only), followed by multiselect categories. The artifact header toggles Raw JSON / Structured view; the shared tree opens its root, 0–3-child containers and only children, while other larger objects/arrays start collapsed.
 
 Vocabulary folders include the start page, so folders 02–07 represent learning stages 1–6; `06-listening` and `06-typed-gaps` both belong to practice stage 5, and `07-exam` also holds the listening-dictation page. Grammar's 02-00 explanation and 02-01 through 02-06 exercise folders are a component gallery; actual lessons use 2–4 suitable teaching blocks. Function folders `01-startpage` to `07-listening-choice` follow the lesson order; `08-exam` holds both exam parts (P4-01, reordered in the P4-05 review). Reading folders `01-startpage` to `07-results` follow the lesson order; `02-flashcards` holds the flashcards and the matching board, and each document stage has its answering page and its page after Check (P5-01). Keep this root file as the only mockup README.
 
@@ -41,21 +21,25 @@ Vocabulary folders include the start page, so folders 02–07 represent learning
 
 ## 01 — Lesson overview
 
-| Screen folder | Screen | Source and embedded preview |
+Rendered from the prototype with the fr/A1 course (`make screens`).
+
+| Screen folder | Screen | Rendered screen |
 | --- | --- | --- |
-| `01-lesson-overview/index` | lesson index | [Salt source](01-lesson-overview/index/lesson-index.puml) · [SPEC preview](../SPEC.md#mockup-01-lesson-overview-index-lesson-index) |
+| `01-lesson-overview/index` | Lesson index | [PNG](01-lesson-overview/index/lesson-index.png) · [HTML snapshot](01-lesson-overview/index/lesson-index.html) · [SPEC preview](../SPEC.md#mockup-01-lesson-overview-index-lesson-index) |
 
 <a id="artifact-view"></a>
 
 ## 02 — Artifact view
 
-| Screen folder | Screen | Source and embedded preview |
+Rendered from the prototype with the lessons `fr-classroom-objects` (vocabulary and raw JSON), `fr-verb-etre-present` (grammar) and `fr-reading-a-text-message` (reading).
+
+| Screen folder | Screen | Rendered screen |
 | --- | --- | --- |
-| `02-artifact-view/grammar` | lesson detail | [Salt source](02-artifact-view/grammar/lesson-detail.puml) · [SPEC preview](../SPEC.md#mockup-02-artifact-view-grammar-lesson-detail) |
-| `02-artifact-view/raw-json` | initial JSON tree | [Salt source](02-artifact-view/raw-json/json-tree.puml) · [SPEC preview](../SPEC.md#mockup-02-artifact-view-raw-json-json-tree) |
-| `02-artifact-view/reading` | lesson detail | [Salt source](02-artifact-view/reading/lesson-detail.puml) · [SPEC preview](../SPEC.md#mockup-02-artifact-view-reading-lesson-detail) |
-| `02-artifact-view/raw-json` | expanded JSON tree | [Salt source](02-artifact-view/raw-json/json-tree-expanded.puml) · [SPEC preview](../SPEC.md#mockup-02-artifact-view-raw-json-json-tree-expanded) |
-| `02-artifact-view/vocabulary` | lesson detail | [Salt source](02-artifact-view/vocabulary/lesson-detail.puml) · [SPEC preview](../SPEC.md#mockup-02-artifact-view-vocabulary-lesson-detail) |
+| `02-artifact-view/vocabulary` | Lesson detail | [PNG](02-artifact-view/vocabulary/lesson-detail.png) · [HTML snapshot](02-artifact-view/vocabulary/lesson-detail.html) · [SPEC preview](../SPEC.md#mockup-02-artifact-view-vocabulary-lesson-detail) |
+| `02-artifact-view/grammar` | Lesson detail | [PNG](02-artifact-view/grammar/lesson-detail.png) · [HTML snapshot](02-artifact-view/grammar/lesson-detail.html) · [SPEC preview](../SPEC.md#mockup-02-artifact-view-grammar-lesson-detail) |
+| `02-artifact-view/reading` | Lesson detail | [PNG](02-artifact-view/reading/lesson-detail.png) · [HTML snapshot](02-artifact-view/reading/lesson-detail.html) · [SPEC preview](../SPEC.md#mockup-02-artifact-view-reading-lesson-detail) |
+| `02-artifact-view/raw-json` | Initial JSON tree | [PNG](02-artifact-view/raw-json/json-tree.png) · [HTML snapshot](02-artifact-view/raw-json/json-tree.html) · [SPEC preview](../SPEC.md#mockup-02-artifact-view-raw-json-json-tree) |
+| `02-artifact-view/raw-json` | JSON tree with the draft expanded | [PNG](02-artifact-view/raw-json/json-tree-expanded.png) · [HTML snapshot](02-artifact-view/raw-json/json-tree-expanded.html) · [SPEC preview](../SPEC.md#mockup-02-artifact-view-raw-json-json-tree-expanded) |
 
 <a id="phase-1-comparison"></a>
 
@@ -148,20 +132,20 @@ Rendered from the prototype with the lesson `fr-ordering-at-a-cafe` (`make scree
 
 ## 06 — Reading lesson
 
-Every page of one reading lesson ([SPEC section 9](../SPEC.md#9-reading-learning-flow), P5-01), drawn with the fr/A1 lesson `fr-reading-a-text-message`. Flashcards, matching, the exam info page, the countdown, the results and the lesson navigation are the shared screens of the other categories; only the document view and the skim phase are reading's own. **Refreshed from the prototype in P5-08 (2026-10-20):** every page was played and captured at 1280 px (and 375 px for the phone layout) on `P5-reading-integration` at `eb36f91` with the P5-08 fixes ("1 timed page", "1 page · 5 questions", "n of 5 answered"), and each source redrawn from its capture: the app header, the session header (no score on flashcards and the exam info page), the sidebar timeline in the section colours, the real copy, highlights and options, the correction cards after Check, the exam countdown and the results with red stripes. The sources show the wide layout with the sidebar; on phones (960 px and narrower) the sidebar gives way to the numbered point strip and the document stacks above the questions (section 5). Salt draws the countdown and flip symbols as text and does not draw curves (`~~~`).
+Every page of one reading lesson ([SPEC section 9](../SPEC.md#9-reading-learning-flow)), rendered from the prototype with the lesson `fr-reading-a-text-message` (`make screens`, P06-00). They replace the Salt sources redrawn from captures in P5-08. Flashcards, matching, the exam info page, the countdown, the results and the lesson navigation are the shared screens of the other categories; only the document view and the skim phase are reading's own. The screens show the wide layout at 1280 px with the sidebar; on phones (960 px and narrower) the sidebar gives way to the numbered point strip and the document stacks above the questions (section 5).
 
-| Screen folder | Screen | Source and embedded preview |
+| Screen folder | Screen | Rendered screen |
 | --- | --- | --- |
-| `06-reading-lesson/01-startpage` | lesson start | [Salt source](06-reading-lesson/01-startpage/lesson-start.puml) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-01-startpage-lesson-start) |
-| `06-reading-lesson/02-flashcards` | flashcards | [Salt source](06-reading-lesson/02-flashcards/flashcards.puml) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-02-flashcards-flashcards) |
-| `06-reading-lesson/02-flashcards` | matching | [Salt source](06-reading-lesson/02-flashcards/matching.puml) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-02-flashcards-matching) |
-| `06-reading-lesson/03-skim` | skim with countdown | [Salt source](06-reading-lesson/03-skim/skim.puml) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-03-skim-skim) |
-| `06-reading-lesson/03-skim` | skim question, answered from memory | [Salt source](06-reading-lesson/03-skim/skim-question.puml) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-03-skim-skim-question) |
-| `06-reading-lesson/03-skim` | skim result after Check | [Salt source](06-reading-lesson/03-skim/skim-feedback.puml) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-03-skim-skim-feedback) |
-| `06-reading-lesson/04-detail` | detail questions | [Salt source](06-reading-lesson/04-detail/detail.puml) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-04-detail-detail) |
-| `06-reading-lesson/04-detail` | detail after Check | [Salt source](06-reading-lesson/04-detail/detail-feedback.puml) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-04-detail-detail-feedback) |
-| `06-reading-lesson/05-structure` | structure: ordering | [Salt source](06-reading-lesson/05-structure/ordering.puml) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-05-structure-ordering) |
-| `06-reading-lesson/05-structure` | structure result after Check | [Salt source](06-reading-lesson/05-structure/ordering-feedback.puml) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-05-structure-ordering-feedback) |
-| `06-reading-lesson/06-exam` | exam info page | [Salt source](06-reading-lesson/06-exam/exam-info.puml) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-06-exam-exam-info) |
-| `06-reading-lesson/06-exam` | exam page | [Salt source](06-reading-lesson/06-exam/exam-page.puml) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-06-exam-exam-page) |
-| `06-reading-lesson/07-results` | exam results | [Salt source](06-reading-lesson/07-results/exam-results.puml) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-07-results-exam-results) |
+| `06-reading-lesson/01-startpage` | Lesson start | [PNG](06-reading-lesson/01-startpage/lesson-start.png) · [HTML snapshot](06-reading-lesson/01-startpage/lesson-start.html) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-01-startpage-lesson-start) |
+| `06-reading-lesson/02-flashcards` | Flashcards | [PNG](06-reading-lesson/02-flashcards/flashcards.png) · [HTML snapshot](06-reading-lesson/02-flashcards/flashcards.html) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-02-flashcards-flashcards) |
+| `06-reading-lesson/02-flashcards` | Matching | [PNG](06-reading-lesson/02-flashcards/matching.png) · [HTML snapshot](06-reading-lesson/02-flashcards/matching.html) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-02-flashcards-matching) |
+| `06-reading-lesson/03-skim` | Skim with countdown | [PNG](06-reading-lesson/03-skim/skim.png) · [HTML snapshot](06-reading-lesson/03-skim/skim.html) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-03-skim-skim) |
+| `06-reading-lesson/03-skim` | Skim question, answered from memory | [PNG](06-reading-lesson/03-skim/skim-question.png) · [HTML snapshot](06-reading-lesson/03-skim/skim-question.html) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-03-skim-skim-question) |
+| `06-reading-lesson/03-skim` | Skim result after Check | [PNG](06-reading-lesson/03-skim/skim-feedback.png) · [HTML snapshot](06-reading-lesson/03-skim/skim-feedback.html) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-03-skim-skim-feedback) |
+| `06-reading-lesson/04-detail` | Detail questions | [PNG](06-reading-lesson/04-detail/detail.png) · [HTML snapshot](06-reading-lesson/04-detail/detail.html) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-04-detail-detail) |
+| `06-reading-lesson/04-detail` | Detail after Check | [PNG](06-reading-lesson/04-detail/detail-feedback.png) · [HTML snapshot](06-reading-lesson/04-detail/detail-feedback.html) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-04-detail-detail-feedback) |
+| `06-reading-lesson/05-structure` | Structure: ordering | [PNG](06-reading-lesson/05-structure/ordering.png) · [HTML snapshot](06-reading-lesson/05-structure/ordering.html) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-05-structure-ordering) |
+| `06-reading-lesson/05-structure` | Structure result after Check | [PNG](06-reading-lesson/05-structure/ordering-feedback.png) · [HTML snapshot](06-reading-lesson/05-structure/ordering-feedback.html) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-05-structure-ordering-feedback) |
+| `06-reading-lesson/06-exam` | Exam info page | [PNG](06-reading-lesson/06-exam/exam-info.png) · [HTML snapshot](06-reading-lesson/06-exam/exam-info.html) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-06-exam-exam-info) |
+| `06-reading-lesson/06-exam` | Exam page | [PNG](06-reading-lesson/06-exam/exam-page.png) · [HTML snapshot](06-reading-lesson/06-exam/exam-page.html) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-06-exam-exam-page) |
+| `06-reading-lesson/07-results` | Results | [PNG](06-reading-lesson/07-results/exam-results.png) · [HTML snapshot](06-reading-lesson/07-results/exam-results.html) · [SPEC preview](../SPEC.md#mockup-06-reading-lesson-07-results-exam-results) |

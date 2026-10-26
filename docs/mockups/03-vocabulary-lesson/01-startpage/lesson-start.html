@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- Rendered screen "Vocabulary: Lesson start" of the prototype (lesson fr-classroom-objects, revision e772b3b), captured by scripts/screens.ts. Static: no scripts. -->
+<!-- Rendered screen "Vocabulary: Lesson start" of the prototype (lesson fr-classroom-objects, revision c806f47), captured by scripts/screens.ts. Static: no scripts. -->
 <html lang="en"><head>
     
 
@@ -552,7 +552,33 @@ html { scrollbar-gutter: stable; }
   .session-meters { flex-wrap: wrap; row-gap: 0.6rem; }
   .point-strip { display: block; flex: 1 0 100%; }
   .session-meters .progress { display: none; }
-}</style></head>
+}
+.reading-document { padding: 1.25rem 1.5rem; border: 1px solid var(--border-strong); border-radius: var(--radius-card); background: var(--bg); line-height: 1.6; overflow-wrap: anywhere; }
+.reading-title { margin: 0px 0px 0.25rem; font-size: 22px; font-weight: 600; line-height: 1.3; }
+.reading-meta { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; margin: 0px 0px 0.75rem; color: var(--muted); font-size: 16px; }
+.reading-paragraph { margin: 0px 0px 0.75rem; white-space: pre-line; }
+.reading-paragraph:last-child { margin-bottom: 0px; }
+.reading-keyword { padding: 0px 0.1em; border-bottom: 2px solid var(--progress); border-radius: 3px; background: rgba(99, 91, 255, 0.25); color: inherit; }
+.reading-skim-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem; margin-bottom: 0.75rem; }
+.reading-locked { font-style: italic; }
+.reading-question > span:first-child { font-weight: 600; }
+.units .field.reading-question { grid-template-columns: minmax(0px, 1fr); align-items: start; gap: 0.4rem; }
+.reading-number { margin-right: 0.4rem; color: var(--muted); }
+.reading-doc-slot + .units, .reading-doc-slot + .reading-locked { margin-top: 1.25rem; }
+.nav-main:has(> .task-card > .reading-doc-slot.is-side) { container: reading-task / inline-size; }
+@container reading-task (min-width: 700px) {
+  .task-card:has(> .reading-doc-slot.is-side) { display: grid; grid-template-columns: minmax(0px, 1.1fr) minmax(0px, 1fr); column-gap: 2rem; align-items: start; }
+  .task-card:has(> .reading-doc-slot.is-side) > * { grid-column: 1 / -1; }
+  .task-card > .reading-doc-slot.is-side { position: sticky; top: 1rem; grid-area: span 12 / 1; max-height: calc(-2rem + 100vh); overflow: auto; }
+  .task-card:has(> .reading-doc-slot.is-side) > .units { grid-column: 2; }
+  .task-card:has(> .reading-doc-slot.is-side) > .reading-doc-slot + .units { margin-top: 0px; }
+  .task-card:has(> .reading-doc-slot.is-side) > .units + .units { margin-top: 1.25rem; }
+}
+@media (max-width: 600px) {
+  .reading-document { padding: 1rem; }
+}
+.playtest { margin-top: 2rem; }
+.playtest .table-wrap { margin: 0.75rem 0px; }</style></head>
   <body>
     <div id="root"><header class="app-header"><a class="skip-link" href="#main">Skip to content</a><div class="header-inner"><div class="prefs"><fieldset class="segmented" disabled="" aria-describedby="_r_3_"><legend class="label-muted">Mother tongue</legend><label class="segment" title="English"><input type="radio" value="en" checked="" name="mother-tongue" style=""><span lang="en">en</span></label><label class="segment" title="French is the language of this course, so it cannot be your mother tongue here."><input disabled="" aria-describedby="_r_4_" type="radio" value="fr" name="mother-tongue" style=""><span lang="fr">fr</span></label><label class="segment" title="German"><input type="radio" value="de" name="mother-tongue" style=""><span lang="de">de</span></label></fieldset><div class="select-field"><label class="label-muted" for="_r_5_">Interface language</label><select id="_r_5_"><option value="fr" lang="fr">fr</option><option value="en" lang="en" selected="">en</option><option value="de" lang="de">de</option></select></div><label class="autoplay-switch"><input role="switch" type="checkbox" checked="" value="on" style=""><span class="label-muted">Autoplay</span></label><p id="_r_3_" class="visually-hidden">Choose your mother tongue on the lesson overview before starting a lesson.</p><p id="_r_4_" class="visually-hidden">French is the language of this course, so it cannot be your mother tongue here.</p></div><div class="header-bar"><div class="header-title"><span class="brand">Lesson prototype</span></div><nav class="header-actions"><a class="button button-outline" href="#/">Lesson overview</a></nav></div></div><p class="visually-hidden" role="status" aria-live="polite"></p></header><main id="main" tabindex="-1" class="page page-task"><section class="task-card start-card" aria-labelledby="start-title"><p class="label-muted">French / A1</p><span class="kind-badge">Vocabulary</span><h1 id="start-title" lang="fr">Les objets de la classe</h1><p class="lead">Learn to identify and name twelve common classroom objects in French with their indefinite articles.</p><p class="muted">About 14 minutes · 8 words</p><h2 class="small-heading">Lesson outline</h2><ol class="flow-sections"><li class="flow-section" style="--review-color: #a5b4fc;"><div class="flow-head"><span class="flow-letter" aria-hidden="true">A</span><span class="flow-title">Masculine objects<small class="flow-detail">4 words</small></span><span class="time-limit flow-minutes"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="14" r="7.5"></circle><path d="M12 14V10.5M10 2.5h4M18.2 7.3l1.3-1.3"></path></svg><span>1 min</span></span></div><ol class="flow-points"><li><span class="flow-number" aria-hidden="true">1</span><span>Introduction</span></li><li><span class="flow-number" aria-hidden="true">2</span><span>Flashcards</span></li></ol></li><li class="flow-section" style="--review-color: #67e8f9;"><div class="flow-head"><span class="flow-letter" aria-hidden="true">B</span><span class="flow-title">Feminine objects<small class="flow-detail">4 words</small></span><span class="time-limit flow-minutes"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="14" r="7.5"></circle><path d="M12 14V10.5M10 2.5h4M18.2 7.3l1.3-1.3"></path></svg><span>1 min</span></span></div><ol class="flow-points"><li><span class="flow-number" aria-hidden="true">3</span><span>Introduction</span></li><li><span class="flow-number" aria-hidden="true">4</span><span>Flashcards</span></li></ol></li><li class="flow-section" style="--review-color: #86efac;"><div class="flow-head"><span class="flow-letter" aria-hidden="true">C</span><span class="flow-title">Exercises</span><span class="time-limit flow-minutes"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="14" r="7.5"></circle><path d="M12 14V10.5M10 2.5h4M18.2 7.3l1.3-1.3"></path></svg><span>7 min</span></span></div><ol class="flow-points"><li><span class="flow-number" aria-hidden="true">5</span><span>Matching</span></li><li><span class="flow-number" aria-hidden="true">6</span><span>Gender</span></li><li><span class="flow-number" aria-hidden="true">7</span><span>Practice</span></li><li><span class="flow-number" aria-hidden="true">8</span><span>Listening</span></li></ol></li><li class="flow-section" style="--review-color: #fcd34d;"><div class="flow-head"><span class="flow-letter" aria-hidden="true">D</span><span class="flow-title">Final exam<small class="flow-detail">Answer 16 questions on 4 timed pages</small></span><span class="time-limit flow-minutes"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="14" r="7.5"></circle><path d="M12 14V10.5M10 2.5h4M18.2 7.3l1.3-1.3"></path></svg><span>5 min</span></span></div></li></ol><button type="button" class="button button-primary button-wide">Continue</button></section></main></div>
     

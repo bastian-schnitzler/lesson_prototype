@@ -5,8 +5,8 @@
  *   node scripts/issues-sync.ts [--dry-run] [--only <ID prefix>]
  *
  * Updates milestone descriptions and every mapped issue's title, milestone and
- * body (scope, acceptance, dependency links, Mermaid flows, PlantUML sources
- * with server-rendered previews, screenshot links), pinned to the current
+ * body (scope, acceptance, dependency links, Mermaid flows, rendered screens
+ * of the prototype, screenshot links), pinned to the current
  * commit. Unmapped IDs get new issues; add the printed rows to the mapping
  * table in ISSUES.md. Requires `gh` access and a clean, pushed docs/ tree.
  * `--only P5` limits the run to the issues whose logical ID starts with the prefix (no milestone updates).
@@ -15,7 +15,6 @@ import { execFileSync } from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { parseArgs } from 'node:util';
-import { deflateRawSync } from 'node:zlib';
 
 const ROOT = resolve(import.meta.dirname, '..');
 const REPO = 'bastian-schnitzler/lesson_prototype';
@@ -122,27 +121,13 @@ export function parseAssets(md: string): Map<string, Assets> {
     for (const id of ids.match(/P\d-\d\d/g) ?? []) {
       const a = out.get(id) ?? { sections: [], mockups: [] };
       for (const [, s] of flows.matchAll(/section (\d+)/g)) if (!a.sections.includes(s)) a.sections.push(s);
-      for (const [, label, path] of mockups.matchAll(/\[([^\]]+)\]\((mockups\/[^)]+\.(?:puml|png))\)/g)) {
+      for (const [, label, path] of mockups.matchAll(/\[([^\]]+)\]\((mockups\/[^)]+\.png)\)/g)) {
         if (!a.mockups.some(([, p]) => p === path)) a.mockups.push([label, path]);
       }
       out.set(id, a);
     }
   }
   return out;
-}
-
-const ALPHABET = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_';
-
-/** PlantUML server URL (raw deflate + PlantUML's base64 alphabet). */
-export function plantumlUrl(source: string, format = 'svg'): string {
-  const data = deflateRawSync(Buffer.from(source, 'utf8'), { level: 9 });
-  const padded = Buffer.concat([data, Buffer.alloc((3 - (data.length % 3)) % 3)]);
-  let out = '';
-  for (let i = 0; i < padded.length; i += 3) {
-    const [b1, b2, b3] = [padded[i], padded[i + 1], padded[i + 2]];
-    out += ALPHABET[b1 >> 2] + ALPHABET[((b1 & 3) << 4) | (b2 >> 4)] + ALPHABET[((b2 & 15) << 2) | (b3 >> 6)] + ALPHABET[b3 & 63];
-  }
-  return `https://www.plantuml.com/plantuml/${format}/${out}`;
 }
 
 function anchor(title: string): string {
@@ -158,17 +143,13 @@ export interface BodyContext {
   mapping: Map<string, number>;
   assets: Map<string, Assets>;
   mermaid: Map<string, string>;
-  readSource: (path: string) => string;
 }
 
 /** Longest body published: GitHub rejects more than 65536 characters; the rest is a margin. */
 export const BODY_LIMIT = 65000;
 
-/**
- * The published body of an issue. With `inlineSources: false` the Salt mockups keep their preview and the
- * link to the editable source but leave out the copied PlantUML code (used when a body exceeds the limit).
- */
-export function issueBody(issue: BacklogIssue, ctx: BodyContext, inlineSources = true): string {
+/** The published body of an issue. */
+export function issueBody(issue: BacklogIssue, ctx: BodyContext): string {
   const blob = `https://github.com/${REPO}/blob/${ctx.sha}`;
   const text = issue.text
     .replace(/\]\(((?:SPEC|ISSUES)\.md[^)]*|mockups\/[^)]*)\)/g, (_, p: string) => `](${blob}/docs/${p})`)
@@ -188,32 +169,9 @@ export function issueBody(issue: BacklogIssue, ctx: BodyContext, inlineSources =
     parts.push(`### Flow — [SPEC section ${s}](${blob}/docs/SPEC.md)`, '', '```mermaid', ctx.mermaid.get(s)!.trimEnd(), '```', '');
   }
   for (const [label, path] of a?.mockups ?? []) {
-    if (path.endsWith('.png')) {
-      // A rendered screen (scripts/screens.ts): the committed picture and its HTML snapshot.
-      const html = path.replace(/\.png$/, '.html');
-      parts.push(`### Screen — ${label}`, '', `![${label}](${blob}/docs/${path}?raw=true)`, '', `Rendered from the prototype: [PNG](${blob}/docs/${path}) · [HTML snapshot](${blob}/docs/${html})`, '');
-      continue;
-    }
-    const src = ctx.readSource(path);
-    parts.push(
-      `### Mockup — ${label}`,
-      '',
-      `![${label}](${plantumlUrl(src)})`,
-      '',
-      `Editable source: [${path}](${blob}/docs/${path})`,
-      '',
-    );
-    if (!inlineSources) continue;
-    parts.push(
-      '<details><summary>PlantUML source</summary>',
-      '',
-      '```plantuml',
-      src.trimEnd(),
-      '```',
-      '',
-      '</details>',
-      '',
-    );
+    // A rendered screen (scripts/screens.ts): the committed picture and its HTML snapshot.
+    const html = path.replace(/\.png$/, '.html');
+    parts.push(`### Screen — ${label}`, '', `![${label}](${blob}/docs/${path}?raw=true)`, '', `Rendered from the prototype: [PNG](${blob}/docs/${path}) · [HTML snapshot](${blob}/docs/${html})`, '');
   }
   if (shots) {
     parts.push('### Screenshot references', '');
@@ -251,7 +209,6 @@ if (import.meta.main) {
     mapping,
     assets: parseAssets(issuesMd),
     mermaid: parseMermaid(spec),
-    readSource: (p) => readFileSync(resolve(ROOT, 'docs', p), 'utf8'),
   };
 
   const milestones = JSON.parse(sh('gh', ['api', `repos/${REPO}/milestones?state=all&per_page=100`])) as { title: string; number: number }[];
@@ -278,12 +235,7 @@ if (import.meta.main) {
   for (const issue of issues) {
     const number = mapping.get(issue.id);
     if (number === undefined) continue;
-    let body = issueBody(issue, ctx);
-    if (body.length > BODY_LIMIT) {
-      // Too long with every Salt source copied in: keep the previews and the links to the sources.
-      body = issueBody(issue, ctx, false);
-      console.log(`${issue.id}: PlantUML sources linked instead of copied (body too long)`);
-    }
+    const body = issueBody(issue, ctx);
     if (body.length > BODY_LIMIT) {
       console.error(`error: ${issue.id} body is ${body.length} characters (GitHub limit 65536)`);
       failures++;

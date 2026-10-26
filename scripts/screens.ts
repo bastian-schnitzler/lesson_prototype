@@ -1,9 +1,9 @@
 /**
- * Rendered screens (replace the vocabulary, grammar and function Salt mockups): drives the real
- * prototype on content/ in a headless browser and saves every screen listed below as a full-page
- * PNG and a self-contained HTML snapshot (rendered DOM with the app's CSS inlined, no scripts)
- * under docs/mockups/. Each screen's session state is built here with the app's own plan and
- * session reducer, stored in browser storage and resumed, so the screens are reproducible.
+ * Rendered screens (replace all Salt mockups): drives the real prototype on content/ in a headless
+ * browser and saves every screen listed below as a full-page PNG and a self-contained HTML snapshot
+ * (rendered DOM with the app's CSS inlined, no scripts) under docs/mockups/. Lesson screens build
+ * their session state here with the app's own plan and session reducer, store it in browser storage
+ * and resume it, so the screens are reproducible; index and artifact screens open their route.
  *
  *   node scripts/screens.ts [--only <path-prefix>] [--port 5176]
  */
@@ -17,6 +17,7 @@ import { nextDialogueLine, requiredReveals, sessionReducer, startSession, type S
 import { SESSION_KEY_PREFIX } from '../src/domain/session/storage.ts';
 import { PREFERENCES_KEY } from '../src/domain/preferences.ts';
 import { vocabularyLesson } from '../src/domain/vocabularyLesson.ts';
+import { SKIMMED } from '../src/domain/session/readingPlan.ts';
 import type { Page } from '@playwright/test';
 
 const ROOT = resolve(import.meta.dirname, '..');
@@ -96,6 +97,12 @@ class Attempt {
     return this;
   }
   check() { return this.act({ type: 'continue', now: T0, interfaceLanguage: 'en' }); }
+  /** Puts a reading skim document away: its question is then answered from memory. */
+  skim() {
+    const doc = this.page.items.find((it) => it.type === 'reading_document');
+    if (doc) this.act({ type: 'reveal', itemKey: `${this.page.pageId}/${doc.itemId}`, key: SKIMMED, now: T0 });
+    return this;
+  }
 }
 
 const type = (t: string) => (p: PlanPage) => p.items.some((it) => it.type === t);
@@ -109,6 +116,8 @@ interface Screen {
   path: string;
   title: string;
   lessonId: string;
+  /** Opens the index or the lesson's combined artifact view instead of playing the lesson. */
+  route?: 'index' | 'lesson';
   /** The saved attempt to resume; none shows the start page. */
   state?: (a: Attempt) => Attempt;
   /** Browser steps after resuming (results menu, Continue on the last exam page…). */
@@ -120,10 +129,22 @@ interface Screen {
 const V = 'fr-classroom-objects';
 const G = 'fr-verb-avoir-present';
 const F = 'fr-ordering-at-a-cafe';
+const R = 'fr-reading-a-text-message';
 const toResults = async (page: Page) => { await page.getByRole('button', { name: 'Continue' }).click(); await page.locator('.summary-card').waitFor(); };
 const lastExam = (a: Attempt) => a.to((p) => p.index === a.plan.pages.length - 1);
 
+const rawJson = async (page: Page) => { await page.getByRole('button', { name: 'Raw JSON' }).click(); await page.getByRole('tree').waitFor(); };
+
 export const SCREENS: Screen[] = [
+  // Index and combined artifact view (SPEC section 3)
+  { path: '01-lesson-overview/index/lesson-index', title: 'Lesson index', lessonId: V, route: 'index' },
+  { path: '02-artifact-view/vocabulary/lesson-detail', title: 'Vocabulary: combined artifact view', lessonId: V, route: 'lesson' },
+  { path: '02-artifact-view/grammar/lesson-detail', title: 'Grammar: combined artifact view', lessonId: 'fr-verb-etre-present', route: 'lesson' },
+  { path: '02-artifact-view/reading/lesson-detail', title: 'Reading: combined artifact view', lessonId: R, route: 'lesson' },
+  { path: '02-artifact-view/raw-json/json-tree', title: 'Raw JSON tree', lessonId: V, route: 'lesson', after: rawJson },
+  { path: '02-artifact-view/raw-json/json-tree-expanded', title: 'Raw JSON tree expanded', lessonId: V, route: 'lesson',
+    after: async (page) => { await rawJson(page); await page.getByRole('treeitem', { name: /^draft/ }).first().click(); } },
+
   // Vocabulary (SPEC section 6)
   { path: '03-vocabulary-lesson/01-startpage/lesson-start', title: 'Vocabulary: Lesson start', lessonId: V },
   { path: '03-vocabulary-lesson/02-introduction/introduction', title: 'Vocabulary: Introduction', lessonId: V, state: (a) => a },
@@ -174,6 +195,22 @@ export const SCREENS: Screen[] = [
   { path: '05-function-lesson/08-exam/reply-word-order', title: 'Functions: Exam replies', lessonId: F, state: (a) => a.to((p) => p.role === 'exam' && type('function_word_order')(p)).draft([right]) },
   { path: '05-function-lesson/08-exam/dialogue-gap-typing', title: 'Functions: Exam dialogue', lessonId: F, state: (a) => a.to(type('function_dialogue_gap_typing')).lines(5).draft([right, right]) },
   { path: '05-function-lesson/09-results/exam-results', title: 'Functions: Results', lessonId: F, state: (a) => lastExam(a).lines(99).draft([right, right, 'un café']), after: toResults },
+
+  // Reading (SPEC section 9)
+  { path: '06-reading-lesson/01-startpage/lesson-start', title: 'Reading: Lesson start', lessonId: R },
+  { path: '06-reading-lesson/02-flashcards/flashcards', title: 'Reading: Flashcards', lessonId: R, state: (a) => a.reveal(2) },
+  { path: '06-reading-lesson/02-flashcards/matching', title: 'Reading: Matching', lessonId: R, state: (a) => a.to(type('reading_keyword_matching')).draft([right, right]) },
+  { path: '06-reading-lesson/03-skim/skim', title: 'Reading: Skim', lessonId: R, state: (a) => a.to(type('reading_skim_choice')) },
+  { path: '06-reading-lesson/03-skim/skim-question', title: 'Reading: Skim question', lessonId: R, state: (a) => a.to(type('reading_skim_choice')).skim() },
+  { path: '06-reading-lesson/03-skim/skim-feedback', title: 'Reading: Skim checked', lessonId: R, state: (a) => a.to(type('reading_skim_choice')).skim().rightAll().check() },
+  { path: '06-reading-lesson/04-detail/detail', title: 'Reading: Detail questions', lessonId: R, state: (a) => a.to((p) => p.role === 'practice' && type('reading_choice')(p)).draft([right, right]) },
+  { path: '06-reading-lesson/04-detail/detail-feedback', title: 'Reading: Detail checked', lessonId: R, state: (a) => a.to((p) => p.role === 'practice' && type('reading_choice')(p)).draft([right, wrongChoice, right, right]).check() },
+  { path: '06-reading-lesson/05-structure/ordering', title: 'Reading: Ordering', lessonId: R, state: (a) => a.to(type('reading_order')).draft([(u) => (u.kind === 'order' ? u.acceptedOrders[0].slice(0, 2) : undefined)]) },
+  { path: '06-reading-lesson/05-structure/ordering-feedback', title: 'Reading: Ordering checked', lessonId: R,
+    state: (a) => a.to(type('reading_order')).draft([(u) => (u.kind === 'order' ? [...u.acceptedOrders[0]].reverse() : undefined)]).check() },
+  { path: '06-reading-lesson/06-exam/exam-info', title: 'Reading: Exam info', lessonId: R, state: (a) => a.to((p) => p.special === 'examIntro') },
+  { path: '06-reading-lesson/06-exam/exam-page', title: 'Reading: Exam page', lessonId: R, state: (a) => a.to((p) => p.role === 'exam').draft([right, right, right]) },
+  { path: '06-reading-lesson/07-results/exam-results', title: 'Reading: Results', lessonId: R, state: (a) => lastExam(a).draft([right, right, wrongChoice, right, right]), after: toResults },
 ];
 
 /** The SPEC block body of a screen (kept by `make mockups-sync`): the PNG inline, linked to the HTML snapshot. */
@@ -215,17 +252,19 @@ function snapshot({ title, note }: { title: string; note: string }) {
 }
 
 async function capture(page: Page, screen: Screen, baseUrl: string, revision: string) {
-  const { plan, contentHash } = lesson(screen.lessonId);
-  const record = screen.state?.(new Attempt(plan, contentHash)).record;
+  const { plan, contentHash } = screen.route ? { plan: undefined, contentHash: '' } : lesson(screen.lessonId);
+  const record = plan && screen.state?.(new Attempt(plan, contentHash)).record;
   await page.goto(baseUrl);
   await page.evaluate(({ key, value, prefs, prefsKey }) => {
     localStorage.clear();
     localStorage.setItem(prefsKey, prefs);
     if (value) localStorage.setItem(key, value);
   }, { key: SESSION_KEY_PREFIX + screen.lessonId, value: record ? JSON.stringify(record) : '', prefs: JSON.stringify({ motherTongue: 'en', interfaceLanguage: 'en', autoplay: true }), prefsKey: PREFERENCES_KEY });
-  await page.goto(`${baseUrl}#/lesson/${screen.lessonId}/play`);
+  await page.goto(baseUrl + (screen.route === 'index' ? '#/' : screen.route === 'lesson' ? `#/lesson/${screen.lessonId}` : `#/lesson/${screen.lessonId}/play`));
   await page.reload();
-  if (record) await page.getByRole('button', { name: 'Resume lesson' }).click({ timeout: 30_000 });
+  if (screen.route === 'index') await page.locator('table tbody tr').first().waitFor({ timeout: 30_000 });
+  else if (screen.route === 'lesson') await page.getByRole('button', { name: 'Raw JSON' }).waitFor({ timeout: 30_000 });
+  else if (record) await page.getByRole('button', { name: 'Resume lesson' }).click({ timeout: 30_000 });
   else await page.getByRole('button', { name: 'Continue' }).waitFor({ timeout: 30_000 });
   if (screen.noVoice) await page.evaluate(() => (window as unknown as { __dropVoice: () => void }).__dropVoice());
   await screen.after?.(page);
