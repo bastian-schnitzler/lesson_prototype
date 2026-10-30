@@ -53,9 +53,11 @@ function play(plan: LessonPlan, respond: (u: PlanUnit, role: string) => UnitResp
   return r;
 }
 
-it('reviews the twenty first-ten samples, the three function test lessons (P4-03) and the ten reading test lessons (P5-03)', () => {
-  expect(IDS).toHaveLength(33);
-  expect(IDS.filter((id) => read('briefs', id).kind === 'functions')).toEqual(['fr-asking-the-way', 'fr-greetings-and-goodbyes', 'fr-ordering-at-a-cafe']);
+it('reviews the twenty first-ten samples, the five function lessons (P4-03, ft_transcendence #84) and the ten reading test lessons (P5-03)', () => {
+  expect(IDS).toHaveLength(35);
+  expect(IDS.filter((id) => read('briefs', id).kind === 'functions')).toEqual([
+    'fr-asking-the-way', 'fr-greetings-and-goodbyes', 'fr-introducing-yourself', 'fr-ordering-at-a-cafe', 'fr-thanking-and-apologising',
+  ]);
   expect(IDS.filter((id) => read('briefs', id).kind === 'reading')).toHaveLength(10);
 });
 

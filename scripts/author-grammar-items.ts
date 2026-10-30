@@ -58,11 +58,11 @@ export const wo = (ruleIds: string[], words: string[], explanation: LocalizedTex
 };
 
 /** Error spotter: the correct sentence, the index of the word replaced by `wrong`, and the correction mode. */
-export const sp = (ruleIds: string[], words: string[], index: number, wrong: string, explanation: LocalizedText, choices: string[] = []): Draft => ({
+export const sp = (ruleIds: string[], words: string[], index: number, wrong: string, explanation: LocalizedText, choices: string[] = [], alsoAccepted: string[] = []): Draft => ({
   type: 'grammar_error_spotter', ruleIds,
   tokens: words.map((text, n) => ({ tokenId: `t-${n + 1}`, text: n === index ? wrong : text })),
   faultyTokenId: `t-${index + 1}`,
-  correction: { mode: choices.length ? 'select' : 'type', accepted: accepted(words[index]), choices },
+  correction: { mode: choices.length ? 'select' : 'type', accepted: accepted([words[index], ...alsoAccepted]), choices },
   answerExplanation: explanation,
 });
 

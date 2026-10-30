@@ -15,6 +15,9 @@ const demain = L('Demain means "tomorrow", the day after today.', 'Demain, c’e
 const bientot = L('Bientôt means "soon", in a short while; it has an accent circonflexe on the o.', 'Bientôt veut dire « dans peu de temps » ; il prend un accent circonflexe sur le o.', 'Bientôt heißt „bald“; es hat einen Accent circonflexe auf dem o.');
 const toutDeSuite = L('Tout de suite means "right away", immediately.', 'Tout de suite veut dire « immédiatement ».', 'Tout de suite heißt „sofort“.');
 
+/** Hier clashes with the present suis; any present or future time word fixes it. */
+const hierWithPresent = L('Hier means "yesterday" and does not go with the present suis. Maintenant, aujourd’hui or demain fit.', 'Hier, c’est le jour d’avant : il ne va pas avec le présent suis. Maintenant, aujourd’hui ou demain conviennent.', 'Hier heißt „gestern“ und passt nicht zum Präsens suis. Maintenant, aujourd’hui oder demain passen.');
+
 const H = {
   here: L('here, where I am', 'à l’endroit où je suis', 'hier, wo ich bin'),
   there: L('there, away from me', 'à un autre endroit, loin de moi', 'da, dort, weg von mir'),
@@ -33,14 +36,14 @@ export default {
       id: 'block-spatial-adverbs',
       exercises: [
         { id: 'ex-place-choice', type: 'grammar_gap_choice', items: [
-          gc(PLACE, 'Viens, je suis', 'ici', ['là', 'demain', 'maintenant'], ', à côté de la porte.', ici, H.here),
+          gc(PLACE, 'Viens, je suis', 'ici', ['hier', 'demain', 'maintenant'], ', à côté de la porte.', ici, H.here),
           gc(PLACE, 'Le livre ? Il est', 'là', ['ici', 'aujourd’hui', 'bientôt'], ', sur la table au fond de la salle.', la, H.there),
-          gc(PLACE, 'J’habite', 'ici', ['là', 'demain', 'bientôt'], ', dans cette maison.', ici, H.here),
+          gc(PLACE, 'J’habite', 'ici', ['hier', 'demain', 'bientôt'], ', dans cette maison.', ici, H.here),
         ] },
         { id: 'ex-place-typing', type: 'grammar_gap_typing', items: [
           gt(PLACE, 'Bienvenue ! Vous êtes', 'ici', 'chez vous.', ici, H.here),
           gt(PLACE, 'La gare ? Elle est', 'là', ', après le pont.', la, H.there),
-          gt(PLACE, 'Je reste', 'ici', ', avec toi.', ici, H.here),
+          gt(PLACE, 'Je reste', ['ici', 'là'], ', avec toi.', ici, H.here),
         ] },
         { id: 'ex-place-order', type: 'grammar_word_order', items: [
           wo(PLACE, ['Je', 'suis', 'ici'], ici),
@@ -55,7 +58,7 @@ export default {
         { id: 'ex-time-choice', type: 'grammar_gap_choice', items: [
           gc(NOW, 'Hier, c’était lundi.', 'Aujourd’hui', ['Demain', 'Ici', 'Bientôt'], ', c’est mardi.', aujourdhui, H.today),
           gc(LATER, 'Aujourd’hui, c’est mardi.', 'Demain', ['Maintenant', 'Là', 'Aujourd’hui'], ', c’est mercredi.', demain, H.tomorrow),
-          gc(NOW, 'Je ne peux pas parler', 'maintenant', ['demain', 'là', 'bientôt'], ', je suis en réunion.', maintenant, H.now),
+          gc(NOW, 'Je ne peux pas parler', 'maintenant', ['demain', 'hier', 'bientôt'], ', je suis en réunion.', maintenant, H.now),
         ] },
         { id: 'ex-time-typing', type: 'grammar_gap_typing', items: [
           gt(NOW, 'C’est l’anniversaire de Léa', 'aujourd’hui', '.', aujourdhui, H.today),
@@ -69,7 +72,7 @@ export default {
         ] },
         { id: 'ex-time-spot', type: 'grammar_error_spotter', items: [
           sp(LATER, ['Aujourd’hui', 'c’est', 'mardi', 'et', 'demain', 'c’est', 'mercredi'], 4, 'hier', demain, ['demain', 'hier', 'aujourd’hui']),
-          sp(NOW, ['Je', 'suis', 'occupé', 'maintenant'], 3, 'demain', maintenant),
+          sp(NOW, ['Je', 'suis', 'occupé', 'maintenant'], 3, 'hier', hierWithPresent, [], ['aujourd’hui', 'demain']),
           sp(LATER, ['À', 'bientôt', '!'], 1, 'maintenant', bientot, ['bientôt', 'maintenant', 'ici']),
           sp(NOW, ['C’est', 'mon', 'anniversaire', 'aujourd’hui'], 3, 'aujourdhui', aujourdhui),
         ] },
