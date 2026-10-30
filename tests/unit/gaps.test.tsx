@@ -76,9 +76,9 @@ describe('multiple-choice gaps (P3-03)', () => {
   });
 
   it('marks a wrong choice red and the right one green in place, without a feedback card', () => {
-    const wrong = unit.options.find((o) => o.text === 'là')!;
+    const wrong = unit.options.find((o) => o.text === 'hier')!;
     const { container } = renderPage(choice, { mode: 'feedback', locked: { [unit.id]: locked(wrong.id, unit) } });
-    expect(container.querySelector('.choice.is-wrong')).toHaveTextContent('là');
+    expect(container.querySelector('.choice.is-wrong')).toHaveTextContent('hier');
     expect(container.querySelector('.choice.is-right')).toHaveTextContent('ici');
     expect(container.querySelector('.feedback')).toBeNull();
   });

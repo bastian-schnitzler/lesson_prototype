@@ -36,14 +36,14 @@ export default {
       id: 'block-spatial-adverbs',
       exercises: [
         { id: 'ex-place-choice', type: 'grammar_gap_choice', items: [
-          gc(PLACE, 'Viens, je suis', 'ici', ['là', 'demain', 'maintenant'], ', à côté de la porte.', ici, H.here),
+          gc(PLACE, 'Viens, je suis', 'ici', ['hier', 'demain', 'maintenant'], ', à côté de la porte.', ici, H.here),
           gc(PLACE, 'Le livre ? Il est', 'là', ['ici', 'aujourd’hui', 'bientôt'], ', sur la table au fond de la salle.', la, H.there),
-          gc(PLACE, 'J’habite', 'ici', ['là', 'demain', 'bientôt'], ', dans cette maison.', ici, H.here),
+          gc(PLACE, 'J’habite', 'ici', ['hier', 'demain', 'bientôt'], ', dans cette maison.', ici, H.here),
         ] },
         { id: 'ex-place-typing', type: 'grammar_gap_typing', items: [
           gt(PLACE, 'Bienvenue ! Vous êtes', 'ici', 'chez vous.', ici, H.here),
           gt(PLACE, 'La gare ? Elle est', 'là', ', après le pont.', la, H.there),
-          gt(PLACE, 'Je reste', 'ici', ', avec toi.', ici, H.here),
+          gt(PLACE, 'Je reste', ['ici', 'là'], ', avec toi.', ici, H.here),
         ] },
         { id: 'ex-place-order', type: 'grammar_word_order', items: [
           wo(PLACE, ['Je', 'suis', 'ici'], ici),
@@ -58,7 +58,7 @@ export default {
         { id: 'ex-time-choice', type: 'grammar_gap_choice', items: [
           gc(NOW, 'Hier, c’était lundi.', 'Aujourd’hui', ['Demain', 'Ici', 'Bientôt'], ', c’est mardi.', aujourdhui, H.today),
           gc(LATER, 'Aujourd’hui, c’est mardi.', 'Demain', ['Maintenant', 'Là', 'Aujourd’hui'], ', c’est mercredi.', demain, H.tomorrow),
-          gc(NOW, 'Je ne peux pas parler', 'maintenant', ['demain', 'là', 'bientôt'], ', je suis en réunion.', maintenant, H.now),
+          gc(NOW, 'Je ne peux pas parler', 'maintenant', ['demain', 'hier', 'bientôt'], ', je suis en réunion.', maintenant, H.now),
         ] },
         { id: 'ex-time-typing', type: 'grammar_gap_typing', items: [
           gt(NOW, 'C’est l’anniversaire de Léa', 'aujourd’hui', '.', aujourdhui, H.today),
