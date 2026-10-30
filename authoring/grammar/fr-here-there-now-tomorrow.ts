@@ -15,6 +15,9 @@ const demain = L('Demain means "tomorrow", the day after today.', 'Demain, c’e
 const bientot = L('Bientôt means "soon", in a short while; it has an accent circonflexe on the o.', 'Bientôt veut dire « dans peu de temps » ; il prend un accent circonflexe sur le o.', 'Bientôt heißt „bald“; es hat einen Accent circonflexe auf dem o.');
 const toutDeSuite = L('Tout de suite means "right away", immediately.', 'Tout de suite veut dire « immédiatement ».', 'Tout de suite heißt „sofort“.');
 
+/** Hier clashes with the present suis; any present or future time word fixes it. */
+const hierWithPresent = L('Hier means "yesterday" and does not go with the present suis. Maintenant, aujourd’hui or demain fit.', 'Hier, c’est le jour d’avant : il ne va pas avec le présent suis. Maintenant, aujourd’hui ou demain conviennent.', 'Hier heißt „gestern“ und passt nicht zum Präsens suis. Maintenant, aujourd’hui oder demain passen.');
+
 const H = {
   here: L('here, where I am', 'à l’endroit où je suis', 'hier, wo ich bin'),
   there: L('there, away from me', 'à un autre endroit, loin de moi', 'da, dort, weg von mir'),
@@ -69,7 +72,7 @@ export default {
         ] },
         { id: 'ex-time-spot', type: 'grammar_error_spotter', items: [
           sp(LATER, ['Aujourd’hui', 'c’est', 'mardi', 'et', 'demain', 'c’est', 'mercredi'], 4, 'hier', demain, ['demain', 'hier', 'aujourd’hui']),
-          sp(NOW, ['Je', 'suis', 'occupé', 'maintenant'], 3, 'demain', maintenant),
+          sp(NOW, ['Je', 'suis', 'occupé', 'maintenant'], 3, 'hier', hierWithPresent, [], ['aujourd’hui', 'demain']),
           sp(LATER, ['À', 'bientôt', '!'], 1, 'maintenant', bientot, ['bientôt', 'maintenant', 'ici']),
           sp(NOW, ['C’est', 'mon', 'anniversaire', 'aujourd’hui'], 3, 'aujourdhui', aujourdhui),
         ] },
